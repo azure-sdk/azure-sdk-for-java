@@ -1,5 +1,8 @@
 # Release History
 
+## 1.2.1-beta.3 (Unreleased)
+
+
 ## 1.2.1-beta.2 (2020-09-04)
 - Test release tag replacement 
 
