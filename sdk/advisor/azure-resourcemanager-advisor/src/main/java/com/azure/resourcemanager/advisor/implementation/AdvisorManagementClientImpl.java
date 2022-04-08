@@ -40,8 +40,6 @@ import reactor.core.publisher.Mono;
 /** Initializes a new instance of the AdvisorManagementClientImpl type. */
 @ServiceClient(builder = AdvisorManagementClientBuilder.class)
 public final class AdvisorManagementClientImpl implements AdvisorManagementClient {
-    private final ClientLogger logger = new ClientLogger(AdvisorManagementClientImpl.class);
-
     /** The Azure subscription ID. */
     private final String subscriptionId;
 
@@ -287,7 +285,7 @@ public final class AdvisorManagementClientImpl implements AdvisorManagementClien
                             managementError = null;
                         }
                     } catch (IOException | RuntimeException ioe) {
-                        logger.logThrowableAsWarning(ioe);
+                        LOGGER.logThrowableAsWarning(ioe);
                     }
                 }
             } else {
@@ -346,4 +344,6 @@ public final class AdvisorManagementClientImpl implements AdvisorManagementClien
             return Mono.just(new String(responseBody, charset));
         }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(AdvisorManagementClientImpl.class);
 }
