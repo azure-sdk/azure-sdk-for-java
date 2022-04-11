@@ -5,15 +5,11 @@
 package com.azure.resourcemanager.dataprotection.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** The BackupInstancesDeleteHeaders model. */
 @Fluent
 public final class BackupInstancesDeleteHeaders {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(BackupInstancesDeleteHeaders.class);
-
     /*
      * The Retry-After property.
      */
