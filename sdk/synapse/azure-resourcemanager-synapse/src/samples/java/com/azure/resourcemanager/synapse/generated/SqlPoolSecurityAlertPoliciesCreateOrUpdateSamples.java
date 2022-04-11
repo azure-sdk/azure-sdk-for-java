@@ -31,7 +31,6 @@ public final class SqlPoolSecurityAlertPoliciesCreateOrUpdateSamples {
         resource
             .update()
             .withState(SecurityAlertPolicyState.ENABLED)
-            .withDisabledAlerts(Arrays.asList("Sql_Injection", "Usage_Anomaly"))
             .withEmailAddresses(Arrays.asList("test@microsoft.com", "user@microsoft.com"))
             .withEmailAccountAdmins(true)
             .withStorageEndpoint("https://mystorage.blob.core.windows.net")
