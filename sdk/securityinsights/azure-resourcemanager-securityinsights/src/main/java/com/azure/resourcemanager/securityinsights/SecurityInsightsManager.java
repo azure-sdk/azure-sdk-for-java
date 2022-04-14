@@ -10,11 +10,13 @@ import com.azure.core.http.HttpPipeline;
 import com.azure.core.http.HttpPipelineBuilder;
 import com.azure.core.http.HttpPipelinePosition;
 import com.azure.core.http.policy.AddDatePolicy;
+import com.azure.core.http.policy.AddHeadersFromContextPolicy;
 import com.azure.core.http.policy.HttpLogOptions;
 import com.azure.core.http.policy.HttpLoggingPolicy;
 import com.azure.core.http.policy.HttpPipelinePolicy;
 import com.azure.core.http.policy.HttpPolicyProviders;
 import com.azure.core.http.policy.RequestIdPolicy;
+import com.azure.core.http.policy.RetryOptions;
 import com.azure.core.http.policy.RetryPolicy;
 import com.azure.core.http.policy.UserAgentPolicy;
 import com.azure.core.management.http.policy.ArmChallengeAuthenticationPolicy;
@@ -38,6 +40,7 @@ import com.azure.resourcemanager.securityinsights.implementation.EntitiesRelatio
 import com.azure.resourcemanager.securityinsights.implementation.EntityQueriesImpl;
 import com.azure.resourcemanager.securityinsights.implementation.EntityQueryTemplatesImpl;
 import com.azure.resourcemanager.securityinsights.implementation.EntityRelationsImpl;
+import com.azure.resourcemanager.securityinsights.implementation.FileImportsImpl;
 import com.azure.resourcemanager.securityinsights.implementation.IncidentCommentsImpl;
 import com.azure.resourcemanager.securityinsights.implementation.IncidentRelationsImpl;
 import com.azure.resourcemanager.securityinsights.implementation.IncidentsImpl;
@@ -47,6 +50,7 @@ import com.azure.resourcemanager.securityinsights.implementation.OfficeConsentsI
 import com.azure.resourcemanager.securityinsights.implementation.OperationsImpl;
 import com.azure.resourcemanager.securityinsights.implementation.ProductSettingsImpl;
 import com.azure.resourcemanager.securityinsights.implementation.SecurityInsightsBuilder;
+import com.azure.resourcemanager.securityinsights.implementation.SecurityMLAnalyticsSettingsImpl;
 import com.azure.resourcemanager.securityinsights.implementation.SentinelOnboardingStatesImpl;
 import com.azure.resourcemanager.securityinsights.implementation.SourceControlsImpl;
 import com.azure.resourcemanager.securityinsights.implementation.SourceControlsOperationsImpl;
@@ -71,6 +75,7 @@ import com.azure.resourcemanager.securityinsights.models.EntitiesRelations;
 import com.azure.resourcemanager.securityinsights.models.EntityQueries;
 import com.azure.resourcemanager.securityinsights.models.EntityQueryTemplates;
 import com.azure.resourcemanager.securityinsights.models.EntityRelations;
+import com.azure.resourcemanager.securityinsights.models.FileImports;
 import com.azure.resourcemanager.securityinsights.models.IncidentComments;
 import com.azure.resourcemanager.securityinsights.models.IncidentRelations;
 import com.azure.resourcemanager.securityinsights.models.Incidents;
@@ -79,6 +84,7 @@ import com.azure.resourcemanager.securityinsights.models.Metadatas;
 import com.azure.resourcemanager.securityinsights.models.OfficeConsents;
 import com.azure.resourcemanager.securityinsights.models.Operations;
 import com.azure.resourcemanager.securityinsights.models.ProductSettings;
+import com.azure.resourcemanager.securityinsights.models.SecurityMLAnalyticsSettings;
 import com.azure.resourcemanager.securityinsights.models.SentinelOnboardingStates;
 import com.azure.resourcemanager.securityinsights.models.SourceControls;
 import com.azure.resourcemanager.securityinsights.models.SourceControlsOperations;
@@ -131,6 +137,8 @@ public final class SecurityInsightsManager {
 
     private EntityQueryTemplates entityQueryTemplates;
 
+    private FileImports fileImports;
+
     private IncidentComments incidentComments;
 
     private IncidentRelations incidentRelations;
@@ -140,6 +148,8 @@ public final class SecurityInsightsManager {
     private OfficeConsents officeConsents;
 
     private SentinelOnboardingStates sentinelOnboardingStates;
+
+    private SecurityMLAnalyticsSettings securityMLAnalyticsSettings;
 
     private ProductSettings productSettings;
 
@@ -191,6 +201,19 @@ public final class SecurityInsightsManager {
     }
 
     /**
+     * Creates an instance of SecurityInsights service API entry point.
+     *
+     * @param httpPipeline the {@link HttpPipeline} configured with Azure authentication credential.
+     * @param profile the Azure profile for client.
+     * @return the SecurityInsights service API instance.
+     */
+    public static SecurityInsightsManager authenticate(HttpPipeline httpPipeline, AzureProfile profile) {
+        Objects.requireNonNull(httpPipeline, "'httpPipeline' cannot be null.");
+        Objects.requireNonNull(profile, "'profile' cannot be null.");
+        return new SecurityInsightsManager(httpPipeline, profile, null);
+    }
+
+    /**
      * Gets a Configurable instance that can be used to create SecurityInsightsManager with optional configuration.
      *
      * @return the Configurable instance allowing configurations.
@@ -208,6 +231,7 @@ public final class SecurityInsightsManager {
         private final List<HttpPipelinePolicy> policies = new ArrayList<>();
         private final List<String> scopes = new ArrayList<>();
         private RetryPolicy retryPolicy;
+        private RetryOptions retryOptions;
         private Duration defaultPollInterval;
 
         private Configurable() {
@@ -269,6 +293,19 @@ public final class SecurityInsightsManager {
         }
 
         /**
+         * Sets the retry options for the HTTP pipeline retry policy.
+         *
+         * <p>This setting has no effect, if retry policy is set via {@link #withRetryPolicy(RetryPolicy)}.
+         *
+         * @param retryOptions the retry options for the HTTP pipeline retry policy.
+         * @return the configurable object itself.
+         */
+        public Configurable withRetryOptions(RetryOptions retryOptions) {
+            this.retryOptions = Objects.requireNonNull(retryOptions, "'retryOptions' cannot be null.");
+            return this;
+        }
+
+        /**
          * Sets the default poll interval, used when service does not provide "Retry-After" header.
          *
          * @param defaultPollInterval the default poll interval.
@@ -301,7 +338,7 @@ public final class SecurityInsightsManager {
                 .append("-")
                 .append("com.azure.resourcemanager.securityinsights")
                 .append("/")
-                .append("1.0.0-beta.2");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder
                     .append(" (")
@@ -319,10 +356,15 @@ public final class SecurityInsightsManager {
                 scopes.add(profile.getEnvironment().getManagementEndpoint() + "/.default");
             }
             if (retryPolicy == null) {
-                retryPolicy = new RetryPolicy("Retry-After", ChronoUnit.SECONDS);
+                if (retryOptions != null) {
+                    retryPolicy = new RetryPolicy(retryOptions);
+                } else {
+                    retryPolicy = new RetryPolicy("Retry-After", ChronoUnit.SECONDS);
+                }
             }
             List<HttpPipelinePolicy> policies = new ArrayList<>();
             policies.add(new UserAgentPolicy(userAgentBuilder.toString()));
+            policies.add(new AddHeadersFromContextPolicy());
             policies.add(new RequestIdPolicy());
             policies
                 .addAll(
@@ -481,6 +523,14 @@ public final class SecurityInsightsManager {
         return entityQueryTemplates;
     }
 
+    /** @return Resource collection API of FileImports. */
+    public FileImports fileImports() {
+        if (this.fileImports == null) {
+            this.fileImports = new FileImportsImpl(clientObject.getFileImports(), this);
+        }
+        return fileImports;
+    }
+
     /** @return Resource collection API of IncidentComments. */
     public IncidentComments incidentComments() {
         if (this.incidentComments == null) {
@@ -520,6 +570,15 @@ public final class SecurityInsightsManager {
                 new SentinelOnboardingStatesImpl(clientObject.getSentinelOnboardingStates(), this);
         }
         return sentinelOnboardingStates;
+    }
+
+    /** @return Resource collection API of SecurityMLAnalyticsSettings. */
+    public SecurityMLAnalyticsSettings securityMLAnalyticsSettings() {
+        if (this.securityMLAnalyticsSettings == null) {
+            this.securityMLAnalyticsSettings =
+                new SecurityMLAnalyticsSettingsImpl(clientObject.getSecurityMLAnalyticsSettings(), this);
+        }
+        return securityMLAnalyticsSettings;
     }
 
     /** @return Resource collection API of ProductSettings. */
