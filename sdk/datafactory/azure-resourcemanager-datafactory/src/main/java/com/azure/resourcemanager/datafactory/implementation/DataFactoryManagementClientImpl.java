@@ -28,6 +28,7 @@ import com.azure.resourcemanager.datafactory.fluent.DataFlowsClient;
 import com.azure.resourcemanager.datafactory.fluent.DatasetsClient;
 import com.azure.resourcemanager.datafactory.fluent.ExposureControlsClient;
 import com.azure.resourcemanager.datafactory.fluent.FactoriesClient;
+import com.azure.resourcemanager.datafactory.fluent.GlobalParametersClient;
 import com.azure.resourcemanager.datafactory.fluent.IntegrationRuntimeNodesClient;
 import com.azure.resourcemanager.datafactory.fluent.IntegrationRuntimeObjectMetadatasClient;
 import com.azure.resourcemanager.datafactory.fluent.IntegrationRuntimesClient;
@@ -367,6 +368,18 @@ public final class DataFactoryManagementClientImpl implements DataFactoryManagem
         return this.privateLinkResources;
     }
 
+    /** The GlobalParametersClient object to access its operations. */
+    private final GlobalParametersClient globalParameters;
+
+    /**
+     * Gets the GlobalParametersClient object to access its operations.
+     *
+     * @return the GlobalParametersClient object.
+     */
+    public GlobalParametersClient getGlobalParameters() {
+        return this.globalParameters;
+    }
+
     /**
      * Initializes an instance of DataFactoryManagementClient client.
      *
@@ -410,6 +423,7 @@ public final class DataFactoryManagementClientImpl implements DataFactoryManagem
         this.privateEndPointConnections = new PrivateEndPointConnectionsClientImpl(this);
         this.privateEndpointConnectionOperations = new PrivateEndpointConnectionOperationsClientImpl(this);
         this.privateLinkResources = new PrivateLinkResourcesClientImpl(this);
+        this.globalParameters = new GlobalParametersClientImpl(this);
     }
 
     /**
