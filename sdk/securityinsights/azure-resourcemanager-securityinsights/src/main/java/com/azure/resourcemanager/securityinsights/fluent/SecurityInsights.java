@@ -248,6 +248,20 @@ public interface SecurityInsights {
     WatchlistItemsClient getWatchlistItems();
 
     /**
+     * Gets the ConfidentialWatchlistsClient object to access its operations.
+     *
+     * @return the ConfidentialWatchlistsClient object.
+     */
+    ConfidentialWatchlistsClient getConfidentialWatchlists();
+
+    /**
+     * Gets the ConfidentialWatchlistItemsClient object to access its operations.
+     *
+     * @return the ConfidentialWatchlistItemsClient object.
+     */
+    ConfidentialWatchlistItemsClient getConfidentialWatchlistItems();
+
+    /**
      * Gets the DataConnectorsClient object to access its operations.
      *
      * @return the DataConnectorsClient object.

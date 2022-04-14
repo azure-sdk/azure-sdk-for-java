@@ -215,6 +215,14 @@ public interface Watchlist {
     ProvisioningState provisioningState();
 
     /**
+     * Gets the watchlistCategory property: The watchlist category (normal or confidential). It's read only property,
+     * calculated by the API during PUT operation.
+     *
+     * @return the watchlistCategory value.
+     */
+    String watchlistCategory();
+
+    /**
      * Gets the inner com.azure.resourcemanager.securityinsights.fluent.models.WatchlistInner object.
      *
      * @return the inner object.

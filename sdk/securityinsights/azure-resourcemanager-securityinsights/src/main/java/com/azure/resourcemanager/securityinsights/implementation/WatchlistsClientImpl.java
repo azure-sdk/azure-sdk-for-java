@@ -687,7 +687,8 @@ public final class WatchlistsClientImpl implements WatchlistsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return represents a Watchlist in Azure Security Insights on successful completion of {@link Mono}.
+     * @return represents a (Confidential) Watchlist in Azure Security Insights on successful completion of {@link
+     *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<WatchlistsCreateOrUpdateResponse> createOrUpdateWithResponseAsync(
@@ -752,7 +753,8 @@ public final class WatchlistsClientImpl implements WatchlistsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return represents a Watchlist in Azure Security Insights on successful completion of {@link Mono}.
+     * @return represents a (Confidential) Watchlist in Azure Security Insights on successful completion of {@link
+     *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<WatchlistsCreateOrUpdateResponse> createOrUpdateWithResponseAsync(
@@ -817,7 +819,8 @@ public final class WatchlistsClientImpl implements WatchlistsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return represents a Watchlist in Azure Security Insights on successful completion of {@link Mono}.
+     * @return represents a (Confidential) Watchlist in Azure Security Insights on successful completion of {@link
+     *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<WatchlistInner> createOrUpdateAsync(
@@ -847,7 +850,7 @@ public final class WatchlistsClientImpl implements WatchlistsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return represents a Watchlist in Azure Security Insights.
+     * @return represents a (Confidential) Watchlist in Azure Security Insights.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public WatchlistInner createOrUpdate(
@@ -870,7 +873,7 @@ public final class WatchlistsClientImpl implements WatchlistsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return represents a Watchlist in Azure Security Insights.
+     * @return represents a (Confidential) Watchlist in Azure Security Insights.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public WatchlistsCreateOrUpdateResponse createOrUpdateWithResponse(

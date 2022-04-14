@@ -164,6 +164,13 @@ public final class WatchlistProperties {
     @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
     private ProvisioningState provisioningState;
 
+    /*
+     * The watchlist category (normal or confidential). It's read only
+     * property, calculated by the API during PUT operation
+     */
+    @JsonProperty(value = "watchlistCategory", access = JsonProperty.Access.WRITE_ONLY)
+    private String watchlistCategory;
+
     /**
      * Get the watchlistId property: The id (a Guid) of the watchlist.
      *
@@ -621,6 +628,16 @@ public final class WatchlistProperties {
      */
     public ProvisioningState provisioningState() {
         return this.provisioningState;
+    }
+
+    /**
+     * Get the watchlistCategory property: The watchlist category (normal or confidential). It's read only property,
+     * calculated by the API during PUT operation.
+     *
+     * @return the watchlistCategory value.
+     */
+    public String watchlistCategory() {
+        return this.watchlistCategory;
     }
 
     /**

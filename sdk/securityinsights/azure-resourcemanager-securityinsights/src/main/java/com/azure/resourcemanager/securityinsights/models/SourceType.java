@@ -10,11 +10,11 @@ import java.util.Collection;
 
 /** Defines values for SourceType. */
 public final class SourceType extends ExpandableStringEnum<SourceType> {
-    /** Static value Local file for SourceType. */
-    public static final SourceType LOCAL_FILE = fromString("Local file");
+    /** Static value Local for SourceType. */
+    public static final SourceType LOCAL = fromString("Local");
 
-    /** Static value Remote storage for SourceType. */
-    public static final SourceType REMOTE_STORAGE = fromString("Remote storage");
+    /** Static value AzureStorage for SourceType. */
+    public static final SourceType AZURE_STORAGE = fromString("AzureStorage");
 
     /**
      * Creates or finds a SourceType from its string representation.

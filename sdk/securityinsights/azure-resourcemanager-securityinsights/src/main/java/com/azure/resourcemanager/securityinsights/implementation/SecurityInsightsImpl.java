@@ -28,6 +28,8 @@ import com.azure.resourcemanager.securityinsights.fluent.AutomationRulesClient;
 import com.azure.resourcemanager.securityinsights.fluent.BookmarkOperationsClient;
 import com.azure.resourcemanager.securityinsights.fluent.BookmarkRelationsClient;
 import com.azure.resourcemanager.securityinsights.fluent.BookmarksClient;
+import com.azure.resourcemanager.securityinsights.fluent.ConfidentialWatchlistItemsClient;
+import com.azure.resourcemanager.securityinsights.fluent.ConfidentialWatchlistsClient;
 import com.azure.resourcemanager.securityinsights.fluent.DataConnectorsCheckRequirementsOperationsClient;
 import com.azure.resourcemanager.securityinsights.fluent.DataConnectorsClient;
 import com.azure.resourcemanager.securityinsights.fluent.DomainWhoisClient;
@@ -487,6 +489,30 @@ public final class SecurityInsightsImpl implements SecurityInsights {
         return this.watchlistItems;
     }
 
+    /** The ConfidentialWatchlistsClient object to access its operations. */
+    private final ConfidentialWatchlistsClient confidentialWatchlists;
+
+    /**
+     * Gets the ConfidentialWatchlistsClient object to access its operations.
+     *
+     * @return the ConfidentialWatchlistsClient object.
+     */
+    public ConfidentialWatchlistsClient getConfidentialWatchlists() {
+        return this.confidentialWatchlists;
+    }
+
+    /** The ConfidentialWatchlistItemsClient object to access its operations. */
+    private final ConfidentialWatchlistItemsClient confidentialWatchlistItems;
+
+    /**
+     * Gets the ConfidentialWatchlistItemsClient object to access its operations.
+     *
+     * @return the ConfidentialWatchlistItemsClient object.
+     */
+    public ConfidentialWatchlistItemsClient getConfidentialWatchlistItems() {
+        return this.confidentialWatchlistItems;
+    }
+
     /** The DataConnectorsClient object to access its operations. */
     private final DataConnectorsClient dataConnectors;
 
@@ -545,7 +571,7 @@ public final class SecurityInsightsImpl implements SecurityInsights {
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2022-01-01-preview";
+        this.apiVersion = "2022-06-01-preview";
         this.alertRules = new AlertRulesClientImpl(this);
         this.actions = new ActionsClientImpl(this);
         this.alertRuleTemplates = new AlertRuleTemplatesClientImpl(this);
@@ -575,6 +601,8 @@ public final class SecurityInsightsImpl implements SecurityInsights {
         this.threatIntelligenceIndicatorMetrics = new ThreatIntelligenceIndicatorMetricsClientImpl(this);
         this.watchlists = new WatchlistsClientImpl(this);
         this.watchlistItems = new WatchlistItemsClientImpl(this);
+        this.confidentialWatchlists = new ConfidentialWatchlistsClientImpl(this);
+        this.confidentialWatchlistItems = new ConfidentialWatchlistItemsClientImpl(this);
         this.dataConnectors = new DataConnectorsClientImpl(this);
         this.dataConnectorsCheckRequirementsOperations = new DataConnectorsCheckRequirementsOperationsClientImpl(this);
         this.operations = new OperationsClientImpl(this);

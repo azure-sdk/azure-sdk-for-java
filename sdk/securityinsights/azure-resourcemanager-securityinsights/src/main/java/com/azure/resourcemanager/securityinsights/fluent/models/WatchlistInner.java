@@ -14,7 +14,7 @@ import java.time.Duration;
 import java.time.OffsetDateTime;
 import java.util.List;
 
-/** Represents a Watchlist in Azure Security Insights. */
+/** Represents a (Confidential) Watchlist in Azure Security Insights. */
 @Fluent
 public final class WatchlistInner extends ResourceWithEtag {
     /*
@@ -562,6 +562,16 @@ public final class WatchlistInner extends ResourceWithEtag {
      */
     public ProvisioningState provisioningState() {
         return this.innerProperties() == null ? null : this.innerProperties().provisioningState();
+    }
+
+    /**
+     * Get the watchlistCategory property: The watchlist category (normal or confidential). It's read only property,
+     * calculated by the API during PUT operation.
+     *
+     * @return the watchlistCategory value.
+     */
+    public String watchlistCategory() {
+        return this.innerProperties() == null ? null : this.innerProperties().watchlistCategory();
     }
 
     /**
