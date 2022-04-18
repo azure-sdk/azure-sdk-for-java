@@ -13,12 +13,14 @@ import com.azure.identity.DefaultAzureCredentialBuilder;
 
 public class AccountsGetAccessKeys {
     public static void main(String[] args) {
-        AccountsClient client =
+        AccountsClient accountsClient =
                 new PurviewAccountClientBuilder()
                         .credential(new DefaultAzureCredentialBuilder().build())
                         .endpoint("{endpoint}")
                         .buildAccountsClient();
+        // BEGIN:com.azure.analytics.purview.administration.generated.accountsgetaccesskeys.accountsgetaccesskeys
         RequestOptions requestOptions = new RequestOptions();
-        Response<BinaryData> response = client.getAccessKeysWithResponse(requestOptions);
+        Response<BinaryData> response = accountsClient.getAccessKeysWithResponse(requestOptions);
+        // END:com.azure.analytics.purview.administration.generated.accountsgetaccesskeys.accountsgetaccesskeys
     }
 }

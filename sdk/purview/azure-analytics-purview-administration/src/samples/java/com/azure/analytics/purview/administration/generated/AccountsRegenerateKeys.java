@@ -13,13 +13,15 @@ import com.azure.identity.DefaultAzureCredentialBuilder;
 
 public class AccountsRegenerateKeys {
     public static void main(String[] args) {
-        AccountsClient client =
+        AccountsClient accountsClient =
                 new PurviewAccountClientBuilder()
                         .credential(new DefaultAzureCredentialBuilder().build())
                         .endpoint("{endpoint}")
                         .buildAccountsClient();
+        // BEGIN:com.azure.analytics.purview.administration.generated.accountsregenerateaccesskey.accountsregeneratekeys
         BinaryData keyOptions = BinaryData.fromString("{\"keyType\":\"PrimaryKey\"}");
         RequestOptions requestOptions = new RequestOptions();
-        Response<BinaryData> response = client.regenerateAccessKeyWithResponse(keyOptions, requestOptions);
+        Response<BinaryData> response = accountsClient.regenerateAccessKeyWithResponse(keyOptions, requestOptions);
+        // END:com.azure.analytics.purview.administration.generated.accountsregenerateaccesskey.accountsregeneratekeys
     }
 }

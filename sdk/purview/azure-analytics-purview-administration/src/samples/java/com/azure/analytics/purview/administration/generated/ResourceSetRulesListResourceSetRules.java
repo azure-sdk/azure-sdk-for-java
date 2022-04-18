@@ -13,12 +13,14 @@ import com.azure.identity.DefaultAzureCredentialBuilder;
 
 public class ResourceSetRulesListResourceSetRules {
     public static void main(String[] args) {
-        ResourceSetRulesClient client =
+        ResourceSetRulesClient resourceSetRulesClient =
                 new PurviewAccountClientBuilder()
                         .credential(new DefaultAzureCredentialBuilder().build())
                         .endpoint("{endpoint}")
                         .buildResourceSetRulesClient();
+        // BEGIN:com.azure.analytics.purview.administration.generated.resourcesetruleslistresourcesetrules.resourcesetruleslistresourcesetrules
         RequestOptions requestOptions = new RequestOptions();
-        PagedIterable<BinaryData> response = client.listResourceSetRules(requestOptions);
+        PagedIterable<BinaryData> response = resourceSetRulesClient.listResourceSetRules(requestOptions);
+        // END:com.azure.analytics.purview.administration.generated.resourcesetruleslistresourcesetrules.resourcesetruleslistresourcesetrules
     }
 }

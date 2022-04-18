@@ -13,12 +13,14 @@ import com.azure.identity.DefaultAzureCredentialBuilder;
 
 public class AccountsGetAccountProperties {
     public static void main(String[] args) {
-        AccountsClient client =
+        AccountsClient accountsClient =
                 new PurviewAccountClientBuilder()
                         .credential(new DefaultAzureCredentialBuilder().build())
                         .endpoint("{endpoint}")
                         .buildAccountsClient();
+        // BEGIN:com.azure.analytics.purview.administration.generated.accountsgetaccountproperties.accountsgetaccountproperties
         RequestOptions requestOptions = new RequestOptions();
-        Response<BinaryData> response = client.getAccountPropertiesWithResponse(requestOptions);
+        Response<BinaryData> response = accountsClient.getAccountPropertiesWithResponse(requestOptions);
+        // END:com.azure.analytics.purview.administration.generated.accountsgetaccountproperties.accountsgetaccountproperties
     }
 }

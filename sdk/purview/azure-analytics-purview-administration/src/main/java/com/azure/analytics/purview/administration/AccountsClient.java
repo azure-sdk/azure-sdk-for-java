@@ -4,12 +4,14 @@
 
 package com.azure.analytics.purview.administration;
 
-import com.azure.analytics.purview.administration.implementation.AccountsImpl;
 import com.azure.core.annotation.Generated;
 import com.azure.core.annotation.ReturnType;
 import com.azure.core.annotation.ServiceClient;
 import com.azure.core.annotation.ServiceMethod;
+import com.azure.core.exception.ClientAuthenticationException;
 import com.azure.core.exception.HttpResponseException;
+import com.azure.core.exception.ResourceModifiedException;
+import com.azure.core.exception.ResourceNotFoundException;
 import com.azure.core.http.rest.RequestOptions;
 import com.azure.core.http.rest.Response;
 import com.azure.core.util.BinaryData;
@@ -17,16 +19,16 @@ import com.azure.core.util.BinaryData;
 /** Initializes a new instance of the synchronous PurviewAccountClient type. */
 @ServiceClient(builder = PurviewAccountClientBuilder.class)
 public final class AccountsClient {
-    @Generated private final AccountsImpl serviceClient;
+    @Generated private final AccountsAsyncClient asyncClient;
 
     /**
-     * Initializes an instance of Accounts client.
+     * Initializes an instance of AccountsClient class.
      *
-     * @param serviceClient the service client implementation.
+     * @param asyncClient the async client.
      */
     @Generated
-    AccountsClient(AccountsImpl serviceClient) {
-        this.serviceClient = serviceClient;
+    AccountsClient(AccountsAsyncClient asyncClient) {
+        this.asyncClient = asyncClient;
     }
 
     /**
@@ -37,7 +39,7 @@ public final class AccountsClient {
      * <table border="1">
      *     <caption>Query Parameters</caption>
      *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>apiVersion</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
+     *     <tr><td>api-version</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
      * </table>
      *
      * <p><strong>Response Body Schema</strong>
@@ -113,12 +115,15 @@ public final class AccountsClient {
      *
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
      * @return an account along with {@link Response}.
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<BinaryData> getAccountPropertiesWithResponse(RequestOptions requestOptions) {
-        return this.serviceClient.getAccountPropertiesWithResponse(requestOptions);
+        return this.asyncClient.getAccountPropertiesWithResponse(requestOptions).block();
     }
 
     /**
@@ -129,7 +134,7 @@ public final class AccountsClient {
      * <table border="1">
      *     <caption>Query Parameters</caption>
      *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>apiVersion</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
+     *     <tr><td>api-version</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
      * </table>
      *
      * <p><strong>Request Body Schema</strong>
@@ -214,13 +219,16 @@ public final class AccountsClient {
      * @param accountUpdateParameters The account properties that can be updated through data plane.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
      * @return account resource along with {@link Response}.
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<BinaryData> updateAccountPropertiesWithResponse(
             BinaryData accountUpdateParameters, RequestOptions requestOptions) {
-        return this.serviceClient.updateAccountPropertiesWithResponse(accountUpdateParameters, requestOptions);
+        return this.asyncClient.updateAccountPropertiesWithResponse(accountUpdateParameters, requestOptions).block();
     }
 
     /**
@@ -231,7 +239,7 @@ public final class AccountsClient {
      * <table border="1">
      *     <caption>Query Parameters</caption>
      *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>apiVersion</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
+     *     <tr><td>api-version</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
      * </table>
      *
      * <p><strong>Response Body Schema</strong>
@@ -245,12 +253,15 @@ public final class AccountsClient {
      *
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
      * @return the Account access keys along with {@link Response}.
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<BinaryData> getAccessKeysWithResponse(RequestOptions requestOptions) {
-        return this.serviceClient.getAccessKeysWithResponse(requestOptions);
+        return this.asyncClient.getAccessKeysWithResponse(requestOptions).block();
     }
 
     /**
@@ -261,7 +272,7 @@ public final class AccountsClient {
      * <table border="1">
      *     <caption>Query Parameters</caption>
      *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>apiVersion</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
+     *     <tr><td>api-version</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
      * </table>
      *
      * <p><strong>Request Body Schema</strong>
@@ -284,11 +295,14 @@ public final class AccountsClient {
      * @param keyOptions A access key options used for regeneration.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
      * @return the Account access keys along with {@link Response}.
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<BinaryData> regenerateAccessKeyWithResponse(BinaryData keyOptions, RequestOptions requestOptions) {
-        return this.serviceClient.regenerateAccessKeyWithResponse(keyOptions, requestOptions);
+        return this.asyncClient.regenerateAccessKeyWithResponse(keyOptions, requestOptions).block();
     }
 }

@@ -13,15 +13,17 @@ import com.azure.identity.DefaultAzureCredentialBuilder;
 
 public class CollectionsCreateOrUpdateCollection {
     public static void main(String[] args) {
-        CollectionsClient client =
+        CollectionsClient collectionsClient =
                 new PurviewAccountClientBuilder()
                         .credential(new DefaultAzureCredentialBuilder().build())
                         .endpoint("{endpoint}")
                         .buildCollectionsClient();
+        // BEGIN:com.azure.analytics.purview.administration.generated.collectionscreateorupdatecollection.collectionscreateorupdatecollection
         BinaryData collection =
                 BinaryData.fromString("{\"parentCollection\":{\"referenceName\":\"myParentCollection1\"}}");
         RequestOptions requestOptions = new RequestOptions();
         Response<BinaryData> response =
-                client.createOrUpdateCollectionWithResponse("myCollection1", collection, requestOptions);
+                collectionsClient.createOrUpdateCollectionWithResponse("myCollection1", collection, requestOptions);
+        // END:com.azure.analytics.purview.administration.generated.collectionscreateorupdatecollection.collectionscreateorupdatecollection
     }
 }

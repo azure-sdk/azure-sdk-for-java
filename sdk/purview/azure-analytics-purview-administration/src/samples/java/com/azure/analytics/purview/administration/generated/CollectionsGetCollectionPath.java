@@ -13,12 +13,15 @@ import com.azure.identity.DefaultAzureCredentialBuilder;
 
 public class CollectionsGetCollectionPath {
     public static void main(String[] args) {
-        CollectionsClient client =
+        CollectionsClient collectionsClient =
                 new PurviewAccountClientBuilder()
                         .credential(new DefaultAzureCredentialBuilder().build())
                         .endpoint("{endpoint}")
                         .buildCollectionsClient();
+        // BEGIN:com.azure.analytics.purview.administration.generated.collectionsgetcollectionpath.collectionsgetcollectionpath
         RequestOptions requestOptions = new RequestOptions();
-        Response<BinaryData> response = client.getCollectionPathWithResponse("myCollection1", requestOptions);
+        Response<BinaryData> response =
+                collectionsClient.getCollectionPathWithResponse("myCollection1", requestOptions);
+        // END:com.azure.analytics.purview.administration.generated.collectionsgetcollectionpath.collectionsgetcollectionpath
     }
 }

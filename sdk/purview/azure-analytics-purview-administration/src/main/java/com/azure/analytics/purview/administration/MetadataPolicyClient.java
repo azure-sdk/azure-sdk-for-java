@@ -4,12 +4,14 @@
 
 package com.azure.analytics.purview.administration;
 
-import com.azure.analytics.purview.administration.implementation.MetadataPoliciesImpl;
 import com.azure.core.annotation.Generated;
 import com.azure.core.annotation.ReturnType;
 import com.azure.core.annotation.ServiceClient;
 import com.azure.core.annotation.ServiceMethod;
+import com.azure.core.exception.ClientAuthenticationException;
 import com.azure.core.exception.HttpResponseException;
+import com.azure.core.exception.ResourceModifiedException;
+import com.azure.core.exception.ResourceNotFoundException;
 import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.http.rest.RequestOptions;
 import com.azure.core.http.rest.Response;
@@ -18,16 +20,16 @@ import com.azure.core.util.BinaryData;
 /** Initializes a new instance of the synchronous PurviewMetadataClient type. */
 @ServiceClient(builder = PurviewMetadataClientBuilder.class)
 public final class MetadataPolicyClient {
-    @Generated private final MetadataPoliciesImpl serviceClient;
+    @Generated private final MetadataPolicyAsyncClient asyncClient;
 
     /**
-     * Initializes an instance of MetadataPolicies client.
+     * Initializes an instance of MetadataPolicyClient class.
      *
-     * @param serviceClient the service client implementation.
+     * @param asyncClient the async client.
      */
     @Generated
-    MetadataPolicyClient(MetadataPoliciesImpl serviceClient) {
-        this.serviceClient = serviceClient;
+    MetadataPolicyClient(MetadataPolicyAsyncClient asyncClient) {
+        this.asyncClient = asyncClient;
     }
 
     /**
@@ -39,7 +41,7 @@ public final class MetadataPolicyClient {
      *     <caption>Query Parameters</caption>
      *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
      *     <tr><td>collectionName</td><td>String</td><td>No</td><td>The name of an existing collection for which one policy needs to be fetched.</td></tr>
-     *     <tr><td>apiVersion</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
+     *     <tr><td>api-version</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
      * </table>
      *
      * <p><strong>Response Body Schema</strong>
@@ -100,12 +102,15 @@ public final class MetadataPolicyClient {
      *
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
-     * @return list of Metadata Policies.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return list of Metadata Policies as paginated response with {@link PagedIterable}.
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<BinaryData> listAll(RequestOptions requestOptions) {
-        return this.serviceClient.listAll(requestOptions);
+        return new PagedIterable<>(this.asyncClient.listAll(requestOptions));
     }
 
     /**
@@ -116,7 +121,7 @@ public final class MetadataPolicyClient {
      * <table border="1">
      *     <caption>Query Parameters</caption>
      *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>apiVersion</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
+     *     <tr><td>api-version</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
      * </table>
      *
      * <p><strong>Request Body Schema</strong>
@@ -224,12 +229,15 @@ public final class MetadataPolicyClient {
      * @param policyId Unique policy id.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
      * @return the response body along with {@link Response}.
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<BinaryData> updateWithResponse(String policyId, RequestOptions requestOptions) {
-        return this.serviceClient.updateWithResponse(policyId, requestOptions);
+        return this.asyncClient.updateWithResponse(policyId, requestOptions).block();
     }
 
     /**
@@ -240,7 +248,7 @@ public final class MetadataPolicyClient {
      * <table border="1">
      *     <caption>Query Parameters</caption>
      *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>apiVersion</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
+     *     <tr><td>api-version</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
      * </table>
      *
      * <p><strong>Response Body Schema</strong>
@@ -297,11 +305,14 @@ public final class MetadataPolicyClient {
      * @param policyId Id of an existing policy that needs to be fetched.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
      * @return a metadata policy along with {@link Response}.
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<BinaryData> getWithResponse(String policyId, RequestOptions requestOptions) {
-        return this.serviceClient.getWithResponse(policyId, requestOptions);
+        return this.asyncClient.getWithResponse(policyId, requestOptions).block();
     }
 }

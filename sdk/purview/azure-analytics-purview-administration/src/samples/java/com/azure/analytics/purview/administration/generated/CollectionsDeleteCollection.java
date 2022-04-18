@@ -12,12 +12,14 @@ import com.azure.identity.DefaultAzureCredentialBuilder;
 
 public class CollectionsDeleteCollection {
     public static void main(String[] args) {
-        CollectionsClient client =
+        CollectionsClient collectionsClient =
                 new PurviewAccountClientBuilder()
                         .credential(new DefaultAzureCredentialBuilder().build())
                         .endpoint("{endpoint}")
                         .buildCollectionsClient();
+        // BEGIN:com.azure.analytics.purview.administration.generated.collectionsdeletecollection.collectionsdeletecollection
         RequestOptions requestOptions = new RequestOptions();
-        Response<Void> response = client.deleteCollectionWithResponse("myCollection1", requestOptions);
+        Response<Void> response = collectionsClient.deleteCollectionWithResponse("myCollection1", requestOptions);
+        // END:com.azure.analytics.purview.administration.generated.collectionsdeletecollection.collectionsdeletecollection
     }
 }
