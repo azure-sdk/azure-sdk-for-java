@@ -4,7 +4,6 @@
 
 package com.azure.analytics.purview.administration.implementation;
 
-import com.azure.analytics.purview.administration.PurviewMetadataServiceVersion;
 import com.azure.core.http.HttpPipeline;
 import com.azure.core.http.HttpPipelineBuilder;
 import com.azure.core.http.policy.CookiePolicy;
@@ -25,18 +24,6 @@ public final class PurviewMetadataClientImpl {
      */
     public String getEndpoint() {
         return this.endpoint;
-    }
-
-    /** Service version. */
-    private final PurviewMetadataServiceVersion serviceVersion;
-
-    /**
-     * Gets Service version.
-     *
-     * @return the serviceVersion value.
-     */
-    public PurviewMetadataServiceVersion getServiceVersion() {
-        return this.serviceVersion;
     }
 
     /** The HTTP pipeline to send requests through. */
@@ -87,20 +74,210 @@ public final class PurviewMetadataClientImpl {
         return this.metadataPolicies;
     }
 
+    /** The EntitiesImpl object to access its operations. */
+    private final EntitiesImpl entities;
+
+    /**
+     * Gets the EntitiesImpl object to access its operations.
+     *
+     * @return the EntitiesImpl object.
+     */
+    public EntitiesImpl getEntities() {
+        return this.entities;
+    }
+
+    /** The GlossariesImpl object to access its operations. */
+    private final GlossariesImpl glossaries;
+
+    /**
+     * Gets the GlossariesImpl object to access its operations.
+     *
+     * @return the GlossariesImpl object.
+     */
+    public GlossariesImpl getGlossaries() {
+        return this.glossaries;
+    }
+
+    /** The DiscoveriesImpl object to access its operations. */
+    private final DiscoveriesImpl discoveries;
+
+    /**
+     * Gets the DiscoveriesImpl object to access its operations.
+     *
+     * @return the DiscoveriesImpl object.
+     */
+    public DiscoveriesImpl getDiscoveries() {
+        return this.discoveries;
+    }
+
+    /** The LineagesImpl object to access its operations. */
+    private final LineagesImpl lineages;
+
+    /**
+     * Gets the LineagesImpl object to access its operations.
+     *
+     * @return the LineagesImpl object.
+     */
+    public LineagesImpl getLineages() {
+        return this.lineages;
+    }
+
+    /** The RelationshipsImpl object to access its operations. */
+    private final RelationshipsImpl relationships;
+
+    /**
+     * Gets the RelationshipsImpl object to access its operations.
+     *
+     * @return the RelationshipsImpl object.
+     */
+    public RelationshipsImpl getRelationships() {
+        return this.relationships;
+    }
+
+    /** The TypesImpl object to access its operations. */
+    private final TypesImpl types;
+
+    /**
+     * Gets the TypesImpl object to access its operations.
+     *
+     * @return the TypesImpl object.
+     */
+    public TypesImpl getTypes() {
+        return this.types;
+    }
+
+    /** The CollectionsImpl object to access its operations. */
+    private final CollectionsImpl collections;
+
+    /**
+     * Gets the CollectionsImpl object to access its operations.
+     *
+     * @return the CollectionsImpl object.
+     */
+    public CollectionsImpl getCollections() {
+        return this.collections;
+    }
+
+    /** The KeyVaultConnectionsImpl object to access its operations. */
+    private final KeyVaultConnectionsImpl keyVaultConnections;
+
+    /**
+     * Gets the KeyVaultConnectionsImpl object to access its operations.
+     *
+     * @return the KeyVaultConnectionsImpl object.
+     */
+    public KeyVaultConnectionsImpl getKeyVaultConnections() {
+        return this.keyVaultConnections;
+    }
+
+    /** The ClassificationRulesImpl object to access its operations. */
+    private final ClassificationRulesImpl classificationRules;
+
+    /**
+     * Gets the ClassificationRulesImpl object to access its operations.
+     *
+     * @return the ClassificationRulesImpl object.
+     */
+    public ClassificationRulesImpl getClassificationRules() {
+        return this.classificationRules;
+    }
+
+    /** The DataSourcesImpl object to access its operations. */
+    private final DataSourcesImpl dataSources;
+
+    /**
+     * Gets the DataSourcesImpl object to access its operations.
+     *
+     * @return the DataSourcesImpl object.
+     */
+    public DataSourcesImpl getDataSources() {
+        return this.dataSources;
+    }
+
+    /** The FiltersImpl object to access its operations. */
+    private final FiltersImpl filters;
+
+    /**
+     * Gets the FiltersImpl object to access its operations.
+     *
+     * @return the FiltersImpl object.
+     */
+    public FiltersImpl getFilters() {
+        return this.filters;
+    }
+
+    /** The ScansImpl object to access its operations. */
+    private final ScansImpl scans;
+
+    /**
+     * Gets the ScansImpl object to access its operations.
+     *
+     * @return the ScansImpl object.
+     */
+    public ScansImpl getScans() {
+        return this.scans;
+    }
+
+    /** The ScanResultsImpl object to access its operations. */
+    private final ScanResultsImpl scanResults;
+
+    /**
+     * Gets the ScanResultsImpl object to access its operations.
+     *
+     * @return the ScanResultsImpl object.
+     */
+    public ScanResultsImpl getScanResults() {
+        return this.scanResults;
+    }
+
+    /** The ScanRulesetsImpl object to access its operations. */
+    private final ScanRulesetsImpl scanRulesets;
+
+    /**
+     * Gets the ScanRulesetsImpl object to access its operations.
+     *
+     * @return the ScanRulesetsImpl object.
+     */
+    public ScanRulesetsImpl getScanRulesets() {
+        return this.scanRulesets;
+    }
+
+    /** The SystemScanRulesetsImpl object to access its operations. */
+    private final SystemScanRulesetsImpl systemScanRulesets;
+
+    /**
+     * Gets the SystemScanRulesetsImpl object to access its operations.
+     *
+     * @return the SystemScanRulesetsImpl object.
+     */
+    public SystemScanRulesetsImpl getSystemScanRulesets() {
+        return this.systemScanRulesets;
+    }
+
+    /** The TriggersImpl object to access its operations. */
+    private final TriggersImpl triggers;
+
+    /**
+     * Gets the TriggersImpl object to access its operations.
+     *
+     * @return the TriggersImpl object.
+     */
+    public TriggersImpl getTriggers() {
+        return this.triggers;
+    }
+
     /**
      * Initializes an instance of PurviewMetadataClient client.
      *
      * @param endpoint The endpoint of your Purview account. Example: https://{accountName}.purview.azure.com.
-     * @param serviceVersion Service version.
      */
-    public PurviewMetadataClientImpl(String endpoint, PurviewMetadataServiceVersion serviceVersion) {
+    public PurviewMetadataClientImpl(String endpoint) {
         this(
                 new HttpPipelineBuilder()
                         .policies(new UserAgentPolicy(), new RetryPolicy(), new CookiePolicy())
                         .build(),
                 JacksonAdapter.createDefaultSerializerAdapter(),
-                endpoint,
-                serviceVersion);
+                endpoint);
     }
 
     /**
@@ -108,11 +285,9 @@ public final class PurviewMetadataClientImpl {
      *
      * @param httpPipeline The HTTP pipeline to send requests through.
      * @param endpoint The endpoint of your Purview account. Example: https://{accountName}.purview.azure.com.
-     * @param serviceVersion Service version.
      */
-    public PurviewMetadataClientImpl(
-            HttpPipeline httpPipeline, String endpoint, PurviewMetadataServiceVersion serviceVersion) {
-        this(httpPipeline, JacksonAdapter.createDefaultSerializerAdapter(), endpoint, serviceVersion);
+    public PurviewMetadataClientImpl(HttpPipeline httpPipeline, String endpoint) {
+        this(httpPipeline, JacksonAdapter.createDefaultSerializerAdapter(), endpoint);
     }
 
     /**
@@ -121,18 +296,28 @@ public final class PurviewMetadataClientImpl {
      * @param httpPipeline The HTTP pipeline to send requests through.
      * @param serializerAdapter The serializer to serialize an object into a string.
      * @param endpoint The endpoint of your Purview account. Example: https://{accountName}.purview.azure.com.
-     * @param serviceVersion Service version.
      */
-    public PurviewMetadataClientImpl(
-            HttpPipeline httpPipeline,
-            SerializerAdapter serializerAdapter,
-            String endpoint,
-            PurviewMetadataServiceVersion serviceVersion) {
+    public PurviewMetadataClientImpl(HttpPipeline httpPipeline, SerializerAdapter serializerAdapter, String endpoint) {
         this.httpPipeline = httpPipeline;
         this.serializerAdapter = serializerAdapter;
         this.endpoint = endpoint;
-        this.serviceVersion = serviceVersion;
         this.metadataRoles = new MetadataRolesImpl(this);
         this.metadataPolicies = new MetadataPoliciesImpl(this);
+        this.entities = new EntitiesImpl(this);
+        this.glossaries = new GlossariesImpl(this);
+        this.discoveries = new DiscoveriesImpl(this);
+        this.lineages = new LineagesImpl(this);
+        this.relationships = new RelationshipsImpl(this);
+        this.types = new TypesImpl(this);
+        this.collections = new CollectionsImpl(this);
+        this.keyVaultConnections = new KeyVaultConnectionsImpl(this);
+        this.classificationRules = new ClassificationRulesImpl(this);
+        this.dataSources = new DataSourcesImpl(this);
+        this.filters = new FiltersImpl(this);
+        this.scans = new ScansImpl(this);
+        this.scanResults = new ScanResultsImpl(this);
+        this.scanRulesets = new ScanRulesetsImpl(this);
+        this.systemScanRulesets = new SystemScanRulesetsImpl(this);
+        this.triggers = new TriggersImpl(this);
     }
 }

@@ -5,31 +5,26 @@
 package com.azure.analytics.purview.administration.implementation;
 
 import com.azure.core.annotation.BodyParam;
-import com.azure.core.annotation.Delete;
 import com.azure.core.annotation.ExpectedResponses;
-import com.azure.core.annotation.Get;
 import com.azure.core.annotation.Host;
 import com.azure.core.annotation.HostParam;
 import com.azure.core.annotation.PathParam;
-import com.azure.core.annotation.Put;
+import com.azure.core.annotation.Post;
 import com.azure.core.annotation.QueryParam;
 import com.azure.core.annotation.ReturnType;
 import com.azure.core.annotation.ServiceInterface;
 import com.azure.core.annotation.ServiceMethod;
+import com.azure.core.annotation.UnexpectedResponseExceptionType;
+import com.azure.core.exception.ClientAuthenticationException;
 import com.azure.core.exception.HttpResponseException;
-import com.azure.core.http.rest.PagedFlux;
-import com.azure.core.http.rest.PagedIterable;
-import com.azure.core.http.rest.PagedResponse;
-import com.azure.core.http.rest.PagedResponseBase;
+import com.azure.core.exception.ResourceModifiedException;
+import com.azure.core.exception.ResourceNotFoundException;
 import com.azure.core.http.rest.RequestOptions;
 import com.azure.core.http.rest.Response;
 import com.azure.core.http.rest.RestProxy;
 import com.azure.core.util.BinaryData;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in Collections. */
@@ -38,275 +33,186 @@ public final class CollectionsImpl {
     private final CollectionsService service;
 
     /** The service client containing this operation class. */
-    private final PurviewAccountClientImpl client;
+    private final PurviewMetadataClientImpl client;
 
     /**
      * Initializes an instance of CollectionsImpl.
      *
      * @param client the instance of the service client containing this operation class.
      */
-    CollectionsImpl(PurviewAccountClientImpl client) {
+    CollectionsImpl(PurviewMetadataClientImpl client) {
         this.service =
                 RestProxy.create(CollectionsService.class, client.getHttpPipeline(), client.getSerializerAdapter());
         this.client = client;
     }
 
     /**
-     * The interface defining all the services for PurviewAccountClientCollections to be used by the proxy service to
+     * The interface defining all the services for PurviewMetadataClientCollections to be used by the proxy service to
      * perform REST calls.
      */
-    @Host("{endpoint}")
-    @ServiceInterface(name = "PurviewAccountClient")
+    @Host("{Endpoint}/catalog/api")
+    @ServiceInterface(name = "PurviewMetadataClien")
     private interface CollectionsService {
-        @Get("/collections/{collectionName}")
+        @Post("/collections/{collection}/entity")
         @ExpectedResponses({200})
-        Mono<Response<BinaryData>> getCollection(
-                @HostParam("endpoint") String endpoint,
-                @PathParam("collectionName") String collectionName,
+        @UnexpectedResponseExceptionType(
+                value = ClientAuthenticationException.class,
+                code = {401})
+        @UnexpectedResponseExceptionType(
+                value = ResourceNotFoundException.class,
+                code = {404})
+        @UnexpectedResponseExceptionType(
+                value = ResourceModifiedException.class,
+                code = {409})
+        @UnexpectedResponseExceptionType(HttpResponseException.class)
+        Mono<Response<BinaryData>> createOrUpdate(
+                @HostParam("Endpoint") String endpoint,
+                @PathParam("collection") String collection,
                 @QueryParam("api-version") String apiVersion,
+                @BodyParam("application/json") BinaryData entity,
                 RequestOptions requestOptions,
                 Context context);
 
-        @Put("/collections/{collectionName}")
+        @Post("/collections/{collection}/entity/bulk")
         @ExpectedResponses({200})
-        Mono<Response<BinaryData>> createOrUpdateCollection(
-                @HostParam("endpoint") String endpoint,
-                @PathParam("collectionName") String collectionName,
+        @UnexpectedResponseExceptionType(
+                value = ClientAuthenticationException.class,
+                code = {401})
+        @UnexpectedResponseExceptionType(
+                value = ResourceNotFoundException.class,
+                code = {404})
+        @UnexpectedResponseExceptionType(
+                value = ResourceModifiedException.class,
+                code = {409})
+        @UnexpectedResponseExceptionType(HttpResponseException.class)
+        Mono<Response<BinaryData>> createOrUpdateBulk(
+                @HostParam("Endpoint") String endpoint,
+                @PathParam("collection") String collection,
                 @QueryParam("api-version") String apiVersion,
-                @BodyParam("application/json") BinaryData collection,
+                @BodyParam("application/json") BinaryData entities,
                 RequestOptions requestOptions,
                 Context context);
 
-        @Delete("/collections/{collectionName}")
-        @ExpectedResponses({204})
-        Mono<Response<Void>> deleteCollection(
-                @HostParam("endpoint") String endpoint,
-                @PathParam("collectionName") String collectionName,
+        @Post("/collections/{collection}/entity/moveHere")
+        @ExpectedResponses({200})
+        @UnexpectedResponseExceptionType(
+                value = ClientAuthenticationException.class,
+                code = {401})
+        @UnexpectedResponseExceptionType(
+                value = ResourceNotFoundException.class,
+                code = {404})
+        @UnexpectedResponseExceptionType(
+                value = ResourceModifiedException.class,
+                code = {409})
+        @UnexpectedResponseExceptionType(HttpResponseException.class)
+        Mono<Response<BinaryData>> moveEntitiesToCollection(
+                @HostParam("Endpoint") String endpoint,
+                @PathParam("collection") String collection,
                 @QueryParam("api-version") String apiVersion,
-                RequestOptions requestOptions,
-                Context context);
-
-        @Get("/collections")
-        @ExpectedResponses({200})
-        Mono<Response<BinaryData>> listCollections(
-                @HostParam("endpoint") String endpoint,
-                @QueryParam("api-version") String apiVersion,
-                RequestOptions requestOptions,
-                Context context);
-
-        @Get("/collections/{collectionName}/getChildCollectionNames")
-        @ExpectedResponses({200})
-        Mono<Response<BinaryData>> listChildCollectionNames(
-                @HostParam("endpoint") String endpoint,
-                @PathParam("collectionName") String collectionName,
-                @QueryParam("api-version") String apiVersion,
-                RequestOptions requestOptions,
-                Context context);
-
-        @Get("/collections/{collectionName}/getCollectionPath")
-        @ExpectedResponses({200})
-        Mono<Response<BinaryData>> getCollectionPath(
-                @HostParam("endpoint") String endpoint,
-                @PathParam("collectionName") String collectionName,
-                @QueryParam("api-version") String apiVersion,
-                RequestOptions requestOptions,
-                Context context);
-
-        @Get("{nextLink}")
-        @ExpectedResponses({200})
-        Mono<Response<BinaryData>> listCollectionsNext(
-                @PathParam(value = "nextLink", encoded = true) String nextLink,
-                @HostParam("endpoint") String endpoint,
-                RequestOptions requestOptions,
-                Context context);
-
-        @Get("{nextLink}")
-        @ExpectedResponses({200})
-        Mono<Response<BinaryData>> listChildCollectionNamesNext(
-                @PathParam(value = "nextLink", encoded = true) String nextLink,
-                @HostParam("endpoint") String endpoint,
+                @BodyParam("application/json") BinaryData moveEntitiesRequest,
                 RequestOptions requestOptions,
                 Context context);
     }
 
     /**
-     * Get a collection.
+     * Creates or updates an entity to a collection. Existing entity is matched using its unique guid if supplied or by
+     * its unique attributes eg: qualifiedName. Map and array of collections are not well supported. E.g.,
+     * array&lt;array&lt;int&gt;&gt;, array&lt;map&lt;string, int&gt;&gt;.
      *
      * <p><strong>Query Parameters</strong>
      *
      * <table border="1">
      *     <caption>Query Parameters</caption>
      *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>apiVersion</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
-     * </table>
-     *
-     * <p><strong>Response Body Schema</strong>
-     *
-     * <pre>{@code
-     * {
-     *     collectionProvisioningState: String(Unknown/Creating/Moving/Deleting/Failed/Succeeded)
-     *     description: String
-     *     friendlyName: String
-     *     name: String
-     *     parentCollection: {
-     *         referenceName: String
-     *         type: String
-     *     }
-     *     systemData: {
-     *         createdAt: String
-     *         createdBy: String
-     *         createdByType: String(User/Application/ManagedIdentity/Key)
-     *         lastModifiedAt: String
-     *         lastModifiedBy: String
-     *         lastModifiedByType: String(User/Application/ManagedIdentity/Key)
-     *     }
-     * }
-     * }</pre>
-     *
-     * @param collectionName The collectionName parameter.
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @return a collection along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<BinaryData>> getCollectionWithResponseAsync(
-            String collectionName, RequestOptions requestOptions) {
-        return FluxUtil.withContext(
-                context ->
-                        service.getCollection(
-                                this.client.getEndpoint(),
-                                collectionName,
-                                this.client.getServiceVersion().getVersion(),
-                                requestOptions,
-                                context));
-    }
-
-    /**
-     * Get a collection.
-     *
-     * <p><strong>Query Parameters</strong>
-     *
-     * <table border="1">
-     *     <caption>Query Parameters</caption>
-     *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>apiVersion</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
-     * </table>
-     *
-     * <p><strong>Response Body Schema</strong>
-     *
-     * <pre>{@code
-     * {
-     *     collectionProvisioningState: String(Unknown/Creating/Moving/Deleting/Failed/Succeeded)
-     *     description: String
-     *     friendlyName: String
-     *     name: String
-     *     parentCollection: {
-     *         referenceName: String
-     *         type: String
-     *     }
-     *     systemData: {
-     *         createdAt: String
-     *         createdBy: String
-     *         createdByType: String(User/Application/ManagedIdentity/Key)
-     *         lastModifiedAt: String
-     *         lastModifiedBy: String
-     *         lastModifiedByType: String(User/Application/ManagedIdentity/Key)
-     *     }
-     * }
-     * }</pre>
-     *
-     * @param collectionName The collectionName parameter.
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @param context The context to associate with this operation.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @return a collection along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<BinaryData>> getCollectionWithResponseAsync(
-            String collectionName, RequestOptions requestOptions, Context context) {
-        return service.getCollection(
-                this.client.getEndpoint(),
-                collectionName,
-                this.client.getServiceVersion().getVersion(),
-                requestOptions,
-                context);
-    }
-
-    /**
-     * Get a collection.
-     *
-     * <p><strong>Query Parameters</strong>
-     *
-     * <table border="1">
-     *     <caption>Query Parameters</caption>
-     *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>apiVersion</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
-     * </table>
-     *
-     * <p><strong>Response Body Schema</strong>
-     *
-     * <pre>{@code
-     * {
-     *     collectionProvisioningState: String(Unknown/Creating/Moving/Deleting/Failed/Succeeded)
-     *     description: String
-     *     friendlyName: String
-     *     name: String
-     *     parentCollection: {
-     *         referenceName: String
-     *         type: String
-     *     }
-     *     systemData: {
-     *         createdAt: String
-     *         createdBy: String
-     *         createdByType: String(User/Application/ManagedIdentity/Key)
-     *         lastModifiedAt: String
-     *         lastModifiedBy: String
-     *         lastModifiedByType: String(User/Application/ManagedIdentity/Key)
-     *     }
-     * }
-     * }</pre>
-     *
-     * @param collectionName The collectionName parameter.
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @return a collection along with {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<BinaryData> getCollectionWithResponse(String collectionName, RequestOptions requestOptions) {
-        return getCollectionWithResponseAsync(collectionName, requestOptions).block();
-    }
-
-    /**
-     * Creates or updates a collection entity.
-     *
-     * <p><strong>Query Parameters</strong>
-     *
-     * <table border="1">
-     *     <caption>Query Parameters</caption>
-     *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>apiVersion</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
+     *     <tr><td>api-version</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
      * </table>
      *
      * <p><strong>Request Body Schema</strong>
      *
      * <pre>{@code
      * {
-     *     collectionProvisioningState: String(Unknown/Creating/Moving/Deleting/Failed/Succeeded)
-     *     description: String
-     *     friendlyName: String
-     *     name: String
-     *     parentCollection: {
-     *         referenceName: String
-     *         type: String
+     *     referredEntities: {
+     *         String: {
+     *             attributes: {
+     *                 String: Object
+     *             }
+     *             typeName: String
+     *             lastModifiedTS: String
+     *             businessAttributes: {
+     *                 String: Object
+     *             }
+     *             classifications: [
+     *                 {
+     *                     attributes: {
+     *                         String: Object
+     *                     }
+     *                     typeName: String
+     *                     lastModifiedTS: String
+     *                     entityGuid: String
+     *                     entityStatus: String(ACTIVE/DELETED)
+     *                     removePropagationsOnEntityDelete: Boolean
+     *                     validityPeriods: [
+     *                         {
+     *                             endTime: String
+     *                             startTime: String
+     *                             timeZone: String
+     *                         }
+     *                     ]
+     *                     source: String
+     *                     sourceDetails: {
+     *                         String: Object
+     *                     }
+     *                 }
+     *             ]
+     *             createTime: Float
+     *             createdBy: String
+     *             customAttributes: {
+     *                 String: String
+     *             }
+     *             guid: String
+     *             homeId: String
+     *             isIncomplete: Boolean
+     *             labels: [
+     *                 String
+     *             ]
+     *             meanings: [
+     *                 {
+     *                     confidence: Integer
+     *                     createdBy: String
+     *                     description: String
+     *                     displayText: String
+     *                     expression: String
+     *                     relationGuid: String
+     *                     source: String
+     *                     status: String(DISCOVERED/PROPOSED/IMPORTED/VALIDATED/DEPRECATED/OBSOLETE/OTHER)
+     *                     steward: String
+     *                     termGuid: String
+     *                 }
+     *             ]
+     *             provenanceType: Float
+     *             proxy: Boolean
+     *             relationshipAttributes: {
+     *                 String: Object
+     *             }
+     *             status: String(ACTIVE/DELETED)
+     *             updateTime: Float
+     *             updatedBy: String
+     *             version: Float
+     *             source: String
+     *             sourceDetails: {
+     *                 String: Object
+     *             }
+     *             contacts: {
+     *                 String: [
+     *                     {
+     *                         id: String
+     *                         info: String
+     *                     }
+     *                 ]
+     *             }
+     *         }
      *     }
-     *     systemData: {
-     *         createdAt: String
-     *         createdBy: String
-     *         createdByType: String(User/Application/ManagedIdentity/Key)
-     *         lastModifiedAt: String
-     *         lastModifiedBy: String
-     *         lastModifiedByType: String(User/Application/ManagedIdentity/Key)
-     *     }
+     *     entity: (recursive schema, see entity above)
      * }
      * }</pre>
      *
@@ -314,76 +220,1203 @@ public final class CollectionsImpl {
      *
      * <pre>{@code
      * {
-     *     collectionProvisioningState: String(Unknown/Creating/Moving/Deleting/Failed/Succeeded)
-     *     description: String
-     *     friendlyName: String
-     *     name: String
-     *     parentCollection: {
-     *         referenceName: String
-     *         type: String
+     *     guidAssignments: {
+     *         String: String
      *     }
-     *     systemData: {
-     *         createdAt: String
-     *         createdBy: String
-     *         createdByType: String(User/Application/ManagedIdentity/Key)
-     *         lastModifiedAt: String
-     *         lastModifiedBy: String
-     *         lastModifiedByType: String(User/Application/ManagedIdentity/Key)
+     *     mutatedEntities: {
+     *         String: [
+     *             {
+     *                 attributes: {
+     *                     String: Object
+     *                 }
+     *                 typeName: String
+     *                 lastModifiedTS: String
+     *                 classificationNames: [
+     *                     String
+     *                 ]
+     *                 classifications: [
+     *                     {
+     *                         attributes: {
+     *                             String: Object
+     *                         }
+     *                         typeName: String
+     *                         lastModifiedTS: String
+     *                         entityGuid: String
+     *                         entityStatus: String(ACTIVE/DELETED)
+     *                         removePropagationsOnEntityDelete: Boolean
+     *                         validityPeriods: [
+     *                             {
+     *                                 endTime: String
+     *                                 startTime: String
+     *                                 timeZone: String
+     *                             }
+     *                         ]
+     *                         source: String
+     *                         sourceDetails: {
+     *                             String: Object
+     *                         }
+     *                     }
+     *                 ]
+     *                 displayText: String
+     *                 guid: String
+     *                 isIncomplete: Boolean
+     *                 labels: [
+     *                     String
+     *                 ]
+     *                 meaningNames: [
+     *                     String
+     *                 ]
+     *                 meanings: [
+     *                     {
+     *                         confidence: Integer
+     *                         createdBy: String
+     *                         description: String
+     *                         displayText: String
+     *                         expression: String
+     *                         relationGuid: String
+     *                         source: String
+     *                         status: String(DISCOVERED/PROPOSED/IMPORTED/VALIDATED/DEPRECATED/OBSOLETE/OTHER)
+     *                         steward: String
+     *                         termGuid: String
+     *                     }
+     *                 ]
+     *                 status: String(ACTIVE/DELETED)
+     *             }
+     *         ]
      *     }
+     *     partialUpdatedEntities: [
+     *         (recursive schema, see above)
+     *     ]
      * }
      * }</pre>
      *
-     * @param collectionName The collectionName parameter.
-     * @param collection Collection resource.
+     * @param collection the collection unique name.
+     * @param entity Atlas entity with extended information.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
-     * @return collection resource along with {@link Response} on successful completion of {@link Mono}.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return entityMutationResponse along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<BinaryData>> createOrUpdateCollectionWithResponseAsync(
-            String collectionName, BinaryData collection, RequestOptions requestOptions) {
+    public Mono<Response<BinaryData>> createOrUpdateWithResponseAsync(
+            String collection, BinaryData entity, RequestOptions requestOptions) {
+        final String apiVersion = "2022-03-01-preview";
         return FluxUtil.withContext(
                 context ->
-                        service.createOrUpdateCollection(
+                        service.createOrUpdate(
+                                this.client.getEndpoint(), collection, apiVersion, entity, requestOptions, context));
+    }
+
+    /**
+     * Creates or updates an entity to a collection. Existing entity is matched using its unique guid if supplied or by
+     * its unique attributes eg: qualifiedName. Map and array of collections are not well supported. E.g.,
+     * array&lt;array&lt;int&gt;&gt;, array&lt;map&lt;string, int&gt;&gt;.
+     *
+     * <p><strong>Query Parameters</strong>
+     *
+     * <table border="1">
+     *     <caption>Query Parameters</caption>
+     *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
+     *     <tr><td>api-version</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
+     * </table>
+     *
+     * <p><strong>Request Body Schema</strong>
+     *
+     * <pre>{@code
+     * {
+     *     referredEntities: {
+     *         String: {
+     *             attributes: {
+     *                 String: Object
+     *             }
+     *             typeName: String
+     *             lastModifiedTS: String
+     *             businessAttributes: {
+     *                 String: Object
+     *             }
+     *             classifications: [
+     *                 {
+     *                     attributes: {
+     *                         String: Object
+     *                     }
+     *                     typeName: String
+     *                     lastModifiedTS: String
+     *                     entityGuid: String
+     *                     entityStatus: String(ACTIVE/DELETED)
+     *                     removePropagationsOnEntityDelete: Boolean
+     *                     validityPeriods: [
+     *                         {
+     *                             endTime: String
+     *                             startTime: String
+     *                             timeZone: String
+     *                         }
+     *                     ]
+     *                     source: String
+     *                     sourceDetails: {
+     *                         String: Object
+     *                     }
+     *                 }
+     *             ]
+     *             createTime: Float
+     *             createdBy: String
+     *             customAttributes: {
+     *                 String: String
+     *             }
+     *             guid: String
+     *             homeId: String
+     *             isIncomplete: Boolean
+     *             labels: [
+     *                 String
+     *             ]
+     *             meanings: [
+     *                 {
+     *                     confidence: Integer
+     *                     createdBy: String
+     *                     description: String
+     *                     displayText: String
+     *                     expression: String
+     *                     relationGuid: String
+     *                     source: String
+     *                     status: String(DISCOVERED/PROPOSED/IMPORTED/VALIDATED/DEPRECATED/OBSOLETE/OTHER)
+     *                     steward: String
+     *                     termGuid: String
+     *                 }
+     *             ]
+     *             provenanceType: Float
+     *             proxy: Boolean
+     *             relationshipAttributes: {
+     *                 String: Object
+     *             }
+     *             status: String(ACTIVE/DELETED)
+     *             updateTime: Float
+     *             updatedBy: String
+     *             version: Float
+     *             source: String
+     *             sourceDetails: {
+     *                 String: Object
+     *             }
+     *             contacts: {
+     *                 String: [
+     *                     {
+     *                         id: String
+     *                         info: String
+     *                     }
+     *                 ]
+     *             }
+     *         }
+     *     }
+     *     entity: (recursive schema, see entity above)
+     * }
+     * }</pre>
+     *
+     * <p><strong>Response Body Schema</strong>
+     *
+     * <pre>{@code
+     * {
+     *     guidAssignments: {
+     *         String: String
+     *     }
+     *     mutatedEntities: {
+     *         String: [
+     *             {
+     *                 attributes: {
+     *                     String: Object
+     *                 }
+     *                 typeName: String
+     *                 lastModifiedTS: String
+     *                 classificationNames: [
+     *                     String
+     *                 ]
+     *                 classifications: [
+     *                     {
+     *                         attributes: {
+     *                             String: Object
+     *                         }
+     *                         typeName: String
+     *                         lastModifiedTS: String
+     *                         entityGuid: String
+     *                         entityStatus: String(ACTIVE/DELETED)
+     *                         removePropagationsOnEntityDelete: Boolean
+     *                         validityPeriods: [
+     *                             {
+     *                                 endTime: String
+     *                                 startTime: String
+     *                                 timeZone: String
+     *                             }
+     *                         ]
+     *                         source: String
+     *                         sourceDetails: {
+     *                             String: Object
+     *                         }
+     *                     }
+     *                 ]
+     *                 displayText: String
+     *                 guid: String
+     *                 isIncomplete: Boolean
+     *                 labels: [
+     *                     String
+     *                 ]
+     *                 meaningNames: [
+     *                     String
+     *                 ]
+     *                 meanings: [
+     *                     {
+     *                         confidence: Integer
+     *                         createdBy: String
+     *                         description: String
+     *                         displayText: String
+     *                         expression: String
+     *                         relationGuid: String
+     *                         source: String
+     *                         status: String(DISCOVERED/PROPOSED/IMPORTED/VALIDATED/DEPRECATED/OBSOLETE/OTHER)
+     *                         steward: String
+     *                         termGuid: String
+     *                     }
+     *                 ]
+     *                 status: String(ACTIVE/DELETED)
+     *             }
+     *         ]
+     *     }
+     *     partialUpdatedEntities: [
+     *         (recursive schema, see above)
+     *     ]
+     * }
+     * }</pre>
+     *
+     * @param collection the collection unique name.
+     * @param entity Atlas entity with extended information.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @param context The context to associate with this operation.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return entityMutationResponse along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<BinaryData>> createOrUpdateWithResponseAsync(
+            String collection, BinaryData entity, RequestOptions requestOptions, Context context) {
+        final String apiVersion = "2022-03-01-preview";
+        return service.createOrUpdate(
+                this.client.getEndpoint(), collection, apiVersion, entity, requestOptions, context);
+    }
+
+    /**
+     * Creates or updates an entity to a collection. Existing entity is matched using its unique guid if supplied or by
+     * its unique attributes eg: qualifiedName. Map and array of collections are not well supported. E.g.,
+     * array&lt;array&lt;int&gt;&gt;, array&lt;map&lt;string, int&gt;&gt;.
+     *
+     * <p><strong>Query Parameters</strong>
+     *
+     * <table border="1">
+     *     <caption>Query Parameters</caption>
+     *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
+     *     <tr><td>api-version</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
+     * </table>
+     *
+     * <p><strong>Request Body Schema</strong>
+     *
+     * <pre>{@code
+     * {
+     *     referredEntities: {
+     *         String: {
+     *             attributes: {
+     *                 String: Object
+     *             }
+     *             typeName: String
+     *             lastModifiedTS: String
+     *             businessAttributes: {
+     *                 String: Object
+     *             }
+     *             classifications: [
+     *                 {
+     *                     attributes: {
+     *                         String: Object
+     *                     }
+     *                     typeName: String
+     *                     lastModifiedTS: String
+     *                     entityGuid: String
+     *                     entityStatus: String(ACTIVE/DELETED)
+     *                     removePropagationsOnEntityDelete: Boolean
+     *                     validityPeriods: [
+     *                         {
+     *                             endTime: String
+     *                             startTime: String
+     *                             timeZone: String
+     *                         }
+     *                     ]
+     *                     source: String
+     *                     sourceDetails: {
+     *                         String: Object
+     *                     }
+     *                 }
+     *             ]
+     *             createTime: Float
+     *             createdBy: String
+     *             customAttributes: {
+     *                 String: String
+     *             }
+     *             guid: String
+     *             homeId: String
+     *             isIncomplete: Boolean
+     *             labels: [
+     *                 String
+     *             ]
+     *             meanings: [
+     *                 {
+     *                     confidence: Integer
+     *                     createdBy: String
+     *                     description: String
+     *                     displayText: String
+     *                     expression: String
+     *                     relationGuid: String
+     *                     source: String
+     *                     status: String(DISCOVERED/PROPOSED/IMPORTED/VALIDATED/DEPRECATED/OBSOLETE/OTHER)
+     *                     steward: String
+     *                     termGuid: String
+     *                 }
+     *             ]
+     *             provenanceType: Float
+     *             proxy: Boolean
+     *             relationshipAttributes: {
+     *                 String: Object
+     *             }
+     *             status: String(ACTIVE/DELETED)
+     *             updateTime: Float
+     *             updatedBy: String
+     *             version: Float
+     *             source: String
+     *             sourceDetails: {
+     *                 String: Object
+     *             }
+     *             contacts: {
+     *                 String: [
+     *                     {
+     *                         id: String
+     *                         info: String
+     *                     }
+     *                 ]
+     *             }
+     *         }
+     *     }
+     *     entity: (recursive schema, see entity above)
+     * }
+     * }</pre>
+     *
+     * <p><strong>Response Body Schema</strong>
+     *
+     * <pre>{@code
+     * {
+     *     guidAssignments: {
+     *         String: String
+     *     }
+     *     mutatedEntities: {
+     *         String: [
+     *             {
+     *                 attributes: {
+     *                     String: Object
+     *                 }
+     *                 typeName: String
+     *                 lastModifiedTS: String
+     *                 classificationNames: [
+     *                     String
+     *                 ]
+     *                 classifications: [
+     *                     {
+     *                         attributes: {
+     *                             String: Object
+     *                         }
+     *                         typeName: String
+     *                         lastModifiedTS: String
+     *                         entityGuid: String
+     *                         entityStatus: String(ACTIVE/DELETED)
+     *                         removePropagationsOnEntityDelete: Boolean
+     *                         validityPeriods: [
+     *                             {
+     *                                 endTime: String
+     *                                 startTime: String
+     *                                 timeZone: String
+     *                             }
+     *                         ]
+     *                         source: String
+     *                         sourceDetails: {
+     *                             String: Object
+     *                         }
+     *                     }
+     *                 ]
+     *                 displayText: String
+     *                 guid: String
+     *                 isIncomplete: Boolean
+     *                 labels: [
+     *                     String
+     *                 ]
+     *                 meaningNames: [
+     *                     String
+     *                 ]
+     *                 meanings: [
+     *                     {
+     *                         confidence: Integer
+     *                         createdBy: String
+     *                         description: String
+     *                         displayText: String
+     *                         expression: String
+     *                         relationGuid: String
+     *                         source: String
+     *                         status: String(DISCOVERED/PROPOSED/IMPORTED/VALIDATED/DEPRECATED/OBSOLETE/OTHER)
+     *                         steward: String
+     *                         termGuid: String
+     *                     }
+     *                 ]
+     *                 status: String(ACTIVE/DELETED)
+     *             }
+     *         ]
+     *     }
+     *     partialUpdatedEntities: [
+     *         (recursive schema, see above)
+     *     ]
+     * }
+     * }</pre>
+     *
+     * @param collection the collection unique name.
+     * @param entity Atlas entity with extended information.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return entityMutationResponse along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<BinaryData> createOrUpdateWithResponse(
+            String collection, BinaryData entity, RequestOptions requestOptions) {
+        return createOrUpdateWithResponseAsync(collection, entity, requestOptions).block();
+    }
+
+    /**
+     * Creates or updates entities in bulk to a collection. Existing entity is matched using its unique guid if supplied
+     * or by its unique attributes eg: qualifiedName. Map and array of collections are not well supported. E.g.,
+     * array&lt;array&lt;int&gt;&gt;, array&lt;map&lt;string, int&gt;&gt;.
+     *
+     * <p><strong>Query Parameters</strong>
+     *
+     * <table border="1">
+     *     <caption>Query Parameters</caption>
+     *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
+     *     <tr><td>api-version</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
+     * </table>
+     *
+     * <p><strong>Request Body Schema</strong>
+     *
+     * <pre>{@code
+     * {
+     *     referredEntities: {
+     *         String: {
+     *             attributes: {
+     *                 String: Object
+     *             }
+     *             typeName: String
+     *             lastModifiedTS: String
+     *             businessAttributes: {
+     *                 String: Object
+     *             }
+     *             classifications: [
+     *                 {
+     *                     attributes: {
+     *                         String: Object
+     *                     }
+     *                     typeName: String
+     *                     lastModifiedTS: String
+     *                     entityGuid: String
+     *                     entityStatus: String(ACTIVE/DELETED)
+     *                     removePropagationsOnEntityDelete: Boolean
+     *                     validityPeriods: [
+     *                         {
+     *                             endTime: String
+     *                             startTime: String
+     *                             timeZone: String
+     *                         }
+     *                     ]
+     *                     source: String
+     *                     sourceDetails: {
+     *                         String: Object
+     *                     }
+     *                 }
+     *             ]
+     *             createTime: Float
+     *             createdBy: String
+     *             customAttributes: {
+     *                 String: String
+     *             }
+     *             guid: String
+     *             homeId: String
+     *             isIncomplete: Boolean
+     *             labels: [
+     *                 String
+     *             ]
+     *             meanings: [
+     *                 {
+     *                     confidence: Integer
+     *                     createdBy: String
+     *                     description: String
+     *                     displayText: String
+     *                     expression: String
+     *                     relationGuid: String
+     *                     source: String
+     *                     status: String(DISCOVERED/PROPOSED/IMPORTED/VALIDATED/DEPRECATED/OBSOLETE/OTHER)
+     *                     steward: String
+     *                     termGuid: String
+     *                 }
+     *             ]
+     *             provenanceType: Float
+     *             proxy: Boolean
+     *             relationshipAttributes: {
+     *                 String: Object
+     *             }
+     *             status: String(ACTIVE/DELETED)
+     *             updateTime: Float
+     *             updatedBy: String
+     *             version: Float
+     *             source: String
+     *             sourceDetails: {
+     *                 String: Object
+     *             }
+     *             contacts: {
+     *                 String: [
+     *                     {
+     *                         id: String
+     *                         info: String
+     *                     }
+     *                 ]
+     *             }
+     *         }
+     *     }
+     *     entities: [
+     *         (recursive schema, see above)
+     *     ]
+     * }
+     * }</pre>
+     *
+     * <p><strong>Response Body Schema</strong>
+     *
+     * <pre>{@code
+     * {
+     *     guidAssignments: {
+     *         String: String
+     *     }
+     *     mutatedEntities: {
+     *         String: [
+     *             {
+     *                 attributes: {
+     *                     String: Object
+     *                 }
+     *                 typeName: String
+     *                 lastModifiedTS: String
+     *                 classificationNames: [
+     *                     String
+     *                 ]
+     *                 classifications: [
+     *                     {
+     *                         attributes: {
+     *                             String: Object
+     *                         }
+     *                         typeName: String
+     *                         lastModifiedTS: String
+     *                         entityGuid: String
+     *                         entityStatus: String(ACTIVE/DELETED)
+     *                         removePropagationsOnEntityDelete: Boolean
+     *                         validityPeriods: [
+     *                             {
+     *                                 endTime: String
+     *                                 startTime: String
+     *                                 timeZone: String
+     *                             }
+     *                         ]
+     *                         source: String
+     *                         sourceDetails: {
+     *                             String: Object
+     *                         }
+     *                     }
+     *                 ]
+     *                 displayText: String
+     *                 guid: String
+     *                 isIncomplete: Boolean
+     *                 labels: [
+     *                     String
+     *                 ]
+     *                 meaningNames: [
+     *                     String
+     *                 ]
+     *                 meanings: [
+     *                     {
+     *                         confidence: Integer
+     *                         createdBy: String
+     *                         description: String
+     *                         displayText: String
+     *                         expression: String
+     *                         relationGuid: String
+     *                         source: String
+     *                         status: String(DISCOVERED/PROPOSED/IMPORTED/VALIDATED/DEPRECATED/OBSOLETE/OTHER)
+     *                         steward: String
+     *                         termGuid: String
+     *                     }
+     *                 ]
+     *                 status: String(ACTIVE/DELETED)
+     *             }
+     *         ]
+     *     }
+     *     partialUpdatedEntities: [
+     *         (recursive schema, see above)
+     *     ]
+     * }
+     * }</pre>
+     *
+     * @param collection the collection unique name.
+     * @param entities Atlas entities with extended information.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return entityMutationResponse along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<BinaryData>> createOrUpdateBulkWithResponseAsync(
+            String collection, BinaryData entities, RequestOptions requestOptions) {
+        final String apiVersion = "2022-03-01-preview";
+        return FluxUtil.withContext(
+                context ->
+                        service.createOrUpdateBulk(
+                                this.client.getEndpoint(), collection, apiVersion, entities, requestOptions, context));
+    }
+
+    /**
+     * Creates or updates entities in bulk to a collection. Existing entity is matched using its unique guid if supplied
+     * or by its unique attributes eg: qualifiedName. Map and array of collections are not well supported. E.g.,
+     * array&lt;array&lt;int&gt;&gt;, array&lt;map&lt;string, int&gt;&gt;.
+     *
+     * <p><strong>Query Parameters</strong>
+     *
+     * <table border="1">
+     *     <caption>Query Parameters</caption>
+     *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
+     *     <tr><td>api-version</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
+     * </table>
+     *
+     * <p><strong>Request Body Schema</strong>
+     *
+     * <pre>{@code
+     * {
+     *     referredEntities: {
+     *         String: {
+     *             attributes: {
+     *                 String: Object
+     *             }
+     *             typeName: String
+     *             lastModifiedTS: String
+     *             businessAttributes: {
+     *                 String: Object
+     *             }
+     *             classifications: [
+     *                 {
+     *                     attributes: {
+     *                         String: Object
+     *                     }
+     *                     typeName: String
+     *                     lastModifiedTS: String
+     *                     entityGuid: String
+     *                     entityStatus: String(ACTIVE/DELETED)
+     *                     removePropagationsOnEntityDelete: Boolean
+     *                     validityPeriods: [
+     *                         {
+     *                             endTime: String
+     *                             startTime: String
+     *                             timeZone: String
+     *                         }
+     *                     ]
+     *                     source: String
+     *                     sourceDetails: {
+     *                         String: Object
+     *                     }
+     *                 }
+     *             ]
+     *             createTime: Float
+     *             createdBy: String
+     *             customAttributes: {
+     *                 String: String
+     *             }
+     *             guid: String
+     *             homeId: String
+     *             isIncomplete: Boolean
+     *             labels: [
+     *                 String
+     *             ]
+     *             meanings: [
+     *                 {
+     *                     confidence: Integer
+     *                     createdBy: String
+     *                     description: String
+     *                     displayText: String
+     *                     expression: String
+     *                     relationGuid: String
+     *                     source: String
+     *                     status: String(DISCOVERED/PROPOSED/IMPORTED/VALIDATED/DEPRECATED/OBSOLETE/OTHER)
+     *                     steward: String
+     *                     termGuid: String
+     *                 }
+     *             ]
+     *             provenanceType: Float
+     *             proxy: Boolean
+     *             relationshipAttributes: {
+     *                 String: Object
+     *             }
+     *             status: String(ACTIVE/DELETED)
+     *             updateTime: Float
+     *             updatedBy: String
+     *             version: Float
+     *             source: String
+     *             sourceDetails: {
+     *                 String: Object
+     *             }
+     *             contacts: {
+     *                 String: [
+     *                     {
+     *                         id: String
+     *                         info: String
+     *                     }
+     *                 ]
+     *             }
+     *         }
+     *     }
+     *     entities: [
+     *         (recursive schema, see above)
+     *     ]
+     * }
+     * }</pre>
+     *
+     * <p><strong>Response Body Schema</strong>
+     *
+     * <pre>{@code
+     * {
+     *     guidAssignments: {
+     *         String: String
+     *     }
+     *     mutatedEntities: {
+     *         String: [
+     *             {
+     *                 attributes: {
+     *                     String: Object
+     *                 }
+     *                 typeName: String
+     *                 lastModifiedTS: String
+     *                 classificationNames: [
+     *                     String
+     *                 ]
+     *                 classifications: [
+     *                     {
+     *                         attributes: {
+     *                             String: Object
+     *                         }
+     *                         typeName: String
+     *                         lastModifiedTS: String
+     *                         entityGuid: String
+     *                         entityStatus: String(ACTIVE/DELETED)
+     *                         removePropagationsOnEntityDelete: Boolean
+     *                         validityPeriods: [
+     *                             {
+     *                                 endTime: String
+     *                                 startTime: String
+     *                                 timeZone: String
+     *                             }
+     *                         ]
+     *                         source: String
+     *                         sourceDetails: {
+     *                             String: Object
+     *                         }
+     *                     }
+     *                 ]
+     *                 displayText: String
+     *                 guid: String
+     *                 isIncomplete: Boolean
+     *                 labels: [
+     *                     String
+     *                 ]
+     *                 meaningNames: [
+     *                     String
+     *                 ]
+     *                 meanings: [
+     *                     {
+     *                         confidence: Integer
+     *                         createdBy: String
+     *                         description: String
+     *                         displayText: String
+     *                         expression: String
+     *                         relationGuid: String
+     *                         source: String
+     *                         status: String(DISCOVERED/PROPOSED/IMPORTED/VALIDATED/DEPRECATED/OBSOLETE/OTHER)
+     *                         steward: String
+     *                         termGuid: String
+     *                     }
+     *                 ]
+     *                 status: String(ACTIVE/DELETED)
+     *             }
+     *         ]
+     *     }
+     *     partialUpdatedEntities: [
+     *         (recursive schema, see above)
+     *     ]
+     * }
+     * }</pre>
+     *
+     * @param collection the collection unique name.
+     * @param entities Atlas entities with extended information.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @param context The context to associate with this operation.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return entityMutationResponse along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<BinaryData>> createOrUpdateBulkWithResponseAsync(
+            String collection, BinaryData entities, RequestOptions requestOptions, Context context) {
+        final String apiVersion = "2022-03-01-preview";
+        return service.createOrUpdateBulk(
+                this.client.getEndpoint(), collection, apiVersion, entities, requestOptions, context);
+    }
+
+    /**
+     * Creates or updates entities in bulk to a collection. Existing entity is matched using its unique guid if supplied
+     * or by its unique attributes eg: qualifiedName. Map and array of collections are not well supported. E.g.,
+     * array&lt;array&lt;int&gt;&gt;, array&lt;map&lt;string, int&gt;&gt;.
+     *
+     * <p><strong>Query Parameters</strong>
+     *
+     * <table border="1">
+     *     <caption>Query Parameters</caption>
+     *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
+     *     <tr><td>api-version</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
+     * </table>
+     *
+     * <p><strong>Request Body Schema</strong>
+     *
+     * <pre>{@code
+     * {
+     *     referredEntities: {
+     *         String: {
+     *             attributes: {
+     *                 String: Object
+     *             }
+     *             typeName: String
+     *             lastModifiedTS: String
+     *             businessAttributes: {
+     *                 String: Object
+     *             }
+     *             classifications: [
+     *                 {
+     *                     attributes: {
+     *                         String: Object
+     *                     }
+     *                     typeName: String
+     *                     lastModifiedTS: String
+     *                     entityGuid: String
+     *                     entityStatus: String(ACTIVE/DELETED)
+     *                     removePropagationsOnEntityDelete: Boolean
+     *                     validityPeriods: [
+     *                         {
+     *                             endTime: String
+     *                             startTime: String
+     *                             timeZone: String
+     *                         }
+     *                     ]
+     *                     source: String
+     *                     sourceDetails: {
+     *                         String: Object
+     *                     }
+     *                 }
+     *             ]
+     *             createTime: Float
+     *             createdBy: String
+     *             customAttributes: {
+     *                 String: String
+     *             }
+     *             guid: String
+     *             homeId: String
+     *             isIncomplete: Boolean
+     *             labels: [
+     *                 String
+     *             ]
+     *             meanings: [
+     *                 {
+     *                     confidence: Integer
+     *                     createdBy: String
+     *                     description: String
+     *                     displayText: String
+     *                     expression: String
+     *                     relationGuid: String
+     *                     source: String
+     *                     status: String(DISCOVERED/PROPOSED/IMPORTED/VALIDATED/DEPRECATED/OBSOLETE/OTHER)
+     *                     steward: String
+     *                     termGuid: String
+     *                 }
+     *             ]
+     *             provenanceType: Float
+     *             proxy: Boolean
+     *             relationshipAttributes: {
+     *                 String: Object
+     *             }
+     *             status: String(ACTIVE/DELETED)
+     *             updateTime: Float
+     *             updatedBy: String
+     *             version: Float
+     *             source: String
+     *             sourceDetails: {
+     *                 String: Object
+     *             }
+     *             contacts: {
+     *                 String: [
+     *                     {
+     *                         id: String
+     *                         info: String
+     *                     }
+     *                 ]
+     *             }
+     *         }
+     *     }
+     *     entities: [
+     *         (recursive schema, see above)
+     *     ]
+     * }
+     * }</pre>
+     *
+     * <p><strong>Response Body Schema</strong>
+     *
+     * <pre>{@code
+     * {
+     *     guidAssignments: {
+     *         String: String
+     *     }
+     *     mutatedEntities: {
+     *         String: [
+     *             {
+     *                 attributes: {
+     *                     String: Object
+     *                 }
+     *                 typeName: String
+     *                 lastModifiedTS: String
+     *                 classificationNames: [
+     *                     String
+     *                 ]
+     *                 classifications: [
+     *                     {
+     *                         attributes: {
+     *                             String: Object
+     *                         }
+     *                         typeName: String
+     *                         lastModifiedTS: String
+     *                         entityGuid: String
+     *                         entityStatus: String(ACTIVE/DELETED)
+     *                         removePropagationsOnEntityDelete: Boolean
+     *                         validityPeriods: [
+     *                             {
+     *                                 endTime: String
+     *                                 startTime: String
+     *                                 timeZone: String
+     *                             }
+     *                         ]
+     *                         source: String
+     *                         sourceDetails: {
+     *                             String: Object
+     *                         }
+     *                     }
+     *                 ]
+     *                 displayText: String
+     *                 guid: String
+     *                 isIncomplete: Boolean
+     *                 labels: [
+     *                     String
+     *                 ]
+     *                 meaningNames: [
+     *                     String
+     *                 ]
+     *                 meanings: [
+     *                     {
+     *                         confidence: Integer
+     *                         createdBy: String
+     *                         description: String
+     *                         displayText: String
+     *                         expression: String
+     *                         relationGuid: String
+     *                         source: String
+     *                         status: String(DISCOVERED/PROPOSED/IMPORTED/VALIDATED/DEPRECATED/OBSOLETE/OTHER)
+     *                         steward: String
+     *                         termGuid: String
+     *                     }
+     *                 ]
+     *                 status: String(ACTIVE/DELETED)
+     *             }
+     *         ]
+     *     }
+     *     partialUpdatedEntities: [
+     *         (recursive schema, see above)
+     *     ]
+     * }
+     * }</pre>
+     *
+     * @param collection the collection unique name.
+     * @param entities Atlas entities with extended information.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return entityMutationResponse along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<BinaryData> createOrUpdateBulkWithResponse(
+            String collection, BinaryData entities, RequestOptions requestOptions) {
+        return createOrUpdateBulkWithResponseAsync(collection, entities, requestOptions).block();
+    }
+
+    /**
+     * Move existing entities to the target collection.
+     *
+     * <p><strong>Query Parameters</strong>
+     *
+     * <table border="1">
+     *     <caption>Query Parameters</caption>
+     *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
+     *     <tr><td>api-version</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
+     * </table>
+     *
+     * <p><strong>Request Body Schema</strong>
+     *
+     * <pre>{@code
+     * {
+     *     entityGuids: [
+     *         String
+     *     ]
+     * }
+     * }</pre>
+     *
+     * <p><strong>Response Body Schema</strong>
+     *
+     * <pre>{@code
+     * {
+     *     guidAssignments: {
+     *         String: String
+     *     }
+     *     mutatedEntities: {
+     *         String: [
+     *             {
+     *                 attributes: {
+     *                     String: Object
+     *                 }
+     *                 typeName: String
+     *                 lastModifiedTS: String
+     *                 classificationNames: [
+     *                     String
+     *                 ]
+     *                 classifications: [
+     *                     {
+     *                         attributes: {
+     *                             String: Object
+     *                         }
+     *                         typeName: String
+     *                         lastModifiedTS: String
+     *                         entityGuid: String
+     *                         entityStatus: String(ACTIVE/DELETED)
+     *                         removePropagationsOnEntityDelete: Boolean
+     *                         validityPeriods: [
+     *                             {
+     *                                 endTime: String
+     *                                 startTime: String
+     *                                 timeZone: String
+     *                             }
+     *                         ]
+     *                         source: String
+     *                         sourceDetails: {
+     *                             String: Object
+     *                         }
+     *                     }
+     *                 ]
+     *                 displayText: String
+     *                 guid: String
+     *                 isIncomplete: Boolean
+     *                 labels: [
+     *                     String
+     *                 ]
+     *                 meaningNames: [
+     *                     String
+     *                 ]
+     *                 meanings: [
+     *                     {
+     *                         confidence: Integer
+     *                         createdBy: String
+     *                         description: String
+     *                         displayText: String
+     *                         expression: String
+     *                         relationGuid: String
+     *                         source: String
+     *                         status: String(DISCOVERED/PROPOSED/IMPORTED/VALIDATED/DEPRECATED/OBSOLETE/OTHER)
+     *                         steward: String
+     *                         termGuid: String
+     *                     }
+     *                 ]
+     *                 status: String(ACTIVE/DELETED)
+     *             }
+     *         ]
+     *     }
+     *     partialUpdatedEntities: [
+     *         (recursive schema, see above)
+     *     ]
+     * }
+     * }</pre>
+     *
+     * @param collection the collection unique name.
+     * @param moveEntitiesRequest Entity guids to be moved to target collection.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return entityMutationResponse along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<BinaryData>> moveEntitiesToCollectionWithResponseAsync(
+            String collection, BinaryData moveEntitiesRequest, RequestOptions requestOptions) {
+        final String apiVersion = "2022-03-01-preview";
+        return FluxUtil.withContext(
+                context ->
+                        service.moveEntitiesToCollection(
                                 this.client.getEndpoint(),
-                                collectionName,
-                                this.client.getServiceVersion().getVersion(),
                                 collection,
+                                apiVersion,
+                                moveEntitiesRequest,
                                 requestOptions,
                                 context));
     }
 
     /**
-     * Creates or updates a collection entity.
+     * Move existing entities to the target collection.
      *
      * <p><strong>Query Parameters</strong>
      *
      * <table border="1">
      *     <caption>Query Parameters</caption>
      *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>apiVersion</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
+     *     <tr><td>api-version</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
      * </table>
      *
      * <p><strong>Request Body Schema</strong>
      *
      * <pre>{@code
      * {
-     *     collectionProvisioningState: String(Unknown/Creating/Moving/Deleting/Failed/Succeeded)
-     *     description: String
-     *     friendlyName: String
-     *     name: String
-     *     parentCollection: {
-     *         referenceName: String
-     *         type: String
-     *     }
-     *     systemData: {
-     *         createdAt: String
-     *         createdBy: String
-     *         createdByType: String(User/Application/ManagedIdentity/Key)
-     *         lastModifiedAt: String
-     *         lastModifiedBy: String
-     *         lastModifiedByType: String(User/Application/ManagedIdentity/Key)
-     *     }
+     *     entityGuids: [
+     *         String
+     *     ]
      * }
      * }</pre>
      *
@@ -391,1024 +1424,201 @@ public final class CollectionsImpl {
      *
      * <pre>{@code
      * {
-     *     collectionProvisioningState: String(Unknown/Creating/Moving/Deleting/Failed/Succeeded)
-     *     description: String
-     *     friendlyName: String
-     *     name: String
-     *     parentCollection: {
-     *         referenceName: String
-     *         type: String
+     *     guidAssignments: {
+     *         String: String
      *     }
-     *     systemData: {
-     *         createdAt: String
-     *         createdBy: String
-     *         createdByType: String(User/Application/ManagedIdentity/Key)
-     *         lastModifiedAt: String
-     *         lastModifiedBy: String
-     *         lastModifiedByType: String(User/Application/ManagedIdentity/Key)
+     *     mutatedEntities: {
+     *         String: [
+     *             {
+     *                 attributes: {
+     *                     String: Object
+     *                 }
+     *                 typeName: String
+     *                 lastModifiedTS: String
+     *                 classificationNames: [
+     *                     String
+     *                 ]
+     *                 classifications: [
+     *                     {
+     *                         attributes: {
+     *                             String: Object
+     *                         }
+     *                         typeName: String
+     *                         lastModifiedTS: String
+     *                         entityGuid: String
+     *                         entityStatus: String(ACTIVE/DELETED)
+     *                         removePropagationsOnEntityDelete: Boolean
+     *                         validityPeriods: [
+     *                             {
+     *                                 endTime: String
+     *                                 startTime: String
+     *                                 timeZone: String
+     *                             }
+     *                         ]
+     *                         source: String
+     *                         sourceDetails: {
+     *                             String: Object
+     *                         }
+     *                     }
+     *                 ]
+     *                 displayText: String
+     *                 guid: String
+     *                 isIncomplete: Boolean
+     *                 labels: [
+     *                     String
+     *                 ]
+     *                 meaningNames: [
+     *                     String
+     *                 ]
+     *                 meanings: [
+     *                     {
+     *                         confidence: Integer
+     *                         createdBy: String
+     *                         description: String
+     *                         displayText: String
+     *                         expression: String
+     *                         relationGuid: String
+     *                         source: String
+     *                         status: String(DISCOVERED/PROPOSED/IMPORTED/VALIDATED/DEPRECATED/OBSOLETE/OTHER)
+     *                         steward: String
+     *                         termGuid: String
+     *                     }
+     *                 ]
+     *                 status: String(ACTIVE/DELETED)
+     *             }
+     *         ]
      *     }
+     *     partialUpdatedEntities: [
+     *         (recursive schema, see above)
+     *     ]
      * }
      * }</pre>
      *
-     * @param collectionName The collectionName parameter.
-     * @param collection Collection resource.
+     * @param collection the collection unique name.
+     * @param moveEntitiesRequest Entity guids to be moved to target collection.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @param context The context to associate with this operation.
      * @throws HttpResponseException thrown if the request is rejected by server.
-     * @return collection resource along with {@link Response} on successful completion of {@link Mono}.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return entityMutationResponse along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<BinaryData>> createOrUpdateCollectionWithResponseAsync(
-            String collectionName, BinaryData collection, RequestOptions requestOptions, Context context) {
-        return service.createOrUpdateCollection(
-                this.client.getEndpoint(),
-                collectionName,
-                this.client.getServiceVersion().getVersion(),
-                collection,
-                requestOptions,
-                context);
+    public Mono<Response<BinaryData>> moveEntitiesToCollectionWithResponseAsync(
+            String collection, BinaryData moveEntitiesRequest, RequestOptions requestOptions, Context context) {
+        final String apiVersion = "2022-03-01-preview";
+        return service.moveEntitiesToCollection(
+                this.client.getEndpoint(), collection, apiVersion, moveEntitiesRequest, requestOptions, context);
     }
 
     /**
-     * Creates or updates a collection entity.
+     * Move existing entities to the target collection.
      *
      * <p><strong>Query Parameters</strong>
      *
      * <table border="1">
      *     <caption>Query Parameters</caption>
      *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>apiVersion</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
+     *     <tr><td>api-version</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
      * </table>
      *
      * <p><strong>Request Body Schema</strong>
      *
      * <pre>{@code
      * {
-     *     collectionProvisioningState: String(Unknown/Creating/Moving/Deleting/Failed/Succeeded)
-     *     description: String
-     *     friendlyName: String
-     *     name: String
-     *     parentCollection: {
-     *         referenceName: String
-     *         type: String
+     *     entityGuids: [
+     *         String
+     *     ]
+     * }
+     * }</pre>
+     *
+     * <p><strong>Response Body Schema</strong>
+     *
+     * <pre>{@code
+     * {
+     *     guidAssignments: {
+     *         String: String
      *     }
-     *     systemData: {
-     *         createdAt: String
-     *         createdBy: String
-     *         createdByType: String(User/Application/ManagedIdentity/Key)
-     *         lastModifiedAt: String
-     *         lastModifiedBy: String
-     *         lastModifiedByType: String(User/Application/ManagedIdentity/Key)
+     *     mutatedEntities: {
+     *         String: [
+     *             {
+     *                 attributes: {
+     *                     String: Object
+     *                 }
+     *                 typeName: String
+     *                 lastModifiedTS: String
+     *                 classificationNames: [
+     *                     String
+     *                 ]
+     *                 classifications: [
+     *                     {
+     *                         attributes: {
+     *                             String: Object
+     *                         }
+     *                         typeName: String
+     *                         lastModifiedTS: String
+     *                         entityGuid: String
+     *                         entityStatus: String(ACTIVE/DELETED)
+     *                         removePropagationsOnEntityDelete: Boolean
+     *                         validityPeriods: [
+     *                             {
+     *                                 endTime: String
+     *                                 startTime: String
+     *                                 timeZone: String
+     *                             }
+     *                         ]
+     *                         source: String
+     *                         sourceDetails: {
+     *                             String: Object
+     *                         }
+     *                     }
+     *                 ]
+     *                 displayText: String
+     *                 guid: String
+     *                 isIncomplete: Boolean
+     *                 labels: [
+     *                     String
+     *                 ]
+     *                 meaningNames: [
+     *                     String
+     *                 ]
+     *                 meanings: [
+     *                     {
+     *                         confidence: Integer
+     *                         createdBy: String
+     *                         description: String
+     *                         displayText: String
+     *                         expression: String
+     *                         relationGuid: String
+     *                         source: String
+     *                         status: String(DISCOVERED/PROPOSED/IMPORTED/VALIDATED/DEPRECATED/OBSOLETE/OTHER)
+     *                         steward: String
+     *                         termGuid: String
+     *                     }
+     *                 ]
+     *                 status: String(ACTIVE/DELETED)
+     *             }
+     *         ]
      *     }
+     *     partialUpdatedEntities: [
+     *         (recursive schema, see above)
+     *     ]
      * }
      * }</pre>
      *
-     * <p><strong>Response Body Schema</strong>
-     *
-     * <pre>{@code
-     * {
-     *     collectionProvisioningState: String(Unknown/Creating/Moving/Deleting/Failed/Succeeded)
-     *     description: String
-     *     friendlyName: String
-     *     name: String
-     *     parentCollection: {
-     *         referenceName: String
-     *         type: String
-     *     }
-     *     systemData: {
-     *         createdAt: String
-     *         createdBy: String
-     *         createdByType: String(User/Application/ManagedIdentity/Key)
-     *         lastModifiedAt: String
-     *         lastModifiedBy: String
-     *         lastModifiedByType: String(User/Application/ManagedIdentity/Key)
-     *     }
-     * }
-     * }</pre>
-     *
-     * @param collectionName The collectionName parameter.
-     * @param collection Collection resource.
+     * @param collection the collection unique name.
+     * @param moveEntitiesRequest Entity guids to be moved to target collection.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
-     * @return collection resource along with {@link Response}.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return entityMutationResponse along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<BinaryData> createOrUpdateCollectionWithResponse(
-            String collectionName, BinaryData collection, RequestOptions requestOptions) {
-        return createOrUpdateCollectionWithResponseAsync(collectionName, collection, requestOptions).block();
-    }
-
-    /**
-     * Deletes a Collection entity.
-     *
-     * <p><strong>Query Parameters</strong>
-     *
-     * <table border="1">
-     *     <caption>Query Parameters</caption>
-     *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>apiVersion</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
-     * </table>
-     *
-     * @param collectionName The collectionName parameter.
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @return the {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Void>> deleteCollectionWithResponseAsync(
-            String collectionName, RequestOptions requestOptions) {
-        return FluxUtil.withContext(
-                context ->
-                        service.deleteCollection(
-                                this.client.getEndpoint(),
-                                collectionName,
-                                this.client.getServiceVersion().getVersion(),
-                                requestOptions,
-                                context));
-    }
-
-    /**
-     * Deletes a Collection entity.
-     *
-     * <p><strong>Query Parameters</strong>
-     *
-     * <table border="1">
-     *     <caption>Query Parameters</caption>
-     *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>apiVersion</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
-     * </table>
-     *
-     * @param collectionName The collectionName parameter.
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @param context The context to associate with this operation.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @return the {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Void>> deleteCollectionWithResponseAsync(
-            String collectionName, RequestOptions requestOptions, Context context) {
-        return service.deleteCollection(
-                this.client.getEndpoint(),
-                collectionName,
-                this.client.getServiceVersion().getVersion(),
-                requestOptions,
-                context);
-    }
-
-    /**
-     * Deletes a Collection entity.
-     *
-     * <p><strong>Query Parameters</strong>
-     *
-     * <table border="1">
-     *     <caption>Query Parameters</caption>
-     *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>apiVersion</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
-     * </table>
-     *
-     * @param collectionName The collectionName parameter.
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @return the {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<Void> deleteCollectionWithResponse(String collectionName, RequestOptions requestOptions) {
-        return deleteCollectionWithResponseAsync(collectionName, requestOptions).block();
-    }
-
-    /**
-     * List the collections in the account.
-     *
-     * <p><strong>Query Parameters</strong>
-     *
-     * <table border="1">
-     *     <caption>Query Parameters</caption>
-     *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>apiVersion</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
-     *     <tr><td>skipToken</td><td>String</td><td>No</td><td>The skipToken parameter</td></tr>
-     * </table>
-     *
-     * <p><strong>Response Body Schema</strong>
-     *
-     * <pre>{@code
-     * {
-     *     count: Long
-     *     nextLink: String
-     *     value: [
-     *         {
-     *             collectionProvisioningState: String(Unknown/Creating/Moving/Deleting/Failed/Succeeded)
-     *             description: String
-     *             friendlyName: String
-     *             name: String
-     *             parentCollection: {
-     *                 referenceName: String
-     *                 type: String
-     *             }
-     *             systemData: {
-     *                 createdAt: String
-     *                 createdBy: String
-     *                 createdByType: String(User/Application/ManagedIdentity/Key)
-     *                 lastModifiedAt: String
-     *                 lastModifiedBy: String
-     *                 lastModifiedByType: String(User/Application/ManagedIdentity/Key)
-     *             }
-     *         }
-     *     ]
-     * }
-     * }</pre>
-     *
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @return paged list of collections along with {@link PagedResponse} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<PagedResponse<BinaryData>> listCollectionsSinglePageAsync(RequestOptions requestOptions) {
-        return FluxUtil.withContext(
-                        context ->
-                                service.listCollections(
-                                        this.client.getEndpoint(),
-                                        this.client.getServiceVersion().getVersion(),
-                                        requestOptions,
-                                        context))
-                .map(
-                        res ->
-                                new PagedResponseBase<>(
-                                        res.getRequest(),
-                                        res.getStatusCode(),
-                                        res.getHeaders(),
-                                        getValues(res.getValue(), "value"),
-                                        getNextLink(res.getValue(), "nextLink"),
-                                        null));
-    }
-
-    /**
-     * List the collections in the account.
-     *
-     * <p><strong>Query Parameters</strong>
-     *
-     * <table border="1">
-     *     <caption>Query Parameters</caption>
-     *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>apiVersion</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
-     *     <tr><td>skipToken</td><td>String</td><td>No</td><td>The skipToken parameter</td></tr>
-     * </table>
-     *
-     * <p><strong>Response Body Schema</strong>
-     *
-     * <pre>{@code
-     * {
-     *     count: Long
-     *     nextLink: String
-     *     value: [
-     *         {
-     *             collectionProvisioningState: String(Unknown/Creating/Moving/Deleting/Failed/Succeeded)
-     *             description: String
-     *             friendlyName: String
-     *             name: String
-     *             parentCollection: {
-     *                 referenceName: String
-     *                 type: String
-     *             }
-     *             systemData: {
-     *                 createdAt: String
-     *                 createdBy: String
-     *                 createdByType: String(User/Application/ManagedIdentity/Key)
-     *                 lastModifiedAt: String
-     *                 lastModifiedBy: String
-     *                 lastModifiedByType: String(User/Application/ManagedIdentity/Key)
-     *             }
-     *         }
-     *     ]
-     * }
-     * }</pre>
-     *
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @param context The context to associate with this operation.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @return paged list of collections along with {@link PagedResponse} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<PagedResponse<BinaryData>> listCollectionsSinglePageAsync(
-            RequestOptions requestOptions, Context context) {
-        return service.listCollections(
-                        this.client.getEndpoint(),
-                        this.client.getServiceVersion().getVersion(),
-                        requestOptions,
-                        context)
-                .map(
-                        res ->
-                                new PagedResponseBase<>(
-                                        res.getRequest(),
-                                        res.getStatusCode(),
-                                        res.getHeaders(),
-                                        getValues(res.getValue(), "value"),
-                                        getNextLink(res.getValue(), "nextLink"),
-                                        null));
-    }
-
-    /**
-     * List the collections in the account.
-     *
-     * <p><strong>Query Parameters</strong>
-     *
-     * <table border="1">
-     *     <caption>Query Parameters</caption>
-     *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>apiVersion</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
-     *     <tr><td>skipToken</td><td>String</td><td>No</td><td>The skipToken parameter</td></tr>
-     * </table>
-     *
-     * <p><strong>Response Body Schema</strong>
-     *
-     * <pre>{@code
-     * {
-     *     count: Long
-     *     nextLink: String
-     *     value: [
-     *         {
-     *             collectionProvisioningState: String(Unknown/Creating/Moving/Deleting/Failed/Succeeded)
-     *             description: String
-     *             friendlyName: String
-     *             name: String
-     *             parentCollection: {
-     *                 referenceName: String
-     *                 type: String
-     *             }
-     *             systemData: {
-     *                 createdAt: String
-     *                 createdBy: String
-     *                 createdByType: String(User/Application/ManagedIdentity/Key)
-     *                 lastModifiedAt: String
-     *                 lastModifiedBy: String
-     *                 lastModifiedByType: String(User/Application/ManagedIdentity/Key)
-     *             }
-     *         }
-     *     ]
-     * }
-     * }</pre>
-     *
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @return paged list of collections.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedFlux<BinaryData> listCollectionsAsync(RequestOptions requestOptions) {
-        return new PagedFlux<>(
-                () -> listCollectionsSinglePageAsync(requestOptions),
-                nextLink -> listCollectionsNextSinglePageAsync(nextLink, null));
-    }
-
-    /**
-     * List the collections in the account.
-     *
-     * <p><strong>Query Parameters</strong>
-     *
-     * <table border="1">
-     *     <caption>Query Parameters</caption>
-     *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>apiVersion</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
-     *     <tr><td>skipToken</td><td>String</td><td>No</td><td>The skipToken parameter</td></tr>
-     * </table>
-     *
-     * <p><strong>Response Body Schema</strong>
-     *
-     * <pre>{@code
-     * {
-     *     count: Long
-     *     nextLink: String
-     *     value: [
-     *         {
-     *             collectionProvisioningState: String(Unknown/Creating/Moving/Deleting/Failed/Succeeded)
-     *             description: String
-     *             friendlyName: String
-     *             name: String
-     *             parentCollection: {
-     *                 referenceName: String
-     *                 type: String
-     *             }
-     *             systemData: {
-     *                 createdAt: String
-     *                 createdBy: String
-     *                 createdByType: String(User/Application/ManagedIdentity/Key)
-     *                 lastModifiedAt: String
-     *                 lastModifiedBy: String
-     *                 lastModifiedByType: String(User/Application/ManagedIdentity/Key)
-     *             }
-     *         }
-     *     ]
-     * }
-     * }</pre>
-     *
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @param context The context to associate with this operation.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @return paged list of collections.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedFlux<BinaryData> listCollectionsAsync(RequestOptions requestOptions, Context context) {
-        return new PagedFlux<>(
-                () -> listCollectionsSinglePageAsync(requestOptions, context),
-                nextLink -> listCollectionsNextSinglePageAsync(nextLink, null, context));
-    }
-
-    /**
-     * List the collections in the account.
-     *
-     * <p><strong>Query Parameters</strong>
-     *
-     * <table border="1">
-     *     <caption>Query Parameters</caption>
-     *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>apiVersion</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
-     *     <tr><td>skipToken</td><td>String</td><td>No</td><td>The skipToken parameter</td></tr>
-     * </table>
-     *
-     * <p><strong>Response Body Schema</strong>
-     *
-     * <pre>{@code
-     * {
-     *     count: Long
-     *     nextLink: String
-     *     value: [
-     *         {
-     *             collectionProvisioningState: String(Unknown/Creating/Moving/Deleting/Failed/Succeeded)
-     *             description: String
-     *             friendlyName: String
-     *             name: String
-     *             parentCollection: {
-     *                 referenceName: String
-     *                 type: String
-     *             }
-     *             systemData: {
-     *                 createdAt: String
-     *                 createdBy: String
-     *                 createdByType: String(User/Application/ManagedIdentity/Key)
-     *                 lastModifiedAt: String
-     *                 lastModifiedBy: String
-     *                 lastModifiedByType: String(User/Application/ManagedIdentity/Key)
-     *             }
-     *         }
-     *     ]
-     * }
-     * }</pre>
-     *
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @return paged list of collections.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<BinaryData> listCollections(RequestOptions requestOptions) {
-        return new PagedIterable<>(listCollectionsAsync(requestOptions));
-    }
-
-    /**
-     * Lists the child collections names in the collection.
-     *
-     * <p><strong>Query Parameters</strong>
-     *
-     * <table border="1">
-     *     <caption>Query Parameters</caption>
-     *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>apiVersion</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
-     *     <tr><td>skipToken</td><td>String</td><td>No</td><td>The skipToken parameter</td></tr>
-     * </table>
-     *
-     * <p><strong>Response Body Schema</strong>
-     *
-     * <pre>{@code
-     * {
-     *     count: Long
-     *     nextLink: String
-     *     value: [
-     *         {
-     *             friendlyName: String
-     *             name: String
-     *         }
-     *     ]
-     * }
-     * }</pre>
-     *
-     * @param collectionName The collectionName parameter.
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @return paged list of collections along with {@link PagedResponse} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<PagedResponse<BinaryData>> listChildCollectionNamesSinglePageAsync(
-            String collectionName, RequestOptions requestOptions) {
-        return FluxUtil.withContext(
-                        context ->
-                                service.listChildCollectionNames(
-                                        this.client.getEndpoint(),
-                                        collectionName,
-                                        this.client.getServiceVersion().getVersion(),
-                                        requestOptions,
-                                        context))
-                .map(
-                        res ->
-                                new PagedResponseBase<>(
-                                        res.getRequest(),
-                                        res.getStatusCode(),
-                                        res.getHeaders(),
-                                        getValues(res.getValue(), "value"),
-                                        getNextLink(res.getValue(), "nextLink"),
-                                        null));
-    }
-
-    /**
-     * Lists the child collections names in the collection.
-     *
-     * <p><strong>Query Parameters</strong>
-     *
-     * <table border="1">
-     *     <caption>Query Parameters</caption>
-     *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>apiVersion</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
-     *     <tr><td>skipToken</td><td>String</td><td>No</td><td>The skipToken parameter</td></tr>
-     * </table>
-     *
-     * <p><strong>Response Body Schema</strong>
-     *
-     * <pre>{@code
-     * {
-     *     count: Long
-     *     nextLink: String
-     *     value: [
-     *         {
-     *             friendlyName: String
-     *             name: String
-     *         }
-     *     ]
-     * }
-     * }</pre>
-     *
-     * @param collectionName The collectionName parameter.
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @param context The context to associate with this operation.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @return paged list of collections along with {@link PagedResponse} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<PagedResponse<BinaryData>> listChildCollectionNamesSinglePageAsync(
-            String collectionName, RequestOptions requestOptions, Context context) {
-        return service.listChildCollectionNames(
-                        this.client.getEndpoint(),
-                        collectionName,
-                        this.client.getServiceVersion().getVersion(),
-                        requestOptions,
-                        context)
-                .map(
-                        res ->
-                                new PagedResponseBase<>(
-                                        res.getRequest(),
-                                        res.getStatusCode(),
-                                        res.getHeaders(),
-                                        getValues(res.getValue(), "value"),
-                                        getNextLink(res.getValue(), "nextLink"),
-                                        null));
-    }
-
-    /**
-     * Lists the child collections names in the collection.
-     *
-     * <p><strong>Query Parameters</strong>
-     *
-     * <table border="1">
-     *     <caption>Query Parameters</caption>
-     *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>apiVersion</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
-     *     <tr><td>skipToken</td><td>String</td><td>No</td><td>The skipToken parameter</td></tr>
-     * </table>
-     *
-     * <p><strong>Response Body Schema</strong>
-     *
-     * <pre>{@code
-     * {
-     *     count: Long
-     *     nextLink: String
-     *     value: [
-     *         {
-     *             friendlyName: String
-     *             name: String
-     *         }
-     *     ]
-     * }
-     * }</pre>
-     *
-     * @param collectionName The collectionName parameter.
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @return paged list of collections.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedFlux<BinaryData> listChildCollectionNamesAsync(String collectionName, RequestOptions requestOptions) {
-        return new PagedFlux<>(
-                () -> listChildCollectionNamesSinglePageAsync(collectionName, requestOptions),
-                nextLink -> listChildCollectionNamesNextSinglePageAsync(nextLink, null));
-    }
-
-    /**
-     * Lists the child collections names in the collection.
-     *
-     * <p><strong>Query Parameters</strong>
-     *
-     * <table border="1">
-     *     <caption>Query Parameters</caption>
-     *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>apiVersion</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
-     *     <tr><td>skipToken</td><td>String</td><td>No</td><td>The skipToken parameter</td></tr>
-     * </table>
-     *
-     * <p><strong>Response Body Schema</strong>
-     *
-     * <pre>{@code
-     * {
-     *     count: Long
-     *     nextLink: String
-     *     value: [
-     *         {
-     *             friendlyName: String
-     *             name: String
-     *         }
-     *     ]
-     * }
-     * }</pre>
-     *
-     * @param collectionName The collectionName parameter.
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @param context The context to associate with this operation.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @return paged list of collections.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedFlux<BinaryData> listChildCollectionNamesAsync(
-            String collectionName, RequestOptions requestOptions, Context context) {
-        return new PagedFlux<>(
-                () -> listChildCollectionNamesSinglePageAsync(collectionName, requestOptions, context),
-                nextLink -> listChildCollectionNamesNextSinglePageAsync(nextLink, null, context));
-    }
-
-    /**
-     * Lists the child collections names in the collection.
-     *
-     * <p><strong>Query Parameters</strong>
-     *
-     * <table border="1">
-     *     <caption>Query Parameters</caption>
-     *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>apiVersion</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
-     *     <tr><td>skipToken</td><td>String</td><td>No</td><td>The skipToken parameter</td></tr>
-     * </table>
-     *
-     * <p><strong>Response Body Schema</strong>
-     *
-     * <pre>{@code
-     * {
-     *     count: Long
-     *     nextLink: String
-     *     value: [
-     *         {
-     *             friendlyName: String
-     *             name: String
-     *         }
-     *     ]
-     * }
-     * }</pre>
-     *
-     * @param collectionName The collectionName parameter.
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @return paged list of collections.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<BinaryData> listChildCollectionNames(String collectionName, RequestOptions requestOptions) {
-        return new PagedIterable<>(listChildCollectionNamesAsync(collectionName, requestOptions));
-    }
-
-    /**
-     * Gets the parent name and parent friendly name chains that represent the collection path.
-     *
-     * <p><strong>Query Parameters</strong>
-     *
-     * <table border="1">
-     *     <caption>Query Parameters</caption>
-     *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>apiVersion</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
-     * </table>
-     *
-     * <p><strong>Response Body Schema</strong>
-     *
-     * <pre>{@code
-     * {
-     *     parentFriendlyNameChain: [
-     *         String
-     *     ]
-     *     parentNameChain: [
-     *         String
-     *     ]
-     * }
-     * }</pre>
-     *
-     * @param collectionName The collectionName parameter.
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @return the parent name and parent friendly name chains that represent the collection path along with {@link
-     *     Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<BinaryData>> getCollectionPathWithResponseAsync(
-            String collectionName, RequestOptions requestOptions) {
-        return FluxUtil.withContext(
-                context ->
-                        service.getCollectionPath(
-                                this.client.getEndpoint(),
-                                collectionName,
-                                this.client.getServiceVersion().getVersion(),
-                                requestOptions,
-                                context));
-    }
-
-    /**
-     * Gets the parent name and parent friendly name chains that represent the collection path.
-     *
-     * <p><strong>Query Parameters</strong>
-     *
-     * <table border="1">
-     *     <caption>Query Parameters</caption>
-     *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>apiVersion</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
-     * </table>
-     *
-     * <p><strong>Response Body Schema</strong>
-     *
-     * <pre>{@code
-     * {
-     *     parentFriendlyNameChain: [
-     *         String
-     *     ]
-     *     parentNameChain: [
-     *         String
-     *     ]
-     * }
-     * }</pre>
-     *
-     * @param collectionName The collectionName parameter.
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @param context The context to associate with this operation.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @return the parent name and parent friendly name chains that represent the collection path along with {@link
-     *     Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<BinaryData>> getCollectionPathWithResponseAsync(
-            String collectionName, RequestOptions requestOptions, Context context) {
-        return service.getCollectionPath(
-                this.client.getEndpoint(),
-                collectionName,
-                this.client.getServiceVersion().getVersion(),
-                requestOptions,
-                context);
-    }
-
-    /**
-     * Gets the parent name and parent friendly name chains that represent the collection path.
-     *
-     * <p><strong>Query Parameters</strong>
-     *
-     * <table border="1">
-     *     <caption>Query Parameters</caption>
-     *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>apiVersion</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
-     * </table>
-     *
-     * <p><strong>Response Body Schema</strong>
-     *
-     * <pre>{@code
-     * {
-     *     parentFriendlyNameChain: [
-     *         String
-     *     ]
-     *     parentNameChain: [
-     *         String
-     *     ]
-     * }
-     * }</pre>
-     *
-     * @param collectionName The collectionName parameter.
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @return the parent name and parent friendly name chains that represent the collection path along with {@link
-     *     Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<BinaryData> getCollectionPathWithResponse(String collectionName, RequestOptions requestOptions) {
-        return getCollectionPathWithResponseAsync(collectionName, requestOptions).block();
-    }
-
-    /**
-     * Get the next page of items.
-     *
-     * <p><strong>Response Body Schema</strong>
-     *
-     * <pre>{@code
-     * {
-     *     count: Long
-     *     nextLink: String
-     *     value: [
-     *         {
-     *             collectionProvisioningState: String(Unknown/Creating/Moving/Deleting/Failed/Succeeded)
-     *             description: String
-     *             friendlyName: String
-     *             name: String
-     *             parentCollection: {
-     *                 referenceName: String
-     *                 type: String
-     *             }
-     *             systemData: {
-     *                 createdAt: String
-     *                 createdBy: String
-     *                 createdByType: String(User/Application/ManagedIdentity/Key)
-     *                 lastModifiedAt: String
-     *                 lastModifiedBy: String
-     *                 lastModifiedByType: String(User/Application/ManagedIdentity/Key)
-     *             }
-     *         }
-     *     ]
-     * }
-     * }</pre>
-     *
-     * @param nextLink The nextLink parameter.
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @return paged list of collections along with {@link PagedResponse} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<PagedResponse<BinaryData>> listCollectionsNextSinglePageAsync(
-            String nextLink, RequestOptions requestOptions) {
-        return FluxUtil.withContext(
-                        context ->
-                                service.listCollectionsNext(
-                                        nextLink, this.client.getEndpoint(), requestOptions, context))
-                .map(
-                        res ->
-                                new PagedResponseBase<>(
-                                        res.getRequest(),
-                                        res.getStatusCode(),
-                                        res.getHeaders(),
-                                        getValues(res.getValue(), "value"),
-                                        getNextLink(res.getValue(), "nextLink"),
-                                        null));
-    }
-
-    /**
-     * Get the next page of items.
-     *
-     * <p><strong>Response Body Schema</strong>
-     *
-     * <pre>{@code
-     * {
-     *     count: Long
-     *     nextLink: String
-     *     value: [
-     *         {
-     *             collectionProvisioningState: String(Unknown/Creating/Moving/Deleting/Failed/Succeeded)
-     *             description: String
-     *             friendlyName: String
-     *             name: String
-     *             parentCollection: {
-     *                 referenceName: String
-     *                 type: String
-     *             }
-     *             systemData: {
-     *                 createdAt: String
-     *                 createdBy: String
-     *                 createdByType: String(User/Application/ManagedIdentity/Key)
-     *                 lastModifiedAt: String
-     *                 lastModifiedBy: String
-     *                 lastModifiedByType: String(User/Application/ManagedIdentity/Key)
-     *             }
-     *         }
-     *     ]
-     * }
-     * }</pre>
-     *
-     * @param nextLink The nextLink parameter.
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @param context The context to associate with this operation.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @return paged list of collections along with {@link PagedResponse} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<PagedResponse<BinaryData>> listCollectionsNextSinglePageAsync(
-            String nextLink, RequestOptions requestOptions, Context context) {
-        return service.listCollectionsNext(nextLink, this.client.getEndpoint(), requestOptions, context)
-                .map(
-                        res ->
-                                new PagedResponseBase<>(
-                                        res.getRequest(),
-                                        res.getStatusCode(),
-                                        res.getHeaders(),
-                                        getValues(res.getValue(), "value"),
-                                        getNextLink(res.getValue(), "nextLink"),
-                                        null));
-    }
-
-    /**
-     * Get the next page of items.
-     *
-     * <p><strong>Response Body Schema</strong>
-     *
-     * <pre>{@code
-     * {
-     *     count: Long
-     *     nextLink: String
-     *     value: [
-     *         {
-     *             friendlyName: String
-     *             name: String
-     *         }
-     *     ]
-     * }
-     * }</pre>
-     *
-     * @param nextLink The nextLink parameter.
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @return paged list of collections along with {@link PagedResponse} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<PagedResponse<BinaryData>> listChildCollectionNamesNextSinglePageAsync(
-            String nextLink, RequestOptions requestOptions) {
-        return FluxUtil.withContext(
-                        context ->
-                                service.listChildCollectionNamesNext(
-                                        nextLink, this.client.getEndpoint(), requestOptions, context))
-                .map(
-                        res ->
-                                new PagedResponseBase<>(
-                                        res.getRequest(),
-                                        res.getStatusCode(),
-                                        res.getHeaders(),
-                                        getValues(res.getValue(), "value"),
-                                        getNextLink(res.getValue(), "nextLink"),
-                                        null));
-    }
-
-    /**
-     * Get the next page of items.
-     *
-     * <p><strong>Response Body Schema</strong>
-     *
-     * <pre>{@code
-     * {
-     *     count: Long
-     *     nextLink: String
-     *     value: [
-     *         {
-     *             friendlyName: String
-     *             name: String
-     *         }
-     *     ]
-     * }
-     * }</pre>
-     *
-     * @param nextLink The nextLink parameter.
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @param context The context to associate with this operation.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @return paged list of collections along with {@link PagedResponse} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<PagedResponse<BinaryData>> listChildCollectionNamesNextSinglePageAsync(
-            String nextLink, RequestOptions requestOptions, Context context) {
-        return service.listChildCollectionNamesNext(nextLink, this.client.getEndpoint(), requestOptions, context)
-                .map(
-                        res ->
-                                new PagedResponseBase<>(
-                                        res.getRequest(),
-                                        res.getStatusCode(),
-                                        res.getHeaders(),
-                                        getValues(res.getValue(), "value"),
-                                        getNextLink(res.getValue(), "nextLink"),
-                                        null));
-    }
-
-    private List<BinaryData> getValues(BinaryData binaryData, String path) {
-        try {
-            Map<?, ?> obj = binaryData.toObject(Map.class);
-            List<?> values = (List<?>) obj.get(path);
-            return values.stream().map(BinaryData::fromObject).collect(Collectors.toList());
-        } catch (RuntimeException e) {
-            return null;
-        }
-    }
-
-    private String getNextLink(BinaryData binaryData, String path) {
-        try {
-            Map<?, ?> obj = binaryData.toObject(Map.class);
-            return (String) obj.get(path);
-        } catch (RuntimeException e) {
-            return null;
-        }
+    public Response<BinaryData> moveEntitiesToCollectionWithResponse(
+            String collection, BinaryData moveEntitiesRequest, RequestOptions requestOptions) {
+        return moveEntitiesToCollectionWithResponseAsync(collection, moveEntitiesRequest, requestOptions).block();
     }
 }
