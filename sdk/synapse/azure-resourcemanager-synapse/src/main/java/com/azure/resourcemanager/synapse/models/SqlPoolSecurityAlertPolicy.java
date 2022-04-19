@@ -240,7 +240,6 @@ public interface SqlPoolSecurityAlertPolicy {
     /** The template for SqlPoolSecurityAlertPolicy update. */
     interface Update
         extends UpdateStages.WithState,
-            UpdateStages.WithDisabledAlerts,
             UpdateStages.WithEmailAddresses,
             UpdateStages.WithEmailAccountAdmins,
             UpdateStages.WithStorageEndpoint,
@@ -274,18 +273,6 @@ public interface SqlPoolSecurityAlertPolicy {
              * @return the next definition stage.
              */
             Update withState(SecurityAlertPolicyState state);
-        }
-        /** The stage of the SqlPoolSecurityAlertPolicy update allowing to specify disabledAlerts. */
-        interface WithDisabledAlerts {
-            /**
-             * Specifies the disabledAlerts property: Specifies an array of alerts that are disabled. Allowed values
-             * are: Sql_Injection, Sql_Injection_Vulnerability, Access_Anomaly, Data_Exfiltration, Unsafe_Action.
-             *
-             * @param disabledAlerts Specifies an array of alerts that are disabled. Allowed values are: Sql_Injection,
-             *     Sql_Injection_Vulnerability, Access_Anomaly, Data_Exfiltration, Unsafe_Action.
-             * @return the next definition stage.
-             */
-            Update withDisabledAlerts(List<String> disabledAlerts);
         }
         /** The stage of the SqlPoolSecurityAlertPolicy update allowing to specify emailAddresses. */
         interface WithEmailAddresses {
