@@ -91,12 +91,6 @@ public final class ContentKeyPolicyPlayReadyPlayRight {
     @JsonProperty(value = "compressedDigitalAudioOpl")
     private Integer compressedDigitalAudioOpl;
 
-    /*
-     * Specifies the output protection level for uncompressed digital audio.
-     */
-    @JsonProperty(value = "uncompressedDigitalAudioOpl")
-    private Integer uncompressedDigitalAudioOpl;
-
     /**
      * Get the firstPlayExpiration property: The amount of time that the license is valid after the license is first
      * used to play content.
@@ -359,28 +353,6 @@ public final class ContentKeyPolicyPlayReadyPlayRight {
      */
     public ContentKeyPolicyPlayReadyPlayRight withCompressedDigitalAudioOpl(Integer compressedDigitalAudioOpl) {
         this.compressedDigitalAudioOpl = compressedDigitalAudioOpl;
-        return this;
-    }
-
-    /**
-     * Get the uncompressedDigitalAudioOpl property: Specifies the output protection level for uncompressed digital
-     * audio.
-     *
-     * @return the uncompressedDigitalAudioOpl value.
-     */
-    public Integer uncompressedDigitalAudioOpl() {
-        return this.uncompressedDigitalAudioOpl;
-    }
-
-    /**
-     * Set the uncompressedDigitalAudioOpl property: Specifies the output protection level for uncompressed digital
-     * audio.
-     *
-     * @param uncompressedDigitalAudioOpl the uncompressedDigitalAudioOpl value to set.
-     * @return the ContentKeyPolicyPlayReadyPlayRight object itself.
-     */
-    public ContentKeyPolicyPlayReadyPlayRight withUncompressedDigitalAudioOpl(Integer uncompressedDigitalAudioOpl) {
-        this.uncompressedDigitalAudioOpl = uncompressedDigitalAudioOpl;
         return this;
     }
 

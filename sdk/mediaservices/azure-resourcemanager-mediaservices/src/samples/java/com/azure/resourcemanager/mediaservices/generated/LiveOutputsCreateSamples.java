@@ -10,7 +10,7 @@ import java.time.Duration;
 /** Samples for LiveOutputs Create. */
 public final class LiveOutputsCreateSamples {
     /*
-     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/stable/2021-11-01/examples/liveoutput-create.json
+     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/stable/2021-12-01/examples/liveoutput-create.json
      */
     /**
      * Sample code: Create a LiveOutput.
