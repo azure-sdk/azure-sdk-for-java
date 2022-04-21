@@ -48,8 +48,6 @@ import reactor.core.publisher.Mono;
 /** Initializes a new instance of the KustoManagementClientImpl type. */
 @ServiceClient(builder = KustoManagementClientBuilder.class)
 public final class KustoManagementClientImpl implements KustoManagementClient {
-    private final ClientLogger logger = new ClientLogger(KustoManagementClientImpl.class);
-
     /**
      * Gets subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms
      * part of the URI for every service call.
@@ -404,7 +402,7 @@ public final class KustoManagementClientImpl implements KustoManagementClient {
                             managementError = null;
                         }
                     } catch (IOException | RuntimeException ioe) {
-                        logger.logThrowableAsWarning(ioe);
+                        LOGGER.logThrowableAsWarning(ioe);
                     }
                 }
             } else {
@@ -463,4 +461,6 @@ public final class KustoManagementClientImpl implements KustoManagementClient {
             return Mono.just(new String(responseBody, charset));
         }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(KustoManagementClientImpl.class);
 }
