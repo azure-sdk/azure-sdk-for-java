@@ -11,10 +11,9 @@ import com.azure.resourcemanager.consumption.fluent.ReservationRecommendationsCl
 import com.azure.resourcemanager.consumption.fluent.models.ReservationRecommendationInner;
 import com.azure.resourcemanager.consumption.models.ReservationRecommendation;
 import com.azure.resourcemanager.consumption.models.ReservationRecommendations;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public final class ReservationRecommendationsImpl implements ReservationRecommendations {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(ReservationRecommendationsImpl.class);
+    private static final ClientLogger LOGGER = new ClientLogger(ReservationRecommendationsImpl.class);
 
     private final ReservationRecommendationsClient innerClient;
 
@@ -27,13 +26,13 @@ public final class ReservationRecommendationsImpl implements ReservationRecommen
         this.serviceManager = serviceManager;
     }
 
-    public PagedIterable<ReservationRecommendation> list(String scope) {
-        PagedIterable<ReservationRecommendationInner> inner = this.serviceClient().list(scope);
+    public PagedIterable<ReservationRecommendation> list(String resourceScope) {
+        PagedIterable<ReservationRecommendationInner> inner = this.serviceClient().list(resourceScope);
         return Utils.mapPage(inner, inner1 -> new ReservationRecommendationImpl(inner1, this.manager()));
     }
 
-    public PagedIterable<ReservationRecommendation> list(String scope, String filter, Context context) {
-        PagedIterable<ReservationRecommendationInner> inner = this.serviceClient().list(scope, filter, context);
+    public PagedIterable<ReservationRecommendation> list(String resourceScope, String filter, Context context) {
+        PagedIterable<ReservationRecommendationInner> inner = this.serviceClient().list(resourceScope, filter, context);
         return Utils.mapPage(inner, inner1 -> new ReservationRecommendationImpl(inner1, this.manager()));
     }
 
