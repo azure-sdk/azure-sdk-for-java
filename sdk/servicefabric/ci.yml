@@ -37,3 +37,6 @@ extends:
       - name: azure-resourcemanager-servicefabric
         groupId: com.azure.resourcemanager
         safeName: azureresourcemanagerservicefabric
+      - name: azure-servicefabric-servicefabric
+        groupId: com.azure
+        safeName: azureservicefabricservicefabric
