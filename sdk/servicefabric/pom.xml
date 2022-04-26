@@ -38,6 +38,7 @@
       </activation>
       <modules>
         <module>azure-resourcemanager-servicefabric</module>
+        <module>azure-servicefabric-servicefabric</module>
       </modules>
     </profile>
   </profiles>
