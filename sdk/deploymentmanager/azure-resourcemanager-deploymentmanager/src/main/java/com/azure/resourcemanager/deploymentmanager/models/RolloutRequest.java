@@ -346,7 +346,7 @@ public interface RolloutRequest {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return defines the rollout.
+     * @return defines the rollout along with {@link Response}.
      */
     Response<Rollout> cancelWithResponse(Context context);
 
@@ -369,7 +369,7 @@ public interface RolloutRequest {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return defines the rollout.
+     * @return defines the rollout along with {@link Response}.
      */
     Response<Rollout> restartWithResponse(Boolean skipSucceeded, Context context);
 }

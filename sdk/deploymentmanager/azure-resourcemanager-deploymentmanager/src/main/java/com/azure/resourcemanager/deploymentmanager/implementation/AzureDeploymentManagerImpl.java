@@ -42,8 +42,6 @@ import reactor.core.publisher.Mono;
 /** Initializes a new instance of the AzureDeploymentManagerImpl type. */
 @ServiceClient(builder = AzureDeploymentManagerBuilder.class)
 public final class AzureDeploymentManagerImpl implements AzureDeploymentManager {
-    private final ClientLogger logger = new ClientLogger(AzureDeploymentManagerImpl.class);
-
     /**
      * Subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of
      * the URI for every service call.
@@ -320,7 +318,7 @@ public final class AzureDeploymentManagerImpl implements AzureDeploymentManager 
                             managementError = null;
                         }
                     } catch (IOException | RuntimeException ioe) {
-                        logger.logThrowableAsWarning(ioe);
+                        LOGGER.logThrowableAsWarning(ioe);
                     }
                 }
             } else {
@@ -379,4 +377,6 @@ public final class AzureDeploymentManagerImpl implements AzureDeploymentManager 
             return Mono.just(new String(responseBody, charset));
         }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(AzureDeploymentManagerImpl.class);
 }
