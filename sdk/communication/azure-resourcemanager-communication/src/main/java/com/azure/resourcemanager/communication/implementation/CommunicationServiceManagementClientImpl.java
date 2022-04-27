@@ -37,8 +37,6 @@ import reactor.core.publisher.Mono;
 /** Initializes a new instance of the CommunicationServiceManagementClientImpl type. */
 @ServiceClient(builder = CommunicationServiceManagementClientBuilder.class)
 public final class CommunicationServiceManagementClientImpl implements CommunicationServiceManagementClient {
-    private final ClientLogger logger = new ClientLogger(CommunicationServiceManagementClientImpl.class);
-
     /** The ID of the target subscription. */
     private final String subscriptionId;
 
@@ -245,7 +243,7 @@ public final class CommunicationServiceManagementClientImpl implements Communica
                             managementError = null;
                         }
                     } catch (IOException | RuntimeException ioe) {
-                        logger.logThrowableAsWarning(ioe);
+                        LOGGER.logThrowableAsWarning(ioe);
                     }
                 }
             } else {
@@ -304,4 +302,6 @@ public final class CommunicationServiceManagementClientImpl implements Communica
             return Mono.just(new String(responseBody, charset));
         }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(CommunicationServiceManagementClientImpl.class);
 }
