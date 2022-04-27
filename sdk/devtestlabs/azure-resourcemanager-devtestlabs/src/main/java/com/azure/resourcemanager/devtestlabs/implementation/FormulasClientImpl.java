@@ -30,7 +30,6 @@ import com.azure.core.management.exception.ManagementException;
 import com.azure.core.management.polling.PollResult;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.devtestlabs.fluent.FormulasClient;
@@ -43,8 +42,6 @@ import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in FormulasClient. */
 public final class FormulasClientImpl implements FormulasClient {
-    private final ClientLogger logger = new ClientLogger(FormulasClientImpl.class);
-
     /** The proxy service used to perform REST calls. */
     private final FormulasService service;
 
@@ -177,7 +174,8 @@ public final class FormulasClientImpl implements FormulasClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation.
+     * @return the response of a list operation along with {@link PagedResponse} on successful completion of {@link
+     *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<FormulaInner>> listSinglePageAsync(
@@ -243,7 +241,8 @@ public final class FormulasClientImpl implements FormulasClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation.
+     * @return the response of a list operation along with {@link PagedResponse} on successful completion of {@link
+     *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<FormulaInner>> listSinglePageAsync(
@@ -311,7 +310,7 @@ public final class FormulasClientImpl implements FormulasClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation.
+     * @return the response of a list operation as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<FormulaInner> listAsync(
@@ -329,7 +328,7 @@ public final class FormulasClientImpl implements FormulasClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation.
+     * @return the response of a list operation as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<FormulaInner> listAsync(String resourceGroupName, String labName) {
@@ -355,7 +354,7 @@ public final class FormulasClientImpl implements FormulasClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation.
+     * @return the response of a list operation as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<FormulaInner> listAsync(
@@ -379,7 +378,7 @@ public final class FormulasClientImpl implements FormulasClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation.
+     * @return the response of a list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<FormulaInner> list(String resourceGroupName, String labName) {
@@ -403,7 +402,7 @@ public final class FormulasClientImpl implements FormulasClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation.
+     * @return the response of a list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<FormulaInner> list(
@@ -427,7 +426,7 @@ public final class FormulasClientImpl implements FormulasClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return formula.
+     * @return formula along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<FormulaInner>> getWithResponseAsync(
@@ -483,7 +482,7 @@ public final class FormulasClientImpl implements FormulasClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return formula.
+     * @return formula along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<FormulaInner>> getWithResponseAsync(
@@ -535,7 +534,7 @@ public final class FormulasClientImpl implements FormulasClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return formula.
+     * @return formula on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<FormulaInner> getAsync(String resourceGroupName, String labName, String name, String expand) {
@@ -559,7 +558,7 @@ public final class FormulasClientImpl implements FormulasClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return formula.
+     * @return formula on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<FormulaInner> getAsync(String resourceGroupName, String labName, String name) {
@@ -603,7 +602,7 @@ public final class FormulasClientImpl implements FormulasClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return formula.
+     * @return formula along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<FormulaInner> getWithResponse(
@@ -621,7 +620,8 @@ public final class FormulasClientImpl implements FormulasClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a formula for creating a VM, specifying an image base and other parameters.
+     * @return a formula for creating a VM, specifying an image base and other parameters along with {@link Response} on
+     *     successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(
@@ -682,7 +682,8 @@ public final class FormulasClientImpl implements FormulasClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a formula for creating a VM, specifying an image base and other parameters.
+     * @return a formula for creating a VM, specifying an image base and other parameters along with {@link Response} on
+     *     successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(
@@ -739,9 +740,10 @@ public final class FormulasClientImpl implements FormulasClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a formula for creating a VM, specifying an image base and other parameters.
+     * @return the {@link PollerFlux} for polling of a formula for creating a VM, specifying an image base and other
+     *     parameters.
      */
-    @ServiceMethod(returns = ReturnType.SINGLE)
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<FormulaInner>, FormulaInner> beginCreateOrUpdateAsync(
         String resourceGroupName, String labName, String name, FormulaInner formula) {
         Mono<Response<Flux<ByteBuffer>>> mono =
@@ -749,7 +751,7 @@ public final class FormulasClientImpl implements FormulasClient {
         return this
             .client
             .<FormulaInner, FormulaInner>getLroResult(
-                mono, this.client.getHttpPipeline(), FormulaInner.class, FormulaInner.class, Context.NONE);
+                mono, this.client.getHttpPipeline(), FormulaInner.class, FormulaInner.class, this.client.getContext());
     }
 
     /**
@@ -763,9 +765,10 @@ public final class FormulasClientImpl implements FormulasClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a formula for creating a VM, specifying an image base and other parameters.
+     * @return the {@link PollerFlux} for polling of a formula for creating a VM, specifying an image base and other
+     *     parameters.
      */
-    @ServiceMethod(returns = ReturnType.SINGLE)
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<FormulaInner>, FormulaInner> beginCreateOrUpdateAsync(
         String resourceGroupName, String labName, String name, FormulaInner formula, Context context) {
         context = this.client.mergeContext(context);
@@ -787,9 +790,10 @@ public final class FormulasClientImpl implements FormulasClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a formula for creating a VM, specifying an image base and other parameters.
+     * @return the {@link SyncPoller} for polling of a formula for creating a VM, specifying an image base and other
+     *     parameters.
      */
-    @ServiceMethod(returns = ReturnType.SINGLE)
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<FormulaInner>, FormulaInner> beginCreateOrUpdate(
         String resourceGroupName, String labName, String name, FormulaInner formula) {
         return beginCreateOrUpdateAsync(resourceGroupName, labName, name, formula).getSyncPoller();
@@ -806,9 +810,10 @@ public final class FormulasClientImpl implements FormulasClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a formula for creating a VM, specifying an image base and other parameters.
+     * @return the {@link SyncPoller} for polling of a formula for creating a VM, specifying an image base and other
+     *     parameters.
      */
-    @ServiceMethod(returns = ReturnType.SINGLE)
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<FormulaInner>, FormulaInner> beginCreateOrUpdate(
         String resourceGroupName, String labName, String name, FormulaInner formula, Context context) {
         return beginCreateOrUpdateAsync(resourceGroupName, labName, name, formula, context).getSyncPoller();
@@ -824,7 +829,8 @@ public final class FormulasClientImpl implements FormulasClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a formula for creating a VM, specifying an image base and other parameters.
+     * @return a formula for creating a VM, specifying an image base and other parameters on successful completion of
+     *     {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<FormulaInner> createOrUpdateAsync(
@@ -845,7 +851,8 @@ public final class FormulasClientImpl implements FormulasClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a formula for creating a VM, specifying an image base and other parameters.
+     * @return a formula for creating a VM, specifying an image base and other parameters on successful completion of
+     *     {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<FormulaInner> createOrUpdateAsync(
@@ -900,7 +907,7 @@ public final class FormulasClientImpl implements FormulasClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the completion.
+     * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Void>> deleteWithResponseAsync(String resourceGroupName, String labName, String name) {
@@ -953,7 +960,7 @@ public final class FormulasClientImpl implements FormulasClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the completion.
+     * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Void>> deleteWithResponseAsync(
@@ -1003,7 +1010,7 @@ public final class FormulasClientImpl implements FormulasClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the completion.
+     * @return A {@link Mono} that completes when a successful response is received.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> deleteAsync(String resourceGroupName, String labName, String name) {
@@ -1035,7 +1042,7 @@ public final class FormulasClientImpl implements FormulasClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
+     * @return the {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<Void> deleteWithResponse(String resourceGroupName, String labName, String name, Context context) {
@@ -1052,7 +1059,8 @@ public final class FormulasClientImpl implements FormulasClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a formula for creating a VM, specifying an image base and other parameters.
+     * @return a formula for creating a VM, specifying an image base and other parameters along with {@link Response} on
+     *     successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<FormulaInner>> updateWithResponseAsync(
@@ -1113,7 +1121,8 @@ public final class FormulasClientImpl implements FormulasClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a formula for creating a VM, specifying an image base and other parameters.
+     * @return a formula for creating a VM, specifying an image base and other parameters along with {@link Response} on
+     *     successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<FormulaInner>> updateWithResponseAsync(
@@ -1170,7 +1179,8 @@ public final class FormulasClientImpl implements FormulasClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a formula for creating a VM, specifying an image base and other parameters.
+     * @return a formula for creating a VM, specifying an image base and other parameters on successful completion of
+     *     {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<FormulaInner> updateAsync(
@@ -1214,7 +1224,7 @@ public final class FormulasClientImpl implements FormulasClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a formula for creating a VM, specifying an image base and other parameters.
+     * @return a formula for creating a VM, specifying an image base and other parameters along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<FormulaInner> updateWithResponse(
@@ -1229,7 +1239,8 @@ public final class FormulasClientImpl implements FormulasClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation.
+     * @return the response of a list operation along with {@link PagedResponse} on successful completion of {@link
+     *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<FormulaInner>> listNextSinglePageAsync(String nextLink) {
@@ -1265,7 +1276,8 @@ public final class FormulasClientImpl implements FormulasClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation.
+     * @return the response of a list operation along with {@link PagedResponse} on successful completion of {@link
+     *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<FormulaInner>> listNextSinglePageAsync(String nextLink, Context context) {

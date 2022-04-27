@@ -60,8 +60,6 @@ import reactor.core.publisher.Mono;
 /** Initializes a new instance of the DevTestLabsClientImpl type. */
 @ServiceClient(builder = DevTestLabsClientBuilder.class)
 public final class DevTestLabsClientImpl implements DevTestLabsClient {
-    private final ClientLogger logger = new ClientLogger(DevTestLabsClientImpl.class);
-
     /** The subscription ID. */
     private final String subscriptionId;
 
@@ -567,7 +565,7 @@ public final class DevTestLabsClientImpl implements DevTestLabsClient {
                             managementError = null;
                         }
                     } catch (IOException | RuntimeException ioe) {
-                        logger.logThrowableAsWarning(ioe);
+                        LOGGER.logThrowableAsWarning(ioe);
                     }
                 }
             } else {
@@ -626,4 +624,6 @@ public final class DevTestLabsClientImpl implements DevTestLabsClient {
             return Mono.just(new String(responseBody, charset));
         }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(DevTestLabsClientImpl.class);
 }

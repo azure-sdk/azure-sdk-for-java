@@ -27,7 +27,6 @@ import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.devtestlabs.fluent.ArtifactsClient;
 import com.azure.resourcemanager.devtestlabs.fluent.models.ArmTemplateInfoInner;
 import com.azure.resourcemanager.devtestlabs.fluent.models.ArtifactInner;
@@ -37,8 +36,6 @@ import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in ArtifactsClient. */
 public final class ArtifactsClientImpl implements ArtifactsClient {
-    private final ClientLogger logger = new ClientLogger(ArtifactsClientImpl.class);
-
     /** The proxy service used to perform REST calls. */
     private final ArtifactsService service;
 
@@ -143,7 +140,8 @@ public final class ArtifactsClientImpl implements ArtifactsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation.
+     * @return the response of a list operation along with {@link PagedResponse} on successful completion of {@link
+     *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ArtifactInner>> listSinglePageAsync(
@@ -221,7 +219,8 @@ public final class ArtifactsClientImpl implements ArtifactsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation.
+     * @return the response of a list operation along with {@link PagedResponse} on successful completion of {@link
+     *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ArtifactInner>> listSinglePageAsync(
@@ -296,7 +295,7 @@ public final class ArtifactsClientImpl implements ArtifactsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation.
+     * @return the response of a list operation as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<ArtifactInner> listAsync(
@@ -321,7 +320,7 @@ public final class ArtifactsClientImpl implements ArtifactsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation.
+     * @return the response of a list operation as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<ArtifactInner> listAsync(String resourceGroupName, String labName, String artifactSourceName) {
@@ -348,7 +347,7 @@ public final class ArtifactsClientImpl implements ArtifactsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation.
+     * @return the response of a list operation as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<ArtifactInner> listAsync(
@@ -376,7 +375,7 @@ public final class ArtifactsClientImpl implements ArtifactsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation.
+     * @return the response of a list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<ArtifactInner> list(String resourceGroupName, String labName, String artifactSourceName) {
@@ -402,7 +401,7 @@ public final class ArtifactsClientImpl implements ArtifactsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation.
+     * @return the response of a list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<ArtifactInner> list(
@@ -429,7 +428,7 @@ public final class ArtifactsClientImpl implements ArtifactsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return artifact.
+     * @return artifact along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<ArtifactInner>> getWithResponseAsync(
@@ -491,7 +490,7 @@ public final class ArtifactsClientImpl implements ArtifactsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return artifact.
+     * @return artifact along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<ArtifactInner>> getWithResponseAsync(
@@ -554,7 +553,7 @@ public final class ArtifactsClientImpl implements ArtifactsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return artifact.
+     * @return artifact on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ArtifactInner> getAsync(
@@ -580,7 +579,7 @@ public final class ArtifactsClientImpl implements ArtifactsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return artifact.
+     * @return artifact on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ArtifactInner> getAsync(
@@ -627,7 +626,7 @@ public final class ArtifactsClientImpl implements ArtifactsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return artifact.
+     * @return artifact along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<ArtifactInner> getWithResponse(
@@ -652,7 +651,8 @@ public final class ArtifactsClientImpl implements ArtifactsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return information about a generated ARM template.
+     * @return information about a generated ARM template along with {@link Response} on successful completion of {@link
+     *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<ArmTemplateInfoInner>> generateArmTemplateWithResponseAsync(
@@ -727,7 +727,8 @@ public final class ArtifactsClientImpl implements ArtifactsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return information about a generated ARM template.
+     * @return information about a generated ARM template along with {@link Response} on successful completion of {@link
+     *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<ArmTemplateInfoInner>> generateArmTemplateWithResponseAsync(
@@ -799,7 +800,7 @@ public final class ArtifactsClientImpl implements ArtifactsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return information about a generated ARM template.
+     * @return information about a generated ARM template on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ArmTemplateInfoInner> generateArmTemplateAsync(
@@ -859,7 +860,7 @@ public final class ArtifactsClientImpl implements ArtifactsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return information about a generated ARM template.
+     * @return information about a generated ARM template along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<ArmTemplateInfoInner> generateArmTemplateWithResponse(
@@ -881,7 +882,8 @@ public final class ArtifactsClientImpl implements ArtifactsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation.
+     * @return the response of a list operation along with {@link PagedResponse} on successful completion of {@link
+     *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ArtifactInner>> listNextSinglePageAsync(String nextLink) {
@@ -917,7 +919,8 @@ public final class ArtifactsClientImpl implements ArtifactsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation.
+     * @return the response of a list operation along with {@link PagedResponse} on successful completion of {@link
+     *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ArtifactInner>> listNextSinglePageAsync(String nextLink, Context context) {
