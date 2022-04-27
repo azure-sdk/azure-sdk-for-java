@@ -46,8 +46,6 @@ import reactor.core.publisher.Mono;
 /** Initializes a new instance of the HDInsightManagementClientImpl type. */
 @ServiceClient(builder = HDInsightManagementClientBuilder.class)
 public final class HDInsightManagementClientImpl implements HDInsightManagementClient {
-    private final ClientLogger logger = new ClientLogger(HDInsightManagementClientImpl.class);
-
     /**
      * The subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part
      * of the URI for every service call.
@@ -376,7 +374,7 @@ public final class HDInsightManagementClientImpl implements HDInsightManagementC
                             managementError = null;
                         }
                     } catch (IOException | RuntimeException ioe) {
-                        logger.logThrowableAsWarning(ioe);
+                        LOGGER.logThrowableAsWarning(ioe);
                     }
                 }
             } else {
@@ -435,4 +433,6 @@ public final class HDInsightManagementClientImpl implements HDInsightManagementC
             return Mono.just(new String(responseBody, charset));
         }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(HDInsightManagementClientImpl.class);
 }
