@@ -29,7 +29,6 @@ import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.datalakestore.fluent.TrustedIdProvidersClient;
 import com.azure.resourcemanager.datalakestore.fluent.models.TrustedIdProviderInner;
 import com.azure.resourcemanager.datalakestore.models.CreateOrUpdateTrustedIdProviderParameters;
@@ -39,8 +38,6 @@ import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in TrustedIdProvidersClient. */
 public final class TrustedIdProvidersClientImpl implements TrustedIdProvidersClient {
-    private final ClientLogger logger = new ClientLogger(TrustedIdProvidersClientImpl.class);
-
     /** The proxy service used to perform REST calls. */
     private final TrustedIdProvidersService service;
 
@@ -164,7 +161,8 @@ public final class TrustedIdProvidersClientImpl implements TrustedIdProvidersCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return data Lake Store trusted identity provider list information.
+     * @return data Lake Store trusted identity provider list information along with {@link PagedResponse} on successful
+     *     completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<TrustedIdProviderInner>> listByAccountSinglePageAsync(
@@ -222,7 +220,8 @@ public final class TrustedIdProvidersClientImpl implements TrustedIdProvidersCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return data Lake Store trusted identity provider list information.
+     * @return data Lake Store trusted identity provider list information along with {@link PagedResponse} on successful
+     *     completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<TrustedIdProviderInner>> listByAccountSinglePageAsync(
@@ -276,7 +275,7 @@ public final class TrustedIdProvidersClientImpl implements TrustedIdProvidersCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return data Lake Store trusted identity provider list information.
+     * @return data Lake Store trusted identity provider list information as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<TrustedIdProviderInner> listByAccountAsync(String resourceGroupName, String accountName) {
@@ -294,7 +293,7 @@ public final class TrustedIdProvidersClientImpl implements TrustedIdProvidersCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return data Lake Store trusted identity provider list information.
+     * @return data Lake Store trusted identity provider list information as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<TrustedIdProviderInner> listByAccountAsync(
@@ -312,7 +311,8 @@ public final class TrustedIdProvidersClientImpl implements TrustedIdProvidersCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return data Lake Store trusted identity provider list information.
+     * @return data Lake Store trusted identity provider list information as paginated response with {@link
+     *     PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<TrustedIdProviderInner> listByAccount(String resourceGroupName, String accountName) {
@@ -328,7 +328,8 @@ public final class TrustedIdProvidersClientImpl implements TrustedIdProvidersCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return data Lake Store trusted identity provider list information.
+     * @return data Lake Store trusted identity provider list information as paginated response with {@link
+     *     PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<TrustedIdProviderInner> listByAccount(
@@ -348,7 +349,8 @@ public final class TrustedIdProvidersClientImpl implements TrustedIdProvidersCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return data Lake Store trusted identity provider information.
+     * @return data Lake Store trusted identity provider information along with {@link Response} on successful
+     *     completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<TrustedIdProviderInner>> createOrUpdateWithResponseAsync(
@@ -415,7 +417,8 @@ public final class TrustedIdProvidersClientImpl implements TrustedIdProvidersCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return data Lake Store trusted identity provider information.
+     * @return data Lake Store trusted identity provider information along with {@link Response} on successful
+     *     completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<TrustedIdProviderInner>> createOrUpdateWithResponseAsync(
@@ -479,7 +482,7 @@ public final class TrustedIdProvidersClientImpl implements TrustedIdProvidersCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return data Lake Store trusted identity provider information.
+     * @return data Lake Store trusted identity provider information on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<TrustedIdProviderInner> createOrUpdateAsync(
@@ -534,7 +537,7 @@ public final class TrustedIdProvidersClientImpl implements TrustedIdProvidersCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return data Lake Store trusted identity provider information.
+     * @return data Lake Store trusted identity provider information along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<TrustedIdProviderInner> createOrUpdateWithResponse(
@@ -557,7 +560,8 @@ public final class TrustedIdProvidersClientImpl implements TrustedIdProvidersCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the specified Data Lake Store trusted identity provider.
+     * @return the specified Data Lake Store trusted identity provider along with {@link Response} on successful
+     *     completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<TrustedIdProviderInner>> getWithResponseAsync(
@@ -612,7 +616,8 @@ public final class TrustedIdProvidersClientImpl implements TrustedIdProvidersCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the specified Data Lake Store trusted identity provider.
+     * @return the specified Data Lake Store trusted identity provider along with {@link Response} on successful
+     *     completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<TrustedIdProviderInner>> getWithResponseAsync(
@@ -663,7 +668,7 @@ public final class TrustedIdProvidersClientImpl implements TrustedIdProvidersCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the specified Data Lake Store trusted identity provider.
+     * @return the specified Data Lake Store trusted identity provider on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<TrustedIdProviderInner> getAsync(
@@ -705,7 +710,7 @@ public final class TrustedIdProvidersClientImpl implements TrustedIdProvidersCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the specified Data Lake Store trusted identity provider.
+     * @return the specified Data Lake Store trusted identity provider along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<TrustedIdProviderInner> getWithResponse(
@@ -724,7 +729,8 @@ public final class TrustedIdProvidersClientImpl implements TrustedIdProvidersCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return data Lake Store trusted identity provider information.
+     * @return data Lake Store trusted identity provider information along with {@link Response} on successful
+     *     completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<TrustedIdProviderInner>> updateWithResponseAsync(
@@ -788,7 +794,8 @@ public final class TrustedIdProvidersClientImpl implements TrustedIdProvidersCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return data Lake Store trusted identity provider information.
+     * @return data Lake Store trusted identity provider information along with {@link Response} on successful
+     *     completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<TrustedIdProviderInner>> updateWithResponseAsync(
@@ -849,7 +856,7 @@ public final class TrustedIdProvidersClientImpl implements TrustedIdProvidersCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return data Lake Store trusted identity provider information.
+     * @return data Lake Store trusted identity provider information on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<TrustedIdProviderInner> updateAsync(
@@ -878,7 +885,7 @@ public final class TrustedIdProvidersClientImpl implements TrustedIdProvidersCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return data Lake Store trusted identity provider information.
+     * @return data Lake Store trusted identity provider information on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<TrustedIdProviderInner> updateAsync(
@@ -925,7 +932,7 @@ public final class TrustedIdProvidersClientImpl implements TrustedIdProvidersCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return data Lake Store trusted identity provider information.
+     * @return data Lake Store trusted identity provider information along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<TrustedIdProviderInner> updateWithResponse(
@@ -947,7 +954,7 @@ public final class TrustedIdProvidersClientImpl implements TrustedIdProvidersCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the completion.
+     * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Void>> deleteWithResponseAsync(
@@ -1000,7 +1007,7 @@ public final class TrustedIdProvidersClientImpl implements TrustedIdProvidersCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the completion.
+     * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Void>> deleteWithResponseAsync(
@@ -1049,7 +1056,7 @@ public final class TrustedIdProvidersClientImpl implements TrustedIdProvidersCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the completion.
+     * @return A {@link Mono} that completes when a successful response is received.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> deleteAsync(String resourceGroupName, String accountName, String trustedIdProviderName) {
@@ -1082,7 +1089,7 @@ public final class TrustedIdProvidersClientImpl implements TrustedIdProvidersCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
+     * @return the {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<Void> deleteWithResponse(
@@ -1097,7 +1104,8 @@ public final class TrustedIdProvidersClientImpl implements TrustedIdProvidersCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return data Lake Store trusted identity provider list information.
+     * @return data Lake Store trusted identity provider list information along with {@link PagedResponse} on successful
+     *     completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<TrustedIdProviderInner>> listByAccountNextSinglePageAsync(String nextLink) {
@@ -1133,7 +1141,8 @@ public final class TrustedIdProvidersClientImpl implements TrustedIdProvidersCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return data Lake Store trusted identity provider list information.
+     * @return data Lake Store trusted identity provider list information along with {@link PagedResponse} on successful
+     *     completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<TrustedIdProviderInner>> listByAccountNextSinglePageAsync(

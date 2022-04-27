@@ -76,30 +76,6 @@ public final class DataLakeStoreAccountImpl
         return this.innerModel().identity();
     }
 
-    public UUID accountId() {
-        return this.innerModel().accountId();
-    }
-
-    public DataLakeStoreAccountStatus provisioningState() {
-        return this.innerModel().provisioningState();
-    }
-
-    public DataLakeStoreAccountState state() {
-        return this.innerModel().state();
-    }
-
-    public OffsetDateTime creationTime() {
-        return this.innerModel().creationTime();
-    }
-
-    public OffsetDateTime lastModifiedTime() {
-        return this.innerModel().lastModifiedTime();
-    }
-
-    public String endpoint() {
-        return this.innerModel().endpoint();
-    }
-
     public String defaultGroup() {
         return this.innerModel().defaultGroup();
     }
@@ -176,6 +152,30 @@ public final class DataLakeStoreAccountImpl
 
     public TierType currentTier() {
         return this.innerModel().currentTier();
+    }
+
+    public UUID accountId() {
+        return this.innerModel().accountId();
+    }
+
+    public DataLakeStoreAccountStatus provisioningState() {
+        return this.innerModel().provisioningState();
+    }
+
+    public DataLakeStoreAccountState state() {
+        return this.innerModel().state();
+    }
+
+    public OffsetDateTime creationTime() {
+        return this.innerModel().creationTime();
+    }
+
+    public OffsetDateTime lastModifiedTime() {
+        return this.innerModel().lastModifiedTime();
+    }
+
+    public String endpoint() {
+        return this.innerModel().endpoint();
     }
 
     public Region region() {

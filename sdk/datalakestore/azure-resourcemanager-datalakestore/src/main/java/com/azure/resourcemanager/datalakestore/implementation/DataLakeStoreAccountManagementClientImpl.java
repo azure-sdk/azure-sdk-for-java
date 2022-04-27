@@ -41,8 +41,6 @@ import reactor.core.publisher.Mono;
 /** Initializes a new instance of the DataLakeStoreAccountManagementClientImpl type. */
 @ServiceClient(builder = DataLakeStoreAccountManagementClientBuilder.class)
 public final class DataLakeStoreAccountManagementClientImpl implements DataLakeStoreAccountManagementClient {
-    private final ClientLogger logger = new ClientLogger(DataLakeStoreAccountManagementClientImpl.class);
-
     /**
      * Gets subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms
      * part of the URI for every service call.
@@ -306,7 +304,7 @@ public final class DataLakeStoreAccountManagementClientImpl implements DataLakeS
                             managementError = null;
                         }
                     } catch (IOException | RuntimeException ioe) {
-                        logger.logThrowableAsWarning(ioe);
+                        LOGGER.logThrowableAsWarning(ioe);
                     }
                 }
             } else {
@@ -365,4 +363,6 @@ public final class DataLakeStoreAccountManagementClientImpl implements DataLakeS
             return Mono.just(new String(responseBody, charset));
         }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(DataLakeStoreAccountManagementClientImpl.class);
 }

@@ -20,16 +20,16 @@ public final class TrustedIdProviderImpl
         return this.innerModel().id();
     }
 
-    public String idProvider() {
-        return this.innerModel().idProvider();
-    }
-
     public String name() {
         return this.innerModel().name();
     }
 
     public String type() {
         return this.innerModel().type();
+    }
+
+    public String idProvider() {
+        return this.innerModel().idProvider();
     }
 
     public TrustedIdProviderInner innerModel() {
