@@ -28,7 +28,6 @@ import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.advisor.fluent.SuppressionsClient;
 import com.azure.resourcemanager.advisor.fluent.models.SuppressionContractInner;
 import com.azure.resourcemanager.advisor.models.SuppressionContractListResult;
@@ -36,8 +35,6 @@ import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in SuppressionsClient. */
 public final class SuppressionsClientImpl implements SuppressionsClient {
-    private final ClientLogger logger = new ClientLogger(SuppressionsClientImpl.class);
-
     /** The proxy service used to perform REST calls. */
     private final SuppressionsService service;
 
@@ -77,7 +74,7 @@ public final class SuppressionsClientImpl implements SuppressionsClient {
 
         @Headers({"Content-Type: application/json"})
         @Put("/{resourceUri}/providers/Microsoft.Advisor/recommendations/{recommendationId}/suppressions/{name}")
-        @ExpectedResponses({200, 404})
+        @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<SuppressionContractInner>> create(
             @HostParam("$host") String endpoint,
@@ -137,7 +134,7 @@ public final class SuppressionsClientImpl implements SuppressionsClient {
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the details of the snoozed or dismissed rule; for example, the duration, name, and GUID associated with
-     *     the rule.
+     *     the rule along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<SuppressionContractInner>> getWithResponseAsync(
@@ -186,7 +183,7 @@ public final class SuppressionsClientImpl implements SuppressionsClient {
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the details of the snoozed or dismissed rule; for example, the duration, name, and GUID associated with
-     *     the rule.
+     *     the rule along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<SuppressionContractInner>> getWithResponseAsync(
@@ -231,7 +228,7 @@ public final class SuppressionsClientImpl implements SuppressionsClient {
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the details of the snoozed or dismissed rule; for example, the duration, name, and GUID associated with
-     *     the rule.
+     *     the rule on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<SuppressionContractInner> getAsync(String resourceUri, String recommendationId, String name) {
@@ -276,7 +273,7 @@ public final class SuppressionsClientImpl implements SuppressionsClient {
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the details of the snoozed or dismissed rule; for example, the duration, name, and GUID associated with
-     *     the rule.
+     *     the rule along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<SuppressionContractInner> getWithResponse(
@@ -297,7 +294,7 @@ public final class SuppressionsClientImpl implements SuppressionsClient {
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the details of the snoozed or dismissed rule; for example, the duration, name, and GUID associated with
-     *     the rule.
+     *     the rule along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<SuppressionContractInner>> createWithResponseAsync(
@@ -355,7 +352,7 @@ public final class SuppressionsClientImpl implements SuppressionsClient {
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the details of the snoozed or dismissed rule; for example, the duration, name, and GUID associated with
-     *     the rule.
+     *     the rule along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<SuppressionContractInner>> createWithResponseAsync(
@@ -413,7 +410,7 @@ public final class SuppressionsClientImpl implements SuppressionsClient {
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the details of the snoozed or dismissed rule; for example, the duration, name, and GUID associated with
-     *     the rule.
+     *     the rule on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<SuppressionContractInner> createAsync(
@@ -464,7 +461,7 @@ public final class SuppressionsClientImpl implements SuppressionsClient {
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the details of the snoozed or dismissed rule; for example, the duration, name, and GUID associated with
-     *     the rule.
+     *     the rule along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<SuppressionContractInner> createWithResponse(
@@ -487,7 +484,7 @@ public final class SuppressionsClientImpl implements SuppressionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the completion.
+     * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Void>> deleteWithResponseAsync(String resourceUri, String recommendationId, String name) {
@@ -535,7 +532,7 @@ public final class SuppressionsClientImpl implements SuppressionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the completion.
+     * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Void>> deleteWithResponseAsync(
@@ -580,7 +577,7 @@ public final class SuppressionsClientImpl implements SuppressionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the completion.
+     * @return A {@link Mono} that completes when a successful response is received.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> deleteAsync(String resourceUri, String recommendationId, String name) {
@@ -617,7 +614,7 @@ public final class SuppressionsClientImpl implements SuppressionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
+     * @return the {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<Void> deleteWithResponse(
@@ -634,7 +631,8 @@ public final class SuppressionsClientImpl implements SuppressionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of Advisor suppressions.
+     * @return the list of Advisor suppressions along with {@link PagedResponse} on successful completion of {@link
+     *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<SuppressionContractInner>> listSinglePageAsync(Integer top, String skipToken) {
@@ -685,7 +683,8 @@ public final class SuppressionsClientImpl implements SuppressionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of Advisor suppressions.
+     * @return the list of Advisor suppressions along with {@link PagedResponse} on successful completion of {@link
+     *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<SuppressionContractInner>> listSinglePageAsync(
@@ -733,7 +732,7 @@ public final class SuppressionsClientImpl implements SuppressionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of Advisor suppressions.
+     * @return the list of Advisor suppressions as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<SuppressionContractInner> listAsync(Integer top, String skipToken) {
@@ -747,7 +746,7 @@ public final class SuppressionsClientImpl implements SuppressionsClient {
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of Advisor suppressions.
+     * @return the list of Advisor suppressions as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<SuppressionContractInner> listAsync() {
@@ -767,7 +766,7 @@ public final class SuppressionsClientImpl implements SuppressionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of Advisor suppressions.
+     * @return the list of Advisor suppressions as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<SuppressionContractInner> listAsync(Integer top, String skipToken, Context context) {
@@ -781,7 +780,7 @@ public final class SuppressionsClientImpl implements SuppressionsClient {
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of Advisor suppressions.
+     * @return the list of Advisor suppressions as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<SuppressionContractInner> list() {
@@ -800,7 +799,7 @@ public final class SuppressionsClientImpl implements SuppressionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of Advisor suppressions.
+     * @return the list of Advisor suppressions as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<SuppressionContractInner> list(Integer top, String skipToken, Context context) {
@@ -814,7 +813,8 @@ public final class SuppressionsClientImpl implements SuppressionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of Advisor suppressions.
+     * @return the list of Advisor suppressions along with {@link PagedResponse} on successful completion of {@link
+     *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<SuppressionContractInner>> listNextSinglePageAsync(String nextLink) {
@@ -850,7 +850,8 @@ public final class SuppressionsClientImpl implements SuppressionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of Advisor suppressions.
+     * @return the list of Advisor suppressions along with {@link PagedResponse} on successful completion of {@link
+     *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<SuppressionContractInner>> listNextSinglePageAsync(String nextLink, Context context) {
