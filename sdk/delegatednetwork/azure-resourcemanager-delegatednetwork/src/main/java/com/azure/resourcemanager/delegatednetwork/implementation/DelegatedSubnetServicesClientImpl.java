@@ -30,7 +30,6 @@ import com.azure.core.management.exception.ManagementException;
 import com.azure.core.management.polling.PollResult;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.delegatednetwork.fluent.DelegatedSubnetServicesClient;
@@ -43,8 +42,6 @@ import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in DelegatedSubnetServicesClient. */
 public final class DelegatedSubnetServicesClientImpl implements DelegatedSubnetServicesClient {
-    private final ClientLogger logger = new ClientLogger(DelegatedSubnetServicesClientImpl.class);
-
     /** The proxy service used to perform REST calls. */
     private final DelegatedSubnetServicesService service;
 
@@ -187,7 +184,8 @@ public final class DelegatedSubnetServicesClientImpl implements DelegatedSubnetS
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return details about the specified dnc DelegatedSubnet Link.
+     * @return details about the specified dnc DelegatedSubnet Link along with {@link Response} on successful completion
+     *     of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<DelegatedSubnetInner>> getByResourceGroupWithResponseAsync(
@@ -236,7 +234,8 @@ public final class DelegatedSubnetServicesClientImpl implements DelegatedSubnetS
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return details about the specified dnc DelegatedSubnet Link.
+     * @return details about the specified dnc DelegatedSubnet Link along with {@link Response} on successful completion
+     *     of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<DelegatedSubnetInner>> getByResourceGroupWithResponseAsync(
@@ -281,7 +280,7 @@ public final class DelegatedSubnetServicesClientImpl implements DelegatedSubnetS
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return details about the specified dnc DelegatedSubnet Link.
+     * @return details about the specified dnc DelegatedSubnet Link on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<DelegatedSubnetInner> getByResourceGroupAsync(String resourceGroupName, String resourceName) {
@@ -320,7 +319,7 @@ public final class DelegatedSubnetServicesClientImpl implements DelegatedSubnetS
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return details about the specified dnc DelegatedSubnet Link.
+     * @return details about the specified dnc DelegatedSubnet Link along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<DelegatedSubnetInner> getByResourceGroupWithResponse(
@@ -337,7 +336,8 @@ public final class DelegatedSubnetServicesClientImpl implements DelegatedSubnetS
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return represents an instance of a orchestrator.
+     * @return represents an instance of a orchestrator along with {@link Response} on successful completion of {@link
+     *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> putDetailsWithResponseAsync(
@@ -393,7 +393,8 @@ public final class DelegatedSubnetServicesClientImpl implements DelegatedSubnetS
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return represents an instance of a orchestrator.
+     * @return represents an instance of a orchestrator along with {@link Response} on successful completion of {@link
+     *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> putDetailsWithResponseAsync(
@@ -445,9 +446,9 @@ public final class DelegatedSubnetServicesClientImpl implements DelegatedSubnetS
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return represents an instance of a orchestrator.
+     * @return the {@link PollerFlux} for polling of represents an instance of a orchestrator.
      */
-    @ServiceMethod(returns = ReturnType.SINGLE)
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<DelegatedSubnetInner>, DelegatedSubnetInner> beginPutDetailsAsync(
         String resourceGroupName, String resourceName, DelegatedSubnetInner parameters) {
         Mono<Response<Flux<ByteBuffer>>> mono =
@@ -459,7 +460,7 @@ public final class DelegatedSubnetServicesClientImpl implements DelegatedSubnetS
                 this.client.getHttpPipeline(),
                 DelegatedSubnetInner.class,
                 DelegatedSubnetInner.class,
-                Context.NONE);
+                this.client.getContext());
     }
 
     /**
@@ -472,9 +473,9 @@ public final class DelegatedSubnetServicesClientImpl implements DelegatedSubnetS
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return represents an instance of a orchestrator.
+     * @return the {@link PollerFlux} for polling of represents an instance of a orchestrator.
      */
-    @ServiceMethod(returns = ReturnType.SINGLE)
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<DelegatedSubnetInner>, DelegatedSubnetInner> beginPutDetailsAsync(
         String resourceGroupName, String resourceName, DelegatedSubnetInner parameters, Context context) {
         context = this.client.mergeContext(context);
@@ -495,9 +496,9 @@ public final class DelegatedSubnetServicesClientImpl implements DelegatedSubnetS
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return represents an instance of a orchestrator.
+     * @return the {@link SyncPoller} for polling of represents an instance of a orchestrator.
      */
-    @ServiceMethod(returns = ReturnType.SINGLE)
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<DelegatedSubnetInner>, DelegatedSubnetInner> beginPutDetails(
         String resourceGroupName, String resourceName, DelegatedSubnetInner parameters) {
         return beginPutDetailsAsync(resourceGroupName, resourceName, parameters).getSyncPoller();
@@ -513,9 +514,9 @@ public final class DelegatedSubnetServicesClientImpl implements DelegatedSubnetS
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return represents an instance of a orchestrator.
+     * @return the {@link SyncPoller} for polling of represents an instance of a orchestrator.
      */
-    @ServiceMethod(returns = ReturnType.SINGLE)
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<DelegatedSubnetInner>, DelegatedSubnetInner> beginPutDetails(
         String resourceGroupName, String resourceName, DelegatedSubnetInner parameters, Context context) {
         return beginPutDetailsAsync(resourceGroupName, resourceName, parameters, context).getSyncPoller();
@@ -530,7 +531,7 @@ public final class DelegatedSubnetServicesClientImpl implements DelegatedSubnetS
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return represents an instance of a orchestrator.
+     * @return represents an instance of a orchestrator on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<DelegatedSubnetInner> putDetailsAsync(
@@ -550,7 +551,7 @@ public final class DelegatedSubnetServicesClientImpl implements DelegatedSubnetS
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return represents an instance of a orchestrator.
+     * @return represents an instance of a orchestrator on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<DelegatedSubnetInner> putDetailsAsync(
@@ -604,7 +605,8 @@ public final class DelegatedSubnetServicesClientImpl implements DelegatedSubnetS
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return represents an instance of a orchestrator.
+     * @return represents an instance of a orchestrator along with {@link Response} on successful completion of {@link
+     *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> patchDetailsWithResponseAsync(
@@ -660,7 +662,8 @@ public final class DelegatedSubnetServicesClientImpl implements DelegatedSubnetS
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return represents an instance of a orchestrator.
+     * @return represents an instance of a orchestrator along with {@link Response} on successful completion of {@link
+     *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> patchDetailsWithResponseAsync(
@@ -712,9 +715,9 @@ public final class DelegatedSubnetServicesClientImpl implements DelegatedSubnetS
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return represents an instance of a orchestrator.
+     * @return the {@link PollerFlux} for polling of represents an instance of a orchestrator.
      */
-    @ServiceMethod(returns = ReturnType.SINGLE)
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<DelegatedSubnetInner>, DelegatedSubnetInner> beginPatchDetailsAsync(
         String resourceGroupName, String resourceName, ResourceUpdateParameters parameters) {
         Mono<Response<Flux<ByteBuffer>>> mono =
@@ -726,7 +729,7 @@ public final class DelegatedSubnetServicesClientImpl implements DelegatedSubnetS
                 this.client.getHttpPipeline(),
                 DelegatedSubnetInner.class,
                 DelegatedSubnetInner.class,
-                Context.NONE);
+                this.client.getContext());
     }
 
     /**
@@ -739,9 +742,9 @@ public final class DelegatedSubnetServicesClientImpl implements DelegatedSubnetS
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return represents an instance of a orchestrator.
+     * @return the {@link PollerFlux} for polling of represents an instance of a orchestrator.
      */
-    @ServiceMethod(returns = ReturnType.SINGLE)
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<DelegatedSubnetInner>, DelegatedSubnetInner> beginPatchDetailsAsync(
         String resourceGroupName, String resourceName, ResourceUpdateParameters parameters, Context context) {
         context = this.client.mergeContext(context);
@@ -762,9 +765,9 @@ public final class DelegatedSubnetServicesClientImpl implements DelegatedSubnetS
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return represents an instance of a orchestrator.
+     * @return the {@link SyncPoller} for polling of represents an instance of a orchestrator.
      */
-    @ServiceMethod(returns = ReturnType.SINGLE)
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<DelegatedSubnetInner>, DelegatedSubnetInner> beginPatchDetails(
         String resourceGroupName, String resourceName, ResourceUpdateParameters parameters) {
         return beginPatchDetailsAsync(resourceGroupName, resourceName, parameters).getSyncPoller();
@@ -780,9 +783,9 @@ public final class DelegatedSubnetServicesClientImpl implements DelegatedSubnetS
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return represents an instance of a orchestrator.
+     * @return the {@link SyncPoller} for polling of represents an instance of a orchestrator.
      */
-    @ServiceMethod(returns = ReturnType.SINGLE)
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<DelegatedSubnetInner>, DelegatedSubnetInner> beginPatchDetails(
         String resourceGroupName, String resourceName, ResourceUpdateParameters parameters, Context context) {
         return beginPatchDetailsAsync(resourceGroupName, resourceName, parameters, context).getSyncPoller();
@@ -797,7 +800,7 @@ public final class DelegatedSubnetServicesClientImpl implements DelegatedSubnetS
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return represents an instance of a orchestrator.
+     * @return represents an instance of a orchestrator on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<DelegatedSubnetInner> patchDetailsAsync(
@@ -817,7 +820,7 @@ public final class DelegatedSubnetServicesClientImpl implements DelegatedSubnetS
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return represents an instance of a orchestrator.
+     * @return represents an instance of a orchestrator on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<DelegatedSubnetInner> patchDetailsAsync(
@@ -871,7 +874,7 @@ public final class DelegatedSubnetServicesClientImpl implements DelegatedSubnetS
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the completion.
+     * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(
@@ -922,7 +925,7 @@ public final class DelegatedSubnetServicesClientImpl implements DelegatedSubnetS
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the completion.
+     * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(
@@ -969,15 +972,16 @@ public final class DelegatedSubnetServicesClientImpl implements DelegatedSubnetS
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the completion.
+     * @return the {@link PollerFlux} for polling of long-running operation.
      */
-    @ServiceMethod(returns = ReturnType.SINGLE)
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(
         String resourceGroupName, String resourceName, Boolean forceDelete) {
         Mono<Response<Flux<ByteBuffer>>> mono = deleteWithResponseAsync(resourceGroupName, resourceName, forceDelete);
         return this
             .client
-            .<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class, Context.NONE);
+            .<Void, Void>getLroResult(
+                mono, this.client.getHttpPipeline(), Void.class, Void.class, this.client.getContext());
     }
 
     /**
@@ -990,9 +994,9 @@ public final class DelegatedSubnetServicesClientImpl implements DelegatedSubnetS
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the completion.
+     * @return the {@link PollerFlux} for polling of long-running operation.
      */
-    @ServiceMethod(returns = ReturnType.SINGLE)
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(
         String resourceGroupName, String resourceName, Boolean forceDelete, Context context) {
         context = this.client.mergeContext(context);
@@ -1012,9 +1016,9 @@ public final class DelegatedSubnetServicesClientImpl implements DelegatedSubnetS
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the completion.
+     * @return the {@link SyncPoller} for polling of long-running operation.
      */
-    @ServiceMethod(returns = ReturnType.SINGLE)
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
         String resourceGroupName, String resourceName, Boolean forceDelete) {
         return beginDeleteAsync(resourceGroupName, resourceName, forceDelete).getSyncPoller();
@@ -1030,9 +1034,9 @@ public final class DelegatedSubnetServicesClientImpl implements DelegatedSubnetS
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the completion.
+     * @return the {@link SyncPoller} for polling of long-running operation.
      */
-    @ServiceMethod(returns = ReturnType.SINGLE)
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
         String resourceGroupName, String resourceName, Boolean forceDelete, Context context) {
         return beginDeleteAsync(resourceGroupName, resourceName, forceDelete, context).getSyncPoller();
@@ -1047,7 +1051,7 @@ public final class DelegatedSubnetServicesClientImpl implements DelegatedSubnetS
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the completion.
+     * @return A {@link Mono} that completes when a successful response is received.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> deleteAsync(String resourceGroupName, String resourceName, Boolean forceDelete) {
@@ -1064,7 +1068,7 @@ public final class DelegatedSubnetServicesClientImpl implements DelegatedSubnetS
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the completion.
+     * @return A {@link Mono} that completes when a successful response is received.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> deleteAsync(String resourceGroupName, String resourceName) {
@@ -1084,7 +1088,7 @@ public final class DelegatedSubnetServicesClientImpl implements DelegatedSubnetS
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the completion.
+     * @return A {@link Mono} that completes when a successful response is received.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> deleteAsync(
@@ -1145,7 +1149,8 @@ public final class DelegatedSubnetServicesClientImpl implements DelegatedSubnetS
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all the DelegatedSubnets resources in a subscription.
+     * @return all the DelegatedSubnets resources in a subscription along with {@link PagedResponse} on successful
+     *     completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<DelegatedSubnetInner>> listSinglePageAsync() {
@@ -1191,7 +1196,8 @@ public final class DelegatedSubnetServicesClientImpl implements DelegatedSubnetS
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all the DelegatedSubnets resources in a subscription.
+     * @return all the DelegatedSubnets resources in a subscription along with {@link PagedResponse} on successful
+     *     completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<DelegatedSubnetInner>> listSinglePageAsync(Context context) {
@@ -1232,7 +1238,7 @@ public final class DelegatedSubnetServicesClientImpl implements DelegatedSubnetS
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all the DelegatedSubnets resources in a subscription.
+     * @return all the DelegatedSubnets resources in a subscription as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<DelegatedSubnetInner> listAsync() {
@@ -1247,7 +1253,7 @@ public final class DelegatedSubnetServicesClientImpl implements DelegatedSubnetS
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all the DelegatedSubnets resources in a subscription.
+     * @return all the DelegatedSubnets resources in a subscription as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<DelegatedSubnetInner> listAsync(Context context) {
@@ -1260,7 +1266,7 @@ public final class DelegatedSubnetServicesClientImpl implements DelegatedSubnetS
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all the DelegatedSubnets resources in a subscription.
+     * @return all the DelegatedSubnets resources in a subscription as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<DelegatedSubnetInner> list() {
@@ -1274,7 +1280,7 @@ public final class DelegatedSubnetServicesClientImpl implements DelegatedSubnetS
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all the DelegatedSubnets resources in a subscription.
+     * @return all the DelegatedSubnets resources in a subscription as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<DelegatedSubnetInner> list(Context context) {
@@ -1288,7 +1294,8 @@ public final class DelegatedSubnetServicesClientImpl implements DelegatedSubnetS
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all the DelegatedSubnets resources in a resource group.
+     * @return all the DelegatedSubnets resources in a resource group along with {@link PagedResponse} on successful
+     *     completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<DelegatedSubnetInner>> listByResourceGroupSinglePageAsync(String resourceGroupName) {
@@ -1340,7 +1347,8 @@ public final class DelegatedSubnetServicesClientImpl implements DelegatedSubnetS
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all the DelegatedSubnets resources in a resource group.
+     * @return all the DelegatedSubnets resources in a resource group along with {@link PagedResponse} on successful
+     *     completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<DelegatedSubnetInner>> listByResourceGroupSinglePageAsync(
@@ -1389,7 +1397,7 @@ public final class DelegatedSubnetServicesClientImpl implements DelegatedSubnetS
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all the DelegatedSubnets resources in a resource group.
+     * @return all the DelegatedSubnets resources in a resource group as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<DelegatedSubnetInner> listByResourceGroupAsync(String resourceGroupName) {
@@ -1406,7 +1414,7 @@ public final class DelegatedSubnetServicesClientImpl implements DelegatedSubnetS
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all the DelegatedSubnets resources in a resource group.
+     * @return all the DelegatedSubnets resources in a resource group as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<DelegatedSubnetInner> listByResourceGroupAsync(String resourceGroupName, Context context) {
@@ -1422,7 +1430,7 @@ public final class DelegatedSubnetServicesClientImpl implements DelegatedSubnetS
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all the DelegatedSubnets resources in a resource group.
+     * @return all the DelegatedSubnets resources in a resource group as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<DelegatedSubnetInner> listByResourceGroup(String resourceGroupName) {
@@ -1437,7 +1445,7 @@ public final class DelegatedSubnetServicesClientImpl implements DelegatedSubnetS
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all the DelegatedSubnets resources in a resource group.
+     * @return all the DelegatedSubnets resources in a resource group as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<DelegatedSubnetInner> listByResourceGroup(String resourceGroupName, Context context) {
@@ -1451,7 +1459,8 @@ public final class DelegatedSubnetServicesClientImpl implements DelegatedSubnetS
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an array of DelegatedSubnet resources.
+     * @return an array of DelegatedSubnet resources along with {@link PagedResponse} on successful completion of {@link
+     *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<DelegatedSubnetInner>> listBySubscriptionNextSinglePageAsync(String nextLink) {
@@ -1488,7 +1497,8 @@ public final class DelegatedSubnetServicesClientImpl implements DelegatedSubnetS
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an array of DelegatedSubnet resources.
+     * @return an array of DelegatedSubnet resources along with {@link PagedResponse} on successful completion of {@link
+     *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<DelegatedSubnetInner>> listBySubscriptionNextSinglePageAsync(
@@ -1524,7 +1534,8 @@ public final class DelegatedSubnetServicesClientImpl implements DelegatedSubnetS
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an array of DelegatedSubnet resources.
+     * @return an array of DelegatedSubnet resources along with {@link PagedResponse} on successful completion of {@link
+     *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<DelegatedSubnetInner>> listByResourceGroupNextSinglePageAsync(String nextLink) {
@@ -1561,7 +1572,8 @@ public final class DelegatedSubnetServicesClientImpl implements DelegatedSubnetS
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an array of DelegatedSubnet resources.
+     * @return an array of DelegatedSubnet resources along with {@link PagedResponse} on successful completion of {@link
+     *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<DelegatedSubnetInner>> listByResourceGroupNextSinglePageAsync(

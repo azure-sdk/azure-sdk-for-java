@@ -40,8 +40,6 @@ import reactor.core.publisher.Mono;
 /** Initializes a new instance of the DncImpl type. */
 @ServiceClient(builder = DncBuilder.class)
 public final class DncImpl implements Dnc {
-    private final ClientLogger logger = new ClientLogger(DncImpl.class);
-
     /** The ID of the target subscription. */
     private final String subscriptionId;
 
@@ -287,7 +285,7 @@ public final class DncImpl implements Dnc {
                             managementError = null;
                         }
                     } catch (IOException | RuntimeException ioe) {
-                        logger.logThrowableAsWarning(ioe);
+                        LOGGER.logThrowableAsWarning(ioe);
                     }
                 }
             } else {
@@ -346,4 +344,6 @@ public final class DncImpl implements Dnc {
             return Mono.just(new String(responseBody, charset));
         }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(DncImpl.class);
 }
