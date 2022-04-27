@@ -21,6 +21,14 @@ public final class ComputePolicyImpl implements ComputePolicy, ComputePolicy.Def
         return this.innerModel().id();
     }
 
+    public String name() {
+        return this.innerModel().name();
+    }
+
+    public String type() {
+        return this.innerModel().type();
+    }
+
     public UUID objectId() {
         return this.innerModel().objectId();
     }
@@ -35,14 +43,6 @@ public final class ComputePolicyImpl implements ComputePolicy, ComputePolicy.Def
 
     public Integer minPriorityPerJob() {
         return this.innerModel().minPriorityPerJob();
-    }
-
-    public String name() {
-        return this.innerModel().name();
-    }
-
-    public String type() {
-        return this.innerModel().type();
     }
 
     public ComputePolicyInner innerModel() {
