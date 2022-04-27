@@ -40,8 +40,6 @@ import reactor.core.publisher.Mono;
 /** Initializes a new instance of the MicrosoftDatadogClientImpl type. */
 @ServiceClient(builder = MicrosoftDatadogClientBuilder.class)
 public final class MicrosoftDatadogClientImpl implements MicrosoftDatadogClient {
-    private final ClientLogger logger = new ClientLogger(MicrosoftDatadogClientImpl.class);
-
     /** The ID of the target subscription. */
     private final String subscriptionId;
 
@@ -287,7 +285,7 @@ public final class MicrosoftDatadogClientImpl implements MicrosoftDatadogClient 
                             managementError = null;
                         }
                     } catch (IOException | RuntimeException ioe) {
-                        logger.logThrowableAsWarning(ioe);
+                        LOGGER.logThrowableAsWarning(ioe);
                     }
                 }
             } else {
@@ -346,4 +344,6 @@ public final class MicrosoftDatadogClientImpl implements MicrosoftDatadogClient 
             return Mono.just(new String(responseBody, charset));
         }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(MicrosoftDatadogClientImpl.class);
 }

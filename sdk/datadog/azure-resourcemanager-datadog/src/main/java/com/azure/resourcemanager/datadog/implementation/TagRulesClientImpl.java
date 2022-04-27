@@ -27,7 +27,6 @@ import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.datadog.fluent.TagRulesClient;
 import com.azure.resourcemanager.datadog.fluent.models.MonitoringTagRulesInner;
 import com.azure.resourcemanager.datadog.models.MonitoringTagRulesListResponse;
@@ -35,8 +34,6 @@ import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in TagRulesClient. */
 public final class TagRulesClientImpl implements TagRulesClient {
-    private final ClientLogger logger = new ClientLogger(TagRulesClientImpl.class);
-
     /** The proxy service used to perform REST calls. */
     private final TagRulesService service;
 
@@ -127,7 +124,7 @@ public final class TagRulesClientImpl implements TagRulesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response of a list operation.
+     * @return response of a list operation along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<MonitoringTagRulesInner>> listSinglePageAsync(
@@ -185,7 +182,7 @@ public final class TagRulesClientImpl implements TagRulesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response of a list operation.
+     * @return response of a list operation along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<MonitoringTagRulesInner>> listSinglePageAsync(
@@ -239,7 +236,7 @@ public final class TagRulesClientImpl implements TagRulesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response of a list operation.
+     * @return response of a list operation as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<MonitoringTagRulesInner> listAsync(String resourceGroupName, String monitorName) {
@@ -256,7 +253,7 @@ public final class TagRulesClientImpl implements TagRulesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response of a list operation.
+     * @return response of a list operation as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<MonitoringTagRulesInner> listAsync(
@@ -274,7 +271,7 @@ public final class TagRulesClientImpl implements TagRulesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response of a list operation.
+     * @return response of a list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<MonitoringTagRulesInner> list(String resourceGroupName, String monitorName) {
@@ -290,7 +287,7 @@ public final class TagRulesClientImpl implements TagRulesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response of a list operation.
+     * @return response of a list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<MonitoringTagRulesInner> list(String resourceGroupName, String monitorName, Context context) {
@@ -307,7 +304,8 @@ public final class TagRulesClientImpl implements TagRulesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return capture logs and metrics of Azure resources based on ARM tags.
+     * @return capture logs and metrics of Azure resources based on ARM tags along with {@link Response} on successful
+     *     completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<MonitoringTagRulesInner>> createOrUpdateWithResponseAsync(
@@ -366,7 +364,8 @@ public final class TagRulesClientImpl implements TagRulesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return capture logs and metrics of Azure resources based on ARM tags.
+     * @return capture logs and metrics of Azure resources based on ARM tags along with {@link Response} on successful
+     *     completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<MonitoringTagRulesInner>> createOrUpdateWithResponseAsync(
@@ -425,7 +424,7 @@ public final class TagRulesClientImpl implements TagRulesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return capture logs and metrics of Azure resources based on ARM tags.
+     * @return capture logs and metrics of Azure resources based on ARM tags on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<MonitoringTagRulesInner> createOrUpdateAsync(
@@ -450,7 +449,7 @@ public final class TagRulesClientImpl implements TagRulesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return capture logs and metrics of Azure resources based on ARM tags.
+     * @return capture logs and metrics of Azure resources based on ARM tags on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<MonitoringTagRulesInner> createOrUpdateAsync(
@@ -495,7 +494,7 @@ public final class TagRulesClientImpl implements TagRulesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return capture logs and metrics of Azure resources based on ARM tags.
+     * @return capture logs and metrics of Azure resources based on ARM tags along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<MonitoringTagRulesInner> createOrUpdateWithResponse(
@@ -516,7 +515,8 @@ public final class TagRulesClientImpl implements TagRulesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a tag rule set for a given monitor resource.
+     * @return a tag rule set for a given monitor resource along with {@link Response} on successful completion of
+     *     {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<MonitoringTagRulesInner>> getWithResponseAsync(
@@ -570,7 +570,8 @@ public final class TagRulesClientImpl implements TagRulesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a tag rule set for a given monitor resource.
+     * @return a tag rule set for a given monitor resource along with {@link Response} on successful completion of
+     *     {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<MonitoringTagRulesInner>> getWithResponseAsync(
@@ -620,7 +621,7 @@ public final class TagRulesClientImpl implements TagRulesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a tag rule set for a given monitor resource.
+     * @return a tag rule set for a given monitor resource on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<MonitoringTagRulesInner> getAsync(String resourceGroupName, String monitorName, String ruleSetName) {
@@ -661,7 +662,7 @@ public final class TagRulesClientImpl implements TagRulesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a tag rule set for a given monitor resource.
+     * @return a tag rule set for a given monitor resource along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<MonitoringTagRulesInner> getWithResponse(
@@ -676,7 +677,7 @@ public final class TagRulesClientImpl implements TagRulesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response of a list operation.
+     * @return response of a list operation along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<MonitoringTagRulesInner>> listNextSinglePageAsync(String nextLink) {
@@ -712,7 +713,7 @@ public final class TagRulesClientImpl implements TagRulesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response of a list operation.
+     * @return response of a list operation along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<MonitoringTagRulesInner>> listNextSinglePageAsync(String nextLink, Context context) {
