@@ -27,7 +27,11 @@ public final class FeatureType extends ExpandableStringEnum<FeatureType> {
         return fromString(name, FeatureType.class);
     }
 
-    /** @return known FeatureType values. */
+    /**
+     * Gets known FeatureType values.
+     *
+     * @return known FeatureType values.
+     */
     public static Collection<FeatureType> values() {
         return values(FeatureType.class);
     }
