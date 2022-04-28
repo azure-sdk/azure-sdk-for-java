@@ -30,7 +30,11 @@ public final class AzureContainerDataFormat extends ExpandableStringEnum<AzureCo
         return fromString(name, AzureContainerDataFormat.class);
     }
 
-    /** @return known AzureContainerDataFormat values. */
+    /**
+     * Gets known AzureContainerDataFormat values.
+     *
+     * @return known AzureContainerDataFormat values.
+     */
     public static Collection<AzureContainerDataFormat> values() {
         return values(AzureContainerDataFormat.class);
     }

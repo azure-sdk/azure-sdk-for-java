@@ -27,7 +27,11 @@ public final class RoleStatus extends ExpandableStringEnum<RoleStatus> {
         return fromString(name, RoleStatus.class);
     }
 
-    /** @return known RoleStatus values. */
+    /**
+     * Gets known RoleStatus values.
+     *
+     * @return known RoleStatus values.
+     */
     public static Collection<RoleStatus> values() {
         return values(RoleStatus.class);
     }

@@ -22,6 +22,15 @@ public final class RoleTypes extends ExpandableStringEnum<RoleTypes> {
     /** Static value Cognitive for RoleTypes. */
     public static final RoleTypes COGNITIVE = fromString("Cognitive");
 
+    /** Static value MEC for RoleTypes. */
+    public static final RoleTypes MEC = fromString("MEC");
+
+    /** Static value CloudEdgeManagement for RoleTypes. */
+    public static final RoleTypes CLOUD_EDGE_MANAGEMENT = fromString("CloudEdgeManagement");
+
+    /** Static value Kubernetes for RoleTypes. */
+    public static final RoleTypes KUBERNETES = fromString("Kubernetes");
+
     /**
      * Creates or finds a RoleTypes from its string representation.
      *
@@ -33,7 +42,11 @@ public final class RoleTypes extends ExpandableStringEnum<RoleTypes> {
         return fromString(name, RoleTypes.class);
     }
 
-    /** @return known RoleTypes values. */
+    /**
+     * Gets known RoleTypes values.
+     *
+     * @return known RoleTypes values.
+     */
     public static Collection<RoleTypes> values() {
         return values(RoleTypes.class);
     }

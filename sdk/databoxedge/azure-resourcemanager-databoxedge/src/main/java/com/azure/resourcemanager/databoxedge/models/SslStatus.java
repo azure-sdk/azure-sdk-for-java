@@ -27,7 +27,11 @@ public final class SslStatus extends ExpandableStringEnum<SslStatus> {
         return fromString(name, SslStatus.class);
     }
 
-    /** @return known SslStatus values. */
+    /**
+     * Gets known SslStatus values.
+     *
+     * @return known SslStatus values.
+     */
     public static Collection<SslStatus> values() {
         return values(SslStatus.class);
     }

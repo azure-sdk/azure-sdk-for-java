@@ -27,7 +27,11 @@ public final class ShareAccessProtocol extends ExpandableStringEnum<ShareAccessP
         return fromString(name, ShareAccessProtocol.class);
     }
 
-    /** @return known ShareAccessProtocol values. */
+    /**
+     * Gets known ShareAccessProtocol values.
+     *
+     * @return known ShareAccessProtocol values.
+     */
     public static Collection<ShareAccessProtocol> values() {
         return values(ShareAccessProtocol.class);
     }
