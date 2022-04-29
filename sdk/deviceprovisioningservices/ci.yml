@@ -35,3 +35,6 @@ extends:
       - name: azure-resourcemanager-deviceprovisioningservices
         groupId: com.azure.resourcemanager
         safeName: azureresourcemanagerdeviceprovisioningservices
+      - name: azure-deviceprovisioningservices-device
+        groupId: com.azure
+        safeName: azuredeviceprovisioningservicesdevice

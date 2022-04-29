@@ -37,6 +37,7 @@
         <activeByDefault>true</activeByDefault>
       </activation>
       <modules>
+        <module>azure-deviceprovisioningservices-device</module>
         <module>azure-resourcemanager-deviceprovisioningservices</module>
       </modules>
     </profile>
