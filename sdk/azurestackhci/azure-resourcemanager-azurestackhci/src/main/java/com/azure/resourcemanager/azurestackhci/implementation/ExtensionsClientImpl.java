@@ -120,7 +120,7 @@ public final class ExtensionsClientImpl implements ExtensionsClient {
         @Patch(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI"
                 + "/clusters/{clusterName}/arcSettings/{arcSettingName}/extensions/{extensionName}")
-        @ExpectedResponses({201})
+        @ExpectedResponses({200, 202})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> update(
             @HostParam("$host") String endpoint,
