@@ -54,12 +54,6 @@ public final class WebActivityTypeProperties {
     private WebActivityAuthentication authentication;
 
     /*
-     * When set to true, Certificate validation will be disabled.
-     */
-    @JsonProperty(value = "disableCertValidation")
-    private Boolean disableCertValidation;
-
-    /*
      * List of datasets passed to web endpoint.
      */
     @JsonProperty(value = "datasets")
@@ -180,26 +174,6 @@ public final class WebActivityTypeProperties {
      */
     public WebActivityTypeProperties withAuthentication(WebActivityAuthentication authentication) {
         this.authentication = authentication;
-        return this;
-    }
-
-    /**
-     * Get the disableCertValidation property: When set to true, Certificate validation will be disabled.
-     *
-     * @return the disableCertValidation value.
-     */
-    public Boolean disableCertValidation() {
-        return this.disableCertValidation;
-    }
-
-    /**
-     * Set the disableCertValidation property: When set to true, Certificate validation will be disabled.
-     *
-     * @param disableCertValidation the disableCertValidation value to set.
-     * @return the WebActivityTypeProperties object itself.
-     */
-    public WebActivityTypeProperties withDisableCertValidation(Boolean disableCertValidation) {
-        this.disableCertValidation = disableCertValidation;
         return this;
     }
 

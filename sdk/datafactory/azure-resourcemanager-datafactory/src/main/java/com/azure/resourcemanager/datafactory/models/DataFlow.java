@@ -20,7 +20,6 @@ import java.util.List;
 @JsonTypeName("DataFlow")
 @JsonSubTypes({
     @JsonSubTypes.Type(name = "MappingDataFlow", value = MappingDataFlow.class),
-    @JsonSubTypes.Type(name = "Flowlet", value = Flowlet.class),
     @JsonSubTypes.Type(name = "WranglingDataFlow", value = WranglingDataFlow.class)
 })
 @Fluent

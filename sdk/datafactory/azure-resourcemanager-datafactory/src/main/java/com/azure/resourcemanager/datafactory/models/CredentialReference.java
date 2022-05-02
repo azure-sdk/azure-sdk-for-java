@@ -20,7 +20,7 @@ public final class CredentialReference {
      * Credential reference type.
      */
     @JsonProperty(value = "type", required = true)
-    private CredentialReferenceType type;
+    private String type = "CredentialReference";
 
     /*
      * Reference credential name.
@@ -33,12 +33,17 @@ public final class CredentialReference {
      */
     @JsonIgnore private Map<String, Object> additionalProperties;
 
+    /** Creates an instance of CredentialReference class. */
+    public CredentialReference() {
+        type = "CredentialReference";
+    }
+
     /**
      * Get the type property: Credential reference type.
      *
      * @return the type value.
      */
-    public CredentialReferenceType type() {
+    public String type() {
         return this.type;
     }
 
@@ -48,7 +53,7 @@ public final class CredentialReference {
      * @param type the type value to set.
      * @return the CredentialReference object itself.
      */
-    public CredentialReference withType(CredentialReferenceType type) {
+    public CredentialReference withType(String type) {
         this.type = type;
         return this;
     }
@@ -108,11 +113,6 @@ public final class CredentialReference {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (type() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property type in model CredentialReference"));
-        }
         if (referenceName() == null) {
             throw LOGGER
                 .logExceptionAsError(

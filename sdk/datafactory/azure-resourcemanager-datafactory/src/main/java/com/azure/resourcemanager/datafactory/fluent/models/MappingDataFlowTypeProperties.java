@@ -38,12 +38,6 @@ public final class MappingDataFlowTypeProperties {
     @JsonProperty(value = "script")
     private String script;
 
-    /*
-     * Data flow script lines.
-     */
-    @JsonProperty(value = "scriptLines")
-    private List<String> scriptLines;
-
     /**
      * Get the sources property: List of sources in data flow.
      *
@@ -121,26 +115,6 @@ public final class MappingDataFlowTypeProperties {
      */
     public MappingDataFlowTypeProperties withScript(String script) {
         this.script = script;
-        return this;
-    }
-
-    /**
-     * Get the scriptLines property: Data flow script lines.
-     *
-     * @return the scriptLines value.
-     */
-    public List<String> scriptLines() {
-        return this.scriptLines;
-    }
-
-    /**
-     * Set the scriptLines property: Data flow script lines.
-     *
-     * @param scriptLines the scriptLines value to set.
-     * @return the MappingDataFlowTypeProperties object itself.
-     */
-    public MappingDataFlowTypeProperties withScriptLines(List<String> scriptLines) {
-        this.scriptLines = scriptLines;
         return this;
     }
 

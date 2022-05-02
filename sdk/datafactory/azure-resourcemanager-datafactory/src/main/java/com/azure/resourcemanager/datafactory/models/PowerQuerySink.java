@@ -38,6 +38,20 @@ public final class PowerQuerySink extends DataFlowSink {
 
     /** {@inheritDoc} */
     @Override
+    public PowerQuerySink withDataset(DatasetReference dataset) {
+        super.withDataset(dataset);
+        return this;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public PowerQuerySink withLinkedService(LinkedServiceReference linkedService) {
+        super.withLinkedService(linkedService);
+        return this;
+    }
+
+    /** {@inheritDoc} */
+    @Override
     public PowerQuerySink withSchemaLinkedService(LinkedServiceReference schemaLinkedService) {
         super.withSchemaLinkedService(schemaLinkedService);
         return this;
@@ -54,27 +68,6 @@ public final class PowerQuerySink extends DataFlowSink {
     @Override
     public PowerQuerySink withDescription(String description) {
         super.withDescription(description);
-        return this;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public PowerQuerySink withDataset(DatasetReference dataset) {
-        super.withDataset(dataset);
-        return this;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public PowerQuerySink withLinkedService(LinkedServiceReference linkedService) {
-        super.withLinkedService(linkedService);
-        return this;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public PowerQuerySink withFlowlet(DataFlowReference flowlet) {
-        super.withFlowlet(flowlet);
         return this;
     }
 
