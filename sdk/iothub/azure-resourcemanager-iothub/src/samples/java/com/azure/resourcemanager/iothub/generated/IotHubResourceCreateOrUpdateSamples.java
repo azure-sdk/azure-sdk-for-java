@@ -29,7 +29,7 @@ import java.util.Map;
 /** Samples for IotHubResource CreateOrUpdate. */
 public final class IotHubResourceCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/iothub/resource-manager/Microsoft.Devices/stable/2021-07-02/examples/iothub_createOrUpdate.json
+     * x-ms-original-file: specification/iothub/resource-manager/Microsoft.Devices/stable/2021-07-01/examples/iothub_createOrUpdate.json
      */
     /**
      * Sample code: IotHubResource_CreateOrUpdate.
@@ -106,8 +106,7 @@ public final class IotHubResourceCreateOrUpdateSamples {
                                     .withLockDurationAsIso8601(Duration.parse("PT1M"))
                                     .withTtlAsIso8601(Duration.parse("PT1H"))
                                     .withMaxDeliveryCount(10)))
-                    .withFeatures(Capabilities.NONE)
-                    .withEnableDataResidency(true))
+                    .withFeatures(Capabilities.NONE))
             .create();
     }
 

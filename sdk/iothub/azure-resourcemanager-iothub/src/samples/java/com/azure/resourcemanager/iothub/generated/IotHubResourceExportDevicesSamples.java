@@ -10,7 +10,7 @@ import com.azure.resourcemanager.iothub.models.ExportDevicesRequest;
 /** Samples for IotHubResource ExportDevices. */
 public final class IotHubResourceExportDevicesSamples {
     /*
-     * x-ms-original-file: specification/iothub/resource-manager/Microsoft.Devices/stable/2021-07-02/examples/iothub_exportdevices.json
+     * x-ms-original-file: specification/iothub/resource-manager/Microsoft.Devices/stable/2021-07-01/examples/iothub_exportdevices.json
      */
     /**
      * Sample code: IotHubResource_ExportDevices.
