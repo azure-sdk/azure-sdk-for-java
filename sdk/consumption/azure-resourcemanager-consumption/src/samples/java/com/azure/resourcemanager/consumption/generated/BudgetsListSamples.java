@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for Budgets List. */
 public final class BudgetsListSamples {
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/BudgetsList.json
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-05-01/examples/BudgetsList.json
      */
     /**
      * Sample code: BudgetsList.

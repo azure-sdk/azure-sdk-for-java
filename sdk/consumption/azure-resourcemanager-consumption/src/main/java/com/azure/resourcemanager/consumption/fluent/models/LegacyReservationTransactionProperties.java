@@ -5,8 +5,6 @@
 package com.azure.resourcemanager.consumption.fluent.models;
 
 import com.azure.core.annotation.Immutable;
-import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
@@ -15,8 +13,6 @@ import java.util.UUID;
 /** The properties of a legacy reservation transaction. */
 @Immutable
 public final class LegacyReservationTransactionProperties {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(LegacyReservationTransactionProperties.class);
-
     /*
      * The date of the transaction
      */
@@ -141,24 +137,6 @@ public final class LegacyReservationTransactionProperties {
      */
     @JsonProperty(value = "billingFrequency", access = JsonProperty.Access.WRITE_ONLY)
     private String billingFrequency;
-
-    /*
-     * The billing month(yyyyMMdd), on which the event initiated.
-     */
-    @JsonProperty(value = "billingMonth", access = JsonProperty.Access.WRITE_ONLY)
-    private Integer billingMonth;
-
-    /*
-     * The monetary commitment amount at the enrollment scope.
-     */
-    @JsonProperty(value = "monetaryCommitment", access = JsonProperty.Access.WRITE_ONLY)
-    private BigDecimal monetaryCommitment;
-
-    /*
-     * The overage amount at the enrollment scope.
-     */
-    @JsonProperty(value = "overage", access = JsonProperty.Access.WRITE_ONLY)
-    private BigDecimal overage;
 
     /**
      * Get the eventDate property: The date of the transaction.
@@ -342,33 +320,6 @@ public final class LegacyReservationTransactionProperties {
      */
     public String billingFrequency() {
         return this.billingFrequency;
-    }
-
-    /**
-     * Get the billingMonth property: The billing month(yyyyMMdd), on which the event initiated.
-     *
-     * @return the billingMonth value.
-     */
-    public Integer billingMonth() {
-        return this.billingMonth;
-    }
-
-    /**
-     * Get the monetaryCommitment property: The monetary commitment amount at the enrollment scope.
-     *
-     * @return the monetaryCommitment value.
-     */
-    public BigDecimal monetaryCommitment() {
-        return this.monetaryCommitment;
-    }
-
-    /**
-     * Get the overage property: The overage amount at the enrollment scope.
-     *
-     * @return the overage value.
-     */
-    public BigDecimal overage() {
-        return this.overage;
     }
 
     /**

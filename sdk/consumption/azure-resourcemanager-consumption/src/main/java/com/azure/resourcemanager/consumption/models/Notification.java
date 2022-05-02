@@ -6,7 +6,6 @@ package com.azure.resourcemanager.consumption.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.math.BigDecimal;
 import java.util.List;
@@ -14,8 +13,6 @@ import java.util.List;
 /** The notification associated with a budget. */
 @Fluent
 public final class Notification {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(Notification.class);
-
     /*
      * The notification is enabled or not.
      */
@@ -65,12 +62,6 @@ public final class Notification {
      */
     @JsonProperty(value = "thresholdType")
     private ThresholdType thresholdType;
-
-    /*
-     * Language in which the recipient will receive the notification
-     */
-    @JsonProperty(value = "locale")
-    private CultureCode locale;
 
     /**
      * Get the enabled property: The notification is enabled or not.
@@ -221,45 +212,27 @@ public final class Notification {
     }
 
     /**
-     * Get the locale property: Language in which the recipient will receive the notification.
-     *
-     * @return the locale value.
-     */
-    public CultureCode locale() {
-        return this.locale;
-    }
-
-    /**
-     * Set the locale property: Language in which the recipient will receive the notification.
-     *
-     * @param locale the locale value to set.
-     * @return the Notification object itself.
-     */
-    public Notification withLocale(CultureCode locale) {
-        this.locale = locale;
-        return this;
-    }
-
-    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (operator() == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property operator in model Notification"));
         }
         if (threshold() == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property threshold in model Notification"));
         }
         if (contactEmails() == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property contactEmails in model Notification"));
         }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(Notification.class);
 }

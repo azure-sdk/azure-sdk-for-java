@@ -12,6 +12,8 @@ import com.azure.resourcemanager.consumption.models.LotSummary;
 import com.azure.resourcemanager.consumption.models.Reseller;
 import com.azure.resourcemanager.consumption.models.Status;
 import java.time.OffsetDateTime;
+import java.util.Collections;
+import java.util.Map;
 
 public final class LotSummaryImpl implements LotSummary {
     private LotSummaryInner innerObject;
@@ -38,6 +40,15 @@ public final class LotSummaryImpl implements LotSummary {
 
     public String etag() {
         return this.innerModel().etag();
+    }
+
+    public Map<String, String> tags() {
+        Map<String, String> inner = this.innerModel().tags();
+        if (inner != null) {
+            return Collections.unmodifiableMap(inner);
+        } else {
+            return Collections.emptyMap();
+        }
     }
 
     public Amount originalAmount() {

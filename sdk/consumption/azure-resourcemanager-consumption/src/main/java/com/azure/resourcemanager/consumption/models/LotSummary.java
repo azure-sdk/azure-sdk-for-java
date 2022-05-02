@@ -6,6 +6,7 @@ package com.azure.resourcemanager.consumption.models;
 
 import com.azure.resourcemanager.consumption.fluent.models.LotSummaryInner;
 import java.time.OffsetDateTime;
+import java.util.Map;
 
 /** An immutable client-side representation of LotSummary. */
 public interface LotSummary {
@@ -31,12 +32,18 @@ public interface LotSummary {
     String type();
 
     /**
-     * Gets the etag property: eTag of the resource. To handle concurrent update scenario, this field will be used to
-     * determine whether the user is updating the latest version or not.
+     * Gets the etag property: The etag for the resource.
      *
      * @return the etag value.
      */
     String etag();
+
+    /**
+     * Gets the tags property: Resource tags.
+     *
+     * @return the tags value.
+     */
+    Map<String, String> tags();
 
     /**
      * Gets the originalAmount property: The original amount of a lot.

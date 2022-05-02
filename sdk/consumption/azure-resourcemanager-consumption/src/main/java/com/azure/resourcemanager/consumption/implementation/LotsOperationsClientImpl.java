@@ -25,7 +25,6 @@ import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.consumption.fluent.LotsOperationsClient;
 import com.azure.resourcemanager.consumption.fluent.models.LotSummaryInner;
 import com.azure.resourcemanager.consumption.models.Lots;
@@ -33,8 +32,6 @@ import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in LotsOperationsClient. */
 public final class LotsOperationsClientImpl implements LotsOperationsClient {
-    private final ClientLogger logger = new ClientLogger(LotsOperationsClientImpl.class);
-
     /** The proxy service used to perform REST calls. */
     private final LotsOperationsService service;
 
@@ -115,7 +112,7 @@ public final class LotsOperationsClientImpl implements LotsOperationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing lot summary.
+     * @return result of listing lot summary along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<LotSummaryInner>> listByBillingProfileSinglePageAsync(
@@ -168,7 +165,7 @@ public final class LotsOperationsClientImpl implements LotsOperationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing lot summary.
+     * @return result of listing lot summary along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<LotSummaryInner>> listByBillingProfileSinglePageAsync(
@@ -217,7 +214,7 @@ public final class LotsOperationsClientImpl implements LotsOperationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing lot summary.
+     * @return result of listing lot summary as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<LotSummaryInner> listByBillingProfileAsync(String billingAccountId, String billingProfileId) {
@@ -236,7 +233,7 @@ public final class LotsOperationsClientImpl implements LotsOperationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing lot summary.
+     * @return result of listing lot summary as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<LotSummaryInner> listByBillingProfileAsync(
@@ -255,7 +252,7 @@ public final class LotsOperationsClientImpl implements LotsOperationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing lot summary.
+     * @return result of listing lot summary as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<LotSummaryInner> listByBillingProfile(String billingAccountId, String billingProfileId) {
@@ -272,7 +269,7 @@ public final class LotsOperationsClientImpl implements LotsOperationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing lot summary.
+     * @return result of listing lot summary as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<LotSummaryInner> listByBillingProfile(
@@ -291,7 +288,7 @@ public final class LotsOperationsClientImpl implements LotsOperationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing lot summary.
+     * @return result of listing lot summary along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<LotSummaryInner>> listByBillingAccountSinglePageAsync(
@@ -342,7 +339,7 @@ public final class LotsOperationsClientImpl implements LotsOperationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing lot summary.
+     * @return result of listing lot summary along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<LotSummaryInner>> listByBillingAccountSinglePageAsync(
@@ -384,7 +381,7 @@ public final class LotsOperationsClientImpl implements LotsOperationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing lot summary.
+     * @return result of listing lot summary as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<LotSummaryInner> listByBillingAccountAsync(String billingAccountId, String filter) {
@@ -401,7 +398,7 @@ public final class LotsOperationsClientImpl implements LotsOperationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing lot summary.
+     * @return result of listing lot summary as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<LotSummaryInner> listByBillingAccountAsync(String billingAccountId) {
@@ -423,7 +420,7 @@ public final class LotsOperationsClientImpl implements LotsOperationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing lot summary.
+     * @return result of listing lot summary as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<LotSummaryInner> listByBillingAccountAsync(
@@ -441,7 +438,7 @@ public final class LotsOperationsClientImpl implements LotsOperationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing lot summary.
+     * @return result of listing lot summary as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<LotSummaryInner> listByBillingAccount(String billingAccountId) {
@@ -461,7 +458,7 @@ public final class LotsOperationsClientImpl implements LotsOperationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing lot summary.
+     * @return result of listing lot summary as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<LotSummaryInner> listByBillingAccount(
@@ -476,7 +473,7 @@ public final class LotsOperationsClientImpl implements LotsOperationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing lot summary.
+     * @return result of listing lot summary along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<LotSummaryInner>> listByBillingProfileNextSinglePageAsync(String nextLink) {
@@ -513,7 +510,7 @@ public final class LotsOperationsClientImpl implements LotsOperationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing lot summary.
+     * @return result of listing lot summary along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<LotSummaryInner>> listByBillingProfileNextSinglePageAsync(
@@ -549,7 +546,7 @@ public final class LotsOperationsClientImpl implements LotsOperationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing lot summary.
+     * @return result of listing lot summary along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<LotSummaryInner>> listByBillingAccountNextSinglePageAsync(String nextLink) {
@@ -586,7 +583,7 @@ public final class LotsOperationsClientImpl implements LotsOperationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing lot summary.
+     * @return result of listing lot summary along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<LotSummaryInner>> listByBillingAccountNextSinglePageAsync(

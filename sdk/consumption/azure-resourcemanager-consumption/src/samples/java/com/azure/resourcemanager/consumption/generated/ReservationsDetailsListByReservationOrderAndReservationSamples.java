@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for ReservationsDetails ListByReservationOrderAndReservation. */
 public final class ReservationsDetailsListByReservationOrderAndReservationSamples {
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/ReservationDetailsWithReservationId.json
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-05-01/examples/ReservationDetailsWithReservationId.json
      */
     /**
      * Sample code: ReservationDetailsWithReservationId.

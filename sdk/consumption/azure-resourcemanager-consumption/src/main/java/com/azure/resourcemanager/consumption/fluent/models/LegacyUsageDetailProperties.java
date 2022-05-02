@@ -5,10 +5,7 @@
 package com.azure.resourcemanager.consumption.fluent.models;
 
 import com.azure.core.annotation.Immutable;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.consumption.models.MeterDetailsResponse;
-import com.azure.resourcemanager.consumption.models.PricingModelType;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
@@ -17,8 +14,6 @@ import java.util.UUID;
 /** The properties of the legacy usage detail. */
 @Immutable
 public final class LegacyUsageDetailProperties {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(LegacyUsageDetailProperties.class);
-
     /*
      * Billing Account identifier.
      */
@@ -290,18 +285,6 @@ public final class LegacyUsageDetailProperties {
      */
     @JsonProperty(value = "frequency", access = JsonProperty.Access.WRITE_ONLY)
     private String frequency;
-
-    /*
-     * Retail price for the resource.
-     */
-    @JsonProperty(value = "payGPrice", access = JsonProperty.Access.WRITE_ONLY)
-    private BigDecimal payGPrice;
-
-    /*
-     * Identifier that indicates how the meter is priced.
-     */
-    @JsonProperty(value = "pricingModel", access = JsonProperty.Access.WRITE_ONLY)
-    private PricingModelType pricingModel;
 
     /**
      * Get the billingAccountId property: Billing Account identifier.
@@ -693,24 +676,6 @@ public final class LegacyUsageDetailProperties {
      */
     public String frequency() {
         return this.frequency;
-    }
-
-    /**
-     * Get the payGPrice property: Retail price for the resource.
-     *
-     * @return the payGPrice value.
-     */
-    public BigDecimal payGPrice() {
-        return this.payGPrice;
-    }
-
-    /**
-     * Get the pricingModel property: Identifier that indicates how the meter is priced.
-     *
-     * @return the pricingModel value.
-     */
-    public PricingModelType pricingModel() {
-        return this.pricingModel;
     }
 
     /**

@@ -10,7 +10,7 @@ import com.azure.resourcemanager.consumption.models.Datagrain;
 /** Samples for ReservationsSummaries List. */
 public final class ReservationsSummariesListSamples {
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/ReservationSummariesDailyWithBillingAccountId.json
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-05-01/examples/ReservationSummariesDailyWithBillingAccountId.json
      */
     /**
      * Sample code: ReservationSummariesDailyWithBillingAccountId.
@@ -33,7 +33,7 @@ public final class ReservationsSummariesListSamples {
     }
 
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/ReservationSummariesDailyWithBillingProfileId.json
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-05-01/examples/ReservationSummariesDailyWithBillingProfileId.json
      */
     /**
      * Sample code: ReservationSummariesDailyWithBillingProfileId.
@@ -56,7 +56,7 @@ public final class ReservationsSummariesListSamples {
     }
 
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/ReservationSummariesMonthlyWithBillingAccountId.json
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-05-01/examples/ReservationSummariesMonthlyWithBillingAccountId.json
      */
     /**
      * Sample code: ReservationSummariesMonthlyWithBillingAccountId.
@@ -79,7 +79,7 @@ public final class ReservationsSummariesListSamples {
     }
 
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/ReservationSummariesMonthlyWithBillingProfileId.json
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-05-01/examples/ReservationSummariesMonthlyWithBillingProfileId.json
      */
     /**
      * Sample code: ReservationSummariesMonthlyWithBillingProfileId.
@@ -102,7 +102,7 @@ public final class ReservationsSummariesListSamples {
     }
 
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/ReservationSummariesMonthlyWithBillingProfileIdReservationId.json
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-05-01/examples/ReservationSummariesMonthlyWithBillingProfileIdReservationId.json
      */
     /**
      * Sample code: ReservationSummariesMonthlyWithBillingProfileIdReservationId.

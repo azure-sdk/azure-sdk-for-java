@@ -6,20 +6,18 @@ package com.azure.resourcemanager.consumption.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.ProxyResource;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.consumption.models.Amount;
 import com.azure.resourcemanager.consumption.models.AmountWithExchangeRate;
 import com.azure.resourcemanager.consumption.models.EventType;
 import com.azure.resourcemanager.consumption.models.Reseller;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
+import java.util.Map;
 
 /** An event summary resource. */
 @Fluent
 public final class EventSummaryInner extends ProxyResource {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(EventSummaryInner.class);
-
     /*
      * The event properties.
      */
@@ -27,12 +25,17 @@ public final class EventSummaryInner extends ProxyResource {
     private EventProperties innerProperties;
 
     /*
-     * eTag of the resource. To handle concurrent update scenario, this field
-     * will be used to determine whether the user is updating the latest
-     * version or not.
+     * The etag for the resource.
      */
-    @JsonProperty(value = "eTag")
+    @JsonProperty(value = "etag", access = JsonProperty.Access.WRITE_ONLY)
     private String etag;
+
+    /*
+     * Resource tags.
+     */
+    @JsonProperty(value = "tags", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
+    private Map<String, String> tags;
 
     /**
      * Get the innerProperties property: The event properties.
@@ -44,8 +47,7 @@ public final class EventSummaryInner extends ProxyResource {
     }
 
     /**
-     * Get the etag property: eTag of the resource. To handle concurrent update scenario, this field will be used to
-     * determine whether the user is updating the latest version or not.
+     * Get the etag property: The etag for the resource.
      *
      * @return the etag value.
      */
@@ -54,15 +56,12 @@ public final class EventSummaryInner extends ProxyResource {
     }
 
     /**
-     * Set the etag property: eTag of the resource. To handle concurrent update scenario, this field will be used to
-     * determine whether the user is updating the latest version or not.
+     * Get the tags property: Resource tags.
      *
-     * @param etag the etag value to set.
-     * @return the EventSummaryInner object itself.
+     * @return the tags value.
      */
-    public EventSummaryInner withEtag(String etag) {
-        this.etag = etag;
-        return this;
+    public Map<String, String> tags() {
+        return this.tags;
     }
 
     /**

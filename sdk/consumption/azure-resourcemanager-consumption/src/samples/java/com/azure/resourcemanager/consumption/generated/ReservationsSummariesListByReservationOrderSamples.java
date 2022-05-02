@@ -10,7 +10,7 @@ import com.azure.resourcemanager.consumption.models.Datagrain;
 /** Samples for ReservationsSummaries ListByReservationOrder. */
 public final class ReservationsSummariesListByReservationOrderSamples {
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/ReservationSummariesMonthly.json
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-05-01/examples/ReservationSummariesMonthly.json
      */
     /**
      * Sample code: ReservationSummariesMonthly.
@@ -24,7 +24,7 @@ public final class ReservationsSummariesListByReservationOrderSamples {
     }
 
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/ReservationSummariesDaily.json
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-05-01/examples/ReservationSummariesDaily.json
      */
     /**
      * Sample code: ReservationSummariesDaily.

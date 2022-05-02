@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for LotsOperation ListByBillingProfile. */
 public final class LotsOperationListByBillingProfileSamples {
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/LotsListByBillingProfile.json
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-05-01/examples/LotsListByBillingProfile.json
      */
     /**
      * Sample code: LotsListByBillingProfile.

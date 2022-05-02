@@ -13,9 +13,6 @@ public final class ThresholdType extends ExpandableStringEnum<ThresholdType> {
     /** Static value Actual for ThresholdType. */
     public static final ThresholdType ACTUAL = fromString("Actual");
 
-    /** Static value Forecasted for ThresholdType. */
-    public static final ThresholdType FORECASTED = fromString("Forecasted");
-
     /**
      * Creates or finds a ThresholdType from its string representation.
      *
@@ -27,7 +24,11 @@ public final class ThresholdType extends ExpandableStringEnum<ThresholdType> {
         return fromString(name, ThresholdType.class);
     }
 
-    /** @return known ThresholdType values. */
+    /**
+     * Gets known ThresholdType values.
+     *
+     * @return known ThresholdType values.
+     */
     public static Collection<ThresholdType> values() {
         return values(ThresholdType.class);
     }

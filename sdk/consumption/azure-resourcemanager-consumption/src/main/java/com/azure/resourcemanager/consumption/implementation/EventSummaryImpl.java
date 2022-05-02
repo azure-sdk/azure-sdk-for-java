@@ -11,6 +11,8 @@ import com.azure.resourcemanager.consumption.models.EventSummary;
 import com.azure.resourcemanager.consumption.models.EventType;
 import com.azure.resourcemanager.consumption.models.Reseller;
 import java.time.OffsetDateTime;
+import java.util.Collections;
+import java.util.Map;
 
 public final class EventSummaryImpl implements EventSummary {
     private EventSummaryInner innerObject;
@@ -37,6 +39,15 @@ public final class EventSummaryImpl implements EventSummary {
 
     public String etag() {
         return this.innerModel().etag();
+    }
+
+    public Map<String, String> tags() {
+        Map<String, String> inner = this.innerModel().tags();
+        if (inner != null) {
+            return Collections.unmodifiableMap(inner);
+        } else {
+            return Collections.emptyMap();
+        }
     }
 
     public OffsetDateTime transactionDate() {

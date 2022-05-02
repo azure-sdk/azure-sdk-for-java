@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for ReservationTransactions List. */
 public final class ReservationTransactionsListSamples {
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/ReservationTransactionsListByEnrollmentNumber.json
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-05-01/examples/ReservationTransactionsListByEnrollmentNumber.json
      */
     /**
      * Sample code: ReservationTransactionsByEnrollmentNumber.

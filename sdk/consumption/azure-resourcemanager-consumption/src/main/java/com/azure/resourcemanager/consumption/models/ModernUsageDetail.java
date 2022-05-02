@@ -8,7 +8,6 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.consumption.fluent.models.ModernUsageDetailProperties;
 import com.azure.resourcemanager.consumption.fluent.models.UsageDetailInner;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
@@ -21,8 +20,6 @@ import java.util.UUID;
 @JsonTypeName("modern")
 @Fluent
 public final class ModernUsageDetail extends UsageDetailInner {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(ModernUsageDetail.class);
-
     /*
      * Properties for modern usage details
      */
@@ -45,24 +42,6 @@ public final class ModernUsageDetail extends UsageDetailInner {
      */
     public String billingAccountId() {
         return this.innerProperties() == null ? null : this.innerProperties().billingAccountId();
-    }
-
-    /**
-     * Get the effectivePrice property: Effective Price that's charged for the usage.
-     *
-     * @return the effectivePrice value.
-     */
-    public BigDecimal effectivePrice() {
-        return this.innerProperties() == null ? null : this.innerProperties().effectivePrice();
-    }
-
-    /**
-     * Get the pricingModel property: Identifier that indicates how the meter is priced.
-     *
-     * @return the pricingModel value.
-     */
-    public PricingModelType pricingModel() {
-        return this.innerProperties() == null ? null : this.innerProperties().pricingModel();
     }
 
     /**
@@ -686,43 +665,6 @@ public final class ModernUsageDetail extends UsageDetailInner {
     }
 
     /**
-     * Get the benefitId property: Unique identifier for the applicable benefit.
-     *
-     * @return the benefitId value.
-     */
-    public String benefitId() {
-        return this.innerProperties() == null ? null : this.innerProperties().benefitId();
-    }
-
-    /**
-     * Get the benefitName property: Name of the applicable benefit.
-     *
-     * @return the benefitName value.
-     */
-    public String benefitName() {
-        return this.innerProperties() == null ? null : this.innerProperties().benefitName();
-    }
-
-    /**
-     * Get the provider property: Identifier for Product Category or Line Of Business, Ex - Azure, Microsoft 365, AWS
-     * e.t.c.
-     *
-     * @return the provider value.
-     */
-    public String provider() {
-        return this.innerProperties() == null ? null : this.innerProperties().provider();
-    }
-
-    /**
-     * Get the costAllocationRuleName property: Name for Cost Allocation Rule.
-     *
-     * @return the costAllocationRuleName value.
-     */
-    public String costAllocationRuleName() {
-        return this.innerProperties() == null ? null : this.innerProperties().costAllocationRuleName();
-    }
-
-    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -731,7 +673,7 @@ public final class ModernUsageDetail extends UsageDetailInner {
     public void validate() {
         super.validate();
         if (innerProperties() == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property innerProperties in model ModernUsageDetail"));
@@ -739,4 +681,6 @@ public final class ModernUsageDetail extends UsageDetailInner {
             innerProperties().validate();
         }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(ModernUsageDetail.class);
 }

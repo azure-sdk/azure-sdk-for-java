@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for Tags Get. */
 public final class TagsGetSamples {
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/Tags.json
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-05-01/examples/Tags.json
      */
     /**
      * Sample code: Tags_Get.

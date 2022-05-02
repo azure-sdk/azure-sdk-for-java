@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for Credits Get. */
 public final class CreditsGetSamples {
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/CreditSummaryByBillingProfile.json
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-05-01/examples/CreditSummaryByBillingProfile.json
      */
     /**
      * Sample code: CreditSummaryByBillingProfile.

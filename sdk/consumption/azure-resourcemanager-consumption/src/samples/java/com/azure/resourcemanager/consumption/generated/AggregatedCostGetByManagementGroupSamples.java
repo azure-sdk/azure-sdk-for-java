@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for AggregatedCost GetByManagementGroup. */
 public final class AggregatedCostGetByManagementGroupSamples {
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/AggregatedCostByManagementGroupFilterByDate.json
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-05-01/examples/AggregatedCostByManagementGroupFilterByDate.json
      */
     /**
      * Sample code: AggregatedCostByManagementGroupFilterByDate.
@@ -27,7 +27,7 @@ public final class AggregatedCostGetByManagementGroupSamples {
     }
 
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/AggregatedCostByManagementGroup.json
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-05-01/examples/AggregatedCostByManagementGroup.json
      */
     /**
      * Sample code: AggregatedCostByManagementGroup.

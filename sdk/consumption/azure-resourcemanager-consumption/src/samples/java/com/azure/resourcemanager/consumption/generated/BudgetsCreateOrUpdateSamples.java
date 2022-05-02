@@ -10,7 +10,6 @@ import com.azure.resourcemanager.consumption.models.BudgetFilterProperties;
 import com.azure.resourcemanager.consumption.models.BudgetOperatorType;
 import com.azure.resourcemanager.consumption.models.BudgetTimePeriod;
 import com.azure.resourcemanager.consumption.models.CategoryType;
-import com.azure.resourcemanager.consumption.models.CultureCode;
 import com.azure.resourcemanager.consumption.models.Notification;
 import com.azure.resourcemanager.consumption.models.OperatorType;
 import com.azure.resourcemanager.consumption.models.ThresholdType;
@@ -24,7 +23,7 @@ import java.util.Map;
 /** Samples for Budgets CreateOrUpdate. */
 public final class BudgetsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/CreateOrUpdateBudget.json
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-05-01/examples/CreateOrUpdateBudget.json
      */
     /**
      * Sample code: CreateOrUpdateBudget.
@@ -84,8 +83,7 @@ public final class BudgetsCreateOrUpdateSamples {
                             Arrays
                                 .asList(
                                     "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/MYDEVTESTRG/providers/microsoft.insights/actionGroups/SampleActionGroup"))
-                        .withThresholdType(ThresholdType.ACTUAL)
-                        .withLocale(CultureCode.EN_US)))
+                        .withThresholdType(ThresholdType.ACTUAL)))
             .create();
     }
 

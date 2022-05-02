@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for Balances GetByBillingAccount. */
 public final class BalancesGetByBillingAccountSamples {
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/BalancesByBillingAccount.json
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-05-01/examples/BalancesByBillingAccount.json
      */
     /**
      * Sample code: Balances.

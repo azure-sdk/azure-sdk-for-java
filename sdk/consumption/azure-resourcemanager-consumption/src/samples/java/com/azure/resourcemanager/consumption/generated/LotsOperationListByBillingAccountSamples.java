@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for LotsOperation ListByBillingAccount. */
 public final class LotsOperationListByBillingAccountSamples {
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/LotsListByBillingAccount.json
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-05-01/examples/LotsListByBillingAccount.json
      */
     /**
      * Sample code: LotsListByBillingAccount.
@@ -21,7 +21,7 @@ public final class LotsOperationListByBillingAccountSamples {
     }
 
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/LotsListByBillingAccountWithFilters.json
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-05-01/examples/LotsListByBillingAccountWithFilters.json
      */
     /**
      * Sample code: LotsListByBillingAccountWithStatusFilter.

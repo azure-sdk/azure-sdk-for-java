@@ -5,9 +5,6 @@
 package com.azure.resourcemanager.consumption.fluent.models;
 
 import com.azure.core.annotation.Immutable;
-import com.azure.core.util.logging.ClientLogger;
-import com.azure.resourcemanager.consumption.models.PricingModelType;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
@@ -16,25 +13,11 @@ import java.util.UUID;
 /** The properties of the usage detail. */
 @Immutable
 public final class ModernUsageDetailProperties {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(ModernUsageDetailProperties.class);
-
     /*
      * Billing Account identifier.
      */
     @JsonProperty(value = "billingAccountId", access = JsonProperty.Access.WRITE_ONLY)
     private String billingAccountId;
-
-    /*
-     * Effective Price that's charged for the usage.
-     */
-    @JsonProperty(value = "effectivePrice", access = JsonProperty.Access.WRITE_ONLY)
-    private BigDecimal effectivePrice;
-
-    /*
-     * Identifier that indicates how the meter is priced
-     */
-    @JsonProperty(value = "pricingModel", access = JsonProperty.Access.WRITE_ONLY)
-    private PricingModelType pricingModel;
 
     /*
      * Name of the Billing Account.
@@ -474,31 +457,6 @@ public final class ModernUsageDetailProperties {
     @JsonProperty(value = "payGPrice", access = JsonProperty.Access.WRITE_ONLY)
     private BigDecimal payGPrice;
 
-    /*
-     * Unique identifier for the applicable benefit.
-     */
-    @JsonProperty(value = "benefitId", access = JsonProperty.Access.WRITE_ONLY)
-    private String benefitId;
-
-    /*
-     * Name of the applicable benefit.
-     */
-    @JsonProperty(value = "benefitName", access = JsonProperty.Access.WRITE_ONLY)
-    private String benefitName;
-
-    /*
-     * Identifier for Product Category or Line Of Business, Ex - Azure,
-     * Microsoft 365, AWS e.t.c
-     */
-    @JsonProperty(value = "provider", access = JsonProperty.Access.WRITE_ONLY)
-    private String provider;
-
-    /*
-     * Name for Cost Allocation Rule.
-     */
-    @JsonProperty(value = "costAllocationRuleName", access = JsonProperty.Access.WRITE_ONLY)
-    private String costAllocationRuleName;
-
     /**
      * Get the billingAccountId property: Billing Account identifier.
      *
@@ -506,24 +464,6 @@ public final class ModernUsageDetailProperties {
      */
     public String billingAccountId() {
         return this.billingAccountId;
-    }
-
-    /**
-     * Get the effectivePrice property: Effective Price that's charged for the usage.
-     *
-     * @return the effectivePrice value.
-     */
-    public BigDecimal effectivePrice() {
-        return this.effectivePrice;
-    }
-
-    /**
-     * Get the pricingModel property: Identifier that indicates how the meter is priced.
-     *
-     * @return the pricingModel value.
-     */
-    public PricingModelType pricingModel() {
-        return this.pricingModel;
     }
 
     /**
@@ -1144,43 +1084,6 @@ public final class ModernUsageDetailProperties {
      */
     public BigDecimal payGPrice() {
         return this.payGPrice;
-    }
-
-    /**
-     * Get the benefitId property: Unique identifier for the applicable benefit.
-     *
-     * @return the benefitId value.
-     */
-    public String benefitId() {
-        return this.benefitId;
-    }
-
-    /**
-     * Get the benefitName property: Name of the applicable benefit.
-     *
-     * @return the benefitName value.
-     */
-    public String benefitName() {
-        return this.benefitName;
-    }
-
-    /**
-     * Get the provider property: Identifier for Product Category or Line Of Business, Ex - Azure, Microsoft 365, AWS
-     * e.t.c.
-     *
-     * @return the provider value.
-     */
-    public String provider() {
-        return this.provider;
-    }
-
-    /**
-     * Get the costAllocationRuleName property: Name for Cost Allocation Rule.
-     *
-     * @return the costAllocationRuleName value.
-     */
-    public String costAllocationRuleName() {
-        return this.costAllocationRuleName;
     }
 
     /**

@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for EventsOperation ListByBillingProfile. */
 public final class EventsOperationListByBillingProfileSamples {
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/EventsListByBillingProfile.json
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-05-01/examples/EventsListByBillingProfile.json
      */
     /**
      * Sample code: EventsListByBillingProfile.

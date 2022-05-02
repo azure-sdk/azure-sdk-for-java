@@ -8,7 +8,6 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.consumption.fluent.models.LegacyUsageDetailProperties;
 import com.azure.resourcemanager.consumption.fluent.models.UsageDetailInner;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
@@ -21,8 +20,6 @@ import java.util.UUID;
 @JsonTypeName("legacy")
 @Fluent
 public final class LegacyUsageDetail extends UsageDetailInner {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(LegacyUsageDetail.class);
-
     /*
      * Properties for legacy usage details
      */
@@ -431,24 +428,6 @@ public final class LegacyUsageDetail extends UsageDetailInner {
     }
 
     /**
-     * Get the payGPrice property: Retail price for the resource.
-     *
-     * @return the payGPrice value.
-     */
-    public BigDecimal payGPrice() {
-        return this.innerProperties() == null ? null : this.innerProperties().payGPrice();
-    }
-
-    /**
-     * Get the pricingModel property: Identifier that indicates how the meter is priced.
-     *
-     * @return the pricingModel value.
-     */
-    public PricingModelType pricingModel() {
-        return this.innerProperties() == null ? null : this.innerProperties().pricingModel();
-    }
-
-    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -457,7 +436,7 @@ public final class LegacyUsageDetail extends UsageDetailInner {
     public void validate() {
         super.validate();
         if (innerProperties() == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property innerProperties in model LegacyUsageDetail"));
@@ -465,4 +444,6 @@ public final class LegacyUsageDetail extends UsageDetailInner {
             innerProperties().validate();
         }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(LegacyUsageDetail.class);
 }

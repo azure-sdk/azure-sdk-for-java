@@ -125,18 +125,6 @@ public final class ReservationTransactionImpl implements ReservationTransaction 
         return this.innerModel().billingFrequency();
     }
 
-    public Integer billingMonth() {
-        return this.innerModel().billingMonth();
-    }
-
-    public BigDecimal monetaryCommitment() {
-        return this.innerModel().monetaryCommitment();
-    }
-
-    public BigDecimal overage() {
-        return this.innerModel().overage();
-    }
-
     public ReservationTransactionInner innerModel() {
         return this.innerObject;
     }

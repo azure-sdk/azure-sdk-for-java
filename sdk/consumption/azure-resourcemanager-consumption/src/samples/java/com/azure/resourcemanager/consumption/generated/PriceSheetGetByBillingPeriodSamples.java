@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for PriceSheet GetByBillingPeriod. */
 public final class PriceSheetGetByBillingPeriodSamples {
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/PriceSheetForBillingPeriod.json
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-05-01/examples/PriceSheetForBillingPeriod.json
      */
     /**
      * Sample code: PriceSheetForBillingPeriod.
@@ -21,7 +21,7 @@ public final class PriceSheetGetByBillingPeriodSamples {
     }
 
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/PriceSheetExpand.json
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-05-01/examples/PriceSheetExpand.json
      */
     /**
      * Sample code: PriceSheetExpand.

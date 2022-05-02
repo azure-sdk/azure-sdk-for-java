@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for ReservationsDetails List. */
 public final class ReservationsDetailsListSamples {
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/ReservationDetailsByBillingProfileIdReservationId.json
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-05-01/examples/ReservationDetailsByBillingProfileIdReservationId.json
      */
     /**
      * Sample code: ReservationDetailsByBillingProfileIdReservationId.
@@ -31,7 +31,7 @@ public final class ReservationsDetailsListSamples {
     }
 
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/ReservationDetailsByBillingAccountId.json
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-05-01/examples/ReservationDetailsByBillingAccountId.json
      */
     /**
      * Sample code: ReservationDetailsByBillingAccountId.
@@ -53,7 +53,7 @@ public final class ReservationsDetailsListSamples {
     }
 
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/ReservationDetailsByBillingProfileId.json
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-05-01/examples/ReservationDetailsByBillingProfileId.json
      */
     /**
      * Sample code: ReservationDetailsByBillingProfileId.

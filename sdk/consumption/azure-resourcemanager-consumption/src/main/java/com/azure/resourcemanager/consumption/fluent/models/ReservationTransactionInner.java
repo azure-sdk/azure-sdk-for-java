@@ -5,9 +5,7 @@
 package com.azure.resourcemanager.consumption.fluent.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.consumption.models.ReservationTransactionResource;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
@@ -16,8 +14,6 @@ import java.util.UUID;
 /** Reservation transaction resource. */
 @Fluent
 public class ReservationTransactionInner extends ReservationTransactionResource {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(ReservationTransactionInner.class);
-
     /*
      * The properties of a legacy reservation transaction.
      */
@@ -215,33 +211,6 @@ public class ReservationTransactionInner extends ReservationTransactionResource 
      */
     public String billingFrequency() {
         return this.innerProperties() == null ? null : this.innerProperties().billingFrequency();
-    }
-
-    /**
-     * Get the billingMonth property: The billing month(yyyyMMdd), on which the event initiated.
-     *
-     * @return the billingMonth value.
-     */
-    public Integer billingMonth() {
-        return this.innerProperties() == null ? null : this.innerProperties().billingMonth();
-    }
-
-    /**
-     * Get the monetaryCommitment property: The monetary commitment amount at the enrollment scope.
-     *
-     * @return the monetaryCommitment value.
-     */
-    public BigDecimal monetaryCommitment() {
-        return this.innerProperties() == null ? null : this.innerProperties().monetaryCommitment();
-    }
-
-    /**
-     * Get the overage property: The overage amount at the enrollment scope.
-     *
-     * @return the overage value.
-     */
-    public BigDecimal overage() {
-        return this.innerProperties() == null ? null : this.innerProperties().overage();
     }
 
     /**
