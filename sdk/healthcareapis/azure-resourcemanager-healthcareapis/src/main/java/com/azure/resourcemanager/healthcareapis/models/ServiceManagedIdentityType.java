@@ -34,7 +34,11 @@ public final class ServiceManagedIdentityType extends ExpandableStringEnum<Servi
         return fromString(name, ServiceManagedIdentityType.class);
     }
 
-    /** @return known ServiceManagedIdentityType values. */
+    /**
+     * Gets known ServiceManagedIdentityType values.
+     *
+     * @return known ServiceManagedIdentityType values.
+     */
     public static Collection<ServiceManagedIdentityType> values() {
         return values(ServiceManagedIdentityType.class);
     }

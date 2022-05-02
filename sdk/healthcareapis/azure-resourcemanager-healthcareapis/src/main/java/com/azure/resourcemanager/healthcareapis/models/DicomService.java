@@ -84,6 +84,13 @@ public interface DicomService {
     DicomServiceAuthenticationConfiguration authenticationConfiguration();
 
     /**
+     * Gets the corsConfiguration property: Dicom Service Cors configuration.
+     *
+     * @return the corsConfiguration value.
+     */
+    CorsConfiguration corsConfiguration();
+
+    /**
      * Gets the serviceUrl property: The url of the Dicom Services.
      *
      * @return the serviceUrl value.
@@ -157,6 +164,7 @@ public interface DicomService {
                 DefinitionStages.WithEtag,
                 DefinitionStages.WithIdentity,
                 DefinitionStages.WithAuthenticationConfiguration,
+                DefinitionStages.WithCorsConfiguration,
                 DefinitionStages.WithPublicNetworkAccess {
             /**
              * Executes the create request.
@@ -233,6 +241,16 @@ public interface DicomService {
              */
             WithCreate withAuthenticationConfiguration(
                 DicomServiceAuthenticationConfiguration authenticationConfiguration);
+        }
+        /** The stage of the DicomService definition allowing to specify corsConfiguration. */
+        interface WithCorsConfiguration {
+            /**
+             * Specifies the corsConfiguration property: Dicom Service Cors configuration..
+             *
+             * @param corsConfiguration Dicom Service Cors configuration.
+             * @return the next definition stage.
+             */
+            WithCreate withCorsConfiguration(CorsConfiguration corsConfiguration);
         }
         /** The stage of the DicomService definition allowing to specify publicNetworkAccess. */
         interface WithPublicNetworkAccess {

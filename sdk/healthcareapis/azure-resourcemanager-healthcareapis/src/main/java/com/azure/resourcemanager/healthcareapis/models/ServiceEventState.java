@@ -30,7 +30,11 @@ public final class ServiceEventState extends ExpandableStringEnum<ServiceEventSt
         return fromString(name, ServiceEventState.class);
     }
 
-    /** @return known ServiceEventState values. */
+    /**
+     * Gets known ServiceEventState values.
+     *
+     * @return known ServiceEventState values.
+     */
     public static Collection<ServiceEventState> values() {
         return values(ServiceEventState.class);
     }

@@ -8,6 +8,7 @@ import com.azure.core.management.Region;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.healthcareapis.fluent.models.DicomServiceInner;
+import com.azure.resourcemanager.healthcareapis.models.CorsConfiguration;
 import com.azure.resourcemanager.healthcareapis.models.DicomService;
 import com.azure.resourcemanager.healthcareapis.models.DicomServiceAuthenticationConfiguration;
 import com.azure.resourcemanager.healthcareapis.models.DicomServicePatchResource;
@@ -67,6 +68,10 @@ public final class DicomServiceImpl implements DicomService, DicomService.Defini
 
     public DicomServiceAuthenticationConfiguration authenticationConfiguration() {
         return this.innerModel().authenticationConfiguration();
+    }
+
+    public CorsConfiguration corsConfiguration() {
+        return this.innerModel().corsConfiguration();
     }
 
     public String serviceUrl() {
@@ -231,6 +236,11 @@ public final class DicomServiceImpl implements DicomService, DicomService.Defini
     public DicomServiceImpl withAuthenticationConfiguration(
         DicomServiceAuthenticationConfiguration authenticationConfiguration) {
         this.innerModel().withAuthenticationConfiguration(authenticationConfiguration);
+        return this;
+    }
+
+    public DicomServiceImpl withCorsConfiguration(CorsConfiguration corsConfiguration) {
+        this.innerModel().withCorsConfiguration(corsConfiguration);
         return this;
     }
 
