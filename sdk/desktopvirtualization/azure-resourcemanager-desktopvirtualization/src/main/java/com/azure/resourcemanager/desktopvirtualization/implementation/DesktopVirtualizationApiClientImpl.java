@@ -49,8 +49,6 @@ import reactor.core.publisher.Mono;
 /** Initializes a new instance of the DesktopVirtualizationApiClientImpl type. */
 @ServiceClient(builder = DesktopVirtualizationApiClientBuilder.class)
 public final class DesktopVirtualizationApiClientImpl implements DesktopVirtualizationApiClient {
-    private final ClientLogger logger = new ClientLogger(DesktopVirtualizationApiClientImpl.class);
-
     /** The ID of the target subscription. */
     private final String subscriptionId;
 
@@ -413,7 +411,7 @@ public final class DesktopVirtualizationApiClientImpl implements DesktopVirtuali
                             managementError = null;
                         }
                     } catch (IOException | RuntimeException ioe) {
-                        logger.logThrowableAsWarning(ioe);
+                        LOGGER.logThrowableAsWarning(ioe);
                     }
                 }
             } else {
@@ -472,4 +470,6 @@ public final class DesktopVirtualizationApiClientImpl implements DesktopVirtuali
             return Mono.just(new String(responseBody, charset));
         }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(DesktopVirtualizationApiClientImpl.class);
 }

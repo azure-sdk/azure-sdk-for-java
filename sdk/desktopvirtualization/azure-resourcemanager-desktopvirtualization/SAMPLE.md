@@ -399,7 +399,6 @@ public final class ApplicationsListSamples {
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.desktopvirtualization.models.Application;
 import com.azure.resourcemanager.desktopvirtualization.models.CommandLineSetting;
-import com.azure.resourcemanager.desktopvirtualization.models.RemoteApplicationType;
 
 /** Samples for Applications Update. */
 public final class ApplicationsUpdateSamples {
@@ -428,7 +427,6 @@ public final class ApplicationsUpdateSamples {
             .withShowInPortal(true)
             .withIconPath("icon")
             .withIconIndex(1)
-            .withApplicationType(RemoteApplicationType.IN_BUILT)
             .apply();
     }
 }
