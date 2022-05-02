@@ -6,14 +6,11 @@ package com.azure.resourcemanager.dataprotection.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Backup Instance. */
 @Fluent
 public final class BackupInstance {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(BackupInstance.class);
-
     /*
      * Gets or sets the Backup Instance friendly name.
      */
@@ -239,7 +236,7 @@ public final class BackupInstance {
      */
     public void validate() {
         if (dataSourceInfo() == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property dataSourceInfo in model BackupInstance"));
         } else {
@@ -249,7 +246,7 @@ public final class BackupInstance {
             dataSourceSetInfo().validate();
         }
         if (policyInfo() == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property policyInfo in model BackupInstance"));
         } else {
@@ -265,9 +262,11 @@ public final class BackupInstance {
             datasourceAuthCredentials().validate();
         }
         if (objectType() == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property objectType in model BackupInstance"));
         }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(BackupInstance.class);
 }

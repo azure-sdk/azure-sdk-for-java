@@ -51,7 +51,11 @@ public final class ResourceMoveState extends ExpandableStringEnum<ResourceMoveSt
         return fromString(name, ResourceMoveState.class);
     }
 
-    /** @return known ResourceMoveState values. */
+    /**
+     * Gets known ResourceMoveState values.
+     *
+     * @return known ResourceMoveState values.
+     */
     public static Collection<ResourceMoveState> values() {
         return values(ResourceMoveState.class);
     }

@@ -309,10 +309,11 @@ public final class BackupInstancesTriggerRehydrateSamples {
 ```java
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.dataprotection.models.AzureBackupRecoveryPointBasedRestoreRequest;
-import com.azure.resourcemanager.dataprotection.models.AzureBackupRestoreRequest;
+import com.azure.resourcemanager.dataprotection.models.AzureBackupRestoreWithRehydrationRequest;
 import com.azure.resourcemanager.dataprotection.models.Datasource;
 import com.azure.resourcemanager.dataprotection.models.DatasourceSet;
 import com.azure.resourcemanager.dataprotection.models.RecoveryOption;
+import com.azure.resourcemanager.dataprotection.models.RehydrationPriority;
 import com.azure.resourcemanager.dataprotection.models.RestoreFilesTargetInfo;
 import com.azure.resourcemanager.dataprotection.models.RestoreTargetInfo;
 import com.azure.resourcemanager.dataprotection.models.RestoreTargetLocationType;
@@ -370,7 +371,7 @@ public final class BackupInstancesTriggerRestoreSamples {
                 "PratikPrivatePreviewVault1",
                 "000pikumar",
                 "testInstance1",
-                new AzureBackupRestoreRequest()
+                new AzureBackupRestoreWithRehydrationRequest()
                     .withRestoreTargetInfo(
                         new RestoreTargetInfo()
                             .withRecoveryOption(RecoveryOption.FAIL_IF_EXISTS)
@@ -395,7 +396,10 @@ public final class BackupInstancesTriggerRestoreSamples {
                                     .withResourceName("viveksipgtest")
                                     .withResourceType("Microsoft.DBforPostgreSQL/servers")
                                     .withResourceUri("")))
-                    .withSourceDataStoreType(SourceDataStoreType.VAULT_STORE),
+                    .withSourceDataStoreType(SourceDataStoreType.VAULT_STORE)
+                    .withRecoveryPointId("hardcodedRP")
+                    .withRehydrationPriority(RehydrationPriority.HIGH)
+                    .withRehydrationRetentionDuration("7D"),
                 Context.NONE);
     }
 

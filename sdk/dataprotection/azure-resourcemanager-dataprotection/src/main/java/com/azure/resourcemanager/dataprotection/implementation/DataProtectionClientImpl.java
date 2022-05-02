@@ -49,8 +49,6 @@ import reactor.core.publisher.Mono;
 /** Initializes a new instance of the DataProtectionClientImpl type. */
 @ServiceClient(builder = DataProtectionClientBuilder.class)
 public final class DataProtectionClientImpl implements DataProtectionClient {
-    private final ClientLogger logger = new ClientLogger(DataProtectionClientImpl.class);
-
     /** The subscription Id. */
     private final String subscriptionId;
 
@@ -413,7 +411,7 @@ public final class DataProtectionClientImpl implements DataProtectionClient {
                             managementError = null;
                         }
                     } catch (IOException | RuntimeException ioe) {
-                        logger.logThrowableAsWarning(ioe);
+                        LOGGER.logThrowableAsWarning(ioe);
                     }
                 }
             } else {
@@ -472,4 +470,6 @@ public final class DataProtectionClientImpl implements DataProtectionClient {
             return Mono.just(new String(responseBody, charset));
         }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(DataProtectionClientImpl.class);
 }

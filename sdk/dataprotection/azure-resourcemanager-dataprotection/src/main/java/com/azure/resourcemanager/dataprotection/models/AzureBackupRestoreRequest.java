@@ -6,7 +6,6 @@ package com.azure.resourcemanager.dataprotection.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
@@ -29,8 +28,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 })
 @Fluent
 public class AzureBackupRestoreRequest {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(AzureBackupRestoreRequest.class);
-
     /*
      * Gets or sets the restore target information.
      */
@@ -90,7 +87,7 @@ public class AzureBackupRestoreRequest {
      */
     public void validate() {
         if (restoreTargetInfo() == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property restoreTargetInfo in model AzureBackupRestoreRequest"));
@@ -98,10 +95,12 @@ public class AzureBackupRestoreRequest {
             restoreTargetInfo().validate();
         }
         if (sourceDataStoreType() == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property sourceDataStoreType in model AzureBackupRestoreRequest"));
         }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(AzureBackupRestoreRequest.class);
 }

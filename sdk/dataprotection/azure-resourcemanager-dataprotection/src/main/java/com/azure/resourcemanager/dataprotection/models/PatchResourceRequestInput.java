@@ -5,8 +5,6 @@
 package com.azure.resourcemanager.dataprotection.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
@@ -14,8 +12,6 @@ import java.util.Map;
 /** PatchResourceRequestInput Patch Request content for Microsoft.DataProtection resources. */
 @Fluent
 public final class PatchResourceRequestInput {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(PatchResourceRequestInput.class);
-
     /*
      * DppIdentityDetails Input Managed Identity Details
      */

@@ -18,7 +18,7 @@ public interface BackupPolicies {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return baseBackupPolicyResourceList.
+     * @return baseBackupPolicyResourceList as paginated response with {@link PagedIterable}.
      */
     PagedIterable<BaseBackupPolicyResource> list(String vaultName, String resourceGroupName);
 
@@ -31,7 +31,7 @@ public interface BackupPolicies {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return baseBackupPolicyResourceList.
+     * @return baseBackupPolicyResourceList as paginated response with {@link PagedIterable}.
      */
     PagedIterable<BaseBackupPolicyResource> list(String vaultName, String resourceGroupName, Context context);
 
@@ -58,7 +58,7 @@ public interface BackupPolicies {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a backup policy belonging to a backup vault.
+     * @return a backup policy belonging to a backup vault along with {@link Response}.
      */
     Response<BaseBackupPolicyResource> getWithResponse(
         String vaultName, String resourceGroupName, String backupPolicyName, Context context);
@@ -85,7 +85,7 @@ public interface BackupPolicies {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
+     * @return the {@link Response}.
      */
     Response<Void> deleteWithResponse(
         String vaultName, String resourceGroupName, String backupPolicyName, Context context);
@@ -97,7 +97,7 @@ public interface BackupPolicies {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a backup policy belonging to a backup vault.
+     * @return a backup policy belonging to a backup vault along with {@link Response}.
      */
     BaseBackupPolicyResource getById(String id);
 
@@ -109,7 +109,7 @@ public interface BackupPolicies {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a backup policy belonging to a backup vault.
+     * @return a backup policy belonging to a backup vault along with {@link Response}.
      */
     Response<BaseBackupPolicyResource> getByIdWithResponse(String id, Context context);
 
@@ -131,7 +131,7 @@ public interface BackupPolicies {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
+     * @return the {@link Response}.
      */
     Response<Void> deleteByIdWithResponse(String id, Context context);
 

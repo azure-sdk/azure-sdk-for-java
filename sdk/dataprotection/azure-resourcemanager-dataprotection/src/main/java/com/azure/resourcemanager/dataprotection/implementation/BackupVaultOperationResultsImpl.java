@@ -13,10 +13,9 @@ import com.azure.resourcemanager.dataprotection.fluent.models.BackupVaultResourc
 import com.azure.resourcemanager.dataprotection.models.BackupVaultOperationResults;
 import com.azure.resourcemanager.dataprotection.models.BackupVaultOperationResultsGetResponse;
 import com.azure.resourcemanager.dataprotection.models.BackupVaultResource;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public final class BackupVaultOperationResultsImpl implements BackupVaultOperationResults {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(BackupVaultOperationResultsImpl.class);
+    private static final ClientLogger LOGGER = new ClientLogger(BackupVaultOperationResultsImpl.class);
 
     private final BackupVaultOperationResultsClient innerClient;
 

@@ -18,7 +18,7 @@ public interface BackupInstances {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a backup instances belonging to a backup vault.
+     * @return a backup instances belonging to a backup vault as paginated response with {@link PagedIterable}.
      */
     PagedIterable<BackupInstanceResource> list(String vaultName, String resourceGroupName);
 
@@ -31,7 +31,7 @@ public interface BackupInstances {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a backup instances belonging to a backup vault.
+     * @return a backup instances belonging to a backup vault as paginated response with {@link PagedIterable}.
      */
     PagedIterable<BackupInstanceResource> list(String vaultName, String resourceGroupName, Context context);
 
@@ -58,7 +58,7 @@ public interface BackupInstances {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a backup instance with name in a backup vault.
+     * @return a backup instance with name in a backup vault along with {@link Response}.
      */
     Response<BackupInstanceResource> getWithResponse(
         String vaultName, String resourceGroupName, String backupInstanceName, Context context);
@@ -265,7 +265,7 @@ public interface BackupInstances {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a backup instance with name in a backup vault.
+     * @return a backup instance with name in a backup vault along with {@link Response}.
      */
     BackupInstanceResource getById(String id);
 
@@ -277,7 +277,7 @@ public interface BackupInstances {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a backup instance with name in a backup vault.
+     * @return a backup instance with name in a backup vault along with {@link Response}.
      */
     Response<BackupInstanceResource> getByIdWithResponse(String id, Context context);
 

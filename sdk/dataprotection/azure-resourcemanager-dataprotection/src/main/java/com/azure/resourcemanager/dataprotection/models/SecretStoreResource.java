@@ -6,14 +6,11 @@ package com.azure.resourcemanager.dataprotection.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Class representing a secret store resource. */
 @Fluent
 public final class SecretStoreResource {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(SecretStoreResource.class);
-
     /*
      * Uri to get to the resource
      */
@@ -73,10 +70,12 @@ public final class SecretStoreResource {
      */
     public void validate() {
         if (secretStoreType() == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property secretStoreType in model SecretStoreResource"));
         }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(SecretStoreResource.class);
 }
