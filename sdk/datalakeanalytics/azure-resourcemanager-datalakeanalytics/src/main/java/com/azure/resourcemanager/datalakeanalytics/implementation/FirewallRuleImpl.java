@@ -19,20 +19,20 @@ public final class FirewallRuleImpl implements FirewallRule, FirewallRule.Defini
         return this.innerModel().id();
     }
 
-    public String startIpAddress() {
-        return this.innerModel().startIpAddress();
-    }
-
-    public String endIpAddress() {
-        return this.innerModel().endIpAddress();
-    }
-
     public String name() {
         return this.innerModel().name();
     }
 
     public String type() {
         return this.innerModel().type();
+    }
+
+    public String startIpAddress() {
+        return this.innerModel().startIpAddress();
+    }
+
+    public String endIpAddress() {
+        return this.innerModel().endIpAddress();
     }
 
     public FirewallRuleInner innerModel() {

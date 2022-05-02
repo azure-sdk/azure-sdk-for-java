@@ -18,6 +18,20 @@ public interface ComputePolicy {
     String id();
 
     /**
+     * Gets the name property: The resource name.
+     *
+     * @return the name value.
+     */
+    String name();
+
+    /**
+     * Gets the type property: The resource type.
+     *
+     * @return the type value.
+     */
+    String type();
+
+    /**
      * Gets the objectId property: The AAD object identifier for the entity to create a policy for.
      *
      * @return the objectId value.
@@ -45,20 +59,6 @@ public interface ComputePolicy {
      * @return the minPriorityPerJob value.
      */
     Integer minPriorityPerJob();
-
-    /**
-     * Gets the name property: The resource name.
-     *
-     * @return the name value.
-     */
-    String name();
-
-    /**
-     * Gets the type property: The resource type.
-     *
-     * @return the type value.
-     */
-    String type();
 
     /**
      * Gets the inner com.azure.resourcemanager.datalakeanalytics.fluent.models.ComputePolicyInner object.

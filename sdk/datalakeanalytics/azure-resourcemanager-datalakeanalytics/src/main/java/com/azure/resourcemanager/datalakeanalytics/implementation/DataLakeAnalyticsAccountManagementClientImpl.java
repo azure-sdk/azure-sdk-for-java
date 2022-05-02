@@ -42,8 +42,6 @@ import reactor.core.publisher.Mono;
 /** Initializes a new instance of the DataLakeAnalyticsAccountManagementClientImpl type. */
 @ServiceClient(builder = DataLakeAnalyticsAccountManagementClientBuilder.class)
 public final class DataLakeAnalyticsAccountManagementClientImpl implements DataLakeAnalyticsAccountManagementClient {
-    private final ClientLogger logger = new ClientLogger(DataLakeAnalyticsAccountManagementClientImpl.class);
-
     /**
      * Get subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part
      * of the URI for every service call.
@@ -227,7 +225,7 @@ public final class DataLakeAnalyticsAccountManagementClientImpl implements DataL
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2016-11-01";
+        this.apiVersion = "2019-11-01-preview";
         this.accounts = new AccountsClientImpl(this);
         this.dataLakeStoreAccounts = new DataLakeStoreAccountsClientImpl(this);
         this.storageAccounts = new StorageAccountsClientImpl(this);
@@ -320,7 +318,7 @@ public final class DataLakeAnalyticsAccountManagementClientImpl implements DataL
                             managementError = null;
                         }
                     } catch (IOException | RuntimeException ioe) {
-                        logger.logThrowableAsWarning(ioe);
+                        LOGGER.logThrowableAsWarning(ioe);
                     }
                 }
             } else {
@@ -379,4 +377,6 @@ public final class DataLakeAnalyticsAccountManagementClientImpl implements DataL
             return Mono.just(new String(responseBody, charset));
         }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(DataLakeAnalyticsAccountManagementClientImpl.class);
 }

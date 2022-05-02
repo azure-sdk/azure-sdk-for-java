@@ -5,17 +5,13 @@
 package com.azure.resourcemanager.datalakeanalytics.models;
 
 import com.azure.core.annotation.Immutable;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.datalakeanalytics.fluent.models.DataLakeAnalyticsAccountBasicInner;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** Data Lake Analytics account list information. */
 @Immutable
 public final class DataLakeAnalyticsAccountListResult {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(DataLakeAnalyticsAccountListResult.class);
-
     /*
      * The results of the list operation.
      */
