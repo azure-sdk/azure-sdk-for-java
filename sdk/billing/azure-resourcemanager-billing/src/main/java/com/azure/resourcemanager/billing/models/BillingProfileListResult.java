@@ -5,17 +5,13 @@
 package com.azure.resourcemanager.billing.models;
 
 import com.azure.core.annotation.Immutable;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.billing.fluent.models.BillingProfileInner;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** The list of billing profiles. */
 @Immutable
 public final class BillingProfileListResult {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(BillingProfileListResult.class);
-
     /*
      * The list of billing profiles.
      */
