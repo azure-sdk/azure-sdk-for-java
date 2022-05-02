@@ -57,7 +57,11 @@ public final class Month extends ExpandableStringEnum<Month> {
         return fromString(name, Month.class);
     }
 
-    /** @return known Month values. */
+    /**
+     * Gets known Month values.
+     *
+     * @return known Month values.
+     */
     public static Collection<Month> values() {
         return values(Month.class);
     }
