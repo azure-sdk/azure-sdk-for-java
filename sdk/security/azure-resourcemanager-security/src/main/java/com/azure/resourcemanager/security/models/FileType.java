@@ -39,7 +39,11 @@ public final class FileType extends ExpandableStringEnum<FileType> {
         return fromString(name, FileType.class);
     }
 
-    /** @return known FileType values. */
+    /**
+     * Gets known FileType values.
+     *
+     * @return known FileType values.
+     */
     public static Collection<FileType> values() {
         return values(FileType.class);
     }

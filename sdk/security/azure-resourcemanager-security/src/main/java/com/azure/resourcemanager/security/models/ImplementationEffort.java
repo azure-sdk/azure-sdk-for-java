@@ -30,7 +30,11 @@ public final class ImplementationEffort extends ExpandableStringEnum<Implementat
         return fromString(name, ImplementationEffort.class);
     }
 
-    /** @return known ImplementationEffort values. */
+    /**
+     * Gets known ImplementationEffort values.
+     *
+     * @return known ImplementationEffort values.
+     */
     public static Collection<ImplementationEffort> values() {
         return values(ImplementationEffort.class);
     }

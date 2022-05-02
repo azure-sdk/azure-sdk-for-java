@@ -36,7 +36,11 @@ public final class SourceSystem extends ExpandableStringEnum<SourceSystem> {
         return fromString(name, SourceSystem.class);
     }
 
-    /** @return known SourceSystem values. */
+    /**
+     * Gets known SourceSystem values.
+     *
+     * @return known SourceSystem values.
+     */
     public static Collection<SourceSystem> values() {
         return values(SourceSystem.class);
     }

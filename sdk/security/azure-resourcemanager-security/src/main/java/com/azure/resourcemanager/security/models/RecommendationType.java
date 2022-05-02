@@ -73,7 +73,11 @@ public final class RecommendationType extends ExpandableStringEnum<Recommendatio
         return fromString(name, RecommendationType.class);
     }
 
-    /** @return known RecommendationType values. */
+    /**
+     * Gets known RecommendationType values.
+     *
+     * @return known RecommendationType values.
+     */
     public static Collection<RecommendationType> values() {
         return values(RecommendationType.class);
     }

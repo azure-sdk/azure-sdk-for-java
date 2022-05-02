@@ -31,7 +31,11 @@ public final class AssessedResourceType extends ExpandableStringEnum<AssessedRes
         return fromString(name, AssessedResourceType.class);
     }
 
-    /** @return known AssessedResourceType values. */
+    /**
+     * Gets known AssessedResourceType values.
+     *
+     * @return known AssessedResourceType values.
+     */
     public static Collection<AssessedResourceType> values() {
         return values(AssessedResourceType.class);
     }
