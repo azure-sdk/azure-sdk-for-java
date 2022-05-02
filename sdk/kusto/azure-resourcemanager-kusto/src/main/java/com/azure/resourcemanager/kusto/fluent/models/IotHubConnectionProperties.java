@@ -6,18 +6,14 @@ package com.azure.resourcemanager.kusto.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
-import com.azure.resourcemanager.kusto.models.DatabaseRouting;
 import com.azure.resourcemanager.kusto.models.IotHubDataFormat;
 import com.azure.resourcemanager.kusto.models.ProvisioningState;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** Class representing the Kusto Iot hub connection properties. */
 @Fluent
 public final class IotHubConnectionProperties {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(IotHubConnectionProperties.class);
-
     /*
      * The resource ID of the Iot hub to be used to create a data connection.
      */
@@ -62,13 +58,6 @@ public final class IotHubConnectionProperties {
      */
     @JsonProperty(value = "sharedAccessPolicyName", required = true)
     private String sharedAccessPolicyName;
-
-    /*
-     * Indication for database routing information from the data connection, by
-     * default only database routing information is allowed
-     */
-    @JsonProperty(value = "databaseRouting")
-    private DatabaseRouting databaseRouting;
 
     /*
      * The provisioned state of the resource.
@@ -223,28 +212,6 @@ public final class IotHubConnectionProperties {
     }
 
     /**
-     * Get the databaseRouting property: Indication for database routing information from the data connection, by
-     * default only database routing information is allowed.
-     *
-     * @return the databaseRouting value.
-     */
-    public DatabaseRouting databaseRouting() {
-        return this.databaseRouting;
-    }
-
-    /**
-     * Set the databaseRouting property: Indication for database routing information from the data connection, by
-     * default only database routing information is allowed.
-     *
-     * @param databaseRouting the databaseRouting value to set.
-     * @return the IotHubConnectionProperties object itself.
-     */
-    public IotHubConnectionProperties withDatabaseRouting(DatabaseRouting databaseRouting) {
-        this.databaseRouting = databaseRouting;
-        return this;
-    }
-
-    /**
      * Get the provisioningState property: The provisioned state of the resource.
      *
      * @return the provisioningState value.
@@ -260,22 +227,24 @@ public final class IotHubConnectionProperties {
      */
     public void validate() {
         if (iotHubResourceId() == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property iotHubResourceId in model IotHubConnectionProperties"));
         }
         if (consumerGroup() == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property consumerGroup in model IotHubConnectionProperties"));
         }
         if (sharedAccessPolicyName() == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property sharedAccessPolicyName in model IotHubConnectionProperties"));
         }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(IotHubConnectionProperties.class);
 }

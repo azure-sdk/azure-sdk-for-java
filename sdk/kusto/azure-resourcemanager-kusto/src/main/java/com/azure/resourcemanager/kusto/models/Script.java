@@ -39,28 +39,18 @@ public interface Script {
     SystemData systemData();
 
     /**
-     * Gets the scriptUrl property: The url to the KQL script blob file. Must not be used together with scriptContent
-     * property.
+     * Gets the scriptUrl property: The url to the KQL script blob file.
      *
      * @return the scriptUrl value.
      */
     String scriptUrl();
 
     /**
-     * Gets the scriptUrlSasToken property: The SaS token that provide read access to the file which contain the script.
-     * Must be provided when using scriptUrl property.
+     * Gets the scriptUrlSasToken property: The SaS token.
      *
      * @return the scriptUrlSasToken value.
      */
     String scriptUrlSasToken();
-
-    /**
-     * Gets the scriptContent property: The script content. This property should be used when the script is provide
-     * inline and not through file in a SA. Must not be used together with scriptUrl and scriptUrlSasToken properties.
-     *
-     * @return the scriptContent value.
-     */
-    String scriptContent();
 
     /**
      * Gets the forceUpdateTag property: A unique string. If changed the script will be applied again.
@@ -118,7 +108,6 @@ public interface Script {
         interface WithCreate
             extends DefinitionStages.WithScriptUrl,
                 DefinitionStages.WithScriptUrlSasToken,
-                DefinitionStages.WithScriptContent,
                 DefinitionStages.WithForceUpdateTag,
                 DefinitionStages.WithContinueOnErrors {
             /**
@@ -139,11 +128,9 @@ public interface Script {
         /** The stage of the Script definition allowing to specify scriptUrl. */
         interface WithScriptUrl {
             /**
-             * Specifies the scriptUrl property: The url to the KQL script blob file. Must not be used together with
-             * scriptContent property.
+             * Specifies the scriptUrl property: The url to the KQL script blob file..
              *
-             * @param scriptUrl The url to the KQL script blob file. Must not be used together with scriptContent
-             *     property.
+             * @param scriptUrl The url to the KQL script blob file.
              * @return the next definition stage.
              */
             WithCreate withScriptUrl(String scriptUrl);
@@ -151,28 +138,12 @@ public interface Script {
         /** The stage of the Script definition allowing to specify scriptUrlSasToken. */
         interface WithScriptUrlSasToken {
             /**
-             * Specifies the scriptUrlSasToken property: The SaS token that provide read access to the file which
-             * contain the script. Must be provided when using scriptUrl property..
+             * Specifies the scriptUrlSasToken property: The SaS token..
              *
-             * @param scriptUrlSasToken The SaS token that provide read access to the file which contain the script.
-             *     Must be provided when using scriptUrl property.
+             * @param scriptUrlSasToken The SaS token.
              * @return the next definition stage.
              */
             WithCreate withScriptUrlSasToken(String scriptUrlSasToken);
-        }
-        /** The stage of the Script definition allowing to specify scriptContent. */
-        interface WithScriptContent {
-            /**
-             * Specifies the scriptContent property: The script content. This property should be used when the script is
-             * provide inline and not through file in a SA. Must not be used together with scriptUrl and
-             * scriptUrlSasToken properties..
-             *
-             * @param scriptContent The script content. This property should be used when the script is provide inline
-             *     and not through file in a SA. Must not be used together with scriptUrl and scriptUrlSasToken
-             *     properties.
-             * @return the next definition stage.
-             */
-            WithCreate withScriptContent(String scriptContent);
         }
         /** The stage of the Script definition allowing to specify forceUpdateTag. */
         interface WithForceUpdateTag {
@@ -226,11 +197,9 @@ public interface Script {
         /** The stage of the Script update allowing to specify scriptUrl. */
         interface WithScriptUrl {
             /**
-             * Specifies the scriptUrl property: The url to the KQL script blob file. Must not be used together with
-             * scriptContent property.
+             * Specifies the scriptUrl property: The url to the KQL script blob file..
              *
-             * @param scriptUrl The url to the KQL script blob file. Must not be used together with scriptContent
-             *     property.
+             * @param scriptUrl The url to the KQL script blob file.
              * @return the next definition stage.
              */
             Update withScriptUrl(String scriptUrl);

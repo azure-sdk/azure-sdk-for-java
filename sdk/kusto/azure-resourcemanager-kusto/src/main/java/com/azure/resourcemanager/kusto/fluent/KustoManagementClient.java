@@ -128,11 +128,4 @@ public interface KustoManagementClient {
      * @return the OperationsResultsClient object.
      */
     OperationsResultsClient getOperationsResults();
-
-    /**
-     * Gets the OperationsResultsLocationsClient object to access its operations.
-     *
-     * @return the OperationsResultsLocationsClient object.
-     */
-    OperationsResultsLocationsClient getOperationsResultsLocations();
 }

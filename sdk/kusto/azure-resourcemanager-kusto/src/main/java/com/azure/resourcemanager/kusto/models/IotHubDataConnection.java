@@ -5,10 +5,8 @@
 package com.azure.resourcemanager.kusto.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.kusto.fluent.models.DataConnectionInner;
 import com.azure.resourcemanager.kusto.fluent.models.IotHubConnectionProperties;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
@@ -19,8 +17,6 @@ import java.util.List;
 @JsonTypeName("IotHub")
 @Fluent
 public final class IotHubDataConnection extends DataConnectionInner {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(IotHubDataConnection.class);
-
     /*
      * The Iot Hub data connection properties.
      */
@@ -207,31 +203,6 @@ public final class IotHubDataConnection extends DataConnectionInner {
             this.innerProperties = new IotHubConnectionProperties();
         }
         this.innerProperties().withSharedAccessPolicyName(sharedAccessPolicyName);
-        return this;
-    }
-
-    /**
-     * Get the databaseRouting property: Indication for database routing information from the data connection, by
-     * default only database routing information is allowed.
-     *
-     * @return the databaseRouting value.
-     */
-    public DatabaseRouting databaseRouting() {
-        return this.innerProperties() == null ? null : this.innerProperties().databaseRouting();
-    }
-
-    /**
-     * Set the databaseRouting property: Indication for database routing information from the data connection, by
-     * default only database routing information is allowed.
-     *
-     * @param databaseRouting the databaseRouting value to set.
-     * @return the IotHubDataConnection object itself.
-     */
-    public IotHubDataConnection withDatabaseRouting(DatabaseRouting databaseRouting) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new IotHubConnectionProperties();
-        }
-        this.innerProperties().withDatabaseRouting(databaseRouting);
         return this;
     }
 

@@ -57,10 +57,6 @@ public final class DatabasePrincipalAssignmentImpl
         return this.innerModel().provisioningState();
     }
 
-    public String aadObjectId() {
-        return this.innerModel().aadObjectId();
-    }
-
     public DatabasePrincipalAssignmentInner innerModel() {
         return this.innerObject;
     }

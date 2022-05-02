@@ -7,35 +7,22 @@ package com.azure.resourcemanager.kusto.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.kusto.models.ProvisioningState;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** A class representing database script property. */
 @Fluent
 public final class ScriptProperties {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(ScriptProperties.class);
-
     /*
-     * The url to the KQL script blob file. Must not be used together with
-     * scriptContent property
+     * The url to the KQL script blob file.
      */
-    @JsonProperty(value = "scriptUrl")
+    @JsonProperty(value = "scriptUrl", required = true)
     private String scriptUrl;
 
     /*
-     * The SaS token that provide read access to the file which contain the
-     * script. Must be provided when using scriptUrl property.
+     * The SaS token.
      */
-    @JsonProperty(value = "scriptUrlSasToken")
+    @JsonProperty(value = "scriptUrlSasToken", required = true)
     private String scriptUrlSasToken;
-
-    /*
-     * The script content. This property should be used when the script is
-     * provide inline and not through file in a SA. Must not be used together
-     * with scriptUrl and scriptUrlSasToken properties.
-     */
-    @JsonProperty(value = "scriptContent")
-    private String scriptContent;
 
     /*
      * A unique string. If changed the script will be applied again.
@@ -56,8 +43,7 @@ public final class ScriptProperties {
     private ProvisioningState provisioningState;
 
     /**
-     * Get the scriptUrl property: The url to the KQL script blob file. Must not be used together with scriptContent
-     * property.
+     * Get the scriptUrl property: The url to the KQL script blob file.
      *
      * @return the scriptUrl value.
      */
@@ -66,8 +52,7 @@ public final class ScriptProperties {
     }
 
     /**
-     * Set the scriptUrl property: The url to the KQL script blob file. Must not be used together with scriptContent
-     * property.
+     * Set the scriptUrl property: The url to the KQL script blob file.
      *
      * @param scriptUrl the scriptUrl value to set.
      * @return the ScriptProperties object itself.
@@ -78,8 +63,7 @@ public final class ScriptProperties {
     }
 
     /**
-     * Get the scriptUrlSasToken property: The SaS token that provide read access to the file which contain the script.
-     * Must be provided when using scriptUrl property.
+     * Get the scriptUrlSasToken property: The SaS token.
      *
      * @return the scriptUrlSasToken value.
      */
@@ -88,36 +72,13 @@ public final class ScriptProperties {
     }
 
     /**
-     * Set the scriptUrlSasToken property: The SaS token that provide read access to the file which contain the script.
-     * Must be provided when using scriptUrl property.
+     * Set the scriptUrlSasToken property: The SaS token.
      *
      * @param scriptUrlSasToken the scriptUrlSasToken value to set.
      * @return the ScriptProperties object itself.
      */
     public ScriptProperties withScriptUrlSasToken(String scriptUrlSasToken) {
         this.scriptUrlSasToken = scriptUrlSasToken;
-        return this;
-    }
-
-    /**
-     * Get the scriptContent property: The script content. This property should be used when the script is provide
-     * inline and not through file in a SA. Must not be used together with scriptUrl and scriptUrlSasToken properties.
-     *
-     * @return the scriptContent value.
-     */
-    public String scriptContent() {
-        return this.scriptContent;
-    }
-
-    /**
-     * Set the scriptContent property: The script content. This property should be used when the script is provide
-     * inline and not through file in a SA. Must not be used together with scriptUrl and scriptUrlSasToken properties.
-     *
-     * @param scriptContent the scriptContent value to set.
-     * @return the ScriptProperties object itself.
-     */
-    public ScriptProperties withScriptContent(String scriptContent) {
-        this.scriptContent = scriptContent;
         return this;
     }
 
@@ -176,5 +137,18 @@ public final class ScriptProperties {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+        if (scriptUrl() == null) {
+            throw LOGGER
+                .logExceptionAsError(
+                    new IllegalArgumentException("Missing required property scriptUrl in model ScriptProperties"));
+        }
+        if (scriptUrlSasToken() == null) {
+            throw LOGGER
+                .logExceptionAsError(
+                    new IllegalArgumentException(
+                        "Missing required property scriptUrlSasToken in model ScriptProperties"));
+        }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(ScriptProperties.class);
 }
