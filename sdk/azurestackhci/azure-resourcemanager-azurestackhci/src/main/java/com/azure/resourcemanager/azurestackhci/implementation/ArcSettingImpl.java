@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.azurestackhci.implementation;
 
-import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.azurestackhci.fluent.models.ArcSettingInner;
 import com.azure.resourcemanager.azurestackhci.models.ArcSetting;
@@ -35,10 +34,6 @@ public final class ArcSettingImpl implements ArcSetting, ArcSetting.Definition {
 
     public String type() {
         return this.innerModel().type();
-    }
-
-    public SystemData systemData() {
-        return this.innerModel().systemData();
     }
 
     public ProvisioningState provisioningState() {
@@ -125,11 +120,6 @@ public final class ArcSettingImpl implements ArcSetting, ArcSetting.Definition {
                 .getArcSettings()
                 .getWithResponse(resourceGroupName, clusterName, arcSettingName, context)
                 .getValue();
-        return this;
-    }
-
-    public ArcSettingImpl withArcInstanceResourceGroup(String arcInstanceResourceGroup) {
-        this.innerModel().withArcInstanceResourceGroup(arcInstanceResourceGroup);
         return this;
     }
 }

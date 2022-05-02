@@ -4,7 +4,7 @@
 
 package com.azure.resourcemanager.azurestackhci.fluent.models;
 
-import com.azure.core.annotation.Fluent;
+import com.azure.core.annotation.Immutable;
 import com.azure.resourcemanager.azurestackhci.models.ArcSettingAggregateState;
 import com.azure.resourcemanager.azurestackhci.models.PerNodeState;
 import com.azure.resourcemanager.azurestackhci.models.ProvisioningState;
@@ -12,7 +12,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** ArcSetting properties. */
-@Fluent
+@Immutable
 public final class ArcSettingProperties {
     /*
      * Provisioning state of the ArcSetting proxy resource.
@@ -24,7 +24,7 @@ public final class ArcSettingProperties {
      * The resource group that hosts the Arc agents, ie. Hybrid Compute Machine
      * resources.
      */
-    @JsonProperty(value = "arcInstanceResourceGroup")
+    @JsonProperty(value = "arcInstanceResourceGroup", access = JsonProperty.Access.WRITE_ONLY)
     private String arcInstanceResourceGroup;
 
     /*
@@ -56,18 +56,6 @@ public final class ArcSettingProperties {
      */
     public String arcInstanceResourceGroup() {
         return this.arcInstanceResourceGroup;
-    }
-
-    /**
-     * Set the arcInstanceResourceGroup property: The resource group that hosts the Arc agents, ie. Hybrid Compute
-     * Machine resources.
-     *
-     * @param arcInstanceResourceGroup the arcInstanceResourceGroup value to set.
-     * @return the ArcSettingProperties object itself.
-     */
-    public ArcSettingProperties withArcInstanceResourceGroup(String arcInstanceResourceGroup) {
-        this.arcInstanceResourceGroup = arcInstanceResourceGroup;
-        return this;
     }
 
     /**

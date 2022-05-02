@@ -24,17 +24,13 @@
 - [Get](#extensions_get)
 - [ListByArcSetting](#extensions_listbyarcsetting)
 - [Update](#extensions_update)
-
-## Operations
-
-- [List](#operations_list)
 ### ArcSettings_Create
 
 ```java
 /** Samples for ArcSettings Create. */
 public final class ArcSettingsCreateSamples {
     /*
-     * x-ms-original-file: specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/stable/2022-01-01/examples/PutArcSetting.json
+     * x-ms-original-file: specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/stable/2021-09-01/examples/PutArcSetting.json
      */
     /**
      * Sample code: Create ArcSetting.
@@ -55,7 +51,7 @@ import com.azure.core.util.Context;
 /** Samples for ArcSettings Delete. */
 public final class ArcSettingsDeleteSamples {
     /*
-     * x-ms-original-file: specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/stable/2022-01-01/examples/DeleteArcSetting.json
+     * x-ms-original-file: specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/stable/2021-09-01/examples/DeleteArcSetting.json
      */
     /**
      * Sample code: Delete ArcSetting.
@@ -76,7 +72,7 @@ import com.azure.core.util.Context;
 /** Samples for ArcSettings Get. */
 public final class ArcSettingsGetSamples {
     /*
-     * x-ms-original-file: specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/stable/2022-01-01/examples/GetArcSetting.json
+     * x-ms-original-file: specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/stable/2021-09-01/examples/GetArcSetting.json
      */
     /**
      * Sample code: Get ArcSetting.
@@ -97,7 +93,7 @@ import com.azure.core.util.Context;
 /** Samples for ArcSettings ListByCluster. */
 public final class ArcSettingsListByClusterSamples {
     /*
-     * x-ms-original-file: specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/stable/2022-01-01/examples/ListArcSettingsByCluster.json
+     * x-ms-original-file: specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/stable/2021-09-01/examples/ListArcSettingsByCluster.json
      */
     /**
      * Sample code: List ArcSetting resources by HCI Cluster.
@@ -117,7 +113,7 @@ public final class ArcSettingsListByClusterSamples {
 /** Samples for Clusters Create. */
 public final class ClustersCreateSamples {
     /*
-     * x-ms-original-file: specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/stable/2022-01-01/examples/CreateCluster.json
+     * x-ms-original-file: specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/stable/2021-09-01/examples/CreateCluster.json
      */
     /**
      * Sample code: Create cluster.
@@ -146,7 +142,7 @@ import com.azure.core.util.Context;
 /** Samples for Clusters Delete. */
 public final class ClustersDeleteSamples {
     /*
-     * x-ms-original-file: specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/stable/2022-01-01/examples/DeleteCluster.json
+     * x-ms-original-file: specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/stable/2021-09-01/examples/DeleteCluster.json
      */
     /**
      * Sample code: Delete cluster.
@@ -167,7 +163,7 @@ import com.azure.core.util.Context;
 /** Samples for Clusters GetByResourceGroup. */
 public final class ClustersGetByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/stable/2022-01-01/examples/GetCluster.json
+     * x-ms-original-file: specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/stable/2021-09-01/examples/GetCluster.json
      */
     /**
      * Sample code: Get cluster.
@@ -188,7 +184,7 @@ import com.azure.core.util.Context;
 /** Samples for Clusters List. */
 public final class ClustersListSamples {
     /*
-     * x-ms-original-file: specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/stable/2022-01-01/examples/ListClustersBySubscription.json
+     * x-ms-original-file: specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/stable/2021-09-01/examples/ListClustersBySubscription.json
      */
     /**
      * Sample code: List clusters in a given subscription.
@@ -210,7 +206,7 @@ import com.azure.core.util.Context;
 /** Samples for Clusters ListByResourceGroup. */
 public final class ClustersListByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/stable/2022-01-01/examples/ListClustersByResourceGroup.json
+     * x-ms-original-file: specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/stable/2021-09-01/examples/ListClustersByResourceGroup.json
      */
     /**
      * Sample code: List clusters in a given resource group.
@@ -238,7 +234,7 @@ import java.util.Map;
 /** Samples for Clusters Update. */
 public final class ClustersUpdateSamples {
     /*
-     * x-ms-original-file: specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/stable/2022-01-01/examples/UpdateCluster.json
+     * x-ms-original-file: specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/stable/2021-09-01/examples/UpdateCluster.json
      */
     /**
      * Sample code: Update cluster.
@@ -282,7 +278,7 @@ import java.io.IOException;
 /** Samples for Extensions Create. */
 public final class ExtensionsCreateSamples {
     /*
-     * x-ms-original-file: specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/stable/2022-01-01/examples/PutExtension.json
+     * x-ms-original-file: specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/stable/2021-09-01/examples/PutExtension.json
      */
     /**
      * Sample code: Create Arc Extension.
@@ -319,7 +315,7 @@ import com.azure.core.util.Context;
 /** Samples for Extensions Delete. */
 public final class ExtensionsDeleteSamples {
     /*
-     * x-ms-original-file: specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/stable/2022-01-01/examples/DeleteExtension.json
+     * x-ms-original-file: specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/stable/2021-09-01/examples/DeleteExtension.json
      */
     /**
      * Sample code: Delete Arc Extension.
@@ -340,7 +336,7 @@ import com.azure.core.util.Context;
 /** Samples for Extensions Get. */
 public final class ExtensionsGetSamples {
     /*
-     * x-ms-original-file: specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/stable/2022-01-01/examples/GetExtension.json
+     * x-ms-original-file: specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/stable/2021-09-01/examples/GetExtension.json
      */
     /**
      * Sample code: Get ArcSettings Extension.
@@ -363,7 +359,7 @@ import com.azure.core.util.Context;
 /** Samples for Extensions ListByArcSetting. */
 public final class ExtensionsListByArcSettingSamples {
     /*
-     * x-ms-original-file: specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/stable/2022-01-01/examples/ListExtensionsByArcSetting.json
+     * x-ms-original-file: specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/stable/2021-09-01/examples/ListExtensionsByArcSetting.json
      */
     /**
      * Sample code: List Extensions under ArcSetting resource.
@@ -389,7 +385,7 @@ import java.io.IOException;
 /** Samples for Extensions Update. */
 public final class ExtensionsUpdateSamples {
     /*
-     * x-ms-original-file: specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/stable/2022-01-01/examples/PatchExtension.json
+     * x-ms-original-file: specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/stable/2021-09-01/examples/PatchExtension.json
      */
     /**
      * Sample code: Update Arc Extension.
@@ -413,28 +409,6 @@ public final class ExtensionsUpdateSamples {
                     .createDefaultManagementSerializerAdapter()
                     .deserialize("{\"workspaceId\":\"xx\"}", Object.class, SerializerEncoding.JSON))
             .apply();
-    }
-}
-```
-
-### Operations_List
-
-```java
-import com.azure.core.util.Context;
-
-/** Samples for Operations List. */
-public final class OperationsListSamples {
-    /*
-     * x-ms-original-file: specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/stable/2022-01-01/examples/ListOperations.json
-     */
-    /**
-     * Sample code: List operations available with the Microsoft.AzureStackHCI provider.
-     *
-     * @param manager Entry point to AzureStackHciManager.
-     */
-    public static void listOperationsAvailableWithTheMicrosoftAzureStackHCIProvider(
-        com.azure.resourcemanager.azurestackhci.AzureStackHciManager manager) {
-        manager.operations().listWithResponse(Context.NONE);
     }
 }
 ```

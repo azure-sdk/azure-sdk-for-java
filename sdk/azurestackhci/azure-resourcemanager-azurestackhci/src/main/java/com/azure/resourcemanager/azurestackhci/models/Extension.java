@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.azurestackhci.models;
 
-import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.azurestackhci.fluent.models.ExtensionInner;
 import java.util.List;
@@ -31,13 +30,6 @@ public interface Extension {
      * @return the type value.
      */
     String type();
-
-    /**
-     * Gets the systemData property: System data of Extension resource.
-     *
-     * @return the systemData value.
-     */
-    SystemData systemData();
 
     /**
      * Gets the provisioningState property: Provisioning state of the Extension proxy resource.

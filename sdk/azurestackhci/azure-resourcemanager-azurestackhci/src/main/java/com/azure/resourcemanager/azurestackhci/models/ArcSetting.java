@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.azurestackhci.models;
 
-import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.azurestackhci.fluent.models.ArcSettingInner;
 import java.util.List;
@@ -31,13 +30,6 @@ public interface ArcSetting {
      * @return the type value.
      */
     String type();
-
-    /**
-     * Gets the systemData property: System data of ArcSetting resource.
-     *
-     * @return the systemData value.
-     */
-    SystemData systemData();
 
     /**
      * Gets the provisioningState property: Provisioning state of the ArcSetting proxy resource.
@@ -99,7 +91,7 @@ public interface ArcSetting {
          * The stage of the ArcSetting definition which contains all the minimum required properties for the resource to
          * be created, but also allows for any other optional properties to be specified.
          */
-        interface WithCreate extends DefinitionStages.WithArcInstanceResourceGroup {
+        interface WithCreate {
             /**
              * Executes the create request.
              *
@@ -114,18 +106,6 @@ public interface ArcSetting {
              * @return the created resource.
              */
             ArcSetting create(Context context);
-        }
-        /** The stage of the ArcSetting definition allowing to specify arcInstanceResourceGroup. */
-        interface WithArcInstanceResourceGroup {
-            /**
-             * Specifies the arcInstanceResourceGroup property: The resource group that hosts the Arc agents, ie. Hybrid
-             * Compute Machine resources..
-             *
-             * @param arcInstanceResourceGroup The resource group that hosts the Arc agents, ie. Hybrid Compute Machine
-             *     resources.
-             * @return the next definition stage.
-             */
-            WithCreate withArcInstanceResourceGroup(String arcInstanceResourceGroup);
         }
     }
     /**

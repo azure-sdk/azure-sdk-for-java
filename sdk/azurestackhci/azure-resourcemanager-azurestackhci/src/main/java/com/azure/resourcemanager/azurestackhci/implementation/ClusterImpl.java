@@ -5,7 +5,6 @@
 package com.azure.resourcemanager.azurestackhci.implementation;
 
 import com.azure.core.management.Region;
-import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.azurestackhci.fluent.models.ClusterInner;
 import com.azure.resourcemanager.azurestackhci.models.Cluster;
@@ -46,10 +45,6 @@ public final class ClusterImpl implements Cluster, Cluster.Definition, Cluster.U
         } else {
             return Collections.emptyMap();
         }
-    }
-
-    public SystemData systemData() {
-        return this.innerModel().systemData();
     }
 
     public ProvisioningState provisioningState() {

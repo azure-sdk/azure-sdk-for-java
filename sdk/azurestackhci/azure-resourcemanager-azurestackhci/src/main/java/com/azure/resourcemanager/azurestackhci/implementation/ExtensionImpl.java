@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.azurestackhci.implementation;
 
-import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.azurestackhci.fluent.models.ExtensionInner;
 import com.azure.resourcemanager.azurestackhci.models.Extension;
@@ -29,10 +28,6 @@ public final class ExtensionImpl implements Extension, Extension.Definition, Ext
 
     public String type() {
         return this.innerModel().type();
-    }
-
-    public SystemData systemData() {
-        return this.innerModel().systemData();
     }
 
     public ProvisioningState provisioningState() {

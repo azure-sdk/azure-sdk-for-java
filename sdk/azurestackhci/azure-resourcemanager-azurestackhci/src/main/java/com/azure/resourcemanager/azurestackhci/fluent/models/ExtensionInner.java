@@ -20,7 +20,7 @@ public final class ExtensionInner extends ProxyResource {
      * System data of Extension resource.
      */
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
-    private SystemData systemData;
+    private SystemData innerSystemData;
 
     /*
      * Describes Machine Extension Properties.
@@ -29,12 +29,12 @@ public final class ExtensionInner extends ProxyResource {
     private ExtensionProperties innerProperties;
 
     /**
-     * Get the systemData property: System data of Extension resource.
+     * Get the innerSystemData property: System data of Extension resource.
      *
-     * @return the systemData value.
+     * @return the innerSystemData value.
      */
-    public SystemData systemData() {
-        return this.systemData;
+    private SystemData innerSystemData() {
+        return this.innerSystemData;
     }
 
     /**

@@ -5,7 +5,6 @@
 package com.azure.resourcemanager.azurestackhci.models;
 
 import com.azure.core.management.Region;
-import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.azurestackhci.fluent.models.ClusterInner;
 import java.time.OffsetDateTime;
@@ -47,13 +46,6 @@ public interface Cluster {
      * @return the tags value.
      */
     Map<String, String> tags();
-
-    /**
-     * Gets the systemData property: System data of Cluster resource.
-     *
-     * @return the systemData value.
-     */
-    SystemData systemData();
 
     /**
      * Gets the provisioningState property: Provisioning state.
