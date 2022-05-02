@@ -24,13 +24,14 @@ public interface Locations {
      * Return trial status for subscription by region.
      *
      * @param location Azure region.
+     * @param sku The name of the SKU.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return subscription trial availability.
+     * @return subscription trial availability along with {@link Response}.
      */
-    Response<Trial> checkTrialAvailabilityWithResponse(String location, Context context);
+    Response<Trial> checkTrialAvailabilityWithResponse(String location, String sku, Context context);
 
     /**
      * Return quota for subscription by region.
@@ -51,7 +52,7 @@ public interface Locations {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return subscription quotas.
+     * @return subscription quotas along with {@link Response}.
      */
     Response<Quota> checkQuotaAvailabilityWithResponse(String location, Context context);
 }

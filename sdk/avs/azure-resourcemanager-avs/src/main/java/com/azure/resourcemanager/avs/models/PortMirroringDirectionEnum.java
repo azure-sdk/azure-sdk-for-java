@@ -30,7 +30,11 @@ public final class PortMirroringDirectionEnum extends ExpandableStringEnum<PortM
         return fromString(name, PortMirroringDirectionEnum.class);
     }
 
-    /** @return known PortMirroringDirectionEnum values. */
+    /**
+     * Gets known PortMirroringDirectionEnum values.
+     *
+     * @return known PortMirroringDirectionEnum values.
+     */
     public static Collection<PortMirroringDirectionEnum> values() {
         return values(PortMirroringDirectionEnum.class);
     }

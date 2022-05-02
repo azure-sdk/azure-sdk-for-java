@@ -18,7 +18,7 @@ public interface HcxEnterpriseSites {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a paged list of HCX Enterprise Sites.
+     * @return a paged list of HCX Enterprise Sites as paginated response with {@link PagedIterable}.
      */
     PagedIterable<HcxEnterpriseSite> list(String resourceGroupName, String privateCloudName);
 
@@ -31,7 +31,7 @@ public interface HcxEnterpriseSites {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a paged list of HCX Enterprise Sites.
+     * @return a paged list of HCX Enterprise Sites as paginated response with {@link PagedIterable}.
      */
     PagedIterable<HcxEnterpriseSite> list(String resourceGroupName, String privateCloudName, Context context);
 
@@ -58,7 +58,7 @@ public interface HcxEnterpriseSites {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an HCX Enterprise Site by name in a private cloud.
+     * @return an HCX Enterprise Site by name in a private cloud along with {@link Response}.
      */
     Response<HcxEnterpriseSite> getWithResponse(
         String resourceGroupName, String privateCloudName, String hcxEnterpriseSiteName, Context context);
@@ -85,7 +85,7 @@ public interface HcxEnterpriseSites {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
+     * @return the {@link Response}.
      */
     Response<Void> deleteWithResponse(
         String resourceGroupName, String privateCloudName, String hcxEnterpriseSiteName, Context context);
@@ -97,7 +97,7 @@ public interface HcxEnterpriseSites {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an HCX Enterprise Site by name in a private cloud.
+     * @return an HCX Enterprise Site by name in a private cloud along with {@link Response}.
      */
     HcxEnterpriseSite getById(String id);
 
@@ -109,7 +109,7 @@ public interface HcxEnterpriseSites {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an HCX Enterprise Site by name in a private cloud.
+     * @return an HCX Enterprise Site by name in a private cloud along with {@link Response}.
      */
     Response<HcxEnterpriseSite> getByIdWithResponse(String id, Context context);
 
@@ -131,7 +131,7 @@ public interface HcxEnterpriseSites {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
+     * @return the {@link Response}.
      */
     Response<Void> deleteByIdWithResponse(String id, Context context);
 

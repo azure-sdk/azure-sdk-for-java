@@ -30,7 +30,11 @@ public final class VMTypeEnum extends ExpandableStringEnum<VMTypeEnum> {
         return fromString(name, VMTypeEnum.class);
     }
 
-    /** @return known VMTypeEnum values. */
+    /**
+     * Gets known VMTypeEnum values.
+     *
+     * @return known VMTypeEnum values.
+     */
     public static Collection<VMTypeEnum> values() {
         return values(VMTypeEnum.class);
     }

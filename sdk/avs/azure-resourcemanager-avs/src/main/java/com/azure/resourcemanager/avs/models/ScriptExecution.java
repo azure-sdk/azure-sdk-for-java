@@ -437,7 +437,7 @@ public interface ScriptExecution {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an instance of a script executed by a user - custom or AVS.
+     * @return an instance of a script executed by a user - custom or AVS along with {@link Response}.
      */
     Response<ScriptExecution> getExecutionLogsWithResponse(
         List<ScriptOutputStreamType> scriptOutputStreamType, Context context);

@@ -13,10 +13,9 @@ import com.azure.resourcemanager.avs.fluent.PlacementPoliciesClient;
 import com.azure.resourcemanager.avs.fluent.models.PlacementPolicyInner;
 import com.azure.resourcemanager.avs.models.PlacementPolicies;
 import com.azure.resourcemanager.avs.models.PlacementPolicy;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public final class PlacementPoliciesImpl implements PlacementPolicies {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(PlacementPoliciesImpl.class);
+    private static final ClientLogger LOGGER = new ClientLogger(PlacementPoliciesImpl.class);
 
     private final PlacementPoliciesClient innerClient;
 
@@ -90,7 +89,7 @@ public final class PlacementPoliciesImpl implements PlacementPolicies {
     public PlacementPolicy getById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -98,21 +97,21 @@ public final class PlacementPoliciesImpl implements PlacementPolicies {
         }
         String privateCloudName = Utils.getValueFromIdByName(id, "privateClouds");
         if (privateCloudName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'privateClouds'.", id)));
         }
         String clusterName = Utils.getValueFromIdByName(id, "clusters");
         if (clusterName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'clusters'.", id)));
         }
         String placementPolicyName = Utils.getValueFromIdByName(id, "placementPolicies");
         if (placementPolicyName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -127,7 +126,7 @@ public final class PlacementPoliciesImpl implements PlacementPolicies {
     public Response<PlacementPolicy> getByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -135,21 +134,21 @@ public final class PlacementPoliciesImpl implements PlacementPolicies {
         }
         String privateCloudName = Utils.getValueFromIdByName(id, "privateClouds");
         if (privateCloudName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'privateClouds'.", id)));
         }
         String clusterName = Utils.getValueFromIdByName(id, "clusters");
         if (clusterName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'clusters'.", id)));
         }
         String placementPolicyName = Utils.getValueFromIdByName(id, "placementPolicies");
         if (placementPolicyName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -162,7 +161,7 @@ public final class PlacementPoliciesImpl implements PlacementPolicies {
     public void deleteById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -170,21 +169,21 @@ public final class PlacementPoliciesImpl implements PlacementPolicies {
         }
         String privateCloudName = Utils.getValueFromIdByName(id, "privateClouds");
         if (privateCloudName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'privateClouds'.", id)));
         }
         String clusterName = Utils.getValueFromIdByName(id, "clusters");
         if (clusterName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'clusters'.", id)));
         }
         String placementPolicyName = Utils.getValueFromIdByName(id, "placementPolicies");
         if (placementPolicyName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -197,7 +196,7 @@ public final class PlacementPoliciesImpl implements PlacementPolicies {
     public void deleteByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -205,21 +204,21 @@ public final class PlacementPoliciesImpl implements PlacementPolicies {
         }
         String privateCloudName = Utils.getValueFromIdByName(id, "privateClouds");
         if (privateCloudName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'privateClouds'.", id)));
         }
         String clusterName = Utils.getValueFromIdByName(id, "clusters");
         if (clusterName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'clusters'.", id)));
         }
         String placementPolicyName = Utils.getValueFromIdByName(id, "placementPolicies");
         if (placementPolicyName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String

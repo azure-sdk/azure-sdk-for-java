@@ -27,7 +27,11 @@ public final class AffinityType extends ExpandableStringEnum<AffinityType> {
         return fromString(name, AffinityType.class);
     }
 
-    /** @return known AffinityType values. */
+    /**
+     * Gets known AffinityType values.
+     *
+     * @return known AffinityType values.
+     */
     public static Collection<AffinityType> values() {
         return values(AffinityType.class);
     }

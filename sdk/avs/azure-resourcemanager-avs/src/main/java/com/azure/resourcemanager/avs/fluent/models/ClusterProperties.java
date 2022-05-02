@@ -5,16 +5,12 @@
 package com.azure.resourcemanager.avs.fluent.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.avs.models.CommonClusterProperties;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.List;
 
 /** The properties of a cluster. */
 @Fluent
 public final class ClusterProperties extends CommonClusterProperties {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(ClusterProperties.class);
-
     /** {@inheritDoc} */
     @Override
     public ClusterProperties withClusterSize(Integer clusterSize) {

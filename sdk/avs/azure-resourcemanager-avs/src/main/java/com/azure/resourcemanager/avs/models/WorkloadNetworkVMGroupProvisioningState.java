@@ -37,7 +37,11 @@ public final class WorkloadNetworkVMGroupProvisioningState
         return fromString(name, WorkloadNetworkVMGroupProvisioningState.class);
     }
 
-    /** @return known WorkloadNetworkVMGroupProvisioningState values. */
+    /**
+     * Gets known WorkloadNetworkVMGroupProvisioningState values.
+     *
+     * @return known WorkloadNetworkVMGroupProvisioningState values.
+     */
     public static Collection<WorkloadNetworkVMGroupProvisioningState> values() {
         return values(WorkloadNetworkVMGroupProvisioningState.class);
     }

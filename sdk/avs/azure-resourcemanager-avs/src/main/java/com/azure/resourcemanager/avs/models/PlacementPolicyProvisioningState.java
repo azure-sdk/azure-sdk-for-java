@@ -36,7 +36,11 @@ public final class PlacementPolicyProvisioningState extends ExpandableStringEnum
         return fromString(name, PlacementPolicyProvisioningState.class);
     }
 
-    /** @return known PlacementPolicyProvisioningState values. */
+    /**
+     * Gets known PlacementPolicyProvisioningState values.
+     *
+     * @return known PlacementPolicyProvisioningState values.
+     */
     public static Collection<PlacementPolicyProvisioningState> values() {
         return values(PlacementPolicyProvisioningState.class);
     }

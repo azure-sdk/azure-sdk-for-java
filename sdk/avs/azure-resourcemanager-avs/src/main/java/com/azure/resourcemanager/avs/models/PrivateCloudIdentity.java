@@ -5,15 +5,11 @@
 package com.azure.resourcemanager.avs.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Identity for the virtual machine. */
 @Fluent
 public class PrivateCloudIdentity {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(PrivateCloudIdentity.class);
-
     /*
      * The principal ID of private cloud identity. This property will only be
      * provided for a system assigned identity.

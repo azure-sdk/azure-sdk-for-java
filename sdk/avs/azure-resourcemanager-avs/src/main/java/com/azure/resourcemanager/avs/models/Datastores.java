@@ -19,7 +19,7 @@ public interface Datastores {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a paged list of datastores.
+     * @return a paged list of datastores as paginated response with {@link PagedIterable}.
      */
     PagedIterable<Datastore> list(String resourceGroupName, String privateCloudName, String clusterName);
 
@@ -33,7 +33,7 @@ public interface Datastores {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a paged list of datastores.
+     * @return a paged list of datastores as paginated response with {@link PagedIterable}.
      */
     PagedIterable<Datastore> list(
         String resourceGroupName, String privateCloudName, String clusterName, Context context);
@@ -63,7 +63,7 @@ public interface Datastores {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a datastore in a private cloud cluster.
+     * @return a datastore in a private cloud cluster along with {@link Response}.
      */
     Response<Datastore> getWithResponse(
         String resourceGroupName, String privateCloudName, String clusterName, String datastoreName, Context context);
@@ -103,7 +103,7 @@ public interface Datastores {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a datastore in a private cloud cluster.
+     * @return a datastore in a private cloud cluster along with {@link Response}.
      */
     Datastore getById(String id);
 
@@ -115,7 +115,7 @@ public interface Datastores {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a datastore in a private cloud cluster.
+     * @return a datastore in a private cloud cluster along with {@link Response}.
      */
     Response<Datastore> getByIdWithResponse(String id, Context context);
 

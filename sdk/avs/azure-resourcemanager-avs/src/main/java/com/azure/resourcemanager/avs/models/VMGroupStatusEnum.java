@@ -27,7 +27,11 @@ public final class VMGroupStatusEnum extends ExpandableStringEnum<VMGroupStatusE
         return fromString(name, VMGroupStatusEnum.class);
     }
 
-    /** @return known VMGroupStatusEnum values. */
+    /**
+     * Gets known VMGroupStatusEnum values.
+     *
+     * @return known VMGroupStatusEnum values.
+     */
     public static Collection<VMGroupStatusEnum> values() {
         return values(VMGroupStatusEnum.class);
     }

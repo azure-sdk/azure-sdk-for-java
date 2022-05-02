@@ -31,7 +31,7 @@ public interface WorkloadNetworksClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of NSX Segments.
+     * @return a list of NSX Segments as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<WorkloadNetworkSegmentInner> listSegments(String resourceGroupName, String privateCloudName);
@@ -45,7 +45,7 @@ public interface WorkloadNetworksClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of NSX Segments.
+     * @return a list of NSX Segments as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<WorkloadNetworkSegmentInner> listSegments(
@@ -75,7 +75,7 @@ public interface WorkloadNetworksClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a segment by id in a private cloud workload network.
+     * @return a segment by id in a private cloud workload network along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<WorkloadNetworkSegmentInner> getSegmentWithResponse(
@@ -91,7 +91,7 @@ public interface WorkloadNetworksClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return nSX Segment.
+     * @return the {@link SyncPoller} for polling of nSX Segment.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<WorkloadNetworkSegmentInner>, WorkloadNetworkSegmentInner> beginCreateSegments(
@@ -111,7 +111,7 @@ public interface WorkloadNetworksClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return nSX Segment.
+     * @return the {@link SyncPoller} for polling of nSX Segment.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<WorkloadNetworkSegmentInner>, WorkloadNetworkSegmentInner> beginCreateSegments(
@@ -171,7 +171,7 @@ public interface WorkloadNetworksClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return nSX Segment.
+     * @return the {@link SyncPoller} for polling of nSX Segment.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<WorkloadNetworkSegmentInner>, WorkloadNetworkSegmentInner> beginUpdateSegments(
@@ -191,7 +191,7 @@ public interface WorkloadNetworksClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return nSX Segment.
+     * @return the {@link SyncPoller} for polling of nSX Segment.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<WorkloadNetworkSegmentInner>, WorkloadNetworkSegmentInner> beginUpdateSegments(
@@ -250,7 +250,7 @@ public interface WorkloadNetworksClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the completion.
+     * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<Void>, Void> beginDeleteSegment(
@@ -266,7 +266,7 @@ public interface WorkloadNetworksClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the completion.
+     * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<Void>, Void> beginDeleteSegment(
@@ -307,7 +307,7 @@ public interface WorkloadNetworksClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of NSX dhcp entities.
+     * @return a list of NSX dhcp entities as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<WorkloadNetworkDhcpInner> listDhcp(String resourceGroupName, String privateCloudName);
@@ -321,7 +321,7 @@ public interface WorkloadNetworksClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of NSX dhcp entities.
+     * @return a list of NSX dhcp entities as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<WorkloadNetworkDhcpInner> listDhcp(
@@ -351,7 +351,7 @@ public interface WorkloadNetworksClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return dhcp by id in a private cloud workload network.
+     * @return dhcp by id in a private cloud workload network along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<WorkloadNetworkDhcpInner> getDhcpWithResponse(
@@ -367,7 +367,7 @@ public interface WorkloadNetworksClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return nSX DHCP.
+     * @return the {@link SyncPoller} for polling of nSX DHCP.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<WorkloadNetworkDhcpInner>, WorkloadNetworkDhcpInner> beginCreateDhcp(
@@ -384,7 +384,7 @@ public interface WorkloadNetworksClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return nSX DHCP.
+     * @return the {@link SyncPoller} for polling of nSX DHCP.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<WorkloadNetworkDhcpInner>, WorkloadNetworkDhcpInner> beginCreateDhcp(
@@ -441,7 +441,7 @@ public interface WorkloadNetworksClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return nSX DHCP.
+     * @return the {@link SyncPoller} for polling of nSX DHCP.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<WorkloadNetworkDhcpInner>, WorkloadNetworkDhcpInner> beginUpdateDhcp(
@@ -458,7 +458,7 @@ public interface WorkloadNetworksClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return nSX DHCP.
+     * @return the {@link SyncPoller} for polling of nSX DHCP.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<WorkloadNetworkDhcpInner>, WorkloadNetworkDhcpInner> beginUpdateDhcp(
@@ -514,7 +514,7 @@ public interface WorkloadNetworksClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the completion.
+     * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<Void>, Void> beginDeleteDhcp(
@@ -530,7 +530,7 @@ public interface WorkloadNetworksClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the completion.
+     * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<Void>, Void> beginDeleteDhcp(
@@ -571,7 +571,7 @@ public interface WorkloadNetworksClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of NSX Gateways.
+     * @return a list of NSX Gateways as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<WorkloadNetworkGatewayInner> listGateways(String resourceGroupName, String privateCloudName);
@@ -585,7 +585,7 @@ public interface WorkloadNetworksClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of NSX Gateways.
+     * @return a list of NSX Gateways as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<WorkloadNetworkGatewayInner> listGateways(
@@ -615,7 +615,7 @@ public interface WorkloadNetworksClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a gateway by id in a private cloud workload network.
+     * @return a gateway by id in a private cloud workload network along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<WorkloadNetworkGatewayInner> getGatewayWithResponse(
@@ -629,7 +629,7 @@ public interface WorkloadNetworksClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of NSX Port Mirroring.
+     * @return a list of NSX Port Mirroring as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<WorkloadNetworkPortMirroringInner> listPortMirroring(
@@ -644,7 +644,7 @@ public interface WorkloadNetworksClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of NSX Port Mirroring.
+     * @return a list of NSX Port Mirroring as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<WorkloadNetworkPortMirroringInner> listPortMirroring(
@@ -675,7 +675,7 @@ public interface WorkloadNetworksClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a port mirroring profile by id in a private cloud workload network.
+     * @return a port mirroring profile by id in a private cloud workload network along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<WorkloadNetworkPortMirroringInner> getPortMirroringWithResponse(
@@ -691,7 +691,7 @@ public interface WorkloadNetworksClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return nSX Port Mirroring.
+     * @return the {@link SyncPoller} for polling of nSX Port Mirroring.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<WorkloadNetworkPortMirroringInner>, WorkloadNetworkPortMirroringInner>
@@ -712,7 +712,7 @@ public interface WorkloadNetworksClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return nSX Port Mirroring.
+     * @return the {@link SyncPoller} for polling of nSX Port Mirroring.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<WorkloadNetworkPortMirroringInner>, WorkloadNetworkPortMirroringInner>
@@ -773,7 +773,7 @@ public interface WorkloadNetworksClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return nSX Port Mirroring.
+     * @return the {@link SyncPoller} for polling of nSX Port Mirroring.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<WorkloadNetworkPortMirroringInner>, WorkloadNetworkPortMirroringInner>
@@ -794,7 +794,7 @@ public interface WorkloadNetworksClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return nSX Port Mirroring.
+     * @return the {@link SyncPoller} for polling of nSX Port Mirroring.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<WorkloadNetworkPortMirroringInner>, WorkloadNetworkPortMirroringInner>
@@ -854,7 +854,7 @@ public interface WorkloadNetworksClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the completion.
+     * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<Void>, Void> beginDeletePortMirroring(
@@ -870,7 +870,7 @@ public interface WorkloadNetworksClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the completion.
+     * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<Void>, Void> beginDeletePortMirroring(
@@ -912,7 +912,7 @@ public interface WorkloadNetworksClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of NSX VM Groups.
+     * @return a list of NSX VM Groups as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<WorkloadNetworkVMGroupInner> listVMGroups(String resourceGroupName, String privateCloudName);
@@ -926,7 +926,7 @@ public interface WorkloadNetworksClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of NSX VM Groups.
+     * @return a list of NSX VM Groups as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<WorkloadNetworkVMGroupInner> listVMGroups(
@@ -956,7 +956,7 @@ public interface WorkloadNetworksClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a vm group by id in a private cloud workload network.
+     * @return a vm group by id in a private cloud workload network along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<WorkloadNetworkVMGroupInner> getVMGroupWithResponse(
@@ -972,7 +972,7 @@ public interface WorkloadNetworksClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return nSX VM Group.
+     * @return the {@link SyncPoller} for polling of nSX VM Group.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<WorkloadNetworkVMGroupInner>, WorkloadNetworkVMGroupInner> beginCreateVMGroup(
@@ -992,7 +992,7 @@ public interface WorkloadNetworksClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return nSX VM Group.
+     * @return the {@link SyncPoller} for polling of nSX VM Group.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<WorkloadNetworkVMGroupInner>, WorkloadNetworkVMGroupInner> beginCreateVMGroup(
@@ -1052,7 +1052,7 @@ public interface WorkloadNetworksClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return nSX VM Group.
+     * @return the {@link SyncPoller} for polling of nSX VM Group.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<WorkloadNetworkVMGroupInner>, WorkloadNetworkVMGroupInner> beginUpdateVMGroup(
@@ -1072,7 +1072,7 @@ public interface WorkloadNetworksClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return nSX VM Group.
+     * @return the {@link SyncPoller} for polling of nSX VM Group.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<WorkloadNetworkVMGroupInner>, WorkloadNetworkVMGroupInner> beginUpdateVMGroup(
@@ -1131,7 +1131,7 @@ public interface WorkloadNetworksClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the completion.
+     * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<Void>, Void> beginDeleteVMGroup(
@@ -1147,7 +1147,7 @@ public interface WorkloadNetworksClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the completion.
+     * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<Void>, Void> beginDeleteVMGroup(
@@ -1188,7 +1188,7 @@ public interface WorkloadNetworksClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of NSX Virtual Machines.
+     * @return a list of NSX Virtual Machines as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<WorkloadNetworkVirtualMachineInner> listVirtualMachines(
@@ -1203,7 +1203,7 @@ public interface WorkloadNetworksClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of NSX Virtual Machines.
+     * @return a list of NSX Virtual Machines as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<WorkloadNetworkVirtualMachineInner> listVirtualMachines(
@@ -1234,7 +1234,7 @@ public interface WorkloadNetworksClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a virtual machine by id in a private cloud workload network.
+     * @return a virtual machine by id in a private cloud workload network along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<WorkloadNetworkVirtualMachineInner> getVirtualMachineWithResponse(
@@ -1248,7 +1248,7 @@ public interface WorkloadNetworksClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of NSX DNS Services.
+     * @return a list of NSX DNS Services as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<WorkloadNetworkDnsServiceInner> listDnsServices(String resourceGroupName, String privateCloudName);
@@ -1262,7 +1262,7 @@ public interface WorkloadNetworksClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of NSX DNS Services.
+     * @return a list of NSX DNS Services as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<WorkloadNetworkDnsServiceInner> listDnsServices(
@@ -1293,7 +1293,7 @@ public interface WorkloadNetworksClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a DNS service by id in a private cloud workload network.
+     * @return a DNS service by id in a private cloud workload network along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<WorkloadNetworkDnsServiceInner> getDnsServiceWithResponse(
@@ -1309,7 +1309,7 @@ public interface WorkloadNetworksClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return nSX DNS Service.
+     * @return the {@link SyncPoller} for polling of nSX DNS Service.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<WorkloadNetworkDnsServiceInner>, WorkloadNetworkDnsServiceInner> beginCreateDnsService(
@@ -1329,7 +1329,7 @@ public interface WorkloadNetworksClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return nSX DNS Service.
+     * @return the {@link SyncPoller} for polling of nSX DNS Service.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<WorkloadNetworkDnsServiceInner>, WorkloadNetworkDnsServiceInner> beginCreateDnsService(
@@ -1389,7 +1389,7 @@ public interface WorkloadNetworksClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return nSX DNS Service.
+     * @return the {@link SyncPoller} for polling of nSX DNS Service.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<WorkloadNetworkDnsServiceInner>, WorkloadNetworkDnsServiceInner> beginUpdateDnsService(
@@ -1409,7 +1409,7 @@ public interface WorkloadNetworksClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return nSX DNS Service.
+     * @return the {@link SyncPoller} for polling of nSX DNS Service.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<WorkloadNetworkDnsServiceInner>, WorkloadNetworkDnsServiceInner> beginUpdateDnsService(
@@ -1468,7 +1468,7 @@ public interface WorkloadNetworksClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the completion.
+     * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<Void>, Void> beginDeleteDnsService(
@@ -1484,7 +1484,7 @@ public interface WorkloadNetworksClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the completion.
+     * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<Void>, Void> beginDeleteDnsService(
@@ -1525,7 +1525,7 @@ public interface WorkloadNetworksClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of NSX DNS Zones.
+     * @return a list of NSX DNS Zones as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<WorkloadNetworkDnsZoneInner> listDnsZones(String resourceGroupName, String privateCloudName);
@@ -1539,7 +1539,7 @@ public interface WorkloadNetworksClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of NSX DNS Zones.
+     * @return a list of NSX DNS Zones as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<WorkloadNetworkDnsZoneInner> listDnsZones(
@@ -1569,7 +1569,7 @@ public interface WorkloadNetworksClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a DNS zone by id in a private cloud workload network.
+     * @return a DNS zone by id in a private cloud workload network along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<WorkloadNetworkDnsZoneInner> getDnsZoneWithResponse(
@@ -1585,7 +1585,7 @@ public interface WorkloadNetworksClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return nSX DNS Zone.
+     * @return the {@link SyncPoller} for polling of nSX DNS Zone.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<WorkloadNetworkDnsZoneInner>, WorkloadNetworkDnsZoneInner> beginCreateDnsZone(
@@ -1605,7 +1605,7 @@ public interface WorkloadNetworksClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return nSX DNS Zone.
+     * @return the {@link SyncPoller} for polling of nSX DNS Zone.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<WorkloadNetworkDnsZoneInner>, WorkloadNetworkDnsZoneInner> beginCreateDnsZone(
@@ -1665,7 +1665,7 @@ public interface WorkloadNetworksClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return nSX DNS Zone.
+     * @return the {@link SyncPoller} for polling of nSX DNS Zone.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<WorkloadNetworkDnsZoneInner>, WorkloadNetworkDnsZoneInner> beginUpdateDnsZone(
@@ -1685,7 +1685,7 @@ public interface WorkloadNetworksClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return nSX DNS Zone.
+     * @return the {@link SyncPoller} for polling of nSX DNS Zone.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<WorkloadNetworkDnsZoneInner>, WorkloadNetworkDnsZoneInner> beginUpdateDnsZone(
@@ -1744,7 +1744,7 @@ public interface WorkloadNetworksClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the completion.
+     * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<Void>, Void> beginDeleteDnsZone(
@@ -1760,7 +1760,7 @@ public interface WorkloadNetworksClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the completion.
+     * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<Void>, Void> beginDeleteDnsZone(
@@ -1801,7 +1801,7 @@ public interface WorkloadNetworksClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of NSX Public IP Blocks.
+     * @return a list of NSX Public IP Blocks as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<WorkloadNetworkPublicIpInner> listPublicIPs(String resourceGroupName, String privateCloudName);
@@ -1815,7 +1815,7 @@ public interface WorkloadNetworksClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of NSX Public IP Blocks.
+     * @return a list of NSX Public IP Blocks as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<WorkloadNetworkPublicIpInner> listPublicIPs(
@@ -1845,7 +1845,7 @@ public interface WorkloadNetworksClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a Public IP Block by id in a private cloud workload network.
+     * @return a Public IP Block by id in a private cloud workload network along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<WorkloadNetworkPublicIpInner> getPublicIpWithResponse(
@@ -1861,7 +1861,7 @@ public interface WorkloadNetworksClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return nSX Public IP Block.
+     * @return the {@link SyncPoller} for polling of nSX Public IP Block.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<WorkloadNetworkPublicIpInner>, WorkloadNetworkPublicIpInner> beginCreatePublicIp(
@@ -1881,7 +1881,7 @@ public interface WorkloadNetworksClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return nSX Public IP Block.
+     * @return the {@link SyncPoller} for polling of nSX Public IP Block.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<WorkloadNetworkPublicIpInner>, WorkloadNetworkPublicIpInner> beginCreatePublicIp(
@@ -1940,7 +1940,7 @@ public interface WorkloadNetworksClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the completion.
+     * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<Void>, Void> beginDeletePublicIp(
@@ -1956,7 +1956,7 @@ public interface WorkloadNetworksClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the completion.
+     * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<Void>, Void> beginDeletePublicIp(

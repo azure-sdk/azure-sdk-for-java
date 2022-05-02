@@ -31,7 +31,11 @@ public final class ExpressRouteAuthorizationProvisioningState
         return fromString(name, ExpressRouteAuthorizationProvisioningState.class);
     }
 
-    /** @return known ExpressRouteAuthorizationProvisioningState values. */
+    /**
+     * Gets known ExpressRouteAuthorizationProvisioningState values.
+     *
+     * @return known ExpressRouteAuthorizationProvisioningState values.
+     */
     public static Collection<ExpressRouteAuthorizationProvisioningState> values() {
         return values(ExpressRouteAuthorizationProvisioningState.class);
     }

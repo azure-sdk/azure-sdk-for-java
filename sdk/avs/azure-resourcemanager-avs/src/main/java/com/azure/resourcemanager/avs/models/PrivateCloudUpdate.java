@@ -5,9 +5,7 @@
 package com.azure.resourcemanager.avs.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.avs.fluent.models.PrivateCloudUpdateProperties;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
@@ -16,8 +14,6 @@ import java.util.Map;
 /** An update to a private cloud resource. */
 @Fluent
 public final class PrivateCloudUpdate {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(PrivateCloudUpdate.class);
-
     /*
      * Resource tags
      */

@@ -13,10 +13,9 @@ import com.azure.resourcemanager.avs.fluent.GlobalReachConnectionsClient;
 import com.azure.resourcemanager.avs.fluent.models.GlobalReachConnectionInner;
 import com.azure.resourcemanager.avs.models.GlobalReachConnection;
 import com.azure.resourcemanager.avs.models.GlobalReachConnections;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public final class GlobalReachConnectionsImpl implements GlobalReachConnections {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(GlobalReachConnectionsImpl.class);
+    private static final ClientLogger LOGGER = new ClientLogger(GlobalReachConnectionsImpl.class);
 
     private final GlobalReachConnectionsClient innerClient;
 
@@ -81,7 +80,7 @@ public final class GlobalReachConnectionsImpl implements GlobalReachConnections 
     public GlobalReachConnection getById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -89,14 +88,14 @@ public final class GlobalReachConnectionsImpl implements GlobalReachConnections 
         }
         String privateCloudName = Utils.getValueFromIdByName(id, "privateClouds");
         if (privateCloudName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'privateClouds'.", id)));
         }
         String globalReachConnectionName = Utils.getValueFromIdByName(id, "globalReachConnections");
         if (globalReachConnectionName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -112,7 +111,7 @@ public final class GlobalReachConnectionsImpl implements GlobalReachConnections 
     public Response<GlobalReachConnection> getByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -120,14 +119,14 @@ public final class GlobalReachConnectionsImpl implements GlobalReachConnections 
         }
         String privateCloudName = Utils.getValueFromIdByName(id, "privateClouds");
         if (privateCloudName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'privateClouds'.", id)));
         }
         String globalReachConnectionName = Utils.getValueFromIdByName(id, "globalReachConnections");
         if (globalReachConnectionName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -141,7 +140,7 @@ public final class GlobalReachConnectionsImpl implements GlobalReachConnections 
     public void deleteById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -149,14 +148,14 @@ public final class GlobalReachConnectionsImpl implements GlobalReachConnections 
         }
         String privateCloudName = Utils.getValueFromIdByName(id, "privateClouds");
         if (privateCloudName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'privateClouds'.", id)));
         }
         String globalReachConnectionName = Utils.getValueFromIdByName(id, "globalReachConnections");
         if (globalReachConnectionName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -170,7 +169,7 @@ public final class GlobalReachConnectionsImpl implements GlobalReachConnections 
     public void deleteByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -178,14 +177,14 @@ public final class GlobalReachConnectionsImpl implements GlobalReachConnections 
         }
         String privateCloudName = Utils.getValueFromIdByName(id, "privateClouds");
         if (privateCloudName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'privateClouds'.", id)));
         }
         String globalReachConnectionName = Utils.getValueFromIdByName(id, "globalReachConnections");
         if (globalReachConnectionName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String

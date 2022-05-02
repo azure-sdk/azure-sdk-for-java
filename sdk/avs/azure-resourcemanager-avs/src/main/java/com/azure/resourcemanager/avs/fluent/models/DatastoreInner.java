@@ -6,19 +6,15 @@ package com.azure.resourcemanager.avs.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.ProxyResource;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.avs.models.DatastoreProvisioningState;
 import com.azure.resourcemanager.avs.models.DatastoreStatus;
 import com.azure.resourcemanager.avs.models.DiskPoolVolume;
 import com.azure.resourcemanager.avs.models.NetAppVolume;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** A datastore resource. */
 @Fluent
 public final class DatastoreInner extends ProxyResource {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(DatastoreInner.class);
-
     /*
      * The properties of a datastore resource
      */

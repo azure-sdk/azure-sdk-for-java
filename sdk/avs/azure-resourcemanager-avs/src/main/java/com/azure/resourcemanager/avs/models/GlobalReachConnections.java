@@ -18,7 +18,7 @@ public interface GlobalReachConnections {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a paged list of global reach connections.
+     * @return a paged list of global reach connections as paginated response with {@link PagedIterable}.
      */
     PagedIterable<GlobalReachConnection> list(String resourceGroupName, String privateCloudName);
 
@@ -31,7 +31,7 @@ public interface GlobalReachConnections {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a paged list of global reach connections.
+     * @return a paged list of global reach connections as paginated response with {@link PagedIterable}.
      */
     PagedIterable<GlobalReachConnection> list(String resourceGroupName, String privateCloudName, Context context);
 
@@ -58,7 +58,7 @@ public interface GlobalReachConnections {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a global reach connection by name in a private cloud.
+     * @return a global reach connection by name in a private cloud along with {@link Response}.
      */
     Response<GlobalReachConnection> getWithResponse(
         String resourceGroupName, String privateCloudName, String globalReachConnectionName, Context context);
@@ -95,7 +95,7 @@ public interface GlobalReachConnections {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a global reach connection by name in a private cloud.
+     * @return a global reach connection by name in a private cloud along with {@link Response}.
      */
     GlobalReachConnection getById(String id);
 
@@ -107,7 +107,7 @@ public interface GlobalReachConnections {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a global reach connection by name in a private cloud.
+     * @return a global reach connection by name in a private cloud along with {@link Response}.
      */
     Response<GlobalReachConnection> getByIdWithResponse(String id, Context context);
 

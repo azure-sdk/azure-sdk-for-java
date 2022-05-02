@@ -25,7 +25,7 @@ public interface ScriptExecutionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return pageable list of script executions.
+     * @return pageable list of script executions as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<ScriptExecutionInner> list(String resourceGroupName, String privateCloudName);
@@ -39,7 +39,7 @@ public interface ScriptExecutionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return pageable list of script executions.
+     * @return pageable list of script executions as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<ScriptExecutionInner> list(String resourceGroupName, String privateCloudName, Context context);
@@ -68,7 +68,7 @@ public interface ScriptExecutionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an script execution by name in a private cloud.
+     * @return an script execution by name in a private cloud along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<ScriptExecutionInner> getWithResponse(
@@ -84,7 +84,7 @@ public interface ScriptExecutionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an instance of a script executed by a user - custom or AVS.
+     * @return the {@link SyncPoller} for polling of an instance of a script executed by a user - custom or AVS.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<ScriptExecutionInner>, ScriptExecutionInner> beginCreateOrUpdate(
@@ -104,7 +104,7 @@ public interface ScriptExecutionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an instance of a script executed by a user - custom or AVS.
+     * @return the {@link SyncPoller} for polling of an instance of a script executed by a user - custom or AVS.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<ScriptExecutionInner>, ScriptExecutionInner> beginCreateOrUpdate(
@@ -163,7 +163,7 @@ public interface ScriptExecutionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the completion.
+     * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<Void>, Void> beginDelete(
@@ -179,7 +179,7 @@ public interface ScriptExecutionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the completion.
+     * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<Void>, Void> beginDelete(
@@ -239,7 +239,7 @@ public interface ScriptExecutionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an instance of a script executed by a user - custom or AVS.
+     * @return an instance of a script executed by a user - custom or AVS along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<ScriptExecutionInner> getExecutionLogsWithResponse(

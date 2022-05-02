@@ -30,7 +30,11 @@ public final class AddonType extends ExpandableStringEnum<AddonType> {
         return fromString(name, AddonType.class);
     }
 
-    /** @return known AddonType values. */
+    /**
+     * Gets known AddonType values.
+     *
+     * @return known AddonType values.
+     */
     public static Collection<AddonType> values() {
         return values(AddonType.class);
     }

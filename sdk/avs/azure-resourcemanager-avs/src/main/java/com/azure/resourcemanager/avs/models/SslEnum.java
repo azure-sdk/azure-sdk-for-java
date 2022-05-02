@@ -27,7 +27,11 @@ public final class SslEnum extends ExpandableStringEnum<SslEnum> {
         return fromString(name, SslEnum.class);
     }
 
-    /** @return known SslEnum values. */
+    /**
+     * Gets known SslEnum values.
+     *
+     * @return known SslEnum values.
+     */
     public static Collection<SslEnum> values() {
         return values(SslEnum.class);
     }

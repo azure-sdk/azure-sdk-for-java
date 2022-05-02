@@ -30,7 +30,11 @@ public final class GlobalReachConnectionStatus extends ExpandableStringEnum<Glob
         return fromString(name, GlobalReachConnectionStatus.class);
     }
 
-    /** @return known GlobalReachConnectionStatus values. */
+    /**
+     * Gets known GlobalReachConnectionStatus values.
+     *
+     * @return known GlobalReachConnectionStatus values.
+     */
     public static Collection<GlobalReachConnectionStatus> values() {
         return values(GlobalReachConnectionStatus.class);
     }

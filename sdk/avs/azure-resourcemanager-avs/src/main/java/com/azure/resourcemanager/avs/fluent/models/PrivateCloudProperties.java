@@ -14,15 +14,12 @@ import com.azure.resourcemanager.avs.models.IdentitySource;
 import com.azure.resourcemanager.avs.models.InternetEnum;
 import com.azure.resourcemanager.avs.models.ManagementCluster;
 import com.azure.resourcemanager.avs.models.PrivateCloudProvisioningState;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** The properties of a private cloud resource. */
 @Fluent
 public final class PrivateCloudProperties extends PrivateCloudUpdateProperties {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(PrivateCloudProperties.class);
-
     /*
      * The provisioning state
      */
@@ -335,7 +332,7 @@ public final class PrivateCloudProperties extends PrivateCloudUpdateProperties {
             endpoints().validate();
         }
         if (networkBlock() == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property networkBlock in model PrivateCloudProperties"));
@@ -344,4 +341,6 @@ public final class PrivateCloudProperties extends PrivateCloudUpdateProperties {
             secondaryCircuit().validate();
         }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(PrivateCloudProperties.class);
 }

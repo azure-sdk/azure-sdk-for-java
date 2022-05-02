@@ -27,7 +27,11 @@ public final class DnsServiceStatusEnum extends ExpandableStringEnum<DnsServiceS
         return fromString(name, DnsServiceStatusEnum.class);
     }
 
-    /** @return known DnsServiceStatusEnum values. */
+    /**
+     * Gets known DnsServiceStatusEnum values.
+     *
+     * @return known DnsServiceStatusEnum values.
+     */
     public static Collection<DnsServiceStatusEnum> values() {
         return values(DnsServiceStatusEnum.class);
     }

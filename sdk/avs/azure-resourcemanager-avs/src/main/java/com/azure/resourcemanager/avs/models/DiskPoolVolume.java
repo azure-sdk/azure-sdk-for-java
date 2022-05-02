@@ -6,14 +6,11 @@ package com.azure.resourcemanager.avs.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** An iSCSI volume from Microsoft.StoragePool provider. */
 @Fluent
 public final class DiskPoolVolume {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(DiskPoolVolume.class);
-
     /*
      * Azure resource ID of the iSCSI target
      */
@@ -117,14 +114,16 @@ public final class DiskPoolVolume {
      */
     public void validate() {
         if (targetId() == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property targetId in model DiskPoolVolume"));
         }
         if (lunName() == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property lunName in model DiskPoolVolume"));
         }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(DiskPoolVolume.class);
 }

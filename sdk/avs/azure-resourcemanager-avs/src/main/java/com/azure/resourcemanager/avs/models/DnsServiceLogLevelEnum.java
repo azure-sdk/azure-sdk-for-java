@@ -36,7 +36,11 @@ public final class DnsServiceLogLevelEnum extends ExpandableStringEnum<DnsServic
         return fromString(name, DnsServiceLogLevelEnum.class);
     }
 
-    /** @return known DnsServiceLogLevelEnum values. */
+    /**
+     * Gets known DnsServiceLogLevelEnum values.
+     *
+     * @return known DnsServiceLogLevelEnum values.
+     */
     public static Collection<DnsServiceLogLevelEnum> values() {
         return values(DnsServiceLogLevelEnum.class);
     }

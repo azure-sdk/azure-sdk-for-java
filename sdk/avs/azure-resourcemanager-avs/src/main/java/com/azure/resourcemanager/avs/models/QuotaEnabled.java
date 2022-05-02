@@ -27,7 +27,11 @@ public final class QuotaEnabled extends ExpandableStringEnum<QuotaEnabled> {
         return fromString(name, QuotaEnabled.class);
     }
 
-    /** @return known QuotaEnabled values. */
+    /**
+     * Gets known QuotaEnabled values.
+     *
+     * @return known QuotaEnabled values.
+     */
     public static Collection<QuotaEnabled> values() {
         return values(QuotaEnabled.class);
     }

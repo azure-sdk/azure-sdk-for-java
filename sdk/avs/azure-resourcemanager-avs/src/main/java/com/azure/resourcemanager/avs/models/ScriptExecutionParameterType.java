@@ -30,7 +30,11 @@ public final class ScriptExecutionParameterType extends ExpandableStringEnum<Scr
         return fromString(name, ScriptExecutionParameterType.class);
     }
 
-    /** @return known ScriptExecutionParameterType values. */
+    /**
+     * Gets known ScriptExecutionParameterType values.
+     *
+     * @return known ScriptExecutionParameterType values.
+     */
     public static Collection<ScriptExecutionParameterType> values() {
         return values(ScriptExecutionParameterType.class);
     }

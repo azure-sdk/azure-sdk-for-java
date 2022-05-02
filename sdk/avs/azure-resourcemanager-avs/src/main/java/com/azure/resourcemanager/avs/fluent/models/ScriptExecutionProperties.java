@@ -8,7 +8,6 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.avs.models.ScriptExecutionParameter;
 import com.azure.resourcemanager.avs.models.ScriptExecutionProvisioningState;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
@@ -18,8 +17,6 @@ import java.util.Map;
 /** Properties of a user-invoked script. */
 @Fluent
 public final class ScriptExecutionProperties {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(ScriptExecutionProperties.class);
-
     /*
      * A reference to the script cmdlet resource if user is running a AVS
      * script
@@ -355,10 +352,12 @@ public final class ScriptExecutionProperties {
             hiddenParameters().forEach(e -> e.validate());
         }
         if (timeout() == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property timeout in model ScriptExecutionProperties"));
         }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(ScriptExecutionProperties.class);
 }

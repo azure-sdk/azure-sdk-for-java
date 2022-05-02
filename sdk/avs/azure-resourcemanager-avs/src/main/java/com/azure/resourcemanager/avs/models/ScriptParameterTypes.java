@@ -39,7 +39,11 @@ public final class ScriptParameterTypes extends ExpandableStringEnum<ScriptParam
         return fromString(name, ScriptParameterTypes.class);
     }
 
-    /** @return known ScriptParameterTypes values. */
+    /**
+     * Gets known ScriptParameterTypes values.
+     *
+     * @return known ScriptParameterTypes values.
+     */
     public static Collection<ScriptParameterTypes> values() {
         return values(ScriptParameterTypes.class);
     }

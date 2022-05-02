@@ -42,7 +42,11 @@ public final class DatastoreStatus extends ExpandableStringEnum<DatastoreStatus>
         return fromString(name, DatastoreStatus.class);
     }
 
-    /** @return known DatastoreStatus values. */
+    /**
+     * Gets known DatastoreStatus values.
+     *
+     * @return known DatastoreStatus values.
+     */
     public static Collection<DatastoreStatus> values() {
         return values(DatastoreStatus.class);
     }

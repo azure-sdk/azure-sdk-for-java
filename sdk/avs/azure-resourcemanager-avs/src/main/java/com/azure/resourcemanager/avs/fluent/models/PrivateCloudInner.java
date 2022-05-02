@@ -17,7 +17,6 @@ import com.azure.resourcemanager.avs.models.ManagementCluster;
 import com.azure.resourcemanager.avs.models.PrivateCloudIdentity;
 import com.azure.resourcemanager.avs.models.PrivateCloudProvisioningState;
 import com.azure.resourcemanager.avs.models.Sku;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import java.util.Map;
@@ -25,8 +24,6 @@ import java.util.Map;
 /** A private cloud resource. */
 @Fluent
 public final class PrivateCloudInner extends Resource {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(PrivateCloudInner.class);
-
     /*
      * The private cloud SKU
      */
@@ -423,7 +420,7 @@ public final class PrivateCloudInner extends Resource {
      */
     public void validate() {
         if (sku() == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property sku in model PrivateCloudInner"));
         } else {
@@ -436,4 +433,6 @@ public final class PrivateCloudInner extends Resource {
             identity().validate();
         }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(PrivateCloudInner.class);
 }

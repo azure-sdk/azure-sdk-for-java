@@ -28,7 +28,11 @@ public final class VirtualMachineRestrictMovementState
         return fromString(name, VirtualMachineRestrictMovementState.class);
     }
 
-    /** @return known VirtualMachineRestrictMovementState values. */
+    /**
+     * Gets known VirtualMachineRestrictMovementState values.
+     *
+     * @return known VirtualMachineRestrictMovementState values.
+     */
     public static Collection<VirtualMachineRestrictMovementState> values() {
         return values(VirtualMachineRestrictMovementState.class);
     }

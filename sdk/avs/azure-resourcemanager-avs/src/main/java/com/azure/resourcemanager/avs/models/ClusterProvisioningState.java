@@ -36,7 +36,11 @@ public final class ClusterProvisioningState extends ExpandableStringEnum<Cluster
         return fromString(name, ClusterProvisioningState.class);
     }
 
-    /** @return known ClusterProvisioningState values. */
+    /**
+     * Gets known ClusterProvisioningState values.
+     *
+     * @return known ClusterProvisioningState values.
+     */
     public static Collection<ClusterProvisioningState> values() {
         return values(ClusterProvisioningState.class);
     }

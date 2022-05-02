@@ -18,7 +18,7 @@ public interface WorkloadNetworks {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of NSX Segments.
+     * @return a list of NSX Segments as paginated response with {@link PagedIterable}.
      */
     PagedIterable<WorkloadNetworkSegment> listSegments(String resourceGroupName, String privateCloudName);
 
@@ -31,7 +31,7 @@ public interface WorkloadNetworks {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of NSX Segments.
+     * @return a list of NSX Segments as paginated response with {@link PagedIterable}.
      */
     PagedIterable<WorkloadNetworkSegment> listSegments(
         String resourceGroupName, String privateCloudName, Context context);
@@ -59,7 +59,7 @@ public interface WorkloadNetworks {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a segment by id in a private cloud workload network.
+     * @return a segment by id in a private cloud workload network along with {@link Response}.
      */
     Response<WorkloadNetworkSegment> getSegmentWithResponse(
         String resourceGroupName, String privateCloudName, String segmentId, Context context);
@@ -97,7 +97,7 @@ public interface WorkloadNetworks {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of NSX dhcp entities.
+     * @return a list of NSX dhcp entities as paginated response with {@link PagedIterable}.
      */
     PagedIterable<WorkloadNetworkDhcp> listDhcp(String resourceGroupName, String privateCloudName);
 
@@ -110,7 +110,7 @@ public interface WorkloadNetworks {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of NSX dhcp entities.
+     * @return a list of NSX dhcp entities as paginated response with {@link PagedIterable}.
      */
     PagedIterable<WorkloadNetworkDhcp> listDhcp(String resourceGroupName, String privateCloudName, Context context);
 
@@ -137,7 +137,7 @@ public interface WorkloadNetworks {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return dhcp by id in a private cloud workload network.
+     * @return dhcp by id in a private cloud workload network along with {@link Response}.
      */
     Response<WorkloadNetworkDhcp> getDhcpWithResponse(
         String resourceGroupName, String dhcpId, String privateCloudName, Context context);
@@ -175,7 +175,7 @@ public interface WorkloadNetworks {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of NSX Gateways.
+     * @return a list of NSX Gateways as paginated response with {@link PagedIterable}.
      */
     PagedIterable<WorkloadNetworkGateway> listGateways(String resourceGroupName, String privateCloudName);
 
@@ -188,7 +188,7 @@ public interface WorkloadNetworks {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of NSX Gateways.
+     * @return a list of NSX Gateways as paginated response with {@link PagedIterable}.
      */
     PagedIterable<WorkloadNetworkGateway> listGateways(
         String resourceGroupName, String privateCloudName, Context context);
@@ -216,7 +216,7 @@ public interface WorkloadNetworks {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a gateway by id in a private cloud workload network.
+     * @return a gateway by id in a private cloud workload network along with {@link Response}.
      */
     Response<WorkloadNetworkGateway> getGatewayWithResponse(
         String resourceGroupName, String privateCloudName, String gatewayId, Context context);
@@ -229,7 +229,7 @@ public interface WorkloadNetworks {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of NSX Port Mirroring.
+     * @return a list of NSX Port Mirroring as paginated response with {@link PagedIterable}.
      */
     PagedIterable<WorkloadNetworkPortMirroring> listPortMirroring(String resourceGroupName, String privateCloudName);
 
@@ -242,7 +242,7 @@ public interface WorkloadNetworks {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of NSX Port Mirroring.
+     * @return a list of NSX Port Mirroring as paginated response with {@link PagedIterable}.
      */
     PagedIterable<WorkloadNetworkPortMirroring> listPortMirroring(
         String resourceGroupName, String privateCloudName, Context context);
@@ -271,7 +271,7 @@ public interface WorkloadNetworks {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a port mirroring profile by id in a private cloud workload network.
+     * @return a port mirroring profile by id in a private cloud workload network along with {@link Response}.
      */
     Response<WorkloadNetworkPortMirroring> getPortMirroringWithResponse(
         String resourceGroupName, String privateCloudName, String portMirroringId, Context context);
@@ -310,7 +310,7 @@ public interface WorkloadNetworks {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of NSX VM Groups.
+     * @return a list of NSX VM Groups as paginated response with {@link PagedIterable}.
      */
     PagedIterable<WorkloadNetworkVMGroup> listVMGroups(String resourceGroupName, String privateCloudName);
 
@@ -323,7 +323,7 @@ public interface WorkloadNetworks {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of NSX VM Groups.
+     * @return a list of NSX VM Groups as paginated response with {@link PagedIterable}.
      */
     PagedIterable<WorkloadNetworkVMGroup> listVMGroups(
         String resourceGroupName, String privateCloudName, Context context);
@@ -351,7 +351,7 @@ public interface WorkloadNetworks {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a vm group by id in a private cloud workload network.
+     * @return a vm group by id in a private cloud workload network along with {@link Response}.
      */
     Response<WorkloadNetworkVMGroup> getVMGroupWithResponse(
         String resourceGroupName, String privateCloudName, String vmGroupId, Context context);
@@ -389,7 +389,7 @@ public interface WorkloadNetworks {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of NSX Virtual Machines.
+     * @return a list of NSX Virtual Machines as paginated response with {@link PagedIterable}.
      */
     PagedIterable<WorkloadNetworkVirtualMachine> listVirtualMachines(String resourceGroupName, String privateCloudName);
 
@@ -402,7 +402,7 @@ public interface WorkloadNetworks {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of NSX Virtual Machines.
+     * @return a list of NSX Virtual Machines as paginated response with {@link PagedIterable}.
      */
     PagedIterable<WorkloadNetworkVirtualMachine> listVirtualMachines(
         String resourceGroupName, String privateCloudName, Context context);
@@ -431,7 +431,7 @@ public interface WorkloadNetworks {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a virtual machine by id in a private cloud workload network.
+     * @return a virtual machine by id in a private cloud workload network along with {@link Response}.
      */
     Response<WorkloadNetworkVirtualMachine> getVirtualMachineWithResponse(
         String resourceGroupName, String privateCloudName, String virtualMachineId, Context context);
@@ -444,7 +444,7 @@ public interface WorkloadNetworks {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of NSX DNS Services.
+     * @return a list of NSX DNS Services as paginated response with {@link PagedIterable}.
      */
     PagedIterable<WorkloadNetworkDnsService> listDnsServices(String resourceGroupName, String privateCloudName);
 
@@ -457,7 +457,7 @@ public interface WorkloadNetworks {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of NSX DNS Services.
+     * @return a list of NSX DNS Services as paginated response with {@link PagedIterable}.
      */
     PagedIterable<WorkloadNetworkDnsService> listDnsServices(
         String resourceGroupName, String privateCloudName, Context context);
@@ -485,7 +485,7 @@ public interface WorkloadNetworks {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a DNS service by id in a private cloud workload network.
+     * @return a DNS service by id in a private cloud workload network along with {@link Response}.
      */
     Response<WorkloadNetworkDnsService> getDnsServiceWithResponse(
         String resourceGroupName, String privateCloudName, String dnsServiceId, Context context);
@@ -523,7 +523,7 @@ public interface WorkloadNetworks {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of NSX DNS Zones.
+     * @return a list of NSX DNS Zones as paginated response with {@link PagedIterable}.
      */
     PagedIterable<WorkloadNetworkDnsZone> listDnsZones(String resourceGroupName, String privateCloudName);
 
@@ -536,7 +536,7 @@ public interface WorkloadNetworks {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of NSX DNS Zones.
+     * @return a list of NSX DNS Zones as paginated response with {@link PagedIterable}.
      */
     PagedIterable<WorkloadNetworkDnsZone> listDnsZones(
         String resourceGroupName, String privateCloudName, Context context);
@@ -564,7 +564,7 @@ public interface WorkloadNetworks {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a DNS zone by id in a private cloud workload network.
+     * @return a DNS zone by id in a private cloud workload network along with {@link Response}.
      */
     Response<WorkloadNetworkDnsZone> getDnsZoneWithResponse(
         String resourceGroupName, String privateCloudName, String dnsZoneId, Context context);
@@ -602,7 +602,7 @@ public interface WorkloadNetworks {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of NSX Public IP Blocks.
+     * @return a list of NSX Public IP Blocks as paginated response with {@link PagedIterable}.
      */
     PagedIterable<WorkloadNetworkPublicIp> listPublicIPs(String resourceGroupName, String privateCloudName);
 
@@ -615,7 +615,7 @@ public interface WorkloadNetworks {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of NSX Public IP Blocks.
+     * @return a list of NSX Public IP Blocks as paginated response with {@link PagedIterable}.
      */
     PagedIterable<WorkloadNetworkPublicIp> listPublicIPs(
         String resourceGroupName, String privateCloudName, Context context);
@@ -643,7 +643,7 @@ public interface WorkloadNetworks {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a Public IP Block by id in a private cloud workload network.
+     * @return a Public IP Block by id in a private cloud workload network along with {@link Response}.
      */
     Response<WorkloadNetworkPublicIp> getPublicIpWithResponse(
         String resourceGroupName, String privateCloudName, String publicIpId, Context context);
@@ -680,7 +680,7 @@ public interface WorkloadNetworks {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a segment by id in a private cloud workload network.
+     * @return a segment by id in a private cloud workload network along with {@link Response}.
      */
     WorkloadNetworkSegment getSegmentById(String id);
 
@@ -692,7 +692,7 @@ public interface WorkloadNetworks {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a segment by id in a private cloud workload network.
+     * @return a segment by id in a private cloud workload network along with {@link Response}.
      */
     Response<WorkloadNetworkSegment> getSegmentByIdWithResponse(String id, Context context);
 
@@ -703,7 +703,7 @@ public interface WorkloadNetworks {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return dhcp by id in a private cloud workload network.
+     * @return dhcp by id in a private cloud workload network along with {@link Response}.
      */
     WorkloadNetworkDhcp getDhcpById(String id);
 
@@ -715,7 +715,7 @@ public interface WorkloadNetworks {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return dhcp by id in a private cloud workload network.
+     * @return dhcp by id in a private cloud workload network along with {@link Response}.
      */
     Response<WorkloadNetworkDhcp> getDhcpByIdWithResponse(String id, Context context);
 
@@ -726,7 +726,7 @@ public interface WorkloadNetworks {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a port mirroring profile by id in a private cloud workload network.
+     * @return a port mirroring profile by id in a private cloud workload network along with {@link Response}.
      */
     WorkloadNetworkPortMirroring getPortMirroringById(String id);
 
@@ -738,7 +738,7 @@ public interface WorkloadNetworks {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a port mirroring profile by id in a private cloud workload network.
+     * @return a port mirroring profile by id in a private cloud workload network along with {@link Response}.
      */
     Response<WorkloadNetworkPortMirroring> getPortMirroringByIdWithResponse(String id, Context context);
 
@@ -749,7 +749,7 @@ public interface WorkloadNetworks {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a vm group by id in a private cloud workload network.
+     * @return a vm group by id in a private cloud workload network along with {@link Response}.
      */
     WorkloadNetworkVMGroup getVMGroupById(String id);
 
@@ -761,7 +761,7 @@ public interface WorkloadNetworks {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a vm group by id in a private cloud workload network.
+     * @return a vm group by id in a private cloud workload network along with {@link Response}.
      */
     Response<WorkloadNetworkVMGroup> getVMGroupByIdWithResponse(String id, Context context);
 
@@ -772,7 +772,7 @@ public interface WorkloadNetworks {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a DNS service by id in a private cloud workload network.
+     * @return a DNS service by id in a private cloud workload network along with {@link Response}.
      */
     WorkloadNetworkDnsService getDnsServiceById(String id);
 
@@ -784,7 +784,7 @@ public interface WorkloadNetworks {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a DNS service by id in a private cloud workload network.
+     * @return a DNS service by id in a private cloud workload network along with {@link Response}.
      */
     Response<WorkloadNetworkDnsService> getDnsServiceByIdWithResponse(String id, Context context);
 
@@ -795,7 +795,7 @@ public interface WorkloadNetworks {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a DNS zone by id in a private cloud workload network.
+     * @return a DNS zone by id in a private cloud workload network along with {@link Response}.
      */
     WorkloadNetworkDnsZone getDnsZoneById(String id);
 
@@ -807,7 +807,7 @@ public interface WorkloadNetworks {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a DNS zone by id in a private cloud workload network.
+     * @return a DNS zone by id in a private cloud workload network along with {@link Response}.
      */
     Response<WorkloadNetworkDnsZone> getDnsZoneByIdWithResponse(String id, Context context);
 
@@ -818,7 +818,7 @@ public interface WorkloadNetworks {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a Public IP Block by id in a private cloud workload network.
+     * @return a Public IP Block by id in a private cloud workload network along with {@link Response}.
      */
     WorkloadNetworkPublicIp getPublicIpById(String id);
 
@@ -830,7 +830,7 @@ public interface WorkloadNetworks {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a Public IP Block by id in a private cloud workload network.
+     * @return a Public IP Block by id in a private cloud workload network along with {@link Response}.
      */
     Response<WorkloadNetworkPublicIp> getPublicIpByIdWithResponse(String id, Context context);
 

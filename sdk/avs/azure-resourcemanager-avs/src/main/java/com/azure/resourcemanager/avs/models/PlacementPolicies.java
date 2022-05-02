@@ -19,7 +19,7 @@ public interface PlacementPolicies {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return represents list of placement policies.
+     * @return represents list of placement policies as paginated response with {@link PagedIterable}.
      */
     PagedIterable<PlacementPolicy> list(String resourceGroupName, String privateCloudName, String clusterName);
 
@@ -33,7 +33,7 @@ public interface PlacementPolicies {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return represents list of placement policies.
+     * @return represents list of placement policies as paginated response with {@link PagedIterable}.
      */
     PagedIterable<PlacementPolicy> list(
         String resourceGroupName, String privateCloudName, String clusterName, Context context);
@@ -64,7 +64,7 @@ public interface PlacementPolicies {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a placement policy by name in a private cloud cluster.
+     * @return a placement policy by name in a private cloud cluster along with {@link Response}.
      */
     Response<PlacementPolicy> getWithResponse(
         String resourceGroupName,
@@ -112,7 +112,7 @@ public interface PlacementPolicies {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a placement policy by name in a private cloud cluster.
+     * @return a placement policy by name in a private cloud cluster along with {@link Response}.
      */
     PlacementPolicy getById(String id);
 
@@ -124,7 +124,7 @@ public interface PlacementPolicies {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a placement policy by name in a private cloud cluster.
+     * @return a placement policy by name in a private cloud cluster along with {@link Response}.
      */
     Response<PlacementPolicy> getByIdWithResponse(String id, Context context);
 

@@ -33,7 +33,11 @@ public final class HcxEnterpriseSiteStatus extends ExpandableStringEnum<HcxEnter
         return fromString(name, HcxEnterpriseSiteStatus.class);
     }
 
-    /** @return known HcxEnterpriseSiteStatus values. */
+    /**
+     * Gets known HcxEnterpriseSiteStatus values.
+     *
+     * @return known HcxEnterpriseSiteStatus values.
+     */
     public static Collection<HcxEnterpriseSiteStatus> values() {
         return values(HcxEnterpriseSiteStatus.class);
     }

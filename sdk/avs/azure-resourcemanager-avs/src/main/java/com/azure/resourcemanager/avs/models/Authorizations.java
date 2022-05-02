@@ -18,7 +18,7 @@ public interface Authorizations {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a paged list of ExpressRoute Circuit Authorizations.
+     * @return a paged list of ExpressRoute Circuit Authorizations as paginated response with {@link PagedIterable}.
      */
     PagedIterable<ExpressRouteAuthorization> list(String resourceGroupName, String privateCloudName);
 
@@ -31,7 +31,7 @@ public interface Authorizations {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a paged list of ExpressRoute Circuit Authorizations.
+     * @return a paged list of ExpressRoute Circuit Authorizations as paginated response with {@link PagedIterable}.
      */
     PagedIterable<ExpressRouteAuthorization> list(String resourceGroupName, String privateCloudName, Context context);
 
@@ -58,7 +58,7 @@ public interface Authorizations {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an ExpressRoute Circuit Authorization by name in a private cloud.
+     * @return an ExpressRoute Circuit Authorization by name in a private cloud along with {@link Response}.
      */
     Response<ExpressRouteAuthorization> getWithResponse(
         String resourceGroupName, String privateCloudName, String authorizationName, Context context);
@@ -95,7 +95,7 @@ public interface Authorizations {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an ExpressRoute Circuit Authorization by name in a private cloud.
+     * @return an ExpressRoute Circuit Authorization by name in a private cloud along with {@link Response}.
      */
     ExpressRouteAuthorization getById(String id);
 
@@ -107,7 +107,7 @@ public interface Authorizations {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an ExpressRoute Circuit Authorization by name in a private cloud.
+     * @return an ExpressRoute Circuit Authorization by name in a private cloud along with {@link Response}.
      */
     Response<ExpressRouteAuthorization> getByIdWithResponse(String id, Context context);
 

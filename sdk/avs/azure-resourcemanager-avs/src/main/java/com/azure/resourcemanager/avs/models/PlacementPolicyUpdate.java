@@ -5,17 +5,13 @@
 package com.azure.resourcemanager.avs.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.avs.fluent.models.PlacementPolicyUpdateProperties;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** An update of a DRS placement policy resource. */
 @Fluent
 public final class PlacementPolicyUpdate {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(PlacementPolicyUpdate.class);
-
     /*
      * The properties of a placement policy resource that may be updated
      */

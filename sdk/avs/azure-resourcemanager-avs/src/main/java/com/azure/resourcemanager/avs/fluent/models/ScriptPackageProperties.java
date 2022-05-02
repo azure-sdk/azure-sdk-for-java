@@ -5,15 +5,11 @@
 package com.azure.resourcemanager.avs.fluent.models;
 
 import com.azure.core.annotation.Immutable;
-import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Properties of a Script Package subresource. */
 @Immutable
 public final class ScriptPackageProperties {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(ScriptPackageProperties.class);
-
     /*
      * User friendly description of the package
      */

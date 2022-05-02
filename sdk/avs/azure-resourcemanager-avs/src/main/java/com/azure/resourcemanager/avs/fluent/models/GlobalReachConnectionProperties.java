@@ -5,17 +5,13 @@
 package com.azure.resourcemanager.avs.fluent.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.avs.models.GlobalReachConnectionProvisioningState;
 import com.azure.resourcemanager.avs.models.GlobalReachConnectionStatus;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** The properties of a global reach connection. */
 @Fluent
 public final class GlobalReachConnectionProperties {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(GlobalReachConnectionProperties.class);
-
     /*
      * The state of the  ExpressRoute Circuit Authorization provisioning
      */

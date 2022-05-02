@@ -51,8 +51,6 @@ import reactor.core.publisher.Mono;
 /** Initializes a new instance of the AvsClientImpl type. */
 @ServiceClient(builder = AvsClientBuilder.class)
 public final class AvsClientImpl implements AvsClient {
-    private final ClientLogger logger = new ClientLogger(AvsClientImpl.class);
-
     /** The ID of the target subscription. */
     private final String subscriptionId;
 
@@ -441,7 +439,7 @@ public final class AvsClientImpl implements AvsClient {
                             managementError = null;
                         }
                     } catch (IOException | RuntimeException ioe) {
-                        logger.logThrowableAsWarning(ioe);
+                        LOGGER.logThrowableAsWarning(ioe);
                     }
                 }
             } else {
@@ -500,4 +498,6 @@ public final class AvsClientImpl implements AvsClient {
             return Mono.just(new String(responseBody, charset));
         }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(AvsClientImpl.class);
 }

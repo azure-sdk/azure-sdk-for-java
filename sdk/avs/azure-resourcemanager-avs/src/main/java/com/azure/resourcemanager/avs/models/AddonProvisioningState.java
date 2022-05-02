@@ -39,7 +39,11 @@ public final class AddonProvisioningState extends ExpandableStringEnum<AddonProv
         return fromString(name, AddonProvisioningState.class);
     }
 
-    /** @return known AddonProvisioningState values. */
+    /**
+     * Gets known AddonProvisioningState values.
+     *
+     * @return known AddonProvisioningState values.
+     */
     public static Collection<AddonProvisioningState> values() {
         return values(AddonProvisioningState.class);
     }

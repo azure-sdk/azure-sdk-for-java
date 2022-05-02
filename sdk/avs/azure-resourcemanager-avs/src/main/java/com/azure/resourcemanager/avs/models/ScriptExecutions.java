@@ -19,7 +19,7 @@ public interface ScriptExecutions {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return pageable list of script executions.
+     * @return pageable list of script executions as paginated response with {@link PagedIterable}.
      */
     PagedIterable<ScriptExecution> list(String resourceGroupName, String privateCloudName);
 
@@ -32,7 +32,7 @@ public interface ScriptExecutions {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return pageable list of script executions.
+     * @return pageable list of script executions as paginated response with {@link PagedIterable}.
      */
     PagedIterable<ScriptExecution> list(String resourceGroupName, String privateCloudName, Context context);
 
@@ -59,7 +59,7 @@ public interface ScriptExecutions {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an script execution by name in a private cloud.
+     * @return an script execution by name in a private cloud along with {@link Response}.
      */
     Response<ScriptExecution> getWithResponse(
         String resourceGroupName, String privateCloudName, String scriptExecutionName, Context context);
@@ -114,7 +114,7 @@ public interface ScriptExecutions {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an instance of a script executed by a user - custom or AVS.
+     * @return an instance of a script executed by a user - custom or AVS along with {@link Response}.
      */
     Response<ScriptExecution> getExecutionLogsWithResponse(
         String resourceGroupName,
@@ -130,7 +130,7 @@ public interface ScriptExecutions {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an script execution by name in a private cloud.
+     * @return an script execution by name in a private cloud along with {@link Response}.
      */
     ScriptExecution getById(String id);
 
@@ -142,7 +142,7 @@ public interface ScriptExecutions {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an script execution by name in a private cloud.
+     * @return an script execution by name in a private cloud along with {@link Response}.
      */
     Response<ScriptExecution> getByIdWithResponse(String id, Context context);
 

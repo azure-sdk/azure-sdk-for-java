@@ -30,7 +30,11 @@ public final class TrialStatus extends ExpandableStringEnum<TrialStatus> {
         return fromString(name, TrialStatus.class);
     }
 
-    /** @return known TrialStatus values. */
+    /**
+     * Gets known TrialStatus values.
+     *
+     * @return known TrialStatus values.
+     */
     public static Collection<TrialStatus> values() {
         return values(TrialStatus.class);
     }

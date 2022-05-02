@@ -6,7 +6,6 @@ package com.azure.resourcemanager.avs.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
@@ -17,8 +16,6 @@ import java.util.List;
 @JsonTypeName("VmHost")
 @Fluent
 public final class VmHostPlacementPolicyProperties extends PlacementPolicyProperties {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(VmHostPlacementPolicyProperties.class);
-
     /*
      * Virtual machine members list
      */
@@ -120,22 +117,24 @@ public final class VmHostPlacementPolicyProperties extends PlacementPolicyProper
     public void validate() {
         super.validate();
         if (vmMembers() == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property vmMembers in model VmHostPlacementPolicyProperties"));
         }
         if (hostMembers() == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property hostMembers in model VmHostPlacementPolicyProperties"));
         }
         if (affinityType() == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property affinityType in model VmHostPlacementPolicyProperties"));
         }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(VmHostPlacementPolicyProperties.class);
 }

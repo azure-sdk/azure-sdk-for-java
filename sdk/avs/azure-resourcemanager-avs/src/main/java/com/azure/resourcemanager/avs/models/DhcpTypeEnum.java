@@ -27,7 +27,11 @@ public final class DhcpTypeEnum extends ExpandableStringEnum<DhcpTypeEnum> {
         return fromString(name, DhcpTypeEnum.class);
     }
 
-    /** @return known DhcpTypeEnum values. */
+    /**
+     * Gets known DhcpTypeEnum values.
+     *
+     * @return known DhcpTypeEnum values.
+     */
     public static Collection<DhcpTypeEnum> values() {
         return values(DhcpTypeEnum.class);
     }

@@ -18,7 +18,7 @@ public interface Addons {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a paged list of addons.
+     * @return a paged list of addons as paginated response with {@link PagedIterable}.
      */
     PagedIterable<Addon> list(String resourceGroupName, String privateCloudName);
 
@@ -31,7 +31,7 @@ public interface Addons {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a paged list of addons.
+     * @return a paged list of addons as paginated response with {@link PagedIterable}.
      */
     PagedIterable<Addon> list(String resourceGroupName, String privateCloudName, Context context);
 
@@ -58,7 +58,7 @@ public interface Addons {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an addon by name in a private cloud.
+     * @return an addon by name in a private cloud along with {@link Response}.
      */
     Response<Addon> getWithResponse(
         String resourceGroupName, String privateCloudName, String addonName, Context context);
@@ -95,7 +95,7 @@ public interface Addons {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an addon by name in a private cloud.
+     * @return an addon by name in a private cloud along with {@link Response}.
      */
     Addon getById(String id);
 
@@ -107,7 +107,7 @@ public interface Addons {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an addon by name in a private cloud.
+     * @return an addon by name in a private cloud along with {@link Response}.
      */
     Response<Addon> getByIdWithResponse(String id, Context context);
 

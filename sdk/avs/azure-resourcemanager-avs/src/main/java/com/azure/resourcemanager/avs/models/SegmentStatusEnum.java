@@ -27,7 +27,11 @@ public final class SegmentStatusEnum extends ExpandableStringEnum<SegmentStatusE
         return fromString(name, SegmentStatusEnum.class);
     }
 
-    /** @return known SegmentStatusEnum values. */
+    /**
+     * Gets known SegmentStatusEnum values.
+     *
+     * @return known SegmentStatusEnum values.
+     */
     public static Collection<SegmentStatusEnum> values() {
         return values(SegmentStatusEnum.class);
     }

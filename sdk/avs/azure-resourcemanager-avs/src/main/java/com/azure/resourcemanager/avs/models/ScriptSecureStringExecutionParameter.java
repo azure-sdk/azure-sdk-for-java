@@ -5,8 +5,6 @@
 package com.azure.resourcemanager.avs.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
@@ -16,8 +14,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @JsonTypeName("SecureValue")
 @Fluent
 public final class ScriptSecureStringExecutionParameter extends ScriptExecutionParameter {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(ScriptSecureStringExecutionParameter.class);
-
     /*
      * A secure value for the passed parameter, not to be stored in logs
      */

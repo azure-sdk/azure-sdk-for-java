@@ -27,7 +27,11 @@ public final class VisibilityParameterEnum extends ExpandableStringEnum<Visibili
         return fromString(name, VisibilityParameterEnum.class);
     }
 
-    /** @return known VisibilityParameterEnum values. */
+    /**
+     * Gets known VisibilityParameterEnum values.
+     *
+     * @return known VisibilityParameterEnum values.
+     */
     public static Collection<VisibilityParameterEnum> values() {
         return values(VisibilityParameterEnum.class);
     }

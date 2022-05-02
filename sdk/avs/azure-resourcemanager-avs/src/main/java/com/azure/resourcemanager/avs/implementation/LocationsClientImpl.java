@@ -21,7 +21,6 @@ import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.avs.fluent.LocationsClient;
 import com.azure.resourcemanager.avs.fluent.models.QuotaInner;
 import com.azure.resourcemanager.avs.fluent.models.TrialInner;
@@ -29,8 +28,6 @@ import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in LocationsClient. */
 public final class LocationsClientImpl implements LocationsClient {
-    private final ClientLogger logger = new ClientLogger(LocationsClientImpl.class);
-
     /** The proxy service used to perform REST calls. */
     private final LocationsService service;
 
@@ -64,6 +61,7 @@ public final class LocationsClientImpl implements LocationsClient {
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("location") String location,
             @QueryParam("api-version") String apiVersion,
+            @QueryParam("sku") String sku,
             @HeaderParam("Accept") String accept,
             Context context);
 
@@ -84,13 +82,14 @@ public final class LocationsClientImpl implements LocationsClient {
      * Return trial status for subscription by region.
      *
      * @param location Azure region.
+     * @param sku The name of the SKU.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return subscription trial availability.
+     * @return subscription trial availability along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<TrialInner>> checkTrialAvailabilityWithResponseAsync(String location) {
+    private Mono<Response<TrialInner>> checkTrialAvailabilityWithResponseAsync(String location, String sku) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -116,6 +115,7 @@ public final class LocationsClientImpl implements LocationsClient {
                             this.client.getSubscriptionId(),
                             location,
                             this.client.getApiVersion(),
+                            sku,
                             accept,
                             context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -125,14 +125,16 @@ public final class LocationsClientImpl implements LocationsClient {
      * Return trial status for subscription by region.
      *
      * @param location Azure region.
+     * @param sku The name of the SKU.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return subscription trial availability.
+     * @return subscription trial availability along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<TrialInner>> checkTrialAvailabilityWithResponseAsync(String location, Context context) {
+    private Mono<Response<TrialInner>> checkTrialAvailabilityWithResponseAsync(
+        String location, String sku, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -156,8 +158,32 @@ public final class LocationsClientImpl implements LocationsClient {
                 this.client.getSubscriptionId(),
                 location,
                 this.client.getApiVersion(),
+                sku,
                 accept,
                 context);
+    }
+
+    /**
+     * Return trial status for subscription by region.
+     *
+     * @param location Azure region.
+     * @param sku The name of the SKU.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return subscription trial availability on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<TrialInner> checkTrialAvailabilityAsync(String location, String sku) {
+        return checkTrialAvailabilityWithResponseAsync(location, sku)
+            .flatMap(
+                (Response<TrialInner> res) -> {
+                    if (res.getValue() != null) {
+                        return Mono.just(res.getValue());
+                    } else {
+                        return Mono.empty();
+                    }
+                });
     }
 
     /**
@@ -167,11 +193,12 @@ public final class LocationsClientImpl implements LocationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return subscription trial availability.
+     * @return subscription trial availability on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<TrialInner> checkTrialAvailabilityAsync(String location) {
-        return checkTrialAvailabilityWithResponseAsync(location)
+        final String sku = null;
+        return checkTrialAvailabilityWithResponseAsync(location, sku)
             .flatMap(
                 (Response<TrialInner> res) -> {
                     if (res.getValue() != null) {
@@ -193,22 +220,24 @@ public final class LocationsClientImpl implements LocationsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public TrialInner checkTrialAvailability(String location) {
-        return checkTrialAvailabilityAsync(location).block();
+        final String sku = null;
+        return checkTrialAvailabilityAsync(location, sku).block();
     }
 
     /**
      * Return trial status for subscription by region.
      *
      * @param location Azure region.
+     * @param sku The name of the SKU.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return subscription trial availability.
+     * @return subscription trial availability along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<TrialInner> checkTrialAvailabilityWithResponse(String location, Context context) {
-        return checkTrialAvailabilityWithResponseAsync(location, context).block();
+    public Response<TrialInner> checkTrialAvailabilityWithResponse(String location, String sku, Context context) {
+        return checkTrialAvailabilityWithResponseAsync(location, sku, context).block();
     }
 
     /**
@@ -218,7 +247,7 @@ public final class LocationsClientImpl implements LocationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return subscription quotas.
+     * @return subscription quotas along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<QuotaInner>> checkQuotaAvailabilityWithResponseAsync(String location) {
@@ -260,7 +289,7 @@ public final class LocationsClientImpl implements LocationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return subscription quotas.
+     * @return subscription quotas along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<QuotaInner>> checkQuotaAvailabilityWithResponseAsync(String location, Context context) {
@@ -298,7 +327,7 @@ public final class LocationsClientImpl implements LocationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return subscription quotas.
+     * @return subscription quotas on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<QuotaInner> checkQuotaAvailabilityAsync(String location) {
@@ -335,7 +364,7 @@ public final class LocationsClientImpl implements LocationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return subscription quotas.
+     * @return subscription quotas along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<QuotaInner> checkQuotaAvailabilityWithResponse(String location, Context context) {

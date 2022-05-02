@@ -42,7 +42,11 @@ public final class DatastoreProvisioningState extends ExpandableStringEnum<Datas
         return fromString(name, DatastoreProvisioningState.class);
     }
 
-    /** @return known DatastoreProvisioningState values. */
+    /**
+     * Gets known DatastoreProvisioningState values.
+     *
+     * @return known DatastoreProvisioningState values.
+     */
     public static Collection<DatastoreProvisioningState> values() {
         return values(DatastoreProvisioningState.class);
     }

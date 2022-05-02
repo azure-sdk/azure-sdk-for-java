@@ -5,17 +5,13 @@
 package com.azure.resourcemanager.avs.models;
 
 import com.azure.core.annotation.Immutable;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.avs.fluent.models.WorkloadNetworkPublicIpInner;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** A list of NSX Public IP Blocks. */
 @Immutable
 public final class WorkloadNetworkPublicIPsList {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(WorkloadNetworkPublicIPsList.class);
-
     /*
      * The items on the page
      */

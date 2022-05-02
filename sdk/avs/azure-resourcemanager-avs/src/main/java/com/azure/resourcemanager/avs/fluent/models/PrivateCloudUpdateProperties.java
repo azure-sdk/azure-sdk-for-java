@@ -5,21 +5,17 @@
 package com.azure.resourcemanager.avs.fluent.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.avs.models.AvailabilityProperties;
 import com.azure.resourcemanager.avs.models.Encryption;
 import com.azure.resourcemanager.avs.models.IdentitySource;
 import com.azure.resourcemanager.avs.models.InternetEnum;
 import com.azure.resourcemanager.avs.models.ManagementCluster;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** The properties of a private cloud resource that may be updated. */
 @Fluent
 public class PrivateCloudUpdateProperties {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(PrivateCloudUpdateProperties.class);
-
     /*
      * The default cluster used for management
      */

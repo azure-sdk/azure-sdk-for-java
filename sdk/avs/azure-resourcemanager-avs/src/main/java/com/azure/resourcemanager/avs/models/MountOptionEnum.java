@@ -27,7 +27,11 @@ public final class MountOptionEnum extends ExpandableStringEnum<MountOptionEnum>
         return fromString(name, MountOptionEnum.class);
     }
 
-    /** @return known MountOptionEnum values. */
+    /**
+     * Gets known MountOptionEnum values.
+     *
+     * @return known MountOptionEnum values.
+     */
     public static Collection<MountOptionEnum> values() {
         return values(MountOptionEnum.class);
     }

@@ -5,15 +5,11 @@
 package com.azure.resourcemanager.avs.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Ports and any VIF attached to segment. */
 @Fluent
 public final class WorkloadNetworkSegmentPortVif {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(WorkloadNetworkSegmentPortVif.class);
-
     /*
      * Name of port or VIF attached to segment.
      */

@@ -37,7 +37,11 @@ public final class WorkloadNetworkPublicIpProvisioningState
         return fromString(name, WorkloadNetworkPublicIpProvisioningState.class);
     }
 
-    /** @return known WorkloadNetworkPublicIpProvisioningState values. */
+    /**
+     * Gets known WorkloadNetworkPublicIpProvisioningState values.
+     *
+     * @return known WorkloadNetworkPublicIpProvisioningState values.
+     */
     public static Collection<WorkloadNetworkPublicIpProvisioningState> values() {
         return values(WorkloadNetworkPublicIpProvisioningState.class);
     }

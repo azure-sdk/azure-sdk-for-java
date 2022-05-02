@@ -5,15 +5,11 @@
 package com.azure.resourcemanager.avs.fluent.models;
 
 import com.azure.core.annotation.Immutable;
-import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Administrative credentials for accessing vCenter and NSX-T. */
 @Immutable
 public final class AdminCredentialsInner {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(AdminCredentialsInner.class);
-
     /*
      * NSX-T Manager username
      */

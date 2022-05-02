@@ -5,15 +5,11 @@
 package com.azure.resourcemanager.avs.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** An parameter that the script will accept. */
 @Fluent
 public final class ScriptParameter {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(ScriptParameter.class);
-
     /*
      * The type of parameter the script is expecting. psCredential is a
      * PSCredentialObject

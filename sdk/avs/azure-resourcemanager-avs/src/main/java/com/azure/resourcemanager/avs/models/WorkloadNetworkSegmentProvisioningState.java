@@ -37,7 +37,11 @@ public final class WorkloadNetworkSegmentProvisioningState
         return fromString(name, WorkloadNetworkSegmentProvisioningState.class);
     }
 
-    /** @return known WorkloadNetworkSegmentProvisioningState values. */
+    /**
+     * Gets known WorkloadNetworkSegmentProvisioningState values.
+     *
+     * @return known WorkloadNetworkSegmentProvisioningState values.
+     */
     public static Collection<WorkloadNetworkSegmentProvisioningState> values() {
         return values(WorkloadNetworkSegmentProvisioningState.class);
     }

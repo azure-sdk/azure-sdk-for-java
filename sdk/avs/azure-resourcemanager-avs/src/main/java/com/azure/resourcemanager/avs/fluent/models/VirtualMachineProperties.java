@@ -5,16 +5,12 @@
 package com.azure.resourcemanager.avs.fluent.models;
 
 import com.azure.core.annotation.Immutable;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.avs.models.VirtualMachineRestrictMovementState;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Virtual Machine Properties. */
 @Immutable
 public final class VirtualMachineProperties {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(VirtualMachineProperties.class);
-
     /*
      * Display name of the VM.
      */

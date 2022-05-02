@@ -19,7 +19,7 @@ public interface VirtualMachines {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of Virtual Machines.
+     * @return a list of Virtual Machines as paginated response with {@link PagedIterable}.
      */
     PagedIterable<VirtualMachine> list(String resourceGroupName, String privateCloudName, String clusterName);
 
@@ -33,7 +33,7 @@ public interface VirtualMachines {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of Virtual Machines.
+     * @return a list of Virtual Machines as paginated response with {@link PagedIterable}.
      */
     PagedIterable<VirtualMachine> list(
         String resourceGroupName, String privateCloudName, String clusterName, Context context);
@@ -63,7 +63,7 @@ public interface VirtualMachines {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a virtual machine by id in a private cloud cluster.
+     * @return a virtual machine by id in a private cloud cluster along with {@link Response}.
      */
     Response<VirtualMachine> getWithResponse(
         String resourceGroupName,

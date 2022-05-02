@@ -13,10 +13,9 @@ import com.azure.resourcemanager.avs.fluent.ScriptPackagesClient;
 import com.azure.resourcemanager.avs.fluent.models.ScriptPackageInner;
 import com.azure.resourcemanager.avs.models.ScriptPackage;
 import com.azure.resourcemanager.avs.models.ScriptPackages;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public final class ScriptPackagesImpl implements ScriptPackages {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(ScriptPackagesImpl.class);
+    private static final ClientLogger LOGGER = new ClientLogger(ScriptPackagesImpl.class);
 
     private final ScriptPackagesClient innerClient;
 

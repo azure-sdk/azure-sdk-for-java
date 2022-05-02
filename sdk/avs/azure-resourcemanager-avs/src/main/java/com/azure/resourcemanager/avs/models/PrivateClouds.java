@@ -17,7 +17,7 @@ public interface PrivateClouds {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a paged list of private clouds.
+     * @return a paged list of private clouds as paginated response with {@link PagedIterable}.
      */
     PagedIterable<PrivateCloud> listByResourceGroup(String resourceGroupName);
 
@@ -29,7 +29,7 @@ public interface PrivateClouds {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a paged list of private clouds.
+     * @return a paged list of private clouds as paginated response with {@link PagedIterable}.
      */
     PagedIterable<PrivateCloud> listByResourceGroup(String resourceGroupName, Context context);
 
@@ -38,7 +38,7 @@ public interface PrivateClouds {
      *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a paged list of private clouds.
+     * @return a paged list of private clouds as paginated response with {@link PagedIterable}.
      */
     PagedIterable<PrivateCloud> list();
 
@@ -49,7 +49,7 @@ public interface PrivateClouds {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a paged list of private clouds.
+     * @return a paged list of private clouds as paginated response with {@link PagedIterable}.
      */
     PagedIterable<PrivateCloud> list(Context context);
 
@@ -74,7 +74,7 @@ public interface PrivateClouds {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a private cloud.
+     * @return a private cloud along with {@link Response}.
      */
     Response<PrivateCloud> getByResourceGroupWithResponse(
         String resourceGroupName, String privateCloudName, Context context);
@@ -169,7 +169,7 @@ public interface PrivateClouds {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return administrative credentials for accessing vCenter and NSX-T.
+     * @return administrative credentials for accessing vCenter and NSX-T along with {@link Response}.
      */
     Response<AdminCredentials> listAdminCredentialsWithResponse(
         String resourceGroupName, String privateCloudName, Context context);
@@ -181,7 +181,7 @@ public interface PrivateClouds {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a private cloud.
+     * @return a private cloud along with {@link Response}.
      */
     PrivateCloud getById(String id);
 
@@ -193,7 +193,7 @@ public interface PrivateClouds {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a private cloud.
+     * @return a private cloud along with {@link Response}.
      */
     Response<PrivateCloud> getByIdWithResponse(String id, Context context);
 

@@ -6,15 +6,11 @@ package com.azure.resourcemanager.avs.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.ProxyResource;
-import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Script Package resources available for execution. */
 @Fluent
 public final class ScriptPackageInner extends ProxyResource {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(ScriptPackageInner.class);
-
     /*
      * ScriptPackage resource properties
      */

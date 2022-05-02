@@ -5,17 +5,13 @@
 package com.azure.resourcemanager.avs.models;
 
 import com.azure.core.annotation.Immutable;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.avs.fluent.models.HcxEnterpriseSiteInner;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** A paged list of HCX Enterprise Sites. */
 @Immutable
 public final class HcxEnterpriseSiteList {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(HcxEnterpriseSiteList.class);
-
     /*
      * The items on a page
      */

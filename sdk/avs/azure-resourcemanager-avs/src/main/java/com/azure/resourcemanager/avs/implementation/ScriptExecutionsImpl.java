@@ -14,11 +14,10 @@ import com.azure.resourcemanager.avs.fluent.models.ScriptExecutionInner;
 import com.azure.resourcemanager.avs.models.ScriptExecution;
 import com.azure.resourcemanager.avs.models.ScriptExecutions;
 import com.azure.resourcemanager.avs.models.ScriptOutputStreamType;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.List;
 
 public final class ScriptExecutionsImpl implements ScriptExecutions {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(ScriptExecutionsImpl.class);
+    private static final ClientLogger LOGGER = new ClientLogger(ScriptExecutionsImpl.class);
 
     private final ScriptExecutionsClient innerClient;
 
@@ -109,7 +108,7 @@ public final class ScriptExecutionsImpl implements ScriptExecutions {
     public ScriptExecution getById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -117,14 +116,14 @@ public final class ScriptExecutionsImpl implements ScriptExecutions {
         }
         String privateCloudName = Utils.getValueFromIdByName(id, "privateClouds");
         if (privateCloudName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'privateClouds'.", id)));
         }
         String scriptExecutionName = Utils.getValueFromIdByName(id, "scriptExecutions");
         if (scriptExecutionName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -137,7 +136,7 @@ public final class ScriptExecutionsImpl implements ScriptExecutions {
     public Response<ScriptExecution> getByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -145,14 +144,14 @@ public final class ScriptExecutionsImpl implements ScriptExecutions {
         }
         String privateCloudName = Utils.getValueFromIdByName(id, "privateClouds");
         if (privateCloudName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'privateClouds'.", id)));
         }
         String scriptExecutionName = Utils.getValueFromIdByName(id, "scriptExecutions");
         if (scriptExecutionName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -165,7 +164,7 @@ public final class ScriptExecutionsImpl implements ScriptExecutions {
     public void deleteById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -173,14 +172,14 @@ public final class ScriptExecutionsImpl implements ScriptExecutions {
         }
         String privateCloudName = Utils.getValueFromIdByName(id, "privateClouds");
         if (privateCloudName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'privateClouds'.", id)));
         }
         String scriptExecutionName = Utils.getValueFromIdByName(id, "scriptExecutions");
         if (scriptExecutionName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -193,7 +192,7 @@ public final class ScriptExecutionsImpl implements ScriptExecutions {
     public void deleteByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -201,14 +200,14 @@ public final class ScriptExecutionsImpl implements ScriptExecutions {
         }
         String privateCloudName = Utils.getValueFromIdByName(id, "privateClouds");
         if (privateCloudName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'privateClouds'.", id)));
         }
         String scriptExecutionName = Utils.getValueFromIdByName(id, "scriptExecutions");
         if (scriptExecutionName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String

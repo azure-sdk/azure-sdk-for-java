@@ -13,10 +13,9 @@ import com.azure.resourcemanager.avs.fluent.AuthorizationsClient;
 import com.azure.resourcemanager.avs.fluent.models.ExpressRouteAuthorizationInner;
 import com.azure.resourcemanager.avs.models.Authorizations;
 import com.azure.resourcemanager.avs.models.ExpressRouteAuthorization;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public final class AuthorizationsImpl implements Authorizations {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(AuthorizationsImpl.class);
+    private static final ClientLogger LOGGER = new ClientLogger(AuthorizationsImpl.class);
 
     private final AuthorizationsClient innerClient;
 
@@ -77,7 +76,7 @@ public final class AuthorizationsImpl implements Authorizations {
     public ExpressRouteAuthorization getById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -85,14 +84,14 @@ public final class AuthorizationsImpl implements Authorizations {
         }
         String privateCloudName = Utils.getValueFromIdByName(id, "privateClouds");
         if (privateCloudName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'privateClouds'.", id)));
         }
         String authorizationName = Utils.getValueFromIdByName(id, "authorizations");
         if (authorizationName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -104,7 +103,7 @@ public final class AuthorizationsImpl implements Authorizations {
     public Response<ExpressRouteAuthorization> getByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -112,14 +111,14 @@ public final class AuthorizationsImpl implements Authorizations {
         }
         String privateCloudName = Utils.getValueFromIdByName(id, "privateClouds");
         if (privateCloudName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'privateClouds'.", id)));
         }
         String authorizationName = Utils.getValueFromIdByName(id, "authorizations");
         if (authorizationName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -131,7 +130,7 @@ public final class AuthorizationsImpl implements Authorizations {
     public void deleteById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -139,14 +138,14 @@ public final class AuthorizationsImpl implements Authorizations {
         }
         String privateCloudName = Utils.getValueFromIdByName(id, "privateClouds");
         if (privateCloudName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'privateClouds'.", id)));
         }
         String authorizationName = Utils.getValueFromIdByName(id, "authorizations");
         if (authorizationName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -158,7 +157,7 @@ public final class AuthorizationsImpl implements Authorizations {
     public void deleteByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -166,14 +165,14 @@ public final class AuthorizationsImpl implements Authorizations {
         }
         String privateCloudName = Utils.getValueFromIdByName(id, "privateClouds");
         if (privateCloudName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'privateClouds'.", id)));
         }
         String authorizationName = Utils.getValueFromIdByName(id, "authorizations");
         if (authorizationName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String

@@ -5,17 +5,13 @@
 package com.azure.resourcemanager.avs.models;
 
 import com.azure.core.annotation.Immutable;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.avs.fluent.models.DatastoreInner;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** A paged list of datastores. */
 @Immutable
 public final class DatastoreList {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(DatastoreList.class);
-
     /*
      * The items on a page
      */

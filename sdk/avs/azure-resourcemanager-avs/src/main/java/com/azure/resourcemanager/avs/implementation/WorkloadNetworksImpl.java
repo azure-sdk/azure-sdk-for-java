@@ -29,10 +29,9 @@ import com.azure.resourcemanager.avs.models.WorkloadNetworkSegment;
 import com.azure.resourcemanager.avs.models.WorkloadNetworkVMGroup;
 import com.azure.resourcemanager.avs.models.WorkloadNetworkVirtualMachine;
 import com.azure.resourcemanager.avs.models.WorkloadNetworks;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public final class WorkloadNetworksImpl implements WorkloadNetworks {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(WorkloadNetworksImpl.class);
+    private static final ClientLogger LOGGER = new ClientLogger(WorkloadNetworksImpl.class);
 
     private final WorkloadNetworksClient innerClient;
 
@@ -455,7 +454,7 @@ public final class WorkloadNetworksImpl implements WorkloadNetworks {
     public WorkloadNetworkSegment getSegmentById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -463,14 +462,14 @@ public final class WorkloadNetworksImpl implements WorkloadNetworks {
         }
         String privateCloudName = Utils.getValueFromIdByName(id, "privateClouds");
         if (privateCloudName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'privateClouds'.", id)));
         }
         String segmentId = Utils.getValueFromIdByName(id, "segments");
         if (segmentId == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'segments'.", id)));
@@ -481,7 +480,7 @@ public final class WorkloadNetworksImpl implements WorkloadNetworks {
     public Response<WorkloadNetworkSegment> getSegmentByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -489,14 +488,14 @@ public final class WorkloadNetworksImpl implements WorkloadNetworks {
         }
         String privateCloudName = Utils.getValueFromIdByName(id, "privateClouds");
         if (privateCloudName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'privateClouds'.", id)));
         }
         String segmentId = Utils.getValueFromIdByName(id, "segments");
         if (segmentId == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'segments'.", id)));
@@ -507,7 +506,7 @@ public final class WorkloadNetworksImpl implements WorkloadNetworks {
     public WorkloadNetworkDhcp getDhcpById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -515,7 +514,7 @@ public final class WorkloadNetworksImpl implements WorkloadNetworks {
         }
         String dhcpId = Utils.getValueFromIdByName(id, "dhcpConfigurations");
         if (dhcpId == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -524,7 +523,7 @@ public final class WorkloadNetworksImpl implements WorkloadNetworks {
         }
         String privateCloudName = Utils.getValueFromIdByName(id, "privateClouds");
         if (privateCloudName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'privateClouds'.", id)));
@@ -535,7 +534,7 @@ public final class WorkloadNetworksImpl implements WorkloadNetworks {
     public Response<WorkloadNetworkDhcp> getDhcpByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -543,7 +542,7 @@ public final class WorkloadNetworksImpl implements WorkloadNetworks {
         }
         String dhcpId = Utils.getValueFromIdByName(id, "dhcpConfigurations");
         if (dhcpId == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -552,7 +551,7 @@ public final class WorkloadNetworksImpl implements WorkloadNetworks {
         }
         String privateCloudName = Utils.getValueFromIdByName(id, "privateClouds");
         if (privateCloudName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'privateClouds'.", id)));
@@ -563,7 +562,7 @@ public final class WorkloadNetworksImpl implements WorkloadNetworks {
     public WorkloadNetworkPortMirroring getPortMirroringById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -571,14 +570,14 @@ public final class WorkloadNetworksImpl implements WorkloadNetworks {
         }
         String privateCloudName = Utils.getValueFromIdByName(id, "privateClouds");
         if (privateCloudName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'privateClouds'.", id)));
         }
         String portMirroringId = Utils.getValueFromIdByName(id, "portMirroringProfiles");
         if (portMirroringId == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -594,7 +593,7 @@ public final class WorkloadNetworksImpl implements WorkloadNetworks {
     public Response<WorkloadNetworkPortMirroring> getPortMirroringByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -602,14 +601,14 @@ public final class WorkloadNetworksImpl implements WorkloadNetworks {
         }
         String privateCloudName = Utils.getValueFromIdByName(id, "privateClouds");
         if (privateCloudName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'privateClouds'.", id)));
         }
         String portMirroringId = Utils.getValueFromIdByName(id, "portMirroringProfiles");
         if (portMirroringId == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -623,7 +622,7 @@ public final class WorkloadNetworksImpl implements WorkloadNetworks {
     public WorkloadNetworkVMGroup getVMGroupById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -631,14 +630,14 @@ public final class WorkloadNetworksImpl implements WorkloadNetworks {
         }
         String privateCloudName = Utils.getValueFromIdByName(id, "privateClouds");
         if (privateCloudName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'privateClouds'.", id)));
         }
         String vmGroupId = Utils.getValueFromIdByName(id, "vmGroups");
         if (vmGroupId == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'vmGroups'.", id)));
@@ -649,7 +648,7 @@ public final class WorkloadNetworksImpl implements WorkloadNetworks {
     public Response<WorkloadNetworkVMGroup> getVMGroupByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -657,14 +656,14 @@ public final class WorkloadNetworksImpl implements WorkloadNetworks {
         }
         String privateCloudName = Utils.getValueFromIdByName(id, "privateClouds");
         if (privateCloudName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'privateClouds'.", id)));
         }
         String vmGroupId = Utils.getValueFromIdByName(id, "vmGroups");
         if (vmGroupId == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'vmGroups'.", id)));
@@ -675,7 +674,7 @@ public final class WorkloadNetworksImpl implements WorkloadNetworks {
     public WorkloadNetworkDnsService getDnsServiceById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -683,14 +682,14 @@ public final class WorkloadNetworksImpl implements WorkloadNetworks {
         }
         String privateCloudName = Utils.getValueFromIdByName(id, "privateClouds");
         if (privateCloudName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'privateClouds'.", id)));
         }
         String dnsServiceId = Utils.getValueFromIdByName(id, "dnsServices");
         if (dnsServiceId == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'dnsServices'.", id)));
@@ -703,7 +702,7 @@ public final class WorkloadNetworksImpl implements WorkloadNetworks {
     public Response<WorkloadNetworkDnsService> getDnsServiceByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -711,14 +710,14 @@ public final class WorkloadNetworksImpl implements WorkloadNetworks {
         }
         String privateCloudName = Utils.getValueFromIdByName(id, "privateClouds");
         if (privateCloudName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'privateClouds'.", id)));
         }
         String dnsServiceId = Utils.getValueFromIdByName(id, "dnsServices");
         if (dnsServiceId == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'dnsServices'.", id)));
@@ -729,7 +728,7 @@ public final class WorkloadNetworksImpl implements WorkloadNetworks {
     public WorkloadNetworkDnsZone getDnsZoneById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -737,14 +736,14 @@ public final class WorkloadNetworksImpl implements WorkloadNetworks {
         }
         String privateCloudName = Utils.getValueFromIdByName(id, "privateClouds");
         if (privateCloudName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'privateClouds'.", id)));
         }
         String dnsZoneId = Utils.getValueFromIdByName(id, "dnsZones");
         if (dnsZoneId == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'dnsZones'.", id)));
@@ -755,7 +754,7 @@ public final class WorkloadNetworksImpl implements WorkloadNetworks {
     public Response<WorkloadNetworkDnsZone> getDnsZoneByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -763,14 +762,14 @@ public final class WorkloadNetworksImpl implements WorkloadNetworks {
         }
         String privateCloudName = Utils.getValueFromIdByName(id, "privateClouds");
         if (privateCloudName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'privateClouds'.", id)));
         }
         String dnsZoneId = Utils.getValueFromIdByName(id, "dnsZones");
         if (dnsZoneId == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'dnsZones'.", id)));
@@ -781,7 +780,7 @@ public final class WorkloadNetworksImpl implements WorkloadNetworks {
     public WorkloadNetworkPublicIp getPublicIpById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -789,14 +788,14 @@ public final class WorkloadNetworksImpl implements WorkloadNetworks {
         }
         String privateCloudName = Utils.getValueFromIdByName(id, "privateClouds");
         if (privateCloudName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'privateClouds'.", id)));
         }
         String publicIpId = Utils.getValueFromIdByName(id, "publicIPs");
         if (publicIpId == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'publicIPs'.", id)));
@@ -807,7 +806,7 @@ public final class WorkloadNetworksImpl implements WorkloadNetworks {
     public Response<WorkloadNetworkPublicIp> getPublicIpByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -815,14 +814,14 @@ public final class WorkloadNetworksImpl implements WorkloadNetworks {
         }
         String privateCloudName = Utils.getValueFromIdByName(id, "privateClouds");
         if (privateCloudName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'privateClouds'.", id)));
         }
         String publicIpId = Utils.getValueFromIdByName(id, "publicIPs");
         if (publicIpId == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'publicIPs'.", id)));
@@ -833,7 +832,7 @@ public final class WorkloadNetworksImpl implements WorkloadNetworks {
     public void deleteSegmentById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -841,14 +840,14 @@ public final class WorkloadNetworksImpl implements WorkloadNetworks {
         }
         String privateCloudName = Utils.getValueFromIdByName(id, "privateClouds");
         if (privateCloudName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'privateClouds'.", id)));
         }
         String segmentId = Utils.getValueFromIdByName(id, "segments");
         if (segmentId == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'segments'.", id)));
@@ -859,7 +858,7 @@ public final class WorkloadNetworksImpl implements WorkloadNetworks {
     public void deleteSegmentByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -867,14 +866,14 @@ public final class WorkloadNetworksImpl implements WorkloadNetworks {
         }
         String privateCloudName = Utils.getValueFromIdByName(id, "privateClouds");
         if (privateCloudName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'privateClouds'.", id)));
         }
         String segmentId = Utils.getValueFromIdByName(id, "segments");
         if (segmentId == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'segments'.", id)));
@@ -885,7 +884,7 @@ public final class WorkloadNetworksImpl implements WorkloadNetworks {
     public void deleteDhcpById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -893,14 +892,14 @@ public final class WorkloadNetworksImpl implements WorkloadNetworks {
         }
         String privateCloudName = Utils.getValueFromIdByName(id, "privateClouds");
         if (privateCloudName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'privateClouds'.", id)));
         }
         String dhcpId = Utils.getValueFromIdByName(id, "dhcpConfigurations");
         if (dhcpId == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -913,7 +912,7 @@ public final class WorkloadNetworksImpl implements WorkloadNetworks {
     public void deleteDhcpByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -921,14 +920,14 @@ public final class WorkloadNetworksImpl implements WorkloadNetworks {
         }
         String privateCloudName = Utils.getValueFromIdByName(id, "privateClouds");
         if (privateCloudName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'privateClouds'.", id)));
         }
         String dhcpId = Utils.getValueFromIdByName(id, "dhcpConfigurations");
         if (dhcpId == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -941,7 +940,7 @@ public final class WorkloadNetworksImpl implements WorkloadNetworks {
     public void deletePortMirroringById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -949,7 +948,7 @@ public final class WorkloadNetworksImpl implements WorkloadNetworks {
         }
         String portMirroringId = Utils.getValueFromIdByName(id, "portMirroringProfiles");
         if (portMirroringId == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -959,7 +958,7 @@ public final class WorkloadNetworksImpl implements WorkloadNetworks {
         }
         String privateCloudName = Utils.getValueFromIdByName(id, "privateClouds");
         if (privateCloudName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'privateClouds'.", id)));
@@ -970,7 +969,7 @@ public final class WorkloadNetworksImpl implements WorkloadNetworks {
     public void deletePortMirroringByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -978,7 +977,7 @@ public final class WorkloadNetworksImpl implements WorkloadNetworks {
         }
         String portMirroringId = Utils.getValueFromIdByName(id, "portMirroringProfiles");
         if (portMirroringId == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -988,7 +987,7 @@ public final class WorkloadNetworksImpl implements WorkloadNetworks {
         }
         String privateCloudName = Utils.getValueFromIdByName(id, "privateClouds");
         if (privateCloudName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'privateClouds'.", id)));
@@ -999,7 +998,7 @@ public final class WorkloadNetworksImpl implements WorkloadNetworks {
     public void deleteVMGroupById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -1007,14 +1006,14 @@ public final class WorkloadNetworksImpl implements WorkloadNetworks {
         }
         String vmGroupId = Utils.getValueFromIdByName(id, "vmGroups");
         if (vmGroupId == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'vmGroups'.", id)));
         }
         String privateCloudName = Utils.getValueFromIdByName(id, "privateClouds");
         if (privateCloudName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'privateClouds'.", id)));
@@ -1025,7 +1024,7 @@ public final class WorkloadNetworksImpl implements WorkloadNetworks {
     public void deleteVMGroupByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -1033,14 +1032,14 @@ public final class WorkloadNetworksImpl implements WorkloadNetworks {
         }
         String vmGroupId = Utils.getValueFromIdByName(id, "vmGroups");
         if (vmGroupId == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'vmGroups'.", id)));
         }
         String privateCloudName = Utils.getValueFromIdByName(id, "privateClouds");
         if (privateCloudName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'privateClouds'.", id)));
@@ -1051,7 +1050,7 @@ public final class WorkloadNetworksImpl implements WorkloadNetworks {
     public void deleteDnsServiceById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -1059,14 +1058,14 @@ public final class WorkloadNetworksImpl implements WorkloadNetworks {
         }
         String dnsServiceId = Utils.getValueFromIdByName(id, "dnsServices");
         if (dnsServiceId == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'dnsServices'.", id)));
         }
         String privateCloudName = Utils.getValueFromIdByName(id, "privateClouds");
         if (privateCloudName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'privateClouds'.", id)));
@@ -1077,7 +1076,7 @@ public final class WorkloadNetworksImpl implements WorkloadNetworks {
     public void deleteDnsServiceByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -1085,14 +1084,14 @@ public final class WorkloadNetworksImpl implements WorkloadNetworks {
         }
         String dnsServiceId = Utils.getValueFromIdByName(id, "dnsServices");
         if (dnsServiceId == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'dnsServices'.", id)));
         }
         String privateCloudName = Utils.getValueFromIdByName(id, "privateClouds");
         if (privateCloudName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'privateClouds'.", id)));
@@ -1103,7 +1102,7 @@ public final class WorkloadNetworksImpl implements WorkloadNetworks {
     public void deleteDnsZoneById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -1111,14 +1110,14 @@ public final class WorkloadNetworksImpl implements WorkloadNetworks {
         }
         String dnsZoneId = Utils.getValueFromIdByName(id, "dnsZones");
         if (dnsZoneId == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'dnsZones'.", id)));
         }
         String privateCloudName = Utils.getValueFromIdByName(id, "privateClouds");
         if (privateCloudName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'privateClouds'.", id)));
@@ -1129,7 +1128,7 @@ public final class WorkloadNetworksImpl implements WorkloadNetworks {
     public void deleteDnsZoneByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -1137,14 +1136,14 @@ public final class WorkloadNetworksImpl implements WorkloadNetworks {
         }
         String dnsZoneId = Utils.getValueFromIdByName(id, "dnsZones");
         if (dnsZoneId == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'dnsZones'.", id)));
         }
         String privateCloudName = Utils.getValueFromIdByName(id, "privateClouds");
         if (privateCloudName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'privateClouds'.", id)));
@@ -1155,7 +1154,7 @@ public final class WorkloadNetworksImpl implements WorkloadNetworks {
     public void deletePublicIpById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -1163,14 +1162,14 @@ public final class WorkloadNetworksImpl implements WorkloadNetworks {
         }
         String publicIpId = Utils.getValueFromIdByName(id, "publicIPs");
         if (publicIpId == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'publicIPs'.", id)));
         }
         String privateCloudName = Utils.getValueFromIdByName(id, "privateClouds");
         if (privateCloudName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'privateClouds'.", id)));
@@ -1181,7 +1180,7 @@ public final class WorkloadNetworksImpl implements WorkloadNetworks {
     public void deletePublicIpByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -1189,14 +1188,14 @@ public final class WorkloadNetworksImpl implements WorkloadNetworks {
         }
         String publicIpId = Utils.getValueFromIdByName(id, "publicIPs");
         if (publicIpId == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'publicIPs'.", id)));
         }
         String privateCloudName = Utils.getValueFromIdByName(id, "privateClouds");
         if (privateCloudName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'privateClouds'.", id)));

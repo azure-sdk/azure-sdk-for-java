@@ -27,7 +27,11 @@ public final class PlacementPolicyType extends ExpandableStringEnum<PlacementPol
         return fromString(name, PlacementPolicyType.class);
     }
 
-    /** @return known PlacementPolicyType values. */
+    /**
+     * Gets known PlacementPolicyType values.
+     *
+     * @return known PlacementPolicyType values.
+     */
     public static Collection<PlacementPolicyType> values() {
         return values(PlacementPolicyType.class);
     }

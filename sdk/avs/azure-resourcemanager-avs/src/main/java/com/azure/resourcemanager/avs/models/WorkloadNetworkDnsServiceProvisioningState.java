@@ -37,7 +37,11 @@ public final class WorkloadNetworkDnsServiceProvisioningState
         return fromString(name, WorkloadNetworkDnsServiceProvisioningState.class);
     }
 
-    /** @return known WorkloadNetworkDnsServiceProvisioningState values. */
+    /**
+     * Gets known WorkloadNetworkDnsServiceProvisioningState values.
+     *
+     * @return known WorkloadNetworkDnsServiceProvisioningState values.
+     */
     public static Collection<WorkloadNetworkDnsServiceProvisioningState> values() {
         return values(WorkloadNetworkDnsServiceProvisioningState.class);
     }

@@ -27,7 +27,11 @@ public final class EncryptionVersionType extends ExpandableStringEnum<Encryption
         return fromString(name, EncryptionVersionType.class);
     }
 
-    /** @return known EncryptionVersionType values. */
+    /**
+     * Gets known EncryptionVersionType values.
+     *
+     * @return known EncryptionVersionType values.
+     */
     public static Collection<EncryptionVersionType> values() {
         return values(EncryptionVersionType.class);
     }

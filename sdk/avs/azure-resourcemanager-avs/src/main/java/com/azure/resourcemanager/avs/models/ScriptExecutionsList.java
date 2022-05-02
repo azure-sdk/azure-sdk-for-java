@@ -5,17 +5,13 @@
 package com.azure.resourcemanager.avs.models;
 
 import com.azure.core.annotation.Immutable;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.avs.fluent.models.ScriptExecutionInner;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** Pageable list of script executions. */
 @Immutable
 public final class ScriptExecutionsList {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(ScriptExecutionsList.class);
-
     /*
      * List of scripts
      */

@@ -25,7 +25,6 @@ import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.avs.fluent.ScriptCmdletsClient;
 import com.azure.resourcemanager.avs.fluent.models.ScriptCmdletInner;
 import com.azure.resourcemanager.avs.models.ScriptCmdletsList;
@@ -33,8 +32,6 @@ import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in ScriptCmdletsClient. */
 public final class ScriptCmdletsClientImpl implements ScriptCmdletsClient {
-    private final ClientLogger logger = new ClientLogger(ScriptCmdletsClientImpl.class);
-
     /** The proxy service used to perform REST calls. */
     private final ScriptCmdletsService service;
 
@@ -113,7 +110,8 @@ public final class ScriptCmdletsClientImpl implements ScriptCmdletsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return pageable list of scripts/cmdlets.
+     * @return pageable list of scripts/cmdlets along with {@link PagedResponse} on successful completion of {@link
+     *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ScriptCmdletInner>> listSinglePageAsync(
@@ -179,7 +177,8 @@ public final class ScriptCmdletsClientImpl implements ScriptCmdletsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return pageable list of scripts/cmdlets.
+     * @return pageable list of scripts/cmdlets along with {@link PagedResponse} on successful completion of {@link
+     *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ScriptCmdletInner>> listSinglePageAsync(
@@ -241,7 +240,7 @@ public final class ScriptCmdletsClientImpl implements ScriptCmdletsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return pageable list of scripts/cmdlets.
+     * @return pageable list of scripts/cmdlets as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<ScriptCmdletInner> listAsync(
@@ -262,7 +261,7 @@ public final class ScriptCmdletsClientImpl implements ScriptCmdletsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return pageable list of scripts/cmdlets.
+     * @return pageable list of scripts/cmdlets as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<ScriptCmdletInner> listAsync(
@@ -282,7 +281,7 @@ public final class ScriptCmdletsClientImpl implements ScriptCmdletsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return pageable list of scripts/cmdlets.
+     * @return pageable list of scripts/cmdlets as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<ScriptCmdletInner> list(
@@ -301,7 +300,7 @@ public final class ScriptCmdletsClientImpl implements ScriptCmdletsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return pageable list of scripts/cmdlets.
+     * @return pageable list of scripts/cmdlets as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<ScriptCmdletInner> list(
@@ -319,7 +318,8 @@ public final class ScriptCmdletsClientImpl implements ScriptCmdletsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a cmdlet available for script execution.
+     * @return a cmdlet available for script execution along with {@link Response} on successful completion of {@link
+     *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<ScriptCmdletInner>> getWithResponseAsync(
@@ -381,7 +381,8 @@ public final class ScriptCmdletsClientImpl implements ScriptCmdletsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a cmdlet available for script execution.
+     * @return a cmdlet available for script execution along with {@link Response} on successful completion of {@link
+     *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<ScriptCmdletInner>> getWithResponseAsync(
@@ -443,7 +444,7 @@ public final class ScriptCmdletsClientImpl implements ScriptCmdletsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a cmdlet available for script execution.
+     * @return a cmdlet available for script execution on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ScriptCmdletInner> getAsync(
@@ -488,7 +489,7 @@ public final class ScriptCmdletsClientImpl implements ScriptCmdletsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a cmdlet available for script execution.
+     * @return a cmdlet available for script execution along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<ScriptCmdletInner> getWithResponse(
@@ -508,7 +509,8 @@ public final class ScriptCmdletsClientImpl implements ScriptCmdletsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return pageable list of scripts/cmdlets.
+     * @return pageable list of scripts/cmdlets along with {@link PagedResponse} on successful completion of {@link
+     *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ScriptCmdletInner>> listNextSinglePageAsync(String nextLink) {
@@ -544,7 +546,8 @@ public final class ScriptCmdletsClientImpl implements ScriptCmdletsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return pageable list of scripts/cmdlets.
+     * @return pageable list of scripts/cmdlets along with {@link PagedResponse} on successful completion of {@link
+     *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ScriptCmdletInner>> listNextSinglePageAsync(String nextLink, Context context) {

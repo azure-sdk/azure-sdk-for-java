@@ -14,10 +14,9 @@ import com.azure.resourcemanager.avs.fluent.models.TrialInner;
 import com.azure.resourcemanager.avs.models.Locations;
 import com.azure.resourcemanager.avs.models.Quota;
 import com.azure.resourcemanager.avs.models.Trial;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public final class LocationsImpl implements Locations {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(LocationsImpl.class);
+    private static final ClientLogger LOGGER = new ClientLogger(LocationsImpl.class);
 
     private final LocationsClient innerClient;
 
@@ -37,8 +36,8 @@ public final class LocationsImpl implements Locations {
         }
     }
 
-    public Response<Trial> checkTrialAvailabilityWithResponse(String location, Context context) {
-        Response<TrialInner> inner = this.serviceClient().checkTrialAvailabilityWithResponse(location, context);
+    public Response<Trial> checkTrialAvailabilityWithResponse(String location, String sku, Context context) {
+        Response<TrialInner> inner = this.serviceClient().checkTrialAvailabilityWithResponse(location, sku, context);
         if (inner != null) {
             return new SimpleResponse<>(
                 inner.getRequest(),

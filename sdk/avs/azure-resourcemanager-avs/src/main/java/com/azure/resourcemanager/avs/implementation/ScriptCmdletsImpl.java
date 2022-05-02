@@ -13,10 +13,9 @@ import com.azure.resourcemanager.avs.fluent.ScriptCmdletsClient;
 import com.azure.resourcemanager.avs.fluent.models.ScriptCmdletInner;
 import com.azure.resourcemanager.avs.models.ScriptCmdlet;
 import com.azure.resourcemanager.avs.models.ScriptCmdlets;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public final class ScriptCmdletsImpl implements ScriptCmdlets {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(ScriptCmdletsImpl.class);
+    private static final ClientLogger LOGGER = new ClientLogger(ScriptCmdletsImpl.class);
 
     private final ScriptCmdletsClient innerClient;
 

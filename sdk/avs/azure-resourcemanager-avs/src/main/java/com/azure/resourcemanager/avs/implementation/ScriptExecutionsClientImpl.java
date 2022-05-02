@@ -30,7 +30,6 @@ import com.azure.core.management.exception.ManagementException;
 import com.azure.core.management.polling.PollResult;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.avs.fluent.ScriptExecutionsClient;
@@ -44,8 +43,6 @@ import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in ScriptExecutionsClient. */
 public final class ScriptExecutionsClientImpl implements ScriptExecutionsClient {
-    private final ClientLogger logger = new ClientLogger(ScriptExecutionsClientImpl.class);
-
     /** The proxy service used to perform REST calls. */
     private final ScriptExecutionsService service;
 
@@ -170,7 +167,8 @@ public final class ScriptExecutionsClientImpl implements ScriptExecutionsClient 
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return pageable list of script executions.
+     * @return pageable list of script executions along with {@link PagedResponse} on successful completion of {@link
+     *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ScriptExecutionInner>> listSinglePageAsync(
@@ -229,7 +227,8 @@ public final class ScriptExecutionsClientImpl implements ScriptExecutionsClient 
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return pageable list of script executions.
+     * @return pageable list of script executions along with {@link PagedResponse} on successful completion of {@link
+     *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ScriptExecutionInner>> listSinglePageAsync(
@@ -284,7 +283,7 @@ public final class ScriptExecutionsClientImpl implements ScriptExecutionsClient 
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return pageable list of script executions.
+     * @return pageable list of script executions as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<ScriptExecutionInner> listAsync(String resourceGroupName, String privateCloudName) {
@@ -302,7 +301,7 @@ public final class ScriptExecutionsClientImpl implements ScriptExecutionsClient 
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return pageable list of script executions.
+     * @return pageable list of script executions as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<ScriptExecutionInner> listAsync(
@@ -320,7 +319,7 @@ public final class ScriptExecutionsClientImpl implements ScriptExecutionsClient 
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return pageable list of script executions.
+     * @return pageable list of script executions as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<ScriptExecutionInner> list(String resourceGroupName, String privateCloudName) {
@@ -336,7 +335,7 @@ public final class ScriptExecutionsClientImpl implements ScriptExecutionsClient 
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return pageable list of script executions.
+     * @return pageable list of script executions as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<ScriptExecutionInner> list(
@@ -353,7 +352,8 @@ public final class ScriptExecutionsClientImpl implements ScriptExecutionsClient 
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an script execution by name in a private cloud.
+     * @return an script execution by name in a private cloud along with {@link Response} on successful completion of
+     *     {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<ScriptExecutionInner>> getWithResponseAsync(
@@ -409,7 +409,8 @@ public final class ScriptExecutionsClientImpl implements ScriptExecutionsClient 
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an script execution by name in a private cloud.
+     * @return an script execution by name in a private cloud along with {@link Response} on successful completion of
+     *     {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<ScriptExecutionInner>> getWithResponseAsync(
@@ -461,7 +462,7 @@ public final class ScriptExecutionsClientImpl implements ScriptExecutionsClient 
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an script execution by name in a private cloud.
+     * @return an script execution by name in a private cloud on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ScriptExecutionInner> getAsync(
@@ -503,7 +504,7 @@ public final class ScriptExecutionsClientImpl implements ScriptExecutionsClient 
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an script execution by name in a private cloud.
+     * @return an script execution by name in a private cloud along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<ScriptExecutionInner> getWithResponse(
@@ -521,7 +522,8 @@ public final class ScriptExecutionsClientImpl implements ScriptExecutionsClient 
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an instance of a script executed by a user - custom or AVS.
+     * @return an instance of a script executed by a user - custom or AVS along with {@link Response} on successful
+     *     completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(
@@ -588,7 +590,8 @@ public final class ScriptExecutionsClientImpl implements ScriptExecutionsClient 
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an instance of a script executed by a user - custom or AVS.
+     * @return an instance of a script executed by a user - custom or AVS along with {@link Response} on successful
+     *     completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(
@@ -652,7 +655,7 @@ public final class ScriptExecutionsClientImpl implements ScriptExecutionsClient 
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an instance of a script executed by a user - custom or AVS.
+     * @return the {@link PollerFlux} for polling of an instance of a script executed by a user - custom or AVS.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<ScriptExecutionInner>, ScriptExecutionInner> beginCreateOrUpdateAsync(
@@ -669,7 +672,7 @@ public final class ScriptExecutionsClientImpl implements ScriptExecutionsClient 
                 this.client.getHttpPipeline(),
                 ScriptExecutionInner.class,
                 ScriptExecutionInner.class,
-                Context.NONE);
+                this.client.getContext());
     }
 
     /**
@@ -683,7 +686,7 @@ public final class ScriptExecutionsClientImpl implements ScriptExecutionsClient 
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an instance of a script executed by a user - custom or AVS.
+     * @return the {@link PollerFlux} for polling of an instance of a script executed by a user - custom or AVS.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<ScriptExecutionInner>, ScriptExecutionInner> beginCreateOrUpdateAsync(
@@ -712,7 +715,7 @@ public final class ScriptExecutionsClientImpl implements ScriptExecutionsClient 
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an instance of a script executed by a user - custom or AVS.
+     * @return the {@link SyncPoller} for polling of an instance of a script executed by a user - custom or AVS.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<ScriptExecutionInner>, ScriptExecutionInner> beginCreateOrUpdate(
@@ -735,7 +738,7 @@ public final class ScriptExecutionsClientImpl implements ScriptExecutionsClient 
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an instance of a script executed by a user - custom or AVS.
+     * @return the {@link SyncPoller} for polling of an instance of a script executed by a user - custom or AVS.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<ScriptExecutionInner>, ScriptExecutionInner> beginCreateOrUpdate(
@@ -759,7 +762,7 @@ public final class ScriptExecutionsClientImpl implements ScriptExecutionsClient 
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an instance of a script executed by a user - custom or AVS.
+     * @return an instance of a script executed by a user - custom or AVS on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ScriptExecutionInner> createOrUpdateAsync(
@@ -783,7 +786,7 @@ public final class ScriptExecutionsClientImpl implements ScriptExecutionsClient 
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an instance of a script executed by a user - custom or AVS.
+     * @return an instance of a script executed by a user - custom or AVS on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ScriptExecutionInner> createOrUpdateAsync(
@@ -852,7 +855,7 @@ public final class ScriptExecutionsClientImpl implements ScriptExecutionsClient 
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the completion.
+     * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(
@@ -908,7 +911,7 @@ public final class ScriptExecutionsClientImpl implements ScriptExecutionsClient 
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the completion.
+     * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(
@@ -960,7 +963,7 @@ public final class ScriptExecutionsClientImpl implements ScriptExecutionsClient 
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the completion.
+     * @return the {@link PollerFlux} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(
@@ -969,7 +972,8 @@ public final class ScriptExecutionsClientImpl implements ScriptExecutionsClient 
             deleteWithResponseAsync(resourceGroupName, privateCloudName, scriptExecutionName);
         return this
             .client
-            .<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class, Context.NONE);
+            .<Void, Void>getLroResult(
+                mono, this.client.getHttpPipeline(), Void.class, Void.class, this.client.getContext());
     }
 
     /**
@@ -982,7 +986,7 @@ public final class ScriptExecutionsClientImpl implements ScriptExecutionsClient 
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the completion.
+     * @return the {@link PollerFlux} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(
@@ -1004,7 +1008,7 @@ public final class ScriptExecutionsClientImpl implements ScriptExecutionsClient 
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the completion.
+     * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
@@ -1022,7 +1026,7 @@ public final class ScriptExecutionsClientImpl implements ScriptExecutionsClient 
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the completion.
+     * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
@@ -1039,7 +1043,7 @@ public final class ScriptExecutionsClientImpl implements ScriptExecutionsClient 
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the completion.
+     * @return A {@link Mono} that completes when a successful response is received.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> deleteAsync(String resourceGroupName, String privateCloudName, String scriptExecutionName) {
@@ -1058,7 +1062,7 @@ public final class ScriptExecutionsClientImpl implements ScriptExecutionsClient 
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the completion.
+     * @return A {@link Mono} that completes when a successful response is received.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> deleteAsync(
@@ -1110,7 +1114,8 @@ public final class ScriptExecutionsClientImpl implements ScriptExecutionsClient 
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an instance of a script executed by a user - custom or AVS.
+     * @return an instance of a script executed by a user - custom or AVS along with {@link Response} on successful
+     *     completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<ScriptExecutionInner>> getExecutionLogsWithResponseAsync(
@@ -1172,7 +1177,8 @@ public final class ScriptExecutionsClientImpl implements ScriptExecutionsClient 
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an instance of a script executed by a user - custom or AVS.
+     * @return an instance of a script executed by a user - custom or AVS along with {@link Response} on successful
+     *     completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<ScriptExecutionInner>> getExecutionLogsWithResponseAsync(
@@ -1231,7 +1237,7 @@ public final class ScriptExecutionsClientImpl implements ScriptExecutionsClient 
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an instance of a script executed by a user - custom or AVS.
+     * @return an instance of a script executed by a user - custom or AVS on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ScriptExecutionInner> getExecutionLogsAsync(
@@ -1260,7 +1266,7 @@ public final class ScriptExecutionsClientImpl implements ScriptExecutionsClient 
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an instance of a script executed by a user - custom or AVS.
+     * @return an instance of a script executed by a user - custom or AVS on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ScriptExecutionInner> getExecutionLogsAsync(
@@ -1309,7 +1315,7 @@ public final class ScriptExecutionsClientImpl implements ScriptExecutionsClient 
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an instance of a script executed by a user - custom or AVS.
+     * @return an instance of a script executed by a user - custom or AVS along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<ScriptExecutionInner> getExecutionLogsWithResponse(
@@ -1330,7 +1336,8 @@ public final class ScriptExecutionsClientImpl implements ScriptExecutionsClient 
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return pageable list of script executions.
+     * @return pageable list of script executions along with {@link PagedResponse} on successful completion of {@link
+     *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ScriptExecutionInner>> listNextSinglePageAsync(String nextLink) {
@@ -1366,7 +1373,8 @@ public final class ScriptExecutionsClientImpl implements ScriptExecutionsClient 
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return pageable list of script executions.
+     * @return pageable list of script executions along with {@link PagedResponse} on successful completion of {@link
+     *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ScriptExecutionInner>> listNextSinglePageAsync(String nextLink, Context context) {

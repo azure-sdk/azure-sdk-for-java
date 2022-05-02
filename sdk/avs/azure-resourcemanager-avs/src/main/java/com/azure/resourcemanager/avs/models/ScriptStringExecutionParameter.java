@@ -5,8 +5,6 @@
 package com.azure.resourcemanager.avs.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
@@ -16,8 +14,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @JsonTypeName("Value")
 @Fluent
 public final class ScriptStringExecutionParameter extends ScriptExecutionParameter {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(ScriptStringExecutionParameter.class);
-
     /*
      * The value for the passed parameter
      */

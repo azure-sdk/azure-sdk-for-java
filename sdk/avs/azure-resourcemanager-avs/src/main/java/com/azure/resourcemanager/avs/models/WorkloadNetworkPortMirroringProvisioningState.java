@@ -37,7 +37,11 @@ public final class WorkloadNetworkPortMirroringProvisioningState
         return fromString(name, WorkloadNetworkPortMirroringProvisioningState.class);
     }
 
-    /** @return known WorkloadNetworkPortMirroringProvisioningState values. */
+    /**
+     * Gets known WorkloadNetworkPortMirroringProvisioningState values.
+     *
+     * @return known WorkloadNetworkPortMirroringProvisioningState values.
+     */
     public static Collection<WorkloadNetworkPortMirroringProvisioningState> values() {
         return values(WorkloadNetworkPortMirroringProvisioningState.class);
     }

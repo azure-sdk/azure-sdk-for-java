@@ -37,7 +37,11 @@ public final class WorkloadNetworkDhcpProvisioningState
         return fromString(name, WorkloadNetworkDhcpProvisioningState.class);
     }
 
-    /** @return known WorkloadNetworkDhcpProvisioningState values. */
+    /**
+     * Gets known WorkloadNetworkDhcpProvisioningState values.
+     *
+     * @return known WorkloadNetworkDhcpProvisioningState values.
+     */
     public static Collection<WorkloadNetworkDhcpProvisioningState> values() {
         return values(WorkloadNetworkDhcpProvisioningState.class);
     }

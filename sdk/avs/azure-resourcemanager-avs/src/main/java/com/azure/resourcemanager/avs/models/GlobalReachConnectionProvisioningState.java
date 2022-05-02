@@ -31,7 +31,11 @@ public final class GlobalReachConnectionProvisioningState
         return fromString(name, GlobalReachConnectionProvisioningState.class);
     }
 
-    /** @return known GlobalReachConnectionProvisioningState values. */
+    /**
+     * Gets known GlobalReachConnectionProvisioningState values.
+     *
+     * @return known GlobalReachConnectionProvisioningState values.
+     */
     public static Collection<GlobalReachConnectionProvisioningState> values() {
         return values(GlobalReachConnectionProvisioningState.class);
     }

@@ -42,7 +42,11 @@ public final class PrivateCloudProvisioningState extends ExpandableStringEnum<Pr
         return fromString(name, PrivateCloudProvisioningState.class);
     }
 
-    /** @return known PrivateCloudProvisioningState values. */
+    /**
+     * Gets known PrivateCloudProvisioningState values.
+     *
+     * @return known PrivateCloudProvisioningState values.
+     */
     public static Collection<PrivateCloudProvisioningState> values() {
         return values(PrivateCloudProvisioningState.class);
     }

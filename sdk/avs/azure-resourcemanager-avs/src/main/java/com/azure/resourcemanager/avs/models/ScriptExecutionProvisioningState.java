@@ -42,7 +42,11 @@ public final class ScriptExecutionProvisioningState extends ExpandableStringEnum
         return fromString(name, ScriptExecutionProvisioningState.class);
     }
 
-    /** @return known ScriptExecutionProvisioningState values. */
+    /**
+     * Gets known ScriptExecutionProvisioningState values.
+     *
+     * @return known ScriptExecutionProvisioningState values.
+     */
     public static Collection<ScriptExecutionProvisioningState> values() {
         return values(ScriptExecutionProvisioningState.class);
     }

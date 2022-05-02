@@ -363,13 +363,8 @@ public final class PrivateCloudImpl implements PrivateCloud, PrivateCloud.Defini
     }
 
     public PrivateCloudImpl withAvailability(AvailabilityProperties availability) {
-        if (isInCreateMode()) {
-            this.innerModel().withAvailability(availability);
-            return this;
-        } else {
-            this.updatePrivateCloudUpdate.withAvailability(availability);
-            return this;
-        }
+        this.innerModel().withAvailability(availability);
+        return this;
     }
 
     public PrivateCloudImpl withEncryption(Encryption encryption) {

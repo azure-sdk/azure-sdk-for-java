@@ -6,14 +6,11 @@ package com.azure.resourcemanager.avs.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** An Azure NetApp Files volume from Microsoft.NetApp provider. */
 @Fluent
 public final class NetAppVolume {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(NetAppVolume.class);
-
     /*
      * Azure resource ID of the NetApp volume
      */
@@ -47,9 +44,11 @@ public final class NetAppVolume {
      */
     public void validate() {
         if (id() == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property id in model NetAppVolume"));
         }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(NetAppVolume.class);
 }

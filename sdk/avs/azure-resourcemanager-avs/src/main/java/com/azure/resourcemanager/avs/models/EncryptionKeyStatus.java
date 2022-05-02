@@ -27,7 +27,11 @@ public final class EncryptionKeyStatus extends ExpandableStringEnum<EncryptionKe
         return fromString(name, EncryptionKeyStatus.class);
     }
 
-    /** @return known EncryptionKeyStatus values. */
+    /**
+     * Gets known EncryptionKeyStatus values.
+     *
+     * @return known EncryptionKeyStatus values.
+     */
     public static Collection<EncryptionKeyStatus> values() {
         return values(EncryptionKeyStatus.class);
     }

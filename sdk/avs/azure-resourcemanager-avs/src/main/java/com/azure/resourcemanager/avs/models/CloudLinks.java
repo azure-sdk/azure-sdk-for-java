@@ -18,7 +18,7 @@ public interface CloudLinks {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a paged list of cloud links.
+     * @return a paged list of cloud links as paginated response with {@link PagedIterable}.
      */
     PagedIterable<CloudLink> list(String resourceGroupName, String privateCloudName);
 
@@ -31,7 +31,7 @@ public interface CloudLinks {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a paged list of cloud links.
+     * @return a paged list of cloud links as paginated response with {@link PagedIterable}.
      */
     PagedIterable<CloudLink> list(String resourceGroupName, String privateCloudName, Context context);
 
@@ -58,7 +58,7 @@ public interface CloudLinks {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an cloud link by name in a private cloud.
+     * @return an cloud link by name in a private cloud along with {@link Response}.
      */
     Response<CloudLink> getWithResponse(
         String resourceGroupName, String privateCloudName, String cloudLinkName, Context context);
@@ -95,7 +95,7 @@ public interface CloudLinks {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an cloud link by name in a private cloud.
+     * @return an cloud link by name in a private cloud along with {@link Response}.
      */
     CloudLink getById(String id);
 
@@ -107,7 +107,7 @@ public interface CloudLinks {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an cloud link by name in a private cloud.
+     * @return an cloud link by name in a private cloud along with {@link Response}.
      */
     Response<CloudLink> getByIdWithResponse(String id, Context context);
 

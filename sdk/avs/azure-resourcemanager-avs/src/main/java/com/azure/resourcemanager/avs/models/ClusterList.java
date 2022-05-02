@@ -5,17 +5,13 @@
 package com.azure.resourcemanager.avs.models;
 
 import com.azure.core.annotation.Immutable;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.avs.fluent.models.ClusterInner;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** A paged list of clusters. */
 @Immutable
 public final class ClusterList {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(ClusterList.class);
-
     /*
      * The items on a page
      */

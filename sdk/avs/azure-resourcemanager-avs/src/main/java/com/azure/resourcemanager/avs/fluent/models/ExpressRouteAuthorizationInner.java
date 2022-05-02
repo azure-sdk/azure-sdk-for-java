@@ -6,16 +6,12 @@ package com.azure.resourcemanager.avs.fluent.models;
 
 import com.azure.core.annotation.Immutable;
 import com.azure.core.management.ProxyResource;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.avs.models.ExpressRouteAuthorizationProvisioningState;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** ExpressRoute Circuit Authorization. */
 @Immutable
 public final class ExpressRouteAuthorizationInner extends ProxyResource {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(ExpressRouteAuthorizationInner.class);
-
     /*
      * The properties of an ExpressRoute Circuit Authorization resource
      */

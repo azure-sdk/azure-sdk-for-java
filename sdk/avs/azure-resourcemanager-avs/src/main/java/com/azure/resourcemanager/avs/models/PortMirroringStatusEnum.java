@@ -27,7 +27,11 @@ public final class PortMirroringStatusEnum extends ExpandableStringEnum<PortMirr
         return fromString(name, PortMirroringStatusEnum.class);
     }
 
-    /** @return known PortMirroringStatusEnum values. */
+    /**
+     * Gets known PortMirroringStatusEnum values.
+     *
+     * @return known PortMirroringStatusEnum values.
+     */
     public static Collection<PortMirroringStatusEnum> values() {
         return values(PortMirroringStatusEnum.class);
     }
