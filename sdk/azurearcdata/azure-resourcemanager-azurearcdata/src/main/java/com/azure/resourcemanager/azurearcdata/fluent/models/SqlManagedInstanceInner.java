@@ -11,15 +11,12 @@ import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.azurearcdata.models.ExtendedLocation;
 import com.azure.resourcemanager.azurearcdata.models.SqlManagedInstanceProperties;
 import com.azure.resourcemanager.azurearcdata.models.SqlManagedInstanceSku;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
 /** A SqlManagedInstance. */
 @Fluent
 public final class SqlManagedInstanceInner extends Resource {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(SqlManagedInstanceInner.class);
-
     /*
      * null
      */
@@ -134,7 +131,7 @@ public final class SqlManagedInstanceInner extends Resource {
      */
     public void validate() {
         if (properties() == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property properties in model SqlManagedInstanceInner"));
@@ -148,4 +145,6 @@ public final class SqlManagedInstanceInner extends Resource {
             sku().validate();
         }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(SqlManagedInstanceInner.class);
 }

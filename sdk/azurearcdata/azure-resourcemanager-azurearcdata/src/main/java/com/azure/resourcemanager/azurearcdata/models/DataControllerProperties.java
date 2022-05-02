@@ -5,16 +5,12 @@
 package com.azure.resourcemanager.azurearcdata.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
 /** The data controller properties. */
 @Fluent
 public final class DataControllerProperties {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(DataControllerProperties.class);
-
     /*
      * The infrastructure the data controller is running on.
      */

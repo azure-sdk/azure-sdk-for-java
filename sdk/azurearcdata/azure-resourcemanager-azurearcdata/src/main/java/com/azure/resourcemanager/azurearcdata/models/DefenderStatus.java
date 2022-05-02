@@ -30,7 +30,11 @@ public final class DefenderStatus extends ExpandableStringEnum<DefenderStatus> {
         return fromString(name, DefenderStatus.class);
     }
 
-    /** @return known DefenderStatus values. */
+    /**
+     * Gets known DefenderStatus values.
+     *
+     * @return known DefenderStatus values.
+     */
     public static Collection<DefenderStatus> values() {
         return values(DefenderStatus.class);
     }

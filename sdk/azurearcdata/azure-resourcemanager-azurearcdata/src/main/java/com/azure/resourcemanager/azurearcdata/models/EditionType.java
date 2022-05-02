@@ -39,7 +39,11 @@ public final class EditionType extends ExpandableStringEnum<EditionType> {
         return fromString(name, EditionType.class);
     }
 
-    /** @return known EditionType values. */
+    /**
+     * Gets known EditionType values.
+     *
+     * @return known EditionType values.
+     */
     public static Collection<EditionType> values() {
         return values(EditionType.class);
     }

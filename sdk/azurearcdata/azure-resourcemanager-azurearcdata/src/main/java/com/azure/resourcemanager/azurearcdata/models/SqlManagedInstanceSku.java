@@ -5,20 +5,16 @@
 package com.azure.resourcemanager.azurearcdata.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** The resource model definition representing SKU for Azure Managed Instance - Azure Arc. */
 @Fluent
 public final class SqlManagedInstanceSku {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(SqlManagedInstanceSku.class);
-
     /*
      * The name of the SKU.
      */
     @JsonProperty(value = "name", required = true)
-    private String name;
+    private String name = "vCore";
 
     /*
      * The pricing tier for the instance.
