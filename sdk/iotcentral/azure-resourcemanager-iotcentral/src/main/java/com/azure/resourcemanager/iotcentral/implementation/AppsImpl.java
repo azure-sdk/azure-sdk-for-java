@@ -15,7 +15,6 @@ import com.azure.resourcemanager.iotcentral.fluent.models.AppInner;
 import com.azure.resourcemanager.iotcentral.fluent.models.AppTemplateInner;
 import com.azure.resourcemanager.iotcentral.models.App;
 import com.azure.resourcemanager.iotcentral.models.AppAvailabilityInfo;
-import com.azure.resourcemanager.iotcentral.models.AppPatch;
 import com.azure.resourcemanager.iotcentral.models.AppTemplate;
 import com.azure.resourcemanager.iotcentral.models.Apps;
 import com.azure.resourcemanager.iotcentral.models.OperationInputs;
@@ -54,14 +53,6 @@ public final class AppsImpl implements Apps {
         } else {
             return null;
         }
-    }
-
-    public void update(String resourceGroupName, String resourceName, AppPatch appPatch) {
-        this.serviceClient().update(resourceGroupName, resourceName, appPatch);
-    }
-
-    public void update(String resourceGroupName, String resourceName, AppPatch appPatch, Context context) {
-        this.serviceClient().update(resourceGroupName, resourceName, appPatch, context);
     }
 
     public void deleteByResourceGroup(String resourceGroupName, String resourceName) {

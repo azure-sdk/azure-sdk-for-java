@@ -89,7 +89,7 @@ public final class AppsClientImpl implements AppsClient {
         @Put(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTCentral/iotApps"
                 + "/{resourceName}")
-        @ExpectedResponses({200, 201})
+        @ExpectedResponses({200, 201, 202})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> createOrUpdate(
             @HostParam("$host") String endpoint,
@@ -105,7 +105,7 @@ public final class AppsClientImpl implements AppsClient {
         @Patch(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTCentral/iotApps"
                 + "/{resourceName}")
-        @ExpectedResponses({202})
+        @ExpectedResponses({200, 202})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> update(
             @HostParam("$host") String endpoint,
@@ -121,7 +121,7 @@ public final class AppsClientImpl implements AppsClient {
         @Delete(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTCentral/iotApps"
                 + "/{resourceName}")
-        @ExpectedResponses({202, 204})
+        @ExpectedResponses({200, 202, 204})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> delete(
             @HostParam("$host") String endpoint,
@@ -661,7 +661,7 @@ public final class AppsClientImpl implements AppsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the IoT Central application along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(
@@ -717,7 +717,7 @@ public final class AppsClientImpl implements AppsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the IoT Central application along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(
@@ -769,16 +769,16 @@ public final class AppsClientImpl implements AppsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of long-running operation.
+     * @return the {@link PollerFlux} for polling of the IoT Central application.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<Void>, Void> beginUpdateAsync(
+    private PollerFlux<PollResult<AppInner>, AppInner> beginUpdateAsync(
         String resourceGroupName, String resourceName, AppPatch appPatch) {
         Mono<Response<Flux<ByteBuffer>>> mono = updateWithResponseAsync(resourceGroupName, resourceName, appPatch);
         return this
             .client
-            .<Void, Void>getLroResult(
-                mono, this.client.getHttpPipeline(), Void.class, Void.class, this.client.getContext());
+            .<AppInner, AppInner>getLroResult(
+                mono, this.client.getHttpPipeline(), AppInner.class, AppInner.class, this.client.getContext());
     }
 
     /**
@@ -791,17 +791,18 @@ public final class AppsClientImpl implements AppsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of long-running operation.
+     * @return the {@link PollerFlux} for polling of the IoT Central application.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<Void>, Void> beginUpdateAsync(
+    private PollerFlux<PollResult<AppInner>, AppInner> beginUpdateAsync(
         String resourceGroupName, String resourceName, AppPatch appPatch, Context context) {
         context = this.client.mergeContext(context);
         Mono<Response<Flux<ByteBuffer>>> mono =
             updateWithResponseAsync(resourceGroupName, resourceName, appPatch, context);
         return this
             .client
-            .<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class, context);
+            .<AppInner, AppInner>getLroResult(
+                mono, this.client.getHttpPipeline(), AppInner.class, AppInner.class, context);
     }
 
     /**
@@ -813,10 +814,10 @@ public final class AppsClientImpl implements AppsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the {@link SyncPoller} for polling of the IoT Central application.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<Void>, Void> beginUpdate(
+    public SyncPoller<PollResult<AppInner>, AppInner> beginUpdate(
         String resourceGroupName, String resourceName, AppPatch appPatch) {
         return beginUpdateAsync(resourceGroupName, resourceName, appPatch).getSyncPoller();
     }
@@ -831,10 +832,10 @@ public final class AppsClientImpl implements AppsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
+     * @return the {@link SyncPoller} for polling of the IoT Central application.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<Void>, Void> beginUpdate(
+    public SyncPoller<PollResult<AppInner>, AppInner> beginUpdate(
         String resourceGroupName, String resourceName, AppPatch appPatch, Context context) {
         return beginUpdateAsync(resourceGroupName, resourceName, appPatch, context).getSyncPoller();
     }
@@ -848,10 +849,10 @@ public final class AppsClientImpl implements AppsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the IoT Central application on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Void> updateAsync(String resourceGroupName, String resourceName, AppPatch appPatch) {
+    private Mono<AppInner> updateAsync(String resourceGroupName, String resourceName, AppPatch appPatch) {
         return beginUpdateAsync(resourceGroupName, resourceName, appPatch)
             .last()
             .flatMap(this.client::getLroFinalResultOrError);
@@ -867,10 +868,11 @@ public final class AppsClientImpl implements AppsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the IoT Central application on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Void> updateAsync(String resourceGroupName, String resourceName, AppPatch appPatch, Context context) {
+    private Mono<AppInner> updateAsync(
+        String resourceGroupName, String resourceName, AppPatch appPatch, Context context) {
         return beginUpdateAsync(resourceGroupName, resourceName, appPatch, context)
             .last()
             .flatMap(this.client::getLroFinalResultOrError);
@@ -885,10 +887,11 @@ public final class AppsClientImpl implements AppsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the IoT Central application.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void update(String resourceGroupName, String resourceName, AppPatch appPatch) {
-        updateAsync(resourceGroupName, resourceName, appPatch).block();
+    public AppInner update(String resourceGroupName, String resourceName, AppPatch appPatch) {
+        return updateAsync(resourceGroupName, resourceName, appPatch).block();
     }
 
     /**
@@ -901,10 +904,11 @@ public final class AppsClientImpl implements AppsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the IoT Central application.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void update(String resourceGroupName, String resourceName, AppPatch appPatch, Context context) {
-        updateAsync(resourceGroupName, resourceName, appPatch, context).block();
+    public AppInner update(String resourceGroupName, String resourceName, AppPatch appPatch, Context context) {
+        return updateAsync(resourceGroupName, resourceName, appPatch, context).block();
     }
 
     /**

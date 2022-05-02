@@ -36,31 +36,6 @@ public interface Apps {
     Response<App> getByResourceGroupWithResponse(String resourceGroupName, String resourceName, Context context);
 
     /**
-     * Update the metadata of an IoT Central application.
-     *
-     * @param resourceGroupName The name of the resource group that contains the IoT Central application.
-     * @param resourceName The ARM resource name of the IoT Central application.
-     * @param appPatch The IoT Central application metadata and security metadata.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    void update(String resourceGroupName, String resourceName, AppPatch appPatch);
-
-    /**
-     * Update the metadata of an IoT Central application.
-     *
-     * @param resourceGroupName The name of the resource group that contains the IoT Central application.
-     * @param resourceName The ARM resource name of the IoT Central application.
-     * @param appPatch The IoT Central application metadata and security metadata.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    void update(String resourceGroupName, String resourceName, AppPatch appPatch, Context context);
-
-    /**
      * Delete an IoT Central application.
      *
      * @param resourceGroupName The name of the resource group that contains the IoT Central application.

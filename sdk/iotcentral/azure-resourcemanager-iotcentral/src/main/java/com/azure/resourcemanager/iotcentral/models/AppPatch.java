@@ -6,10 +6,8 @@ package com.azure.resourcemanager.iotcentral.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.iotcentral.fluent.models.AppProperties;
-import com.azure.resourcemanager.iotcentral.fluent.models.PrivateEndpointConnectionInner;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.List;
 import java.util.Map;
 
 /** The description of the IoT Central application. */
@@ -33,12 +31,6 @@ public final class AppPatch {
      */
     @JsonProperty(value = "properties")
     private AppProperties innerProperties;
-
-    /*
-     * The managed identities for the IoT Central application.
-     */
-    @JsonProperty(value = "identity")
-    private SystemAssignedServiceIdentity identity;
 
     /**
      * Get the tags property: Instance tags.
@@ -87,35 +79,6 @@ public final class AppPatch {
      */
     private AppProperties innerProperties() {
         return this.innerProperties;
-    }
-
-    /**
-     * Get the identity property: The managed identities for the IoT Central application.
-     *
-     * @return the identity value.
-     */
-    public SystemAssignedServiceIdentity identity() {
-        return this.identity;
-    }
-
-    /**
-     * Set the identity property: The managed identities for the IoT Central application.
-     *
-     * @param identity the identity value to set.
-     * @return the AppPatch object itself.
-     */
-    public AppPatch withIdentity(SystemAssignedServiceIdentity identity) {
-        this.identity = identity;
-        return this;
-    }
-
-    /**
-     * Get the provisioningState property: The provisioning state of the application.
-     *
-     * @return the provisioningState value.
-     */
-    public ProvisioningState provisioningState() {
-        return this.innerProperties() == null ? null : this.innerProperties().provisioningState();
     }
 
     /**
@@ -210,62 +173,6 @@ public final class AppPatch {
     }
 
     /**
-     * Get the publicNetworkAccess property: Whether requests from the public network are allowed.
-     *
-     * @return the publicNetworkAccess value.
-     */
-    public PublicNetworkAccess publicNetworkAccess() {
-        return this.innerProperties() == null ? null : this.innerProperties().publicNetworkAccess();
-    }
-
-    /**
-     * Set the publicNetworkAccess property: Whether requests from the public network are allowed.
-     *
-     * @param publicNetworkAccess the publicNetworkAccess value to set.
-     * @return the AppPatch object itself.
-     */
-    public AppPatch withPublicNetworkAccess(PublicNetworkAccess publicNetworkAccess) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new AppProperties();
-        }
-        this.innerProperties().withPublicNetworkAccess(publicNetworkAccess);
-        return this;
-    }
-
-    /**
-     * Get the networkRuleSets property: Network Rule Set Properties of this IoT Central application.
-     *
-     * @return the networkRuleSets value.
-     */
-    public NetworkRuleSets networkRuleSets() {
-        return this.innerProperties() == null ? null : this.innerProperties().networkRuleSets();
-    }
-
-    /**
-     * Set the networkRuleSets property: Network Rule Set Properties of this IoT Central application.
-     *
-     * @param networkRuleSets the networkRuleSets value to set.
-     * @return the AppPatch object itself.
-     */
-    public AppPatch withNetworkRuleSets(NetworkRuleSets networkRuleSets) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new AppProperties();
-        }
-        this.innerProperties().withNetworkRuleSets(networkRuleSets);
-        return this;
-    }
-
-    /**
-     * Get the privateEndpointConnections property: Private endpoint connections created on this IoT Central
-     * application.
-     *
-     * @return the privateEndpointConnections value.
-     */
-    public List<PrivateEndpointConnectionInner> privateEndpointConnections() {
-        return this.innerProperties() == null ? null : this.innerProperties().privateEndpointConnections();
-    }
-
-    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -276,9 +183,6 @@ public final class AppPatch {
         }
         if (innerProperties() != null) {
             innerProperties().validate();
-        }
-        if (identity() != null) {
-            identity().validate();
         }
     }
 }

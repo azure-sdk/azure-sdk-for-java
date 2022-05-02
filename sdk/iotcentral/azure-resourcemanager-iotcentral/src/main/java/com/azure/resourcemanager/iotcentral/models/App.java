@@ -7,7 +7,6 @@ package com.azure.resourcemanager.iotcentral.models;
 import com.azure.core.management.Region;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.iotcentral.fluent.models.AppInner;
-import java.util.List;
 import java.util.Map;
 
 /** An immutable client-side representation of App. */
@@ -55,20 +54,6 @@ public interface App {
     AppSkuInfo sku();
 
     /**
-     * Gets the identity property: The managed identities for the IoT Central application.
-     *
-     * @return the identity value.
-     */
-    SystemAssignedServiceIdentity identity();
-
-    /**
-     * Gets the provisioningState property: The provisioning state of the application.
-     *
-     * @return the provisioningState value.
-     */
-    ProvisioningState provisioningState();
-
-    /**
      * Gets the applicationId property: The ID of the application.
      *
      * @return the applicationId value.
@@ -104,28 +89,6 @@ public interface App {
      * @return the state value.
      */
     AppState state();
-
-    /**
-     * Gets the publicNetworkAccess property: Whether requests from the public network are allowed.
-     *
-     * @return the publicNetworkAccess value.
-     */
-    PublicNetworkAccess publicNetworkAccess();
-
-    /**
-     * Gets the networkRuleSets property: Network Rule Set Properties of this IoT Central application.
-     *
-     * @return the networkRuleSets value.
-     */
-    NetworkRuleSets networkRuleSets();
-
-    /**
-     * Gets the privateEndpointConnections property: Private endpoint connections created on this IoT Central
-     * application.
-     *
-     * @return the privateEndpointConnections value.
-     */
-    List<PrivateEndpointConnection> privateEndpointConnections();
 
     /**
      * Gets the region of the resource.
@@ -205,12 +168,9 @@ public interface App {
          */
         interface WithCreate
             extends DefinitionStages.WithTags,
-                DefinitionStages.WithIdentity,
                 DefinitionStages.WithDisplayName,
                 DefinitionStages.WithSubdomain,
-                DefinitionStages.WithTemplate,
-                DefinitionStages.WithPublicNetworkAccess,
-                DefinitionStages.WithNetworkRuleSets {
+                DefinitionStages.WithTemplate {
             /**
              * Executes the create request.
              *
@@ -235,16 +195,6 @@ public interface App {
              * @return the next definition stage.
              */
             WithCreate withTags(Map<String, String> tags);
-        }
-        /** The stage of the App definition allowing to specify identity. */
-        interface WithIdentity {
-            /**
-             * Specifies the identity property: The managed identities for the IoT Central application..
-             *
-             * @param identity The managed identities for the IoT Central application.
-             * @return the next definition stage.
-             */
-            WithCreate withIdentity(SystemAssignedServiceIdentity identity);
         }
         /** The stage of the App definition allowing to specify displayName. */
         interface WithDisplayName {
@@ -280,26 +230,6 @@ public interface App {
              */
             WithCreate withTemplate(String template);
         }
-        /** The stage of the App definition allowing to specify publicNetworkAccess. */
-        interface WithPublicNetworkAccess {
-            /**
-             * Specifies the publicNetworkAccess property: Whether requests from the public network are allowed..
-             *
-             * @param publicNetworkAccess Whether requests from the public network are allowed.
-             * @return the next definition stage.
-             */
-            WithCreate withPublicNetworkAccess(PublicNetworkAccess publicNetworkAccess);
-        }
-        /** The stage of the App definition allowing to specify networkRuleSets. */
-        interface WithNetworkRuleSets {
-            /**
-             * Specifies the networkRuleSets property: Network Rule Set Properties of this IoT Central application..
-             *
-             * @param networkRuleSets Network Rule Set Properties of this IoT Central application.
-             * @return the next definition stage.
-             */
-            WithCreate withNetworkRuleSets(NetworkRuleSets networkRuleSets);
-        }
     }
     /**
      * Begins update for the App resource.
@@ -310,13 +240,7 @@ public interface App {
 
     /** The template for App update. */
     interface Update
-        extends UpdateStages.WithTags,
-            UpdateStages.WithSku,
-            UpdateStages.WithIdentity,
-            UpdateStages.WithDisplayName,
-            UpdateStages.WithSubdomain,
-            UpdateStages.WithPublicNetworkAccess,
-            UpdateStages.WithNetworkRuleSets {
+        extends UpdateStages.WithTags, UpdateStages.WithSku, UpdateStages.WithDisplayName, UpdateStages.WithSubdomain {
         /**
          * Executes the update request.
          *
@@ -337,9 +261,9 @@ public interface App {
         /** The stage of the App update allowing to specify tags. */
         interface WithTags {
             /**
-             * Specifies the tags property: Resource tags..
+             * Specifies the tags property: Instance tags.
              *
-             * @param tags Resource tags.
+             * @param tags Instance tags.
              * @return the next definition stage.
              */
             Update withTags(Map<String, String> tags);
@@ -353,16 +277,6 @@ public interface App {
              * @return the next definition stage.
              */
             Update withSku(AppSkuInfo sku);
-        }
-        /** The stage of the App update allowing to specify identity. */
-        interface WithIdentity {
-            /**
-             * Specifies the identity property: The managed identities for the IoT Central application..
-             *
-             * @param identity The managed identities for the IoT Central application.
-             * @return the next definition stage.
-             */
-            Update withIdentity(SystemAssignedServiceIdentity identity);
         }
         /** The stage of the App update allowing to specify displayName. */
         interface WithDisplayName {
@@ -383,26 +297,6 @@ public interface App {
              * @return the next definition stage.
              */
             Update withSubdomain(String subdomain);
-        }
-        /** The stage of the App update allowing to specify publicNetworkAccess. */
-        interface WithPublicNetworkAccess {
-            /**
-             * Specifies the publicNetworkAccess property: Whether requests from the public network are allowed..
-             *
-             * @param publicNetworkAccess Whether requests from the public network are allowed.
-             * @return the next definition stage.
-             */
-            Update withPublicNetworkAccess(PublicNetworkAccess publicNetworkAccess);
-        }
-        /** The stage of the App update allowing to specify networkRuleSets. */
-        interface WithNetworkRuleSets {
-            /**
-             * Specifies the networkRuleSets property: Network Rule Set Properties of this IoT Central application..
-             *
-             * @param networkRuleSets Network Rule Set Properties of this IoT Central application.
-             * @return the next definition stage.
-             */
-            Update withNetworkRuleSets(NetworkRuleSets networkRuleSets);
         }
     }
     /**

@@ -27,12 +27,8 @@ import com.azure.resourcemanager.iotcentral.fluent.IotCentralClient;
 import com.azure.resourcemanager.iotcentral.implementation.AppsImpl;
 import com.azure.resourcemanager.iotcentral.implementation.IotCentralClientBuilder;
 import com.azure.resourcemanager.iotcentral.implementation.OperationsImpl;
-import com.azure.resourcemanager.iotcentral.implementation.PrivateEndpointConnectionsImpl;
-import com.azure.resourcemanager.iotcentral.implementation.PrivateLinksImpl;
 import com.azure.resourcemanager.iotcentral.models.Apps;
 import com.azure.resourcemanager.iotcentral.models.Operations;
-import com.azure.resourcemanager.iotcentral.models.PrivateEndpointConnections;
-import com.azure.resourcemanager.iotcentral.models.PrivateLinks;
 import java.time.Duration;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
@@ -43,10 +39,6 @@ import java.util.stream.Collectors;
 /** Entry point to IotCentralManager. Use this API to manage IoT Central Applications in your Azure subscription. */
 public final class IotCentralManager {
     private Apps apps;
-
-    private PrivateEndpointConnections privateEndpointConnections;
-
-    private PrivateLinks privateLinks;
 
     private Operations operations;
 
@@ -215,7 +207,7 @@ public final class IotCentralManager {
                 .append("-")
                 .append("com.azure.resourcemanager.iotcentral")
                 .append("/")
-                .append("1.1.0-beta.1");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder
                     .append(" (")
@@ -272,7 +264,11 @@ public final class IotCentralManager {
         }
     }
 
-    /** @return Resource collection API of Apps. */
+    /**
+     * Gets the resource collection API of Apps.
+     *
+     * @return Resource collection API of Apps.
+     */
     public Apps apps() {
         if (this.apps == null) {
             this.apps = new AppsImpl(clientObject.getApps(), this);
@@ -280,24 +276,11 @@ public final class IotCentralManager {
         return apps;
     }
 
-    /** @return Resource collection API of PrivateEndpointConnections. */
-    public PrivateEndpointConnections privateEndpointConnections() {
-        if (this.privateEndpointConnections == null) {
-            this.privateEndpointConnections =
-                new PrivateEndpointConnectionsImpl(clientObject.getPrivateEndpointConnections(), this);
-        }
-        return privateEndpointConnections;
-    }
-
-    /** @return Resource collection API of PrivateLinks. */
-    public PrivateLinks privateLinks() {
-        if (this.privateLinks == null) {
-            this.privateLinks = new PrivateLinksImpl(clientObject.getPrivateLinks(), this);
-        }
-        return privateLinks;
-    }
-
-    /** @return Resource collection API of Operations. */
+    /**
+     * Gets the resource collection API of Operations.
+     *
+     * @return Resource collection API of Operations.
+     */
     public Operations operations() {
         if (this.operations == null) {
             this.operations = new OperationsImpl(clientObject.getOperations(), this);

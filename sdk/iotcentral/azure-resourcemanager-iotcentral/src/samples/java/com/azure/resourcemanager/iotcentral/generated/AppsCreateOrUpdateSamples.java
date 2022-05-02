@@ -6,13 +6,11 @@ package com.azure.resourcemanager.iotcentral.generated;
 
 import com.azure.resourcemanager.iotcentral.models.AppSku;
 import com.azure.resourcemanager.iotcentral.models.AppSkuInfo;
-import com.azure.resourcemanager.iotcentral.models.SystemAssignedServiceIdentity;
-import com.azure.resourcemanager.iotcentral.models.SystemAssignedServiceIdentityType;
 
 /** Samples for Apps CreateOrUpdate. */
 public final class AppsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/iotcentral/resource-manager/Microsoft.IoTCentral/preview/2021-11-01-preview/examples/Apps_CreateOrUpdate.json
+     * x-ms-original-file: specification/iotcentral/resource-manager/Microsoft.IoTCentral/stable/2021-06-01/examples/Apps_CreateOrUpdate.json
      */
     /**
      * Sample code: Apps_CreateOrUpdate.
@@ -26,8 +24,6 @@ public final class AppsCreateOrUpdateSamples {
             .withRegion("westus")
             .withExistingResourceGroup("resRg")
             .withSku(new AppSkuInfo().withName(AppSku.ST2))
-            .withIdentity(
-                new SystemAssignedServiceIdentity().withType(SystemAssignedServiceIdentityType.SYSTEM_ASSIGNED))
             .withDisplayName("My IoT Central App")
             .withSubdomain("my-iot-central-app")
             .withTemplate("iotc-pnp-preview@1.0.0")
