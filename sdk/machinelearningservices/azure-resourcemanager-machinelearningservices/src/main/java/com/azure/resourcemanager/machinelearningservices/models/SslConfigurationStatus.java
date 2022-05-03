@@ -30,7 +30,11 @@ public final class SslConfigurationStatus extends ExpandableStringEnum<SslConfig
         return fromString(name, SslConfigurationStatus.class);
     }
 
-    /** @return known SslConfigurationStatus values. */
+    /**
+     * Gets known SslConfigurationStatus values.
+     *
+     * @return known SslConfigurationStatus values.
+     */
     public static Collection<SslConfigurationStatus> values() {
         return values(SslConfigurationStatus.class);
     }

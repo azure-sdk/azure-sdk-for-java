@@ -27,7 +27,11 @@ public final class UnderlyingResourceAction extends ExpandableStringEnum<Underly
         return fromString(name, UnderlyingResourceAction.class);
     }
 
-    /** @return known UnderlyingResourceAction values. */
+    /**
+     * Gets known UnderlyingResourceAction values.
+     *
+     * @return known UnderlyingResourceAction values.
+     */
     public static Collection<UnderlyingResourceAction> values() {
         return values(UnderlyingResourceAction.class);
     }

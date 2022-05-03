@@ -27,7 +27,11 @@ public final class ApplicationSharingPolicy extends ExpandableStringEnum<Applica
         return fromString(name, ApplicationSharingPolicy.class);
     }
 
-    /** @return known ApplicationSharingPolicy values. */
+    /**
+     * Gets known ApplicationSharingPolicy values.
+     *
+     * @return known ApplicationSharingPolicy values.
+     */
     public static Collection<ApplicationSharingPolicy> values() {
         return values(ApplicationSharingPolicy.class);
     }

@@ -27,7 +27,11 @@ public final class OsType extends ExpandableStringEnum<OsType> {
         return fromString(name, OsType.class);
     }
 
-    /** @return known OsType values. */
+    /**
+     * Gets known OsType values.
+     *
+     * @return known OsType values.
+     */
     public static Collection<OsType> values() {
         return values(OsType.class);
     }

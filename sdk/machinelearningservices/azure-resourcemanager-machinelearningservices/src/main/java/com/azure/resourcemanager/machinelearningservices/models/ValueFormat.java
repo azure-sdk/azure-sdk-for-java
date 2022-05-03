@@ -24,7 +24,11 @@ public final class ValueFormat extends ExpandableStringEnum<ValueFormat> {
         return fromString(name, ValueFormat.class);
     }
 
-    /** @return known ValueFormat values. */
+    /**
+     * Gets known ValueFormat values.
+     *
+     * @return known ValueFormat values.
+     */
     public static Collection<ValueFormat> values() {
         return values(ValueFormat.class);
     }
