@@ -484,7 +484,7 @@ public final class ContainerAppsAuthConfigsClientImpl implements ContainerAppsAu
     }
 
     /**
-     * Description for Create or update the AuthConfig for a Container App.
+     * Create or update the AuthConfig for a Container App.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param containerAppName Name of the Container App.
@@ -547,7 +547,7 @@ public final class ContainerAppsAuthConfigsClientImpl implements ContainerAppsAu
     }
 
     /**
-     * Description for Create or update the AuthConfig for a Container App.
+     * Create or update the AuthConfig for a Container App.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param containerAppName Name of the Container App.
@@ -612,7 +612,7 @@ public final class ContainerAppsAuthConfigsClientImpl implements ContainerAppsAu
     }
 
     /**
-     * Description for Create or update the AuthConfig for a Container App.
+     * Create or update the AuthConfig for a Container App.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param containerAppName Name of the Container App.
@@ -639,7 +639,7 @@ public final class ContainerAppsAuthConfigsClientImpl implements ContainerAppsAu
     }
 
     /**
-     * Description for Create or update the AuthConfig for a Container App.
+     * Create or update the AuthConfig for a Container App.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param containerAppName Name of the Container App.
@@ -657,7 +657,7 @@ public final class ContainerAppsAuthConfigsClientImpl implements ContainerAppsAu
     }
 
     /**
-     * Description for Create or update the AuthConfig for a Container App.
+     * Create or update the AuthConfig for a Container App.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param containerAppName Name of the Container App.
@@ -682,7 +682,7 @@ public final class ContainerAppsAuthConfigsClientImpl implements ContainerAppsAu
     }
 
     /**
-     * Description for Delete a Container App AuthConfig.
+     * Delete a Container App AuthConfig.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param containerAppName Name of the Container App.
@@ -736,7 +736,7 @@ public final class ContainerAppsAuthConfigsClientImpl implements ContainerAppsAu
     }
 
     /**
-     * Description for Delete a Container App AuthConfig.
+     * Delete a Container App AuthConfig.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param containerAppName Name of the Container App.
@@ -788,7 +788,7 @@ public final class ContainerAppsAuthConfigsClientImpl implements ContainerAppsAu
     }
 
     /**
-     * Description for Delete a Container App AuthConfig.
+     * Delete a Container App AuthConfig.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param containerAppName Name of the Container App.
@@ -805,7 +805,7 @@ public final class ContainerAppsAuthConfigsClientImpl implements ContainerAppsAu
     }
 
     /**
-     * Description for Delete a Container App AuthConfig.
+     * Delete a Container App AuthConfig.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param containerAppName Name of the Container App.
@@ -820,7 +820,7 @@ public final class ContainerAppsAuthConfigsClientImpl implements ContainerAppsAu
     }
 
     /**
-     * Description for Delete a Container App AuthConfig.
+     * Delete a Container App AuthConfig.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param containerAppName Name of the Container App.

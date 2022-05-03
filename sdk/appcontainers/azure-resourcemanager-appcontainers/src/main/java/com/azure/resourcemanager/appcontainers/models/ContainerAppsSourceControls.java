@@ -70,7 +70,7 @@ public interface ContainerAppsSourceControls {
         String resourceGroupName, String containerAppName, String name, Context context);
 
     /**
-     * Description for Delete a Container App SourceControl.
+     * Delete a Container App SourceControl.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param containerAppName Name of the Container App.
@@ -83,7 +83,7 @@ public interface ContainerAppsSourceControls {
     void delete(String resourceGroupName, String containerAppName, String name);
 
     /**
-     * Description for Delete a Container App SourceControl.
+     * Delete a Container App SourceControl.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param containerAppName Name of the Container App.
@@ -122,7 +122,7 @@ public interface ContainerAppsSourceControls {
     Response<SourceControl> getByIdWithResponse(String id, Context context);
 
     /**
-     * Description for Delete a Container App SourceControl.
+     * Delete a Container App SourceControl.
      *
      * @param id the resource ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -133,7 +133,7 @@ public interface ContainerAppsSourceControls {
     void deleteById(String id);
 
     /**
-     * Description for Delete a Container App SourceControl.
+     * Delete a Container App SourceControl.
      *
      * @param id the resource ID.
      * @param context The context to associate with this operation.

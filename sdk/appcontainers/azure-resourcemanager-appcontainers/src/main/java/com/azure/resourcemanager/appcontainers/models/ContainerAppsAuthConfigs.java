@@ -68,7 +68,7 @@ public interface ContainerAppsAuthConfigs {
         String resourceGroupName, String containerAppName, String name, Context context);
 
     /**
-     * Description for Delete a Container App AuthConfig.
+     * Delete a Container App AuthConfig.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param containerAppName Name of the Container App.
@@ -81,7 +81,7 @@ public interface ContainerAppsAuthConfigs {
     void delete(String resourceGroupName, String containerAppName, String name);
 
     /**
-     * Description for Delete a Container App AuthConfig.
+     * Delete a Container App AuthConfig.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param containerAppName Name of the Container App.
@@ -121,7 +121,7 @@ public interface ContainerAppsAuthConfigs {
     Response<AuthConfig> getByIdWithResponse(String id, Context context);
 
     /**
-     * Description for Delete a Container App AuthConfig.
+     * Delete a Container App AuthConfig.
      *
      * @param id the resource ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -132,7 +132,7 @@ public interface ContainerAppsAuthConfigs {
     void deleteById(String id);
 
     /**
-     * Description for Delete a Container App AuthConfig.
+     * Delete a Container App AuthConfig.
      *
      * @param id the resource ID.
      * @param context The context to associate with this operation.

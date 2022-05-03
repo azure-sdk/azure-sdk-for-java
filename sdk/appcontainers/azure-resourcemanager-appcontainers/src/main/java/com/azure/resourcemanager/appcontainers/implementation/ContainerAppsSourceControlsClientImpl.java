@@ -492,7 +492,7 @@ public final class ContainerAppsSourceControlsClientImpl implements ContainerApp
     }
 
     /**
-     * Description for Create or update the SourceControl for a Container App.
+     * Create or update the SourceControl for a Container App.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param containerAppName Name of the Container App.
@@ -554,7 +554,7 @@ public final class ContainerAppsSourceControlsClientImpl implements ContainerApp
     }
 
     /**
-     * Description for Create or update the SourceControl for a Container App.
+     * Create or update the SourceControl for a Container App.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param containerAppName Name of the Container App.
@@ -618,7 +618,7 @@ public final class ContainerAppsSourceControlsClientImpl implements ContainerApp
     }
 
     /**
-     * Description for Create or update the SourceControl for a Container App.
+     * Create or update the SourceControl for a Container App.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param containerAppName Name of the Container App.
@@ -645,7 +645,7 @@ public final class ContainerAppsSourceControlsClientImpl implements ContainerApp
     }
 
     /**
-     * Description for Create or update the SourceControl for a Container App.
+     * Create or update the SourceControl for a Container App.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param containerAppName Name of the Container App.
@@ -674,7 +674,7 @@ public final class ContainerAppsSourceControlsClientImpl implements ContainerApp
     }
 
     /**
-     * Description for Create or update the SourceControl for a Container App.
+     * Create or update the SourceControl for a Container App.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param containerAppName Name of the Container App.
@@ -693,7 +693,7 @@ public final class ContainerAppsSourceControlsClientImpl implements ContainerApp
     }
 
     /**
-     * Description for Create or update the SourceControl for a Container App.
+     * Create or update the SourceControl for a Container App.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param containerAppName Name of the Container App.
@@ -717,7 +717,7 @@ public final class ContainerAppsSourceControlsClientImpl implements ContainerApp
     }
 
     /**
-     * Description for Create or update the SourceControl for a Container App.
+     * Create or update the SourceControl for a Container App.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param containerAppName Name of the Container App.
@@ -737,7 +737,7 @@ public final class ContainerAppsSourceControlsClientImpl implements ContainerApp
     }
 
     /**
-     * Description for Create or update the SourceControl for a Container App.
+     * Create or update the SourceControl for a Container App.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param containerAppName Name of the Container App.
@@ -762,7 +762,7 @@ public final class ContainerAppsSourceControlsClientImpl implements ContainerApp
     }
 
     /**
-     * Description for Create or update the SourceControl for a Container App.
+     * Create or update the SourceControl for a Container App.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param containerAppName Name of the Container App.
@@ -780,7 +780,7 @@ public final class ContainerAppsSourceControlsClientImpl implements ContainerApp
     }
 
     /**
-     * Description for Create or update the SourceControl for a Container App.
+     * Create or update the SourceControl for a Container App.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param containerAppName Name of the Container App.
@@ -803,7 +803,7 @@ public final class ContainerAppsSourceControlsClientImpl implements ContainerApp
     }
 
     /**
-     * Description for Delete a Container App SourceControl.
+     * Delete a Container App SourceControl.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param containerAppName Name of the Container App.
@@ -857,7 +857,7 @@ public final class ContainerAppsSourceControlsClientImpl implements ContainerApp
     }
 
     /**
-     * Description for Delete a Container App SourceControl.
+     * Delete a Container App SourceControl.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param containerAppName Name of the Container App.
@@ -909,7 +909,7 @@ public final class ContainerAppsSourceControlsClientImpl implements ContainerApp
     }
 
     /**
-     * Description for Delete a Container App SourceControl.
+     * Delete a Container App SourceControl.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param containerAppName Name of the Container App.
@@ -930,7 +930,7 @@ public final class ContainerAppsSourceControlsClientImpl implements ContainerApp
     }
 
     /**
-     * Description for Delete a Container App SourceControl.
+     * Delete a Container App SourceControl.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param containerAppName Name of the Container App.
@@ -953,7 +953,7 @@ public final class ContainerAppsSourceControlsClientImpl implements ContainerApp
     }
 
     /**
-     * Description for Delete a Container App SourceControl.
+     * Delete a Container App SourceControl.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param containerAppName Name of the Container App.
@@ -970,7 +970,7 @@ public final class ContainerAppsSourceControlsClientImpl implements ContainerApp
     }
 
     /**
-     * Description for Delete a Container App SourceControl.
+     * Delete a Container App SourceControl.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param containerAppName Name of the Container App.
@@ -988,7 +988,7 @@ public final class ContainerAppsSourceControlsClientImpl implements ContainerApp
     }
 
     /**
-     * Description for Delete a Container App SourceControl.
+     * Delete a Container App SourceControl.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param containerAppName Name of the Container App.
@@ -1006,7 +1006,7 @@ public final class ContainerAppsSourceControlsClientImpl implements ContainerApp
     }
 
     /**
-     * Description for Delete a Container App SourceControl.
+     * Delete a Container App SourceControl.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param containerAppName Name of the Container App.
@@ -1025,7 +1025,7 @@ public final class ContainerAppsSourceControlsClientImpl implements ContainerApp
     }
 
     /**
-     * Description for Delete a Container App SourceControl.
+     * Delete a Container App SourceControl.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param containerAppName Name of the Container App.
@@ -1040,7 +1040,7 @@ public final class ContainerAppsSourceControlsClientImpl implements ContainerApp
     }
 
     /**
-     * Description for Delete a Container App SourceControl.
+     * Delete a Container App SourceControl.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param containerAppName Name of the Container App.
