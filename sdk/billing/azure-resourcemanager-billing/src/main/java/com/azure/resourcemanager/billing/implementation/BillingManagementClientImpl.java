@@ -56,8 +56,6 @@ import reactor.core.publisher.Mono;
 /** Initializes a new instance of the BillingManagementClientImpl type. */
 @ServiceClient(builder = BillingManagementClientBuilder.class)
 public final class BillingManagementClientImpl implements BillingManagementClient {
-    private final ClientLogger logger = new ClientLogger(BillingManagementClientImpl.class);
-
     /** The ID that uniquely identifies an Azure subscription. */
     private final String subscriptionId;
 
@@ -498,7 +496,7 @@ public final class BillingManagementClientImpl implements BillingManagementClien
                             managementError = null;
                         }
                     } catch (IOException | RuntimeException ioe) {
-                        logger.logThrowableAsWarning(ioe);
+                        LOGGER.logThrowableAsWarning(ioe);
                     }
                 }
             } else {
@@ -557,4 +555,6 @@ public final class BillingManagementClientImpl implements BillingManagementClien
             return Mono.just(new String(responseBody, charset));
         }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(BillingManagementClientImpl.class);
 }
