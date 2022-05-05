@@ -139,7 +139,7 @@ public interface AutomationRule {
         /** The stage of the AutomationRule definition allowing to specify displayName. */
         interface WithDisplayName {
             /**
-             * Specifies the displayName property: The display name of the automation rule.
+             * Specifies the displayName property: The display name of the automation rule..
              *
              * @param displayName The display name of the automation rule.
              * @return the next definition stage.
@@ -149,7 +149,7 @@ public interface AutomationRule {
         /** The stage of the AutomationRule definition allowing to specify order. */
         interface WithOrder {
             /**
-             * Specifies the order property: The order of execution of the automation rule.
+             * Specifies the order property: The order of execution of the automation rule..
              *
              * @param order The order of execution of the automation rule.
              * @return the next definition stage.
@@ -159,7 +159,7 @@ public interface AutomationRule {
         /** The stage of the AutomationRule definition allowing to specify triggeringLogic. */
         interface WithTriggeringLogic {
             /**
-             * Specifies the triggeringLogic property: Describes automation rule triggering logic.
+             * Specifies the triggeringLogic property: Describes automation rule triggering logic..
              *
              * @param triggeringLogic Describes automation rule triggering logic.
              * @return the next definition stage.
@@ -169,7 +169,7 @@ public interface AutomationRule {
         /** The stage of the AutomationRule definition allowing to specify actions. */
         interface WithActions {
             /**
-             * Specifies the actions property: The actions to execute when the automation rule is triggered.
+             * Specifies the actions property: The actions to execute when the automation rule is triggered..
              *
              * @param actions The actions to execute when the automation rule is triggered.
              * @return the next definition stage.
@@ -251,7 +251,7 @@ public interface AutomationRule {
         /** The stage of the AutomationRule update allowing to specify displayName. */
         interface WithDisplayName {
             /**
-             * Specifies the displayName property: The display name of the automation rule.
+             * Specifies the displayName property: The display name of the automation rule..
              *
              * @param displayName The display name of the automation rule.
              * @return the next definition stage.
@@ -261,7 +261,7 @@ public interface AutomationRule {
         /** The stage of the AutomationRule update allowing to specify order. */
         interface WithOrder {
             /**
-             * Specifies the order property: The order of execution of the automation rule.
+             * Specifies the order property: The order of execution of the automation rule..
              *
              * @param order The order of execution of the automation rule.
              * @return the next definition stage.
@@ -271,7 +271,7 @@ public interface AutomationRule {
         /** The stage of the AutomationRule update allowing to specify triggeringLogic. */
         interface WithTriggeringLogic {
             /**
-             * Specifies the triggeringLogic property: Describes automation rule triggering logic.
+             * Specifies the triggeringLogic property: Describes automation rule triggering logic..
              *
              * @param triggeringLogic Describes automation rule triggering logic.
              * @return the next definition stage.
@@ -281,7 +281,7 @@ public interface AutomationRule {
         /** The stage of the AutomationRule update allowing to specify actions. */
         interface WithActions {
             /**
-             * Specifies the actions property: The actions to execute when the automation rule is triggered.
+             * Specifies the actions property: The actions to execute when the automation rule is triggered..
              *
              * @param actions The actions to execute when the automation rule is triggered.
              * @return the next definition stage.
