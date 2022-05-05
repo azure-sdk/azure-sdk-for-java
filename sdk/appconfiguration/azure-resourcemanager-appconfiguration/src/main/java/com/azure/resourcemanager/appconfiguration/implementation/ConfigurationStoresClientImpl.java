@@ -31,17 +31,16 @@ import com.azure.core.management.exception.ManagementException;
 import com.azure.core.management.polling.PollResult;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.appconfiguration.fluent.ConfigurationStoresClient;
 import com.azure.resourcemanager.appconfiguration.fluent.models.ApiKeyInner;
 import com.azure.resourcemanager.appconfiguration.fluent.models.ConfigurationStoreInner;
-import com.azure.resourcemanager.appconfiguration.fluent.models.DeletedConfigurationStoreInner;
+import com.azure.resourcemanager.appconfiguration.fluent.models.KeyValueInner;
 import com.azure.resourcemanager.appconfiguration.models.ApiKeyListResult;
 import com.azure.resourcemanager.appconfiguration.models.ConfigurationStoreListResult;
 import com.azure.resourcemanager.appconfiguration.models.ConfigurationStoreUpdateParameters;
-import com.azure.resourcemanager.appconfiguration.models.DeletedConfigurationStoreListResult;
+import com.azure.resourcemanager.appconfiguration.models.ListKeyValueParameters;
 import com.azure.resourcemanager.appconfiguration.models.RegenerateKeyParameters;
 import java.nio.ByteBuffer;
 import reactor.core.publisher.Flux;
@@ -49,8 +48,6 @@ import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in ConfigurationStoresClient. */
 public final class ConfigurationStoresClientImpl implements ConfigurationStoresClient {
-    private final ClientLogger logger = new ClientLogger(ConfigurationStoresClientImpl.class);
-
     /** The proxy service used to perform REST calls. */
     private final ConfigurationStoresService service;
 
@@ -167,7 +164,7 @@ public final class ConfigurationStoresClientImpl implements ConfigurationStoresC
         @Headers({"Content-Type: application/json"})
         @Post(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AppConfiguration"
-                + "/configurationStores/{configStoreName}/listKeys")
+                + "/configurationStores/{configStoreName}/ListKeys")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<ApiKeyListResult>> listKeys(
@@ -183,7 +180,7 @@ public final class ConfigurationStoresClientImpl implements ConfigurationStoresC
         @Headers({"Content-Type: application/json"})
         @Post(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AppConfiguration"
-                + "/configurationStores/{configStoreName}/regenerateKey")
+                + "/configurationStores/{configStoreName}/RegenerateKey")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<ApiKeyInner>> regenerateKey(
@@ -197,43 +194,18 @@ public final class ConfigurationStoresClientImpl implements ConfigurationStoresC
             Context context);
 
         @Headers({"Content-Type: application/json"})
-        @Get("/subscriptions/{subscriptionId}/providers/Microsoft.AppConfiguration/deletedConfigurationStores")
-        @ExpectedResponses({200})
-        @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<DeletedConfigurationStoreListResult>> listDeleted(
-            @HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("subscriptionId") String subscriptionId,
-            @HeaderParam("Accept") String accept,
-            Context context);
-
-        @Headers({"Content-Type: application/json"})
-        @Get(
-            "/subscriptions/{subscriptionId}/providers/Microsoft.AppConfiguration/locations/{location}"
-                + "/deletedConfigurationStores/{configStoreName}")
-        @ExpectedResponses({200})
-        @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<DeletedConfigurationStoreInner>> getDeleted(
-            @HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("location") String location,
-            @PathParam("configStoreName") String configStoreName,
-            @HeaderParam("Accept") String accept,
-            Context context);
-
-        @Headers({"Content-Type: application/json"})
         @Post(
-            "/subscriptions/{subscriptionId}/providers/Microsoft.AppConfiguration/locations/{location}"
-                + "/deletedConfigurationStores/{configStoreName}/purge")
-        @ExpectedResponses({200, 202, 204})
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AppConfiguration"
+                + "/configurationStores/{configStoreName}/listKeyValue")
+        @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Flux<ByteBuffer>>> purgeDeleted(
+        Mono<Response<KeyValueInner>> listKeyValue(
             @HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion,
             @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("location") String location,
+            @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("configStoreName") String configStoreName,
+            @QueryParam("api-version") String apiVersion,
+            @BodyParam("application/json") ListKeyValueParameters listKeyValueParameters,
             @HeaderParam("Accept") String accept,
             Context context);
 
@@ -262,16 +234,6 @@ public final class ConfigurationStoresClientImpl implements ConfigurationStoresC
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<ApiKeyListResult>> listKeysNext(
-            @PathParam(value = "nextLink", encoded = true) String nextLink,
-            @HostParam("$host") String endpoint,
-            @HeaderParam("Accept") String accept,
-            Context context);
-
-        @Headers({"Content-Type: application/json"})
-        @Get("{nextLink}")
-        @ExpectedResponses({200})
-        @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<DeletedConfigurationStoreListResult>> listDeletedNext(
             @PathParam(value = "nextLink", encoded = true) String nextLink,
             @HostParam("$host") String endpoint,
             @HeaderParam("Accept") String accept,
@@ -2049,166 +2011,20 @@ public final class ConfigurationStoresClientImpl implements ConfigurationStoresC
     }
 
     /**
-     * Gets information about the deleted configuration stores in a subscription.
+     * Lists a configuration store key-value.
      *
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return information about the deleted configuration stores in a subscription along with {@link PagedResponse} on
-     *     successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<DeletedConfigurationStoreInner>> listDeletedSinglePageAsync() {
-        if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .listDeleted(
-                            this.client.getEndpoint(),
-                            this.client.getApiVersion(),
-                            this.client.getSubscriptionId(),
-                            accept,
-                            context))
-            .<PagedResponse<DeletedConfigurationStoreInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * Gets information about the deleted configuration stores in a subscription.
-     *
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return information about the deleted configuration stores in a subscription along with {@link PagedResponse} on
-     *     successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<DeletedConfigurationStoreInner>> listDeletedSinglePageAsync(Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service
-            .listDeleted(
-                this.client.getEndpoint(),
-                this.client.getApiVersion(),
-                this.client.getSubscriptionId(),
-                accept,
-                context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
-    }
-
-    /**
-     * Gets information about the deleted configuration stores in a subscription.
-     *
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return information about the deleted configuration stores in a subscription as paginated response with {@link
-     *     PagedFlux}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<DeletedConfigurationStoreInner> listDeletedAsync() {
-        return new PagedFlux<>(
-            () -> listDeletedSinglePageAsync(), nextLink -> listDeletedNextSinglePageAsync(nextLink));
-    }
-
-    /**
-     * Gets information about the deleted configuration stores in a subscription.
-     *
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return information about the deleted configuration stores in a subscription as paginated response with {@link
-     *     PagedFlux}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<DeletedConfigurationStoreInner> listDeletedAsync(Context context) {
-        return new PagedFlux<>(
-            () -> listDeletedSinglePageAsync(context), nextLink -> listDeletedNextSinglePageAsync(nextLink, context));
-    }
-
-    /**
-     * Gets information about the deleted configuration stores in a subscription.
-     *
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return information about the deleted configuration stores in a subscription as paginated response with {@link
-     *     PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<DeletedConfigurationStoreInner> listDeleted() {
-        return new PagedIterable<>(listDeletedAsync());
-    }
-
-    /**
-     * Gets information about the deleted configuration stores in a subscription.
-     *
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return information about the deleted configuration stores in a subscription as paginated response with {@link
-     *     PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<DeletedConfigurationStoreInner> listDeleted(Context context) {
-        return new PagedIterable<>(listDeletedAsync(context));
-    }
-
-    /**
-     * Gets a deleted Azure app configuration store.
-     *
-     * @param location The location in which uniqueness will be verified.
+     * @param resourceGroupName The name of the resource group to which the container registry belongs.
      * @param configStoreName The name of the configuration store.
+     * @param listKeyValueParameters The parameters for retrieving a key-value.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a deleted Azure app configuration store along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return the result of a request to retrieve a key-value from the specified configuration store along with {@link
+     *     Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<DeletedConfigurationStoreInner>> getDeletedWithResponseAsync(
-        String location, String configStoreName) {
+    private Mono<Response<KeyValueInner>> listKeyValueWithResponseAsync(
+        String resourceGroupName, String configStoreName, ListKeyValueParameters listKeyValueParameters) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -2221,44 +2037,57 @@ public final class ConfigurationStoresClientImpl implements ConfigurationStoresC
                     new IllegalArgumentException(
                         "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        if (location == null) {
-            return Mono.error(new IllegalArgumentException("Parameter location is required and cannot be null."));
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
         if (configStoreName == null) {
             return Mono
                 .error(new IllegalArgumentException("Parameter configStoreName is required and cannot be null."));
         }
+        if (listKeyValueParameters == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException("Parameter listKeyValueParameters is required and cannot be null."));
+        } else {
+            listKeyValueParameters.validate();
+        }
         final String accept = "application/json";
         return FluxUtil
             .withContext(
                 context ->
                     service
-                        .getDeleted(
+                        .listKeyValue(
                             this.client.getEndpoint(),
-                            this.client.getApiVersion(),
                             this.client.getSubscriptionId(),
-                            location,
+                            resourceGroupName,
                             configStoreName,
+                            this.client.getApiVersion(),
+                            listKeyValueParameters,
                             accept,
                             context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
-     * Gets a deleted Azure app configuration store.
+     * Lists a configuration store key-value.
      *
-     * @param location The location in which uniqueness will be verified.
+     * @param resourceGroupName The name of the resource group to which the container registry belongs.
      * @param configStoreName The name of the configuration store.
+     * @param listKeyValueParameters The parameters for retrieving a key-value.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a deleted Azure app configuration store along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return the result of a request to retrieve a key-value from the specified configuration store along with {@link
+     *     Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<DeletedConfigurationStoreInner>> getDeletedWithResponseAsync(
-        String location, String configStoreName, Context context) {
+    private Mono<Response<KeyValueInner>> listKeyValueWithResponseAsync(
+        String resourceGroupName,
+        String configStoreName,
+        ListKeyValueParameters listKeyValueParameters,
+        Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -2271,41 +2100,53 @@ public final class ConfigurationStoresClientImpl implements ConfigurationStoresC
                     new IllegalArgumentException(
                         "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        if (location == null) {
-            return Mono.error(new IllegalArgumentException("Parameter location is required and cannot be null."));
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
         if (configStoreName == null) {
             return Mono
                 .error(new IllegalArgumentException("Parameter configStoreName is required and cannot be null."));
         }
+        if (listKeyValueParameters == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException("Parameter listKeyValueParameters is required and cannot be null."));
+        } else {
+            listKeyValueParameters.validate();
+        }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .getDeleted(
+            .listKeyValue(
                 this.client.getEndpoint(),
-                this.client.getApiVersion(),
                 this.client.getSubscriptionId(),
-                location,
+                resourceGroupName,
                 configStoreName,
+                this.client.getApiVersion(),
+                listKeyValueParameters,
                 accept,
                 context);
     }
 
     /**
-     * Gets a deleted Azure app configuration store.
+     * Lists a configuration store key-value.
      *
-     * @param location The location in which uniqueness will be verified.
+     * @param resourceGroupName The name of the resource group to which the container registry belongs.
      * @param configStoreName The name of the configuration store.
+     * @param listKeyValueParameters The parameters for retrieving a key-value.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a deleted Azure app configuration store on successful completion of {@link Mono}.
+     * @return the result of a request to retrieve a key-value from the specified configuration store on successful
+     *     completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<DeletedConfigurationStoreInner> getDeletedAsync(String location, String configStoreName) {
-        return getDeletedWithResponseAsync(location, configStoreName)
+    private Mono<KeyValueInner> listKeyValueAsync(
+        String resourceGroupName, String configStoreName, ListKeyValueParameters listKeyValueParameters) {
+        return listKeyValueWithResponseAsync(resourceGroupName, configStoreName, listKeyValueParameters)
             .flatMap(
-                (Response<DeletedConfigurationStoreInner> res) -> {
+                (Response<KeyValueInner> res) -> {
                     if (res.getValue() != null) {
                         return Mono.just(res.getValue());
                     } else {
@@ -2315,262 +2156,43 @@ public final class ConfigurationStoresClientImpl implements ConfigurationStoresC
     }
 
     /**
-     * Gets a deleted Azure app configuration store.
+     * Lists a configuration store key-value.
      *
-     * @param location The location in which uniqueness will be verified.
+     * @param resourceGroupName The name of the resource group to which the container registry belongs.
      * @param configStoreName The name of the configuration store.
+     * @param listKeyValueParameters The parameters for retrieving a key-value.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a deleted Azure app configuration store.
+     * @return the result of a request to retrieve a key-value from the specified configuration store.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public DeletedConfigurationStoreInner getDeleted(String location, String configStoreName) {
-        return getDeletedAsync(location, configStoreName).block();
+    public KeyValueInner listKeyValue(
+        String resourceGroupName, String configStoreName, ListKeyValueParameters listKeyValueParameters) {
+        return listKeyValueAsync(resourceGroupName, configStoreName, listKeyValueParameters).block();
     }
 
     /**
-     * Gets a deleted Azure app configuration store.
+     * Lists a configuration store key-value.
      *
-     * @param location The location in which uniqueness will be verified.
+     * @param resourceGroupName The name of the resource group to which the container registry belongs.
      * @param configStoreName The name of the configuration store.
+     * @param listKeyValueParameters The parameters for retrieving a key-value.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a deleted Azure app configuration store along with {@link Response}.
+     * @return the result of a request to retrieve a key-value from the specified configuration store along with {@link
+     *     Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<DeletedConfigurationStoreInner> getDeletedWithResponse(
-        String location, String configStoreName, Context context) {
-        return getDeletedWithResponseAsync(location, configStoreName, context).block();
-    }
-
-    /**
-     * Permanently deletes the specified configuration store.
-     *
-     * @param location The location in which uniqueness will be verified.
-     * @param configStoreName The name of the configuration store.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> purgeDeletedWithResponseAsync(String location, String configStoreName) {
-        if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (location == null) {
-            return Mono.error(new IllegalArgumentException("Parameter location is required and cannot be null."));
-        }
-        if (configStoreName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter configStoreName is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .purgeDeleted(
-                            this.client.getEndpoint(),
-                            this.client.getApiVersion(),
-                            this.client.getSubscriptionId(),
-                            location,
-                            configStoreName,
-                            accept,
-                            context))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * Permanently deletes the specified configuration store.
-     *
-     * @param location The location in which uniqueness will be verified.
-     * @param configStoreName The name of the configuration store.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> purgeDeletedWithResponseAsync(
-        String location, String configStoreName, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (location == null) {
-            return Mono.error(new IllegalArgumentException("Parameter location is required and cannot be null."));
-        }
-        if (configStoreName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter configStoreName is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service
-            .purgeDeleted(
-                this.client.getEndpoint(),
-                this.client.getApiVersion(),
-                this.client.getSubscriptionId(),
-                location,
-                configStoreName,
-                accept,
-                context);
-    }
-
-    /**
-     * Permanently deletes the specified configuration store.
-     *
-     * @param location The location in which uniqueness will be verified.
-     * @param configStoreName The name of the configuration store.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of long-running operation.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<Void>, Void> beginPurgeDeletedAsync(String location, String configStoreName) {
-        Mono<Response<Flux<ByteBuffer>>> mono = purgeDeletedWithResponseAsync(location, configStoreName);
-        return this
-            .client
-            .<Void, Void>getLroResult(
-                mono, this.client.getHttpPipeline(), Void.class, Void.class, this.client.getContext());
-    }
-
-    /**
-     * Permanently deletes the specified configuration store.
-     *
-     * @param location The location in which uniqueness will be verified.
-     * @param configStoreName The name of the configuration store.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of long-running operation.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<Void>, Void> beginPurgeDeletedAsync(
-        String location, String configStoreName, Context context) {
-        context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono = purgeDeletedWithResponseAsync(location, configStoreName, context);
-        return this
-            .client
-            .<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class, context);
-    }
-
-    /**
-     * Permanently deletes the specified configuration store.
-     *
-     * @param location The location in which uniqueness will be verified.
-     * @param configStoreName The name of the configuration store.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<Void>, Void> beginPurgeDeleted(String location, String configStoreName) {
-        return beginPurgeDeletedAsync(location, configStoreName).getSyncPoller();
-    }
-
-    /**
-     * Permanently deletes the specified configuration store.
-     *
-     * @param location The location in which uniqueness will be verified.
-     * @param configStoreName The name of the configuration store.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<Void>, Void> beginPurgeDeleted(
-        String location, String configStoreName, Context context) {
-        return beginPurgeDeletedAsync(location, configStoreName, context).getSyncPoller();
-    }
-
-    /**
-     * Permanently deletes the specified configuration store.
-     *
-     * @param location The location in which uniqueness will be verified.
-     * @param configStoreName The name of the configuration store.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Void> purgeDeletedAsync(String location, String configStoreName) {
-        return beginPurgeDeletedAsync(location, configStoreName).last().flatMap(this.client::getLroFinalResultOrError);
-    }
-
-    /**
-     * Permanently deletes the specified configuration store.
-     *
-     * @param location The location in which uniqueness will be verified.
-     * @param configStoreName The name of the configuration store.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Void> purgeDeletedAsync(String location, String configStoreName, Context context) {
-        return beginPurgeDeletedAsync(location, configStoreName, context)
-            .last()
-            .flatMap(this.client::getLroFinalResultOrError);
-    }
-
-    /**
-     * Permanently deletes the specified configuration store.
-     *
-     * @param location The location in which uniqueness will be verified.
-     * @param configStoreName The name of the configuration store.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public void purgeDeleted(String location, String configStoreName) {
-        purgeDeletedAsync(location, configStoreName).block();
-    }
-
-    /**
-     * Permanently deletes the specified configuration store.
-     *
-     * @param location The location in which uniqueness will be verified.
-     * @param configStoreName The name of the configuration store.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public void purgeDeleted(String location, String configStoreName, Context context) {
-        purgeDeletedAsync(location, configStoreName, context).block();
+    public Response<KeyValueInner> listKeyValueWithResponse(
+        String resourceGroupName,
+        String configStoreName,
+        ListKeyValueParameters listKeyValueParameters,
+        Context context) {
+        return listKeyValueWithResponseAsync(resourceGroupName, configStoreName, listKeyValueParameters, context)
+            .block();
     }
 
     /**
@@ -2783,80 +2405,6 @@ public final class ConfigurationStoresClientImpl implements ConfigurationStoresC
         context = this.client.mergeContext(context);
         return service
             .listKeysNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
-    }
-
-    /**
-     * Get the next page of items.
-     *
-     * @param nextLink The nextLink parameter.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of deleted configuration stores along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<DeletedConfigurationStoreInner>> listDeletedNextSinglePageAsync(String nextLink) {
-        if (nextLink == null) {
-            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
-        }
-        if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        return FluxUtil
-            .withContext(context -> service.listDeletedNext(nextLink, this.client.getEndpoint(), accept, context))
-            .<PagedResponse<DeletedConfigurationStoreInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * Get the next page of items.
-     *
-     * @param nextLink The nextLink parameter.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of deleted configuration stores along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<DeletedConfigurationStoreInner>> listDeletedNextSinglePageAsync(
-        String nextLink, Context context) {
-        if (nextLink == null) {
-            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
-        }
-        if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service
-            .listDeletedNext(nextLink, this.client.getEndpoint(), accept, context)
             .map(
                 res ->
                     new PagedResponseBase<>(

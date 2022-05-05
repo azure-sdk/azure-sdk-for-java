@@ -14,7 +14,7 @@ import java.util.Map;
 /** Samples for ConfigurationStores Create. */
 public final class ConfigurationStoresCreateSamples {
     /*
-     * x-ms-original-file: specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/preview/2021-10-01-preview/examples/ConfigurationStoresCreate.json
+     * x-ms-original-file: specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/preview/2020-05-05.012/examples/ConfigurationStoresCreate.json
      */
     /**
      * Sample code: ConfigurationStores_Create.
@@ -34,10 +34,10 @@ public final class ConfigurationStoresCreateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/preview/2021-10-01-preview/examples/ConfigurationStoresCreateWithIdentity.json
+     * x-ms-original-file: specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/preview/2020-05-05.012/examples/ConfigurationStoresCreateWithIdentity.json
      */
     /**
-     * Sample code: ConfigurationStores_Create_With_Identity.
+     * Sample code: ConfigurationStores_Create_WithIdentity.
      *
      * @param manager Entry point to AppConfigurationManager.
      */
@@ -57,26 +57,6 @@ public final class ConfigurationStoresCreateSamples {
                         mapOf(
                             "/subscriptions/c80fb759-c965-4c6a-9110-9b2b2d038882/resourcegroups/myResourceGroup1/providers/Microsoft.ManagedIdentity/userAssignedIdentities/identity2",
                             new UserIdentity())))
-            .create();
-    }
-
-    /*
-     * x-ms-original-file: specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/preview/2021-10-01-preview/examples/ConfigurationStoresCreateWithLocalAuthDisabled.json
-     */
-    /**
-     * Sample code: ConfigurationStores_Create_With_Local_Auth_Disabled.
-     *
-     * @param manager Entry point to AppConfigurationManager.
-     */
-    public static void configurationStoresCreateWithLocalAuthDisabled(
-        com.azure.resourcemanager.appconfiguration.AppConfigurationManager manager) {
-        manager
-            .configurationStores()
-            .define("contoso")
-            .withRegion("westus")
-            .withExistingResourceGroup("myResourceGroup")
-            .withSku(new Sku().withName("Standard"))
-            .withDisableLocalAuth(true)
             .create();
     }
 

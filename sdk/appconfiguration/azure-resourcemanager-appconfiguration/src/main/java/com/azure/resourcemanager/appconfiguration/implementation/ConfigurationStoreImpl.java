@@ -7,23 +7,19 @@ package com.azure.resourcemanager.appconfiguration.implementation;
 import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.http.rest.Response;
 import com.azure.core.management.Region;
-import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.appconfiguration.fluent.models.ConfigurationStoreInner;
 import com.azure.resourcemanager.appconfiguration.models.ApiKey;
 import com.azure.resourcemanager.appconfiguration.models.ConfigurationStore;
 import com.azure.resourcemanager.appconfiguration.models.ConfigurationStoreUpdateParameters;
-import com.azure.resourcemanager.appconfiguration.models.CreateMode;
-import com.azure.resourcemanager.appconfiguration.models.EncryptionProperties;
-import com.azure.resourcemanager.appconfiguration.models.PrivateEndpointConnectionReference;
+import com.azure.resourcemanager.appconfiguration.models.KeyValue;
+import com.azure.resourcemanager.appconfiguration.models.ListKeyValueParameters;
 import com.azure.resourcemanager.appconfiguration.models.ProvisioningState;
-import com.azure.resourcemanager.appconfiguration.models.PublicNetworkAccess;
 import com.azure.resourcemanager.appconfiguration.models.RegenerateKeyParameters;
 import com.azure.resourcemanager.appconfiguration.models.ResourceIdentity;
 import com.azure.resourcemanager.appconfiguration.models.Sku;
 import java.time.OffsetDateTime;
 import java.util.Collections;
-import java.util.List;
 import java.util.Map;
 
 public final class ConfigurationStoreImpl
@@ -65,10 +61,6 @@ public final class ConfigurationStoreImpl
         return this.innerModel().sku();
     }
 
-    public SystemData systemData() {
-        return this.innerModel().systemData();
-    }
-
     public ProvisioningState provisioningState() {
         return this.innerModel().provisioningState();
     }
@@ -79,39 +71,6 @@ public final class ConfigurationStoreImpl
 
     public String endpoint() {
         return this.innerModel().endpoint();
-    }
-
-    public EncryptionProperties encryption() {
-        return this.innerModel().encryption();
-    }
-
-    public List<PrivateEndpointConnectionReference> privateEndpointConnections() {
-        List<PrivateEndpointConnectionReference> inner = this.innerModel().privateEndpointConnections();
-        if (inner != null) {
-            return Collections.unmodifiableList(inner);
-        } else {
-            return Collections.emptyList();
-        }
-    }
-
-    public PublicNetworkAccess publicNetworkAccess() {
-        return this.innerModel().publicNetworkAccess();
-    }
-
-    public Boolean disableLocalAuth() {
-        return this.innerModel().disableLocalAuth();
-    }
-
-    public Integer softDeleteRetentionInDays() {
-        return this.innerModel().softDeleteRetentionInDays();
-    }
-
-    public Boolean enablePurgeProtection() {
-        return this.innerModel().enablePurgeProtection();
-    }
-
-    public CreateMode createMode() {
-        return this.innerModel().createMode();
     }
 
     public Region region() {
@@ -239,6 +198,18 @@ public final class ConfigurationStoreImpl
             .regenerateKeyWithResponse(resourceGroupName, configStoreName, regenerateKeyParameters, context);
     }
 
+    public KeyValue listKeyValue(ListKeyValueParameters listKeyValueParameters) {
+        return serviceManager
+            .configurationStores()
+            .listKeyValue(resourceGroupName, configStoreName, listKeyValueParameters);
+    }
+
+    public Response<KeyValue> listKeyValueWithResponse(ListKeyValueParameters listKeyValueParameters, Context context) {
+        return serviceManager
+            .configurationStores()
+            .listKeyValueWithResponse(resourceGroupName, configStoreName, listKeyValueParameters, context);
+    }
+
     public ConfigurationStoreImpl withRegion(Region location) {
         this.innerModel().withLocation(location.toString());
         return this;
@@ -279,53 +250,8 @@ public final class ConfigurationStoreImpl
         }
     }
 
-    public ConfigurationStoreImpl withEncryption(EncryptionProperties encryption) {
-        if (isInCreateMode()) {
-            this.innerModel().withEncryption(encryption);
-            return this;
-        } else {
-            this.updateConfigStoreUpdateParameters.withEncryption(encryption);
-            return this;
-        }
-    }
-
-    public ConfigurationStoreImpl withPublicNetworkAccess(PublicNetworkAccess publicNetworkAccess) {
-        if (isInCreateMode()) {
-            this.innerModel().withPublicNetworkAccess(publicNetworkAccess);
-            return this;
-        } else {
-            this.updateConfigStoreUpdateParameters.withPublicNetworkAccess(publicNetworkAccess);
-            return this;
-        }
-    }
-
-    public ConfigurationStoreImpl withDisableLocalAuth(Boolean disableLocalAuth) {
-        if (isInCreateMode()) {
-            this.innerModel().withDisableLocalAuth(disableLocalAuth);
-            return this;
-        } else {
-            this.updateConfigStoreUpdateParameters.withDisableLocalAuth(disableLocalAuth);
-            return this;
-        }
-    }
-
-    public ConfigurationStoreImpl withSoftDeleteRetentionInDays(Integer softDeleteRetentionInDays) {
-        this.innerModel().withSoftDeleteRetentionInDays(softDeleteRetentionInDays);
-        return this;
-    }
-
-    public ConfigurationStoreImpl withEnablePurgeProtection(Boolean enablePurgeProtection) {
-        if (isInCreateMode()) {
-            this.innerModel().withEnablePurgeProtection(enablePurgeProtection);
-            return this;
-        } else {
-            this.updateConfigStoreUpdateParameters.withEnablePurgeProtection(enablePurgeProtection);
-            return this;
-        }
-    }
-
-    public ConfigurationStoreImpl withCreateMode(CreateMode createMode) {
-        this.innerModel().withCreateMode(createMode);
+    public ConfigurationStoreImpl withProperties(Object properties) {
+        this.updateConfigStoreUpdateParameters.withProperties(properties);
         return this;
     }
 

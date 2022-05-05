@@ -6,38 +6,16 @@
 - [Create](#configurationstores_create)
 - [Delete](#configurationstores_delete)
 - [GetByResourceGroup](#configurationstores_getbyresourcegroup)
-- [GetDeleted](#configurationstores_getdeleted)
 - [List](#configurationstores_list)
 - [ListByResourceGroup](#configurationstores_listbyresourcegroup)
-- [ListDeleted](#configurationstores_listdeleted)
+- [ListKeyValue](#configurationstores_listkeyvalue)
 - [ListKeys](#configurationstores_listkeys)
-- [PurgeDeleted](#configurationstores_purgedeleted)
 - [RegenerateKey](#configurationstores_regeneratekey)
 - [Update](#configurationstores_update)
-
-## KeyValues
-
-- [CreateOrUpdate](#keyvalues_createorupdate)
-- [Delete](#keyvalues_delete)
-- [Get](#keyvalues_get)
-- [ListByConfigurationStore](#keyvalues_listbyconfigurationstore)
 
 ## Operations
 
 - [CheckNameAvailability](#operations_checknameavailability)
-- [RegionalCheckNameAvailability](#operations_regionalchecknameavailability)
-
-## PrivateEndpointConnections
-
-- [CreateOrUpdate](#privateendpointconnections_createorupdate)
-- [Delete](#privateendpointconnections_delete)
-- [Get](#privateendpointconnections_get)
-- [ListByConfigurationStore](#privateendpointconnections_listbyconfigurationstore)
-
-## PrivateLinkResources
-
-- [Get](#privatelinkresources_get)
-- [ListByConfigurationStore](#privatelinkresources_listbyconfigurationstore)
 ### ConfigurationStores_Create
 
 ```java
@@ -51,7 +29,7 @@ import java.util.Map;
 /** Samples for ConfigurationStores Create. */
 public final class ConfigurationStoresCreateSamples {
     /*
-     * x-ms-original-file: specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/preview/2021-10-01-preview/examples/ConfigurationStoresCreate.json
+     * x-ms-original-file: specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/preview/2020-05-05.012/examples/ConfigurationStoresCreate.json
      */
     /**
      * Sample code: ConfigurationStores_Create.
@@ -71,10 +49,10 @@ public final class ConfigurationStoresCreateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/preview/2021-10-01-preview/examples/ConfigurationStoresCreateWithIdentity.json
+     * x-ms-original-file: specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/preview/2020-05-05.012/examples/ConfigurationStoresCreateWithIdentity.json
      */
     /**
-     * Sample code: ConfigurationStores_Create_With_Identity.
+     * Sample code: ConfigurationStores_Create_WithIdentity.
      *
      * @param manager Entry point to AppConfigurationManager.
      */
@@ -94,26 +72,6 @@ public final class ConfigurationStoresCreateSamples {
                         mapOf(
                             "/subscriptions/c80fb759-c965-4c6a-9110-9b2b2d038882/resourcegroups/myResourceGroup1/providers/Microsoft.ManagedIdentity/userAssignedIdentities/identity2",
                             new UserIdentity())))
-            .create();
-    }
-
-    /*
-     * x-ms-original-file: specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/preview/2021-10-01-preview/examples/ConfigurationStoresCreateWithLocalAuthDisabled.json
-     */
-    /**
-     * Sample code: ConfigurationStores_Create_With_Local_Auth_Disabled.
-     *
-     * @param manager Entry point to AppConfigurationManager.
-     */
-    public static void configurationStoresCreateWithLocalAuthDisabled(
-        com.azure.resourcemanager.appconfiguration.AppConfigurationManager manager) {
-        manager
-            .configurationStores()
-            .define("contoso")
-            .withRegion("westus")
-            .withExistingResourceGroup("myResourceGroup")
-            .withSku(new Sku().withName("Standard"))
-            .withDisableLocalAuth(true)
             .create();
     }
 
@@ -138,7 +96,7 @@ import com.azure.core.util.Context;
 /** Samples for ConfigurationStores Delete. */
 public final class ConfigurationStoresDeleteSamples {
     /*
-     * x-ms-original-file: specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/preview/2021-10-01-preview/examples/ConfigurationStoresDelete.json
+     * x-ms-original-file: specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/preview/2020-05-05.012/examples/ConfigurationStoresDelete.json
      */
     /**
      * Sample code: ConfigurationStores_Delete.
@@ -160,7 +118,7 @@ import com.azure.core.util.Context;
 /** Samples for ConfigurationStores GetByResourceGroup. */
 public final class ConfigurationStoresGetByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/preview/2021-10-01-preview/examples/ConfigurationStoresGet.json
+     * x-ms-original-file: specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/preview/2020-05-05.012/examples/ConfigurationStoresGet.json
      */
     /**
      * Sample code: ConfigurationStores_Get.
@@ -174,28 +132,6 @@ public final class ConfigurationStoresGetByResourceGroupSamples {
 }
 ```
 
-### ConfigurationStores_GetDeleted
-
-```java
-import com.azure.core.util.Context;
-
-/** Samples for ConfigurationStores GetDeleted. */
-public final class ConfigurationStoresGetDeletedSamples {
-    /*
-     * x-ms-original-file: specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/preview/2021-10-01-preview/examples/DeletedConfigurationStoresGet.json
-     */
-    /**
-     * Sample code: DeletedConfigurationStores_Get.
-     *
-     * @param manager Entry point to AppConfigurationManager.
-     */
-    public static void deletedConfigurationStoresGet(
-        com.azure.resourcemanager.appconfiguration.AppConfigurationManager manager) {
-        manager.configurationStores().getDeletedWithResponse("westus", "contoso", Context.NONE);
-    }
-}
-```
-
 ### ConfigurationStores_List
 
 ```java
@@ -204,7 +140,7 @@ import com.azure.core.util.Context;
 /** Samples for ConfigurationStores List. */
 public final class ConfigurationStoresListSamples {
     /*
-     * x-ms-original-file: specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/preview/2021-10-01-preview/examples/ConfigurationStoresList.json
+     * x-ms-original-file: specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/preview/2020-05-05.012/examples/ConfigurationStoresList.json
      */
     /**
      * Sample code: ConfigurationStores_List.
@@ -226,7 +162,7 @@ import com.azure.core.util.Context;
 /** Samples for ConfigurationStores ListByResourceGroup. */
 public final class ConfigurationStoresListByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/preview/2021-10-01-preview/examples/ConfigurationStoresListByResourceGroup.json
+     * x-ms-original-file: specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/preview/2020-05-05.012/examples/ConfigurationStoresListByResourceGroup.json
      */
     /**
      * Sample code: ConfigurationStores_ListByResourceGroup.
@@ -240,24 +176,31 @@ public final class ConfigurationStoresListByResourceGroupSamples {
 }
 ```
 
-### ConfigurationStores_ListDeleted
+### ConfigurationStores_ListKeyValue
 
 ```java
 import com.azure.core.util.Context;
+import com.azure.resourcemanager.appconfiguration.models.ListKeyValueParameters;
 
-/** Samples for ConfigurationStores ListDeleted. */
-public final class ConfigurationStoresListDeletedSamples {
+/** Samples for ConfigurationStores ListKeyValue. */
+public final class ConfigurationStoresListKeyValueSamples {
     /*
-     * x-ms-original-file: specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/preview/2021-10-01-preview/examples/DeletedConfigurationStoresList.json
+     * x-ms-original-file: specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/preview/2020-05-05.012/examples/ConfigurationStoresListKeyValue.json
      */
     /**
-     * Sample code: DeletedConfigurationStores_List.
+     * Sample code: ConfigurationStores_ListKeyValue.
      *
      * @param manager Entry point to AppConfigurationManager.
      */
-    public static void deletedConfigurationStoresList(
+    public static void configurationStoresListKeyValue(
         com.azure.resourcemanager.appconfiguration.AppConfigurationManager manager) {
-        manager.configurationStores().listDeleted(Context.NONE);
+        manager
+            .configurationStores()
+            .listKeyValueWithResponse(
+                "myResourceGroup",
+                "fayeh",
+                new ListKeyValueParameters().withKey("MaxRequests").withLabel("dev"),
+                Context.NONE);
     }
 }
 ```
@@ -270,7 +213,7 @@ import com.azure.core.util.Context;
 /** Samples for ConfigurationStores ListKeys. */
 public final class ConfigurationStoresListKeysSamples {
     /*
-     * x-ms-original-file: specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/preview/2021-10-01-preview/examples/ConfigurationStoresListKeys.json
+     * x-ms-original-file: specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/preview/2020-05-05.012/examples/ConfigurationStoresListKeys.json
      */
     /**
      * Sample code: ConfigurationStores_ListKeys.
@@ -284,28 +227,6 @@ public final class ConfigurationStoresListKeysSamples {
 }
 ```
 
-### ConfigurationStores_PurgeDeleted
-
-```java
-import com.azure.core.util.Context;
-
-/** Samples for ConfigurationStores PurgeDeleted. */
-public final class ConfigurationStoresPurgeDeletedSamples {
-    /*
-     * x-ms-original-file: specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/preview/2021-10-01-preview/examples/DeletedConfigurationStoresPurge.json
-     */
-    /**
-     * Sample code: Purge a deleted configuration store.
-     *
-     * @param manager Entry point to AppConfigurationManager.
-     */
-    public static void purgeADeletedConfigurationStore(
-        com.azure.resourcemanager.appconfiguration.AppConfigurationManager manager) {
-        manager.configurationStores().purgeDeleted("westus", "contoso", Context.NONE);
-    }
-}
-```
-
 ### ConfigurationStores_RegenerateKey
 
 ```java
@@ -315,7 +236,7 @@ import com.azure.resourcemanager.appconfiguration.models.RegenerateKeyParameters
 /** Samples for ConfigurationStores RegenerateKey. */
 public final class ConfigurationStoresRegenerateKeySamples {
     /*
-     * x-ms-original-file: specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/preview/2021-10-01-preview/examples/ConfigurationStoresRegenerateKey.json
+     * x-ms-original-file: specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/preview/2020-05-05.012/examples/ConfigurationStoresRegenerateKey.json
      */
     /**
      * Sample code: ConfigurationStores_RegenerateKey.
@@ -347,25 +268,7 @@ import java.util.Map;
 /** Samples for ConfigurationStores Update. */
 public final class ConfigurationStoresUpdateSamples {
     /*
-     * x-ms-original-file: specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/preview/2021-10-01-preview/examples/ConfigurationStoresUpdateDisableLocalAuth.json
-     */
-    /**
-     * Sample code: ConfigurationStores_Update_Disable_Local_Auth.
-     *
-     * @param manager Entry point to AppConfigurationManager.
-     */
-    public static void configurationStoresUpdateDisableLocalAuth(
-        com.azure.resourcemanager.appconfiguration.AppConfigurationManager manager) {
-        ConfigurationStore resource =
-            manager
-                .configurationStores()
-                .getByResourceGroupWithResponse("myResourceGroup", "contoso", Context.NONE)
-                .getValue();
-        resource.update().withSku(new Sku().withName("Standard")).withDisableLocalAuth(true).apply();
-    }
-
-    /*
-     * x-ms-original-file: specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/preview/2021-10-01-preview/examples/ConfigurationStoresUpdate.json
+     * x-ms-original-file: specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/preview/2020-05-05.012/examples/ConfigurationStoresUpdate.json
      */
     /**
      * Sample code: ConfigurationStores_Update.
@@ -383,10 +286,10 @@ public final class ConfigurationStoresUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/preview/2021-10-01-preview/examples/ConfigurationStoresUpdateWithIdentity.json
+     * x-ms-original-file: specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/preview/2020-05-05.012/examples/ConfigurationStoresUpdateWithIdentity.json
      */
     /**
-     * Sample code: ConfigurationStores_Update_With_Identity.
+     * Sample code: ConfigurationStores_Update_WithIdentity.
      *
      * @param manager Entry point to AppConfigurationManager.
      */
@@ -424,110 +327,6 @@ public final class ConfigurationStoresUpdateSamples {
 }
 ```
 
-### KeyValues_CreateOrUpdate
-
-```java
-import java.util.HashMap;
-import java.util.Map;
-
-/** Samples for KeyValues CreateOrUpdate. */
-public final class KeyValuesCreateOrUpdateSamples {
-    /*
-     * x-ms-original-file: specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/preview/2021-10-01-preview/examples/ConfigurationStoresCreateKeyValue.json
-     */
-    /**
-     * Sample code: KeyValues_CreateOrUpdate.
-     *
-     * @param manager Entry point to AppConfigurationManager.
-     */
-    public static void keyValuesCreateOrUpdate(
-        com.azure.resourcemanager.appconfiguration.AppConfigurationManager manager) {
-        manager
-            .keyValues()
-            .define("myKey$myLabel")
-            .withExistingConfigurationStore("myResourceGroup", "contoso")
-            .withTags(mapOf("tag1", "tagValue1", "tag2", "tagValue2"))
-            .withValue("myValue")
-            .create();
-    }
-
-    @SuppressWarnings("unchecked")
-    private static <T> Map<String, T> mapOf(Object... inputs) {
-        Map<String, T> map = new HashMap<>();
-        for (int i = 0; i < inputs.length; i += 2) {
-            String key = (String) inputs[i];
-            T value = (T) inputs[i + 1];
-            map.put(key, value);
-        }
-        return map;
-    }
-}
-```
-
-### KeyValues_Delete
-
-```java
-import com.azure.core.util.Context;
-
-/** Samples for KeyValues Delete. */
-public final class KeyValuesDeleteSamples {
-    /*
-     * x-ms-original-file: specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/preview/2021-10-01-preview/examples/ConfigurationStoresDeleteKeyValue.json
-     */
-    /**
-     * Sample code: KeyValues_Delete.
-     *
-     * @param manager Entry point to AppConfigurationManager.
-     */
-    public static void keyValuesDelete(com.azure.resourcemanager.appconfiguration.AppConfigurationManager manager) {
-        manager.keyValues().delete("myResourceGroup", "contoso", "myKey$myLabel", Context.NONE);
-    }
-}
-```
-
-### KeyValues_Get
-
-```java
-import com.azure.core.util.Context;
-
-/** Samples for KeyValues Get. */
-public final class KeyValuesGetSamples {
-    /*
-     * x-ms-original-file: specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/preview/2021-10-01-preview/examples/ConfigurationStoresGetKeyValue.json
-     */
-    /**
-     * Sample code: KeyValues_Get.
-     *
-     * @param manager Entry point to AppConfigurationManager.
-     */
-    public static void keyValuesGet(com.azure.resourcemanager.appconfiguration.AppConfigurationManager manager) {
-        manager.keyValues().getWithResponse("myResourceGroup", "contoso", "myKey$myLabel", Context.NONE);
-    }
-}
-```
-
-### KeyValues_ListByConfigurationStore
-
-```java
-import com.azure.core.util.Context;
-
-/** Samples for KeyValues ListByConfigurationStore. */
-public final class KeyValuesListByConfigurationStoreSamples {
-    /*
-     * x-ms-original-file: specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/preview/2021-10-01-preview/examples/ConfigurationStoresListKeyValues.json
-     */
-    /**
-     * Sample code: KeyValues_ListByConfigurationStore.
-     *
-     * @param manager Entry point to AppConfigurationManager.
-     */
-    public static void keyValuesListByConfigurationStore(
-        com.azure.resourcemanager.appconfiguration.AppConfigurationManager manager) {
-        manager.keyValues().listByConfigurationStore("myResourceGroup", "contoso", null, Context.NONE);
-    }
-}
-```
-
 ### Operations_CheckNameAvailability
 
 ```java
@@ -538,7 +337,7 @@ import com.azure.resourcemanager.appconfiguration.models.ConfigurationResourceTy
 /** Samples for Operations CheckNameAvailability. */
 public final class OperationsCheckNameAvailabilitySamples {
     /*
-     * x-ms-original-file: specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/preview/2021-10-01-preview/examples/CheckNameAvailable.json
+     * x-ms-original-file: specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/preview/2020-05-05.012/examples/CheckNameAvailable.json
      */
     /**
      * Sample code: ConfigurationStores_CheckNameAvailable.
@@ -557,7 +356,7 @@ public final class OperationsCheckNameAvailabilitySamples {
     }
 
     /*
-     * x-ms-original-file: specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/preview/2021-10-01-preview/examples/CheckNameNotAvailable.json
+     * x-ms-original-file: specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/preview/2020-05-05.012/examples/CheckNameNotAvailable.json
      */
     /**
      * Sample code: ConfigurationStores_CheckNameNotAvailable.
@@ -573,202 +372,6 @@ public final class OperationsCheckNameAvailabilitySamples {
                     .withName("contoso")
                     .withType(ConfigurationResourceType.MICROSOFT_APP_CONFIGURATION_CONFIGURATION_STORES),
                 Context.NONE);
-    }
-}
-```
-
-### Operations_RegionalCheckNameAvailability
-
-```java
-import com.azure.core.util.Context;
-import com.azure.resourcemanager.appconfiguration.models.CheckNameAvailabilityParameters;
-import com.azure.resourcemanager.appconfiguration.models.ConfigurationResourceType;
-
-/** Samples for Operations RegionalCheckNameAvailability. */
-public final class OperationsRegionalCheckNameAvailabilitySamples {
-    /*
-     * x-ms-original-file: specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/preview/2021-10-01-preview/examples/RegionalCheckNameAvailable.json
-     */
-    /**
-     * Sample code: ConfigurationStores_CheckNameAvailable.
-     *
-     * @param manager Entry point to AppConfigurationManager.
-     */
-    public static void configurationStoresCheckNameAvailable(
-        com.azure.resourcemanager.appconfiguration.AppConfigurationManager manager) {
-        manager
-            .operations()
-            .regionalCheckNameAvailabilityWithResponse(
-                "westus",
-                new CheckNameAvailabilityParameters()
-                    .withName("contoso")
-                    .withType(ConfigurationResourceType.MICROSOFT_APP_CONFIGURATION_CONFIGURATION_STORES),
-                Context.NONE);
-    }
-
-    /*
-     * x-ms-original-file: specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/preview/2021-10-01-preview/examples/RegionalCheckNameNotAvailable.json
-     */
-    /**
-     * Sample code: ConfigurationStores_CheckNameNotAvailable.
-     *
-     * @param manager Entry point to AppConfigurationManager.
-     */
-    public static void configurationStoresCheckNameNotAvailable(
-        com.azure.resourcemanager.appconfiguration.AppConfigurationManager manager) {
-        manager
-            .operations()
-            .regionalCheckNameAvailabilityWithResponse(
-                "westus",
-                new CheckNameAvailabilityParameters()
-                    .withName("contoso")
-                    .withType(ConfigurationResourceType.MICROSOFT_APP_CONFIGURATION_CONFIGURATION_STORES),
-                Context.NONE);
-    }
-}
-```
-
-### PrivateEndpointConnections_CreateOrUpdate
-
-```java
-import com.azure.resourcemanager.appconfiguration.models.ConnectionStatus;
-import com.azure.resourcemanager.appconfiguration.models.PrivateLinkServiceConnectionState;
-
-/** Samples for PrivateEndpointConnections CreateOrUpdate. */
-public final class PrivateEndpointConnectionsCreateOrUpdateSamples {
-    /*
-     * x-ms-original-file: specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/preview/2021-10-01-preview/examples/ConfigurationStoresCreatePrivateEndpointConnection.json
-     */
-    /**
-     * Sample code: PrivateEndpointConnection_CreateOrUpdate.
-     *
-     * @param manager Entry point to AppConfigurationManager.
-     */
-    public static void privateEndpointConnectionCreateOrUpdate(
-        com.azure.resourcemanager.appconfiguration.AppConfigurationManager manager) {
-        manager
-            .privateEndpointConnections()
-            .define("myConnection")
-            .withExistingConfigurationStore("myResourceGroup", "contoso")
-            .withPrivateLinkServiceConnectionState(
-                new PrivateLinkServiceConnectionState()
-                    .withStatus(ConnectionStatus.APPROVED)
-                    .withDescription("Auto-Approved"))
-            .create();
-    }
-}
-```
-
-### PrivateEndpointConnections_Delete
-
-```java
-import com.azure.core.util.Context;
-
-/** Samples for PrivateEndpointConnections Delete. */
-public final class PrivateEndpointConnectionsDeleteSamples {
-    /*
-     * x-ms-original-file: specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/preview/2021-10-01-preview/examples/ConfigurationStoresDeletePrivateEndpointConnection.json
-     */
-    /**
-     * Sample code: PrivateEndpointConnections_Delete.
-     *
-     * @param manager Entry point to AppConfigurationManager.
-     */
-    public static void privateEndpointConnectionsDelete(
-        com.azure.resourcemanager.appconfiguration.AppConfigurationManager manager) {
-        manager.privateEndpointConnections().delete("myResourceGroup", "contoso", "myConnection", Context.NONE);
-    }
-}
-```
-
-### PrivateEndpointConnections_Get
-
-```java
-import com.azure.core.util.Context;
-
-/** Samples for PrivateEndpointConnections Get. */
-public final class PrivateEndpointConnectionsGetSamples {
-    /*
-     * x-ms-original-file: specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/preview/2021-10-01-preview/examples/ConfigurationStoresGetPrivateEndpointConnection.json
-     */
-    /**
-     * Sample code: PrivateEndpointConnection_GetConnection.
-     *
-     * @param manager Entry point to AppConfigurationManager.
-     */
-    public static void privateEndpointConnectionGetConnection(
-        com.azure.resourcemanager.appconfiguration.AppConfigurationManager manager) {
-        manager
-            .privateEndpointConnections()
-            .getWithResponse("myResourceGroup", "contoso", "myConnection", Context.NONE);
-    }
-}
-```
-
-### PrivateEndpointConnections_ListByConfigurationStore
-
-```java
-import com.azure.core.util.Context;
-
-/** Samples for PrivateEndpointConnections ListByConfigurationStore. */
-public final class PrivateEndpointConnectionsListByConfigurationStoreSamples {
-    /*
-     * x-ms-original-file: specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/preview/2021-10-01-preview/examples/ConfigurationStoresListPrivateEndpointConnections.json
-     */
-    /**
-     * Sample code: PrivateEndpointConnection_List.
-     *
-     * @param manager Entry point to AppConfigurationManager.
-     */
-    public static void privateEndpointConnectionList(
-        com.azure.resourcemanager.appconfiguration.AppConfigurationManager manager) {
-        manager.privateEndpointConnections().listByConfigurationStore("myResourceGroup", "contoso", Context.NONE);
-    }
-}
-```
-
-### PrivateLinkResources_Get
-
-```java
-import com.azure.core.util.Context;
-
-/** Samples for PrivateLinkResources Get. */
-public final class PrivateLinkResourcesGetSamples {
-    /*
-     * x-ms-original-file: specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/preview/2021-10-01-preview/examples/PrivateLinkResourceGet.json
-     */
-    /**
-     * Sample code: PrivateLinkResources_Get.
-     *
-     * @param manager Entry point to AppConfigurationManager.
-     */
-    public static void privateLinkResourcesGet(
-        com.azure.resourcemanager.appconfiguration.AppConfigurationManager manager) {
-        manager
-            .privateLinkResources()
-            .getWithResponse("myResourceGroup", "contoso", "configurationStores", Context.NONE);
-    }
-}
-```
-
-### PrivateLinkResources_ListByConfigurationStore
-
-```java
-import com.azure.core.util.Context;
-
-/** Samples for PrivateLinkResources ListByConfigurationStore. */
-public final class PrivateLinkResourcesListByConfigurationStoreSamples {
-    /*
-     * x-ms-original-file: specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/preview/2021-10-01-preview/examples/PrivateLinkResourcesListByConfigurationStore.json
-     */
-    /**
-     * Sample code: PrivateLinkResources_ListGroupIds.
-     *
-     * @param manager Entry point to AppConfigurationManager.
-     */
-    public static void privateLinkResourcesListGroupIds(
-        com.azure.resourcemanager.appconfiguration.AppConfigurationManager manager) {
-        manager.privateLinkResources().listByConfigurationStore("myResourceGroup", "contoso", Context.NONE);
     }
 }
 ```

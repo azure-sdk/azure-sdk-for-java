@@ -58,31 +58,4 @@ public interface Operations {
      *     PagedIterable}.
      */
     PagedIterable<OperationDefinition> list(String skipToken, Context context);
-
-    /**
-     * Checks whether the configuration store name is available for use.
-     *
-     * @param location The location in which uniqueness will be verified.
-     * @param checkNameAvailabilityParameters The object containing information for the availability request.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the result of a request to check the availability of a resource name.
-     */
-    NameAvailabilityStatus regionalCheckNameAvailability(
-        String location, CheckNameAvailabilityParameters checkNameAvailabilityParameters);
-
-    /**
-     * Checks whether the configuration store name is available for use.
-     *
-     * @param location The location in which uniqueness will be verified.
-     * @param checkNameAvailabilityParameters The object containing information for the availability request.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the result of a request to check the availability of a resource name along with {@link Response}.
-     */
-    Response<NameAvailabilityStatus> regionalCheckNameAvailabilityWithResponse(
-        String location, CheckNameAvailabilityParameters checkNameAvailabilityParameters, Context context);
 }

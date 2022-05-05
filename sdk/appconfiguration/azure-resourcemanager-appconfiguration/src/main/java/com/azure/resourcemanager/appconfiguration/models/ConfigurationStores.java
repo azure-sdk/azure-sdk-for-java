@@ -169,75 +169,37 @@ public interface ConfigurationStores {
         Context context);
 
     /**
-     * Gets information about the deleted configuration stores in a subscription.
+     * Lists a configuration store key-value.
      *
+     * @param resourceGroupName The name of the resource group to which the container registry belongs.
+     * @param configStoreName The name of the configuration store.
+     * @param listKeyValueParameters The parameters for retrieving a key-value.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return information about the deleted configuration stores in a subscription as paginated response with {@link
-     *     PagedIterable}.
+     * @return the result of a request to retrieve a key-value from the specified configuration store.
      */
-    PagedIterable<DeletedConfigurationStore> listDeleted();
+    KeyValue listKeyValue(
+        String resourceGroupName, String configStoreName, ListKeyValueParameters listKeyValueParameters);
 
     /**
-     * Gets information about the deleted configuration stores in a subscription.
+     * Lists a configuration store key-value.
      *
+     * @param resourceGroupName The name of the resource group to which the container registry belongs.
+     * @param configStoreName The name of the configuration store.
+     * @param listKeyValueParameters The parameters for retrieving a key-value.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return information about the deleted configuration stores in a subscription as paginated response with {@link
-     *     PagedIterable}.
+     * @return the result of a request to retrieve a key-value from the specified configuration store along with {@link
+     *     Response}.
      */
-    PagedIterable<DeletedConfigurationStore> listDeleted(Context context);
-
-    /**
-     * Gets a deleted Azure app configuration store.
-     *
-     * @param location The location in which uniqueness will be verified.
-     * @param configStoreName The name of the configuration store.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a deleted Azure app configuration store.
-     */
-    DeletedConfigurationStore getDeleted(String location, String configStoreName);
-
-    /**
-     * Gets a deleted Azure app configuration store.
-     *
-     * @param location The location in which uniqueness will be verified.
-     * @param configStoreName The name of the configuration store.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a deleted Azure app configuration store along with {@link Response}.
-     */
-    Response<DeletedConfigurationStore> getDeletedWithResponse(
-        String location, String configStoreName, Context context);
-
-    /**
-     * Permanently deletes the specified configuration store.
-     *
-     * @param location The location in which uniqueness will be verified.
-     * @param configStoreName The name of the configuration store.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    void purgeDeleted(String location, String configStoreName);
-
-    /**
-     * Permanently deletes the specified configuration store.
-     *
-     * @param location The location in which uniqueness will be verified.
-     * @param configStoreName The name of the configuration store.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    void purgeDeleted(String location, String configStoreName, Context context);
+    Response<KeyValue> listKeyValueWithResponse(
+        String resourceGroupName,
+        String configStoreName,
+        ListKeyValueParameters listKeyValueParameters,
+        Context context);
 
     /**
      * Gets the properties of the specified configuration store.
