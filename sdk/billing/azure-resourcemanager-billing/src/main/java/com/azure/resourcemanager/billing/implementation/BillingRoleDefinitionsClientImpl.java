@@ -25,7 +25,6 @@ import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.billing.fluent.BillingRoleDefinitionsClient;
 import com.azure.resourcemanager.billing.fluent.models.BillingRoleDefinitionInner;
 import com.azure.resourcemanager.billing.models.BillingRoleDefinitionListResult;
@@ -33,8 +32,6 @@ import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in BillingRoleDefinitionsClient. */
 public final class BillingRoleDefinitionsClientImpl implements BillingRoleDefinitionsClient {
-    private final ClientLogger logger = new ClientLogger(BillingRoleDefinitionsClientImpl.class);
-
     /** The proxy service used to perform REST calls. */
     private final BillingRoleDefinitionsService service;
 
@@ -185,7 +182,8 @@ public final class BillingRoleDefinitionsClientImpl implements BillingRoleDefini
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the definition for a role on a billing account.
+     * @return the definition for a role on a billing account along with {@link Response} on successful completion of
+     *     {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<BillingRoleDefinitionInner>> getByBillingAccountWithResponseAsync(
@@ -232,7 +230,8 @@ public final class BillingRoleDefinitionsClientImpl implements BillingRoleDefini
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the definition for a role on a billing account.
+     * @return the definition for a role on a billing account along with {@link Response} on successful completion of
+     *     {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<BillingRoleDefinitionInner>> getByBillingAccountWithResponseAsync(
@@ -270,7 +269,7 @@ public final class BillingRoleDefinitionsClientImpl implements BillingRoleDefini
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the definition for a role on a billing account.
+     * @return the definition for a role on a billing account on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<BillingRoleDefinitionInner> getByBillingAccountAsync(
@@ -312,7 +311,7 @@ public final class BillingRoleDefinitionsClientImpl implements BillingRoleDefini
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the definition for a role on a billing account.
+     * @return the definition for a role on a billing account along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<BillingRoleDefinitionInner> getByBillingAccountWithResponse(
@@ -331,7 +330,8 @@ public final class BillingRoleDefinitionsClientImpl implements BillingRoleDefini
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the definition for a role on an invoice section.
+     * @return the definition for a role on an invoice section along with {@link Response} on successful completion of
+     *     {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<BillingRoleDefinitionInner>> getByInvoiceSectionWithResponseAsync(
@@ -393,7 +393,8 @@ public final class BillingRoleDefinitionsClientImpl implements BillingRoleDefini
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the definition for a role on an invoice section.
+     * @return the definition for a role on an invoice section along with {@link Response} on successful completion of
+     *     {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<BillingRoleDefinitionInner>> getByInvoiceSectionWithResponseAsync(
@@ -452,7 +453,7 @@ public final class BillingRoleDefinitionsClientImpl implements BillingRoleDefini
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the definition for a role on an invoice section.
+     * @return the definition for a role on an invoice section on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<BillingRoleDefinitionInner> getByInvoiceSectionAsync(
@@ -508,7 +509,7 @@ public final class BillingRoleDefinitionsClientImpl implements BillingRoleDefini
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the definition for a role on an invoice section.
+     * @return the definition for a role on an invoice section along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<BillingRoleDefinitionInner> getByInvoiceSectionWithResponse(
@@ -532,7 +533,8 @@ public final class BillingRoleDefinitionsClientImpl implements BillingRoleDefini
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the definition for a role on a billing profile.
+     * @return the definition for a role on a billing profile along with {@link Response} on successful completion of
+     *     {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<BillingRoleDefinitionInner>> getByBillingProfileWithResponseAsync(
@@ -585,7 +587,8 @@ public final class BillingRoleDefinitionsClientImpl implements BillingRoleDefini
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the definition for a role on a billing profile.
+     * @return the definition for a role on a billing profile along with {@link Response} on successful completion of
+     *     {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<BillingRoleDefinitionInner>> getByBillingProfileWithResponseAsync(
@@ -634,7 +637,7 @@ public final class BillingRoleDefinitionsClientImpl implements BillingRoleDefini
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the definition for a role on a billing profile.
+     * @return the definition for a role on a billing profile on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<BillingRoleDefinitionInner> getByBillingProfileAsync(
@@ -679,7 +682,7 @@ public final class BillingRoleDefinitionsClientImpl implements BillingRoleDefini
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the definition for a role on a billing profile.
+     * @return the definition for a role on a billing profile along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<BillingRoleDefinitionInner> getByBillingProfileWithResponse(
@@ -697,7 +700,7 @@ public final class BillingRoleDefinitionsClientImpl implements BillingRoleDefini
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of role definitions.
+     * @return the list of role definitions along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<BillingRoleDefinitionInner>> listByBillingAccountSinglePageAsync(
@@ -741,7 +744,7 @@ public final class BillingRoleDefinitionsClientImpl implements BillingRoleDefini
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of role definitions.
+     * @return the list of role definitions along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<BillingRoleDefinitionInner>> listByBillingAccountSinglePageAsync(
@@ -780,7 +783,7 @@ public final class BillingRoleDefinitionsClientImpl implements BillingRoleDefini
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of role definitions.
+     * @return the list of role definitions as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<BillingRoleDefinitionInner> listByBillingAccountAsync(String billingAccountName) {
@@ -798,7 +801,7 @@ public final class BillingRoleDefinitionsClientImpl implements BillingRoleDefini
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of role definitions.
+     * @return the list of role definitions as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<BillingRoleDefinitionInner> listByBillingAccountAsync(
@@ -816,7 +819,7 @@ public final class BillingRoleDefinitionsClientImpl implements BillingRoleDefini
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of role definitions.
+     * @return the list of role definitions as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<BillingRoleDefinitionInner> listByBillingAccount(String billingAccountName) {
@@ -832,7 +835,7 @@ public final class BillingRoleDefinitionsClientImpl implements BillingRoleDefini
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of role definitions.
+     * @return the list of role definitions as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<BillingRoleDefinitionInner> listByBillingAccount(String billingAccountName, Context context) {
@@ -849,7 +852,7 @@ public final class BillingRoleDefinitionsClientImpl implements BillingRoleDefini
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of role definitions.
+     * @return the list of role definitions along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<BillingRoleDefinitionInner>> listByInvoiceSectionSinglePageAsync(
@@ -909,7 +912,7 @@ public final class BillingRoleDefinitionsClientImpl implements BillingRoleDefini
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of role definitions.
+     * @return the list of role definitions along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<BillingRoleDefinitionInner>> listByInvoiceSectionSinglePageAsync(
@@ -965,7 +968,7 @@ public final class BillingRoleDefinitionsClientImpl implements BillingRoleDefini
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of role definitions.
+     * @return the list of role definitions as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<BillingRoleDefinitionInner> listByInvoiceSectionAsync(
@@ -986,7 +989,7 @@ public final class BillingRoleDefinitionsClientImpl implements BillingRoleDefini
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of role definitions.
+     * @return the list of role definitions as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<BillingRoleDefinitionInner> listByInvoiceSectionAsync(
@@ -1008,7 +1011,7 @@ public final class BillingRoleDefinitionsClientImpl implements BillingRoleDefini
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of role definitions.
+     * @return the list of role definitions as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<BillingRoleDefinitionInner> listByInvoiceSection(
@@ -1028,7 +1031,7 @@ public final class BillingRoleDefinitionsClientImpl implements BillingRoleDefini
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of role definitions.
+     * @return the list of role definitions as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<BillingRoleDefinitionInner> listByInvoiceSection(
@@ -1046,7 +1049,7 @@ public final class BillingRoleDefinitionsClientImpl implements BillingRoleDefini
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of role definitions.
+     * @return the list of role definitions along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<BillingRoleDefinitionInner>> listByBillingProfileSinglePageAsync(
@@ -1100,7 +1103,7 @@ public final class BillingRoleDefinitionsClientImpl implements BillingRoleDefini
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of role definitions.
+     * @return the list of role definitions along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<BillingRoleDefinitionInner>> listByBillingProfileSinglePageAsync(
@@ -1145,7 +1148,7 @@ public final class BillingRoleDefinitionsClientImpl implements BillingRoleDefini
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of role definitions.
+     * @return the list of role definitions as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<BillingRoleDefinitionInner> listByBillingProfileAsync(
@@ -1165,7 +1168,7 @@ public final class BillingRoleDefinitionsClientImpl implements BillingRoleDefini
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of role definitions.
+     * @return the list of role definitions as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<BillingRoleDefinitionInner> listByBillingProfileAsync(
@@ -1184,7 +1187,7 @@ public final class BillingRoleDefinitionsClientImpl implements BillingRoleDefini
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of role definitions.
+     * @return the list of role definitions as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<BillingRoleDefinitionInner> listByBillingProfile(
@@ -1202,7 +1205,7 @@ public final class BillingRoleDefinitionsClientImpl implements BillingRoleDefini
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of role definitions.
+     * @return the list of role definitions as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<BillingRoleDefinitionInner> listByBillingProfile(
@@ -1217,7 +1220,7 @@ public final class BillingRoleDefinitionsClientImpl implements BillingRoleDefini
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of role definitions.
+     * @return the list of role definitions along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<BillingRoleDefinitionInner>> listByBillingAccountNextSinglePageAsync(String nextLink) {
@@ -1254,7 +1257,7 @@ public final class BillingRoleDefinitionsClientImpl implements BillingRoleDefini
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of role definitions.
+     * @return the list of role definitions along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<BillingRoleDefinitionInner>> listByBillingAccountNextSinglePageAsync(
@@ -1290,7 +1293,7 @@ public final class BillingRoleDefinitionsClientImpl implements BillingRoleDefini
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of role definitions.
+     * @return the list of role definitions along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<BillingRoleDefinitionInner>> listByInvoiceSectionNextSinglePageAsync(String nextLink) {
@@ -1327,7 +1330,7 @@ public final class BillingRoleDefinitionsClientImpl implements BillingRoleDefini
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of role definitions.
+     * @return the list of role definitions along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<BillingRoleDefinitionInner>> listByInvoiceSectionNextSinglePageAsync(
@@ -1363,7 +1366,7 @@ public final class BillingRoleDefinitionsClientImpl implements BillingRoleDefini
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of role definitions.
+     * @return the list of role definitions along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<BillingRoleDefinitionInner>> listByBillingProfileNextSinglePageAsync(String nextLink) {
@@ -1400,7 +1403,7 @@ public final class BillingRoleDefinitionsClientImpl implements BillingRoleDefini
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of role definitions.
+     * @return the list of role definitions along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<BillingRoleDefinitionInner>> listByBillingProfileNextSinglePageAsync(

@@ -26,8 +26,8 @@ public final class ValidateAddressResponseImpl implements ValidateAddressRespons
         return this.innerModel().status();
     }
 
-    public List<AddressDetails> suggestedAddresses() {
-        List<AddressDetails> inner = this.innerModel().suggestedAddresses();
+    public List<AddressDetails> suggestedAddressList() {
+        List<AddressDetails> inner = this.innerModel().suggestedAddressList();
         if (inner != null) {
             return Collections.unmodifiableList(inner);
         } else {

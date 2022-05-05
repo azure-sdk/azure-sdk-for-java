@@ -17,11 +17,11 @@ public interface ValidateAddressResponse {
     AddressValidationStatus status();
 
     /**
-     * Gets the suggestedAddresses property: The list of suggested addresses.
+     * Gets the suggestedAddressList property: The list of suggested addresses.
      *
-     * @return the suggestedAddresses value.
+     * @return the suggestedAddressList value.
      */
-    List<AddressDetails> suggestedAddresses();
+    List<AddressDetails> suggestedAddressList();
 
     /**
      * Gets the validationMessage property: Validation error message.

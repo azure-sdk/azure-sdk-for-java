@@ -5,18 +5,14 @@
 package com.azure.resourcemanager.billing.fluent.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.billing.models.AddressDetails;
 import com.azure.resourcemanager.billing.models.AddressValidationStatus;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** Result of the address validation. */
 @Fluent
 public final class ValidateAddressResponseInner {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(ValidateAddressResponseInner.class);
-
     /*
      * status of the address validation.
      */
@@ -26,8 +22,8 @@ public final class ValidateAddressResponseInner {
     /*
      * The list of suggested addresses.
      */
-    @JsonProperty(value = "suggestedAddresses")
-    private List<AddressDetails> suggestedAddresses;
+    @JsonProperty(value = "suggestedAddressList")
+    private List<AddressDetails> suggestedAddressList;
 
     /*
      * Validation error message.
@@ -56,22 +52,22 @@ public final class ValidateAddressResponseInner {
     }
 
     /**
-     * Get the suggestedAddresses property: The list of suggested addresses.
+     * Get the suggestedAddressList property: The list of suggested addresses.
      *
-     * @return the suggestedAddresses value.
+     * @return the suggestedAddressList value.
      */
-    public List<AddressDetails> suggestedAddresses() {
-        return this.suggestedAddresses;
+    public List<AddressDetails> suggestedAddressList() {
+        return this.suggestedAddressList;
     }
 
     /**
-     * Set the suggestedAddresses property: The list of suggested addresses.
+     * Set the suggestedAddressList property: The list of suggested addresses.
      *
-     * @param suggestedAddresses the suggestedAddresses value to set.
+     * @param suggestedAddressList the suggestedAddressList value to set.
      * @return the ValidateAddressResponseInner object itself.
      */
-    public ValidateAddressResponseInner withSuggestedAddresses(List<AddressDetails> suggestedAddresses) {
-        this.suggestedAddresses = suggestedAddresses;
+    public ValidateAddressResponseInner withSuggestedAddressList(List<AddressDetails> suggestedAddressList) {
+        this.suggestedAddressList = suggestedAddressList;
         return this;
     }
 
@@ -101,8 +97,8 @@ public final class ValidateAddressResponseInner {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (suggestedAddresses() != null) {
-            suggestedAddresses().forEach(e -> e.validate());
+        if (suggestedAddressList() != null) {
+            suggestedAddressList().forEach(e -> e.validate());
         }
     }
 }

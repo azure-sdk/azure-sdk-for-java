@@ -28,7 +28,6 @@ import com.azure.core.management.exception.ManagementException;
 import com.azure.core.management.polling.PollResult;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.billing.fluent.BillingProfilesClient;
@@ -40,8 +39,6 @@ import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in BillingProfilesClient. */
 public final class BillingProfilesClientImpl implements BillingProfilesClient {
-    private final ClientLogger logger = new ClientLogger(BillingProfilesClientImpl.class);
-
     /** The proxy service used to perform REST calls. */
     private final BillingProfilesService service;
 
@@ -124,7 +121,7 @@ public final class BillingProfilesClientImpl implements BillingProfilesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of billing profiles.
+     * @return the list of billing profiles along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<BillingProfileInner>> listByBillingAccountSinglePageAsync(
@@ -169,7 +166,7 @@ public final class BillingProfilesClientImpl implements BillingProfilesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of billing profiles.
+     * @return the list of billing profiles along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<BillingProfileInner>> listByBillingAccountSinglePageAsync(
@@ -209,7 +206,7 @@ public final class BillingProfilesClientImpl implements BillingProfilesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of billing profiles.
+     * @return the list of billing profiles as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<BillingProfileInner> listByBillingAccountAsync(String billingAccountName, String expand) {
@@ -226,7 +223,7 @@ public final class BillingProfilesClientImpl implements BillingProfilesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of billing profiles.
+     * @return the list of billing profiles as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<BillingProfileInner> listByBillingAccountAsync(String billingAccountName) {
@@ -246,7 +243,7 @@ public final class BillingProfilesClientImpl implements BillingProfilesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of billing profiles.
+     * @return the list of billing profiles as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<BillingProfileInner> listByBillingAccountAsync(
@@ -264,7 +261,7 @@ public final class BillingProfilesClientImpl implements BillingProfilesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of billing profiles.
+     * @return the list of billing profiles as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<BillingProfileInner> listByBillingAccount(String billingAccountName) {
@@ -282,7 +279,7 @@ public final class BillingProfilesClientImpl implements BillingProfilesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of billing profiles.
+     * @return the list of billing profiles as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<BillingProfileInner> listByBillingAccount(
@@ -300,7 +297,7 @@ public final class BillingProfilesClientImpl implements BillingProfilesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a billing profile by its ID.
+     * @return a billing profile by its ID along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<BillingProfileInner>> getWithResponseAsync(
@@ -347,7 +344,7 @@ public final class BillingProfilesClientImpl implements BillingProfilesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a billing profile by its ID.
+     * @return a billing profile by its ID along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<BillingProfileInner>> getWithResponseAsync(
@@ -384,7 +381,7 @@ public final class BillingProfilesClientImpl implements BillingProfilesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a billing profile by its ID.
+     * @return a billing profile by its ID on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<BillingProfileInner> getAsync(String billingAccountName, String billingProfileName, String expand) {
@@ -408,7 +405,7 @@ public final class BillingProfilesClientImpl implements BillingProfilesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a billing profile by its ID.
+     * @return a billing profile by its ID on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<BillingProfileInner> getAsync(String billingAccountName, String billingProfileName) {
@@ -452,7 +449,7 @@ public final class BillingProfilesClientImpl implements BillingProfilesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a billing profile by its ID.
+     * @return a billing profile by its ID along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<BillingProfileInner> getWithResponse(
@@ -470,7 +467,7 @@ public final class BillingProfilesClientImpl implements BillingProfilesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a billing profile.
+     * @return a billing profile along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(
@@ -522,7 +519,7 @@ public final class BillingProfilesClientImpl implements BillingProfilesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a billing profile.
+     * @return a billing profile along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(
@@ -570,7 +567,7 @@ public final class BillingProfilesClientImpl implements BillingProfilesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a billing profile.
+     * @return the {@link PollerFlux} for polling of a billing profile.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<BillingProfileInner>, BillingProfileInner> beginCreateOrUpdateAsync(
@@ -584,7 +581,7 @@ public final class BillingProfilesClientImpl implements BillingProfilesClient {
                 this.client.getHttpPipeline(),
                 BillingProfileInner.class,
                 BillingProfileInner.class,
-                Context.NONE);
+                this.client.getContext());
     }
 
     /**
@@ -598,7 +595,7 @@ public final class BillingProfilesClientImpl implements BillingProfilesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a billing profile.
+     * @return the {@link PollerFlux} for polling of a billing profile.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<BillingProfileInner>, BillingProfileInner> beginCreateOrUpdateAsync(
@@ -622,7 +619,7 @@ public final class BillingProfilesClientImpl implements BillingProfilesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a billing profile.
+     * @return the {@link SyncPoller} for polling of a billing profile.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<BillingProfileInner>, BillingProfileInner> beginCreateOrUpdate(
@@ -641,7 +638,7 @@ public final class BillingProfilesClientImpl implements BillingProfilesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a billing profile.
+     * @return the {@link SyncPoller} for polling of a billing profile.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<BillingProfileInner>, BillingProfileInner> beginCreateOrUpdate(
@@ -659,7 +656,7 @@ public final class BillingProfilesClientImpl implements BillingProfilesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a billing profile.
+     * @return a billing profile on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<BillingProfileInner> createOrUpdateAsync(
@@ -680,7 +677,7 @@ public final class BillingProfilesClientImpl implements BillingProfilesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a billing profile.
+     * @return a billing profile on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<BillingProfileInner> createOrUpdateAsync(
@@ -734,7 +731,7 @@ public final class BillingProfilesClientImpl implements BillingProfilesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of billing profiles.
+     * @return the list of billing profiles along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<BillingProfileInner>> listByBillingAccountNextSinglePageAsync(String nextLink) {
@@ -771,7 +768,7 @@ public final class BillingProfilesClientImpl implements BillingProfilesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of billing profiles.
+     * @return the list of billing profiles along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<BillingProfileInner>> listByBillingAccountNextSinglePageAsync(
