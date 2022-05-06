@@ -42,7 +42,11 @@ public final class EventType extends ExpandableStringEnum<EventType> {
         return fromString(name, EventType.class);
     }
 
-    /** @return known EventType values. */
+    /**
+     * Gets known EventType values.
+     *
+     * @return known EventType values.
+     */
     public static Collection<EventType> values() {
         return values(EventType.class);
     }

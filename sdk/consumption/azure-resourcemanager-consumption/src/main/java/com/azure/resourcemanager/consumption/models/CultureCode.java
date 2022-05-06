@@ -84,7 +84,11 @@ public final class CultureCode extends ExpandableStringEnum<CultureCode> {
         return fromString(name, CultureCode.class);
     }
 
-    /** @return known CultureCode values. */
+    /**
+     * Gets known CultureCode values.
+     *
+     * @return known CultureCode values.
+     */
     public static Collection<CultureCode> values() {
         return values(CultureCode.class);
     }
