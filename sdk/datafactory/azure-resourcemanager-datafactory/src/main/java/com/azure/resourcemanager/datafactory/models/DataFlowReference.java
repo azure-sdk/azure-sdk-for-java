@@ -9,7 +9,6 @@ import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.HashMap;
 import java.util.Map;
@@ -21,7 +20,7 @@ public final class DataFlowReference {
      * Data flow reference type.
      */
     @JsonProperty(value = "type", required = true)
-    private DataFlowReferenceType type;
+    private String type = "DataFlowReference";
 
     /*
      * Reference data flow name.
@@ -36,23 +35,21 @@ public final class DataFlowReference {
     private Object datasetParameters;
 
     /*
-     * Data flow parameters
-     */
-    @JsonProperty(value = "parameters")
-    @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
-    private Map<String, Object> parameters;
-
-    /*
      * Data flow reference type.
      */
     @JsonIgnore private Map<String, Object> additionalProperties;
+
+    /** Creates an instance of DataFlowReference class. */
+    public DataFlowReference() {
+        type = "DataFlowReference";
+    }
 
     /**
      * Get the type property: Data flow reference type.
      *
      * @return the type value.
      */
-    public DataFlowReferenceType type() {
+    public String type() {
         return this.type;
     }
 
@@ -62,7 +59,7 @@ public final class DataFlowReference {
      * @param type the type value to set.
      * @return the DataFlowReference object itself.
      */
-    public DataFlowReference withType(DataFlowReferenceType type) {
+    public DataFlowReference withType(String type) {
         this.type = type;
         return this;
     }
@@ -108,26 +105,6 @@ public final class DataFlowReference {
     }
 
     /**
-     * Get the parameters property: Data flow parameters.
-     *
-     * @return the parameters value.
-     */
-    public Map<String, Object> parameters() {
-        return this.parameters;
-    }
-
-    /**
-     * Set the parameters property: Data flow parameters.
-     *
-     * @param parameters the parameters value to set.
-     * @return the DataFlowReference object itself.
-     */
-    public DataFlowReference withParameters(Map<String, Object> parameters) {
-        this.parameters = parameters;
-        return this;
-    }
-
-    /**
      * Get the additionalProperties property: Data flow reference type.
      *
      * @return the additionalProperties value.
@@ -162,11 +139,6 @@ public final class DataFlowReference {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (type() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property type in model DataFlowReference"));
-        }
         if (referenceName() == null) {
             throw LOGGER
                 .logExceptionAsError(

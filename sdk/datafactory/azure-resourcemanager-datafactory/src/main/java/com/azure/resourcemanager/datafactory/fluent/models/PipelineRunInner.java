@@ -88,8 +88,7 @@ public final class PipelineRunInner {
     private Integer durationInMs;
 
     /*
-     * The status of a pipeline run. Possible values: Queued, InProgress,
-     * Succeeded, Failed, Canceling, Cancelled
+     * The status of a pipeline run.
      */
     @JsonProperty(value = "status", access = JsonProperty.Access.WRITE_ONLY)
     private String status;
@@ -205,8 +204,7 @@ public final class PipelineRunInner {
     }
 
     /**
-     * Get the status property: The status of a pipeline run. Possible values: Queued, InProgress, Succeeded, Failed,
-     * Canceling, Cancelled.
+     * Get the status property: The status of a pipeline run.
      *
      * @return the status value.
      */

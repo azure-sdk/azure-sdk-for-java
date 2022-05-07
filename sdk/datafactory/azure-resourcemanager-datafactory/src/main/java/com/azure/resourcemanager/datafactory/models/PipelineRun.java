@@ -88,8 +88,7 @@ public interface PipelineRun {
     Integer durationInMs();
 
     /**
-     * Gets the status property: The status of a pipeline run. Possible values: Queued, InProgress, Succeeded, Failed,
-     * Canceling, Cancelled.
+     * Gets the status property: The status of a pipeline run.
      *
      * @return the status value.
      */

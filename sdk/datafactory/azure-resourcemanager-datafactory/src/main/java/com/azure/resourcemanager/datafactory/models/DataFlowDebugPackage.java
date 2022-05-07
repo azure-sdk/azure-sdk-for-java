@@ -29,12 +29,6 @@ public final class DataFlowDebugPackage {
     private DataFlowDebugResource dataFlow;
 
     /*
-     * List of Data flows
-     */
-    @JsonProperty(value = "dataFlows")
-    private List<DataFlowDebugResource> dataFlows;
-
-    /*
      * List of datasets.
      */
     @JsonProperty(value = "datasets")
@@ -100,26 +94,6 @@ public final class DataFlowDebugPackage {
      */
     public DataFlowDebugPackage withDataFlow(DataFlowDebugResource dataFlow) {
         this.dataFlow = dataFlow;
-        return this;
-    }
-
-    /**
-     * Get the dataFlows property: List of Data flows.
-     *
-     * @return the dataFlows value.
-     */
-    public List<DataFlowDebugResource> dataFlows() {
-        return this.dataFlows;
-    }
-
-    /**
-     * Set the dataFlows property: List of Data flows.
-     *
-     * @param dataFlows the dataFlows value to set.
-     * @return the DataFlowDebugPackage object itself.
-     */
-    public DataFlowDebugPackage withDataFlows(List<DataFlowDebugResource> dataFlows) {
-        this.dataFlows = dataFlows;
         return this;
     }
 
@@ -240,9 +214,6 @@ public final class DataFlowDebugPackage {
     public void validate() {
         if (dataFlow() != null) {
             dataFlow().validate();
-        }
-        if (dataFlows() != null) {
-            dataFlows().forEach(e -> e.validate());
         }
         if (datasets() != null) {
             datasets().forEach(e -> e.validate());
