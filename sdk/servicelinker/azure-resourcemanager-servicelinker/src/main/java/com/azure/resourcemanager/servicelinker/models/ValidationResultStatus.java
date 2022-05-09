@@ -30,7 +30,11 @@ public final class ValidationResultStatus extends ExpandableStringEnum<Validatio
         return fromString(name, ValidationResultStatus.class);
     }
 
-    /** @return known ValidationResultStatus values. */
+    /**
+     * Gets known ValidationResultStatus values.
+     *
+     * @return known ValidationResultStatus values.
+     */
     public static Collection<ValidationResultStatus> values() {
         return values(ValidationResultStatus.class);
     }
