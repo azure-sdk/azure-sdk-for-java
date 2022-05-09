@@ -24,7 +24,11 @@ public final class BillingCurrency extends ExpandableStringEnum<BillingCurrency>
         return fromString(name, BillingCurrency.class);
     }
 
-    /** @return known BillingCurrency values. */
+    /**
+     * Gets known BillingCurrency values.
+     *
+     * @return known BillingCurrency values.
+     */
     public static Collection<BillingCurrency> values() {
         return values(BillingCurrency.class);
     }

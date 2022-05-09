@@ -27,7 +27,11 @@ public final class VMPriceOSType extends ExpandableStringEnum<VMPriceOSType> {
         return fromString(name, VMPriceOSType.class);
     }
 
-    /** @return known VMPriceOSType values. */
+    /**
+     * Gets known VMPriceOSType values.
+     *
+     * @return known VMPriceOSType values.
+     */
     public static Collection<VMPriceOSType> values() {
         return values(VMPriceOSType.class);
     }

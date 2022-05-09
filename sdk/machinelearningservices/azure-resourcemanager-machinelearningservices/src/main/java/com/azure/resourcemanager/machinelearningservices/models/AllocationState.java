@@ -27,7 +27,11 @@ public final class AllocationState extends ExpandableStringEnum<AllocationState>
         return fromString(name, AllocationState.class);
     }
 
-    /** @return known AllocationState values. */
+    /**
+     * Gets known AllocationState values.
+     *
+     * @return known AllocationState values.
+     */
     public static Collection<AllocationState> values() {
         return values(AllocationState.class);
     }

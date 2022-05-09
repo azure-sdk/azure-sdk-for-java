@@ -24,7 +24,11 @@ public final class UnitOfMeasure extends ExpandableStringEnum<UnitOfMeasure> {
         return fromString(name, UnitOfMeasure.class);
     }
 
-    /** @return known UnitOfMeasure values. */
+    /**
+     * Gets known UnitOfMeasure values.
+     *
+     * @return known UnitOfMeasure values.
+     */
     public static Collection<UnitOfMeasure> values() {
         return values(UnitOfMeasure.class);
     }
