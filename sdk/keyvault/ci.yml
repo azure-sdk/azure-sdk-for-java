@@ -57,7 +57,7 @@ extends:
   template: ../../eng/pipelines/templates/stages/archetype-sdk-client.yml
   parameters:
     ServiceDirectory: keyvault
-    AdditionalLintingOptions: '-DcreateSourcesJar=false'
+    AdditionalLintingOptions: -DcreateSourcesJar=false
     Artifacts:
       - name: azure-security-keyvault-administration
         groupId: com.azure
@@ -74,3 +74,6 @@ extends:
       - name: azure-security-keyvault-secrets
         groupId: com.azure
         safeName: azuresecuritykeyvaultsecrets
+      - name: azure-resourcemanager-keyvault-generated
+        groupId: com.azure.resourcemanager
+        safeName: azureresourcemanagerkeyvaultgenerated
