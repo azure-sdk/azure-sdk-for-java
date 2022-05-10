@@ -36,7 +36,11 @@ public final class WeekNumber extends ExpandableStringEnum<WeekNumber> {
         return fromString(name, WeekNumber.class);
     }
 
-    /** @return known WeekNumber values. */
+    /**
+     * Gets known WeekNumber values.
+     *
+     * @return known WeekNumber values.
+     */
     public static Collection<WeekNumber> values() {
         return values(WeekNumber.class);
     }

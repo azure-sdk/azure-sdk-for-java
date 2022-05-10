@@ -24,7 +24,11 @@ public final class RecoveryOption extends ExpandableStringEnum<RecoveryOption> {
         return fromString(name, RecoveryOption.class);
     }
 
-    /** @return known RecoveryOption values. */
+    /**
+     * Gets known RecoveryOption values.
+     *
+     * @return known RecoveryOption values.
+     */
     public static Collection<RecoveryOption> values() {
         return values(RecoveryOption.class);
     }

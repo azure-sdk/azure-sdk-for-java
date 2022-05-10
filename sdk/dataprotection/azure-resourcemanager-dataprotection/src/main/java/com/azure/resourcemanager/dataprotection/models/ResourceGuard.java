@@ -4,17 +4,13 @@
 
 package com.azure.resourcemanager.dataprotection.models;
 
-import com.azure.core.annotation.Immutable;
-import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** The ResourceGuard model. */
-@Immutable
+@Fluent
 public final class ResourceGuard {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(ResourceGuard.class);
-
     /*
      * Provisioning state of the BackupVault resource
      */
@@ -38,7 +34,7 @@ public final class ResourceGuard {
      * List of critical operations which are not protected by this
      * resourceGuard
      */
-    @JsonProperty(value = "vaultCriticalOperationExclusionList", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "vaultCriticalOperationExclusionList")
     private List<String> vaultCriticalOperationExclusionList;
 
     /*
@@ -84,6 +80,18 @@ public final class ResourceGuard {
      */
     public List<String> vaultCriticalOperationExclusionList() {
         return this.vaultCriticalOperationExclusionList;
+    }
+
+    /**
+     * Set the vaultCriticalOperationExclusionList property: List of critical operations which are not protected by this
+     * resourceGuard.
+     *
+     * @param vaultCriticalOperationExclusionList the vaultCriticalOperationExclusionList value to set.
+     * @return the ResourceGuard object itself.
+     */
+    public ResourceGuard withVaultCriticalOperationExclusionList(List<String> vaultCriticalOperationExclusionList) {
+        this.vaultCriticalOperationExclusionList = vaultCriticalOperationExclusionList;
+        return this;
     }
 
     /**

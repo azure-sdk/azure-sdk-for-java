@@ -30,7 +30,11 @@ public final class DataStoreTypes extends ExpandableStringEnum<DataStoreTypes> {
         return fromString(name, DataStoreTypes.class);
     }
 
-    /** @return known DataStoreTypes values. */
+    /**
+     * Gets known DataStoreTypes values.
+     *
+     * @return known DataStoreTypes values.
+     */
     public static Collection<DataStoreTypes> values() {
         return values(DataStoreTypes.class);
     }
