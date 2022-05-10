@@ -30,7 +30,11 @@ public final class EnforcementSupport extends ExpandableStringEnum<EnforcementSu
         return fromString(name, EnforcementSupport.class);
     }
 
-    /** @return known EnforcementSupport values. */
+    /**
+     * Gets known EnforcementSupport values.
+     *
+     * @return known EnforcementSupport values.
+     */
     public static Collection<EnforcementSupport> values() {
         return values(EnforcementSupport.class);
     }

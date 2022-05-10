@@ -33,7 +33,11 @@ public final class RecommendationStatus extends ExpandableStringEnum<Recommendat
         return fromString(name, RecommendationStatus.class);
     }
 
-    /** @return known RecommendationStatus values. */
+    /**
+     * Gets known RecommendationStatus values.
+     *
+     * @return known RecommendationStatus values.
+     */
     public static Collection<RecommendationStatus> values() {
         return values(RecommendationStatus.class);
     }
