@@ -27,7 +27,11 @@ public final class VmPriority extends ExpandableStringEnum<VmPriority> {
         return fromString(name, VmPriority.class);
     }
 
-    /** @return known VmPriority values. */
+    /**
+     * Gets known VmPriority values.
+     *
+     * @return known VmPriority values.
+     */
     public static Collection<VmPriority> values() {
         return values(VmPriority.class);
     }
