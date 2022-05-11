@@ -122,11 +122,8 @@ public final class DashboardManagementClientBuilder {
      * @return an instance of DashboardManagementClientImpl.
      */
     public DashboardManagementClientImpl buildClient() {
-        if (pipeline == null) {
-            this.pipeline = new HttpPipelineBuilder().policies(new UserAgentPolicy(), new RetryPolicy()).build();
-        }
         if (endpoint == null) {
-            this.endpoint = "";
+            this.endpoint = "https://management.azure.com";
         }
         if (environment == null) {
             this.environment = AzureEnvironment.AZURE;

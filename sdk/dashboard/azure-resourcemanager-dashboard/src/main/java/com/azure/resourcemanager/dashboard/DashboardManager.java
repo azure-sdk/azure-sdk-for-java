@@ -264,7 +264,11 @@ public final class DashboardManager {
         }
     }
 
-    /** @return Resource collection API of Operations. */
+    /**
+     * Gets the resource collection API of Operations.
+     *
+     * @return Resource collection API of Operations.
+     */
     public Operations operations() {
         if (this.operations == null) {
             this.operations = new OperationsImpl(clientObject.getOperations(), this);
@@ -272,7 +276,11 @@ public final class DashboardManager {
         return operations;
     }
 
-    /** @return Resource collection API of Grafanas. */
+    /**
+     * Gets the resource collection API of Grafanas.
+     *
+     * @return Resource collection API of Grafanas.
+     */
     public Grafanas grafanas() {
         if (this.grafanas == null) {
             this.grafanas = new GrafanasImpl(clientObject.getGrafanas(), this);
