@@ -263,7 +263,11 @@ public final class ServiceLinkerManager {
         }
     }
 
-    /** @return Resource collection API of Linkers. */
+    /**
+     * Gets the resource collection API of Linkers.
+     *
+     * @return Resource collection API of Linkers.
+     */
     public Linkers linkers() {
         if (this.linkers == null) {
             this.linkers = new LinkersImpl(clientObject.getLinkers(), this);
@@ -271,7 +275,11 @@ public final class ServiceLinkerManager {
         return linkers;
     }
 
-    /** @return Resource collection API of Operations. */
+    /**
+     * Gets the resource collection API of Operations.
+     *
+     * @return Resource collection API of Operations.
+     */
     public Operations operations() {
         if (this.operations == null) {
             this.operations = new OperationsImpl(clientObject.getOperations(), this);
