@@ -30,7 +30,11 @@ public final class LookBackPeriod extends ExpandableStringEnum<LookBackPeriod> {
         return fromString(name, LookBackPeriod.class);
     }
 
-    /** @return known LookBackPeriod values. */
+    /**
+     * Gets known LookBackPeriod values.
+     *
+     * @return known LookBackPeriod values.
+     */
     public static Collection<LookBackPeriod> values() {
         return values(LookBackPeriod.class);
     }

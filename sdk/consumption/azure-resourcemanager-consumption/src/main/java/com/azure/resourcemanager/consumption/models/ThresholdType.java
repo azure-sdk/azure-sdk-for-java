@@ -27,7 +27,11 @@ public final class ThresholdType extends ExpandableStringEnum<ThresholdType> {
         return fromString(name, ThresholdType.class);
     }
 
-    /** @return known ThresholdType values. */
+    /**
+     * Gets known ThresholdType values.
+     *
+     * @return known ThresholdType values.
+     */
     public static Collection<ThresholdType> values() {
         return values(ThresholdType.class);
     }

@@ -24,7 +24,11 @@ public final class BudgetOperatorType extends ExpandableStringEnum<BudgetOperato
         return fromString(name, BudgetOperatorType.class);
     }
 
-    /** @return known BudgetOperatorType values. */
+    /**
+     * Gets known BudgetOperatorType values.
+     *
+     * @return known BudgetOperatorType values.
+     */
     public static Collection<BudgetOperatorType> values() {
         return values(BudgetOperatorType.class);
     }
