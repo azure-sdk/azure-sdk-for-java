@@ -25,6 +25,9 @@ public final class JobErrorCategory extends ExpandableStringEnum<JobErrorCategor
     /** Static value Content for JobErrorCategory. */
     public static final JobErrorCategory CONTENT = fromString("Content");
 
+    /** Static value Account for JobErrorCategory. */
+    public static final JobErrorCategory ACCOUNT = fromString("Account");
+
     /**
      * Creates or finds a JobErrorCategory from its string representation.
      *
@@ -36,7 +39,11 @@ public final class JobErrorCategory extends ExpandableStringEnum<JobErrorCategor
         return fromString(name, JobErrorCategory.class);
     }
 
-    /** @return known JobErrorCategory values. */
+    /**
+     * Gets known JobErrorCategory values.
+     *
+     * @return known JobErrorCategory values.
+     */
     public static Collection<JobErrorCategory> values() {
         return values(JobErrorCategory.class);
     }

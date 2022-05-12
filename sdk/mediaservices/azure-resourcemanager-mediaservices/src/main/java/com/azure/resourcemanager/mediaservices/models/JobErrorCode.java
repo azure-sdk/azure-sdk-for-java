@@ -37,6 +37,9 @@ public final class JobErrorCode extends ExpandableStringEnum<JobErrorCode> {
     /** Static value ContentUnsupported for JobErrorCode. */
     public static final JobErrorCode CONTENT_UNSUPPORTED = fromString("ContentUnsupported");
 
+    /** Static value IdentityUnsupported for JobErrorCode. */
+    public static final JobErrorCode IDENTITY_UNSUPPORTED = fromString("IdentityUnsupported");
+
     /**
      * Creates or finds a JobErrorCode from its string representation.
      *
@@ -48,7 +51,11 @@ public final class JobErrorCode extends ExpandableStringEnum<JobErrorCode> {
         return fromString(name, JobErrorCode.class);
     }
 
-    /** @return known JobErrorCode values. */
+    /**
+     * Gets known JobErrorCode values.
+     *
+     * @return known JobErrorCode values.
+     */
     public static Collection<JobErrorCode> values() {
         return values(JobErrorCode.class);
     }
