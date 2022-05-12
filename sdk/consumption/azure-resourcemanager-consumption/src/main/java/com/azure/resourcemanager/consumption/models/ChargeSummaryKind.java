@@ -27,7 +27,11 @@ public final class ChargeSummaryKind extends ExpandableStringEnum<ChargeSummaryK
         return fromString(name, ChargeSummaryKind.class);
     }
 
-    /** @return known ChargeSummaryKind values. */
+    /**
+     * Gets known ChargeSummaryKind values.
+     *
+     * @return known ChargeSummaryKind values.
+     */
     public static Collection<ChargeSummaryKind> values() {
         return values(ChargeSummaryKind.class);
     }

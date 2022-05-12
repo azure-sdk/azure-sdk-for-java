@@ -27,7 +27,11 @@ public final class ReservationRecommendationKind extends ExpandableStringEnum<Re
         return fromString(name, ReservationRecommendationKind.class);
     }
 
-    /** @return known ReservationRecommendationKind values. */
+    /**
+     * Gets known ReservationRecommendationKind values.
+     *
+     * @return known ReservationRecommendationKind values.
+     */
     public static Collection<ReservationRecommendationKind> values() {
         return values(ReservationRecommendationKind.class);
     }

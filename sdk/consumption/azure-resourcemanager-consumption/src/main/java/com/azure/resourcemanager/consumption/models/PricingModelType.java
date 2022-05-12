@@ -30,7 +30,11 @@ public final class PricingModelType extends ExpandableStringEnum<PricingModelTyp
         return fromString(name, PricingModelType.class);
     }
 
-    /** @return known PricingModelType values. */
+    /**
+     * Gets known PricingModelType values.
+     *
+     * @return known PricingModelType values.
+     */
     public static Collection<PricingModelType> values() {
         return values(PricingModelType.class);
     }
