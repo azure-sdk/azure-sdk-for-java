@@ -90,6 +90,13 @@ public interface BackupVaultResource {
     String regionName();
 
     /**
+     * Gets the name of the resource group.
+     *
+     * @return the name of the resource group.
+     */
+    String resourceGroupName();
+
+    /**
      * Gets the inner com.azure.resourcemanager.dataprotection.fluent.models.BackupVaultResourceInner object.
      *
      * @return the inner object.
@@ -207,7 +214,7 @@ public interface BackupVaultResource {
     BackupVaultResource.Update update();
 
     /** The template for BackupVaultResource update. */
-    interface Update extends UpdateStages.WithTags, UpdateStages.WithIdentity {
+    interface Update extends UpdateStages.WithTags, UpdateStages.WithIdentity, UpdateStages.WithProperties {
         /**
          * Executes the update request.
          *
@@ -244,6 +251,16 @@ public interface BackupVaultResource {
              * @return the next definition stage.
              */
             Update withIdentity(DppIdentityDetails identity);
+        }
+        /** The stage of the BackupVaultResource update allowing to specify properties. */
+        interface WithProperties {
+            /**
+             * Specifies the properties property: Resource properties..
+             *
+             * @param properties Resource properties.
+             * @return the next definition stage.
+             */
+            Update withProperties(PatchBackupVaultInput properties);
         }
     }
     /**

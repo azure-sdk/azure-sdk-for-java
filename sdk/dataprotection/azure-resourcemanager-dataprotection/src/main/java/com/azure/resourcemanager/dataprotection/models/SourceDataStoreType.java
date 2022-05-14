@@ -30,7 +30,11 @@ public final class SourceDataStoreType extends ExpandableStringEnum<SourceDataSt
         return fromString(name, SourceDataStoreType.class);
     }
 
-    /** @return known SourceDataStoreType values. */
+    /**
+     * Gets known SourceDataStoreType values.
+     *
+     * @return known SourceDataStoreType values.
+     */
     public static Collection<SourceDataStoreType> values() {
         return values(SourceDataStoreType.class);
     }
