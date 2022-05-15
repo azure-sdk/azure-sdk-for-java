@@ -36,7 +36,11 @@ public final class RuleSeverity extends ExpandableStringEnum<RuleSeverity> {
         return fromString(name, RuleSeverity.class);
     }
 
-    /** @return known RuleSeverity values. */
+    /**
+     * Gets known RuleSeverity values.
+     *
+     * @return known RuleSeverity values.
+     */
     public static Collection<RuleSeverity> values() {
         return values(RuleSeverity.class);
     }
