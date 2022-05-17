@@ -45,13 +45,6 @@ public final class PowerQuerySink extends DataFlowSink {
 
     /** {@inheritDoc} */
     @Override
-    public PowerQuerySink withRejectedDataLinkedService(LinkedServiceReference rejectedDataLinkedService) {
-        super.withRejectedDataLinkedService(rejectedDataLinkedService);
-        return this;
-    }
-
-    /** {@inheritDoc} */
-    @Override
     public PowerQuerySink withName(String name) {
         super.withName(name);
         return this;

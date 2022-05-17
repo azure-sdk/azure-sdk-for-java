@@ -111,6 +111,10 @@ public final class FactoryImpl implements Factory, Factory.Definition, Factory.U
         return this.location();
     }
 
+    public String resourceGroupName() {
+        return resourceGroupName;
+    }
+
     public FactoryInner innerModel() {
         return this.innerObject;
     }

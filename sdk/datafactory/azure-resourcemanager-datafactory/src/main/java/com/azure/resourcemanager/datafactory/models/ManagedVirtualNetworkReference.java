@@ -15,7 +15,7 @@ public final class ManagedVirtualNetworkReference {
      * Managed Virtual Network reference type.
      */
     @JsonProperty(value = "type", required = true)
-    private ManagedVirtualNetworkReferenceType type;
+    private String type = "ManagedVirtualNetworkReference";
 
     /*
      * Reference ManagedVirtualNetwork name.
@@ -23,12 +23,17 @@ public final class ManagedVirtualNetworkReference {
     @JsonProperty(value = "referenceName", required = true)
     private String referenceName;
 
+    /** Creates an instance of ManagedVirtualNetworkReference class. */
+    public ManagedVirtualNetworkReference() {
+        type = "ManagedVirtualNetworkReference";
+    }
+
     /**
      * Get the type property: Managed Virtual Network reference type.
      *
      * @return the type value.
      */
-    public ManagedVirtualNetworkReferenceType type() {
+    public String type() {
         return this.type;
     }
 
@@ -38,7 +43,7 @@ public final class ManagedVirtualNetworkReference {
      * @param type the type value to set.
      * @return the ManagedVirtualNetworkReference object itself.
      */
-    public ManagedVirtualNetworkReference withType(ManagedVirtualNetworkReferenceType type) {
+    public ManagedVirtualNetworkReference withType(String type) {
         this.type = type;
         return this;
     }
@@ -69,12 +74,6 @@ public final class ManagedVirtualNetworkReference {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (type() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property type in model ManagedVirtualNetworkReference"));
-        }
         if (referenceName() == null) {
             throw LOGGER
                 .logExceptionAsError(
