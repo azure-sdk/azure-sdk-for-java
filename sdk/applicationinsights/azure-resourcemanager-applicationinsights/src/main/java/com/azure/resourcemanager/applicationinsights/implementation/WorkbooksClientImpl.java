@@ -821,14 +821,7 @@ public final class WorkbooksClientImpl implements WorkbooksClient {
     private Mono<WorkbookInner> getByResourceGroupAsync(
         String resourceGroupName, String resourceName, Boolean canFetchContent) {
         return getByResourceGroupWithResponseAsync(resourceGroupName, resourceName, canFetchContent)
-            .flatMap(
-                (Response<WorkbookInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -845,14 +838,7 @@ public final class WorkbooksClientImpl implements WorkbooksClient {
     private Mono<WorkbookInner> getByResourceGroupAsync(String resourceGroupName, String resourceName) {
         final Boolean canFetchContent = null;
         return getByResourceGroupWithResponseAsync(resourceGroupName, resourceName, canFetchContent)
-            .flatMap(
-                (Response<WorkbookInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -997,7 +983,7 @@ public final class WorkbooksClientImpl implements WorkbooksClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> deleteAsync(String resourceGroupName, String resourceName) {
-        return deleteWithResponseAsync(resourceGroupName, resourceName).flatMap((Response<Void> res) -> Mono.empty());
+        return deleteWithResponseAsync(resourceGroupName, resourceName).flatMap(ignored -> Mono.empty());
     }
 
     /**
@@ -1168,14 +1154,7 @@ public final class WorkbooksClientImpl implements WorkbooksClient {
     private Mono<WorkbookInner> createOrUpdateAsync(
         String resourceGroupName, String resourceName, WorkbookInner workbookProperties, String sourceId) {
         return createOrUpdateWithResponseAsync(resourceGroupName, resourceName, workbookProperties, sourceId)
-            .flatMap(
-                (Response<WorkbookInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -1194,14 +1173,7 @@ public final class WorkbooksClientImpl implements WorkbooksClient {
         String resourceGroupName, String resourceName, WorkbookInner workbookProperties) {
         final String sourceId = null;
         return createOrUpdateWithResponseAsync(resourceGroupName, resourceName, workbookProperties, sourceId)
-            .flatMap(
-                (Response<WorkbookInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -1384,14 +1356,7 @@ public final class WorkbooksClientImpl implements WorkbooksClient {
         String sourceId,
         WorkbookUpdateParameters workbookUpdateParameters) {
         return updateWithResponseAsync(resourceGroupName, resourceName, sourceId, workbookUpdateParameters)
-            .flatMap(
-                (Response<WorkbookInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -1409,14 +1374,7 @@ public final class WorkbooksClientImpl implements WorkbooksClient {
         final String sourceId = null;
         final WorkbookUpdateParameters workbookUpdateParameters = null;
         return updateWithResponseAsync(resourceGroupName, resourceName, sourceId, workbookUpdateParameters)
-            .flatMap(
-                (Response<WorkbookInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -1767,14 +1725,7 @@ public final class WorkbooksClientImpl implements WorkbooksClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<WorkbookInner> revisionGetAsync(String resourceGroupName, String resourceName, String revisionId) {
         return revisionGetWithResponseAsync(resourceGroupName, resourceName, revisionId)
-            .flatMap(
-                (Response<WorkbookInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
