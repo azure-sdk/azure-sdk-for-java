@@ -27,7 +27,11 @@ public final class SharedTypeKind extends ExpandableStringEnum<SharedTypeKind> {
         return fromString(name, SharedTypeKind.class);
     }
 
-    /** @return known SharedTypeKind values. */
+    /**
+     * Gets known SharedTypeKind values.
+     *
+     * @return known SharedTypeKind values.
+     */
     public static Collection<SharedTypeKind> values() {
         return values(SharedTypeKind.class);
     }
