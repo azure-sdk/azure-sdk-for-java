@@ -27,7 +27,11 @@ public final class ValueType extends ExpandableStringEnum<ValueType> {
         return fromString(name, ValueType.class);
     }
 
-    /** @return known ValueType values. */
+    /**
+     * Gets known ValueType values.
+     *
+     * @return known ValueType values.
+     */
     public static Collection<ValueType> values() {
         return values(ValueType.class);
     }

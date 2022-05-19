@@ -33,7 +33,11 @@ public final class PropertyType extends ExpandableStringEnum<PropertyType> {
         return fromString(name, PropertyType.class);
     }
 
-    /** @return known PropertyType values. */
+    /**
+     * Gets known PropertyType values.
+     *
+     * @return known PropertyType values.
+     */
     public static Collection<PropertyType> values() {
         return values(PropertyType.class);
     }

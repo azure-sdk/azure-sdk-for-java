@@ -24,7 +24,11 @@ public final class AdditionalWorkspaceType extends ExpandableStringEnum<Addition
         return fromString(name, AdditionalWorkspaceType.class);
     }
 
-    /** @return known AdditionalWorkspaceType values. */
+    /**
+     * Gets known AdditionalWorkspaceType values.
+     *
+     * @return known AdditionalWorkspaceType values.
+     */
     public static Collection<AdditionalWorkspaceType> values() {
         return values(AdditionalWorkspaceType.class);
     }

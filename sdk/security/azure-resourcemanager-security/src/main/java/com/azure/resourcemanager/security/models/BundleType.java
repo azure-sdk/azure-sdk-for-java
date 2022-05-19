@@ -45,7 +45,11 @@ public final class BundleType extends ExpandableStringEnum<BundleType> {
         return fromString(name, BundleType.class);
     }
 
-    /** @return known BundleType values. */
+    /**
+     * Gets known BundleType values.
+     *
+     * @return known BundleType values.
+     */
     public static Collection<BundleType> values() {
         return values(BundleType.class);
     }
