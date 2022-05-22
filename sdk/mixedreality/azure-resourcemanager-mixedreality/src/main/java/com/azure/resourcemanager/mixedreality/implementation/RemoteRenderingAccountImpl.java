@@ -88,6 +88,10 @@ public final class RemoteRenderingAccountImpl
         return this.location();
     }
 
+    public String resourceGroupName() {
+        return resourceGroupName;
+    }
+
     public RemoteRenderingAccountInner innerModel() {
         return this.innerObject;
     }

@@ -88,6 +88,10 @@ public final class SpatialAnchorsAccountImpl
         return this.location();
     }
 
+    public String resourceGroupName() {
+        return resourceGroupName;
+    }
+
     public SpatialAnchorsAccountInner innerModel() {
         return this.innerObject;
     }
