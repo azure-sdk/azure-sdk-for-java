@@ -13,7 +13,7 @@ public final class ManagedGrafanaProperties {
     /*
      * Provisioning state of the resource.
      */
-    @JsonProperty(value = "provisioningState")
+    @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
     private ProvisioningState provisioningState;
 
     /*
@@ -47,17 +47,6 @@ public final class ManagedGrafanaProperties {
      */
     public ProvisioningState provisioningState() {
         return this.provisioningState;
-    }
-
-    /**
-     * Set the provisioningState property: Provisioning state of the resource.
-     *
-     * @param provisioningState the provisioningState value to set.
-     * @return the ManagedGrafanaProperties object itself.
-     */
-    public ManagedGrafanaProperties withProvisioningState(ProvisioningState provisioningState) {
-        this.provisioningState = provisioningState;
-        return this;
     }
 
     /**

@@ -19,7 +19,6 @@
 import com.azure.resourcemanager.dashboard.models.IdentityType;
 import com.azure.resourcemanager.dashboard.models.ManagedGrafanaProperties;
 import com.azure.resourcemanager.dashboard.models.ManagedIdentity;
-import com.azure.resourcemanager.dashboard.models.ProvisioningState;
 import com.azure.resourcemanager.dashboard.models.ResourceSku;
 import com.azure.resourcemanager.dashboard.models.ZoneRedundancy;
 import java.util.HashMap;
@@ -43,10 +42,7 @@ public final class GrafanaCreateSamples {
             .withExistingResourceGroup("myResourceGroup")
             .withTags(mapOf("Environment", "Dev"))
             .withSku(new ResourceSku().withName("Standard"))
-            .withProperties(
-                new ManagedGrafanaProperties()
-                    .withProvisioningState(ProvisioningState.ACCEPTED)
-                    .withZoneRedundancy(ZoneRedundancy.ENABLED))
+            .withProperties(new ManagedGrafanaProperties().withZoneRedundancy(ZoneRedundancy.ENABLED))
             .withIdentity(new ManagedIdentity().withType(IdentityType.SYSTEM_ASSIGNED))
             .create();
     }

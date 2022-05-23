@@ -70,6 +70,10 @@ public final class ManagedGrafanaImpl implements ManagedGrafana, ManagedGrafana.
         return this.location();
     }
 
+    public String resourceGroupName() {
+        return resourceGroupName;
+    }
+
     public ManagedGrafanaInner innerModel() {
         return this.innerObject;
     }
