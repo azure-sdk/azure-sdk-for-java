@@ -24,7 +24,11 @@ public final class SqlSourcePlatform extends ExpandableStringEnum<SqlSourcePlatf
         return fromString(name, SqlSourcePlatform.class);
     }
 
-    /** @return known SqlSourcePlatform values. */
+    /**
+     * Gets known SqlSourcePlatform values.
+     *
+     * @return known SqlSourcePlatform values.
+     */
     public static Collection<SqlSourcePlatform> values() {
         return values(SqlSourcePlatform.class);
     }

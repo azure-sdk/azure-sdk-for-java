@@ -42,7 +42,11 @@ public final class DatabaseCompatLevel extends ExpandableStringEnum<DatabaseComp
         return fromString(name, DatabaseCompatLevel.class);
     }
 
-    /** @return known DatabaseCompatLevel values. */
+    /**
+     * Gets known DatabaseCompatLevel values.
+     *
+     * @return known DatabaseCompatLevel values.
+     */
     public static Collection<DatabaseCompatLevel> values() {
         return values(DatabaseCompatLevel.class);
     }

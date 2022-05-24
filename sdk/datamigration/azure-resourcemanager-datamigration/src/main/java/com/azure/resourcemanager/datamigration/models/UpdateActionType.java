@@ -30,7 +30,11 @@ public final class UpdateActionType extends ExpandableStringEnum<UpdateActionTyp
         return fromString(name, UpdateActionType.class);
     }
 
-    /** @return known UpdateActionType values. */
+    /**
+     * Gets known UpdateActionType values.
+     *
+     * @return known UpdateActionType values.
+     */
     public static Collection<UpdateActionType> values() {
         return values(UpdateActionType.class);
     }

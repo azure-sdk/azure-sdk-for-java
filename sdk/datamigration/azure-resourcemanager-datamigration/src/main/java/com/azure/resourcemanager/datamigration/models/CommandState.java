@@ -36,7 +36,11 @@ public final class CommandState extends ExpandableStringEnum<CommandState> {
         return fromString(name, CommandState.class);
     }
 
-    /** @return known CommandState values. */
+    /**
+     * Gets known CommandState values.
+     *
+     * @return known CommandState values.
+     */
     public static Collection<CommandState> values() {
         return values(CommandState.class);
     }

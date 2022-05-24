@@ -30,7 +30,11 @@ public final class ResourceSkuCapacityScaleType extends ExpandableStringEnum<Res
         return fromString(name, ResourceSkuCapacityScaleType.class);
     }
 
-    /** @return known ResourceSkuCapacityScaleType values. */
+    /**
+     * Gets known ResourceSkuCapacityScaleType values.
+     *
+     * @return known ResourceSkuCapacityScaleType values.
+     */
     public static Collection<ResourceSkuCapacityScaleType> values() {
         return values(ResourceSkuCapacityScaleType.class);
     }

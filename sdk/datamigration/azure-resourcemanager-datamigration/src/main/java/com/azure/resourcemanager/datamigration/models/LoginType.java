@@ -42,7 +42,11 @@ public final class LoginType extends ExpandableStringEnum<LoginType> {
         return fromString(name, LoginType.class);
     }
 
-    /** @return known LoginType values. */
+    /**
+     * Gets known LoginType values.
+     *
+     * @return known LoginType values.
+     */
     public static Collection<LoginType> values() {
         return values(LoginType.class);
     }

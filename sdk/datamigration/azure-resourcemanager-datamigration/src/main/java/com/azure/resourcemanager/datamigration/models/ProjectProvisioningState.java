@@ -27,7 +27,11 @@ public final class ProjectProvisioningState extends ExpandableStringEnum<Project
         return fromString(name, ProjectProvisioningState.class);
     }
 
-    /** @return known ProjectProvisioningState values. */
+    /**
+     * Gets known ProjectProvisioningState values.
+     *
+     * @return known ProjectProvisioningState values.
+     */
     public static Collection<ProjectProvisioningState> values() {
         return values(ProjectProvisioningState.class);
     }
