@@ -35,6 +35,10 @@ public final class PrivateEndpointConnectionImpl
         return this.innerModel().type();
     }
 
+    public Identity identity() {
+        return this.innerModel().identity();
+    }
+
     public String location() {
         return this.innerModel().location();
     }
@@ -46,6 +50,14 @@ public final class PrivateEndpointConnectionImpl
         } else {
             return Collections.emptyMap();
         }
+    }
+
+    public Sku sku() {
+        return this.innerModel().sku();
+    }
+
+    public SystemData systemData() {
+        return this.innerModel().systemData();
     }
 
     public PrivateEndpoint privateEndpoint() {
@@ -60,24 +72,16 @@ public final class PrivateEndpointConnectionImpl
         return this.innerModel().provisioningState();
     }
 
-    public Identity identity() {
-        return this.innerModel().identity();
-    }
-
-    public Sku sku() {
-        return this.innerModel().sku();
-    }
-
-    public SystemData systemData() {
-        return this.innerModel().systemData();
-    }
-
     public Region region() {
         return Region.fromName(this.regionName());
     }
 
     public String regionName() {
         return this.location();
+    }
+
+    public String resourceGroupName() {
+        return resourceGroupName;
     }
 
     public PrivateEndpointConnectionInner innerModel() {
@@ -105,7 +109,7 @@ public final class PrivateEndpointConnectionImpl
             serviceManager
                 .serviceClient()
                 .getPrivateEndpointConnections()
-                .putWithResponse(
+                .createOrUpdateWithResponse(
                     resourceGroupName, workspaceName, privateEndpointConnectionName, this.innerModel(), Context.NONE)
                 .getValue();
         return this;
@@ -116,7 +120,7 @@ public final class PrivateEndpointConnectionImpl
             serviceManager
                 .serviceClient()
                 .getPrivateEndpointConnections()
-                .putWithResponse(
+                .createOrUpdateWithResponse(
                     resourceGroupName, workspaceName, privateEndpointConnectionName, this.innerModel(), context)
                 .getValue();
         return this;
@@ -138,7 +142,7 @@ public final class PrivateEndpointConnectionImpl
             serviceManager
                 .serviceClient()
                 .getPrivateEndpointConnections()
-                .putWithResponse(
+                .createOrUpdateWithResponse(
                     resourceGroupName, workspaceName, privateEndpointConnectionName, this.innerModel(), Context.NONE)
                 .getValue();
         return this;
@@ -149,7 +153,7 @@ public final class PrivateEndpointConnectionImpl
             serviceManager
                 .serviceClient()
                 .getPrivateEndpointConnections()
-                .putWithResponse(
+                .createOrUpdateWithResponse(
                     resourceGroupName, workspaceName, privateEndpointConnectionName, this.innerModel(), context)
                 .getValue();
         return this;
@@ -200,6 +204,16 @@ public final class PrivateEndpointConnectionImpl
         return this;
     }
 
+    public PrivateEndpointConnectionImpl withIdentity(Identity identity) {
+        this.innerModel().withIdentity(identity);
+        return this;
+    }
+
+    public PrivateEndpointConnectionImpl withSku(Sku sku) {
+        this.innerModel().withSku(sku);
+        return this;
+    }
+
     public PrivateEndpointConnectionImpl withPrivateEndpoint(PrivateEndpoint privateEndpoint) {
         this.innerModel().withPrivateEndpoint(privateEndpoint);
         return this;
@@ -208,16 +222,6 @@ public final class PrivateEndpointConnectionImpl
     public PrivateEndpointConnectionImpl withPrivateLinkServiceConnectionState(
         PrivateLinkServiceConnectionState privateLinkServiceConnectionState) {
         this.innerModel().withPrivateLinkServiceConnectionState(privateLinkServiceConnectionState);
-        return this;
-    }
-
-    public PrivateEndpointConnectionImpl withIdentity(Identity identity) {
-        this.innerModel().withIdentity(identity);
-        return this;
-    }
-
-    public PrivateEndpointConnectionImpl withSku(Sku sku) {
-        this.innerModel().withSku(sku);
         return this;
     }
 }

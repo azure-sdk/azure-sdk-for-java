@@ -66,7 +66,11 @@ public final class ComputeInstanceState extends ExpandableStringEnum<ComputeInst
         return fromString(name, ComputeInstanceState.class);
     }
 
-    /** @return known ComputeInstanceState values. */
+    /**
+     * Gets known ComputeInstanceState values.
+     *
+     * @return known ComputeInstanceState values.
+     */
     public static Collection<ComputeInstanceState> values() {
         return values(ComputeInstanceState.class);
     }
