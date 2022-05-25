@@ -175,15 +175,7 @@ public final class OperationResultsClientImpl implements OperationResultsClient 
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<OperationResultsDescriptionInner> getAsync(String locationName, String operationResultId) {
-        return getWithResponseAsync(locationName, operationResultId)
-            .flatMap(
-                (Response<OperationResultsDescriptionInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+        return getWithResponseAsync(locationName, operationResultId).flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**

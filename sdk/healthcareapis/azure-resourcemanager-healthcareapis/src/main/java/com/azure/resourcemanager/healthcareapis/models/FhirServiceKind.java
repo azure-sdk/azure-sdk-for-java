@@ -27,7 +27,11 @@ public final class FhirServiceKind extends ExpandableStringEnum<FhirServiceKind>
         return fromString(name, FhirServiceKind.class);
     }
 
-    /** @return known FhirServiceKind values. */
+    /**
+     * Gets known FhirServiceKind values.
+     *
+     * @return known FhirServiceKind values.
+     */
     public static Collection<FhirServiceKind> values() {
         return values(FhirServiceKind.class);
     }

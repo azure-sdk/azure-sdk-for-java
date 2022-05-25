@@ -76,6 +76,10 @@ public final class ServicesDescriptionImpl
         return this.location();
     }
 
+    public String resourceGroupName() {
+        return resourceGroupName;
+    }
+
     public ServicesDescriptionInner innerModel() {
         return this.innerObject;
     }

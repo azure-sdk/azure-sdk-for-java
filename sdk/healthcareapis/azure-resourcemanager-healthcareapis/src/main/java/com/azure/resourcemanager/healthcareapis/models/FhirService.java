@@ -163,6 +163,13 @@ public interface FhirService {
     String regionName();
 
     /**
+     * Gets the name of the resource group.
+     *
+     * @return the name of the resource group.
+     */
+    String resourceGroupName();
+
+    /**
      * Gets the inner com.azure.resourcemanager.healthcareapis.fluent.models.FhirServiceInner object.
      *
      * @return the inner object.

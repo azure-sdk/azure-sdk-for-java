@@ -130,6 +130,10 @@ public final class FhirServiceImpl implements FhirService, FhirService.Definitio
         return this.location();
     }
 
+    public String resourceGroupName() {
+        return resourceGroupName;
+    }
+
     public FhirServiceInner innerModel() {
         return this.innerObject;
     }
