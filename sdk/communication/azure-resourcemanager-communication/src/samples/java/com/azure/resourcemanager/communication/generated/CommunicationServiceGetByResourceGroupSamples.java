@@ -6,10 +6,10 @@ package com.azure.resourcemanager.communication.generated;
 
 import com.azure.core.util.Context;
 
-/** Samples for CommunicationServices GetByResourceGroup. */
-public final class CommunicationServicesGetByResourceGroupSamples {
+/** Samples for CommunicationService GetByResourceGroup. */
+public final class CommunicationServiceGetByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/communication/resource-manager/Microsoft.Communication/preview/2021-10-01-preview/examples/communicationServices/get.json
+     * x-ms-original-file: specification/communication/resource-manager/Microsoft.Communication/stable/2020-08-20/examples/get.json
      */
     /**
      * Sample code: Get resource.

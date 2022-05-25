@@ -4,17 +4,16 @@
 
 package com.azure.resourcemanager.communication.implementation;
 
-import com.azure.resourcemanager.communication.fluent.models.CheckNameAvailabilityResponseInner;
-import com.azure.resourcemanager.communication.models.CheckNameAvailabilityReason;
-import com.azure.resourcemanager.communication.models.CheckNameAvailabilityResponse;
+import com.azure.resourcemanager.communication.fluent.models.NameAvailabilityInner;
+import com.azure.resourcemanager.communication.models.NameAvailability;
 
-public final class CheckNameAvailabilityResponseImpl implements CheckNameAvailabilityResponse {
-    private CheckNameAvailabilityResponseInner innerObject;
+public final class NameAvailabilityImpl implements NameAvailability {
+    private NameAvailabilityInner innerObject;
 
     private final com.azure.resourcemanager.communication.CommunicationManager serviceManager;
 
-    CheckNameAvailabilityResponseImpl(
-        CheckNameAvailabilityResponseInner innerObject,
+    NameAvailabilityImpl(
+        NameAvailabilityInner innerObject,
         com.azure.resourcemanager.communication.CommunicationManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
@@ -24,7 +23,7 @@ public final class CheckNameAvailabilityResponseImpl implements CheckNameAvailab
         return this.innerModel().nameAvailable();
     }
 
-    public CheckNameAvailabilityReason reason() {
+    public String reason() {
         return this.innerModel().reason();
     }
 
@@ -32,7 +31,7 @@ public final class CheckNameAvailabilityResponseImpl implements CheckNameAvailab
         return this.innerModel().message();
     }
 
-    public CheckNameAvailabilityResponseInner innerModel() {
+    public NameAvailabilityInner innerModel() {
         return this.innerObject;
     }
 

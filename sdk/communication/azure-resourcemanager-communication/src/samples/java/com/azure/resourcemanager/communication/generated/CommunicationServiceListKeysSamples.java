@@ -6,10 +6,10 @@ package com.azure.resourcemanager.communication.generated;
 
 import com.azure.core.util.Context;
 
-/** Samples for CommunicationServices ListKeys. */
-public final class CommunicationServicesListKeysSamples {
+/** Samples for CommunicationService ListKeys. */
+public final class CommunicationServiceListKeysSamples {
     /*
-     * x-ms-original-file: specification/communication/resource-manager/Microsoft.Communication/preview/2021-10-01-preview/examples/communicationServices/listKeys.json
+     * x-ms-original-file: specification/communication/resource-manager/Microsoft.Communication/stable/2020-08-20/examples/listKeys.json
      */
     /**
      * Sample code: List keys.

@@ -9,10 +9,10 @@ import com.azure.resourcemanager.communication.models.CommunicationServiceResour
 import java.util.HashMap;
 import java.util.Map;
 
-/** Samples for CommunicationServices Update. */
-public final class CommunicationServicesUpdateSamples {
+/** Samples for CommunicationService Update. */
+public final class CommunicationServiceUpdateSamples {
     /*
-     * x-ms-original-file: specification/communication/resource-manager/Microsoft.Communication/preview/2021-10-01-preview/examples/communicationServices/update.json
+     * x-ms-original-file: specification/communication/resource-manager/Microsoft.Communication/stable/2020-08-20/examples/update.json
      */
     /**
      * Sample code: Update resource.

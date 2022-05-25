@@ -26,12 +26,8 @@ import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.communication.fluent.CommunicationServiceManagementClient;
 import com.azure.resourcemanager.communication.implementation.CommunicationServiceManagementClientBuilder;
 import com.azure.resourcemanager.communication.implementation.CommunicationServicesImpl;
-import com.azure.resourcemanager.communication.implementation.DomainsImpl;
-import com.azure.resourcemanager.communication.implementation.EmailServicesImpl;
 import com.azure.resourcemanager.communication.implementation.OperationsImpl;
 import com.azure.resourcemanager.communication.models.CommunicationServices;
-import com.azure.resourcemanager.communication.models.Domains;
-import com.azure.resourcemanager.communication.models.EmailServices;
 import com.azure.resourcemanager.communication.models.Operations;
 import java.time.Duration;
 import java.time.temporal.ChronoUnit;
@@ -45,10 +41,6 @@ public final class CommunicationManager {
     private Operations operations;
 
     private CommunicationServices communicationServices;
-
-    private Domains domains;
-
-    private EmailServices emailServices;
 
     private final CommunicationServiceManagementClient clientObject;
 
@@ -215,7 +207,7 @@ public final class CommunicationManager {
                 .append("-")
                 .append("com.azure.resourcemanager.communication")
                 .append("/")
-                .append("1.1.0-beta.2");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder
                     .append(" (")
@@ -294,30 +286,6 @@ public final class CommunicationManager {
             this.communicationServices = new CommunicationServicesImpl(clientObject.getCommunicationServices(), this);
         }
         return communicationServices;
-    }
-
-    /**
-     * Gets the resource collection API of Domains. It manages DomainResource.
-     *
-     * @return Resource collection API of Domains.
-     */
-    public Domains domains() {
-        if (this.domains == null) {
-            this.domains = new DomainsImpl(clientObject.getDomains(), this);
-        }
-        return domains;
-    }
-
-    /**
-     * Gets the resource collection API of EmailServices. It manages EmailServiceResource.
-     *
-     * @return Resource collection API of EmailServices.
-     */
-    public EmailServices emailServices() {
-        if (this.emailServices == null) {
-            this.emailServices = new EmailServicesImpl(clientObject.getEmailServices(), this);
-        }
-        return emailServices;
     }
 
     /**

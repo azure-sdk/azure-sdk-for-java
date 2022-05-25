@@ -5,32 +5,31 @@
 package com.azure.resourcemanager.communication.fluent.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.resourcemanager.communication.models.CheckNameAvailabilityReason;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The check availability result. */
+/** Result of the request to check name availability. It contains a flag and possible reason of failure. */
 @Fluent
-public final class CheckNameAvailabilityResponseInner {
+public final class NameAvailabilityInner {
     /*
-     * Indicates if the resource name is available.
+     * Indicates whether the name is available or not.
      */
     @JsonProperty(value = "nameAvailable")
     private Boolean nameAvailable;
 
     /*
-     * The reason why the given name is not available.
+     * The reason of the availability. Required if name is not available.
      */
     @JsonProperty(value = "reason")
-    private CheckNameAvailabilityReason reason;
+    private String reason;
 
     /*
-     * Detailed reason why the given name is available.
+     * The message of the operation.
      */
     @JsonProperty(value = "message")
     private String message;
 
     /**
-     * Get the nameAvailable property: Indicates if the resource name is available.
+     * Get the nameAvailable property: Indicates whether the name is available or not.
      *
      * @return the nameAvailable value.
      */
@@ -39,38 +38,38 @@ public final class CheckNameAvailabilityResponseInner {
     }
 
     /**
-     * Set the nameAvailable property: Indicates if the resource name is available.
+     * Set the nameAvailable property: Indicates whether the name is available or not.
      *
      * @param nameAvailable the nameAvailable value to set.
-     * @return the CheckNameAvailabilityResponseInner object itself.
+     * @return the NameAvailabilityInner object itself.
      */
-    public CheckNameAvailabilityResponseInner withNameAvailable(Boolean nameAvailable) {
+    public NameAvailabilityInner withNameAvailable(Boolean nameAvailable) {
         this.nameAvailable = nameAvailable;
         return this;
     }
 
     /**
-     * Get the reason property: The reason why the given name is not available.
+     * Get the reason property: The reason of the availability. Required if name is not available.
      *
      * @return the reason value.
      */
-    public CheckNameAvailabilityReason reason() {
+    public String reason() {
         return this.reason;
     }
 
     /**
-     * Set the reason property: The reason why the given name is not available.
+     * Set the reason property: The reason of the availability. Required if name is not available.
      *
      * @param reason the reason value to set.
-     * @return the CheckNameAvailabilityResponseInner object itself.
+     * @return the NameAvailabilityInner object itself.
      */
-    public CheckNameAvailabilityResponseInner withReason(CheckNameAvailabilityReason reason) {
+    public NameAvailabilityInner withReason(String reason) {
         this.reason = reason;
         return this;
     }
 
     /**
-     * Get the message property: Detailed reason why the given name is available.
+     * Get the message property: The message of the operation.
      *
      * @return the message value.
      */
@@ -79,12 +78,12 @@ public final class CheckNameAvailabilityResponseInner {
     }
 
     /**
-     * Set the message property: Detailed reason why the given name is available.
+     * Set the message property: The message of the operation.
      *
      * @param message the message value to set.
-     * @return the CheckNameAvailabilityResponseInner object itself.
+     * @return the NameAvailabilityInner object itself.
      */
-    public CheckNameAvailabilityResponseInner withMessage(String message) {
+    public NameAvailabilityInner withMessage(String message) {
         this.message = message;
         return this;
     }

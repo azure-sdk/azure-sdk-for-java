@@ -6,10 +6,10 @@ package com.azure.resourcemanager.communication.generated;
 
 import com.azure.core.util.Context;
 
-/** Samples for CommunicationServices List. */
-public final class CommunicationServicesListSamples {
+/** Samples for CommunicationService List. */
+public final class CommunicationServiceListSamples {
     /*
-     * x-ms-original-file: specification/communication/resource-manager/Microsoft.Communication/preview/2021-10-01-preview/examples/communicationServices/listBySubscription.json
+     * x-ms-original-file: specification/communication/resource-manager/Microsoft.Communication/stable/2020-08-20/examples/listBySubscription.json
      */
     /**
      * Sample code: List by subscription.

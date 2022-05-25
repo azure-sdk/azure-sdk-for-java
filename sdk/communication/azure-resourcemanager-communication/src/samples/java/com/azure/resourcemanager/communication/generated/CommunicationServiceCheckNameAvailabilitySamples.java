@@ -7,10 +7,10 @@ package com.azure.resourcemanager.communication.generated;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.communication.models.NameAvailabilityParameters;
 
-/** Samples for CommunicationServices CheckNameAvailability. */
-public final class CommunicationServicesCheckNameAvailabilitySamples {
+/** Samples for CommunicationService CheckNameAvailability. */
+public final class CommunicationServiceCheckNameAvailabilitySamples {
     /*
-     * x-ms-original-file: specification/communication/resource-manager/Microsoft.Communication/preview/2021-10-01-preview/examples/communicationServices/checkNameAvailabilityAvailable.json
+     * x-ms-original-file: specification/communication/resource-manager/Microsoft.Communication/stable/2020-08-20/examples/checkNameAvailabilityAvailable.json
      */
     /**
      * Sample code: Check name availability available.
@@ -23,13 +23,13 @@ public final class CommunicationServicesCheckNameAvailabilitySamples {
             .communicationServices()
             .checkNameAvailabilityWithResponse(
                 new NameAvailabilityParameters()
-                    .withName("MyCommunicationService")
-                    .withType("Microsoft.Communication/CommunicationServices"),
+                    .withType("Microsoft.Communication/CommunicationServices")
+                    .withName("MyCommunicationService"),
                 Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/communication/resource-manager/Microsoft.Communication/preview/2021-10-01-preview/examples/communicationServices/checkNameAvailabilityUnavailable.json
+     * x-ms-original-file: specification/communication/resource-manager/Microsoft.Communication/stable/2020-08-20/examples/checkNameAvailabilityUnavailable.json
      */
     /**
      * Sample code: Check name availability unavailable.
@@ -42,8 +42,8 @@ public final class CommunicationServicesCheckNameAvailabilitySamples {
             .communicationServices()
             .checkNameAvailabilityWithResponse(
                 new NameAvailabilityParameters()
-                    .withName("MyCommunicationService")
-                    .withType("Microsoft.Communication/CommunicationServices"),
+                    .withType("Microsoft.Communication/CommunicationServices")
+                    .withName("MyCommunicationService"),
                 Context.NONE);
     }
 }

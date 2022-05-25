@@ -13,13 +13,11 @@ public interface CommunicationServices {
     /**
      * Checks that the CommunicationService name is valid and is not already in use.
      *
-     * @param nameAvailabilityParameters Parameters supplied to the operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the check availability result.
+     * @return result of the request to check name availability.
      */
-    CheckNameAvailabilityResponse checkNameAvailability(NameAvailabilityParameters nameAvailabilityParameters);
+    NameAvailability checkNameAvailability();
 
     /**
      * Checks that the CommunicationService name is valid and is not already in use.
@@ -29,9 +27,9 @@ public interface CommunicationServices {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the check availability result along with {@link Response}.
+     * @return result of the request to check name availability along with {@link Response}.
      */
-    Response<CheckNameAvailabilityResponse> checkNameAvailabilityWithResponse(
+    Response<NameAvailability> checkNameAvailabilityWithResponse(
         NameAvailabilityParameters nameAvailabilityParameters, Context context);
 
     /**
@@ -210,9 +208,9 @@ public interface CommunicationServices {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a class representing the access keys of a CommunicationService.
+     * @return a class representing the access keys of a CommunicationService along with {@link Response}.
      */
-    CommunicationServiceKeys regenerateKey(
+    Response<CommunicationServiceKeys> regenerateKeyWithResponse(
         String resourceGroupName, String communicationServiceName, RegenerateKeyParameters parameters, Context context);
 
     /**
