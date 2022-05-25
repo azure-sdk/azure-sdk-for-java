@@ -27,7 +27,11 @@ public final class SshPublicAccess extends ExpandableStringEnum<SshPublicAccess>
         return fromString(name, SshPublicAccess.class);
     }
 
-    /** @return known SshPublicAccess values. */
+    /**
+     * Gets known SshPublicAccess values.
+     *
+     * @return known SshPublicAccess values.
+     */
     public static Collection<SshPublicAccess> values() {
         return values(SshPublicAccess.class);
     }

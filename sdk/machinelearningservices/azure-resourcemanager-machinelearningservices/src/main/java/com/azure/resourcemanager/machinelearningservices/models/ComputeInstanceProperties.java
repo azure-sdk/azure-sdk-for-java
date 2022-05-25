@@ -6,16 +6,12 @@ package com.azure.resourcemanager.machinelearningservices.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.exception.ManagementError;
-import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** Compute Instance properties. */
 @Fluent
 public final class ComputeInstanceProperties {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(ComputeInstanceProperties.class);
-
     /*
      * Virtual Machine Size
      */
@@ -29,9 +25,10 @@ public final class ComputeInstanceProperties {
     private ResourceId subnet;
 
     /*
-     * Policy for sharing applications on this compute instance among users of
-     * parent workspace. If Personal, only the creator can access applications
-     * on this compute instance. When Shared, any workspace user can access
+     * Sharing policy for applications on this compute instance Policy for
+     * sharing applications on this compute instance among users of parent
+     * workspace. If Personal, only the creator can access applications on this
+     * compute instance. When Shared, any workspace user can access
      * applications on this instance depending on his/her assigned role.
      */
     @JsonProperty(value = "applicationSharingPolicy")
@@ -63,7 +60,7 @@ public final class ComputeInstanceProperties {
     private ComputeInstanceCreatedBy createdBy;
 
     /*
-     * Collection of errors encountered on this ComputeInstance.
+     * Errors. Collection of errors encountered on this ComputeInstance.
      */
     @JsonProperty(value = "errors", access = JsonProperty.Access.WRITE_ONLY)
     private List<ManagementError> errors;
@@ -75,8 +72,8 @@ public final class ComputeInstanceProperties {
     private ComputeInstanceState state;
 
     /*
-     * The Compute Instance Authorization type. Available values are personal
-     * (default).
+     * Compute Instance Authorization type. The Compute Instance Authorization
+     * type. Available values are personal (default).
      */
     @JsonProperty(value = "computeInstanceAuthorizationType")
     private ComputeInstanceAuthorizationType computeInstanceAuthorizationType;
@@ -98,6 +95,46 @@ public final class ComputeInstanceProperties {
      */
     @JsonProperty(value = "lastOperation", access = JsonProperty.Access.WRITE_ONLY)
     private ComputeInstanceLastOperation lastOperation;
+
+    /*
+     * The list of schedules to be applied on the computes.
+     */
+    @JsonProperty(value = "schedules", access = JsonProperty.Access.WRITE_ONLY)
+    private ComputeSchedules schedules;
+
+    /*
+     * Enable node public IP. Enable or disable node public IP address
+     * provisioning. Possible values are: Possible values are: true - Indicates
+     * that the compute nodes will have public IPs provisioned. false -
+     * Indicates that the compute nodes will have a private endpoint and no
+     * public IPs.
+     */
+    @JsonProperty(value = "enableNodePublicIp")
+    private Boolean enableNodePublicIp;
+
+    /*
+     * Describes informations of containers on this ComputeInstance.
+     */
+    @JsonProperty(value = "containers", access = JsonProperty.Access.WRITE_ONLY)
+    private List<ComputeInstanceContainer> containers;
+
+    /*
+     * Describes informations of dataDisks on this ComputeInstance.
+     */
+    @JsonProperty(value = "dataDisks", access = JsonProperty.Access.WRITE_ONLY)
+    private List<ComputeInstanceDataDisk> dataDisks;
+
+    /*
+     * Describes informations of dataMounts on this ComputeInstance.
+     */
+    @JsonProperty(value = "dataMounts", access = JsonProperty.Access.WRITE_ONLY)
+    private List<ComputeInstanceDataMount> dataMounts;
+
+    /*
+     * ComputeInstance version.
+     */
+    @JsonProperty(value = "versions", access = JsonProperty.Access.WRITE_ONLY)
+    private ComputeInstanceVersion versions;
 
     /**
      * Get the vmSize property: Virtual Machine Size.
@@ -140,9 +177,10 @@ public final class ComputeInstanceProperties {
     }
 
     /**
-     * Get the applicationSharingPolicy property: Policy for sharing applications on this compute instance among users
-     * of parent workspace. If Personal, only the creator can access applications on this compute instance. When Shared,
-     * any workspace user can access applications on this instance depending on his/her assigned role.
+     * Get the applicationSharingPolicy property: Sharing policy for applications on this compute instance Policy for
+     * sharing applications on this compute instance among users of parent workspace. If Personal, only the creator can
+     * access applications on this compute instance. When Shared, any workspace user can access applications on this
+     * instance depending on his/her assigned role.
      *
      * @return the applicationSharingPolicy value.
      */
@@ -151,9 +189,10 @@ public final class ComputeInstanceProperties {
     }
 
     /**
-     * Set the applicationSharingPolicy property: Policy for sharing applications on this compute instance among users
-     * of parent workspace. If Personal, only the creator can access applications on this compute instance. When Shared,
-     * any workspace user can access applications on this instance depending on his/her assigned role.
+     * Set the applicationSharingPolicy property: Sharing policy for applications on this compute instance Policy for
+     * sharing applications on this compute instance among users of parent workspace. If Personal, only the creator can
+     * access applications on this compute instance. When Shared, any workspace user can access applications on this
+     * instance depending on his/her assigned role.
      *
      * @param applicationSharingPolicy the applicationSharingPolicy value to set.
      * @return the ComputeInstanceProperties object itself.
@@ -211,7 +250,7 @@ public final class ComputeInstanceProperties {
     }
 
     /**
-     * Get the errors property: Collection of errors encountered on this ComputeInstance.
+     * Get the errors property: Errors. Collection of errors encountered on this ComputeInstance.
      *
      * @return the errors value.
      */
@@ -229,8 +268,8 @@ public final class ComputeInstanceProperties {
     }
 
     /**
-     * Get the computeInstanceAuthorizationType property: The Compute Instance Authorization type. Available values are
-     * personal (default).
+     * Get the computeInstanceAuthorizationType property: Compute Instance Authorization type. The Compute Instance
+     * Authorization type. Available values are personal (default).
      *
      * @return the computeInstanceAuthorizationType value.
      */
@@ -239,8 +278,8 @@ public final class ComputeInstanceProperties {
     }
 
     /**
-     * Set the computeInstanceAuthorizationType property: The Compute Instance Authorization type. Available values are
-     * personal (default).
+     * Set the computeInstanceAuthorizationType property: Compute Instance Authorization type. The Compute Instance
+     * Authorization type. Available values are personal (default).
      *
      * @param computeInstanceAuthorizationType the computeInstanceAuthorizationType value to set.
      * @return the ComputeInstanceProperties object itself.
@@ -302,6 +341,75 @@ public final class ComputeInstanceProperties {
     }
 
     /**
+     * Get the schedules property: The list of schedules to be applied on the computes.
+     *
+     * @return the schedules value.
+     */
+    public ComputeSchedules schedules() {
+        return this.schedules;
+    }
+
+    /**
+     * Get the enableNodePublicIp property: Enable node public IP. Enable or disable node public IP address
+     * provisioning. Possible values are: Possible values are: true - Indicates that the compute nodes will have public
+     * IPs provisioned. false - Indicates that the compute nodes will have a private endpoint and no public IPs.
+     *
+     * @return the enableNodePublicIp value.
+     */
+    public Boolean enableNodePublicIp() {
+        return this.enableNodePublicIp;
+    }
+
+    /**
+     * Set the enableNodePublicIp property: Enable node public IP. Enable or disable node public IP address
+     * provisioning. Possible values are: Possible values are: true - Indicates that the compute nodes will have public
+     * IPs provisioned. false - Indicates that the compute nodes will have a private endpoint and no public IPs.
+     *
+     * @param enableNodePublicIp the enableNodePublicIp value to set.
+     * @return the ComputeInstanceProperties object itself.
+     */
+    public ComputeInstanceProperties withEnableNodePublicIp(Boolean enableNodePublicIp) {
+        this.enableNodePublicIp = enableNodePublicIp;
+        return this;
+    }
+
+    /**
+     * Get the containers property: Describes informations of containers on this ComputeInstance.
+     *
+     * @return the containers value.
+     */
+    public List<ComputeInstanceContainer> containers() {
+        return this.containers;
+    }
+
+    /**
+     * Get the dataDisks property: Describes informations of dataDisks on this ComputeInstance.
+     *
+     * @return the dataDisks value.
+     */
+    public List<ComputeInstanceDataDisk> dataDisks() {
+        return this.dataDisks;
+    }
+
+    /**
+     * Get the dataMounts property: Describes informations of dataMounts on this ComputeInstance.
+     *
+     * @return the dataMounts value.
+     */
+    public List<ComputeInstanceDataMount> dataMounts() {
+        return this.dataMounts;
+    }
+
+    /**
+     * Get the versions property: ComputeInstance version.
+     *
+     * @return the versions value.
+     */
+    public ComputeInstanceVersion versions() {
+        return this.versions;
+    }
+
+    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -330,6 +438,21 @@ public final class ComputeInstanceProperties {
         }
         if (lastOperation() != null) {
             lastOperation().validate();
+        }
+        if (schedules() != null) {
+            schedules().validate();
+        }
+        if (containers() != null) {
+            containers().forEach(e -> e.validate());
+        }
+        if (dataDisks() != null) {
+            dataDisks().forEach(e -> e.validate());
+        }
+        if (dataMounts() != null) {
+            dataMounts().forEach(e -> e.validate());
+        }
+        if (versions() != null) {
+            versions().validate();
         }
     }
 }

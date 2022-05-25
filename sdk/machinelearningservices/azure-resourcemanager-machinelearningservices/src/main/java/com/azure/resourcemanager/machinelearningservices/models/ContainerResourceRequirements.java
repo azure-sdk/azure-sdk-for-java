@@ -5,184 +5,62 @@
 package com.azure.resourcemanager.machinelearningservices.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The resource requirements for the container (cpu and memory). */
+/** Resource requirements for each container instance within an online deployment. */
 @Fluent
 public final class ContainerResourceRequirements {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(ContainerResourceRequirements.class);
+    /*
+     * Container resource limit info:
+     */
+    @JsonProperty(value = "containerResourceLimits")
+    private ContainerResourceSettings containerResourceLimits;
 
     /*
-     * The minimum amount of CPU cores to be used by the container. More info:
-     * https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/
+     * Container resource request info:
      */
-    @JsonProperty(value = "cpu")
-    private Double cpu;
-
-    /*
-     * The maximum amount of CPU cores allowed to be used by the container.
-     * More info:
-     * https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/
-     */
-    @JsonProperty(value = "cpuLimit")
-    private Double cpuLimit;
-
-    /*
-     * The minimum amount of memory (in GB) to be used by the container. More
-     * info:
-     * https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/
-     */
-    @JsonProperty(value = "memoryInGB")
-    private Double memoryInGB;
-
-    /*
-     * The maximum amount of memory (in GB) allowed to be used by the
-     * container. More info:
-     * https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/
-     */
-    @JsonProperty(value = "memoryInGBLimit")
-    private Double memoryInGBLimit;
-
-    /*
-     * The number of GPU cores in the container.
-     */
-    @JsonProperty(value = "gpu")
-    private Integer gpu;
-
-    /*
-     * The number of FPGA PCIE devices exposed to the container. Must be
-     * multiple of 2.
-     */
-    @JsonProperty(value = "fpga")
-    private Integer fpga;
+    @JsonProperty(value = "containerResourceRequests")
+    private ContainerResourceSettings containerResourceRequests;
 
     /**
-     * Get the cpu property: The minimum amount of CPU cores to be used by the container. More info:
-     * https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/.
+     * Get the containerResourceLimits property: Container resource limit info:.
      *
-     * @return the cpu value.
+     * @return the containerResourceLimits value.
      */
-    public Double cpu() {
-        return this.cpu;
+    public ContainerResourceSettings containerResourceLimits() {
+        return this.containerResourceLimits;
     }
 
     /**
-     * Set the cpu property: The minimum amount of CPU cores to be used by the container. More info:
-     * https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/.
+     * Set the containerResourceLimits property: Container resource limit info:.
      *
-     * @param cpu the cpu value to set.
+     * @param containerResourceLimits the containerResourceLimits value to set.
      * @return the ContainerResourceRequirements object itself.
      */
-    public ContainerResourceRequirements withCpu(Double cpu) {
-        this.cpu = cpu;
+    public ContainerResourceRequirements withContainerResourceLimits(
+        ContainerResourceSettings containerResourceLimits) {
+        this.containerResourceLimits = containerResourceLimits;
         return this;
     }
 
     /**
-     * Get the cpuLimit property: The maximum amount of CPU cores allowed to be used by the container. More info:
-     * https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/.
+     * Get the containerResourceRequests property: Container resource request info:.
      *
-     * @return the cpuLimit value.
+     * @return the containerResourceRequests value.
      */
-    public Double cpuLimit() {
-        return this.cpuLimit;
+    public ContainerResourceSettings containerResourceRequests() {
+        return this.containerResourceRequests;
     }
 
     /**
-     * Set the cpuLimit property: The maximum amount of CPU cores allowed to be used by the container. More info:
-     * https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/.
+     * Set the containerResourceRequests property: Container resource request info:.
      *
-     * @param cpuLimit the cpuLimit value to set.
+     * @param containerResourceRequests the containerResourceRequests value to set.
      * @return the ContainerResourceRequirements object itself.
      */
-    public ContainerResourceRequirements withCpuLimit(Double cpuLimit) {
-        this.cpuLimit = cpuLimit;
-        return this;
-    }
-
-    /**
-     * Get the memoryInGB property: The minimum amount of memory (in GB) to be used by the container. More info:
-     * https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/.
-     *
-     * @return the memoryInGB value.
-     */
-    public Double memoryInGB() {
-        return this.memoryInGB;
-    }
-
-    /**
-     * Set the memoryInGB property: The minimum amount of memory (in GB) to be used by the container. More info:
-     * https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/.
-     *
-     * @param memoryInGB the memoryInGB value to set.
-     * @return the ContainerResourceRequirements object itself.
-     */
-    public ContainerResourceRequirements withMemoryInGB(Double memoryInGB) {
-        this.memoryInGB = memoryInGB;
-        return this;
-    }
-
-    /**
-     * Get the memoryInGBLimit property: The maximum amount of memory (in GB) allowed to be used by the container. More
-     * info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/.
-     *
-     * @return the memoryInGBLimit value.
-     */
-    public Double memoryInGBLimit() {
-        return this.memoryInGBLimit;
-    }
-
-    /**
-     * Set the memoryInGBLimit property: The maximum amount of memory (in GB) allowed to be used by the container. More
-     * info: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/.
-     *
-     * @param memoryInGBLimit the memoryInGBLimit value to set.
-     * @return the ContainerResourceRequirements object itself.
-     */
-    public ContainerResourceRequirements withMemoryInGBLimit(Double memoryInGBLimit) {
-        this.memoryInGBLimit = memoryInGBLimit;
-        return this;
-    }
-
-    /**
-     * Get the gpu property: The number of GPU cores in the container.
-     *
-     * @return the gpu value.
-     */
-    public Integer gpu() {
-        return this.gpu;
-    }
-
-    /**
-     * Set the gpu property: The number of GPU cores in the container.
-     *
-     * @param gpu the gpu value to set.
-     * @return the ContainerResourceRequirements object itself.
-     */
-    public ContainerResourceRequirements withGpu(Integer gpu) {
-        this.gpu = gpu;
-        return this;
-    }
-
-    /**
-     * Get the fpga property: The number of FPGA PCIE devices exposed to the container. Must be multiple of 2.
-     *
-     * @return the fpga value.
-     */
-    public Integer fpga() {
-        return this.fpga;
-    }
-
-    /**
-     * Set the fpga property: The number of FPGA PCIE devices exposed to the container. Must be multiple of 2.
-     *
-     * @param fpga the fpga value to set.
-     * @return the ContainerResourceRequirements object itself.
-     */
-    public ContainerResourceRequirements withFpga(Integer fpga) {
-        this.fpga = fpga;
+    public ContainerResourceRequirements withContainerResourceRequests(
+        ContainerResourceSettings containerResourceRequests) {
+        this.containerResourceRequests = containerResourceRequests;
         return this;
     }
 
@@ -192,5 +70,11 @@ public final class ContainerResourceRequirements {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+        if (containerResourceLimits() != null) {
+            containerResourceLimits().validate();
+        }
+        if (containerResourceRequests() != null) {
+            containerResourceRequests().validate();
+        }
     }
 }

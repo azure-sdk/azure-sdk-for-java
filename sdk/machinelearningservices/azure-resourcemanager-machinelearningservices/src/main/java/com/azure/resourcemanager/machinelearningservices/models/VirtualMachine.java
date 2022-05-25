@@ -5,8 +5,6 @@
 package com.azure.resourcemanager.machinelearningservices.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
@@ -16,20 +14,18 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @JsonTypeName("VirtualMachine")
 @Fluent
 public final class VirtualMachine extends Compute {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(VirtualMachine.class);
-
     /*
      * The properties property.
      */
     @JsonProperty(value = "properties")
-    private VirtualMachineProperties properties;
+    private VirtualMachineSchemaProperties properties;
 
     /**
      * Get the properties property: The properties property.
      *
      * @return the properties value.
      */
-    public VirtualMachineProperties properties() {
+    public VirtualMachineSchemaProperties properties() {
         return this.properties;
     }
 
@@ -39,15 +35,8 @@ public final class VirtualMachine extends Compute {
      * @param properties the properties value to set.
      * @return the VirtualMachine object itself.
      */
-    public VirtualMachine withProperties(VirtualMachineProperties properties) {
+    public VirtualMachine withProperties(VirtualMachineSchemaProperties properties) {
         this.properties = properties;
-        return this;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public VirtualMachine withComputeLocation(String computeLocation) {
-        super.withComputeLocation(computeLocation);
         return this;
     }
 

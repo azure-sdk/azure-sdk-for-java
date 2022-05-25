@@ -5,8 +5,6 @@
 package com.azure.resourcemanager.machinelearningservices.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
@@ -16,16 +14,14 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @JsonTypeName("AmlCompute")
 @Fluent
 public final class AmlCompute extends Compute {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(AmlCompute.class);
-
     /*
-     * AML Compute properties
+     * Properties of AmlCompute
      */
     @JsonProperty(value = "properties")
     private AmlComputeProperties properties;
 
     /**
-     * Get the properties property: AML Compute properties.
+     * Get the properties property: Properties of AmlCompute.
      *
      * @return the properties value.
      */
@@ -34,20 +30,13 @@ public final class AmlCompute extends Compute {
     }
 
     /**
-     * Set the properties property: AML Compute properties.
+     * Set the properties property: Properties of AmlCompute.
      *
      * @param properties the properties value to set.
      * @return the AmlCompute object itself.
      */
     public AmlCompute withProperties(AmlComputeProperties properties) {
         this.properties = properties;
-        return this;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public AmlCompute withComputeLocation(String computeLocation) {
-        super.withComputeLocation(computeLocation);
         return this;
     }
 

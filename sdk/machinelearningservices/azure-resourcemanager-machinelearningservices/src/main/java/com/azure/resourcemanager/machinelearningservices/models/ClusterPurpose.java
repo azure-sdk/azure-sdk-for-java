@@ -30,7 +30,11 @@ public final class ClusterPurpose extends ExpandableStringEnum<ClusterPurpose> {
         return fromString(name, ClusterPurpose.class);
     }
 
-    /** @return known ClusterPurpose values. */
+    /**
+     * Gets known ClusterPurpose values.
+     *
+     * @return known ClusterPurpose values.
+     */
     public static Collection<ClusterPurpose> values() {
         return values(ClusterPurpose.class);
     }

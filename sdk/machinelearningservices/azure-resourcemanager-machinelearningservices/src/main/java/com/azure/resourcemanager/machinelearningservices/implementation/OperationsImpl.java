@@ -8,13 +8,12 @@ import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.util.Context;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.machinelearningservices.fluent.OperationsClient;
-import com.azure.resourcemanager.machinelearningservices.fluent.models.OperationInner;
-import com.azure.resourcemanager.machinelearningservices.models.Operation;
+import com.azure.resourcemanager.machinelearningservices.fluent.models.AmlOperationInner;
+import com.azure.resourcemanager.machinelearningservices.models.AmlOperation;
 import com.azure.resourcemanager.machinelearningservices.models.Operations;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public final class OperationsImpl implements Operations {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(OperationsImpl.class);
+    private static final ClientLogger LOGGER = new ClientLogger(OperationsImpl.class);
 
     private final OperationsClient innerClient;
 
@@ -27,14 +26,14 @@ public final class OperationsImpl implements Operations {
         this.serviceManager = serviceManager;
     }
 
-    public PagedIterable<Operation> list() {
-        PagedIterable<OperationInner> inner = this.serviceClient().list();
-        return Utils.mapPage(inner, inner1 -> new OperationImpl(inner1, this.manager()));
+    public PagedIterable<AmlOperation> list() {
+        PagedIterable<AmlOperationInner> inner = this.serviceClient().list();
+        return Utils.mapPage(inner, inner1 -> new AmlOperationImpl(inner1, this.manager()));
     }
 
-    public PagedIterable<Operation> list(Context context) {
-        PagedIterable<OperationInner> inner = this.serviceClient().list(context);
-        return Utils.mapPage(inner, inner1 -> new OperationImpl(inner1, this.manager()));
+    public PagedIterable<AmlOperation> list(Context context) {
+        PagedIterable<AmlOperationInner> inner = this.serviceClient().list(context);
+        return Utils.mapPage(inner, inner1 -> new AmlOperationImpl(inner1, this.manager()));
     }
 
     private OperationsClient serviceClient() {
