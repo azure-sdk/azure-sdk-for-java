@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.workloads.implementation;
 
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.workloads.fluent.models.ProviderInstanceInner;
 import com.azure.resourcemanager.workloads.models.ProviderInstance;
@@ -32,6 +33,10 @@ public final class ProviderInstanceImpl implements ProviderInstance, ProviderIns
 
     public String type() {
         return this.innerModel().type();
+    }
+
+    public SystemData systemData() {
+        return this.innerModel().systemData();
     }
 
     public WorkloadMonitorProvisioningState provisioningState() {
