@@ -24,7 +24,11 @@ public final class ComputeInstanceAuthorizationType extends ExpandableStringEnum
         return fromString(name, ComputeInstanceAuthorizationType.class);
     }
 
-    /** @return known ComputeInstanceAuthorizationType values. */
+    /**
+     * Gets known ComputeInstanceAuthorizationType values.
+     *
+     * @return known ComputeInstanceAuthorizationType values.
+     */
     public static Collection<ComputeInstanceAuthorizationType> values() {
         return values(ComputeInstanceAuthorizationType.class);
     }

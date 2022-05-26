@@ -33,7 +33,11 @@ public final class OrderString extends ExpandableStringEnum<OrderString> {
         return fromString(name, OrderString.class);
     }
 
-    /** @return known OrderString values. */
+    /**
+     * Gets known OrderString values.
+     *
+     * @return known OrderString values.
+     */
     public static Collection<OrderString> values() {
         return values(OrderString.class);
     }

@@ -5,16 +5,12 @@
 package com.azure.resourcemanager.machinelearningservices.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
 /** The last operation on ComputeInstance. */
 @Fluent
 public final class ComputeInstanceLastOperation {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(ComputeInstanceLastOperation.class);
-
     /*
      * Name of the last operation.
      */
@@ -32,6 +28,12 @@ public final class ComputeInstanceLastOperation {
      */
     @JsonProperty(value = "operationStatus")
     private OperationStatus operationStatus;
+
+    /*
+     * Trigger of operation.
+     */
+    @JsonProperty(value = "operationTrigger")
+    private OperationTrigger operationTrigger;
 
     /**
      * Get the operationName property: Name of the last operation.
@@ -90,6 +92,26 @@ public final class ComputeInstanceLastOperation {
      */
     public ComputeInstanceLastOperation withOperationStatus(OperationStatus operationStatus) {
         this.operationStatus = operationStatus;
+        return this;
+    }
+
+    /**
+     * Get the operationTrigger property: Trigger of operation.
+     *
+     * @return the operationTrigger value.
+     */
+    public OperationTrigger operationTrigger() {
+        return this.operationTrigger;
+    }
+
+    /**
+     * Set the operationTrigger property: Trigger of operation.
+     *
+     * @param operationTrigger the operationTrigger value to set.
+     * @return the ComputeInstanceLastOperation object itself.
+     */
+    public ComputeInstanceLastOperation withOperationTrigger(OperationTrigger operationTrigger) {
+        this.operationTrigger = operationTrigger;
         return this;
     }
 

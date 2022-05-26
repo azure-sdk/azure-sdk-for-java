@@ -30,7 +30,11 @@ public final class VMTier extends ExpandableStringEnum<VMTier> {
         return fromString(name, VMTier.class);
     }
 
-    /** @return known VMTier values. */
+    /**
+     * Gets known VMTier values.
+     *
+     * @return known VMTier values.
+     */
     public static Collection<VMTier> values() {
         return values(VMTier.class);
     }

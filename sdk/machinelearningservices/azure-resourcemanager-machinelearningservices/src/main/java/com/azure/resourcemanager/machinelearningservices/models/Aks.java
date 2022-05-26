@@ -5,8 +5,6 @@
 package com.azure.resourcemanager.machinelearningservices.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
@@ -16,20 +14,18 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @JsonTypeName("AKS")
 @Fluent
 public final class Aks extends Compute {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(Aks.class);
-
     /*
      * AKS properties
      */
     @JsonProperty(value = "properties")
-    private AksProperties properties;
+    private AksSchemaProperties properties;
 
     /**
      * Get the properties property: AKS properties.
      *
      * @return the properties value.
      */
-    public AksProperties properties() {
+    public AksSchemaProperties properties() {
         return this.properties;
     }
 
@@ -39,15 +35,8 @@ public final class Aks extends Compute {
      * @param properties the properties value to set.
      * @return the Aks object itself.
      */
-    public Aks withProperties(AksProperties properties) {
+    public Aks withProperties(AksSchemaProperties properties) {
         this.properties = properties;
-        return this;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Aks withComputeLocation(String computeLocation) {
-        super.withComputeLocation(computeLocation);
         return this;
     }
 

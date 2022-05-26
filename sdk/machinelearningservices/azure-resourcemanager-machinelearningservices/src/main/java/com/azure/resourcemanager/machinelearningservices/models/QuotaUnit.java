@@ -24,7 +24,11 @@ public final class QuotaUnit extends ExpandableStringEnum<QuotaUnit> {
         return fromString(name, QuotaUnit.class);
     }
 
-    /** @return known QuotaUnit values. */
+    /**
+     * Gets known QuotaUnit values.
+     *
+     * @return known QuotaUnit values.
+     */
     public static Collection<QuotaUnit> values() {
         return values(QuotaUnit.class);
     }

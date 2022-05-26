@@ -30,7 +30,11 @@ public final class RemoteLoginPortPublicAccess extends ExpandableStringEnum<Remo
         return fromString(name, RemoteLoginPortPublicAccess.class);
     }
 
-    /** @return known RemoteLoginPortPublicAccess values. */
+    /**
+     * Gets known RemoteLoginPortPublicAccess values.
+     *
+     * @return known RemoteLoginPortPublicAccess values.
+     */
     public static Collection<RemoteLoginPortPublicAccess> values() {
         return values(RemoteLoginPortPublicAccess.class);
     }

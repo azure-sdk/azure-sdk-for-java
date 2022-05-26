@@ -5,8 +5,6 @@
 package com.azure.resourcemanager.machinelearningservices.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
@@ -16,20 +14,18 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @JsonTypeName("DataLakeAnalytics")
 @Fluent
 public final class DataLakeAnalytics extends Compute {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(DataLakeAnalytics.class);
-
     /*
      * The properties property.
      */
     @JsonProperty(value = "properties")
-    private DataLakeAnalyticsProperties properties;
+    private DataLakeAnalyticsSchemaProperties properties;
 
     /**
      * Get the properties property: The properties property.
      *
      * @return the properties value.
      */
-    public DataLakeAnalyticsProperties properties() {
+    public DataLakeAnalyticsSchemaProperties properties() {
         return this.properties;
     }
 
@@ -39,15 +35,8 @@ public final class DataLakeAnalytics extends Compute {
      * @param properties the properties value to set.
      * @return the DataLakeAnalytics object itself.
      */
-    public DataLakeAnalytics withProperties(DataLakeAnalyticsProperties properties) {
+    public DataLakeAnalytics withProperties(DataLakeAnalyticsSchemaProperties properties) {
         this.properties = properties;
-        return this;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public DataLakeAnalytics withComputeLocation(String computeLocation) {
-        super.withComputeLocation(computeLocation);
         return this;
     }
 

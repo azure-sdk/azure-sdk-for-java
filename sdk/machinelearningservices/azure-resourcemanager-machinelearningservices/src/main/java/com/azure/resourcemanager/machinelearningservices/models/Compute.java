@@ -6,8 +6,6 @@ package com.azure.resourcemanager.machinelearningservices.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.exception.ManagementError;
-import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
@@ -24,6 +22,7 @@ import java.util.List;
 @JsonTypeName("Compute")
 @JsonSubTypes({
     @JsonSubTypes.Type(name = "AKS", value = Aks.class),
+    @JsonSubTypes.Type(name = "Kubernetes", value = Kubernetes.class),
     @JsonSubTypes.Type(name = "AmlCompute", value = AmlCompute.class),
     @JsonSubTypes.Type(name = "ComputeInstance", value = ComputeInstance.class),
     @JsonSubTypes.Type(name = "VirtualMachine", value = VirtualMachine.class),
@@ -35,12 +34,10 @@ import java.util.List;
 })
 @Fluent
 public class Compute {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(Compute.class);
-
     /*
      * Location for the underlying compute
      */
-    @JsonProperty(value = "computeLocation")
+    @JsonProperty(value = "computeLocation", access = JsonProperty.Access.WRITE_ONLY)
     private String computeLocation;
 
     /*
@@ -101,17 +98,6 @@ public class Compute {
      */
     public String computeLocation() {
         return this.computeLocation;
-    }
-
-    /**
-     * Set the computeLocation property: Location for the underlying compute.
-     *
-     * @param computeLocation the computeLocation value to set.
-     * @return the Compute object itself.
-     */
-    public Compute withComputeLocation(String computeLocation) {
-        this.computeLocation = computeLocation;
-        return this;
     }
 
     /**

@@ -10,7 +10,7 @@ import java.time.Duration;
 /** The interface for AzureMachineLearningWorkspaces class. */
 public interface AzureMachineLearningWorkspaces {
     /**
-     * Gets Azure subscription identifier.
+     * Gets The ID of the target subscription.
      *
      * @return the subscriptionId value.
      */
@@ -59,13 +59,6 @@ public interface AzureMachineLearningWorkspaces {
     WorkspacesClient getWorkspaces();
 
     /**
-     * Gets the WorkspaceFeaturesClient object to access its operations.
-     *
-     * @return the WorkspaceFeaturesClient object.
-     */
-    WorkspaceFeaturesClient getWorkspaceFeatures();
-
-    /**
      * Gets the UsagesClient object to access its operations.
      *
      * @return the UsagesClient object.
@@ -87,18 +80,11 @@ public interface AzureMachineLearningWorkspaces {
     QuotasClient getQuotas();
 
     /**
-     * Gets the MachineLearningComputesClient object to access its operations.
+     * Gets the ComputesClient object to access its operations.
      *
-     * @return the MachineLearningComputesClient object.
+     * @return the ComputesClient object.
      */
-    MachineLearningComputesClient getMachineLearningComputes();
-
-    /**
-     * Gets the WorkspaceOperationsClient object to access its operations.
-     *
-     * @return the WorkspaceOperationsClient object.
-     */
-    WorkspaceOperationsClient getWorkspaceOperations();
+    ComputesClient getComputes();
 
     /**
      * Gets the PrivateEndpointConnectionsClient object to access its operations.
@@ -115,30 +101,128 @@ public interface AzureMachineLearningWorkspaces {
     PrivateLinkResourcesClient getPrivateLinkResources();
 
     /**
-     * Gets the MachineLearningServicesClient object to access its operations.
-     *
-     * @return the MachineLearningServicesClient object.
-     */
-    MachineLearningServicesClient getMachineLearningServices();
-
-    /**
-     * Gets the NotebooksClient object to access its operations.
-     *
-     * @return the NotebooksClient object.
-     */
-    NotebooksClient getNotebooks();
-
-    /**
-     * Gets the StorageAccountsClient object to access its operations.
-     *
-     * @return the StorageAccountsClient object.
-     */
-    StorageAccountsClient getStorageAccounts();
-
-    /**
      * Gets the WorkspaceConnectionsClient object to access its operations.
      *
      * @return the WorkspaceConnectionsClient object.
      */
     WorkspaceConnectionsClient getWorkspaceConnections();
+
+    /**
+     * Gets the BatchEndpointsClient object to access its operations.
+     *
+     * @return the BatchEndpointsClient object.
+     */
+    BatchEndpointsClient getBatchEndpoints();
+
+    /**
+     * Gets the BatchDeploymentsClient object to access its operations.
+     *
+     * @return the BatchDeploymentsClient object.
+     */
+    BatchDeploymentsClient getBatchDeployments();
+
+    /**
+     * Gets the CodeContainersClient object to access its operations.
+     *
+     * @return the CodeContainersClient object.
+     */
+    CodeContainersClient getCodeContainers();
+
+    /**
+     * Gets the CodeVersionsClient object to access its operations.
+     *
+     * @return the CodeVersionsClient object.
+     */
+    CodeVersionsClient getCodeVersions();
+
+    /**
+     * Gets the ComponentContainersClient object to access its operations.
+     *
+     * @return the ComponentContainersClient object.
+     */
+    ComponentContainersClient getComponentContainers();
+
+    /**
+     * Gets the ComponentVersionsClient object to access its operations.
+     *
+     * @return the ComponentVersionsClient object.
+     */
+    ComponentVersionsClient getComponentVersions();
+
+    /**
+     * Gets the DataContainersClient object to access its operations.
+     *
+     * @return the DataContainersClient object.
+     */
+    DataContainersClient getDataContainers();
+
+    /**
+     * Gets the DataVersionsClient object to access its operations.
+     *
+     * @return the DataVersionsClient object.
+     */
+    DataVersionsClient getDataVersions();
+
+    /**
+     * Gets the DatastoresClient object to access its operations.
+     *
+     * @return the DatastoresClient object.
+     */
+    DatastoresClient getDatastores();
+
+    /**
+     * Gets the EnvironmentContainersClient object to access its operations.
+     *
+     * @return the EnvironmentContainersClient object.
+     */
+    EnvironmentContainersClient getEnvironmentContainers();
+
+    /**
+     * Gets the EnvironmentVersionsClient object to access its operations.
+     *
+     * @return the EnvironmentVersionsClient object.
+     */
+    EnvironmentVersionsClient getEnvironmentVersions();
+
+    /**
+     * Gets the JobsClient object to access its operations.
+     *
+     * @return the JobsClient object.
+     */
+    JobsClient getJobs();
+
+    /**
+     * Gets the ModelContainersClient object to access its operations.
+     *
+     * @return the ModelContainersClient object.
+     */
+    ModelContainersClient getModelContainers();
+
+    /**
+     * Gets the ModelVersionsClient object to access its operations.
+     *
+     * @return the ModelVersionsClient object.
+     */
+    ModelVersionsClient getModelVersions();
+
+    /**
+     * Gets the OnlineEndpointsClient object to access its operations.
+     *
+     * @return the OnlineEndpointsClient object.
+     */
+    OnlineEndpointsClient getOnlineEndpoints();
+
+    /**
+     * Gets the OnlineDeploymentsClient object to access its operations.
+     *
+     * @return the OnlineDeploymentsClient object.
+     */
+    OnlineDeploymentsClient getOnlineDeployments();
+
+    /**
+     * Gets the WorkspaceFeaturesClient object to access its operations.
+     *
+     * @return the WorkspaceFeaturesClient object.
+     */
+    WorkspaceFeaturesClient getWorkspaceFeatures();
 }

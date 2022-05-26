@@ -5,20 +5,16 @@
 package com.azure.resourcemanager.machinelearningservices.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** The ssl configuration for scoring. */
 @Fluent
 public final class SslConfiguration {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(SslConfiguration.class);
-
     /*
      * Enable or disable ssl for scoring
      */
     @JsonProperty(value = "status")
-    private SslConfigurationStatus status;
+    private SslConfigStatus status;
 
     /*
      * Cert data
@@ -55,7 +51,7 @@ public final class SslConfiguration {
      *
      * @return the status value.
      */
-    public SslConfigurationStatus status() {
+    public SslConfigStatus status() {
         return this.status;
     }
 
@@ -65,7 +61,7 @@ public final class SslConfiguration {
      * @param status the status value to set.
      * @return the SslConfiguration object itself.
      */
-    public SslConfiguration withStatus(SslConfigurationStatus status) {
+    public SslConfiguration withStatus(SslConfigStatus status) {
         this.status = status;
         return this;
     }

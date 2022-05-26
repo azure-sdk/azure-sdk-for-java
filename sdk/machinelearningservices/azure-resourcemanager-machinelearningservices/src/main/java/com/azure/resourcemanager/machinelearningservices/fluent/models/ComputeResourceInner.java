@@ -5,32 +5,36 @@
 package com.azure.resourcemanager.machinelearningservices.fluent.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.management.Resource;
+import com.azure.core.management.ProxyResource;
 import com.azure.core.management.SystemData;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.machinelearningservices.models.Compute;
-import com.azure.resourcemanager.machinelearningservices.models.Identity;
+import com.azure.resourcemanager.machinelearningservices.models.ManagedServiceIdentity;
 import com.azure.resourcemanager.machinelearningservices.models.Sku;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
 /** Machine Learning compute object wrapped into ARM resource envelope. */
 @Fluent
-public final class ComputeResourceInner extends Resource {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(ComputeResourceInner.class);
-
-    /*
-     * Compute properties
-     */
-    @JsonProperty(value = "properties")
-    private Compute properties;
-
+public final class ComputeResourceInner extends ProxyResource {
     /*
      * The identity of the resource.
      */
     @JsonProperty(value = "identity")
-    private Identity identity;
+    private ManagedServiceIdentity identity;
+
+    /*
+     * Specifies the location of the resource.
+     */
+    @JsonProperty(value = "location")
+    private String location;
+
+    /*
+     * Contains resource tags defined as key/value pairs.
+     */
+    @JsonProperty(value = "tags")
+    @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
+    private Map<String, String> tags;
 
     /*
      * The sku of the workspace.
@@ -39,37 +43,24 @@ public final class ComputeResourceInner extends Resource {
     private Sku sku;
 
     /*
-     * Read only system data
+     * Azure Resource Manager metadata containing createdBy and modifiedBy
+     * information.
      */
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
-    /**
-     * Get the properties property: Compute properties.
-     *
-     * @return the properties value.
+    /*
+     * Compute properties
      */
-    public Compute properties() {
-        return this.properties;
-    }
-
-    /**
-     * Set the properties property: Compute properties.
-     *
-     * @param properties the properties value to set.
-     * @return the ComputeResourceInner object itself.
-     */
-    public ComputeResourceInner withProperties(Compute properties) {
-        this.properties = properties;
-        return this;
-    }
+    @JsonProperty(value = "properties")
+    private Compute properties;
 
     /**
      * Get the identity property: The identity of the resource.
      *
      * @return the identity value.
      */
-    public Identity identity() {
+    public ManagedServiceIdentity identity() {
         return this.identity;
     }
 
@@ -79,8 +70,48 @@ public final class ComputeResourceInner extends Resource {
      * @param identity the identity value to set.
      * @return the ComputeResourceInner object itself.
      */
-    public ComputeResourceInner withIdentity(Identity identity) {
+    public ComputeResourceInner withIdentity(ManagedServiceIdentity identity) {
         this.identity = identity;
+        return this;
+    }
+
+    /**
+     * Get the location property: Specifies the location of the resource.
+     *
+     * @return the location value.
+     */
+    public String location() {
+        return this.location;
+    }
+
+    /**
+     * Set the location property: Specifies the location of the resource.
+     *
+     * @param location the location value to set.
+     * @return the ComputeResourceInner object itself.
+     */
+    public ComputeResourceInner withLocation(String location) {
+        this.location = location;
+        return this;
+    }
+
+    /**
+     * Get the tags property: Contains resource tags defined as key/value pairs.
+     *
+     * @return the tags value.
+     */
+    public Map<String, String> tags() {
+        return this.tags;
+    }
+
+    /**
+     * Set the tags property: Contains resource tags defined as key/value pairs.
+     *
+     * @param tags the tags value to set.
+     * @return the ComputeResourceInner object itself.
+     */
+    public ComputeResourceInner withTags(Map<String, String> tags) {
+        this.tags = tags;
         return this;
     }
 
@@ -105,7 +136,7 @@ public final class ComputeResourceInner extends Resource {
     }
 
     /**
-     * Get the systemData property: Read only system data.
+     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
      *
      * @return the systemData value.
      */
@@ -113,17 +144,23 @@ public final class ComputeResourceInner extends Resource {
         return this.systemData;
     }
 
-    /** {@inheritDoc} */
-    @Override
-    public ComputeResourceInner withLocation(String location) {
-        super.withLocation(location);
-        return this;
+    /**
+     * Get the properties property: Compute properties.
+     *
+     * @return the properties value.
+     */
+    public Compute properties() {
+        return this.properties;
     }
 
-    /** {@inheritDoc} */
-    @Override
-    public ComputeResourceInner withTags(Map<String, String> tags) {
-        super.withTags(tags);
+    /**
+     * Set the properties property: Compute properties.
+     *
+     * @param properties the properties value to set.
+     * @return the ComputeResourceInner object itself.
+     */
+    public ComputeResourceInner withProperties(Compute properties) {
+        this.properties = properties;
         return this;
     }
 
@@ -133,14 +170,14 @@ public final class ComputeResourceInner extends Resource {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (properties() != null) {
-            properties().validate();
-        }
         if (identity() != null) {
             identity().validate();
         }
         if (sku() != null) {
             sku().validate();
+        }
+        if (properties() != null) {
+            properties().validate();
         }
     }
 }
