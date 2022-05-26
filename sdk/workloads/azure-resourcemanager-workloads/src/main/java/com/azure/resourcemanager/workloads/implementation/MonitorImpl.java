@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.workloads.implementation;
 
 import com.azure.core.management.Region;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.workloads.fluent.models.MonitorInner;
 import com.azure.resourcemanager.workloads.models.ManagedRGConfiguration;
@@ -44,6 +45,10 @@ public final class MonitorImpl implements Monitor, Monitor.Definition, Monitor.U
         } else {
             return Collections.emptyMap();
         }
+    }
+
+    public SystemData systemData() {
+        return this.innerModel().systemData();
     }
 
     public WorkloadMonitorProvisioningState provisioningState() {
