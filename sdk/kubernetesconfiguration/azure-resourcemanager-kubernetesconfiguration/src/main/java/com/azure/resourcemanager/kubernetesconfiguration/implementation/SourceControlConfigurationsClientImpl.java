@@ -324,14 +324,7 @@ public final class SourceControlConfigurationsClientImpl implements SourceContro
         String sourceControlConfigurationName) {
         return getWithResponseAsync(
                 resourceGroupName, clusterRp, clusterResourceName, clusterName, sourceControlConfigurationName)
-            .flatMap(
-                (Response<SourceControlConfigurationInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -590,14 +583,7 @@ public final class SourceControlConfigurationsClientImpl implements SourceContro
                 clusterName,
                 sourceControlConfigurationName,
                 sourceControlConfiguration)
-            .flatMap(
-                (Response<SourceControlConfigurationInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**

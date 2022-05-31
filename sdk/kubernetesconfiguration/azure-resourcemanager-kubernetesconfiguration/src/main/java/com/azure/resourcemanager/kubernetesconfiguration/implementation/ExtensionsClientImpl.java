@@ -130,7 +130,7 @@ public final class ExtensionsClientImpl implements ExtensionsClient {
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{clusterRp}"
                 + "/{clusterResourceName}/{clusterName}/providers/Microsoft.KubernetesConfiguration/extensions"
                 + "/{extensionName}")
-        @ExpectedResponses({202})
+        @ExpectedResponses({200, 202})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> update(
             @HostParam("$host") String endpoint,
@@ -744,14 +744,7 @@ public final class ExtensionsClientImpl implements ExtensionsClient {
         String clusterName,
         String extensionName) {
         return getWithResponseAsync(resourceGroupName, clusterRp, clusterResourceName, clusterName, extensionName)
-            .flatMap(
-                (Response<ExtensionInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**

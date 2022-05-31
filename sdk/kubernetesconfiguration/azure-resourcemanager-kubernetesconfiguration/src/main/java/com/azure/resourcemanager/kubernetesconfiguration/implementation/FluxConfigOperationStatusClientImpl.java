@@ -253,14 +253,7 @@ public final class FluxConfigOperationStatusClientImpl implements FluxConfigOper
         String operationId) {
         return getWithResponseAsync(
                 resourceGroupName, clusterRp, clusterResourceName, clusterName, fluxConfigurationName, operationId)
-            .flatMap(
-                (Response<OperationStatusResultInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
