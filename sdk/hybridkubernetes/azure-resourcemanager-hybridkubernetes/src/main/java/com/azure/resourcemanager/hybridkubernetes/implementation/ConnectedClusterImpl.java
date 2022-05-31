@@ -15,6 +15,7 @@ import com.azure.resourcemanager.hybridkubernetes.models.ConnectedClusterPatch;
 import com.azure.resourcemanager.hybridkubernetes.models.ConnectivityStatus;
 import com.azure.resourcemanager.hybridkubernetes.models.CredentialResults;
 import com.azure.resourcemanager.hybridkubernetes.models.ListClusterUserCredentialProperties;
+import com.azure.resourcemanager.hybridkubernetes.models.PrivateLinkState;
 import com.azure.resourcemanager.hybridkubernetes.models.ProvisioningState;
 import java.time.OffsetDateTime;
 import java.util.Collections;
@@ -107,12 +108,24 @@ public final class ConnectedClusterImpl
         return this.innerModel().connectivityStatus();
     }
 
+    public PrivateLinkState privateLinkState() {
+        return this.innerModel().privateLinkState();
+    }
+
+    public String privateLinkScopeResourceId() {
+        return this.innerModel().privateLinkScopeResourceId();
+    }
+
     public Region region() {
         return Region.fromName(this.regionName());
     }
 
     public String regionName() {
         return this.location();
+    }
+
+    public String resourceGroupName() {
+        return resourceGroupName;
     }
 
     public ConnectedClusterInner innerModel() {
@@ -266,6 +279,16 @@ public final class ConnectedClusterImpl
 
     public ConnectedClusterImpl withInfrastructure(String infrastructure) {
         this.innerModel().withInfrastructure(infrastructure);
+        return this;
+    }
+
+    public ConnectedClusterImpl withPrivateLinkState(PrivateLinkState privateLinkState) {
+        this.innerModel().withPrivateLinkState(privateLinkState);
+        return this;
+    }
+
+    public ConnectedClusterImpl withPrivateLinkScopeResourceId(String privateLinkScopeResourceId) {
+        this.innerModel().withPrivateLinkScopeResourceId(privateLinkScopeResourceId);
         return this;
     }
 

@@ -7,16 +7,14 @@ package com.azure.resourcemanager.hybridkubernetes.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.hybridkubernetes.models.ConnectivityStatus;
+import com.azure.resourcemanager.hybridkubernetes.models.PrivateLinkState;
 import com.azure.resourcemanager.hybridkubernetes.models.ProvisioningState;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
 /** Properties of the connected cluster. */
 @Fluent
 public final class ConnectedClusterProperties {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(ConnectedClusterProperties.class);
-
     /*
      * Base64 encoded public certificate used by the agent to do the initial
      * handshake to the backend services in Azure.
@@ -91,6 +89,20 @@ public final class ConnectedClusterProperties {
      */
     @JsonProperty(value = "connectivityStatus", access = JsonProperty.Access.WRITE_ONLY)
     private ConnectivityStatus connectivityStatus;
+
+    /*
+     * Property which describes the state of private link on a connected
+     * cluster resource.
+     */
+    @JsonProperty(value = "privateLinkState")
+    private PrivateLinkState privateLinkState;
+
+    /*
+     * The resource id of the private link scope this connected cluster is
+     * assigned to, if any.
+     */
+    @JsonProperty(value = "privateLinkScopeResourceId")
+    private String privateLinkScopeResourceId;
 
     /**
      * Get the agentPublicKeyCertificate property: Base64 encoded public certificate used by the agent to do the initial
@@ -250,16 +262,62 @@ public final class ConnectedClusterProperties {
     }
 
     /**
+     * Get the privateLinkState property: Property which describes the state of private link on a connected cluster
+     * resource.
+     *
+     * @return the privateLinkState value.
+     */
+    public PrivateLinkState privateLinkState() {
+        return this.privateLinkState;
+    }
+
+    /**
+     * Set the privateLinkState property: Property which describes the state of private link on a connected cluster
+     * resource.
+     *
+     * @param privateLinkState the privateLinkState value to set.
+     * @return the ConnectedClusterProperties object itself.
+     */
+    public ConnectedClusterProperties withPrivateLinkState(PrivateLinkState privateLinkState) {
+        this.privateLinkState = privateLinkState;
+        return this;
+    }
+
+    /**
+     * Get the privateLinkScopeResourceId property: The resource id of the private link scope this connected cluster is
+     * assigned to, if any.
+     *
+     * @return the privateLinkScopeResourceId value.
+     */
+    public String privateLinkScopeResourceId() {
+        return this.privateLinkScopeResourceId;
+    }
+
+    /**
+     * Set the privateLinkScopeResourceId property: The resource id of the private link scope this connected cluster is
+     * assigned to, if any.
+     *
+     * @param privateLinkScopeResourceId the privateLinkScopeResourceId value to set.
+     * @return the ConnectedClusterProperties object itself.
+     */
+    public ConnectedClusterProperties withPrivateLinkScopeResourceId(String privateLinkScopeResourceId) {
+        this.privateLinkScopeResourceId = privateLinkScopeResourceId;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (agentPublicKeyCertificate() == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property agentPublicKeyCertificate in model ConnectedClusterProperties"));
         }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(ConnectedClusterProperties.class);
 }

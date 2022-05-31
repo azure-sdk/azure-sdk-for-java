@@ -12,7 +12,7 @@ import java.util.Map;
 /** Samples for ConnectedCluster Update. */
 public final class ConnectedClusterUpdateSamples {
     /*
-     * x-ms-original-file: specification/hybridkubernetes/resource-manager/Microsoft.Kubernetes/stable/2021-10-01/examples/UpdateClusterExample.json
+     * x-ms-original-file: specification/hybridkubernetes/resource-manager/Microsoft.Kubernetes/preview/2022-05-01-preview/examples/UpdateClusterExample.json
      */
     /**
      * Sample code: UpdateClusterExample.

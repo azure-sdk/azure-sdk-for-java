@@ -18,6 +18,7 @@
 
 ```java
 import com.azure.resourcemanager.hybridkubernetes.models.ConnectedClusterIdentity;
+import com.azure.resourcemanager.hybridkubernetes.models.PrivateLinkState;
 import com.azure.resourcemanager.hybridkubernetes.models.ResourceIdentityType;
 import java.util.HashMap;
 import java.util.Map;
@@ -25,7 +26,7 @@ import java.util.Map;
 /** Samples for ConnectedCluster Create. */
 public final class ConnectedClusterCreateSamples {
     /*
-     * x-ms-original-file: specification/hybridkubernetes/resource-manager/Microsoft.Kubernetes/stable/2021-10-01/examples/CreateClusterExample.json
+     * x-ms-original-file: specification/hybridkubernetes/resource-manager/Microsoft.Kubernetes/preview/2022-05-01-preview/examples/CreateClusterExample.json
      */
     /**
      * Sample code: CreateClusterExample.
@@ -44,6 +45,32 @@ public final class ConnectedClusterCreateSamples {
                 "MIICYzCCAcygAwIBAgIBADANBgkqhkiG9w0BAQUFADAuMQswCQYDVQQGEwJVUzEMMAoGA1UEChMDSUJNMREwDwYDVQQLEwhMb2NhbCBDQTAeFw05OTEyMjIwNTAwMDBaFw0wMDEyMjMwNDU5NTlaMC4xCzAJBgNVBAYTAlVTMQwwCgYDVQQKEwNJQk0xETAPBgNVBAsTCExvY2FsIENBMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQD2bZEo7xGaX2/0GHkrNFZvlxBou9v1Jmt/PDiTMPve8r9FeJAQ0QdvFST/0JPQYD20rH0bimdDLgNdNynmyRoS2S/IInfpmf69iyc2G0TPyRvmHIiOZbdCd+YBHQi1adkj17NDcWj6S14tVurFX73zx0sNoMS79q3tuXKrDsxeuwIDAQABo4GQMIGNMEsGCVUdDwGG+EIBDQQ+EzxHZW5lcmF0ZWQgYnkgdGhlIFNlY3VyZVdheSBTZWN1cml0eSBTZXJ2ZXIgZm9yIE9TLzM5MCAoUkFDRikwDgYDVR0PAQH/BAQDAgAGMA8GA1UdEwEB/wQFMAMBAf8wHQYDVR0OBBYEFJ3+ocRyCTJw067dLSwr/nalx6YMMA0GCSqGSIb3DQEBBQUAA4GBAMaQzt+zaj1GU77yzlr8iiMBXgdQrwsZZWJo5exnAucJAEYQZmOfyLiM"
                     + " D6oYq+ZnfvM0n8G/Y79q8nhwvuxpYOnRSAXFp6xSkrIOeZtJMY1h00LKp/JX3Ng1svZ2agE126JHsQ0bhzN5TKsYfbwfTwfjdWAGy6Vf1nYi/rO+ryMO")
             .withTags(mapOf())
+            .create();
+    }
+
+    /*
+     * x-ms-original-file: specification/hybridkubernetes/resource-manager/Microsoft.Kubernetes/preview/2022-05-01-preview/examples/CreateClusterPrivateLinkExample.json
+     */
+    /**
+     * Sample code: CreateClusterPrivateLinkExample.
+     *
+     * @param manager Entry point to HybridKubernetesManager.
+     */
+    public static void createClusterPrivateLinkExample(
+        com.azure.resourcemanager.hybridkubernetes.HybridKubernetesManager manager) {
+        manager
+            .connectedClusters()
+            .define("testClusterPvtLink")
+            .withRegion("East US")
+            .withExistingResourceGroup("k8sc-rg")
+            .withIdentity(new ConnectedClusterIdentity().withType(ResourceIdentityType.SYSTEM_ASSIGNED))
+            .withAgentPublicKeyCertificate(
+                "MIICYzCCAcygAwIBAgIBADANBgkqhkiG9w0BAQUFADAuMQswCQYDVQQGEwJVUzEMMAoGA1UEChMDSUJNMREwDwYDVQQLEwhMb2NhbCBDQTAeFw05OTEyMjIwNTAwMDBaFw0wMDEyMjMwNDU5NTlaMC4xCzAJBgNVBAYTAlVTMQwwCgYDVQQKEwNJQk0xETAPBgNVBAsTCExvY2FsIENBMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQD2bZEo7xGaX2/0GHkrNFZvlxBou9v1Jmt/PDiTMPve8r9FeJAQ0QdvFST/0JPQYD20rH0bimdDLgNdNynmyRoS2S/IInfpmf69iyc2G0TPyRvmHIiOZbdCd+YBHQi1adkj17NDcWj6S14tVurFX73zx0sNoMS79q3tuXKrDsxeuwIDAQABo4GQMIGNMEsGCVUdDwGG+EIBDQQ+EzxHZW5lcmF0ZWQgYnkgdGhlIFNlY3VyZVdheSBTZWN1cml0eSBTZXJ2ZXIgZm9yIE9TLzM5MCAoUkFDRikwDgYDVR0PAQH/BAQDAgAGMA8GA1UdEwEB/wQFMAMBAf8wHQYDVR0OBBYEFJ3+ocRyCTJw067dLSwr/nalx6YMMA0GCSqGSIb3DQEBBQUAA4GBAMaQzt+zaj1GU77yzlr8iiMBXgdQrwsZZWJo5exnAucJAEYQZmOfyLiM"
+                    + " D6oYq+ZnfvM0n8G/Y79q8nhwvuxpYOnRSAXFp6xSkrIOeZtJMY1h00LKp/JX3Ng1svZ2agE126JHsQ0bhzN5TKsYfbwfTwfjdWAGy6Vf1nYi/rO+ryMO")
+            .withTags(mapOf())
+            .withPrivateLinkState(PrivateLinkState.ENABLED)
+            .withPrivateLinkScopeResourceId(
+                "/subscriptions/{subscriptionId}/resourceGroups/myResourceGroup/providers/Microsoft.HybridCompute/privateLinkScopes/privateLinkScopeName")
             .create();
     }
 
@@ -68,7 +95,7 @@ import com.azure.core.util.Context;
 /** Samples for ConnectedCluster Delete. */
 public final class ConnectedClusterDeleteSamples {
     /*
-     * x-ms-original-file: specification/hybridkubernetes/resource-manager/Microsoft.Kubernetes/stable/2021-10-01/examples/DeleteClusterExample.json
+     * x-ms-original-file: specification/hybridkubernetes/resource-manager/Microsoft.Kubernetes/preview/2022-05-01-preview/examples/DeleteClusterExample.json
      */
     /**
      * Sample code: DeleteClusterExample.
@@ -90,7 +117,7 @@ import com.azure.core.util.Context;
 /** Samples for ConnectedCluster GetByResourceGroup. */
 public final class ConnectedClusterGetByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/hybridkubernetes/resource-manager/Microsoft.Kubernetes/stable/2021-10-01/examples/GetClusterExample.json
+     * x-ms-original-file: specification/hybridkubernetes/resource-manager/Microsoft.Kubernetes/preview/2022-05-01-preview/examples/GetClusterExample.json
      */
     /**
      * Sample code: GetClusterExample.
@@ -111,7 +138,7 @@ import com.azure.core.util.Context;
 /** Samples for ConnectedCluster List. */
 public final class ConnectedClusterListSamples {
     /*
-     * x-ms-original-file: specification/hybridkubernetes/resource-manager/Microsoft.Kubernetes/stable/2021-10-01/examples/GetClustersBySubscriptionExample.json
+     * x-ms-original-file: specification/hybridkubernetes/resource-manager/Microsoft.Kubernetes/preview/2022-05-01-preview/examples/GetClustersBySubscriptionExample.json
      */
     /**
      * Sample code: GetClustersExample.
@@ -132,7 +159,7 @@ import com.azure.core.util.Context;
 /** Samples for ConnectedCluster ListByResourceGroup. */
 public final class ConnectedClusterListByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/hybridkubernetes/resource-manager/Microsoft.Kubernetes/stable/2021-10-01/examples/GetClustersByResourceGroupExample.json
+     * x-ms-original-file: specification/hybridkubernetes/resource-manager/Microsoft.Kubernetes/preview/2022-05-01-preview/examples/GetClustersByResourceGroupExample.json
      */
     /**
      * Sample code: GetClustersExample.
@@ -155,7 +182,7 @@ import com.azure.resourcemanager.hybridkubernetes.models.ListClusterUserCredenti
 /** Samples for ConnectedCluster ListClusterUserCredential. */
 public final class ConnectedClusterListClusterUserCredentialSamples {
     /*
-     * x-ms-original-file: specification/hybridkubernetes/resource-manager/Microsoft.Kubernetes/stable/2021-10-01/examples/ConnectedClustersListClusterCredentialResultCSPAAD.json
+     * x-ms-original-file: specification/hybridkubernetes/resource-manager/Microsoft.Kubernetes/preview/2022-05-01-preview/examples/ConnectedClustersListClusterCredentialResultCSPAAD.json
      */
     /**
      * Sample code: ListClusterUserCredentialExample.
@@ -176,7 +203,7 @@ public final class ConnectedClusterListClusterUserCredentialSamples {
     }
 
     /*
-     * x-ms-original-file: specification/hybridkubernetes/resource-manager/Microsoft.Kubernetes/stable/2021-10-01/examples/ConnectedClustersListClusterCredentialResultHPAAD.json
+     * x-ms-original-file: specification/hybridkubernetes/resource-manager/Microsoft.Kubernetes/preview/2022-05-01-preview/examples/ConnectedClustersListClusterCredentialResultHPAAD.json
      */
     /**
      * Sample code: ListClusterUserCredentialCSPExample.
@@ -197,7 +224,7 @@ public final class ConnectedClusterListClusterUserCredentialSamples {
     }
 
     /*
-     * x-ms-original-file: specification/hybridkubernetes/resource-manager/Microsoft.Kubernetes/stable/2021-10-01/examples/ConnectedClustersListClusterCredentialResultCSPToken.json
+     * x-ms-original-file: specification/hybridkubernetes/resource-manager/Microsoft.Kubernetes/preview/2022-05-01-preview/examples/ConnectedClustersListClusterCredentialResultCSPToken.json
      */
     /**
      * Sample code: ListClusterUserCredentialNonAadExample.
@@ -218,7 +245,7 @@ public final class ConnectedClusterListClusterUserCredentialSamples {
     }
 
     /*
-     * x-ms-original-file: specification/hybridkubernetes/resource-manager/Microsoft.Kubernetes/stable/2021-10-01/examples/ConnectedClustersListClusterCredentialResultHPToken.json
+     * x-ms-original-file: specification/hybridkubernetes/resource-manager/Microsoft.Kubernetes/preview/2022-05-01-preview/examples/ConnectedClustersListClusterCredentialResultHPToken.json
      */
     /**
      * Sample code: ListClusterUserCredentialNonAadCSPExample.
@@ -251,7 +278,7 @@ import java.util.Map;
 /** Samples for ConnectedCluster Update. */
 public final class ConnectedClusterUpdateSamples {
     /*
-     * x-ms-original-file: specification/hybridkubernetes/resource-manager/Microsoft.Kubernetes/stable/2021-10-01/examples/UpdateClusterExample.json
+     * x-ms-original-file: specification/hybridkubernetes/resource-manager/Microsoft.Kubernetes/preview/2022-05-01-preview/examples/UpdateClusterExample.json
      */
     /**
      * Sample code: UpdateClusterExample.
@@ -289,7 +316,7 @@ import com.azure.core.util.Context;
 /** Samples for Operations Get. */
 public final class OperationsGetSamples {
     /*
-     * x-ms-original-file: specification/hybridkubernetes/resource-manager/Microsoft.Kubernetes/stable/2021-10-01/examples/ListConnectedClusterOperationsExample.json
+     * x-ms-original-file: specification/hybridkubernetes/resource-manager/Microsoft.Kubernetes/preview/2022-05-01-preview/examples/ListConnectedClusterOperationsExample.json
      */
     /**
      * Sample code: ListConnectedClusterOperationsExample.
