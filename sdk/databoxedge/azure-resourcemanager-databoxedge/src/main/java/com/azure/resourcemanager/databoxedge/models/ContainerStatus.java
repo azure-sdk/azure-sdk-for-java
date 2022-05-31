@@ -36,7 +36,11 @@ public final class ContainerStatus extends ExpandableStringEnum<ContainerStatus>
         return fromString(name, ContainerStatus.class);
     }
 
-    /** @return known ContainerStatus values. */
+    /**
+     * Gets known ContainerStatus values.
+     *
+     * @return known ContainerStatus values.
+     */
     public static Collection<ContainerStatus> values() {
         return values(ContainerStatus.class);
     }

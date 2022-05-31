@@ -33,7 +33,11 @@ public final class DownloadPhase extends ExpandableStringEnum<DownloadPhase> {
         return fromString(name, DownloadPhase.class);
     }
 
-    /** @return known DownloadPhase values. */
+    /**
+     * Gets known DownloadPhase values.
+     *
+     * @return known DownloadPhase values.
+     */
     public static Collection<DownloadPhase> values() {
         return values(DownloadPhase.class);
     }

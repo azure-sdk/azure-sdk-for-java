@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.databoxedge.implementation;
 
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.databoxedge.fluent.models.ContainerInner;
 import com.azure.resourcemanager.databoxedge.models.AzureContainerDataFormat;
@@ -29,6 +30,10 @@ public final class ContainerImpl implements Container, Container.Definition, Con
         return this.innerModel().type();
     }
 
+    public SystemData systemData() {
+        return this.innerModel().systemData();
+    }
+
     public ContainerStatus containerStatus() {
         return this.innerModel().containerStatus();
     }
@@ -43,6 +48,10 @@ public final class ContainerImpl implements Container, Container.Definition, Con
 
     public OffsetDateTime createdDateTime() {
         return this.innerModel().createdDateTime();
+    }
+
+    public String resourceGroupName() {
+        return resourceGroupName;
     }
 
     public ContainerInner innerModel() {

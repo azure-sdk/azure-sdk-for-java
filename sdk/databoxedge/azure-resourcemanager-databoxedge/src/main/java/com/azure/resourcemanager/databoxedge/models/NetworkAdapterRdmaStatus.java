@@ -27,7 +27,11 @@ public final class NetworkAdapterRdmaStatus extends ExpandableStringEnum<Network
         return fromString(name, NetworkAdapterRdmaStatus.class);
     }
 
-    /** @return known NetworkAdapterRdmaStatus values. */
+    /**
+     * Gets known NetworkAdapterRdmaStatus values.
+     *
+     * @return known NetworkAdapterRdmaStatus values.
+     */
     public static Collection<NetworkAdapterRdmaStatus> values() {
         return values(NetworkAdapterRdmaStatus.class);
     }

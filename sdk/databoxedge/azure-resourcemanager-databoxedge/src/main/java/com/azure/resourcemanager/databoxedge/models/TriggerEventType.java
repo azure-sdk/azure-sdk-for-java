@@ -27,7 +27,11 @@ public final class TriggerEventType extends ExpandableStringEnum<TriggerEventTyp
         return fromString(name, TriggerEventType.class);
     }
 
-    /** @return known TriggerEventType values. */
+    /**
+     * Gets known TriggerEventType values.
+     *
+     * @return known TriggerEventType values.
+     */
     public static Collection<TriggerEventType> values() {
         return values(TriggerEventType.class);
     }

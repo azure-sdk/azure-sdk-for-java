@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.databoxedge.implementation;
 
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.databoxedge.fluent.models.UserInner;
 import com.azure.resourcemanager.databoxedge.models.AsymmetricEncryptedSecret;
@@ -30,6 +31,10 @@ public final class UserImpl implements User, User.Definition, User.Update {
         return this.innerModel().type();
     }
 
+    public SystemData systemData() {
+        return this.innerModel().systemData();
+    }
+
     public AsymmetricEncryptedSecret encryptedPassword() {
         return this.innerModel().encryptedPassword();
     }
@@ -45,6 +50,10 @@ public final class UserImpl implements User, User.Definition, User.Update {
 
     public UserType userType() {
         return this.innerModel().userType();
+    }
+
+    public String resourceGroupName() {
+        return resourceGroupName;
     }
 
     public UserInner innerModel() {
@@ -148,11 +157,6 @@ public final class UserImpl implements User, User.Definition, User.Update {
 
     public UserImpl withEncryptedPassword(AsymmetricEncryptedSecret encryptedPassword) {
         this.innerModel().withEncryptedPassword(encryptedPassword);
-        return this;
-    }
-
-    public UserImpl withShareAccessRights(List<ShareAccessRight> shareAccessRights) {
-        this.innerModel().withShareAccessRights(shareAccessRights);
         return this;
     }
 }
