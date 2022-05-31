@@ -96,6 +96,10 @@ public final class CustomLocationImpl implements CustomLocation, CustomLocation.
         return this.location();
     }
 
+    public String resourceGroupName() {
+        return resourceGroupName;
+    }
+
     public CustomLocationInner innerModel() {
         return this.innerObject;
     }
