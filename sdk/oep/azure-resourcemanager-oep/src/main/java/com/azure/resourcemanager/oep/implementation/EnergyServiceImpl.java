@@ -4,10 +4,14 @@
 
 package com.azure.resourcemanager.oep.implementation;
 
+import com.azure.core.http.rest.Response;
 import com.azure.core.management.Region;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
+import com.azure.resourcemanager.oep.fluent.models.DataPartitionAddOrRemoveRequestInner;
 import com.azure.resourcemanager.oep.fluent.models.EnergyServiceInner;
+import com.azure.resourcemanager.oep.models.DataPartitionAddOrRemoveRequest;
+import com.azure.resourcemanager.oep.models.DataPartitionsListResult;
 import com.azure.resourcemanager.oep.models.EnergyResourceUpdate;
 import com.azure.resourcemanager.oep.models.EnergyService;
 import com.azure.resourcemanager.oep.models.EnergyServiceProperties;
@@ -58,6 +62,10 @@ public final class EnergyServiceImpl implements EnergyService, EnergyService.Def
 
     public String regionName() {
         return this.location();
+    }
+
+    public String resourceGroupName() {
+        return resourceGroupName;
     }
 
     public EnergyServiceInner innerModel() {
@@ -153,6 +161,38 @@ public final class EnergyServiceImpl implements EnergyService, EnergyService.Def
                 .getByResourceGroupWithResponse(resourceGroupName, resourceName, context)
                 .getValue();
         return this;
+    }
+
+    public DataPartitionAddOrRemoveRequest addPartition(DataPartitionAddOrRemoveRequestInner body) {
+        return serviceManager.energyServices().addPartition(resourceGroupName, resourceName, body);
+    }
+
+    public DataPartitionAddOrRemoveRequest addPartition() {
+        return serviceManager.energyServices().addPartition(resourceGroupName, resourceName);
+    }
+
+    public DataPartitionAddOrRemoveRequest addPartition(DataPartitionAddOrRemoveRequestInner body, Context context) {
+        return serviceManager.energyServices().addPartition(resourceGroupName, resourceName, body, context);
+    }
+
+    public DataPartitionAddOrRemoveRequest removePartition(DataPartitionAddOrRemoveRequestInner body) {
+        return serviceManager.energyServices().removePartition(resourceGroupName, resourceName, body);
+    }
+
+    public DataPartitionAddOrRemoveRequest removePartition() {
+        return serviceManager.energyServices().removePartition(resourceGroupName, resourceName);
+    }
+
+    public DataPartitionAddOrRemoveRequest removePartition(DataPartitionAddOrRemoveRequestInner body, Context context) {
+        return serviceManager.energyServices().removePartition(resourceGroupName, resourceName, body, context);
+    }
+
+    public DataPartitionsListResult listPartitions() {
+        return serviceManager.energyServices().listPartitions(resourceGroupName, resourceName);
+    }
+
+    public Response<DataPartitionsListResult> listPartitionsWithResponse(Context context) {
+        return serviceManager.energyServices().listPartitionsWithResponse(resourceGroupName, resourceName, context);
     }
 
     public EnergyServiceImpl withRegion(Region location) {
