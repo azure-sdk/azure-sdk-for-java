@@ -58,6 +58,20 @@ public interface JobResource {
     SystemData systemData();
 
     /**
+     * Gets the sku property: The sku type.
+     *
+     * @return the sku value.
+     */
+    Sku sku();
+
+    /**
+     * Gets the identity property: Msi identity of the resource.
+     *
+     * @return the identity value.
+     */
+    ResourceIdentity identity();
+
+    /**
      * Gets the transferType property: Type of the data transfer.
      *
      * @return the transferType value.
@@ -149,20 +163,6 @@ public interface JobResource {
     Boolean isCancellableWithoutFee();
 
     /**
-     * Gets the sku property: The sku type.
-     *
-     * @return the sku value.
-     */
-    Sku sku();
-
-    /**
-     * Gets the identity property: Msi identity of the resource.
-     *
-     * @return the identity value.
-     */
-    ResourceIdentity identity();
-
-    /**
      * Gets the region of the resource.
      *
      * @return the region of the resource.
@@ -177,6 +177,13 @@ public interface JobResource {
     String regionName();
 
     /**
+     * Gets the name of the resource group.
+     *
+     * @return the name of the resource group.
+     */
+    String resourceGroupName();
+
+    /**
      * Gets the inner com.azure.resourcemanager.databox.fluent.models.JobResourceInner object.
      *
      * @return the inner object.
@@ -188,8 +195,8 @@ public interface JobResource {
         extends DefinitionStages.Blank,
             DefinitionStages.WithLocation,
             DefinitionStages.WithResourceGroup,
-            DefinitionStages.WithTransferType,
             DefinitionStages.WithSku,
+            DefinitionStages.WithTransferType,
             DefinitionStages.WithCreate {
     }
     /** The JobResource definition stages. */
@@ -223,17 +230,7 @@ public interface JobResource {
              * @param resourceGroupName The Resource Group Name.
              * @return the next definition stage.
              */
-            WithTransferType withExistingResourceGroup(String resourceGroupName);
-        }
-        /** The stage of the JobResource definition allowing to specify transferType. */
-        interface WithTransferType {
-            /**
-             * Specifies the transferType property: Type of the data transfer..
-             *
-             * @param transferType Type of the data transfer.
-             * @return the next definition stage.
-             */
-            WithSku withTransferType(TransferType transferType);
+            WithSku withExistingResourceGroup(String resourceGroupName);
         }
         /** The stage of the JobResource definition allowing to specify sku. */
         interface WithSku {
@@ -243,7 +240,17 @@ public interface JobResource {
              * @param sku The sku type.
              * @return the next definition stage.
              */
-            WithCreate withSku(Sku sku);
+            WithTransferType withSku(Sku sku);
+        }
+        /** The stage of the JobResource definition allowing to specify transferType. */
+        interface WithTransferType {
+            /**
+             * Specifies the transferType property: Type of the data transfer..
+             *
+             * @param transferType Type of the data transfer.
+             * @return the next definition stage.
+             */
+            WithCreate withTransferType(TransferType transferType);
         }
         /**
          * The stage of the JobResource definition which contains all the minimum required properties for the resource
@@ -251,10 +258,10 @@ public interface JobResource {
          */
         interface WithCreate
             extends DefinitionStages.WithTags,
+                DefinitionStages.WithIdentity,
                 DefinitionStages.WithDetails,
                 DefinitionStages.WithDeliveryType,
-                DefinitionStages.WithDeliveryInfo,
-                DefinitionStages.WithIdentity {
+                DefinitionStages.WithDeliveryInfo {
             /**
              * Executes the create request.
              *
@@ -279,6 +286,16 @@ public interface JobResource {
              * @return the next definition stage.
              */
             WithCreate withTags(Map<String, String> tags);
+        }
+        /** The stage of the JobResource definition allowing to specify identity. */
+        interface WithIdentity {
+            /**
+             * Specifies the identity property: Msi identity of the resource.
+             *
+             * @param identity Msi identity of the resource.
+             * @return the next definition stage.
+             */
+            WithCreate withIdentity(ResourceIdentity identity);
         }
         /** The stage of the JobResource definition allowing to specify details. */
         interface WithDetails {
@@ -310,16 +327,6 @@ public interface JobResource {
              * @return the next definition stage.
              */
             WithCreate withDeliveryInfo(JobDeliveryInfo deliveryInfo);
-        }
-        /** The stage of the JobResource definition allowing to specify identity. */
-        interface WithIdentity {
-            /**
-             * Specifies the identity property: Msi identity of the resource.
-             *
-             * @param identity Msi identity of the resource.
-             * @return the next definition stage.
-             */
-            WithCreate withIdentity(ResourceIdentity identity);
         }
     }
     /**
@@ -410,6 +417,28 @@ public interface JobResource {
     JobResource refresh(Context context);
 
     /**
+     * Request to mark devices for a given job as shipped.
+     *
+     * @param markDevicesShippedRequest Mark Devices Shipped Request.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void markDevicesShipped(MarkDevicesShippedRequest markDevicesShippedRequest);
+
+    /**
+     * Request to mark devices for a given job as shipped.
+     *
+     * @param markDevicesShippedRequest Mark Devices Shipped Request.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response}.
+     */
+    Response<Void> markDevicesShippedWithResponse(MarkDevicesShippedRequest markDevicesShippedRequest, Context context);
+
+    /**
      * Book shipment pick up.
      *
      * @param shipmentPickUpRequest Details of shipment pick up request.
@@ -428,7 +457,7 @@ public interface JobResource {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return shipment pick up response.
+     * @return shipment pick up response along with {@link Response}.
      */
     Response<ShipmentPickUpResponse> bookShipmentPickUpWithResponse(
         ShipmentPickUpRequest shipmentPickUpRequest, Context context);
@@ -451,7 +480,7 @@ public interface JobResource {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
+     * @return the {@link Response}.
      */
     Response<Void> cancelWithResponse(CancellationReason cancellationReason, Context context);
 
@@ -460,7 +489,7 @@ public interface JobResource {
      *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of unencrypted credentials for accessing device.
+     * @return list of unencrypted credentials for accessing device as paginated response with {@link PagedIterable}.
      */
     PagedIterable<UnencryptedCredentials> listCredentials();
 
@@ -471,7 +500,7 @@ public interface JobResource {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of unencrypted credentials for accessing device.
+     * @return list of unencrypted credentials for accessing device as paginated response with {@link PagedIterable}.
      */
     PagedIterable<UnencryptedCredentials> listCredentials(Context context);
 }
