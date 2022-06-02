@@ -97,7 +97,7 @@ public interface ContainerAppsClient {
         String resourceGroupName, String containerAppName, Context context);
 
     /**
-     * Create or update a Container App.
+     * Description for Create or update a Container App.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param containerAppName Name of the Container App.
@@ -113,7 +113,7 @@ public interface ContainerAppsClient {
         String resourceGroupName, String containerAppName, ContainerAppInner containerAppEnvelope);
 
     /**
-     * Create or update a Container App.
+     * Description for Create or update a Container App.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param containerAppName Name of the Container App.
@@ -130,7 +130,7 @@ public interface ContainerAppsClient {
         String resourceGroupName, String containerAppName, ContainerAppInner containerAppEnvelope, Context context);
 
     /**
-     * Create or update a Container App.
+     * Description for Create or update a Container App.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param containerAppName Name of the Container App.
@@ -146,7 +146,7 @@ public interface ContainerAppsClient {
         String resourceGroupName, String containerAppName, ContainerAppInner containerAppEnvelope);
 
     /**
-     * Create or update a Container App.
+     * Description for Create or update a Container App.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param containerAppName Name of the Container App.
@@ -163,7 +163,7 @@ public interface ContainerAppsClient {
         String resourceGroupName, String containerAppName, ContainerAppInner containerAppEnvelope, Context context);
 
     /**
-     * Delete a Container App.
+     * Description for Delete a Container App.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param containerAppName Name of the Container App.
@@ -177,7 +177,7 @@ public interface ContainerAppsClient {
     SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String containerAppName);
 
     /**
-     * Delete a Container App.
+     * Description for Delete a Container App.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param containerAppName Name of the Container App.
@@ -192,7 +192,7 @@ public interface ContainerAppsClient {
     SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String containerAppName, Context context);
 
     /**
-     * Delete a Container App.
+     * Description for Delete a Container App.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param containerAppName Name of the Container App.
@@ -205,7 +205,7 @@ public interface ContainerAppsClient {
     void delete(String resourceGroupName, String containerAppName);
 
     /**
-     * Delete a Container App.
+     * Description for Delete a Container App.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param containerAppName Name of the Container App.

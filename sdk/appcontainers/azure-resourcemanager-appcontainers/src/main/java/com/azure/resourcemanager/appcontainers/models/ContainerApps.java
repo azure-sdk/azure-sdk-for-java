@@ -85,7 +85,7 @@ public interface ContainerApps {
         String resourceGroupName, String containerAppName, Context context);
 
     /**
-     * Delete a Container App.
+     * Description for Delete a Container App.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param containerAppName Name of the Container App.
@@ -97,7 +97,7 @@ public interface ContainerApps {
     void deleteByResourceGroup(String resourceGroupName, String containerAppName);
 
     /**
-     * Delete a Container App.
+     * Description for Delete a Container App.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param containerAppName Name of the Container App.
@@ -218,7 +218,7 @@ public interface ContainerApps {
     Response<ContainerApp> getByIdWithResponse(String id, Context context);
 
     /**
-     * Delete a Container App.
+     * Description for Delete a Container App.
      *
      * @param id the resource ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -229,7 +229,7 @@ public interface ContainerApps {
     void deleteById(String id);
 
     /**
-     * Delete a Container App.
+     * Description for Delete a Container App.
      *
      * @param id the resource ID.
      * @param context The context to associate with this operation.

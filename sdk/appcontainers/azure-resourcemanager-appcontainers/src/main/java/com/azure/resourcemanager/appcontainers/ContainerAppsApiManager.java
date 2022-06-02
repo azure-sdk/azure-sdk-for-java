@@ -27,11 +27,14 @@ import com.azure.resourcemanager.appcontainers.fluent.ContainerAppsApiClient;
 import com.azure.resourcemanager.appcontainers.implementation.CertificatesImpl;
 import com.azure.resourcemanager.appcontainers.implementation.ContainerAppsApiClientBuilder;
 import com.azure.resourcemanager.appcontainers.implementation.ContainerAppsAuthConfigsImpl;
+import com.azure.resourcemanager.appcontainers.implementation.ContainerAppsDiagnosticsImpl;
 import com.azure.resourcemanager.appcontainers.implementation.ContainerAppsImpl;
 import com.azure.resourcemanager.appcontainers.implementation.ContainerAppsRevisionReplicasImpl;
 import com.azure.resourcemanager.appcontainers.implementation.ContainerAppsRevisionsImpl;
 import com.azure.resourcemanager.appcontainers.implementation.ContainerAppsSourceControlsImpl;
 import com.azure.resourcemanager.appcontainers.implementation.DaprComponentsImpl;
+import com.azure.resourcemanager.appcontainers.implementation.ManagedEnvironmentDiagnosticsImpl;
+import com.azure.resourcemanager.appcontainers.implementation.ManagedEnvironmentsDiagnosticsImpl;
 import com.azure.resourcemanager.appcontainers.implementation.ManagedEnvironmentsImpl;
 import com.azure.resourcemanager.appcontainers.implementation.ManagedEnvironmentsStoragesImpl;
 import com.azure.resourcemanager.appcontainers.implementation.NamespacesImpl;
@@ -39,11 +42,14 @@ import com.azure.resourcemanager.appcontainers.implementation.OperationsImpl;
 import com.azure.resourcemanager.appcontainers.models.Certificates;
 import com.azure.resourcemanager.appcontainers.models.ContainerApps;
 import com.azure.resourcemanager.appcontainers.models.ContainerAppsAuthConfigs;
+import com.azure.resourcemanager.appcontainers.models.ContainerAppsDiagnostics;
 import com.azure.resourcemanager.appcontainers.models.ContainerAppsRevisionReplicas;
 import com.azure.resourcemanager.appcontainers.models.ContainerAppsRevisions;
 import com.azure.resourcemanager.appcontainers.models.ContainerAppsSourceControls;
 import com.azure.resourcemanager.appcontainers.models.DaprComponents;
+import com.azure.resourcemanager.appcontainers.models.ManagedEnvironmentDiagnostics;
 import com.azure.resourcemanager.appcontainers.models.ManagedEnvironments;
+import com.azure.resourcemanager.appcontainers.models.ManagedEnvironmentsDiagnostics;
 import com.azure.resourcemanager.appcontainers.models.ManagedEnvironmentsStorages;
 import com.azure.resourcemanager.appcontainers.models.Namespaces;
 import com.azure.resourcemanager.appcontainers.models.Operations;
@@ -65,6 +71,12 @@ public final class ContainerAppsApiManager {
     private ContainerAppsRevisionReplicas containerAppsRevisionReplicas;
 
     private DaprComponents daprComponents;
+
+    private ContainerAppsDiagnostics containerAppsDiagnostics;
+
+    private ManagedEnvironmentDiagnostics managedEnvironmentDiagnostics;
+
+    private ManagedEnvironmentsDiagnostics managedEnvironmentsDiagnostics;
 
     private Operations operations;
 
@@ -243,7 +255,7 @@ public final class ContainerAppsApiManager {
                 .append("-")
                 .append("com.azure.resourcemanager.appcontainers")
                 .append("/")
-                .append("1.0.0-beta.3");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder
                     .append(" (")
@@ -361,6 +373,45 @@ public final class ContainerAppsApiManager {
             this.daprComponents = new DaprComponentsImpl(clientObject.getDaprComponents(), this);
         }
         return daprComponents;
+    }
+
+    /**
+     * Gets the resource collection API of ContainerAppsDiagnostics.
+     *
+     * @return Resource collection API of ContainerAppsDiagnostics.
+     */
+    public ContainerAppsDiagnostics containerAppsDiagnostics() {
+        if (this.containerAppsDiagnostics == null) {
+            this.containerAppsDiagnostics =
+                new ContainerAppsDiagnosticsImpl(clientObject.getContainerAppsDiagnostics(), this);
+        }
+        return containerAppsDiagnostics;
+    }
+
+    /**
+     * Gets the resource collection API of ManagedEnvironmentDiagnostics.
+     *
+     * @return Resource collection API of ManagedEnvironmentDiagnostics.
+     */
+    public ManagedEnvironmentDiagnostics managedEnvironmentDiagnostics() {
+        if (this.managedEnvironmentDiagnostics == null) {
+            this.managedEnvironmentDiagnostics =
+                new ManagedEnvironmentDiagnosticsImpl(clientObject.getManagedEnvironmentDiagnostics(), this);
+        }
+        return managedEnvironmentDiagnostics;
+    }
+
+    /**
+     * Gets the resource collection API of ManagedEnvironmentsDiagnostics.
+     *
+     * @return Resource collection API of ManagedEnvironmentsDiagnostics.
+     */
+    public ManagedEnvironmentsDiagnostics managedEnvironmentsDiagnostics() {
+        if (this.managedEnvironmentsDiagnostics == null) {
+            this.managedEnvironmentsDiagnostics =
+                new ManagedEnvironmentsDiagnosticsImpl(clientObject.getManagedEnvironmentsDiagnostics(), this);
+        }
+        return managedEnvironmentsDiagnostics;
     }
 
     /**
