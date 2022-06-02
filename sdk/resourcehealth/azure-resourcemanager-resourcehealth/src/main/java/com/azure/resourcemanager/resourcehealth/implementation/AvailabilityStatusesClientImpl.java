@@ -639,14 +639,7 @@ public final class AvailabilityStatusesClientImpl implements AvailabilityStatuse
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<AvailabilityStatusInner> getByResourceAsync(String resourceUri, String filter, String expand) {
         return getByResourceWithResponseAsync(resourceUri, filter, expand)
-            .flatMap(
-                (Response<AvailabilityStatusInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -667,14 +660,7 @@ public final class AvailabilityStatusesClientImpl implements AvailabilityStatuse
         final String filter = null;
         final String expand = null;
         return getByResourceWithResponseAsync(resourceUri, filter, expand)
-            .flatMap(
-                (Response<AvailabilityStatusInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**

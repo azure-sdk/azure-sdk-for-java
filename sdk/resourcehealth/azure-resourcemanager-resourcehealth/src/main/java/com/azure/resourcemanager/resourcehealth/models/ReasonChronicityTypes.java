@@ -27,7 +27,11 @@ public final class ReasonChronicityTypes extends ExpandableStringEnum<ReasonChro
         return fromString(name, ReasonChronicityTypes.class);
     }
 
-    /** @return known ReasonChronicityTypes values. */
+    /**
+     * Gets known ReasonChronicityTypes values.
+     *
+     * @return known ReasonChronicityTypes values.
+     */
     public static Collection<ReasonChronicityTypes> values() {
         return values(ReasonChronicityTypes.class);
     }
