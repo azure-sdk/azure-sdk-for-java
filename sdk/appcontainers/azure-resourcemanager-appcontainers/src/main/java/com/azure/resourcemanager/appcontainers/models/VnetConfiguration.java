@@ -12,8 +12,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public final class VnetConfiguration {
     /*
      * Boolean indicating the environment only has an internal load balancer.
-     * These environments do not have a public static IP resource, must provide
-     * ControlPlaneSubnetResourceId and AppSubnetResourceId if enabling this
+     * These environments do not have a public static IP resource. They must
+     * provide runtimeSubnetId and infrastructureSubnetId if enabling this
      * property
      */
     @JsonProperty(value = "internal")
@@ -60,8 +60,8 @@ public final class VnetConfiguration {
 
     /**
      * Get the internal property: Boolean indicating the environment only has an internal load balancer. These
-     * environments do not have a public static IP resource, must provide ControlPlaneSubnetResourceId and
-     * AppSubnetResourceId if enabling this property.
+     * environments do not have a public static IP resource. They must provide runtimeSubnetId and
+     * infrastructureSubnetId if enabling this property.
      *
      * @return the internal value.
      */
@@ -71,8 +71,8 @@ public final class VnetConfiguration {
 
     /**
      * Set the internal property: Boolean indicating the environment only has an internal load balancer. These
-     * environments do not have a public static IP resource, must provide ControlPlaneSubnetResourceId and
-     * AppSubnetResourceId if enabling this property.
+     * environments do not have a public static IP resource. They must provide runtimeSubnetId and
+     * infrastructureSubnetId if enabling this property.
      *
      * @param internal the internal value to set.
      * @return the VnetConfiguration object itself.

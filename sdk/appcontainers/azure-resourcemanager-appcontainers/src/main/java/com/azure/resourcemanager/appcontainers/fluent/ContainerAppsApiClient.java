@@ -80,6 +80,27 @@ public interface ContainerAppsApiClient {
     DaprComponentsClient getDaprComponents();
 
     /**
+     * Gets the ContainerAppsDiagnosticsClient object to access its operations.
+     *
+     * @return the ContainerAppsDiagnosticsClient object.
+     */
+    ContainerAppsDiagnosticsClient getContainerAppsDiagnostics();
+
+    /**
+     * Gets the ManagedEnvironmentDiagnosticsClient object to access its operations.
+     *
+     * @return the ManagedEnvironmentDiagnosticsClient object.
+     */
+    ManagedEnvironmentDiagnosticsClient getManagedEnvironmentDiagnostics();
+
+    /**
+     * Gets the ManagedEnvironmentsDiagnosticsClient object to access its operations.
+     *
+     * @return the ManagedEnvironmentsDiagnosticsClient object.
+     */
+    ManagedEnvironmentsDiagnosticsClient getManagedEnvironmentsDiagnostics();
+
+    /**
      * Gets the OperationsClient object to access its operations.
      *
      * @return the OperationsClient object.
