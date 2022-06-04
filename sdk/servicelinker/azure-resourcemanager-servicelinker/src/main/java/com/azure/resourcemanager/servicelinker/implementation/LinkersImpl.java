@@ -12,21 +12,21 @@ import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.servicelinker.fluent.LinkersClient;
 import com.azure.resourcemanager.servicelinker.fluent.models.LinkerResourceInner;
 import com.azure.resourcemanager.servicelinker.fluent.models.SourceConfigurationResultInner;
-import com.azure.resourcemanager.servicelinker.fluent.models.ValidateOperationResultInner;
+import com.azure.resourcemanager.servicelinker.fluent.models.ValidateResultInner;
 import com.azure.resourcemanager.servicelinker.models.LinkerResource;
 import com.azure.resourcemanager.servicelinker.models.Linkers;
 import com.azure.resourcemanager.servicelinker.models.SourceConfigurationResult;
-import com.azure.resourcemanager.servicelinker.models.ValidateOperationResult;
+import com.azure.resourcemanager.servicelinker.models.ValidateResult;
 
 public final class LinkersImpl implements Linkers {
     private static final ClientLogger LOGGER = new ClientLogger(LinkersImpl.class);
 
     private final LinkersClient innerClient;
 
-    private final com.azure.resourcemanager.servicelinker.ServiceLinkerManager serviceManager;
+    private final com.azure.resourcemanager.servicelinker.ServicelinkerManager serviceManager;
 
     public LinkersImpl(
-        LinkersClient innerClient, com.azure.resourcemanager.servicelinker.ServiceLinkerManager serviceManager) {
+        LinkersClient innerClient, com.azure.resourcemanager.servicelinker.ServicelinkerManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
     }
@@ -71,19 +71,19 @@ public final class LinkersImpl implements Linkers {
         this.serviceClient().delete(resourceUri, linkerName, context);
     }
 
-    public ValidateOperationResult validate(String resourceUri, String linkerName) {
-        ValidateOperationResultInner inner = this.serviceClient().validate(resourceUri, linkerName);
+    public ValidateResult validate(String resourceUri, String linkerName) {
+        ValidateResultInner inner = this.serviceClient().validate(resourceUri, linkerName);
         if (inner != null) {
-            return new ValidateOperationResultImpl(inner, this.manager());
+            return new ValidateResultImpl(inner, this.manager());
         } else {
             return null;
         }
     }
 
-    public ValidateOperationResult validate(String resourceUri, String linkerName, Context context) {
-        ValidateOperationResultInner inner = this.serviceClient().validate(resourceUri, linkerName, context);
+    public ValidateResult validate(String resourceUri, String linkerName, Context context) {
+        ValidateResultInner inner = this.serviceClient().validate(resourceUri, linkerName, context);
         if (inner != null) {
-            return new ValidateOperationResultImpl(inner, this.manager());
+            return new ValidateResultImpl(inner, this.manager());
         } else {
             return null;
         }
@@ -213,7 +213,7 @@ public final class LinkersImpl implements Linkers {
         return this.innerClient;
     }
 
-    private com.azure.resourcemanager.servicelinker.ServiceLinkerManager manager() {
+    private com.azure.resourcemanager.servicelinker.ServicelinkerManager manager() {
         return this.serviceManager;
     }
 
