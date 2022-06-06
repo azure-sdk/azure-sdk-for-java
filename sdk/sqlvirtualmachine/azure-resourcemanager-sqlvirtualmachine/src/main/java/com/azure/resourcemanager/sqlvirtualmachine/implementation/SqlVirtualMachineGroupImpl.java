@@ -5,7 +5,6 @@
 package com.azure.resourcemanager.sqlvirtualmachine.implementation;
 
 import com.azure.core.management.Region;
-import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.sqlvirtualmachine.fluent.models.SqlVirtualMachineGroupInner;
 import com.azure.resourcemanager.sqlvirtualmachine.models.ClusterConfiguration;
@@ -49,10 +48,6 @@ public final class SqlVirtualMachineGroupImpl
         }
     }
 
-    public SystemData systemData() {
-        return this.innerModel().systemData();
-    }
-
     public String provisioningState() {
         return this.innerModel().provisioningState();
     }
@@ -87,6 +82,10 @@ public final class SqlVirtualMachineGroupImpl
 
     public String regionName() {
         return this.location();
+    }
+
+    public String resourceGroupName() {
+        return resourceGroupName;
     }
 
     public SqlVirtualMachineGroupInner innerModel() {

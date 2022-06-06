@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for SqlVirtualMachineGroups GetByResourceGroup. */
 public final class SqlVirtualMachineGroupsGetByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/sqlvirtualmachine/resource-manager/Microsoft.SqlVirtualMachine/preview/2021-11-01-preview/examples/GetSqlVirtualMachineGroup.json
+     * x-ms-original-file: specification/sqlvirtualmachine/resource-manager/Microsoft.SqlVirtualMachine/stable/2022-02-01/examples/GetSqlVirtualMachineGroup.json
      */
     /**
      * Sample code: Gets a SQL virtual machine group.

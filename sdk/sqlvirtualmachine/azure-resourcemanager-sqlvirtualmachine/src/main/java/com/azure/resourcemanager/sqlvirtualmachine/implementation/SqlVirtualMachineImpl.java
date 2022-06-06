@@ -5,7 +5,6 @@
 package com.azure.resourcemanager.sqlvirtualmachine.implementation;
 
 import com.azure.core.management.Region;
-import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.sqlvirtualmachine.fluent.models.SqlVirtualMachineInner;
 import com.azure.resourcemanager.sqlvirtualmachine.models.AssessmentSettings;
@@ -59,10 +58,6 @@ public final class SqlVirtualMachineImpl
         return this.innerModel().identity();
     }
 
-    public SystemData systemData() {
-        return this.innerModel().systemData();
-    }
-
     public String virtualMachineResourceId() {
         return this.innerModel().virtualMachineResourceId();
     }
@@ -95,6 +90,10 @@ public final class SqlVirtualMachineImpl
         return this.innerModel().wsfcDomainCredentials();
     }
 
+    public String wsfcStaticIp() {
+        return this.innerModel().wsfcStaticIp();
+    }
+
     public AutoPatchingSettings autoPatchingSettings() {
         return this.innerModel().autoPatchingSettings();
     }
@@ -125,6 +124,10 @@ public final class SqlVirtualMachineImpl
 
     public String regionName() {
         return this.location();
+    }
+
+    public String resourceGroupName() {
+        return resourceGroupName;
     }
 
     public SqlVirtualMachineInner innerModel() {
@@ -293,6 +296,11 @@ public final class SqlVirtualMachineImpl
 
     public SqlVirtualMachineImpl withWsfcDomainCredentials(WsfcDomainCredentials wsfcDomainCredentials) {
         this.innerModel().withWsfcDomainCredentials(wsfcDomainCredentials);
+        return this;
+    }
+
+    public SqlVirtualMachineImpl withWsfcStaticIp(String wsfcStaticIp) {
+        this.innerModel().withWsfcStaticIp(wsfcStaticIp);
         return this;
     }
 

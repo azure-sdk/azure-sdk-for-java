@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for SqlVirtualMachines Redeploy. */
 public final class SqlVirtualMachinesRedeploySamples {
     /*
-     * x-ms-original-file: specification/sqlvirtualmachine/resource-manager/Microsoft.SqlVirtualMachine/preview/2021-11-01-preview/examples/RedeploySqlVirtualMachine.json
+     * x-ms-original-file: specification/sqlvirtualmachine/resource-manager/Microsoft.SqlVirtualMachine/stable/2022-02-01/examples/RedeploySqlVirtualMachine.json
      */
     /**
      * Sample code: Uninstalls and reinstalls the SQL Iaas Extension.

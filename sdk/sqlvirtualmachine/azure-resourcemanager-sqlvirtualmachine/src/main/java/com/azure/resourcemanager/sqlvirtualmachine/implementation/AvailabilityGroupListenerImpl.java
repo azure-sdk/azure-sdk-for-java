@@ -4,12 +4,12 @@
 
 package com.azure.resourcemanager.sqlvirtualmachine.implementation;
 
-import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.sqlvirtualmachine.fluent.models.AvailabilityGroupListenerInner;
 import com.azure.resourcemanager.sqlvirtualmachine.models.AgConfiguration;
 import com.azure.resourcemanager.sqlvirtualmachine.models.AvailabilityGroupListener;
 import com.azure.resourcemanager.sqlvirtualmachine.models.LoadBalancerConfiguration;
+import com.azure.resourcemanager.sqlvirtualmachine.models.MultiSubnetIpConfiguration;
 import java.util.Collections;
 import java.util.List;
 
@@ -31,10 +31,6 @@ public final class AvailabilityGroupListenerImpl
         return this.innerModel().type();
     }
 
-    public SystemData systemData() {
-        return this.innerModel().systemData();
-    }
-
     public String provisioningState() {
         return this.innerModel().provisioningState();
     }
@@ -52,6 +48,15 @@ public final class AvailabilityGroupListenerImpl
         }
     }
 
+    public List<MultiSubnetIpConfiguration> multiSubnetIpConfigurations() {
+        List<MultiSubnetIpConfiguration> inner = this.innerModel().multiSubnetIpConfigurations();
+        if (inner != null) {
+            return Collections.unmodifiableList(inner);
+        } else {
+            return Collections.emptyList();
+        }
+    }
+
     public Boolean createDefaultAvailabilityGroupIfNotExist() {
         return this.innerModel().createDefaultAvailabilityGroupIfNotExist();
     }
@@ -62,6 +67,10 @@ public final class AvailabilityGroupListenerImpl
 
     public AgConfiguration availabilityGroupConfiguration() {
         return this.innerModel().availabilityGroupConfiguration();
+    }
+
+    public String resourceGroupName() {
+        return resourceGroupName;
     }
 
     public AvailabilityGroupListenerInner innerModel() {
@@ -198,6 +207,12 @@ public final class AvailabilityGroupListenerImpl
     public AvailabilityGroupListenerImpl withLoadBalancerConfigurations(
         List<LoadBalancerConfiguration> loadBalancerConfigurations) {
         this.innerModel().withLoadBalancerConfigurations(loadBalancerConfigurations);
+        return this;
+    }
+
+    public AvailabilityGroupListenerImpl withMultiSubnetIpConfigurations(
+        List<MultiSubnetIpConfiguration> multiSubnetIpConfigurations) {
+        this.innerModel().withMultiSubnetIpConfigurations(multiSubnetIpConfigurations);
         return this;
     }
 

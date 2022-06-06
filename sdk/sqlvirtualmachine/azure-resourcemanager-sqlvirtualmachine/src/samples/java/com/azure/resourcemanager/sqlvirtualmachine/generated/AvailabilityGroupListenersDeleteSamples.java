@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for AvailabilityGroupListeners Delete. */
 public final class AvailabilityGroupListenersDeleteSamples {
     /*
-     * x-ms-original-file: specification/sqlvirtualmachine/resource-manager/Microsoft.SqlVirtualMachine/preview/2021-11-01-preview/examples/DeleteAvailabilityGroupListener.json
+     * x-ms-original-file: specification/sqlvirtualmachine/resource-manager/Microsoft.SqlVirtualMachine/stable/2022-02-01/examples/DeleteAvailabilityGroupListener.json
      */
     /**
      * Sample code: Deletes an availability group listener.

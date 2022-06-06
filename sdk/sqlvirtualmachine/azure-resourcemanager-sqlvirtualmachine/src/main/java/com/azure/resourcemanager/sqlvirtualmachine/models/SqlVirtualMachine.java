@@ -5,7 +5,6 @@
 package com.azure.resourcemanager.sqlvirtualmachine.models;
 
 import com.azure.core.management.Region;
-import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.sqlvirtualmachine.fluent.models.SqlVirtualMachineInner;
 import java.util.Map;
@@ -53,13 +52,6 @@ public interface SqlVirtualMachine {
      * @return the identity value.
      */
     ResourceIdentity identity();
-
-    /**
-     * Gets the systemData property: Metadata pertaining to creation and last modification of the resource.
-     *
-     * @return the systemData value.
-     */
-    SystemData systemData();
 
     /**
      * Gets the virtualMachineResourceId property: ARM Resource id of underlying virtual machine created from SQL
@@ -121,6 +113,14 @@ public interface SqlVirtualMachine {
     WsfcDomainCredentials wsfcDomainCredentials();
 
     /**
+     * Gets the wsfcStaticIp property: Domain credentials for setting up Windows Server Failover Cluster for SQL
+     * availability group.
+     *
+     * @return the wsfcStaticIp value.
+     */
+    String wsfcStaticIp();
+
+    /**
      * Gets the autoPatchingSettings property: Auto patching settings for applying critical security updates to SQL
      * virtual machine.
      *
@@ -176,6 +176,13 @@ public interface SqlVirtualMachine {
      * @return the name of the resource region.
      */
     String regionName();
+
+    /**
+     * Gets the name of the resource group.
+     *
+     * @return the name of the resource group.
+     */
+    String resourceGroupName();
 
     /**
      * Gets the inner com.azure.resourcemanager.sqlvirtualmachine.fluent.models.SqlVirtualMachineInner object.
@@ -238,6 +245,7 @@ public interface SqlVirtualMachine {
                 DefinitionStages.WithSqlManagement,
                 DefinitionStages.WithSqlImageSku,
                 DefinitionStages.WithWsfcDomainCredentials,
+                DefinitionStages.WithWsfcStaticIp,
                 DefinitionStages.WithAutoPatchingSettings,
                 DefinitionStages.WithAutoBackupSettings,
                 DefinitionStages.WithKeyVaultCredentialSettings,
@@ -342,6 +350,18 @@ public interface SqlVirtualMachine {
              * @return the next definition stage.
              */
             WithCreate withWsfcDomainCredentials(WsfcDomainCredentials wsfcDomainCredentials);
+        }
+        /** The stage of the SqlVirtualMachine definition allowing to specify wsfcStaticIp. */
+        interface WithWsfcStaticIp {
+            /**
+             * Specifies the wsfcStaticIp property: Domain credentials for setting up Windows Server Failover Cluster
+             * for SQL availability group..
+             *
+             * @param wsfcStaticIp Domain credentials for setting up Windows Server Failover Cluster for SQL
+             *     availability group.
+             * @return the next definition stage.
+             */
+            WithCreate withWsfcStaticIp(String wsfcStaticIp);
         }
         /** The stage of the SqlVirtualMachine definition allowing to specify autoPatchingSettings. */
         interface WithAutoPatchingSettings {
