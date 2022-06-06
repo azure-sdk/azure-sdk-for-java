@@ -21,10 +21,10 @@ public final class SecretAuthInfo extends AuthInfoBase {
     private String name;
 
     /*
-     * Password or key vault secret for secret auth.
+     * Password or account key for secret auth.
      */
-    @JsonProperty(value = "secretInfo")
-    private SecretInfoBase secretInfo;
+    @JsonProperty(value = "secret")
+    private String secret;
 
     /**
      * Get the name property: Username or account name for secret auth.
@@ -47,22 +47,22 @@ public final class SecretAuthInfo extends AuthInfoBase {
     }
 
     /**
-     * Get the secretInfo property: Password or key vault secret for secret auth.
+     * Get the secret property: Password or account key for secret auth.
      *
-     * @return the secretInfo value.
+     * @return the secret value.
      */
-    public SecretInfoBase secretInfo() {
-        return this.secretInfo;
+    public String secret() {
+        return this.secret;
     }
 
     /**
-     * Set the secretInfo property: Password or key vault secret for secret auth.
+     * Set the secret property: Password or account key for secret auth.
      *
-     * @param secretInfo the secretInfo value to set.
+     * @param secret the secret value to set.
      * @return the SecretAuthInfo object itself.
      */
-    public SecretAuthInfo withSecretInfo(SecretInfoBase secretInfo) {
-        this.secretInfo = secretInfo;
+    public SecretAuthInfo withSecret(String secret) {
+        this.secret = secret;
         return this;
     }
 
@@ -74,8 +74,5 @@ public final class SecretAuthInfo extends AuthInfoBase {
     @Override
     public void validate() {
         super.validate();
-        if (secretInfo() != null) {
-            secretInfo().validate();
-        }
     }
 }
