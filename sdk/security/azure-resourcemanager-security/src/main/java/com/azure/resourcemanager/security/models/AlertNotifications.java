@@ -27,7 +27,11 @@ public final class AlertNotifications extends ExpandableStringEnum<AlertNotifica
         return fromString(name, AlertNotifications.class);
     }
 
-    /** @return known AlertNotifications values. */
+    /**
+     * Gets known AlertNotifications values.
+     *
+     * @return known AlertNotifications values.
+     */
     public static Collection<AlertNotifications> values() {
         return values(AlertNotifications.class);
     }

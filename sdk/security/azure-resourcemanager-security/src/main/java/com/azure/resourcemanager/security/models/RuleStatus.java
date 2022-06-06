@@ -30,7 +30,11 @@ public final class RuleStatus extends ExpandableStringEnum<RuleStatus> {
         return fromString(name, RuleStatus.class);
     }
 
-    /** @return known RuleStatus values. */
+    /**
+     * Gets known RuleStatus values.
+     *
+     * @return known RuleStatus values.
+     */
     public static Collection<RuleStatus> values() {
         return values(RuleStatus.class);
     }

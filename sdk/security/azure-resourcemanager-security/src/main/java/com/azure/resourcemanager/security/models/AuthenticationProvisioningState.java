@@ -33,7 +33,11 @@ public final class AuthenticationProvisioningState extends ExpandableStringEnum<
         return fromString(name, AuthenticationProvisioningState.class);
     }
 
-    /** @return known AuthenticationProvisioningState values. */
+    /**
+     * Gets known AuthenticationProvisioningState values.
+     *
+     * @return known AuthenticationProvisioningState values.
+     */
     public static Collection<AuthenticationProvisioningState> values() {
         return values(AuthenticationProvisioningState.class);
     }
