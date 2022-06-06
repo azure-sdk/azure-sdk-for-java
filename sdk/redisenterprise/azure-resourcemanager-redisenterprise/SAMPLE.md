@@ -41,6 +41,10 @@
 - [List](#redisenterprise_list)
 - [ListByResourceGroup](#redisenterprise_listbyresourcegroup)
 - [Update](#redisenterprise_update)
+
+## Skus
+
+- [List](#skus_list)
 ### Databases_Create
 
 ```java
@@ -706,6 +710,27 @@ public final class RedisEnterpriseUpdateSamples {
             map.put(key, value);
         }
         return map;
+    }
+}
+```
+
+### Skus_List
+
+```java
+import com.azure.core.util.Context;
+
+/** Samples for Skus List. */
+public final class SkusListSamples {
+    /*
+     * x-ms-original-file: specification/redisenterprise/resource-manager/Microsoft.Cache/stable/2022-01-01/examples/SkusList.json
+     */
+    /**
+     * Sample code: SkusList.
+     *
+     * @param manager Entry point to RedisEnterpriseManager.
+     */
+    public static void skusList(com.azure.resourcemanager.redisenterprise.RedisEnterpriseManager manager) {
+        manager.skus().list("westus", Context.NONE);
     }
 }
 ```
