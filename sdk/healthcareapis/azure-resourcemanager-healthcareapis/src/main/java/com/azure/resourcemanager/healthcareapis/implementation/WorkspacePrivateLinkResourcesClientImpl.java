@@ -387,14 +387,7 @@ public final class WorkspacePrivateLinkResourcesClientImpl implements WorkspaceP
     private Mono<PrivateLinkResourceDescriptionInner> getAsync(
         String resourceGroupName, String workspaceName, String groupName) {
         return getWithResponseAsync(resourceGroupName, workspaceName, groupName)
-            .flatMap(
-                (Response<PrivateLinkResourceDescriptionInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**

@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for PrivateLinkResources ListByService. */
 public final class PrivateLinkResourcesListByServiceSamples {
     /*
-     * x-ms-original-file: specification/healthcareapis/resource-manager/Microsoft.HealthcareApis/stable/2021-11-01/examples/legacy/PrivateLinkResourcesListByService.json
+     * x-ms-original-file: specification/healthcareapis/resource-manager/Microsoft.HealthcareApis/stable/2022-06-01/examples/legacy/PrivateLinkResourcesListByService.json
      */
     /**
      * Sample code: PrivateLinkResources_ListGroupIds.

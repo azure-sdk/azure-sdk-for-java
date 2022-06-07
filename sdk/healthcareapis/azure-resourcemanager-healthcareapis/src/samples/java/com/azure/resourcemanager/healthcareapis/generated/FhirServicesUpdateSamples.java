@@ -12,7 +12,7 @@ import java.util.Map;
 /** Samples for FhirServices Update. */
 public final class FhirServicesUpdateSamples {
     /*
-     * x-ms-original-file: specification/healthcareapis/resource-manager/Microsoft.HealthcareApis/stable/2021-11-01/examples/fhirservices/FhirServices_Patch.json
+     * x-ms-original-file: specification/healthcareapis/resource-manager/Microsoft.HealthcareApis/stable/2022-06-01/examples/fhirservices/FhirServices_Patch.json
      */
     /**
      * Sample code: Update a Fhir Service.

@@ -460,14 +460,7 @@ public final class FhirServicesClientImpl implements FhirServicesClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<FhirServiceInner> getAsync(String resourceGroupName, String workspaceName, String fhirServiceName) {
         return getWithResponseAsync(resourceGroupName, workspaceName, fhirServiceName)
-            .flatMap(
-                (Response<FhirServiceInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
