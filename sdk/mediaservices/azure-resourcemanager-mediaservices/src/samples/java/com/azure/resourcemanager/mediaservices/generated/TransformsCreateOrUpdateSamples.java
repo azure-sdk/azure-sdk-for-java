@@ -12,7 +12,7 @@ import java.util.Arrays;
 /** Samples for Transforms CreateOrUpdate. */
 public final class TransformsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/stable/2021-11-01/examples/transforms-create.json
+     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/stable/2022-03-01/examples/transforms-create.json
      */
     /**
      * Sample code: Create or update a Transform.

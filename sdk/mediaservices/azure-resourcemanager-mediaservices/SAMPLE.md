@@ -1093,7 +1093,7 @@ import com.azure.core.util.Context;
 /** Samples for Jobs CancelJob. */
 public final class JobsCancelJobSamples {
     /*
-     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/stable/2021-11-01/examples/jobs-cancel.json
+     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/stable/2022-03-01/examples/jobs-cancel.json
      */
     /**
      * Sample code: Cancel a Job.
@@ -1120,7 +1120,7 @@ import java.util.Map;
 /** Samples for Jobs Create. */
 public final class JobsCreateSamples {
     /*
-     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/stable/2021-11-01/examples/jobs-create.json
+     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/stable/2022-03-01/examples/jobs-create.json
      */
     /**
      * Sample code: Create a Job.
@@ -1159,7 +1159,7 @@ import com.azure.core.util.Context;
 /** Samples for Jobs Delete. */
 public final class JobsDeleteSamples {
     /*
-     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/stable/2021-11-01/examples/jobs-delete.json
+     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/stable/2022-03-01/examples/jobs-delete.json
      */
     /**
      * Sample code: Delete a Job.
@@ -1182,7 +1182,7 @@ import com.azure.core.util.Context;
 /** Samples for Jobs Get. */
 public final class JobsGetSamples {
     /*
-     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/stable/2021-11-01/examples/jobs-get-by-name.json
+     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/stable/2022-03-01/examples/jobs-get-by-name.json
      */
     /**
      * Sample code: Get a Job by name.
@@ -1203,7 +1203,7 @@ import com.azure.core.util.Context;
 /** Samples for Jobs List. */
 public final class JobsListSamples {
     /*
-     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/stable/2021-11-01/examples/jobs-list-all-filter-by-state-ne.json
+     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/stable/2022-03-01/examples/jobs-list-all-filter-by-state-ne.json
      */
     /**
      * Sample code: Lists Jobs for the Transform filter by state not equal.
@@ -1224,7 +1224,7 @@ public final class JobsListSamples {
     }
 
     /*
-     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/stable/2021-11-01/examples/jobs-list-all-filter-by-state-eq.json
+     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/stable/2022-03-01/examples/jobs-list-all-filter-by-state-eq.json
      */
     /**
      * Sample code: Lists Jobs for the Transform filter by state equal.
@@ -1245,7 +1245,7 @@ public final class JobsListSamples {
     }
 
     /*
-     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/stable/2021-11-01/examples/jobs-list-all-filter-by-name.json
+     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/stable/2022-03-01/examples/jobs-list-all-filter-by-name.json
      */
     /**
      * Sample code: Lists Jobs for the Transform filter by name.
@@ -1266,7 +1266,7 @@ public final class JobsListSamples {
     }
 
     /*
-     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/stable/2021-11-01/examples/jobs-list-all-filter-by-lastmodified.json
+     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/stable/2022-03-01/examples/jobs-list-all-filter-by-lastmodified.json
      */
     /**
      * Sample code: Lists Jobs for the Transform filter by lastmodified.
@@ -1281,14 +1281,14 @@ public final class JobsListSamples {
                 "contosoresources",
                 "contosomedia",
                 "exampleTransform",
-                "properties/lastmodified ge 2021-11-01T00:00:10.0000000Z and properties/lastmodified le"
-                    + " 2021-11-01T00:00:20.0000000Z",
+                "properties/lastmodified ge 2021-06-01T00:00:10.0000000Z and properties/lastmodified le"
+                    + " 2021-06-01T00:00:20.0000000Z",
                 "properties/lastmodified desc",
                 Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/stable/2021-11-01/examples/jobs-list-all-filter-by-created.json
+     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/stable/2022-03-01/examples/jobs-list-all-filter-by-created.json
      */
     /**
      * Sample code: Lists Jobs for the Transform filter by created.
@@ -1303,14 +1303,14 @@ public final class JobsListSamples {
                 "contosoresources",
                 "contosomedia",
                 "exampleTransform",
-                "properties/created ge 2021-11-01T00:00:10.0000000Z and properties/created le"
-                    + " 2021-11-01T00:00:20.0000000Z",
+                "properties/created ge 2021-06-01T00:00:10.0000000Z and properties/created le"
+                    + " 2021-06-01T00:00:20.0000000Z",
                 "properties/created",
                 Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/stable/2021-11-01/examples/jobs-list-all.json
+     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/stable/2022-03-01/examples/jobs-list-all.json
      */
     /**
      * Sample code: Lists all of the Jobs for the Transform.
@@ -1323,7 +1323,7 @@ public final class JobsListSamples {
     }
 
     /*
-     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/stable/2021-11-01/examples/jobs-list-all-filter-by-name-and-state.json
+     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/stable/2022-03-01/examples/jobs-list-all-filter-by-name-and-state.json
      */
     /**
      * Sample code: Lists Jobs for the Transform filter by name and state.
@@ -1358,7 +1358,7 @@ import java.util.Arrays;
 /** Samples for Jobs Update. */
 public final class JobsUpdateSamples {
     /*
-     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/stable/2021-11-01/examples/jobs-update.json
+     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/stable/2022-03-01/examples/jobs-update.json
      */
     /**
      * Sample code: Update a Job.
@@ -3292,7 +3292,7 @@ import java.util.Arrays;
 /** Samples for Transforms CreateOrUpdate. */
 public final class TransformsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/stable/2021-11-01/examples/transforms-create.json
+     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/stable/2022-03-01/examples/transforms-create.json
      */
     /**
      * Sample code: Create or update a Transform.
@@ -3325,7 +3325,7 @@ import com.azure.core.util.Context;
 /** Samples for Transforms Delete. */
 public final class TransformsDeleteSamples {
     /*
-     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/stable/2021-11-01/examples/transforms-delete.json
+     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/stable/2022-03-01/examples/transforms-delete.json
      */
     /**
      * Sample code: Delete a Transform.
@@ -3346,7 +3346,7 @@ import com.azure.core.util.Context;
 /** Samples for Transforms Get. */
 public final class TransformsGetSamples {
     /*
-     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/stable/2021-11-01/examples/transforms-get-by-name.json
+     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/stable/2022-03-01/examples/transforms-get-by-name.json
      */
     /**
      * Sample code: Get a Transform by name.
@@ -3367,7 +3367,7 @@ import com.azure.core.util.Context;
 /** Samples for Transforms List. */
 public final class TransformsListSamples {
     /*
-     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/stable/2021-11-01/examples/transforms-list-all-filter-by-created.json
+     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/stable/2022-03-01/examples/transforms-list-all-filter-by-created.json
      */
     /**
      * Sample code: Lists the Transforms filter by created.
@@ -3381,14 +3381,14 @@ public final class TransformsListSamples {
             .list(
                 "contosoresources",
                 "contosomedia",
-                "properties/created gt 2021-11-01T00:00:00.0000000Z and properties/created le"
-                    + " 2021-11-01T00:00:10.0000000Z",
+                "properties/created gt 2021-06-01T00:00:00.0000000Z and properties/created le"
+                    + " 2021-06-01T00:00:10.0000000Z",
                 "properties/created",
                 Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/stable/2021-11-01/examples/transforms-list-all-filter-by-name.json
+     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/stable/2022-03-01/examples/transforms-list-all-filter-by-name.json
      */
     /**
      * Sample code: Lists the Transforms filter by name.
@@ -3408,7 +3408,7 @@ public final class TransformsListSamples {
     }
 
     /*
-     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/stable/2021-11-01/examples/transforms-list-all-filter-by-lastmodified.json
+     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/stable/2022-03-01/examples/transforms-list-all-filter-by-lastmodified.json
      */
     /**
      * Sample code: Lists the Transforms filter by lastmodified.
@@ -3422,14 +3422,14 @@ public final class TransformsListSamples {
             .list(
                 "contosoresources",
                 "contosomedia",
-                "properties/lastmodified gt 2021-11-01T00:00:00.0000000Z and properties/lastmodified le"
-                    + " 2021-11-01T00:00:10.0000000Z",
+                "properties/lastmodified gt 2021-06-01T00:00:00.0000000Z and properties/lastmodified le"
+                    + " 2021-06-01T00:00:10.0000000Z",
                 "properties/lastmodified desc",
                 Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/stable/2021-11-01/examples/transforms-list-all.json
+     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/stable/2022-03-01/examples/transforms-list-all.json
      */
     /**
      * Sample code: Lists the Transforms.
@@ -3456,7 +3456,7 @@ import java.util.Arrays;
 /** Samples for Transforms Update. */
 public final class TransformsUpdateSamples {
     /*
-     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/stable/2021-11-01/examples/transforms-update.json
+     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/stable/2022-03-01/examples/transforms-update.json
      */
     /**
      * Sample code: Update a Transform.

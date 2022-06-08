@@ -25,6 +25,9 @@ public final class EncoderNamedPreset extends ExpandableStringEnum<EncoderNamedP
     /** Static value AACGoodQualityAudio for EncoderNamedPreset. */
     public static final EncoderNamedPreset AACGOOD_QUALITY_AUDIO = fromString("AACGoodQualityAudio");
 
+    /** Static value DDGoodQualityAudio for EncoderNamedPreset. */
+    public static final EncoderNamedPreset DDGOOD_QUALITY_AUDIO = fromString("DDGoodQualityAudio");
+
     /** Static value ContentAwareEncodingExperimental for EncoderNamedPreset. */
     public static final EncoderNamedPreset CONTENT_AWARE_ENCODING_EXPERIMENTAL =
         fromString("ContentAwareEncodingExperimental");
@@ -60,6 +63,21 @@ public final class EncoderNamedPreset extends ExpandableStringEnum<EncoderNamedP
     /** Static value H265SingleBitrate4K for EncoderNamedPreset. */
     public static final EncoderNamedPreset H265SINGLE_BITRATE4K = fromString("H265SingleBitrate4K");
 
+    /** Static value AV1ContentAwareEncoding for EncoderNamedPreset. */
+    public static final EncoderNamedPreset AV1CONTENT_AWARE_ENCODING = fromString("AV1ContentAwareEncoding");
+
+    /** Static value AV1AdaptiveStreaming for EncoderNamedPreset. */
+    public static final EncoderNamedPreset AV1ADAPTIVE_STREAMING = fromString("AV1AdaptiveStreaming");
+
+    /** Static value AV1SingleBitrate720p for EncoderNamedPreset. */
+    public static final EncoderNamedPreset AV1SINGLE_BITRATE720P = fromString("AV1SingleBitrate720p");
+
+    /** Static value AV1SingleBitrate1080p for EncoderNamedPreset. */
+    public static final EncoderNamedPreset AV1SINGLE_BITRATE1080P = fromString("AV1SingleBitrate1080p");
+
+    /** Static value AV1SingleBitrate4K for EncoderNamedPreset. */
+    public static final EncoderNamedPreset AV1SINGLE_BITRATE4K = fromString("AV1SingleBitrate4K");
+
     /**
      * Creates or finds a EncoderNamedPreset from its string representation.
      *
@@ -71,7 +89,11 @@ public final class EncoderNamedPreset extends ExpandableStringEnum<EncoderNamedP
         return fromString(name, EncoderNamedPreset.class);
     }
 
-    /** @return known EncoderNamedPreset values. */
+    /**
+     * Gets known EncoderNamedPreset values.
+     *
+     * @return known EncoderNamedPreset values.
+     */
     public static Collection<EncoderNamedPreset> values() {
         return values(EncoderNamedPreset.class);
     }
