@@ -30,7 +30,6 @@ import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.desktopvirtualization.fluent.HostPoolsClient;
 import com.azure.resourcemanager.desktopvirtualization.fluent.models.HostPoolInner;
 import com.azure.resourcemanager.desktopvirtualization.fluent.models.RegistrationInfoInner;
@@ -40,8 +39,6 @@ import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in HostPoolsClient. */
 public final class HostPoolsClientImpl implements HostPoolsClient {
-    private final ClientLogger logger = new ClientLogger(HostPoolsClientImpl.class);
-
     /** The proxy service used to perform REST calls. */
     private final HostPoolsService service;
 
@@ -198,7 +195,7 @@ public final class HostPoolsClientImpl implements HostPoolsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a host pool.
+     * @return a host pool along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<HostPoolInner>> getByResourceGroupWithResponseAsync(
@@ -247,7 +244,7 @@ public final class HostPoolsClientImpl implements HostPoolsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a host pool.
+     * @return a host pool along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<HostPoolInner>> getByResourceGroupWithResponseAsync(
@@ -292,19 +289,12 @@ public final class HostPoolsClientImpl implements HostPoolsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a host pool.
+     * @return a host pool on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<HostPoolInner> getByResourceGroupAsync(String resourceGroupName, String hostPoolName) {
         return getByResourceGroupWithResponseAsync(resourceGroupName, hostPoolName)
-            .flatMap(
-                (Response<HostPoolInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -331,7 +321,7 @@ public final class HostPoolsClientImpl implements HostPoolsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a host pool.
+     * @return a host pool along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<HostPoolInner> getByResourceGroupWithResponse(
@@ -348,7 +338,7 @@ public final class HostPoolsClientImpl implements HostPoolsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return represents a HostPool definition.
+     * @return represents a HostPool definition along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<HostPoolInner>> createOrUpdateWithResponseAsync(
@@ -404,7 +394,7 @@ public final class HostPoolsClientImpl implements HostPoolsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return represents a HostPool definition.
+     * @return represents a HostPool definition along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<HostPoolInner>> createOrUpdateWithResponseAsync(
@@ -456,20 +446,13 @@ public final class HostPoolsClientImpl implements HostPoolsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return represents a HostPool definition.
+     * @return represents a HostPool definition on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<HostPoolInner> createOrUpdateAsync(
         String resourceGroupName, String hostPoolName, HostPoolInner hostPool) {
         return createOrUpdateWithResponseAsync(resourceGroupName, hostPoolName, hostPool)
-            .flatMap(
-                (Response<HostPoolInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -498,7 +481,7 @@ public final class HostPoolsClientImpl implements HostPoolsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return represents a HostPool definition.
+     * @return represents a HostPool definition along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<HostPoolInner> createOrUpdateWithResponse(
@@ -515,7 +498,7 @@ public final class HostPoolsClientImpl implements HostPoolsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the completion.
+     * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Void>> deleteWithResponseAsync(String resourceGroupName, String hostPoolName, Boolean force) {
@@ -565,7 +548,7 @@ public final class HostPoolsClientImpl implements HostPoolsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the completion.
+     * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Void>> deleteWithResponseAsync(
@@ -612,12 +595,11 @@ public final class HostPoolsClientImpl implements HostPoolsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the completion.
+     * @return A {@link Mono} that completes when a successful response is received.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> deleteAsync(String resourceGroupName, String hostPoolName, Boolean force) {
-        return deleteWithResponseAsync(resourceGroupName, hostPoolName, force)
-            .flatMap((Response<Void> res) -> Mono.empty());
+        return deleteWithResponseAsync(resourceGroupName, hostPoolName, force).flatMap(ignored -> Mono.empty());
     }
 
     /**
@@ -628,13 +610,12 @@ public final class HostPoolsClientImpl implements HostPoolsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the completion.
+     * @return A {@link Mono} that completes when a successful response is received.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> deleteAsync(String resourceGroupName, String hostPoolName) {
         final Boolean force = null;
-        return deleteWithResponseAsync(resourceGroupName, hostPoolName, force)
-            .flatMap((Response<Void> res) -> Mono.empty());
+        return deleteWithResponseAsync(resourceGroupName, hostPoolName, force).flatMap(ignored -> Mono.empty());
     }
 
     /**
@@ -662,7 +643,7 @@ public final class HostPoolsClientImpl implements HostPoolsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
+     * @return the {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<Void> deleteWithResponse(
@@ -679,7 +660,7 @@ public final class HostPoolsClientImpl implements HostPoolsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return represents a HostPool definition.
+     * @return represents a HostPool definition along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<HostPoolInner>> updateWithResponseAsync(
@@ -733,7 +714,7 @@ public final class HostPoolsClientImpl implements HostPoolsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return represents a HostPool definition.
+     * @return represents a HostPool definition along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<HostPoolInner>> updateWithResponseAsync(
@@ -783,19 +764,12 @@ public final class HostPoolsClientImpl implements HostPoolsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return represents a HostPool definition.
+     * @return represents a HostPool definition on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<HostPoolInner> updateAsync(String resourceGroupName, String hostPoolName, HostPoolPatch hostPool) {
         return updateWithResponseAsync(resourceGroupName, hostPoolName, hostPool)
-            .flatMap(
-                (Response<HostPoolInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -806,20 +780,13 @@ public final class HostPoolsClientImpl implements HostPoolsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return represents a HostPool definition.
+     * @return represents a HostPool definition on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<HostPoolInner> updateAsync(String resourceGroupName, String hostPoolName) {
         final HostPoolPatch hostPool = null;
         return updateWithResponseAsync(resourceGroupName, hostPoolName, hostPool)
-            .flatMap(
-                (Response<HostPoolInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -848,7 +815,7 @@ public final class HostPoolsClientImpl implements HostPoolsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return represents a HostPool definition.
+     * @return represents a HostPool definition along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<HostPoolInner> updateWithResponse(
@@ -863,7 +830,7 @@ public final class HostPoolsClientImpl implements HostPoolsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return hostPoolList.
+     * @return hostPoolList along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<HostPoolInner>> listByResourceGroupSinglePageAsync(String resourceGroupName) {
@@ -915,7 +882,7 @@ public final class HostPoolsClientImpl implements HostPoolsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return hostPoolList.
+     * @return hostPoolList along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<HostPoolInner>> listByResourceGroupSinglePageAsync(
@@ -964,7 +931,7 @@ public final class HostPoolsClientImpl implements HostPoolsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return hostPoolList.
+     * @return hostPoolList as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<HostPoolInner> listByResourceGroupAsync(String resourceGroupName) {
@@ -981,7 +948,7 @@ public final class HostPoolsClientImpl implements HostPoolsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return hostPoolList.
+     * @return hostPoolList as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<HostPoolInner> listByResourceGroupAsync(String resourceGroupName, Context context) {
@@ -997,7 +964,7 @@ public final class HostPoolsClientImpl implements HostPoolsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return hostPoolList.
+     * @return hostPoolList as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<HostPoolInner> listByResourceGroup(String resourceGroupName) {
@@ -1012,7 +979,7 @@ public final class HostPoolsClientImpl implements HostPoolsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return hostPoolList.
+     * @return hostPoolList as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<HostPoolInner> listByResourceGroup(String resourceGroupName, Context context) {
@@ -1024,7 +991,7 @@ public final class HostPoolsClientImpl implements HostPoolsClient {
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return hostPoolList.
+     * @return hostPoolList along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<HostPoolInner>> listSinglePageAsync() {
@@ -1070,7 +1037,7 @@ public final class HostPoolsClientImpl implements HostPoolsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return hostPoolList.
+     * @return hostPoolList along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<HostPoolInner>> listSinglePageAsync(Context context) {
@@ -1111,7 +1078,7 @@ public final class HostPoolsClientImpl implements HostPoolsClient {
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return hostPoolList.
+     * @return hostPoolList as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<HostPoolInner> listAsync() {
@@ -1125,7 +1092,7 @@ public final class HostPoolsClientImpl implements HostPoolsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return hostPoolList.
+     * @return hostPoolList as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<HostPoolInner> listAsync(Context context) {
@@ -1138,7 +1105,7 @@ public final class HostPoolsClientImpl implements HostPoolsClient {
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return hostPoolList.
+     * @return hostPoolList as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<HostPoolInner> list() {
@@ -1152,7 +1119,7 @@ public final class HostPoolsClientImpl implements HostPoolsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return hostPoolList.
+     * @return hostPoolList as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<HostPoolInner> list(Context context) {
@@ -1167,7 +1134,8 @@ public final class HostPoolsClientImpl implements HostPoolsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return represents a RegistrationInfo definition.
+     * @return represents a RegistrationInfo definition along with {@link Response} on successful completion of {@link
+     *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<RegistrationInfoInner>> retrieveRegistrationTokenWithResponseAsync(
@@ -1216,7 +1184,8 @@ public final class HostPoolsClientImpl implements HostPoolsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return represents a RegistrationInfo definition.
+     * @return represents a RegistrationInfo definition along with {@link Response} on successful completion of {@link
+     *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<RegistrationInfoInner>> retrieveRegistrationTokenWithResponseAsync(
@@ -1261,19 +1230,12 @@ public final class HostPoolsClientImpl implements HostPoolsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return represents a RegistrationInfo definition.
+     * @return represents a RegistrationInfo definition on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<RegistrationInfoInner> retrieveRegistrationTokenAsync(String resourceGroupName, String hostPoolName) {
         return retrieveRegistrationTokenWithResponseAsync(resourceGroupName, hostPoolName)
-            .flatMap(
-                (Response<RegistrationInfoInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -1300,7 +1262,7 @@ public final class HostPoolsClientImpl implements HostPoolsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return represents a RegistrationInfo definition.
+     * @return represents a RegistrationInfo definition along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<RegistrationInfoInner> retrieveRegistrationTokenWithResponse(
@@ -1315,7 +1277,7 @@ public final class HostPoolsClientImpl implements HostPoolsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return hostPoolList.
+     * @return hostPoolList along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<HostPoolInner>> listByResourceGroupNextSinglePageAsync(String nextLink) {
@@ -1352,7 +1314,7 @@ public final class HostPoolsClientImpl implements HostPoolsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return hostPoolList.
+     * @return hostPoolList along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<HostPoolInner>> listByResourceGroupNextSinglePageAsync(
@@ -1388,7 +1350,7 @@ public final class HostPoolsClientImpl implements HostPoolsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return hostPoolList.
+     * @return hostPoolList along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<HostPoolInner>> listNextSinglePageAsync(String nextLink) {
@@ -1424,7 +1386,7 @@ public final class HostPoolsClientImpl implements HostPoolsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return hostPoolList.
+     * @return hostPoolList along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<HostPoolInner>> listNextSinglePageAsync(String nextLink, Context context) {

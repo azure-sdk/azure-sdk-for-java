@@ -29,7 +29,6 @@ import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.desktopvirtualization.fluent.WorkspacesClient;
 import com.azure.resourcemanager.desktopvirtualization.fluent.models.WorkspaceInner;
 import com.azure.resourcemanager.desktopvirtualization.models.WorkspaceList;
@@ -38,8 +37,6 @@ import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in WorkspacesClient. */
 public final class WorkspacesClientImpl implements WorkspacesClient {
-    private final ClientLogger logger = new ClientLogger(WorkspacesClientImpl.class);
-
     /** The proxy service used to perform REST calls. */
     private final WorkspacesService service;
 
@@ -180,7 +177,7 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a workspace.
+     * @return a workspace along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<WorkspaceInner>> getByResourceGroupWithResponseAsync(
@@ -229,7 +226,7 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a workspace.
+     * @return a workspace along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<WorkspaceInner>> getByResourceGroupWithResponseAsync(
@@ -274,19 +271,12 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a workspace.
+     * @return a workspace on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<WorkspaceInner> getByResourceGroupAsync(String resourceGroupName, String workspaceName) {
         return getByResourceGroupWithResponseAsync(resourceGroupName, workspaceName)
-            .flatMap(
-                (Response<WorkspaceInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -313,7 +303,7 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a workspace.
+     * @return a workspace along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<WorkspaceInner> getByResourceGroupWithResponse(
@@ -330,7 +320,7 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return represents a Workspace definition.
+     * @return represents a Workspace definition along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<WorkspaceInner>> createOrUpdateWithResponseAsync(
@@ -386,7 +376,7 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return represents a Workspace definition.
+     * @return represents a Workspace definition along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<WorkspaceInner>> createOrUpdateWithResponseAsync(
@@ -438,20 +428,13 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return represents a Workspace definition.
+     * @return represents a Workspace definition on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<WorkspaceInner> createOrUpdateAsync(
         String resourceGroupName, String workspaceName, WorkspaceInner workspace) {
         return createOrUpdateWithResponseAsync(resourceGroupName, workspaceName, workspace)
-            .flatMap(
-                (Response<WorkspaceInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -480,7 +463,7 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return represents a Workspace definition.
+     * @return represents a Workspace definition along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<WorkspaceInner> createOrUpdateWithResponse(
@@ -496,7 +479,7 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the completion.
+     * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Void>> deleteWithResponseAsync(String resourceGroupName, String workspaceName) {
@@ -544,7 +527,7 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the completion.
+     * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Void>> deleteWithResponseAsync(
@@ -589,11 +572,11 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the completion.
+     * @return A {@link Mono} that completes when a successful response is received.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> deleteAsync(String resourceGroupName, String workspaceName) {
-        return deleteWithResponseAsync(resourceGroupName, workspaceName).flatMap((Response<Void> res) -> Mono.empty());
+        return deleteWithResponseAsync(resourceGroupName, workspaceName).flatMap(ignored -> Mono.empty());
     }
 
     /**
@@ -619,7 +602,7 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
+     * @return the {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<Void> deleteWithResponse(String resourceGroupName, String workspaceName, Context context) {
@@ -635,7 +618,7 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return represents a Workspace definition.
+     * @return represents a Workspace definition along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<WorkspaceInner>> updateWithResponseAsync(
@@ -689,7 +672,7 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return represents a Workspace definition.
+     * @return represents a Workspace definition along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<WorkspaceInner>> updateWithResponseAsync(
@@ -739,19 +722,12 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return represents a Workspace definition.
+     * @return represents a Workspace definition on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<WorkspaceInner> updateAsync(String resourceGroupName, String workspaceName, WorkspacePatch workspace) {
         return updateWithResponseAsync(resourceGroupName, workspaceName, workspace)
-            .flatMap(
-                (Response<WorkspaceInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -762,20 +738,13 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return represents a Workspace definition.
+     * @return represents a Workspace definition on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<WorkspaceInner> updateAsync(String resourceGroupName, String workspaceName) {
         final WorkspacePatch workspace = null;
         return updateWithResponseAsync(resourceGroupName, workspaceName, workspace)
-            .flatMap(
-                (Response<WorkspaceInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -804,7 +773,7 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return represents a Workspace definition.
+     * @return represents a Workspace definition along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<WorkspaceInner> updateWithResponse(
@@ -819,7 +788,7 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return workspaceList.
+     * @return workspaceList along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<WorkspaceInner>> listByResourceGroupSinglePageAsync(String resourceGroupName) {
@@ -871,7 +840,7 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return workspaceList.
+     * @return workspaceList along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<WorkspaceInner>> listByResourceGroupSinglePageAsync(
@@ -920,7 +889,7 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return workspaceList.
+     * @return workspaceList as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<WorkspaceInner> listByResourceGroupAsync(String resourceGroupName) {
@@ -937,7 +906,7 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return workspaceList.
+     * @return workspaceList as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<WorkspaceInner> listByResourceGroupAsync(String resourceGroupName, Context context) {
@@ -953,7 +922,7 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return workspaceList.
+     * @return workspaceList as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<WorkspaceInner> listByResourceGroup(String resourceGroupName) {
@@ -968,7 +937,7 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return workspaceList.
+     * @return workspaceList as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<WorkspaceInner> listByResourceGroup(String resourceGroupName, Context context) {
@@ -980,7 +949,7 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return workspaceList.
+     * @return workspaceList along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<WorkspaceInner>> listSinglePageAsync() {
@@ -1026,7 +995,7 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return workspaceList.
+     * @return workspaceList along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<WorkspaceInner>> listSinglePageAsync(Context context) {
@@ -1067,7 +1036,7 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return workspaceList.
+     * @return workspaceList as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<WorkspaceInner> listAsync() {
@@ -1082,7 +1051,7 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return workspaceList.
+     * @return workspaceList as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<WorkspaceInner> listAsync(Context context) {
@@ -1095,7 +1064,7 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return workspaceList.
+     * @return workspaceList as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<WorkspaceInner> list() {
@@ -1109,7 +1078,7 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return workspaceList.
+     * @return workspaceList as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<WorkspaceInner> list(Context context) {
@@ -1123,7 +1092,7 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return workspaceList.
+     * @return workspaceList along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<WorkspaceInner>> listByResourceGroupNextSinglePageAsync(String nextLink) {
@@ -1160,7 +1129,7 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return workspaceList.
+     * @return workspaceList along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<WorkspaceInner>> listByResourceGroupNextSinglePageAsync(
@@ -1196,7 +1165,7 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return workspaceList.
+     * @return workspaceList along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<WorkspaceInner>> listBySubscriptionNextSinglePageAsync(String nextLink) {
@@ -1233,7 +1202,7 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return workspaceList.
+     * @return workspaceList along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<WorkspaceInner>> listBySubscriptionNextSinglePageAsync(

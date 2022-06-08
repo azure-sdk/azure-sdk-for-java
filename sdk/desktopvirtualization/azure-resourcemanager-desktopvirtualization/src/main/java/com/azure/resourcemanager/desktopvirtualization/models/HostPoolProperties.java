@@ -164,7 +164,23 @@ public interface HostPoolProperties {
      *
      * @return the publicNetworkAccess value.
      */
-    PublicNetworkAccess publicNetworkAccess();
+    HostpoolPublicNetworkAccess publicNetworkAccess();
+
+    /**
+     * Gets the agentUpdate property: The preferred settings for updating the agent components (RDAgent, Geneva
+     * Monitoring agent, and side-by-side stack) on session hosts.
+     *
+     * @return the agentUpdate value.
+     */
+    AgentUpdateProperties agentUpdate();
+
+    /**
+     * Gets the privateEndpointConnections property: List of private endpoint connection associated with the specified
+     * resource.
+     *
+     * @return the privateEndpointConnections value.
+     */
+    List<PrivateEndpointConnection> privateEndpointConnections();
 
     /**
      * Gets the inner com.azure.resourcemanager.desktopvirtualization.fluent.models.HostPoolPropertiesInner object.
