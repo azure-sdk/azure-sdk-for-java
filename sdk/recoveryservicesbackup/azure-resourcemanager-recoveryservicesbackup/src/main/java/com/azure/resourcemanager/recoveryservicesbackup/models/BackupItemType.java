@@ -55,6 +55,9 @@ public final class BackupItemType extends ExpandableStringEnum<BackupItemType> {
     /** Static value SAPAseDatabase for BackupItemType. */
     public static final BackupItemType SAPASE_DATABASE = fromString("SAPAseDatabase");
 
+    /** Static value SAPHanaDBInstance for BackupItemType. */
+    public static final BackupItemType SAPHANA_DBINSTANCE = fromString("SAPHanaDBInstance");
+
     /**
      * Creates or finds a BackupItemType from its string representation.
      *

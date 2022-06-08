@@ -33,13 +33,13 @@ public class ProtectedItem {
     /*
      * Type of backup management for the backed up item.
      */
-    @JsonProperty(value = "backupManagementType")
+    @JsonProperty(value = "backupManagementType", access = JsonProperty.Access.WRITE_ONLY)
     private BackupManagementType backupManagementType;
 
     /*
      * Type of workload this item represents.
      */
-    @JsonProperty(value = "workloadType")
+    @JsonProperty(value = "workloadType", access = JsonProperty.Access.WRITE_ONLY)
     private DataSourceType workloadType;
 
     /*
@@ -140,34 +140,12 @@ public class ProtectedItem {
     }
 
     /**
-     * Set the backupManagementType property: Type of backup management for the backed up item.
-     *
-     * @param backupManagementType the backupManagementType value to set.
-     * @return the ProtectedItem object itself.
-     */
-    public ProtectedItem withBackupManagementType(BackupManagementType backupManagementType) {
-        this.backupManagementType = backupManagementType;
-        return this;
-    }
-
-    /**
      * Get the workloadType property: Type of workload this item represents.
      *
      * @return the workloadType value.
      */
     public DataSourceType workloadType() {
         return this.workloadType;
-    }
-
-    /**
-     * Set the workloadType property: Type of workload this item represents.
-     *
-     * @param workloadType the workloadType value to set.
-     * @return the ProtectedItem object itself.
-     */
-    public ProtectedItem withWorkloadType(DataSourceType workloadType) {
-        this.workloadType = workloadType;
-        return this;
     }
 
     /**

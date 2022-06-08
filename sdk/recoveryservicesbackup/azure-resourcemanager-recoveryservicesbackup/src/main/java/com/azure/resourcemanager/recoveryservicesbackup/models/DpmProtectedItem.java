@@ -122,20 +122,6 @@ public final class DpmProtectedItem extends ProtectedItem {
 
     /** {@inheritDoc} */
     @Override
-    public DpmProtectedItem withBackupManagementType(BackupManagementType backupManagementType) {
-        super.withBackupManagementType(backupManagementType);
-        return this;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public DpmProtectedItem withWorkloadType(DataSourceType workloadType) {
-        super.withWorkloadType(workloadType);
-        return this;
-    }
-
-    /** {@inheritDoc} */
-    @Override
     public DpmProtectedItem withContainerName(String containerName) {
         super.withContainerName(containerName);
         return this;

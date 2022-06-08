@@ -31,6 +31,9 @@ public final class WorkloadItemType extends ExpandableStringEnum<WorkloadItemTyp
     /** Static value SAPAseDatabase for WorkloadItemType. */
     public static final WorkloadItemType SAPASE_DATABASE = fromString("SAPAseDatabase");
 
+    /** Static value SAPHanaDBInstance for WorkloadItemType. */
+    public static final WorkloadItemType SAPHANA_DBINSTANCE = fromString("SAPHanaDBInstance");
+
     /**
      * Creates or finds a WorkloadItemType from its string representation.
      *

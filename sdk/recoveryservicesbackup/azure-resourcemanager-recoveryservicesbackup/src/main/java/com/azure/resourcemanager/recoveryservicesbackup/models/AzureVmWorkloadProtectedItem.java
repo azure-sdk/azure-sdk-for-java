@@ -28,6 +28,9 @@ import java.util.Map;
     @JsonSubTypes.Type(
         name = "AzureVmWorkloadSAPHanaDatabase",
         value = AzureVmWorkloadSapHanaDatabaseProtectedItem.class),
+    @JsonSubTypes.Type(
+        name = "AzureVmWorkloadSAPHanaDBInstance",
+        value = AzureVmWorkloadSapHanaDBInstanceProtectedItem.class),
     @JsonSubTypes.Type(name = "AzureVmWorkloadSQLDatabase", value = AzureVmWorkloadSqlDatabaseProtectedItem.class)
 })
 @Fluent
@@ -35,7 +38,7 @@ public class AzureVmWorkloadProtectedItem extends ProtectedItem {
     /*
      * Friendly name of the DB represented by this backup item.
      */
-    @JsonProperty(value = "friendlyName")
+    @JsonProperty(value = "friendlyName", access = JsonProperty.Access.WRITE_ONLY)
     private String friendlyName;
 
     /*
@@ -60,7 +63,7 @@ public class AzureVmWorkloadProtectedItem extends ProtectedItem {
     /*
      * Backup status of this backup item.
      */
-    @JsonProperty(value = "protectionStatus")
+    @JsonProperty(value = "protectionStatus", access = JsonProperty.Access.WRITE_ONLY)
     private String protectionStatus;
 
     /*
@@ -120,17 +123,6 @@ public class AzureVmWorkloadProtectedItem extends ProtectedItem {
      */
     public String friendlyName() {
         return this.friendlyName;
-    }
-
-    /**
-     * Set the friendlyName property: Friendly name of the DB represented by this backup item.
-     *
-     * @param friendlyName the friendlyName value to set.
-     * @return the AzureVmWorkloadProtectedItem object itself.
-     */
-    public AzureVmWorkloadProtectedItem withFriendlyName(String friendlyName) {
-        this.friendlyName = friendlyName;
-        return this;
     }
 
     /**
@@ -200,17 +192,6 @@ public class AzureVmWorkloadProtectedItem extends ProtectedItem {
      */
     public String protectionStatus() {
         return this.protectionStatus;
-    }
-
-    /**
-     * Set the protectionStatus property: Backup status of this backup item.
-     *
-     * @param protectionStatus the protectionStatus value to set.
-     * @return the AzureVmWorkloadProtectedItem object itself.
-     */
-    public AzureVmWorkloadProtectedItem withProtectionStatus(String protectionStatus) {
-        this.protectionStatus = protectionStatus;
-        return this;
     }
 
     /**
@@ -373,20 +354,6 @@ public class AzureVmWorkloadProtectedItem extends ProtectedItem {
      */
     public AzureVmWorkloadProtectedItem withKpisHealths(Map<String, KpiResourceHealthDetails> kpisHealths) {
         this.kpisHealths = kpisHealths;
-        return this;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public AzureVmWorkloadProtectedItem withBackupManagementType(BackupManagementType backupManagementType) {
-        super.withBackupManagementType(backupManagementType);
-        return this;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public AzureVmWorkloadProtectedItem withWorkloadType(DataSourceType workloadType) {
-        super.withWorkloadType(workloadType);
         return this;
     }
 
