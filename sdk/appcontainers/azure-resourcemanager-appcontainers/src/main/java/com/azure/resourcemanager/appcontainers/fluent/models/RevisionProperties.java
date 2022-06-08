@@ -8,8 +8,10 @@ import com.azure.core.annotation.Immutable;
 import com.azure.resourcemanager.appcontainers.models.RevisionHealthState;
 import com.azure.resourcemanager.appcontainers.models.RevisionProvisioningState;
 import com.azure.resourcemanager.appcontainers.models.Template;
+import com.azure.resourcemanager.appcontainers.models.TrafficLabel;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
+import java.util.List;
 
 /** Revision resource specific properties. */
 @Immutable
@@ -52,6 +54,12 @@ public final class RevisionProperties {
      */
     @JsonProperty(value = "trafficWeight", access = JsonProperty.Access.WRITE_ONLY)
     private Integer trafficWeight;
+
+    /*
+     * Traffic labels associated with this revision
+     */
+    @JsonProperty(value = "trafficLabels", access = JsonProperty.Access.WRITE_ONLY)
+    private List<TrafficLabel> trafficLabels;
 
     /*
      * Optional Field - Platform Error Message
@@ -127,6 +135,15 @@ public final class RevisionProperties {
     }
 
     /**
+     * Get the trafficLabels property: Traffic labels associated with this revision.
+     *
+     * @return the trafficLabels value.
+     */
+    public List<TrafficLabel> trafficLabels() {
+        return this.trafficLabels;
+    }
+
+    /**
      * Get the provisioningError property: Optional Field - Platform Error Message.
      *
      * @return the provisioningError value.
@@ -161,6 +178,9 @@ public final class RevisionProperties {
     public void validate() {
         if (template() != null) {
             template().validate();
+        }
+        if (trafficLabels() != null) {
+            trafficLabels().forEach(e -> e.validate());
         }
     }
 }

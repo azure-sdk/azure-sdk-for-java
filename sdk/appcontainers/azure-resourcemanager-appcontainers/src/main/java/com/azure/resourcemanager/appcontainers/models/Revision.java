@@ -7,6 +7,7 @@ package com.azure.resourcemanager.appcontainers.models;
 import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.appcontainers.fluent.models.RevisionInner;
 import java.time.OffsetDateTime;
+import java.util.List;
 
 /** An immutable client-side representation of Revision. */
 public interface Revision {
@@ -80,6 +81,13 @@ public interface Revision {
      * @return the trafficWeight value.
      */
     Integer trafficWeight();
+
+    /**
+     * Gets the trafficLabels property: Traffic labels associated with this revision.
+     *
+     * @return the trafficLabels value.
+     */
+    List<TrafficLabel> trafficLabels();
 
     /**
      * Gets the provisioningError property: Optional Field - Platform Error Message.

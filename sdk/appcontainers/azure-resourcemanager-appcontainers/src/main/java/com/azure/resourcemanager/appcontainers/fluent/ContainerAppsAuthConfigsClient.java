@@ -76,7 +76,7 @@ public interface ContainerAppsAuthConfigsClient {
         String resourceGroupName, String containerAppName, String authConfigName, Context context);
 
     /**
-     * Create or update the AuthConfig for a Container App.
+     * Description for Create or update the AuthConfig for a Container App.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param containerAppName Name of the Container App.
@@ -93,7 +93,7 @@ public interface ContainerAppsAuthConfigsClient {
         String resourceGroupName, String containerAppName, String authConfigName, AuthConfigInner authConfigEnvelope);
 
     /**
-     * Create or update the AuthConfig for a Container App.
+     * Description for Create or update the AuthConfig for a Container App.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param containerAppName Name of the Container App.
@@ -116,7 +116,7 @@ public interface ContainerAppsAuthConfigsClient {
         Context context);
 
     /**
-     * Delete a Container App AuthConfig.
+     * Description for Delete a Container App AuthConfig.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param containerAppName Name of the Container App.
@@ -130,7 +130,7 @@ public interface ContainerAppsAuthConfigsClient {
     void delete(String resourceGroupName, String containerAppName, String authConfigName);
 
     /**
-     * Delete a Container App AuthConfig.
+     * Description for Delete a Container App AuthConfig.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param containerAppName Name of the Container App.
