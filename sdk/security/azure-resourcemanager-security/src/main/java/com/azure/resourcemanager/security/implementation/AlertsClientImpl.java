@@ -25,24 +25,16 @@ import com.azure.core.http.rest.PagedResponseBase;
 import com.azure.core.http.rest.Response;
 import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
-import com.azure.core.management.polling.PollResult;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
-import com.azure.core.util.logging.ClientLogger;
-import com.azure.core.util.polling.PollerFlux;
-import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.security.fluent.AlertsClient;
 import com.azure.resourcemanager.security.fluent.models.AlertInner;
 import com.azure.resourcemanager.security.models.AlertList;
 import com.azure.resourcemanager.security.models.AlertSimulatorRequestBody;
-import java.nio.ByteBuffer;
-import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in AlertsClient. */
 public final class AlertsClientImpl implements AlertsClient {
-    private final ClientLogger logger = new ClientLogger(AlertsClientImpl.class);
-
     /** The proxy service used to perform REST calls. */
     private final AlertsService service;
 
@@ -242,9 +234,9 @@ public final class AlertsClientImpl implements AlertsClient {
         @Post(
             "/subscriptions/{subscriptionId}/providers/Microsoft.Security/locations/{ascLocation}/alerts/default"
                 + "/simulate")
-        @ExpectedResponses({202})
+        @ExpectedResponses({204})
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Flux<ByteBuffer>>> simulate(
+        Mono<Response<Void>> simulate(
             @HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion,
             @PathParam("subscriptionId") String subscriptionId,
@@ -299,7 +291,7 @@ public final class AlertsClientImpl implements AlertsClient {
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of security alerts.
+     * @return list of security alerts along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<AlertInner>> listSinglePageAsync() {
@@ -315,7 +307,7 @@ public final class AlertsClientImpl implements AlertsClient {
                     new IllegalArgumentException(
                         "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        final String apiVersion = "2021-01-01";
+        final String apiVersion = "2021-11-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -341,7 +333,7 @@ public final class AlertsClientImpl implements AlertsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of security alerts.
+     * @return list of security alerts along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<AlertInner>> listSinglePageAsync(Context context) {
@@ -357,7 +349,7 @@ public final class AlertsClientImpl implements AlertsClient {
                     new IllegalArgumentException(
                         "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        final String apiVersion = "2021-01-01";
+        final String apiVersion = "2021-11-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
@@ -378,7 +370,7 @@ public final class AlertsClientImpl implements AlertsClient {
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of security alerts.
+     * @return list of security alerts as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<AlertInner> listAsync() {
@@ -392,7 +384,7 @@ public final class AlertsClientImpl implements AlertsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of security alerts.
+     * @return list of security alerts as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<AlertInner> listAsync(Context context) {
@@ -405,7 +397,7 @@ public final class AlertsClientImpl implements AlertsClient {
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of security alerts.
+     * @return list of security alerts as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<AlertInner> list() {
@@ -419,7 +411,7 @@ public final class AlertsClientImpl implements AlertsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of security alerts.
+     * @return list of security alerts as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<AlertInner> list(Context context) {
@@ -434,7 +426,7 @@ public final class AlertsClientImpl implements AlertsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of security alerts.
+     * @return list of security alerts along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<AlertInner>> listByResourceGroupSinglePageAsync(String resourceGroupName) {
@@ -454,7 +446,7 @@ public final class AlertsClientImpl implements AlertsClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
-        final String apiVersion = "2021-01-01";
+        final String apiVersion = "2021-11-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -488,7 +480,7 @@ public final class AlertsClientImpl implements AlertsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of security alerts.
+     * @return list of security alerts along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<AlertInner>> listByResourceGroupSinglePageAsync(
@@ -509,7 +501,7 @@ public final class AlertsClientImpl implements AlertsClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
-        final String apiVersion = "2021-01-01";
+        final String apiVersion = "2021-11-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
@@ -539,7 +531,7 @@ public final class AlertsClientImpl implements AlertsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of security alerts.
+     * @return list of security alerts as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<AlertInner> listByResourceGroupAsync(String resourceGroupName) {
@@ -557,7 +549,7 @@ public final class AlertsClientImpl implements AlertsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of security alerts.
+     * @return list of security alerts as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<AlertInner> listByResourceGroupAsync(String resourceGroupName, Context context) {
@@ -574,7 +566,7 @@ public final class AlertsClientImpl implements AlertsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of security alerts.
+     * @return list of security alerts as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<AlertInner> listByResourceGroup(String resourceGroupName) {
@@ -590,7 +582,7 @@ public final class AlertsClientImpl implements AlertsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of security alerts.
+     * @return list of security alerts as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<AlertInner> listByResourceGroup(String resourceGroupName, Context context) {
@@ -605,7 +597,7 @@ public final class AlertsClientImpl implements AlertsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of security alerts.
+     * @return list of security alerts along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<AlertInner>> listSubscriptionLevelByRegionSinglePageAsync(String ascLocation) {
@@ -624,7 +616,7 @@ public final class AlertsClientImpl implements AlertsClient {
         if (ascLocation == null) {
             return Mono.error(new IllegalArgumentException("Parameter ascLocation is required and cannot be null."));
         }
-        final String apiVersion = "2021-01-01";
+        final String apiVersion = "2021-11-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -658,7 +650,7 @@ public final class AlertsClientImpl implements AlertsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of security alerts.
+     * @return list of security alerts along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<AlertInner>> listSubscriptionLevelByRegionSinglePageAsync(
@@ -678,7 +670,7 @@ public final class AlertsClientImpl implements AlertsClient {
         if (ascLocation == null) {
             return Mono.error(new IllegalArgumentException("Parameter ascLocation is required and cannot be null."));
         }
-        final String apiVersion = "2021-01-01";
+        final String apiVersion = "2021-11-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
@@ -703,7 +695,7 @@ public final class AlertsClientImpl implements AlertsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of security alerts.
+     * @return list of security alerts as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<AlertInner> listSubscriptionLevelByRegionAsync(String ascLocation) {
@@ -721,7 +713,7 @@ public final class AlertsClientImpl implements AlertsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of security alerts.
+     * @return list of security alerts as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<AlertInner> listSubscriptionLevelByRegionAsync(String ascLocation, Context context) {
@@ -738,7 +730,7 @@ public final class AlertsClientImpl implements AlertsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of security alerts.
+     * @return list of security alerts as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<AlertInner> listSubscriptionLevelByRegion(String ascLocation) {
@@ -754,7 +746,7 @@ public final class AlertsClientImpl implements AlertsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of security alerts.
+     * @return list of security alerts as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<AlertInner> listSubscriptionLevelByRegion(String ascLocation, Context context) {
@@ -771,7 +763,7 @@ public final class AlertsClientImpl implements AlertsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of security alerts.
+     * @return list of security alerts along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<AlertInner>> listResourceGroupLevelByRegionSinglePageAsync(
@@ -795,7 +787,7 @@ public final class AlertsClientImpl implements AlertsClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
-        final String apiVersion = "2021-01-01";
+        final String apiVersion = "2021-11-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -832,7 +824,7 @@ public final class AlertsClientImpl implements AlertsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of security alerts.
+     * @return list of security alerts along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<AlertInner>> listResourceGroupLevelByRegionSinglePageAsync(
@@ -856,7 +848,7 @@ public final class AlertsClientImpl implements AlertsClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
-        final String apiVersion = "2021-01-01";
+        final String apiVersion = "2021-11-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
@@ -889,7 +881,7 @@ public final class AlertsClientImpl implements AlertsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of security alerts.
+     * @return list of security alerts as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<AlertInner> listResourceGroupLevelByRegionAsync(String ascLocation, String resourceGroupName) {
@@ -909,7 +901,7 @@ public final class AlertsClientImpl implements AlertsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of security alerts.
+     * @return list of security alerts as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<AlertInner> listResourceGroupLevelByRegionAsync(
@@ -929,7 +921,7 @@ public final class AlertsClientImpl implements AlertsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of security alerts.
+     * @return list of security alerts as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<AlertInner> listResourceGroupLevelByRegion(String ascLocation, String resourceGroupName) {
@@ -947,7 +939,7 @@ public final class AlertsClientImpl implements AlertsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of security alerts.
+     * @return list of security alerts as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<AlertInner> listResourceGroupLevelByRegion(
@@ -964,7 +956,8 @@ public final class AlertsClientImpl implements AlertsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an alert that is associated with a subscription.
+     * @return an alert that is associated with a subscription along with {@link Response} on successful completion of
+     *     {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<AlertInner>> getSubscriptionLevelWithResponseAsync(String ascLocation, String alertName) {
@@ -986,7 +979,7 @@ public final class AlertsClientImpl implements AlertsClient {
         if (alertName == null) {
             return Mono.error(new IllegalArgumentException("Parameter alertName is required and cannot be null."));
         }
-        final String apiVersion = "2021-01-01";
+        final String apiVersion = "2021-11-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -1013,7 +1006,8 @@ public final class AlertsClientImpl implements AlertsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an alert that is associated with a subscription.
+     * @return an alert that is associated with a subscription along with {@link Response} on successful completion of
+     *     {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<AlertInner>> getSubscriptionLevelWithResponseAsync(
@@ -1036,7 +1030,7 @@ public final class AlertsClientImpl implements AlertsClient {
         if (alertName == null) {
             return Mono.error(new IllegalArgumentException("Parameter alertName is required and cannot be null."));
         }
-        final String apiVersion = "2021-01-01";
+        final String apiVersion = "2021-11-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
@@ -1059,19 +1053,12 @@ public final class AlertsClientImpl implements AlertsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an alert that is associated with a subscription.
+     * @return an alert that is associated with a subscription on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<AlertInner> getSubscriptionLevelAsync(String ascLocation, String alertName) {
         return getSubscriptionLevelWithResponseAsync(ascLocation, alertName)
-            .flatMap(
-                (Response<AlertInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -1100,7 +1087,7 @@ public final class AlertsClientImpl implements AlertsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an alert that is associated with a subscription.
+     * @return an alert that is associated with a subscription along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<AlertInner> getSubscriptionLevelWithResponse(
@@ -1119,7 +1106,8 @@ public final class AlertsClientImpl implements AlertsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an alert that is associated a resource group or a resource in a resource group.
+     * @return an alert that is associated a resource group or a resource in a resource group along with {@link
+     *     Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<AlertInner>> getResourceGroupLevelWithResponseAsync(
@@ -1146,7 +1134,7 @@ public final class AlertsClientImpl implements AlertsClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
-        final String apiVersion = "2021-01-01";
+        final String apiVersion = "2021-11-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -1176,7 +1164,8 @@ public final class AlertsClientImpl implements AlertsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an alert that is associated a resource group or a resource in a resource group.
+     * @return an alert that is associated a resource group or a resource in a resource group along with {@link
+     *     Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<AlertInner>> getResourceGroupLevelWithResponseAsync(
@@ -1203,7 +1192,7 @@ public final class AlertsClientImpl implements AlertsClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
-        final String apiVersion = "2021-01-01";
+        final String apiVersion = "2021-11-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
@@ -1229,20 +1218,14 @@ public final class AlertsClientImpl implements AlertsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an alert that is associated a resource group or a resource in a resource group.
+     * @return an alert that is associated a resource group or a resource in a resource group on successful completion
+     *     of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<AlertInner> getResourceGroupLevelAsync(
         String ascLocation, String alertName, String resourceGroupName) {
         return getResourceGroupLevelWithResponseAsync(ascLocation, alertName, resourceGroupName)
-            .flatMap(
-                (Response<AlertInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -1275,7 +1258,8 @@ public final class AlertsClientImpl implements AlertsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an alert that is associated a resource group or a resource in a resource group.
+     * @return an alert that is associated a resource group or a resource in a resource group along with {@link
+     *     Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<AlertInner> getResourceGroupLevelWithResponse(
@@ -1292,7 +1276,7 @@ public final class AlertsClientImpl implements AlertsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the completion.
+     * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Void>> updateSubscriptionLevelStateToDismissWithResponseAsync(
@@ -1315,7 +1299,7 @@ public final class AlertsClientImpl implements AlertsClient {
         if (alertName == null) {
             return Mono.error(new IllegalArgumentException("Parameter alertName is required and cannot be null."));
         }
-        final String apiVersion = "2021-01-01";
+        final String apiVersion = "2021-11-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -1342,7 +1326,7 @@ public final class AlertsClientImpl implements AlertsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the completion.
+     * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Void>> updateSubscriptionLevelStateToDismissWithResponseAsync(
@@ -1365,7 +1349,7 @@ public final class AlertsClientImpl implements AlertsClient {
         if (alertName == null) {
             return Mono.error(new IllegalArgumentException("Parameter alertName is required and cannot be null."));
         }
-        final String apiVersion = "2021-01-01";
+        final String apiVersion = "2021-11-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
@@ -1388,12 +1372,12 @@ public final class AlertsClientImpl implements AlertsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the completion.
+     * @return A {@link Mono} that completes when a successful response is received.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> updateSubscriptionLevelStateToDismissAsync(String ascLocation, String alertName) {
         return updateSubscriptionLevelStateToDismissWithResponseAsync(ascLocation, alertName)
-            .flatMap((Response<Void> res) -> Mono.empty());
+            .flatMap(ignored -> Mono.empty());
     }
 
     /**
@@ -1421,7 +1405,7 @@ public final class AlertsClientImpl implements AlertsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
+     * @return the {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<Void> updateSubscriptionLevelStateToDismissWithResponse(
@@ -1438,7 +1422,7 @@ public final class AlertsClientImpl implements AlertsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the completion.
+     * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Void>> updateSubscriptionLevelStateToResolveWithResponseAsync(
@@ -1461,7 +1445,7 @@ public final class AlertsClientImpl implements AlertsClient {
         if (alertName == null) {
             return Mono.error(new IllegalArgumentException("Parameter alertName is required and cannot be null."));
         }
-        final String apiVersion = "2021-01-01";
+        final String apiVersion = "2021-11-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -1488,7 +1472,7 @@ public final class AlertsClientImpl implements AlertsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the completion.
+     * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Void>> updateSubscriptionLevelStateToResolveWithResponseAsync(
@@ -1511,7 +1495,7 @@ public final class AlertsClientImpl implements AlertsClient {
         if (alertName == null) {
             return Mono.error(new IllegalArgumentException("Parameter alertName is required and cannot be null."));
         }
-        final String apiVersion = "2021-01-01";
+        final String apiVersion = "2021-11-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
@@ -1534,12 +1518,12 @@ public final class AlertsClientImpl implements AlertsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the completion.
+     * @return A {@link Mono} that completes when a successful response is received.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> updateSubscriptionLevelStateToResolveAsync(String ascLocation, String alertName) {
         return updateSubscriptionLevelStateToResolveWithResponseAsync(ascLocation, alertName)
-            .flatMap((Response<Void> res) -> Mono.empty());
+            .flatMap(ignored -> Mono.empty());
     }
 
     /**
@@ -1567,7 +1551,7 @@ public final class AlertsClientImpl implements AlertsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
+     * @return the {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<Void> updateSubscriptionLevelStateToResolveWithResponse(
@@ -1584,7 +1568,7 @@ public final class AlertsClientImpl implements AlertsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the completion.
+     * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Void>> updateSubscriptionLevelStateToActivateWithResponseAsync(
@@ -1607,7 +1591,7 @@ public final class AlertsClientImpl implements AlertsClient {
         if (alertName == null) {
             return Mono.error(new IllegalArgumentException("Parameter alertName is required and cannot be null."));
         }
-        final String apiVersion = "2021-01-01";
+        final String apiVersion = "2021-11-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -1634,7 +1618,7 @@ public final class AlertsClientImpl implements AlertsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the completion.
+     * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Void>> updateSubscriptionLevelStateToActivateWithResponseAsync(
@@ -1657,7 +1641,7 @@ public final class AlertsClientImpl implements AlertsClient {
         if (alertName == null) {
             return Mono.error(new IllegalArgumentException("Parameter alertName is required and cannot be null."));
         }
-        final String apiVersion = "2021-01-01";
+        final String apiVersion = "2021-11-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
@@ -1680,12 +1664,12 @@ public final class AlertsClientImpl implements AlertsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the completion.
+     * @return A {@link Mono} that completes when a successful response is received.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> updateSubscriptionLevelStateToActivateAsync(String ascLocation, String alertName) {
         return updateSubscriptionLevelStateToActivateWithResponseAsync(ascLocation, alertName)
-            .flatMap((Response<Void> res) -> Mono.empty());
+            .flatMap(ignored -> Mono.empty());
     }
 
     /**
@@ -1713,7 +1697,7 @@ public final class AlertsClientImpl implements AlertsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
+     * @return the {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<Void> updateSubscriptionLevelStateToActivateWithResponse(
@@ -1732,7 +1716,7 @@ public final class AlertsClientImpl implements AlertsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the completion.
+     * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Void>> updateResourceGroupLevelStateToResolveWithResponseAsync(
@@ -1759,7 +1743,7 @@ public final class AlertsClientImpl implements AlertsClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
-        final String apiVersion = "2021-01-01";
+        final String apiVersion = "2021-11-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -1789,7 +1773,7 @@ public final class AlertsClientImpl implements AlertsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the completion.
+     * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Void>> updateResourceGroupLevelStateToResolveWithResponseAsync(
@@ -1816,7 +1800,7 @@ public final class AlertsClientImpl implements AlertsClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
-        final String apiVersion = "2021-01-01";
+        final String apiVersion = "2021-11-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
@@ -1842,13 +1826,13 @@ public final class AlertsClientImpl implements AlertsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the completion.
+     * @return A {@link Mono} that completes when a successful response is received.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> updateResourceGroupLevelStateToResolveAsync(
         String ascLocation, String alertName, String resourceGroupName) {
         return updateResourceGroupLevelStateToResolveWithResponseAsync(ascLocation, alertName, resourceGroupName)
-            .flatMap((Response<Void> res) -> Mono.empty());
+            .flatMap(ignored -> Mono.empty());
     }
 
     /**
@@ -1880,7 +1864,7 @@ public final class AlertsClientImpl implements AlertsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
+     * @return the {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<Void> updateResourceGroupLevelStateToResolveWithResponse(
@@ -1901,7 +1885,7 @@ public final class AlertsClientImpl implements AlertsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the completion.
+     * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Void>> updateResourceGroupLevelStateToDismissWithResponseAsync(
@@ -1928,7 +1912,7 @@ public final class AlertsClientImpl implements AlertsClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
-        final String apiVersion = "2021-01-01";
+        final String apiVersion = "2021-11-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -1958,7 +1942,7 @@ public final class AlertsClientImpl implements AlertsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the completion.
+     * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Void>> updateResourceGroupLevelStateToDismissWithResponseAsync(
@@ -1985,7 +1969,7 @@ public final class AlertsClientImpl implements AlertsClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
-        final String apiVersion = "2021-01-01";
+        final String apiVersion = "2021-11-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
@@ -2011,13 +1995,13 @@ public final class AlertsClientImpl implements AlertsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the completion.
+     * @return A {@link Mono} that completes when a successful response is received.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> updateResourceGroupLevelStateToDismissAsync(
         String ascLocation, String alertName, String resourceGroupName) {
         return updateResourceGroupLevelStateToDismissWithResponseAsync(ascLocation, alertName, resourceGroupName)
-            .flatMap((Response<Void> res) -> Mono.empty());
+            .flatMap(ignored -> Mono.empty());
     }
 
     /**
@@ -2049,7 +2033,7 @@ public final class AlertsClientImpl implements AlertsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
+     * @return the {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<Void> updateResourceGroupLevelStateToDismissWithResponse(
@@ -2070,7 +2054,7 @@ public final class AlertsClientImpl implements AlertsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the completion.
+     * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Void>> updateResourceGroupLevelStateToActivateWithResponseAsync(
@@ -2097,7 +2081,7 @@ public final class AlertsClientImpl implements AlertsClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
-        final String apiVersion = "2021-01-01";
+        final String apiVersion = "2021-11-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -2127,7 +2111,7 @@ public final class AlertsClientImpl implements AlertsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the completion.
+     * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Void>> updateResourceGroupLevelStateToActivateWithResponseAsync(
@@ -2154,7 +2138,7 @@ public final class AlertsClientImpl implements AlertsClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
-        final String apiVersion = "2021-01-01";
+        final String apiVersion = "2021-11-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
@@ -2180,13 +2164,13 @@ public final class AlertsClientImpl implements AlertsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the completion.
+     * @return A {@link Mono} that completes when a successful response is received.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> updateResourceGroupLevelStateToActivateAsync(
         String ascLocation, String alertName, String resourceGroupName) {
         return updateResourceGroupLevelStateToActivateWithResponseAsync(ascLocation, alertName, resourceGroupName)
-            .flatMap((Response<Void> res) -> Mono.empty());
+            .flatMap(ignored -> Mono.empty());
     }
 
     /**
@@ -2219,7 +2203,7 @@ public final class AlertsClientImpl implements AlertsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
+     * @return the {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<Void> updateResourceGroupLevelStateToActivateWithResponse(
@@ -2238,10 +2222,10 @@ public final class AlertsClientImpl implements AlertsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the completion.
+     * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> simulateWithResponseAsync(
+    private Mono<Response<Void>> simulateWithResponseAsync(
         String ascLocation, AlertSimulatorRequestBody alertSimulatorRequestBody) {
         if (this.client.getEndpoint() == null) {
             return Mono
@@ -2266,7 +2250,7 @@ public final class AlertsClientImpl implements AlertsClient {
         } else {
             alertSimulatorRequestBody.validate();
         }
-        final String apiVersion = "2021-01-01";
+        final String apiVersion = "2021-11-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -2293,10 +2277,10 @@ public final class AlertsClientImpl implements AlertsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the completion.
+     * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> simulateWithResponseAsync(
+    private Mono<Response<Void>> simulateWithResponseAsync(
         String ascLocation, AlertSimulatorRequestBody alertSimulatorRequestBody, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono
@@ -2321,7 +2305,7 @@ public final class AlertsClientImpl implements AlertsClient {
         } else {
             alertSimulatorRequestBody.validate();
         }
-        final String apiVersion = "2021-01-01";
+        final String apiVersion = "2021-11-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
@@ -2344,111 +2328,11 @@ public final class AlertsClientImpl implements AlertsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the completion.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private PollerFlux<PollResult<Void>, Void> beginSimulateAsync(
-        String ascLocation, AlertSimulatorRequestBody alertSimulatorRequestBody) {
-        Mono<Response<Flux<ByteBuffer>>> mono = simulateWithResponseAsync(ascLocation, alertSimulatorRequestBody);
-        return this
-            .client
-            .<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class, Context.NONE);
-    }
-
-    /**
-     * Simulate security alerts.
-     *
-     * @param ascLocation The location where ASC stores the data of the subscription. can be retrieved from Get
-     *     locations.
-     * @param alertSimulatorRequestBody Alert Simulator Request Properties.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the completion.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private PollerFlux<PollResult<Void>, Void> beginSimulateAsync(
-        String ascLocation, AlertSimulatorRequestBody alertSimulatorRequestBody, Context context) {
-        context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono =
-            simulateWithResponseAsync(ascLocation, alertSimulatorRequestBody, context);
-        return this
-            .client
-            .<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class, context);
-    }
-
-    /**
-     * Simulate security alerts.
-     *
-     * @param ascLocation The location where ASC stores the data of the subscription. can be retrieved from Get
-     *     locations.
-     * @param alertSimulatorRequestBody Alert Simulator Request Properties.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the completion.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public SyncPoller<PollResult<Void>, Void> beginSimulate(
-        String ascLocation, AlertSimulatorRequestBody alertSimulatorRequestBody) {
-        return beginSimulateAsync(ascLocation, alertSimulatorRequestBody).getSyncPoller();
-    }
-
-    /**
-     * Simulate security alerts.
-     *
-     * @param ascLocation The location where ASC stores the data of the subscription. can be retrieved from Get
-     *     locations.
-     * @param alertSimulatorRequestBody Alert Simulator Request Properties.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the completion.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public SyncPoller<PollResult<Void>, Void> beginSimulate(
-        String ascLocation, AlertSimulatorRequestBody alertSimulatorRequestBody, Context context) {
-        return beginSimulateAsync(ascLocation, alertSimulatorRequestBody, context).getSyncPoller();
-    }
-
-    /**
-     * Simulate security alerts.
-     *
-     * @param ascLocation The location where ASC stores the data of the subscription. can be retrieved from Get
-     *     locations.
-     * @param alertSimulatorRequestBody Alert Simulator Request Properties.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the completion.
+     * @return A {@link Mono} that completes when a successful response is received.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> simulateAsync(String ascLocation, AlertSimulatorRequestBody alertSimulatorRequestBody) {
-        return beginSimulateAsync(ascLocation, alertSimulatorRequestBody)
-            .last()
-            .flatMap(this.client::getLroFinalResultOrError);
-    }
-
-    /**
-     * Simulate security alerts.
-     *
-     * @param ascLocation The location where ASC stores the data of the subscription. can be retrieved from Get
-     *     locations.
-     * @param alertSimulatorRequestBody Alert Simulator Request Properties.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the completion.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Void> simulateAsync(
-        String ascLocation, AlertSimulatorRequestBody alertSimulatorRequestBody, Context context) {
-        return beginSimulateAsync(ascLocation, alertSimulatorRequestBody, context)
-            .last()
-            .flatMap(this.client::getLroFinalResultOrError);
+        return simulateWithResponseAsync(ascLocation, alertSimulatorRequestBody).flatMap(ignored -> Mono.empty());
     }
 
     /**
@@ -2476,10 +2360,12 @@ public final class AlertsClientImpl implements AlertsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void simulate(String ascLocation, AlertSimulatorRequestBody alertSimulatorRequestBody, Context context) {
-        simulateAsync(ascLocation, alertSimulatorRequestBody, context).block();
+    public Response<Void> simulateWithResponse(
+        String ascLocation, AlertSimulatorRequestBody alertSimulatorRequestBody, Context context) {
+        return simulateWithResponseAsync(ascLocation, alertSimulatorRequestBody, context).block();
     }
 
     /**
@@ -2489,7 +2375,7 @@ public final class AlertsClientImpl implements AlertsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of security alerts.
+     * @return list of security alerts along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<AlertInner>> listNextSinglePageAsync(String nextLink) {
@@ -2525,7 +2411,7 @@ public final class AlertsClientImpl implements AlertsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of security alerts.
+     * @return list of security alerts along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<AlertInner>> listNextSinglePageAsync(String nextLink, Context context) {
@@ -2560,7 +2446,7 @@ public final class AlertsClientImpl implements AlertsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of security alerts.
+     * @return list of security alerts along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<AlertInner>> listByResourceGroupNextSinglePageAsync(String nextLink) {
@@ -2597,7 +2483,7 @@ public final class AlertsClientImpl implements AlertsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of security alerts.
+     * @return list of security alerts along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<AlertInner>> listByResourceGroupNextSinglePageAsync(String nextLink, Context context) {
@@ -2632,7 +2518,7 @@ public final class AlertsClientImpl implements AlertsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of security alerts.
+     * @return list of security alerts along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<AlertInner>> listSubscriptionLevelByRegionNextSinglePageAsync(String nextLink) {
@@ -2670,7 +2556,7 @@ public final class AlertsClientImpl implements AlertsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of security alerts.
+     * @return list of security alerts along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<AlertInner>> listSubscriptionLevelByRegionNextSinglePageAsync(
@@ -2706,7 +2592,7 @@ public final class AlertsClientImpl implements AlertsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of security alerts.
+     * @return list of security alerts along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<AlertInner>> listResourceGroupLevelByRegionNextSinglePageAsync(String nextLink) {
@@ -2744,7 +2630,7 @@ public final class AlertsClientImpl implements AlertsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of security alerts.
+     * @return list of security alerts along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<AlertInner>> listResourceGroupLevelByRegionNextSinglePageAsync(

@@ -30,7 +30,11 @@ public final class HybridComputeProvisioningState extends ExpandableStringEnum<H
         return fromString(name, HybridComputeProvisioningState.class);
     }
 
-    /** @return known HybridComputeProvisioningState values. */
+    /**
+     * Gets known HybridComputeProvisioningState values.
+     *
+     * @return known HybridComputeProvisioningState values.
+     */
     public static Collection<HybridComputeProvisioningState> values() {
         return values(HybridComputeProvisioningState.class);
     }

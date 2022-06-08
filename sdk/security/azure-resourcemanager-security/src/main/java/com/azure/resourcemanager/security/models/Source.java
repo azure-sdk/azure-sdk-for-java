@@ -30,7 +30,11 @@ public final class Source extends ExpandableStringEnum<Source> {
         return fromString(name, Source.class);
     }
 
-    /** @return known Source values. */
+    /**
+     * Gets known Source values.
+     *
+     * @return known Source values.
+     */
     public static Collection<Source> values() {
         return values(Source.class);
     }

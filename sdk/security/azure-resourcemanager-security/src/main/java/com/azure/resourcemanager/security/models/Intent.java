@@ -69,7 +69,11 @@ public final class Intent extends ExpandableStringEnum<Intent> {
         return fromString(name, Intent.class);
     }
 
-    /** @return known Intent values. */
+    /**
+     * Gets known Intent values.
+     *
+     * @return known Intent values.
+     */
     public static Collection<Intent> values() {
         return values(Intent.class);
     }

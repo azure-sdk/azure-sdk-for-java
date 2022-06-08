@@ -30,7 +30,11 @@ public final class RecommendationAction extends ExpandableStringEnum<Recommendat
         return fromString(name, RecommendationAction.class);
     }
 
-    /** @return known RecommendationAction values. */
+    /**
+     * Gets known RecommendationAction values.
+     *
+     * @return known RecommendationAction values.
+     */
     public static Collection<RecommendationAction> values() {
         return values(RecommendationAction.class);
     }

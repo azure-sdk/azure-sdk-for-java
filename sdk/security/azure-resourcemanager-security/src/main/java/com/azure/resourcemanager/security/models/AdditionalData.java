@@ -5,8 +5,6 @@
 package com.azure.resourcemanager.security.models;
 
 import com.azure.core.annotation.Immutable;
-import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
@@ -21,12 +19,13 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @JsonSubTypes({
     @JsonSubTypes.Type(name = "SqlServerVulnerability", value = SqlServerVulnerabilityProperties.class),
     @JsonSubTypes.Type(name = "ContainerRegistryVulnerability", value = ContainerRegistryVulnerabilityProperties.class),
+    @JsonSubTypes.Type(
+        name = "AmazonElasticContainerRegistryVulnerability",
+        value = AmazonElasticContainerRegistryVulnerabilityProperties.class),
     @JsonSubTypes.Type(name = "ServerVulnerabilityAssessment", value = ServerVulnerabilityProperties.class)
 })
 @Immutable
 public class AdditionalData {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(AdditionalData.class);
-
     /**
      * Validates the instance.
      *
