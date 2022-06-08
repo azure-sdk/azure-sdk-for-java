@@ -13,11 +13,11 @@ import java.util.List;
 public final class SourceConfigurationResultImpl implements SourceConfigurationResult {
     private SourceConfigurationResultInner innerObject;
 
-    private final com.azure.resourcemanager.servicelinker.ServiceLinkerManager serviceManager;
+    private final com.azure.resourcemanager.servicelinker.ServicelinkerManager serviceManager;
 
     SourceConfigurationResultImpl(
         SourceConfigurationResultInner innerObject,
-        com.azure.resourcemanager.servicelinker.ServiceLinkerManager serviceManager) {
+        com.azure.resourcemanager.servicelinker.ServicelinkerManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
     }
@@ -35,7 +35,7 @@ public final class SourceConfigurationResultImpl implements SourceConfigurationR
         return this.innerObject;
     }
 
-    private com.azure.resourcemanager.servicelinker.ServiceLinkerManager manager() {
+    private com.azure.resourcemanager.servicelinker.ServicelinkerManager manager() {
         return this.serviceManager;
     }
 }
