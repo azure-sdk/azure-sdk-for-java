@@ -277,14 +277,7 @@ public final class SqlPoolWorkloadGroupsClientImpl implements SqlPoolWorkloadGro
     private Mono<WorkloadGroupInner> getAsync(
         String resourceGroupName, String workspaceName, String sqlPoolName, String workloadGroupName) {
         return getWithResponseAsync(resourceGroupName, workspaceName, sqlPoolName, workloadGroupName)
-            .flatMap(
-                (Response<WorkloadGroupInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**

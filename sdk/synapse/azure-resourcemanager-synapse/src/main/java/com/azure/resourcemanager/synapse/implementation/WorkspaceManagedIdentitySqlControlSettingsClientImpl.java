@@ -209,15 +209,7 @@ public final class WorkspaceManagedIdentitySqlControlSettingsClientImpl
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ManagedIdentitySqlControlSettingsModelInner> getAsync(String resourceGroupName, String workspaceName) {
-        return getWithResponseAsync(resourceGroupName, workspaceName)
-            .flatMap(
-                (Response<ManagedIdentitySqlControlSettingsModelInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+        return getWithResponseAsync(resourceGroupName, workspaceName).flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**

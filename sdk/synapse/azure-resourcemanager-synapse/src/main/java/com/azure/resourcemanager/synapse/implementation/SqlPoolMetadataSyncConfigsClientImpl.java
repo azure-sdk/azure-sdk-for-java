@@ -211,14 +211,7 @@ public final class SqlPoolMetadataSyncConfigsClientImpl implements SqlPoolMetada
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<MetadataSyncConfigInner> getAsync(String resourceGroupName, String workspaceName, String sqlPoolName) {
         return getWithResponseAsync(resourceGroupName, workspaceName, sqlPoolName)
-            .flatMap(
-                (Response<MetadataSyncConfigInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -407,14 +400,7 @@ public final class SqlPoolMetadataSyncConfigsClientImpl implements SqlPoolMetada
         String sqlPoolName,
         MetadataSyncConfigInner metadataSyncConfiguration) {
         return createWithResponseAsync(resourceGroupName, workspaceName, sqlPoolName, metadataSyncConfiguration)
-            .flatMap(
-                (Response<MetadataSyncConfigInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**

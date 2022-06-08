@@ -112,6 +112,10 @@ public final class KustoPoolImpl implements KustoPool, KustoPool.Definition, Kus
         return this.location();
     }
 
+    public String resourceGroupName() {
+        return resourceGroupName;
+    }
+
     public KustoPoolInner innerModel() {
         return this.innerObject;
     }

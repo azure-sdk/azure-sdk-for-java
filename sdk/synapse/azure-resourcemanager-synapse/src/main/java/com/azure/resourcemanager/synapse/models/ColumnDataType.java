@@ -123,7 +123,11 @@ public final class ColumnDataType extends ExpandableStringEnum<ColumnDataType> {
         return fromString(name, ColumnDataType.class);
     }
 
-    /** @return known ColumnDataType values. */
+    /**
+     * Gets known ColumnDataType values.
+     *
+     * @return known ColumnDataType values.
+     */
     public static Collection<ColumnDataType> values() {
         return values(ColumnDataType.class);
     }

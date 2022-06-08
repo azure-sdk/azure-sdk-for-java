@@ -252,14 +252,7 @@ public final class IntegrationRuntimeAuthKeysOperationsClientImpl
         IntegrationRuntimeRegenerateKeyParameters regenerateKeyParameters) {
         return regenerateWithResponseAsync(
                 resourceGroupName, workspaceName, integrationRuntimeName, regenerateKeyParameters)
-            .flatMap(
-                (Response<IntegrationRuntimeAuthKeysInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -436,14 +429,7 @@ public final class IntegrationRuntimeAuthKeysOperationsClientImpl
     private Mono<IntegrationRuntimeAuthKeysInner> listAsync(
         String resourceGroupName, String workspaceName, String integrationRuntimeName) {
         return listWithResponseAsync(resourceGroupName, workspaceName, integrationRuntimeName)
-            .flatMap(
-                (Response<IntegrationRuntimeAuthKeysInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**

@@ -247,14 +247,7 @@ public final class SqlPoolBlobAuditingPoliciesClientImpl implements SqlPoolBlobA
     private Mono<SqlPoolBlobAuditingPolicyInner> getAsync(
         String resourceGroupName, String workspaceName, String sqlPoolName) {
         return getWithResponseAsync(resourceGroupName, workspaceName, sqlPoolName)
-            .flatMap(
-                (Response<SqlPoolBlobAuditingPolicyInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -435,14 +428,7 @@ public final class SqlPoolBlobAuditingPoliciesClientImpl implements SqlPoolBlobA
     private Mono<SqlPoolBlobAuditingPolicyInner> createOrUpdateAsync(
         String resourceGroupName, String workspaceName, String sqlPoolName, SqlPoolBlobAuditingPolicyInner parameters) {
         return createOrUpdateWithResponseAsync(resourceGroupName, workspaceName, sqlPoolName, parameters)
-            .flatMap(
-                (Response<SqlPoolBlobAuditingPolicyInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**

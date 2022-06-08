@@ -242,14 +242,7 @@ public final class SqlPoolColumnsClientImpl implements SqlPoolColumnsClient {
         String tableName,
         String columnName) {
         return getWithResponseAsync(resourceGroupName, workspaceName, sqlPoolName, schemaName, tableName, columnName)
-            .flatMap(
-                (Response<SqlPoolColumnInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**

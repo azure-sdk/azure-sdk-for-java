@@ -204,7 +204,7 @@ public final class IntegrationRuntimeCredentialsClientImpl implements Integratio
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> syncAsync(String resourceGroupName, String workspaceName, String integrationRuntimeName) {
         return syncWithResponseAsync(resourceGroupName, workspaceName, integrationRuntimeName)
-            .flatMap((Response<Void> res) -> Mono.empty());
+            .flatMap(ignored -> Mono.empty());
     }
 
     /**

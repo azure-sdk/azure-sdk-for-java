@@ -437,14 +437,7 @@ public final class SqlPoolReplicationLinksClientImpl implements SqlPoolReplicati
     private Mono<ReplicationLinkInner> getByNameAsync(
         String resourceGroupName, String workspaceName, String sqlPoolName, String linkId) {
         return getByNameWithResponseAsync(resourceGroupName, workspaceName, sqlPoolName, linkId)
-            .flatMap(
-                (Response<ReplicationLinkInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**

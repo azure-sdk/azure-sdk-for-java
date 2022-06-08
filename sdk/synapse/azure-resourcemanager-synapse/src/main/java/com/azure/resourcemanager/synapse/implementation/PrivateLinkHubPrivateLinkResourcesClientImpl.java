@@ -419,14 +419,7 @@ public final class PrivateLinkHubPrivateLinkResourcesClientImpl implements Priva
     private Mono<PrivateLinkResourceInner> getAsync(
         String resourceGroupName, String privateLinkHubName, String privateLinkResourceName) {
         return getWithResponseAsync(resourceGroupName, privateLinkHubName, privateLinkResourceName)
-            .flatMap(
-                (Response<PrivateLinkResourceInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**

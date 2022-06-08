@@ -103,6 +103,13 @@ public interface SensitivityLabel {
     SensitivityLabelRank rank();
 
     /**
+     * Gets the name of the resource group.
+     *
+     * @return the name of the resource group.
+     */
+    String resourceGroupName();
+
+    /**
      * Gets the inner com.azure.resourcemanager.synapse.fluent.models.SensitivityLabelInner object.
      *
      * @return the inner object.

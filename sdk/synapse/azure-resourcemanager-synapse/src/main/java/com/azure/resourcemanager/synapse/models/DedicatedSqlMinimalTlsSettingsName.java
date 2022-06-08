@@ -24,7 +24,11 @@ public final class DedicatedSqlMinimalTlsSettingsName extends ExpandableStringEn
         return fromString(name, DedicatedSqlMinimalTlsSettingsName.class);
     }
 
-    /** @return known DedicatedSqlMinimalTlsSettingsName values. */
+    /**
+     * Gets known DedicatedSqlMinimalTlsSettingsName values.
+     *
+     * @return known DedicatedSqlMinimalTlsSettingsName values.
+     */
     public static Collection<DedicatedSqlMinimalTlsSettingsName> values() {
         return values(DedicatedSqlMinimalTlsSettingsName.class);
     }

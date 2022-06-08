@@ -68,6 +68,10 @@ public final class SensitivityLabelImpl
         return this.innerModel().rank();
     }
 
+    public String resourceGroupName() {
+        return resourceGroupName;
+    }
+
     public SensitivityLabelInner innerModel() {
         return this.innerObject;
     }

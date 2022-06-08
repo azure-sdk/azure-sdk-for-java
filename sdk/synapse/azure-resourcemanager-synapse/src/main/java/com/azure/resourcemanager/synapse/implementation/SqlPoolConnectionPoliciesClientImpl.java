@@ -213,14 +213,7 @@ public final class SqlPoolConnectionPoliciesClientImpl implements SqlPoolConnect
     private Mono<SqlPoolConnectionPolicyInner> getAsync(
         String resourceGroupName, String workspaceName, String sqlPoolName, ConnectionPolicyName connectionPolicyName) {
         return getWithResponseAsync(resourceGroupName, workspaceName, sqlPoolName, connectionPolicyName)
-            .flatMap(
-                (Response<SqlPoolConnectionPolicyInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**

@@ -42,6 +42,8 @@ public final class ManagedIdentitySqlControlSettingsModelPropertiesGrantSqlContr
     }
 
     /**
+     * Gets known ManagedIdentitySqlControlSettingsModelPropertiesGrantSqlControlToManagedIdentityDesiredState values.
+     *
      * @return known ManagedIdentitySqlControlSettingsModelPropertiesGrantSqlControlToManagedIdentityDesiredState
      *     values.
      */

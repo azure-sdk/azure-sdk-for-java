@@ -469,14 +469,7 @@ public final class SqlPoolSecurityAlertPoliciesClientImpl implements SqlPoolSecu
         String sqlPoolName,
         SecurityAlertPolicyName securityAlertPolicyName) {
         return getWithResponseAsync(resourceGroupName, workspaceName, sqlPoolName, securityAlertPolicyName)
-            .flatMap(
-                (Response<SqlPoolSecurityAlertPolicyInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -689,14 +682,7 @@ public final class SqlPoolSecurityAlertPoliciesClientImpl implements SqlPoolSecu
         SqlPoolSecurityAlertPolicyInner parameters) {
         return createOrUpdateWithResponseAsync(
                 resourceGroupName, workspaceName, sqlPoolName, securityAlertPolicyName, parameters)
-            .flatMap(
-                (Response<SqlPoolSecurityAlertPolicyInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**

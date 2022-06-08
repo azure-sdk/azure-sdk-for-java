@@ -433,14 +433,7 @@ public final class KeysClientImpl implements KeysClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<KeyInner> getAsync(String resourceGroupName, String workspaceName, String keyName) {
         return getWithResponseAsync(resourceGroupName, workspaceName, keyName)
-            .flatMap(
-                (Response<KeyInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -613,14 +606,7 @@ public final class KeysClientImpl implements KeysClient {
     private Mono<KeyInner> createOrUpdateAsync(
         String resourceGroupName, String workspaceName, String keyName, KeyInner keyProperties) {
         return createOrUpdateWithResponseAsync(resourceGroupName, workspaceName, keyName, keyProperties)
-            .flatMap(
-                (Response<KeyInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -781,14 +767,7 @@ public final class KeysClientImpl implements KeysClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<KeyInner> deleteAsync(String resourceGroupName, String workspaceName, String keyName) {
         return deleteWithResponseAsync(resourceGroupName, workspaceName, keyName)
-            .flatMap(
-                (Response<KeyInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**

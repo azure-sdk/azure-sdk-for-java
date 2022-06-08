@@ -425,14 +425,7 @@ public final class PrivateEndpointConnectionsPrivateLinkHubsClientImpl
     private Mono<PrivateEndpointConnectionForPrivateLinkHubInner> getAsync(
         String resourceGroupName, String privateLinkHubName, String privateEndpointConnectionName) {
         return getWithResponseAsync(resourceGroupName, privateLinkHubName, privateEndpointConnectionName)
-            .flatMap(
-                (Response<PrivateEndpointConnectionForPrivateLinkHubInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**

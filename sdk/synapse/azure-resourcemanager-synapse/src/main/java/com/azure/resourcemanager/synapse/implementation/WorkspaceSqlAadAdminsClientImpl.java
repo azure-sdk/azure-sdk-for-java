@@ -217,15 +217,7 @@ public final class WorkspaceSqlAadAdminsClientImpl implements WorkspaceSqlAadAdm
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<WorkspaceAadAdminInfoInner> getAsync(String resourceGroupName, String workspaceName) {
-        return getWithResponseAsync(resourceGroupName, workspaceName)
-            .flatMap(
-                (Response<WorkspaceAadAdminInfoInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+        return getWithResponseAsync(resourceGroupName, workspaceName).flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**

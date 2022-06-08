@@ -233,14 +233,7 @@ public final class DataMaskingPoliciesClientImpl implements DataMaskingPoliciesC
     private Mono<DataMaskingPolicyInner> createOrUpdateAsync(
         String resourceGroupName, String workspaceName, String sqlPoolName, DataMaskingPolicyInner parameters) {
         return createOrUpdateWithResponseAsync(resourceGroupName, workspaceName, sqlPoolName, parameters)
-            .flatMap(
-                (Response<DataMaskingPolicyInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -409,14 +402,7 @@ public final class DataMaskingPoliciesClientImpl implements DataMaskingPoliciesC
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<DataMaskingPolicyInner> getAsync(String resourceGroupName, String workspaceName, String sqlPoolName) {
         return getWithResponseAsync(resourceGroupName, workspaceName, sqlPoolName)
-            .flatMap(
-                (Response<DataMaskingPolicyInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**

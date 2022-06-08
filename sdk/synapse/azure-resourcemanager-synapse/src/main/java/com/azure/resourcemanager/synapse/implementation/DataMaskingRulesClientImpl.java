@@ -284,14 +284,7 @@ public final class DataMaskingRulesClientImpl implements DataMaskingRulesClient 
         DataMaskingRuleInner parameters) {
         return createOrUpdateWithResponseAsync(
                 resourceGroupName, workspaceName, sqlPoolName, dataMaskingRuleName, parameters)
-            .flatMap(
-                (Response<DataMaskingRuleInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -489,14 +482,7 @@ public final class DataMaskingRulesClientImpl implements DataMaskingRulesClient 
     private Mono<DataMaskingRuleInner> getAsync(
         String resourceGroupName, String workspaceName, String sqlPoolName, String dataMaskingRuleName) {
         return getWithResponseAsync(resourceGroupName, workspaceName, sqlPoolName, dataMaskingRuleName)
-            .flatMap(
-                (Response<DataMaskingRuleInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**

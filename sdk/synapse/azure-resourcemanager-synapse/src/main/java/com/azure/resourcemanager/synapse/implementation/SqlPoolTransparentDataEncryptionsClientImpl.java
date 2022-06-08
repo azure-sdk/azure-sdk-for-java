@@ -277,14 +277,7 @@ public final class SqlPoolTransparentDataEncryptionsClientImpl implements SqlPoo
         String sqlPoolName,
         TransparentDataEncryptionName transparentDataEncryptionName) {
         return getWithResponseAsync(resourceGroupName, workspaceName, sqlPoolName, transparentDataEncryptionName)
-            .flatMap(
-                (Response<TransparentDataEncryptionInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -502,14 +495,7 @@ public final class SqlPoolTransparentDataEncryptionsClientImpl implements SqlPoo
         TransparentDataEncryptionInner parameters) {
         return createOrUpdateWithResponseAsync(
                 resourceGroupName, workspaceName, sqlPoolName, transparentDataEncryptionName, parameters)
-            .flatMap(
-                (Response<TransparentDataEncryptionInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**

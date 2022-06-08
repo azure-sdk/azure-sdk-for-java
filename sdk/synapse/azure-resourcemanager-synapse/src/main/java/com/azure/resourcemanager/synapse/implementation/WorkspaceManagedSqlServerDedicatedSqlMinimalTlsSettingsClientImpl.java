@@ -604,14 +604,7 @@ public final class WorkspaceManagedSqlServerDedicatedSqlMinimalTlsSettingsClient
     private Mono<DedicatedSQLminimalTlsSettingsInner> getAsync(
         String resourceGroupName, String workspaceName, String dedicatedSQLminimalTlsSettingsName) {
         return getWithResponseAsync(resourceGroupName, workspaceName, dedicatedSQLminimalTlsSettingsName)
-            .flatMap(
-                (Response<DedicatedSQLminimalTlsSettingsInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**

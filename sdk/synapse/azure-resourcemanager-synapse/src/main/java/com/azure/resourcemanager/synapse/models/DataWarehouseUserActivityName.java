@@ -24,7 +24,11 @@ public final class DataWarehouseUserActivityName extends ExpandableStringEnum<Da
         return fromString(name, DataWarehouseUserActivityName.class);
     }
 
-    /** @return known DataWarehouseUserActivityName values. */
+    /**
+     * Gets known DataWarehouseUserActivityName values.
+     *
+     * @return known DataWarehouseUserActivityName values.
+     */
     public static Collection<DataWarehouseUserActivityName> values() {
         return values(DataWarehouseUserActivityName.class);
     }

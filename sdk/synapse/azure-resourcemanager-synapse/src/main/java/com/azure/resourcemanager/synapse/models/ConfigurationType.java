@@ -27,7 +27,11 @@ public final class ConfigurationType extends ExpandableStringEnum<ConfigurationT
         return fromString(name, ConfigurationType.class);
     }
 
-    /** @return known ConfigurationType values. */
+    /**
+     * Gets known ConfigurationType values.
+     *
+     * @return known ConfigurationType values.
+     */
     public static Collection<ConfigurationType> values() {
         return values(ConfigurationType.class);
     }

@@ -310,14 +310,7 @@ public final class KustoPoolPrincipalAssignmentsClientImpl implements KustoPoolP
         ClusterPrincipalAssignmentCheckNameRequest principalAssignmentName) {
         return checkNameAvailabilityWithResponseAsync(
                 workspaceName, kustoPoolName, resourceGroupName, principalAssignmentName)
-            .flatMap(
-                (Response<CheckNameResultInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -697,14 +690,7 @@ public final class KustoPoolPrincipalAssignmentsClientImpl implements KustoPoolP
     private Mono<ClusterPrincipalAssignmentInner> getAsync(
         String workspaceName, String kustoPoolName, String principalAssignmentName, String resourceGroupName) {
         return getWithResponseAsync(workspaceName, kustoPoolName, principalAssignmentName, resourceGroupName)
-            .flatMap(
-                (Response<ClusterPrincipalAssignmentInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**

@@ -485,14 +485,7 @@ public final class KustoPoolAttachedDatabaseConfigurationsClientImpl
         String attachedDatabaseConfigurationName,
         String resourceGroupName) {
         return getWithResponseAsync(workspaceName, kustoPoolName, attachedDatabaseConfigurationName, resourceGroupName)
-            .flatMap(
-                (Response<AttachedDatabaseConfigurationInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**

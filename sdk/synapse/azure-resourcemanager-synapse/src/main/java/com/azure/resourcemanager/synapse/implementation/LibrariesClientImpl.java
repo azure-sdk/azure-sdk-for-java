@@ -188,14 +188,7 @@ public final class LibrariesClientImpl implements LibrariesClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<LibraryResourceInner> getAsync(String resourceGroupName, String libraryName, String workspaceName) {
         return getWithResponseAsync(resourceGroupName, libraryName, workspaceName)
-            .flatMap(
-                (Response<LibraryResourceInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**

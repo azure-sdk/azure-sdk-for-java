@@ -33,7 +33,11 @@ public final class NodeSizeFamily extends ExpandableStringEnum<NodeSizeFamily> {
         return fromString(name, NodeSizeFamily.class);
     }
 
-    /** @return known NodeSizeFamily values. */
+    /**
+     * Gets known NodeSizeFamily values.
+     *
+     * @return known NodeSizeFamily values.
+     */
     public static Collection<NodeSizeFamily> values() {
         return values(NodeSizeFamily.class);
     }

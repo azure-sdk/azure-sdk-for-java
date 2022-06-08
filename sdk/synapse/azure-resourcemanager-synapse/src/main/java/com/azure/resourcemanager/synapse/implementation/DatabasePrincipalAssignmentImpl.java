@@ -62,6 +62,10 @@ public final class DatabasePrincipalAssignmentImpl
         return this.innerModel().provisioningState();
     }
 
+    public String resourceGroupName() {
+        return resourceGroupName;
+    }
+
     public DatabasePrincipalAssignmentInner innerModel() {
         return this.innerObject;
     }

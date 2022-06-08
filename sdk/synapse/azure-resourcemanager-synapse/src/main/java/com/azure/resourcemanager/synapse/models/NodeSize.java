@@ -42,7 +42,11 @@ public final class NodeSize extends ExpandableStringEnum<NodeSize> {
         return fromString(name, NodeSize.class);
     }
 
-    /** @return known NodeSize values. */
+    /**
+     * Gets known NodeSize values.
+     *
+     * @return known NodeSize values.
+     */
     public static Collection<NodeSize> values() {
         return values(NodeSize.class);
     }

@@ -217,14 +217,7 @@ public final class SqlPoolMaintenanceWindowOptionsClientImpl implements SqlPoolM
     private Mono<MaintenanceWindowOptionsInner> getAsync(
         String resourceGroupName, String workspaceName, String sqlPoolName, String maintenanceWindowOptionsName) {
         return getWithResponseAsync(resourceGroupName, workspaceName, sqlPoolName, maintenanceWindowOptionsName)
-            .flatMap(
-                (Response<MaintenanceWindowOptionsInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**

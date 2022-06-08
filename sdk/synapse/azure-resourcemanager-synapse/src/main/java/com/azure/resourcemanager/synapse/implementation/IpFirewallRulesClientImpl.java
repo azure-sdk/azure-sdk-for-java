@@ -1029,14 +1029,7 @@ public final class IpFirewallRulesClientImpl implements IpFirewallRulesClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<IpFirewallRuleInfoInner> getAsync(String resourceGroupName, String workspaceName, String ruleName) {
         return getWithResponseAsync(resourceGroupName, workspaceName, ruleName)
-            .flatMap(
-                (Response<IpFirewallRuleInfoInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**

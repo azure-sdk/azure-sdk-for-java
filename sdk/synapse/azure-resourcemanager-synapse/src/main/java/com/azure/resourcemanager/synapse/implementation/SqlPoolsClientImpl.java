@@ -327,14 +327,7 @@ public final class SqlPoolsClientImpl implements SqlPoolsClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<SqlPoolInner> getAsync(String resourceGroupName, String workspaceName, String sqlPoolName) {
         return getWithResponseAsync(resourceGroupName, workspaceName, sqlPoolName)
-            .flatMap(
-                (Response<SqlPoolInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -511,14 +504,7 @@ public final class SqlPoolsClientImpl implements SqlPoolsClient {
     private Mono<SqlPoolInner> updateAsync(
         String resourceGroupName, String workspaceName, String sqlPoolName, SqlPoolPatchInfo sqlPoolInfo) {
         return updateWithResponseAsync(resourceGroupName, workspaceName, sqlPoolName, sqlPoolInfo)
-            .flatMap(
-                (Response<SqlPoolInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -1931,7 +1917,7 @@ public final class SqlPoolsClientImpl implements SqlPoolsClient {
     private Mono<Void> renameAsync(
         String resourceGroupName, String workspaceName, String sqlPoolName, ResourceMoveDefinition parameters) {
         return renameWithResponseAsync(resourceGroupName, workspaceName, sqlPoolName, parameters)
-            .flatMap((Response<Void> res) -> Mono.empty());
+            .flatMap(ignored -> Mono.empty());
     }
 
     /**

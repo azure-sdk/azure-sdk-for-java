@@ -261,14 +261,7 @@ public final class WorkspaceManagedSqlServerBlobAuditingPoliciesClientImpl
     private Mono<ServerBlobAuditingPolicyInner> getAsync(
         String resourceGroupName, String workspaceName, BlobAuditingPolicyName blobAuditingPolicyName) {
         return getWithResponseAsync(resourceGroupName, workspaceName, blobAuditingPolicyName)
-            .flatMap(
-                (Response<ServerBlobAuditingPolicyInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**

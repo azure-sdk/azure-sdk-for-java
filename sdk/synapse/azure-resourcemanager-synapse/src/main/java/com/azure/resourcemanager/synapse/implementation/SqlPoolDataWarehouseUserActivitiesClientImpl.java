@@ -227,14 +227,7 @@ public final class SqlPoolDataWarehouseUserActivitiesClientImpl implements SqlPo
         String sqlPoolName,
         DataWarehouseUserActivityName dataWarehouseUserActivityName) {
         return getWithResponseAsync(resourceGroupName, workspaceName, sqlPoolName, dataWarehouseUserActivityName)
-            .flatMap(
-                (Response<DataWarehouseUserActivitiesInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**

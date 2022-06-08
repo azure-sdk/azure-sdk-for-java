@@ -368,14 +368,7 @@ public final class KustoPoolDataConnectionsClientImpl implements KustoPoolDataCo
         DataConnectionCheckNameRequest dataConnectionName) {
         return checkNameAvailabilityWithResponseAsync(
                 resourceGroupName, workspaceName, kustoPoolName, databaseName, dataConnectionName)
-            .flatMap(
-                (Response<CheckNameResultInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -1165,14 +1158,7 @@ public final class KustoPoolDataConnectionsClientImpl implements KustoPoolDataCo
         String databaseName,
         String dataConnectionName) {
         return getWithResponseAsync(resourceGroupName, workspaceName, kustoPoolName, databaseName, dataConnectionName)
-            .flatMap(
-                (Response<DataConnectionInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
