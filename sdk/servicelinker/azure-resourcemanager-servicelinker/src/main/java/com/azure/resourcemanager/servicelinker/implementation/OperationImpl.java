@@ -13,10 +13,10 @@ import com.azure.resourcemanager.servicelinker.models.Origin;
 public final class OperationImpl implements Operation {
     private OperationInner innerObject;
 
-    private final com.azure.resourcemanager.servicelinker.ServiceLinkerManager serviceManager;
+    private final com.azure.resourcemanager.servicelinker.ServicelinkerManager serviceManager;
 
     OperationImpl(
-        OperationInner innerObject, com.azure.resourcemanager.servicelinker.ServiceLinkerManager serviceManager) {
+        OperationInner innerObject, com.azure.resourcemanager.servicelinker.ServicelinkerManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
     }
@@ -45,7 +45,7 @@ public final class OperationImpl implements Operation {
         return this.innerObject;
     }
 
-    private com.azure.resourcemanager.servicelinker.ServiceLinkerManager manager() {
+    private com.azure.resourcemanager.servicelinker.ServicelinkerManager manager() {
         return this.serviceManager;
     }
 }

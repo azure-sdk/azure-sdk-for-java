@@ -36,7 +36,7 @@ import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.servicelinker.fluent.LinkersClient;
 import com.azure.resourcemanager.servicelinker.fluent.models.LinkerResourceInner;
 import com.azure.resourcemanager.servicelinker.fluent.models.SourceConfigurationResultInner;
-import com.azure.resourcemanager.servicelinker.fluent.models.ValidateOperationResultInner;
+import com.azure.resourcemanager.servicelinker.fluent.models.ValidateResultInner;
 import com.azure.resourcemanager.servicelinker.models.LinkerList;
 import com.azure.resourcemanager.servicelinker.models.LinkerPatch;
 import java.nio.ByteBuffer;
@@ -49,24 +49,24 @@ public final class LinkersClientImpl implements LinkersClient {
     private final LinkersService service;
 
     /** The service client containing this operation class. */
-    private final ServiceLinkerManagementClientImpl client;
+    private final MicrosoftServiceLinkerImpl client;
 
     /**
      * Initializes an instance of LinkersClientImpl.
      *
      * @param client the instance of the service client containing this operation class.
      */
-    LinkersClientImpl(ServiceLinkerManagementClientImpl client) {
+    LinkersClientImpl(MicrosoftServiceLinkerImpl client) {
         this.service = RestProxy.create(LinkersService.class, client.getHttpPipeline(), client.getSerializerAdapter());
         this.client = client;
     }
 
     /**
-     * The interface defining all the services for ServiceLinkerManagementClientLinkers to be used by the proxy service
-     * to perform REST calls.
+     * The interface defining all the services for MicrosoftServiceLinkerLinkers to be used by the proxy service to
+     * perform REST calls.
      */
     @Host("{$host}")
-    @ServiceInterface(name = "ServiceLinkerManagem")
+    @ServiceInterface(name = "MicrosoftServiceLink")
     private interface LinkersService {
         @Headers({"Content-Type: application/json"})
         @Get("/{resourceUri}/providers/Microsoft.ServiceLinker/linkers")
@@ -1124,8 +1124,7 @@ public final class LinkersClientImpl implements LinkersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the validation operation result for a linker along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * @return the validation result for a linker along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> validateWithResponseAsync(String resourceUri, String linkerName) {
@@ -1165,8 +1164,7 @@ public final class LinkersClientImpl implements LinkersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the validation operation result for a linker along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * @return the validation result for a linker along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> validateWithResponseAsync(
@@ -1197,19 +1195,19 @@ public final class LinkersClientImpl implements LinkersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of the validation operation result for a linker.
+     * @return the {@link PollerFlux} for polling of the validation result for a linker.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<ValidateOperationResultInner>, ValidateOperationResultInner> beginValidateAsync(
+    private PollerFlux<PollResult<ValidateResultInner>, ValidateResultInner> beginValidateAsync(
         String resourceUri, String linkerName) {
         Mono<Response<Flux<ByteBuffer>>> mono = validateWithResponseAsync(resourceUri, linkerName);
         return this
             .client
-            .<ValidateOperationResultInner, ValidateOperationResultInner>getLroResult(
+            .<ValidateResultInner, ValidateResultInner>getLroResult(
                 mono,
                 this.client.getHttpPipeline(),
-                ValidateOperationResultInner.class,
-                ValidateOperationResultInner.class,
+                ValidateResultInner.class,
+                ValidateResultInner.class,
                 this.client.getContext());
     }
 
@@ -1222,21 +1220,17 @@ public final class LinkersClientImpl implements LinkersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of the validation operation result for a linker.
+     * @return the {@link PollerFlux} for polling of the validation result for a linker.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<ValidateOperationResultInner>, ValidateOperationResultInner> beginValidateAsync(
+    private PollerFlux<PollResult<ValidateResultInner>, ValidateResultInner> beginValidateAsync(
         String resourceUri, String linkerName, Context context) {
         context = this.client.mergeContext(context);
         Mono<Response<Flux<ByteBuffer>>> mono = validateWithResponseAsync(resourceUri, linkerName, context);
         return this
             .client
-            .<ValidateOperationResultInner, ValidateOperationResultInner>getLroResult(
-                mono,
-                this.client.getHttpPipeline(),
-                ValidateOperationResultInner.class,
-                ValidateOperationResultInner.class,
-                context);
+            .<ValidateResultInner, ValidateResultInner>getLroResult(
+                mono, this.client.getHttpPipeline(), ValidateResultInner.class, ValidateResultInner.class, context);
     }
 
     /**
@@ -1247,10 +1241,10 @@ public final class LinkersClientImpl implements LinkersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of the validation operation result for a linker.
+     * @return the {@link SyncPoller} for polling of the validation result for a linker.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<ValidateOperationResultInner>, ValidateOperationResultInner> beginValidate(
+    public SyncPoller<PollResult<ValidateResultInner>, ValidateResultInner> beginValidate(
         String resourceUri, String linkerName) {
         return beginValidateAsync(resourceUri, linkerName).getSyncPoller();
     }
@@ -1264,10 +1258,10 @@ public final class LinkersClientImpl implements LinkersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of the validation operation result for a linker.
+     * @return the {@link SyncPoller} for polling of the validation result for a linker.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<ValidateOperationResultInner>, ValidateOperationResultInner> beginValidate(
+    public SyncPoller<PollResult<ValidateResultInner>, ValidateResultInner> beginValidate(
         String resourceUri, String linkerName, Context context) {
         return beginValidateAsync(resourceUri, linkerName, context).getSyncPoller();
     }
@@ -1280,10 +1274,10 @@ public final class LinkersClientImpl implements LinkersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the validation operation result for a linker on successful completion of {@link Mono}.
+     * @return the validation result for a linker on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<ValidateOperationResultInner> validateAsync(String resourceUri, String linkerName) {
+    private Mono<ValidateResultInner> validateAsync(String resourceUri, String linkerName) {
         return beginValidateAsync(resourceUri, linkerName).last().flatMap(this.client::getLroFinalResultOrError);
     }
 
@@ -1296,10 +1290,10 @@ public final class LinkersClientImpl implements LinkersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the validation operation result for a linker on successful completion of {@link Mono}.
+     * @return the validation result for a linker on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<ValidateOperationResultInner> validateAsync(String resourceUri, String linkerName, Context context) {
+    private Mono<ValidateResultInner> validateAsync(String resourceUri, String linkerName, Context context) {
         return beginValidateAsync(resourceUri, linkerName, context)
             .last()
             .flatMap(this.client::getLroFinalResultOrError);
@@ -1313,10 +1307,10 @@ public final class LinkersClientImpl implements LinkersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the validation operation result for a linker.
+     * @return the validation result for a linker.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public ValidateOperationResultInner validate(String resourceUri, String linkerName) {
+    public ValidateResultInner validate(String resourceUri, String linkerName) {
         return validateAsync(resourceUri, linkerName).block();
     }
 
@@ -1329,10 +1323,10 @@ public final class LinkersClientImpl implements LinkersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the validation operation result for a linker.
+     * @return the validation result for a linker.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public ValidateOperationResultInner validate(String resourceUri, String linkerName, Context context) {
+    public ValidateResultInner validate(String resourceUri, String linkerName, Context context) {
         return validateAsync(resourceUri, linkerName, context).block();
     }
 
