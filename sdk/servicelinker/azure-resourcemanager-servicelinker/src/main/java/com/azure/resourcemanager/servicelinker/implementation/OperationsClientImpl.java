@@ -36,25 +36,25 @@ public final class OperationsClientImpl implements OperationsClient {
     private final OperationsService service;
 
     /** The service client containing this operation class. */
-    private final ServiceLinkerManagementClientImpl client;
+    private final MicrosoftServiceLinkerImpl client;
 
     /**
      * Initializes an instance of OperationsClientImpl.
      *
      * @param client the instance of the service client containing this operation class.
      */
-    OperationsClientImpl(ServiceLinkerManagementClientImpl client) {
+    OperationsClientImpl(MicrosoftServiceLinkerImpl client) {
         this.service =
             RestProxy.create(OperationsService.class, client.getHttpPipeline(), client.getSerializerAdapter());
         this.client = client;
     }
 
     /**
-     * The interface defining all the services for ServiceLinkerManagementClientOperations to be used by the proxy
-     * service to perform REST calls.
+     * The interface defining all the services for MicrosoftServiceLinkerOperations to be used by the proxy service to
+     * perform REST calls.
      */
     @Host("{$host}")
-    @ServiceInterface(name = "ServiceLinkerManagem")
+    @ServiceInterface(name = "MicrosoftServiceLink")
     private interface OperationsService {
         @Headers({"Content-Type: application/json"})
         @Get("/providers/Microsoft.ServiceLinker/operations")
