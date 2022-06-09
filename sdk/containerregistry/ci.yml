@@ -41,9 +41,11 @@ extends:
       - name: azure-containers-containerregistry
         groupId: com.azure
         safeName: azurecontainerscontainerregistry
+      - name: azure-resourcemanager-containerregistry-generated
+        groupId: com.azure.resourcemanager
+        safeName: azureresourcemanagercontainerregistrygenerated
     AdditionalModules:
       - name: azure-containers-containerregistry-perf
         groupId: com.azure
-        # required by the above perf library
       - name: perf-test-core
         groupId: com.azure
