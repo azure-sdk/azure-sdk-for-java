@@ -30,7 +30,6 @@ import com.azure.core.management.exception.ManagementException;
 import com.azure.core.management.polling.PollResult;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.azurearcdata.fluent.SqlServerInstancesClient;
@@ -43,8 +42,6 @@ import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in SqlServerInstancesClient. */
 public final class SqlServerInstancesClientImpl implements SqlServerInstancesClient {
-    private final ClientLogger logger = new ClientLogger(SqlServerInstancesClientImpl.class);
-
     /** The proxy service used to perform REST calls. */
     private final SqlServerInstancesService service;
 
@@ -182,7 +179,7 @@ public final class SqlServerInstancesClientImpl implements SqlServerInstancesCli
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of SqlServerInstance.
+     * @return a list of SqlServerInstance along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<SqlServerInstanceInner>> listSinglePageAsync() {
@@ -228,7 +225,7 @@ public final class SqlServerInstancesClientImpl implements SqlServerInstancesCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of SqlServerInstance.
+     * @return a list of SqlServerInstance along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<SqlServerInstanceInner>> listSinglePageAsync(Context context) {
@@ -269,7 +266,7 @@ public final class SqlServerInstancesClientImpl implements SqlServerInstancesCli
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of SqlServerInstance.
+     * @return a list of SqlServerInstance as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<SqlServerInstanceInner> listAsync() {
@@ -283,7 +280,7 @@ public final class SqlServerInstancesClientImpl implements SqlServerInstancesCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of SqlServerInstance.
+     * @return a list of SqlServerInstance as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<SqlServerInstanceInner> listAsync(Context context) {
@@ -296,7 +293,7 @@ public final class SqlServerInstancesClientImpl implements SqlServerInstancesCli
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of SqlServerInstance.
+     * @return a list of SqlServerInstance as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<SqlServerInstanceInner> list() {
@@ -310,7 +307,7 @@ public final class SqlServerInstancesClientImpl implements SqlServerInstancesCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of SqlServerInstance.
+     * @return a list of SqlServerInstance as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<SqlServerInstanceInner> list(Context context) {
@@ -324,7 +321,8 @@ public final class SqlServerInstancesClientImpl implements SqlServerInstancesCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all sqlServerInstances in a resource group.
+     * @return all sqlServerInstances in a resource group along with {@link PagedResponse} on successful completion of
+     *     {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<SqlServerInstanceInner>> listByResourceGroupSinglePageAsync(String resourceGroupName) {
@@ -376,7 +374,8 @@ public final class SqlServerInstancesClientImpl implements SqlServerInstancesCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all sqlServerInstances in a resource group.
+     * @return all sqlServerInstances in a resource group along with {@link PagedResponse} on successful completion of
+     *     {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<SqlServerInstanceInner>> listByResourceGroupSinglePageAsync(
@@ -425,7 +424,7 @@ public final class SqlServerInstancesClientImpl implements SqlServerInstancesCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all sqlServerInstances in a resource group.
+     * @return all sqlServerInstances in a resource group as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<SqlServerInstanceInner> listByResourceGroupAsync(String resourceGroupName) {
@@ -442,7 +441,7 @@ public final class SqlServerInstancesClientImpl implements SqlServerInstancesCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all sqlServerInstances in a resource group.
+     * @return all sqlServerInstances in a resource group as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<SqlServerInstanceInner> listByResourceGroupAsync(String resourceGroupName, Context context) {
@@ -458,7 +457,7 @@ public final class SqlServerInstancesClientImpl implements SqlServerInstancesCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all sqlServerInstances in a resource group.
+     * @return all sqlServerInstances in a resource group as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<SqlServerInstanceInner> listByResourceGroup(String resourceGroupName) {
@@ -473,7 +472,7 @@ public final class SqlServerInstancesClientImpl implements SqlServerInstancesCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all sqlServerInstances in a resource group.
+     * @return all sqlServerInstances in a resource group as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<SqlServerInstanceInner> listByResourceGroup(String resourceGroupName, Context context) {
@@ -488,7 +487,7 @@ public final class SqlServerInstancesClientImpl implements SqlServerInstancesCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a SqlServerInstance.
+     * @return a SqlServerInstance along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<SqlServerInstanceInner>> getByResourceGroupWithResponseAsync(
@@ -538,7 +537,7 @@ public final class SqlServerInstancesClientImpl implements SqlServerInstancesCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a SqlServerInstance.
+     * @return a SqlServerInstance along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<SqlServerInstanceInner>> getByResourceGroupWithResponseAsync(
@@ -584,20 +583,13 @@ public final class SqlServerInstancesClientImpl implements SqlServerInstancesCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a SqlServerInstance.
+     * @return a SqlServerInstance on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<SqlServerInstanceInner> getByResourceGroupAsync(
         String resourceGroupName, String sqlServerInstanceName) {
         return getByResourceGroupWithResponseAsync(resourceGroupName, sqlServerInstanceName)
-            .flatMap(
-                (Response<SqlServerInstanceInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -624,7 +616,7 @@ public final class SqlServerInstancesClientImpl implements SqlServerInstancesCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a SqlServerInstance.
+     * @return a SqlServerInstance along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<SqlServerInstanceInner> getByResourceGroupWithResponse(
@@ -636,12 +628,12 @@ public final class SqlServerInstancesClientImpl implements SqlServerInstancesCli
      * Creates or replaces a SQL Server Instance resource.
      *
      * @param resourceGroupName The name of the Azure resource group.
-     * @param sqlServerInstanceName The name of SQL Server Instance.
+     * @param sqlServerInstanceName Name of SQL Server Instance.
      * @param sqlServerInstance The SQL Server Instance to be created or updated.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a SqlServerInstance.
+     * @return a SqlServerInstance along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> createWithResponseAsync(
@@ -693,13 +685,13 @@ public final class SqlServerInstancesClientImpl implements SqlServerInstancesCli
      * Creates or replaces a SQL Server Instance resource.
      *
      * @param resourceGroupName The name of the Azure resource group.
-     * @param sqlServerInstanceName The name of SQL Server Instance.
+     * @param sqlServerInstanceName Name of SQL Server Instance.
      * @param sqlServerInstance The SQL Server Instance to be created or updated.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a SqlServerInstance.
+     * @return a SqlServerInstance along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> createWithResponseAsync(
@@ -751,14 +743,14 @@ public final class SqlServerInstancesClientImpl implements SqlServerInstancesCli
      * Creates or replaces a SQL Server Instance resource.
      *
      * @param resourceGroupName The name of the Azure resource group.
-     * @param sqlServerInstanceName The name of SQL Server Instance.
+     * @param sqlServerInstanceName Name of SQL Server Instance.
      * @param sqlServerInstance The SQL Server Instance to be created or updated.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a SqlServerInstance.
+     * @return the {@link PollerFlux} for polling of a SqlServerInstance.
      */
-    @ServiceMethod(returns = ReturnType.SINGLE)
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<SqlServerInstanceInner>, SqlServerInstanceInner> beginCreateAsync(
         String resourceGroupName, String sqlServerInstanceName, SqlServerInstanceInner sqlServerInstance) {
         Mono<Response<Flux<ByteBuffer>>> mono =
@@ -770,22 +762,22 @@ public final class SqlServerInstancesClientImpl implements SqlServerInstancesCli
                 this.client.getHttpPipeline(),
                 SqlServerInstanceInner.class,
                 SqlServerInstanceInner.class,
-                Context.NONE);
+                this.client.getContext());
     }
 
     /**
      * Creates or replaces a SQL Server Instance resource.
      *
      * @param resourceGroupName The name of the Azure resource group.
-     * @param sqlServerInstanceName The name of SQL Server Instance.
+     * @param sqlServerInstanceName Name of SQL Server Instance.
      * @param sqlServerInstance The SQL Server Instance to be created or updated.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a SqlServerInstance.
+     * @return the {@link PollerFlux} for polling of a SqlServerInstance.
      */
-    @ServiceMethod(returns = ReturnType.SINGLE)
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<SqlServerInstanceInner>, SqlServerInstanceInner> beginCreateAsync(
         String resourceGroupName,
         String sqlServerInstanceName,
@@ -808,14 +800,14 @@ public final class SqlServerInstancesClientImpl implements SqlServerInstancesCli
      * Creates or replaces a SQL Server Instance resource.
      *
      * @param resourceGroupName The name of the Azure resource group.
-     * @param sqlServerInstanceName The name of SQL Server Instance.
+     * @param sqlServerInstanceName Name of SQL Server Instance.
      * @param sqlServerInstance The SQL Server Instance to be created or updated.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a SqlServerInstance.
+     * @return the {@link SyncPoller} for polling of a SqlServerInstance.
      */
-    @ServiceMethod(returns = ReturnType.SINGLE)
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<SqlServerInstanceInner>, SqlServerInstanceInner> beginCreate(
         String resourceGroupName, String sqlServerInstanceName, SqlServerInstanceInner sqlServerInstance) {
         return beginCreateAsync(resourceGroupName, sqlServerInstanceName, sqlServerInstance).getSyncPoller();
@@ -825,15 +817,15 @@ public final class SqlServerInstancesClientImpl implements SqlServerInstancesCli
      * Creates or replaces a SQL Server Instance resource.
      *
      * @param resourceGroupName The name of the Azure resource group.
-     * @param sqlServerInstanceName The name of SQL Server Instance.
+     * @param sqlServerInstanceName Name of SQL Server Instance.
      * @param sqlServerInstance The SQL Server Instance to be created or updated.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a SqlServerInstance.
+     * @return the {@link SyncPoller} for polling of a SqlServerInstance.
      */
-    @ServiceMethod(returns = ReturnType.SINGLE)
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<SqlServerInstanceInner>, SqlServerInstanceInner> beginCreate(
         String resourceGroupName,
         String sqlServerInstanceName,
@@ -846,12 +838,12 @@ public final class SqlServerInstancesClientImpl implements SqlServerInstancesCli
      * Creates or replaces a SQL Server Instance resource.
      *
      * @param resourceGroupName The name of the Azure resource group.
-     * @param sqlServerInstanceName The name of SQL Server Instance.
+     * @param sqlServerInstanceName Name of SQL Server Instance.
      * @param sqlServerInstance The SQL Server Instance to be created or updated.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a SqlServerInstance.
+     * @return a SqlServerInstance on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<SqlServerInstanceInner> createAsync(
@@ -865,13 +857,13 @@ public final class SqlServerInstancesClientImpl implements SqlServerInstancesCli
      * Creates or replaces a SQL Server Instance resource.
      *
      * @param resourceGroupName The name of the Azure resource group.
-     * @param sqlServerInstanceName The name of SQL Server Instance.
+     * @param sqlServerInstanceName Name of SQL Server Instance.
      * @param sqlServerInstance The SQL Server Instance to be created or updated.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a SqlServerInstance.
+     * @return a SqlServerInstance on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<SqlServerInstanceInner> createAsync(
@@ -888,7 +880,7 @@ public final class SqlServerInstancesClientImpl implements SqlServerInstancesCli
      * Creates or replaces a SQL Server Instance resource.
      *
      * @param resourceGroupName The name of the Azure resource group.
-     * @param sqlServerInstanceName The name of SQL Server Instance.
+     * @param sqlServerInstanceName Name of SQL Server Instance.
      * @param sqlServerInstance The SQL Server Instance to be created or updated.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -905,7 +897,7 @@ public final class SqlServerInstancesClientImpl implements SqlServerInstancesCli
      * Creates or replaces a SQL Server Instance resource.
      *
      * @param resourceGroupName The name of the Azure resource group.
-     * @param sqlServerInstanceName The name of SQL Server Instance.
+     * @param sqlServerInstanceName Name of SQL Server Instance.
      * @param sqlServerInstance The SQL Server Instance to be created or updated.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -926,11 +918,11 @@ public final class SqlServerInstancesClientImpl implements SqlServerInstancesCli
      * Deletes a SQL Server Instance resource.
      *
      * @param resourceGroupName The name of the Azure resource group.
-     * @param sqlServerInstanceName The name of SQL Server Instance.
+     * @param sqlServerInstanceName Name of SQL Server Instance.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the completion.
+     * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(
@@ -975,12 +967,12 @@ public final class SqlServerInstancesClientImpl implements SqlServerInstancesCli
      * Deletes a SQL Server Instance resource.
      *
      * @param resourceGroupName The name of the Azure resource group.
-     * @param sqlServerInstanceName The name of SQL Server Instance.
+     * @param sqlServerInstanceName Name of SQL Server Instance.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the completion.
+     * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(
@@ -1022,33 +1014,34 @@ public final class SqlServerInstancesClientImpl implements SqlServerInstancesCli
      * Deletes a SQL Server Instance resource.
      *
      * @param resourceGroupName The name of the Azure resource group.
-     * @param sqlServerInstanceName The name of SQL Server Instance.
+     * @param sqlServerInstanceName Name of SQL Server Instance.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the completion.
+     * @return the {@link PollerFlux} for polling of long-running operation.
      */
-    @ServiceMethod(returns = ReturnType.SINGLE)
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(
         String resourceGroupName, String sqlServerInstanceName) {
         Mono<Response<Flux<ByteBuffer>>> mono = deleteWithResponseAsync(resourceGroupName, sqlServerInstanceName);
         return this
             .client
-            .<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class, Context.NONE);
+            .<Void, Void>getLroResult(
+                mono, this.client.getHttpPipeline(), Void.class, Void.class, this.client.getContext());
     }
 
     /**
      * Deletes a SQL Server Instance resource.
      *
      * @param resourceGroupName The name of the Azure resource group.
-     * @param sqlServerInstanceName The name of SQL Server Instance.
+     * @param sqlServerInstanceName Name of SQL Server Instance.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the completion.
+     * @return the {@link PollerFlux} for polling of long-running operation.
      */
-    @ServiceMethod(returns = ReturnType.SINGLE)
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(
         String resourceGroupName, String sqlServerInstanceName, Context context) {
         context = this.client.mergeContext(context);
@@ -1063,13 +1056,13 @@ public final class SqlServerInstancesClientImpl implements SqlServerInstancesCli
      * Deletes a SQL Server Instance resource.
      *
      * @param resourceGroupName The name of the Azure resource group.
-     * @param sqlServerInstanceName The name of SQL Server Instance.
+     * @param sqlServerInstanceName Name of SQL Server Instance.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the completion.
+     * @return the {@link SyncPoller} for polling of long-running operation.
      */
-    @ServiceMethod(returns = ReturnType.SINGLE)
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String sqlServerInstanceName) {
         return beginDeleteAsync(resourceGroupName, sqlServerInstanceName).getSyncPoller();
     }
@@ -1078,14 +1071,14 @@ public final class SqlServerInstancesClientImpl implements SqlServerInstancesCli
      * Deletes a SQL Server Instance resource.
      *
      * @param resourceGroupName The name of the Azure resource group.
-     * @param sqlServerInstanceName The name of SQL Server Instance.
+     * @param sqlServerInstanceName Name of SQL Server Instance.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the completion.
+     * @return the {@link SyncPoller} for polling of long-running operation.
      */
-    @ServiceMethod(returns = ReturnType.SINGLE)
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
         String resourceGroupName, String sqlServerInstanceName, Context context) {
         return beginDeleteAsync(resourceGroupName, sqlServerInstanceName, context).getSyncPoller();
@@ -1095,11 +1088,11 @@ public final class SqlServerInstancesClientImpl implements SqlServerInstancesCli
      * Deletes a SQL Server Instance resource.
      *
      * @param resourceGroupName The name of the Azure resource group.
-     * @param sqlServerInstanceName The name of SQL Server Instance.
+     * @param sqlServerInstanceName Name of SQL Server Instance.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the completion.
+     * @return A {@link Mono} that completes when a successful response is received.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> deleteAsync(String resourceGroupName, String sqlServerInstanceName) {
@@ -1112,12 +1105,12 @@ public final class SqlServerInstancesClientImpl implements SqlServerInstancesCli
      * Deletes a SQL Server Instance resource.
      *
      * @param resourceGroupName The name of the Azure resource group.
-     * @param sqlServerInstanceName The name of SQL Server Instance.
+     * @param sqlServerInstanceName Name of SQL Server Instance.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the completion.
+     * @return A {@link Mono} that completes when a successful response is received.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> deleteAsync(String resourceGroupName, String sqlServerInstanceName, Context context) {
@@ -1130,7 +1123,7 @@ public final class SqlServerInstancesClientImpl implements SqlServerInstancesCli
      * Deletes a SQL Server Instance resource.
      *
      * @param resourceGroupName The name of the Azure resource group.
-     * @param sqlServerInstanceName The name of SQL Server Instance.
+     * @param sqlServerInstanceName Name of SQL Server Instance.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1144,7 +1137,7 @@ public final class SqlServerInstancesClientImpl implements SqlServerInstancesCli
      * Deletes a SQL Server Instance resource.
      *
      * @param resourceGroupName The name of the Azure resource group.
-     * @param sqlServerInstanceName The name of SQL Server Instance.
+     * @param sqlServerInstanceName Name of SQL Server Instance.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1159,12 +1152,12 @@ public final class SqlServerInstancesClientImpl implements SqlServerInstancesCli
      * Updates a SQL Server Instance resource.
      *
      * @param resourceGroupName The name of the Azure resource group.
-     * @param sqlServerInstanceName Name of sqlServerInstance.
+     * @param sqlServerInstanceName Name of SQL Server Instance.
      * @param parameters The SQL Server Instance.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a SqlServerInstance.
+     * @return a SqlServerInstance along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<SqlServerInstanceInner>> updateWithResponseAsync(
@@ -1215,13 +1208,13 @@ public final class SqlServerInstancesClientImpl implements SqlServerInstancesCli
      * Updates a SQL Server Instance resource.
      *
      * @param resourceGroupName The name of the Azure resource group.
-     * @param sqlServerInstanceName Name of sqlServerInstance.
+     * @param sqlServerInstanceName Name of SQL Server Instance.
      * @param parameters The SQL Server Instance.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a SqlServerInstance.
+     * @return a SqlServerInstance along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<SqlServerInstanceInner>> updateWithResponseAsync(
@@ -1269,32 +1262,25 @@ public final class SqlServerInstancesClientImpl implements SqlServerInstancesCli
      * Updates a SQL Server Instance resource.
      *
      * @param resourceGroupName The name of the Azure resource group.
-     * @param sqlServerInstanceName Name of sqlServerInstance.
+     * @param sqlServerInstanceName Name of SQL Server Instance.
      * @param parameters The SQL Server Instance.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a SqlServerInstance.
+     * @return a SqlServerInstance on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<SqlServerInstanceInner> updateAsync(
         String resourceGroupName, String sqlServerInstanceName, SqlServerInstanceUpdate parameters) {
         return updateWithResponseAsync(resourceGroupName, sqlServerInstanceName, parameters)
-            .flatMap(
-                (Response<SqlServerInstanceInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
      * Updates a SQL Server Instance resource.
      *
      * @param resourceGroupName The name of the Azure resource group.
-     * @param sqlServerInstanceName Name of sqlServerInstance.
+     * @param sqlServerInstanceName Name of SQL Server Instance.
      * @param parameters The SQL Server Instance.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1311,13 +1297,13 @@ public final class SqlServerInstancesClientImpl implements SqlServerInstancesCli
      * Updates a SQL Server Instance resource.
      *
      * @param resourceGroupName The name of the Azure resource group.
-     * @param sqlServerInstanceName Name of sqlServerInstance.
+     * @param sqlServerInstanceName Name of SQL Server Instance.
      * @param parameters The SQL Server Instance.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a SqlServerInstance.
+     * @return a SqlServerInstance along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<SqlServerInstanceInner> updateWithResponse(
@@ -1332,7 +1318,7 @@ public final class SqlServerInstancesClientImpl implements SqlServerInstancesCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of SqlServerInstance.
+     * @return a list of SqlServerInstance along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<SqlServerInstanceInner>> listNextSinglePageAsync(String nextLink) {
@@ -1368,7 +1354,7 @@ public final class SqlServerInstancesClientImpl implements SqlServerInstancesCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of SqlServerInstance.
+     * @return a list of SqlServerInstance along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<SqlServerInstanceInner>> listNextSinglePageAsync(String nextLink, Context context) {
@@ -1403,7 +1389,7 @@ public final class SqlServerInstancesClientImpl implements SqlServerInstancesCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of SqlServerInstance.
+     * @return a list of SqlServerInstance along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<SqlServerInstanceInner>> listByResourceGroupNextSinglePageAsync(String nextLink) {
@@ -1440,7 +1426,7 @@ public final class SqlServerInstancesClientImpl implements SqlServerInstancesCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of SqlServerInstance.
+     * @return a list of SqlServerInstance along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<SqlServerInstanceInner>> listByResourceGroupNextSinglePageAsync(

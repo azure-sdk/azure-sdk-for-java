@@ -16,6 +16,9 @@ public final class ConnectionStatus extends ExpandableStringEnum<ConnectionStatu
     /** Static value Disconnected for ConnectionStatus. */
     public static final ConnectionStatus DISCONNECTED = fromString("Disconnected");
 
+    /** Static value Registered for ConnectionStatus. */
+    public static final ConnectionStatus REGISTERED = fromString("Registered");
+
     /** Static value Unknown for ConnectionStatus. */
     public static final ConnectionStatus UNKNOWN = fromString("Unknown");
 
@@ -30,7 +33,11 @@ public final class ConnectionStatus extends ExpandableStringEnum<ConnectionStatu
         return fromString(name, ConnectionStatus.class);
     }
 
-    /** @return known ConnectionStatus values. */
+    /**
+     * Gets known ConnectionStatus values.
+     *
+     * @return known ConnectionStatus values.
+     */
     public static Collection<ConnectionStatus> values() {
         return values(ConnectionStatus.class);
     }
