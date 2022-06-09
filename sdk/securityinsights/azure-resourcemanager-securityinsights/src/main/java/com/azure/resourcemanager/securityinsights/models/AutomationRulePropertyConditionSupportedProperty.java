@@ -73,6 +73,10 @@ public final class AutomationRulePropertyConditionSupportedProperty
     public static final AutomationRulePropertyConditionSupportedProperty ALERT_PRODUCT_NAMES =
         fromString("AlertProductNames");
 
+    /** Static value AlertAnalyticRuleIds for AutomationRulePropertyConditionSupportedProperty. */
+    public static final AutomationRulePropertyConditionSupportedProperty ALERT_ANALYTIC_RULE_IDS =
+        fromString("AlertAnalyticRuleIds");
+
     /** Static value AzureResourceResourceId for AutomationRulePropertyConditionSupportedProperty. */
     public static final AutomationRulePropertyConditionSupportedProperty AZURE_RESOURCE_RESOURCE_ID =
         fromString("AzureResourceResourceId");
