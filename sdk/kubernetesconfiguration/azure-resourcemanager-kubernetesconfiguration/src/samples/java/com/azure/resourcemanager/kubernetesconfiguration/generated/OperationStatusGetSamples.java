@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for OperationStatus Get. */
 public final class OperationStatusGetSamples {
     /*
-     * x-ms-original-file: specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/stable/2022-03-01/examples/GetExtensionAsyncOperationStatus.json
+     * x-ms-original-file: specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/stable/2022-07-01/examples/GetExtensionAsyncOperationStatus.json
      */
     /**
      * Sample code: ExtensionAsyncOperationStatus Get.

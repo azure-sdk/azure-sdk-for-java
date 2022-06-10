@@ -7,6 +7,7 @@ package com.azure.resourcemanager.kubernetesconfiguration.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.ProxyResource;
 import com.azure.core.management.SystemData;
+import com.azure.resourcemanager.kubernetesconfiguration.models.AzureBlobDefinition;
 import com.azure.resourcemanager.kubernetesconfiguration.models.BucketDefinition;
 import com.azure.resourcemanager.kubernetesconfiguration.models.FluxComplianceState;
 import com.azure.resourcemanager.kubernetesconfiguration.models.GitRepositoryDefinition;
@@ -194,6 +195,29 @@ public final class FluxConfigurationInner extends ProxyResource {
             this.innerProperties = new FluxConfigurationProperties();
         }
         this.innerProperties().withBucket(bucket);
+        return this;
+    }
+
+    /**
+     * Get the azureBlob property: Parameters to reconcile to the AzureBlob source kind type.
+     *
+     * @return the azureBlob value.
+     */
+    public AzureBlobDefinition azureBlob() {
+        return this.innerProperties() == null ? null : this.innerProperties().azureBlob();
+    }
+
+    /**
+     * Set the azureBlob property: Parameters to reconcile to the AzureBlob source kind type.
+     *
+     * @param azureBlob the azureBlob value to set.
+     * @return the FluxConfigurationInner object itself.
+     */
+    public FluxConfigurationInner withAzureBlob(AzureBlobDefinition azureBlob) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new FluxConfigurationProperties();
+        }
+        this.innerProperties().withAzureBlob(azureBlob);
         return this;
     }
 

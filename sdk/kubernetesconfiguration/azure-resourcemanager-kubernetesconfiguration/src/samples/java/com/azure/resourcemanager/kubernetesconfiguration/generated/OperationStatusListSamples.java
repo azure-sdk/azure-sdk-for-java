@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for OperationStatus List. */
 public final class OperationStatusListSamples {
     /*
-     * x-ms-original-file: specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/stable/2022-03-01/examples/ListAsyncOperationStatus.json
+     * x-ms-original-file: specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/stable/2022-07-01/examples/ListAsyncOperationStatus.json
      */
     /**
      * Sample code: AsyncOperationStatus List.

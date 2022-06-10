@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.kubernetesconfiguration.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.resourcemanager.kubernetesconfiguration.models.AzureBlobDefinition;
 import com.azure.resourcemanager.kubernetesconfiguration.models.BucketDefinition;
 import com.azure.resourcemanager.kubernetesconfiguration.models.FluxComplianceState;
 import com.azure.resourcemanager.kubernetesconfiguration.models.GitRepositoryDefinition;
@@ -59,6 +60,12 @@ public final class FluxConfigurationProperties {
      */
     @JsonProperty(value = "bucket")
     private BucketDefinition bucket;
+
+    /*
+     * Parameters to reconcile to the AzureBlob source kind type.
+     */
+    @JsonProperty(value = "azureBlob")
+    private AzureBlobDefinition azureBlob;
 
     /*
      * Array of kustomizations used to reconcile the artifact pulled by the
@@ -254,6 +261,26 @@ public final class FluxConfigurationProperties {
     }
 
     /**
+     * Get the azureBlob property: Parameters to reconcile to the AzureBlob source kind type.
+     *
+     * @return the azureBlob value.
+     */
+    public AzureBlobDefinition azureBlob() {
+        return this.azureBlob;
+    }
+
+    /**
+     * Set the azureBlob property: Parameters to reconcile to the AzureBlob source kind type.
+     *
+     * @param azureBlob the azureBlob value to set.
+     * @return the FluxConfigurationProperties object itself.
+     */
+    public FluxConfigurationProperties withAzureBlob(AzureBlobDefinition azureBlob) {
+        this.azureBlob = azureBlob;
+        return this;
+    }
+
+    /**
      * Get the kustomizations property: Array of kustomizations used to reconcile the artifact pulled by the source type
      * on the cluster.
      *
@@ -384,6 +411,9 @@ public final class FluxConfigurationProperties {
         }
         if (bucket() != null) {
             bucket().validate();
+        }
+        if (azureBlob() != null) {
+            azureBlob().validate();
         }
         if (kustomizations() != null) {
             kustomizations()

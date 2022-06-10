@@ -7,7 +7,7 @@ package com.azure.resourcemanager.kubernetesconfiguration.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Parameters to reconcile to the GitRepository source kind type. */
+/** Parameters to reconcile to the Bucket source kind type. */
 @Fluent
 public final class BucketDefinition {
     /*
@@ -31,15 +31,15 @@ public final class BucketDefinition {
     private Boolean insecure;
 
     /*
-     * The maximum time to attempt to reconcile the cluster git repository
-     * source with the remote.
+     * The maximum time to attempt to reconcile the cluster bucket source with
+     * the remote.
      */
     @JsonProperty(value = "timeoutInSeconds")
     private Long timeoutInSeconds;
 
     /*
-     * The interval at which to re-reconcile the cluster git repository source
-     * with the remote.
+     * The interval at which to re-reconcile the cluster bucket source with the
+     * remote.
      */
     @JsonProperty(value = "syncIntervalInSeconds")
     private Long syncIntervalInSeconds;
@@ -119,8 +119,8 @@ public final class BucketDefinition {
     }
 
     /**
-     * Get the timeoutInSeconds property: The maximum time to attempt to reconcile the cluster git repository source
-     * with the remote.
+     * Get the timeoutInSeconds property: The maximum time to attempt to reconcile the cluster bucket source with the
+     * remote.
      *
      * @return the timeoutInSeconds value.
      */
@@ -129,8 +129,8 @@ public final class BucketDefinition {
     }
 
     /**
-     * Set the timeoutInSeconds property: The maximum time to attempt to reconcile the cluster git repository source
-     * with the remote.
+     * Set the timeoutInSeconds property: The maximum time to attempt to reconcile the cluster bucket source with the
+     * remote.
      *
      * @param timeoutInSeconds the timeoutInSeconds value to set.
      * @return the BucketDefinition object itself.
@@ -141,8 +141,8 @@ public final class BucketDefinition {
     }
 
     /**
-     * Get the syncIntervalInSeconds property: The interval at which to re-reconcile the cluster git repository source
-     * with the remote.
+     * Get the syncIntervalInSeconds property: The interval at which to re-reconcile the cluster bucket source with the
+     * remote.
      *
      * @return the syncIntervalInSeconds value.
      */
@@ -151,8 +151,8 @@ public final class BucketDefinition {
     }
 
     /**
-     * Set the syncIntervalInSeconds property: The interval at which to re-reconcile the cluster git repository source
-     * with the remote.
+     * Set the syncIntervalInSeconds property: The interval at which to re-reconcile the cluster bucket source with the
+     * remote.
      *
      * @param syncIntervalInSeconds the syncIntervalInSeconds value to set.
      * @return the BucketDefinition object itself.
