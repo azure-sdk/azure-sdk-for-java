@@ -6,30 +6,20 @@ package com.azure.resourcemanager.sqlvirtualmachine.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.ProxyResource;
-import com.azure.core.management.SystemData;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.sqlvirtualmachine.models.AgConfiguration;
 import com.azure.resourcemanager.sqlvirtualmachine.models.LoadBalancerConfiguration;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.azure.resourcemanager.sqlvirtualmachine.models.MultiSubnetIpConfiguration;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** A SQL Server availability group listener. */
 @Fluent
 public final class AvailabilityGroupListenerInner extends ProxyResource {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(AvailabilityGroupListenerInner.class);
-
     /*
      * Resource properties.
      */
     @JsonProperty(value = "properties")
     private AvailabilityGroupListenerProperties innerProperties;
-
-    /*
-     * Metadata pertaining to creation and last modification of the resource.
-     */
-    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
-    private SystemData systemData;
 
     /**
      * Get the innerProperties property: Resource properties.
@@ -38,15 +28,6 @@ public final class AvailabilityGroupListenerInner extends ProxyResource {
      */
     private AvailabilityGroupListenerProperties innerProperties() {
         return this.innerProperties;
-    }
-
-    /**
-     * Get the systemData property: Metadata pertaining to creation and last modification of the resource.
-     *
-     * @return the systemData value.
-     */
-    public SystemData systemData() {
-        return this.systemData;
     }
 
     /**
@@ -104,6 +85,30 @@ public final class AvailabilityGroupListenerInner extends ProxyResource {
             this.innerProperties = new AvailabilityGroupListenerProperties();
         }
         this.innerProperties().withLoadBalancerConfigurations(loadBalancerConfigurations);
+        return this;
+    }
+
+    /**
+     * Get the multiSubnetIpConfigurations property: List of multi subnet IP configurations for an AG listener.
+     *
+     * @return the multiSubnetIpConfigurations value.
+     */
+    public List<MultiSubnetIpConfiguration> multiSubnetIpConfigurations() {
+        return this.innerProperties() == null ? null : this.innerProperties().multiSubnetIpConfigurations();
+    }
+
+    /**
+     * Set the multiSubnetIpConfigurations property: List of multi subnet IP configurations for an AG listener.
+     *
+     * @param multiSubnetIpConfigurations the multiSubnetIpConfigurations value to set.
+     * @return the AvailabilityGroupListenerInner object itself.
+     */
+    public AvailabilityGroupListenerInner withMultiSubnetIpConfigurations(
+        List<MultiSubnetIpConfiguration> multiSubnetIpConfigurations) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new AvailabilityGroupListenerProperties();
+        }
+        this.innerProperties().withMultiSubnetIpConfigurations(multiSubnetIpConfigurations);
         return this;
     }
 

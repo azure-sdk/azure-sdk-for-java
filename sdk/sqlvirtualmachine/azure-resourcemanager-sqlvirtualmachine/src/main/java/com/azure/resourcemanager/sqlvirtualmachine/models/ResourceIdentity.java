@@ -5,16 +5,12 @@
 package com.azure.resourcemanager.sqlvirtualmachine.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.UUID;
 
 /** Azure Active Directory identity configuration for a resource. */
 @Fluent
 public class ResourceIdentity {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(ResourceIdentity.class);
-
     /*
      * The Azure Active Directory principal id.
      */
@@ -27,7 +23,7 @@ public class ResourceIdentity {
      * the resource.
      */
     @JsonProperty(value = "type")
-    private IdentityType type;
+    private IdentityTypeWithNone type;
 
     /*
      * The Azure Active Directory tenant id.
@@ -50,7 +46,7 @@ public class ResourceIdentity {
      *
      * @return the type value.
      */
-    public IdentityType type() {
+    public IdentityTypeWithNone type() {
         return this.type;
     }
 
@@ -61,7 +57,7 @@ public class ResourceIdentity {
      * @param type the type value to set.
      * @return the ResourceIdentity object itself.
      */
-    public ResourceIdentity withType(IdentityType type) {
+    public ResourceIdentity withType(IdentityTypeWithNone type) {
         this.type = type;
         return this;
     }
