@@ -77,6 +77,7 @@ import java.util.Map;
     @JsonSubTypes.Type(name = "SapCloudForCustomer", value = SapCloudForCustomerLinkedService.class),
     @JsonSubTypes.Type(name = "SapEcc", value = SapEccLinkedService.class),
     @JsonSubTypes.Type(name = "SapOpenHub", value = SapOpenHubLinkedService.class),
+    @JsonSubTypes.Type(name = "SapOdp", value = SapOdpLinkedService.class),
     @JsonSubTypes.Type(name = "RestService", value = RestServiceLinkedService.class),
     @JsonSubTypes.Type(name = "AmazonS3", value = AmazonS3LinkedService.class),
     @JsonSubTypes.Type(name = "TeamDesk", value = TeamDeskLinkedService.class),
