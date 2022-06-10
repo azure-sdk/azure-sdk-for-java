@@ -462,14 +462,7 @@ public final class DicomServicesClientImpl implements DicomServicesClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<DicomServiceInner> getAsync(String resourceGroupName, String workspaceName, String dicomServiceName) {
         return getWithResponseAsync(resourceGroupName, workspaceName, dicomServiceName)
-            .flatMap(
-                (Response<DicomServiceInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**

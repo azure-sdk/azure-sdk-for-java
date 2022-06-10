@@ -254,14 +254,7 @@ public final class IotConnectorFhirDestinationsClientImpl implements IotConnecto
     private Mono<IotFhirDestinationInner> getAsync(
         String resourceGroupName, String workspaceName, String iotConnectorName, String fhirDestinationName) {
         return getWithResponseAsync(resourceGroupName, workspaceName, iotConnectorName, fhirDestinationName)
-            .flatMap(
-                (Response<IotFhirDestinationInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
