@@ -28,11 +28,11 @@ public final class ValidationStatus extends ExpandableStringEnum<ValidationStatu
     /** Static value CompletedWithIssues for ValidationStatus. */
     public static final ValidationStatus COMPLETED_WITH_ISSUES = fromString("CompletedWithIssues");
 
-    /** Static value Failed for ValidationStatus. */
-    public static final ValidationStatus FAILED = fromString("Failed");
-
     /** Static value Stopped for ValidationStatus. */
     public static final ValidationStatus STOPPED = fromString("Stopped");
+
+    /** Static value Failed for ValidationStatus. */
+    public static final ValidationStatus FAILED = fromString("Failed");
 
     /**
      * Creates or finds a ValidationStatus from its string representation.
@@ -45,7 +45,11 @@ public final class ValidationStatus extends ExpandableStringEnum<ValidationStatu
         return fromString(name, ValidationStatus.class);
     }
 
-    /** @return known ValidationStatus values. */
+    /**
+     * Gets known ValidationStatus values.
+     *
+     * @return known ValidationStatus values.
+     */
     public static Collection<ValidationStatus> values() {
         return values(ValidationStatus.class);
     }

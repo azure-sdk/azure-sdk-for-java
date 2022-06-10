@@ -39,7 +39,11 @@ public final class DatabaseMigrationStage extends ExpandableStringEnum<DatabaseM
         return fromString(name, DatabaseMigrationStage.class);
     }
 
-    /** @return known DatabaseMigrationStage values. */
+    /**
+     * Gets known DatabaseMigrationStage values.
+     *
+     * @return known DatabaseMigrationStage values.
+     */
     public static Collection<DatabaseMigrationStage> values() {
         return values(DatabaseMigrationStage.class);
     }

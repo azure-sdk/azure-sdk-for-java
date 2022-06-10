@@ -48,7 +48,11 @@ public final class LoginMigrationStage extends ExpandableStringEnum<LoginMigrati
         return fromString(name, LoginMigrationStage.class);
     }
 
-    /** @return known LoginMigrationStage values. */
+    /**
+     * Gets known LoginMigrationStage values.
+     *
+     * @return known LoginMigrationStage values.
+     */
     public static Collection<LoginMigrationStage> values() {
         return values(LoginMigrationStage.class);
     }

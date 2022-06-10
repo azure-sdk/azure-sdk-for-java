@@ -36,7 +36,11 @@ public final class DatabaseFileType extends ExpandableStringEnum<DatabaseFileTyp
         return fromString(name, DatabaseFileType.class);
     }
 
-    /** @return known DatabaseFileType values. */
+    /**
+     * Gets known DatabaseFileType values.
+     *
+     * @return known DatabaseFileType values.
+     */
     public static Collection<DatabaseFileType> values() {
         return values(DatabaseFileType.class);
     }

@@ -39,7 +39,11 @@ public final class SyncTableMigrationState extends ExpandableStringEnum<SyncTabl
         return fromString(name, SyncTableMigrationState.class);
     }
 
-    /** @return known SyncTableMigrationState values. */
+    /**
+     * Gets known SyncTableMigrationState values.
+     *
+     * @return known SyncTableMigrationState values.
+     */
     public static Collection<SyncTableMigrationState> values() {
         return values(SyncTableMigrationState.class);
     }

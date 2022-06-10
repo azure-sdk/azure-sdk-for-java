@@ -45,7 +45,11 @@ public final class TaskState extends ExpandableStringEnum<TaskState> {
         return fromString(name, TaskState.class);
     }
 
-    /** @return known TaskState values. */
+    /**
+     * Gets known TaskState values.
+     *
+     * @return known TaskState values.
+     */
     public static Collection<TaskState> values() {
         return values(TaskState.class);
     }

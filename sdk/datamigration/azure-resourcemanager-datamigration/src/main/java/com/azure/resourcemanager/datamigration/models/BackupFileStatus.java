@@ -42,7 +42,11 @@ public final class BackupFileStatus extends ExpandableStringEnum<BackupFileStatu
         return fromString(name, BackupFileStatus.class);
     }
 
-    /** @return known BackupFileStatus values. */
+    /**
+     * Gets known BackupFileStatus values.
+     *
+     * @return known BackupFileStatus values.
+     */
     public static Collection<BackupFileStatus> values() {
         return values(BackupFileStatus.class);
     }
