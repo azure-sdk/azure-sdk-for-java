@@ -460,14 +460,7 @@ public final class IotConnectorsClientImpl implements IotConnectorsClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<IotConnectorInner> getAsync(String resourceGroupName, String workspaceName, String iotConnectorName) {
         return getWithResponseAsync(resourceGroupName, workspaceName, iotConnectorName)
-            .flatMap(
-                (Response<IotConnectorInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
