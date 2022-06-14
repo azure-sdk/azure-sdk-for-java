@@ -415,9 +415,9 @@ public final class LabsCreateOrUpdateSamples {
                     .withShutdownOnDisconnect(EnableState.ENABLED)
                     .withShutdownWhenNotConnected(EnableState.ENABLED)
                     .withShutdownOnIdle(ShutdownOnIdleMode.USER_ABSENCE)
-                    .withDisconnectDelay(Duration.parse("00:05"))
-                    .withNoConnectDelay(Duration.parse("01:00"))
-                    .withIdleDelay(Duration.parse("01:00")))
+                    .withDisconnectDelay(Duration.parse("P0Y0M0DT0H0M5S"))
+                    .withNoConnectDelay(Duration.parse("P0Y0M0DT0H1M0S"))
+                    .withIdleDelay(Duration.parse("P0Y0M0DT0H1M0S")))
             .withConnectionProfile(
                 new ConnectionProfile()
                     .withWebSshAccess(ConnectionType.NONE)
@@ -436,7 +436,7 @@ public final class LabsCreateOrUpdateSamples {
                     .withSku(new Sku().withName("Medium"))
                     .withAdditionalCapabilities(
                         new VirtualMachineAdditionalCapabilities().withInstallGpuDrivers(EnableState.DISABLED))
-                    .withUsageQuota(Duration.parse("10:00"))
+                    .withUsageQuota(Duration.parse("P0Y0M0DT0H10M0S"))
                     .withUseSharedPassword(EnableState.DISABLED)
                     .withAdminUser(new Credentials().withUsername("test-user")))
             .withSecurityProfile(new SecurityProfile().withOpenAccess(EnableState.DISABLED))
