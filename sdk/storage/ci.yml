@@ -70,46 +70,46 @@ pr:
       - sdk/storage/azure-storage-queue/pom.xml
 
 parameters:
-- name: release_azurestoragecommon
-  displayName: 'azure-storage-common'
-  type: boolean
-  default: true
-- name: release_azurestorageblob
-  displayName: 'azure-storage-blob'
-  type: boolean
-  default: true
-- name: release_azurestorageblobbatch
-  displayName: 'azure-storage-blob-batch'
-  type: boolean
-  default: true
-- name: release_azurestorageblobchangefeed
-  displayName: 'azure-storage-blob-changefeed'
-  type: boolean
-  default: true
-- name: release_azurestorageblobcryptography
-  displayName: 'azure-storage-blob-cryptography'
-  type: boolean
-  default: true
-- name: release_azurestorageblobnio
-  displayName: 'azure-storage-blob-nio'
-  type: boolean
-  default: true
-- name: release_azurestoragefileshare
-  displayName: 'azure-storage-file-share'
-  type: boolean
-  default: true
-- name: release_azurestoragefiledatalake
-  displayName: 'azure-storage-file-datalake'
-  type: boolean
-  default: true
-- name: release_azurestorageinternalavro
-  displayName: 'azure-storage-internal-avro'
-  type: boolean
-  default: true
-- name: release_azurestoragequeue
-  displayName: 'azure-storage-queue'
-  type: boolean
-  default: true
+  - name: release_azurestoragecommon
+    displayName: azure-storage-common
+    type: boolean
+    default: true
+  - name: release_azurestorageblob
+    displayName: azure-storage-blob
+    type: boolean
+    default: true
+  - name: release_azurestorageblobbatch
+    displayName: azure-storage-blob-batch
+    type: boolean
+    default: true
+  - name: release_azurestorageblobchangefeed
+    displayName: azure-storage-blob-changefeed
+    type: boolean
+    default: true
+  - name: release_azurestorageblobcryptography
+    displayName: azure-storage-blob-cryptography
+    type: boolean
+    default: true
+  - name: release_azurestorageblobnio
+    displayName: azure-storage-blob-nio
+    type: boolean
+    default: true
+  - name: release_azurestoragefileshare
+    displayName: azure-storage-file-share
+    type: boolean
+    default: true
+  - name: release_azurestoragefiledatalake
+    displayName: azure-storage-file-datalake
+    type: boolean
+    default: true
+  - name: release_azurestorageinternalavro
+    displayName: azure-storage-internal-avro
+    type: boolean
+    default: true
+  - name: release_azurestoragequeue
+    displayName: azure-storage-queue
+    type: boolean
+    default: true
 
 extends:
   template: ../../eng/pipelines/templates/stages/archetype-sdk-client.yml
@@ -159,10 +159,12 @@ extends:
         groupId: com.azure
         safeName: azurestoragequeue
         releaseInBatch: ${{ parameters.release_azurestoragequeue }}
+      - name: azure-resourcemanager-storage-generated
+        groupId: com.azure.resourcemanager
+        safeName: azureresourcemanagerstoragegenerated
     AdditionalModules:
       - name: azure-storage-perf
         groupId: com.azure
-        # required by the above perf library
       - name: perf-test-core
         groupId: com.azure
     MatrixConfigs:
