@@ -583,14 +583,7 @@ public final class GrafanasClientImpl implements GrafanasClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ManagedGrafanaInner> getByResourceGroupAsync(String resourceGroupName, String workspaceName) {
         return getByResourceGroupWithResponseAsync(resourceGroupName, workspaceName)
-            .flatMap(
-                (Response<ManagedGrafanaInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -1032,14 +1025,7 @@ public final class GrafanasClientImpl implements GrafanasClient {
     private Mono<ManagedGrafanaInner> updateAsync(
         String resourceGroupName, String workspaceName, ManagedGrafanaUpdateParameters requestBodyParameters) {
         return updateWithResponseAsync(resourceGroupName, workspaceName, requestBodyParameters)
-            .flatMap(
-                (Response<ManagedGrafanaInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**

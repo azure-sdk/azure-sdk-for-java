@@ -18,15 +18,12 @@ import java.time.Duration;
 @ServiceClientBuilder(serviceClients = {DashboardManagementClientImpl.class})
 public final class DashboardManagementClientBuilder {
     /*
-     * Gets subscription credentials which uniquely identify Microsoft Azure
-     * subscription. The subscription ID forms part of the URI for every
-     * service call.
+     * The ID of the target subscription.
      */
     private String subscriptionId;
 
     /**
-     * Sets Gets subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID
-     * forms part of the URI for every service call.
+     * Sets The ID of the target subscription.
      *
      * @param subscriptionId the subscriptionId value.
      * @return the DashboardManagementClientBuilder.
@@ -122,11 +119,8 @@ public final class DashboardManagementClientBuilder {
      * @return an instance of DashboardManagementClientImpl.
      */
     public DashboardManagementClientImpl buildClient() {
-        if (pipeline == null) {
-            this.pipeline = new HttpPipelineBuilder().policies(new UserAgentPolicy(), new RetryPolicy()).build();
-        }
         if (endpoint == null) {
-            this.endpoint = "";
+            this.endpoint = "https://management.azure.com";
         }
         if (environment == null) {
             this.environment = AzureEnvironment.AZURE;
