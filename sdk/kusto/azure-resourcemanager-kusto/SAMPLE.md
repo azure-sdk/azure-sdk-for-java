@@ -461,7 +461,8 @@ public final class ClustersCreateOrUpdateSamples {
             .define("kustoCluster")
             .withRegion("westus")
             .withExistingResourceGroup("kustorptest")
-            .withSku(new AzureSku().withName(AzureSkuName.STANDARD_L8S).withCapacity(2).withTier(AzureSkuTier.STANDARD))
+            .withSku(
+                new AzureSku().withName(AzureSkuName.STANDARD_L8S_V2).withCapacity(2).withTier(AzureSkuTier.STANDARD))
             .withIdentity(new Identity().withType(IdentityType.SYSTEM_ASSIGNED))
             .withEnableStreamingIngest(true)
             .withEnablePurge(true)
