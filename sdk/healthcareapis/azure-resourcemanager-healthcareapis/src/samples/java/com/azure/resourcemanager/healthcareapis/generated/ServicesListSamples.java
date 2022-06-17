@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for Services List. */
 public final class ServicesListSamples {
     /*
-     * x-ms-original-file: specification/healthcareapis/resource-manager/Microsoft.HealthcareApis/stable/2021-11-01/examples/legacy/ServiceList.json
+     * x-ms-original-file: specification/healthcareapis/resource-manager/Microsoft.HealthcareApis/stable/2022-06-01/examples/legacy/ServiceList.json
      */
     /**
      * Sample code: List all services in subscription.
