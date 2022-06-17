@@ -12,10 +12,9 @@ import com.azure.resourcemanager.consumption.fluent.models.UsageDetailInner;
 import com.azure.resourcemanager.consumption.models.Metrictype;
 import com.azure.resourcemanager.consumption.models.UsageDetail;
 import com.azure.resourcemanager.consumption.models.UsageDetails;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public final class UsageDetailsImpl implements UsageDetails {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(UsageDetailsImpl.class);
+    private static final ClientLogger LOGGER = new ClientLogger(UsageDetailsImpl.class);
 
     private final UsageDetailsClient innerClient;
 
@@ -33,9 +32,17 @@ public final class UsageDetailsImpl implements UsageDetails {
     }
 
     public PagedIterable<UsageDetail> list(
-        String scope, String expand, String filter, String skiptoken, Integer top, Metrictype metric, Context context) {
+        String scope,
+        String expand,
+        String filter,
+        String skiptoken,
+        Integer top,
+        String startDate,
+        String endDate,
+        Metrictype metric,
+        Context context) {
         PagedIterable<UsageDetailInner> inner =
-            this.serviceClient().list(scope, expand, filter, skiptoken, top, metric, context);
+            this.serviceClient().list(scope, expand, filter, skiptoken, top, startDate, endDate, metric, context);
         return Utils.mapPage(inner, inner1 -> new UsageDetailImpl(inner1, this.manager()));
     }
 

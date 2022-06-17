@@ -25,7 +25,6 @@ import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.consumption.fluent.UsageDetailsClient;
 import com.azure.resourcemanager.consumption.fluent.models.UsageDetailInner;
 import com.azure.resourcemanager.consumption.models.Metrictype;
@@ -34,8 +33,6 @@ import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in UsageDetailsClient. */
 public final class UsageDetailsClientImpl implements UsageDetailsClient {
-    private final ClientLogger logger = new ClientLogger(UsageDetailsClientImpl.class);
-
     /** The proxy service used to perform REST calls. */
     private final UsageDetailsService service;
 
@@ -62,7 +59,7 @@ public final class UsageDetailsClientImpl implements UsageDetailsClient {
     private interface UsageDetailsService {
         @Headers({"Content-Type: application/json"})
         @Get("/{scope}/providers/Microsoft.Consumption/usageDetails")
-        @ExpectedResponses({200})
+        @ExpectedResponses({200, 204})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<UsageDetailsListResult>> list(
             @HostParam("$host") String endpoint,
@@ -71,6 +68,8 @@ public final class UsageDetailsClientImpl implements UsageDetailsClient {
             @QueryParam("$filter") String filter,
             @QueryParam("$skiptoken") String skiptoken,
             @QueryParam("$top") Integer top,
+            @QueryParam("$startDate") String startDate,
+            @QueryParam("$endDate") String endDate,
             @QueryParam("api-version") String apiVersion,
             @QueryParam("metric") Metrictype metric,
             @HeaderParam("Accept") String accept,
@@ -78,7 +77,7 @@ public final class UsageDetailsClientImpl implements UsageDetailsClient {
 
         @Headers({"Content-Type: application/json"})
         @Get("{nextLink}")
-        @ExpectedResponses({200})
+        @ExpectedResponses({200, 204})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<UsageDetailsListResult>> listNext(
             @PathParam(value = "nextLink", encoded = true) String nextLink,
@@ -119,15 +118,25 @@ public final class UsageDetailsClientImpl implements UsageDetailsClient {
      *     contains a nextLink element, the value of the nextLink element will include a skiptoken parameter that
      *     specifies a starting point to use for subsequent calls.
      * @param top May be used to limit the number of results to the most recent N usageDetails.
+     * @param startDate Start date.
+     * @param endDate End date.
      * @param metric Allows to select different type of cost/usage records.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing usage details.
+     * @return result of listing usage details along with {@link PagedResponse} on successful completion of {@link
+     *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<UsageDetailInner>> listSinglePageAsync(
-        String scope, String expand, String filter, String skiptoken, Integer top, Metrictype metric) {
+        String scope,
+        String expand,
+        String filter,
+        String skiptoken,
+        Integer top,
+        String startDate,
+        String endDate,
+        Metrictype metric) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -149,6 +158,8 @@ public final class UsageDetailsClientImpl implements UsageDetailsClient {
                             filter,
                             skiptoken,
                             top,
+                            startDate,
+                            endDate,
                             this.client.getApiVersion(),
                             metric,
                             accept,
@@ -197,16 +208,27 @@ public final class UsageDetailsClientImpl implements UsageDetailsClient {
      *     contains a nextLink element, the value of the nextLink element will include a skiptoken parameter that
      *     specifies a starting point to use for subsequent calls.
      * @param top May be used to limit the number of results to the most recent N usageDetails.
+     * @param startDate Start date.
+     * @param endDate End date.
      * @param metric Allows to select different type of cost/usage records.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing usage details.
+     * @return result of listing usage details along with {@link PagedResponse} on successful completion of {@link
+     *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<UsageDetailInner>> listSinglePageAsync(
-        String scope, String expand, String filter, String skiptoken, Integer top, Metrictype metric, Context context) {
+        String scope,
+        String expand,
+        String filter,
+        String skiptoken,
+        Integer top,
+        String startDate,
+        String endDate,
+        Metrictype metric,
+        Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -226,6 +248,8 @@ public final class UsageDetailsClientImpl implements UsageDetailsClient {
                 filter,
                 skiptoken,
                 top,
+                startDate,
+                endDate,
                 this.client.getApiVersion(),
                 metric,
                 accept,
@@ -273,17 +297,26 @@ public final class UsageDetailsClientImpl implements UsageDetailsClient {
      *     contains a nextLink element, the value of the nextLink element will include a skiptoken parameter that
      *     specifies a starting point to use for subsequent calls.
      * @param top May be used to limit the number of results to the most recent N usageDetails.
+     * @param startDate Start date.
+     * @param endDate End date.
      * @param metric Allows to select different type of cost/usage records.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing usage details.
+     * @return result of listing usage details as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<UsageDetailInner> listAsync(
-        String scope, String expand, String filter, String skiptoken, Integer top, Metrictype metric) {
+        String scope,
+        String expand,
+        String filter,
+        String skiptoken,
+        Integer top,
+        String startDate,
+        String endDate,
+        Metrictype metric) {
         return new PagedFlux<>(
-            () -> listSinglePageAsync(scope, expand, filter, skiptoken, top, metric),
+            () -> listSinglePageAsync(scope, expand, filter, skiptoken, top, startDate, endDate, metric),
             nextLink -> listNextSinglePageAsync(nextLink));
     }
 
@@ -311,7 +344,7 @@ public final class UsageDetailsClientImpl implements UsageDetailsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing usage details.
+     * @return result of listing usage details as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<UsageDetailInner> listAsync(String scope) {
@@ -319,9 +352,11 @@ public final class UsageDetailsClientImpl implements UsageDetailsClient {
         final String filter = null;
         final String skiptoken = null;
         final Integer top = null;
+        final String startDate = null;
+        final String endDate = null;
         final Metrictype metric = null;
         return new PagedFlux<>(
-            () -> listSinglePageAsync(scope, expand, filter, skiptoken, top, metric),
+            () -> listSinglePageAsync(scope, expand, filter, skiptoken, top, startDate, endDate, metric),
             nextLink -> listNextSinglePageAsync(nextLink));
     }
 
@@ -357,18 +392,28 @@ public final class UsageDetailsClientImpl implements UsageDetailsClient {
      *     contains a nextLink element, the value of the nextLink element will include a skiptoken parameter that
      *     specifies a starting point to use for subsequent calls.
      * @param top May be used to limit the number of results to the most recent N usageDetails.
+     * @param startDate Start date.
+     * @param endDate End date.
      * @param metric Allows to select different type of cost/usage records.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing usage details.
+     * @return result of listing usage details as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<UsageDetailInner> listAsync(
-        String scope, String expand, String filter, String skiptoken, Integer top, Metrictype metric, Context context) {
+        String scope,
+        String expand,
+        String filter,
+        String skiptoken,
+        Integer top,
+        String startDate,
+        String endDate,
+        Metrictype metric,
+        Context context) {
         return new PagedFlux<>(
-            () -> listSinglePageAsync(scope, expand, filter, skiptoken, top, metric, context),
+            () -> listSinglePageAsync(scope, expand, filter, skiptoken, top, startDate, endDate, metric, context),
             nextLink -> listNextSinglePageAsync(nextLink, context));
     }
 
@@ -396,7 +441,7 @@ public final class UsageDetailsClientImpl implements UsageDetailsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing usage details.
+     * @return result of listing usage details as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<UsageDetailInner> list(String scope) {
@@ -404,8 +449,10 @@ public final class UsageDetailsClientImpl implements UsageDetailsClient {
         final String filter = null;
         final String skiptoken = null;
         final Integer top = null;
+        final String startDate = null;
+        final String endDate = null;
         final Metrictype metric = null;
-        return new PagedIterable<>(listAsync(scope, expand, filter, skiptoken, top, metric));
+        return new PagedIterable<>(listAsync(scope, expand, filter, skiptoken, top, startDate, endDate, metric));
     }
 
     /**
@@ -440,17 +487,28 @@ public final class UsageDetailsClientImpl implements UsageDetailsClient {
      *     contains a nextLink element, the value of the nextLink element will include a skiptoken parameter that
      *     specifies a starting point to use for subsequent calls.
      * @param top May be used to limit the number of results to the most recent N usageDetails.
+     * @param startDate Start date.
+     * @param endDate End date.
      * @param metric Allows to select different type of cost/usage records.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing usage details.
+     * @return result of listing usage details as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<UsageDetailInner> list(
-        String scope, String expand, String filter, String skiptoken, Integer top, Metrictype metric, Context context) {
-        return new PagedIterable<>(listAsync(scope, expand, filter, skiptoken, top, metric, context));
+        String scope,
+        String expand,
+        String filter,
+        String skiptoken,
+        Integer top,
+        String startDate,
+        String endDate,
+        Metrictype metric,
+        Context context) {
+        return new PagedIterable<>(
+            listAsync(scope, expand, filter, skiptoken, top, startDate, endDate, metric, context));
     }
 
     /**
@@ -460,7 +518,8 @@ public final class UsageDetailsClientImpl implements UsageDetailsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing usage details.
+     * @return result of listing usage details along with {@link PagedResponse} on successful completion of {@link
+     *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<UsageDetailInner>> listNextSinglePageAsync(String nextLink) {
@@ -496,7 +555,8 @@ public final class UsageDetailsClientImpl implements UsageDetailsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing usage details.
+     * @return result of listing usage details along with {@link PagedResponse} on successful completion of {@link
+     *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<UsageDetailInner>> listNextSinglePageAsync(String nextLink, Context context) {

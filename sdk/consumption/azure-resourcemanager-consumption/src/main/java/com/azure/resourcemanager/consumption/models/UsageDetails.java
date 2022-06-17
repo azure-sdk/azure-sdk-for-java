@@ -33,7 +33,7 @@ public interface UsageDetails {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing usage details.
+     * @return result of listing usage details as paginated response with {@link PagedIterable}.
      */
     PagedIterable<UsageDetail> list(String scope);
 
@@ -69,13 +69,23 @@ public interface UsageDetails {
      *     contains a nextLink element, the value of the nextLink element will include a skiptoken parameter that
      *     specifies a starting point to use for subsequent calls.
      * @param top May be used to limit the number of results to the most recent N usageDetails.
+     * @param startDate Start date.
+     * @param endDate End date.
      * @param metric Allows to select different type of cost/usage records.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing usage details.
+     * @return result of listing usage details as paginated response with {@link PagedIterable}.
      */
     PagedIterable<UsageDetail> list(
-        String scope, String expand, String filter, String skiptoken, Integer top, Metrictype metric, Context context);
+        String scope,
+        String expand,
+        String filter,
+        String skiptoken,
+        Integer top,
+        String startDate,
+        String endDate,
+        Metrictype metric,
+        Context context);
 }

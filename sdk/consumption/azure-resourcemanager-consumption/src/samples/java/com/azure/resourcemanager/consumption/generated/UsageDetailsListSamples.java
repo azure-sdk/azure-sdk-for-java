@@ -21,7 +21,16 @@ public final class UsageDetailsListSamples {
         com.azure.resourcemanager.consumption.ConsumptionManager manager) {
         manager
             .usageDetails()
-            .list("providers/Microsoft.Billing/BillingAccounts/1234", null, null, null, null, null, Context.NONE);
+            .list(
+                "providers/Microsoft.Billing/BillingAccounts/1234",
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                Context.NONE);
     }
 
     /*
@@ -43,6 +52,8 @@ public final class UsageDetailsListSamples {
                 null,
                 null,
                 null,
+                null,
+                null,
                 Context.NONE);
     }
 
@@ -57,7 +68,16 @@ public final class UsageDetailsListSamples {
     public static void usageDetailsListLegacy(com.azure.resourcemanager.consumption.ConsumptionManager manager) {
         manager
             .usageDetails()
-            .list("subscriptions/00000000-0000-0000-0000-000000000000", null, null, null, null, null, Context.NONE);
+            .list(
+                "subscriptions/00000000-0000-0000-0000-000000000000",
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                Context.NONE);
     }
 
     /*
@@ -79,6 +99,8 @@ public final class UsageDetailsListSamples {
                 null,
                 null,
                 null,
+                null,
+                null,
                 Context.NONE);
     }
 
@@ -94,7 +116,16 @@ public final class UsageDetailsListSamples {
         com.azure.resourcemanager.consumption.ConsumptionManager manager) {
         manager
             .usageDetails()
-            .list("providers/Microsoft.Billing/BillingAccounts/1234", null, null, null, null, null, Context.NONE);
+            .list(
+                "providers/Microsoft.Billing/BillingAccounts/1234",
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                Context.NONE);
     }
 
     /*
@@ -116,6 +147,8 @@ public final class UsageDetailsListSamples {
                 null,
                 null,
                 null,
+                null,
+                null,
                 Context.NONE);
     }
 
@@ -131,7 +164,8 @@ public final class UsageDetailsListSamples {
         com.azure.resourcemanager.consumption.ConsumptionManager manager) {
         manager
             .usageDetails()
-            .list("providers/Microsoft.Billing/Departments/1234", null, null, null, null, null, Context.NONE);
+            .list(
+                "providers/Microsoft.Billing/Departments/1234", null, null, null, null, null, null, null, Context.NONE);
     }
 
     /*
@@ -146,7 +180,16 @@ public final class UsageDetailsListSamples {
         com.azure.resourcemanager.consumption.ConsumptionManager manager) {
         manager
             .usageDetails()
-            .list("subscriptions/00000000-0000-0000-0000-000000000000", null, null, null, null, null, Context.NONE);
+            .list(
+                "subscriptions/00000000-0000-0000-0000-000000000000",
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                Context.NONE);
     }
 
     /*
@@ -163,6 +206,8 @@ public final class UsageDetailsListSamples {
             .usageDetails()
             .list(
                 "subscriptions/00000000-0000-0000-0000-000000000000",
+                null,
+                null,
                 null,
                 null,
                 null,
@@ -189,6 +234,8 @@ public final class UsageDetailsListSamples {
                 null,
                 null,
                 null,
+                null,
+                null,
                 Metrictype.USAGE,
                 Context.NONE);
     }
@@ -205,7 +252,16 @@ public final class UsageDetailsListSamples {
         com.azure.resourcemanager.consumption.ConsumptionManager manager) {
         manager
             .usageDetails()
-            .list("subscriptions/00000000-0000-0000-0000-000000000000", null, null, null, null, null, Context.NONE);
+            .list(
+                "subscriptions/00000000-0000-0000-0000-000000000000",
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                Context.NONE);
     }
 
     /*
@@ -220,7 +276,8 @@ public final class UsageDetailsListSamples {
         com.azure.resourcemanager.consumption.ConsumptionManager manager) {
         manager
             .usageDetails()
-            .list("providers/Microsoft.Billing/Departments/1234", null, null, null, null, null, Context.NONE);
+            .list(
+                "providers/Microsoft.Billing/Departments/1234", null, null, null, null, null, null, null, Context.NONE);
     }
 
     /*
@@ -241,6 +298,8 @@ public final class UsageDetailsListSamples {
                 null,
                 null,
                 null,
+                null,
+                null,
                 Metrictype.ACTUALCOST,
                 Context.NONE);
     }
@@ -257,7 +316,16 @@ public final class UsageDetailsListSamples {
         com.azure.resourcemanager.consumption.ConsumptionManager manager) {
         manager
             .usageDetails()
-            .list("providers/Microsoft.Billing/EnrollmentAccounts/1234", null, null, null, null, null, Context.NONE);
+            .list(
+                "providers/Microsoft.Billing/EnrollmentAccounts/1234",
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                Context.NONE);
     }
 
     /*
@@ -272,7 +340,16 @@ public final class UsageDetailsListSamples {
         com.azure.resourcemanager.consumption.ConsumptionManager manager) {
         manager
             .usageDetails()
-            .list("providers/Microsoft.Billing/BillingAccounts/1234:56789", null, null, null, null, null, Context.NONE);
+            .list(
+                "providers/Microsoft.Billing/BillingAccounts/1234:56789",
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                Context.NONE);
     }
 
     /*
@@ -289,6 +366,8 @@ public final class UsageDetailsListSamples {
             .usageDetails()
             .list(
                 "providers/Microsoft.Billing/BillingAccounts/1234:56789/customers/00000000-0000-0000-0000-000000000000",
+                null,
+                null,
                 null,
                 null,
                 null,
@@ -315,6 +394,8 @@ public final class UsageDetailsListSamples {
                 null,
                 1,
                 null,
+                null,
+                null,
                 Context.NONE);
     }
 
@@ -330,7 +411,16 @@ public final class UsageDetailsListSamples {
         com.azure.resourcemanager.consumption.ConsumptionManager manager) {
         manager
             .usageDetails()
-            .list("providers/Microsoft.Billing/EnrollmentAccounts/1234", null, null, null, null, null, Context.NONE);
+            .list(
+                "providers/Microsoft.Billing/EnrollmentAccounts/1234",
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                Context.NONE);
     }
 
     /*
@@ -345,6 +435,15 @@ public final class UsageDetailsListSamples {
         com.azure.resourcemanager.consumption.ConsumptionManager manager) {
         manager
             .usageDetails()
-            .list("subscriptions/00000000-0000-0000-0000-000000000000", null, null, null, null, null, Context.NONE);
+            .list(
+                "subscriptions/00000000-0000-0000-0000-000000000000",
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                Context.NONE);
     }
 }
