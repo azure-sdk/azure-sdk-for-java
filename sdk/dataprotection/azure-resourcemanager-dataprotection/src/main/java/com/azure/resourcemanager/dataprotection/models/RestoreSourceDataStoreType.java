@@ -30,7 +30,11 @@ public final class RestoreSourceDataStoreType extends ExpandableStringEnum<Resto
         return fromString(name, RestoreSourceDataStoreType.class);
     }
 
-    /** @return known RestoreSourceDataStoreType values. */
+    /**
+     * Gets known RestoreSourceDataStoreType values.
+     *
+     * @return known RestoreSourceDataStoreType values.
+     */
     public static Collection<RestoreSourceDataStoreType> values() {
         return values(RestoreSourceDataStoreType.class);
     }

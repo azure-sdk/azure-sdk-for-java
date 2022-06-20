@@ -27,7 +27,11 @@ public final class SecretStoreType extends ExpandableStringEnum<SecretStoreType>
         return fromString(name, SecretStoreType.class);
     }
 
-    /** @return known SecretStoreType values. */
+    /**
+     * Gets known SecretStoreType values.
+     *
+     * @return known SecretStoreType values.
+     */
     public static Collection<SecretStoreType> values() {
         return values(SecretStoreType.class);
     }

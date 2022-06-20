@@ -30,7 +30,11 @@ public final class RestoreTargetLocationType extends ExpandableStringEnum<Restor
         return fromString(name, RestoreTargetLocationType.class);
     }
 
-    /** @return known RestoreTargetLocationType values. */
+    /**
+     * Gets known RestoreTargetLocationType values.
+     *
+     * @return known RestoreTargetLocationType values.
+     */
     public static Collection<RestoreTargetLocationType> values() {
         return values(RestoreTargetLocationType.class);
     }

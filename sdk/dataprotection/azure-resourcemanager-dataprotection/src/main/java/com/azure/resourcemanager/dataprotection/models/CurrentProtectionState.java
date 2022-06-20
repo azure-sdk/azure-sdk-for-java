@@ -59,7 +59,11 @@ public final class CurrentProtectionState extends ExpandableStringEnum<CurrentPr
         return fromString(name, CurrentProtectionState.class);
     }
 
-    /** @return known CurrentProtectionState values. */
+    /**
+     * Gets known CurrentProtectionState values.
+     *
+     * @return known CurrentProtectionState values.
+     */
     public static Collection<CurrentProtectionState> values() {
         return values(CurrentProtectionState.class);
     }

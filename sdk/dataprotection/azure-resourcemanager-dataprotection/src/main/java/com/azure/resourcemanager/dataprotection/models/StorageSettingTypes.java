@@ -16,6 +16,9 @@ public final class StorageSettingTypes extends ExpandableStringEnum<StorageSetti
     /** Static value LocallyRedundant for StorageSettingTypes. */
     public static final StorageSettingTypes LOCALLY_REDUNDANT = fromString("LocallyRedundant");
 
+    /** Static value ZoneRedundant for StorageSettingTypes. */
+    public static final StorageSettingTypes ZONE_REDUNDANT = fromString("ZoneRedundant");
+
     /**
      * Creates or finds a StorageSettingTypes from its string representation.
      *
@@ -27,7 +30,11 @@ public final class StorageSettingTypes extends ExpandableStringEnum<StorageSetti
         return fromString(name, StorageSettingTypes.class);
     }
 
-    /** @return known StorageSettingTypes values. */
+    /**
+     * Gets known StorageSettingTypes values.
+     *
+     * @return known StorageSettingTypes values.
+     */
     public static Collection<StorageSettingTypes> values() {
         return values(StorageSettingTypes.class);
     }

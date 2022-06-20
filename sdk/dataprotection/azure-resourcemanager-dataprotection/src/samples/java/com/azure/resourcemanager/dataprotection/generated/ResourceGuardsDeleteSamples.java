@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for ResourceGuards Delete. */
 public final class ResourceGuardsDeleteSamples {
     /*
-     * x-ms-original-file: specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2021-07-01/examples/ResourceGuardCRUD/DeleteResourceGuard.json
+     * x-ms-original-file: specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2022-05-01/examples/ResourceGuardCRUD/DeleteResourceGuard.json
      */
     /**
      * Sample code: Delete ResourceGuard.
