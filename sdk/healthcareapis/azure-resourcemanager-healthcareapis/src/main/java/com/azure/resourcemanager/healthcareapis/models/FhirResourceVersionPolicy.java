@@ -30,7 +30,11 @@ public final class FhirResourceVersionPolicy extends ExpandableStringEnum<FhirRe
         return fromString(name, FhirResourceVersionPolicy.class);
     }
 
-    /** @return known FhirResourceVersionPolicy values. */
+    /**
+     * Gets known FhirResourceVersionPolicy values.
+     *
+     * @return known FhirResourceVersionPolicy values.
+     */
     public static Collection<FhirResourceVersionPolicy> values() {
         return values(FhirResourceVersionPolicy.class);
     }

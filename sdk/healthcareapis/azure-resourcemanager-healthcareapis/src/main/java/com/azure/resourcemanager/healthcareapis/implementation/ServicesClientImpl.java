@@ -295,14 +295,7 @@ public final class ServicesClientImpl implements ServicesClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ServicesDescriptionInner> getByResourceGroupAsync(String resourceGroupName, String resourceName) {
         return getByResourceGroupWithResponseAsync(resourceGroupName, resourceName)
-            .flatMap(
-                (Response<ServicesDescriptionInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -1545,14 +1538,7 @@ public final class ServicesClientImpl implements ServicesClient {
     private Mono<ServicesNameAvailabilityInfoInner> checkNameAvailabilityAsync(
         CheckNameAvailabilityParameters checkNameAvailabilityInputs) {
         return checkNameAvailabilityWithResponseAsync(checkNameAvailabilityInputs)
-            .flatMap(
-                (Response<ServicesNameAvailabilityInfoInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**

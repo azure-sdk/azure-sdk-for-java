@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.healthcareapis.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.resourcemanager.healthcareapis.models.CorsConfiguration;
 import com.azure.resourcemanager.healthcareapis.models.DicomServiceAuthenticationConfiguration;
 import com.azure.resourcemanager.healthcareapis.models.PrivateEndpointConnection;
 import com.azure.resourcemanager.healthcareapis.models.ProvisioningState;
@@ -26,6 +27,12 @@ public final class DicomServiceProperties {
      */
     @JsonProperty(value = "authenticationConfiguration")
     private DicomServiceAuthenticationConfiguration authenticationConfiguration;
+
+    /*
+     * Dicom Service Cors configuration.
+     */
+    @JsonProperty(value = "corsConfiguration")
+    private CorsConfiguration corsConfiguration;
 
     /*
      * The url of the Dicom Services.
@@ -78,6 +85,26 @@ public final class DicomServiceProperties {
     }
 
     /**
+     * Get the corsConfiguration property: Dicom Service Cors configuration.
+     *
+     * @return the corsConfiguration value.
+     */
+    public CorsConfiguration corsConfiguration() {
+        return this.corsConfiguration;
+    }
+
+    /**
+     * Set the corsConfiguration property: Dicom Service Cors configuration.
+     *
+     * @param corsConfiguration the corsConfiguration value to set.
+     * @return the DicomServiceProperties object itself.
+     */
+    public DicomServiceProperties withCorsConfiguration(CorsConfiguration corsConfiguration) {
+        this.corsConfiguration = corsConfiguration;
+        return this;
+    }
+
+    /**
      * Get the serviceUrl property: The url of the Dicom Services.
      *
      * @return the serviceUrl value.
@@ -126,6 +153,9 @@ public final class DicomServiceProperties {
     public void validate() {
         if (authenticationConfiguration() != null) {
             authenticationConfiguration().validate();
+        }
+        if (corsConfiguration() != null) {
+            corsConfiguration().validate();
         }
         if (privateEndpointConnections() != null) {
             privateEndpointConnections().forEach(e -> e.validate());

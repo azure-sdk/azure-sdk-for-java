@@ -27,7 +27,11 @@ public final class IotIdentityResolutionType extends ExpandableStringEnum<IotIde
         return fromString(name, IotIdentityResolutionType.class);
     }
 
-    /** @return known IotIdentityResolutionType values. */
+    /**
+     * Gets known IotIdentityResolutionType values.
+     *
+     * @return known IotIdentityResolutionType values.
+     */
     public static Collection<IotIdentityResolutionType> values() {
         return values(IotIdentityResolutionType.class);
     }
