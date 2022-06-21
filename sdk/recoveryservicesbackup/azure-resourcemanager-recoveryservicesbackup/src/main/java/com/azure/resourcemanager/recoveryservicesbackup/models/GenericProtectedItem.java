@@ -181,20 +181,6 @@ public final class GenericProtectedItem extends ProtectedItem {
 
     /** {@inheritDoc} */
     @Override
-    public GenericProtectedItem withBackupManagementType(BackupManagementType backupManagementType) {
-        super.withBackupManagementType(backupManagementType);
-        return this;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public GenericProtectedItem withWorkloadType(DataSourceType workloadType) {
-        super.withWorkloadType(workloadType);
-        return this;
-    }
-
-    /** {@inheritDoc} */
-    @Override
     public GenericProtectedItem withContainerName(String containerName) {
         super.withContainerName(containerName);
         return this;

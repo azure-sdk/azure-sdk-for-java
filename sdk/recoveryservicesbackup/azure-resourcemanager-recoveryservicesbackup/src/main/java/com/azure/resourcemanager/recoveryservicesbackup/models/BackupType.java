@@ -28,6 +28,12 @@ public final class BackupType extends ExpandableStringEnum<BackupType> {
     /** Static value Incremental for BackupType. */
     public static final BackupType INCREMENTAL = fromString("Incremental");
 
+    /** Static value SnapshotFull for BackupType. */
+    public static final BackupType SNAPSHOT_FULL = fromString("SnapshotFull");
+
+    /** Static value SnapshotCopyOnlyFull for BackupType. */
+    public static final BackupType SNAPSHOT_COPY_ONLY_FULL = fromString("SnapshotCopyOnlyFull");
+
     /**
      * Creates or finds a BackupType from its string representation.
      *
