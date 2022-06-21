@@ -7,7 +7,6 @@ package com.azure.resourcemanager.sqlvirtualmachine.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.Resource;
 import com.azure.core.management.SystemData;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.sqlvirtualmachine.models.AssessmentSettings;
 import com.azure.resourcemanager.sqlvirtualmachine.models.AutoBackupSettings;
 import com.azure.resourcemanager.sqlvirtualmachine.models.AutoPatchingSettings;
@@ -19,15 +18,12 @@ import com.azure.resourcemanager.sqlvirtualmachine.models.SqlManagementMode;
 import com.azure.resourcemanager.sqlvirtualmachine.models.SqlServerLicenseType;
 import com.azure.resourcemanager.sqlvirtualmachine.models.StorageConfigurationSettings;
 import com.azure.resourcemanager.sqlvirtualmachine.models.WsfcDomainCredentials;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
 /** A SQL virtual machine. */
 @Fluent
 public final class SqlVirtualMachineInner extends Resource {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(SqlVirtualMachineInner.class);
-
     /*
      * Azure Active Directory identity of the server.
      */
@@ -271,6 +267,31 @@ public final class SqlVirtualMachineInner extends Resource {
             this.innerProperties = new SqlVirtualMachineProperties();
         }
         this.innerProperties().withWsfcDomainCredentials(wsfcDomainCredentials);
+        return this;
+    }
+
+    /**
+     * Get the wsfcStaticIp property: Domain credentials for setting up Windows Server Failover Cluster for SQL
+     * availability group.
+     *
+     * @return the wsfcStaticIp value.
+     */
+    public String wsfcStaticIp() {
+        return this.innerProperties() == null ? null : this.innerProperties().wsfcStaticIp();
+    }
+
+    /**
+     * Set the wsfcStaticIp property: Domain credentials for setting up Windows Server Failover Cluster for SQL
+     * availability group.
+     *
+     * @param wsfcStaticIp the wsfcStaticIp value to set.
+     * @return the SqlVirtualMachineInner object itself.
+     */
+    public SqlVirtualMachineInner withWsfcStaticIp(String wsfcStaticIp) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new SqlVirtualMachineProperties();
+        }
+        this.innerProperties().withWsfcStaticIp(wsfcStaticIp);
         return this;
     }
 

@@ -95,6 +95,10 @@ public final class SqlVirtualMachineImpl
         return this.innerModel().wsfcDomainCredentials();
     }
 
+    public String wsfcStaticIp() {
+        return this.innerModel().wsfcStaticIp();
+    }
+
     public AutoPatchingSettings autoPatchingSettings() {
         return this.innerModel().autoPatchingSettings();
     }
@@ -125,6 +129,10 @@ public final class SqlVirtualMachineImpl
 
     public String regionName() {
         return this.location();
+    }
+
+    public String resourceGroupName() {
+        return resourceGroupName;
     }
 
     public SqlVirtualMachineInner innerModel() {
@@ -293,6 +301,11 @@ public final class SqlVirtualMachineImpl
 
     public SqlVirtualMachineImpl withWsfcDomainCredentials(WsfcDomainCredentials wsfcDomainCredentials) {
         this.innerModel().withWsfcDomainCredentials(wsfcDomainCredentials);
+        return this;
+    }
+
+    public SqlVirtualMachineImpl withWsfcStaticIp(String wsfcStaticIp) {
+        this.innerModel().withWsfcStaticIp(wsfcStaticIp);
         return this;
     }
 
