@@ -8,6 +8,7 @@ import com.azure.core.annotation.BodyParam;
 import com.azure.core.annotation.Delete;
 import com.azure.core.annotation.ExpectedResponses;
 import com.azure.core.annotation.Get;
+import com.azure.core.annotation.HeaderParam;
 import com.azure.core.annotation.Host;
 import com.azure.core.annotation.HostParam;
 import com.azure.core.annotation.PathParam;
@@ -67,27 +68,7 @@ public final class DeviceUpdatesImpl {
     @Host("https://{endpoint}")
     @ServiceInterface(name = "DeviceUpdateClientDe")
     public interface DeviceUpdatesService {
-        @Post("/deviceupdate/{instanceId}/updates")
-        @ExpectedResponses({202})
-        @UnexpectedResponseExceptionType(
-                value = ClientAuthenticationException.class,
-                code = {401})
-        @UnexpectedResponseExceptionType(
-                value = ResourceNotFoundException.class,
-                code = {404})
-        @UnexpectedResponseExceptionType(
-                value = ResourceModifiedException.class,
-                code = {409})
-        @UnexpectedResponseExceptionType(HttpResponseException.class)
-        Mono<Response<BinaryData>> importUpdate(
-                @HostParam("endpoint") String endpoint,
-                @PathParam(value = "instanceId", encoded = true) String instanceId,
-                @QueryParam("api-version") String apiVersion,
-                @BodyParam("application/json") BinaryData updateToImport,
-                RequestOptions requestOptions,
-                Context context);
-
-        @Get("/deviceupdate/{instanceId}/updates")
+        @Get("/deviceUpdate/{instanceId}/updates")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(
                 value = ClientAuthenticationException.class,
@@ -103,10 +84,32 @@ public final class DeviceUpdatesImpl {
                 @HostParam("endpoint") String endpoint,
                 @PathParam(value = "instanceId", encoded = true) String instanceId,
                 @QueryParam("api-version") String apiVersion,
+                @HeaderParam("Accept") String accept,
                 RequestOptions requestOptions,
                 Context context);
 
-        @Get("/deviceupdate/{instanceId}/updates/providers/{provider}/names/{name}/versions/{version}")
+        @Post("/deviceUpdate/{instanceId}/updates:import")
+        @ExpectedResponses({202})
+        @UnexpectedResponseExceptionType(
+                value = ClientAuthenticationException.class,
+                code = {401})
+        @UnexpectedResponseExceptionType(
+                value = ResourceNotFoundException.class,
+                code = {404})
+        @UnexpectedResponseExceptionType(
+                value = ResourceModifiedException.class,
+                code = {409})
+        @UnexpectedResponseExceptionType(HttpResponseException.class)
+        Mono<Response<Void>> importUpdate(
+                @HostParam("endpoint") String endpoint,
+                @PathParam(value = "instanceId", encoded = true) String instanceId,
+                @QueryParam("api-version") String apiVersion,
+                @BodyParam("application/json") BinaryData updateToImport,
+                @HeaderParam("Accept") String accept,
+                RequestOptions requestOptions,
+                Context context);
+
+        @Get("/deviceUpdate/{instanceId}/updates/providers/{provider}/names/{name}/versions/{version}")
         @ExpectedResponses({200, 304})
         @UnexpectedResponseExceptionType(
                 value = ClientAuthenticationException.class,
@@ -125,10 +128,11 @@ public final class DeviceUpdatesImpl {
                 @PathParam("name") String name,
                 @PathParam("version") String version,
                 @QueryParam("api-version") String apiVersion,
+                @HeaderParam("Accept") String accept,
                 RequestOptions requestOptions,
                 Context context);
 
-        @Delete("/deviceupdate/{instanceId}/updates/providers/{provider}/names/{name}/versions/{version}")
+        @Delete("/deviceUpdate/{instanceId}/updates/providers/{provider}/names/{name}/versions/{version}")
         @ExpectedResponses({202})
         @UnexpectedResponseExceptionType(
                 value = ClientAuthenticationException.class,
@@ -147,10 +151,11 @@ public final class DeviceUpdatesImpl {
                 @PathParam("name") String name,
                 @PathParam("version") String version,
                 @QueryParam("api-version") String apiVersion,
+                @HeaderParam("Accept") String accept,
                 RequestOptions requestOptions,
                 Context context);
 
-        @Get("/deviceupdate/{instanceId}/updates/providers")
+        @Get("/deviceUpdate/{instanceId}/updates/providers")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(
                 value = ClientAuthenticationException.class,
@@ -166,10 +171,11 @@ public final class DeviceUpdatesImpl {
                 @HostParam("endpoint") String endpoint,
                 @PathParam(value = "instanceId", encoded = true) String instanceId,
                 @QueryParam("api-version") String apiVersion,
+                @HeaderParam("Accept") String accept,
                 RequestOptions requestOptions,
                 Context context);
 
-        @Get("/deviceupdate/{instanceId}/updates/providers/{provider}/names")
+        @Get("/deviceUpdate/{instanceId}/updates/providers/{provider}/names")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(
                 value = ClientAuthenticationException.class,
@@ -186,10 +192,11 @@ public final class DeviceUpdatesImpl {
                 @PathParam(value = "instanceId", encoded = true) String instanceId,
                 @PathParam("provider") String provider,
                 @QueryParam("api-version") String apiVersion,
+                @HeaderParam("Accept") String accept,
                 RequestOptions requestOptions,
                 Context context);
 
-        @Get("/deviceupdate/{instanceId}/updates/providers/{provider}/names/{name}/versions")
+        @Get("/deviceUpdate/{instanceId}/updates/providers/{provider}/names/{name}/versions")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(
                 value = ClientAuthenticationException.class,
@@ -207,10 +214,11 @@ public final class DeviceUpdatesImpl {
                 @PathParam("provider") String provider,
                 @PathParam("name") String name,
                 @QueryParam("api-version") String apiVersion,
+                @HeaderParam("Accept") String accept,
                 RequestOptions requestOptions,
                 Context context);
 
-        @Get("/deviceupdate/{instanceId}/updates/providers/{provider}/names/{name}/versions/{version}/files")
+        @Get("/deviceUpdate/{instanceId}/updates/providers/{provider}/names/{name}/versions/{version}/files")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(
                 value = ClientAuthenticationException.class,
@@ -229,10 +237,11 @@ public final class DeviceUpdatesImpl {
                 @PathParam("name") String name,
                 @PathParam("version") String version,
                 @QueryParam("api-version") String apiVersion,
+                @HeaderParam("Accept") String accept,
                 RequestOptions requestOptions,
                 Context context);
 
-        @Get("/deviceupdate/{instanceId}/updates/providers/{provider}/names/{name}/versions/{version}/files/{fileId}")
+        @Get("/deviceUpdate/{instanceId}/updates/providers/{provider}/names/{name}/versions/{version}/files/{fileId}")
         @ExpectedResponses({200, 304})
         @UnexpectedResponseExceptionType(
                 value = ClientAuthenticationException.class,
@@ -252,10 +261,11 @@ public final class DeviceUpdatesImpl {
                 @PathParam("version") String version,
                 @PathParam("fileId") String fileId,
                 @QueryParam("api-version") String apiVersion,
+                @HeaderParam("Accept") String accept,
                 RequestOptions requestOptions,
                 Context context);
 
-        @Get("/deviceupdate/{instanceId}/updates/operations")
+        @Get("/deviceUpdate/{instanceId}/updates/operations")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(
                 value = ClientAuthenticationException.class,
@@ -271,10 +281,11 @@ public final class DeviceUpdatesImpl {
                 @HostParam("endpoint") String endpoint,
                 @PathParam(value = "instanceId", encoded = true) String instanceId,
                 @QueryParam("api-version") String apiVersion,
+                @HeaderParam("Accept") String accept,
                 RequestOptions requestOptions,
                 Context context);
 
-        @Get("/deviceupdate/{instanceId}/updates/operations/{operationId}")
+        @Get("/deviceUpdate/{instanceId}/updates/operations/{operationId}")
         @ExpectedResponses({200, 304})
         @UnexpectedResponseExceptionType(
                 value = ClientAuthenticationException.class,
@@ -291,6 +302,7 @@ public final class DeviceUpdatesImpl {
                 @PathParam(value = "instanceId", encoded = true) String instanceId,
                 @PathParam("operationId") String operationId,
                 @QueryParam("api-version") String apiVersion,
+                @HeaderParam("Accept") String accept,
                 RequestOptions requestOptions,
                 Context context);
 
@@ -309,6 +321,7 @@ public final class DeviceUpdatesImpl {
         Mono<Response<BinaryData>> listUpdatesNext(
                 @PathParam(value = "nextLink", encoded = true) String nextLink,
                 @HostParam("endpoint") String endpoint,
+                @HeaderParam("Accept") String accept,
                 RequestOptions requestOptions,
                 Context context);
 
@@ -327,6 +340,7 @@ public final class DeviceUpdatesImpl {
         Mono<Response<BinaryData>> listProvidersNext(
                 @PathParam(value = "nextLink", encoded = true) String nextLink,
                 @HostParam("endpoint") String endpoint,
+                @HeaderParam("Accept") String accept,
                 RequestOptions requestOptions,
                 Context context);
 
@@ -345,6 +359,7 @@ public final class DeviceUpdatesImpl {
         Mono<Response<BinaryData>> listNamesNext(
                 @PathParam(value = "nextLink", encoded = true) String nextLink,
                 @HostParam("endpoint") String endpoint,
+                @HeaderParam("Accept") String accept,
                 RequestOptions requestOptions,
                 Context context);
 
@@ -363,6 +378,7 @@ public final class DeviceUpdatesImpl {
         Mono<Response<BinaryData>> listVersionsNext(
                 @PathParam(value = "nextLink", encoded = true) String nextLink,
                 @HostParam("endpoint") String endpoint,
+                @HeaderParam("Accept") String accept,
                 RequestOptions requestOptions,
                 Context context);
 
@@ -381,6 +397,7 @@ public final class DeviceUpdatesImpl {
         Mono<Response<BinaryData>> listFilesNext(
                 @PathParam(value = "nextLink", encoded = true) String nextLink,
                 @HostParam("endpoint") String endpoint,
+                @HeaderParam("Accept") String accept,
                 RequestOptions requestOptions,
                 Context context);
 
@@ -399,499 +416,9 @@ public final class DeviceUpdatesImpl {
         Mono<Response<BinaryData>> listOperationsNext(
                 @PathParam(value = "nextLink", encoded = true) String nextLink,
                 @HostParam("endpoint") String endpoint,
+                @HeaderParam("Accept") String accept,
                 RequestOptions requestOptions,
                 Context context);
-    }
-
-    /**
-     * Import new update version.
-     *
-     * <p><strong>Query Parameters</strong>
-     *
-     * <table border="1">
-     *     <caption>Query Parameters</caption>
-     *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>action</td><td>String</td><td>Yes</td><td>Import update action.</td></tr>
-     *     <tr><td>api-version</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
-     * </table>
-     *
-     * <p><strong>Request Body Schema</strong>
-     *
-     * <pre>{@code
-     * [
-     *     {
-     *         importManifest: {
-     *             url: String
-     *             sizeInBytes: long
-     *             hashes: {
-     *                 String: String
-     *             }
-     *         }
-     *         friendlyName: String
-     *         files: [
-     *             {
-     *                 filename: String
-     *                 url: String
-     *             }
-     *         ]
-     *     }
-     * ]
-     * }</pre>
-     *
-     * <p><strong>Response Body Schema</strong>
-     *
-     * <pre>{@code
-     * {
-     *     updateId: {
-     *         provider: String
-     *         name: String
-     *         version: String
-     *     }
-     *     description: String
-     *     friendlyName: String
-     *     isDeployable: Boolean
-     *     updateType: String
-     *     installedCriteria: String
-     *     compatibility: [
-     *         {
-     *             String: String
-     *         }
-     *     ]
-     *     instructions: {
-     *         steps: [
-     *             {
-     *                 type: String(Inline/Reference)
-     *                 description: String
-     *                 handler: String
-     *                 handlerProperties: Object
-     *                 files: [
-     *                     String
-     *                 ]
-     *                 updateId: (recursive schema, see updateId above)
-     *             }
-     *         ]
-     *     }
-     *     referencedBy: [
-     *         (recursive schema, see above)
-     *     ]
-     *     scanResult: String
-     *     manifestVersion: String
-     *     importedDateTime: String
-     *     createdDateTime: String
-     *     etag: String
-     * }
-     * }</pre>
-     *
-     * @param updateToImport The update to be imported.
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return update metadata along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<BinaryData>> importUpdateWithResponseAsync(
-            BinaryData updateToImport, RequestOptions requestOptions) {
-        return FluxUtil.withContext(
-                context ->
-                        service.importUpdate(
-                                this.client.getEndpoint(),
-                                this.client.getInstanceId(),
-                                this.client.getServiceVersion().getVersion(),
-                                updateToImport,
-                                requestOptions,
-                                context));
-    }
-
-    /**
-     * Import new update version.
-     *
-     * <p><strong>Query Parameters</strong>
-     *
-     * <table border="1">
-     *     <caption>Query Parameters</caption>
-     *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>action</td><td>String</td><td>Yes</td><td>Import update action.</td></tr>
-     *     <tr><td>api-version</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
-     * </table>
-     *
-     * <p><strong>Request Body Schema</strong>
-     *
-     * <pre>{@code
-     * [
-     *     {
-     *         importManifest: {
-     *             url: String
-     *             sizeInBytes: long
-     *             hashes: {
-     *                 String: String
-     *             }
-     *         }
-     *         friendlyName: String
-     *         files: [
-     *             {
-     *                 filename: String
-     *                 url: String
-     *             }
-     *         ]
-     *     }
-     * ]
-     * }</pre>
-     *
-     * <p><strong>Response Body Schema</strong>
-     *
-     * <pre>{@code
-     * {
-     *     updateId: {
-     *         provider: String
-     *         name: String
-     *         version: String
-     *     }
-     *     description: String
-     *     friendlyName: String
-     *     isDeployable: Boolean
-     *     updateType: String
-     *     installedCriteria: String
-     *     compatibility: [
-     *         {
-     *             String: String
-     *         }
-     *     ]
-     *     instructions: {
-     *         steps: [
-     *             {
-     *                 type: String(Inline/Reference)
-     *                 description: String
-     *                 handler: String
-     *                 handlerProperties: Object
-     *                 files: [
-     *                     String
-     *                 ]
-     *                 updateId: (recursive schema, see updateId above)
-     *             }
-     *         ]
-     *     }
-     *     referencedBy: [
-     *         (recursive schema, see above)
-     *     ]
-     *     scanResult: String
-     *     manifestVersion: String
-     *     importedDateTime: String
-     *     createdDateTime: String
-     *     etag: String
-     * }
-     * }</pre>
-     *
-     * @param updateToImport The update to be imported.
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @param context The context to associate with this operation.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return update metadata along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<BinaryData>> importUpdateWithResponseAsync(
-            BinaryData updateToImport, RequestOptions requestOptions, Context context) {
-        return service.importUpdate(
-                this.client.getEndpoint(),
-                this.client.getInstanceId(),
-                this.client.getServiceVersion().getVersion(),
-                updateToImport,
-                requestOptions,
-                context);
-    }
-
-    /**
-     * Import new update version.
-     *
-     * <p><strong>Query Parameters</strong>
-     *
-     * <table border="1">
-     *     <caption>Query Parameters</caption>
-     *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>action</td><td>String</td><td>Yes</td><td>Import update action.</td></tr>
-     *     <tr><td>api-version</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
-     * </table>
-     *
-     * <p><strong>Request Body Schema</strong>
-     *
-     * <pre>{@code
-     * [
-     *     {
-     *         importManifest: {
-     *             url: String
-     *             sizeInBytes: long
-     *             hashes: {
-     *                 String: String
-     *             }
-     *         }
-     *         friendlyName: String
-     *         files: [
-     *             {
-     *                 filename: String
-     *                 url: String
-     *             }
-     *         ]
-     *     }
-     * ]
-     * }</pre>
-     *
-     * <p><strong>Response Body Schema</strong>
-     *
-     * <pre>{@code
-     * {
-     *     updateId: {
-     *         provider: String
-     *         name: String
-     *         version: String
-     *     }
-     *     description: String
-     *     friendlyName: String
-     *     isDeployable: Boolean
-     *     updateType: String
-     *     installedCriteria: String
-     *     compatibility: [
-     *         {
-     *             String: String
-     *         }
-     *     ]
-     *     instructions: {
-     *         steps: [
-     *             {
-     *                 type: String(Inline/Reference)
-     *                 description: String
-     *                 handler: String
-     *                 handlerProperties: Object
-     *                 files: [
-     *                     String
-     *                 ]
-     *                 updateId: (recursive schema, see updateId above)
-     *             }
-     *         ]
-     *     }
-     *     referencedBy: [
-     *         (recursive schema, see above)
-     *     ]
-     *     scanResult: String
-     *     manifestVersion: String
-     *     importedDateTime: String
-     *     createdDateTime: String
-     *     etag: String
-     * }
-     * }</pre>
-     *
-     * @param updateToImport The update to be imported.
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return the {@link PollerFlux} for polling of update metadata.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public PollerFlux<BinaryData, BinaryData> beginImportUpdateAsync(
-            BinaryData updateToImport, RequestOptions requestOptions) {
-        return PollerFlux.create(
-                Duration.ofSeconds(1),
-                () -> this.importUpdateWithResponseAsync(updateToImport, requestOptions),
-                new DefaultPollingStrategy<>(this.client.getHttpPipeline()),
-                new TypeReferenceBinaryData(),
-                new TypeReferenceBinaryData());
-    }
-
-    /**
-     * Import new update version.
-     *
-     * <p><strong>Query Parameters</strong>
-     *
-     * <table border="1">
-     *     <caption>Query Parameters</caption>
-     *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>action</td><td>String</td><td>Yes</td><td>Import update action.</td></tr>
-     *     <tr><td>api-version</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
-     * </table>
-     *
-     * <p><strong>Request Body Schema</strong>
-     *
-     * <pre>{@code
-     * [
-     *     {
-     *         importManifest: {
-     *             url: String
-     *             sizeInBytes: long
-     *             hashes: {
-     *                 String: String
-     *             }
-     *         }
-     *         friendlyName: String
-     *         files: [
-     *             {
-     *                 filename: String
-     *                 url: String
-     *             }
-     *         ]
-     *     }
-     * ]
-     * }</pre>
-     *
-     * <p><strong>Response Body Schema</strong>
-     *
-     * <pre>{@code
-     * {
-     *     updateId: {
-     *         provider: String
-     *         name: String
-     *         version: String
-     *     }
-     *     description: String
-     *     friendlyName: String
-     *     isDeployable: Boolean
-     *     updateType: String
-     *     installedCriteria: String
-     *     compatibility: [
-     *         {
-     *             String: String
-     *         }
-     *     ]
-     *     instructions: {
-     *         steps: [
-     *             {
-     *                 type: String(Inline/Reference)
-     *                 description: String
-     *                 handler: String
-     *                 handlerProperties: Object
-     *                 files: [
-     *                     String
-     *                 ]
-     *                 updateId: (recursive schema, see updateId above)
-     *             }
-     *         ]
-     *     }
-     *     referencedBy: [
-     *         (recursive schema, see above)
-     *     ]
-     *     scanResult: String
-     *     manifestVersion: String
-     *     importedDateTime: String
-     *     createdDateTime: String
-     *     etag: String
-     * }
-     * }</pre>
-     *
-     * @param updateToImport The update to be imported.
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @param context The context to associate with this operation.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return the {@link PollerFlux} for polling of update metadata.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public PollerFlux<BinaryData, BinaryData> beginImportUpdateAsync(
-            BinaryData updateToImport, RequestOptions requestOptions, Context context) {
-        return PollerFlux.create(
-                Duration.ofSeconds(1),
-                () -> this.importUpdateWithResponseAsync(updateToImport, requestOptions, context),
-                new DefaultPollingStrategy<>(this.client.getHttpPipeline()),
-                new TypeReferenceBinaryData(),
-                new TypeReferenceBinaryData());
-    }
-
-    /**
-     * Import new update version.
-     *
-     * <p><strong>Query Parameters</strong>
-     *
-     * <table border="1">
-     *     <caption>Query Parameters</caption>
-     *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>action</td><td>String</td><td>Yes</td><td>Import update action.</td></tr>
-     *     <tr><td>api-version</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
-     * </table>
-     *
-     * <p><strong>Request Body Schema</strong>
-     *
-     * <pre>{@code
-     * [
-     *     {
-     *         importManifest: {
-     *             url: String
-     *             sizeInBytes: long
-     *             hashes: {
-     *                 String: String
-     *             }
-     *         }
-     *         friendlyName: String
-     *         files: [
-     *             {
-     *                 filename: String
-     *                 url: String
-     *             }
-     *         ]
-     *     }
-     * ]
-     * }</pre>
-     *
-     * <p><strong>Response Body Schema</strong>
-     *
-     * <pre>{@code
-     * {
-     *     updateId: {
-     *         provider: String
-     *         name: String
-     *         version: String
-     *     }
-     *     description: String
-     *     friendlyName: String
-     *     isDeployable: Boolean
-     *     updateType: String
-     *     installedCriteria: String
-     *     compatibility: [
-     *         {
-     *             String: String
-     *         }
-     *     ]
-     *     instructions: {
-     *         steps: [
-     *             {
-     *                 type: String(Inline/Reference)
-     *                 description: String
-     *                 handler: String
-     *                 handlerProperties: Object
-     *                 files: [
-     *                     String
-     *                 ]
-     *                 updateId: (recursive schema, see updateId above)
-     *             }
-     *         ]
-     *     }
-     *     referencedBy: [
-     *         (recursive schema, see above)
-     *     ]
-     *     scanResult: String
-     *     manifestVersion: String
-     *     importedDateTime: String
-     *     createdDateTime: String
-     *     etag: String
-     * }
-     * }</pre>
-     *
-     * @param updateToImport The update to be imported.
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return the {@link SyncPoller} for polling of update metadata.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<BinaryData, BinaryData> beginImportUpdate(
-            BinaryData updateToImport, RequestOptions requestOptions) {
-        return this.beginImportUpdateAsync(updateToImport, requestOptions).getSyncPoller();
     }
 
     /**
@@ -902,9 +429,8 @@ public final class DeviceUpdatesImpl {
      * <table border="1">
      *     <caption>Query Parameters</caption>
      *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>api-version</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
-     *     <tr><td>$search</td><td>String</td><td>No</td><td>Request updates matching a free-text search expression.</td></tr>
-     *     <tr><td>$filter</td><td>String</td><td>No</td><td>Filter updates by its properties.</td></tr>
+     *     <tr><td>search</td><td>String</td><td>No</td><td>Request updates matching a free-text search expression.</td></tr>
+     *     <tr><td>filter</td><td>String</td><td>No</td><td>Filter updates by its properties.</td></tr>
      * </table>
      *
      * <p><strong>Response Body Schema</strong>
@@ -947,8 +473,8 @@ public final class DeviceUpdatesImpl {
      *             ]
      *             scanResult: String
      *             manifestVersion: String
-     *             importedDateTime: String
-     *             createdDateTime: String
+     *             importedDateTime: OffsetDateTime
+     *             createdDateTime: OffsetDateTime
      *             etag: String
      *         }
      *     ]
@@ -966,12 +492,14 @@ public final class DeviceUpdatesImpl {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<PagedResponse<BinaryData>> listUpdatesSinglePageAsync(RequestOptions requestOptions) {
+        final String accept = "application/json";
         return FluxUtil.withContext(
                         context ->
                                 service.listUpdates(
                                         this.client.getEndpoint(),
                                         this.client.getInstanceId(),
                                         this.client.getServiceVersion().getVersion(),
+                                        accept,
                                         requestOptions,
                                         context))
                 .map(
@@ -993,9 +521,8 @@ public final class DeviceUpdatesImpl {
      * <table border="1">
      *     <caption>Query Parameters</caption>
      *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>api-version</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
-     *     <tr><td>$search</td><td>String</td><td>No</td><td>Request updates matching a free-text search expression.</td></tr>
-     *     <tr><td>$filter</td><td>String</td><td>No</td><td>Filter updates by its properties.</td></tr>
+     *     <tr><td>search</td><td>String</td><td>No</td><td>Request updates matching a free-text search expression.</td></tr>
+     *     <tr><td>filter</td><td>String</td><td>No</td><td>Filter updates by its properties.</td></tr>
      * </table>
      *
      * <p><strong>Response Body Schema</strong>
@@ -1038,8 +565,8 @@ public final class DeviceUpdatesImpl {
      *             ]
      *             scanResult: String
      *             manifestVersion: String
-     *             importedDateTime: String
-     *             createdDateTime: String
+     *             importedDateTime: OffsetDateTime
+     *             createdDateTime: OffsetDateTime
      *             etag: String
      *         }
      *     ]
@@ -1058,10 +585,12 @@ public final class DeviceUpdatesImpl {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<PagedResponse<BinaryData>> listUpdatesSinglePageAsync(RequestOptions requestOptions, Context context) {
+        final String accept = "application/json";
         return service.listUpdates(
                         this.client.getEndpoint(),
                         this.client.getInstanceId(),
                         this.client.getServiceVersion().getVersion(),
+                        accept,
                         requestOptions,
                         context)
                 .map(
@@ -1083,9 +612,8 @@ public final class DeviceUpdatesImpl {
      * <table border="1">
      *     <caption>Query Parameters</caption>
      *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>api-version</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
-     *     <tr><td>$search</td><td>String</td><td>No</td><td>Request updates matching a free-text search expression.</td></tr>
-     *     <tr><td>$filter</td><td>String</td><td>No</td><td>Filter updates by its properties.</td></tr>
+     *     <tr><td>search</td><td>String</td><td>No</td><td>Request updates matching a free-text search expression.</td></tr>
+     *     <tr><td>filter</td><td>String</td><td>No</td><td>Filter updates by its properties.</td></tr>
      * </table>
      *
      * <p><strong>Response Body Schema</strong>
@@ -1128,8 +656,8 @@ public final class DeviceUpdatesImpl {
      *             ]
      *             scanResult: String
      *             manifestVersion: String
-     *             importedDateTime: String
-     *             createdDateTime: String
+     *             importedDateTime: OffsetDateTime
+     *             createdDateTime: OffsetDateTime
      *             etag: String
      *         }
      *     ]
@@ -1147,9 +675,14 @@ public final class DeviceUpdatesImpl {
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedFlux<BinaryData> listUpdatesAsync(RequestOptions requestOptions) {
+        RequestOptions requestOptionsForNextPage = new RequestOptions();
+        requestOptionsForNextPage.setContext(
+                requestOptions != null && requestOptions.getContext() != null
+                        ? requestOptions.getContext()
+                        : Context.NONE);
         return new PagedFlux<>(
                 () -> listUpdatesSinglePageAsync(requestOptions),
-                nextLink -> listUpdatesNextSinglePageAsync(nextLink, null));
+                nextLink -> listUpdatesNextSinglePageAsync(nextLink, requestOptionsForNextPage));
     }
 
     /**
@@ -1160,9 +693,8 @@ public final class DeviceUpdatesImpl {
      * <table border="1">
      *     <caption>Query Parameters</caption>
      *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>api-version</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
-     *     <tr><td>$search</td><td>String</td><td>No</td><td>Request updates matching a free-text search expression.</td></tr>
-     *     <tr><td>$filter</td><td>String</td><td>No</td><td>Filter updates by its properties.</td></tr>
+     *     <tr><td>search</td><td>String</td><td>No</td><td>Request updates matching a free-text search expression.</td></tr>
+     *     <tr><td>filter</td><td>String</td><td>No</td><td>Filter updates by its properties.</td></tr>
      * </table>
      *
      * <p><strong>Response Body Schema</strong>
@@ -1205,8 +737,8 @@ public final class DeviceUpdatesImpl {
      *             ]
      *             scanResult: String
      *             manifestVersion: String
-     *             importedDateTime: String
-     *             createdDateTime: String
+     *             importedDateTime: OffsetDateTime
+     *             createdDateTime: OffsetDateTime
      *             etag: String
      *         }
      *     ]
@@ -1225,9 +757,14 @@ public final class DeviceUpdatesImpl {
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedFlux<BinaryData> listUpdatesAsync(RequestOptions requestOptions, Context context) {
+        RequestOptions requestOptionsForNextPage = new RequestOptions();
+        requestOptionsForNextPage.setContext(
+                requestOptions != null && requestOptions.getContext() != null
+                        ? requestOptions.getContext()
+                        : Context.NONE);
         return new PagedFlux<>(
                 () -> listUpdatesSinglePageAsync(requestOptions, context),
-                nextLink -> listUpdatesNextSinglePageAsync(nextLink, null, context));
+                nextLink -> listUpdatesNextSinglePageAsync(nextLink, requestOptionsForNextPage, context));
     }
 
     /**
@@ -1238,9 +775,8 @@ public final class DeviceUpdatesImpl {
      * <table border="1">
      *     <caption>Query Parameters</caption>
      *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>api-version</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
-     *     <tr><td>$search</td><td>String</td><td>No</td><td>Request updates matching a free-text search expression.</td></tr>
-     *     <tr><td>$filter</td><td>String</td><td>No</td><td>Filter updates by its properties.</td></tr>
+     *     <tr><td>search</td><td>String</td><td>No</td><td>Request updates matching a free-text search expression.</td></tr>
+     *     <tr><td>filter</td><td>String</td><td>No</td><td>Filter updates by its properties.</td></tr>
      * </table>
      *
      * <p><strong>Response Body Schema</strong>
@@ -1283,8 +819,8 @@ public final class DeviceUpdatesImpl {
      *             ]
      *             scanResult: String
      *             manifestVersion: String
-     *             importedDateTime: String
-     *             createdDateTime: String
+     *             importedDateTime: OffsetDateTime
+     *             createdDateTime: OffsetDateTime
      *             etag: String
      *         }
      *     ]
@@ -1306,15 +842,252 @@ public final class DeviceUpdatesImpl {
     }
 
     /**
+     * Import new update version. This is a long-running-operation; use Operation-Location response header value to
+     * check for operation status.
+     *
+     * <p><strong>Request Body Schema</strong>
+     *
+     * <pre>{@code
+     * [
+     *     {
+     *         importManifest: {
+     *             url: String
+     *             sizeInBytes: long
+     *             hashes: {
+     *                 String: String
+     *             }
+     *         }
+     *         friendlyName: String
+     *         files: [
+     *             {
+     *                 filename: String
+     *                 url: String
+     *             }
+     *         ]
+     *     }
+     * ]
+     * }</pre>
+     *
+     * @param updateToImport The update to be imported.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return the {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Void>> importUpdateWithResponseAsync(
+            BinaryData updateToImport, RequestOptions requestOptions) {
+        final String accept = "application/json";
+        return FluxUtil.withContext(
+                context ->
+                        service.importUpdate(
+                                this.client.getEndpoint(),
+                                this.client.getInstanceId(),
+                                this.client.getServiceVersion().getVersion(),
+                                updateToImport,
+                                accept,
+                                requestOptions,
+                                context));
+    }
+
+    /**
+     * Import new update version. This is a long-running-operation; use Operation-Location response header value to
+     * check for operation status.
+     *
+     * <p><strong>Request Body Schema</strong>
+     *
+     * <pre>{@code
+     * [
+     *     {
+     *         importManifest: {
+     *             url: String
+     *             sizeInBytes: long
+     *             hashes: {
+     *                 String: String
+     *             }
+     *         }
+     *         friendlyName: String
+     *         files: [
+     *             {
+     *                 filename: String
+     *                 url: String
+     *             }
+     *         ]
+     *     }
+     * ]
+     * }</pre>
+     *
+     * @param updateToImport The update to be imported.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @param context The context to associate with this operation.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return the {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Void>> importUpdateWithResponseAsync(
+            BinaryData updateToImport, RequestOptions requestOptions, Context context) {
+        final String accept = "application/json";
+        return service.importUpdate(
+                this.client.getEndpoint(),
+                this.client.getInstanceId(),
+                this.client.getServiceVersion().getVersion(),
+                updateToImport,
+                accept,
+                requestOptions,
+                context);
+    }
+
+    /**
+     * Import new update version. This is a long-running-operation; use Operation-Location response header value to
+     * check for operation status.
+     *
+     * <p><strong>Request Body Schema</strong>
+     *
+     * <pre>{@code
+     * [
+     *     {
+     *         importManifest: {
+     *             url: String
+     *             sizeInBytes: long
+     *             hashes: {
+     *                 String: String
+     *             }
+     *         }
+     *         friendlyName: String
+     *         files: [
+     *             {
+     *                 filename: String
+     *                 url: String
+     *             }
+     *         ]
+     *     }
+     * ]
+     * }</pre>
+     *
+     * @param updateToImport The update to be imported.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return the {@link PollerFlux} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public PollerFlux<BinaryData, BinaryData> beginImportUpdateAsync(
+            BinaryData updateToImport, RequestOptions requestOptions) {
+        return PollerFlux.create(
+                Duration.ofSeconds(1),
+                () -> this.importUpdateWithResponseAsync(updateToImport, requestOptions),
+                new DefaultPollingStrategy<>(
+                        this.client.getHttpPipeline(),
+                        null,
+                        requestOptions != null && requestOptions.getContext() != null
+                                ? requestOptions.getContext()
+                                : Context.NONE),
+                new TypeReferenceBinaryData(),
+                new TypeReferenceBinaryData());
+    }
+
+    /**
+     * Import new update version. This is a long-running-operation; use Operation-Location response header value to
+     * check for operation status.
+     *
+     * <p><strong>Request Body Schema</strong>
+     *
+     * <pre>{@code
+     * [
+     *     {
+     *         importManifest: {
+     *             url: String
+     *             sizeInBytes: long
+     *             hashes: {
+     *                 String: String
+     *             }
+     *         }
+     *         friendlyName: String
+     *         files: [
+     *             {
+     *                 filename: String
+     *                 url: String
+     *             }
+     *         ]
+     *     }
+     * ]
+     * }</pre>
+     *
+     * @param updateToImport The update to be imported.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @param context The context to associate with this operation.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return the {@link PollerFlux} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public PollerFlux<BinaryData, BinaryData> beginImportUpdateAsync(
+            BinaryData updateToImport, RequestOptions requestOptions, Context context) {
+        return PollerFlux.create(
+                Duration.ofSeconds(1),
+                () -> this.importUpdateWithResponseAsync(updateToImport, requestOptions, context),
+                new DefaultPollingStrategy<>(
+                        this.client.getHttpPipeline(),
+                        null,
+                        requestOptions != null && requestOptions.getContext() != null
+                                ? requestOptions.getContext()
+                                : Context.NONE),
+                new TypeReferenceBinaryData(),
+                new TypeReferenceBinaryData());
+    }
+
+    /**
+     * Import new update version. This is a long-running-operation; use Operation-Location response header value to
+     * check for operation status.
+     *
+     * <p><strong>Request Body Schema</strong>
+     *
+     * <pre>{@code
+     * [
+     *     {
+     *         importManifest: {
+     *             url: String
+     *             sizeInBytes: long
+     *             hashes: {
+     *                 String: String
+     *             }
+     *         }
+     *         friendlyName: String
+     *         files: [
+     *             {
+     *                 filename: String
+     *                 url: String
+     *             }
+     *         ]
+     *     }
+     * ]
+     * }</pre>
+     *
+     * @param updateToImport The update to be imported.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return the {@link SyncPoller} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<BinaryData, BinaryData> beginImportUpdate(
+            BinaryData updateToImport, RequestOptions requestOptions) {
+        return this.beginImportUpdateAsync(updateToImport, requestOptions).getSyncPoller();
+    }
+
+    /**
      * Get a specific update version.
-     *
-     * <p><strong>Query Parameters</strong>
-     *
-     * <table border="1">
-     *     <caption>Query Parameters</caption>
-     *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>api-version</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
-     * </table>
      *
      * <p><strong>Header Parameters</strong>
      *
@@ -1362,8 +1135,8 @@ public final class DeviceUpdatesImpl {
      *     ]
      *     scanResult: String
      *     manifestVersion: String
-     *     importedDateTime: String
-     *     createdDateTime: String
+     *     importedDateTime: OffsetDateTime
+     *     createdDateTime: OffsetDateTime
      *     etag: String
      * }
      * }</pre>
@@ -1381,6 +1154,7 @@ public final class DeviceUpdatesImpl {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<BinaryData>> getUpdateWithResponseAsync(
             String provider, String name, String version, RequestOptions requestOptions) {
+        final String accept = "application/json";
         return FluxUtil.withContext(
                 context ->
                         service.getUpdate(
@@ -1390,20 +1164,13 @@ public final class DeviceUpdatesImpl {
                                 name,
                                 version,
                                 this.client.getServiceVersion().getVersion(),
+                                accept,
                                 requestOptions,
                                 context));
     }
 
     /**
      * Get a specific update version.
-     *
-     * <p><strong>Query Parameters</strong>
-     *
-     * <table border="1">
-     *     <caption>Query Parameters</caption>
-     *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>api-version</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
-     * </table>
      *
      * <p><strong>Header Parameters</strong>
      *
@@ -1451,8 +1218,8 @@ public final class DeviceUpdatesImpl {
      *     ]
      *     scanResult: String
      *     manifestVersion: String
-     *     importedDateTime: String
-     *     createdDateTime: String
+     *     importedDateTime: OffsetDateTime
+     *     createdDateTime: OffsetDateTime
      *     etag: String
      * }
      * }</pre>
@@ -1471,6 +1238,7 @@ public final class DeviceUpdatesImpl {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<BinaryData>> getUpdateWithResponseAsync(
             String provider, String name, String version, RequestOptions requestOptions, Context context) {
+        final String accept = "application/json";
         return service.getUpdate(
                 this.client.getEndpoint(),
                 this.client.getInstanceId(),
@@ -1478,20 +1246,13 @@ public final class DeviceUpdatesImpl {
                 name,
                 version,
                 this.client.getServiceVersion().getVersion(),
+                accept,
                 requestOptions,
                 context);
     }
 
     /**
      * Get a specific update version.
-     *
-     * <p><strong>Query Parameters</strong>
-     *
-     * <table border="1">
-     *     <caption>Query Parameters</caption>
-     *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>api-version</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
-     * </table>
      *
      * <p><strong>Header Parameters</strong>
      *
@@ -1539,8 +1300,8 @@ public final class DeviceUpdatesImpl {
      *     ]
      *     scanResult: String
      *     manifestVersion: String
-     *     importedDateTime: String
-     *     createdDateTime: String
+     *     importedDateTime: OffsetDateTime
+     *     createdDateTime: OffsetDateTime
      *     etag: String
      * }
      * }</pre>
@@ -1562,15 +1323,8 @@ public final class DeviceUpdatesImpl {
     }
 
     /**
-     * Delete a specific update version.
-     *
-     * <p><strong>Query Parameters</strong>
-     *
-     * <table border="1">
-     *     <caption>Query Parameters</caption>
-     *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>api-version</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
-     * </table>
+     * Delete a specific update version. This is a long-running-operation; use Operation-Location response header value
+     * to check for operation status.
      *
      * @param provider Update provider.
      * @param name Update name.
@@ -1583,8 +1337,9 @@ public final class DeviceUpdatesImpl {
      * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Void>> deleteUpdateWithResponseAsync(
+    private Mono<Response<Void>> deleteUpdateWithResponseAsync(
             String provider, String name, String version, RequestOptions requestOptions) {
+        final String accept = "application/json";
         return FluxUtil.withContext(
                 context ->
                         service.deleteUpdate(
@@ -1594,20 +1349,14 @@ public final class DeviceUpdatesImpl {
                                 name,
                                 version,
                                 this.client.getServiceVersion().getVersion(),
+                                accept,
                                 requestOptions,
                                 context));
     }
 
     /**
-     * Delete a specific update version.
-     *
-     * <p><strong>Query Parameters</strong>
-     *
-     * <table border="1">
-     *     <caption>Query Parameters</caption>
-     *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>api-version</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
-     * </table>
+     * Delete a specific update version. This is a long-running-operation; use Operation-Location response header value
+     * to check for operation status.
      *
      * @param provider Update provider.
      * @param name Update name.
@@ -1621,8 +1370,9 @@ public final class DeviceUpdatesImpl {
      * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Void>> deleteUpdateWithResponseAsync(
+    private Mono<Response<Void>> deleteUpdateWithResponseAsync(
             String provider, String name, String version, RequestOptions requestOptions, Context context) {
+        final String accept = "application/json";
         return service.deleteUpdate(
                 this.client.getEndpoint(),
                 this.client.getInstanceId(),
@@ -1630,20 +1380,14 @@ public final class DeviceUpdatesImpl {
                 name,
                 version,
                 this.client.getServiceVersion().getVersion(),
+                accept,
                 requestOptions,
                 context);
     }
 
     /**
-     * Delete a specific update version.
-     *
-     * <p><strong>Query Parameters</strong>
-     *
-     * <table border="1">
-     *     <caption>Query Parameters</caption>
-     *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>api-version</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
-     * </table>
+     * Delete a specific update version. This is a long-running-operation; use Operation-Location response header value
+     * to check for operation status.
      *
      * @param provider Update provider.
      * @param name Update name.
@@ -1661,21 +1405,19 @@ public final class DeviceUpdatesImpl {
         return PollerFlux.create(
                 Duration.ofSeconds(1),
                 () -> this.deleteUpdateWithResponseAsync(provider, name, version, requestOptions),
-                new DefaultPollingStrategy<>(this.client.getHttpPipeline()),
+                new DefaultPollingStrategy<>(
+                        this.client.getHttpPipeline(),
+                        null,
+                        requestOptions != null && requestOptions.getContext() != null
+                                ? requestOptions.getContext()
+                                : Context.NONE),
                 new TypeReferenceBinaryData(),
                 new TypeReferenceBinaryData());
     }
 
     /**
-     * Delete a specific update version.
-     *
-     * <p><strong>Query Parameters</strong>
-     *
-     * <table border="1">
-     *     <caption>Query Parameters</caption>
-     *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>api-version</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
-     * </table>
+     * Delete a specific update version. This is a long-running-operation; use Operation-Location response header value
+     * to check for operation status.
      *
      * @param provider Update provider.
      * @param name Update name.
@@ -1694,21 +1436,19 @@ public final class DeviceUpdatesImpl {
         return PollerFlux.create(
                 Duration.ofSeconds(1),
                 () -> this.deleteUpdateWithResponseAsync(provider, name, version, requestOptions, context),
-                new DefaultPollingStrategy<>(this.client.getHttpPipeline()),
+                new DefaultPollingStrategy<>(
+                        this.client.getHttpPipeline(),
+                        null,
+                        requestOptions != null && requestOptions.getContext() != null
+                                ? requestOptions.getContext()
+                                : Context.NONE),
                 new TypeReferenceBinaryData(),
                 new TypeReferenceBinaryData());
     }
 
     /**
-     * Delete a specific update version.
-     *
-     * <p><strong>Query Parameters</strong>
-     *
-     * <table border="1">
-     *     <caption>Query Parameters</caption>
-     *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>api-version</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
-     * </table>
+     * Delete a specific update version. This is a long-running-operation; use Operation-Location response header value
+     * to check for operation status.
      *
      * @param provider Update provider.
      * @param name Update name.
@@ -1728,14 +1468,6 @@ public final class DeviceUpdatesImpl {
 
     /**
      * Get a list of all update providers that have been imported to Device Update for IoT Hub.
-     *
-     * <p><strong>Query Parameters</strong>
-     *
-     * <table border="1">
-     *     <caption>Query Parameters</caption>
-     *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>api-version</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
-     * </table>
      *
      * <p><strong>Response Body Schema</strong>
      *
@@ -1758,12 +1490,14 @@ public final class DeviceUpdatesImpl {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<PagedResponse<BinaryData>> listProvidersSinglePageAsync(RequestOptions requestOptions) {
+        final String accept = "application/json";
         return FluxUtil.withContext(
                         context ->
                                 service.listProviders(
                                         this.client.getEndpoint(),
                                         this.client.getInstanceId(),
                                         this.client.getServiceVersion().getVersion(),
+                                        accept,
                                         requestOptions,
                                         context))
                 .map(
@@ -1779,14 +1513,6 @@ public final class DeviceUpdatesImpl {
 
     /**
      * Get a list of all update providers that have been imported to Device Update for IoT Hub.
-     *
-     * <p><strong>Query Parameters</strong>
-     *
-     * <table border="1">
-     *     <caption>Query Parameters</caption>
-     *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>api-version</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
-     * </table>
      *
      * <p><strong>Response Body Schema</strong>
      *
@@ -1811,10 +1537,12 @@ public final class DeviceUpdatesImpl {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<PagedResponse<BinaryData>> listProvidersSinglePageAsync(
             RequestOptions requestOptions, Context context) {
+        final String accept = "application/json";
         return service.listProviders(
                         this.client.getEndpoint(),
                         this.client.getInstanceId(),
                         this.client.getServiceVersion().getVersion(),
+                        accept,
                         requestOptions,
                         context)
                 .map(
@@ -1830,14 +1558,6 @@ public final class DeviceUpdatesImpl {
 
     /**
      * Get a list of all update providers that have been imported to Device Update for IoT Hub.
-     *
-     * <p><strong>Query Parameters</strong>
-     *
-     * <table border="1">
-     *     <caption>Query Parameters</caption>
-     *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>api-version</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
-     * </table>
      *
      * <p><strong>Response Body Schema</strong>
      *
@@ -1860,21 +1580,18 @@ public final class DeviceUpdatesImpl {
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedFlux<BinaryData> listProvidersAsync(RequestOptions requestOptions) {
+        RequestOptions requestOptionsForNextPage = new RequestOptions();
+        requestOptionsForNextPage.setContext(
+                requestOptions != null && requestOptions.getContext() != null
+                        ? requestOptions.getContext()
+                        : Context.NONE);
         return new PagedFlux<>(
                 () -> listProvidersSinglePageAsync(requestOptions),
-                nextLink -> listProvidersNextSinglePageAsync(nextLink, null));
+                nextLink -> listProvidersNextSinglePageAsync(nextLink, requestOptionsForNextPage));
     }
 
     /**
      * Get a list of all update providers that have been imported to Device Update for IoT Hub.
-     *
-     * <p><strong>Query Parameters</strong>
-     *
-     * <table border="1">
-     *     <caption>Query Parameters</caption>
-     *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>api-version</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
-     * </table>
      *
      * <p><strong>Response Body Schema</strong>
      *
@@ -1898,21 +1615,18 @@ public final class DeviceUpdatesImpl {
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedFlux<BinaryData> listProvidersAsync(RequestOptions requestOptions, Context context) {
+        RequestOptions requestOptionsForNextPage = new RequestOptions();
+        requestOptionsForNextPage.setContext(
+                requestOptions != null && requestOptions.getContext() != null
+                        ? requestOptions.getContext()
+                        : Context.NONE);
         return new PagedFlux<>(
                 () -> listProvidersSinglePageAsync(requestOptions, context),
-                nextLink -> listProvidersNextSinglePageAsync(nextLink, null, context));
+                nextLink -> listProvidersNextSinglePageAsync(nextLink, requestOptionsForNextPage, context));
     }
 
     /**
      * Get a list of all update providers that have been imported to Device Update for IoT Hub.
-     *
-     * <p><strong>Query Parameters</strong>
-     *
-     * <table border="1">
-     *     <caption>Query Parameters</caption>
-     *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>api-version</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
-     * </table>
      *
      * <p><strong>Response Body Schema</strong>
      *
@@ -1941,14 +1655,6 @@ public final class DeviceUpdatesImpl {
     /**
      * Get a list of all update names that match the specified provider.
      *
-     * <p><strong>Query Parameters</strong>
-     *
-     * <table border="1">
-     *     <caption>Query Parameters</caption>
-     *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>api-version</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
-     * </table>
-     *
      * <p><strong>Response Body Schema</strong>
      *
      * <pre>{@code
@@ -1971,6 +1677,7 @@ public final class DeviceUpdatesImpl {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<PagedResponse<BinaryData>> listNamesSinglePageAsync(String provider, RequestOptions requestOptions) {
+        final String accept = "application/json";
         return FluxUtil.withContext(
                         context ->
                                 service.listNames(
@@ -1978,6 +1685,7 @@ public final class DeviceUpdatesImpl {
                                         this.client.getInstanceId(),
                                         provider,
                                         this.client.getServiceVersion().getVersion(),
+                                        accept,
                                         requestOptions,
                                         context))
                 .map(
@@ -1993,14 +1701,6 @@ public final class DeviceUpdatesImpl {
 
     /**
      * Get a list of all update names that match the specified provider.
-     *
-     * <p><strong>Query Parameters</strong>
-     *
-     * <table border="1">
-     *     <caption>Query Parameters</caption>
-     *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>api-version</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
-     * </table>
      *
      * <p><strong>Response Body Schema</strong>
      *
@@ -2026,11 +1726,13 @@ public final class DeviceUpdatesImpl {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<PagedResponse<BinaryData>> listNamesSinglePageAsync(
             String provider, RequestOptions requestOptions, Context context) {
+        final String accept = "application/json";
         return service.listNames(
                         this.client.getEndpoint(),
                         this.client.getInstanceId(),
                         provider,
                         this.client.getServiceVersion().getVersion(),
+                        accept,
                         requestOptions,
                         context)
                 .map(
@@ -2046,14 +1748,6 @@ public final class DeviceUpdatesImpl {
 
     /**
      * Get a list of all update names that match the specified provider.
-     *
-     * <p><strong>Query Parameters</strong>
-     *
-     * <table border="1">
-     *     <caption>Query Parameters</caption>
-     *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>api-version</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
-     * </table>
      *
      * <p><strong>Response Body Schema</strong>
      *
@@ -2077,21 +1771,18 @@ public final class DeviceUpdatesImpl {
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedFlux<BinaryData> listNamesAsync(String provider, RequestOptions requestOptions) {
+        RequestOptions requestOptionsForNextPage = new RequestOptions();
+        requestOptionsForNextPage.setContext(
+                requestOptions != null && requestOptions.getContext() != null
+                        ? requestOptions.getContext()
+                        : Context.NONE);
         return new PagedFlux<>(
                 () -> listNamesSinglePageAsync(provider, requestOptions),
-                nextLink -> listNamesNextSinglePageAsync(nextLink, null));
+                nextLink -> listNamesNextSinglePageAsync(nextLink, requestOptionsForNextPage));
     }
 
     /**
      * Get a list of all update names that match the specified provider.
-     *
-     * <p><strong>Query Parameters</strong>
-     *
-     * <table border="1">
-     *     <caption>Query Parameters</caption>
-     *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>api-version</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
-     * </table>
      *
      * <p><strong>Response Body Schema</strong>
      *
@@ -2116,21 +1807,18 @@ public final class DeviceUpdatesImpl {
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedFlux<BinaryData> listNamesAsync(String provider, RequestOptions requestOptions, Context context) {
+        RequestOptions requestOptionsForNextPage = new RequestOptions();
+        requestOptionsForNextPage.setContext(
+                requestOptions != null && requestOptions.getContext() != null
+                        ? requestOptions.getContext()
+                        : Context.NONE);
         return new PagedFlux<>(
                 () -> listNamesSinglePageAsync(provider, requestOptions, context),
-                nextLink -> listNamesNextSinglePageAsync(nextLink, null, context));
+                nextLink -> listNamesNextSinglePageAsync(nextLink, requestOptionsForNextPage, context));
     }
 
     /**
      * Get a list of all update names that match the specified provider.
-     *
-     * <p><strong>Query Parameters</strong>
-     *
-     * <table border="1">
-     *     <caption>Query Parameters</caption>
-     *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>api-version</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
-     * </table>
      *
      * <p><strong>Response Body Schema</strong>
      *
@@ -2165,8 +1853,7 @@ public final class DeviceUpdatesImpl {
      * <table border="1">
      *     <caption>Query Parameters</caption>
      *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>api-version</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
-     *     <tr><td>$filter</td><td>String</td><td>No</td><td>Filter updates by its properties.</td></tr>
+     *     <tr><td>filter</td><td>String</td><td>No</td><td>Filter updates by its properties.</td></tr>
      * </table>
      *
      * <p><strong>Response Body Schema</strong>
@@ -2193,6 +1880,7 @@ public final class DeviceUpdatesImpl {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<PagedResponse<BinaryData>> listVersionsSinglePageAsync(
             String provider, String name, RequestOptions requestOptions) {
+        final String accept = "application/json";
         return FluxUtil.withContext(
                         context ->
                                 service.listVersions(
@@ -2201,6 +1889,7 @@ public final class DeviceUpdatesImpl {
                                         provider,
                                         name,
                                         this.client.getServiceVersion().getVersion(),
+                                        accept,
                                         requestOptions,
                                         context))
                 .map(
@@ -2222,8 +1911,7 @@ public final class DeviceUpdatesImpl {
      * <table border="1">
      *     <caption>Query Parameters</caption>
      *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>api-version</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
-     *     <tr><td>$filter</td><td>String</td><td>No</td><td>Filter updates by its properties.</td></tr>
+     *     <tr><td>filter</td><td>String</td><td>No</td><td>Filter updates by its properties.</td></tr>
      * </table>
      *
      * <p><strong>Response Body Schema</strong>
@@ -2251,12 +1939,14 @@ public final class DeviceUpdatesImpl {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<PagedResponse<BinaryData>> listVersionsSinglePageAsync(
             String provider, String name, RequestOptions requestOptions, Context context) {
+        final String accept = "application/json";
         return service.listVersions(
                         this.client.getEndpoint(),
                         this.client.getInstanceId(),
                         provider,
                         name,
                         this.client.getServiceVersion().getVersion(),
+                        accept,
                         requestOptions,
                         context)
                 .map(
@@ -2278,8 +1968,7 @@ public final class DeviceUpdatesImpl {
      * <table border="1">
      *     <caption>Query Parameters</caption>
      *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>api-version</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
-     *     <tr><td>$filter</td><td>String</td><td>No</td><td>Filter updates by its properties.</td></tr>
+     *     <tr><td>filter</td><td>String</td><td>No</td><td>Filter updates by its properties.</td></tr>
      * </table>
      *
      * <p><strong>Response Body Schema</strong>
@@ -2305,9 +1994,14 @@ public final class DeviceUpdatesImpl {
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedFlux<BinaryData> listVersionsAsync(String provider, String name, RequestOptions requestOptions) {
+        RequestOptions requestOptionsForNextPage = new RequestOptions();
+        requestOptionsForNextPage.setContext(
+                requestOptions != null && requestOptions.getContext() != null
+                        ? requestOptions.getContext()
+                        : Context.NONE);
         return new PagedFlux<>(
                 () -> listVersionsSinglePageAsync(provider, name, requestOptions),
-                nextLink -> listVersionsNextSinglePageAsync(nextLink, null));
+                nextLink -> listVersionsNextSinglePageAsync(nextLink, requestOptionsForNextPage));
     }
 
     /**
@@ -2318,8 +2012,7 @@ public final class DeviceUpdatesImpl {
      * <table border="1">
      *     <caption>Query Parameters</caption>
      *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>api-version</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
-     *     <tr><td>$filter</td><td>String</td><td>No</td><td>Filter updates by its properties.</td></tr>
+     *     <tr><td>filter</td><td>String</td><td>No</td><td>Filter updates by its properties.</td></tr>
      * </table>
      *
      * <p><strong>Response Body Schema</strong>
@@ -2347,9 +2040,14 @@ public final class DeviceUpdatesImpl {
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedFlux<BinaryData> listVersionsAsync(
             String provider, String name, RequestOptions requestOptions, Context context) {
+        RequestOptions requestOptionsForNextPage = new RequestOptions();
+        requestOptionsForNextPage.setContext(
+                requestOptions != null && requestOptions.getContext() != null
+                        ? requestOptions.getContext()
+                        : Context.NONE);
         return new PagedFlux<>(
                 () -> listVersionsSinglePageAsync(provider, name, requestOptions, context),
-                nextLink -> listVersionsNextSinglePageAsync(nextLink, null, context));
+                nextLink -> listVersionsNextSinglePageAsync(nextLink, requestOptionsForNextPage, context));
     }
 
     /**
@@ -2360,8 +2058,7 @@ public final class DeviceUpdatesImpl {
      * <table border="1">
      *     <caption>Query Parameters</caption>
      *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>api-version</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
-     *     <tr><td>$filter</td><td>String</td><td>No</td><td>Filter updates by its properties.</td></tr>
+     *     <tr><td>filter</td><td>String</td><td>No</td><td>Filter updates by its properties.</td></tr>
      * </table>
      *
      * <p><strong>Response Body Schema</strong>
@@ -2393,14 +2090,6 @@ public final class DeviceUpdatesImpl {
     /**
      * Get a list of all update file identifiers for the specified version.
      *
-     * <p><strong>Query Parameters</strong>
-     *
-     * <table border="1">
-     *     <caption>Query Parameters</caption>
-     *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>api-version</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
-     * </table>
-     *
      * <p><strong>Response Body Schema</strong>
      *
      * <pre>{@code
@@ -2426,6 +2115,7 @@ public final class DeviceUpdatesImpl {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<PagedResponse<BinaryData>> listFilesSinglePageAsync(
             String provider, String name, String version, RequestOptions requestOptions) {
+        final String accept = "application/json";
         return FluxUtil.withContext(
                         context ->
                                 service.listFiles(
@@ -2435,6 +2125,7 @@ public final class DeviceUpdatesImpl {
                                         name,
                                         version,
                                         this.client.getServiceVersion().getVersion(),
+                                        accept,
                                         requestOptions,
                                         context))
                 .map(
@@ -2451,14 +2142,6 @@ public final class DeviceUpdatesImpl {
     /**
      * Get a list of all update file identifiers for the specified version.
      *
-     * <p><strong>Query Parameters</strong>
-     *
-     * <table border="1">
-     *     <caption>Query Parameters</caption>
-     *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>api-version</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
-     * </table>
-     *
      * <p><strong>Response Body Schema</strong>
      *
      * <pre>{@code
@@ -2485,6 +2168,7 @@ public final class DeviceUpdatesImpl {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<PagedResponse<BinaryData>> listFilesSinglePageAsync(
             String provider, String name, String version, RequestOptions requestOptions, Context context) {
+        final String accept = "application/json";
         return service.listFiles(
                         this.client.getEndpoint(),
                         this.client.getInstanceId(),
@@ -2492,6 +2176,7 @@ public final class DeviceUpdatesImpl {
                         name,
                         version,
                         this.client.getServiceVersion().getVersion(),
+                        accept,
                         requestOptions,
                         context)
                 .map(
@@ -2507,14 +2192,6 @@ public final class DeviceUpdatesImpl {
 
     /**
      * Get a list of all update file identifiers for the specified version.
-     *
-     * <p><strong>Query Parameters</strong>
-     *
-     * <table border="1">
-     *     <caption>Query Parameters</caption>
-     *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>api-version</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
-     * </table>
      *
      * <p><strong>Response Body Schema</strong>
      *
@@ -2541,21 +2218,18 @@ public final class DeviceUpdatesImpl {
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedFlux<BinaryData> listFilesAsync(
             String provider, String name, String version, RequestOptions requestOptions) {
+        RequestOptions requestOptionsForNextPage = new RequestOptions();
+        requestOptionsForNextPage.setContext(
+                requestOptions != null && requestOptions.getContext() != null
+                        ? requestOptions.getContext()
+                        : Context.NONE);
         return new PagedFlux<>(
                 () -> listFilesSinglePageAsync(provider, name, version, requestOptions),
-                nextLink -> listFilesNextSinglePageAsync(nextLink, null));
+                nextLink -> listFilesNextSinglePageAsync(nextLink, requestOptionsForNextPage));
     }
 
     /**
      * Get a list of all update file identifiers for the specified version.
-     *
-     * <p><strong>Query Parameters</strong>
-     *
-     * <table border="1">
-     *     <caption>Query Parameters</caption>
-     *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>api-version</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
-     * </table>
      *
      * <p><strong>Response Body Schema</strong>
      *
@@ -2583,21 +2257,18 @@ public final class DeviceUpdatesImpl {
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedFlux<BinaryData> listFilesAsync(
             String provider, String name, String version, RequestOptions requestOptions, Context context) {
+        RequestOptions requestOptionsForNextPage = new RequestOptions();
+        requestOptionsForNextPage.setContext(
+                requestOptions != null && requestOptions.getContext() != null
+                        ? requestOptions.getContext()
+                        : Context.NONE);
         return new PagedFlux<>(
                 () -> listFilesSinglePageAsync(provider, name, version, requestOptions, context),
-                nextLink -> listFilesNextSinglePageAsync(nextLink, null, context));
+                nextLink -> listFilesNextSinglePageAsync(nextLink, requestOptionsForNextPage, context));
     }
 
     /**
      * Get a list of all update file identifiers for the specified version.
-     *
-     * <p><strong>Query Parameters</strong>
-     *
-     * <table border="1">
-     *     <caption>Query Parameters</caption>
-     *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>api-version</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
-     * </table>
      *
      * <p><strong>Response Body Schema</strong>
      *
@@ -2630,14 +2301,6 @@ public final class DeviceUpdatesImpl {
     /**
      * Get a specific update file from the version.
      *
-     * <p><strong>Query Parameters</strong>
-     *
-     * <table border="1">
-     *     <caption>Query Parameters</caption>
-     *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>api-version</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
-     * </table>
-     *
      * <p><strong>Header Parameters</strong>
      *
      * <table border="1">
@@ -2650,7 +2313,6 @@ public final class DeviceUpdatesImpl {
      *
      * <pre>{@code
      * {
-     *     fileId: String
      *     fileName: String
      *     sizeInBytes: long
      *     hashes: {
@@ -2659,6 +2321,28 @@ public final class DeviceUpdatesImpl {
      *     mimeType: String
      *     scanResult: String
      *     scanDetails: String
+     *     properties: {
+     *         String: String
+     *     }
+     *     fileId: String
+     *     relatedFiles: [
+     *         {
+     *             fileName: String
+     *             sizeInBytes: long
+     *             hashes: {
+     *                 String: String
+     *             }
+     *             mimeType: String
+     *             scanResult: String
+     *             scanDetails: String
+     *             properties: {
+     *                 String: String
+     *             }
+     *         }
+     *     ]
+     *     downloadHandler: {
+     *         id: String
+     *     }
      *     etag: String
      * }
      * }</pre>
@@ -2678,6 +2362,7 @@ public final class DeviceUpdatesImpl {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<BinaryData>> getFileWithResponseAsync(
             String provider, String name, String version, String fileId, RequestOptions requestOptions) {
+        final String accept = "application/json";
         return FluxUtil.withContext(
                 context ->
                         service.getFile(
@@ -2688,20 +2373,13 @@ public final class DeviceUpdatesImpl {
                                 version,
                                 fileId,
                                 this.client.getServiceVersion().getVersion(),
+                                accept,
                                 requestOptions,
                                 context));
     }
 
     /**
      * Get a specific update file from the version.
-     *
-     * <p><strong>Query Parameters</strong>
-     *
-     * <table border="1">
-     *     <caption>Query Parameters</caption>
-     *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>api-version</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
-     * </table>
      *
      * <p><strong>Header Parameters</strong>
      *
@@ -2715,7 +2393,6 @@ public final class DeviceUpdatesImpl {
      *
      * <pre>{@code
      * {
-     *     fileId: String
      *     fileName: String
      *     sizeInBytes: long
      *     hashes: {
@@ -2724,6 +2401,28 @@ public final class DeviceUpdatesImpl {
      *     mimeType: String
      *     scanResult: String
      *     scanDetails: String
+     *     properties: {
+     *         String: String
+     *     }
+     *     fileId: String
+     *     relatedFiles: [
+     *         {
+     *             fileName: String
+     *             sizeInBytes: long
+     *             hashes: {
+     *                 String: String
+     *             }
+     *             mimeType: String
+     *             scanResult: String
+     *             scanDetails: String
+     *             properties: {
+     *                 String: String
+     *             }
+     *         }
+     *     ]
+     *     downloadHandler: {
+     *         id: String
+     *     }
      *     etag: String
      * }
      * }</pre>
@@ -2749,6 +2448,7 @@ public final class DeviceUpdatesImpl {
             String fileId,
             RequestOptions requestOptions,
             Context context) {
+        final String accept = "application/json";
         return service.getFile(
                 this.client.getEndpoint(),
                 this.client.getInstanceId(),
@@ -2757,20 +2457,13 @@ public final class DeviceUpdatesImpl {
                 version,
                 fileId,
                 this.client.getServiceVersion().getVersion(),
+                accept,
                 requestOptions,
                 context);
     }
 
     /**
      * Get a specific update file from the version.
-     *
-     * <p><strong>Query Parameters</strong>
-     *
-     * <table border="1">
-     *     <caption>Query Parameters</caption>
-     *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>api-version</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
-     * </table>
      *
      * <p><strong>Header Parameters</strong>
      *
@@ -2784,7 +2477,6 @@ public final class DeviceUpdatesImpl {
      *
      * <pre>{@code
      * {
-     *     fileId: String
      *     fileName: String
      *     sizeInBytes: long
      *     hashes: {
@@ -2793,6 +2485,28 @@ public final class DeviceUpdatesImpl {
      *     mimeType: String
      *     scanResult: String
      *     scanDetails: String
+     *     properties: {
+     *         String: String
+     *     }
+     *     fileId: String
+     *     relatedFiles: [
+     *         {
+     *             fileName: String
+     *             sizeInBytes: long
+     *             hashes: {
+     *                 String: String
+     *             }
+     *             mimeType: String
+     *             scanResult: String
+     *             scanDetails: String
+     *             properties: {
+     *                 String: String
+     *             }
+     *         }
+     *     ]
+     *     downloadHandler: {
+     *         id: String
+     *     }
      *     etag: String
      * }
      * }</pre>
@@ -2823,9 +2537,8 @@ public final class DeviceUpdatesImpl {
      * <table border="1">
      *     <caption>Query Parameters</caption>
      *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>$filter</td><td>String</td><td>No</td><td>Restricts the set of operations returned. Only one specific filter is supported: "status eq 'NotStarted' or status eq 'Running'"</td></tr>
-     *     <tr><td>$top</td><td>String</td><td>No</td><td>Specifies a non-negative integer n that limits the number of items returned from a collection. The service returns the number of available items up to but not greater than the specified value n.</td></tr>
-     *     <tr><td>api-version</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
+     *     <tr><td>filter</td><td>String</td><td>No</td><td>Restricts the set of operations returned. Only one specific filter is supported: "status eq 'NotStarted' or status eq 'Running'"</td></tr>
+     *     <tr><td>top</td><td>Integer</td><td>No</td><td>Specifies a non-negative integer n that limits the number of items returned from a collection. The service returns the number of available items up to but not greater than the specified value n.</td></tr>
      * </table>
      *
      * <p><strong>Response Body Schema</strong>
@@ -2835,11 +2548,15 @@ public final class DeviceUpdatesImpl {
      *     value: [
      *         {
      *             operationId: String
-     *             status: String(Undefined/NotStarted/Running/Succeeded/Failed)
-     *             updateId: {
-     *                 provider: String
-     *                 name: String
-     *                 version: String
+     *             status: String(NotStarted/Running/Succeeded/Failed)
+     *             update: {
+     *                 updateId: {
+     *                     provider: String
+     *                     name: String
+     *                     version: String
+     *                 }
+     *                 description: String
+     *                 friendlyName: String
      *             }
      *             resourceLocation: String
      *             error: {
@@ -2855,11 +2572,11 @@ public final class DeviceUpdatesImpl {
      *                     errorDetail: String
      *                     innerError: (recursive schema, see innerError above)
      *                 }
-     *                 occurredDateTime: String
+     *                 occurredDateTime: OffsetDateTime
      *             }
      *             traceId: String
-     *             lastActionDateTime: String
-     *             createdDateTime: String
+     *             lastActionDateTime: OffsetDateTime
+     *             createdDateTime: OffsetDateTime
      *             etag: String
      *         }
      *     ]
@@ -2877,12 +2594,14 @@ public final class DeviceUpdatesImpl {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<PagedResponse<BinaryData>> listOperationsSinglePageAsync(RequestOptions requestOptions) {
+        final String accept = "application/json";
         return FluxUtil.withContext(
                         context ->
                                 service.listOperations(
                                         this.client.getEndpoint(),
                                         this.client.getInstanceId(),
                                         this.client.getServiceVersion().getVersion(),
+                                        accept,
                                         requestOptions,
                                         context))
                 .map(
@@ -2905,9 +2624,8 @@ public final class DeviceUpdatesImpl {
      * <table border="1">
      *     <caption>Query Parameters</caption>
      *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>$filter</td><td>String</td><td>No</td><td>Restricts the set of operations returned. Only one specific filter is supported: "status eq 'NotStarted' or status eq 'Running'"</td></tr>
-     *     <tr><td>$top</td><td>String</td><td>No</td><td>Specifies a non-negative integer n that limits the number of items returned from a collection. The service returns the number of available items up to but not greater than the specified value n.</td></tr>
-     *     <tr><td>api-version</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
+     *     <tr><td>filter</td><td>String</td><td>No</td><td>Restricts the set of operations returned. Only one specific filter is supported: "status eq 'NotStarted' or status eq 'Running'"</td></tr>
+     *     <tr><td>top</td><td>Integer</td><td>No</td><td>Specifies a non-negative integer n that limits the number of items returned from a collection. The service returns the number of available items up to but not greater than the specified value n.</td></tr>
      * </table>
      *
      * <p><strong>Response Body Schema</strong>
@@ -2917,11 +2635,15 @@ public final class DeviceUpdatesImpl {
      *     value: [
      *         {
      *             operationId: String
-     *             status: String(Undefined/NotStarted/Running/Succeeded/Failed)
-     *             updateId: {
-     *                 provider: String
-     *                 name: String
-     *                 version: String
+     *             status: String(NotStarted/Running/Succeeded/Failed)
+     *             update: {
+     *                 updateId: {
+     *                     provider: String
+     *                     name: String
+     *                     version: String
+     *                 }
+     *                 description: String
+     *                 friendlyName: String
      *             }
      *             resourceLocation: String
      *             error: {
@@ -2937,11 +2659,11 @@ public final class DeviceUpdatesImpl {
      *                     errorDetail: String
      *                     innerError: (recursive schema, see innerError above)
      *                 }
-     *                 occurredDateTime: String
+     *                 occurredDateTime: OffsetDateTime
      *             }
      *             traceId: String
-     *             lastActionDateTime: String
-     *             createdDateTime: String
+     *             lastActionDateTime: OffsetDateTime
+     *             createdDateTime: OffsetDateTime
      *             etag: String
      *         }
      *     ]
@@ -2961,10 +2683,12 @@ public final class DeviceUpdatesImpl {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<PagedResponse<BinaryData>> listOperationsSinglePageAsync(
             RequestOptions requestOptions, Context context) {
+        final String accept = "application/json";
         return service.listOperations(
                         this.client.getEndpoint(),
                         this.client.getInstanceId(),
                         this.client.getServiceVersion().getVersion(),
+                        accept,
                         requestOptions,
                         context)
                 .map(
@@ -2987,9 +2711,8 @@ public final class DeviceUpdatesImpl {
      * <table border="1">
      *     <caption>Query Parameters</caption>
      *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>$filter</td><td>String</td><td>No</td><td>Restricts the set of operations returned. Only one specific filter is supported: "status eq 'NotStarted' or status eq 'Running'"</td></tr>
-     *     <tr><td>$top</td><td>String</td><td>No</td><td>Specifies a non-negative integer n that limits the number of items returned from a collection. The service returns the number of available items up to but not greater than the specified value n.</td></tr>
-     *     <tr><td>api-version</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
+     *     <tr><td>filter</td><td>String</td><td>No</td><td>Restricts the set of operations returned. Only one specific filter is supported: "status eq 'NotStarted' or status eq 'Running'"</td></tr>
+     *     <tr><td>top</td><td>Integer</td><td>No</td><td>Specifies a non-negative integer n that limits the number of items returned from a collection. The service returns the number of available items up to but not greater than the specified value n.</td></tr>
      * </table>
      *
      * <p><strong>Response Body Schema</strong>
@@ -2999,11 +2722,15 @@ public final class DeviceUpdatesImpl {
      *     value: [
      *         {
      *             operationId: String
-     *             status: String(Undefined/NotStarted/Running/Succeeded/Failed)
-     *             updateId: {
-     *                 provider: String
-     *                 name: String
-     *                 version: String
+     *             status: String(NotStarted/Running/Succeeded/Failed)
+     *             update: {
+     *                 updateId: {
+     *                     provider: String
+     *                     name: String
+     *                     version: String
+     *                 }
+     *                 description: String
+     *                 friendlyName: String
      *             }
      *             resourceLocation: String
      *             error: {
@@ -3019,11 +2746,11 @@ public final class DeviceUpdatesImpl {
      *                     errorDetail: String
      *                     innerError: (recursive schema, see innerError above)
      *                 }
-     *                 occurredDateTime: String
+     *                 occurredDateTime: OffsetDateTime
      *             }
      *             traceId: String
-     *             lastActionDateTime: String
-     *             createdDateTime: String
+     *             lastActionDateTime: OffsetDateTime
+     *             createdDateTime: OffsetDateTime
      *             etag: String
      *         }
      *     ]
@@ -3040,9 +2767,14 @@ public final class DeviceUpdatesImpl {
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedFlux<BinaryData> listOperationsAsync(RequestOptions requestOptions) {
+        RequestOptions requestOptionsForNextPage = new RequestOptions();
+        requestOptionsForNextPage.setContext(
+                requestOptions != null && requestOptions.getContext() != null
+                        ? requestOptions.getContext()
+                        : Context.NONE);
         return new PagedFlux<>(
                 () -> listOperationsSinglePageAsync(requestOptions),
-                nextLink -> listOperationsNextSinglePageAsync(nextLink, null));
+                nextLink -> listOperationsNextSinglePageAsync(nextLink, requestOptionsForNextPage));
     }
 
     /**
@@ -3054,9 +2786,8 @@ public final class DeviceUpdatesImpl {
      * <table border="1">
      *     <caption>Query Parameters</caption>
      *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>$filter</td><td>String</td><td>No</td><td>Restricts the set of operations returned. Only one specific filter is supported: "status eq 'NotStarted' or status eq 'Running'"</td></tr>
-     *     <tr><td>$top</td><td>String</td><td>No</td><td>Specifies a non-negative integer n that limits the number of items returned from a collection. The service returns the number of available items up to but not greater than the specified value n.</td></tr>
-     *     <tr><td>api-version</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
+     *     <tr><td>filter</td><td>String</td><td>No</td><td>Restricts the set of operations returned. Only one specific filter is supported: "status eq 'NotStarted' or status eq 'Running'"</td></tr>
+     *     <tr><td>top</td><td>Integer</td><td>No</td><td>Specifies a non-negative integer n that limits the number of items returned from a collection. The service returns the number of available items up to but not greater than the specified value n.</td></tr>
      * </table>
      *
      * <p><strong>Response Body Schema</strong>
@@ -3066,11 +2797,15 @@ public final class DeviceUpdatesImpl {
      *     value: [
      *         {
      *             operationId: String
-     *             status: String(Undefined/NotStarted/Running/Succeeded/Failed)
-     *             updateId: {
-     *                 provider: String
-     *                 name: String
-     *                 version: String
+     *             status: String(NotStarted/Running/Succeeded/Failed)
+     *             update: {
+     *                 updateId: {
+     *                     provider: String
+     *                     name: String
+     *                     version: String
+     *                 }
+     *                 description: String
+     *                 friendlyName: String
      *             }
      *             resourceLocation: String
      *             error: {
@@ -3086,11 +2821,11 @@ public final class DeviceUpdatesImpl {
      *                     errorDetail: String
      *                     innerError: (recursive schema, see innerError above)
      *                 }
-     *                 occurredDateTime: String
+     *                 occurredDateTime: OffsetDateTime
      *             }
      *             traceId: String
-     *             lastActionDateTime: String
-     *             createdDateTime: String
+     *             lastActionDateTime: OffsetDateTime
+     *             createdDateTime: OffsetDateTime
      *             etag: String
      *         }
      *     ]
@@ -3108,9 +2843,14 @@ public final class DeviceUpdatesImpl {
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedFlux<BinaryData> listOperationsAsync(RequestOptions requestOptions, Context context) {
+        RequestOptions requestOptionsForNextPage = new RequestOptions();
+        requestOptionsForNextPage.setContext(
+                requestOptions != null && requestOptions.getContext() != null
+                        ? requestOptions.getContext()
+                        : Context.NONE);
         return new PagedFlux<>(
                 () -> listOperationsSinglePageAsync(requestOptions, context),
-                nextLink -> listOperationsNextSinglePageAsync(nextLink, null, context));
+                nextLink -> listOperationsNextSinglePageAsync(nextLink, requestOptionsForNextPage, context));
     }
 
     /**
@@ -3122,9 +2862,8 @@ public final class DeviceUpdatesImpl {
      * <table border="1">
      *     <caption>Query Parameters</caption>
      *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>$filter</td><td>String</td><td>No</td><td>Restricts the set of operations returned. Only one specific filter is supported: "status eq 'NotStarted' or status eq 'Running'"</td></tr>
-     *     <tr><td>$top</td><td>String</td><td>No</td><td>Specifies a non-negative integer n that limits the number of items returned from a collection. The service returns the number of available items up to but not greater than the specified value n.</td></tr>
-     *     <tr><td>api-version</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
+     *     <tr><td>filter</td><td>String</td><td>No</td><td>Restricts the set of operations returned. Only one specific filter is supported: "status eq 'NotStarted' or status eq 'Running'"</td></tr>
+     *     <tr><td>top</td><td>Integer</td><td>No</td><td>Specifies a non-negative integer n that limits the number of items returned from a collection. The service returns the number of available items up to but not greater than the specified value n.</td></tr>
      * </table>
      *
      * <p><strong>Response Body Schema</strong>
@@ -3134,11 +2873,15 @@ public final class DeviceUpdatesImpl {
      *     value: [
      *         {
      *             operationId: String
-     *             status: String(Undefined/NotStarted/Running/Succeeded/Failed)
-     *             updateId: {
-     *                 provider: String
-     *                 name: String
-     *                 version: String
+     *             status: String(NotStarted/Running/Succeeded/Failed)
+     *             update: {
+     *                 updateId: {
+     *                     provider: String
+     *                     name: String
+     *                     version: String
+     *                 }
+     *                 description: String
+     *                 friendlyName: String
      *             }
      *             resourceLocation: String
      *             error: {
@@ -3154,11 +2897,11 @@ public final class DeviceUpdatesImpl {
      *                     errorDetail: String
      *                     innerError: (recursive schema, see innerError above)
      *                 }
-     *                 occurredDateTime: String
+     *                 occurredDateTime: OffsetDateTime
      *             }
      *             traceId: String
-     *             lastActionDateTime: String
-     *             createdDateTime: String
+     *             lastActionDateTime: OffsetDateTime
+     *             createdDateTime: OffsetDateTime
      *             etag: String
      *         }
      *     ]
@@ -3181,14 +2924,6 @@ public final class DeviceUpdatesImpl {
     /**
      * Retrieve operation status.
      *
-     * <p><strong>Query Parameters</strong>
-     *
-     * <table border="1">
-     *     <caption>Query Parameters</caption>
-     *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>api-version</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
-     * </table>
-     *
      * <p><strong>Header Parameters</strong>
      *
      * <table border="1">
@@ -3202,11 +2937,15 @@ public final class DeviceUpdatesImpl {
      * <pre>{@code
      * {
      *     operationId: String
-     *     status: String(Undefined/NotStarted/Running/Succeeded/Failed)
-     *     updateId: {
-     *         provider: String
-     *         name: String
-     *         version: String
+     *     status: String(NotStarted/Running/Succeeded/Failed)
+     *     update: {
+     *         updateId: {
+     *             provider: String
+     *             name: String
+     *             version: String
+     *         }
+     *         description: String
+     *         friendlyName: String
      *     }
      *     resourceLocation: String
      *     error: {
@@ -3222,11 +2961,11 @@ public final class DeviceUpdatesImpl {
      *             errorDetail: String
      *             innerError: (recursive schema, see innerError above)
      *         }
-     *         occurredDateTime: String
+     *         occurredDateTime: OffsetDateTime
      *     }
      *     traceId: String
-     *     lastActionDateTime: String
-     *     createdDateTime: String
+     *     lastActionDateTime: OffsetDateTime
+     *     createdDateTime: OffsetDateTime
      *     etag: String
      * }
      * }</pre>
@@ -3241,6 +2980,7 @@ public final class DeviceUpdatesImpl {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<BinaryData>> getOperationWithResponseAsync(String operationId, RequestOptions requestOptions) {
+        final String accept = "application/json";
         return FluxUtil.withContext(
                 context ->
                         service.getOperation(
@@ -3248,20 +2988,13 @@ public final class DeviceUpdatesImpl {
                                 this.client.getInstanceId(),
                                 operationId,
                                 this.client.getServiceVersion().getVersion(),
+                                accept,
                                 requestOptions,
                                 context));
     }
 
     /**
      * Retrieve operation status.
-     *
-     * <p><strong>Query Parameters</strong>
-     *
-     * <table border="1">
-     *     <caption>Query Parameters</caption>
-     *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>api-version</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
-     * </table>
      *
      * <p><strong>Header Parameters</strong>
      *
@@ -3276,11 +3009,15 @@ public final class DeviceUpdatesImpl {
      * <pre>{@code
      * {
      *     operationId: String
-     *     status: String(Undefined/NotStarted/Running/Succeeded/Failed)
-     *     updateId: {
-     *         provider: String
-     *         name: String
-     *         version: String
+     *     status: String(NotStarted/Running/Succeeded/Failed)
+     *     update: {
+     *         updateId: {
+     *             provider: String
+     *             name: String
+     *             version: String
+     *         }
+     *         description: String
+     *         friendlyName: String
      *     }
      *     resourceLocation: String
      *     error: {
@@ -3296,11 +3033,11 @@ public final class DeviceUpdatesImpl {
      *             errorDetail: String
      *             innerError: (recursive schema, see innerError above)
      *         }
-     *         occurredDateTime: String
+     *         occurredDateTime: OffsetDateTime
      *     }
      *     traceId: String
-     *     lastActionDateTime: String
-     *     createdDateTime: String
+     *     lastActionDateTime: OffsetDateTime
+     *     createdDateTime: OffsetDateTime
      *     etag: String
      * }
      * }</pre>
@@ -3317,25 +3054,19 @@ public final class DeviceUpdatesImpl {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<BinaryData>> getOperationWithResponseAsync(
             String operationId, RequestOptions requestOptions, Context context) {
+        final String accept = "application/json";
         return service.getOperation(
                 this.client.getEndpoint(),
                 this.client.getInstanceId(),
                 operationId,
                 this.client.getServiceVersion().getVersion(),
+                accept,
                 requestOptions,
                 context);
     }
 
     /**
      * Retrieve operation status.
-     *
-     * <p><strong>Query Parameters</strong>
-     *
-     * <table border="1">
-     *     <caption>Query Parameters</caption>
-     *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>api-version</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
-     * </table>
      *
      * <p><strong>Header Parameters</strong>
      *
@@ -3350,11 +3081,15 @@ public final class DeviceUpdatesImpl {
      * <pre>{@code
      * {
      *     operationId: String
-     *     status: String(Undefined/NotStarted/Running/Succeeded/Failed)
-     *     updateId: {
-     *         provider: String
-     *         name: String
-     *         version: String
+     *     status: String(NotStarted/Running/Succeeded/Failed)
+     *     update: {
+     *         updateId: {
+     *             provider: String
+     *             name: String
+     *             version: String
+     *         }
+     *         description: String
+     *         friendlyName: String
      *     }
      *     resourceLocation: String
      *     error: {
@@ -3370,11 +3105,11 @@ public final class DeviceUpdatesImpl {
      *             errorDetail: String
      *             innerError: (recursive schema, see innerError above)
      *         }
-     *         occurredDateTime: String
+     *         occurredDateTime: OffsetDateTime
      *     }
      *     traceId: String
-     *     lastActionDateTime: String
-     *     createdDateTime: String
+     *     lastActionDateTime: OffsetDateTime
+     *     createdDateTime: OffsetDateTime
      *     etag: String
      * }
      * }</pre>
@@ -3435,8 +3170,8 @@ public final class DeviceUpdatesImpl {
      *             ]
      *             scanResult: String
      *             manifestVersion: String
-     *             importedDateTime: String
-     *             createdDateTime: String
+     *             importedDateTime: OffsetDateTime
+     *             createdDateTime: OffsetDateTime
      *             etag: String
      *         }
      *     ]
@@ -3455,9 +3190,11 @@ public final class DeviceUpdatesImpl {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<PagedResponse<BinaryData>> listUpdatesNextSinglePageAsync(
             String nextLink, RequestOptions requestOptions) {
+        final String accept = "application/json";
         return FluxUtil.withContext(
                         context ->
-                                service.listUpdatesNext(nextLink, this.client.getEndpoint(), requestOptions, context))
+                                service.listUpdatesNext(
+                                        nextLink, this.client.getEndpoint(), accept, requestOptions, context))
                 .map(
                         res ->
                                 new PagedResponseBase<>(
@@ -3512,8 +3249,8 @@ public final class DeviceUpdatesImpl {
      *             ]
      *             scanResult: String
      *             manifestVersion: String
-     *             importedDateTime: String
-     *             createdDateTime: String
+     *             importedDateTime: OffsetDateTime
+     *             createdDateTime: OffsetDateTime
      *             etag: String
      *         }
      *     ]
@@ -3533,7 +3270,8 @@ public final class DeviceUpdatesImpl {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<PagedResponse<BinaryData>> listUpdatesNextSinglePageAsync(
             String nextLink, RequestOptions requestOptions, Context context) {
-        return service.listUpdatesNext(nextLink, this.client.getEndpoint(), requestOptions, context)
+        final String accept = "application/json";
+        return service.listUpdatesNext(nextLink, this.client.getEndpoint(), accept, requestOptions, context)
                 .map(
                         res ->
                                 new PagedResponseBase<>(
@@ -3571,9 +3309,11 @@ public final class DeviceUpdatesImpl {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<PagedResponse<BinaryData>> listProvidersNextSinglePageAsync(
             String nextLink, RequestOptions requestOptions) {
+        final String accept = "application/json";
         return FluxUtil.withContext(
                         context ->
-                                service.listProvidersNext(nextLink, this.client.getEndpoint(), requestOptions, context))
+                                service.listProvidersNext(
+                                        nextLink, this.client.getEndpoint(), accept, requestOptions, context))
                 .map(
                         res ->
                                 new PagedResponseBase<>(
@@ -3612,7 +3352,8 @@ public final class DeviceUpdatesImpl {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<PagedResponse<BinaryData>> listProvidersNextSinglePageAsync(
             String nextLink, RequestOptions requestOptions, Context context) {
-        return service.listProvidersNext(nextLink, this.client.getEndpoint(), requestOptions, context)
+        final String accept = "application/json";
+        return service.listProvidersNext(nextLink, this.client.getEndpoint(), accept, requestOptions, context)
                 .map(
                         res ->
                                 new PagedResponseBase<>(
@@ -3650,87 +3391,93 @@ public final class DeviceUpdatesImpl {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<PagedResponse<BinaryData>> listNamesNextSinglePageAsync(
             String nextLink, RequestOptions requestOptions) {
-        return FluxUtil.withContext(
-                        context -> service.listNamesNext(nextLink, this.client.getEndpoint(), requestOptions, context))
-                .map(
-                        res ->
-                                new PagedResponseBase<>(
-                                        res.getRequest(),
-                                        res.getStatusCode(),
-                                        res.getHeaders(),
-                                        getValues(res.getValue(), "value"),
-                                        getNextLink(res.getValue(), "nextLink"),
-                                        null));
-    }
-
-    /**
-     * Get the next page of items.
-     *
-     * <p><strong>Response Body Schema</strong>
-     *
-     * <pre>{@code
-     * {
-     *     value: [
-     *         String
-     *     ]
-     *     nextLink: String
-     * }
-     * }</pre>
-     *
-     * @param nextLink The nextLink parameter.
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @param context The context to associate with this operation.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return the list of strings with server paging support along with {@link PagedResponse} on successful completion
-     *     of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<PagedResponse<BinaryData>> listNamesNextSinglePageAsync(
-            String nextLink, RequestOptions requestOptions, Context context) {
-        return service.listNamesNext(nextLink, this.client.getEndpoint(), requestOptions, context)
-                .map(
-                        res ->
-                                new PagedResponseBase<>(
-                                        res.getRequest(),
-                                        res.getStatusCode(),
-                                        res.getHeaders(),
-                                        getValues(res.getValue(), "value"),
-                                        getNextLink(res.getValue(), "nextLink"),
-                                        null));
-    }
-
-    /**
-     * Get the next page of items.
-     *
-     * <p><strong>Response Body Schema</strong>
-     *
-     * <pre>{@code
-     * {
-     *     value: [
-     *         String
-     *     ]
-     *     nextLink: String
-     * }
-     * }</pre>
-     *
-     * @param nextLink The nextLink parameter.
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return the list of strings with server paging support along with {@link PagedResponse} on successful completion
-     *     of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<PagedResponse<BinaryData>> listVersionsNextSinglePageAsync(
-            String nextLink, RequestOptions requestOptions) {
+        final String accept = "application/json";
         return FluxUtil.withContext(
                         context ->
-                                service.listVersionsNext(nextLink, this.client.getEndpoint(), requestOptions, context))
+                                service.listNamesNext(
+                                        nextLink, this.client.getEndpoint(), accept, requestOptions, context))
+                .map(
+                        res ->
+                                new PagedResponseBase<>(
+                                        res.getRequest(),
+                                        res.getStatusCode(),
+                                        res.getHeaders(),
+                                        getValues(res.getValue(), "value"),
+                                        getNextLink(res.getValue(), "nextLink"),
+                                        null));
+    }
+
+    /**
+     * Get the next page of items.
+     *
+     * <p><strong>Response Body Schema</strong>
+     *
+     * <pre>{@code
+     * {
+     *     value: [
+     *         String
+     *     ]
+     *     nextLink: String
+     * }
+     * }</pre>
+     *
+     * @param nextLink The nextLink parameter.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @param context The context to associate with this operation.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return the list of strings with server paging support along with {@link PagedResponse} on successful completion
+     *     of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<PagedResponse<BinaryData>> listNamesNextSinglePageAsync(
+            String nextLink, RequestOptions requestOptions, Context context) {
+        final String accept = "application/json";
+        return service.listNamesNext(nextLink, this.client.getEndpoint(), accept, requestOptions, context)
+                .map(
+                        res ->
+                                new PagedResponseBase<>(
+                                        res.getRequest(),
+                                        res.getStatusCode(),
+                                        res.getHeaders(),
+                                        getValues(res.getValue(), "value"),
+                                        getNextLink(res.getValue(), "nextLink"),
+                                        null));
+    }
+
+    /**
+     * Get the next page of items.
+     *
+     * <p><strong>Response Body Schema</strong>
+     *
+     * <pre>{@code
+     * {
+     *     value: [
+     *         String
+     *     ]
+     *     nextLink: String
+     * }
+     * }</pre>
+     *
+     * @param nextLink The nextLink parameter.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return the list of strings with server paging support along with {@link PagedResponse} on successful completion
+     *     of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<PagedResponse<BinaryData>> listVersionsNextSinglePageAsync(
+            String nextLink, RequestOptions requestOptions) {
+        final String accept = "application/json";
+        return FluxUtil.withContext(
+                        context ->
+                                service.listVersionsNext(
+                                        nextLink, this.client.getEndpoint(), accept, requestOptions, context))
                 .map(
                         res ->
                                 new PagedResponseBase<>(
@@ -3769,7 +3516,8 @@ public final class DeviceUpdatesImpl {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<PagedResponse<BinaryData>> listVersionsNextSinglePageAsync(
             String nextLink, RequestOptions requestOptions, Context context) {
-        return service.listVersionsNext(nextLink, this.client.getEndpoint(), requestOptions, context)
+        final String accept = "application/json";
+        return service.listVersionsNext(nextLink, this.client.getEndpoint(), accept, requestOptions, context)
                 .map(
                         res ->
                                 new PagedResponseBase<>(
@@ -3807,8 +3555,11 @@ public final class DeviceUpdatesImpl {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<PagedResponse<BinaryData>> listFilesNextSinglePageAsync(
             String nextLink, RequestOptions requestOptions) {
+        final String accept = "application/json";
         return FluxUtil.withContext(
-                        context -> service.listFilesNext(nextLink, this.client.getEndpoint(), requestOptions, context))
+                        context ->
+                                service.listFilesNext(
+                                        nextLink, this.client.getEndpoint(), accept, requestOptions, context))
                 .map(
                         res ->
                                 new PagedResponseBase<>(
@@ -3847,7 +3598,8 @@ public final class DeviceUpdatesImpl {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<PagedResponse<BinaryData>> listFilesNextSinglePageAsync(
             String nextLink, RequestOptions requestOptions, Context context) {
-        return service.listFilesNext(nextLink, this.client.getEndpoint(), requestOptions, context)
+        final String accept = "application/json";
+        return service.listFilesNext(nextLink, this.client.getEndpoint(), accept, requestOptions, context)
                 .map(
                         res ->
                                 new PagedResponseBase<>(
@@ -3869,11 +3621,15 @@ public final class DeviceUpdatesImpl {
      *     value: [
      *         {
      *             operationId: String
-     *             status: String(Undefined/NotStarted/Running/Succeeded/Failed)
-     *             updateId: {
-     *                 provider: String
-     *                 name: String
-     *                 version: String
+     *             status: String(NotStarted/Running/Succeeded/Failed)
+     *             update: {
+     *                 updateId: {
+     *                     provider: String
+     *                     name: String
+     *                     version: String
+     *                 }
+     *                 description: String
+     *                 friendlyName: String
      *             }
      *             resourceLocation: String
      *             error: {
@@ -3889,11 +3645,11 @@ public final class DeviceUpdatesImpl {
      *                     errorDetail: String
      *                     innerError: (recursive schema, see innerError above)
      *                 }
-     *                 occurredDateTime: String
+     *                 occurredDateTime: OffsetDateTime
      *             }
      *             traceId: String
-     *             lastActionDateTime: String
-     *             createdDateTime: String
+     *             lastActionDateTime: OffsetDateTime
+     *             createdDateTime: OffsetDateTime
      *             etag: String
      *         }
      *     ]
@@ -3913,10 +3669,11 @@ public final class DeviceUpdatesImpl {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<PagedResponse<BinaryData>> listOperationsNextSinglePageAsync(
             String nextLink, RequestOptions requestOptions) {
+        final String accept = "application/json";
         return FluxUtil.withContext(
                         context ->
                                 service.listOperationsNext(
-                                        nextLink, this.client.getEndpoint(), requestOptions, context))
+                                        nextLink, this.client.getEndpoint(), accept, requestOptions, context))
                 .map(
                         res ->
                                 new PagedResponseBase<>(
@@ -3938,11 +3695,15 @@ public final class DeviceUpdatesImpl {
      *     value: [
      *         {
      *             operationId: String
-     *             status: String(Undefined/NotStarted/Running/Succeeded/Failed)
-     *             updateId: {
-     *                 provider: String
-     *                 name: String
-     *                 version: String
+     *             status: String(NotStarted/Running/Succeeded/Failed)
+     *             update: {
+     *                 updateId: {
+     *                     provider: String
+     *                     name: String
+     *                     version: String
+     *                 }
+     *                 description: String
+     *                 friendlyName: String
      *             }
      *             resourceLocation: String
      *             error: {
@@ -3958,11 +3719,11 @@ public final class DeviceUpdatesImpl {
      *                     errorDetail: String
      *                     innerError: (recursive schema, see innerError above)
      *                 }
-     *                 occurredDateTime: String
+     *                 occurredDateTime: OffsetDateTime
      *             }
      *             traceId: String
-     *             lastActionDateTime: String
-     *             createdDateTime: String
+     *             lastActionDateTime: OffsetDateTime
+     *             createdDateTime: OffsetDateTime
      *             etag: String
      *         }
      *     ]
@@ -3983,7 +3744,8 @@ public final class DeviceUpdatesImpl {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<PagedResponse<BinaryData>> listOperationsNextSinglePageAsync(
             String nextLink, RequestOptions requestOptions, Context context) {
-        return service.listOperationsNext(nextLink, this.client.getEndpoint(), requestOptions, context)
+        final String accept = "application/json";
+        return service.listOperationsNext(nextLink, this.client.getEndpoint(), accept, requestOptions, context)
                 .map(
                         res ->
                                 new PagedResponseBase<>(

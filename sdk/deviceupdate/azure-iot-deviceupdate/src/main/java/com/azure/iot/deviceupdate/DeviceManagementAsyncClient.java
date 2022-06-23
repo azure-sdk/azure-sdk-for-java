@@ -26,7 +26,7 @@ public final class DeviceManagementAsyncClient {
     @Generated private final DeviceManagementsImpl serviceClient;
 
     /**
-     * Initializes an instance of DeviceManagements client.
+     * Initializes an instance of DeviceManagementAsyncClient class.
      *
      * @param serviceClient the service client implementation.
      */
@@ -39,14 +39,6 @@ public final class DeviceManagementAsyncClient {
      * Gets a list of all device classes (unique combinations of device manufacturer and model) for all devices
      * connected to Device Update for IoT Hub.
      *
-     * <p><strong>Query Parameters</strong>
-     *
-     * <table border="1">
-     *     <caption>Query Parameters</caption>
-     *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>api-version</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
-     * </table>
-     *
      * <p><strong>Response Body Schema</strong>
      *
      * <pre>{@code
@@ -54,13 +46,24 @@ public final class DeviceManagementAsyncClient {
      *     value: [
      *         {
      *             deviceClassId: String
-     *             compatProperties: {
-     *                 String: String
+     *             friendlyName: String
+     *             deviceClassProperties: {
+     *                 contractModel: {
+     *                     id: String
+     *                     name: String
+     *                 }
+     *                 compatProperties: {
+     *                     String: String
+     *                 }
      *             }
-     *             bestCompatibleUpdateId: {
-     *                 provider: String
-     *                 name: String
-     *                 version: String
+     *             bestCompatibleUpdate: {
+     *                 updateId: {
+     *                     provider: String
+     *                     name: String
+     *                     version: String
+     *                 }
+     *                 description: String
+     *                 friendlyName: String
      *             }
      *         }
      *     ]
@@ -85,26 +88,29 @@ public final class DeviceManagementAsyncClient {
     /**
      * Gets the properties of a device class.
      *
-     * <p><strong>Query Parameters</strong>
-     *
-     * <table border="1">
-     *     <caption>Query Parameters</caption>
-     *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>api-version</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
-     * </table>
-     *
      * <p><strong>Response Body Schema</strong>
      *
      * <pre>{@code
      * {
      *     deviceClassId: String
-     *     compatProperties: {
-     *         String: String
+     *     friendlyName: String
+     *     deviceClassProperties: {
+     *         contractModel: {
+     *             id: String
+     *             name: String
+     *         }
+     *         compatProperties: {
+     *             String: String
+     *         }
      *     }
-     *     bestCompatibleUpdateId: {
-     *         provider: String
-     *         name: String
-     *         version: String
+     *     bestCompatibleUpdate: {
+     *         updateId: {
+     *             provider: String
+     *             name: String
+     *             version: String
+     *         }
+     *         description: String
+     *         friendlyName: String
      *     }
      * }
      * }</pre>
@@ -124,15 +130,82 @@ public final class DeviceManagementAsyncClient {
     }
 
     /**
+     * Update device class details.
+     *
+     * <p><strong>Request Body Schema</strong>
+     *
+     * <pre>{@code
+     * {
+     *     friendlyName: String
+     * }
+     * }</pre>
+     *
+     * <p><strong>Response Body Schema</strong>
+     *
+     * <pre>{@code
+     * {
+     *     deviceClassId: String
+     *     friendlyName: String
+     *     deviceClassProperties: {
+     *         contractModel: {
+     *             id: String
+     *             name: String
+     *         }
+     *         compatProperties: {
+     *             String: String
+     *         }
+     *     }
+     *     bestCompatibleUpdate: {
+     *         updateId: {
+     *             provider: String
+     *             name: String
+     *             version: String
+     *         }
+     *         description: String
+     *         friendlyName: String
+     *     }
+     * }
+     * }</pre>
+     *
+     * @param deviceClassId Device class identifier.
+     * @param deviceClassPatch The device class json merge patch body. Currently only supports patching friendlyName.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return device class metadata along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @Generated
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<BinaryData>> updateDeviceClassWithResponse(
+            String deviceClassId, BinaryData deviceClassPatch, RequestOptions requestOptions) {
+        return this.serviceClient.updateDeviceClassWithResponseAsync(deviceClassId, deviceClassPatch, requestOptions);
+    }
+
+    /**
+     * Deletes a device class. Device classes are created automatically when Device Update-enabled devices are connected
+     * to the hub but are not automatically cleaned up since they are referenced by DeviceClassSubgroups. If the user
+     * has deleted all DeviceClassSubgroups for a device class they can also delete the device class to remove the
+     * records from the system and to stop checking the compatibility of this device class with new updates. If a device
+     * is ever reconnected for this device class it will be re-created.
+     *
+     * @param deviceClassId Device class identifier.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return the {@link Response} on successful completion of {@link Mono}.
+     */
+    @Generated
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<Void>> deleteDeviceClassWithResponse(String deviceClassId, RequestOptions requestOptions) {
+        return this.serviceClient.deleteDeviceClassWithResponseAsync(deviceClassId, requestOptions);
+    }
+
+    /**
      * Gets a list of installable updates for a device class.
-     *
-     * <p><strong>Query Parameters</strong>
-     *
-     * <table border="1">
-     *     <caption>Query Parameters</caption>
-     *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>api-version</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
-     * </table>
      *
      * <p><strong>Response Body Schema</strong>
      *
@@ -140,9 +213,13 @@ public final class DeviceManagementAsyncClient {
      * {
      *     value: [
      *         {
-     *             provider: String
-     *             name: String
-     *             version: String
+     *             updateId: {
+     *                 provider: String
+     *                 name: String
+     *                 version: String
+     *             }
+     *             description: String
+     *             friendlyName: String
      *         }
      *     ]
      *     nextLink: String
@@ -172,8 +249,7 @@ public final class DeviceManagementAsyncClient {
      * <table border="1">
      *     <caption>Query Parameters</caption>
      *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>$filter</td><td>String</td><td>No</td><td>Restricts the set of devices returned. You can filter on device GroupId or DeviceClassId.</td></tr>
-     *     <tr><td>api-version</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
+     *     <tr><td>filter</td><td>String</td><td>No</td><td>Restricts the set of devices returned. You can filter on GroupId, DeviceClassId, or GroupId and DeploymentStatus.</td></tr>
      * </table>
      *
      * <p><strong>Response Body Schema</strong>
@@ -185,16 +261,18 @@ public final class DeviceManagementAsyncClient {
      *             deviceId: String
      *             moduleId: String
      *             deviceClassId: String
-     *             manufacturer: String
-     *             model: String
      *             groupId: String
-     *             lastAttemptedUpdateId: {
-     *                 provider: String
-     *                 name: String
-     *                 version: String
+     *             lastAttemptedUpdate: {
+     *                 updateId: {
+     *                     provider: String
+     *                     name: String
+     *                     version: String
+     *                 }
+     *                 description: String
+     *                 friendlyName: String
      *             }
-     *             deploymentStatus: String(Succeeded/InProgress/Failed/Canceled/Incompatible)
-     *             installedUpdateId: (recursive schema, see installedUpdateId above)
+     *             deploymentStatus: String(Succeeded/InProgress/Canceled/Failed)
+     *             installedUpdate: (recursive schema, see installedUpdate above)
      *             onLatestUpdate: boolean
      *             lastDeploymentId: String
      *             lastInstallResult: {
@@ -203,7 +281,7 @@ public final class DeviceManagementAsyncClient {
      *                 resultDetails: String
      *                 stepResults: [
      *                     {
-     *                         updateId: (recursive schema, see updateId above)
+     *                         update: (recursive schema, see update above)
      *                         description: String
      *                         resultCode: int
      *                         extendedResultCode: int
@@ -231,48 +309,8 @@ public final class DeviceManagementAsyncClient {
     }
 
     /**
-     * Import existing devices from IoT Hub.
-     *
-     * <p><strong>Query Parameters</strong>
-     *
-     * <table border="1">
-     *     <caption>Query Parameters</caption>
-     *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>api-version</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
-     *     <tr><td>action</td><td>String</td><td>Yes</td><td>Devices action.</td></tr>
-     * </table>
-     *
-     * <p><strong>Request Body Schema</strong>
-     *
-     * <pre>{@code
-     * String(Devices/Modules/All)
-     * }</pre>
-     *
-     * @param importType The types of devices to import.
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return the {@link Response} on successful completion of {@link Mono}.
-     */
-    @Generated
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Void>> importDevicesWithResponse(BinaryData importType, RequestOptions requestOptions) {
-        return this.serviceClient.importDevicesWithResponseAsync(importType, requestOptions);
-    }
-
-    /**
-     * Import existing devices from IoT Hub.
-     *
-     * <p><strong>Query Parameters</strong>
-     *
-     * <table border="1">
-     *     <caption>Query Parameters</caption>
-     *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>api-version</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
-     *     <tr><td>action</td><td>String</td><td>Yes</td><td>Devices action.</td></tr>
-     * </table>
+     * Import existing devices from IoT Hub. This is a long-running-operation; use Operation-Location response header
+     * value to check for operation status.
      *
      * <p><strong>Request Body Schema</strong>
      *
@@ -297,14 +335,6 @@ public final class DeviceManagementAsyncClient {
     /**
      * Gets the device properties and latest deployment status for a device connected to Device Update for IoT Hub.
      *
-     * <p><strong>Query Parameters</strong>
-     *
-     * <table border="1">
-     *     <caption>Query Parameters</caption>
-     *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>api-version</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
-     * </table>
-     *
      * <p><strong>Response Body Schema</strong>
      *
      * <pre>{@code
@@ -312,16 +342,18 @@ public final class DeviceManagementAsyncClient {
      *     deviceId: String
      *     moduleId: String
      *     deviceClassId: String
-     *     manufacturer: String
-     *     model: String
      *     groupId: String
-     *     lastAttemptedUpdateId: {
-     *         provider: String
-     *         name: String
-     *         version: String
+     *     lastAttemptedUpdate: {
+     *         updateId: {
+     *             provider: String
+     *             name: String
+     *             version: String
+     *         }
+     *         description: String
+     *         friendlyName: String
      *     }
-     *     deploymentStatus: String(Succeeded/InProgress/Failed/Canceled/Incompatible)
-     *     installedUpdateId: (recursive schema, see installedUpdateId above)
+     *     deploymentStatus: String(Succeeded/InProgress/Canceled/Failed)
+     *     installedUpdate: (recursive schema, see installedUpdate above)
      *     onLatestUpdate: boolean
      *     lastDeploymentId: String
      *     lastInstallResult: {
@@ -330,7 +362,7 @@ public final class DeviceManagementAsyncClient {
      *         resultDetails: String
      *         stepResults: [
      *             {
-     *                 updateId: (recursive schema, see updateId above)
+     *                 update: (recursive schema, see update above)
      *                 description: String
      *                 resultCode: int
      *                 extendedResultCode: int
@@ -360,14 +392,6 @@ public final class DeviceManagementAsyncClient {
      * Gets the device module properties and latest deployment status for a device module connected to Device Update for
      * IoT Hub.
      *
-     * <p><strong>Query Parameters</strong>
-     *
-     * <table border="1">
-     *     <caption>Query Parameters</caption>
-     *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>api-version</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
-     * </table>
-     *
      * <p><strong>Response Body Schema</strong>
      *
      * <pre>{@code
@@ -375,16 +399,18 @@ public final class DeviceManagementAsyncClient {
      *     deviceId: String
      *     moduleId: String
      *     deviceClassId: String
-     *     manufacturer: String
-     *     model: String
      *     groupId: String
-     *     lastAttemptedUpdateId: {
-     *         provider: String
-     *         name: String
-     *         version: String
+     *     lastAttemptedUpdate: {
+     *         updateId: {
+     *             provider: String
+     *             name: String
+     *             version: String
+     *         }
+     *         description: String
+     *         friendlyName: String
      *     }
-     *     deploymentStatus: String(Succeeded/InProgress/Failed/Canceled/Incompatible)
-     *     installedUpdateId: (recursive schema, see installedUpdateId above)
+     *     deploymentStatus: String(Succeeded/InProgress/Canceled/Failed)
+     *     installedUpdate: (recursive schema, see installedUpdate above)
      *     onLatestUpdate: boolean
      *     lastDeploymentId: String
      *     lastInstallResult: {
@@ -393,7 +419,7 @@ public final class DeviceManagementAsyncClient {
      *         resultDetails: String
      *         stepResults: [
      *             {
-     *                 updateId: (recursive schema, see updateId above)
+     *                 update: (recursive schema, see update above)
      *                 description: String
      *                 resultCode: int
      *                 extendedResultCode: int
@@ -425,14 +451,6 @@ public final class DeviceManagementAsyncClient {
      * Gets the breakdown of how many devices are on their latest update, have new updates available, or are in progress
      * receiving new updates.
      *
-     * <p><strong>Query Parameters</strong>
-     *
-     * <table border="1">
-     *     <caption>Query Parameters</caption>
-     *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>api-version</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
-     * </table>
-     *
      * <p><strong>Response Body Schema</strong>
      *
      * <pre>{@code
@@ -459,88 +477,14 @@ public final class DeviceManagementAsyncClient {
     }
 
     /**
-     * Gets a list of available group device tags for all devices connected to Device Update for IoT Hub.
+     * Gets a list of all device groups. The $default group will always be returned first.
      *
      * <p><strong>Query Parameters</strong>
      *
      * <table border="1">
      *     <caption>Query Parameters</caption>
      *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>api-version</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
-     * </table>
-     *
-     * <p><strong>Response Body Schema</strong>
-     *
-     * <pre>{@code
-     * {
-     *     value: [
-     *         {
-     *             tagName: String
-     *             deviceCount: int
-     *         }
-     *     ]
-     *     nextLink: String
-     * }
-     * }</pre>
-     *
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return a list of available group device tags for all devices connected to Device Update for IoT Hub as paginated
-     *     response with {@link PagedFlux}.
-     */
-    @Generated
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedFlux<BinaryData> listDeviceTags(RequestOptions requestOptions) {
-        return this.serviceClient.listDeviceTagsAsync(requestOptions);
-    }
-
-    /**
-     * Gets a count of how many devices have a device tag.
-     *
-     * <p><strong>Query Parameters</strong>
-     *
-     * <table border="1">
-     *     <caption>Query Parameters</caption>
-     *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>api-version</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
-     * </table>
-     *
-     * <p><strong>Response Body Schema</strong>
-     *
-     * <pre>{@code
-     * {
-     *     tagName: String
-     *     deviceCount: int
-     * }
-     * }</pre>
-     *
-     * @param tagName Tag name.
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return a count of how many devices have a device tag along with {@link Response} on successful completion of
-     *     {@link Mono}.
-     */
-    @Generated
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<BinaryData>> getDeviceTagWithResponse(String tagName, RequestOptions requestOptions) {
-        return this.serviceClient.getDeviceTagWithResponseAsync(tagName, requestOptions);
-    }
-
-    /**
-     * Gets a list of all device groups.
-     *
-     * <p><strong>Query Parameters</strong>
-     *
-     * <table border="1">
-     *     <caption>Query Parameters</caption>
-     *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>api-version</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
+     *     <tr><td>orderby</td><td>String</td><td>No</td><td>Orders the set of groups returned. You can order by any combination of groupId, device count, created date, subgroupsWithNewUpdatesAvailableCount, subgroupsWithUpdatesInProgressCount, or subgroupsOnLatestUpdateCount.</td></tr>
      * </table>
      *
      * <p><strong>Response Body Schema</strong>
@@ -550,14 +494,15 @@ public final class DeviceManagementAsyncClient {
      *     value: [
      *         {
      *             groupId: String
-     *             groupType: String(DeviceClassIdAndIoTHubTag/InvalidDeviceClassIdAndIoTHubTag/DefaultDeviceClassId)
-     *             tags: [
-     *                 String
-     *             ]
+     *             groupType: String(IoTHubTag/DefaultNoTag)
      *             createdDateTime: String
      *             deviceCount: Integer
-     *             deploymentId: String
-     *             deviceClassId: String
+     *             subgroupsWithNewUpdatesAvailableCount: Integer
+     *             subgroupsWithUpdatesInProgressCount: Integer
+     *             subgroupsWithOnLatestUpdateCount: Integer
+     *             deployments: [
+     *                 String
+     *             ]
      *         }
      *     ]
      *     nextLink: String
@@ -578,29 +523,22 @@ public final class DeviceManagementAsyncClient {
     }
 
     /**
-     * Gets the properties of a group.
-     *
-     * <p><strong>Query Parameters</strong>
-     *
-     * <table border="1">
-     *     <caption>Query Parameters</caption>
-     *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>api-version</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
-     * </table>
+     * Gets the device group properties.
      *
      * <p><strong>Response Body Schema</strong>
      *
      * <pre>{@code
      * {
      *     groupId: String
-     *     groupType: String(DeviceClassIdAndIoTHubTag/InvalidDeviceClassIdAndIoTHubTag/DefaultDeviceClassId)
-     *     tags: [
-     *         String
-     *     ]
+     *     groupType: String(IoTHubTag/DefaultNoTag)
      *     createdDateTime: String
      *     deviceCount: Integer
-     *     deploymentId: String
-     *     deviceClassId: String
+     *     subgroupsWithNewUpdatesAvailableCount: Integer
+     *     subgroupsWithUpdatesInProgressCount: Integer
+     *     subgroupsWithOnLatestUpdateCount: Integer
+     *     deployments: [
+     *         String
+     *     ]
      * }
      * }</pre>
      *
@@ -610,7 +548,7 @@ public final class DeviceManagementAsyncClient {
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
      * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
      * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return the properties of a group along with {@link Response} on successful completion of {@link Mono}.
+     * @return the device group properties along with {@link Response} on successful completion of {@link Mono}.
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
@@ -619,74 +557,11 @@ public final class DeviceManagementAsyncClient {
     }
 
     /**
-     * Create or update a device group.
-     *
-     * <p><strong>Query Parameters</strong>
-     *
-     * <table border="1">
-     *     <caption>Query Parameters</caption>
-     *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>api-version</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
-     * </table>
-     *
-     * <p><strong>Request Body Schema</strong>
-     *
-     * <pre>{@code
-     * {
-     *     groupId: String
-     *     groupType: String(DeviceClassIdAndIoTHubTag/InvalidDeviceClassIdAndIoTHubTag/DefaultDeviceClassId)
-     *     tags: [
-     *         String
-     *     ]
-     *     createdDateTime: String
-     *     deviceCount: Integer
-     *     deploymentId: String
-     *     deviceClassId: String
-     * }
-     * }</pre>
-     *
-     * <p><strong>Response Body Schema</strong>
-     *
-     * <pre>{@code
-     * {
-     *     groupId: String
-     *     groupType: String(DeviceClassIdAndIoTHubTag/InvalidDeviceClassIdAndIoTHubTag/DefaultDeviceClassId)
-     *     tags: [
-     *         String
-     *     ]
-     *     createdDateTime: String
-     *     deviceCount: Integer
-     *     deploymentId: String
-     *     deviceClassId: String
-     * }
-     * }</pre>
-     *
-     * @param groupId Group identity.
-     * @param group The group properties.
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return group details along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @Generated
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<BinaryData>> createOrUpdateGroupWithResponse(
-            String groupId, BinaryData group, RequestOptions requestOptions) {
-        return this.serviceClient.createOrUpdateGroupWithResponseAsync(groupId, group, requestOptions);
-    }
-
-    /**
-     * Deletes a device group.
-     *
-     * <p><strong>Query Parameters</strong>
-     *
-     * <table border="1">
-     *     <caption>Query Parameters</caption>
-     *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>api-version</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
-     * </table>
+     * Deletes a device group. This group is automatically created when a Device Update-enabled device is connected to
+     * the hub and reports its properties. Groups, subgroups, and deployments are not automatically cleaned up but are
+     * retained for history purposes. Users can call this method to delete a group if they do not need to retain any of
+     * the history of the group and no longer need it. If a device is ever connected again for this group after the
+     * group was deleted it will be automatically re-created but there will be no history.
      *
      * @param groupId Group identity.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
@@ -703,16 +578,8 @@ public final class DeviceManagementAsyncClient {
     }
 
     /**
-     * Get group update compliance information such as how many devices are on their latest update, how many need new
-     * updates, and how many are in progress on receiving a new update.
-     *
-     * <p><strong>Query Parameters</strong>
-     *
-     * <table border="1">
-     *     <caption>Query Parameters</caption>
-     *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>api-version</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
-     * </table>
+     * Get device group update compliance information such as how many devices are on their latest update, how many need
+     * new updates, and how many are in progress on receiving a new update.
      *
      * <p><strong>Response Body Schema</strong>
      *
@@ -731,27 +598,26 @@ public final class DeviceManagementAsyncClient {
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
      * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
      * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return group update compliance information such as how many devices are on their latest update, how many need
-     *     new updates, and how many are in progress on receiving a new update along with {@link Response} on successful
-     *     completion of {@link Mono}.
+     * @return device group update compliance information such as how many devices are on their latest update, how many
+     *     need new updates, and how many are in progress on receiving a new update along with {@link Response} on
+     *     successful completion of {@link Mono}.
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<BinaryData>> getGroupUpdateComplianceWithResponse(
+    public Mono<Response<BinaryData>> getUpdateComplianceForGroupWithResponse(
             String groupId, RequestOptions requestOptions) {
-        return this.serviceClient.getGroupUpdateComplianceWithResponseAsync(groupId, requestOptions);
+        return this.serviceClient.getUpdateComplianceForGroupWithResponseAsync(groupId, requestOptions);
     }
 
     /**
-     * Get the best available updates for a group and a count of how many devices need each update.
+     * Get the best available updates for a device group and a count of how many devices need each update.
      *
      * <p><strong>Query Parameters</strong>
      *
      * <table border="1">
      *     <caption>Query Parameters</caption>
      *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>$filter</td><td>String</td><td>No</td><td>Restricts the set of bestUpdates returned. You can filter on update Provider, Name and Version property.</td></tr>
-     *     <tr><td>api-version</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
+     *     <tr><td>filter</td><td>String</td><td>No</td><td>Restricts the set of bestUpdates returned. You can filter on update Provider, Name and Version property. This filter is deprecated and should not be used.</td></tr>
      * </table>
      *
      * <p><strong>Response Body Schema</strong>
@@ -760,10 +626,16 @@ public final class DeviceManagementAsyncClient {
      * {
      *     value: [
      *         {
-     *             updateId: {
-     *                 provider: String
-     *                 name: String
-     *                 version: String
+     *             groupId: String
+     *             deviceClassId: String
+     *             update: {
+     *                 updateId: {
+     *                     provider: String
+     *                     name: String
+     *                     version: String
+     *                 }
+     *                 description: String
+     *                 friendlyName: String
      *             }
      *             deviceCount: int
      *         }
@@ -778,8 +650,8 @@ public final class DeviceManagementAsyncClient {
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
      * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
      * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return the best available updates for a group and a count of how many devices need each update as paginated
-     *     response with {@link PagedFlux}.
+     * @return the best available updates for a device group and a count of how many devices need each update as
+     *     paginated response with {@link PagedFlux}.
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
@@ -788,15 +660,14 @@ public final class DeviceManagementAsyncClient {
     }
 
     /**
-     * Gets a list of deployments for a group.
+     * Gets a list of deployments for a device group.
      *
      * <p><strong>Query Parameters</strong>
      *
      * <table border="1">
      *     <caption>Query Parameters</caption>
      *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>$filter</td><td>String</td><td>No</td><td>Restricts the set of deployments returned. You can filter on update Provider, Name and Version property.</td></tr>
-     *     <tr><td>api-version</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
+     *     <tr><td>orderby</td><td>String</td><td>No</td><td>Orders the set of deployments returned. You can order by start date.</td></tr>
      * </table>
      *
      * <p><strong>Response Body Schema</strong>
@@ -806,15 +677,30 @@ public final class DeviceManagementAsyncClient {
      *     value: [
      *         {
      *             deploymentId: String
-     *             startDateTime: String
-     *             updateId: {
-     *                 provider: String
-     *                 name: String
-     *                 version: String
+     *             startDateTime: OffsetDateTime
+     *             update: {
+     *                 updateId: {
+     *                     provider: String
+     *                     name: String
+     *                     version: String
+     *                 }
+     *                 description: String
+     *                 friendlyName: String
      *             }
      *             groupId: String
+     *             deviceClassSubgroups: [
+     *                 String
+     *             ]
      *             isCanceled: Boolean
      *             isRetried: Boolean
+     *             rollbackPolicy: {
+     *                 update: (recursive schema, see update above)
+     *                 failure: {
+     *                     devicesFailedPercentage: int
+     *                     devicesFailedCount: int
+     *                 }
+     *             }
+     *             isCloudInitiatedRollback: Boolean
      *         }
      *     ]
      *     nextLink: String
@@ -827,7 +713,7 @@ public final class DeviceManagementAsyncClient {
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
      * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
      * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return a list of deployments for a group as paginated response with {@link PagedFlux}.
+     * @return a list of deployments for a device group as paginated response with {@link PagedFlux}.
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
@@ -836,30 +722,37 @@ public final class DeviceManagementAsyncClient {
     }
 
     /**
-     * Gets the properties of a deployment.
-     *
-     * <p><strong>Query Parameters</strong>
-     *
-     * <table border="1">
-     *     <caption>Query Parameters</caption>
-     *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>api-version</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
-     * </table>
+     * Gets the deployment properties.
      *
      * <p><strong>Response Body Schema</strong>
      *
      * <pre>{@code
      * {
      *     deploymentId: String
-     *     startDateTime: String
-     *     updateId: {
-     *         provider: String
-     *         name: String
-     *         version: String
+     *     startDateTime: OffsetDateTime
+     *     update: {
+     *         updateId: {
+     *             provider: String
+     *             name: String
+     *             version: String
+     *         }
+     *         description: String
+     *         friendlyName: String
      *     }
      *     groupId: String
+     *     deviceClassSubgroups: [
+     *         String
+     *     ]
      *     isCanceled: Boolean
      *     isRetried: Boolean
+     *     rollbackPolicy: {
+     *         update: (recursive schema, see update above)
+     *         failure: {
+     *             devicesFailedPercentage: int
+     *             devicesFailedCount: int
+     *         }
+     *     }
+     *     isCloudInitiatedRollback: Boolean
      * }
      * }</pre>
      *
@@ -870,7 +763,7 @@ public final class DeviceManagementAsyncClient {
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
      * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
      * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return the properties of a deployment along with {@link Response} on successful completion of {@link Mono}.
+     * @return the deployment properties along with {@link Response} on successful completion of {@link Mono}.
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
@@ -882,28 +775,35 @@ public final class DeviceManagementAsyncClient {
     /**
      * Creates or updates a deployment.
      *
-     * <p><strong>Query Parameters</strong>
-     *
-     * <table border="1">
-     *     <caption>Query Parameters</caption>
-     *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>api-version</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
-     * </table>
-     *
      * <p><strong>Request Body Schema</strong>
      *
      * <pre>{@code
      * {
      *     deploymentId: String
-     *     startDateTime: String
-     *     updateId: {
-     *         provider: String
-     *         name: String
-     *         version: String
+     *     startDateTime: OffsetDateTime
+     *     update: {
+     *         updateId: {
+     *             provider: String
+     *             name: String
+     *             version: String
+     *         }
+     *         description: String
+     *         friendlyName: String
      *     }
      *     groupId: String
+     *     deviceClassSubgroups: [
+     *         String
+     *     ]
      *     isCanceled: Boolean
      *     isRetried: Boolean
+     *     rollbackPolicy: {
+     *         update: (recursive schema, see update above)
+     *         failure: {
+     *             devicesFailedPercentage: int
+     *             devicesFailedCount: int
+     *         }
+     *     }
+     *     isCloudInitiatedRollback: Boolean
      * }
      * }</pre>
      *
@@ -912,20 +812,35 @@ public final class DeviceManagementAsyncClient {
      * <pre>{@code
      * {
      *     deploymentId: String
-     *     startDateTime: String
-     *     updateId: {
-     *         provider: String
-     *         name: String
-     *         version: String
+     *     startDateTime: OffsetDateTime
+     *     update: {
+     *         updateId: {
+     *             provider: String
+     *             name: String
+     *             version: String
+     *         }
+     *         description: String
+     *         friendlyName: String
      *     }
      *     groupId: String
+     *     deviceClassSubgroups: [
+     *         String
+     *     ]
      *     isCanceled: Boolean
      *     isRetried: Boolean
+     *     rollbackPolicy: {
+     *         update: (recursive schema, see update above)
+     *         failure: {
+     *             devicesFailedPercentage: int
+     *             devicesFailedCount: int
+     *         }
+     *     }
+     *     isCloudInitiatedRollback: Boolean
      * }
      * }</pre>
      *
-     * @param deploymentId Deployment identifier.
      * @param groupId Group identity.
+     * @param deploymentId Deployment identifier.
      * @param deployment The deployment properties.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
@@ -937,21 +852,13 @@ public final class DeviceManagementAsyncClient {
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<BinaryData>> createOrUpdateDeploymentWithResponse(
-            String deploymentId, String groupId, BinaryData deployment, RequestOptions requestOptions) {
+            String groupId, String deploymentId, BinaryData deployment, RequestOptions requestOptions) {
         return this.serviceClient.createOrUpdateDeploymentWithResponseAsync(
-                deploymentId, groupId, deployment, requestOptions);
+                groupId, deploymentId, deployment, requestOptions);
     }
 
     /**
      * Deletes a deployment.
-     *
-     * <p><strong>Query Parameters</strong>
-     *
-     * <table border="1">
-     *     <caption>Query Parameters</caption>
-     *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>api-version</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
-     * </table>
      *
      * @param groupId Group identity.
      * @param deploymentId Deployment identifier.
@@ -973,24 +880,40 @@ public final class DeviceManagementAsyncClient {
      * Gets the status of a deployment including a breakdown of how many devices in the deployment are in progress,
      * completed, or failed.
      *
-     * <p><strong>Query Parameters</strong>
-     *
-     * <table border="1">
-     *     <caption>Query Parameters</caption>
-     *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>api-version</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
-     * </table>
-     *
      * <p><strong>Response Body Schema</strong>
      *
      * <pre>{@code
      * {
-     *     deploymentState: String(Active/Inactive/Canceled)
-     *     totalDevices: Integer
-     *     devicesInProgressCount: Integer
-     *     devicesCompletedFailedCount: Integer
-     *     devicesCompletedSucceededCount: Integer
-     *     devicesCanceledCount: Integer
+     *     groupId: String
+     *     deploymentState: String(Active/ActiveWithSubgroupFailures/Failed/Inactive/Canceled)
+     *     error: {
+     *         code: String
+     *         message: String
+     *         target: String
+     *         details: [
+     *             (recursive schema, see above)
+     *         ]
+     *         innererror: {
+     *             code: String
+     *             message: String
+     *             errorDetail: String
+     *             innerError: (recursive schema, see innerError above)
+     *         }
+     *         occurredDateTime: OffsetDateTime
+     *     }
+     *     subgroupStatus: [
+     *         {
+     *             groupId: String
+     *             deviceClassId: String
+     *             deploymentState: String(Active/Failed/Inactive/Canceled)
+     *             error: (recursive schema, see error above)
+     *             totalDevices: Integer
+     *             devicesInProgressCount: Integer
+     *             devicesCompletedFailedCount: Integer
+     *             devicesCompletedSucceededCount: Integer
+     *             devicesCanceledCount: Integer
+     *         }
+     *     ]
      * }
      * }</pre>
      *
@@ -1012,6 +935,468 @@ public final class DeviceManagementAsyncClient {
     }
 
     /**
+     * Get the device class subgroups for the group.
+     *
+     * <p><strong>Query Parameters</strong>
+     *
+     * <table border="1">
+     *     <caption>Query Parameters</caption>
+     *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
+     *     <tr><td>filter</td><td>String</td><td>No</td><td>Restricts the set of device class subgroups returned. You can filter on compat properties by name and value.</td></tr>
+     * </table>
+     *
+     * <p><strong>Response Body Schema</strong>
+     *
+     * <pre>{@code
+     * {
+     *     value: [
+     *         {
+     *             deviceClassId: String
+     *             groupId: String
+     *             createdDateTime: String
+     *             deviceCount: Integer
+     *             deploymentId: String
+     *         }
+     *     ]
+     *     nextLink: String
+     * }
+     * }</pre>
+     *
+     * @param groupId Group identity.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return the device class subgroups for the group as paginated response with {@link PagedFlux}.
+     */
+    @Generated
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedFlux<BinaryData> listDeviceClassSubgroupsForGroup(String groupId, RequestOptions requestOptions) {
+        return this.serviceClient.listDeviceClassSubgroupsForGroupAsync(groupId, requestOptions);
+    }
+
+    /**
+     * Gets device class subgroup details.
+     *
+     * <p><strong>Response Body Schema</strong>
+     *
+     * <pre>{@code
+     * {
+     *     deviceClassId: String
+     *     groupId: String
+     *     createdDateTime: String
+     *     deviceCount: Integer
+     *     deploymentId: String
+     * }
+     * }</pre>
+     *
+     * @param groupId Group identity.
+     * @param deviceClassId Device class identifier.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return device class subgroup details along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @Generated
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<BinaryData>> getDeviceClassSubgroupWithResponse(
+            String groupId, String deviceClassId, RequestOptions requestOptions) {
+        return this.serviceClient.getDeviceClassSubgroupWithResponseAsync(groupId, deviceClassId, requestOptions);
+    }
+
+    /**
+     * Deletes a device class subgroup.
+     *
+     * @param groupId Group identity.
+     * @param deviceClassId Device class identifier.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return the {@link Response} on successful completion of {@link Mono}.
+     */
+    @Generated
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<Void>> deleteDeviceClassSubgroupWithResponse(
+            String groupId, String deviceClassId, RequestOptions requestOptions) {
+        return this.serviceClient.deleteDeviceClassSubgroupWithResponseAsync(groupId, deviceClassId, requestOptions);
+    }
+
+    /**
+     * Get device class subgroup update compliance information such as how many devices are on their latest update, how
+     * many need new updates, and how many are in progress on receiving a new update.
+     *
+     * <p><strong>Response Body Schema</strong>
+     *
+     * <pre>{@code
+     * {
+     *     totalDeviceCount: int
+     *     onLatestUpdateDeviceCount: int
+     *     newUpdatesAvailableDeviceCount: int
+     *     updatesInProgressDeviceCount: int
+     * }
+     * }</pre>
+     *
+     * @param groupId Group identity.
+     * @param deviceClassId Device class identifier.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return device class subgroup update compliance information such as how many devices are on their latest update,
+     *     how many need new updates, and how many are in progress on receiving a new update along with {@link Response}
+     *     on successful completion of {@link Mono}.
+     */
+    @Generated
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<BinaryData>> getDeviceClassSubgroupUpdateComplianceWithResponse(
+            String groupId, String deviceClassId, RequestOptions requestOptions) {
+        return this.serviceClient.getDeviceClassSubgroupUpdateComplianceWithResponseAsync(
+                groupId, deviceClassId, requestOptions);
+    }
+
+    /**
+     * Get the best available update for a device class subgroup and a count of how many devices need this update.
+     *
+     * <p><strong>Response Body Schema</strong>
+     *
+     * <pre>{@code
+     * {
+     *     groupId: String
+     *     deviceClassId: String
+     *     update: {
+     *         updateId: {
+     *             provider: String
+     *             name: String
+     *             version: String
+     *         }
+     *         description: String
+     *         friendlyName: String
+     *     }
+     *     deviceCount: int
+     * }
+     * }</pre>
+     *
+     * @param groupId Group identity.
+     * @param deviceClassId Device class identifier.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return the best available update for a device class subgroup and a count of how many devices need this update
+     *     along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @Generated
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<BinaryData>> getBestUpdatesForDeviceClassSubgroupWithResponse(
+            String groupId, String deviceClassId, RequestOptions requestOptions) {
+        return this.serviceClient.getBestUpdatesForDeviceClassSubgroupWithResponseAsync(
+                groupId, deviceClassId, requestOptions);
+    }
+
+    /**
+     * Gets a list of deployments for a device class subgroup.
+     *
+     * <p><strong>Query Parameters</strong>
+     *
+     * <table border="1">
+     *     <caption>Query Parameters</caption>
+     *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
+     *     <tr><td>orderby</td><td>String</td><td>No</td><td>Orders the set of deployments returned. You can order by start date.</td></tr>
+     * </table>
+     *
+     * <p><strong>Response Body Schema</strong>
+     *
+     * <pre>{@code
+     * {
+     *     value: [
+     *         {
+     *             deploymentId: String
+     *             startDateTime: OffsetDateTime
+     *             update: {
+     *                 updateId: {
+     *                     provider: String
+     *                     name: String
+     *                     version: String
+     *                 }
+     *                 description: String
+     *                 friendlyName: String
+     *             }
+     *             groupId: String
+     *             deviceClassSubgroups: [
+     *                 String
+     *             ]
+     *             isCanceled: Boolean
+     *             isRetried: Boolean
+     *             rollbackPolicy: {
+     *                 update: (recursive schema, see update above)
+     *                 failure: {
+     *                     devicesFailedPercentage: int
+     *                     devicesFailedCount: int
+     *                 }
+     *             }
+     *             isCloudInitiatedRollback: Boolean
+     *         }
+     *     ]
+     *     nextLink: String
+     * }
+     * }</pre>
+     *
+     * @param groupId Group identity.
+     * @param deviceClassId Device class identifier.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return a list of deployments for a device class subgroup as paginated response with {@link PagedFlux}.
+     */
+    @Generated
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedFlux<BinaryData> listDeploymentsForDeviceClassSubgroup(
+            String groupId, String deviceClassId, RequestOptions requestOptions) {
+        return this.serviceClient.listDeploymentsForDeviceClassSubgroupAsync(groupId, deviceClassId, requestOptions);
+    }
+
+    /**
+     * Gets the deployment properties.
+     *
+     * <p><strong>Response Body Schema</strong>
+     *
+     * <pre>{@code
+     * {
+     *     deploymentId: String
+     *     startDateTime: OffsetDateTime
+     *     update: {
+     *         updateId: {
+     *             provider: String
+     *             name: String
+     *             version: String
+     *         }
+     *         description: String
+     *         friendlyName: String
+     *     }
+     *     groupId: String
+     *     deviceClassSubgroups: [
+     *         String
+     *     ]
+     *     isCanceled: Boolean
+     *     isRetried: Boolean
+     *     rollbackPolicy: {
+     *         update: (recursive schema, see update above)
+     *         failure: {
+     *             devicesFailedPercentage: int
+     *             devicesFailedCount: int
+     *         }
+     *     }
+     *     isCloudInitiatedRollback: Boolean
+     * }
+     * }</pre>
+     *
+     * @param groupId Group identity.
+     * @param deviceClassId Device class identifier.
+     * @param deploymentId Deployment identifier.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return the deployment properties along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @Generated
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<BinaryData>> getDeploymentForDeviceClassSubgroupWithResponse(
+            String groupId, String deviceClassId, String deploymentId, RequestOptions requestOptions) {
+        return this.serviceClient.getDeploymentForDeviceClassSubgroupWithResponseAsync(
+                groupId, deviceClassId, deploymentId, requestOptions);
+    }
+
+    /**
+     * Deletes a device class subgroup deployment.
+     *
+     * @param groupId Group identity.
+     * @param deviceClassId Device class identifier.
+     * @param deploymentId Deployment identifier.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return the {@link Response} on successful completion of {@link Mono}.
+     */
+    @Generated
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<Void>> deleteDeploymentForDeviceClassSubgroupWithResponse(
+            String groupId, String deviceClassId, String deploymentId, RequestOptions requestOptions) {
+        return this.serviceClient.deleteDeploymentForDeviceClassSubgroupWithResponseAsync(
+                groupId, deviceClassId, deploymentId, requestOptions);
+    }
+
+    /**
+     * Stops a deployment.
+     *
+     * <p><strong>Response Body Schema</strong>
+     *
+     * <pre>{@code
+     * {
+     *     deploymentId: String
+     *     startDateTime: OffsetDateTime
+     *     update: {
+     *         updateId: {
+     *             provider: String
+     *             name: String
+     *             version: String
+     *         }
+     *         description: String
+     *         friendlyName: String
+     *     }
+     *     groupId: String
+     *     deviceClassSubgroups: [
+     *         String
+     *     ]
+     *     isCanceled: Boolean
+     *     isRetried: Boolean
+     *     rollbackPolicy: {
+     *         update: (recursive schema, see update above)
+     *         failure: {
+     *             devicesFailedPercentage: int
+     *             devicesFailedCount: int
+     *         }
+     *     }
+     *     isCloudInitiatedRollback: Boolean
+     * }
+     * }</pre>
+     *
+     * @param groupId Group identity.
+     * @param deviceClassId Device class identifier.
+     * @param deploymentId Deployment identifier.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return deployment metadata along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @Generated
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<BinaryData>> stopDeploymentWithResponse(
+            String groupId, String deviceClassId, String deploymentId, RequestOptions requestOptions) {
+        return this.serviceClient.stopDeploymentWithResponseAsync(groupId, deviceClassId, deploymentId, requestOptions);
+    }
+
+    /**
+     * Retries a deployment with failed devices.
+     *
+     * <p><strong>Response Body Schema</strong>
+     *
+     * <pre>{@code
+     * {
+     *     deploymentId: String
+     *     startDateTime: OffsetDateTime
+     *     update: {
+     *         updateId: {
+     *             provider: String
+     *             name: String
+     *             version: String
+     *         }
+     *         description: String
+     *         friendlyName: String
+     *     }
+     *     groupId: String
+     *     deviceClassSubgroups: [
+     *         String
+     *     ]
+     *     isCanceled: Boolean
+     *     isRetried: Boolean
+     *     rollbackPolicy: {
+     *         update: (recursive schema, see update above)
+     *         failure: {
+     *             devicesFailedPercentage: int
+     *             devicesFailedCount: int
+     *         }
+     *     }
+     *     isCloudInitiatedRollback: Boolean
+     * }
+     * }</pre>
+     *
+     * @param groupId Group identity.
+     * @param deviceClassId Device class identifier.
+     * @param deploymentId Deployment identifier.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return deployment metadata along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @Generated
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<BinaryData>> retryDeploymentWithResponse(
+            String groupId, String deviceClassId, String deploymentId, RequestOptions requestOptions) {
+        return this.serviceClient.retryDeploymentWithResponseAsync(
+                groupId, deviceClassId, deploymentId, requestOptions);
+    }
+
+    /**
+     * Gets the status of a deployment including a breakdown of how many devices in the deployment are in progress,
+     * completed, or failed.
+     *
+     * <p><strong>Response Body Schema</strong>
+     *
+     * <pre>{@code
+     * {
+     *     groupId: String
+     *     deviceClassId: String
+     *     deploymentState: String(Active/Failed/Inactive/Canceled)
+     *     error: {
+     *         code: String
+     *         message: String
+     *         target: String
+     *         details: [
+     *             (recursive schema, see above)
+     *         ]
+     *         innererror: {
+     *             code: String
+     *             message: String
+     *             errorDetail: String
+     *             innerError: (recursive schema, see innerError above)
+     *         }
+     *         occurredDateTime: OffsetDateTime
+     *     }
+     *     totalDevices: Integer
+     *     devicesInProgressCount: Integer
+     *     devicesCompletedFailedCount: Integer
+     *     devicesCompletedSucceededCount: Integer
+     *     devicesCanceledCount: Integer
+     * }
+     * }</pre>
+     *
+     * @param groupId Group identity.
+     * @param deviceClassId Device class identifier.
+     * @param deploymentId Deployment identifier.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return the status of a deployment including a breakdown of how many devices in the deployment are in progress,
+     *     completed, or failed along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @Generated
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<BinaryData>> getDeviceClassSubgroupDeploymentStatusWithResponse(
+            String groupId, String deviceClassId, String deploymentId, RequestOptions requestOptions) {
+        return this.serviceClient.getDeviceClassSubgroupDeploymentStatusWithResponseAsync(
+                groupId, deviceClassId, deploymentId, requestOptions);
+    }
+
+    /**
      * Gets a list of devices in a deployment along with their state. Useful for getting a list of failed devices.
      *
      * <p><strong>Query Parameters</strong>
@@ -1019,8 +1404,7 @@ public final class DeviceManagementAsyncClient {
      * <table border="1">
      *     <caption>Query Parameters</caption>
      *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>$filter</td><td>String</td><td>No</td><td>Restricts the set of deployment device states returned. You can filter on deviceId and moduleId and/or deviceState.</td></tr>
-     *     <tr><td>api-version</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
+     *     <tr><td>filter</td><td>String</td><td>No</td><td>Restricts the set of deployment device states returned. You can filter on deviceId and moduleId and/or deviceState.</td></tr>
      * </table>
      *
      * <p><strong>Response Body Schema</strong>
@@ -1033,7 +1417,7 @@ public final class DeviceManagementAsyncClient {
      *             moduleId: String
      *             retryCount: int
      *             movedOnToNewDeployment: boolean
-     *             deviceState: String(Succeeded/InProgress/Failed/Canceled/Incompatible)
+     *             deviceState: String(Succeeded/InProgress/Canceled/Failed)
      *         }
      *     ]
      *     nextLink: String
@@ -1041,6 +1425,7 @@ public final class DeviceManagementAsyncClient {
      * }</pre>
      *
      * @param groupId Group identity.
+     * @param deviceClassId Device class identifier.
      * @param deploymentId Deployment identifier.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
@@ -1051,21 +1436,14 @@ public final class DeviceManagementAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedFlux<BinaryData> listDeploymentDevices(
-            String groupId, String deploymentId, RequestOptions requestOptions) {
-        return this.serviceClient.listDeploymentDevicesAsync(groupId, deploymentId, requestOptions);
+    public PagedFlux<BinaryData> listDeviceStatesForDeviceClassSubgroupDeployment(
+            String groupId, String deviceClassId, String deploymentId, RequestOptions requestOptions) {
+        return this.serviceClient.listDeviceStatesForDeviceClassSubgroupDeploymentAsync(
+                groupId, deviceClassId, deploymentId, requestOptions);
     }
 
     /**
      * Retrieve operation status.
-     *
-     * <p><strong>Query Parameters</strong>
-     *
-     * <table border="1">
-     *     <caption>Query Parameters</caption>
-     *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>api-version</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
-     * </table>
      *
      * <p><strong>Header Parameters</strong>
      *
@@ -1080,7 +1458,7 @@ public final class DeviceManagementAsyncClient {
      * <pre>{@code
      * {
      *     operationId: String
-     *     status: String(Undefined/NotStarted/Running/Succeeded/Failed)
+     *     status: String(NotStarted/Running/Succeeded/Failed)
      *     error: {
      *         code: String
      *         message: String
@@ -1094,11 +1472,11 @@ public final class DeviceManagementAsyncClient {
      *             errorDetail: String
      *             innerError: (recursive schema, see innerError above)
      *         }
-     *         occurredDateTime: String
+     *         occurredDateTime: OffsetDateTime
      *     }
      *     traceId: String
-     *     lastActionDateTime: String
-     *     createdDateTime: String
+     *     lastActionDateTime: OffsetDateTime
+     *     createdDateTime: OffsetDateTime
      *     etag: String
      * }
      * }</pre>
@@ -1125,9 +1503,8 @@ public final class DeviceManagementAsyncClient {
      * <table border="1">
      *     <caption>Query Parameters</caption>
      *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>$filter</td><td>String</td><td>No</td><td>Restricts the set of operations returned. Only one specific filter is supported: "status eq 'NotStarted' or status eq 'Running'"</td></tr>
-     *     <tr><td>$top</td><td>String</td><td>No</td><td>Specifies a non-negative integer n that limits the number of items returned from a collection. The service returns the number of available items up to but not greater than the specified value n.</td></tr>
-     *     <tr><td>api-version</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
+     *     <tr><td>filter</td><td>String</td><td>No</td><td>Restricts the set of operations returned. Only one specific filter is supported: "status eq 'NotStarted' or status eq 'Running'"</td></tr>
+     *     <tr><td>top</td><td>Integer</td><td>No</td><td>Specifies a non-negative integer n that limits the number of items returned from a collection. The service returns the number of available items up to but not greater than the specified value n.</td></tr>
      * </table>
      *
      * <p><strong>Response Body Schema</strong>
@@ -1137,7 +1514,7 @@ public final class DeviceManagementAsyncClient {
      *     value: [
      *         {
      *             operationId: String
-     *             status: String(Undefined/NotStarted/Running/Succeeded/Failed)
+     *             status: String(NotStarted/Running/Succeeded/Failed)
      *             error: {
      *                 code: String
      *                 message: String
@@ -1151,11 +1528,11 @@ public final class DeviceManagementAsyncClient {
      *                     errorDetail: String
      *                     innerError: (recursive schema, see innerError above)
      *                 }
-     *                 occurredDateTime: String
+     *                 occurredDateTime: OffsetDateTime
      *             }
      *             traceId: String
-     *             lastActionDateTime: String
-     *             createdDateTime: String
+     *             lastActionDateTime: OffsetDateTime
+     *             createdDateTime: OffsetDateTime
      *             etag: String
      *         }
      *     ]
@@ -1177,21 +1554,13 @@ public final class DeviceManagementAsyncClient {
     }
 
     /**
-     * Start the device diagnostics log collection operation on specified devices.
-     *
-     * <p><strong>Query Parameters</strong>
-     *
-     * <table border="1">
-     *     <caption>Query Parameters</caption>
-     *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>api-version</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
-     * </table>
+     * Start the device diagnostics log collection on specified devices.
      *
      * <p><strong>Request Body Schema</strong>
      *
      * <pre>{@code
      * {
-     *     operationId: String
+     *     logCollectionId: String
      *     deviceList: [
      *         {
      *             deviceId: String
@@ -1201,7 +1570,7 @@ public final class DeviceManagementAsyncClient {
      *     description: String
      *     createdDateTime: String
      *     lastActionDateTime: String
-     *     status: String(Undefined/NotStarted/Running/Succeeded/Failed)
+     *     status: String(NotStarted/Running/Succeeded/Failed)
      * }
      * }</pre>
      *
@@ -1209,7 +1578,7 @@ public final class DeviceManagementAsyncClient {
      *
      * <pre>{@code
      * {
-     *     operationId: String
+     *     logCollectionId: String
      *     deviceList: [
      *         {
      *             deviceId: String
@@ -1219,12 +1588,12 @@ public final class DeviceManagementAsyncClient {
      *     description: String
      *     createdDateTime: String
      *     lastActionDateTime: String
-     *     status: String(Undefined/NotStarted/Running/Succeeded/Failed)
+     *     status: String(NotStarted/Running/Succeeded/Failed)
      * }
      * }</pre>
      *
-     * @param operationId Operation identifier.
-     * @param logCollectionRequest The deployment properties.
+     * @param logCollectionId Log collection identifier.
+     * @param logCollection The log collection properties.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
@@ -1234,27 +1603,19 @@ public final class DeviceManagementAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<BinaryData>> collectLogsWithResponse(
-            String operationId, BinaryData logCollectionRequest, RequestOptions requestOptions) {
-        return this.serviceClient.collectLogsWithResponseAsync(operationId, logCollectionRequest, requestOptions);
+    public Mono<Response<BinaryData>> startLogCollectionWithResponse(
+            String logCollectionId, BinaryData logCollection, RequestOptions requestOptions) {
+        return this.serviceClient.startLogCollectionWithResponseAsync(logCollectionId, logCollection, requestOptions);
     }
 
     /**
-     * Get the device diagnostics log collection operation.
-     *
-     * <p><strong>Query Parameters</strong>
-     *
-     * <table border="1">
-     *     <caption>Query Parameters</caption>
-     *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>api-version</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
-     * </table>
+     * Get the device diagnostics log collection.
      *
      * <p><strong>Response Body Schema</strong>
      *
      * <pre>{@code
      * {
-     *     operationId: String
+     *     logCollectionId: String
      *     deviceList: [
      *         {
      *             deviceId: String
@@ -1264,36 +1625,28 @@ public final class DeviceManagementAsyncClient {
      *     description: String
      *     createdDateTime: String
      *     lastActionDateTime: String
-     *     status: String(Undefined/NotStarted/Running/Succeeded/Failed)
+     *     status: String(NotStarted/Running/Succeeded/Failed)
      * }
      * }</pre>
      *
-     * @param operationId Operation identifier.
+     * @param logCollectionId Log collection identifier.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
      * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
      * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return the device diagnostics log collection operation along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * @return the device diagnostics log collection along with {@link Response} on successful completion of {@link
+     *     Mono}.
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<BinaryData>> getLogCollectionOperationWithResponse(
-            String operationId, RequestOptions requestOptions) {
-        return this.serviceClient.getLogCollectionOperationWithResponseAsync(operationId, requestOptions);
+    public Mono<Response<BinaryData>> getLogCollectionWithResponse(
+            String logCollectionId, RequestOptions requestOptions) {
+        return this.serviceClient.getLogCollectionWithResponseAsync(logCollectionId, requestOptions);
     }
 
     /**
-     * Get all device diagnostics log collection operations.
-     *
-     * <p><strong>Query Parameters</strong>
-     *
-     * <table border="1">
-     *     <caption>Query Parameters</caption>
-     *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>api-version</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
-     * </table>
+     * Get all device diagnostics log collections.
      *
      * <p><strong>Response Body Schema</strong>
      *
@@ -1301,7 +1654,7 @@ public final class DeviceManagementAsyncClient {
      * {
      *     value: [
      *         {
-     *             operationId: String
+     *             logCollectionId: String
      *             deviceList: [
      *                 {
      *                     deviceId: String
@@ -1311,7 +1664,7 @@ public final class DeviceManagementAsyncClient {
      *             description: String
      *             createdDateTime: String
      *             lastActionDateTime: String
-     *             status: String(Undefined/NotStarted/Running/Succeeded/Failed)
+     *             status: String(NotStarted/Running/Succeeded/Failed)
      *         }
      *     ]
      *     nextLink: String
@@ -1323,38 +1676,30 @@ public final class DeviceManagementAsyncClient {
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
      * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
      * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return all device diagnostics log collection operations as paginated response with {@link PagedFlux}.
+     * @return all device diagnostics log collections as paginated response with {@link PagedFlux}.
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedFlux<BinaryData> listLogCollectionOperations(RequestOptions requestOptions) {
-        return this.serviceClient.listLogCollectionOperationsAsync(requestOptions);
+    public PagedFlux<BinaryData> listLogCollections(RequestOptions requestOptions) {
+        return this.serviceClient.listLogCollectionsAsync(requestOptions);
     }
 
     /**
-     * Get device diagnostics log collection operation with detailed status.
-     *
-     * <p><strong>Query Parameters</strong>
-     *
-     * <table border="1">
-     *     <caption>Query Parameters</caption>
-     *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>api-version</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
-     * </table>
+     * Get log collection with detailed status.
      *
      * <p><strong>Response Body Schema</strong>
      *
      * <pre>{@code
      * {
-     *     operationId: String
+     *     logCollectionId: String
      *     createdDateTime: String
      *     lastActionDateTime: String
-     *     status: String(Undefined/NotStarted/Running/Succeeded/Failed)
+     *     status: String(NotStarted/Running/Succeeded/Failed)
      *     deviceStatus: [
      *         {
      *             deviceId: String
      *             moduleId: String
-     *             status: String(Undefined/NotStarted/Running/Succeeded/Failed)
+     *             status: String(NotStarted/Running/Succeeded/Failed)
      *             resultCode: String
      *             extendedResultCode: String
      *             logLocation: String
@@ -1370,103 +1715,51 @@ public final class DeviceManagementAsyncClient {
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
      * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
      * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return device diagnostics log collection operation with detailed status along with {@link Response} on
-     *     successful completion of {@link Mono}.
+     * @return log collection with detailed status along with {@link Response} on successful completion of {@link Mono}.
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<BinaryData>> getLogCollectionOperationDetailedStatusWithResponse(
+    public Mono<Response<BinaryData>> getLogCollectionDetailedStatusWithResponse(
             String operationId, RequestOptions requestOptions) {
-        return this.serviceClient.getLogCollectionOperationDetailedStatusWithResponseAsync(operationId, requestOptions);
+        return this.serviceClient.getLogCollectionDetailedStatusWithResponseAsync(operationId, requestOptions);
     }
 
     /**
-     * Stops a deployment.
-     *
-     * <p><strong>Query Parameters</strong>
-     *
-     * <table border="1">
-     *     <caption>Query Parameters</caption>
-     *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>action</td><td>String</td><td>Yes</td><td>Cancel deployment action.</td></tr>
-     *     <tr><td>api-version</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
-     * </table>
+     * Get list of device health.
      *
      * <p><strong>Response Body Schema</strong>
      *
      * <pre>{@code
      * {
-     *     deploymentId: String
-     *     startDateTime: String
-     *     updateId: {
-     *         provider: String
-     *         name: String
-     *         version: String
-     *     }
-     *     groupId: String
-     *     isCanceled: Boolean
-     *     isRetried: Boolean
+     *     value: [
+     *         {
+     *             deviceId: String
+     *             moduleId: String
+     *             state: String(healthy/unhealthy)
+     *             digitalTwinModelId: String
+     *             healthChecks: [
+     *                 {
+     *                     name: String
+     *                     result: String(success/userError)
+     *                 }
+     *             ]
+     *         }
+     *     ]
+     *     nextLink: String
      * }
      * }</pre>
      *
-     * @param groupId Group identity.
-     * @param deploymentId Deployment identifier.
+     * @param filter Filter list by specified properties.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
      * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
      * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return deployment metadata along with {@link Response} on successful completion of {@link Mono}.
+     * @return list of device health as paginated response with {@link PagedFlux}.
      */
     @Generated
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<BinaryData>> stopDeploymentWithResponse(
-            String groupId, String deploymentId, RequestOptions requestOptions) {
-        return this.serviceClient.stopDeploymentWithResponseAsync(groupId, deploymentId, requestOptions);
-    }
-
-    /**
-     * Retries a deployment with failed devices.
-     *
-     * <p><strong>Query Parameters</strong>
-     *
-     * <table border="1">
-     *     <caption>Query Parameters</caption>
-     *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>action</td><td>String</td><td>Yes</td><td>Retry deployment action.</td></tr>
-     *     <tr><td>api-version</td><td>String</td><td>Yes</td><td>Api Version</td></tr>
-     * </table>
-     *
-     * <p><strong>Response Body Schema</strong>
-     *
-     * <pre>{@code
-     * {
-     *     deploymentId: String
-     *     startDateTime: String
-     *     updateId: {
-     *         provider: String
-     *         name: String
-     *         version: String
-     *     }
-     *     groupId: String
-     *     isCanceled: Boolean
-     *     isRetried: Boolean
-     * }
-     * }</pre>
-     *
-     * @param groupId Group identity.
-     * @param deploymentId Deployment identifier.
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return deployment metadata along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @Generated
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<BinaryData>> retryDeploymentWithResponse(
-            String groupId, String deploymentId, RequestOptions requestOptions) {
-        return this.serviceClient.retryDeploymentWithResponseAsync(groupId, deploymentId, requestOptions);
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedFlux<BinaryData> listDeviceHealth(String filter, RequestOptions requestOptions) {
+        return this.serviceClient.listDeviceHealthAsync(filter, requestOptions);
     }
 }
