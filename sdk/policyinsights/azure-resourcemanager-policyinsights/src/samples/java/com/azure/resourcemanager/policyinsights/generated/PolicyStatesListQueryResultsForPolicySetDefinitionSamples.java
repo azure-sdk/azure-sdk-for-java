@@ -10,7 +10,7 @@ import com.azure.resourcemanager.policyinsights.models.PolicyStatesResource;
 /** Samples for PolicyStates ListQueryResultsForPolicySetDefinition. */
 public final class PolicyStatesListQueryResultsForPolicySetDefinitionSamples {
     /*
-     * x-ms-original-file: specification/policyinsights/resource-manager/Microsoft.PolicyInsights/stable/2019-10-01/examples/PolicyStates_QuerySubscriptionLevelPolicySetDefinitionScopeNextLink.json
+     * x-ms-original-file: specification/policyinsights/resource-manager/Microsoft.PolicyInsights/stable/2022-06-01/examples/PolicyStates_QuerySubscriptionLevelPolicySetDefinitionScopeNextLink.json
      */
     /**
      * Sample code: Query latest at subscription level policy set definition scope with next link.
@@ -37,7 +37,7 @@ public final class PolicyStatesListQueryResultsForPolicySetDefinitionSamples {
     }
 
     /*
-     * x-ms-original-file: specification/policyinsights/resource-manager/Microsoft.PolicyInsights/stable/2019-10-01/examples/PolicyStates_QuerySubscriptionLevelPolicySetDefinitionScope.json
+     * x-ms-original-file: specification/policyinsights/resource-manager/Microsoft.PolicyInsights/stable/2022-06-01/examples/PolicyStates_QuerySubscriptionLevelPolicySetDefinitionScope.json
      */
     /**
      * Sample code: Query latest at subscription level policy set definition scope.

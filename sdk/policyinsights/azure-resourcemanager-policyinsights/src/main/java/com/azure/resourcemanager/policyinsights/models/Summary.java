@@ -5,16 +5,12 @@
 package com.azure.resourcemanager.policyinsights.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** Summary results. */
 @Fluent
 public final class Summary {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(Summary.class);
-
     /*
      * OData entity ID; always set to null since summaries do not have an
      * entity ID.

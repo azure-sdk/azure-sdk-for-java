@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for PolicyEvents ListQueryResultsForResourceGroup. */
 public final class PolicyEventsListQueryResultsForResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/policyinsights/resource-manager/Microsoft.PolicyInsights/stable/2019-10-01/examples/PolicyEvents_QueryResourceGroupScope.json
+     * x-ms-original-file: specification/policyinsights/resource-manager/Microsoft.PolicyInsights/stable/2022-06-01/examples/PolicyEvents_QueryResourceGroupScope.json
      */
     /**
      * Sample code: Query at resource group scope.
@@ -35,7 +35,7 @@ public final class PolicyEventsListQueryResultsForResourceGroupSamples {
     }
 
     /*
-     * x-ms-original-file: specification/policyinsights/resource-manager/Microsoft.PolicyInsights/stable/2019-10-01/examples/PolicyEvents_QueryResourceGroupScopeNextLink.json
+     * x-ms-original-file: specification/policyinsights/resource-manager/Microsoft.PolicyInsights/stable/2022-06-01/examples/PolicyEvents_QueryResourceGroupScopeNextLink.json
      */
     /**
      * Sample code: Query at resource group scope with next link.

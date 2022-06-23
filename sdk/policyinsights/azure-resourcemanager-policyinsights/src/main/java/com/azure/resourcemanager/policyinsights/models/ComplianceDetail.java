@@ -5,15 +5,11 @@
 package com.azure.resourcemanager.policyinsights.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** The compliance state rollup. */
 @Fluent
 public final class ComplianceDetail {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(ComplianceDetail.class);
-
     /*
      * The compliance state.
      */

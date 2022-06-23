@@ -10,7 +10,7 @@ import com.azure.resourcemanager.policyinsights.models.PolicyStatesResource;
 /** Samples for PolicyStates ListQueryResultsForResource. */
 public final class PolicyStatesListQueryResultsForResourceSamples {
     /*
-     * x-ms-original-file: specification/policyinsights/resource-manager/Microsoft.PolicyInsights/stable/2019-10-01/examples/PolicyStates_QueryResourceScopeExpandPolicyEvaluationDetails.json
+     * x-ms-original-file: specification/policyinsights/resource-manager/Microsoft.PolicyInsights/stable/2022-06-01/examples/PolicyStates_QueryResourceScopeExpandPolicyEvaluationDetails.json
      */
     /**
      * Sample code: Query all policy states at resource scope and expand policyEvaluationDetails.
@@ -37,7 +37,7 @@ public final class PolicyStatesListQueryResultsForResourceSamples {
     }
 
     /*
-     * x-ms-original-file: specification/policyinsights/resource-manager/Microsoft.PolicyInsights/stable/2019-10-01/examples/PolicyStates_QueryResourceScopeNextLink.json
+     * x-ms-original-file: specification/policyinsights/resource-manager/Microsoft.PolicyInsights/stable/2022-06-01/examples/PolicyStates_QueryResourceScopeNextLink.json
      */
     /**
      * Sample code: Query all policy states at resource scope with next link.
@@ -64,7 +64,7 @@ public final class PolicyStatesListQueryResultsForResourceSamples {
     }
 
     /*
-     * x-ms-original-file: specification/policyinsights/resource-manager/Microsoft.PolicyInsights/stable/2019-10-01/examples/PolicyStates_QuerySubscriptionLevelNestedResourceScope.json
+     * x-ms-original-file: specification/policyinsights/resource-manager/Microsoft.PolicyInsights/stable/2022-06-01/examples/PolicyStates_QuerySubscriptionLevelNestedResourceScope.json
      */
     /**
      * Sample code: Query all policy states at subscription level nested resource scope.
@@ -91,7 +91,7 @@ public final class PolicyStatesListQueryResultsForResourceSamples {
     }
 
     /*
-     * x-ms-original-file: specification/policyinsights/resource-manager/Microsoft.PolicyInsights/stable/2019-10-01/examples/PolicyStates_QueryResourceScopeExpandComponents.json
+     * x-ms-original-file: specification/policyinsights/resource-manager/Microsoft.PolicyInsights/stable/2022-06-01/examples/PolicyStates_QueryResourceScopeExpandComponents.json
      */
     /**
      * Sample code: Query component policy compliance state at resource scope filtered by given assignment.
@@ -119,7 +119,7 @@ public final class PolicyStatesListQueryResultsForResourceSamples {
     }
 
     /*
-     * x-ms-original-file: specification/policyinsights/resource-manager/Microsoft.PolicyInsights/stable/2019-10-01/examples/PolicyStates_QueryResourceScopeExpandComponentsGroupByWithAggregate.json
+     * x-ms-original-file: specification/policyinsights/resource-manager/Microsoft.PolicyInsights/stable/2022-06-01/examples/PolicyStates_QueryResourceScopeExpandComponentsGroupByWithAggregate.json
      */
     /**
      * Sample code: Query component policy compliance state count grouped by state type at resource scope filtered by
@@ -150,7 +150,7 @@ public final class PolicyStatesListQueryResultsForResourceSamples {
     }
 
     /*
-     * x-ms-original-file: specification/policyinsights/resource-manager/Microsoft.PolicyInsights/stable/2019-10-01/examples/PolicyStates_QuerySubscriptionLevelResourceScope.json
+     * x-ms-original-file: specification/policyinsights/resource-manager/Microsoft.PolicyInsights/stable/2022-06-01/examples/PolicyStates_QuerySubscriptionLevelResourceScope.json
      */
     /**
      * Sample code: Query all policy states at subscription level resource scope.
@@ -177,7 +177,7 @@ public final class PolicyStatesListQueryResultsForResourceSamples {
     }
 
     /*
-     * x-ms-original-file: specification/policyinsights/resource-manager/Microsoft.PolicyInsights/stable/2019-10-01/examples/PolicyStates_QueryResourceScope.json
+     * x-ms-original-file: specification/policyinsights/resource-manager/Microsoft.PolicyInsights/stable/2022-06-01/examples/PolicyStates_QueryResourceScope.json
      */
     /**
      * Sample code: Query all policy states at resource scope.
@@ -204,7 +204,7 @@ public final class PolicyStatesListQueryResultsForResourceSamples {
     }
 
     /*
-     * x-ms-original-file: specification/policyinsights/resource-manager/Microsoft.PolicyInsights/stable/2019-10-01/examples/PolicyStates_QueryNestedResourceScope.json
+     * x-ms-original-file: specification/policyinsights/resource-manager/Microsoft.PolicyInsights/stable/2022-06-01/examples/PolicyStates_QueryNestedResourceScope.json
      */
     /**
      * Sample code: Query all policy states at nested resource scope.

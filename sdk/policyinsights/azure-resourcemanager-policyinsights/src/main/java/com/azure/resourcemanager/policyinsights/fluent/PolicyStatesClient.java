@@ -27,7 +27,7 @@ public interface PolicyStatesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return query results.
+     * @return query results as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<PolicyStateInner> listQueryResultsForManagementGroup(
@@ -39,7 +39,7 @@ public interface PolicyStatesClient {
      * @param policyStatesResource The virtual resource under PolicyStates resource type. In a given time range,
      *     'latest' represents the latest policy state(s), whereas 'default' represents all policy state(s).
      * @param managementGroupName Management group name.
-     * @param top Maximum number of records to return.
+     * @param top Maximum number of records to returned, paginated for top greater than 1000.
      * @param orderBy Ordering expression using OData notation. One or more comma-separated column names with an
      *     optional "desc" (the default) or "asc", e.g. "$orderby=PolicyAssignmentId, ResourceId asc".
      * @param select Select expression using OData notation. Limits the columns on each record to just those requested,
@@ -56,7 +56,7 @@ public interface PolicyStatesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return query results.
+     * @return query results as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<PolicyStateInner> listQueryResultsForManagementGroup(
@@ -88,7 +88,7 @@ public interface PolicyStatesClient {
      * Summarizes policy states for the resources under the management group.
      *
      * @param managementGroupName Management group name.
-     * @param top Maximum number of records to return.
+     * @param top Maximum number of records to returned, paginated for top greater than 1000.
      * @param from ISO 8601 formatted timestamp specifying the start time of the interval to query. When not specified,
      *     the service uses ($to - 1-day).
      * @param to ISO 8601 formatted timestamp specifying the end time of the interval to query. When not specified, the
@@ -98,7 +98,7 @@ public interface PolicyStatesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return summarize action results.
+     * @return summarize action results along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<SummarizeResultsInner> summarizeForManagementGroupWithResponse(
@@ -118,7 +118,7 @@ public interface PolicyStatesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return query results.
+     * @return query results as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<PolicyStateInner> listQueryResultsForSubscription(
@@ -130,7 +130,7 @@ public interface PolicyStatesClient {
      * @param policyStatesResource The virtual resource under PolicyStates resource type. In a given time range,
      *     'latest' represents the latest policy state(s), whereas 'default' represents all policy state(s).
      * @param subscriptionId Microsoft Azure subscription ID.
-     * @param top Maximum number of records to return.
+     * @param top Maximum number of records to returned, paginated for top greater than 1000.
      * @param orderBy Ordering expression using OData notation. One or more comma-separated column names with an
      *     optional "desc" (the default) or "asc", e.g. "$orderby=PolicyAssignmentId, ResourceId asc".
      * @param select Select expression using OData notation. Limits the columns on each record to just those requested,
@@ -147,7 +147,7 @@ public interface PolicyStatesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return query results.
+     * @return query results as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<PolicyStateInner> listQueryResultsForSubscription(
@@ -179,7 +179,7 @@ public interface PolicyStatesClient {
      * Summarizes policy states for the resources under the subscription.
      *
      * @param subscriptionId Microsoft Azure subscription ID.
-     * @param top Maximum number of records to return.
+     * @param top Maximum number of records to returned, paginated for top greater than 1000.
      * @param from ISO 8601 formatted timestamp specifying the start time of the interval to query. When not specified,
      *     the service uses ($to - 1-day).
      * @param to ISO 8601 formatted timestamp specifying the end time of the interval to query. When not specified, the
@@ -189,7 +189,7 @@ public interface PolicyStatesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return summarize action results.
+     * @return summarize action results along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<SummarizeResultsInner> summarizeForSubscriptionWithResponse(
@@ -205,7 +205,7 @@ public interface PolicyStatesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return query results.
+     * @return query results as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<PolicyStateInner> listQueryResultsForResourceGroup(
@@ -218,7 +218,7 @@ public interface PolicyStatesClient {
      *     'latest' represents the latest policy state(s), whereas 'default' represents all policy state(s).
      * @param subscriptionId Microsoft Azure subscription ID.
      * @param resourceGroupName Resource group name.
-     * @param top Maximum number of records to return.
+     * @param top Maximum number of records to returned, paginated for top greater than 1000.
      * @param orderBy Ordering expression using OData notation. One or more comma-separated column names with an
      *     optional "desc" (the default) or "asc", e.g. "$orderby=PolicyAssignmentId, ResourceId asc".
      * @param select Select expression using OData notation. Limits the columns on each record to just those requested,
@@ -235,7 +235,7 @@ public interface PolicyStatesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return query results.
+     * @return query results as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<PolicyStateInner> listQueryResultsForResourceGroup(
@@ -270,7 +270,7 @@ public interface PolicyStatesClient {
      *
      * @param subscriptionId Microsoft Azure subscription ID.
      * @param resourceGroupName Resource group name.
-     * @param top Maximum number of records to return.
+     * @param top Maximum number of records to returned, paginated for top greater than 1000.
      * @param from ISO 8601 formatted timestamp specifying the start time of the interval to query. When not specified,
      *     the service uses ($to - 1-day).
      * @param to ISO 8601 formatted timestamp specifying the end time of the interval to query. When not specified, the
@@ -280,7 +280,7 @@ public interface PolicyStatesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return summarize action results.
+     * @return summarize action results along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<SummarizeResultsInner> summarizeForResourceGroupWithResponse(
@@ -301,7 +301,7 @@ public interface PolicyStatesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return query results.
+     * @return query results as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<PolicyStateInner> listQueryResultsForResource(
@@ -313,7 +313,7 @@ public interface PolicyStatesClient {
      * @param policyStatesResource The virtual resource under PolicyStates resource type. In a given time range,
      *     'latest' represents the latest policy state(s), whereas 'default' represents all policy state(s).
      * @param resourceId Resource ID.
-     * @param top Maximum number of records to return.
+     * @param top Maximum number of records to returned, paginated for top greater than 1000.
      * @param orderBy Ordering expression using OData notation. One or more comma-separated column names with an
      *     optional "desc" (the default) or "asc", e.g. "$orderby=PolicyAssignmentId, ResourceId asc".
      * @param select Select expression using OData notation. Limits the columns on each record to just those requested,
@@ -331,7 +331,7 @@ public interface PolicyStatesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return query results.
+     * @return query results as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<PolicyStateInner> listQueryResultsForResource(
@@ -364,7 +364,7 @@ public interface PolicyStatesClient {
      * Summarizes policy states for the resource.
      *
      * @param resourceId Resource ID.
-     * @param top Maximum number of records to return.
+     * @param top Maximum number of records to returned, paginated for top greater than 1000.
      * @param from ISO 8601 formatted timestamp specifying the start time of the interval to query. When not specified,
      *     the service uses ($to - 1-day).
      * @param to ISO 8601 formatted timestamp specifying the end time of the interval to query. When not specified, the
@@ -374,7 +374,7 @@ public interface PolicyStatesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return summarize action results.
+     * @return summarize action results along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<SummarizeResultsInner> summarizeForResourceWithResponse(
@@ -387,7 +387,7 @@ public interface PolicyStatesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the completion.
+     * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<Void>, Void> beginTriggerSubscriptionEvaluation(String subscriptionId);
@@ -400,7 +400,7 @@ public interface PolicyStatesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the completion.
+     * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<Void>, Void> beginTriggerSubscriptionEvaluation(String subscriptionId, Context context);
@@ -436,7 +436,7 @@ public interface PolicyStatesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the completion.
+     * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<Void>, Void> beginTriggerResourceGroupEvaluation(
@@ -451,7 +451,7 @@ public interface PolicyStatesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the completion.
+     * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<Void>, Void> beginTriggerResourceGroupEvaluation(
@@ -492,7 +492,7 @@ public interface PolicyStatesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return query results.
+     * @return query results as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<PolicyStateInner> listQueryResultsForPolicySetDefinition(
@@ -505,7 +505,7 @@ public interface PolicyStatesClient {
      *     'latest' represents the latest policy state(s), whereas 'default' represents all policy state(s).
      * @param subscriptionId Microsoft Azure subscription ID.
      * @param policySetDefinitionName Policy set definition name.
-     * @param top Maximum number of records to return.
+     * @param top Maximum number of records to returned, paginated for top greater than 1000.
      * @param orderBy Ordering expression using OData notation. One or more comma-separated column names with an
      *     optional "desc" (the default) or "asc", e.g. "$orderby=PolicyAssignmentId, ResourceId asc".
      * @param select Select expression using OData notation. Limits the columns on each record to just those requested,
@@ -522,7 +522,7 @@ public interface PolicyStatesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return query results.
+     * @return query results as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<PolicyStateInner> listQueryResultsForPolicySetDefinition(
@@ -557,7 +557,7 @@ public interface PolicyStatesClient {
      *
      * @param subscriptionId Microsoft Azure subscription ID.
      * @param policySetDefinitionName Policy set definition name.
-     * @param top Maximum number of records to return.
+     * @param top Maximum number of records to returned, paginated for top greater than 1000.
      * @param from ISO 8601 formatted timestamp specifying the start time of the interval to query. When not specified,
      *     the service uses ($to - 1-day).
      * @param to ISO 8601 formatted timestamp specifying the end time of the interval to query. When not specified, the
@@ -567,7 +567,7 @@ public interface PolicyStatesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return summarize action results.
+     * @return summarize action results along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<SummarizeResultsInner> summarizeForPolicySetDefinitionWithResponse(
@@ -589,7 +589,7 @@ public interface PolicyStatesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return query results.
+     * @return query results as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<PolicyStateInner> listQueryResultsForPolicyDefinition(
@@ -602,7 +602,7 @@ public interface PolicyStatesClient {
      *     'latest' represents the latest policy state(s), whereas 'default' represents all policy state(s).
      * @param subscriptionId Microsoft Azure subscription ID.
      * @param policyDefinitionName Policy definition name.
-     * @param top Maximum number of records to return.
+     * @param top Maximum number of records to returned, paginated for top greater than 1000.
      * @param orderBy Ordering expression using OData notation. One or more comma-separated column names with an
      *     optional "desc" (the default) or "asc", e.g. "$orderby=PolicyAssignmentId, ResourceId asc".
      * @param select Select expression using OData notation. Limits the columns on each record to just those requested,
@@ -619,7 +619,7 @@ public interface PolicyStatesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return query results.
+     * @return query results as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<PolicyStateInner> listQueryResultsForPolicyDefinition(
@@ -654,7 +654,7 @@ public interface PolicyStatesClient {
      *
      * @param subscriptionId Microsoft Azure subscription ID.
      * @param policyDefinitionName Policy definition name.
-     * @param top Maximum number of records to return.
+     * @param top Maximum number of records to returned, paginated for top greater than 1000.
      * @param from ISO 8601 formatted timestamp specifying the start time of the interval to query. When not specified,
      *     the service uses ($to - 1-day).
      * @param to ISO 8601 formatted timestamp specifying the end time of the interval to query. When not specified, the
@@ -664,7 +664,7 @@ public interface PolicyStatesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return summarize action results.
+     * @return summarize action results along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<SummarizeResultsInner> summarizeForPolicyDefinitionWithResponse(
@@ -686,7 +686,7 @@ public interface PolicyStatesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return query results.
+     * @return query results as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<PolicyStateInner> listQueryResultsForSubscriptionLevelPolicyAssignment(
@@ -699,7 +699,7 @@ public interface PolicyStatesClient {
      *     'latest' represents the latest policy state(s), whereas 'default' represents all policy state(s).
      * @param subscriptionId Microsoft Azure subscription ID.
      * @param policyAssignmentName Policy assignment name.
-     * @param top Maximum number of records to return.
+     * @param top Maximum number of records to returned, paginated for top greater than 1000.
      * @param orderBy Ordering expression using OData notation. One or more comma-separated column names with an
      *     optional "desc" (the default) or "asc", e.g. "$orderby=PolicyAssignmentId, ResourceId asc".
      * @param select Select expression using OData notation. Limits the columns on each record to just those requested,
@@ -716,7 +716,7 @@ public interface PolicyStatesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return query results.
+     * @return query results as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<PolicyStateInner> listQueryResultsForSubscriptionLevelPolicyAssignment(
@@ -752,7 +752,7 @@ public interface PolicyStatesClient {
      *
      * @param subscriptionId Microsoft Azure subscription ID.
      * @param policyAssignmentName Policy assignment name.
-     * @param top Maximum number of records to return.
+     * @param top Maximum number of records to returned, paginated for top greater than 1000.
      * @param from ISO 8601 formatted timestamp specifying the start time of the interval to query. When not specified,
      *     the service uses ($to - 1-day).
      * @param to ISO 8601 formatted timestamp specifying the end time of the interval to query. When not specified, the
@@ -762,7 +762,7 @@ public interface PolicyStatesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return summarize action results.
+     * @return summarize action results along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<SummarizeResultsInner> summarizeForSubscriptionLevelPolicyAssignmentWithResponse(
@@ -785,7 +785,7 @@ public interface PolicyStatesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return query results.
+     * @return query results as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<PolicyStateInner> listQueryResultsForResourceGroupLevelPolicyAssignment(
@@ -802,7 +802,7 @@ public interface PolicyStatesClient {
      * @param subscriptionId Microsoft Azure subscription ID.
      * @param resourceGroupName Resource group name.
      * @param policyAssignmentName Policy assignment name.
-     * @param top Maximum number of records to return.
+     * @param top Maximum number of records to returned, paginated for top greater than 1000.
      * @param orderBy Ordering expression using OData notation. One or more comma-separated column names with an
      *     optional "desc" (the default) or "asc", e.g. "$orderby=PolicyAssignmentId, ResourceId asc".
      * @param select Select expression using OData notation. Limits the columns on each record to just those requested,
@@ -819,7 +819,7 @@ public interface PolicyStatesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return query results.
+     * @return query results as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<PolicyStateInner> listQueryResultsForResourceGroupLevelPolicyAssignment(
@@ -858,7 +858,7 @@ public interface PolicyStatesClient {
      * @param subscriptionId Microsoft Azure subscription ID.
      * @param resourceGroupName Resource group name.
      * @param policyAssignmentName Policy assignment name.
-     * @param top Maximum number of records to return.
+     * @param top Maximum number of records to returned, paginated for top greater than 1000.
      * @param from ISO 8601 formatted timestamp specifying the start time of the interval to query. When not specified,
      *     the service uses ($to - 1-day).
      * @param to ISO 8601 formatted timestamp specifying the end time of the interval to query. When not specified, the
@@ -868,7 +868,7 @@ public interface PolicyStatesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return summarize action results.
+     * @return summarize action results along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<SummarizeResultsInner> summarizeForResourceGroupLevelPolicyAssignmentWithResponse(

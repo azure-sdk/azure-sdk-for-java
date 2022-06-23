@@ -10,7 +10,7 @@ import java.time.OffsetDateTime;
 /** Samples for PolicyEvents ListQueryResultsForSubscription. */
 public final class PolicyEventsListQueryResultsForSubscriptionSamples {
     /*
-     * x-ms-original-file: specification/policyinsights/resource-manager/Microsoft.PolicyInsights/stable/2019-10-01/examples/PolicyEvents_TimeRangeSortSelectTop.json
+     * x-ms-original-file: specification/policyinsights/resource-manager/Microsoft.PolicyInsights/stable/2022-06-01/examples/PolicyEvents_TimeRangeSortSelectTop.json
      */
     /**
      * Sample code: Time range; sort, select and limit.
@@ -35,7 +35,7 @@ public final class PolicyEventsListQueryResultsForSubscriptionSamples {
     }
 
     /*
-     * x-ms-original-file: specification/policyinsights/resource-manager/Microsoft.PolicyInsights/stable/2019-10-01/examples/PolicyEvents_FilterAndAggregateOnly.json
+     * x-ms-original-file: specification/policyinsights/resource-manager/Microsoft.PolicyInsights/stable/2022-06-01/examples/PolicyEvents_FilterAndAggregateOnly.json
      */
     /**
      * Sample code: Filter and aggregate only.
@@ -59,7 +59,7 @@ public final class PolicyEventsListQueryResultsForSubscriptionSamples {
     }
 
     /*
-     * x-ms-original-file: specification/policyinsights/resource-manager/Microsoft.PolicyInsights/stable/2019-10-01/examples/PolicyEvents_FilterAndGroupByWithoutAggregate.json
+     * x-ms-original-file: specification/policyinsights/resource-manager/Microsoft.PolicyInsights/stable/2022-06-01/examples/PolicyEvents_FilterAndGroupByWithoutAggregate.json
      */
     /**
      * Sample code: Filter and group without aggregate.
@@ -84,7 +84,7 @@ public final class PolicyEventsListQueryResultsForSubscriptionSamples {
     }
 
     /*
-     * x-ms-original-file: specification/policyinsights/resource-manager/Microsoft.PolicyInsights/stable/2019-10-01/examples/PolicyEvents_QuerySubscriptionScopeNextLink.json
+     * x-ms-original-file: specification/policyinsights/resource-manager/Microsoft.PolicyInsights/stable/2022-06-01/examples/PolicyEvents_QuerySubscriptionScopeNextLink.json
      */
     /**
      * Sample code: Query at subscription scope with next link.
@@ -109,7 +109,7 @@ public final class PolicyEventsListQueryResultsForSubscriptionSamples {
     }
 
     /*
-     * x-ms-original-file: specification/policyinsights/resource-manager/Microsoft.PolicyInsights/stable/2019-10-01/examples/PolicyEvents_FilterAndMultipleGroups.json
+     * x-ms-original-file: specification/policyinsights/resource-manager/Microsoft.PolicyInsights/stable/2022-06-01/examples/PolicyEvents_FilterAndMultipleGroups.json
      */
     /**
      * Sample code: Filter and multiple groups.
@@ -134,7 +134,7 @@ public final class PolicyEventsListQueryResultsForSubscriptionSamples {
     }
 
     /*
-     * x-ms-original-file: specification/policyinsights/resource-manager/Microsoft.PolicyInsights/stable/2019-10-01/examples/PolicyEvents_FilterAndGroupByWithAggregate.json
+     * x-ms-original-file: specification/policyinsights/resource-manager/Microsoft.PolicyInsights/stable/2022-06-01/examples/PolicyEvents_FilterAndGroupByWithAggregate.json
      */
     /**
      * Sample code: Filter and group with aggregate.
@@ -160,7 +160,7 @@ public final class PolicyEventsListQueryResultsForSubscriptionSamples {
     }
 
     /*
-     * x-ms-original-file: specification/policyinsights/resource-manager/Microsoft.PolicyInsights/stable/2019-10-01/examples/PolicyEvents_QuerySubscriptionScope.json
+     * x-ms-original-file: specification/policyinsights/resource-manager/Microsoft.PolicyInsights/stable/2022-06-01/examples/PolicyEvents_QuerySubscriptionScope.json
      */
     /**
      * Sample code: Query at subscription scope.

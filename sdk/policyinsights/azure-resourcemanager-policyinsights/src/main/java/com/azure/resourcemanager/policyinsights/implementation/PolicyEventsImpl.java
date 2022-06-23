@@ -11,11 +11,10 @@ import com.azure.resourcemanager.policyinsights.fluent.PolicyEventsClient;
 import com.azure.resourcemanager.policyinsights.fluent.models.PolicyEventInner;
 import com.azure.resourcemanager.policyinsights.models.PolicyEvent;
 import com.azure.resourcemanager.policyinsights.models.PolicyEvents;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.time.OffsetDateTime;
 
 public final class PolicyEventsImpl implements PolicyEvents {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(PolicyEventsImpl.class);
+    private static final ClientLogger LOGGER = new ClientLogger(PolicyEventsImpl.class);
 
     private final PolicyEventsClient innerClient;
 

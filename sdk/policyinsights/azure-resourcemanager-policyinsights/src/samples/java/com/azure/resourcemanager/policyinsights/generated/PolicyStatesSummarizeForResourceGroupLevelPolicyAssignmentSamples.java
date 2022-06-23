@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for PolicyStates SummarizeForResourceGroupLevelPolicyAssignment. */
 public final class PolicyStatesSummarizeForResourceGroupLevelPolicyAssignmentSamples {
     /*
-     * x-ms-original-file: specification/policyinsights/resource-manager/Microsoft.PolicyInsights/stable/2019-10-01/examples/PolicyStates_SummarizeResourceGroupLevelPolicyAssignmentScope.json
+     * x-ms-original-file: specification/policyinsights/resource-manager/Microsoft.PolicyInsights/stable/2022-06-01/examples/PolicyStates_SummarizeResourceGroupLevelPolicyAssignmentScope.json
      */
     /**
      * Sample code: Summarize at policy assignment scope.

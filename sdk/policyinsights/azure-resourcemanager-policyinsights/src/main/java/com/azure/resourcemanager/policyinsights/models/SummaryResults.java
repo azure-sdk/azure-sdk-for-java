@@ -5,16 +5,12 @@
 package com.azure.resourcemanager.policyinsights.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** Compliance summary on a particular summary level. */
 @Fluent
 public final class SummaryResults {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(SummaryResults.class);
-
     /*
      * HTTP POST URI for queryResults action on Microsoft.PolicyInsights to
      * retrieve raw results for the compliance summary. This property will not

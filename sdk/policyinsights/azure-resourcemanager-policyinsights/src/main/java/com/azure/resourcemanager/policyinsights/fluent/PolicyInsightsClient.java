@@ -10,18 +10,18 @@ import java.time.Duration;
 /** The interface for PolicyInsightsClient class. */
 public interface PolicyInsightsClient {
     /**
-     * Gets Microsoft Azure subscription ID.
-     *
-     * @return the subscriptionId value.
-     */
-    String getSubscriptionId();
-
-    /**
      * Gets server parameter.
      *
      * @return the endpoint value.
      */
     String getEndpoint();
+
+    /**
+     * Gets Api Version.
+     *
+     * @return the apiVersion value.
+     */
+    String getApiVersion();
 
     /**
      * Gets The HTTP pipeline to send requests through.
@@ -36,20 +36,6 @@ public interface PolicyInsightsClient {
      * @return the defaultPollInterval value.
      */
     Duration getDefaultPollInterval();
-
-    /**
-     * Gets the PolicyTrackedResourcesClient object to access its operations.
-     *
-     * @return the PolicyTrackedResourcesClient object.
-     */
-    PolicyTrackedResourcesClient getPolicyTrackedResources();
-
-    /**
-     * Gets the RemediationsClient object to access its operations.
-     *
-     * @return the RemediationsClient object.
-     */
-    RemediationsClient getRemediations();
 
     /**
      * Gets the PolicyEventsClient object to access its operations.
@@ -71,25 +57,4 @@ public interface PolicyInsightsClient {
      * @return the OperationsClient object.
      */
     OperationsClient getOperations();
-
-    /**
-     * Gets the PolicyMetadatasClient object to access its operations.
-     *
-     * @return the PolicyMetadatasClient object.
-     */
-    PolicyMetadatasClient getPolicyMetadatas();
-
-    /**
-     * Gets the PolicyRestrictionsClient object to access its operations.
-     *
-     * @return the PolicyRestrictionsClient object.
-     */
-    PolicyRestrictionsClient getPolicyRestrictions();
-
-    /**
-     * Gets the AttestationsClient object to access its operations.
-     *
-     * @return the AttestationsClient object.
-     */
-    AttestationsClient getAttestations();
 }

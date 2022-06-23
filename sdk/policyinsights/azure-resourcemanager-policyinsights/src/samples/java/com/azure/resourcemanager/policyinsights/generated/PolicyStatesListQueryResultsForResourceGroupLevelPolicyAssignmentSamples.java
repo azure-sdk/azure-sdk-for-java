@@ -10,7 +10,7 @@ import com.azure.resourcemanager.policyinsights.models.PolicyStatesResource;
 /** Samples for PolicyStates ListQueryResultsForResourceGroupLevelPolicyAssignment. */
 public final class PolicyStatesListQueryResultsForResourceGroupLevelPolicyAssignmentSamples {
     /*
-     * x-ms-original-file: specification/policyinsights/resource-manager/Microsoft.PolicyInsights/stable/2019-10-01/examples/PolicyStates_QueryResourceGroupLevelPolicyAssignmentScopeNextLink.json
+     * x-ms-original-file: specification/policyinsights/resource-manager/Microsoft.PolicyInsights/stable/2022-06-01/examples/PolicyStates_QueryResourceGroupLevelPolicyAssignmentScopeNextLink.json
      */
     /**
      * Sample code: Query latest at resource group level policy assignment scope with next link.
@@ -38,7 +38,7 @@ public final class PolicyStatesListQueryResultsForResourceGroupLevelPolicyAssign
     }
 
     /*
-     * x-ms-original-file: specification/policyinsights/resource-manager/Microsoft.PolicyInsights/stable/2019-10-01/examples/PolicyStates_QueryResourceGroupLevelPolicyAssignmentScope.json
+     * x-ms-original-file: specification/policyinsights/resource-manager/Microsoft.PolicyInsights/stable/2022-06-01/examples/PolicyStates_QueryResourceGroupLevelPolicyAssignmentScope.json
      */
     /**
      * Sample code: Query latest at resource group level policy assignment scope.

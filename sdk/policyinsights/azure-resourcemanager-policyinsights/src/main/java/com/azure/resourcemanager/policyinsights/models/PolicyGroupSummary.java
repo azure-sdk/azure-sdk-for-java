@@ -5,15 +5,11 @@
 package com.azure.resourcemanager.policyinsights.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Policy definition group summary. */
 @Fluent
 public final class PolicyGroupSummary {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(PolicyGroupSummary.class);
-
     /*
      * Policy group name.
      */
