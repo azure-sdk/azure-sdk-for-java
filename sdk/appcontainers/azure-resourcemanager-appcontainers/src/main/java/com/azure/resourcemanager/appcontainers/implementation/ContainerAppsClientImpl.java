@@ -174,7 +174,7 @@ public final class ContainerAppsClientImpl implements ContainerAppsClient {
         @Post(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/containerApps"
                 + "/{containerAppName}/listSecrets")
-        @ExpectedResponses({200})
+        @ExpectedResponses({200, 204})
         @UnexpectedResponseExceptionType(DefaultErrorResponseErrorException.class)
         Mono<Response<SecretsCollectionInner>> listSecrets(
             @HostParam("$host") String endpoint,
