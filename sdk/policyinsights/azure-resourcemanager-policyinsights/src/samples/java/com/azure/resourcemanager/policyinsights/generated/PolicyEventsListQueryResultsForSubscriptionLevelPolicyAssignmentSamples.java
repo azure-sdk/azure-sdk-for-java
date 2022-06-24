@@ -5,11 +5,12 @@
 package com.azure.resourcemanager.policyinsights.generated;
 
 import com.azure.core.util.Context;
+import com.azure.resourcemanager.policyinsights.models.PolicyEventsResourceType;
 
 /** Samples for PolicyEvents ListQueryResultsForSubscriptionLevelPolicyAssignment. */
 public final class PolicyEventsListQueryResultsForSubscriptionLevelPolicyAssignmentSamples {
     /*
-     * x-ms-original-file: specification/policyinsights/resource-manager/Microsoft.PolicyInsights/stable/2019-10-01/examples/PolicyEvents_QuerySubscriptionLevelPolicyAssignmentScope.json
+     * x-ms-original-file: specification/policyinsights/resource-manager/Microsoft.PolicyInsights/stable/2022-06-01/examples/PolicyEvents_QuerySubscriptionLevelPolicyAssignmentScope.json
      */
     /**
      * Sample code: Query at subscription level policy assignment scope.
@@ -21,6 +22,7 @@ public final class PolicyEventsListQueryResultsForSubscriptionLevelPolicyAssignm
         manager
             .policyEvents()
             .listQueryResultsForSubscriptionLevelPolicyAssignment(
+                PolicyEventsResourceType.DEFAULT,
                 "fffedd8f-ffff-fffd-fffd-fffed2f84852",
                 "ec8f9645-8ecb-4abb-9c0b-5292f19d4003",
                 null,
@@ -35,7 +37,7 @@ public final class PolicyEventsListQueryResultsForSubscriptionLevelPolicyAssignm
     }
 
     /*
-     * x-ms-original-file: specification/policyinsights/resource-manager/Microsoft.PolicyInsights/stable/2019-10-01/examples/PolicyEvents_QuerySubscriptionLevelPolicyAssignmentScopeNextLink.json
+     * x-ms-original-file: specification/policyinsights/resource-manager/Microsoft.PolicyInsights/stable/2022-06-01/examples/PolicyEvents_QuerySubscriptionLevelPolicyAssignmentScopeNextLink.json
      */
     /**
      * Sample code: Query at subscription level policy assignment scope with next link.
@@ -47,6 +49,7 @@ public final class PolicyEventsListQueryResultsForSubscriptionLevelPolicyAssignm
         manager
             .policyEvents()
             .listQueryResultsForSubscriptionLevelPolicyAssignment(
+                PolicyEventsResourceType.DEFAULT,
                 "fffedd8f-ffff-fffd-fffd-fffed2f84852",
                 "ec8f9645-8ecb-4abb-9c0b-5292f19d4003",
                 null,

@@ -13,10 +13,9 @@ import com.azure.resourcemanager.policyinsights.fluent.AttestationsClient;
 import com.azure.resourcemanager.policyinsights.fluent.models.AttestationInner;
 import com.azure.resourcemanager.policyinsights.models.Attestation;
 import com.azure.resourcemanager.policyinsights.models.Attestations;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public final class AttestationsImpl implements Attestations {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(AttestationsImpl.class);
+    private static final ClientLogger LOGGER = new ClientLogger(AttestationsImpl.class);
 
     private final AttestationsClient innerClient;
 
@@ -197,7 +196,7 @@ public final class AttestationsImpl implements Attestations {
     public Attestation getById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -205,7 +204,7 @@ public final class AttestationsImpl implements Attestations {
         }
         String attestationName = Utils.getValueFromIdByName(id, "attestations");
         if (attestationName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'attestations'.", id)));
@@ -216,7 +215,7 @@ public final class AttestationsImpl implements Attestations {
     public Response<Attestation> getByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -224,7 +223,7 @@ public final class AttestationsImpl implements Attestations {
         }
         String attestationName = Utils.getValueFromIdByName(id, "attestations");
         if (attestationName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'attestations'.", id)));
@@ -235,7 +234,7 @@ public final class AttestationsImpl implements Attestations {
     public void deleteById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -243,7 +242,7 @@ public final class AttestationsImpl implements Attestations {
         }
         String attestationName = Utils.getValueFromIdByName(id, "attestations");
         if (attestationName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'attestations'.", id)));
@@ -254,7 +253,7 @@ public final class AttestationsImpl implements Attestations {
     public Response<Void> deleteByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -262,7 +261,7 @@ public final class AttestationsImpl implements Attestations {
         }
         String attestationName = Utils.getValueFromIdByName(id, "attestations");
         if (attestationName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'attestations'.", id)));

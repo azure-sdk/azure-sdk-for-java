@@ -5,11 +5,12 @@
 package com.azure.resourcemanager.policyinsights.generated;
 
 import com.azure.core.util.Context;
+import com.azure.resourcemanager.policyinsights.models.PolicyEventsResourceType;
 
 /** Samples for PolicyEvents ListQueryResultsForResourceGroupLevelPolicyAssignment. */
 public final class PolicyEventsListQueryResultsForResourceGroupLevelPolicyAssignmentSamples {
     /*
-     * x-ms-original-file: specification/policyinsights/resource-manager/Microsoft.PolicyInsights/stable/2019-10-01/examples/PolicyEvents_QueryResourceGroupLevelPolicyAssignmentScope.json
+     * x-ms-original-file: specification/policyinsights/resource-manager/Microsoft.PolicyInsights/stable/2022-06-01/examples/PolicyEvents_QueryResourceGroupLevelPolicyAssignmentScope.json
      */
     /**
      * Sample code: Query at resource group level policy assignment scope.
@@ -21,6 +22,7 @@ public final class PolicyEventsListQueryResultsForResourceGroupLevelPolicyAssign
         manager
             .policyEvents()
             .listQueryResultsForResourceGroupLevelPolicyAssignment(
+                PolicyEventsResourceType.DEFAULT,
                 "fffedd8f-ffff-fffd-fffd-fffed2f84852",
                 "myResourceGroup",
                 "myPolicyAssignment",
@@ -36,7 +38,7 @@ public final class PolicyEventsListQueryResultsForResourceGroupLevelPolicyAssign
     }
 
     /*
-     * x-ms-original-file: specification/policyinsights/resource-manager/Microsoft.PolicyInsights/stable/2019-10-01/examples/PolicyEvents_QueryResourceGroupLevelPolicyAssignmentScopeNextLink.json
+     * x-ms-original-file: specification/policyinsights/resource-manager/Microsoft.PolicyInsights/stable/2022-06-01/examples/PolicyEvents_QueryResourceGroupLevelPolicyAssignmentScopeNextLink.json
      */
     /**
      * Sample code: Query at resource group level policy assignment scope with next link.
@@ -48,6 +50,7 @@ public final class PolicyEventsListQueryResultsForResourceGroupLevelPolicyAssign
         manager
             .policyEvents()
             .listQueryResultsForResourceGroupLevelPolicyAssignment(
+                PolicyEventsResourceType.DEFAULT,
                 "fffedd8f-ffff-fffd-fffd-fffed2f84852",
                 "myResourceGroup",
                 "myPolicyAssignment",

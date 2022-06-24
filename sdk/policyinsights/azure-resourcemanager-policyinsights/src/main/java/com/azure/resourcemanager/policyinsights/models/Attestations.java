@@ -16,7 +16,7 @@ public interface Attestations {
      *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all attestations for the subscription.
+     * @return all attestations for the subscription as paginated response with {@link PagedIterable}.
      */
     PagedIterable<Attestation> list();
 
@@ -29,7 +29,7 @@ public interface Attestations {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all attestations for the subscription.
+     * @return all attestations for the subscription as paginated response with {@link PagedIterable}.
      */
     PagedIterable<Attestation> list(Integer top, String filter, Context context);
 
@@ -77,7 +77,7 @@ public interface Attestations {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an existing attestation at subscription scope.
+     * @return an existing attestation at subscription scope along with {@link Response}.
      */
     Response<Attestation> getAtSubscriptionWithResponse(String attestationName, Context context);
 
@@ -99,7 +99,7 @@ public interface Attestations {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
+     * @return the {@link Response}.
      */
     Response<Void> deleteAtSubscriptionWithResponse(String attestationName, Context context);
 
@@ -110,7 +110,7 @@ public interface Attestations {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all attestations for the resource group.
+     * @return all attestations for the resource group as paginated response with {@link PagedIterable}.
      */
     PagedIterable<Attestation> listByResourceGroup(String resourceGroupName);
 
@@ -124,7 +124,7 @@ public interface Attestations {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all attestations for the resource group.
+     * @return all attestations for the resource group as paginated response with {@link PagedIterable}.
      */
     PagedIterable<Attestation> listByResourceGroup(
         String resourceGroupName, Integer top, String filter, Context context);
@@ -150,7 +150,7 @@ public interface Attestations {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an existing attestation at resource group scope.
+     * @return an existing attestation at resource group scope along with {@link Response}.
      */
     Response<Attestation> getByResourceGroupWithResponse(
         String resourceGroupName, String attestationName, Context context);
@@ -175,7 +175,7 @@ public interface Attestations {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
+     * @return the {@link Response}.
      */
     Response<Void> deleteWithResponse(String resourceGroupName, String attestationName, Context context);
 
@@ -186,7 +186,7 @@ public interface Attestations {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all attestations for a resource.
+     * @return all attestations for a resource as paginated response with {@link PagedIterable}.
      */
     PagedIterable<Attestation> listForResource(String resourceId);
 
@@ -200,7 +200,7 @@ public interface Attestations {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all attestations for a resource.
+     * @return all attestations for a resource as paginated response with {@link PagedIterable}.
      */
     PagedIterable<Attestation> listForResource(String resourceId, Integer top, String filter, Context context);
 
@@ -253,7 +253,7 @@ public interface Attestations {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an existing attestation at resource scope.
+     * @return an existing attestation at resource scope along with {@link Response}.
      */
     Response<Attestation> getAtResourceWithResponse(String resourceId, String attestationName, Context context);
 
@@ -277,7 +277,7 @@ public interface Attestations {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
+     * @return the {@link Response}.
      */
     Response<Void> deleteAtResourceWithResponse(String resourceId, String attestationName, Context context);
 
@@ -288,7 +288,7 @@ public interface Attestations {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an existing attestation at resource group scope.
+     * @return an existing attestation at resource group scope along with {@link Response}.
      */
     Attestation getById(String id);
 
@@ -300,7 +300,7 @@ public interface Attestations {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an existing attestation at resource group scope.
+     * @return an existing attestation at resource group scope along with {@link Response}.
      */
     Response<Attestation> getByIdWithResponse(String id, Context context);
 
@@ -322,7 +322,7 @@ public interface Attestations {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
+     * @return the {@link Response}.
      */
     Response<Void> deleteByIdWithResponse(String id, Context context);
 

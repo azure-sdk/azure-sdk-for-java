@@ -76,6 +76,10 @@ public final class AttestationImpl implements Attestation, Attestation.Definitio
         return this.innerModel().lastComplianceStateChangeAt();
     }
 
+    public String resourceGroupName() {
+        return resourceGroupName;
+    }
+
     public AttestationInner innerModel() {
         return this.innerObject;
     }

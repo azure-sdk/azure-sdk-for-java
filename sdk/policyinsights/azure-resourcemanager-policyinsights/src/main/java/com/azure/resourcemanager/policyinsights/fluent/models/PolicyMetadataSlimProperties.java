@@ -5,15 +5,11 @@
 package com.azure.resourcemanager.policyinsights.fluent.models;
 
 import com.azure.core.annotation.Immutable;
-import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** The properties of the policy metadata, excluding properties containing large strings. */
 @Immutable
 public class PolicyMetadataSlimProperties {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(PolicyMetadataSlimProperties.class);
-
     /*
      * The policy metadata identifier.
      */

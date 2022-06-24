@@ -5,15 +5,11 @@
 package com.azure.resourcemanager.policyinsights.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** The remediation failure threshold settings. */
 @Fluent
 public final class RemediationPropertiesFailureThreshold {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(RemediationPropertiesFailureThreshold.class);
-
     /*
      * A number between 0.0 to 1.0 representing the percentage failure
      * threshold. The remediation will fail if the percentage of failed

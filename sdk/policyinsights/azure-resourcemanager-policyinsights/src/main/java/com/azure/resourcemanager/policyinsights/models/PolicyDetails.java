@@ -5,15 +5,11 @@
 package com.azure.resourcemanager.policyinsights.models;
 
 import com.azure.core.annotation.Immutable;
-import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** The policy details. */
 @Immutable
 public final class PolicyDetails {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(PolicyDetails.class);
-
     /*
      * The ID of the policy definition.
      */

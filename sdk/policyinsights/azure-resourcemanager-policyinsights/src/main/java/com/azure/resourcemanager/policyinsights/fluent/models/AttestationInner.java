@@ -10,7 +10,6 @@ import com.azure.core.management.SystemData;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.policyinsights.models.AttestationEvidence;
 import com.azure.resourcemanager.policyinsights.models.ComplianceState;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 import java.util.List;
@@ -18,8 +17,6 @@ import java.util.List;
 /** An attestation resource. */
 @Fluent
 public final class AttestationInner extends ProxyResource {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(AttestationInner.class);
-
     /*
      * Properties for the attestation.
      */
@@ -247,7 +244,7 @@ public final class AttestationInner extends ProxyResource {
      */
     public void validate() {
         if (innerProperties() == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property innerProperties in model AttestationInner"));
@@ -255,4 +252,6 @@ public final class AttestationInner extends ProxyResource {
             innerProperties().validate();
         }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(AttestationInner.class);
 }

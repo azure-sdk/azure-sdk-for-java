@@ -5,15 +5,11 @@
 package com.azure.resourcemanager.policyinsights.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Evaluation details of IfNotExists effect. */
 @Fluent
 public final class IfNotExistsEvaluationDetails {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(IfNotExistsEvaluationDetails.class);
-
     /*
      * ID of the last evaluated resource for IfNotExists effect.
      */

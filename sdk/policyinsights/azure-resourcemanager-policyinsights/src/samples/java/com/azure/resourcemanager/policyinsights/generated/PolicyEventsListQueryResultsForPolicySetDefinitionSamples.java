@@ -5,11 +5,12 @@
 package com.azure.resourcemanager.policyinsights.generated;
 
 import com.azure.core.util.Context;
+import com.azure.resourcemanager.policyinsights.models.PolicyEventsResourceType;
 
 /** Samples for PolicyEvents ListQueryResultsForPolicySetDefinition. */
 public final class PolicyEventsListQueryResultsForPolicySetDefinitionSamples {
     /*
-     * x-ms-original-file: specification/policyinsights/resource-manager/Microsoft.PolicyInsights/stable/2019-10-01/examples/PolicyEvents_QuerySubscriptionLevelPolicySetDefinitionScope.json
+     * x-ms-original-file: specification/policyinsights/resource-manager/Microsoft.PolicyInsights/stable/2022-06-01/examples/PolicyEvents_QuerySubscriptionLevelPolicySetDefinitionScope.json
      */
     /**
      * Sample code: Query at subscription level policy set definition scope.
@@ -21,6 +22,7 @@ public final class PolicyEventsListQueryResultsForPolicySetDefinitionSamples {
         manager
             .policyEvents()
             .listQueryResultsForPolicySetDefinition(
+                PolicyEventsResourceType.DEFAULT,
                 "fffedd8f-ffff-fffd-fffd-fffed2f84852",
                 "3e3807c1-65c9-49e0-a406-82d8ae3e338c",
                 null,
@@ -35,7 +37,7 @@ public final class PolicyEventsListQueryResultsForPolicySetDefinitionSamples {
     }
 
     /*
-     * x-ms-original-file: specification/policyinsights/resource-manager/Microsoft.PolicyInsights/stable/2019-10-01/examples/PolicyEvents_QuerySubscriptionLevelPolicySetDefinitionScopeNextLink.json
+     * x-ms-original-file: specification/policyinsights/resource-manager/Microsoft.PolicyInsights/stable/2022-06-01/examples/PolicyEvents_QuerySubscriptionLevelPolicySetDefinitionScopeNextLink.json
      */
     /**
      * Sample code: Query at subscription level policy set definition scope with next link.
@@ -47,6 +49,7 @@ public final class PolicyEventsListQueryResultsForPolicySetDefinitionSamples {
         manager
             .policyEvents()
             .listQueryResultsForPolicySetDefinition(
+                PolicyEventsResourceType.DEFAULT,
                 "fffedd8f-ffff-fffd-fffd-fffed2f84852",
                 "3e3807c1-65c9-49e0-a406-82d8ae3e338c",
                 null,

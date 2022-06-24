@@ -30,7 +30,11 @@ public final class FieldRestrictionResult extends ExpandableStringEnum<FieldRest
         return fromString(name, FieldRestrictionResult.class);
     }
 
-    /** @return known FieldRestrictionResult values. */
+    /**
+     * Gets known FieldRestrictionResult values.
+     *
+     * @return known FieldRestrictionResult values.
+     */
     public static Collection<FieldRestrictionResult> values() {
         return values(FieldRestrictionResult.class);
     }

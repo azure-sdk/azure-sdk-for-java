@@ -5,11 +5,12 @@
 package com.azure.resourcemanager.policyinsights.generated;
 
 import com.azure.core.util.Context;
+import com.azure.resourcemanager.policyinsights.models.PolicyEventsResourceType;
 
 /** Samples for PolicyEvents ListQueryResultsForResource. */
 public final class PolicyEventsListQueryResultsForResourceSamples {
     /*
-     * x-ms-original-file: specification/policyinsights/resource-manager/Microsoft.PolicyInsights/stable/2019-10-01/examples/PolicyEvents_QuerySubscriptionLevelResourceScope.json
+     * x-ms-original-file: specification/policyinsights/resource-manager/Microsoft.PolicyInsights/stable/2022-06-01/examples/PolicyEvents_QuerySubscriptionLevelResourceScope.json
      */
     /**
      * Sample code: Query at subscription level resource scope.
@@ -21,6 +22,7 @@ public final class PolicyEventsListQueryResultsForResourceSamples {
         manager
             .policyEvents()
             .listQueryResultsForResource(
+                PolicyEventsResourceType.DEFAULT,
                 "subscriptions/fff10b27-fff3-fff5-fff8-fffbe01e86a5/providers/Microsoft.SomeNamespace/someResourceType/someResourceName",
                 null,
                 null,
@@ -35,7 +37,7 @@ public final class PolicyEventsListQueryResultsForResourceSamples {
     }
 
     /*
-     * x-ms-original-file: specification/policyinsights/resource-manager/Microsoft.PolicyInsights/stable/2019-10-01/examples/PolicyEvents_QueryNestedResourceScope.json
+     * x-ms-original-file: specification/policyinsights/resource-manager/Microsoft.PolicyInsights/stable/2022-06-01/examples/PolicyEvents_QueryNestedResourceScope.json
      */
     /**
      * Sample code: Query at nested resource scope.
@@ -47,6 +49,7 @@ public final class PolicyEventsListQueryResultsForResourceSamples {
         manager
             .policyEvents()
             .listQueryResultsForResource(
+                PolicyEventsResourceType.DEFAULT,
                 "subscriptions/fff10b27-fff3-fff5-fff8-fffbe01e86a5/resourceGroups/myResourceGroup/providers/Microsoft.ServiceFabric/clusters/myCluster/applications/myApplication",
                 null,
                 null,
@@ -61,7 +64,7 @@ public final class PolicyEventsListQueryResultsForResourceSamples {
     }
 
     /*
-     * x-ms-original-file: specification/policyinsights/resource-manager/Microsoft.PolicyInsights/stable/2019-10-01/examples/PolicyEvents_QuerySubscriptionLevelNestedResourceScope.json
+     * x-ms-original-file: specification/policyinsights/resource-manager/Microsoft.PolicyInsights/stable/2022-06-01/examples/PolicyEvents_QuerySubscriptionLevelNestedResourceScope.json
      */
     /**
      * Sample code: Query at subscription level nested resource scope.
@@ -73,6 +76,7 @@ public final class PolicyEventsListQueryResultsForResourceSamples {
         manager
             .policyEvents()
             .listQueryResultsForResource(
+                PolicyEventsResourceType.DEFAULT,
                 "subscriptions/fff10b27-fff3-fff5-fff8-fffbe01e86a5/providers/Microsoft.SomeNamespace/someResourceType/someResource/someNestedResourceType/someNestedResource",
                 null,
                 null,
@@ -87,7 +91,7 @@ public final class PolicyEventsListQueryResultsForResourceSamples {
     }
 
     /*
-     * x-ms-original-file: specification/policyinsights/resource-manager/Microsoft.PolicyInsights/stable/2019-10-01/examples/PolicyEvents_QueryResourceScope.json
+     * x-ms-original-file: specification/policyinsights/resource-manager/Microsoft.PolicyInsights/stable/2022-06-01/examples/PolicyEvents_QueryResourceScope.json
      */
     /**
      * Sample code: Query at resource scope.
@@ -98,6 +102,7 @@ public final class PolicyEventsListQueryResultsForResourceSamples {
         manager
             .policyEvents()
             .listQueryResultsForResource(
+                PolicyEventsResourceType.DEFAULT,
                 "subscriptions/fff10b27-fff3-fff5-fff8-fffbe01e86a5/resourceGroups/myResourceGroup/providers/Microsoft.ClassicCompute/domainNames/myDomainName",
                 null,
                 null,
@@ -112,7 +117,7 @@ public final class PolicyEventsListQueryResultsForResourceSamples {
     }
 
     /*
-     * x-ms-original-file: specification/policyinsights/resource-manager/Microsoft.PolicyInsights/stable/2019-10-01/examples/PolicyEvents_QueryResourceScopeExpandComponents.json
+     * x-ms-original-file: specification/policyinsights/resource-manager/Microsoft.PolicyInsights/stable/2022-06-01/examples/PolicyEvents_QueryResourceScopeExpandComponents.json
      */
     /**
      * Sample code: Query components policy events for resource scope filtered by given assignment.
@@ -124,6 +129,7 @@ public final class PolicyEventsListQueryResultsForResourceSamples {
         manager
             .policyEvents()
             .listQueryResultsForResource(
+                PolicyEventsResourceType.DEFAULT,
                 "subscriptions/e78961ba-36fe-4739-9212-e3031b4c8db7/resourceGroups/myResourceGroup/providers/Microsoft.KeyVault/Vaults/myKVName",
                 null,
                 null,
@@ -139,7 +145,7 @@ public final class PolicyEventsListQueryResultsForResourceSamples {
     }
 
     /*
-     * x-ms-original-file: specification/policyinsights/resource-manager/Microsoft.PolicyInsights/stable/2019-10-01/examples/PolicyEvents_QueryResourceScopeExpandComponentsGroupByWithAggregate.json
+     * x-ms-original-file: specification/policyinsights/resource-manager/Microsoft.PolicyInsights/stable/2022-06-01/examples/PolicyEvents_QueryResourceScopeExpandComponentsGroupByWithAggregate.json
      */
     /**
      * Sample code: Query components policy events count grouped by user and action type for resource scope filtered by
@@ -153,6 +159,7 @@ public final class PolicyEventsListQueryResultsForResourceSamples {
         manager
             .policyEvents()
             .listQueryResultsForResource(
+                PolicyEventsResourceType.DEFAULT,
                 "subscriptions/e78961ba-36fe-4739-9212-e3031b4c8db7/resourceGroups/myResourceGroup/providers/Microsoft.KeyVault/Vaults/myKVName",
                 null,
                 null,
@@ -169,7 +176,7 @@ public final class PolicyEventsListQueryResultsForResourceSamples {
     }
 
     /*
-     * x-ms-original-file: specification/policyinsights/resource-manager/Microsoft.PolicyInsights/stable/2019-10-01/examples/PolicyEvents_QueryResourceScopeNextLink.json
+     * x-ms-original-file: specification/policyinsights/resource-manager/Microsoft.PolicyInsights/stable/2022-06-01/examples/PolicyEvents_QueryResourceScopeNextLink.json
      */
     /**
      * Sample code: Query at resource scope with next link.
@@ -181,6 +188,7 @@ public final class PolicyEventsListQueryResultsForResourceSamples {
         manager
             .policyEvents()
             .listQueryResultsForResource(
+                PolicyEventsResourceType.DEFAULT,
                 "subscriptions/fff10b27-fff3-fff5-fff8-fffbe01e86a5/resourceGroups/myResourceGroup/providers/Microsoft.ClassicCompute/domainNames/myDomainName",
                 null,
                 null,

@@ -5,12 +5,13 @@
 package com.azure.resourcemanager.policyinsights.generated;
 
 import com.azure.core.util.Context;
+import com.azure.resourcemanager.policyinsights.models.PolicyStatesSummaryResourceType;
 import java.time.OffsetDateTime;
 
 /** Samples for PolicyStates SummarizeForPolicySetDefinition. */
 public final class PolicyStatesSummarizeForPolicySetDefinitionSamples {
     /*
-     * x-ms-original-file: specification/policyinsights/resource-manager/Microsoft.PolicyInsights/stable/2019-10-01/examples/PolicyStates_SummarizeSubscriptionLevelPolicySetDefinitionScope.json
+     * x-ms-original-file: specification/policyinsights/resource-manager/Microsoft.PolicyInsights/stable/2022-06-01/examples/PolicyStates_SummarizeSubscriptionLevelPolicySetDefinitionScope.json
      */
     /**
      * Sample code: Summarize at policy set definition scope.
@@ -22,11 +23,12 @@ public final class PolicyStatesSummarizeForPolicySetDefinitionSamples {
         manager
             .policyStates()
             .summarizeForPolicySetDefinitionWithResponse(
+                PolicyStatesSummaryResourceType.LATEST,
                 "fffedd8f-ffff-fffd-fffd-fffed2f84852",
                 "3e3807c1-65c9-49e0-a406-82d8ae3e338c",
                 1,
-                OffsetDateTime.parse("2019-10-05T18:00:00Z"),
-                OffsetDateTime.parse("2019-10-06T18:00:00Z"),
+                OffsetDateTime.parse("2022-06-05T18:00:00Z"),
+                OffsetDateTime.parse("2022-06-06T18:00:00Z"),
                 "PolicyDefinitionAction eq 'deny'",
                 Context.NONE);
     }

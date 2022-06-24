@@ -5,17 +5,13 @@
 package com.azure.resourcemanager.policyinsights.models;
 
 import com.azure.core.annotation.Immutable;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.policyinsights.fluent.models.PolicyTrackedResourceInner;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** Query results. */
 @Immutable
 public final class PolicyTrackedResourcesQueryResults {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(PolicyTrackedResourcesQueryResults.class);
-
     /*
      * Query results.
      */

@@ -5,11 +5,12 @@
 package com.azure.resourcemanager.policyinsights.generated;
 
 import com.azure.core.util.Context;
+import com.azure.resourcemanager.policyinsights.models.PolicyStatesSummaryResourceType;
 
 /** Samples for PolicyStates SummarizeForResourceGroupLevelPolicyAssignment. */
 public final class PolicyStatesSummarizeForResourceGroupLevelPolicyAssignmentSamples {
     /*
-     * x-ms-original-file: specification/policyinsights/resource-manager/Microsoft.PolicyInsights/stable/2019-10-01/examples/PolicyStates_SummarizeResourceGroupLevelPolicyAssignmentScope.json
+     * x-ms-original-file: specification/policyinsights/resource-manager/Microsoft.PolicyInsights/stable/2022-06-01/examples/PolicyStates_SummarizeResourceGroupLevelPolicyAssignmentScope.json
      */
     /**
      * Sample code: Summarize at policy assignment scope.
@@ -21,6 +22,7 @@ public final class PolicyStatesSummarizeForResourceGroupLevelPolicyAssignmentSam
         manager
             .policyStates()
             .summarizeForResourceGroupLevelPolicyAssignmentWithResponse(
+                PolicyStatesSummaryResourceType.LATEST,
                 "fffedd8f-ffff-fffd-fffd-fffed2f84852",
                 "myResourceGroup",
                 "b7a1ca2596524e3ab19597f2",

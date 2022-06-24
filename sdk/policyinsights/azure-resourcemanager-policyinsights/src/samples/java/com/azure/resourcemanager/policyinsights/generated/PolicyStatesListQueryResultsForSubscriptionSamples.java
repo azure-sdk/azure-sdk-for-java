@@ -11,7 +11,7 @@ import java.time.OffsetDateTime;
 /** Samples for PolicyStates ListQueryResultsForSubscription. */
 public final class PolicyStatesListQueryResultsForSubscriptionSamples {
     /*
-     * x-ms-original-file: specification/policyinsights/resource-manager/Microsoft.PolicyInsights/stable/2019-10-01/examples/PolicyStates_QuerySubscriptionScope.json
+     * x-ms-original-file: specification/policyinsights/resource-manager/Microsoft.PolicyInsights/stable/2022-06-01/examples/PolicyStates_QuerySubscriptionScope.json
      */
     /**
      * Sample code: Query latest at subscription scope.
@@ -37,7 +37,7 @@ public final class PolicyStatesListQueryResultsForSubscriptionSamples {
     }
 
     /*
-     * x-ms-original-file: specification/policyinsights/resource-manager/Microsoft.PolicyInsights/stable/2019-10-01/examples/PolicyStates_QuerySubscriptionScopeNextLink.json
+     * x-ms-original-file: specification/policyinsights/resource-manager/Microsoft.PolicyInsights/stable/2022-06-01/examples/PolicyStates_QuerySubscriptionScopeNextLink.json
      */
     /**
      * Sample code: Query latest at subscription scope with next link.
@@ -63,7 +63,7 @@ public final class PolicyStatesListQueryResultsForSubscriptionSamples {
     }
 
     /*
-     * x-ms-original-file: specification/policyinsights/resource-manager/Microsoft.PolicyInsights/stable/2019-10-01/examples/PolicyStates_TimeRangeSortSelectTop.json
+     * x-ms-original-file: specification/policyinsights/resource-manager/Microsoft.PolicyInsights/stable/2022-06-01/examples/PolicyStates_TimeRangeSortSelectTop.json
      */
     /**
      * Sample code: Time range; sort, select and limit.
@@ -81,8 +81,8 @@ public final class PolicyStatesListQueryResultsForSubscriptionSamples {
                 "Timestamp desc, PolicyAssignmentId asc, SubscriptionId asc, ResourceGroup asc, ResourceId",
                 "Timestamp, PolicyAssignmentId, PolicyDefinitionId, SubscriptionId, ResourceGroup, ResourceId,"
                     + " policyDefinitionGroupNames",
-                OffsetDateTime.parse("2019-10-05T18:00:00Z"),
-                OffsetDateTime.parse("2019-10-06T18:00:00Z"),
+                OffsetDateTime.parse("2022-06-05T18:00:00Z"),
+                OffsetDateTime.parse("2022-06-06T18:00:00Z"),
                 null,
                 null,
                 null,
@@ -90,7 +90,7 @@ public final class PolicyStatesListQueryResultsForSubscriptionSamples {
     }
 
     /*
-     * x-ms-original-file: specification/policyinsights/resource-manager/Microsoft.PolicyInsights/stable/2019-10-01/examples/PolicyStates_FilterAndAggregateOnly.json
+     * x-ms-original-file: specification/policyinsights/resource-manager/Microsoft.PolicyInsights/stable/2022-06-01/examples/PolicyStates_FilterAndAggregateOnly.json
      */
     /**
      * Sample code: Filter and aggregate only.
@@ -106,7 +106,7 @@ public final class PolicyStatesListQueryResultsForSubscriptionSamples {
                 null,
                 null,
                 null,
-                OffsetDateTime.parse("2019-10-05T18:00:00Z"),
+                OffsetDateTime.parse("2022-06-05T18:00:00Z"),
                 null,
                 "PolicyDefinitionAction eq 'deny'",
                 "aggregate($count as NumDenyStates)",
@@ -115,7 +115,7 @@ public final class PolicyStatesListQueryResultsForSubscriptionSamples {
     }
 
     /*
-     * x-ms-original-file: specification/policyinsights/resource-manager/Microsoft.PolicyInsights/stable/2019-10-01/examples/PolicyStates_FilterAndGroupByWithoutAggregate.json
+     * x-ms-original-file: specification/policyinsights/resource-manager/Microsoft.PolicyInsights/stable/2022-06-01/examples/PolicyStates_FilterAndGroupByWithoutAggregate.json
      */
     /**
      * Sample code: Filter and group without aggregate.
@@ -132,7 +132,7 @@ public final class PolicyStatesListQueryResultsForSubscriptionSamples {
                 2,
                 null,
                 null,
-                OffsetDateTime.parse("2019-10-05T18:00:00Z"),
+                OffsetDateTime.parse("2022-06-05T18:00:00Z"),
                 null,
                 "IsCompliant eq false and (PolicyDefinitionAction ne 'audit' and PolicyDefinitionAction ne 'append')",
                 "groupby((PolicyAssignmentId, PolicyDefinitionId, PolicyDefinitionAction, ResourceId))",
@@ -141,7 +141,7 @@ public final class PolicyStatesListQueryResultsForSubscriptionSamples {
     }
 
     /*
-     * x-ms-original-file: specification/policyinsights/resource-manager/Microsoft.PolicyInsights/stable/2019-10-01/examples/PolicyStates_FilterAndMultipleGroups.json
+     * x-ms-original-file: specification/policyinsights/resource-manager/Microsoft.PolicyInsights/stable/2022-06-01/examples/PolicyStates_FilterAndMultipleGroups.json
      */
     /**
      * Sample code: Filter and multiple groups.
@@ -168,7 +168,7 @@ public final class PolicyStatesListQueryResultsForSubscriptionSamples {
     }
 
     /*
-     * x-ms-original-file: specification/policyinsights/resource-manager/Microsoft.PolicyInsights/stable/2019-10-01/examples/PolicyStates_FilterAndGroupByWithAggregate.json
+     * x-ms-original-file: specification/policyinsights/resource-manager/Microsoft.PolicyInsights/stable/2022-06-01/examples/PolicyStates_FilterAndGroupByWithAggregate.json
      */
     /**
      * Sample code: Filter and group with aggregate.
@@ -185,7 +185,7 @@ public final class PolicyStatesListQueryResultsForSubscriptionSamples {
                 2,
                 "NumAuditDenyNonComplianceRecords desc",
                 null,
-                OffsetDateTime.parse("2019-10-05T18:00:00Z"),
+                OffsetDateTime.parse("2022-06-05T18:00:00Z"),
                 null,
                 "IsCompliant eq false and (PolicyDefinitionAction eq 'audit' or PolicyDefinitionAction eq 'deny')",
                 "groupby((PolicyAssignmentId, PolicyDefinitionId, PolicyDefinitionAction, ResourceId), aggregate($count"

@@ -6,15 +6,12 @@ package com.azure.resourcemanager.policyinsights.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** A field that should be evaluated against Azure Policy to determine restrictions. */
 @Fluent
 public final class PendingField {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(PendingField.class);
-
     /*
      * The name of the field. This can be a top-level property like 'name' or
      * 'type' or an Azure Policy field alias.
@@ -80,9 +77,11 @@ public final class PendingField {
      */
     public void validate() {
         if (field() == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property field in model PendingField"));
         }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(PendingField.class);
 }

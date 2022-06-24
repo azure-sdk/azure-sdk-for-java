@@ -34,7 +34,7 @@ public interface PolicyMetadatasClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return policy metadata resource.
+     * @return policy metadata resource along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<PolicyMetadataInner> getResourceWithResponse(String resourceName, Context context);
@@ -44,7 +44,7 @@ public interface PolicyMetadatasClient {
      *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of the policy metadata resources.
+     * @return a list of the policy metadata resources as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<SlimPolicyMetadataInner> list();
@@ -57,7 +57,7 @@ public interface PolicyMetadatasClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of the policy metadata resources.
+     * @return a list of the policy metadata resources as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<SlimPolicyMetadataInner> list(Integer top, Context context);

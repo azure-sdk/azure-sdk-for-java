@@ -5,7 +5,6 @@
 package com.azure.resourcemanager.policyinsights.fluent.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.policyinsights.models.ComponentEventDetails;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
@@ -19,8 +18,6 @@ import java.util.Map;
 /** Policy event record. */
 @Fluent
 public final class PolicyEventInner {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(PolicyEventInner.class);
-
     /*
      * OData entity ID; always set to null since policy event records do not
      * have an entity ID.
