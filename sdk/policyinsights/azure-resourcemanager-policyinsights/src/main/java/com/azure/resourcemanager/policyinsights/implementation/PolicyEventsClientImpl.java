@@ -26,7 +26,6 @@ import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.policyinsights.fluent.PolicyEventsClient;
 import com.azure.resourcemanager.policyinsights.fluent.models.PolicyEventInner;
 import com.azure.resourcemanager.policyinsights.models.PolicyEventsQueryResults;
@@ -35,8 +34,6 @@ import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in PolicyEventsClient. */
 public final class PolicyEventsClientImpl implements PolicyEventsClient {
-    private final ClientLogger logger = new ClientLogger(PolicyEventsClientImpl.class);
-
     /** The proxy service used to perform REST calls. */
     private final PolicyEventsService service;
 
@@ -263,7 +260,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
      * Queries policy events for the resources under the management group.
      *
      * @param managementGroupName Management group name.
-     * @param top Maximum number of records to return.
+     * @param top Maximum number of records to return, paginated for top greater than 1000.
      * @param orderBy Ordering expression using OData notation. One or more comma-separated column names with an
      *     optional "desc" (the default) or "asc", e.g. "$orderby=PolicyAssignmentId, ResourceId asc".
      * @param select Select expression using OData notation. Limits the columns on each record to just those requested,
@@ -279,7 +276,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return query results.
+     * @return query results along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<PolicyEventInner>> listQueryResultsForManagementGroupSinglePageAsync(
@@ -304,7 +301,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
         }
         final String policyEventsResource = "default";
         final String managementGroupsNamespace = "Microsoft.Management";
-        final String apiVersion = "2019-10-01";
+        final String apiVersion = "2022-06-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -342,7 +339,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
      * Queries policy events for the resources under the management group.
      *
      * @param managementGroupName Management group name.
-     * @param top Maximum number of records to return.
+     * @param top Maximum number of records to return, paginated for top greater than 1000.
      * @param orderBy Ordering expression using OData notation. One or more comma-separated column names with an
      *     optional "desc" (the default) or "asc", e.g. "$orderby=PolicyAssignmentId, ResourceId asc".
      * @param select Select expression using OData notation. Limits the columns on each record to just those requested,
@@ -359,7 +356,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return query results.
+     * @return query results along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<PolicyEventInner>> listQueryResultsForManagementGroupSinglePageAsync(
@@ -385,7 +382,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
         }
         final String policyEventsResource = "default";
         final String managementGroupsNamespace = "Microsoft.Management";
-        final String apiVersion = "2019-10-01";
+        final String apiVersion = "2022-06-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
@@ -420,7 +417,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
      * Queries policy events for the resources under the management group.
      *
      * @param managementGroupName Management group name.
-     * @param top Maximum number of records to return.
+     * @param top Maximum number of records to return, paginated for top greater than 1000.
      * @param orderBy Ordering expression using OData notation. One or more comma-separated column names with an
      *     optional "desc" (the default) or "asc", e.g. "$orderby=PolicyAssignmentId, ResourceId asc".
      * @param select Select expression using OData notation. Limits the columns on each record to just those requested,
@@ -436,7 +433,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return query results.
+     * @return query results as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<PolicyEventInner> listQueryResultsForManagementGroupAsync(
@@ -463,7 +460,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return query results.
+     * @return query results as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<PolicyEventInner> listQueryResultsForManagementGroupAsync(String managementGroupName) {
@@ -486,7 +483,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
      * Queries policy events for the resources under the management group.
      *
      * @param managementGroupName Management group name.
-     * @param top Maximum number of records to return.
+     * @param top Maximum number of records to return, paginated for top greater than 1000.
      * @param orderBy Ordering expression using OData notation. One or more comma-separated column names with an
      *     optional "desc" (the default) or "asc", e.g. "$orderby=PolicyAssignmentId, ResourceId asc".
      * @param select Select expression using OData notation. Limits the columns on each record to just those requested,
@@ -503,7 +500,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return query results.
+     * @return query results as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<PolicyEventInner> listQueryResultsForManagementGroupAsync(
@@ -531,7 +528,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return query results.
+     * @return query results as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<PolicyEventInner> listQueryResultsForManagementGroup(String managementGroupName) {
@@ -552,7 +549,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
      * Queries policy events for the resources under the management group.
      *
      * @param managementGroupName Management group name.
-     * @param top Maximum number of records to return.
+     * @param top Maximum number of records to return, paginated for top greater than 1000.
      * @param orderBy Ordering expression using OData notation. One or more comma-separated column names with an
      *     optional "desc" (the default) or "asc", e.g. "$orderby=PolicyAssignmentId, ResourceId asc".
      * @param select Select expression using OData notation. Limits the columns on each record to just those requested,
@@ -569,7 +566,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return query results.
+     * @return query results as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<PolicyEventInner> listQueryResultsForManagementGroup(
@@ -592,7 +589,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
      * Queries policy events for the resources under the subscription.
      *
      * @param subscriptionId Microsoft Azure subscription ID.
-     * @param top Maximum number of records to return.
+     * @param top Maximum number of records to return, paginated for top greater than 1000.
      * @param orderBy Ordering expression using OData notation. One or more comma-separated column names with an
      *     optional "desc" (the default) or "asc", e.g. "$orderby=PolicyAssignmentId, ResourceId asc".
      * @param select Select expression using OData notation. Limits the columns on each record to just those requested,
@@ -608,7 +605,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return query results.
+     * @return query results along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<PolicyEventInner>> listQueryResultsForSubscriptionSinglePageAsync(
@@ -631,7 +628,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
             return Mono.error(new IllegalArgumentException("Parameter subscriptionId is required and cannot be null."));
         }
         final String policyEventsResource = "default";
-        final String apiVersion = "2019-10-01";
+        final String apiVersion = "2022-06-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -668,7 +665,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
      * Queries policy events for the resources under the subscription.
      *
      * @param subscriptionId Microsoft Azure subscription ID.
-     * @param top Maximum number of records to return.
+     * @param top Maximum number of records to return, paginated for top greater than 1000.
      * @param orderBy Ordering expression using OData notation. One or more comma-separated column names with an
      *     optional "desc" (the default) or "asc", e.g. "$orderby=PolicyAssignmentId, ResourceId asc".
      * @param select Select expression using OData notation. Limits the columns on each record to just those requested,
@@ -685,7 +682,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return query results.
+     * @return query results along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<PolicyEventInner>> listQueryResultsForSubscriptionSinglePageAsync(
@@ -709,7 +706,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
             return Mono.error(new IllegalArgumentException("Parameter subscriptionId is required and cannot be null."));
         }
         final String policyEventsResource = "default";
-        final String apiVersion = "2019-10-01";
+        final String apiVersion = "2022-06-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
@@ -743,7 +740,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
      * Queries policy events for the resources under the subscription.
      *
      * @param subscriptionId Microsoft Azure subscription ID.
-     * @param top Maximum number of records to return.
+     * @param top Maximum number of records to return, paginated for top greater than 1000.
      * @param orderBy Ordering expression using OData notation. One or more comma-separated column names with an
      *     optional "desc" (the default) or "asc", e.g. "$orderby=PolicyAssignmentId, ResourceId asc".
      * @param select Select expression using OData notation. Limits the columns on each record to just those requested,
@@ -759,7 +756,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return query results.
+     * @return query results as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<PolicyEventInner> listQueryResultsForSubscriptionAsync(
@@ -786,7 +783,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return query results.
+     * @return query results as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<PolicyEventInner> listQueryResultsForSubscriptionAsync(String subscriptionId) {
@@ -809,7 +806,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
      * Queries policy events for the resources under the subscription.
      *
      * @param subscriptionId Microsoft Azure subscription ID.
-     * @param top Maximum number of records to return.
+     * @param top Maximum number of records to return, paginated for top greater than 1000.
      * @param orderBy Ordering expression using OData notation. One or more comma-separated column names with an
      *     optional "desc" (the default) or "asc", e.g. "$orderby=PolicyAssignmentId, ResourceId asc".
      * @param select Select expression using OData notation. Limits the columns on each record to just those requested,
@@ -826,7 +823,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return query results.
+     * @return query results as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<PolicyEventInner> listQueryResultsForSubscriptionAsync(
@@ -854,7 +851,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return query results.
+     * @return query results as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<PolicyEventInner> listQueryResultsForSubscription(String subscriptionId) {
@@ -875,7 +872,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
      * Queries policy events for the resources under the subscription.
      *
      * @param subscriptionId Microsoft Azure subscription ID.
-     * @param top Maximum number of records to return.
+     * @param top Maximum number of records to return, paginated for top greater than 1000.
      * @param orderBy Ordering expression using OData notation. One or more comma-separated column names with an
      *     optional "desc" (the default) or "asc", e.g. "$orderby=PolicyAssignmentId, ResourceId asc".
      * @param select Select expression using OData notation. Limits the columns on each record to just those requested,
@@ -892,7 +889,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return query results.
+     * @return query results as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<PolicyEventInner> listQueryResultsForSubscription(
@@ -916,7 +913,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
      *
      * @param subscriptionId Microsoft Azure subscription ID.
      * @param resourceGroupName Resource group name.
-     * @param top Maximum number of records to return.
+     * @param top Maximum number of records to return, paginated for top greater than 1000.
      * @param orderBy Ordering expression using OData notation. One or more comma-separated column names with an
      *     optional "desc" (the default) or "asc", e.g. "$orderby=PolicyAssignmentId, ResourceId asc".
      * @param select Select expression using OData notation. Limits the columns on each record to just those requested,
@@ -932,7 +929,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return query results.
+     * @return query results along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<PolicyEventInner>> listQueryResultsForResourceGroupSinglePageAsync(
@@ -960,7 +957,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
         final String policyEventsResource = "default";
-        final String apiVersion = "2019-10-01";
+        final String apiVersion = "2022-06-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -999,7 +996,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
      *
      * @param subscriptionId Microsoft Azure subscription ID.
      * @param resourceGroupName Resource group name.
-     * @param top Maximum number of records to return.
+     * @param top Maximum number of records to return, paginated for top greater than 1000.
      * @param orderBy Ordering expression using OData notation. One or more comma-separated column names with an
      *     optional "desc" (the default) or "asc", e.g. "$orderby=PolicyAssignmentId, ResourceId asc".
      * @param select Select expression using OData notation. Limits the columns on each record to just those requested,
@@ -1016,7 +1013,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return query results.
+     * @return query results along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<PolicyEventInner>> listQueryResultsForResourceGroupSinglePageAsync(
@@ -1045,7 +1042,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
         final String policyEventsResource = "default";
-        final String apiVersion = "2019-10-01";
+        final String apiVersion = "2022-06-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
@@ -1081,7 +1078,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
      *
      * @param subscriptionId Microsoft Azure subscription ID.
      * @param resourceGroupName Resource group name.
-     * @param top Maximum number of records to return.
+     * @param top Maximum number of records to return, paginated for top greater than 1000.
      * @param orderBy Ordering expression using OData notation. One or more comma-separated column names with an
      *     optional "desc" (the default) or "asc", e.g. "$orderby=PolicyAssignmentId, ResourceId asc".
      * @param select Select expression using OData notation. Limits the columns on each record to just those requested,
@@ -1097,7 +1094,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return query results.
+     * @return query results as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<PolicyEventInner> listQueryResultsForResourceGroupAsync(
@@ -1126,7 +1123,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return query results.
+     * @return query results as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<PolicyEventInner> listQueryResultsForResourceGroupAsync(
@@ -1151,7 +1148,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
      *
      * @param subscriptionId Microsoft Azure subscription ID.
      * @param resourceGroupName Resource group name.
-     * @param top Maximum number of records to return.
+     * @param top Maximum number of records to return, paginated for top greater than 1000.
      * @param orderBy Ordering expression using OData notation. One or more comma-separated column names with an
      *     optional "desc" (the default) or "asc", e.g. "$orderby=PolicyAssignmentId, ResourceId asc".
      * @param select Select expression using OData notation. Limits the columns on each record to just those requested,
@@ -1168,7 +1165,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return query results.
+     * @return query results as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<PolicyEventInner> listQueryResultsForResourceGroupAsync(
@@ -1208,7 +1205,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return query results.
+     * @return query results as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<PolicyEventInner> listQueryResultsForResourceGroup(
@@ -1231,7 +1228,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
      *
      * @param subscriptionId Microsoft Azure subscription ID.
      * @param resourceGroupName Resource group name.
-     * @param top Maximum number of records to return.
+     * @param top Maximum number of records to return, paginated for top greater than 1000.
      * @param orderBy Ordering expression using OData notation. One or more comma-separated column names with an
      *     optional "desc" (the default) or "asc", e.g. "$orderby=PolicyAssignmentId, ResourceId asc".
      * @param select Select expression using OData notation. Limits the columns on each record to just those requested,
@@ -1248,7 +1245,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return query results.
+     * @return query results as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<PolicyEventInner> listQueryResultsForResourceGroup(
@@ -1272,7 +1269,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
      * Queries policy events for the resource.
      *
      * @param resourceId Resource ID.
-     * @param top Maximum number of records to return.
+     * @param top Maximum number of records to return, paginated for top greater than 1000.
      * @param orderBy Ordering expression using OData notation. One or more comma-separated column names with an
      *     optional "desc" (the default) or "asc", e.g. "$orderby=PolicyAssignmentId, ResourceId asc".
      * @param select Select expression using OData notation. Limits the columns on each record to just those requested,
@@ -1289,7 +1286,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return query results.
+     * @return query results along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<PolicyEventInner>> listQueryResultsForResourceSinglePageAsync(
@@ -1313,7 +1310,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
             return Mono.error(new IllegalArgumentException("Parameter resourceId is required and cannot be null."));
         }
         final String policyEventsResource = "default";
-        final String apiVersion = "2019-10-01";
+        final String apiVersion = "2022-06-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -1351,7 +1348,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
      * Queries policy events for the resource.
      *
      * @param resourceId Resource ID.
-     * @param top Maximum number of records to return.
+     * @param top Maximum number of records to return, paginated for top greater than 1000.
      * @param orderBy Ordering expression using OData notation. One or more comma-separated column names with an
      *     optional "desc" (the default) or "asc", e.g. "$orderby=PolicyAssignmentId, ResourceId asc".
      * @param select Select expression using OData notation. Limits the columns on each record to just those requested,
@@ -1369,7 +1366,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return query results.
+     * @return query results along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<PolicyEventInner>> listQueryResultsForResourceSinglePageAsync(
@@ -1394,7 +1391,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
             return Mono.error(new IllegalArgumentException("Parameter resourceId is required and cannot be null."));
         }
         final String policyEventsResource = "default";
-        final String apiVersion = "2019-10-01";
+        final String apiVersion = "2022-06-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
@@ -1429,7 +1426,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
      * Queries policy events for the resource.
      *
      * @param resourceId Resource ID.
-     * @param top Maximum number of records to return.
+     * @param top Maximum number of records to return, paginated for top greater than 1000.
      * @param orderBy Ordering expression using OData notation. One or more comma-separated column names with an
      *     optional "desc" (the default) or "asc", e.g. "$orderby=PolicyAssignmentId, ResourceId asc".
      * @param select Select expression using OData notation. Limits the columns on each record to just those requested,
@@ -1446,7 +1443,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return query results.
+     * @return query results as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<PolicyEventInner> listQueryResultsForResourceAsync(
@@ -1474,7 +1471,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return query results.
+     * @return query results as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<PolicyEventInner> listQueryResultsForResourceAsync(String resourceId) {
@@ -1498,7 +1495,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
      * Queries policy events for the resource.
      *
      * @param resourceId Resource ID.
-     * @param top Maximum number of records to return.
+     * @param top Maximum number of records to return, paginated for top greater than 1000.
      * @param orderBy Ordering expression using OData notation. One or more comma-separated column names with an
      *     optional "desc" (the default) or "asc", e.g. "$orderby=PolicyAssignmentId, ResourceId asc".
      * @param select Select expression using OData notation. Limits the columns on each record to just those requested,
@@ -1516,7 +1513,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return query results.
+     * @return query results as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<PolicyEventInner> listQueryResultsForResourceAsync(
@@ -1545,7 +1542,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return query results.
+     * @return query results as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<PolicyEventInner> listQueryResultsForResource(String resourceId) {
@@ -1567,7 +1564,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
      * Queries policy events for the resource.
      *
      * @param resourceId Resource ID.
-     * @param top Maximum number of records to return.
+     * @param top Maximum number of records to return, paginated for top greater than 1000.
      * @param orderBy Ordering expression using OData notation. One or more comma-separated column names with an
      *     optional "desc" (the default) or "asc", e.g. "$orderby=PolicyAssignmentId, ResourceId asc".
      * @param select Select expression using OData notation. Limits the columns on each record to just those requested,
@@ -1585,7 +1582,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return query results.
+     * @return query results as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<PolicyEventInner> listQueryResultsForResource(
@@ -1610,7 +1607,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
      *
      * @param subscriptionId Microsoft Azure subscription ID.
      * @param policySetDefinitionName Policy set definition name.
-     * @param top Maximum number of records to return.
+     * @param top Maximum number of records to return, paginated for top greater than 1000.
      * @param orderBy Ordering expression using OData notation. One or more comma-separated column names with an
      *     optional "desc" (the default) or "asc", e.g. "$orderby=PolicyAssignmentId, ResourceId asc".
      * @param select Select expression using OData notation. Limits the columns on each record to just those requested,
@@ -1626,7 +1623,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return query results.
+     * @return query results along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<PolicyEventInner>> listQueryResultsForPolicySetDefinitionSinglePageAsync(
@@ -1656,7 +1653,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
         }
         final String policyEventsResource = "default";
         final String authorizationNamespace = "Microsoft.Authorization";
-        final String apiVersion = "2019-10-01";
+        final String apiVersion = "2022-06-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -1696,7 +1693,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
      *
      * @param subscriptionId Microsoft Azure subscription ID.
      * @param policySetDefinitionName Policy set definition name.
-     * @param top Maximum number of records to return.
+     * @param top Maximum number of records to return, paginated for top greater than 1000.
      * @param orderBy Ordering expression using OData notation. One or more comma-separated column names with an
      *     optional "desc" (the default) or "asc", e.g. "$orderby=PolicyAssignmentId, ResourceId asc".
      * @param select Select expression using OData notation. Limits the columns on each record to just those requested,
@@ -1713,7 +1710,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return query results.
+     * @return query results along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<PolicyEventInner>> listQueryResultsForPolicySetDefinitionSinglePageAsync(
@@ -1744,7 +1741,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
         }
         final String policyEventsResource = "default";
         final String authorizationNamespace = "Microsoft.Authorization";
-        final String apiVersion = "2019-10-01";
+        final String apiVersion = "2022-06-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
@@ -1781,7 +1778,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
      *
      * @param subscriptionId Microsoft Azure subscription ID.
      * @param policySetDefinitionName Policy set definition name.
-     * @param top Maximum number of records to return.
+     * @param top Maximum number of records to return, paginated for top greater than 1000.
      * @param orderBy Ordering expression using OData notation. One or more comma-separated column names with an
      *     optional "desc" (the default) or "asc", e.g. "$orderby=PolicyAssignmentId, ResourceId asc".
      * @param select Select expression using OData notation. Limits the columns on each record to just those requested,
@@ -1797,7 +1794,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return query results.
+     * @return query results as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<PolicyEventInner> listQueryResultsForPolicySetDefinitionAsync(
@@ -1826,7 +1823,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return query results.
+     * @return query results as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<PolicyEventInner> listQueryResultsForPolicySetDefinitionAsync(
@@ -1851,7 +1848,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
      *
      * @param subscriptionId Microsoft Azure subscription ID.
      * @param policySetDefinitionName Policy set definition name.
-     * @param top Maximum number of records to return.
+     * @param top Maximum number of records to return, paginated for top greater than 1000.
      * @param orderBy Ordering expression using OData notation. One or more comma-separated column names with an
      *     optional "desc" (the default) or "asc", e.g. "$orderby=PolicyAssignmentId, ResourceId asc".
      * @param select Select expression using OData notation. Limits the columns on each record to just those requested,
@@ -1868,7 +1865,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return query results.
+     * @return query results as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<PolicyEventInner> listQueryResultsForPolicySetDefinitionAsync(
@@ -1908,7 +1905,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return query results.
+     * @return query results as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<PolicyEventInner> listQueryResultsForPolicySetDefinition(
@@ -1931,7 +1928,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
      *
      * @param subscriptionId Microsoft Azure subscription ID.
      * @param policySetDefinitionName Policy set definition name.
-     * @param top Maximum number of records to return.
+     * @param top Maximum number of records to return, paginated for top greater than 1000.
      * @param orderBy Ordering expression using OData notation. One or more comma-separated column names with an
      *     optional "desc" (the default) or "asc", e.g. "$orderby=PolicyAssignmentId, ResourceId asc".
      * @param select Select expression using OData notation. Limits the columns on each record to just those requested,
@@ -1948,7 +1945,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return query results.
+     * @return query results as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<PolicyEventInner> listQueryResultsForPolicySetDefinition(
@@ -1983,7 +1980,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
      *
      * @param subscriptionId Microsoft Azure subscription ID.
      * @param policyDefinitionName Policy definition name.
-     * @param top Maximum number of records to return.
+     * @param top Maximum number of records to return, paginated for top greater than 1000.
      * @param orderBy Ordering expression using OData notation. One or more comma-separated column names with an
      *     optional "desc" (the default) or "asc", e.g. "$orderby=PolicyAssignmentId, ResourceId asc".
      * @param select Select expression using OData notation. Limits the columns on each record to just those requested,
@@ -1999,7 +1996,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return query results.
+     * @return query results along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<PolicyEventInner>> listQueryResultsForPolicyDefinitionSinglePageAsync(
@@ -2028,7 +2025,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
         }
         final String policyEventsResource = "default";
         final String authorizationNamespace = "Microsoft.Authorization";
-        final String apiVersion = "2019-10-01";
+        final String apiVersion = "2022-06-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -2068,7 +2065,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
      *
      * @param subscriptionId Microsoft Azure subscription ID.
      * @param policyDefinitionName Policy definition name.
-     * @param top Maximum number of records to return.
+     * @param top Maximum number of records to return, paginated for top greater than 1000.
      * @param orderBy Ordering expression using OData notation. One or more comma-separated column names with an
      *     optional "desc" (the default) or "asc", e.g. "$orderby=PolicyAssignmentId, ResourceId asc".
      * @param select Select expression using OData notation. Limits the columns on each record to just those requested,
@@ -2085,7 +2082,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return query results.
+     * @return query results along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<PolicyEventInner>> listQueryResultsForPolicyDefinitionSinglePageAsync(
@@ -2115,7 +2112,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
         }
         final String policyEventsResource = "default";
         final String authorizationNamespace = "Microsoft.Authorization";
-        final String apiVersion = "2019-10-01";
+        final String apiVersion = "2022-06-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
@@ -2152,7 +2149,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
      *
      * @param subscriptionId Microsoft Azure subscription ID.
      * @param policyDefinitionName Policy definition name.
-     * @param top Maximum number of records to return.
+     * @param top Maximum number of records to return, paginated for top greater than 1000.
      * @param orderBy Ordering expression using OData notation. One or more comma-separated column names with an
      *     optional "desc" (the default) or "asc", e.g. "$orderby=PolicyAssignmentId, ResourceId asc".
      * @param select Select expression using OData notation. Limits the columns on each record to just those requested,
@@ -2168,7 +2165,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return query results.
+     * @return query results as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<PolicyEventInner> listQueryResultsForPolicyDefinitionAsync(
@@ -2197,7 +2194,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return query results.
+     * @return query results as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<PolicyEventInner> listQueryResultsForPolicyDefinitionAsync(
@@ -2222,7 +2219,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
      *
      * @param subscriptionId Microsoft Azure subscription ID.
      * @param policyDefinitionName Policy definition name.
-     * @param top Maximum number of records to return.
+     * @param top Maximum number of records to return, paginated for top greater than 1000.
      * @param orderBy Ordering expression using OData notation. One or more comma-separated column names with an
      *     optional "desc" (the default) or "asc", e.g. "$orderby=PolicyAssignmentId, ResourceId asc".
      * @param select Select expression using OData notation. Limits the columns on each record to just those requested,
@@ -2239,7 +2236,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return query results.
+     * @return query results as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<PolicyEventInner> listQueryResultsForPolicyDefinitionAsync(
@@ -2279,7 +2276,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return query results.
+     * @return query results as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<PolicyEventInner> listQueryResultsForPolicyDefinition(
@@ -2302,7 +2299,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
      *
      * @param subscriptionId Microsoft Azure subscription ID.
      * @param policyDefinitionName Policy definition name.
-     * @param top Maximum number of records to return.
+     * @param top Maximum number of records to return, paginated for top greater than 1000.
      * @param orderBy Ordering expression using OData notation. One or more comma-separated column names with an
      *     optional "desc" (the default) or "asc", e.g. "$orderby=PolicyAssignmentId, ResourceId asc".
      * @param select Select expression using OData notation. Limits the columns on each record to just those requested,
@@ -2319,7 +2316,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return query results.
+     * @return query results as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<PolicyEventInner> listQueryResultsForPolicyDefinition(
@@ -2354,7 +2351,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
      *
      * @param subscriptionId Microsoft Azure subscription ID.
      * @param policyAssignmentName Policy assignment name.
-     * @param top Maximum number of records to return.
+     * @param top Maximum number of records to return, paginated for top greater than 1000.
      * @param orderBy Ordering expression using OData notation. One or more comma-separated column names with an
      *     optional "desc" (the default) or "asc", e.g. "$orderby=PolicyAssignmentId, ResourceId asc".
      * @param select Select expression using OData notation. Limits the columns on each record to just those requested,
@@ -2370,7 +2367,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return query results.
+     * @return query results along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<PolicyEventInner>> listQueryResultsForSubscriptionLevelPolicyAssignmentSinglePageAsync(
@@ -2399,7 +2396,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
         }
         final String policyEventsResource = "default";
         final String authorizationNamespace = "Microsoft.Authorization";
-        final String apiVersion = "2019-10-01";
+        final String apiVersion = "2022-06-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -2439,7 +2436,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
      *
      * @param subscriptionId Microsoft Azure subscription ID.
      * @param policyAssignmentName Policy assignment name.
-     * @param top Maximum number of records to return.
+     * @param top Maximum number of records to return, paginated for top greater than 1000.
      * @param orderBy Ordering expression using OData notation. One or more comma-separated column names with an
      *     optional "desc" (the default) or "asc", e.g. "$orderby=PolicyAssignmentId, ResourceId asc".
      * @param select Select expression using OData notation. Limits the columns on each record to just those requested,
@@ -2456,7 +2453,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return query results.
+     * @return query results along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<PolicyEventInner>> listQueryResultsForSubscriptionLevelPolicyAssignmentSinglePageAsync(
@@ -2486,7 +2483,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
         }
         final String policyEventsResource = "default";
         final String authorizationNamespace = "Microsoft.Authorization";
-        final String apiVersion = "2019-10-01";
+        final String apiVersion = "2022-06-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
@@ -2523,7 +2520,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
      *
      * @param subscriptionId Microsoft Azure subscription ID.
      * @param policyAssignmentName Policy assignment name.
-     * @param top Maximum number of records to return.
+     * @param top Maximum number of records to return, paginated for top greater than 1000.
      * @param orderBy Ordering expression using OData notation. One or more comma-separated column names with an
      *     optional "desc" (the default) or "asc", e.g. "$orderby=PolicyAssignmentId, ResourceId asc".
      * @param select Select expression using OData notation. Limits the columns on each record to just those requested,
@@ -2539,7 +2536,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return query results.
+     * @return query results as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<PolicyEventInner> listQueryResultsForSubscriptionLevelPolicyAssignmentAsync(
@@ -2568,7 +2565,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return query results.
+     * @return query results as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<PolicyEventInner> listQueryResultsForSubscriptionLevelPolicyAssignmentAsync(
@@ -2593,7 +2590,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
      *
      * @param subscriptionId Microsoft Azure subscription ID.
      * @param policyAssignmentName Policy assignment name.
-     * @param top Maximum number of records to return.
+     * @param top Maximum number of records to return, paginated for top greater than 1000.
      * @param orderBy Ordering expression using OData notation. One or more comma-separated column names with an
      *     optional "desc" (the default) or "asc", e.g. "$orderby=PolicyAssignmentId, ResourceId asc".
      * @param select Select expression using OData notation. Limits the columns on each record to just those requested,
@@ -2610,7 +2607,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return query results.
+     * @return query results as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<PolicyEventInner> listQueryResultsForSubscriptionLevelPolicyAssignmentAsync(
@@ -2650,7 +2647,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return query results.
+     * @return query results as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<PolicyEventInner> listQueryResultsForSubscriptionLevelPolicyAssignment(
@@ -2673,7 +2670,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
      *
      * @param subscriptionId Microsoft Azure subscription ID.
      * @param policyAssignmentName Policy assignment name.
-     * @param top Maximum number of records to return.
+     * @param top Maximum number of records to return, paginated for top greater than 1000.
      * @param orderBy Ordering expression using OData notation. One or more comma-separated column names with an
      *     optional "desc" (the default) or "asc", e.g. "$orderby=PolicyAssignmentId, ResourceId asc".
      * @param select Select expression using OData notation. Limits the columns on each record to just those requested,
@@ -2690,7 +2687,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return query results.
+     * @return query results as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<PolicyEventInner> listQueryResultsForSubscriptionLevelPolicyAssignment(
@@ -2726,7 +2723,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
      * @param subscriptionId Microsoft Azure subscription ID.
      * @param resourceGroupName Resource group name.
      * @param policyAssignmentName Policy assignment name.
-     * @param top Maximum number of records to return.
+     * @param top Maximum number of records to return, paginated for top greater than 1000.
      * @param orderBy Ordering expression using OData notation. One or more comma-separated column names with an
      *     optional "desc" (the default) or "asc", e.g. "$orderby=PolicyAssignmentId, ResourceId asc".
      * @param select Select expression using OData notation. Limits the columns on each record to just those requested,
@@ -2742,7 +2739,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return query results.
+     * @return query results along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<PolicyEventInner>> listQueryResultsForResourceGroupLevelPolicyAssignmentSinglePageAsync(
@@ -2776,7 +2773,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
         }
         final String policyEventsResource = "default";
         final String authorizationNamespace = "Microsoft.Authorization";
-        final String apiVersion = "2019-10-01";
+        final String apiVersion = "2022-06-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -2818,7 +2815,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
      * @param subscriptionId Microsoft Azure subscription ID.
      * @param resourceGroupName Resource group name.
      * @param policyAssignmentName Policy assignment name.
-     * @param top Maximum number of records to return.
+     * @param top Maximum number of records to return, paginated for top greater than 1000.
      * @param orderBy Ordering expression using OData notation. One or more comma-separated column names with an
      *     optional "desc" (the default) or "asc", e.g. "$orderby=PolicyAssignmentId, ResourceId asc".
      * @param select Select expression using OData notation. Limits the columns on each record to just those requested,
@@ -2835,7 +2832,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return query results.
+     * @return query results along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<PolicyEventInner>> listQueryResultsForResourceGroupLevelPolicyAssignmentSinglePageAsync(
@@ -2870,7 +2867,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
         }
         final String policyEventsResource = "default";
         final String authorizationNamespace = "Microsoft.Authorization";
-        final String apiVersion = "2019-10-01";
+        final String apiVersion = "2022-06-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
@@ -2909,7 +2906,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
      * @param subscriptionId Microsoft Azure subscription ID.
      * @param resourceGroupName Resource group name.
      * @param policyAssignmentName Policy assignment name.
-     * @param top Maximum number of records to return.
+     * @param top Maximum number of records to return, paginated for top greater than 1000.
      * @param orderBy Ordering expression using OData notation. One or more comma-separated column names with an
      *     optional "desc" (the default) or "asc", e.g. "$orderby=PolicyAssignmentId, ResourceId asc".
      * @param select Select expression using OData notation. Limits the columns on each record to just those requested,
@@ -2925,7 +2922,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return query results.
+     * @return query results as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<PolicyEventInner> listQueryResultsForResourceGroupLevelPolicyAssignmentAsync(
@@ -2966,7 +2963,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return query results.
+     * @return query results as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<PolicyEventInner> listQueryResultsForResourceGroupLevelPolicyAssignmentAsync(
@@ -3002,7 +2999,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
      * @param subscriptionId Microsoft Azure subscription ID.
      * @param resourceGroupName Resource group name.
      * @param policyAssignmentName Policy assignment name.
-     * @param top Maximum number of records to return.
+     * @param top Maximum number of records to return, paginated for top greater than 1000.
      * @param orderBy Ordering expression using OData notation. One or more comma-separated column names with an
      *     optional "desc" (the default) or "asc", e.g. "$orderby=PolicyAssignmentId, ResourceId asc".
      * @param select Select expression using OData notation. Limits the columns on each record to just those requested,
@@ -3019,7 +3016,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return query results.
+     * @return query results as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<PolicyEventInner> listQueryResultsForResourceGroupLevelPolicyAssignmentAsync(
@@ -3062,7 +3059,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return query results.
+     * @return query results as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<PolicyEventInner> listQueryResultsForResourceGroupLevelPolicyAssignment(
@@ -3096,7 +3093,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
      * @param subscriptionId Microsoft Azure subscription ID.
      * @param resourceGroupName Resource group name.
      * @param policyAssignmentName Policy assignment name.
-     * @param top Maximum number of records to return.
+     * @param top Maximum number of records to return, paginated for top greater than 1000.
      * @param orderBy Ordering expression using OData notation. One or more comma-separated column names with an
      *     optional "desc" (the default) or "asc", e.g. "$orderby=PolicyAssignmentId, ResourceId asc".
      * @param select Select expression using OData notation. Limits the columns on each record to just those requested,
@@ -3113,7 +3110,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return query results.
+     * @return query results as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<PolicyEventInner> listQueryResultsForResourceGroupLevelPolicyAssignment(
@@ -3152,7 +3149,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return query results.
+     * @return query results along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<PolicyEventInner>> nextLinkSinglePageAsync(String nextLink) {
@@ -3181,7 +3178,7 @@ public final class PolicyEventsClientImpl implements PolicyEventsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return query results.
+     * @return query results along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<PolicyEventInner>> nextLinkSinglePageAsync(String nextLink, Context context) {

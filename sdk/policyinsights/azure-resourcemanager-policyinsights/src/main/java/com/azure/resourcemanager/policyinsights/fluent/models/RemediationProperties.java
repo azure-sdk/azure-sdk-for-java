@@ -5,20 +5,16 @@
 package com.azure.resourcemanager.policyinsights.fluent.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.policyinsights.models.RemediationDeploymentSummary;
 import com.azure.resourcemanager.policyinsights.models.RemediationFilters;
 import com.azure.resourcemanager.policyinsights.models.RemediationPropertiesFailureThreshold;
 import com.azure.resourcemanager.policyinsights.models.ResourceDiscoveryMode;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
 /** The remediation properties. */
 @Fluent
 public final class RemediationProperties {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(RemediationProperties.class);
-
     /*
      * The resource ID of the policy assignment that should be remediated.
      */

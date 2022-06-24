@@ -19,7 +19,8 @@ public interface Remediations {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all deployments for a remediation at management group scope.
+     * @return all deployments for a remediation at management group scope as paginated response with {@link
+     *     PagedIterable}.
      */
     PagedIterable<RemediationDeployment> listDeploymentsAtManagementGroup(
         String managementGroupId, String remediationName);
@@ -34,7 +35,8 @@ public interface Remediations {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all deployments for a remediation at management group scope.
+     * @return all deployments for a remediation at management group scope as paginated response with {@link
+     *     PagedIterable}.
      */
     PagedIterable<RemediationDeployment> listDeploymentsAtManagementGroup(
         String managementGroupId, String remediationName, Integer top, Context context);
@@ -60,7 +62,7 @@ public interface Remediations {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the remediation definition.
+     * @return the remediation definition along with {@link Response}.
      */
     Response<Remediation> cancelAtManagementGroupWithResponse(
         String managementGroupId, String remediationName, Context context);
@@ -72,7 +74,7 @@ public interface Remediations {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all remediations for the management group.
+     * @return all remediations for the management group as paginated response with {@link PagedIterable}.
      */
     PagedIterable<Remediation> listForManagementGroup(String managementGroupId);
 
@@ -86,7 +88,7 @@ public interface Remediations {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all remediations for the management group.
+     * @return all remediations for the management group as paginated response with {@link PagedIterable}.
      */
     PagedIterable<Remediation> listForManagementGroup(
         String managementGroupId, Integer top, String filter, Context context);
@@ -115,7 +117,7 @@ public interface Remediations {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the remediation definition.
+     * @return the remediation definition along with {@link Response}.
      */
     Response<Remediation> createOrUpdateAtManagementGroupWithResponse(
         String managementGroupId, String remediationName, RemediationInner parameters, Context context);
@@ -141,7 +143,7 @@ public interface Remediations {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an existing remediation at management group scope.
+     * @return an existing remediation at management group scope along with {@link Response}.
      */
     Response<Remediation> getAtManagementGroupWithResponse(
         String managementGroupId, String remediationName, Context context);
@@ -167,7 +169,7 @@ public interface Remediations {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the remediation definition.
+     * @return the remediation definition along with {@link Response}.
      */
     Response<Remediation> deleteAtManagementGroupWithResponse(
         String managementGroupId, String remediationName, Context context);
@@ -179,7 +181,7 @@ public interface Remediations {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all deployments for a remediation at subscription scope.
+     * @return all deployments for a remediation at subscription scope as paginated response with {@link PagedIterable}.
      */
     PagedIterable<RemediationDeployment> listDeploymentsAtSubscription(String remediationName);
 
@@ -192,7 +194,7 @@ public interface Remediations {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all deployments for a remediation at subscription scope.
+     * @return all deployments for a remediation at subscription scope as paginated response with {@link PagedIterable}.
      */
     PagedIterable<RemediationDeployment> listDeploymentsAtSubscription(
         String remediationName, Integer top, Context context);
@@ -216,7 +218,7 @@ public interface Remediations {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the remediation definition.
+     * @return the remediation definition along with {@link Response}.
      */
     Response<Remediation> cancelAtSubscriptionWithResponse(String remediationName, Context context);
 
@@ -225,7 +227,7 @@ public interface Remediations {
      *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all remediations for the subscription.
+     * @return all remediations for the subscription as paginated response with {@link PagedIterable}.
      */
     PagedIterable<Remediation> list();
 
@@ -238,7 +240,7 @@ public interface Remediations {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all remediations for the subscription.
+     * @return all remediations for the subscription as paginated response with {@link PagedIterable}.
      */
     PagedIterable<Remediation> list(Integer top, String filter, Context context);
 
@@ -263,7 +265,7 @@ public interface Remediations {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the remediation definition.
+     * @return the remediation definition along with {@link Response}.
      */
     Response<Remediation> createOrUpdateAtSubscriptionWithResponse(
         String remediationName, RemediationInner parameters, Context context);
@@ -287,7 +289,7 @@ public interface Remediations {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an existing remediation at subscription scope.
+     * @return an existing remediation at subscription scope along with {@link Response}.
      */
     Response<Remediation> getAtSubscriptionWithResponse(String remediationName, Context context);
 
@@ -310,7 +312,7 @@ public interface Remediations {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the remediation definition.
+     * @return the remediation definition along with {@link Response}.
      */
     Response<Remediation> deleteAtSubscriptionWithResponse(String remediationName, Context context);
 
@@ -322,7 +324,8 @@ public interface Remediations {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all deployments for a remediation at resource group scope.
+     * @return all deployments for a remediation at resource group scope as paginated response with {@link
+     *     PagedIterable}.
      */
     PagedIterable<RemediationDeployment> listDeploymentsAtResourceGroup(
         String resourceGroupName, String remediationName);
@@ -337,7 +340,8 @@ public interface Remediations {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all deployments for a remediation at resource group scope.
+     * @return all deployments for a remediation at resource group scope as paginated response with {@link
+     *     PagedIterable}.
      */
     PagedIterable<RemediationDeployment> listDeploymentsAtResourceGroup(
         String resourceGroupName, String remediationName, Integer top, Context context);
@@ -363,7 +367,7 @@ public interface Remediations {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the remediation definition.
+     * @return the remediation definition along with {@link Response}.
      */
     Response<Remediation> cancelAtResourceGroupWithResponse(
         String resourceGroupName, String remediationName, Context context);
@@ -375,7 +379,7 @@ public interface Remediations {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all remediations for the subscription.
+     * @return all remediations for the subscription as paginated response with {@link PagedIterable}.
      */
     PagedIterable<Remediation> listByResourceGroup(String resourceGroupName);
 
@@ -389,7 +393,7 @@ public interface Remediations {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all remediations for the subscription.
+     * @return all remediations for the subscription as paginated response with {@link PagedIterable}.
      */
     PagedIterable<Remediation> listByResourceGroup(
         String resourceGroupName, Integer top, String filter, Context context);
@@ -415,7 +419,7 @@ public interface Remediations {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an existing remediation at resource group scope.
+     * @return an existing remediation at resource group scope along with {@link Response}.
      */
     Response<Remediation> getByResourceGroupWithResponse(
         String resourceGroupName, String remediationName, Context context);
@@ -441,7 +445,7 @@ public interface Remediations {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the remediation definition.
+     * @return the remediation definition along with {@link Response}.
      */
     Response<Remediation> deleteWithResponse(String resourceGroupName, String remediationName, Context context);
 
@@ -453,7 +457,7 @@ public interface Remediations {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all deployments for a remediation at resource scope.
+     * @return all deployments for a remediation at resource scope as paginated response with {@link PagedIterable}.
      */
     PagedIterable<RemediationDeployment> listDeploymentsAtResource(String resourceId, String remediationName);
 
@@ -467,7 +471,7 @@ public interface Remediations {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all deployments for a remediation at resource scope.
+     * @return all deployments for a remediation at resource scope as paginated response with {@link PagedIterable}.
      */
     PagedIterable<RemediationDeployment> listDeploymentsAtResource(
         String resourceId, String remediationName, Integer top, Context context);
@@ -493,7 +497,7 @@ public interface Remediations {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the remediation definition.
+     * @return the remediation definition along with {@link Response}.
      */
     Response<Remediation> cancelAtResourceWithResponse(String resourceId, String remediationName, Context context);
 
@@ -504,7 +508,7 @@ public interface Remediations {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all remediations for a resource.
+     * @return all remediations for a resource as paginated response with {@link PagedIterable}.
      */
     PagedIterable<Remediation> listForResource(String resourceId);
 
@@ -518,7 +522,7 @@ public interface Remediations {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all remediations for a resource.
+     * @return all remediations for a resource as paginated response with {@link PagedIterable}.
      */
     PagedIterable<Remediation> listForResource(String resourceId, Integer top, String filter, Context context);
 
@@ -545,7 +549,7 @@ public interface Remediations {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the remediation definition.
+     * @return the remediation definition along with {@link Response}.
      */
     Response<Remediation> createOrUpdateAtResourceWithResponse(
         String resourceId, String remediationName, RemediationInner parameters, Context context);
@@ -571,7 +575,7 @@ public interface Remediations {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an existing remediation at resource scope.
+     * @return an existing remediation at resource scope along with {@link Response}.
      */
     Response<Remediation> getAtResourceWithResponse(String resourceId, String remediationName, Context context);
 
@@ -596,7 +600,7 @@ public interface Remediations {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the remediation definition.
+     * @return the remediation definition along with {@link Response}.
      */
     Response<Remediation> deleteAtResourceWithResponse(String resourceId, String remediationName, Context context);
 
@@ -607,7 +611,7 @@ public interface Remediations {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an existing remediation at resource group scope.
+     * @return an existing remediation at resource group scope along with {@link Response}.
      */
     Remediation getById(String id);
 
@@ -619,7 +623,7 @@ public interface Remediations {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an existing remediation at resource group scope.
+     * @return an existing remediation at resource group scope along with {@link Response}.
      */
     Response<Remediation> getByIdWithResponse(String id, Context context);
 
@@ -630,7 +634,7 @@ public interface Remediations {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the remediation definition.
+     * @return the remediation definition along with {@link Response}.
      */
     Remediation deleteById(String id);
 
@@ -642,7 +646,7 @@ public interface Remediations {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the remediation definition.
+     * @return the remediation definition along with {@link Response}.
      */
     Response<Remediation> deleteByIdWithResponse(String id, Context context);
 

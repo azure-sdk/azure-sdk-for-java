@@ -16,11 +16,10 @@ import com.azure.resourcemanager.policyinsights.models.PolicyState;
 import com.azure.resourcemanager.policyinsights.models.PolicyStates;
 import com.azure.resourcemanager.policyinsights.models.PolicyStatesResource;
 import com.azure.resourcemanager.policyinsights.models.SummarizeResults;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.time.OffsetDateTime;
 
 public final class PolicyStatesImpl implements PolicyStates {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(PolicyStatesImpl.class);
+    private static final ClientLogger LOGGER = new ClientLogger(PolicyStatesImpl.class);
 
     private final PolicyStatesClient innerClient;
 

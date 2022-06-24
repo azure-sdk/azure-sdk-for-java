@@ -5,17 +5,13 @@
 package com.azure.resourcemanager.policyinsights.fluent.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.policyinsights.models.Summary;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** Summarize action results. */
 @Fluent
 public final class SummarizeResultsInner {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(SummarizeResultsInner.class);
-
     /*
      * OData context string; used by OData clients to resolve type information
      * based on metadata.

@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for PolicyEvents ListQueryResultsForSubscriptionLevelPolicyAssignment. */
 public final class PolicyEventsListQueryResultsForSubscriptionLevelPolicyAssignmentSamples {
     /*
-     * x-ms-original-file: specification/policyinsights/resource-manager/Microsoft.PolicyInsights/stable/2019-10-01/examples/PolicyEvents_QuerySubscriptionLevelPolicyAssignmentScope.json
+     * x-ms-original-file: specification/policyinsights/resource-manager/Microsoft.PolicyInsights/stable/2022-06-01/examples/PolicyEvents_QuerySubscriptionLevelPolicyAssignmentScope.json
      */
     /**
      * Sample code: Query at subscription level policy assignment scope.
@@ -35,7 +35,7 @@ public final class PolicyEventsListQueryResultsForSubscriptionLevelPolicyAssignm
     }
 
     /*
-     * x-ms-original-file: specification/policyinsights/resource-manager/Microsoft.PolicyInsights/stable/2019-10-01/examples/PolicyEvents_QuerySubscriptionLevelPolicyAssignmentScopeNextLink.json
+     * x-ms-original-file: specification/policyinsights/resource-manager/Microsoft.PolicyInsights/stable/2022-06-01/examples/PolicyEvents_QuerySubscriptionLevelPolicyAssignmentScopeNextLink.json
      */
     /**
      * Sample code: Query at subscription level policy assignment scope with next link.

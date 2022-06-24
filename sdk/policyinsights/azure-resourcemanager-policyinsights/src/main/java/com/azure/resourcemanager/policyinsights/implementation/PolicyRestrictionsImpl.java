@@ -13,10 +13,9 @@ import com.azure.resourcemanager.policyinsights.fluent.models.CheckRestrictionsR
 import com.azure.resourcemanager.policyinsights.models.CheckRestrictionsRequest;
 import com.azure.resourcemanager.policyinsights.models.CheckRestrictionsResult;
 import com.azure.resourcemanager.policyinsights.models.PolicyRestrictions;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public final class PolicyRestrictionsImpl implements PolicyRestrictions {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(PolicyRestrictionsImpl.class);
+    private static final ClientLogger LOGGER = new ClientLogger(PolicyRestrictionsImpl.class);
 
     private final PolicyRestrictionsClient innerClient;
 

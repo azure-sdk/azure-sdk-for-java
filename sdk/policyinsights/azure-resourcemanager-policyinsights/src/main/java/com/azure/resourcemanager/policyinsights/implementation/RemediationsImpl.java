@@ -15,10 +15,9 @@ import com.azure.resourcemanager.policyinsights.fluent.models.RemediationInner;
 import com.azure.resourcemanager.policyinsights.models.Remediation;
 import com.azure.resourcemanager.policyinsights.models.RemediationDeployment;
 import com.azure.resourcemanager.policyinsights.models.Remediations;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public final class RemediationsImpl implements Remediations {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(RemediationsImpl.class);
+    private static final ClientLogger LOGGER = new ClientLogger(RemediationsImpl.class);
 
     private final RemediationsClient innerClient;
 
@@ -490,7 +489,7 @@ public final class RemediationsImpl implements Remediations {
     public Remediation getById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -498,7 +497,7 @@ public final class RemediationsImpl implements Remediations {
         }
         String remediationName = Utils.getValueFromIdByName(id, "remediations");
         if (remediationName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'remediations'.", id)));
@@ -509,7 +508,7 @@ public final class RemediationsImpl implements Remediations {
     public Response<Remediation> getByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -517,7 +516,7 @@ public final class RemediationsImpl implements Remediations {
         }
         String remediationName = Utils.getValueFromIdByName(id, "remediations");
         if (remediationName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'remediations'.", id)));
@@ -528,7 +527,7 @@ public final class RemediationsImpl implements Remediations {
     public Remediation deleteById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -536,7 +535,7 @@ public final class RemediationsImpl implements Remediations {
         }
         String remediationName = Utils.getValueFromIdByName(id, "remediations");
         if (remediationName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'remediations'.", id)));
@@ -547,7 +546,7 @@ public final class RemediationsImpl implements Remediations {
     public Response<Remediation> deleteByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -555,7 +554,7 @@ public final class RemediationsImpl implements Remediations {
         }
         String remediationName = Utils.getValueFromIdByName(id, "remediations");
         if (remediationName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'remediations'.", id)));

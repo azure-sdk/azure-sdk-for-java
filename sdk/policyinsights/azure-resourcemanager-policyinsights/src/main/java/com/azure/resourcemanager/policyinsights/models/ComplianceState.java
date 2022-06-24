@@ -30,7 +30,11 @@ public final class ComplianceState extends ExpandableStringEnum<ComplianceState>
         return fromString(name, ComplianceState.class);
     }
 
-    /** @return known ComplianceState values. */
+    /**
+     * Gets known ComplianceState values.
+     *
+     * @return known ComplianceState values.
+     */
     public static Collection<ComplianceState> values() {
         return values(ComplianceState.class);
     }

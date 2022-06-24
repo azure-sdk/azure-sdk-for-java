@@ -90,6 +90,10 @@ public final class RemediationImpl implements Remediation, Remediation.Definitio
         return this.innerModel().failureThreshold();
     }
 
+    public String resourceGroupName() {
+        return resourceGroupName;
+    }
+
     public RemediationInner innerModel() {
         return this.innerObject;
     }

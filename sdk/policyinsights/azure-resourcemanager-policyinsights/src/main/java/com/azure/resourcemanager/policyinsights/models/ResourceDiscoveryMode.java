@@ -27,7 +27,11 @@ public final class ResourceDiscoveryMode extends ExpandableStringEnum<ResourceDi
         return fromString(name, ResourceDiscoveryMode.class);
     }
 
-    /** @return known ResourceDiscoveryMode values. */
+    /**
+     * Gets known ResourceDiscoveryMode values.
+     *
+     * @return known ResourceDiscoveryMode values.
+     */
     public static Collection<ResourceDiscoveryMode> values() {
         return values(ResourceDiscoveryMode.class);
     }

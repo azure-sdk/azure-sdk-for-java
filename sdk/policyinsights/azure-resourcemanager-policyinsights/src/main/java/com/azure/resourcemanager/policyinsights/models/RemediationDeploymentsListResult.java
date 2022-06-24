@@ -5,17 +5,13 @@
 package com.azure.resourcemanager.policyinsights.models;
 
 import com.azure.core.annotation.Immutable;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.policyinsights.fluent.models.RemediationDeploymentInner;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** List of deployments for a remediation. */
 @Immutable
 public final class RemediationDeploymentsListResult {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(RemediationDeploymentsListResult.class);
-
     /*
      * Array of deployments for the remediation.
      */

@@ -5,16 +5,12 @@
 package com.azure.resourcemanager.policyinsights.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** The restrictions that will be placed on a field in the resource by policy. */
 @Fluent
 public final class FieldRestrictions {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(FieldRestrictions.class);
-
     /*
      * The name of the field. This can be a top-level property like 'name' or
      * 'type' or an Azure Policy field alias.

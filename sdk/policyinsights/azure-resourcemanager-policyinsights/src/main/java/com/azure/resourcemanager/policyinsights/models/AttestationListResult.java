@@ -5,17 +5,13 @@
 package com.azure.resourcemanager.policyinsights.models;
 
 import com.azure.core.annotation.Immutable;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.policyinsights.fluent.models.AttestationInner;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** List of attestations. */
 @Immutable
 public final class AttestationListResult {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(AttestationListResult.class);
-
     /*
      * Array of attestation definitions.
      */

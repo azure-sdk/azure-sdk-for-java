@@ -5,18 +5,14 @@
 package com.azure.resourcemanager.policyinsights.fluent.models;
 
 import com.azure.core.annotation.Immutable;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.policyinsights.models.CheckRestrictionsResultContentEvaluationResult;
 import com.azure.resourcemanager.policyinsights.models.FieldRestrictions;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** The result of a check policy restrictions evaluation on a resource. */
 @Immutable
 public final class CheckRestrictionsResultInner {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(CheckRestrictionsResultInner.class);
-
     /*
      * The restrictions that will be placed on various fields in the resource
      * by policy.

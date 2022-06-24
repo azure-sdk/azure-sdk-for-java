@@ -10,7 +10,7 @@ import com.azure.resourcemanager.policyinsights.models.PolicyStatesResource;
 /** Samples for PolicyStates ListQueryResultsForResourceGroup. */
 public final class PolicyStatesListQueryResultsForResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/policyinsights/resource-manager/Microsoft.PolicyInsights/stable/2019-10-01/examples/PolicyStates_QueryResourceGroupScopeNextLink.json
+     * x-ms-original-file: specification/policyinsights/resource-manager/Microsoft.PolicyInsights/stable/2022-06-01/examples/PolicyStates_QueryResourceGroupScopeNextLink.json
      */
     /**
      * Sample code: Query latest at resource group scope with next link.
@@ -37,7 +37,7 @@ public final class PolicyStatesListQueryResultsForResourceGroupSamples {
     }
 
     /*
-     * x-ms-original-file: specification/policyinsights/resource-manager/Microsoft.PolicyInsights/stable/2019-10-01/examples/PolicyStates_QueryResourceGroupScope.json
+     * x-ms-original-file: specification/policyinsights/resource-manager/Microsoft.PolicyInsights/stable/2022-06-01/examples/PolicyStates_QueryResourceGroupScope.json
      */
     /**
      * Sample code: Query latest at resource group scope.

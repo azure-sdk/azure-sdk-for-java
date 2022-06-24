@@ -6,14 +6,11 @@ package com.azure.resourcemanager.policyinsights.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** The information about the resource that will be evaluated. */
 @Fluent
 public final class CheckRestrictionsResourceDetails {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(CheckRestrictionsResourceDetails.class);
-
     /*
      * The resource content. This should include whatever properties are
      * already known and can be a partial set of all resource properties.
@@ -106,10 +103,12 @@ public final class CheckRestrictionsResourceDetails {
      */
     public void validate() {
         if (resourceContent() == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property resourceContent in model CheckRestrictionsResourceDetails"));
         }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(CheckRestrictionsResourceDetails.class);
 }

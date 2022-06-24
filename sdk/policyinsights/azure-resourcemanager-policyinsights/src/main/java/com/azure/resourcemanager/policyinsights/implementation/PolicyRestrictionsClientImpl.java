@@ -22,7 +22,6 @@ import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.policyinsights.fluent.PolicyRestrictionsClient;
 import com.azure.resourcemanager.policyinsights.fluent.models.CheckRestrictionsResultInner;
 import com.azure.resourcemanager.policyinsights.models.CheckRestrictionsRequest;
@@ -30,8 +29,6 @@ import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in PolicyRestrictionsClient. */
 public final class PolicyRestrictionsClientImpl implements PolicyRestrictionsClient {
-    private final ClientLogger logger = new ClientLogger(PolicyRestrictionsClientImpl.class);
-
     /** The proxy service used to perform REST calls. */
     private final PolicyRestrictionsService service;
 
@@ -91,7 +88,8 @@ public final class PolicyRestrictionsClientImpl implements PolicyRestrictionsCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the result of a check policy restrictions evaluation on a resource.
+     * @return the result of a check policy restrictions evaluation on a resource along with {@link Response} on
+     *     successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<CheckRestrictionsResultInner>> checkAtSubscriptionScopeWithResponseAsync(
@@ -137,7 +135,8 @@ public final class PolicyRestrictionsClientImpl implements PolicyRestrictionsCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the result of a check policy restrictions evaluation on a resource.
+     * @return the result of a check policy restrictions evaluation on a resource along with {@link Response} on
+     *     successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<CheckRestrictionsResultInner>> checkAtSubscriptionScopeWithResponseAsync(
@@ -174,19 +173,12 @@ public final class PolicyRestrictionsClientImpl implements PolicyRestrictionsCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the result of a check policy restrictions evaluation on a resource.
+     * @return the result of a check policy restrictions evaluation on a resource on successful completion of {@link
+     *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<CheckRestrictionsResultInner> checkAtSubscriptionScopeAsync(CheckRestrictionsRequest parameters) {
-        return checkAtSubscriptionScopeWithResponseAsync(parameters)
-            .flatMap(
-                (Response<CheckRestrictionsResultInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+        return checkAtSubscriptionScopeWithResponseAsync(parameters).flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -211,7 +203,7 @@ public final class PolicyRestrictionsClientImpl implements PolicyRestrictionsCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the result of a check policy restrictions evaluation on a resource.
+     * @return the result of a check policy restrictions evaluation on a resource along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<CheckRestrictionsResultInner> checkAtSubscriptionScopeWithResponse(
@@ -228,7 +220,8 @@ public final class PolicyRestrictionsClientImpl implements PolicyRestrictionsCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the result of a check policy restrictions evaluation on a resource.
+     * @return the result of a check policy restrictions evaluation on a resource along with {@link Response} on
+     *     successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<CheckRestrictionsResultInner>> checkAtResourceGroupScopeWithResponseAsync(
@@ -281,7 +274,8 @@ public final class PolicyRestrictionsClientImpl implements PolicyRestrictionsCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the result of a check policy restrictions evaluation on a resource.
+     * @return the result of a check policy restrictions evaluation on a resource along with {@link Response} on
+     *     successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<CheckRestrictionsResultInner>> checkAtResourceGroupScopeWithResponseAsync(
@@ -330,20 +324,14 @@ public final class PolicyRestrictionsClientImpl implements PolicyRestrictionsCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the result of a check policy restrictions evaluation on a resource.
+     * @return the result of a check policy restrictions evaluation on a resource on successful completion of {@link
+     *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<CheckRestrictionsResultInner> checkAtResourceGroupScopeAsync(
         String resourceGroupName, CheckRestrictionsRequest parameters) {
         return checkAtResourceGroupScopeWithResponseAsync(resourceGroupName, parameters)
-            .flatMap(
-                (Response<CheckRestrictionsResultInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -373,7 +361,7 @@ public final class PolicyRestrictionsClientImpl implements PolicyRestrictionsCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the result of a check policy restrictions evaluation on a resource.
+     * @return the result of a check policy restrictions evaluation on a resource along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<CheckRestrictionsResultInner> checkAtResourceGroupScopeWithResponse(
