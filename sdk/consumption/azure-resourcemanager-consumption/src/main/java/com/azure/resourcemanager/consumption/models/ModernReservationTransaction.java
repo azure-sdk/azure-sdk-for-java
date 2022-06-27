@@ -98,7 +98,7 @@ public interface ModernReservationTransaction {
     OffsetDateTime eventDate();
 
     /**
-     * Gets the eventType property: The type of the transaction (Purchase, Cancel, etc.).
+     * Gets the eventType property: The type of the transaction (Purchase, Cancel or Refund).
      *
      * @return the eventType value.
      */

@@ -5,8 +5,6 @@
 package com.azure.resourcemanager.consumption.fluent.models;
 
 import com.azure.core.annotation.Immutable;
-import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
@@ -15,8 +13,6 @@ import java.util.UUID;
 /** The properties of a modern reservation transaction. */
 @Immutable
 public final class ModernReservationTransactionProperties {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(ModernReservationTransactionProperties.class);
-
     /*
      * The charge of the transaction.
      */
@@ -67,7 +63,7 @@ public final class ModernReservationTransactionProperties {
     private OffsetDateTime eventDate;
 
     /*
-     * The type of the transaction (Purchase, Cancel, etc.)
+     * The type of the transaction (Purchase, Cancel or Refund).
      */
     @JsonProperty(value = "eventType", access = JsonProperty.Access.WRITE_ONLY)
     private String eventType;
@@ -215,7 +211,7 @@ public final class ModernReservationTransactionProperties {
     }
 
     /**
-     * Get the eventType property: The type of the transaction (Purchase, Cancel, etc.).
+     * Get the eventType property: The type of the transaction (Purchase, Cancel or Refund).
      *
      * @return the eventType value.
      */
