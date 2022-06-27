@@ -23,10 +23,7 @@ public final class FactoriesGetGitHubAccessTokenSamples {
             .getGitHubAccessTokenWithResponse(
                 "exampleResourceGroup",
                 "exampleFactoryName",
-                new GitHubAccessTokenRequest()
-                    .withGitHubAccessCode("some")
-                    .withGitHubClientId("some")
-                    .withGitHubAccessTokenBaseUrl("some"),
+                new GitHubAccessTokenRequest().withGitHubAccessCode("some").withGitHubClientId("some"),
                 Context.NONE);
     }
 }
