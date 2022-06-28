@@ -192,6 +192,27 @@ public interface SecurityInsights {
     SentinelOnboardingStatesClient getSentinelOnboardingStates();
 
     /**
+     * Gets the GetsClient object to access its operations.
+     *
+     * @return the GetsClient object.
+     */
+    GetsClient getGets();
+
+    /**
+     * Gets the UpdatesClient object to access its operations.
+     *
+     * @return the UpdatesClient object.
+     */
+    UpdatesClient getUpdates();
+
+    /**
+     * Gets the SecurityMLAnalyticsSettingsClient object to access its operations.
+     *
+     * @return the SecurityMLAnalyticsSettingsClient object.
+     */
+    SecurityMLAnalyticsSettingsClient getSecurityMLAnalyticsSettings();
+
+    /**
      * Gets the ProductSettingsClient object to access its operations.
      *
      * @return the ProductSettingsClient object.
