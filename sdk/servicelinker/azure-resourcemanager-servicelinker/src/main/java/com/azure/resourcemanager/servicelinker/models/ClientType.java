@@ -40,6 +40,9 @@ public final class ClientType extends ExpandableStringEnum<ClientType> {
     /** Static value springBoot for ClientType. */
     public static final ClientType SPRING_BOOT = fromString("springBoot");
 
+    /** Static value kafka-springBoot for ClientType. */
+    public static final ClientType KAFKA_SPRING_BOOT = fromString("kafka-springBoot");
+
     /**
      * Creates or finds a ClientType from its string representation.
      *
