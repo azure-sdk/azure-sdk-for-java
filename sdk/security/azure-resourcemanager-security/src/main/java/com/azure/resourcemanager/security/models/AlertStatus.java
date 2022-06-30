@@ -30,7 +30,11 @@ public final class AlertStatus extends ExpandableStringEnum<AlertStatus> {
         return fromString(name, AlertStatus.class);
     }
 
-    /** @return known AlertStatus values. */
+    /**
+     * Gets known AlertStatus values.
+     *
+     * @return known AlertStatus values.
+     */
     public static Collection<AlertStatus> values() {
         return values(AlertStatus.class);
     }

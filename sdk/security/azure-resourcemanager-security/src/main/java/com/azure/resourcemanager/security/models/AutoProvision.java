@@ -27,7 +27,11 @@ public final class AutoProvision extends ExpandableStringEnum<AutoProvision> {
         return fromString(name, AutoProvision.class);
     }
 
-    /** @return known AutoProvision values. */
+    /**
+     * Gets known AutoProvision values.
+     *
+     * @return known AutoProvision values.
+     */
     public static Collection<AutoProvision> values() {
         return values(AutoProvision.class);
     }

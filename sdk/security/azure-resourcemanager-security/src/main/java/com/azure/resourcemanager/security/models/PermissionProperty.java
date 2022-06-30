@@ -35,7 +35,11 @@ public final class PermissionProperty extends ExpandableStringEnum<PermissionPro
         return fromString(name, PermissionProperty.class);
     }
 
-    /** @return known PermissionProperty values. */
+    /**
+     * Gets known PermissionProperty values.
+     *
+     * @return known PermissionProperty values.
+     */
     public static Collection<PermissionProperty> values() {
         return values(PermissionProperty.class);
     }

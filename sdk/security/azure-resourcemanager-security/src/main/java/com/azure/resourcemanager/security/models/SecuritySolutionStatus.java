@@ -27,7 +27,11 @@ public final class SecuritySolutionStatus extends ExpandableStringEnum<SecurityS
         return fromString(name, SecuritySolutionStatus.class);
     }
 
-    /** @return known SecuritySolutionStatus values. */
+    /**
+     * Gets known SecuritySolutionStatus values.
+     *
+     * @return known SecuritySolutionStatus values.
+     */
     public static Collection<SecuritySolutionStatus> values() {
         return values(SecuritySolutionStatus.class);
     }

@@ -30,7 +30,11 @@ public final class AssessmentStatusCode extends ExpandableStringEnum<AssessmentS
         return fromString(name, AssessmentStatusCode.class);
     }
 
-    /** @return known AssessmentStatusCode values. */
+    /**
+     * Gets known AssessmentStatusCode values.
+     *
+     * @return known AssessmentStatusCode values.
+     */
     public static Collection<AssessmentStatusCode> values() {
         return values(AssessmentStatusCode.class);
     }
