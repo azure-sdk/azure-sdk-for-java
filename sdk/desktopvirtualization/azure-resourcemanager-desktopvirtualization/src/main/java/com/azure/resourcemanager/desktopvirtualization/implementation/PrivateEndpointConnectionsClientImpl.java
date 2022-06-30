@@ -343,7 +343,7 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
      *     with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedFlux<PrivateEndpointConnectionWithSystemDataInner> listByHostPoolAsync(
+    private PagedFlux<PrivateEndpointConnectionWithSystemDataInner> listByHostPoolAsync(
         String resourceGroupName, String hostPoolName) {
         return new PagedFlux<>(
             () -> listByHostPoolSinglePageAsync(resourceGroupName, hostPoolName),
@@ -418,7 +418,7 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
      * @return a private endpoint connection along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<PrivateEndpointConnectionWithSystemDataInner>> getByHostPoolWithResponseAsync(
+    private Mono<Response<PrivateEndpointConnectionWithSystemDataInner>> getByHostPoolWithResponseAsync(
         String resourceGroupName, String hostPoolName, String privateEndpointConnectionName) {
         if (this.client.getEndpoint() == null) {
             return Mono
@@ -530,7 +530,7 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
      * @return a private endpoint connection on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<PrivateEndpointConnectionWithSystemDataInner> getByHostPoolAsync(
+    private Mono<PrivateEndpointConnectionWithSystemDataInner> getByHostPoolAsync(
         String resourceGroupName, String hostPoolName, String privateEndpointConnectionName) {
         return getByHostPoolWithResponseAsync(resourceGroupName, hostPoolName, privateEndpointConnectionName)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
@@ -587,7 +587,7 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
      * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Void>> deleteByHostPoolWithResponseAsync(
+    private Mono<Response<Void>> deleteByHostPoolWithResponseAsync(
         String resourceGroupName, String hostPoolName, String privateEndpointConnectionName) {
         if (this.client.getEndpoint() == null) {
             return Mono
@@ -699,7 +699,7 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
      * @return A {@link Mono} that completes when a successful response is received.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Void> deleteByHostPoolAsync(
+    private Mono<Void> deleteByHostPoolAsync(
         String resourceGroupName, String hostPoolName, String privateEndpointConnectionName) {
         return deleteByHostPoolWithResponseAsync(resourceGroupName, hostPoolName, privateEndpointConnectionName)
             .flatMap(ignored -> Mono.empty());
@@ -757,7 +757,7 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
      *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<PrivateEndpointConnectionWithSystemDataInner>> updateByHostPoolWithResponseAsync(
+    private Mono<Response<PrivateEndpointConnectionWithSystemDataInner>> updateByHostPoolWithResponseAsync(
         String resourceGroupName,
         String hostPoolName,
         String privateEndpointConnectionName,
@@ -891,7 +891,7 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
      * @return the Private Endpoint Connection resource on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<PrivateEndpointConnectionWithSystemDataInner> updateByHostPoolAsync(
+    private Mono<PrivateEndpointConnectionWithSystemDataInner> updateByHostPoolAsync(
         String resourceGroupName,
         String hostPoolName,
         String privateEndpointConnectionName,
@@ -1076,7 +1076,7 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
      *     with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedFlux<PrivateEndpointConnectionWithSystemDataInner> listByWorkspaceAsync(
+    private PagedFlux<PrivateEndpointConnectionWithSystemDataInner> listByWorkspaceAsync(
         String resourceGroupName, String workspaceName) {
         return new PagedFlux<>(
             () -> listByWorkspaceSinglePageAsync(resourceGroupName, workspaceName),
@@ -1151,7 +1151,7 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
      * @return a private endpoint connection along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<PrivateEndpointConnectionWithSystemDataInner>> getByWorkspaceWithResponseAsync(
+    private Mono<Response<PrivateEndpointConnectionWithSystemDataInner>> getByWorkspaceWithResponseAsync(
         String resourceGroupName, String workspaceName, String privateEndpointConnectionName) {
         if (this.client.getEndpoint() == null) {
             return Mono
@@ -1263,7 +1263,7 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
      * @return a private endpoint connection on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<PrivateEndpointConnectionWithSystemDataInner> getByWorkspaceAsync(
+    private Mono<PrivateEndpointConnectionWithSystemDataInner> getByWorkspaceAsync(
         String resourceGroupName, String workspaceName, String privateEndpointConnectionName) {
         return getByWorkspaceWithResponseAsync(resourceGroupName, workspaceName, privateEndpointConnectionName)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
@@ -1320,7 +1320,7 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
      * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Void>> deleteByWorkspaceWithResponseAsync(
+    private Mono<Response<Void>> deleteByWorkspaceWithResponseAsync(
         String resourceGroupName, String workspaceName, String privateEndpointConnectionName) {
         if (this.client.getEndpoint() == null) {
             return Mono
@@ -1432,7 +1432,7 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
      * @return A {@link Mono} that completes when a successful response is received.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Void> deleteByWorkspaceAsync(
+    private Mono<Void> deleteByWorkspaceAsync(
         String resourceGroupName, String workspaceName, String privateEndpointConnectionName) {
         return deleteByWorkspaceWithResponseAsync(resourceGroupName, workspaceName, privateEndpointConnectionName)
             .flatMap(ignored -> Mono.empty());
@@ -1491,7 +1491,7 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
      *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<PrivateEndpointConnectionWithSystemDataInner>> updateByWorkspaceWithResponseAsync(
+    private Mono<Response<PrivateEndpointConnectionWithSystemDataInner>> updateByWorkspaceWithResponseAsync(
         String resourceGroupName,
         String workspaceName,
         String privateEndpointConnectionName,
@@ -1625,7 +1625,7 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
      * @return the Private Endpoint Connection resource on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<PrivateEndpointConnectionWithSystemDataInner> updateByWorkspaceAsync(
+    private Mono<PrivateEndpointConnectionWithSystemDataInner> updateByWorkspaceAsync(
         String resourceGroupName,
         String workspaceName,
         String privateEndpointConnectionName,

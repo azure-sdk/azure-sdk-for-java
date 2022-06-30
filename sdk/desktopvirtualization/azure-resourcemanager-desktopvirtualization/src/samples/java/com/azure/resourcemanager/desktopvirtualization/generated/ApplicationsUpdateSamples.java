@@ -12,7 +12,7 @@ import com.azure.resourcemanager.desktopvirtualization.models.RemoteApplicationT
 /** Samples for Applications Update. */
 public final class ApplicationsUpdateSamples {
     /*
-     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2021-09-03-preview/examples/Application_Update.json
+     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2022-04-01-preview/examples/Application_Update.json
      */
     /**
      * Sample code: Application_Update.

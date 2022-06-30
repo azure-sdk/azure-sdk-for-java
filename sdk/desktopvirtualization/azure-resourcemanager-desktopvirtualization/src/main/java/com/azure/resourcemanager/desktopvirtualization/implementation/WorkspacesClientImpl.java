@@ -180,7 +180,7 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
      * @return a workspace along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<WorkspaceInner>> getByResourceGroupWithResponseAsync(
+    private Mono<Response<WorkspaceInner>> getByResourceGroupWithResponseAsync(
         String resourceGroupName, String workspaceName) {
         if (this.client.getEndpoint() == null) {
             return Mono
@@ -274,7 +274,7 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
      * @return a workspace on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<WorkspaceInner> getByResourceGroupAsync(String resourceGroupName, String workspaceName) {
+    private Mono<WorkspaceInner> getByResourceGroupAsync(String resourceGroupName, String workspaceName) {
         return getByResourceGroupWithResponseAsync(resourceGroupName, workspaceName)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
@@ -323,7 +323,7 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
      * @return represents a Workspace definition along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<WorkspaceInner>> createOrUpdateWithResponseAsync(
+    private Mono<Response<WorkspaceInner>> createOrUpdateWithResponseAsync(
         String resourceGroupName, String workspaceName, WorkspaceInner workspace) {
         if (this.client.getEndpoint() == null) {
             return Mono
@@ -431,7 +431,7 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
      * @return represents a Workspace definition on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<WorkspaceInner> createOrUpdateAsync(
+    private Mono<WorkspaceInner> createOrUpdateAsync(
         String resourceGroupName, String workspaceName, WorkspaceInner workspace) {
         return createOrUpdateWithResponseAsync(resourceGroupName, workspaceName, workspace)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
@@ -482,7 +482,7 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
      * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Void>> deleteWithResponseAsync(String resourceGroupName, String workspaceName) {
+    private Mono<Response<Void>> deleteWithResponseAsync(String resourceGroupName, String workspaceName) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -575,7 +575,7 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
      * @return A {@link Mono} that completes when a successful response is received.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Void> deleteAsync(String resourceGroupName, String workspaceName) {
+    private Mono<Void> deleteAsync(String resourceGroupName, String workspaceName) {
         return deleteWithResponseAsync(resourceGroupName, workspaceName).flatMap(ignored -> Mono.empty());
     }
 
@@ -621,7 +621,7 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
      * @return represents a Workspace definition along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<WorkspaceInner>> updateWithResponseAsync(
+    private Mono<Response<WorkspaceInner>> updateWithResponseAsync(
         String resourceGroupName, String workspaceName, WorkspacePatch workspace) {
         if (this.client.getEndpoint() == null) {
             return Mono
@@ -725,7 +725,7 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
      * @return represents a Workspace definition on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<WorkspaceInner> updateAsync(String resourceGroupName, String workspaceName, WorkspacePatch workspace) {
+    private Mono<WorkspaceInner> updateAsync(String resourceGroupName, String workspaceName, WorkspacePatch workspace) {
         return updateWithResponseAsync(resourceGroupName, workspaceName, workspace)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
@@ -741,7 +741,7 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
      * @return represents a Workspace definition on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<WorkspaceInner> updateAsync(String resourceGroupName, String workspaceName) {
+    private Mono<WorkspaceInner> updateAsync(String resourceGroupName, String workspaceName) {
         final WorkspacePatch workspace = null;
         return updateWithResponseAsync(resourceGroupName, workspaceName, workspace)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
@@ -892,7 +892,7 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
      * @return workspaceList as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedFlux<WorkspaceInner> listByResourceGroupAsync(String resourceGroupName) {
+    private PagedFlux<WorkspaceInner> listByResourceGroupAsync(String resourceGroupName) {
         return new PagedFlux<>(
             () -> listByResourceGroupSinglePageAsync(resourceGroupName),
             nextLink -> listByResourceGroupNextSinglePageAsync(nextLink));
@@ -1039,7 +1039,7 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
      * @return workspaceList as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedFlux<WorkspaceInner> listAsync() {
+    private PagedFlux<WorkspaceInner> listAsync() {
         return new PagedFlux<>(
             () -> listSinglePageAsync(), nextLink -> listBySubscriptionNextSinglePageAsync(nextLink));
     }

@@ -74,6 +74,29 @@ public final class SessionHostPatch extends ProxyResource {
     }
 
     /**
+     * Get the friendlyName property: Friendly name of SessionHost.
+     *
+     * @return the friendlyName value.
+     */
+    public String friendlyName() {
+        return this.innerProperties() == null ? null : this.innerProperties().friendlyName();
+    }
+
+    /**
+     * Set the friendlyName property: Friendly name of SessionHost.
+     *
+     * @param friendlyName the friendlyName value to set.
+     * @return the SessionHostPatch object itself.
+     */
+    public SessionHostPatch withFriendlyName(String friendlyName) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new SessionHostPatchProperties();
+        }
+        this.innerProperties().withFriendlyName(friendlyName);
+        return this;
+    }
+
+    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.

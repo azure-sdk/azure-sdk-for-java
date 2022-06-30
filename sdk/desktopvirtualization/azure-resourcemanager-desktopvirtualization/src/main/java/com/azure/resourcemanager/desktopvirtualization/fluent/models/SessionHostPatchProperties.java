@@ -22,6 +22,12 @@ public final class SessionHostPatchProperties {
     @JsonProperty(value = "assignedUser")
     private String assignedUser;
 
+    /*
+     * Friendly name of SessionHost
+     */
+    @JsonProperty(value = "friendlyName")
+    private String friendlyName;
+
     /**
      * Get the allowNewSession property: Allow a new session.
      *
@@ -59,6 +65,26 @@ public final class SessionHostPatchProperties {
      */
     public SessionHostPatchProperties withAssignedUser(String assignedUser) {
         this.assignedUser = assignedUser;
+        return this;
+    }
+
+    /**
+     * Get the friendlyName property: Friendly name of SessionHost.
+     *
+     * @return the friendlyName value.
+     */
+    public String friendlyName() {
+        return this.friendlyName;
+    }
+
+    /**
+     * Set the friendlyName property: Friendly name of SessionHost.
+     *
+     * @param friendlyName the friendlyName value to set.
+     * @return the SessionHostPatchProperties object itself.
+     */
+    public SessionHostPatchProperties withFriendlyName(String friendlyName) {
+        this.friendlyName = friendlyName;
         return this;
     }
 

@@ -150,7 +150,7 @@ public final class OperationsClientImpl implements OperationsClient {
      * @return result of the request to list operations as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedFlux<ResourceProviderOperationInner> listAsync() {
+    private PagedFlux<ResourceProviderOperationInner> listAsync() {
         return new PagedFlux<>(() -> listSinglePageAsync(), nextLink -> listNextSinglePageAsync(nextLink));
     }
 

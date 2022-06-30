@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.desktopvirtualization.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.desktopvirtualization.models.ScalingHostPoolReference;
 import com.azure.resourcemanager.desktopvirtualization.models.ScalingHostPoolType;
 import com.azure.resourcemanager.desktopvirtualization.models.ScalingSchedule;
@@ -35,7 +36,7 @@ public final class ScalingPlanProperties {
     /*
      * Timezone of the scaling plan.
      */
-    @JsonProperty(value = "timeZone")
+    @JsonProperty(value = "timeZone", required = true)
     private String timeZone;
 
     /*
@@ -51,7 +52,7 @@ public final class ScalingPlanProperties {
     private String exclusionTag;
 
     /*
-     * List of ScalingSchedule definitions.
+     * List of ScalingPlanPooledSchedule definitions.
      */
     @JsonProperty(value = "schedules")
     private List<ScalingSchedule> schedules;
@@ -172,7 +173,7 @@ public final class ScalingPlanProperties {
     }
 
     /**
-     * Get the schedules property: List of ScalingSchedule definitions.
+     * Get the schedules property: List of ScalingPlanPooledSchedule definitions.
      *
      * @return the schedules value.
      */
@@ -181,7 +182,7 @@ public final class ScalingPlanProperties {
     }
 
     /**
-     * Set the schedules property: List of ScalingSchedule definitions.
+     * Set the schedules property: List of ScalingPlanPooledSchedule definitions.
      *
      * @param schedules the schedules value to set.
      * @return the ScalingPlanProperties object itself.
@@ -217,6 +218,11 @@ public final class ScalingPlanProperties {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+        if (timeZone() == null) {
+            throw LOGGER
+                .logExceptionAsError(
+                    new IllegalArgumentException("Missing required property timeZone in model ScalingPlanProperties"));
+        }
         if (schedules() != null) {
             schedules().forEach(e -> e.validate());
         }
@@ -224,4 +230,6 @@ public final class ScalingPlanProperties {
             hostPoolReferences().forEach(e -> e.validate());
         }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(ScalingPlanProperties.class);
 }

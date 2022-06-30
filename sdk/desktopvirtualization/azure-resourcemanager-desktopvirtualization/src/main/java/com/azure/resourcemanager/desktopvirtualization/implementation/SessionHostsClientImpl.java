@@ -149,7 +149,7 @@ public final class SessionHostsClientImpl implements SessionHostsClient {
      * @return a session host along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<SessionHostInner>> getWithResponseAsync(
+    private Mono<Response<SessionHostInner>> getWithResponseAsync(
         String resourceGroupName, String hostPoolName, String sessionHostname) {
         if (this.client.getEndpoint() == null) {
             return Mono
@@ -255,7 +255,7 @@ public final class SessionHostsClientImpl implements SessionHostsClient {
      * @return a session host on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<SessionHostInner> getAsync(String resourceGroupName, String hostPoolName, String sessionHostname) {
+    private Mono<SessionHostInner> getAsync(String resourceGroupName, String hostPoolName, String sessionHostname) {
         return getWithResponseAsync(resourceGroupName, hostPoolName, sessionHostname)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
@@ -307,7 +307,7 @@ public final class SessionHostsClientImpl implements SessionHostsClient {
      * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Void>> deleteWithResponseAsync(
+    private Mono<Response<Void>> deleteWithResponseAsync(
         String resourceGroupName, String hostPoolName, String sessionHostname, Boolean force) {
         if (this.client.getEndpoint() == null) {
             return Mono
@@ -417,7 +417,7 @@ public final class SessionHostsClientImpl implements SessionHostsClient {
      * @return A {@link Mono} that completes when a successful response is received.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Void> deleteAsync(
+    private Mono<Void> deleteAsync(
         String resourceGroupName, String hostPoolName, String sessionHostname, Boolean force) {
         return deleteWithResponseAsync(resourceGroupName, hostPoolName, sessionHostname, force)
             .flatMap(ignored -> Mono.empty());
@@ -435,7 +435,7 @@ public final class SessionHostsClientImpl implements SessionHostsClient {
      * @return A {@link Mono} that completes when a successful response is received.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Void> deleteAsync(String resourceGroupName, String hostPoolName, String sessionHostname) {
+    private Mono<Void> deleteAsync(String resourceGroupName, String hostPoolName, String sessionHostname) {
         final Boolean force = null;
         return deleteWithResponseAsync(resourceGroupName, hostPoolName, sessionHostname, force)
             .flatMap(ignored -> Mono.empty());
@@ -490,7 +490,7 @@ public final class SessionHostsClientImpl implements SessionHostsClient {
      * @return represents a SessionHost definition along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<SessionHostInner>> updateWithResponseAsync(
+    private Mono<Response<SessionHostInner>> updateWithResponseAsync(
         String resourceGroupName,
         String hostPoolName,
         String sessionHostname,
@@ -619,7 +619,7 @@ public final class SessionHostsClientImpl implements SessionHostsClient {
      * @return represents a SessionHost definition on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<SessionHostInner> updateAsync(
+    private Mono<SessionHostInner> updateAsync(
         String resourceGroupName,
         String hostPoolName,
         String sessionHostname,
@@ -641,7 +641,7 @@ public final class SessionHostsClientImpl implements SessionHostsClient {
      * @return represents a SessionHost definition on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<SessionHostInner> updateAsync(String resourceGroupName, String hostPoolName, String sessionHostname) {
+    private Mono<SessionHostInner> updateAsync(String resourceGroupName, String hostPoolName, String sessionHostname) {
         final Boolean force = null;
         final SessionHostPatch sessionHost = null;
         return updateWithResponseAsync(resourceGroupName, hostPoolName, sessionHostname, force, sessionHost)
@@ -814,7 +814,7 @@ public final class SessionHostsClientImpl implements SessionHostsClient {
      * @return sessionHostList as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedFlux<SessionHostInner> listAsync(String resourceGroupName, String hostPoolName) {
+    private PagedFlux<SessionHostInner> listAsync(String resourceGroupName, String hostPoolName) {
         return new PagedFlux<>(
             () -> listSinglePageAsync(resourceGroupName, hostPoolName), nextLink -> listNextSinglePageAsync(nextLink));
     }
