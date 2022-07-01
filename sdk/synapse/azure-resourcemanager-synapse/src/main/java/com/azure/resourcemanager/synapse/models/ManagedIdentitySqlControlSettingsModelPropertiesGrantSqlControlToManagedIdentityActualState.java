@@ -63,6 +63,8 @@ public final class ManagedIdentitySqlControlSettingsModelPropertiesGrantSqlContr
     }
 
     /**
+     * Gets known ManagedIdentitySqlControlSettingsModelPropertiesGrantSqlControlToManagedIdentityActualState values.
+     *
      * @return known ManagedIdentitySqlControlSettingsModelPropertiesGrantSqlControlToManagedIdentityActualState values.
      */
     public static Collection<

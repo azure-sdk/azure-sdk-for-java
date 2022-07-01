@@ -512,14 +512,7 @@ public final class SqlPoolTablesClientImpl implements SqlPoolTablesClient {
     private Mono<SqlPoolTableInner> getAsync(
         String resourceGroupName, String workspaceName, String sqlPoolName, String schemaName, String tableName) {
         return getWithResponseAsync(resourceGroupName, workspaceName, sqlPoolName, schemaName, tableName)
-            .flatMap(
-                (Response<SqlPoolTableInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**

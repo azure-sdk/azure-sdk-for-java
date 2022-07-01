@@ -199,14 +199,7 @@ public final class IntegrationRuntimeStatusOperationsClientImpl implements Integ
     private Mono<IntegrationRuntimeStatusResponseInner> getAsync(
         String resourceGroupName, String workspaceName, String integrationRuntimeName) {
         return getWithResponseAsync(resourceGroupName, workspaceName, integrationRuntimeName)
-            .flatMap(
-                (Response<IntegrationRuntimeStatusResponseInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**

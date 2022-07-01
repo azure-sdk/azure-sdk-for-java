@@ -253,14 +253,7 @@ public final class ExtendedSqlPoolBlobAuditingPoliciesClientImpl implements Exte
     private Mono<ExtendedSqlPoolBlobAuditingPolicyInner> getAsync(
         String resourceGroupName, String workspaceName, String sqlPoolName) {
         return getWithResponseAsync(resourceGroupName, workspaceName, sqlPoolName)
-            .flatMap(
-                (Response<ExtendedSqlPoolBlobAuditingPolicyInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -450,14 +443,7 @@ public final class ExtendedSqlPoolBlobAuditingPoliciesClientImpl implements Exte
         String sqlPoolName,
         ExtendedSqlPoolBlobAuditingPolicyInner parameters) {
         return createOrUpdateWithResponseAsync(resourceGroupName, workspaceName, sqlPoolName, parameters)
-            .flatMap(
-                (Response<ExtendedSqlPoolBlobAuditingPolicyInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
