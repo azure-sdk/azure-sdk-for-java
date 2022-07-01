@@ -23,7 +23,7 @@ import java.util.Map;
     defaultImpl = IntegrationRuntime.class)
 @JsonTypeName("IntegrationRuntime")
 @JsonSubTypes({
-    @JsonSubTypes.Type(name = "Managed", value = ManagedIntegrationRuntime.class),
+    @JsonSubTypes.Type(name = "ManagedIntegrationRuntimeBase", value = ManagedIntegrationRuntimeBase.class),
     @JsonSubTypes.Type(name = "SelfHosted", value = SelfHostedIntegrationRuntime.class)
 })
 @Fluent
