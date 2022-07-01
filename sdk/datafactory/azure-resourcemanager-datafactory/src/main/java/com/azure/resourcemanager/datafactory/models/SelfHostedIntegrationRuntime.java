@@ -40,7 +40,7 @@ public final class SelfHostedIntegrationRuntime extends IntegrationRuntime {
     }
 
     /**
-     * Get the linkedInfo property: The base definition of a linked integration runtime.
+     * Get the linkedInfo property: Linked integration runtime type from data factory.
      *
      * @return the linkedInfo value.
      */
@@ -49,7 +49,7 @@ public final class SelfHostedIntegrationRuntime extends IntegrationRuntime {
     }
 
     /**
-     * Set the linkedInfo property: The base definition of a linked integration runtime.
+     * Set the linkedInfo property: Linked integration runtime type from data factory.
      *
      * @param linkedInfo the linkedInfo value to set.
      * @return the SelfHostedIntegrationRuntime object itself.

@@ -12,13 +12,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Fluent
 public final class SelfHostedIntegrationRuntimeTypeProperties {
     /*
-     * The base definition of a linked integration runtime.
+     * Linked integration runtime type from data factory
      */
     @JsonProperty(value = "linkedInfo")
     private LinkedIntegrationRuntimeType linkedInfo;
 
     /**
-     * Get the linkedInfo property: The base definition of a linked integration runtime.
+     * Get the linkedInfo property: Linked integration runtime type from data factory.
      *
      * @return the linkedInfo value.
      */
@@ -27,7 +27,7 @@ public final class SelfHostedIntegrationRuntimeTypeProperties {
     }
 
     /**
-     * Set the linkedInfo property: The base definition of a linked integration runtime.
+     * Set the linkedInfo property: Linked integration runtime type from data factory.
      *
      * @param linkedInfo the linkedInfo value to set.
      * @return the SelfHostedIntegrationRuntimeTypeProperties object itself.
