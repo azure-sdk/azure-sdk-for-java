@@ -99,20 +99,6 @@ public final class AzureSqlProtectedItem extends ProtectedItem {
 
     /** {@inheritDoc} */
     @Override
-    public AzureSqlProtectedItem withBackupManagementType(BackupManagementType backupManagementType) {
-        super.withBackupManagementType(backupManagementType);
-        return this;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public AzureSqlProtectedItem withWorkloadType(DataSourceType workloadType) {
-        super.withWorkloadType(workloadType);
-        return this;
-    }
-
-    /** {@inheritDoc} */
-    @Override
     public AzureSqlProtectedItem withContainerName(String containerName) {
         super.withContainerName(containerName);
         return this;

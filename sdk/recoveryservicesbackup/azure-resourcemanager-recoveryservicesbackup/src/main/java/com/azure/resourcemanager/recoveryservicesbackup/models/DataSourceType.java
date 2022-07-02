@@ -55,6 +55,9 @@ public final class DataSourceType extends ExpandableStringEnum<DataSourceType> {
     /** Static value SAPAseDatabase for DataSourceType. */
     public static final DataSourceType SAPASE_DATABASE = fromString("SAPAseDatabase");
 
+    /** Static value SAPHanaDBInstance for DataSourceType. */
+    public static final DataSourceType SAPHANA_DBINSTANCE = fromString("SAPHanaDBInstance");
+
     /**
      * Creates or finds a DataSourceType from its string representation.
      *

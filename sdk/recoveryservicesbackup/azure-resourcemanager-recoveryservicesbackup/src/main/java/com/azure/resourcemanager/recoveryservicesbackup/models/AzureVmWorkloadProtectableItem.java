@@ -21,6 +21,8 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     @JsonSubTypes.Type(name = "SAPAseSystem", value = AzureVmWorkloadSapAseSystemProtectableItem.class),
     @JsonSubTypes.Type(name = "SAPHanaDatabase", value = AzureVmWorkloadSapHanaDatabaseProtectableItem.class),
     @JsonSubTypes.Type(name = "SAPHanaSystem", value = AzureVmWorkloadSapHanaSystemProtectableItem.class),
+    @JsonSubTypes.Type(name = "SAPHanaDBInstance", value = AzureVmWorkloadSapHanaDBInstance.class),
+    @JsonSubTypes.Type(name = "SAPHanaHSR", value = AzureVmWorkloadSapHanaHsr.class),
     @JsonSubTypes.Type(
         name = "SQLAvailabilityGroupContainer",
         value = AzureVmWorkloadSqlAvailabilityGroupProtectableItem.class),

@@ -28,6 +28,12 @@ public final class PolicyType extends ExpandableStringEnum<PolicyType> {
     /** Static value Incremental for PolicyType. */
     public static final PolicyType INCREMENTAL = fromString("Incremental");
 
+    /** Static value SnapshotFull for PolicyType. */
+    public static final PolicyType SNAPSHOT_FULL = fromString("SnapshotFull");
+
+    /** Static value SnapshotCopyOnlyFull for PolicyType. */
+    public static final PolicyType SNAPSHOT_COPY_ONLY_FULL = fromString("SnapshotCopyOnlyFull");
+
     /**
      * Creates or finds a PolicyType from its string representation.
      *
