@@ -276,7 +276,7 @@ public final class ConfigurationStoresClientImpl implements ConfigurationStoresC
     }
 
     /**
-     * Lists the configuration stores for a given subscription.
+     * Lists the configuration stores for a given subscription. hello.
      *
      * @param skipToken A skip token is used to continue retrieving items after an operation returns a partial result.
      *     If a previous response contains a nextLink element, the value of the nextLink element will include a
@@ -326,7 +326,7 @@ public final class ConfigurationStoresClientImpl implements ConfigurationStoresC
     }
 
     /**
-     * Lists the configuration stores for a given subscription.
+     * Lists the configuration stores for a given subscription. hello.
      *
      * @param skipToken A skip token is used to continue retrieving items after an operation returns a partial result.
      *     If a previous response contains a nextLink element, the value of the nextLink element will include a
@@ -374,7 +374,7 @@ public final class ConfigurationStoresClientImpl implements ConfigurationStoresC
     }
 
     /**
-     * Lists the configuration stores for a given subscription.
+     * Lists the configuration stores for a given subscription. hello.
      *
      * @param skipToken A skip token is used to continue retrieving items after an operation returns a partial result.
      *     If a previous response contains a nextLink element, the value of the nextLink element will include a
@@ -390,7 +390,7 @@ public final class ConfigurationStoresClientImpl implements ConfigurationStoresC
     }
 
     /**
-     * Lists the configuration stores for a given subscription.
+     * Lists the configuration stores for a given subscription. hello.
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -403,7 +403,7 @@ public final class ConfigurationStoresClientImpl implements ConfigurationStoresC
     }
 
     /**
-     * Lists the configuration stores for a given subscription.
+     * Lists the configuration stores for a given subscription. hello.
      *
      * @param skipToken A skip token is used to continue retrieving items after an operation returns a partial result.
      *     If a previous response contains a nextLink element, the value of the nextLink element will include a
@@ -421,7 +421,7 @@ public final class ConfigurationStoresClientImpl implements ConfigurationStoresC
     }
 
     /**
-     * Lists the configuration stores for a given subscription.
+     * Lists the configuration stores for a given subscription. hello.
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -434,7 +434,7 @@ public final class ConfigurationStoresClientImpl implements ConfigurationStoresC
     }
 
     /**
-     * Lists the configuration stores for a given subscription.
+     * Lists the configuration stores for a given subscription. hello.
      *
      * @param skipToken A skip token is used to continue retrieving items after an operation returns a partial result.
      *     If a previous response contains a nextLink element, the value of the nextLink element will include a
