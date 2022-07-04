@@ -1840,15 +1840,18 @@ public final class WebTestLocationsListSamples {
 ### WebTests_CreateOrUpdate
 
 ```java
+import com.azure.resourcemanager.applicationinsights.models.HeaderField;
 import com.azure.resourcemanager.applicationinsights.models.WebTestGeolocation;
 import com.azure.resourcemanager.applicationinsights.models.WebTestKind;
 import com.azure.resourcemanager.applicationinsights.models.WebTestPropertiesConfiguration;
+import com.azure.resourcemanager.applicationinsights.models.WebTestPropertiesRequest;
+import com.azure.resourcemanager.applicationinsights.models.WebTestPropertiesValidationRules;
 import java.util.Arrays;
 
 /** Samples for WebTests CreateOrUpdate. */
 public final class WebTestsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/applicationinsights/resource-manager/Microsoft.Insights/stable/2015-05-01/examples/WebTestCreate.json
+     * x-ms-original-file: specification/applicationinsights/resource-manager/Microsoft.Insights/stable/2022-06-15/examples/WebTestCreate.json
      */
     /**
      * Sample code: webTestCreate.
@@ -1889,7 +1892,46 @@ public final class WebTestsCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/applicationinsights/resource-manager/Microsoft.Insights/stable/2015-05-01/examples/WebTestUpdate.json
+     * x-ms-original-file: specification/applicationinsights/resource-manager/Microsoft.Insights/stable/2022-06-15/examples/WebTestCreateStandard.json
+     */
+    /**
+     * Sample code: webTestCreateStandard.
+     *
+     * @param manager Entry point to ApplicationInsightsManager.
+     */
+    public static void webTestCreateStandard(
+        com.azure.resourcemanager.applicationinsights.ApplicationInsightsManager manager) {
+        manager
+            .webTests()
+            .define("my-webtest-my-component")
+            .withRegion("South Central US")
+            .withExistingResourceGroup("my-resource-group")
+            .withSyntheticMonitorId("my-webtest-my-component")
+            .withWebTestName("my-webtest-my-component")
+            .withDescription("Ping web test alert for mytestwebapp")
+            .withEnabled(true)
+            .withFrequency(900)
+            .withTimeout(120)
+            .withWebTestKind(WebTestKind.STANDARD)
+            .withRetryEnabled(true)
+            .withLocations(Arrays.asList(new WebTestGeolocation().withLocation("us-fl-mia-edge")))
+            .withRequest(
+                new WebTestPropertiesRequest()
+                    .withRequestUrl("https://bing.com")
+                    .withHeaders(
+                        Arrays
+                            .asList(
+                                new HeaderField().withHeaderFieldName("Content-Language").withHeaderFieldValue("de-DE"),
+                                new HeaderField().withHeaderFieldName("Accept-Language").withHeaderFieldValue("de-DE")))
+                    .withHttpVerb("POST")
+                    .withRequestBody("SGVsbG8gd29ybGQ="))
+            .withValidationRules(
+                new WebTestPropertiesValidationRules().withSslCheck(true).withSslCertRemainingLifetimeCheck(100))
+            .create();
+    }
+
+    /*
+     * x-ms-original-file: specification/applicationinsights/resource-manager/Microsoft.Insights/stable/2022-06-15/examples/WebTestUpdate.json
      */
     /**
      * Sample code: webTestUpdate.
@@ -1940,7 +1982,7 @@ import com.azure.core.util.Context;
 /** Samples for WebTests Delete. */
 public final class WebTestsDeleteSamples {
     /*
-     * x-ms-original-file: specification/applicationinsights/resource-manager/Microsoft.Insights/stable/2015-05-01/examples/WebTestDelete.json
+     * x-ms-original-file: specification/applicationinsights/resource-manager/Microsoft.Insights/stable/2022-06-15/examples/WebTestDelete.json
      */
     /**
      * Sample code: webTestDelete.
@@ -1961,7 +2003,7 @@ import com.azure.core.util.Context;
 /** Samples for WebTests GetByResourceGroup. */
 public final class WebTestsGetByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/applicationinsights/resource-manager/Microsoft.Insights/stable/2015-05-01/examples/WebTestGet.json
+     * x-ms-original-file: specification/applicationinsights/resource-manager/Microsoft.Insights/stable/2022-06-15/examples/WebTestGet.json
      */
     /**
      * Sample code: webTestGet.
@@ -1984,7 +2026,7 @@ import com.azure.core.util.Context;
 /** Samples for WebTests List. */
 public final class WebTestsListSamples {
     /*
-     * x-ms-original-file: specification/applicationinsights/resource-manager/Microsoft.Insights/stable/2015-05-01/examples/WebTestList.json
+     * x-ms-original-file: specification/applicationinsights/resource-manager/Microsoft.Insights/stable/2022-06-15/examples/WebTestList.json
      */
     /**
      * Sample code: webTestList.
@@ -2005,7 +2047,7 @@ import com.azure.core.util.Context;
 /** Samples for WebTests ListByComponent. */
 public final class WebTestsListByComponentSamples {
     /*
-     * x-ms-original-file: specification/applicationinsights/resource-manager/Microsoft.Insights/stable/2015-05-01/examples/WebTestListByComponent.json
+     * x-ms-original-file: specification/applicationinsights/resource-manager/Microsoft.Insights/stable/2022-06-15/examples/WebTestListByComponent.json
      */
     /**
      * Sample code: webTestListByComponent.
@@ -2027,7 +2069,7 @@ import com.azure.core.util.Context;
 /** Samples for WebTests ListByResourceGroup. */
 public final class WebTestsListByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/applicationinsights/resource-manager/Microsoft.Insights/stable/2015-05-01/examples/WebTestListByResourceGroup.json
+     * x-ms-original-file: specification/applicationinsights/resource-manager/Microsoft.Insights/stable/2022-06-15/examples/WebTestListByResourceGroup.json
      */
     /**
      * Sample code: webTestListByResourceGroup.
@@ -2052,7 +2094,7 @@ import java.util.Map;
 /** Samples for WebTests UpdateTags. */
 public final class WebTestsUpdateTagsSamples {
     /*
-     * x-ms-original-file: specification/applicationinsights/resource-manager/Microsoft.Insights/stable/2015-05-01/examples/WebTestUpdateTagsOnly.json
+     * x-ms-original-file: specification/applicationinsights/resource-manager/Microsoft.Insights/stable/2022-06-15/examples/WebTestUpdateTagsOnly.json
      */
     /**
      * Sample code: webTestUpdateTags.
@@ -2077,8 +2119,6 @@ public final class WebTestsUpdateTagsSamples {
                     "SystemType",
                     "A08",
                     "hidden-link:/subscriptions/subid/resourceGroups/my-resource-group/providers/Microsoft.Insights/components/my-component",
-                    "Resource",
-                    "hidden-link:/subscriptions/subid/resourceGroups/my-resource-group/providers/Microsoft.Web/sites/mytestwebapp",
                     "Resource"))
             .apply();
     }
