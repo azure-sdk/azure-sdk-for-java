@@ -30,7 +30,11 @@ public final class StateValue extends ExpandableStringEnum<StateValue> {
         return fromString(name, StateValue.class);
     }
 
-    /** @return known StateValue values. */
+    /**
+     * Gets known StateValue values.
+     *
+     * @return known StateValue values.
+     */
     public static Collection<StateValue> values() {
         return values(StateValue.class);
     }
