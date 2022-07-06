@@ -5,12 +5,16 @@
 package com.azure.resourcemanager.hybridcompute.implementation;
 
 import com.azure.core.management.SystemData;
+import com.azure.resourcemanager.hybridcompute.fluent.models.MachineExtensionInner;
 import com.azure.resourcemanager.hybridcompute.fluent.models.MachineInner;
 import com.azure.resourcemanager.hybridcompute.models.Identity;
 import com.azure.resourcemanager.hybridcompute.models.Machine;
+import com.azure.resourcemanager.hybridcompute.models.MachineExtension;
 import com.azure.resourcemanager.hybridcompute.models.MachineProperties;
 import java.util.Collections;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public final class MachineImpl implements Machine {
     private MachineInner innerObject;
@@ -49,6 +53,20 @@ public final class MachineImpl implements Machine {
 
     public MachineProperties properties() {
         return this.innerModel().properties();
+    }
+
+    public List<MachineExtension> resources() {
+        List<MachineExtensionInner> inner = this.innerModel().resources();
+        if (inner != null) {
+            return Collections
+                .unmodifiableList(
+                    inner
+                        .stream()
+                        .map(inner1 -> new MachineExtensionImpl(inner1, this.manager()))
+                        .collect(Collectors.toList()));
+        } else {
+            return Collections.emptyList();
+        }
     }
 
     public Identity identity() {

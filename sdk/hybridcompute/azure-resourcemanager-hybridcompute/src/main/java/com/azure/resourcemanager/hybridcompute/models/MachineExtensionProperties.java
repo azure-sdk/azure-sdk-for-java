@@ -5,15 +5,13 @@
 package com.azure.resourcemanager.hybridcompute.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.Map;
 
 /** Describes the properties of a Machine Extension. */
 @Fluent
 public final class MachineExtensionProperties {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(MachineExtensionProperties.class);
-
     /*
      * How the extension handler should be forced to update even if the
      * extension configuration has not changed.
@@ -41,6 +39,13 @@ public final class MachineExtensionProperties {
     private String typeHandlerVersion;
 
     /*
+     * Indicates whether the extension should be automatically upgraded by the
+     * platform if there is a newer version available.
+     */
+    @JsonProperty(value = "enableAutomaticUpgrade")
+    private Boolean enableAutomaticUpgrade;
+
+    /*
      * Indicates whether the extension should use a newer minor version if one
      * is available at deployment time. Once deployed, however, the extension
      * will not upgrade minor versions unless redeployed, even with this
@@ -53,14 +58,16 @@ public final class MachineExtensionProperties {
      * Json formatted public settings for the extension.
      */
     @JsonProperty(value = "settings")
-    private Object settings;
+    @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
+    private Map<String, Object> settings;
 
     /*
      * The extension can contain either protectedSettings or
      * protectedSettingsFromKeyVault or no protected settings at all.
      */
     @JsonProperty(value = "protectedSettings")
-    private Object protectedSettings;
+    @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
+    private Map<String, Object> protectedSettings;
 
     /*
      * The provisioning state, which only appears in the response.
@@ -157,6 +164,28 @@ public final class MachineExtensionProperties {
     }
 
     /**
+     * Get the enableAutomaticUpgrade property: Indicates whether the extension should be automatically upgraded by the
+     * platform if there is a newer version available.
+     *
+     * @return the enableAutomaticUpgrade value.
+     */
+    public Boolean enableAutomaticUpgrade() {
+        return this.enableAutomaticUpgrade;
+    }
+
+    /**
+     * Set the enableAutomaticUpgrade property: Indicates whether the extension should be automatically upgraded by the
+     * platform if there is a newer version available.
+     *
+     * @param enableAutomaticUpgrade the enableAutomaticUpgrade value to set.
+     * @return the MachineExtensionProperties object itself.
+     */
+    public MachineExtensionProperties withEnableAutomaticUpgrade(Boolean enableAutomaticUpgrade) {
+        this.enableAutomaticUpgrade = enableAutomaticUpgrade;
+        return this;
+    }
+
+    /**
      * Get the autoUpgradeMinorVersion property: Indicates whether the extension should use a newer minor version if one
      * is available at deployment time. Once deployed, however, the extension will not upgrade minor versions unless
      * redeployed, even with this property set to true.
@@ -185,7 +214,7 @@ public final class MachineExtensionProperties {
      *
      * @return the settings value.
      */
-    public Object settings() {
+    public Map<String, Object> settings() {
         return this.settings;
     }
 
@@ -195,7 +224,7 @@ public final class MachineExtensionProperties {
      * @param settings the settings value to set.
      * @return the MachineExtensionProperties object itself.
      */
-    public MachineExtensionProperties withSettings(Object settings) {
+    public MachineExtensionProperties withSettings(Map<String, Object> settings) {
         this.settings = settings;
         return this;
     }
@@ -206,7 +235,7 @@ public final class MachineExtensionProperties {
      *
      * @return the protectedSettings value.
      */
-    public Object protectedSettings() {
+    public Map<String, Object> protectedSettings() {
         return this.protectedSettings;
     }
 
@@ -217,7 +246,7 @@ public final class MachineExtensionProperties {
      * @param protectedSettings the protectedSettings value to set.
      * @return the MachineExtensionProperties object itself.
      */
-    public MachineExtensionProperties withProtectedSettings(Object protectedSettings) {
+    public MachineExtensionProperties withProtectedSettings(Map<String, Object> protectedSettings) {
         this.protectedSettings = protectedSettings;
         return this;
     }

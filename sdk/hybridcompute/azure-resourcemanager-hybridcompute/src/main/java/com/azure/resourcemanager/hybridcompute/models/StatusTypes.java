@@ -30,7 +30,11 @@ public final class StatusTypes extends ExpandableStringEnum<StatusTypes> {
         return fromString(name, StatusTypes.class);
     }
 
-    /** @return known StatusTypes values. */
+    /**
+     * Gets known StatusTypes values.
+     *
+     * @return known StatusTypes values.
+     */
     public static Collection<StatusTypes> values() {
         return values(StatusTypes.class);
     }

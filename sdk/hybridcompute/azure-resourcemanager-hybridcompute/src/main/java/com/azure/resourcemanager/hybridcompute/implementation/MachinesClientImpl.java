@@ -26,7 +26,6 @@ import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.hybridcompute.fluent.MachinesClient;
 import com.azure.resourcemanager.hybridcompute.fluent.models.MachineInner;
 import com.azure.resourcemanager.hybridcompute.models.InstanceViewTypes;
@@ -35,8 +34,6 @@ import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in MachinesClient. */
 public final class MachinesClientImpl implements MachinesClient {
-    private final ClientLogger logger = new ClientLogger(MachinesClientImpl.class);
-
     /** The proxy service used to perform REST calls. */
     private final MachinesService service;
 
@@ -138,14 +135,14 @@ public final class MachinesClientImpl implements MachinesClient {
     }
 
     /**
-     * The operation to remove a hybrid machine identity in Azure.
+     * The operation to delete a hybrid machine.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param machineName The name of the hybrid machine.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the completion.
+     * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Void>> deleteWithResponseAsync(String resourceGroupName, String machineName) {
@@ -185,7 +182,7 @@ public final class MachinesClientImpl implements MachinesClient {
     }
 
     /**
-     * The operation to remove a hybrid machine identity in Azure.
+     * The operation to delete a hybrid machine.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param machineName The name of the hybrid machine.
@@ -193,7 +190,7 @@ public final class MachinesClientImpl implements MachinesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the completion.
+     * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Void>> deleteWithResponseAsync(
@@ -231,22 +228,22 @@ public final class MachinesClientImpl implements MachinesClient {
     }
 
     /**
-     * The operation to remove a hybrid machine identity in Azure.
+     * The operation to delete a hybrid machine.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param machineName The name of the hybrid machine.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the completion.
+     * @return A {@link Mono} that completes when a successful response is received.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> deleteAsync(String resourceGroupName, String machineName) {
-        return deleteWithResponseAsync(resourceGroupName, machineName).flatMap((Response<Void> res) -> Mono.empty());
+        return deleteWithResponseAsync(resourceGroupName, machineName).flatMap(ignored -> Mono.empty());
     }
 
     /**
-     * The operation to remove a hybrid machine identity in Azure.
+     * The operation to delete a hybrid machine.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param machineName The name of the hybrid machine.
@@ -260,7 +257,7 @@ public final class MachinesClientImpl implements MachinesClient {
     }
 
     /**
-     * The operation to remove a hybrid machine identity in Azure.
+     * The operation to delete a hybrid machine.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param machineName The name of the hybrid machine.
@@ -268,7 +265,7 @@ public final class MachinesClientImpl implements MachinesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
+     * @return the {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<Void> deleteWithResponse(String resourceGroupName, String machineName, Context context) {
@@ -284,7 +281,7 @@ public final class MachinesClientImpl implements MachinesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return describes a hybrid machine.
+     * @return describes a hybrid machine along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<MachineInner>> getByResourceGroupWithResponseAsync(
@@ -335,7 +332,7 @@ public final class MachinesClientImpl implements MachinesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return describes a hybrid machine.
+     * @return describes a hybrid machine along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<MachineInner>> getByResourceGroupWithResponseAsync(
@@ -382,20 +379,13 @@ public final class MachinesClientImpl implements MachinesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return describes a hybrid machine.
+     * @return describes a hybrid machine on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<MachineInner> getByResourceGroupAsync(
         String resourceGroupName, String machineName, InstanceViewTypes expand) {
         return getByResourceGroupWithResponseAsync(resourceGroupName, machineName, expand)
-            .flatMap(
-                (Response<MachineInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -406,20 +396,13 @@ public final class MachinesClientImpl implements MachinesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return describes a hybrid machine.
+     * @return describes a hybrid machine on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<MachineInner> getByResourceGroupAsync(String resourceGroupName, String machineName) {
         final InstanceViewTypes expand = null;
         return getByResourceGroupWithResponseAsync(resourceGroupName, machineName, expand)
-            .flatMap(
-                (Response<MachineInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -448,7 +431,7 @@ public final class MachinesClientImpl implements MachinesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return describes a hybrid machine.
+     * @return describes a hybrid machine along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<MachineInner> getByResourceGroupWithResponse(
@@ -464,7 +447,8 @@ public final class MachinesClientImpl implements MachinesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the List hybrid machine operation response.
+     * @return the List hybrid machine operation response along with {@link PagedResponse} on successful completion of
+     *     {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<MachineInner>> listByResourceGroupSinglePageAsync(String resourceGroupName) {
@@ -517,7 +501,8 @@ public final class MachinesClientImpl implements MachinesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the List hybrid machine operation response.
+     * @return the List hybrid machine operation response along with {@link PagedResponse} on successful completion of
+     *     {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<MachineInner>> listByResourceGroupSinglePageAsync(
@@ -567,7 +552,7 @@ public final class MachinesClientImpl implements MachinesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the List hybrid machine operation response.
+     * @return the List hybrid machine operation response as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<MachineInner> listByResourceGroupAsync(String resourceGroupName) {
@@ -585,7 +570,7 @@ public final class MachinesClientImpl implements MachinesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the List hybrid machine operation response.
+     * @return the List hybrid machine operation response as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<MachineInner> listByResourceGroupAsync(String resourceGroupName, Context context) {
@@ -602,7 +587,7 @@ public final class MachinesClientImpl implements MachinesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the List hybrid machine operation response.
+     * @return the List hybrid machine operation response as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<MachineInner> listByResourceGroup(String resourceGroupName) {
@@ -618,7 +603,7 @@ public final class MachinesClientImpl implements MachinesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the List hybrid machine operation response.
+     * @return the List hybrid machine operation response as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<MachineInner> listByResourceGroup(String resourceGroupName, Context context) {
@@ -631,7 +616,8 @@ public final class MachinesClientImpl implements MachinesClient {
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the List hybrid machine operation response.
+     * @return the List hybrid machine operation response along with {@link PagedResponse} on successful completion of
+     *     {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<MachineInner>> listSinglePageAsync() {
@@ -678,7 +664,8 @@ public final class MachinesClientImpl implements MachinesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the List hybrid machine operation response.
+     * @return the List hybrid machine operation response along with {@link PagedResponse} on successful completion of
+     *     {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<MachineInner>> listSinglePageAsync(Context context) {
@@ -720,7 +707,7 @@ public final class MachinesClientImpl implements MachinesClient {
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the List hybrid machine operation response.
+     * @return the List hybrid machine operation response as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<MachineInner> listAsync() {
@@ -736,7 +723,7 @@ public final class MachinesClientImpl implements MachinesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the List hybrid machine operation response.
+     * @return the List hybrid machine operation response as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<MachineInner> listAsync(Context context) {
@@ -750,7 +737,7 @@ public final class MachinesClientImpl implements MachinesClient {
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the List hybrid machine operation response.
+     * @return the List hybrid machine operation response as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<MachineInner> list() {
@@ -765,7 +752,7 @@ public final class MachinesClientImpl implements MachinesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the List hybrid machine operation response.
+     * @return the List hybrid machine operation response as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<MachineInner> list(Context context) {
@@ -779,7 +766,8 @@ public final class MachinesClientImpl implements MachinesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the List hybrid machine operation response.
+     * @return the List hybrid machine operation response along with {@link PagedResponse} on successful completion of
+     *     {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<MachineInner>> listByResourceGroupNextSinglePageAsync(String nextLink) {
@@ -816,7 +804,8 @@ public final class MachinesClientImpl implements MachinesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the List hybrid machine operation response.
+     * @return the List hybrid machine operation response along with {@link PagedResponse} on successful completion of
+     *     {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<MachineInner>> listByResourceGroupNextSinglePageAsync(String nextLink, Context context) {
@@ -851,7 +840,8 @@ public final class MachinesClientImpl implements MachinesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the List hybrid machine operation response.
+     * @return the List hybrid machine operation response along with {@link PagedResponse} on successful completion of
+     *     {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<MachineInner>> listBySubscriptionNextSinglePageAsync(String nextLink) {
@@ -888,7 +878,8 @@ public final class MachinesClientImpl implements MachinesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the List hybrid machine operation response.
+     * @return the List hybrid machine operation response along with {@link PagedResponse} on successful completion of
+     *     {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<MachineInner>> listBySubscriptionNextSinglePageAsync(String nextLink, Context context) {
