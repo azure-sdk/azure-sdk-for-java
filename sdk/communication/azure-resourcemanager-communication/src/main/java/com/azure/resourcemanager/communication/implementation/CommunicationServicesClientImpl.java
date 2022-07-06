@@ -208,7 +208,7 @@ public final class CommunicationServicesClientImpl implements CommunicationServi
         @Post(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Communication"
                 + "/communicationServices/{communicationServiceName}/regenerateKey")
-        @ExpectedResponses({200, 201})
+        @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> regenerateKey(
             @HostParam("$host") String endpoint,
