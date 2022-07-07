@@ -37,18 +37,22 @@ pr:
       - sdk/monitor/azure-monitor-query/pom.xml
 
 parameters:
-- name: release_azuremonitoringestion
-  displayName: 'azure-monitor-ingestion'
-  type: boolean
-  default: true
-- name: release_azuremonitoropentelemetryexporter
-  displayName: 'azure-monitor-opentelemetry-exporter'
-  type: boolean
-  default: true
-- name: release_azuremonitorquery
-  displayName: 'azure-monitor-query'
-  type: boolean
-  default: true
+  - name: release_azuremonitoringestion
+    displayName: azure-monitor-ingestion
+    type: boolean
+    default: true
+  - name: release_azuremonitoropentelemetryexporter
+    displayName: azure-monitor-opentelemetry-exporter
+    type: boolean
+    default: true
+  - name: release_azuremonitorquery
+    displayName: azure-monitor-query
+    type: boolean
+    default: true
+  - name: release_azureresourcemanagermonitorgenerated
+    displayName: azure-resourcemanager-monitor-generated
+    type: boolean
+    default: false
 
 extends:
   template: ../../eng/pipelines/templates/stages/archetype-sdk-client.yml
@@ -68,9 +72,12 @@ extends:
         groupId: com.azure
         safeName: azuremonitorquery
         releaseInBatch: ${{ parameters.release_azuremonitorquery }}
+      - name: azure-resourcemanager-monitor-generated
+        groupId: com.azure.resourcemanager
+        safeName: azureresourcemanagermonitorgenerated
+        releaseInBatch: ${{ parameters.release_azureresourcemanagermonitorgenerated }}
     AdditionalModules:
       - name: azure-monitor-query-perf
         groupId: com.azure
-        # required by the above perf library
       - name: perf-test-core
         groupId: com.azure
