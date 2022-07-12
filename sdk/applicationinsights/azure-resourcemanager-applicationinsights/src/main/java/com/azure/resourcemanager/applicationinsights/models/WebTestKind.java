@@ -13,7 +13,10 @@ public enum WebTestKind {
     PING("ping"),
 
     /** Enum value multistep. */
-    MULTISTEP("multistep");
+    MULTISTEP("multistep"),
+
+    /** Enum value standard. */
+    STANDARD("standard");
 
     /** The actual serialized value for a WebTestKind instance. */
     private final String value;
