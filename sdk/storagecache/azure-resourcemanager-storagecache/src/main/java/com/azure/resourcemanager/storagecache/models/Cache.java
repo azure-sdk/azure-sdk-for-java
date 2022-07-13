@@ -70,11 +70,20 @@ public interface Cache {
     CacheSku sku();
 
     /**
-     * Gets the cacheSizeGB property: The size of this Cache, in GB.
+     * Gets the cacheSizeGB property: The size of this Cache, in GB, when scalingFactor is 1.0.
      *
      * @return the cacheSizeGB value.
      */
     Integer cacheSizeGB();
+
+    /**
+     * Gets the scalingFactor property: Multiplier that sets the current storage and throughput capacity of the cache.
+     * Values can be 1.0 (the base size, listed in the SKU), 1.33, 2.0, or 4.0. Values above 1.0 increase the cache size
+     * and throughput - for example, the scaling factor 1.33 gives a cache that's 33% larger than its base size.
+     *
+     * @return the scalingFactor value.
+     */
+    ScalingFactor scalingFactor();
 
     /**
      * Gets the health property: Health of the Cache.
@@ -247,6 +256,7 @@ public interface Cache {
                 DefinitionStages.WithIdentity,
                 DefinitionStages.WithSku,
                 DefinitionStages.WithCacheSizeGB,
+                DefinitionStages.WithScalingFactor,
                 DefinitionStages.WithSubnet,
                 DefinitionStages.WithUpgradeSettings,
                 DefinitionStages.WithNetworkSettings,
@@ -302,12 +312,28 @@ public interface Cache {
         /** The stage of the Cache definition allowing to specify cacheSizeGB. */
         interface WithCacheSizeGB {
             /**
-             * Specifies the cacheSizeGB property: The size of this Cache, in GB..
+             * Specifies the cacheSizeGB property: The size of this Cache, in GB, when scalingFactor is 1.0.
              *
-             * @param cacheSizeGB The size of this Cache, in GB.
+             * @param cacheSizeGB The size of this Cache, in GB, when scalingFactor is 1.0.
              * @return the next definition stage.
              */
             WithCreate withCacheSizeGB(Integer cacheSizeGB);
+        }
+        /** The stage of the Cache definition allowing to specify scalingFactor. */
+        interface WithScalingFactor {
+            /**
+             * Specifies the scalingFactor property: Multiplier that sets the current storage and throughput capacity of
+             * the cache. Values can be 1.0 (the base size, listed in the SKU), 1.33, 2.0, or 4.0. Values above 1.0
+             * increase the cache size and throughput - for example, the scaling factor 1.33 gives a cache that's 33%
+             * larger than its base size..
+             *
+             * @param scalingFactor Multiplier that sets the current storage and throughput capacity of the cache.
+             *     Values can be 1.0 (the base size, listed in the SKU), 1.33, 2.0, or 4.0. Values above 1.0 increase
+             *     the cache size and throughput - for example, the scaling factor 1.33 gives a cache that's 33% larger
+             *     than its base size.
+             * @return the next definition stage.
+             */
+            WithCreate withScalingFactor(ScalingFactor scalingFactor);
         }
         /** The stage of the Cache definition allowing to specify subnet. */
         interface WithSubnet {
@@ -393,6 +419,7 @@ public interface Cache {
     interface Update
         extends UpdateStages.WithTags,
             UpdateStages.WithIdentity,
+            UpdateStages.WithScalingFactor,
             UpdateStages.WithUpgradeSettings,
             UpdateStages.WithNetworkSettings,
             UpdateStages.WithEncryptionSettings,
@@ -434,6 +461,22 @@ public interface Cache {
              * @return the next definition stage.
              */
             Update withIdentity(CacheIdentity identity);
+        }
+        /** The stage of the Cache update allowing to specify scalingFactor. */
+        interface WithScalingFactor {
+            /**
+             * Specifies the scalingFactor property: Multiplier that sets the current storage and throughput capacity of
+             * the cache. Values can be 1.0 (the base size, listed in the SKU), 1.33, 2.0, or 4.0. Values above 1.0
+             * increase the cache size and throughput - for example, the scaling factor 1.33 gives a cache that's 33%
+             * larger than its base size..
+             *
+             * @param scalingFactor Multiplier that sets the current storage and throughput capacity of the cache.
+             *     Values can be 1.0 (the base size, listed in the SKU), 1.33, 2.0, or 4.0. Values above 1.0 increase
+             *     the cache size and throughput - for example, the scaling factor 1.33 gives a cache that's 33% larger
+             *     than its base size.
+             * @return the next definition stage.
+             */
+            Update withScalingFactor(ScalingFactor scalingFactor);
         }
         /** The stage of the Cache update allowing to specify upgradeSettings. */
         interface WithUpgradeSettings {

@@ -10,7 +10,7 @@ import com.azure.resourcemanager.storagecache.models.PrimingJobIdParameter;
 /** Samples for Caches ResumePrimingJob. */
 public final class CachesResumePrimingJobSamples {
     /*
-     * x-ms-original-file: specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2022-05-01/examples/ResumePrimingJob.json
+     * x-ms-original-file: specification/storagecache/resource-manager/Microsoft.StorageCache/preview/2022-09-01-preview/examples/ResumePrimingJob.json
      */
     /**
      * Sample code: ResumePrimingJob.

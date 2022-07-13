@@ -11,7 +11,7 @@ import java.util.Arrays;
 /** Samples for Caches SpaceAllocation. */
 public final class CachesSpaceAllocationSamples {
     /*
-     * x-ms-original-file: specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2022-05-01/examples/SpaceAllocation_Post.json
+     * x-ms-original-file: specification/storagecache/resource-manager/Microsoft.StorageCache/preview/2022-09-01-preview/examples/SpaceAllocation_Post.json
      */
     /**
      * Sample code: SpaceAllocation_Post.

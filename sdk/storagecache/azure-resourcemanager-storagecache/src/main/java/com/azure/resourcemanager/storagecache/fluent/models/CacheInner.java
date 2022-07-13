@@ -18,6 +18,7 @@ import com.azure.resourcemanager.storagecache.models.CacheUpgradeSettings;
 import com.azure.resourcemanager.storagecache.models.CacheUpgradeStatus;
 import com.azure.resourcemanager.storagecache.models.PrimingJob;
 import com.azure.resourcemanager.storagecache.models.ProvisioningStateType;
+import com.azure.resourcemanager.storagecache.models.ScalingFactor;
 import com.azure.resourcemanager.storagecache.models.StorageTargetSpaceAllocation;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
@@ -126,7 +127,7 @@ public final class CacheInner extends Resource {
     }
 
     /**
-     * Get the cacheSizeGB property: The size of this Cache, in GB.
+     * Get the cacheSizeGB property: The size of this Cache, in GB, when scalingFactor is 1.0.
      *
      * @return the cacheSizeGB value.
      */
@@ -135,7 +136,7 @@ public final class CacheInner extends Resource {
     }
 
     /**
-     * Set the cacheSizeGB property: The size of this Cache, in GB.
+     * Set the cacheSizeGB property: The size of this Cache, in GB, when scalingFactor is 1.0.
      *
      * @param cacheSizeGB the cacheSizeGB value to set.
      * @return the CacheInner object itself.
@@ -145,6 +146,33 @@ public final class CacheInner extends Resource {
             this.innerProperties = new CacheProperties();
         }
         this.innerProperties().withCacheSizeGB(cacheSizeGB);
+        return this;
+    }
+
+    /**
+     * Get the scalingFactor property: Multiplier that sets the current storage and throughput capacity of the cache.
+     * Values can be 1.0 (the base size, listed in the SKU), 1.33, 2.0, or 4.0. Values above 1.0 increase the cache size
+     * and throughput - for example, the scaling factor 1.33 gives a cache that's 33% larger than its base size.
+     *
+     * @return the scalingFactor value.
+     */
+    public ScalingFactor scalingFactor() {
+        return this.innerProperties() == null ? null : this.innerProperties().scalingFactor();
+    }
+
+    /**
+     * Set the scalingFactor property: Multiplier that sets the current storage and throughput capacity of the cache.
+     * Values can be 1.0 (the base size, listed in the SKU), 1.33, 2.0, or 4.0. Values above 1.0 increase the cache size
+     * and throughput - for example, the scaling factor 1.33 gives a cache that's 33% larger than its base size.
+     *
+     * @param scalingFactor the scalingFactor value to set.
+     * @return the CacheInner object itself.
+     */
+    public CacheInner withScalingFactor(ScalingFactor scalingFactor) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new CacheProperties();
+        }
+        this.innerProperties().withScalingFactor(scalingFactor);
         return this;
     }
 

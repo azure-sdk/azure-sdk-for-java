@@ -14,6 +14,7 @@ import com.azure.resourcemanager.storagecache.models.CacheUpgradeSettings;
 import com.azure.resourcemanager.storagecache.models.CacheUpgradeStatus;
 import com.azure.resourcemanager.storagecache.models.PrimingJob;
 import com.azure.resourcemanager.storagecache.models.ProvisioningStateType;
+import com.azure.resourcemanager.storagecache.models.ScalingFactor;
 import com.azure.resourcemanager.storagecache.models.StorageTargetSpaceAllocation;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
@@ -22,10 +23,20 @@ import java.util.List;
 @Fluent
 public final class CacheProperties {
     /*
-     * The size of this Cache, in GB.
+     * The size of this Cache, in GB, when scalingFactor is 1.0
      */
     @JsonProperty(value = "cacheSizeGB")
     private Integer cacheSizeGB;
+
+    /*
+     * Multiplier that sets the current storage and throughput capacity of the
+     * cache. Values can be 1.0 (the base size, listed in the SKU), 1.33, 2.0,
+     * or 4.0. Values above 1.0 increase the cache size and throughput - for
+     * example, the scaling factor 1.33 gives a cache that's 33% larger than
+     * its base size.
+     */
+    @JsonProperty(value = "scalingFactor")
+    private ScalingFactor scalingFactor;
 
     /*
      * Health of the Cache.
@@ -109,7 +120,7 @@ public final class CacheProperties {
     private List<StorageTargetSpaceAllocation> spaceAllocation;
 
     /**
-     * Get the cacheSizeGB property: The size of this Cache, in GB.
+     * Get the cacheSizeGB property: The size of this Cache, in GB, when scalingFactor is 1.0.
      *
      * @return the cacheSizeGB value.
      */
@@ -118,13 +129,37 @@ public final class CacheProperties {
     }
 
     /**
-     * Set the cacheSizeGB property: The size of this Cache, in GB.
+     * Set the cacheSizeGB property: The size of this Cache, in GB, when scalingFactor is 1.0.
      *
      * @param cacheSizeGB the cacheSizeGB value to set.
      * @return the CacheProperties object itself.
      */
     public CacheProperties withCacheSizeGB(Integer cacheSizeGB) {
         this.cacheSizeGB = cacheSizeGB;
+        return this;
+    }
+
+    /**
+     * Get the scalingFactor property: Multiplier that sets the current storage and throughput capacity of the cache.
+     * Values can be 1.0 (the base size, listed in the SKU), 1.33, 2.0, or 4.0. Values above 1.0 increase the cache size
+     * and throughput - for example, the scaling factor 1.33 gives a cache that's 33% larger than its base size.
+     *
+     * @return the scalingFactor value.
+     */
+    public ScalingFactor scalingFactor() {
+        return this.scalingFactor;
+    }
+
+    /**
+     * Set the scalingFactor property: Multiplier that sets the current storage and throughput capacity of the cache.
+     * Values can be 1.0 (the base size, listed in the SKU), 1.33, 2.0, or 4.0. Values above 1.0 increase the cache size
+     * and throughput - for example, the scaling factor 1.33 gives a cache that's 33% larger than its base size.
+     *
+     * @param scalingFactor the scalingFactor value to set.
+     * @return the CacheProperties object itself.
+     */
+    public CacheProperties withScalingFactor(ScalingFactor scalingFactor) {
+        this.scalingFactor = scalingFactor;
         return this;
     }
 

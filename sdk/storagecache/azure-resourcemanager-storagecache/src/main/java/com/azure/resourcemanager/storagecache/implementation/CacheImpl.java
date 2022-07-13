@@ -21,6 +21,7 @@ import com.azure.resourcemanager.storagecache.models.CacheUpgradeStatus;
 import com.azure.resourcemanager.storagecache.models.PrimingJob;
 import com.azure.resourcemanager.storagecache.models.PrimingJobIdParameter;
 import com.azure.resourcemanager.storagecache.models.ProvisioningStateType;
+import com.azure.resourcemanager.storagecache.models.ScalingFactor;
 import com.azure.resourcemanager.storagecache.models.StorageTargetSpaceAllocation;
 import java.util.Collections;
 import java.util.List;
@@ -70,6 +71,10 @@ public final class CacheImpl implements Cache, Cache.Definition, Cache.Update {
 
     public Integer cacheSizeGB() {
         return this.innerModel().cacheSizeGB();
+    }
+
+    public ScalingFactor scalingFactor() {
+        return this.innerModel().scalingFactor();
     }
 
     public CacheHealth health() {
@@ -363,6 +368,11 @@ public final class CacheImpl implements Cache, Cache.Definition, Cache.Update {
 
     public CacheImpl withCacheSizeGB(Integer cacheSizeGB) {
         this.innerModel().withCacheSizeGB(cacheSizeGB);
+        return this;
+    }
+
+    public CacheImpl withScalingFactor(ScalingFactor scalingFactor) {
+        this.innerModel().withScalingFactor(scalingFactor);
         return this;
     }
 
