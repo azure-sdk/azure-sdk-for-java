@@ -10,6 +10,7 @@ import com.azure.core.http.rest.Response;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.consumption.fluent.models.ReservationRecommendationDetailsModelInner;
 import com.azure.resourcemanager.consumption.models.LookBackPeriod;
+import com.azure.resourcemanager.consumption.models.Scope;
 import com.azure.resourcemanager.consumption.models.Term;
 
 /**
@@ -19,12 +20,13 @@ public interface ReservationRecommendationDetailsClient {
     /**
      * Details of a reservation recommendation for what-if analysis of reserved instances.
      *
-     * @param scope The scope associated with reservation recommendation details operations. This includes
+     * @param resourceScope The scope associated with reservation recommendation details operations. This includes
      *     '/subscriptions/{subscriptionId}/' for subscription scope,
      *     '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}' for resource group scope,
      *     /providers/Microsoft.Billing/billingAccounts/{billingAccountId}' for BillingAccount scope, and
      *     '/providers/Microsoft.Billing/billingAccounts/{billingAccountId}/billingProfiles/{billingProfileId}' for
      *     billingProfile scope.
+     * @param scope Scope of the reservation.
      * @param region Used to select the region the recommendation should be generated for.
      * @param term Specify length of reservation recommendation term.
      * @param lookBackPeriod Filter the time period on which reservation recommendation results are based.
@@ -37,17 +39,18 @@ public interface ReservationRecommendationDetailsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     ReservationRecommendationDetailsModelInner get(
-        String scope, String region, Term term, LookBackPeriod lookBackPeriod, String product);
+        String resourceScope, Scope scope, String region, Term term, LookBackPeriod lookBackPeriod, String product);
 
     /**
      * Details of a reservation recommendation for what-if analysis of reserved instances.
      *
-     * @param scope The scope associated with reservation recommendation details operations. This includes
+     * @param resourceScope The scope associated with reservation recommendation details operations. This includes
      *     '/subscriptions/{subscriptionId}/' for subscription scope,
      *     '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}' for resource group scope,
      *     /providers/Microsoft.Billing/billingAccounts/{billingAccountId}' for BillingAccount scope, and
      *     '/providers/Microsoft.Billing/billingAccounts/{billingAccountId}/billingProfiles/{billingProfileId}' for
      *     billingProfile scope.
+     * @param scope Scope of the reservation.
      * @param region Used to select the region the recommendation should be generated for.
      * @param term Specify length of reservation recommendation term.
      * @param lookBackPeriod Filter the time period on which reservation recommendation results are based.
@@ -57,9 +60,15 @@ public interface ReservationRecommendationDetailsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return reservation recommendation details.
+     * @return reservation recommendation details along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<ReservationRecommendationDetailsModelInner> getWithResponse(
-        String scope, String region, Term term, LookBackPeriod lookBackPeriod, String product, Context context);
+        String resourceScope,
+        Scope scope,
+        String region,
+        Term term,
+        LookBackPeriod lookBackPeriod,
+        String product,
+        Context context);
 }
