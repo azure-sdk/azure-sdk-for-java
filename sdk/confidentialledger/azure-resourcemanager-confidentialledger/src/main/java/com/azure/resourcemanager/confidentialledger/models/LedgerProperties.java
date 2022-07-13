@@ -26,8 +26,8 @@ public final class LedgerProperties {
     /*
      * Endpoint for accessing network identity.
      */
-    @JsonProperty(value = "identityServiceUri", access = JsonProperty.Access.WRITE_ONLY)
-    private String identityServiceUri;
+    @JsonProperty(value = "certificateClientEndpoint", access = JsonProperty.Access.WRITE_ONLY)
+    private String certificateClientEndpoint;
 
     /*
      * Internal namespace for the Ledger
@@ -78,12 +78,12 @@ public final class LedgerProperties {
     }
 
     /**
-     * Get the identityServiceUri property: Endpoint for accessing network identity.
+     * Get the certificateClientEndpoint property: Endpoint for accessing network identity.
      *
-     * @return the identityServiceUri value.
+     * @return the certificateClientEndpoint value.
      */
-    public String identityServiceUri() {
-        return this.identityServiceUri;
+    public String certificateClientEndpoint() {
+        return this.certificateClientEndpoint;
     }
 
     /**
