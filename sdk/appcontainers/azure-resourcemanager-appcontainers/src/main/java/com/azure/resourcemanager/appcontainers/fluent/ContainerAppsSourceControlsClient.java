@@ -80,7 +80,7 @@ public interface ContainerAppsSourceControlsClient {
         String resourceGroupName, String containerAppName, String sourceControlName, Context context);
 
     /**
-     * Create or update the SourceControl for a Container App.
+     * Description for Create or update the SourceControl for a Container App.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param containerAppName Name of the Container App.
@@ -100,7 +100,7 @@ public interface ContainerAppsSourceControlsClient {
         SourceControlInner sourceControlEnvelope);
 
     /**
-     * Create or update the SourceControl for a Container App.
+     * Description for Create or update the SourceControl for a Container App.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param containerAppName Name of the Container App.
@@ -122,7 +122,7 @@ public interface ContainerAppsSourceControlsClient {
         Context context);
 
     /**
-     * Create or update the SourceControl for a Container App.
+     * Description for Create or update the SourceControl for a Container App.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param containerAppName Name of the Container App.
@@ -142,7 +142,7 @@ public interface ContainerAppsSourceControlsClient {
         SourceControlInner sourceControlEnvelope);
 
     /**
-     * Create or update the SourceControl for a Container App.
+     * Description for Create or update the SourceControl for a Container App.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param containerAppName Name of the Container App.
@@ -164,7 +164,7 @@ public interface ContainerAppsSourceControlsClient {
         Context context);
 
     /**
-     * Delete a Container App SourceControl.
+     * Description for Delete a Container App SourceControl.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param containerAppName Name of the Container App.
@@ -180,7 +180,7 @@ public interface ContainerAppsSourceControlsClient {
         String resourceGroupName, String containerAppName, String sourceControlName);
 
     /**
-     * Delete a Container App SourceControl.
+     * Description for Delete a Container App SourceControl.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param containerAppName Name of the Container App.
@@ -197,7 +197,7 @@ public interface ContainerAppsSourceControlsClient {
         String resourceGroupName, String containerAppName, String sourceControlName, Context context);
 
     /**
-     * Delete a Container App SourceControl.
+     * Description for Delete a Container App SourceControl.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param containerAppName Name of the Container App.
@@ -211,7 +211,7 @@ public interface ContainerAppsSourceControlsClient {
     void delete(String resourceGroupName, String containerAppName, String sourceControlName);
 
     /**
-     * Delete a Container App SourceControl.
+     * Description for Delete a Container App SourceControl.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param containerAppName Name of the Container App.

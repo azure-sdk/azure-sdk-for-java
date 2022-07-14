@@ -5,12 +5,17 @@
 package com.azure.resourcemanager.appcontainers.generated;
 
 import com.azure.resourcemanager.appcontainers.models.AppLogsConfiguration;
+import com.azure.resourcemanager.appcontainers.models.EnvironmentSkuProperties;
 import com.azure.resourcemanager.appcontainers.models.LogAnalyticsConfiguration;
+import com.azure.resourcemanager.appcontainers.models.SkuType;
+import com.azure.resourcemanager.appcontainers.models.WorkloadProfile;
+import com.azure.resourcemanager.appcontainers.models.WorkloadProfileType;
+import java.util.Arrays;
 
 /** Samples for ManagedEnvironments CreateOrUpdate. */
 public final class ManagedEnvironmentsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2022-03-01/examples/ManagedEnvironments_CreateOrUpdate.json
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2022-06-01-preview/examples/ManagedEnvironments_CreateOrUpdate.json
      */
     /**
      * Sample code: Create environments.
@@ -23,6 +28,7 @@ public final class ManagedEnvironmentsCreateOrUpdateSamples {
             .define("testcontainerenv")
             .withRegion("East US")
             .withExistingResourceGroup("examplerg")
+            .withSku(new EnvironmentSkuProperties().withName(SkuType.PREMIUM).withCapacity(10))
             .withDaprAIConnectionString(
                 "InstrumentationKey=00000000-0000-0000-0000-000000000000;IngestionEndpoint=https://northcentralus-0.in.applicationinsights.azure.com/")
             .withAppLogsConfiguration(
@@ -30,6 +36,21 @@ public final class ManagedEnvironmentsCreateOrUpdateSamples {
                     .withLogAnalyticsConfiguration(
                         new LogAnalyticsConfiguration().withCustomerId("string").withSharedKey("string")))
             .withZoneRedundant(true)
+            .withWorkloadProfiles(
+                Arrays
+                    .asList(
+                        new WorkloadProfile()
+                            .withWorkloadProfileType(WorkloadProfileType.GENERAL_PURPOSE)
+                            .withMinimum(3)
+                            .withMaximum(12),
+                        new WorkloadProfile()
+                            .withWorkloadProfileType(WorkloadProfileType.MEMORY_OPTIMIZED)
+                            .withMinimum(3)
+                            .withMaximum(6),
+                        new WorkloadProfile()
+                            .withWorkloadProfileType(WorkloadProfileType.COMPUTE_OPTIMIZED)
+                            .withMinimum(3)
+                            .withMaximum(6)))
             .create();
     }
 }

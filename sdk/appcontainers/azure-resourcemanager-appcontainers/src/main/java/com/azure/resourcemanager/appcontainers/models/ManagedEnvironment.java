@@ -8,6 +8,7 @@ import com.azure.core.management.Region;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.appcontainers.fluent.models.ManagedEnvironmentInner;
+import java.util.List;
 import java.util.Map;
 
 /** An immutable client-side representation of ManagedEnvironment. */
@@ -46,6 +47,13 @@ public interface ManagedEnvironment {
      * @return the tags value.
      */
     Map<String, String> tags();
+
+    /**
+     * Gets the sku property: SKU properties of the Environment.
+     *
+     * @return the sku value.
+     */
+    EnvironmentSkuProperties sku();
 
     /**
      * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
@@ -121,6 +129,13 @@ public interface ManagedEnvironment {
     Boolean zoneRedundant();
 
     /**
+     * Gets the workloadProfiles property: Workload profiles available for Managed Environment.
+     *
+     * @return the workloadProfiles value.
+     */
+    List<WorkloadProfile> workloadProfiles();
+
+    /**
      * Gets the region of the resource.
      *
      * @return the region of the resource.
@@ -194,11 +209,13 @@ public interface ManagedEnvironment {
          */
         interface WithCreate
             extends DefinitionStages.WithTags,
+                DefinitionStages.WithSku,
                 DefinitionStages.WithDaprAIInstrumentationKey,
                 DefinitionStages.WithDaprAIConnectionString,
                 DefinitionStages.WithVnetConfiguration,
                 DefinitionStages.WithAppLogsConfiguration,
-                DefinitionStages.WithZoneRedundant {
+                DefinitionStages.WithZoneRedundant,
+                DefinitionStages.WithWorkloadProfiles {
             /**
              * Executes the create request.
              *
@@ -223,6 +240,16 @@ public interface ManagedEnvironment {
              * @return the next definition stage.
              */
             WithCreate withTags(Map<String, String> tags);
+        }
+        /** The stage of the ManagedEnvironment definition allowing to specify sku. */
+        interface WithSku {
+            /**
+             * Specifies the sku property: SKU properties of the Environment..
+             *
+             * @param sku SKU properties of the Environment.
+             * @return the next definition stage.
+             */
+            WithCreate withSku(EnvironmentSkuProperties sku);
         }
         /** The stage of the ManagedEnvironment definition allowing to specify daprAIInstrumentationKey. */
         interface WithDaprAIInstrumentationKey {
@@ -280,6 +307,16 @@ public interface ManagedEnvironment {
              */
             WithCreate withZoneRedundant(Boolean zoneRedundant);
         }
+        /** The stage of the ManagedEnvironment definition allowing to specify workloadProfiles. */
+        interface WithWorkloadProfiles {
+            /**
+             * Specifies the workloadProfiles property: Workload profiles available for Managed Environment..
+             *
+             * @param workloadProfiles Workload profiles available for Managed Environment.
+             * @return the next definition stage.
+             */
+            WithCreate withWorkloadProfiles(List<WorkloadProfile> workloadProfiles);
+        }
     }
     /**
      * Begins update for the ManagedEnvironment resource.
@@ -290,7 +327,11 @@ public interface ManagedEnvironment {
 
     /** The template for ManagedEnvironment update. */
     interface Update
-        extends UpdateStages.WithTags, UpdateStages.WithVnetConfiguration, UpdateStages.WithAppLogsConfiguration {
+        extends UpdateStages.WithTags,
+            UpdateStages.WithSku,
+            UpdateStages.WithVnetConfiguration,
+            UpdateStages.WithAppLogsConfiguration,
+            UpdateStages.WithWorkloadProfiles {
         /**
          * Executes the update request.
          *
@@ -318,6 +359,16 @@ public interface ManagedEnvironment {
              */
             Update withTags(Map<String, String> tags);
         }
+        /** The stage of the ManagedEnvironment update allowing to specify sku. */
+        interface WithSku {
+            /**
+             * Specifies the sku property: SKU properties of the Environment..
+             *
+             * @param sku SKU properties of the Environment.
+             * @return the next definition stage.
+             */
+            Update withSku(EnvironmentSkuProperties sku);
+        }
         /** The stage of the ManagedEnvironment update allowing to specify vnetConfiguration. */
         interface WithVnetConfiguration {
             /**
@@ -339,6 +390,16 @@ public interface ManagedEnvironment {
              * @return the next definition stage.
              */
             Update withAppLogsConfiguration(AppLogsConfiguration appLogsConfiguration);
+        }
+        /** The stage of the ManagedEnvironment update allowing to specify workloadProfiles. */
+        interface WithWorkloadProfiles {
+            /**
+             * Specifies the workloadProfiles property: Workload profiles available for Managed Environment..
+             *
+             * @param workloadProfiles Workload profiles available for Managed Environment.
+             * @return the next definition stage.
+             */
+            Update withWorkloadProfiles(List<WorkloadProfile> workloadProfiles);
         }
     }
     /**

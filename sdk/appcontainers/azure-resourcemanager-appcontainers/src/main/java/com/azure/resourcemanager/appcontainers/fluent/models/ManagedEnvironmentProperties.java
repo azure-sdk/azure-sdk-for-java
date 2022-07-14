@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.appcontainers.models.AppLogsConfiguration;
 import com.azure.resourcemanager.appcontainers.models.EnvironmentProvisioningState;
 import com.azure.resourcemanager.appcontainers.models.VnetConfiguration;
+import com.azure.resourcemanager.appcontainers.models.WorkloadProfile;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.List;
 
 /** Managed environment resource specific properties. */
 @Fluent
@@ -70,6 +72,12 @@ public final class ManagedEnvironmentProperties {
      */
     @JsonProperty(value = "zoneRedundant")
     private Boolean zoneRedundant;
+
+    /*
+     * Workload profiles available for Managed Environment.
+     */
+    @JsonProperty(value = "workloadProfiles")
+    private List<WorkloadProfile> workloadProfiles;
 
     /**
      * Get the provisioningState property: Provisioning state of the Environment.
@@ -214,6 +222,26 @@ public final class ManagedEnvironmentProperties {
     }
 
     /**
+     * Get the workloadProfiles property: Workload profiles available for Managed Environment.
+     *
+     * @return the workloadProfiles value.
+     */
+    public List<WorkloadProfile> workloadProfiles() {
+        return this.workloadProfiles;
+    }
+
+    /**
+     * Set the workloadProfiles property: Workload profiles available for Managed Environment.
+     *
+     * @param workloadProfiles the workloadProfiles value to set.
+     * @return the ManagedEnvironmentProperties object itself.
+     */
+    public ManagedEnvironmentProperties withWorkloadProfiles(List<WorkloadProfile> workloadProfiles) {
+        this.workloadProfiles = workloadProfiles;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -224,6 +252,9 @@ public final class ManagedEnvironmentProperties {
         }
         if (appLogsConfiguration() != null) {
             appLogsConfiguration().validate();
+        }
+        if (workloadProfiles() != null) {
+            workloadProfiles().forEach(e -> e.validate());
         }
     }
 }
