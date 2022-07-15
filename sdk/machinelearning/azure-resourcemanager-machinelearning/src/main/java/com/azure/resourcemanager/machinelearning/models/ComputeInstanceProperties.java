@@ -103,6 +103,13 @@ public final class ComputeInstanceProperties {
     private ComputeSchedules schedules;
 
     /*
+     * Stops compute instance after user defined period of inactivity. Time is
+     * defined in ISO8601 format. Minimum is 15 min, maximum is 3 days.
+     */
+    @JsonProperty(value = "idleTimeBeforeShutdown")
+    private String idleTimeBeforeShutdown;
+
+    /*
      * Enable node public IP. Enable or disable node public IP address
      * provisioning. Possible values are: Possible values are: true - Indicates
      * that the compute nodes will have public IPs provisioned. false -
@@ -347,6 +354,28 @@ public final class ComputeInstanceProperties {
      */
     public ComputeSchedules schedules() {
         return this.schedules;
+    }
+
+    /**
+     * Get the idleTimeBeforeShutdown property: Stops compute instance after user defined period of inactivity. Time is
+     * defined in ISO8601 format. Minimum is 15 min, maximum is 3 days.
+     *
+     * @return the idleTimeBeforeShutdown value.
+     */
+    public String idleTimeBeforeShutdown() {
+        return this.idleTimeBeforeShutdown;
+    }
+
+    /**
+     * Set the idleTimeBeforeShutdown property: Stops compute instance after user defined period of inactivity. Time is
+     * defined in ISO8601 format. Minimum is 15 min, maximum is 3 days.
+     *
+     * @param idleTimeBeforeShutdown the idleTimeBeforeShutdown value to set.
+     * @return the ComputeInstanceProperties object itself.
+     */
+    public ComputeInstanceProperties withIdleTimeBeforeShutdown(String idleTimeBeforeShutdown) {
+        this.idleTimeBeforeShutdown = idleTimeBeforeShutdown;
+        return this;
     }
 
     /**
