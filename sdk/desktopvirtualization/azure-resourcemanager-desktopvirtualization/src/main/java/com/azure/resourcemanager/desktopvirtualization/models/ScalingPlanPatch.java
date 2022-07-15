@@ -149,29 +149,6 @@ public final class ScalingPlanPatch {
     }
 
     /**
-     * Get the schedules property: List of ScalingSchedule definitions.
-     *
-     * @return the schedules value.
-     */
-    public List<ScalingSchedule> schedules() {
-        return this.innerProperties() == null ? null : this.innerProperties().schedules();
-    }
-
-    /**
-     * Set the schedules property: List of ScalingSchedule definitions.
-     *
-     * @param schedules the schedules value to set.
-     * @return the ScalingPlanPatch object itself.
-     */
-    public ScalingPlanPatch withSchedules(List<ScalingSchedule> schedules) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new ScalingPlanPatchProperties();
-        }
-        this.innerProperties().withSchedules(schedules);
-        return this;
-    }
-
-    /**
      * Get the hostPoolReferences property: List of ScalingHostPoolReference definitions.
      *
      * @return the hostPoolReferences value.

@@ -32,6 +32,7 @@ import com.azure.resourcemanager.desktopvirtualization.fluent.MsixPackagesClient
 import com.azure.resourcemanager.desktopvirtualization.fluent.OperationsClient;
 import com.azure.resourcemanager.desktopvirtualization.fluent.PrivateEndpointConnectionsClient;
 import com.azure.resourcemanager.desktopvirtualization.fluent.PrivateLinkResourcesClient;
+import com.azure.resourcemanager.desktopvirtualization.fluent.ScalingPlanPooledSchedulesClient;
 import com.azure.resourcemanager.desktopvirtualization.fluent.ScalingPlansClient;
 import com.azure.resourcemanager.desktopvirtualization.fluent.SessionHostsClient;
 import com.azure.resourcemanager.desktopvirtualization.fluent.StartMenuItemsClient;
@@ -155,6 +156,18 @@ public final class DesktopVirtualizationApiClientImpl implements DesktopVirtuali
      */
     public ScalingPlansClient getScalingPlans() {
         return this.scalingPlans;
+    }
+
+    /** The ScalingPlanPooledSchedulesClient object to access its operations. */
+    private final ScalingPlanPooledSchedulesClient scalingPlanPooledSchedules;
+
+    /**
+     * Gets the ScalingPlanPooledSchedulesClient object to access its operations.
+     *
+     * @return the ScalingPlanPooledSchedulesClient object.
+     */
+    public ScalingPlanPooledSchedulesClient getScalingPlanPooledSchedules() {
+        return this.scalingPlanPooledSchedules;
     }
 
     /** The ApplicationGroupsClient object to access its operations. */
@@ -311,10 +324,11 @@ public final class DesktopVirtualizationApiClientImpl implements DesktopVirtuali
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2021-09-03-preview";
+        this.apiVersion = "2022-04-01-preview";
         this.operations = new OperationsClientImpl(this);
         this.workspaces = new WorkspacesClientImpl(this);
         this.scalingPlans = new ScalingPlansClientImpl(this);
+        this.scalingPlanPooledSchedules = new ScalingPlanPooledSchedulesClientImpl(this);
         this.applicationGroups = new ApplicationGroupsClientImpl(this);
         this.startMenuItems = new StartMenuItemsClientImpl(this);
         this.applications = new ApplicationsClientImpl(this);

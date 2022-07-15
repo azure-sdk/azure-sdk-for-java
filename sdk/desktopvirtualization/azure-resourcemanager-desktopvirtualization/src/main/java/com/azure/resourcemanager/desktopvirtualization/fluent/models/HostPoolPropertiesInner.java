@@ -6,12 +6,14 @@ package com.azure.resourcemanager.desktopvirtualization.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.azure.resourcemanager.desktopvirtualization.models.AgentUpdateProperties;
 import com.azure.resourcemanager.desktopvirtualization.models.HostPoolType;
+import com.azure.resourcemanager.desktopvirtualization.models.HostpoolPublicNetworkAccess;
 import com.azure.resourcemanager.desktopvirtualization.models.LoadBalancerType;
 import com.azure.resourcemanager.desktopvirtualization.models.MigrationRequestProperties;
 import com.azure.resourcemanager.desktopvirtualization.models.PersonalDesktopAssignmentType;
 import com.azure.resourcemanager.desktopvirtualization.models.PreferredAppGroupType;
-import com.azure.resourcemanager.desktopvirtualization.models.PublicNetworkAccess;
+import com.azure.resourcemanager.desktopvirtualization.models.PrivateEndpointConnection;
 import com.azure.resourcemanager.desktopvirtualization.models.SsoSecretType;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
@@ -154,7 +156,21 @@ public final class HostPoolPropertiesInner {
      * endpoints
      */
     @JsonProperty(value = "publicNetworkAccess")
-    private PublicNetworkAccess publicNetworkAccess;
+    private HostpoolPublicNetworkAccess publicNetworkAccess;
+
+    /*
+     * The session host configuration for updating agent, monitoring agent, and
+     * stack component.
+     */
+    @JsonProperty(value = "agentUpdate")
+    private AgentUpdateProperties agentUpdate;
+
+    /*
+     * List of private endpoint connection associated with the specified
+     * resource
+     */
+    @JsonProperty(value = "privateEndpointConnections", access = JsonProperty.Access.WRITE_ONLY)
+    private List<PrivateEndpointConnection> privateEndpointConnections;
 
     /**
      * Get the objectId property: ObjectId of HostPool. (internal use).
@@ -554,7 +570,7 @@ public final class HostPoolPropertiesInner {
      *
      * @return the publicNetworkAccess value.
      */
-    public PublicNetworkAccess publicNetworkAccess() {
+    public HostpoolPublicNetworkAccess publicNetworkAccess() {
         return this.publicNetworkAccess;
     }
 
@@ -565,9 +581,41 @@ public final class HostPoolPropertiesInner {
      * @param publicNetworkAccess the publicNetworkAccess value to set.
      * @return the HostPoolPropertiesInner object itself.
      */
-    public HostPoolPropertiesInner withPublicNetworkAccess(PublicNetworkAccess publicNetworkAccess) {
+    public HostPoolPropertiesInner withPublicNetworkAccess(HostpoolPublicNetworkAccess publicNetworkAccess) {
         this.publicNetworkAccess = publicNetworkAccess;
         return this;
+    }
+
+    /**
+     * Get the agentUpdate property: The session host configuration for updating agent, monitoring agent, and stack
+     * component.
+     *
+     * @return the agentUpdate value.
+     */
+    public AgentUpdateProperties agentUpdate() {
+        return this.agentUpdate;
+    }
+
+    /**
+     * Set the agentUpdate property: The session host configuration for updating agent, monitoring agent, and stack
+     * component.
+     *
+     * @param agentUpdate the agentUpdate value to set.
+     * @return the HostPoolPropertiesInner object itself.
+     */
+    public HostPoolPropertiesInner withAgentUpdate(AgentUpdateProperties agentUpdate) {
+        this.agentUpdate = agentUpdate;
+        return this;
+    }
+
+    /**
+     * Get the privateEndpointConnections property: List of private endpoint connection associated with the specified
+     * resource.
+     *
+     * @return the privateEndpointConnections value.
+     */
+    public List<PrivateEndpointConnection> privateEndpointConnections() {
+        return this.privateEndpointConnections;
     }
 
     /**
@@ -599,6 +647,12 @@ public final class HostPoolPropertiesInner {
         }
         if (migrationRequest() != null) {
             migrationRequest().validate();
+        }
+        if (agentUpdate() != null) {
+            agentUpdate().validate();
+        }
+        if (privateEndpointConnections() != null) {
+            privateEndpointConnections().forEach(e -> e.validate());
         }
     }
 
