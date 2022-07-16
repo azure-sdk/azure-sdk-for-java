@@ -461,14 +461,7 @@ public final class SqlPoolGeoBackupPoliciesClientImpl implements SqlPoolGeoBacku
         GeoBackupPolicyInner parameters) {
         return createOrUpdateWithResponseAsync(
                 resourceGroupName, workspaceName, sqlPoolName, geoBackupPolicyName, parameters)
-            .flatMap(
-                (Response<GeoBackupPolicyInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -662,14 +655,7 @@ public final class SqlPoolGeoBackupPoliciesClientImpl implements SqlPoolGeoBacku
     private Mono<GeoBackupPolicyInner> getAsync(
         String resourceGroupName, String workspaceName, String sqlPoolName, GeoBackupPolicyName geoBackupPolicyName) {
         return getWithResponseAsync(resourceGroupName, workspaceName, sqlPoolName, geoBackupPolicyName)
-            .flatMap(
-                (Response<GeoBackupPolicyInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**

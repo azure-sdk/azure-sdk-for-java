@@ -214,14 +214,7 @@ public final class KustoPoolChildResourcesClientImpl implements KustoPoolChildRe
     private Mono<CheckNameResultInner> checkNameAvailabilityAsync(
         String workspaceName, String kustoPoolName, String resourceGroupName, DatabaseCheckNameRequest resourceName) {
         return checkNameAvailabilityWithResponseAsync(workspaceName, kustoPoolName, resourceGroupName, resourceName)
-            .flatMap(
-                (Response<CheckNameResultInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**

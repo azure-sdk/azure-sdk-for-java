@@ -415,14 +415,7 @@ public final class WorkspaceManagedSqlServerRecoverableSqlPoolsClientImpl
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<RecoverableSqlPoolInner> getAsync(String resourceGroupName, String workspaceName, String sqlPoolName) {
         return getWithResponseAsync(resourceGroupName, workspaceName, sqlPoolName)
-            .flatMap(
-                (Response<RecoverableSqlPoolInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**

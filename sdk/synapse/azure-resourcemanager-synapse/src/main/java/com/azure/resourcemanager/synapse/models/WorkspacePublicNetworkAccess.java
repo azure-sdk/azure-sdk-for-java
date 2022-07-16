@@ -27,7 +27,11 @@ public final class WorkspacePublicNetworkAccess extends ExpandableStringEnum<Wor
         return fromString(name, WorkspacePublicNetworkAccess.class);
     }
 
-    /** @return known WorkspacePublicNetworkAccess values. */
+    /**
+     * Gets known WorkspacePublicNetworkAccess values.
+     *
+     * @return known WorkspacePublicNetworkAccess values.
+     */
     public static Collection<WorkspacePublicNetworkAccess> values() {
         return values(WorkspacePublicNetworkAccess.class);
     }

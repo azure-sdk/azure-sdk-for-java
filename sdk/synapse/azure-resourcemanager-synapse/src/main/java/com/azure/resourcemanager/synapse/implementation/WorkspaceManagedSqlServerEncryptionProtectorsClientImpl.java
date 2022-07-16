@@ -277,14 +277,7 @@ public final class WorkspaceManagedSqlServerEncryptionProtectorsClientImpl
     private Mono<EncryptionProtectorInner> getAsync(
         String resourceGroupName, String workspaceName, EncryptionProtectorName encryptionProtectorName) {
         return getWithResponseAsync(resourceGroupName, workspaceName, encryptionProtectorName)
-            .flatMap(
-                (Response<EncryptionProtectorInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
