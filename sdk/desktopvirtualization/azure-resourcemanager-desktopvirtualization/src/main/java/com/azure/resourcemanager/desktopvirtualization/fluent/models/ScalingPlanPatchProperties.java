@@ -6,7 +6,6 @@ package com.azure.resourcemanager.desktopvirtualization.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.desktopvirtualization.models.ScalingHostPoolReference;
-import com.azure.resourcemanager.desktopvirtualization.models.ScalingSchedule;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
@@ -36,12 +35,6 @@ public final class ScalingPlanPatchProperties {
      */
     @JsonProperty(value = "exclusionTag")
     private String exclusionTag;
-
-    /*
-     * List of ScalingSchedule definitions.
-     */
-    @JsonProperty(value = "schedules")
-    private List<ScalingSchedule> schedules;
 
     /*
      * List of ScalingHostPoolReference definitions.
@@ -130,26 +123,6 @@ public final class ScalingPlanPatchProperties {
     }
 
     /**
-     * Get the schedules property: List of ScalingSchedule definitions.
-     *
-     * @return the schedules value.
-     */
-    public List<ScalingSchedule> schedules() {
-        return this.schedules;
-    }
-
-    /**
-     * Set the schedules property: List of ScalingSchedule definitions.
-     *
-     * @param schedules the schedules value to set.
-     * @return the ScalingPlanPatchProperties object itself.
-     */
-    public ScalingPlanPatchProperties withSchedules(List<ScalingSchedule> schedules) {
-        this.schedules = schedules;
-        return this;
-    }
-
-    /**
      * Get the hostPoolReferences property: List of ScalingHostPoolReference definitions.
      *
      * @return the hostPoolReferences value.
@@ -175,9 +148,6 @@ public final class ScalingPlanPatchProperties {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (schedules() != null) {
-            schedules().forEach(e -> e.validate());
-        }
         if (hostPoolReferences() != null) {
             hostPoolReferences().forEach(e -> e.validate());
         }

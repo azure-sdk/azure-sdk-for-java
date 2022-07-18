@@ -6,13 +6,13 @@ package com.azure.resourcemanager.desktopvirtualization.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.SystemData;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.desktopvirtualization.models.ResourceModelWithAllowedPropertySet;
 import com.azure.resourcemanager.desktopvirtualization.models.ResourceModelWithAllowedPropertySetIdentity;
 import com.azure.resourcemanager.desktopvirtualization.models.ResourceModelWithAllowedPropertySetPlan;
 import com.azure.resourcemanager.desktopvirtualization.models.ResourceModelWithAllowedPropertySetSku;
 import com.azure.resourcemanager.desktopvirtualization.models.ScalingHostPoolReference;
 import com.azure.resourcemanager.desktopvirtualization.models.ScalingHostPoolType;
-import com.azure.resourcemanager.desktopvirtualization.models.ScalingSchedule;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import java.util.Map;
@@ -29,8 +29,8 @@ public final class ScalingPlanInner extends ResourceModelWithAllowedPropertySet 
     /*
      * Detailed properties for scaling plan.
      */
-    @JsonProperty(value = "properties")
-    private ScalingPlanProperties innerProperties;
+    @JsonProperty(value = "properties", required = true)
+    private ScalingPlanProperties innerProperties = new ScalingPlanProperties();
 
     /**
      * Get the systemData property: Metadata pertaining to creation and last modification of the resource.
@@ -224,29 +224,6 @@ public final class ScalingPlanInner extends ResourceModelWithAllowedPropertySet 
     }
 
     /**
-     * Get the schedules property: List of ScalingSchedule definitions.
-     *
-     * @return the schedules value.
-     */
-    public List<ScalingSchedule> schedules() {
-        return this.innerProperties() == null ? null : this.innerProperties().schedules();
-    }
-
-    /**
-     * Set the schedules property: List of ScalingSchedule definitions.
-     *
-     * @param schedules the schedules value to set.
-     * @return the ScalingPlanInner object itself.
-     */
-    public ScalingPlanInner withSchedules(List<ScalingSchedule> schedules) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new ScalingPlanProperties();
-        }
-        this.innerProperties().withSchedules(schedules);
-        return this;
-    }
-
-    /**
      * Get the hostPoolReferences property: List of ScalingHostPoolReference definitions.
      *
      * @return the hostPoolReferences value.
@@ -277,8 +254,15 @@ public final class ScalingPlanInner extends ResourceModelWithAllowedPropertySet 
     @Override
     public void validate() {
         super.validate();
-        if (innerProperties() != null) {
+        if (innerProperties() == null) {
+            throw LOGGER
+                .logExceptionAsError(
+                    new IllegalArgumentException(
+                        "Missing required property innerProperties in model ScalingPlanInner"));
+        } else {
             innerProperties().validate();
         }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(ScalingPlanInner.class);
 }

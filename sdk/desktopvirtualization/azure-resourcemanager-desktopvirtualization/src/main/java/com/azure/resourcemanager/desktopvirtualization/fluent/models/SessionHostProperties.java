@@ -64,6 +64,12 @@ public final class SessionHostProperties {
     private String assignedUser;
 
     /*
+     * Friendly name of SessionHost
+     */
+    @JsonProperty(value = "friendlyName")
+    private String friendlyName;
+
+    /*
      * Status for a SessionHost.
      */
     @JsonProperty(value = "status")
@@ -235,6 +241,26 @@ public final class SessionHostProperties {
      */
     public SessionHostProperties withAssignedUser(String assignedUser) {
         this.assignedUser = assignedUser;
+        return this;
+    }
+
+    /**
+     * Get the friendlyName property: Friendly name of SessionHost.
+     *
+     * @return the friendlyName value.
+     */
+    public String friendlyName() {
+        return this.friendlyName;
+    }
+
+    /**
+     * Set the friendlyName property: Friendly name of SessionHost.
+     *
+     * @param friendlyName the friendlyName value to set.
+     * @return the SessionHostProperties object itself.
+     */
+    public SessionHostProperties withFriendlyName(String friendlyName) {
+        this.friendlyName = friendlyName;
         return this;
     }
 

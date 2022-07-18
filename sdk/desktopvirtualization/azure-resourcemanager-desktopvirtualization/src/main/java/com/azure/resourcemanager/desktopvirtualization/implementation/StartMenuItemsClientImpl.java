@@ -207,7 +207,7 @@ public final class StartMenuItemsClientImpl implements StartMenuItemsClient {
      * @return startMenuItemList as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedFlux<StartMenuItemInner> listAsync(String resourceGroupName, String applicationGroupName) {
+    private PagedFlux<StartMenuItemInner> listAsync(String resourceGroupName, String applicationGroupName) {
         return new PagedFlux<>(
             () -> listSinglePageAsync(resourceGroupName, applicationGroupName),
             nextLink -> listNextSinglePageAsync(nextLink));

@@ -190,6 +190,29 @@ public final class SessionHostInner extends ProxyResource {
     }
 
     /**
+     * Get the friendlyName property: Friendly name of SessionHost.
+     *
+     * @return the friendlyName value.
+     */
+    public String friendlyName() {
+        return this.innerProperties() == null ? null : this.innerProperties().friendlyName();
+    }
+
+    /**
+     * Set the friendlyName property: Friendly name of SessionHost.
+     *
+     * @param friendlyName the friendlyName value to set.
+     * @return the SessionHostInner object itself.
+     */
+    public SessionHostInner withFriendlyName(String friendlyName) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new SessionHostProperties();
+        }
+        this.innerProperties().withFriendlyName(friendlyName);
+        return this;
+    }
+
+    /**
      * Get the status property: Status for a SessionHost.
      *
      * @return the status value.

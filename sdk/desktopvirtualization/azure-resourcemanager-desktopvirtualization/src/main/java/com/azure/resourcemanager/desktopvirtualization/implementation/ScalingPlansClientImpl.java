@@ -205,7 +205,7 @@ public final class ScalingPlansClientImpl implements ScalingPlansClient {
      * @return a scaling plan along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<ScalingPlanInner>> getByResourceGroupWithResponseAsync(
+    private Mono<Response<ScalingPlanInner>> getByResourceGroupWithResponseAsync(
         String resourceGroupName, String scalingPlanName) {
         if (this.client.getEndpoint() == null) {
             return Mono
@@ -301,7 +301,7 @@ public final class ScalingPlansClientImpl implements ScalingPlansClient {
      * @return a scaling plan on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<ScalingPlanInner> getByResourceGroupAsync(String resourceGroupName, String scalingPlanName) {
+    private Mono<ScalingPlanInner> getByResourceGroupAsync(String resourceGroupName, String scalingPlanName) {
         return getByResourceGroupWithResponseAsync(resourceGroupName, scalingPlanName)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
@@ -350,7 +350,7 @@ public final class ScalingPlansClientImpl implements ScalingPlansClient {
      * @return scalingPlan along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<ScalingPlanInner>> createWithResponseAsync(
+    private Mono<Response<ScalingPlanInner>> createWithResponseAsync(
         String resourceGroupName, String scalingPlanName, ScalingPlanInner scalingPlan) {
         if (this.client.getEndpoint() == null) {
             return Mono
@@ -460,7 +460,7 @@ public final class ScalingPlansClientImpl implements ScalingPlansClient {
      * @return scalingPlan on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<ScalingPlanInner> createAsync(
+    private Mono<ScalingPlanInner> createAsync(
         String resourceGroupName, String scalingPlanName, ScalingPlanInner scalingPlan) {
         return createWithResponseAsync(resourceGroupName, scalingPlanName, scalingPlan)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
@@ -511,7 +511,7 @@ public final class ScalingPlansClientImpl implements ScalingPlansClient {
      * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Void>> deleteWithResponseAsync(String resourceGroupName, String scalingPlanName) {
+    private Mono<Response<Void>> deleteWithResponseAsync(String resourceGroupName, String scalingPlanName) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -606,7 +606,7 @@ public final class ScalingPlansClientImpl implements ScalingPlansClient {
      * @return A {@link Mono} that completes when a successful response is received.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Void> deleteAsync(String resourceGroupName, String scalingPlanName) {
+    private Mono<Void> deleteAsync(String resourceGroupName, String scalingPlanName) {
         return deleteWithResponseAsync(resourceGroupName, scalingPlanName).flatMap(ignored -> Mono.empty());
     }
 
@@ -652,7 +652,7 @@ public final class ScalingPlansClientImpl implements ScalingPlansClient {
      * @return scalingPlan along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<ScalingPlanInner>> updateWithResponseAsync(
+    private Mono<Response<ScalingPlanInner>> updateWithResponseAsync(
         String resourceGroupName, String scalingPlanName, ScalingPlanPatch scalingPlan) {
         if (this.client.getEndpoint() == null) {
             return Mono
@@ -758,7 +758,7 @@ public final class ScalingPlansClientImpl implements ScalingPlansClient {
      * @return scalingPlan on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<ScalingPlanInner> updateAsync(
+    private Mono<ScalingPlanInner> updateAsync(
         String resourceGroupName, String scalingPlanName, ScalingPlanPatch scalingPlan) {
         return updateWithResponseAsync(resourceGroupName, scalingPlanName, scalingPlan)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
@@ -775,7 +775,7 @@ public final class ScalingPlansClientImpl implements ScalingPlansClient {
      * @return scalingPlan on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<ScalingPlanInner> updateAsync(String resourceGroupName, String scalingPlanName) {
+    private Mono<ScalingPlanInner> updateAsync(String resourceGroupName, String scalingPlanName) {
         final ScalingPlanPatch scalingPlan = null;
         return updateWithResponseAsync(resourceGroupName, scalingPlanName, scalingPlan)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
@@ -926,7 +926,7 @@ public final class ScalingPlansClientImpl implements ScalingPlansClient {
      * @return scalingPlanList as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedFlux<ScalingPlanInner> listByResourceGroupAsync(String resourceGroupName) {
+    private PagedFlux<ScalingPlanInner> listByResourceGroupAsync(String resourceGroupName) {
         return new PagedFlux<>(
             () -> listByResourceGroupSinglePageAsync(resourceGroupName),
             nextLink -> listByResourceGroupNextSinglePageAsync(nextLink));
@@ -1073,7 +1073,7 @@ public final class ScalingPlansClientImpl implements ScalingPlansClient {
      * @return scalingPlanList as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedFlux<ScalingPlanInner> listAsync() {
+    private PagedFlux<ScalingPlanInner> listAsync() {
         return new PagedFlux<>(
             () -> listSinglePageAsync(), nextLink -> listBySubscriptionNextSinglePageAsync(nextLink));
     }
@@ -1242,7 +1242,7 @@ public final class ScalingPlansClientImpl implements ScalingPlansClient {
      * @return scalingPlanList as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedFlux<ScalingPlanInner> listByHostPoolAsync(String resourceGroupName, String hostPoolName) {
+    private PagedFlux<ScalingPlanInner> listByHostPoolAsync(String resourceGroupName, String hostPoolName) {
         return new PagedFlux<>(
             () -> listByHostPoolSinglePageAsync(resourceGroupName, hostPoolName),
             nextLink -> listByHostPoolNextSinglePageAsync(nextLink));

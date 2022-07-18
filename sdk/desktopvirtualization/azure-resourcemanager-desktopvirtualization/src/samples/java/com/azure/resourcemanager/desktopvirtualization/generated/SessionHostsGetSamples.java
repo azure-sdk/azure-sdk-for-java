@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for SessionHosts Get. */
 public final class SessionHostsGetSamples {
     /*
-     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2021-09-03-preview/examples/SessionHost_Get.json
+     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2022-07-05-preview/examples/SessionHost_Get.json
      */
     /**
      * Sample code: SessionHost_Get.
