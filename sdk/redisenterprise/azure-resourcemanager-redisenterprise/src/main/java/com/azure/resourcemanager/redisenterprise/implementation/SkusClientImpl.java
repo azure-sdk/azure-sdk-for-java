@@ -16,128 +16,122 @@ import com.azure.core.annotation.ReturnType;
 import com.azure.core.annotation.ServiceInterface;
 import com.azure.core.annotation.ServiceMethod;
 import com.azure.core.annotation.UnexpectedResponseExceptionType;
+import com.azure.core.http.rest.PagedFlux;
+import com.azure.core.http.rest.PagedIterable;
+import com.azure.core.http.rest.PagedResponse;
+import com.azure.core.http.rest.PagedResponseBase;
 import com.azure.core.http.rest.Response;
 import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
-import com.azure.resourcemanager.redisenterprise.fluent.OperationsStatusClient;
-import com.azure.resourcemanager.redisenterprise.fluent.models.OperationStatusInner;
+import com.azure.resourcemanager.redisenterprise.fluent.SkusClient;
+import com.azure.resourcemanager.redisenterprise.fluent.models.RegionSkuDetailInner;
+import com.azure.resourcemanager.redisenterprise.models.RegionSkuDetails;
 import reactor.core.publisher.Mono;
 
-/** An instance of this class provides access to all the operations defined in OperationsStatusClient. */
-public final class OperationsStatusClientImpl implements OperationsStatusClient {
+/** An instance of this class provides access to all the operations defined in SkusClient. */
+public final class SkusClientImpl implements SkusClient {
     /** The proxy service used to perform REST calls. */
-    private final OperationsStatusService service;
+    private final SkusService service;
 
     /** The service client containing this operation class. */
     private final RedisEnterpriseManagementClientImpl client;
 
     /**
-     * Initializes an instance of OperationsStatusClientImpl.
+     * Initializes an instance of SkusClientImpl.
      *
      * @param client the instance of the service client containing this operation class.
      */
-    OperationsStatusClientImpl(RedisEnterpriseManagementClientImpl client) {
-        this.service =
-            RestProxy.create(OperationsStatusService.class, client.getHttpPipeline(), client.getSerializerAdapter());
+    SkusClientImpl(RedisEnterpriseManagementClientImpl client) {
+        this.service = RestProxy.create(SkusService.class, client.getHttpPipeline(), client.getSerializerAdapter());
         this.client = client;
     }
 
     /**
-     * The interface defining all the services for RedisEnterpriseManagementClientOperationsStatus to be used by the
-     * proxy service to perform REST calls.
+     * The interface defining all the services for RedisEnterpriseManagementClientSkus to be used by the proxy service
+     * to perform REST calls.
      */
     @Host("{$host}")
     @ServiceInterface(name = "RedisEnterpriseManag")
-    private interface OperationsStatusService {
+    private interface SkusService {
         @Headers({"Content-Type: application/json"})
-        @Get(
-            "/subscriptions/{subscriptionId}/providers/Microsoft.Cache/locations/{location}/operationsStatus"
-                + "/{operationId}")
+        @Get("/subscriptions/{subscriptionId}/providers/Microsoft.Cache/locations/{location}/skus")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<OperationStatusInner>> get(
+        Mono<Response<RegionSkuDetails>> list(
             @HostParam("$host") String endpoint,
-            @PathParam("location") String location,
-            @PathParam("operationId") String operationId,
-            @QueryParam("api-version") String apiVersion,
             @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("location") String location,
+            @QueryParam("api-version") String apiVersion,
             @HeaderParam("Accept") String accept,
             Context context);
     }
 
     /**
-     * Gets the status of operation.
+     * Gets information about skus in specified location for the given subscription id.
      *
-     * @param location The region the operation is in.
-     * @param operationId The operation's unique identifier.
+     * @param location The location of the resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the status of operation along with {@link Response} on successful completion of {@link Mono}.
+     * @return information about skus in specified location for the given subscription id along with {@link
+     *     PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<OperationStatusInner>> getWithResponseAsync(String location, String operationId) {
+    private Mono<PagedResponse<RegionSkuDetailInner>> listSinglePageAsync(String location) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
                     new IllegalArgumentException(
                         "Parameter this.client.getEndpoint() is required and cannot be null."));
         }
-        if (location == null) {
-            return Mono.error(new IllegalArgumentException("Parameter location is required and cannot be null."));
-        }
-        if (operationId == null) {
-            return Mono.error(new IllegalArgumentException("Parameter operationId is required and cannot be null."));
-        }
         if (this.client.getSubscriptionId() == null) {
             return Mono
                 .error(
                     new IllegalArgumentException(
                         "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (location == null) {
+            return Mono.error(new IllegalArgumentException("Parameter location is required and cannot be null."));
         }
         final String accept = "application/json";
         return FluxUtil
             .withContext(
                 context ->
                     service
-                        .get(
+                        .list(
                             this.client.getEndpoint(),
-                            location,
-                            operationId,
-                            this.client.getApiVersion(),
                             this.client.getSubscriptionId(),
+                            location,
+                            this.client.getApiVersion(),
                             accept,
                             context))
+            .<PagedResponse<RegionSkuDetailInner>>map(
+                res ->
+                    new PagedResponseBase<>(
+                        res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(), null, null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
-     * Gets the status of operation.
+     * Gets information about skus in specified location for the given subscription id.
      *
-     * @param location The region the operation is in.
-     * @param operationId The operation's unique identifier.
+     * @param location The location of the resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the status of operation along with {@link Response} on successful completion of {@link Mono}.
+     * @return information about skus in specified location for the given subscription id along with {@link
+     *     PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<OperationStatusInner>> getWithResponseAsync(
-        String location, String operationId, Context context) {
+    private Mono<PagedResponse<RegionSkuDetailInner>> listSinglePageAsync(String location, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
                     new IllegalArgumentException(
                         "Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (location == null) {
-            return Mono.error(new IllegalArgumentException("Parameter location is required and cannot be null."));
-        }
-        if (operationId == null) {
-            return Mono.error(new IllegalArgumentException("Parameter operationId is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
             return Mono
@@ -145,62 +139,84 @@ public final class OperationsStatusClientImpl implements OperationsStatusClient 
                     new IllegalArgumentException(
                         "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
+        if (location == null) {
+            return Mono.error(new IllegalArgumentException("Parameter location is required and cannot be null."));
+        }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .get(
+            .list(
                 this.client.getEndpoint(),
-                location,
-                operationId,
-                this.client.getApiVersion(),
                 this.client.getSubscriptionId(),
+                location,
+                this.client.getApiVersion(),
                 accept,
-                context);
+                context)
+            .map(
+                res ->
+                    new PagedResponseBase<>(
+                        res.getRequest(), res.getStatusCode(), res.getHeaders(), res.getValue().value(), null, null));
     }
 
     /**
-     * Gets the status of operation.
+     * Gets information about skus in specified location for the given subscription id.
      *
-     * @param location The region the operation is in.
-     * @param operationId The operation's unique identifier.
+     * @param location The location of the resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the status of operation on successful completion of {@link Mono}.
+     * @return information about skus in specified location for the given subscription id as paginated response with
+     *     {@link PagedFlux}.
      */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<OperationStatusInner> getAsync(String location, String operationId) {
-        return getWithResponseAsync(location, operationId).flatMap(res -> Mono.justOrEmpty(res.getValue()));
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    private PagedFlux<RegionSkuDetailInner> listAsync(String location) {
+        return new PagedFlux<>(() -> listSinglePageAsync(location));
     }
 
     /**
-     * Gets the status of operation.
+     * Gets information about skus in specified location for the given subscription id.
      *
-     * @param location The region the operation is in.
-     * @param operationId The operation's unique identifier.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the status of operation.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public OperationStatusInner get(String location, String operationId) {
-        return getAsync(location, operationId).block();
-    }
-
-    /**
-     * Gets the status of operation.
-     *
-     * @param location The region the operation is in.
-     * @param operationId The operation's unique identifier.
+     * @param location The location of the resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the status of operation along with {@link Response}.
+     * @return information about skus in specified location for the given subscription id as paginated response with
+     *     {@link PagedFlux}.
      */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<OperationStatusInner> getWithResponse(String location, String operationId, Context context) {
-        return getWithResponseAsync(location, operationId, context).block();
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    private PagedFlux<RegionSkuDetailInner> listAsync(String location, Context context) {
+        return new PagedFlux<>(() -> listSinglePageAsync(location, context));
+    }
+
+    /**
+     * Gets information about skus in specified location for the given subscription id.
+     *
+     * @param location The location of the resource.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return information about skus in specified location for the given subscription id as paginated response with
+     *     {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedIterable<RegionSkuDetailInner> list(String location) {
+        return new PagedIterable<>(listAsync(location));
+    }
+
+    /**
+     * Gets information about skus in specified location for the given subscription id.
+     *
+     * @param location The location of the resource.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return information about skus in specified location for the given subscription id as paginated response with
+     *     {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedIterable<RegionSkuDetailInner> list(String location, Context context) {
+        return new PagedIterable<>(listAsync(location, context));
     }
 }
