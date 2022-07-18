@@ -1,103 +1,62 @@
 # Code snippets and samples
 
 
-## AvailabilityStatuses
+## EventsOperation
 
-- [GetByResource](#availabilitystatuses_getbyresource)
-- [List](#availabilitystatuses_list)
-- [ListByResourceGroup](#availabilitystatuses_listbyresourcegroup)
-- [ListBySubscriptionId](#availabilitystatuses_listbysubscriptionid)
+- [List](#eventsoperation_list)
+- [ListBySingleResource](#eventsoperation_listbysingleresource)
 
 ## Operations
 
 - [List](#operations_list)
-### AvailabilityStatuses_GetByResource
+### EventsOperation_List
 
 ```java
 import com.azure.core.util.Context;
 
-/** Samples for AvailabilityStatuses GetByResource. */
-public final class AvailabilityStatusesGetByResourceSamples {
+/** Samples for EventsOperation List. */
+public final class EventsOperationListSamples {
     /*
-     * x-ms-original-file: specification/resourcehealth/resource-manager/Microsoft.ResourceHealth/stable/2020-05-01/examples/AvailabilityStatus_GetByResource.json
+     * x-ms-original-file: specification/resourcehealth/resource-manager/Microsoft.ResourceHealth/stable/2022-06-01/examples/Events_ListBySubscriptionId.json
      */
     /**
-     * Sample code: GetCurrentHealthByResource.
+     * Sample code: ListEventsBySubscriptionId.
      *
      * @param manager Entry point to ResourceHealthManager.
      */
-    public static void getCurrentHealthByResource(
+    public static void listEventsBySubscriptionId(
         com.azure.resourcemanager.resourcehealth.ResourceHealthManager manager) {
         manager
-            .availabilityStatuses()
-            .getByResourceWithResponse("resourceUri", null, "recommendedactions", Context.NONE);
+            .eventsOperations()
+            .list("service eq 'Virtual Machines' or region eq 'West US'", "7/24/2020", null, Context.NONE);
     }
 }
 ```
 
-### AvailabilityStatuses_List
+### EventsOperation_ListBySingleResource
 
 ```java
 import com.azure.core.util.Context;
 
-/** Samples for AvailabilityStatuses List. */
-public final class AvailabilityStatusesListSamples {
+/** Samples for EventsOperation ListBySingleResource. */
+public final class EventsOperationListBySingleResourceSamples {
     /*
-     * x-ms-original-file: specification/resourcehealth/resource-manager/Microsoft.ResourceHealth/stable/2020-05-01/examples/AvailabilityStatuses_List.json
+     * x-ms-original-file: specification/resourcehealth/resource-manager/Microsoft.ResourceHealth/stable/2022-06-01/examples/Events_ListBySingleResource.json
      */
     /**
-     * Sample code: GetHealthHistoryByResource.
+     * Sample code: ListEventsBySingleResource.
      *
      * @param manager Entry point to ResourceHealthManager.
      */
-    public static void getHealthHistoryByResource(
+    public static void listEventsBySingleResource(
         com.azure.resourcemanager.resourcehealth.ResourceHealthManager manager) {
-        manager.availabilityStatuses().list("resourceUri", null, null, Context.NONE);
-    }
-}
-```
-
-### AvailabilityStatuses_ListByResourceGroup
-
-```java
-import com.azure.core.util.Context;
-
-/** Samples for AvailabilityStatuses ListByResourceGroup. */
-public final class AvailabilityStatusesListByResourceGroupSamples {
-    /*
-     * x-ms-original-file: specification/resourcehealth/resource-manager/Microsoft.ResourceHealth/stable/2020-05-01/examples/AvailabilityStatuses_ListByResourceGroup.json
-     */
-    /**
-     * Sample code: ListByResourceGroup.
-     *
-     * @param manager Entry point to ResourceHealthManager.
-     */
-    public static void listByResourceGroup(com.azure.resourcemanager.resourcehealth.ResourceHealthManager manager) {
         manager
-            .availabilityStatuses()
-            .listByResourceGroup("resourceGroupName", null, "recommendedactions", Context.NONE);
-    }
-}
-```
-
-### AvailabilityStatuses_ListBySubscriptionId
-
-```java
-import com.azure.core.util.Context;
-
-/** Samples for AvailabilityStatuses ListBySubscriptionId. */
-public final class AvailabilityStatusesListBySubscriptionIdSamples {
-    /*
-     * x-ms-original-file: specification/resourcehealth/resource-manager/Microsoft.ResourceHealth/stable/2020-05-01/examples/AvailabilityStatuses_ListBySubscriptionId.json
-     */
-    /**
-     * Sample code: ListHealthBySubscriptionId.
-     *
-     * @param manager Entry point to ResourceHealthManager.
-     */
-    public static void listHealthBySubscriptionId(
-        com.azure.resourcemanager.resourcehealth.ResourceHealthManager manager) {
-        manager.availabilityStatuses().listBySubscriptionId(null, "recommendedactions", Context.NONE);
+            .eventsOperations()
+            .listBySingleResource(
+                "subscriptions/4abcdefgh-ijkl-mnop-qrstuvwxyz/resourceGroups/rhctestenv/providers/Microsoft.Compute/virtualMachines/rhctestenvV1PI",
+                null,
+                null,
+                Context.NONE);
     }
 }
 ```
@@ -110,15 +69,14 @@ import com.azure.core.util.Context;
 /** Samples for Operations List. */
 public final class OperationsListSamples {
     /*
-     * x-ms-original-file: specification/resourcehealth/resource-manager/Microsoft.ResourceHealth/stable/2020-05-01/examples/Operations_List.json
+     * x-ms-original-file: specification/resourcehealth/resource-manager/Microsoft.ResourceHealth/stable/2022-06-01/examples/Operations_List.json
      */
     /**
-     * Sample code: GetHealthHistoryByResource.
+     * Sample code: OperationsList.
      *
      * @param manager Entry point to ResourceHealthManager.
      */
-    public static void getHealthHistoryByResource(
-        com.azure.resourcemanager.resourcehealth.ResourceHealthManager manager) {
+    public static void operationsList(com.azure.resourcemanager.resourcehealth.ResourceHealthManager manager) {
         manager.operations().listWithResponse(Context.NONE);
     }
 }

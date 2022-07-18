@@ -17,6 +17,12 @@ public final class Operation {
     private String name;
 
     /*
+     * Indicates whether the operation is a data action
+     */
+    @JsonProperty(value = "isDataAction")
+    private Boolean isDataAction;
+
+    /*
      * Properties of the operation.
      */
     @JsonProperty(value = "display")
@@ -39,6 +45,26 @@ public final class Operation {
      */
     public Operation withName(String name) {
         this.name = name;
+        return this;
+    }
+
+    /**
+     * Get the isDataAction property: Indicates whether the operation is a data action.
+     *
+     * @return the isDataAction value.
+     */
+    public Boolean isDataAction() {
+        return this.isDataAction;
+    }
+
+    /**
+     * Set the isDataAction property: Indicates whether the operation is a data action.
+     *
+     * @param isDataAction the isDataAction value to set.
+     * @return the Operation object itself.
+     */
+    public Operation withIsDataAction(Boolean isDataAction) {
+        this.isDataAction = isDataAction;
         return this;
     }
 

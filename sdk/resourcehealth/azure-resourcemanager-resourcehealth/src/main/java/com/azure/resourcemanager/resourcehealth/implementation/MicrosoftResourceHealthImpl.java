@@ -15,13 +15,14 @@ import com.azure.core.management.exception.ManagementException;
 import com.azure.core.management.polling.PollResult;
 import com.azure.core.management.polling.PollerFactory;
 import com.azure.core.util.Context;
+import com.azure.core.util.CoreUtils;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.core.util.polling.AsyncPollResponse;
 import com.azure.core.util.polling.LongRunningOperationStatus;
 import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.serializer.SerializerAdapter;
 import com.azure.core.util.serializer.SerializerEncoding;
-import com.azure.resourcemanager.resourcehealth.fluent.AvailabilityStatusesClient;
+import com.azure.resourcemanager.resourcehealth.fluent.EventsOperationsClient;
 import com.azure.resourcemanager.resourcehealth.fluent.MicrosoftResourceHealth;
 import com.azure.resourcemanager.resourcehealth.fluent.OperationsClient;
 import java.io.IOException;
@@ -30,7 +31,6 @@ import java.nio.ByteBuffer;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.time.Duration;
-import java.util.Map;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
@@ -113,16 +113,16 @@ public final class MicrosoftResourceHealthImpl implements MicrosoftResourceHealt
         return this.defaultPollInterval;
     }
 
-    /** The AvailabilityStatusesClient object to access its operations. */
-    private final AvailabilityStatusesClient availabilityStatuses;
+    /** The EventsOperationsClient object to access its operations. */
+    private final EventsOperationsClient eventsOperations;
 
     /**
-     * Gets the AvailabilityStatusesClient object to access its operations.
+     * Gets the EventsOperationsClient object to access its operations.
      *
-     * @return the AvailabilityStatusesClient object.
+     * @return the EventsOperationsClient object.
      */
-    public AvailabilityStatusesClient getAvailabilityStatuses() {
-        return this.availabilityStatuses;
+    public EventsOperationsClient getEventsOperations() {
+        return this.eventsOperations;
     }
 
     /** The OperationsClient object to access its operations. */
@@ -160,8 +160,8 @@ public final class MicrosoftResourceHealthImpl implements MicrosoftResourceHealt
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2020-05-01";
-        this.availabilityStatuses = new AvailabilityStatusesClientImpl(this);
+        this.apiVersion = "2022-06-01";
+        this.eventsOperations = new EventsOperationsClientImpl(this);
         this.operations = new OperationsClientImpl(this);
     }
 
@@ -181,10 +181,7 @@ public final class MicrosoftResourceHealthImpl implements MicrosoftResourceHealt
      * @return the merged context.
      */
     public Context mergeContext(Context context) {
-        for (Map.Entry<Object, Object> entry : this.getContext().getValues().entrySet()) {
-            context = context.addData(entry.getKey(), entry.getValue());
-        }
-        return context;
+        return CoreUtils.mergeContexts(this.getContext(), context);
     }
 
     /**
