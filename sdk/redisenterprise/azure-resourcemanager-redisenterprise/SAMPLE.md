@@ -57,7 +57,7 @@ import java.util.Arrays;
 /** Samples for Databases Create. */
 public final class DatabasesCreateSamples {
     /*
-     * x-ms-original-file: specification/redisenterprise/resource-manager/Microsoft.Cache/stable/2022-01-01/examples/RedisEnterpriseDatabasesCreate.json
+     * x-ms-original-file: specification/redisenterprise/resource-manager/Microsoft.Cache/preview/2022-07-01-preview/examples/RedisEnterpriseDatabasesCreate.json
      */
     /**
      * Sample code: RedisEnterpriseDatabasesCreate.
@@ -85,7 +85,7 @@ public final class DatabasesCreateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/redisenterprise/resource-manager/Microsoft.Cache/stable/2022-01-01/examples/RedisEnterpriseDatabasesCreateWithGeoReplication.json
+     * x-ms-original-file: specification/redisenterprise/resource-manager/Microsoft.Cache/preview/2022-07-01-preview/examples/RedisEnterpriseDatabasesCreateWithGeoReplication.json
      */
     /**
      * Sample code: RedisEnterpriseDatabasesCreate With Active Geo Replication.
@@ -127,7 +127,7 @@ import com.azure.core.util.Context;
 /** Samples for Databases Delete. */
 public final class DatabasesDeleteSamples {
     /*
-     * x-ms-original-file: specification/redisenterprise/resource-manager/Microsoft.Cache/stable/2022-01-01/examples/RedisEnterpriseDatabasesDelete.json
+     * x-ms-original-file: specification/redisenterprise/resource-manager/Microsoft.Cache/preview/2022-07-01-preview/examples/RedisEnterpriseDatabasesDelete.json
      */
     /**
      * Sample code: RedisEnterpriseDatabasesDelete.
@@ -150,7 +150,7 @@ import com.azure.resourcemanager.redisenterprise.models.ExportClusterParameters;
 /** Samples for Databases Export. */
 public final class DatabasesExportSamples {
     /*
-     * x-ms-original-file: specification/redisenterprise/resource-manager/Microsoft.Cache/stable/2022-01-01/examples/RedisEnterpriseDatabasesExport.json
+     * x-ms-original-file: specification/redisenterprise/resource-manager/Microsoft.Cache/preview/2022-07-01-preview/examples/RedisEnterpriseDatabasesExport.json
      */
     /**
      * Sample code: RedisEnterpriseDatabasesExport.
@@ -182,7 +182,7 @@ import java.util.Arrays;
 /** Samples for Databases ForceUnlink. */
 public final class DatabasesForceUnlinkSamples {
     /*
-     * x-ms-original-file: specification/redisenterprise/resource-manager/Microsoft.Cache/stable/2022-01-01/examples/RedisEnterpriseDatabasesForceUnlink.json
+     * x-ms-original-file: specification/redisenterprise/resource-manager/Microsoft.Cache/preview/2022-07-01-preview/examples/RedisEnterpriseDatabasesForceUnlink.json
      */
     /**
      * Sample code: How to unlink a database during a regional outage.
@@ -215,7 +215,7 @@ import com.azure.core.util.Context;
 /** Samples for Databases Get. */
 public final class DatabasesGetSamples {
     /*
-     * x-ms-original-file: specification/redisenterprise/resource-manager/Microsoft.Cache/stable/2022-01-01/examples/RedisEnterpriseDatabasesGet.json
+     * x-ms-original-file: specification/redisenterprise/resource-manager/Microsoft.Cache/preview/2022-07-01-preview/examples/RedisEnterpriseDatabasesGet.json
      */
     /**
      * Sample code: RedisEnterpriseDatabasesGet.
@@ -239,7 +239,7 @@ import java.util.Arrays;
 /** Samples for Databases ImportMethod. */
 public final class DatabasesImportMethodSamples {
     /*
-     * x-ms-original-file: specification/redisenterprise/resource-manager/Microsoft.Cache/stable/2022-01-01/examples/RedisEnterpriseDatabasesImport.json
+     * x-ms-original-file: specification/redisenterprise/resource-manager/Microsoft.Cache/preview/2022-07-01-preview/examples/RedisEnterpriseDatabasesImport.json
      */
     /**
      * Sample code: RedisEnterpriseDatabasesImport.
@@ -273,7 +273,7 @@ import com.azure.core.util.Context;
 /** Samples for Databases ListByCluster. */
 public final class DatabasesListByClusterSamples {
     /*
-     * x-ms-original-file: specification/redisenterprise/resource-manager/Microsoft.Cache/stable/2022-01-01/examples/RedisEnterpriseDatabasesListByCluster.json
+     * x-ms-original-file: specification/redisenterprise/resource-manager/Microsoft.Cache/preview/2022-07-01-preview/examples/RedisEnterpriseDatabasesListByCluster.json
      */
     /**
      * Sample code: RedisEnterpriseDatabasesListByCluster.
@@ -295,7 +295,7 @@ import com.azure.core.util.Context;
 /** Samples for Databases ListKeys. */
 public final class DatabasesListKeysSamples {
     /*
-     * x-ms-original-file: specification/redisenterprise/resource-manager/Microsoft.Cache/stable/2022-01-01/examples/RedisEnterpriseDatabasesListKeys.json
+     * x-ms-original-file: specification/redisenterprise/resource-manager/Microsoft.Cache/preview/2022-07-01-preview/examples/RedisEnterpriseDatabasesListKeys.json
      */
     /**
      * Sample code: RedisEnterpriseDatabasesListKeys.
@@ -319,7 +319,7 @@ import com.azure.resourcemanager.redisenterprise.models.RegenerateKeyParameters;
 /** Samples for Databases RegenerateKey. */
 public final class DatabasesRegenerateKeySamples {
     /*
-     * x-ms-original-file: specification/redisenterprise/resource-manager/Microsoft.Cache/stable/2022-01-01/examples/RedisEnterpriseDatabasesRegenerateKey.json
+     * x-ms-original-file: specification/redisenterprise/resource-manager/Microsoft.Cache/preview/2022-07-01-preview/examples/RedisEnterpriseDatabasesRegenerateKey.json
      */
     /**
      * Sample code: RedisEnterpriseDatabasesRegenerateKey.
@@ -353,7 +353,7 @@ import com.azure.resourcemanager.redisenterprise.models.RdbFrequency;
 /** Samples for Databases Update. */
 public final class DatabasesUpdateSamples {
     /*
-     * x-ms-original-file: specification/redisenterprise/resource-manager/Microsoft.Cache/stable/2022-01-01/examples/RedisEnterpriseDatabasesUpdate.json
+     * x-ms-original-file: specification/redisenterprise/resource-manager/Microsoft.Cache/preview/2022-07-01-preview/examples/RedisEnterpriseDatabasesUpdate.json
      */
     /**
      * Sample code: RedisEnterpriseDatabasesUpdate.
@@ -381,7 +381,7 @@ import com.azure.core.util.Context;
 /** Samples for Operations List. */
 public final class OperationsListSamples {
     /*
-     * x-ms-original-file: specification/redisenterprise/resource-manager/Microsoft.Cache/stable/2022-01-01/examples/OperationsList.json
+     * x-ms-original-file: specification/redisenterprise/resource-manager/Microsoft.Cache/preview/2022-07-01-preview/examples/OperationsList.json
      */
     /**
      * Sample code: OperationsList.
@@ -402,7 +402,7 @@ import com.azure.core.util.Context;
 /** Samples for OperationsStatus Get. */
 public final class OperationsStatusGetSamples {
     /*
-     * x-ms-original-file: specification/redisenterprise/resource-manager/Microsoft.Cache/stable/2022-01-01/examples/OperationsStatusGet.json
+     * x-ms-original-file: specification/redisenterprise/resource-manager/Microsoft.Cache/preview/2022-07-01-preview/examples/OperationsStatusGet.json
      */
     /**
      * Sample code: OperationsStatusGet.
@@ -423,7 +423,7 @@ import com.azure.core.util.Context;
 /** Samples for PrivateEndpointConnections Delete. */
 public final class PrivateEndpointConnectionsDeleteSamples {
     /*
-     * x-ms-original-file: specification/redisenterprise/resource-manager/Microsoft.Cache/stable/2022-01-01/examples/RedisEnterpriseDeletePrivateEndpointConnection.json
+     * x-ms-original-file: specification/redisenterprise/resource-manager/Microsoft.Cache/preview/2022-07-01-preview/examples/RedisEnterpriseDeletePrivateEndpointConnection.json
      */
     /**
      * Sample code: RedisEnterpriseDeletePrivateEndpointConnection.
@@ -445,7 +445,7 @@ import com.azure.core.util.Context;
 /** Samples for PrivateEndpointConnections Get. */
 public final class PrivateEndpointConnectionsGetSamples {
     /*
-     * x-ms-original-file: specification/redisenterprise/resource-manager/Microsoft.Cache/stable/2022-01-01/examples/RedisEnterpriseGetPrivateEndpointConnection.json
+     * x-ms-original-file: specification/redisenterprise/resource-manager/Microsoft.Cache/preview/2022-07-01-preview/examples/RedisEnterpriseGetPrivateEndpointConnection.json
      */
     /**
      * Sample code: RedisEnterpriseGetPrivateEndpointConnection.
@@ -467,7 +467,7 @@ import com.azure.core.util.Context;
 /** Samples for PrivateEndpointConnections List. */
 public final class PrivateEndpointConnectionsListSamples {
     /*
-     * x-ms-original-file: specification/redisenterprise/resource-manager/Microsoft.Cache/stable/2022-01-01/examples/RedisEnterpriseListPrivateEndpointConnections.json
+     * x-ms-original-file: specification/redisenterprise/resource-manager/Microsoft.Cache/preview/2022-07-01-preview/examples/RedisEnterpriseListPrivateEndpointConnections.json
      */
     /**
      * Sample code: RedisEnterpriseListPrivateEndpointConnections.
@@ -490,7 +490,7 @@ import com.azure.resourcemanager.redisenterprise.models.PrivateLinkServiceConnec
 /** Samples for PrivateEndpointConnections Put. */
 public final class PrivateEndpointConnectionsPutSamples {
     /*
-     * x-ms-original-file: specification/redisenterprise/resource-manager/Microsoft.Cache/stable/2022-01-01/examples/RedisEnterprisePutPrivateEndpointConnection.json
+     * x-ms-original-file: specification/redisenterprise/resource-manager/Microsoft.Cache/preview/2022-07-01-preview/examples/RedisEnterprisePutPrivateEndpointConnection.json
      */
     /**
      * Sample code: RedisEnterprisePutPrivateEndpointConnection.
@@ -520,7 +520,7 @@ import com.azure.core.util.Context;
 /** Samples for PrivateLinkResources ListByCluster. */
 public final class PrivateLinkResourcesListByClusterSamples {
     /*
-     * x-ms-original-file: specification/redisenterprise/resource-manager/Microsoft.Cache/stable/2022-01-01/examples/RedisEnterpriseListPrivateLinkResources.json
+     * x-ms-original-file: specification/redisenterprise/resource-manager/Microsoft.Cache/preview/2022-07-01-preview/examples/RedisEnterpriseListPrivateLinkResources.json
      */
     /**
      * Sample code: RedisEnterpriseListPrivateLinkResources.
@@ -547,7 +547,7 @@ import java.util.Map;
 /** Samples for RedisEnterprise Create. */
 public final class RedisEnterpriseCreateSamples {
     /*
-     * x-ms-original-file: specification/redisenterprise/resource-manager/Microsoft.Cache/stable/2022-01-01/examples/RedisEnterpriseCreate.json
+     * x-ms-original-file: specification/redisenterprise/resource-manager/Microsoft.Cache/preview/2022-07-01-preview/examples/RedisEnterpriseCreate.json
      */
     /**
      * Sample code: RedisEnterpriseCreate.
@@ -588,7 +588,7 @@ import com.azure.core.util.Context;
 /** Samples for RedisEnterprise Delete. */
 public final class RedisEnterpriseDeleteSamples {
     /*
-     * x-ms-original-file: specification/redisenterprise/resource-manager/Microsoft.Cache/stable/2022-01-01/examples/RedisEnterpriseDelete.json
+     * x-ms-original-file: specification/redisenterprise/resource-manager/Microsoft.Cache/preview/2022-07-01-preview/examples/RedisEnterpriseDelete.json
      */
     /**
      * Sample code: RedisEnterpriseDelete.
@@ -609,7 +609,7 @@ import com.azure.core.util.Context;
 /** Samples for RedisEnterprise GetByResourceGroup. */
 public final class RedisEnterpriseGetByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/redisenterprise/resource-manager/Microsoft.Cache/stable/2022-01-01/examples/RedisEnterpriseGet.json
+     * x-ms-original-file: specification/redisenterprise/resource-manager/Microsoft.Cache/preview/2022-07-01-preview/examples/RedisEnterpriseGet.json
      */
     /**
      * Sample code: RedisEnterpriseGet.
@@ -630,7 +630,7 @@ import com.azure.core.util.Context;
 /** Samples for RedisEnterprise List. */
 public final class RedisEnterpriseListSamples {
     /*
-     * x-ms-original-file: specification/redisenterprise/resource-manager/Microsoft.Cache/stable/2022-01-01/examples/RedisEnterpriseList.json
+     * x-ms-original-file: specification/redisenterprise/resource-manager/Microsoft.Cache/preview/2022-07-01-preview/examples/RedisEnterpriseList.json
      */
     /**
      * Sample code: RedisEnterpriseList.
@@ -651,7 +651,7 @@ import com.azure.core.util.Context;
 /** Samples for RedisEnterprise ListByResourceGroup. */
 public final class RedisEnterpriseListByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/redisenterprise/resource-manager/Microsoft.Cache/stable/2022-01-01/examples/RedisEnterpriseListByResourceGroup.json
+     * x-ms-original-file: specification/redisenterprise/resource-manager/Microsoft.Cache/preview/2022-07-01-preview/examples/RedisEnterpriseListByResourceGroup.json
      */
     /**
      * Sample code: RedisEnterpriseListByResourceGroup.
@@ -679,7 +679,7 @@ import java.util.Map;
 /** Samples for RedisEnterprise Update. */
 public final class RedisEnterpriseUpdateSamples {
     /*
-     * x-ms-original-file: specification/redisenterprise/resource-manager/Microsoft.Cache/stable/2022-01-01/examples/RedisEnterpriseUpdate.json
+     * x-ms-original-file: specification/redisenterprise/resource-manager/Microsoft.Cache/preview/2022-07-01-preview/examples/RedisEnterpriseUpdate.json
      */
     /**
      * Sample code: RedisEnterpriseUpdate.

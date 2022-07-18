@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for PrivateEndpointConnections Get. */
 public final class PrivateEndpointConnectionsGetSamples {
     /*
-     * x-ms-original-file: specification/redisenterprise/resource-manager/Microsoft.Cache/stable/2022-01-01/examples/RedisEnterpriseGetPrivateEndpointConnection.json
+     * x-ms-original-file: specification/redisenterprise/resource-manager/Microsoft.Cache/preview/2022-07-01-preview/examples/RedisEnterpriseGetPrivateEndpointConnection.json
      */
     /**
      * Sample code: RedisEnterpriseGetPrivateEndpointConnection.

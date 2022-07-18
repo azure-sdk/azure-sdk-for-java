@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for Databases ListKeys. */
 public final class DatabasesListKeysSamples {
     /*
-     * x-ms-original-file: specification/redisenterprise/resource-manager/Microsoft.Cache/stable/2022-01-01/examples/RedisEnterpriseDatabasesListKeys.json
+     * x-ms-original-file: specification/redisenterprise/resource-manager/Microsoft.Cache/preview/2022-07-01-preview/examples/RedisEnterpriseDatabasesListKeys.json
      */
     /**
      * Sample code: RedisEnterpriseDatabasesListKeys.

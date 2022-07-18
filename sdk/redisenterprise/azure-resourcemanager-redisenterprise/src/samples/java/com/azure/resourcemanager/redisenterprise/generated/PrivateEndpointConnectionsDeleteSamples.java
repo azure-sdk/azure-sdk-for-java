@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for PrivateEndpointConnections Delete. */
 public final class PrivateEndpointConnectionsDeleteSamples {
     /*
-     * x-ms-original-file: specification/redisenterprise/resource-manager/Microsoft.Cache/stable/2022-01-01/examples/RedisEnterpriseDeletePrivateEndpointConnection.json
+     * x-ms-original-file: specification/redisenterprise/resource-manager/Microsoft.Cache/preview/2022-07-01-preview/examples/RedisEnterpriseDeletePrivateEndpointConnection.json
      */
     /**
      * Sample code: RedisEnterpriseDeletePrivateEndpointConnection.

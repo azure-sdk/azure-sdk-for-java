@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for PrivateLinkResources ListByCluster. */
 public final class PrivateLinkResourcesListByClusterSamples {
     /*
-     * x-ms-original-file: specification/redisenterprise/resource-manager/Microsoft.Cache/stable/2022-01-01/examples/RedisEnterpriseListPrivateLinkResources.json
+     * x-ms-original-file: specification/redisenterprise/resource-manager/Microsoft.Cache/preview/2022-07-01-preview/examples/RedisEnterpriseListPrivateLinkResources.json
      */
     /**
      * Sample code: RedisEnterpriseListPrivateLinkResources.
