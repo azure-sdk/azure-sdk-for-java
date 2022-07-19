@@ -10,9 +10,10 @@
   <version>1.0.0</version><!-- Need not change for every release-->
 
   <modules>
-      <module>azure-monitor-ingestion</module>
-      <module>azure-monitor-opentelemetry-exporter</module>
-      <module>azure-monitor-query</module>
-      <module>azure-monitor-query-perf</module>
+    <module>azure-monitor-ingestion</module>
+    <module>azure-monitor-opentelemetry-exporter</module>
+    <module>azure-monitor-query</module>
+    <module>azure-monitor-query-perf</module>
+    <module>azure-resourcemanager-monitor-generated</module>
   </modules>
 </project>
