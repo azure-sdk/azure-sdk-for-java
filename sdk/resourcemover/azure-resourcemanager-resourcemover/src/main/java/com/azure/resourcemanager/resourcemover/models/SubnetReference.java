@@ -4,15 +4,11 @@
 
 package com.azure.resourcemanager.resourcemover.models;
 
-import com.azure.core.annotation.Immutable;
-import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.azure.core.annotation.Fluent;
 
 /** Defines reference to subnet. */
-@Immutable
+@Fluent
 public final class SubnetReference extends ProxyResourceReference {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(SubnetReference.class);
-
     /** {@inheritDoc} */
     @Override
     public SubnetReference withName(String name) {

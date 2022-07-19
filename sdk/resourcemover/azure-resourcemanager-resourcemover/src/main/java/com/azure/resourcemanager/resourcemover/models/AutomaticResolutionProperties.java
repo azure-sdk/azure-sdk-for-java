@@ -5,15 +5,11 @@
 package com.azure.resourcemanager.resourcemover.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Defines the properties for automatic resolution. */
 @Fluent
 public final class AutomaticResolutionProperties {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(AutomaticResolutionProperties.class);
-
     /*
      * Gets the MoveResource ARM ID of
      * the dependent resource if the resolution type is Automatic.

@@ -5,15 +5,11 @@
 package com.azure.resourcemanager.resourcemover.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Defines the dependency override of the move resource. */
 @Fluent
 public final class MoveResourceDependencyOverride {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(MoveResourceDependencyOverride.class);
-
     /*
      * Gets or sets the ARM ID of the dependent resource.
      */

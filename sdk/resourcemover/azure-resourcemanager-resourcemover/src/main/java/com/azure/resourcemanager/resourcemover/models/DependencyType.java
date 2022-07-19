@@ -27,7 +27,11 @@ public final class DependencyType extends ExpandableStringEnum<DependencyType> {
         return fromString(name, DependencyType.class);
     }
 
-    /** @return known DependencyType values. */
+    /**
+     * Gets known DependencyType values.
+     *
+     * @return known DependencyType values.
+     */
     public static Collection<DependencyType> values() {
         return values(DependencyType.class);
     }

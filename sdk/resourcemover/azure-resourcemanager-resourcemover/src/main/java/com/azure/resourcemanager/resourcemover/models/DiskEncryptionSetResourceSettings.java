@@ -4,19 +4,15 @@
 
 package com.azure.resourcemanager.resourcemover.models;
 
-import com.azure.core.annotation.Immutable;
-import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /** Defines the disk encryption set resource settings. */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "resourceType")
 @JsonTypeName("Microsoft.Compute/diskEncryptionSets")
-@Immutable
+@Fluent
 public final class DiskEncryptionSetResourceSettings extends ResourceSettings {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(DiskEncryptionSetResourceSettings.class);
-
     /** {@inheritDoc} */
     @Override
     public DiskEncryptionSetResourceSettings withTargetResourceName(String targetResourceName) {

@@ -12,10 +12,9 @@ import com.azure.resourcemanager.resourcemover.fluent.OperationsDiscoveriesClien
 import com.azure.resourcemanager.resourcemover.fluent.models.OperationsDiscoveryCollectionInner;
 import com.azure.resourcemanager.resourcemover.models.OperationsDiscoveries;
 import com.azure.resourcemanager.resourcemover.models.OperationsDiscoveryCollection;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public final class OperationsDiscoveriesImpl implements OperationsDiscoveries {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(OperationsDiscoveriesImpl.class);
+    private static final ClientLogger LOGGER = new ClientLogger(OperationsDiscoveriesImpl.class);
 
     private final OperationsDiscoveriesClient innerClient;
 

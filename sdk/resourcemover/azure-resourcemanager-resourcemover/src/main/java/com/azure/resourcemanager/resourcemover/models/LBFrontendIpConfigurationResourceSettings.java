@@ -5,15 +5,11 @@
 package com.azure.resourcemanager.resourcemover.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Defines load balancer frontend IP configuration properties. */
 @Fluent
 public final class LBFrontendIpConfigurationResourceSettings {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(LBFrontendIpConfigurationResourceSettings.class);
-
     /*
      * Gets or sets the frontend IP configuration name.
      */

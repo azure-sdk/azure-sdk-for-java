@@ -6,15 +6,12 @@ package com.azure.resourcemanager.resourcemover.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** Defines the request body for resource move operation. */
 @Fluent
 public final class ResourceMoveRequest {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(ResourceMoveRequest.class);
-
     /*
      * Gets or sets a value indicating whether the operation needs to only run
      * pre-requisite.
@@ -107,10 +104,12 @@ public final class ResourceMoveRequest {
      */
     public void validate() {
         if (moveResources() == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property moveResources in model ResourceMoveRequest"));
         }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(ResourceMoveRequest.class);
 }

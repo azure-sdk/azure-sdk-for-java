@@ -4,15 +4,11 @@
 
 package com.azure.resourcemanager.resourcemover.models;
 
-import com.azure.core.annotation.Immutable;
-import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.azure.core.annotation.Fluent;
 
 /** Defines reference to NSG. */
-@Immutable
+@Fluent
 public final class NsgReference extends AzureResourceReference {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(NsgReference.class);
-
     /** {@inheritDoc} */
     @Override
     public NsgReference withSourceArmResourceId(String sourceArmResourceId) {

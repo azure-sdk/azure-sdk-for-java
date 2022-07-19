@@ -5,15 +5,11 @@
 package com.azure.resourcemanager.resourcemover.models;
 
 import com.azure.core.annotation.Immutable;
-import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** The operation error info. */
 @Immutable
 public final class OperationErrorAdditionalInfo {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(OperationErrorAdditionalInfo.class);
-
     /*
      * The error type.
      */

@@ -5,17 +5,13 @@
 package com.azure.resourcemanager.resourcemover.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.resourcemover.fluent.models.MoveCollectionInner;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** Defines the collection of move collections. */
 @Fluent
 public final class MoveCollectionResultList {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(MoveCollectionResultList.class);
-
     /*
      * Gets the list of move collections.
      */

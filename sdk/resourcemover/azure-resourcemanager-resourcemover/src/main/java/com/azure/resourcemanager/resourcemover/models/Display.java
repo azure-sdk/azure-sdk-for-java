@@ -5,8 +5,6 @@
 package com.azure.resourcemanager.resourcemover.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
@@ -16,8 +14,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 @Fluent
 public final class Display {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(Display.class);
-
     /*
      * Gets or sets the provider.
      * The localized friendly form of the resource provider name – it is

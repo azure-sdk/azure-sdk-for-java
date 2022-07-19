@@ -5,15 +5,11 @@
 package com.azure.resourcemanager.resourcemover.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Security Rule data model for Network Security Groups. */
 @Fluent
 public final class NsgSecurityRule {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(NsgSecurityRule.class);
-
     /*
      * Gets or sets the Security rule name.
      */

@@ -5,15 +5,11 @@
 package com.azure.resourcemanager.resourcemover.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Operations discovery class. */
 @Fluent
 public final class OperationsDiscovery {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(OperationsDiscovery.class);
-
     /*
      * Gets or sets Name of the API.
      * The name of the operation being performed on this particular object. It
@@ -75,7 +71,7 @@ public final class OperationsDiscovery {
     private String origin;
 
     /*
-     * Any object
+     * ClientDiscovery properties.
      */
     @JsonProperty(value = "properties")
     private Object properties;
@@ -189,7 +185,7 @@ public final class OperationsDiscovery {
     }
 
     /**
-     * Get the properties property: Any object.
+     * Get the properties property: ClientDiscovery properties.
      *
      * @return the properties value.
      */
@@ -198,7 +194,7 @@ public final class OperationsDiscovery {
     }
 
     /**
-     * Set the properties property: Any object.
+     * Set the properties property: ClientDiscovery properties.
      *
      * @param properties the properties value to set.
      * @return the OperationsDiscovery object itself.

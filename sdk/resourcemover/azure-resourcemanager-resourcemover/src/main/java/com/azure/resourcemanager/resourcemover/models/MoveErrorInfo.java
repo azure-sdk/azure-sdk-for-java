@@ -5,16 +5,12 @@
 package com.azure.resourcemanager.resourcemover.models;
 
 import com.azure.core.annotation.Immutable;
-import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** The move custom error info. */
 @Immutable
 public final class MoveErrorInfo {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(MoveErrorInfo.class);
-
     /*
      * The affected move resources.
      */

@@ -33,7 +33,11 @@ public final class TargetAvailabilityZone extends ExpandableStringEnum<TargetAva
         return fromString(name, TargetAvailabilityZone.class);
     }
 
-    /** @return known TargetAvailabilityZone values. */
+    /**
+     * Gets known TargetAvailabilityZone values.
+     *
+     * @return known TargetAvailabilityZone values.
+     */
     public static Collection<TargetAvailabilityZone> values() {
         return values(TargetAvailabilityZone.class);
     }

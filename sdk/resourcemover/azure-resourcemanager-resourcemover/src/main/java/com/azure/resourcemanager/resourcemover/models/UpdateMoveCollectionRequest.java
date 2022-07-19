@@ -5,20 +5,18 @@
 package com.azure.resourcemanager.resourcemover.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
 /** Defines the request body for updating move collection. */
 @Fluent
 public final class UpdateMoveCollectionRequest {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(UpdateMoveCollectionRequest.class);
-
     /*
      * Gets or sets the Resource tags.
      */
     @JsonProperty(value = "tags")
+    @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, String> tags;
 
     /*

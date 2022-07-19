@@ -27,7 +27,11 @@ public final class DependencyLevel extends ExpandableStringEnum<DependencyLevel>
         return fromString(name, DependencyLevel.class);
     }
 
-    /** @return known DependencyLevel values. */
+    /**
+     * Gets known DependencyLevel values.
+     *
+     * @return known DependencyLevel values.
+     */
     public static Collection<DependencyLevel> values() {
         return values(DependencyLevel.class);
     }

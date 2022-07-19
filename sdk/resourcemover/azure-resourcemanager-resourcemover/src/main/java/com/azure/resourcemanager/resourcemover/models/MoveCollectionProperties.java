@@ -6,14 +6,11 @@ package com.azure.resourcemanager.resourcemover.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Defines the move collection properties. */
 @Fluent
 public final class MoveCollectionProperties {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(MoveCollectionProperties.class);
-
     /*
      * Gets or sets the source region.
      */
@@ -103,13 +100,13 @@ public final class MoveCollectionProperties {
      */
     public void validate() {
         if (sourceRegion() == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property sourceRegion in model MoveCollectionProperties"));
         }
         if (targetRegion() == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property targetRegion in model MoveCollectionProperties"));
@@ -118,4 +115,6 @@ public final class MoveCollectionProperties {
             errors().validate();
         }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(MoveCollectionProperties.class);
 }

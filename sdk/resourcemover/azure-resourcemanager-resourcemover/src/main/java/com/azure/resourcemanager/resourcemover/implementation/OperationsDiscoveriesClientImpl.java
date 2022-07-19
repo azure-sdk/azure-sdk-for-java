@@ -20,15 +20,12 @@ import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.resourcemover.fluent.OperationsDiscoveriesClient;
 import com.azure.resourcemanager.resourcemover.fluent.models.OperationsDiscoveryCollectionInner;
 import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in OperationsDiscoveriesClient. */
 public final class OperationsDiscoveriesClientImpl implements OperationsDiscoveriesClient {
-    private final ClientLogger logger = new ClientLogger(OperationsDiscoveriesClientImpl.class);
-
     /** The proxy service used to perform REST calls. */
     private final OperationsDiscoveriesService service;
 
@@ -68,7 +65,8 @@ public final class OperationsDiscoveriesClientImpl implements OperationsDiscover
     /**
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of ClientDiscovery details.
+     * @return collection of ClientDiscovery details along with {@link Response} on successful completion of {@link
+     *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<OperationsDiscoveryCollectionInner>> getWithResponseAsync() {
@@ -90,7 +88,8 @@ public final class OperationsDiscoveriesClientImpl implements OperationsDiscover
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of ClientDiscovery details.
+     * @return collection of ClientDiscovery details along with {@link Response} on successful completion of {@link
+     *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<OperationsDiscoveryCollectionInner>> getWithResponseAsync(Context context) {
@@ -108,19 +107,11 @@ public final class OperationsDiscoveriesClientImpl implements OperationsDiscover
     /**
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of ClientDiscovery details.
+     * @return collection of ClientDiscovery details on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<OperationsDiscoveryCollectionInner> getAsync() {
-        return getWithResponseAsync()
-            .flatMap(
-                (Response<OperationsDiscoveryCollectionInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+        return getWithResponseAsync().flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -138,7 +129,7 @@ public final class OperationsDiscoveriesClientImpl implements OperationsDiscover
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return collection of ClientDiscovery details.
+     * @return collection of ClientDiscovery details along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<OperationsDiscoveryCollectionInner> getWithResponse(Context context) {

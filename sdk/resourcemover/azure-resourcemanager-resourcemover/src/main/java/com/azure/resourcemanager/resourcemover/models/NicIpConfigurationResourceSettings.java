@@ -5,16 +5,12 @@
 package com.azure.resourcemanager.resourcemover.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** Defines NIC IP configuration properties. */
 @Fluent
 public final class NicIpConfigurationResourceSettings {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(NicIpConfigurationResourceSettings.class);
-
     /*
      * Gets or sets the IP configuration name.
      */

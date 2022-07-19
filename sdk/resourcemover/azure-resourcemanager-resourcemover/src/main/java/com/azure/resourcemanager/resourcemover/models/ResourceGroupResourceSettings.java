@@ -4,19 +4,15 @@
 
 package com.azure.resourcemanager.resourcemover.models;
 
-import com.azure.core.annotation.Immutable;
-import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /** Defines the resource group resource settings. */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "resourceType")
 @JsonTypeName("resourceGroups")
-@Immutable
+@Fluent
 public final class ResourceGroupResourceSettings extends ResourceSettings {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(ResourceGroupResourceSettings.class);
-
     /** {@inheritDoc} */
     @Override
     public ResourceGroupResourceSettings withTargetResourceName(String targetResourceName) {
