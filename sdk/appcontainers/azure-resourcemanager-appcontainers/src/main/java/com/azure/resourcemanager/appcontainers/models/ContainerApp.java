@@ -391,4 +391,24 @@ public interface ContainerApp {
      * @return container App Secrets Collection ARM resource along with {@link Response}.
      */
     Response<SecretsCollection> listSecretsWithResponse(Context context);
+
+    /**
+     * Get auth token for a container app.
+     *
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return auth token for a container app.
+     */
+    ContainerAppAuthToken getAuthToken();
+
+    /**
+     * Get auth token for a container app.
+     *
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return auth token for a container app along with {@link Response}.
+     */
+    Response<ContainerAppAuthToken> getAuthTokenWithResponse(Context context);
 }

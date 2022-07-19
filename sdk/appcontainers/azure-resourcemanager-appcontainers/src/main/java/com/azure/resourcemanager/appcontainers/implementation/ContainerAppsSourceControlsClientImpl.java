@@ -101,7 +101,7 @@ public final class ContainerAppsSourceControlsClientImpl implements ContainerApp
         @Put(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/containerApps"
                 + "/{containerAppName}/sourcecontrols/{sourceControlName}")
-        @ExpectedResponses({200, 202})
+        @ExpectedResponses({200, 201, 202})
         @UnexpectedResponseExceptionType(DefaultErrorResponseErrorException.class)
         Mono<Response<Flux<ByteBuffer>>> createOrUpdate(
             @HostParam("$host") String endpoint,
