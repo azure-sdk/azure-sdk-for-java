@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.appcontainers.generated;
 
+import com.azure.resourcemanager.appcontainers.models.Action;
 import com.azure.resourcemanager.appcontainers.models.AppProtocol;
 import com.azure.resourcemanager.appcontainers.models.BindingType;
 import com.azure.resourcemanager.appcontainers.models.Configuration;
@@ -15,6 +16,7 @@ import com.azure.resourcemanager.appcontainers.models.CustomDomain;
 import com.azure.resourcemanager.appcontainers.models.CustomScaleRule;
 import com.azure.resourcemanager.appcontainers.models.Dapr;
 import com.azure.resourcemanager.appcontainers.models.Ingress;
+import com.azure.resourcemanager.appcontainers.models.IpSecurityRestrictionRules;
 import com.azure.resourcemanager.appcontainers.models.Scale;
 import com.azure.resourcemanager.appcontainers.models.ScaleRule;
 import com.azure.resourcemanager.appcontainers.models.Template;
@@ -27,7 +29,7 @@ import java.util.Map;
 /** Samples for ContainerApps CreateOrUpdate. */
 public final class ContainerAppsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2022-03-01/examples/ContainerApps_CreateOrUpdate.json
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2022-05-01/examples/ContainerApps_CreateOrUpdate.json
      */
     /**
      * Sample code: Create or Update Container App.
@@ -68,8 +70,26 @@ public final class ContainerAppsCreateOrUpdateSamples {
                                             .withName("www.my-other-name.com")
                                             .withBindingType(BindingType.SNI_ENABLED)
                                             .withCertificateId(
-                                                "/subscriptions/34adfa4f-cedf-4dc0-ba29-b6d1a69ab345/resourceGroups/rg/providers/Microsoft.App/managedEnvironments/demokube/certificates/my-certificate-for-my-other-name-dot-com"))))
-                    .withDapr(new Dapr().withEnabled(true).withAppProtocol(AppProtocol.HTTP).withAppPort(3000)))
+                                                "/subscriptions/34adfa4f-cedf-4dc0-ba29-b6d1a69ab345/resourceGroups/rg/providers/Microsoft.App/managedEnvironments/demokube/certificates/my-certificate-for-my-other-name-dot-com")))
+                            .withIpSecurityRestrictionRules(
+                                Arrays
+                                    .asList(
+                                        new IpSecurityRestrictionRules()
+                                            .withName("name")
+                                            .withDescription("desc")
+                                            .withIpAddress("192.168.1.1/32")
+                                            .withAction(Action.ALLOW),
+                                        new IpSecurityRestrictionRules()
+                                            .withName("name")
+                                            .withDescription("desc")
+                                            .withIpAddress("192.168.1.1/16")
+                                            .withAction(Action.DENY))))
+                    .withDapr(
+                        new Dapr()
+                            .withEnabled(true)
+                            .withAppProtocol(AppProtocol.HTTP)
+                            .withAppPort(3000)
+                            .withHttpReadBufferSize(30)))
             .withTemplate(
                 new Template()
                     .withContainers(
