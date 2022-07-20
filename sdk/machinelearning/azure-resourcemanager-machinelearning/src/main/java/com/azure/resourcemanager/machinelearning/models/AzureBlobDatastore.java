@@ -14,7 +14,7 @@ import java.util.Map;
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "datastoreType")
 @JsonTypeName("AzureBlob")
 @Fluent
-public final class AzureBlobDatastore extends DatastoreDetails {
+public final class AzureBlobDatastore extends DatastoreProperties {
     /*
      * Storage account name.
      */
@@ -45,6 +45,18 @@ public final class AzureBlobDatastore extends DatastoreDetails {
      */
     @JsonProperty(value = "serviceDataAccessAuthIdentity")
     private ServiceDataAccessAuthIdentity serviceDataAccessAuthIdentity;
+
+    /*
+     * Azure Resource Group name
+     */
+    @JsonProperty(value = "resourceGroup")
+    private String resourceGroup;
+
+    /*
+     * Azure Subscription Id
+     */
+    @JsonProperty(value = "subscriptionId")
+    private String subscriptionId;
 
     /**
      * Get the accountName property: Storage account name.
@@ -146,6 +158,46 @@ public final class AzureBlobDatastore extends DatastoreDetails {
     public AzureBlobDatastore withServiceDataAccessAuthIdentity(
         ServiceDataAccessAuthIdentity serviceDataAccessAuthIdentity) {
         this.serviceDataAccessAuthIdentity = serviceDataAccessAuthIdentity;
+        return this;
+    }
+
+    /**
+     * Get the resourceGroup property: Azure Resource Group name.
+     *
+     * @return the resourceGroup value.
+     */
+    public String resourceGroup() {
+        return this.resourceGroup;
+    }
+
+    /**
+     * Set the resourceGroup property: Azure Resource Group name.
+     *
+     * @param resourceGroup the resourceGroup value to set.
+     * @return the AzureBlobDatastore object itself.
+     */
+    public AzureBlobDatastore withResourceGroup(String resourceGroup) {
+        this.resourceGroup = resourceGroup;
+        return this;
+    }
+
+    /**
+     * Get the subscriptionId property: Azure Subscription Id.
+     *
+     * @return the subscriptionId value.
+     */
+    public String subscriptionId() {
+        return this.subscriptionId;
+    }
+
+    /**
+     * Set the subscriptionId property: Azure Subscription Id.
+     *
+     * @param subscriptionId the subscriptionId value to set.
+     * @return the AzureBlobDatastore object itself.
+     */
+    public AzureBlobDatastore withSubscriptionId(String subscriptionId) {
+        this.subscriptionId = subscriptionId;
         return this;
     }
 
