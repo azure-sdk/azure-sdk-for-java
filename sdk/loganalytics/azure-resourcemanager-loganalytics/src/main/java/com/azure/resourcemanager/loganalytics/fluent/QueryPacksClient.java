@@ -66,6 +66,39 @@ public interface QueryPacksClient {
     PagedIterable<LogAnalyticsQueryPackInner> listByResourceGroup(String resourceGroupName, Context context);
 
     /**
+     * Creates a Log Analytics QueryPack. Note: You cannot specify a different value for InstrumentationKey nor AppId in
+     * the Put operation.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param logAnalyticsQueryPackPayload Properties that need to be specified to create or update a Log Analytics
+     *     QueryPack.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return an Log Analytics QueryPack definition.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    LogAnalyticsQueryPackInner createOrUpdateWithoutName(
+        String resourceGroupName, LogAnalyticsQueryPackInner logAnalyticsQueryPackPayload);
+
+    /**
+     * Creates a Log Analytics QueryPack. Note: You cannot specify a different value for InstrumentationKey nor AppId in
+     * the Put operation.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param logAnalyticsQueryPackPayload Properties that need to be specified to create or update a Log Analytics
+     *     QueryPack.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return an Log Analytics QueryPack definition along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    Response<LogAnalyticsQueryPackInner> createOrUpdateWithoutNameWithResponse(
+        String resourceGroupName, LogAnalyticsQueryPackInner logAnalyticsQueryPackPayload, Context context);
+
+    /**
      * Deletes a Log Analytics QueryPack.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
