@@ -262,6 +262,13 @@ public interface Pool {
     List<MountConfiguration> mountConfiguration();
 
     /**
+     * Gets the name of the resource group.
+     *
+     * @return the name of the resource group.
+     */
+    String resourceGroupName();
+
+    /**
      * Gets the inner com.azure.resourcemanager.batch.fluent.models.PoolInner object.
      *
      * @return the inner object.
