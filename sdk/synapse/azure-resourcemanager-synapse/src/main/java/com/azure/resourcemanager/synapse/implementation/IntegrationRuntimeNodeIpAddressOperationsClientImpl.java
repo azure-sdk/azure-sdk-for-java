@@ -219,14 +219,7 @@ public final class IntegrationRuntimeNodeIpAddressOperationsClientImpl
     private Mono<IntegrationRuntimeNodeIpAddressInner> getAsync(
         String resourceGroupName, String workspaceName, String integrationRuntimeName, String nodeName) {
         return getWithResponseAsync(resourceGroupName, workspaceName, integrationRuntimeName, nodeName)
-            .flatMap(
-                (Response<IntegrationRuntimeNodeIpAddressInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**

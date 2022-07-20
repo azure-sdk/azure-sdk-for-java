@@ -249,14 +249,7 @@ public final class IntegrationRuntimeNodesClientImpl implements IntegrationRunti
     private Mono<SelfHostedIntegrationRuntimeNodeInner> getAsync(
         String resourceGroupName, String workspaceName, String integrationRuntimeName, String nodeName) {
         return getWithResponseAsync(resourceGroupName, workspaceName, integrationRuntimeName, nodeName)
-            .flatMap(
-                (Response<SelfHostedIntegrationRuntimeNodeInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -474,14 +467,7 @@ public final class IntegrationRuntimeNodesClientImpl implements IntegrationRunti
         UpdateIntegrationRuntimeNodeRequest updateIntegrationRuntimeNodeRequest) {
         return updateWithResponseAsync(
                 resourceGroupName, workspaceName, integrationRuntimeName, nodeName, updateIntegrationRuntimeNodeRequest)
-            .flatMap(
-                (Response<SelfHostedIntegrationRuntimeNodeInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -681,7 +667,7 @@ public final class IntegrationRuntimeNodesClientImpl implements IntegrationRunti
     private Mono<Void> deleteAsync(
         String resourceGroupName, String workspaceName, String integrationRuntimeName, String nodeName) {
         return deleteWithResponseAsync(resourceGroupName, workspaceName, integrationRuntimeName, nodeName)
-            .flatMap((Response<Void> res) -> Mono.empty());
+            .flatMap(ignored -> Mono.empty());
     }
 
     /**

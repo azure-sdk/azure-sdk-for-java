@@ -282,14 +282,7 @@ public final class BigDataPoolsClientImpl implements BigDataPoolsClient {
     private Mono<BigDataPoolResourceInfoInner> getAsync(
         String resourceGroupName, String workspaceName, String bigDataPoolName) {
         return getWithResponseAsync(resourceGroupName, workspaceName, bigDataPoolName)
-            .flatMap(
-                (Response<BigDataPoolResourceInfoInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -476,14 +469,7 @@ public final class BigDataPoolsClientImpl implements BigDataPoolsClient {
         String bigDataPoolName,
         BigDataPoolPatchInfo bigDataPoolPatchInfo) {
         return updateWithResponseAsync(resourceGroupName, workspaceName, bigDataPoolName, bigDataPoolPatchInfo)
-            .flatMap(
-                (Response<BigDataPoolResourceInfoInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**

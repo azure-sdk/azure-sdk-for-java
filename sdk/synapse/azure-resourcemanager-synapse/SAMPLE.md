@@ -5824,8 +5824,8 @@ public final class WorkspaceAadAdminsGetSamples {
 ```java
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.synapse.fluent.models.ManagedIdentitySqlControlSettingsModelInner;
+import com.azure.resourcemanager.synapse.models.DesiredState;
 import com.azure.resourcemanager.synapse.models.ManagedIdentitySqlControlSettingsModelPropertiesGrantSqlControlToManagedIdentity;
-import com.azure.resourcemanager.synapse.models.ManagedIdentitySqlControlSettingsModelPropertiesGrantSqlControlToManagedIdentityDesiredState;
 
 /** Samples for WorkspaceManagedIdentitySqlControlSettings CreateOrUpdate. */
 public final class WorkspaceManagedIdentitySqlControlSettingsCreateOrUpdateSamples {
@@ -5847,9 +5847,7 @@ public final class WorkspaceManagedIdentitySqlControlSettingsCreateOrUpdateSampl
                 new ManagedIdentitySqlControlSettingsModelInner()
                     .withGrantSqlControlToManagedIdentity(
                         new ManagedIdentitySqlControlSettingsModelPropertiesGrantSqlControlToManagedIdentity()
-                            .withDesiredState(
-                                ManagedIdentitySqlControlSettingsModelPropertiesGrantSqlControlToManagedIdentityDesiredState
-                                    .ENABLED)),
+                            .withDesiredState(DesiredState.ENABLED)),
                 Context.NONE);
     }
 }

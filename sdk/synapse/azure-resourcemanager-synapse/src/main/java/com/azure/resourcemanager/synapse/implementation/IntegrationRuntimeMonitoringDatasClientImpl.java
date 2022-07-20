@@ -201,14 +201,7 @@ public final class IntegrationRuntimeMonitoringDatasClientImpl implements Integr
     private Mono<IntegrationRuntimeMonitoringDataInner> listAsync(
         String resourceGroupName, String workspaceName, String integrationRuntimeName) {
         return listWithResponseAsync(resourceGroupName, workspaceName, integrationRuntimeName)
-            .flatMap(
-                (Response<IntegrationRuntimeMonitoringDataInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**

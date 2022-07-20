@@ -203,15 +203,7 @@ public final class OperationsClientImpl implements OperationsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<CheckNameAvailabilityResponseInner> checkNameAvailabilityAsync(CheckNameAvailabilityRequest request) {
-        return checkNameAvailabilityWithResponseAsync(request)
-            .flatMap(
-                (Response<CheckNameAvailabilityResponseInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+        return checkNameAvailabilityWithResponseAsync(request).flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -296,15 +288,7 @@ public final class OperationsClientImpl implements OperationsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<List<AvailableRpOperationInner>> listAsync() {
-        return listWithResponseAsync()
-            .flatMap(
-                (Response<List<AvailableRpOperationInner>> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+        return listWithResponseAsync().flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -454,7 +438,7 @@ public final class OperationsClientImpl implements OperationsClient {
     private Mono<Void> getLocationHeaderResultAsync(
         String resourceGroupName, String workspaceName, String operationId) {
         return getLocationHeaderResultWithResponseAsync(resourceGroupName, workspaceName, operationId)
-            .flatMap((Response<Void> res) -> Mono.empty());
+            .flatMap(ignored -> Mono.empty());
     }
 
     /**
@@ -611,14 +595,7 @@ public final class OperationsClientImpl implements OperationsClient {
     private Mono<OperationResourceInner> getAzureAsyncHeaderResultAsync(
         String resourceGroupName, String workspaceName, String operationId) {
         return getAzureAsyncHeaderResultWithResponseAsync(resourceGroupName, workspaceName, operationId)
-            .flatMap(
-                (Response<OperationResourceInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**

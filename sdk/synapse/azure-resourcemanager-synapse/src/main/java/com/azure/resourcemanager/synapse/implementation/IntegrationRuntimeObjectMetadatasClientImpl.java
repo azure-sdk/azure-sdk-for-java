@@ -247,14 +247,7 @@ public final class IntegrationRuntimeObjectMetadatasClientImpl implements Integr
         String integrationRuntimeName,
         GetSsisObjectMetadataRequest getMetadataRequest) {
         return listWithResponseAsync(resourceGroupName, workspaceName, integrationRuntimeName, getMetadataRequest)
-            .flatMap(
-                (Response<SsisObjectMetadataListResponseInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -273,14 +266,7 @@ public final class IntegrationRuntimeObjectMetadatasClientImpl implements Integr
         String resourceGroupName, String workspaceName, String integrationRuntimeName) {
         final GetSsisObjectMetadataRequest getMetadataRequest = null;
         return listWithResponseAsync(resourceGroupName, workspaceName, integrationRuntimeName, getMetadataRequest)
-            .flatMap(
-                (Response<SsisObjectMetadataListResponseInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
