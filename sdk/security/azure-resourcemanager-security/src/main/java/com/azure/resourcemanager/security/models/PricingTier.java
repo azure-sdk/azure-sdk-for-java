@@ -27,7 +27,11 @@ public final class PricingTier extends ExpandableStringEnum<PricingTier> {
         return fromString(name, PricingTier.class);
     }
 
-    /** @return known PricingTier values. */
+    /**
+     * Gets known PricingTier values.
+     *
+     * @return known PricingTier values.
+     */
     public static Collection<PricingTier> values() {
         return values(PricingTier.class);
     }

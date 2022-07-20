@@ -30,7 +30,11 @@ public final class SubAssessmentStatusCode extends ExpandableStringEnum<SubAsses
         return fromString(name, SubAssessmentStatusCode.class);
     }
 
-    /** @return known SubAssessmentStatusCode values. */
+    /**
+     * Gets known SubAssessmentStatusCode values.
+     *
+     * @return known SubAssessmentStatusCode values.
+     */
     public static Collection<SubAssessmentStatusCode> values() {
         return values(SubAssessmentStatusCode.class);
     }

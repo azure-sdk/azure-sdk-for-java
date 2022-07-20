@@ -27,7 +27,11 @@ public final class UnmaskedIpLoggingStatus extends ExpandableStringEnum<Unmasked
         return fromString(name, UnmaskedIpLoggingStatus.class);
     }
 
-    /** @return known UnmaskedIpLoggingStatus values. */
+    /**
+     * Gets known UnmaskedIpLoggingStatus values.
+     *
+     * @return known UnmaskedIpLoggingStatus values.
+     */
     public static Collection<UnmaskedIpLoggingStatus> values() {
         return values(UnmaskedIpLoggingStatus.class);
     }

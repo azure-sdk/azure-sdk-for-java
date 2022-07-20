@@ -36,7 +36,11 @@ public final class ConfigurationStatus extends ExpandableStringEnum<Configuratio
         return fromString(name, ConfigurationStatus.class);
     }
 
-    /** @return known ConfigurationStatus values. */
+    /**
+     * Gets known ConfigurationStatus values.
+     *
+     * @return known ConfigurationStatus values.
+     */
     public static Collection<ConfigurationStatus> values() {
         return values(ConfigurationStatus.class);
     }

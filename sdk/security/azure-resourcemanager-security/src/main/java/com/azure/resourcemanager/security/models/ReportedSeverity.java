@@ -33,7 +33,11 @@ public final class ReportedSeverity extends ExpandableStringEnum<ReportedSeverit
         return fromString(name, ReportedSeverity.class);
     }
 
-    /** @return known ReportedSeverity values. */
+    /**
+     * Gets known ReportedSeverity values.
+     *
+     * @return known ReportedSeverity values.
+     */
     public static Collection<ReportedSeverity> values() {
         return values(ReportedSeverity.class);
     }

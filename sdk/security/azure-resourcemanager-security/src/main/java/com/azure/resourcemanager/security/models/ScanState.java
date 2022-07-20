@@ -33,7 +33,11 @@ public final class ScanState extends ExpandableStringEnum<ScanState> {
         return fromString(name, ScanState.class);
     }
 
-    /** @return known ScanState values. */
+    /**
+     * Gets known ScanState values.
+     *
+     * @return known ScanState values.
+     */
     public static Collection<ScanState> values() {
         return values(ScanState.class);
     }

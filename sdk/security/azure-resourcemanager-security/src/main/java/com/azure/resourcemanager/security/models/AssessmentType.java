@@ -33,7 +33,11 @@ public final class AssessmentType extends ExpandableStringEnum<AssessmentType> {
         return fromString(name, AssessmentType.class);
     }
 
-    /** @return known AssessmentType values. */
+    /**
+     * Gets known AssessmentType values.
+     *
+     * @return known AssessmentType values.
+     */
     public static Collection<AssessmentType> values() {
         return values(AssessmentType.class);
     }
