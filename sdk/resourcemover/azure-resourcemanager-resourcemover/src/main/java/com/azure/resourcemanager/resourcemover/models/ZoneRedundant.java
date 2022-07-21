@@ -27,7 +27,11 @@ public final class ZoneRedundant extends ExpandableStringEnum<ZoneRedundant> {
         return fromString(name, ZoneRedundant.class);
     }
 
-    /** @return known ZoneRedundant values. */
+    /**
+     * Gets known ZoneRedundant values.
+     *
+     * @return known ZoneRedundant values.
+     */
     public static Collection<ZoneRedundant> values() {
         return values(ZoneRedundant.class);
     }

@@ -5,16 +5,12 @@
 package com.azure.resourcemanager.resourcemover.fluent.models;
 
 import com.azure.core.annotation.Immutable;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.resourcemover.models.OperationStatusError;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Operation status REST resource. */
 @Immutable
 public final class OperationStatusInner {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(OperationStatusInner.class);
-
     /*
      * Resource Id.
      */

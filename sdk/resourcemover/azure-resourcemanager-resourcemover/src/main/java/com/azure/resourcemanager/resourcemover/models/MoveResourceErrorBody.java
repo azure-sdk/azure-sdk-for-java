@@ -5,16 +5,12 @@
 package com.azure.resourcemanager.resourcemover.models;
 
 import com.azure.core.annotation.Immutable;
-import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** An error response from the Azure Migrate service. */
 @Immutable
 public final class MoveResourceErrorBody {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(MoveResourceErrorBody.class);
-
     /*
      * An identifier for the error. Codes are invariant and are intended to be
      * consumed programmatically.

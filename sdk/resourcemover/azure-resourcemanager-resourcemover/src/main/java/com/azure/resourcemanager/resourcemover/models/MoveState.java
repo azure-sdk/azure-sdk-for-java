@@ -66,7 +66,11 @@ public final class MoveState extends ExpandableStringEnum<MoveState> {
         return fromString(name, MoveState.class);
     }
 
-    /** @return known MoveState values. */
+    /**
+     * Gets known MoveState values.
+     *
+     * @return known MoveState values.
+     */
     public static Collection<MoveState> values() {
         return values(MoveState.class);
     }

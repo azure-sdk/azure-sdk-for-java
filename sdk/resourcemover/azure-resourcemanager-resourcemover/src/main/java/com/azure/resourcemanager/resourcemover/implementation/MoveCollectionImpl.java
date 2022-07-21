@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.resourcemover.implementation;
 
 import com.azure.core.management.Region;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.resourcemover.fluent.models.MoveCollectionInner;
 import com.azure.resourcemanager.resourcemover.models.BulkRemoveRequest;
@@ -62,12 +63,20 @@ public final class MoveCollectionImpl implements MoveCollection, MoveCollection.
         return this.innerModel().properties();
     }
 
+    public SystemData systemData() {
+        return this.innerModel().systemData();
+    }
+
     public Region region() {
         return Region.fromName(this.regionName());
     }
 
     public String regionName() {
         return this.location();
+    }
+
+    public String resourceGroupName() {
+        return resourceGroupName;
     }
 
     public MoveCollectionInner innerModel() {

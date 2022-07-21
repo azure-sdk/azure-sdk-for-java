@@ -6,15 +6,12 @@ package com.azure.resourcemanager.resourcemover.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** Defines the request body for commit operation. */
 @Fluent
 public final class CommitRequest {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(CommitRequest.class);
-
     /*
      * Gets or sets a value indicating whether the operation needs to only run
      * pre-requisite.
@@ -107,9 +104,11 @@ public final class CommitRequest {
      */
     public void validate() {
         if (moveResources() == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property moveResources in model CommitRequest"));
         }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(CommitRequest.class);
 }

@@ -5,16 +5,12 @@
 package com.azure.resourcemanager.resourcemover.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** Defines the request body for bulk remove of move resources operation. */
 @Fluent
 public final class BulkRemoveRequest {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(BulkRemoveRequest.class);
-
     /*
      * Gets or sets a value indicating whether the operation needs to only run
      * pre-requisite.

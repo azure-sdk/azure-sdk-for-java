@@ -27,7 +27,11 @@ public final class MoveResourceInputType extends ExpandableStringEnum<MoveResour
         return fromString(name, MoveResourceInputType.class);
     }
 
-    /** @return known MoveResourceInputType values. */
+    /**
+     * Gets known MoveResourceInputType values.
+     *
+     * @return known MoveResourceInputType values.
+     */
     public static Collection<MoveResourceInputType> values() {
         return values(MoveResourceInputType.class);
     }

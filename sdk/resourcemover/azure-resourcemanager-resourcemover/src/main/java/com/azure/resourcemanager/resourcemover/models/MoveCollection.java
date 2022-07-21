@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.resourcemover.models;
 
 import com.azure.core.management.Region;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.resourcemover.fluent.models.MoveCollectionInner;
 import java.util.Map;
@@ -68,6 +69,13 @@ public interface MoveCollection {
     MoveCollectionProperties properties();
 
     /**
+     * Gets the systemData property: Metadata pertaining to creation and last modification of the resource.
+     *
+     * @return the systemData value.
+     */
+    SystemData systemData();
+
+    /**
      * Gets the region of the resource.
      *
      * @return the region of the resource.
@@ -80,6 +88,13 @@ public interface MoveCollection {
      * @return the name of the resource region.
      */
     String regionName();
+
+    /**
+     * Gets the name of the resource group.
+     *
+     * @return the name of the resource group.
+     */
+    String resourceGroupName();
 
     /**
      * Gets the inner com.azure.resourcemanager.resourcemover.fluent.models.MoveCollectionInner object.

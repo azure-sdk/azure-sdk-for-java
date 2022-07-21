@@ -56,7 +56,7 @@ public interface MoveCollections {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the move collection.
+     * @return the move collection along with {@link Response}.
      */
     Response<MoveCollection> getByResourceGroupWithResponse(
         String resourceGroupName, String moveCollectionName, Context context);
@@ -330,7 +330,7 @@ public interface MoveCollections {
      *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all the Move Collections in the subscription.
+     * @return all the Move Collections in the subscription as paginated response with {@link PagedIterable}.
      */
     PagedIterable<MoveCollection> list();
 
@@ -341,7 +341,7 @@ public interface MoveCollections {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all the Move Collections in the subscription.
+     * @return all the Move Collections in the subscription as paginated response with {@link PagedIterable}.
      */
     PagedIterable<MoveCollection> list(Context context);
 
@@ -352,7 +352,7 @@ public interface MoveCollections {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all the Move Collections in the resource group.
+     * @return all the Move Collections in the resource group as paginated response with {@link PagedIterable}.
      */
     PagedIterable<MoveCollection> listByResourceGroup(String resourceGroupName);
 
@@ -364,7 +364,7 @@ public interface MoveCollections {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all the Move Collections in the resource group.
+     * @return all the Move Collections in the resource group as paginated response with {@link PagedIterable}.
      */
     PagedIterable<MoveCollection> listByResourceGroup(String resourceGroupName, Context context);
 
@@ -392,7 +392,7 @@ public interface MoveCollections {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return required for resources collection.
+     * @return required for resources collection along with {@link Response}.
      */
     Response<RequiredForResourcesCollection> listRequiredForWithResponse(
         String resourceGroupName, String moveCollectionName, String sourceId, Context context);
@@ -404,7 +404,7 @@ public interface MoveCollections {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the move collection.
+     * @return the move collection along with {@link Response}.
      */
     MoveCollection getById(String id);
 
@@ -416,7 +416,7 @@ public interface MoveCollections {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the move collection.
+     * @return the move collection along with {@link Response}.
      */
     Response<MoveCollection> getByIdWithResponse(String id, Context context);
 

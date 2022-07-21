@@ -31,7 +31,6 @@ import com.azure.core.management.exception.ManagementException;
 import com.azure.core.management.polling.PollResult;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.resourcemover.fluent.MoveCollectionsClient;
@@ -51,8 +50,6 @@ import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in MoveCollectionsClient. */
 public final class MoveCollectionsClientImpl implements MoveCollectionsClient {
-    private final ClientLogger logger = new ClientLogger(MoveCollectionsClientImpl.class);
-
     /** The proxy service used to perform REST calls. */
     private final MoveCollectionsService service;
 
@@ -305,7 +302,7 @@ public final class MoveCollectionsClientImpl implements MoveCollectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return define the move collection.
+     * @return define the move collection along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<MoveCollectionInner>> createWithResponseAsync(
@@ -360,7 +357,7 @@ public final class MoveCollectionsClientImpl implements MoveCollectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return define the move collection.
+     * @return define the move collection along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<MoveCollectionInner>> createWithResponseAsync(
@@ -411,20 +408,13 @@ public final class MoveCollectionsClientImpl implements MoveCollectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return define the move collection.
+     * @return define the move collection on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<MoveCollectionInner> createAsync(
         String resourceGroupName, String moveCollectionName, MoveCollectionInner body) {
         return createWithResponseAsync(resourceGroupName, moveCollectionName, body)
-            .flatMap(
-                (Response<MoveCollectionInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -435,20 +425,13 @@ public final class MoveCollectionsClientImpl implements MoveCollectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return define the move collection.
+     * @return define the move collection on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<MoveCollectionInner> createAsync(String resourceGroupName, String moveCollectionName) {
         final MoveCollectionInner body = null;
         return createWithResponseAsync(resourceGroupName, moveCollectionName, body)
-            .flatMap(
-                (Response<MoveCollectionInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -477,7 +460,7 @@ public final class MoveCollectionsClientImpl implements MoveCollectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return define the move collection.
+     * @return define the move collection along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<MoveCollectionInner> createWithResponse(
@@ -494,7 +477,7 @@ public final class MoveCollectionsClientImpl implements MoveCollectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return define the move collection.
+     * @return define the move collection along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<MoveCollectionInner>> updateWithResponseAsync(
@@ -549,7 +532,7 @@ public final class MoveCollectionsClientImpl implements MoveCollectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return define the move collection.
+     * @return define the move collection along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<MoveCollectionInner>> updateWithResponseAsync(
@@ -600,20 +583,13 @@ public final class MoveCollectionsClientImpl implements MoveCollectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return define the move collection.
+     * @return define the move collection on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<MoveCollectionInner> updateAsync(
         String resourceGroupName, String moveCollectionName, UpdateMoveCollectionRequest body) {
         return updateWithResponseAsync(resourceGroupName, moveCollectionName, body)
-            .flatMap(
-                (Response<MoveCollectionInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -624,20 +600,13 @@ public final class MoveCollectionsClientImpl implements MoveCollectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return define the move collection.
+     * @return define the move collection on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<MoveCollectionInner> updateAsync(String resourceGroupName, String moveCollectionName) {
         final UpdateMoveCollectionRequest body = null;
         return updateWithResponseAsync(resourceGroupName, moveCollectionName, body)
-            .flatMap(
-                (Response<MoveCollectionInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -666,7 +635,7 @@ public final class MoveCollectionsClientImpl implements MoveCollectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return define the move collection.
+     * @return define the move collection along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<MoveCollectionInner> updateWithResponse(
@@ -682,7 +651,7 @@ public final class MoveCollectionsClientImpl implements MoveCollectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return operation status REST resource.
+     * @return operation status REST resource along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(
@@ -732,7 +701,7 @@ public final class MoveCollectionsClientImpl implements MoveCollectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return operation status REST resource.
+     * @return operation status REST resource along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(
@@ -778,9 +747,9 @@ public final class MoveCollectionsClientImpl implements MoveCollectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return operation status REST resource.
+     * @return the {@link PollerFlux} for polling of operation status REST resource.
      */
-    @ServiceMethod(returns = ReturnType.SINGLE)
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<OperationStatusInner>, OperationStatusInner> beginDeleteAsync(
         String resourceGroupName, String moveCollectionName) {
         Mono<Response<Flux<ByteBuffer>>> mono = deleteWithResponseAsync(resourceGroupName, moveCollectionName);
@@ -791,7 +760,7 @@ public final class MoveCollectionsClientImpl implements MoveCollectionsClient {
                 this.client.getHttpPipeline(),
                 OperationStatusInner.class,
                 OperationStatusInner.class,
-                Context.NONE);
+                this.client.getContext());
     }
 
     /**
@@ -803,9 +772,9 @@ public final class MoveCollectionsClientImpl implements MoveCollectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return operation status REST resource.
+     * @return the {@link PollerFlux} for polling of operation status REST resource.
      */
-    @ServiceMethod(returns = ReturnType.SINGLE)
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<OperationStatusInner>, OperationStatusInner> beginDeleteAsync(
         String resourceGroupName, String moveCollectionName, Context context) {
         context = this.client.mergeContext(context);
@@ -824,9 +793,9 @@ public final class MoveCollectionsClientImpl implements MoveCollectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return operation status REST resource.
+     * @return the {@link SyncPoller} for polling of operation status REST resource.
      */
-    @ServiceMethod(returns = ReturnType.SINGLE)
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<OperationStatusInner>, OperationStatusInner> beginDelete(
         String resourceGroupName, String moveCollectionName) {
         return beginDeleteAsync(resourceGroupName, moveCollectionName).getSyncPoller();
@@ -841,9 +810,9 @@ public final class MoveCollectionsClientImpl implements MoveCollectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return operation status REST resource.
+     * @return the {@link SyncPoller} for polling of operation status REST resource.
      */
-    @ServiceMethod(returns = ReturnType.SINGLE)
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<OperationStatusInner>, OperationStatusInner> beginDelete(
         String resourceGroupName, String moveCollectionName, Context context) {
         return beginDeleteAsync(resourceGroupName, moveCollectionName, context).getSyncPoller();
@@ -857,7 +826,7 @@ public final class MoveCollectionsClientImpl implements MoveCollectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return operation status REST resource.
+     * @return operation status REST resource on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<OperationStatusInner> deleteAsync(String resourceGroupName, String moveCollectionName) {
@@ -875,7 +844,7 @@ public final class MoveCollectionsClientImpl implements MoveCollectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return operation status REST resource.
+     * @return operation status REST resource on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<OperationStatusInner> deleteAsync(
@@ -924,7 +893,7 @@ public final class MoveCollectionsClientImpl implements MoveCollectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the move collection.
+     * @return the move collection along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<MoveCollectionInner>> getByResourceGroupWithResponseAsync(
@@ -974,7 +943,7 @@ public final class MoveCollectionsClientImpl implements MoveCollectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the move collection.
+     * @return the move collection along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<MoveCollectionInner>> getByResourceGroupWithResponseAsync(
@@ -1020,19 +989,12 @@ public final class MoveCollectionsClientImpl implements MoveCollectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the move collection.
+     * @return the move collection on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<MoveCollectionInner> getByResourceGroupAsync(String resourceGroupName, String moveCollectionName) {
         return getByResourceGroupWithResponseAsync(resourceGroupName, moveCollectionName)
-            .flatMap(
-                (Response<MoveCollectionInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -1059,7 +1021,7 @@ public final class MoveCollectionsClientImpl implements MoveCollectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the move collection.
+     * @return the move collection along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<MoveCollectionInner> getByResourceGroupWithResponse(
@@ -1079,7 +1041,7 @@ public final class MoveCollectionsClientImpl implements MoveCollectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return operation status REST resource.
+     * @return operation status REST resource along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> prepareWithResponseAsync(
@@ -1137,7 +1099,7 @@ public final class MoveCollectionsClientImpl implements MoveCollectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return operation status REST resource.
+     * @return operation status REST resource along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> prepareWithResponseAsync(
@@ -1191,9 +1153,9 @@ public final class MoveCollectionsClientImpl implements MoveCollectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return operation status REST resource.
+     * @return the {@link PollerFlux} for polling of operation status REST resource.
      */
-    @ServiceMethod(returns = ReturnType.SINGLE)
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<OperationStatusInner>, OperationStatusInner> beginPrepareAsync(
         String resourceGroupName, String moveCollectionName, PrepareRequest body) {
         Mono<Response<Flux<ByteBuffer>>> mono = prepareWithResponseAsync(resourceGroupName, moveCollectionName, body);
@@ -1204,7 +1166,7 @@ public final class MoveCollectionsClientImpl implements MoveCollectionsClient {
                 this.client.getHttpPipeline(),
                 OperationStatusInner.class,
                 OperationStatusInner.class,
-                Context.NONE);
+                this.client.getContext());
     }
 
     /**
@@ -1220,9 +1182,9 @@ public final class MoveCollectionsClientImpl implements MoveCollectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return operation status REST resource.
+     * @return the {@link PollerFlux} for polling of operation status REST resource.
      */
-    @ServiceMethod(returns = ReturnType.SINGLE)
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<OperationStatusInner>, OperationStatusInner> beginPrepareAsync(
         String resourceGroupName, String moveCollectionName, PrepareRequest body, Context context) {
         context = this.client.mergeContext(context);
@@ -1246,9 +1208,9 @@ public final class MoveCollectionsClientImpl implements MoveCollectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return operation status REST resource.
+     * @return the {@link SyncPoller} for polling of operation status REST resource.
      */
-    @ServiceMethod(returns = ReturnType.SINGLE)
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<OperationStatusInner>, OperationStatusInner> beginPrepare(
         String resourceGroupName, String moveCollectionName, PrepareRequest body) {
         return beginPrepareAsync(resourceGroupName, moveCollectionName, body).getSyncPoller();
@@ -1267,9 +1229,9 @@ public final class MoveCollectionsClientImpl implements MoveCollectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return operation status REST resource.
+     * @return the {@link SyncPoller} for polling of operation status REST resource.
      */
-    @ServiceMethod(returns = ReturnType.SINGLE)
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<OperationStatusInner>, OperationStatusInner> beginPrepare(
         String resourceGroupName, String moveCollectionName, PrepareRequest body, Context context) {
         return beginPrepareAsync(resourceGroupName, moveCollectionName, body, context).getSyncPoller();
@@ -1287,7 +1249,7 @@ public final class MoveCollectionsClientImpl implements MoveCollectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return operation status REST resource.
+     * @return operation status REST resource on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<OperationStatusInner> prepareAsync(
@@ -1308,7 +1270,7 @@ public final class MoveCollectionsClientImpl implements MoveCollectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return operation status REST resource.
+     * @return operation status REST resource on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<OperationStatusInner> prepareAsync(String resourceGroupName, String moveCollectionName) {
@@ -1331,7 +1293,7 @@ public final class MoveCollectionsClientImpl implements MoveCollectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return operation status REST resource.
+     * @return operation status REST resource on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<OperationStatusInner> prepareAsync(
@@ -1412,7 +1374,7 @@ public final class MoveCollectionsClientImpl implements MoveCollectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return operation status REST resource.
+     * @return operation status REST resource along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> initiateMoveWithResponseAsync(
@@ -1470,7 +1432,7 @@ public final class MoveCollectionsClientImpl implements MoveCollectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return operation status REST resource.
+     * @return operation status REST resource along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> initiateMoveWithResponseAsync(
@@ -1524,9 +1486,9 @@ public final class MoveCollectionsClientImpl implements MoveCollectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return operation status REST resource.
+     * @return the {@link PollerFlux} for polling of operation status REST resource.
      */
-    @ServiceMethod(returns = ReturnType.SINGLE)
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<OperationStatusInner>, OperationStatusInner> beginInitiateMoveAsync(
         String resourceGroupName, String moveCollectionName, ResourceMoveRequest body) {
         Mono<Response<Flux<ByteBuffer>>> mono =
@@ -1538,7 +1500,7 @@ public final class MoveCollectionsClientImpl implements MoveCollectionsClient {
                 this.client.getHttpPipeline(),
                 OperationStatusInner.class,
                 OperationStatusInner.class,
-                Context.NONE);
+                this.client.getContext());
     }
 
     /**
@@ -1554,9 +1516,9 @@ public final class MoveCollectionsClientImpl implements MoveCollectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return operation status REST resource.
+     * @return the {@link PollerFlux} for polling of operation status REST resource.
      */
-    @ServiceMethod(returns = ReturnType.SINGLE)
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<OperationStatusInner>, OperationStatusInner> beginInitiateMoveAsync(
         String resourceGroupName, String moveCollectionName, ResourceMoveRequest body, Context context) {
         context = this.client.mergeContext(context);
@@ -1580,9 +1542,9 @@ public final class MoveCollectionsClientImpl implements MoveCollectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return operation status REST resource.
+     * @return the {@link SyncPoller} for polling of operation status REST resource.
      */
-    @ServiceMethod(returns = ReturnType.SINGLE)
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<OperationStatusInner>, OperationStatusInner> beginInitiateMove(
         String resourceGroupName, String moveCollectionName, ResourceMoveRequest body) {
         return beginInitiateMoveAsync(resourceGroupName, moveCollectionName, body).getSyncPoller();
@@ -1601,9 +1563,9 @@ public final class MoveCollectionsClientImpl implements MoveCollectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return operation status REST resource.
+     * @return the {@link SyncPoller} for polling of operation status REST resource.
      */
-    @ServiceMethod(returns = ReturnType.SINGLE)
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<OperationStatusInner>, OperationStatusInner> beginInitiateMove(
         String resourceGroupName, String moveCollectionName, ResourceMoveRequest body, Context context) {
         return beginInitiateMoveAsync(resourceGroupName, moveCollectionName, body, context).getSyncPoller();
@@ -1621,7 +1583,7 @@ public final class MoveCollectionsClientImpl implements MoveCollectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return operation status REST resource.
+     * @return operation status REST resource on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<OperationStatusInner> initiateMoveAsync(
@@ -1642,7 +1604,7 @@ public final class MoveCollectionsClientImpl implements MoveCollectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return operation status REST resource.
+     * @return operation status REST resource on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<OperationStatusInner> initiateMoveAsync(String resourceGroupName, String moveCollectionName) {
@@ -1665,7 +1627,7 @@ public final class MoveCollectionsClientImpl implements MoveCollectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return operation status REST resource.
+     * @return operation status REST resource on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<OperationStatusInner> initiateMoveAsync(
@@ -1747,7 +1709,7 @@ public final class MoveCollectionsClientImpl implements MoveCollectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return operation status REST resource.
+     * @return operation status REST resource along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> commitWithResponseAsync(
@@ -1805,7 +1767,7 @@ public final class MoveCollectionsClientImpl implements MoveCollectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return operation status REST resource.
+     * @return operation status REST resource along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> commitWithResponseAsync(
@@ -1859,9 +1821,9 @@ public final class MoveCollectionsClientImpl implements MoveCollectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return operation status REST resource.
+     * @return the {@link PollerFlux} for polling of operation status REST resource.
      */
-    @ServiceMethod(returns = ReturnType.SINGLE)
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<OperationStatusInner>, OperationStatusInner> beginCommitAsync(
         String resourceGroupName, String moveCollectionName, CommitRequest body) {
         Mono<Response<Flux<ByteBuffer>>> mono = commitWithResponseAsync(resourceGroupName, moveCollectionName, body);
@@ -1872,7 +1834,7 @@ public final class MoveCollectionsClientImpl implements MoveCollectionsClient {
                 this.client.getHttpPipeline(),
                 OperationStatusInner.class,
                 OperationStatusInner.class,
-                Context.NONE);
+                this.client.getContext());
     }
 
     /**
@@ -1888,9 +1850,9 @@ public final class MoveCollectionsClientImpl implements MoveCollectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return operation status REST resource.
+     * @return the {@link PollerFlux} for polling of operation status REST resource.
      */
-    @ServiceMethod(returns = ReturnType.SINGLE)
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<OperationStatusInner>, OperationStatusInner> beginCommitAsync(
         String resourceGroupName, String moveCollectionName, CommitRequest body, Context context) {
         context = this.client.mergeContext(context);
@@ -1914,9 +1876,9 @@ public final class MoveCollectionsClientImpl implements MoveCollectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return operation status REST resource.
+     * @return the {@link SyncPoller} for polling of operation status REST resource.
      */
-    @ServiceMethod(returns = ReturnType.SINGLE)
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<OperationStatusInner>, OperationStatusInner> beginCommit(
         String resourceGroupName, String moveCollectionName, CommitRequest body) {
         return beginCommitAsync(resourceGroupName, moveCollectionName, body).getSyncPoller();
@@ -1935,9 +1897,9 @@ public final class MoveCollectionsClientImpl implements MoveCollectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return operation status REST resource.
+     * @return the {@link SyncPoller} for polling of operation status REST resource.
      */
-    @ServiceMethod(returns = ReturnType.SINGLE)
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<OperationStatusInner>, OperationStatusInner> beginCommit(
         String resourceGroupName, String moveCollectionName, CommitRequest body, Context context) {
         return beginCommitAsync(resourceGroupName, moveCollectionName, body, context).getSyncPoller();
@@ -1955,7 +1917,7 @@ public final class MoveCollectionsClientImpl implements MoveCollectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return operation status REST resource.
+     * @return operation status REST resource on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<OperationStatusInner> commitAsync(
@@ -1976,7 +1938,7 @@ public final class MoveCollectionsClientImpl implements MoveCollectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return operation status REST resource.
+     * @return operation status REST resource on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<OperationStatusInner> commitAsync(String resourceGroupName, String moveCollectionName) {
@@ -1999,7 +1961,7 @@ public final class MoveCollectionsClientImpl implements MoveCollectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return operation status REST resource.
+     * @return operation status REST resource on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<OperationStatusInner> commitAsync(
@@ -2080,7 +2042,7 @@ public final class MoveCollectionsClientImpl implements MoveCollectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return operation status REST resource.
+     * @return operation status REST resource along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> discardWithResponseAsync(
@@ -2138,7 +2100,7 @@ public final class MoveCollectionsClientImpl implements MoveCollectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return operation status REST resource.
+     * @return operation status REST resource along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> discardWithResponseAsync(
@@ -2192,9 +2154,9 @@ public final class MoveCollectionsClientImpl implements MoveCollectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return operation status REST resource.
+     * @return the {@link PollerFlux} for polling of operation status REST resource.
      */
-    @ServiceMethod(returns = ReturnType.SINGLE)
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<OperationStatusInner>, OperationStatusInner> beginDiscardAsync(
         String resourceGroupName, String moveCollectionName, DiscardRequest body) {
         Mono<Response<Flux<ByteBuffer>>> mono = discardWithResponseAsync(resourceGroupName, moveCollectionName, body);
@@ -2205,7 +2167,7 @@ public final class MoveCollectionsClientImpl implements MoveCollectionsClient {
                 this.client.getHttpPipeline(),
                 OperationStatusInner.class,
                 OperationStatusInner.class,
-                Context.NONE);
+                this.client.getContext());
     }
 
     /**
@@ -2221,9 +2183,9 @@ public final class MoveCollectionsClientImpl implements MoveCollectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return operation status REST resource.
+     * @return the {@link PollerFlux} for polling of operation status REST resource.
      */
-    @ServiceMethod(returns = ReturnType.SINGLE)
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<OperationStatusInner>, OperationStatusInner> beginDiscardAsync(
         String resourceGroupName, String moveCollectionName, DiscardRequest body, Context context) {
         context = this.client.mergeContext(context);
@@ -2247,9 +2209,9 @@ public final class MoveCollectionsClientImpl implements MoveCollectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return operation status REST resource.
+     * @return the {@link SyncPoller} for polling of operation status REST resource.
      */
-    @ServiceMethod(returns = ReturnType.SINGLE)
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<OperationStatusInner>, OperationStatusInner> beginDiscard(
         String resourceGroupName, String moveCollectionName, DiscardRequest body) {
         return beginDiscardAsync(resourceGroupName, moveCollectionName, body).getSyncPoller();
@@ -2268,9 +2230,9 @@ public final class MoveCollectionsClientImpl implements MoveCollectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return operation status REST resource.
+     * @return the {@link SyncPoller} for polling of operation status REST resource.
      */
-    @ServiceMethod(returns = ReturnType.SINGLE)
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<OperationStatusInner>, OperationStatusInner> beginDiscard(
         String resourceGroupName, String moveCollectionName, DiscardRequest body, Context context) {
         return beginDiscardAsync(resourceGroupName, moveCollectionName, body, context).getSyncPoller();
@@ -2288,7 +2250,7 @@ public final class MoveCollectionsClientImpl implements MoveCollectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return operation status REST resource.
+     * @return operation status REST resource on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<OperationStatusInner> discardAsync(
@@ -2309,7 +2271,7 @@ public final class MoveCollectionsClientImpl implements MoveCollectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return operation status REST resource.
+     * @return operation status REST resource on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<OperationStatusInner> discardAsync(String resourceGroupName, String moveCollectionName) {
@@ -2332,7 +2294,7 @@ public final class MoveCollectionsClientImpl implements MoveCollectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return operation status REST resource.
+     * @return operation status REST resource on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<OperationStatusInner> discardAsync(
@@ -2409,7 +2371,7 @@ public final class MoveCollectionsClientImpl implements MoveCollectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return operation status REST resource.
+     * @return operation status REST resource along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> resolveDependenciesWithResponseAsync(
@@ -2459,7 +2421,7 @@ public final class MoveCollectionsClientImpl implements MoveCollectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return operation status REST resource.
+     * @return operation status REST resource along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> resolveDependenciesWithResponseAsync(
@@ -2505,9 +2467,9 @@ public final class MoveCollectionsClientImpl implements MoveCollectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return operation status REST resource.
+     * @return the {@link PollerFlux} for polling of operation status REST resource.
      */
-    @ServiceMethod(returns = ReturnType.SINGLE)
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<OperationStatusInner>, OperationStatusInner> beginResolveDependenciesAsync(
         String resourceGroupName, String moveCollectionName) {
         Mono<Response<Flux<ByteBuffer>>> mono =
@@ -2519,7 +2481,7 @@ public final class MoveCollectionsClientImpl implements MoveCollectionsClient {
                 this.client.getHttpPipeline(),
                 OperationStatusInner.class,
                 OperationStatusInner.class,
-                Context.NONE);
+                this.client.getContext());
     }
 
     /**
@@ -2531,9 +2493,9 @@ public final class MoveCollectionsClientImpl implements MoveCollectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return operation status REST resource.
+     * @return the {@link PollerFlux} for polling of operation status REST resource.
      */
-    @ServiceMethod(returns = ReturnType.SINGLE)
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<OperationStatusInner>, OperationStatusInner> beginResolveDependenciesAsync(
         String resourceGroupName, String moveCollectionName, Context context) {
         context = this.client.mergeContext(context);
@@ -2553,9 +2515,9 @@ public final class MoveCollectionsClientImpl implements MoveCollectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return operation status REST resource.
+     * @return the {@link SyncPoller} for polling of operation status REST resource.
      */
-    @ServiceMethod(returns = ReturnType.SINGLE)
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<OperationStatusInner>, OperationStatusInner> beginResolveDependencies(
         String resourceGroupName, String moveCollectionName) {
         return beginResolveDependenciesAsync(resourceGroupName, moveCollectionName).getSyncPoller();
@@ -2570,9 +2532,9 @@ public final class MoveCollectionsClientImpl implements MoveCollectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return operation status REST resource.
+     * @return the {@link SyncPoller} for polling of operation status REST resource.
      */
-    @ServiceMethod(returns = ReturnType.SINGLE)
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<OperationStatusInner>, OperationStatusInner> beginResolveDependencies(
         String resourceGroupName, String moveCollectionName, Context context) {
         return beginResolveDependenciesAsync(resourceGroupName, moveCollectionName, context).getSyncPoller();
@@ -2586,7 +2548,7 @@ public final class MoveCollectionsClientImpl implements MoveCollectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return operation status REST resource.
+     * @return operation status REST resource on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<OperationStatusInner> resolveDependenciesAsync(String resourceGroupName, String moveCollectionName) {
@@ -2604,7 +2566,7 @@ public final class MoveCollectionsClientImpl implements MoveCollectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return operation status REST resource.
+     * @return operation status REST resource on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<OperationStatusInner> resolveDependenciesAsync(
@@ -2657,7 +2619,7 @@ public final class MoveCollectionsClientImpl implements MoveCollectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return operation status REST resource.
+     * @return operation status REST resource along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> bulkRemoveWithResponseAsync(
@@ -2714,7 +2676,7 @@ public final class MoveCollectionsClientImpl implements MoveCollectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return operation status REST resource.
+     * @return operation status REST resource along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> bulkRemoveWithResponseAsync(
@@ -2767,9 +2729,9 @@ public final class MoveCollectionsClientImpl implements MoveCollectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return operation status REST resource.
+     * @return the {@link PollerFlux} for polling of operation status REST resource.
      */
-    @ServiceMethod(returns = ReturnType.SINGLE)
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<OperationStatusInner>, OperationStatusInner> beginBulkRemoveAsync(
         String resourceGroupName, String moveCollectionName, BulkRemoveRequest body) {
         Mono<Response<Flux<ByteBuffer>>> mono =
@@ -2781,7 +2743,7 @@ public final class MoveCollectionsClientImpl implements MoveCollectionsClient {
                 this.client.getHttpPipeline(),
                 OperationStatusInner.class,
                 OperationStatusInner.class,
-                Context.NONE);
+                this.client.getContext());
     }
 
     /**
@@ -2796,9 +2758,9 @@ public final class MoveCollectionsClientImpl implements MoveCollectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return operation status REST resource.
+     * @return the {@link PollerFlux} for polling of operation status REST resource.
      */
-    @ServiceMethod(returns = ReturnType.SINGLE)
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<OperationStatusInner>, OperationStatusInner> beginBulkRemoveAsync(
         String resourceGroupName, String moveCollectionName, BulkRemoveRequest body, Context context) {
         context = this.client.mergeContext(context);
@@ -2821,9 +2783,9 @@ public final class MoveCollectionsClientImpl implements MoveCollectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return operation status REST resource.
+     * @return the {@link SyncPoller} for polling of operation status REST resource.
      */
-    @ServiceMethod(returns = ReturnType.SINGLE)
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<OperationStatusInner>, OperationStatusInner> beginBulkRemove(
         String resourceGroupName, String moveCollectionName, BulkRemoveRequest body) {
         return beginBulkRemoveAsync(resourceGroupName, moveCollectionName, body).getSyncPoller();
@@ -2841,9 +2803,9 @@ public final class MoveCollectionsClientImpl implements MoveCollectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return operation status REST resource.
+     * @return the {@link SyncPoller} for polling of operation status REST resource.
      */
-    @ServiceMethod(returns = ReturnType.SINGLE)
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<OperationStatusInner>, OperationStatusInner> beginBulkRemove(
         String resourceGroupName, String moveCollectionName, BulkRemoveRequest body, Context context) {
         return beginBulkRemoveAsync(resourceGroupName, moveCollectionName, body, context).getSyncPoller();
@@ -2860,7 +2822,7 @@ public final class MoveCollectionsClientImpl implements MoveCollectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return operation status REST resource.
+     * @return operation status REST resource on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<OperationStatusInner> bulkRemoveAsync(
@@ -2880,7 +2842,7 @@ public final class MoveCollectionsClientImpl implements MoveCollectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return operation status REST resource.
+     * @return operation status REST resource on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<OperationStatusInner> bulkRemoveAsync(String resourceGroupName, String moveCollectionName) {
@@ -2902,7 +2864,7 @@ public final class MoveCollectionsClientImpl implements MoveCollectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return operation status REST resource.
+     * @return operation status REST resource on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<OperationStatusInner> bulkRemoveAsync(
@@ -2974,7 +2936,8 @@ public final class MoveCollectionsClientImpl implements MoveCollectionsClient {
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all the Move Collections in the subscription.
+     * @return all the Move Collections in the subscription along with {@link PagedResponse} on successful completion of
+     *     {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<MoveCollectionInner>> listSinglePageAsync() {
@@ -3020,7 +2983,8 @@ public final class MoveCollectionsClientImpl implements MoveCollectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all the Move Collections in the subscription.
+     * @return all the Move Collections in the subscription along with {@link PagedResponse} on successful completion of
+     *     {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<MoveCollectionInner>> listSinglePageAsync(Context context) {
@@ -3061,7 +3025,7 @@ public final class MoveCollectionsClientImpl implements MoveCollectionsClient {
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all the Move Collections in the subscription.
+     * @return all the Move Collections in the subscription as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<MoveCollectionInner> listAsync() {
@@ -3076,7 +3040,7 @@ public final class MoveCollectionsClientImpl implements MoveCollectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all the Move Collections in the subscription.
+     * @return all the Move Collections in the subscription as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<MoveCollectionInner> listAsync(Context context) {
@@ -3090,7 +3054,7 @@ public final class MoveCollectionsClientImpl implements MoveCollectionsClient {
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all the Move Collections in the subscription.
+     * @return all the Move Collections in the subscription as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<MoveCollectionInner> list() {
@@ -3104,7 +3068,7 @@ public final class MoveCollectionsClientImpl implements MoveCollectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all the Move Collections in the subscription.
+     * @return all the Move Collections in the subscription as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<MoveCollectionInner> list(Context context) {
@@ -3118,7 +3082,8 @@ public final class MoveCollectionsClientImpl implements MoveCollectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all the Move Collections in the resource group.
+     * @return all the Move Collections in the resource group along with {@link PagedResponse} on successful completion
+     *     of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<MoveCollectionInner>> listByResourceGroupSinglePageAsync(String resourceGroupName) {
@@ -3170,7 +3135,8 @@ public final class MoveCollectionsClientImpl implements MoveCollectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all the Move Collections in the resource group.
+     * @return all the Move Collections in the resource group along with {@link PagedResponse} on successful completion
+     *     of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<MoveCollectionInner>> listByResourceGroupSinglePageAsync(
@@ -3219,7 +3185,7 @@ public final class MoveCollectionsClientImpl implements MoveCollectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all the Move Collections in the resource group.
+     * @return all the Move Collections in the resource group as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<MoveCollectionInner> listByResourceGroupAsync(String resourceGroupName) {
@@ -3236,7 +3202,7 @@ public final class MoveCollectionsClientImpl implements MoveCollectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all the Move Collections in the resource group.
+     * @return all the Move Collections in the resource group as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<MoveCollectionInner> listByResourceGroupAsync(String resourceGroupName, Context context) {
@@ -3252,7 +3218,7 @@ public final class MoveCollectionsClientImpl implements MoveCollectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all the Move Collections in the resource group.
+     * @return all the Move Collections in the resource group as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<MoveCollectionInner> listByResourceGroup(String resourceGroupName) {
@@ -3267,7 +3233,7 @@ public final class MoveCollectionsClientImpl implements MoveCollectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all the Move Collections in the resource group.
+     * @return all the Move Collections in the resource group as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<MoveCollectionInner> listByResourceGroup(String resourceGroupName, Context context) {
@@ -3283,7 +3249,7 @@ public final class MoveCollectionsClientImpl implements MoveCollectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return required for resources collection.
+     * @return required for resources collection along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<RequiredForResourcesCollectionInner>> listRequiredForWithResponseAsync(
@@ -3338,7 +3304,7 @@ public final class MoveCollectionsClientImpl implements MoveCollectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return required for resources collection.
+     * @return required for resources collection along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<RequiredForResourcesCollectionInner>> listRequiredForWithResponseAsync(
@@ -3389,20 +3355,13 @@ public final class MoveCollectionsClientImpl implements MoveCollectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return required for resources collection.
+     * @return required for resources collection on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<RequiredForResourcesCollectionInner> listRequiredForAsync(
         String resourceGroupName, String moveCollectionName, String sourceId) {
         return listRequiredForWithResponseAsync(resourceGroupName, moveCollectionName, sourceId)
-            .flatMap(
-                (Response<RequiredForResourcesCollectionInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -3432,7 +3391,7 @@ public final class MoveCollectionsClientImpl implements MoveCollectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return required for resources collection.
+     * @return required for resources collection along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<RequiredForResourcesCollectionInner> listRequiredForWithResponse(
@@ -3447,7 +3406,8 @@ public final class MoveCollectionsClientImpl implements MoveCollectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return defines the collection of move collections.
+     * @return defines the collection of move collections along with {@link PagedResponse} on successful completion of
+     *     {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<MoveCollectionInner>> listMoveCollectionsBySubscriptionNextSinglePageAsync(
@@ -3486,7 +3446,8 @@ public final class MoveCollectionsClientImpl implements MoveCollectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return defines the collection of move collections.
+     * @return defines the collection of move collections along with {@link PagedResponse} on successful completion of
+     *     {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<MoveCollectionInner>> listMoveCollectionsBySubscriptionNextSinglePageAsync(
@@ -3522,7 +3483,8 @@ public final class MoveCollectionsClientImpl implements MoveCollectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return defines the collection of move collections.
+     * @return defines the collection of move collections along with {@link PagedResponse} on successful completion of
+     *     {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<MoveCollectionInner>> listMoveCollectionsByResourceGroupNextSinglePageAsync(
@@ -3562,7 +3524,8 @@ public final class MoveCollectionsClientImpl implements MoveCollectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return defines the collection of move collections.
+     * @return defines the collection of move collections along with {@link PagedResponse} on successful completion of
+     *     {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<MoveCollectionInner>> listMoveCollectionsByResourceGroupNextSinglePageAsync(

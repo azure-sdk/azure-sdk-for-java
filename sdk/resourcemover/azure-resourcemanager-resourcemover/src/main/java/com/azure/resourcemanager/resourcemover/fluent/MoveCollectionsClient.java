@@ -46,7 +46,7 @@ public interface MoveCollectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return define the move collection.
+     * @return define the move collection along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<MoveCollectionInner> createWithResponse(
@@ -75,7 +75,7 @@ public interface MoveCollectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return define the move collection.
+     * @return define the move collection along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<MoveCollectionInner> updateWithResponse(
@@ -89,9 +89,9 @@ public interface MoveCollectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return operation status REST resource.
+     * @return the {@link SyncPoller} for polling of operation status REST resource.
      */
-    @ServiceMethod(returns = ReturnType.SINGLE)
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<OperationStatusInner>, OperationStatusInner> beginDelete(
         String resourceGroupName, String moveCollectionName);
 
@@ -104,9 +104,9 @@ public interface MoveCollectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return operation status REST resource.
+     * @return the {@link SyncPoller} for polling of operation status REST resource.
      */
-    @ServiceMethod(returns = ReturnType.SINGLE)
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<OperationStatusInner>, OperationStatusInner> beginDelete(
         String resourceGroupName, String moveCollectionName, Context context);
 
@@ -159,7 +159,7 @@ public interface MoveCollectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the move collection.
+     * @return the move collection along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<MoveCollectionInner> getByResourceGroupWithResponse(
@@ -177,9 +177,9 @@ public interface MoveCollectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return operation status REST resource.
+     * @return the {@link SyncPoller} for polling of operation status REST resource.
      */
-    @ServiceMethod(returns = ReturnType.SINGLE)
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<OperationStatusInner>, OperationStatusInner> beginPrepare(
         String resourceGroupName, String moveCollectionName, PrepareRequest body);
 
@@ -196,9 +196,9 @@ public interface MoveCollectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return operation status REST resource.
+     * @return the {@link SyncPoller} for polling of operation status REST resource.
      */
-    @ServiceMethod(returns = ReturnType.SINGLE)
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<OperationStatusInner>, OperationStatusInner> beginPrepare(
         String resourceGroupName, String moveCollectionName, PrepareRequest body, Context context);
 
@@ -266,9 +266,9 @@ public interface MoveCollectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return operation status REST resource.
+     * @return the {@link SyncPoller} for polling of operation status REST resource.
      */
-    @ServiceMethod(returns = ReturnType.SINGLE)
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<OperationStatusInner>, OperationStatusInner> beginInitiateMove(
         String resourceGroupName, String moveCollectionName, ResourceMoveRequest body);
 
@@ -285,9 +285,9 @@ public interface MoveCollectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return operation status REST resource.
+     * @return the {@link SyncPoller} for polling of operation status REST resource.
      */
-    @ServiceMethod(returns = ReturnType.SINGLE)
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<OperationStatusInner>, OperationStatusInner> beginInitiateMove(
         String resourceGroupName, String moveCollectionName, ResourceMoveRequest body, Context context);
 
@@ -355,9 +355,9 @@ public interface MoveCollectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return operation status REST resource.
+     * @return the {@link SyncPoller} for polling of operation status REST resource.
      */
-    @ServiceMethod(returns = ReturnType.SINGLE)
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<OperationStatusInner>, OperationStatusInner> beginCommit(
         String resourceGroupName, String moveCollectionName, CommitRequest body);
 
@@ -374,9 +374,9 @@ public interface MoveCollectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return operation status REST resource.
+     * @return the {@link SyncPoller} for polling of operation status REST resource.
      */
-    @ServiceMethod(returns = ReturnType.SINGLE)
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<OperationStatusInner>, OperationStatusInner> beginCommit(
         String resourceGroupName, String moveCollectionName, CommitRequest body, Context context);
 
@@ -444,9 +444,9 @@ public interface MoveCollectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return operation status REST resource.
+     * @return the {@link SyncPoller} for polling of operation status REST resource.
      */
-    @ServiceMethod(returns = ReturnType.SINGLE)
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<OperationStatusInner>, OperationStatusInner> beginDiscard(
         String resourceGroupName, String moveCollectionName, DiscardRequest body);
 
@@ -463,9 +463,9 @@ public interface MoveCollectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return operation status REST resource.
+     * @return the {@link SyncPoller} for polling of operation status REST resource.
      */
-    @ServiceMethod(returns = ReturnType.SINGLE)
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<OperationStatusInner>, OperationStatusInner> beginDiscard(
         String resourceGroupName, String moveCollectionName, DiscardRequest body, Context context);
 
@@ -529,9 +529,9 @@ public interface MoveCollectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return operation status REST resource.
+     * @return the {@link SyncPoller} for polling of operation status REST resource.
      */
-    @ServiceMethod(returns = ReturnType.SINGLE)
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<OperationStatusInner>, OperationStatusInner> beginResolveDependencies(
         String resourceGroupName, String moveCollectionName);
 
@@ -544,9 +544,9 @@ public interface MoveCollectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return operation status REST resource.
+     * @return the {@link SyncPoller} for polling of operation status REST resource.
      */
-    @ServiceMethod(returns = ReturnType.SINGLE)
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<OperationStatusInner>, OperationStatusInner> beginResolveDependencies(
         String resourceGroupName, String moveCollectionName, Context context);
 
@@ -588,9 +588,9 @@ public interface MoveCollectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return operation status REST resource.
+     * @return the {@link SyncPoller} for polling of operation status REST resource.
      */
-    @ServiceMethod(returns = ReturnType.SINGLE)
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<OperationStatusInner>, OperationStatusInner> beginBulkRemove(
         String resourceGroupName, String moveCollectionName, BulkRemoveRequest body);
 
@@ -606,9 +606,9 @@ public interface MoveCollectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return operation status REST resource.
+     * @return the {@link SyncPoller} for polling of operation status REST resource.
      */
-    @ServiceMethod(returns = ReturnType.SINGLE)
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<OperationStatusInner>, OperationStatusInner> beginBulkRemove(
         String resourceGroupName, String moveCollectionName, BulkRemoveRequest body, Context context);
 
@@ -666,7 +666,7 @@ public interface MoveCollectionsClient {
      *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all the Move Collections in the subscription.
+     * @return all the Move Collections in the subscription as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<MoveCollectionInner> list();
@@ -678,7 +678,7 @@ public interface MoveCollectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all the Move Collections in the subscription.
+     * @return all the Move Collections in the subscription as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<MoveCollectionInner> list(Context context);
@@ -690,7 +690,7 @@ public interface MoveCollectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all the Move Collections in the resource group.
+     * @return all the Move Collections in the resource group as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<MoveCollectionInner> listByResourceGroup(String resourceGroupName);
@@ -703,7 +703,7 @@ public interface MoveCollectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all the Move Collections in the resource group.
+     * @return all the Move Collections in the resource group as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<MoveCollectionInner> listByResourceGroup(String resourceGroupName, Context context);
@@ -733,7 +733,7 @@ public interface MoveCollectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return required for resources collection.
+     * @return required for resources collection along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<RequiredForResourcesCollectionInner> listRequiredForWithResponse(

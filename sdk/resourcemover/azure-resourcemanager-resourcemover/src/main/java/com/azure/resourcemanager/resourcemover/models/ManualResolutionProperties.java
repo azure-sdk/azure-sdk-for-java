@@ -5,15 +5,11 @@
 package com.azure.resourcemanager.resourcemover.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Defines the properties for manual resolution. */
 @Fluent
 public final class ManualResolutionProperties {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(ManualResolutionProperties.class);
-
     /*
      * Gets or sets the target resource ARM ID of the dependent resource if the
      * resource type is Manual.
