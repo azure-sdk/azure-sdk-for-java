@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for Clusters GetAzureAsyncOperationStatus. */
 public final class ClustersGetAzureAsyncOperationStatusSamples {
     /*
-     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/stable/2021-06-01/examples/GetClusterCreatingAsyncOperationStatus.json
+     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2022-07-01-preview/examples/GetClusterCreatingAsyncOperationStatus.json
      */
     /**
      * Sample code: Get Async Operation Status of Creating Cluster.

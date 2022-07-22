@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for ScriptActions Delete. */
 public final class ScriptActionsDeleteSamples {
     /*
-     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/stable/2021-06-01/examples/DeleteScriptAction.json
+     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2022-07-01-preview/examples/DeleteScriptAction.json
      */
     /**
      * Sample code: Delete a script action on HDInsight cluster.

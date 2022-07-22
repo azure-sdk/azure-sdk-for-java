@@ -10,7 +10,7 @@ import com.azure.resourcemanager.hdinsight.models.UpdateGatewaySettingsParameter
 /** Samples for Clusters UpdateGatewaySettings. */
 public final class ClustersUpdateGatewaySettingsSamples {
     /*
-     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/stable/2021-06-01/examples/HDI_Clusters_UpdateGatewaySettings_Enable.json
+     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2022-07-01-preview/examples/HDI_Clusters_UpdateGatewaySettings_Enable.json
      */
     /**
      * Sample code: Enable HTTP connectivity.

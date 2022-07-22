@@ -10,7 +10,7 @@ import com.azure.resourcemanager.hdinsight.models.Extension;
 /** Samples for Extensions Create. */
 public final class ExtensionsCreateSamples {
     /*
-     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/stable/2021-06-01/examples/CreateExtension.json
+     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2022-07-01-preview/examples/CreateExtension.json
      */
     /**
      * Sample code: Create a monitoring extension on Hadoop Linux cluster.

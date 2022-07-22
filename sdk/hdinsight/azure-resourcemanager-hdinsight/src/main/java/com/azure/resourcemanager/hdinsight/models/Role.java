@@ -5,16 +5,12 @@
 package com.azure.resourcemanager.hdinsight.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** Describes a role on the cluster. */
 @Fluent
 public final class Role {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(Role.class);
-
     /*
      * The name of the role.
      */
@@ -36,8 +32,8 @@ public final class Role {
     /*
      * The name of the virtual machine group.
      */
-    @JsonProperty(value = "VMGroupName")
-    private String vMGroupName;
+    @JsonProperty(value = "vmGroupName")
+    private String vmGroupName;
 
     /*
      * The autoscale configurations.
@@ -142,22 +138,22 @@ public final class Role {
     }
 
     /**
-     * Get the vMGroupName property: The name of the virtual machine group.
+     * Get the vmGroupName property: The name of the virtual machine group.
      *
-     * @return the vMGroupName value.
+     * @return the vmGroupName value.
      */
-    public String vMGroupName() {
-        return this.vMGroupName;
+    public String vmGroupName() {
+        return this.vmGroupName;
     }
 
     /**
-     * Set the vMGroupName property: The name of the virtual machine group.
+     * Set the vmGroupName property: The name of the virtual machine group.
      *
-     * @param vMGroupName the vMGroupName value to set.
+     * @param vmGroupName the vmGroupName value to set.
      * @return the Role object itself.
      */
-    public Role withVMGroupName(String vMGroupName) {
-        this.vMGroupName = vMGroupName;
+    public Role withVmGroupName(String vmGroupName) {
+        this.vmGroupName = vmGroupName;
         return this;
     }
 

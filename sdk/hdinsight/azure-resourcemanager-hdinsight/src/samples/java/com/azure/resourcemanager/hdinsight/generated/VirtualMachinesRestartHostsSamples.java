@@ -10,7 +10,7 @@ import java.util.Arrays;
 /** Samples for VirtualMachines RestartHosts. */
 public final class VirtualMachinesRestartHostsSamples {
     /*
-     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/stable/2021-06-01/examples/RestartVirtualMachinesOperation.json
+     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2022-07-01-preview/examples/RestartVirtualMachinesOperation.json
      */
     /**
      * Sample code: Restarts the specified HDInsight cluster hosts.
