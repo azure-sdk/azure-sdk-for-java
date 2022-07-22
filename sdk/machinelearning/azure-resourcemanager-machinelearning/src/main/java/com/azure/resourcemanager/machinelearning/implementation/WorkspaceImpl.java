@@ -21,12 +21,12 @@ import com.azure.resourcemanager.machinelearning.models.ManagedServiceIdentity;
 import com.azure.resourcemanager.machinelearning.models.NotebookAccessTokenResult;
 import com.azure.resourcemanager.machinelearning.models.NotebookResourceInfo;
 import com.azure.resourcemanager.machinelearning.models.PrivateEndpointConnection;
-import com.azure.resourcemanager.machinelearning.models.ProvisioningState;
 import com.azure.resourcemanager.machinelearning.models.PublicNetworkAccess;
 import com.azure.resourcemanager.machinelearning.models.ServiceManagedResourcesSettings;
 import com.azure.resourcemanager.machinelearning.models.SharedPrivateLinkResource;
 import com.azure.resourcemanager.machinelearning.models.Sku;
 import com.azure.resourcemanager.machinelearning.models.Workspace;
+import com.azure.resourcemanager.machinelearning.models.WorkspaceProvisioningState;
 import com.azure.resourcemanager.machinelearning.models.WorkspaceUpdateParameters;
 import java.util.Collections;
 import java.util.List;
@@ -107,7 +107,7 @@ public final class WorkspaceImpl implements Workspace, Workspace.Definition, Wor
         return this.innerModel().discoveryUrl();
     }
 
-    public ProvisioningState provisioningState() {
+    public WorkspaceProvisioningState provisioningState() {
         return this.innerModel().provisioningState();
     }
 
@@ -189,6 +189,22 @@ public final class WorkspaceImpl implements Workspace, Workspace.Definition, Wor
 
     public String mlFlowTrackingUri() {
         return this.innerModel().mlFlowTrackingUri();
+    }
+
+    public Boolean v1LegacyMode() {
+        return this.innerModel().v1LegacyMode();
+    }
+
+    public Boolean softDeleteEnabled() {
+        return this.innerModel().softDeleteEnabled();
+    }
+
+    public String softDeletedAt() {
+        return this.innerModel().softDeletedAt();
+    }
+
+    public String scheduledPurgeDate() {
+        return this.innerModel().scheduledPurgeDate();
     }
 
     public Region region() {
@@ -515,6 +531,16 @@ public final class WorkspaceImpl implements Workspace, Workspace.Definition, Wor
             this.updateParameters.withPrimaryUserAssignedIdentity(primaryUserAssignedIdentity);
             return this;
         }
+    }
+
+    public WorkspaceImpl withV1LegacyMode(Boolean v1LegacyMode) {
+        this.innerModel().withV1LegacyMode(v1LegacyMode);
+        return this;
+    }
+
+    public WorkspaceImpl withSoftDeleteEnabled(Boolean softDeleteEnabled) {
+        this.innerModel().withSoftDeleteEnabled(softDeleteEnabled);
+        return this;
     }
 
     private boolean isInCreateMode() {

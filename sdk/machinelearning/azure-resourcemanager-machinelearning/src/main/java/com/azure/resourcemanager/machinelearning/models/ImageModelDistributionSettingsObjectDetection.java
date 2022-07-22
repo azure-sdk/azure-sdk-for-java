@@ -572,13 +572,6 @@ public final class ImageModelDistributionSettingsObjectDetection extends ImageMo
 
     /** {@inheritDoc} */
     @Override
-    public ImageModelDistributionSettingsObjectDetection withSplitRatio(String splitRatio) {
-        super.withSplitRatio(splitRatio);
-        return this;
-    }
-
-    /** {@inheritDoc} */
-    @Override
     public ImageModelDistributionSettingsObjectDetection withStepLRGamma(String stepLRGamma) {
         super.withStepLRGamma(stepLRGamma);
         return this;

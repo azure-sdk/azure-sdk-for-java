@@ -283,13 +283,6 @@ public final class ImageModelDistributionSettingsClassification extends ImageMod
 
     /** {@inheritDoc} */
     @Override
-    public ImageModelDistributionSettingsClassification withSplitRatio(String splitRatio) {
-        super.withSplitRatio(splitRatio);
-        return this;
-    }
-
-    /** {@inheritDoc} */
-    @Override
     public ImageModelDistributionSettingsClassification withStepLRGamma(String stepLRGamma) {
         super.withStepLRGamma(stepLRGamma);
         return this;

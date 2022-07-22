@@ -167,15 +167,6 @@ public class ImageModelDistributionSettings {
     private String randomSeed;
 
     /*
-     * If validation data is not defined, this specifies the split ratio for
-     * splitting
-     * train data into random train and validation subsets. Must be a float in
-     * the range [0, 1].
-     */
-    @JsonProperty(value = "splitRatio")
-    private String splitRatio;
-
-    /*
      * Value of gamma when learning rate scheduler is 'step'. Must be a float
      * in the range [0, 1].
      */
@@ -663,28 +654,6 @@ public class ImageModelDistributionSettings {
      */
     public ImageModelDistributionSettings withRandomSeed(String randomSeed) {
         this.randomSeed = randomSeed;
-        return this;
-    }
-
-    /**
-     * Get the splitRatio property: If validation data is not defined, this specifies the split ratio for splitting
-     * train data into random train and validation subsets. Must be a float in the range [0, 1].
-     *
-     * @return the splitRatio value.
-     */
-    public String splitRatio() {
-        return this.splitRatio;
-    }
-
-    /**
-     * Set the splitRatio property: If validation data is not defined, this specifies the split ratio for splitting
-     * train data into random train and validation subsets. Must be a float in the range [0, 1].
-     *
-     * @param splitRatio the splitRatio value to set.
-     * @return the ImageModelDistributionSettings object itself.
-     */
-    public ImageModelDistributionSettings withSplitRatio(String splitRatio) {
-        this.splitRatio = splitRatio;
         return this;
     }
 

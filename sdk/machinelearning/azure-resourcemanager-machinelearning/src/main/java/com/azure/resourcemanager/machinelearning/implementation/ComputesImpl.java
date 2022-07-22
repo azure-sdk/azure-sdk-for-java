@@ -16,6 +16,7 @@ import com.azure.resourcemanager.machinelearning.models.AmlComputeNodeInformatio
 import com.azure.resourcemanager.machinelearning.models.ComputeResource;
 import com.azure.resourcemanager.machinelearning.models.ComputeSecrets;
 import com.azure.resourcemanager.machinelearning.models.Computes;
+import com.azure.resourcemanager.machinelearning.models.IdleShutdownSetting;
 import com.azure.resourcemanager.machinelearning.models.UnderlyingResourceAction;
 
 public final class ComputesImpl implements Computes {
@@ -140,6 +141,22 @@ public final class ComputesImpl implements Computes {
 
     public void restart(String resourceGroupName, String workspaceName, String computeName, Context context) {
         this.serviceClient().restart(resourceGroupName, workspaceName, computeName, context);
+    }
+
+    public void updateIdleShutdownSetting(
+        String resourceGroupName, String workspaceName, String computeName, IdleShutdownSetting parameters) {
+        this.serviceClient().updateIdleShutdownSetting(resourceGroupName, workspaceName, computeName, parameters);
+    }
+
+    public Response<Void> updateIdleShutdownSettingWithResponse(
+        String resourceGroupName,
+        String workspaceName,
+        String computeName,
+        IdleShutdownSetting parameters,
+        Context context) {
+        return this
+            .serviceClient()
+            .updateIdleShutdownSettingWithResponse(resourceGroupName, workspaceName, computeName, parameters, context);
     }
 
     public ComputeResource getById(String id) {

@@ -11,7 +11,7 @@ import java.util.Map;
 
 /** The ResourceConfiguration model. */
 @Fluent
-public final class ResourceConfiguration {
+public class ResourceConfiguration {
     /*
      * Optional number of instances or nodes used by the compute target.
      */

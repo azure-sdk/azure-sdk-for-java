@@ -15,6 +15,7 @@ import com.azure.resourcemanager.machinelearning.models.ClusterUpdateParameters;
 import com.azure.resourcemanager.machinelearning.models.Compute;
 import com.azure.resourcemanager.machinelearning.models.ComputeResource;
 import com.azure.resourcemanager.machinelearning.models.ComputeSecrets;
+import com.azure.resourcemanager.machinelearning.models.IdleShutdownSetting;
 import com.azure.resourcemanager.machinelearning.models.ManagedServiceIdentity;
 import com.azure.resourcemanager.machinelearning.models.ScaleSettingsInformation;
 import com.azure.resourcemanager.machinelearning.models.Sku;
@@ -216,6 +217,16 @@ public final class ComputeResourceImpl implements ComputeResource, ComputeResour
 
     public void restart(Context context) {
         serviceManager.computes().restart(resourceGroupName, workspaceName, computeName, context);
+    }
+
+    public void updateIdleShutdownSetting(IdleShutdownSetting parameters) {
+        serviceManager.computes().updateIdleShutdownSetting(resourceGroupName, workspaceName, computeName, parameters);
+    }
+
+    public Response<Void> updateIdleShutdownSettingWithResponse(IdleShutdownSetting parameters, Context context) {
+        return serviceManager
+            .computes()
+            .updateIdleShutdownSettingWithResponse(resourceGroupName, workspaceName, computeName, parameters, context);
     }
 
     public ComputeResourceImpl withRegion(Region location) {
