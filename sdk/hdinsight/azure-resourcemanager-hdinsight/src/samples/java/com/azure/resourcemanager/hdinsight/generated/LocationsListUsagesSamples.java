@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for Locations ListUsages. */
 public final class LocationsListUsagesSamples {
     /*
-     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/stable/2021-06-01/examples/GetHDInsightUsages.json
+     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2022-07-01-preview/examples/GetHDInsightUsages.json
      */
     /**
      * Sample code: Get the subscription usages for specific location.

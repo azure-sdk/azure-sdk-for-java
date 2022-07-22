@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for Extensions GetAzureMonitorStatus. */
 public final class ExtensionsGetAzureMonitorStatusSamples {
     /*
-     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/stable/2021-06-01/examples/GetLinuxClusterAzureMonitorStatus.json
+     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2022-07-01-preview/examples/GetLinuxClusterAzureMonitorStatus.json
      */
     /**
      * Sample code: Enable cluster monitoring.

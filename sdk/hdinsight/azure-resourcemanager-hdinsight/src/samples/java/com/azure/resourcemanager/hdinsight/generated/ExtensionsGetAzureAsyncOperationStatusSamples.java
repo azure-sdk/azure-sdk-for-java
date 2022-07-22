@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for Extensions GetAzureAsyncOperationStatus. */
 public final class ExtensionsGetAzureAsyncOperationStatusSamples {
     /*
-     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/stable/2021-06-01/examples/GetExtensionCreationAsyncOperationStatus.json
+     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2022-07-01-preview/examples/GetExtensionCreationAsyncOperationStatus.json
      */
     /**
      * Sample code: Gets the azure async operation status.

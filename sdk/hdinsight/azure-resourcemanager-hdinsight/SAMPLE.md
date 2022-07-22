@@ -97,7 +97,7 @@ import java.util.Arrays;
 /** Samples for Applications Create. */
 public final class ApplicationsCreateSamples {
     /*
-     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/stable/2021-06-01/examples/CreateApplication.json
+     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2022-07-01-preview/examples/CreateApplication.json
      */
     /**
      * Sample code: Create Application.
@@ -151,7 +151,7 @@ import com.azure.core.util.Context;
 /** Samples for Applications Delete. */
 public final class ApplicationsDeleteSamples {
     /*
-     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/stable/2021-06-01/examples/DeleteApplication.json
+     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2022-07-01-preview/examples/DeleteApplication.json
      */
     /**
      * Sample code: Delete Application from HDInsight cluster.
@@ -173,7 +173,7 @@ import com.azure.core.util.Context;
 /** Samples for Applications Get. */
 public final class ApplicationsGetSamples {
     /*
-     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/stable/2021-06-01/examples/GetApplicationInProgress.json
+     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2022-07-01-preview/examples/GetApplicationInProgress.json
      */
     /**
      * Sample code: Get application on HDInsight cluster creation in progress.
@@ -186,7 +186,7 @@ public final class ApplicationsGetSamples {
     }
 
     /*
-     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/stable/2021-06-01/examples/GetApplicationCreated.json
+     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2022-07-01-preview/examples/GetApplicationCreated.json
      */
     /**
      * Sample code: Get application on HDInsight cluster successfully created.
@@ -208,7 +208,7 @@ import com.azure.core.util.Context;
 /** Samples for Applications GetAzureAsyncOperationStatus. */
 public final class ApplicationsGetAzureAsyncOperationStatusSamples {
     /*
-     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/stable/2021-06-01/examples/GetApplicationCreationAsyncOperationStatus.json
+     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2022-07-01-preview/examples/GetApplicationCreationAsyncOperationStatus.json
      */
     /**
      * Sample code: Get the azure async operation status.
@@ -232,7 +232,7 @@ import com.azure.core.util.Context;
 /** Samples for Applications ListByCluster. */
 public final class ApplicationsListByClusterSamples {
     /*
-     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/stable/2021-06-01/examples/GetAllApplications.json
+     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2022-07-01-preview/examples/GetAllApplications.json
      */
     /**
      * Sample code: Get All Applications for an HDInsight cluster.
@@ -289,7 +289,7 @@ import java.util.Map;
 /** Samples for Clusters Create. */
 public final class ClustersCreateSamples {
     /*
-     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/stable/2021-06-01/examples/CreateLinuxHadoopSshPassword.json
+     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2022-07-01-preview/examples/CreateLinuxHadoopSshPassword.json
      */
     /**
      * Sample code: Create Hadoop on Linux cluster with SSH password.
@@ -370,7 +370,7 @@ public final class ClustersCreateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/stable/2021-06-01/examples/CreateKafkaClusterWithKafkaRestProxy.json
+     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2022-07-01-preview/examples/CreateKafkaClusterWithKafkaRestProxy.json
      */
     /**
      * Sample code: Create Kafka cluster with Kafka Rest Proxy.
@@ -466,7 +466,7 @@ public final class ClustersCreateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/stable/2021-06-01/examples/CreateHDInsightClusterWithAutoscaleConfig.json
+     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2022-07-01-preview/examples/CreateHDInsightClusterWithAutoscaleConfig.json
      */
     /**
      * Sample code: Create HDInsight cluster with Autoscale configuration.
@@ -583,7 +583,7 @@ public final class ClustersCreateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/stable/2021-06-01/examples/CreateLinuxHadoopSshPublicKey.json
+     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2022-07-01-preview/examples/CreateLinuxHadoopSshPublicKey.json
      */
     /**
      * Sample code: Create Hadoop on Linux cluster with SSH public key.
@@ -671,7 +671,7 @@ public final class ClustersCreateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/stable/2021-06-01/examples/CreateHDInsightClusterWithAvailabilityZones.json
+     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2022-07-01-preview/examples/CreateHDInsightClusterWithAvailabilityZones.json
      */
     /**
      * Sample code: Create cluster with availability zones.
@@ -784,7 +784,7 @@ public final class ClustersCreateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/stable/2021-06-01/examples/CreateLinuxHadoopAdlsGen2.json
+     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2022-07-01-preview/examples/CreateLinuxHadoopAdlsGen2.json
      */
     /**
      * Sample code: Create Hadoop cluster with Azure Data Lake Storage Gen 2.
@@ -865,7 +865,7 @@ public final class ClustersCreateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/stable/2021-06-01/examples/CreateLinuxHadoopSecureHadoop.json
+     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2022-07-01-preview/examples/CreateLinuxHadoopSecureHadoop.json
      */
     /**
      * Sample code: Create Secure Hadoop cluster.
@@ -1000,7 +1000,7 @@ public final class ClustersCreateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/stable/2021-06-01/examples/CreateLinuxSparkSshPassword.json
+     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2022-07-01-preview/examples/CreateLinuxSparkSshPassword.json
      */
     /**
      * Sample code: Create Spark on Linux Cluster with SSH password.
@@ -1071,7 +1071,7 @@ public final class ClustersCreateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/stable/2021-06-01/examples/CreateHDInsightClusterWithCustomNetworkProperties.json
+     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2022-07-01-preview/examples/CreateHDInsightClusterWithCustomNetworkProperties.json
      */
     /**
      * Sample code: Create cluster with network properties.
@@ -1169,7 +1169,7 @@ public final class ClustersCreateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/stable/2021-06-01/examples/CreateHDInsightClusterWithTLS12.json
+     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2022-07-01-preview/examples/CreateHDInsightClusterWithTLS12.json
      */
     /**
      * Sample code: Create cluster with TLS 1.2.
@@ -1247,7 +1247,7 @@ public final class ClustersCreateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/stable/2021-06-01/examples/CreateHDInsightClusterWithEncryptionAtHost.json
+     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2022-07-01-preview/examples/CreateHDInsightClusterWithEncryptionAtHost.json
      */
     /**
      * Sample code: Create cluster with encryption at host.
@@ -1325,7 +1325,7 @@ public final class ClustersCreateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/stable/2021-06-01/examples/CreateHDInsightClusterWithEncryptionInTransit.json
+     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2022-07-01-preview/examples/CreateHDInsightClusterWithEncryptionInTransit.json
      */
     /**
      * Sample code: Create cluster with encryption in transit.
@@ -1404,7 +1404,7 @@ public final class ClustersCreateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/stable/2021-06-01/examples/CreateHDInsightClusterWithComputeIsolationProperties.json
+     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2022-07-01-preview/examples/CreateHDInsightClusterWithComputeIsolationProperties.json
      */
     /**
      * Sample code: Create cluster with compute isolation properties.
@@ -1507,7 +1507,7 @@ import com.azure.core.util.Context;
 /** Samples for Clusters Delete. */
 public final class ClustersDeleteSamples {
     /*
-     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/stable/2021-06-01/examples/DeleteLinuxHadoopCluster.json
+     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2022-07-01-preview/examples/DeleteLinuxHadoopCluster.json
      */
     /**
      * Sample code: Delete Hadoop on Linux cluster.
@@ -1531,7 +1531,7 @@ import java.util.Arrays;
 /** Samples for Clusters ExecuteScriptActions. */
 public final class ClustersExecuteScriptActionsSamples {
     /*
-     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/stable/2021-06-01/examples/PostExecuteScriptAction.json
+     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2022-07-01-preview/examples/PostExecuteScriptAction.json
      */
     /**
      * Sample code: Execute script action on HDInsight cluster.
@@ -1568,7 +1568,7 @@ import com.azure.core.util.Context;
 /** Samples for Clusters GetAzureAsyncOperationStatus. */
 public final class ClustersGetAzureAsyncOperationStatusSamples {
     /*
-     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/stable/2021-06-01/examples/GetClusterCreatingAsyncOperationStatus.json
+     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2022-07-01-preview/examples/GetClusterCreatingAsyncOperationStatus.json
      */
     /**
      * Sample code: Get Async Operation Status of Creating Cluster.
@@ -1593,7 +1593,7 @@ import com.azure.core.util.Context;
 /** Samples for Clusters GetByResourceGroup. */
 public final class ClustersGetByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/stable/2021-06-01/examples/GetLinuxHadoopCluster.json
+     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2022-07-01-preview/examples/GetLinuxHadoopCluster.json
      */
     /**
      * Sample code: Get Hadoop on Linux cluster.
@@ -1605,7 +1605,7 @@ public final class ClustersGetByResourceGroupSamples {
     }
 
     /*
-     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/stable/2021-06-01/examples/GetLinuxSparkCluster.json
+     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2022-07-01-preview/examples/GetLinuxSparkCluster.json
      */
     /**
      * Sample code: Get Spark on Linux cluster.
@@ -1626,7 +1626,7 @@ import com.azure.core.util.Context;
 /** Samples for Clusters GetGatewaySettings. */
 public final class ClustersGetGatewaySettingsSamples {
     /*
-     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/stable/2021-06-01/examples/HDI_Clusters_GetGatewaySettings.json
+     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2022-07-01-preview/examples/HDI_Clusters_GetGatewaySettings.json
      */
     /**
      * Sample code: Get HTTP settings.
@@ -1647,7 +1647,7 @@ import com.azure.core.util.Context;
 /** Samples for Clusters List. */
 public final class ClustersListSamples {
     /*
-     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/stable/2021-06-01/examples/GetLinuxHadoopAllClusters.json
+     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2022-07-01-preview/examples/GetLinuxHadoopAllClusters.json
      */
     /**
      * Sample code: Get All Hadoop on Linux clusters.
@@ -1668,7 +1668,7 @@ import com.azure.core.util.Context;
 /** Samples for Clusters ListByResourceGroup. */
 public final class ClustersListByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/stable/2021-06-01/examples/GetLinuxHadoopAllClustersInResourceGroup.json
+     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2022-07-01-preview/examples/GetLinuxHadoopAllClustersInResourceGroup.json
      */
     /**
      * Sample code: Get All Hadoop on Linux clusters in a resource group.
@@ -1692,7 +1692,7 @@ import com.azure.resourcemanager.hdinsight.models.RoleName;
 /** Samples for Clusters Resize. */
 public final class ClustersResizeSamples {
     /*
-     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/stable/2021-06-01/examples/ResizeLinuxHadoopCluster.json
+     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2022-07-01-preview/examples/ResizeLinuxHadoopCluster.json
      */
     /**
      * Sample code: Resize the worker nodes for a Hadoop on Linux cluster.
@@ -1722,7 +1722,7 @@ import com.azure.resourcemanager.hdinsight.models.ClusterDiskEncryptionParameter
 /** Samples for Clusters RotateDiskEncryptionKey. */
 public final class ClustersRotateDiskEncryptionKeySamples {
     /*
-     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/stable/2021-06-01/examples/RotateLinuxHadoopClusterDiskEncryptionKey.json
+     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2022-07-01-preview/examples/RotateLinuxHadoopClusterDiskEncryptionKey.json
      */
     /**
      * Sample code: Rotate disk encryption key of the specified HDInsight cluster.
@@ -1756,7 +1756,7 @@ import java.util.Map;
 /** Samples for Clusters Update. */
 public final class ClustersUpdateSamples {
     /*
-     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/stable/2021-06-01/examples/PatchLinuxHadoopCluster.json
+     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2022-07-01-preview/examples/PatchLinuxHadoopCluster.json
      */
     /**
      * Sample code: Patch HDInsight Linux clusters.
@@ -1799,7 +1799,7 @@ import java.util.Arrays;
 /** Samples for Clusters UpdateAutoScaleConfiguration. */
 public final class ClustersUpdateAutoScaleConfigurationSamples {
     /*
-     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/stable/2021-06-01/examples/EnableOrUpdateAutoScaleWithLoadBasedConfiguration.json
+     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2022-07-01-preview/examples/EnableOrUpdateAutoScaleWithLoadBasedConfiguration.json
      */
     /**
      * Sample code: Enable or Update Autoscale with the load based configuration for HDInsight cluster.
@@ -1822,7 +1822,7 @@ public final class ClustersUpdateAutoScaleConfigurationSamples {
     }
 
     /*
-     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/stable/2021-06-01/examples/DisableClusterAutoScale.json
+     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2022-07-01-preview/examples/DisableClusterAutoScale.json
      */
     /**
      * Sample code: Disable Autoscale for the HDInsight cluster.
@@ -1838,7 +1838,7 @@ public final class ClustersUpdateAutoScaleConfigurationSamples {
     }
 
     /*
-     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/stable/2021-06-01/examples/EnableOrUpdateAutoScaleWithScheduleBasedConfiguration.json
+     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2022-07-01-preview/examples/EnableOrUpdateAutoScaleWithScheduleBasedConfiguration.json
      */
     /**
      * Sample code: Enable or Update Autoscale with the schedule based configuration for HDInsight cluster.
@@ -1883,7 +1883,7 @@ import com.azure.resourcemanager.hdinsight.models.UpdateGatewaySettingsParameter
 /** Samples for Clusters UpdateGatewaySettings. */
 public final class ClustersUpdateGatewaySettingsSamples {
     /*
-     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/stable/2021-06-01/examples/HDI_Clusters_UpdateGatewaySettings_Enable.json
+     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2022-07-01-preview/examples/HDI_Clusters_UpdateGatewaySettings_Enable.json
      */
     /**
      * Sample code: Enable HTTP connectivity.
@@ -1907,7 +1907,7 @@ import com.azure.resourcemanager.hdinsight.models.UpdateClusterIdentityCertifica
 /** Samples for Clusters UpdateIdentityCertificate. */
 public final class ClustersUpdateIdentityCertificateSamples {
     /*
-     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/stable/2021-06-01/examples/HDI_Clusters_UpdateClusterIdentityCertificate.json
+     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2022-07-01-preview/examples/HDI_Clusters_UpdateClusterIdentityCertificate.json
      */
     /**
      * Sample code: Update cluster identity certificate.
@@ -1937,7 +1937,7 @@ import com.azure.core.util.Context;
 /** Samples for Configurations Get. */
 public final class ConfigurationsGetSamples {
     /*
-     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/stable/2021-06-01/examples/HDI_Configurations_Get.json
+     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2022-07-01-preview/examples/HDI_Configurations_Get.json
      */
     /**
      * Sample code: Get Core site settings.
@@ -1958,7 +1958,7 @@ import com.azure.core.util.Context;
 /** Samples for Configurations List. */
 public final class ConfigurationsListSamples {
     /*
-     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/stable/2021-06-01/examples/HDI_Configurations_List.json
+     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2022-07-01-preview/examples/HDI_Configurations_List.json
      */
     /**
      * Sample code: Get all configuration information.
@@ -1981,7 +1981,7 @@ import java.util.Map;
 /** Samples for Configurations Update. */
 public final class ConfigurationsUpdateSamples {
     /*
-     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/stable/2021-06-01/examples/ChangeHttpConnectivityEnable.json
+     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2022-07-01-preview/examples/ChangeHttpConnectivityEnable.json
      */
     /**
      * Sample code: Enable HTTP connectivity.
@@ -2006,7 +2006,7 @@ public final class ConfigurationsUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/stable/2021-06-01/examples/ChangeHttpConnectivityDisable.json
+     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2022-07-01-preview/examples/ChangeHttpConnectivityDisable.json
      */
     /**
      * Sample code: Disable HTTP connectivity.
@@ -2041,7 +2041,7 @@ import com.azure.resourcemanager.hdinsight.models.Extension;
 /** Samples for Extensions Create. */
 public final class ExtensionsCreateSamples {
     /*
-     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/stable/2021-06-01/examples/CreateExtension.json
+     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2022-07-01-preview/examples/CreateExtension.json
      */
     /**
      * Sample code: Create a monitoring extension on Hadoop Linux cluster.
@@ -2070,7 +2070,7 @@ import com.azure.core.util.Context;
 /** Samples for Extensions Delete. */
 public final class ExtensionsDeleteSamples {
     /*
-     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/stable/2021-06-01/examples/DeleteExtension.json
+     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2022-07-01-preview/examples/DeleteExtension.json
      */
     /**
      * Sample code: Delete an extension.
@@ -2091,7 +2091,7 @@ import com.azure.core.util.Context;
 /** Samples for Extensions DisableAzureMonitor. */
 public final class ExtensionsDisableAzureMonitorSamples {
     /*
-     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/stable/2021-06-01/examples/DisableLinuxClusterAzureMonitor.json
+     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2022-07-01-preview/examples/DisableLinuxClusterAzureMonitor.json
      */
     /**
      * Sample code: Enable cluster monitoring.
@@ -2112,7 +2112,7 @@ import com.azure.core.util.Context;
 /** Samples for Extensions DisableMonitoring. */
 public final class ExtensionsDisableMonitoringSamples {
     /*
-     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/stable/2021-06-01/examples/DisableLinuxClusterMonitoring.json
+     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2022-07-01-preview/examples/DisableLinuxClusterMonitoring.json
      */
     /**
      * Sample code: Enable cluster monitoring.
@@ -2134,7 +2134,7 @@ import com.azure.resourcemanager.hdinsight.models.AzureMonitorRequest;
 /** Samples for Extensions EnableAzureMonitor. */
 public final class ExtensionsEnableAzureMonitorSamples {
     /*
-     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/stable/2021-06-01/examples/EnableLinuxClusterAzureMonitor.json
+     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2022-07-01-preview/examples/EnableLinuxClusterAzureMonitor.json
      */
     /**
      * Sample code: Enable cluster monitoring.
@@ -2164,7 +2164,7 @@ import com.azure.resourcemanager.hdinsight.models.ClusterMonitoringRequest;
 /** Samples for Extensions EnableMonitoring. */
 public final class ExtensionsEnableMonitoringSamples {
     /*
-     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/stable/2021-06-01/examples/EnableLinuxClusterMonitoring.json
+     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2022-07-01-preview/examples/EnableLinuxClusterMonitoring.json
      */
     /**
      * Sample code: Enable cluster monitoring.
@@ -2193,7 +2193,7 @@ import com.azure.core.util.Context;
 /** Samples for Extensions Get. */
 public final class ExtensionsGetSamples {
     /*
-     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/stable/2021-06-01/examples/GetExtension.json
+     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2022-07-01-preview/examples/GetExtension.json
      */
     /**
      * Sample code: Get an extension.
@@ -2214,7 +2214,7 @@ import com.azure.core.util.Context;
 /** Samples for Extensions GetAzureAsyncOperationStatus. */
 public final class ExtensionsGetAzureAsyncOperationStatusSamples {
     /*
-     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/stable/2021-06-01/examples/GetExtensionCreationAsyncOperationStatus.json
+     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2022-07-01-preview/examples/GetExtensionCreationAsyncOperationStatus.json
      */
     /**
      * Sample code: Gets the azure async operation status.
@@ -2238,7 +2238,7 @@ import com.azure.core.util.Context;
 /** Samples for Extensions GetAzureMonitorStatus. */
 public final class ExtensionsGetAzureMonitorStatusSamples {
     /*
-     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/stable/2021-06-01/examples/GetLinuxClusterAzureMonitorStatus.json
+     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2022-07-01-preview/examples/GetLinuxClusterAzureMonitorStatus.json
      */
     /**
      * Sample code: Enable cluster monitoring.
@@ -2259,7 +2259,7 @@ import com.azure.core.util.Context;
 /** Samples for Extensions GetMonitoringStatus. */
 public final class ExtensionsGetMonitoringStatusSamples {
     /*
-     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/stable/2021-06-01/examples/GetLinuxClusterMonitoringStatus.json
+     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2022-07-01-preview/examples/GetLinuxClusterMonitoringStatus.json
      */
     /**
      * Sample code: Enable cluster monitoring.
@@ -2281,7 +2281,7 @@ import com.azure.resourcemanager.hdinsight.models.NameAvailabilityCheckRequestPa
 /** Samples for Locations CheckNameAvailability. */
 public final class LocationsCheckNameAvailabilitySamples {
     /*
-     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/stable/2021-06-01/examples/HDI_Locations_CheckClusterNameAvailability.json
+     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2022-07-01-preview/examples/HDI_Locations_CheckClusterNameAvailability.json
      */
     /**
      * Sample code: Get the subscription usages for specific location.
@@ -2308,7 +2308,7 @@ import com.azure.core.util.Context;
 /** Samples for Locations GetAzureAsyncOperationStatus. */
 public final class LocationsGetAzureAsyncOperationStatusSamples {
     /*
-     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/stable/2021-06-01/examples/HDI_Locations_GetAsyncOperationStatus.json
+     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2022-07-01-preview/examples/HDI_Locations_GetAsyncOperationStatus.json
      */
     /**
      * Sample code: Gets the azure async operation status.
@@ -2332,7 +2332,7 @@ import com.azure.core.util.Context;
 /** Samples for Locations GetCapabilities. */
 public final class LocationsGetCapabilitiesSamples {
     /*
-     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/stable/2021-06-01/examples/GetHDInsightCapabilities.json
+     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2022-07-01-preview/examples/GetHDInsightCapabilities.json
      */
     /**
      * Sample code: Get the subscription capabilities for specific location.
@@ -2354,7 +2354,7 @@ import com.azure.core.util.Context;
 /** Samples for Locations ListBillingSpecs. */
 public final class LocationsListBillingSpecsSamples {
     /*
-     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/stable/2021-06-01/examples/HDI_Locations_ListBillingSpecs.json
+     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2022-07-01-preview/examples/HDI_Locations_ListBillingSpecs.json
      */
     /**
      * Sample code: Get the subscription billingSpecs for the specified location.
@@ -2376,7 +2376,7 @@ import com.azure.core.util.Context;
 /** Samples for Locations ListUsages. */
 public final class LocationsListUsagesSamples {
     /*
-     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/stable/2021-06-01/examples/GetHDInsightUsages.json
+     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2022-07-01-preview/examples/GetHDInsightUsages.json
      */
     /**
      * Sample code: Get the subscription usages for specific location.
@@ -2416,7 +2416,7 @@ import java.util.Map;
 /** Samples for Locations ValidateClusterCreateRequest. */
 public final class LocationsValidateClusterCreateRequestSamples {
     /*
-     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/stable/2021-06-01/examples/HDI_Locations_ValidateClusterCreateRequest.json
+     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2022-07-01-preview/examples/HDI_Locations_ValidateClusterCreateRequest.json
      */
     /**
      * Sample code: Get the subscription usages for specific location.
@@ -2533,7 +2533,7 @@ import com.azure.resourcemanager.hdinsight.models.PrivateLinkServiceConnectionSt
 /** Samples for PrivateEndpointConnections CreateOrUpdate. */
 public final class PrivateEndpointConnectionsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/stable/2021-06-01/examples/ApprovePrivateEndpointConnection.json
+     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2022-07-01-preview/examples/ApprovePrivateEndpointConnection.json
      */
     /**
      * Sample code: Approve a private endpoint connection manually.
@@ -2564,7 +2564,7 @@ import com.azure.core.util.Context;
 /** Samples for PrivateEndpointConnections Delete. */
 public final class PrivateEndpointConnectionsDeleteSamples {
     /*
-     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/stable/2021-06-01/examples/DeletePrivateEndpointConnection.json
+     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2022-07-01-preview/examples/DeletePrivateEndpointConnection.json
      */
     /**
      * Sample code: Delete specific private endpoint connection for a specific HDInsight cluster.
@@ -2588,7 +2588,7 @@ import com.azure.core.util.Context;
 /** Samples for PrivateEndpointConnections Get. */
 public final class PrivateEndpointConnectionsGetSamples {
     /*
-     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/stable/2021-06-01/examples/GetPrivateEndpointConnection.json
+     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2022-07-01-preview/examples/GetPrivateEndpointConnection.json
      */
     /**
      * Sample code: Get specific private endpoint connection for a specific HDInsight cluster.
@@ -2612,7 +2612,7 @@ import com.azure.core.util.Context;
 /** Samples for PrivateEndpointConnections ListByCluster. */
 public final class PrivateEndpointConnectionsListByClusterSamples {
     /*
-     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/stable/2021-06-01/examples/GetAllPrivateEndpointConnectionsInCluster.json
+     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2022-07-01-preview/examples/GetAllPrivateEndpointConnectionsInCluster.json
      */
     /**
      * Sample code: Get all private endpoint connections for a specific HDInsight cluster.
@@ -2634,7 +2634,7 @@ import com.azure.core.util.Context;
 /** Samples for PrivateLinkResources Get. */
 public final class PrivateLinkResourcesGetSamples {
     /*
-     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/stable/2021-06-01/examples/GetPrivateLinkResource.json
+     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2022-07-01-preview/examples/GetPrivateLinkResource.json
      */
     /**
      * Sample code: Get specific private link resource in a specific HDInsight cluster.
@@ -2656,7 +2656,7 @@ import com.azure.core.util.Context;
 /** Samples for PrivateLinkResources ListByCluster. */
 public final class PrivateLinkResourcesListByClusterSamples {
     /*
-     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/stable/2021-06-01/examples/GetAllPrivateLinkResourcesInCluster.json
+     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2022-07-01-preview/examples/GetAllPrivateLinkResourcesInCluster.json
      */
     /**
      * Sample code: Get all private link resources in a specific HDInsight cluster.
@@ -2678,7 +2678,7 @@ import com.azure.core.util.Context;
 /** Samples for ScriptActions Delete. */
 public final class ScriptActionsDeleteSamples {
     /*
-     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/stable/2021-06-01/examples/DeleteScriptAction.json
+     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2022-07-01-preview/examples/DeleteScriptAction.json
      */
     /**
      * Sample code: Delete a script action on HDInsight cluster.
@@ -2700,7 +2700,7 @@ import com.azure.core.util.Context;
 /** Samples for ScriptActions GetExecutionAsyncOperationStatus. */
 public final class ScriptActionsGetExecutionAsyncOperationStatusSamples {
     /*
-     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/stable/2021-06-01/examples/GetScriptExecutionAsyncOperationStatus.json
+     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2022-07-01-preview/examples/GetScriptExecutionAsyncOperationStatus.json
      */
     /**
      * Sample code: Gets the async execution operation status.
@@ -2725,7 +2725,7 @@ import com.azure.core.util.Context;
 /** Samples for ScriptActions GetExecutionDetail. */
 public final class ScriptActionsGetExecutionDetailSamples {
     /*
-     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/stable/2021-06-01/examples/GetScriptActionById.json
+     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2022-07-01-preview/examples/GetScriptActionById.json
      */
     /**
      * Sample code: Get script execution history by script id.
@@ -2747,7 +2747,7 @@ import com.azure.core.util.Context;
 /** Samples for ScriptActions ListByCluster. */
 public final class ScriptActionsListByClusterSamples {
     /*
-     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/stable/2021-06-01/examples/GetLinuxHadoopScriptAction.json
+     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2022-07-01-preview/examples/GetLinuxHadoopScriptAction.json
      */
     /**
      * Sample code: List all persisted script actions for the given cluster.
@@ -2769,7 +2769,7 @@ import com.azure.core.util.Context;
 /** Samples for ScriptExecutionHistory ListByCluster. */
 public final class ScriptExecutionHistoryListByClusterSamples {
     /*
-     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/stable/2021-06-01/examples/GetScriptExecutionHistory.json
+     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2022-07-01-preview/examples/GetScriptExecutionHistory.json
      */
     /**
      * Sample code: Get Script Execution History List.
@@ -2790,7 +2790,7 @@ import com.azure.core.util.Context;
 /** Samples for ScriptExecutionHistory Promote. */
 public final class ScriptExecutionHistoryPromoteSamples {
     /*
-     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/stable/2021-06-01/examples/PromoteLinuxHadoopScriptAction.json
+     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2022-07-01-preview/examples/PromoteLinuxHadoopScriptAction.json
      */
     /**
      * Sample code: Promote a script action on HDInsight cluster.
@@ -2812,7 +2812,7 @@ import com.azure.core.util.Context;
 /** Samples for VirtualMachines GetAsyncOperationStatus. */
 public final class VirtualMachinesGetAsyncOperationStatusSamples {
     /*
-     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/stable/2021-06-01/examples/GetRestartHostsAsyncOperationStatus.json
+     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2022-07-01-preview/examples/GetRestartHostsAsyncOperationStatus.json
      */
     /**
      * Sample code: Gets the async operation status of restarting host.
@@ -2837,7 +2837,7 @@ import com.azure.core.util.Context;
 /** Samples for VirtualMachines ListHosts. */
 public final class VirtualMachinesListHostsSamples {
     /*
-     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/stable/2021-06-01/examples/GetClusterVirtualMachines.json
+     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2022-07-01-preview/examples/GetClusterVirtualMachines.json
      */
     /**
      * Sample code: Get All hosts in the cluster.
@@ -2859,7 +2859,7 @@ import java.util.Arrays;
 /** Samples for VirtualMachines RestartHosts. */
 public final class VirtualMachinesRestartHostsSamples {
     /*
-     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/stable/2021-06-01/examples/RestartVirtualMachinesOperation.json
+     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2022-07-01-preview/examples/RestartVirtualMachinesOperation.json
      */
     /**
      * Sample code: Restarts the specified HDInsight cluster hosts.
