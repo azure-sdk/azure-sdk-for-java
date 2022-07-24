@@ -6,8 +6,7 @@ package com.azure.resourcemanager.securityinsights.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
-import com.azure.resourcemanager.securityinsights.models.ProvisioningState;
-import com.azure.resourcemanager.securityinsights.models.SourceType;
+import com.azure.resourcemanager.securityinsights.models.Source;
 import com.azure.resourcemanager.securityinsights.models.UserInfo;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.Duration;
@@ -36,16 +35,10 @@ public final class WatchlistProperties {
     private String provider;
 
     /*
-     * The filename of the watchlist, called 'source'
+     * The source of the watchlist
      */
-    @JsonProperty(value = "source")
-    private String source;
-
-    /*
-     * The sourceType of the watchlist
-     */
-    @JsonProperty(value = "sourceType")
-    private SourceType sourceType;
+    @JsonProperty(value = "source", required = true)
+    private Source source;
 
     /*
      * The time the watchlist was created
@@ -114,26 +107,19 @@ public final class WatchlistProperties {
     private String tenantId;
 
     /*
-     * The number of lines in a csv/tsv content to skip before the header
+     * The number of lines in a csv content to skip before the header
      */
     @JsonProperty(value = "numberOfLinesToSkip")
     private Integer numberOfLinesToSkip;
 
     /*
-     * The raw content that represents to watchlist items to create. In case of
-     * csv/tsv content type, it's the content of the file that will parsed by
-     * the endpoint
+     * The raw content that represents to watchlist items to create. Example :
+     * This line will be skipped
+     * header1,header2
+     * value1,value2
      */
     @JsonProperty(value = "rawContent")
     private String rawContent;
-
-    /*
-     * The Shared Access Signature (SAS) URI under which the large csv
-     * watchlist file is located and from which the watchlist and its items
-     * will be created
-     */
-    @JsonProperty(value = "sasUri")
-    private String sasUri;
 
     /*
      * The search key is used to optimize query performance when using
@@ -145,24 +131,18 @@ public final class WatchlistProperties {
     private String itemsSearchKey;
 
     /*
-     * The content type of the raw content. Example : text/csv or text/tsv
+     * The content type of the raw content. For now, only text/csv is valid
      */
     @JsonProperty(value = "contentType")
     private String contentType;
 
     /*
-     * The status of the Watchlist upload : New, InProgress or Complete. Pls
-     * note : When a Watchlist upload status is equal to InProgress, the
-     * Watchlist cannot be deleted
+     * The status of the Watchlist upload : New, InProgress or Complete.
+     * **Note** : When a Watchlist upload status is InProgress, the Watchlist
+     * cannot be deleted
      */
     @JsonProperty(value = "uploadStatus")
     private String uploadStatus;
-
-    /*
-     * The provisioning state of the watchlist resource.
-     */
-    @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
-    private ProvisioningState provisioningState;
 
     /**
      * Get the watchlistId property: The id (a Guid) of the watchlist.
@@ -225,42 +205,22 @@ public final class WatchlistProperties {
     }
 
     /**
-     * Get the source property: The filename of the watchlist, called 'source'.
+     * Get the source property: The source of the watchlist.
      *
      * @return the source value.
      */
-    public String source() {
+    public Source source() {
         return this.source;
     }
 
     /**
-     * Set the source property: The filename of the watchlist, called 'source'.
+     * Set the source property: The source of the watchlist.
      *
      * @param source the source value to set.
      * @return the WatchlistProperties object itself.
      */
-    public WatchlistProperties withSource(String source) {
+    public WatchlistProperties withSource(Source source) {
         this.source = source;
-        return this;
-    }
-
-    /**
-     * Get the sourceType property: The sourceType of the watchlist.
-     *
-     * @return the sourceType value.
-     */
-    public SourceType sourceType() {
-        return this.sourceType;
-    }
-
-    /**
-     * Set the sourceType property: The sourceType of the watchlist.
-     *
-     * @param sourceType the sourceType value to set.
-     * @return the WatchlistProperties object itself.
-     */
-    public WatchlistProperties withSourceType(SourceType sourceType) {
-        this.sourceType = sourceType;
         return this;
     }
 
@@ -485,7 +445,7 @@ public final class WatchlistProperties {
     }
 
     /**
-     * Get the numberOfLinesToSkip property: The number of lines in a csv/tsv content to skip before the header.
+     * Get the numberOfLinesToSkip property: The number of lines in a csv content to skip before the header.
      *
      * @return the numberOfLinesToSkip value.
      */
@@ -494,7 +454,7 @@ public final class WatchlistProperties {
     }
 
     /**
-     * Set the numberOfLinesToSkip property: The number of lines in a csv/tsv content to skip before the header.
+     * Set the numberOfLinesToSkip property: The number of lines in a csv content to skip before the header.
      *
      * @param numberOfLinesToSkip the numberOfLinesToSkip value to set.
      * @return the WatchlistProperties object itself.
@@ -505,8 +465,8 @@ public final class WatchlistProperties {
     }
 
     /**
-     * Get the rawContent property: The raw content that represents to watchlist items to create. In case of csv/tsv
-     * content type, it's the content of the file that will parsed by the endpoint.
+     * Get the rawContent property: The raw content that represents to watchlist items to create. Example : This line
+     * will be skipped header1,header2 value1,value2.
      *
      * @return the rawContent value.
      */
@@ -515,36 +475,14 @@ public final class WatchlistProperties {
     }
 
     /**
-     * Set the rawContent property: The raw content that represents to watchlist items to create. In case of csv/tsv
-     * content type, it's the content of the file that will parsed by the endpoint.
+     * Set the rawContent property: The raw content that represents to watchlist items to create. Example : This line
+     * will be skipped header1,header2 value1,value2.
      *
      * @param rawContent the rawContent value to set.
      * @return the WatchlistProperties object itself.
      */
     public WatchlistProperties withRawContent(String rawContent) {
         this.rawContent = rawContent;
-        return this;
-    }
-
-    /**
-     * Get the sasUri property: The Shared Access Signature (SAS) URI under which the large csv watchlist file is
-     * located and from which the watchlist and its items will be created.
-     *
-     * @return the sasUri value.
-     */
-    public String sasUri() {
-        return this.sasUri;
-    }
-
-    /**
-     * Set the sasUri property: The Shared Access Signature (SAS) URI under which the large csv watchlist file is
-     * located and from which the watchlist and its items will be created.
-     *
-     * @param sasUri the sasUri value to set.
-     * @return the WatchlistProperties object itself.
-     */
-    public WatchlistProperties withSasUri(String sasUri) {
-        this.sasUri = sasUri;
         return this;
     }
 
@@ -573,7 +511,7 @@ public final class WatchlistProperties {
     }
 
     /**
-     * Get the contentType property: The content type of the raw content. Example : text/csv or text/tsv.
+     * Get the contentType property: The content type of the raw content. For now, only text/csv is valid.
      *
      * @return the contentType value.
      */
@@ -582,7 +520,7 @@ public final class WatchlistProperties {
     }
 
     /**
-     * Set the contentType property: The content type of the raw content. Example : text/csv or text/tsv.
+     * Set the contentType property: The content type of the raw content. For now, only text/csv is valid.
      *
      * @param contentType the contentType value to set.
      * @return the WatchlistProperties object itself.
@@ -593,8 +531,8 @@ public final class WatchlistProperties {
     }
 
     /**
-     * Get the uploadStatus property: The status of the Watchlist upload : New, InProgress or Complete. Pls note : When
-     * a Watchlist upload status is equal to InProgress, the Watchlist cannot be deleted.
+     * Get the uploadStatus property: The status of the Watchlist upload : New, InProgress or Complete. **Note** : When
+     * a Watchlist upload status is InProgress, the Watchlist cannot be deleted.
      *
      * @return the uploadStatus value.
      */
@@ -603,8 +541,8 @@ public final class WatchlistProperties {
     }
 
     /**
-     * Set the uploadStatus property: The status of the Watchlist upload : New, InProgress or Complete. Pls note : When
-     * a Watchlist upload status is equal to InProgress, the Watchlist cannot be deleted.
+     * Set the uploadStatus property: The status of the Watchlist upload : New, InProgress or Complete. **Note** : When
+     * a Watchlist upload status is InProgress, the Watchlist cannot be deleted.
      *
      * @param uploadStatus the uploadStatus value to set.
      * @return the WatchlistProperties object itself.
@@ -612,15 +550,6 @@ public final class WatchlistProperties {
     public WatchlistProperties withUploadStatus(String uploadStatus) {
         this.uploadStatus = uploadStatus;
         return this;
-    }
-
-    /**
-     * Get the provisioningState property: The provisioning state of the watchlist resource.
-     *
-     * @return the provisioningState value.
-     */
-    public ProvisioningState provisioningState() {
-        return this.provisioningState;
     }
 
     /**
@@ -638,6 +567,11 @@ public final class WatchlistProperties {
             throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property provider in model WatchlistProperties"));
+        }
+        if (source() == null) {
+            throw LOGGER
+                .logExceptionAsError(
+                    new IllegalArgumentException("Missing required property source in model WatchlistProperties"));
         }
         if (createdBy() != null) {
             createdBy().validate();

@@ -108,12 +108,6 @@ public final class ScheduledAlertRuleTemplateProperties {
     private List<AttackTactic> tactics;
 
     /*
-     * The techniques of the alert rule
-     */
-    @JsonProperty(value = "techniques")
-    private List<String> techniques;
-
-    /*
      * The version of this template - in format <a.b.c>, where all are numbers.
      * For example <1.0.2>.
      */
@@ -403,26 +397,6 @@ public final class ScheduledAlertRuleTemplateProperties {
      */
     public ScheduledAlertRuleTemplateProperties withTactics(List<AttackTactic> tactics) {
         this.tactics = tactics;
-        return this;
-    }
-
-    /**
-     * Get the techniques property: The techniques of the alert rule.
-     *
-     * @return the techniques value.
-     */
-    public List<String> techniques() {
-        return this.techniques;
-    }
-
-    /**
-     * Set the techniques property: The techniques of the alert rule.
-     *
-     * @param techniques the techniques value to set.
-     * @return the ScheduledAlertRuleTemplateProperties object itself.
-     */
-    public ScheduledAlertRuleTemplateProperties withTechniques(List<String> techniques) {
-        this.techniques = techniques;
         return this;
     }
 

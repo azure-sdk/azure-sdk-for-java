@@ -29,14 +29,6 @@ public final class MicrosoftSecurityProductName extends ExpandableStringEnum<Mic
     public static final MicrosoftSecurityProductName AZURE_SECURITY_CENTER_FOR_IOT =
         fromString("Azure Security Center for IoT");
 
-    /** Static value Office 365 Advanced Threat Protection for MicrosoftSecurityProductName. */
-    public static final MicrosoftSecurityProductName OFFICE_365_ADVANCED_THREAT_PROTECTION =
-        fromString("Office 365 Advanced Threat Protection");
-
-    /** Static value Microsoft Defender Advanced Threat Protection for MicrosoftSecurityProductName. */
-    public static final MicrosoftSecurityProductName MICROSOFT_DEFENDER_ADVANCED_THREAT_PROTECTION =
-        fromString("Microsoft Defender Advanced Threat Protection");
-
     /**
      * Creates or finds a MicrosoftSecurityProductName from its string representation.
      *

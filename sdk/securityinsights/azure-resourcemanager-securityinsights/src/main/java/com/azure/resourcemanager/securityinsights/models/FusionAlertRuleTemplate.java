@@ -214,52 +214,6 @@ public final class FusionAlertRuleTemplate extends AlertRuleTemplateInner {
     }
 
     /**
-     * Get the techniques property: The techniques of the alert rule.
-     *
-     * @return the techniques value.
-     */
-    public List<String> techniques() {
-        return this.innerProperties() == null ? null : this.innerProperties().techniques();
-    }
-
-    /**
-     * Set the techniques property: The techniques of the alert rule.
-     *
-     * @param techniques the techniques value to set.
-     * @return the FusionAlertRuleTemplate object itself.
-     */
-    public FusionAlertRuleTemplate withTechniques(List<String> techniques) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new FusionAlertRuleTemplateProperties();
-        }
-        this.innerProperties().withTechniques(techniques);
-        return this;
-    }
-
-    /**
-     * Get the sourceSettings property: All supported source signal configurations consumed in fusion detection.
-     *
-     * @return the sourceSettings value.
-     */
-    public List<FusionTemplateSourceSetting> sourceSettings() {
-        return this.innerProperties() == null ? null : this.innerProperties().sourceSettings();
-    }
-
-    /**
-     * Set the sourceSettings property: All supported source signal configurations consumed in fusion detection.
-     *
-     * @param sourceSettings the sourceSettings value to set.
-     * @return the FusionAlertRuleTemplate object itself.
-     */
-    public FusionAlertRuleTemplate withSourceSettings(List<FusionTemplateSourceSetting> sourceSettings) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new FusionAlertRuleTemplateProperties();
-        }
-        this.innerProperties().withSourceSettings(sourceSettings);
-        return this;
-    }
-
-    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.

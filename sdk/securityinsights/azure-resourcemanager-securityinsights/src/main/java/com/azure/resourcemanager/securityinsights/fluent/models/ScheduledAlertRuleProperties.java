@@ -81,12 +81,6 @@ public final class ScheduledAlertRuleProperties extends ScheduledAlertRuleCommon
     private List<AttackTactic> tactics;
 
     /*
-     * The techniques of the alert rule
-     */
-    @JsonProperty(value = "techniques")
-    private List<String> techniques;
-
-    /*
      * The settings of the incidents that created from alerts triggered by this
      * analytics rule
      */
@@ -265,26 +259,6 @@ public final class ScheduledAlertRuleProperties extends ScheduledAlertRuleCommon
      */
     public ScheduledAlertRuleProperties withTactics(List<AttackTactic> tactics) {
         this.tactics = tactics;
-        return this;
-    }
-
-    /**
-     * Get the techniques property: The techniques of the alert rule.
-     *
-     * @return the techniques value.
-     */
-    public List<String> techniques() {
-        return this.techniques;
-    }
-
-    /**
-     * Set the techniques property: The techniques of the alert rule.
-     *
-     * @param techniques the techniques value to set.
-     * @return the ScheduledAlertRuleProperties object itself.
-     */
-    public ScheduledAlertRuleProperties withTechniques(List<String> techniques) {
-        this.techniques = techniques;
         return this;
     }
 

@@ -8,13 +8,12 @@ import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.securityinsights.models.AlertRuleTemplateDataSource;
 import com.azure.resourcemanager.securityinsights.models.AlertSeverity;
 import com.azure.resourcemanager.securityinsights.models.AttackTactic;
-import com.azure.resourcemanager.securityinsights.models.FusionTemplateSourceSetting;
 import com.azure.resourcemanager.securityinsights.models.TemplateStatus;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 import java.util.List;
 
-/** Fusion alert rule template properties. */
+/** Represents Fusion alert rule template properties. */
 @Fluent
 public final class FusionAlertRuleTemplateProperties {
     /*
@@ -70,18 +69,6 @@ public final class FusionAlertRuleTemplateProperties {
      */
     @JsonProperty(value = "tactics")
     private List<AttackTactic> tactics;
-
-    /*
-     * The techniques of the alert rule
-     */
-    @JsonProperty(value = "techniques")
-    private List<String> techniques;
-
-    /*
-     * All supported source signal configurations consumed in fusion detection.
-     */
-    @JsonProperty(value = "sourceSettings")
-    private List<FusionTemplateSourceSetting> sourceSettings;
 
     /**
      * Get the alertRulesCreatedByTemplateCount property: the number of alert rules that were created by this template.
@@ -244,46 +231,6 @@ public final class FusionAlertRuleTemplateProperties {
     }
 
     /**
-     * Get the techniques property: The techniques of the alert rule.
-     *
-     * @return the techniques value.
-     */
-    public List<String> techniques() {
-        return this.techniques;
-    }
-
-    /**
-     * Set the techniques property: The techniques of the alert rule.
-     *
-     * @param techniques the techniques value to set.
-     * @return the FusionAlertRuleTemplateProperties object itself.
-     */
-    public FusionAlertRuleTemplateProperties withTechniques(List<String> techniques) {
-        this.techniques = techniques;
-        return this;
-    }
-
-    /**
-     * Get the sourceSettings property: All supported source signal configurations consumed in fusion detection.
-     *
-     * @return the sourceSettings value.
-     */
-    public List<FusionTemplateSourceSetting> sourceSettings() {
-        return this.sourceSettings;
-    }
-
-    /**
-     * Set the sourceSettings property: All supported source signal configurations consumed in fusion detection.
-     *
-     * @param sourceSettings the sourceSettings value to set.
-     * @return the FusionAlertRuleTemplateProperties object itself.
-     */
-    public FusionAlertRuleTemplateProperties withSourceSettings(List<FusionTemplateSourceSetting> sourceSettings) {
-        this.sourceSettings = sourceSettings;
-        return this;
-    }
-
-    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -291,9 +238,6 @@ public final class FusionAlertRuleTemplateProperties {
     public void validate() {
         if (requiredDataConnectors() != null) {
             requiredDataConnectors().forEach(e -> e.validate());
-        }
-        if (sourceSettings() != null) {
-            sourceSettings().forEach(e -> e.validate());
         }
     }
 }

@@ -8,7 +8,6 @@ import com.azure.core.http.rest.Response;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.securityinsights.fluent.models.IncidentInner;
-import com.azure.resourcemanager.securityinsights.fluent.models.TeamInformationInner;
 import java.time.OffsetDateTime;
 import java.util.List;
 
@@ -120,20 +119,6 @@ public interface Incident {
     List<IncidentLabel> labels();
 
     /**
-     * Gets the providerName property: The name of the source provider that generated the incident.
-     *
-     * @return the providerName value.
-     */
-    String providerName();
-
-    /**
-     * Gets the providerIncidentId property: The incident ID assigned by the incident provider.
-     *
-     * @return the providerIncidentId value.
-     */
-    String providerIncidentId();
-
-    /**
      * Gets the lastActivityTimeUtc property: The time of the last activity in the incident.
      *
      * @return the lastActivityTimeUtc value.
@@ -174,13 +159,6 @@ public interface Incident {
      * @return the status value.
      */
     IncidentStatus status();
-
-    /**
-     * Gets the teamInformation property: Describes a team for the incident.
-     *
-     * @return the teamInformation value.
-     */
-    TeamInformation teamInformation();
 
     /**
      * Gets the title property: The title of the incident.
@@ -235,13 +213,10 @@ public interface Incident {
                 DefinitionStages.WithDescription,
                 DefinitionStages.WithFirstActivityTimeUtc,
                 DefinitionStages.WithLabels,
-                DefinitionStages.WithProviderName,
-                DefinitionStages.WithProviderIncidentId,
                 DefinitionStages.WithLastActivityTimeUtc,
                 DefinitionStages.WithOwner,
                 DefinitionStages.WithSeverity,
                 DefinitionStages.WithStatus,
-                DefinitionStages.WithTeamInformation,
                 DefinitionStages.WithTitle {
             /**
              * Executes the create request.
@@ -328,26 +303,6 @@ public interface Incident {
              */
             WithCreate withLabels(List<IncidentLabel> labels);
         }
-        /** The stage of the Incident definition allowing to specify providerName. */
-        interface WithProviderName {
-            /**
-             * Specifies the providerName property: The name of the source provider that generated the incident.
-             *
-             * @param providerName The name of the source provider that generated the incident.
-             * @return the next definition stage.
-             */
-            WithCreate withProviderName(String providerName);
-        }
-        /** The stage of the Incident definition allowing to specify providerIncidentId. */
-        interface WithProviderIncidentId {
-            /**
-             * Specifies the providerIncidentId property: The incident ID assigned by the incident provider.
-             *
-             * @param providerIncidentId The incident ID assigned by the incident provider.
-             * @return the next definition stage.
-             */
-            WithCreate withProviderIncidentId(String providerIncidentId);
-        }
         /** The stage of the Incident definition allowing to specify lastActivityTimeUtc. */
         interface WithLastActivityTimeUtc {
             /**
@@ -388,16 +343,6 @@ public interface Incident {
              */
             WithCreate withStatus(IncidentStatus status);
         }
-        /** The stage of the Incident definition allowing to specify teamInformation. */
-        interface WithTeamInformation {
-            /**
-             * Specifies the teamInformation property: Describes a team for the incident.
-             *
-             * @param teamInformation Describes a team for the incident.
-             * @return the next definition stage.
-             */
-            WithCreate withTeamInformation(TeamInformationInner teamInformation);
-        }
         /** The stage of the Incident definition allowing to specify title. */
         interface WithTitle {
             /**
@@ -425,13 +370,10 @@ public interface Incident {
             UpdateStages.WithDescription,
             UpdateStages.WithFirstActivityTimeUtc,
             UpdateStages.WithLabels,
-            UpdateStages.WithProviderName,
-            UpdateStages.WithProviderIncidentId,
             UpdateStages.WithLastActivityTimeUtc,
             UpdateStages.WithOwner,
             UpdateStages.WithSeverity,
             UpdateStages.WithStatus,
-            UpdateStages.WithTeamInformation,
             UpdateStages.WithTitle {
         /**
          * Executes the update request.
@@ -520,26 +462,6 @@ public interface Incident {
              */
             Update withLabels(List<IncidentLabel> labels);
         }
-        /** The stage of the Incident update allowing to specify providerName. */
-        interface WithProviderName {
-            /**
-             * Specifies the providerName property: The name of the source provider that generated the incident.
-             *
-             * @param providerName The name of the source provider that generated the incident.
-             * @return the next definition stage.
-             */
-            Update withProviderName(String providerName);
-        }
-        /** The stage of the Incident update allowing to specify providerIncidentId. */
-        interface WithProviderIncidentId {
-            /**
-             * Specifies the providerIncidentId property: The incident ID assigned by the incident provider.
-             *
-             * @param providerIncidentId The incident ID assigned by the incident provider.
-             * @return the next definition stage.
-             */
-            Update withProviderIncidentId(String providerIncidentId);
-        }
         /** The stage of the Incident update allowing to specify lastActivityTimeUtc. */
         interface WithLastActivityTimeUtc {
             /**
@@ -580,16 +502,6 @@ public interface Incident {
              */
             Update withStatus(IncidentStatus status);
         }
-        /** The stage of the Incident update allowing to specify teamInformation. */
-        interface WithTeamInformation {
-            /**
-             * Specifies the teamInformation property: Describes a team for the incident.
-             *
-             * @param teamInformation Describes a team for the incident.
-             * @return the next definition stage.
-             */
-            Update withTeamInformation(TeamInformationInner teamInformation);
-        }
         /** The stage of the Incident update allowing to specify title. */
         interface WithTitle {
             /**
@@ -617,85 +529,62 @@ public interface Incident {
     Incident refresh(Context context);
 
     /**
-     * Creates a Microsoft team to investigate the incident by sharing information and insights between participants.
-     *
-     * @param teamProperties Team properties.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return describes team information.
-     */
-    TeamInformation createTeam(TeamProperties teamProperties);
-
-    /**
-     * Creates a Microsoft team to investigate the incident by sharing information and insights between participants.
-     *
-     * @param teamProperties Team properties.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return describes team information along with {@link Response}.
-     */
-    Response<TeamInformation> createTeamWithResponse(TeamProperties teamProperties, Context context);
-
-    /**
-     * Gets all incident alerts.
+     * Gets all alerts for an incident.
      *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all incident alerts.
+     * @return all alerts for an incident.
      */
     IncidentAlertList listAlerts();
 
     /**
-     * Gets all incident alerts.
+     * Gets all alerts for an incident.
      *
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all incident alerts along with {@link Response}.
+     * @return all alerts for an incident along with {@link Response}.
      */
     Response<IncidentAlertList> listAlertsWithResponse(Context context);
 
     /**
-     * Gets all incident bookmarks.
+     * Gets all bookmarks for an incident.
      *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all incident bookmarks.
+     * @return all bookmarks for an incident.
      */
     IncidentBookmarkList listBookmarks();
 
     /**
-     * Gets all incident bookmarks.
+     * Gets all bookmarks for an incident.
      *
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all incident bookmarks along with {@link Response}.
+     * @return all bookmarks for an incident along with {@link Response}.
      */
     Response<IncidentBookmarkList> listBookmarksWithResponse(Context context);
 
     /**
-     * Gets all incident related entities.
+     * Gets all entities for an incident.
      *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all incident related entities.
+     * @return all entities for an incident.
      */
     IncidentEntitiesResponse listEntities();
 
     /**
-     * Gets all incident related entities.
+     * Gets all entities for an incident.
      *
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all incident related entities along with {@link Response}.
+     * @return all entities for an incident along with {@link Response}.
      */
     Response<IncidentEntitiesResponse> listEntitiesWithResponse(Context context);
 }

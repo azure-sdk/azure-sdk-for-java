@@ -5,9 +5,8 @@
 package com.azure.resourcemanager.securityinsights.fluent.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.resourcemanager.securityinsights.models.ProvisioningState;
 import com.azure.resourcemanager.securityinsights.models.ResourceWithEtag;
-import com.azure.resourcemanager.securityinsights.models.SourceType;
+import com.azure.resourcemanager.securityinsights.models.Source;
 import com.azure.resourcemanager.securityinsights.models.UserInfo;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.Duration;
@@ -109,48 +108,25 @@ public final class WatchlistInner extends ResourceWithEtag {
     }
 
     /**
-     * Get the source property: The filename of the watchlist, called 'source'.
+     * Get the source property: The source of the watchlist.
      *
      * @return the source value.
      */
-    public String source() {
+    public Source source() {
         return this.innerProperties() == null ? null : this.innerProperties().source();
     }
 
     /**
-     * Set the source property: The filename of the watchlist, called 'source'.
+     * Set the source property: The source of the watchlist.
      *
      * @param source the source value to set.
      * @return the WatchlistInner object itself.
      */
-    public WatchlistInner withSource(String source) {
+    public WatchlistInner withSource(Source source) {
         if (this.innerProperties() == null) {
             this.innerProperties = new WatchlistProperties();
         }
         this.innerProperties().withSource(source);
-        return this;
-    }
-
-    /**
-     * Get the sourceType property: The sourceType of the watchlist.
-     *
-     * @return the sourceType value.
-     */
-    public SourceType sourceType() {
-        return this.innerProperties() == null ? null : this.innerProperties().sourceType();
-    }
-
-    /**
-     * Set the sourceType property: The sourceType of the watchlist.
-     *
-     * @param sourceType the sourceType value to set.
-     * @return the WatchlistInner object itself.
-     */
-    public WatchlistInner withSourceType(SourceType sourceType) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new WatchlistProperties();
-        }
-        this.innerProperties().withSourceType(sourceType);
         return this;
     }
 
@@ -408,7 +384,7 @@ public final class WatchlistInner extends ResourceWithEtag {
     }
 
     /**
-     * Get the numberOfLinesToSkip property: The number of lines in a csv/tsv content to skip before the header.
+     * Get the numberOfLinesToSkip property: The number of lines in a csv content to skip before the header.
      *
      * @return the numberOfLinesToSkip value.
      */
@@ -417,7 +393,7 @@ public final class WatchlistInner extends ResourceWithEtag {
     }
 
     /**
-     * Set the numberOfLinesToSkip property: The number of lines in a csv/tsv content to skip before the header.
+     * Set the numberOfLinesToSkip property: The number of lines in a csv content to skip before the header.
      *
      * @param numberOfLinesToSkip the numberOfLinesToSkip value to set.
      * @return the WatchlistInner object itself.
@@ -431,8 +407,8 @@ public final class WatchlistInner extends ResourceWithEtag {
     }
 
     /**
-     * Get the rawContent property: The raw content that represents to watchlist items to create. In case of csv/tsv
-     * content type, it's the content of the file that will parsed by the endpoint.
+     * Get the rawContent property: The raw content that represents to watchlist items to create. Example : This line
+     * will be skipped header1,header2 value1,value2.
      *
      * @return the rawContent value.
      */
@@ -441,8 +417,8 @@ public final class WatchlistInner extends ResourceWithEtag {
     }
 
     /**
-     * Set the rawContent property: The raw content that represents to watchlist items to create. In case of csv/tsv
-     * content type, it's the content of the file that will parsed by the endpoint.
+     * Set the rawContent property: The raw content that represents to watchlist items to create. Example : This line
+     * will be skipped header1,header2 value1,value2.
      *
      * @param rawContent the rawContent value to set.
      * @return the WatchlistInner object itself.
@@ -452,31 +428,6 @@ public final class WatchlistInner extends ResourceWithEtag {
             this.innerProperties = new WatchlistProperties();
         }
         this.innerProperties().withRawContent(rawContent);
-        return this;
-    }
-
-    /**
-     * Get the sasUri property: The Shared Access Signature (SAS) URI under which the large csv watchlist file is
-     * located and from which the watchlist and its items will be created.
-     *
-     * @return the sasUri value.
-     */
-    public String sasUri() {
-        return this.innerProperties() == null ? null : this.innerProperties().sasUri();
-    }
-
-    /**
-     * Set the sasUri property: The Shared Access Signature (SAS) URI under which the large csv watchlist file is
-     * located and from which the watchlist and its items will be created.
-     *
-     * @param sasUri the sasUri value to set.
-     * @return the WatchlistInner object itself.
-     */
-    public WatchlistInner withSasUri(String sasUri) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new WatchlistProperties();
-        }
-        this.innerProperties().withSasUri(sasUri);
         return this;
     }
 
@@ -508,7 +459,7 @@ public final class WatchlistInner extends ResourceWithEtag {
     }
 
     /**
-     * Get the contentType property: The content type of the raw content. Example : text/csv or text/tsv.
+     * Get the contentType property: The content type of the raw content. For now, only text/csv is valid.
      *
      * @return the contentType value.
      */
@@ -517,7 +468,7 @@ public final class WatchlistInner extends ResourceWithEtag {
     }
 
     /**
-     * Set the contentType property: The content type of the raw content. Example : text/csv or text/tsv.
+     * Set the contentType property: The content type of the raw content. For now, only text/csv is valid.
      *
      * @param contentType the contentType value to set.
      * @return the WatchlistInner object itself.
@@ -531,8 +482,8 @@ public final class WatchlistInner extends ResourceWithEtag {
     }
 
     /**
-     * Get the uploadStatus property: The status of the Watchlist upload : New, InProgress or Complete. Pls note : When
-     * a Watchlist upload status is equal to InProgress, the Watchlist cannot be deleted.
+     * Get the uploadStatus property: The status of the Watchlist upload : New, InProgress or Complete. **Note** : When
+     * a Watchlist upload status is InProgress, the Watchlist cannot be deleted.
      *
      * @return the uploadStatus value.
      */
@@ -541,8 +492,8 @@ public final class WatchlistInner extends ResourceWithEtag {
     }
 
     /**
-     * Set the uploadStatus property: The status of the Watchlist upload : New, InProgress or Complete. Pls note : When
-     * a Watchlist upload status is equal to InProgress, the Watchlist cannot be deleted.
+     * Set the uploadStatus property: The status of the Watchlist upload : New, InProgress or Complete. **Note** : When
+     * a Watchlist upload status is InProgress, the Watchlist cannot be deleted.
      *
      * @param uploadStatus the uploadStatus value to set.
      * @return the WatchlistInner object itself.
@@ -553,15 +504,6 @@ public final class WatchlistInner extends ResourceWithEtag {
         }
         this.innerProperties().withUploadStatus(uploadStatus);
         return this;
-    }
-
-    /**
-     * Get the provisioningState property: The provisioning state of the watchlist resource.
-     *
-     * @return the provisioningState value.
-     */
-    public ProvisioningState provisioningState() {
-        return this.innerProperties() == null ? null : this.innerProperties().provisioningState();
     }
 
     /**

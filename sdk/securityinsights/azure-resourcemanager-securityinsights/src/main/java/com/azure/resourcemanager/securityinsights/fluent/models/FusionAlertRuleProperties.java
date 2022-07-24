@@ -8,8 +8,6 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.securityinsights.models.AlertSeverity;
 import com.azure.resourcemanager.securityinsights.models.AttackTactic;
-import com.azure.resourcemanager.securityinsights.models.FusionScenarioExclusionPattern;
-import com.azure.resourcemanager.securityinsights.models.FusionSourceSettings;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 import java.util.List;
@@ -42,18 +40,6 @@ public final class FusionAlertRuleProperties {
     private boolean enabled;
 
     /*
-     * Configuration for all supported source signals in fusion detection.
-     */
-    @JsonProperty(value = "sourceSettings")
-    private List<FusionSourceSettings> sourceSettings;
-
-    /*
-     * Configuration to exclude scenarios in fusion detection.
-     */
-    @JsonProperty(value = "scenarioExclusionPatterns")
-    private List<FusionScenarioExclusionPattern> scenarioExclusionPatterns;
-
-    /*
      * The last time that this alert has been modified.
      */
     @JsonProperty(value = "lastModifiedUtc", access = JsonProperty.Access.WRITE_ONLY)
@@ -70,12 +56,6 @@ public final class FusionAlertRuleProperties {
      */
     @JsonProperty(value = "tactics", access = JsonProperty.Access.WRITE_ONLY)
     private List<AttackTactic> tactics;
-
-    /*
-     * The techniques of the alert rule
-     */
-    @JsonProperty(value = "techniques", access = JsonProperty.Access.WRITE_ONLY)
-    private List<String> techniques;
 
     /**
      * Get the alertRuleTemplateName property: The Name of the alert rule template used to create this rule.
@@ -136,47 +116,6 @@ public final class FusionAlertRuleProperties {
     }
 
     /**
-     * Get the sourceSettings property: Configuration for all supported source signals in fusion detection.
-     *
-     * @return the sourceSettings value.
-     */
-    public List<FusionSourceSettings> sourceSettings() {
-        return this.sourceSettings;
-    }
-
-    /**
-     * Set the sourceSettings property: Configuration for all supported source signals in fusion detection.
-     *
-     * @param sourceSettings the sourceSettings value to set.
-     * @return the FusionAlertRuleProperties object itself.
-     */
-    public FusionAlertRuleProperties withSourceSettings(List<FusionSourceSettings> sourceSettings) {
-        this.sourceSettings = sourceSettings;
-        return this;
-    }
-
-    /**
-     * Get the scenarioExclusionPatterns property: Configuration to exclude scenarios in fusion detection.
-     *
-     * @return the scenarioExclusionPatterns value.
-     */
-    public List<FusionScenarioExclusionPattern> scenarioExclusionPatterns() {
-        return this.scenarioExclusionPatterns;
-    }
-
-    /**
-     * Set the scenarioExclusionPatterns property: Configuration to exclude scenarios in fusion detection.
-     *
-     * @param scenarioExclusionPatterns the scenarioExclusionPatterns value to set.
-     * @return the FusionAlertRuleProperties object itself.
-     */
-    public FusionAlertRuleProperties withScenarioExclusionPatterns(
-        List<FusionScenarioExclusionPattern> scenarioExclusionPatterns) {
-        this.scenarioExclusionPatterns = scenarioExclusionPatterns;
-        return this;
-    }
-
-    /**
      * Get the lastModifiedUtc property: The last time that this alert has been modified.
      *
      * @return the lastModifiedUtc value.
@@ -204,15 +143,6 @@ public final class FusionAlertRuleProperties {
     }
 
     /**
-     * Get the techniques property: The techniques of the alert rule.
-     *
-     * @return the techniques value.
-     */
-    public List<String> techniques() {
-        return this.techniques;
-    }
-
-    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -223,12 +153,6 @@ public final class FusionAlertRuleProperties {
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property alertRuleTemplateName in model FusionAlertRuleProperties"));
-        }
-        if (sourceSettings() != null) {
-            sourceSettings().forEach(e -> e.validate());
-        }
-        if (scenarioExclusionPatterns() != null) {
-            scenarioExclusionPatterns().forEach(e -> e.validate());
         }
     }
 

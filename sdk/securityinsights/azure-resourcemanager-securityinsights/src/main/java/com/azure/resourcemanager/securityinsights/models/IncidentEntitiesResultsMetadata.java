@@ -22,7 +22,7 @@ public final class IncidentEntitiesResultsMetadata {
      * The kind of the aggregated entity.
      */
     @JsonProperty(value = "entityKind", required = true)
-    private EntityKind entityKind;
+    private EntityKindEnum entityKind;
 
     /**
      * Get the count property: Total number of aggregations of the given kind in the incident related entities result.
@@ -49,7 +49,7 @@ public final class IncidentEntitiesResultsMetadata {
      *
      * @return the entityKind value.
      */
-    public EntityKind entityKind() {
+    public EntityKindEnum entityKind() {
         return this.entityKind;
     }
 
@@ -59,7 +59,7 @@ public final class IncidentEntitiesResultsMetadata {
      * @param entityKind the entityKind value to set.
      * @return the IncidentEntitiesResultsMetadata object itself.
      */
-    public IncidentEntitiesResultsMetadata withEntityKind(EntityKind entityKind) {
+    public IncidentEntitiesResultsMetadata withEntityKind(EntityKindEnum entityKind) {
         this.entityKind = entityKind;
         return this;
     }

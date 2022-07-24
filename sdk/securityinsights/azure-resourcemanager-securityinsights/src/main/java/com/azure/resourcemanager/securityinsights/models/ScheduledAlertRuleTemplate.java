@@ -331,29 +331,6 @@ public final class ScheduledAlertRuleTemplate extends AlertRuleTemplateInner {
     }
 
     /**
-     * Get the techniques property: The techniques of the alert rule.
-     *
-     * @return the techniques value.
-     */
-    public List<String> techniques() {
-        return this.innerProperties() == null ? null : this.innerProperties().techniques();
-    }
-
-    /**
-     * Set the techniques property: The techniques of the alert rule.
-     *
-     * @param techniques the techniques value to set.
-     * @return the ScheduledAlertRuleTemplate object itself.
-     */
-    public ScheduledAlertRuleTemplate withTechniques(List<String> techniques) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new ScheduledAlertRuleTemplateProperties();
-        }
-        this.innerProperties().withTechniques(techniques);
-        return this;
-    }
-
-    /**
      * Get the version property: The version of this template - in format &lt;a.b.c&gt;, where all are numbers. For
      * example &lt;1.0.2&gt;.
      *

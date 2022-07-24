@@ -242,29 +242,6 @@ public final class ScheduledAlertRule extends AlertRuleInner {
     }
 
     /**
-     * Get the techniques property: The techniques of the alert rule.
-     *
-     * @return the techniques value.
-     */
-    public List<String> techniques() {
-        return this.innerProperties() == null ? null : this.innerProperties().techniques();
-    }
-
-    /**
-     * Set the techniques property: The techniques of the alert rule.
-     *
-     * @param techniques the techniques value to set.
-     * @return the ScheduledAlertRule object itself.
-     */
-    public ScheduledAlertRule withTechniques(List<String> techniques) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new ScheduledAlertRuleProperties();
-        }
-        this.innerProperties().withTechniques(techniques);
-        return this;
-    }
-
-    /**
      * Get the incidentConfiguration property: The settings of the incidents that created from alerts triggered by this
      * analytics rule.
      *

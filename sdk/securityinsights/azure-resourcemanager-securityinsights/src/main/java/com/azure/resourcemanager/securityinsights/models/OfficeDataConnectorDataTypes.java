@@ -5,7 +5,6 @@
 package com.azure.resourcemanager.securityinsights.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** The available data types for office data connector. */
@@ -14,19 +13,19 @@ public final class OfficeDataConnectorDataTypes {
     /*
      * Exchange data type connection.
      */
-    @JsonProperty(value = "exchange", required = true)
+    @JsonProperty(value = "exchange")
     private OfficeDataConnectorDataTypesExchange exchange;
 
     /*
      * SharePoint data type connection.
      */
-    @JsonProperty(value = "sharePoint", required = true)
+    @JsonProperty(value = "sharePoint")
     private OfficeDataConnectorDataTypesSharePoint sharePoint;
 
     /*
      * Teams data type connection.
      */
-    @JsonProperty(value = "teams", required = true)
+    @JsonProperty(value = "teams")
     private OfficeDataConnectorDataTypesTeams teams;
 
     /**
@@ -95,31 +94,14 @@ public final class OfficeDataConnectorDataTypes {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (exchange() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property exchange in model OfficeDataConnectorDataTypes"));
-        } else {
+        if (exchange() != null) {
             exchange().validate();
         }
-        if (sharePoint() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property sharePoint in model OfficeDataConnectorDataTypes"));
-        } else {
+        if (sharePoint() != null) {
             sharePoint().validate();
         }
-        if (teams() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property teams in model OfficeDataConnectorDataTypes"));
-        } else {
+        if (teams() != null) {
             teams().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(OfficeDataConnectorDataTypes.class);
 }

@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for WatchlistItems Get. */
 public final class WatchlistItemsGetSamples {
     /*
-     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-01-01-preview/examples/watchlists/GetWatchlistItemById.json
+     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/stable/2022-08-01/examples/watchlists/GetWatchlistItemById.json
      */
     /**
      * Sample code: Get a watchlist item.
