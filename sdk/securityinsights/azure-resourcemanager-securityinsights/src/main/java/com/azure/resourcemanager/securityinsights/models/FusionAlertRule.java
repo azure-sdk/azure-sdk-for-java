@@ -105,53 +105,6 @@ public final class FusionAlertRule extends AlertRuleInner {
     }
 
     /**
-     * Get the sourceSettings property: Configuration for all supported source signals in fusion detection.
-     *
-     * @return the sourceSettings value.
-     */
-    public List<FusionSourceSettings> sourceSettings() {
-        return this.innerProperties() == null ? null : this.innerProperties().sourceSettings();
-    }
-
-    /**
-     * Set the sourceSettings property: Configuration for all supported source signals in fusion detection.
-     *
-     * @param sourceSettings the sourceSettings value to set.
-     * @return the FusionAlertRule object itself.
-     */
-    public FusionAlertRule withSourceSettings(List<FusionSourceSettings> sourceSettings) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new FusionAlertRuleProperties();
-        }
-        this.innerProperties().withSourceSettings(sourceSettings);
-        return this;
-    }
-
-    /**
-     * Get the scenarioExclusionPatterns property: Configuration to exclude scenarios in fusion detection.
-     *
-     * @return the scenarioExclusionPatterns value.
-     */
-    public List<FusionScenarioExclusionPattern> scenarioExclusionPatterns() {
-        return this.innerProperties() == null ? null : this.innerProperties().scenarioExclusionPatterns();
-    }
-
-    /**
-     * Set the scenarioExclusionPatterns property: Configuration to exclude scenarios in fusion detection.
-     *
-     * @param scenarioExclusionPatterns the scenarioExclusionPatterns value to set.
-     * @return the FusionAlertRule object itself.
-     */
-    public FusionAlertRule withScenarioExclusionPatterns(
-        List<FusionScenarioExclusionPattern> scenarioExclusionPatterns) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new FusionAlertRuleProperties();
-        }
-        this.innerProperties().withScenarioExclusionPatterns(scenarioExclusionPatterns);
-        return this;
-    }
-
-    /**
      * Get the lastModifiedUtc property: The last time that this alert has been modified.
      *
      * @return the lastModifiedUtc value.
@@ -185,6 +138,20 @@ public final class FusionAlertRule extends AlertRuleInner {
      */
     public List<String> techniques() {
         return this.innerProperties() == null ? null : this.innerProperties().techniques();
+    }
+
+    /**
+     * Set the techniques property: The techniques of the alert rule.
+     *
+     * @param techniques the techniques value to set.
+     * @return the FusionAlertRule object itself.
+     */
+    public FusionAlertRule withTechniques(List<String> techniques) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new FusionAlertRuleProperties();
+        }
+        this.innerProperties().withTechniques(techniques);
+        return this;
     }
 
     /**

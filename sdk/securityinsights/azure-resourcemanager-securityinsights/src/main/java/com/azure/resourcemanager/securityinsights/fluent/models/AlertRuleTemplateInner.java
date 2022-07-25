@@ -8,11 +8,8 @@ import com.azure.core.annotation.Immutable;
 import com.azure.core.management.ProxyResource;
 import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.securityinsights.models.FusionAlertRuleTemplate;
-import com.azure.resourcemanager.securityinsights.models.MLBehaviorAnalyticsAlertRuleTemplate;
 import com.azure.resourcemanager.securityinsights.models.MicrosoftSecurityIncidentCreationAlertRuleTemplate;
-import com.azure.resourcemanager.securityinsights.models.NrtAlertRuleTemplate;
 import com.azure.resourcemanager.securityinsights.models.ScheduledAlertRuleTemplate;
-import com.azure.resourcemanager.securityinsights.models.ThreatIntelligenceAlertRuleTemplate;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
@@ -26,14 +23,11 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     defaultImpl = AlertRuleTemplateInner.class)
 @JsonTypeName("AlertRuleTemplate")
 @JsonSubTypes({
-    @JsonSubTypes.Type(name = "MLBehaviorAnalytics", value = MLBehaviorAnalyticsAlertRuleTemplate.class),
     @JsonSubTypes.Type(name = "Fusion", value = FusionAlertRuleTemplate.class),
-    @JsonSubTypes.Type(name = "ThreatIntelligence", value = ThreatIntelligenceAlertRuleTemplate.class),
     @JsonSubTypes.Type(
         name = "MicrosoftSecurityIncidentCreation",
         value = MicrosoftSecurityIncidentCreationAlertRuleTemplate.class),
-    @JsonSubTypes.Type(name = "Scheduled", value = ScheduledAlertRuleTemplate.class),
-    @JsonSubTypes.Type(name = "NRT", value = NrtAlertRuleTemplate.class)
+    @JsonSubTypes.Type(name = "Scheduled", value = ScheduledAlertRuleTemplate.class)
 })
 @Immutable
 public class AlertRuleTemplateInner extends ProxyResource {

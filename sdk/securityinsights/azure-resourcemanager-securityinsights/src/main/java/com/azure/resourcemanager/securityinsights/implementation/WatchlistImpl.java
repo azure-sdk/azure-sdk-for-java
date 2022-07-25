@@ -7,8 +7,7 @@ package com.azure.resourcemanager.securityinsights.implementation;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.securityinsights.fluent.models.WatchlistInner;
-import com.azure.resourcemanager.securityinsights.models.ProvisioningState;
-import com.azure.resourcemanager.securityinsights.models.SourceType;
+import com.azure.resourcemanager.securityinsights.models.Source;
 import com.azure.resourcemanager.securityinsights.models.UserInfo;
 import com.azure.resourcemanager.securityinsights.models.Watchlist;
 import java.time.Duration;
@@ -53,12 +52,8 @@ public final class WatchlistImpl implements Watchlist, Watchlist.Definition, Wat
         return this.innerModel().provider();
     }
 
-    public String source() {
+    public Source source() {
         return this.innerModel().source();
-    }
-
-    public SourceType sourceType() {
-        return this.innerModel().sourceType();
     }
 
     public OffsetDateTime created() {
@@ -118,10 +113,6 @@ public final class WatchlistImpl implements Watchlist, Watchlist.Definition, Wat
         return this.innerModel().rawContent();
     }
 
-    public String sasUri() {
-        return this.innerModel().sasUri();
-    }
-
     public String itemsSearchKey() {
         return this.innerModel().itemsSearchKey();
     }
@@ -132,10 +123,6 @@ public final class WatchlistImpl implements Watchlist, Watchlist.Definition, Wat
 
     public String uploadStatus() {
         return this.innerModel().uploadStatus();
-    }
-
-    public ProvisioningState provisioningState() {
-        return this.innerModel().provisioningState();
     }
 
     public String resourceGroupName() {
@@ -265,13 +252,8 @@ public final class WatchlistImpl implements Watchlist, Watchlist.Definition, Wat
         return this;
     }
 
-    public WatchlistImpl withSource(String source) {
+    public WatchlistImpl withSource(Source source) {
         this.innerModel().withSource(source);
-        return this;
-    }
-
-    public WatchlistImpl withSourceType(SourceType sourceType) {
-        this.innerModel().withSourceType(sourceType);
         return this;
     }
 
@@ -337,11 +319,6 @@ public final class WatchlistImpl implements Watchlist, Watchlist.Definition, Wat
 
     public WatchlistImpl withRawContent(String rawContent) {
         this.innerModel().withRawContent(rawContent);
-        return this;
-    }
-
-    public WatchlistImpl withSasUri(String sasUri) {
-        this.innerModel().withSasUri(sasUri);
         return this;
     }
 

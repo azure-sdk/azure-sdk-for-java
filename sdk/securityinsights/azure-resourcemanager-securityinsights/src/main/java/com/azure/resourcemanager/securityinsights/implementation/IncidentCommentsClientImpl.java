@@ -146,7 +146,7 @@ public final class IncidentCommentsClientImpl implements IncidentCommentsClient 
     }
 
     /**
-     * Gets all incident comments.
+     * Gets all comments for a given incident.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -160,7 +160,8 @@ public final class IncidentCommentsClientImpl implements IncidentCommentsClient 
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all incident comments along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return all comments for a given incident along with {@link PagedResponse} on successful completion of {@link
+     *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<IncidentCommentInner>> listSinglePageAsync(
@@ -224,7 +225,7 @@ public final class IncidentCommentsClientImpl implements IncidentCommentsClient 
     }
 
     /**
-     * Gets all incident comments.
+     * Gets all comments for a given incident.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -239,7 +240,8 @@ public final class IncidentCommentsClientImpl implements IncidentCommentsClient 
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all incident comments along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return all comments for a given incident along with {@link PagedResponse} on successful completion of {@link
+     *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<IncidentCommentInner>> listSinglePageAsync(
@@ -301,7 +303,7 @@ public final class IncidentCommentsClientImpl implements IncidentCommentsClient 
     }
 
     /**
-     * Gets all incident comments.
+     * Gets all comments for a given incident.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -315,7 +317,7 @@ public final class IncidentCommentsClientImpl implements IncidentCommentsClient 
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all incident comments as paginated response with {@link PagedFlux}.
+     * @return all comments for a given incident as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<IncidentCommentInner> listAsync(
@@ -332,7 +334,7 @@ public final class IncidentCommentsClientImpl implements IncidentCommentsClient 
     }
 
     /**
-     * Gets all incident comments.
+     * Gets all comments for a given incident.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -340,7 +342,7 @@ public final class IncidentCommentsClientImpl implements IncidentCommentsClient 
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all incident comments as paginated response with {@link PagedFlux}.
+     * @return all comments for a given incident as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<IncidentCommentInner> listAsync(
@@ -355,7 +357,7 @@ public final class IncidentCommentsClientImpl implements IncidentCommentsClient 
     }
 
     /**
-     * Gets all incident comments.
+     * Gets all comments for a given incident.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -370,7 +372,7 @@ public final class IncidentCommentsClientImpl implements IncidentCommentsClient 
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all incident comments as paginated response with {@link PagedFlux}.
+     * @return all comments for a given incident as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<IncidentCommentInner> listAsync(
@@ -390,7 +392,7 @@ public final class IncidentCommentsClientImpl implements IncidentCommentsClient 
     }
 
     /**
-     * Gets all incident comments.
+     * Gets all comments for a given incident.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -398,7 +400,7 @@ public final class IncidentCommentsClientImpl implements IncidentCommentsClient 
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all incident comments as paginated response with {@link PagedIterable}.
+     * @return all comments for a given incident as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<IncidentCommentInner> list(String resourceGroupName, String workspaceName, String incidentId) {
@@ -411,7 +413,7 @@ public final class IncidentCommentsClientImpl implements IncidentCommentsClient 
     }
 
     /**
-     * Gets all incident comments.
+     * Gets all comments for a given incident.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -426,7 +428,7 @@ public final class IncidentCommentsClientImpl implements IncidentCommentsClient 
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all incident comments as paginated response with {@link PagedIterable}.
+     * @return all comments for a given incident as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<IncidentCommentInner> list(
@@ -443,7 +445,7 @@ public final class IncidentCommentsClientImpl implements IncidentCommentsClient 
     }
 
     /**
-     * Gets an incident comment.
+     * Gets a comment for a given incident.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -452,7 +454,7 @@ public final class IncidentCommentsClientImpl implements IncidentCommentsClient 
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an incident comment along with {@link Response} on successful completion of {@link Mono}.
+     * @return a comment for a given incident along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<IncidentCommentInner>> getWithResponseAsync(
@@ -502,7 +504,7 @@ public final class IncidentCommentsClientImpl implements IncidentCommentsClient 
     }
 
     /**
-     * Gets an incident comment.
+     * Gets a comment for a given incident.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -512,7 +514,7 @@ public final class IncidentCommentsClientImpl implements IncidentCommentsClient 
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an incident comment along with {@link Response} on successful completion of {@link Mono}.
+     * @return a comment for a given incident along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<IncidentCommentInner>> getWithResponseAsync(
@@ -559,7 +561,7 @@ public final class IncidentCommentsClientImpl implements IncidentCommentsClient 
     }
 
     /**
-     * Gets an incident comment.
+     * Gets a comment for a given incident.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -568,7 +570,7 @@ public final class IncidentCommentsClientImpl implements IncidentCommentsClient 
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an incident comment on successful completion of {@link Mono}.
+     * @return a comment for a given incident on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<IncidentCommentInner> getAsync(
@@ -578,7 +580,7 @@ public final class IncidentCommentsClientImpl implements IncidentCommentsClient 
     }
 
     /**
-     * Gets an incident comment.
+     * Gets a comment for a given incident.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -587,7 +589,7 @@ public final class IncidentCommentsClientImpl implements IncidentCommentsClient 
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an incident comment.
+     * @return a comment for a given incident.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public IncidentCommentInner get(
@@ -596,7 +598,7 @@ public final class IncidentCommentsClientImpl implements IncidentCommentsClient 
     }
 
     /**
-     * Gets an incident comment.
+     * Gets a comment for a given incident.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -606,7 +608,7 @@ public final class IncidentCommentsClientImpl implements IncidentCommentsClient 
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an incident comment along with {@link Response}.
+     * @return a comment for a given incident along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<IncidentCommentInner> getWithResponse(
@@ -615,7 +617,7 @@ public final class IncidentCommentsClientImpl implements IncidentCommentsClient 
     }
 
     /**
-     * Creates or updates the incident comment.
+     * Creates or updates a comment for a given incident.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -686,7 +688,7 @@ public final class IncidentCommentsClientImpl implements IncidentCommentsClient 
     }
 
     /**
-     * Creates or updates the incident comment.
+     * Creates or updates a comment for a given incident.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -756,7 +758,7 @@ public final class IncidentCommentsClientImpl implements IncidentCommentsClient 
     }
 
     /**
-     * Creates or updates the incident comment.
+     * Creates or updates a comment for a given incident.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -781,7 +783,7 @@ public final class IncidentCommentsClientImpl implements IncidentCommentsClient 
     }
 
     /**
-     * Creates or updates the incident comment.
+     * Creates or updates a comment for a given incident.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -805,7 +807,7 @@ public final class IncidentCommentsClientImpl implements IncidentCommentsClient 
     }
 
     /**
-     * Creates or updates the incident comment.
+     * Creates or updates a comment for a given incident.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -832,7 +834,7 @@ public final class IncidentCommentsClientImpl implements IncidentCommentsClient 
     }
 
     /**
-     * Delete the incident comment.
+     * Deletes a comment for a given incident.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -891,7 +893,7 @@ public final class IncidentCommentsClientImpl implements IncidentCommentsClient 
     }
 
     /**
-     * Delete the incident comment.
+     * Deletes a comment for a given incident.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -948,7 +950,7 @@ public final class IncidentCommentsClientImpl implements IncidentCommentsClient 
     }
 
     /**
-     * Delete the incident comment.
+     * Deletes a comment for a given incident.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -967,7 +969,7 @@ public final class IncidentCommentsClientImpl implements IncidentCommentsClient 
     }
 
     /**
-     * Delete the incident comment.
+     * Deletes a comment for a given incident.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -983,7 +985,7 @@ public final class IncidentCommentsClientImpl implements IncidentCommentsClient 
     }
 
     /**
-     * Delete the incident comment.
+     * Deletes a comment for a given incident.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.

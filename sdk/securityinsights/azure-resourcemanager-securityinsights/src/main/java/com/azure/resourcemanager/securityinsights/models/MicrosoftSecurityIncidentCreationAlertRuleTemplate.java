@@ -34,6 +34,141 @@ public final class MicrosoftSecurityIncidentCreationAlertRuleTemplate extends Al
     }
 
     /**
+     * Get the alertRulesCreatedByTemplateCount property: the number of alert rules that were created by this template.
+     *
+     * @return the alertRulesCreatedByTemplateCount value.
+     */
+    public Integer alertRulesCreatedByTemplateCount() {
+        return this.innerProperties() == null ? null : this.innerProperties().alertRulesCreatedByTemplateCount();
+    }
+
+    /**
+     * Set the alertRulesCreatedByTemplateCount property: the number of alert rules that were created by this template.
+     *
+     * @param alertRulesCreatedByTemplateCount the alertRulesCreatedByTemplateCount value to set.
+     * @return the MicrosoftSecurityIncidentCreationAlertRuleTemplate object itself.
+     */
+    public MicrosoftSecurityIncidentCreationAlertRuleTemplate withAlertRulesCreatedByTemplateCount(
+        Integer alertRulesCreatedByTemplateCount) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new MicrosoftSecurityIncidentCreationAlertRuleTemplateProperties();
+        }
+        this.innerProperties().withAlertRulesCreatedByTemplateCount(alertRulesCreatedByTemplateCount);
+        return this;
+    }
+
+    /**
+     * Get the createdDateUtc property: The time that this alert rule template has been added.
+     *
+     * @return the createdDateUtc value.
+     */
+    public OffsetDateTime createdDateUtc() {
+        return this.innerProperties() == null ? null : this.innerProperties().createdDateUtc();
+    }
+
+    /**
+     * Get the lastUpdatedDateUtc property: The time that this alert rule template was last updated.
+     *
+     * @return the lastUpdatedDateUtc value.
+     */
+    public OffsetDateTime lastUpdatedDateUtc() {
+        return this.innerProperties() == null ? null : this.innerProperties().lastUpdatedDateUtc();
+    }
+
+    /**
+     * Get the description property: The description of the alert rule template.
+     *
+     * @return the description value.
+     */
+    public String description() {
+        return this.innerProperties() == null ? null : this.innerProperties().description();
+    }
+
+    /**
+     * Set the description property: The description of the alert rule template.
+     *
+     * @param description the description value to set.
+     * @return the MicrosoftSecurityIncidentCreationAlertRuleTemplate object itself.
+     */
+    public MicrosoftSecurityIncidentCreationAlertRuleTemplate withDescription(String description) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new MicrosoftSecurityIncidentCreationAlertRuleTemplateProperties();
+        }
+        this.innerProperties().withDescription(description);
+        return this;
+    }
+
+    /**
+     * Get the displayName property: The display name for alert rule template.
+     *
+     * @return the displayName value.
+     */
+    public String displayName() {
+        return this.innerProperties() == null ? null : this.innerProperties().displayName();
+    }
+
+    /**
+     * Set the displayName property: The display name for alert rule template.
+     *
+     * @param displayName the displayName value to set.
+     * @return the MicrosoftSecurityIncidentCreationAlertRuleTemplate object itself.
+     */
+    public MicrosoftSecurityIncidentCreationAlertRuleTemplate withDisplayName(String displayName) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new MicrosoftSecurityIncidentCreationAlertRuleTemplateProperties();
+        }
+        this.innerProperties().withDisplayName(displayName);
+        return this;
+    }
+
+    /**
+     * Get the requiredDataConnectors property: The required data connectors for this template.
+     *
+     * @return the requiredDataConnectors value.
+     */
+    public List<AlertRuleTemplateDataSource> requiredDataConnectors() {
+        return this.innerProperties() == null ? null : this.innerProperties().requiredDataConnectors();
+    }
+
+    /**
+     * Set the requiredDataConnectors property: The required data connectors for this template.
+     *
+     * @param requiredDataConnectors the requiredDataConnectors value to set.
+     * @return the MicrosoftSecurityIncidentCreationAlertRuleTemplate object itself.
+     */
+    public MicrosoftSecurityIncidentCreationAlertRuleTemplate withRequiredDataConnectors(
+        List<AlertRuleTemplateDataSource> requiredDataConnectors) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new MicrosoftSecurityIncidentCreationAlertRuleTemplateProperties();
+        }
+        this.innerProperties().withRequiredDataConnectors(requiredDataConnectors);
+        return this;
+    }
+
+    /**
+     * Get the status property: The alert rule template status.
+     *
+     * @return the status value.
+     */
+    public TemplateStatus status() {
+        return this.innerProperties() == null ? null : this.innerProperties().status();
+    }
+
+    /**
+     * Set the status property: The alert rule template status.
+     *
+     * @param status the status value to set.
+     * @return the MicrosoftSecurityIncidentCreationAlertRuleTemplate object itself.
+     */
+    public MicrosoftSecurityIncidentCreationAlertRuleTemplate withStatus(TemplateStatus status) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new MicrosoftSecurityIncidentCreationAlertRuleTemplateProperties();
+        }
+        this.innerProperties().withStatus(status);
+        return this;
+    }
+
+    /**
      * Get the displayNamesFilter property: the alerts' displayNames on which the cases will be generated.
      *
      * @return the displayNamesFilter value.
@@ -125,141 +260,6 @@ public final class MicrosoftSecurityIncidentCreationAlertRuleTemplate extends Al
             this.innerProperties = new MicrosoftSecurityIncidentCreationAlertRuleTemplateProperties();
         }
         this.innerProperties().withSeveritiesFilter(severitiesFilter);
-        return this;
-    }
-
-    /**
-     * Get the alertRulesCreatedByTemplateCount property: the number of alert rules that were created by this template.
-     *
-     * @return the alertRulesCreatedByTemplateCount value.
-     */
-    public Integer alertRulesCreatedByTemplateCount() {
-        return this.innerProperties() == null ? null : this.innerProperties().alertRulesCreatedByTemplateCount();
-    }
-
-    /**
-     * Set the alertRulesCreatedByTemplateCount property: the number of alert rules that were created by this template.
-     *
-     * @param alertRulesCreatedByTemplateCount the alertRulesCreatedByTemplateCount value to set.
-     * @return the MicrosoftSecurityIncidentCreationAlertRuleTemplate object itself.
-     */
-    public MicrosoftSecurityIncidentCreationAlertRuleTemplate withAlertRulesCreatedByTemplateCount(
-        Integer alertRulesCreatedByTemplateCount) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new MicrosoftSecurityIncidentCreationAlertRuleTemplateProperties();
-        }
-        this.innerProperties().withAlertRulesCreatedByTemplateCount(alertRulesCreatedByTemplateCount);
-        return this;
-    }
-
-    /**
-     * Get the lastUpdatedDateUtc property: The last time that this alert rule template has been updated.
-     *
-     * @return the lastUpdatedDateUtc value.
-     */
-    public OffsetDateTime lastUpdatedDateUtc() {
-        return this.innerProperties() == null ? null : this.innerProperties().lastUpdatedDateUtc();
-    }
-
-    /**
-     * Get the createdDateUtc property: The time that this alert rule template has been added.
-     *
-     * @return the createdDateUtc value.
-     */
-    public OffsetDateTime createdDateUtc() {
-        return this.innerProperties() == null ? null : this.innerProperties().createdDateUtc();
-    }
-
-    /**
-     * Get the description property: The description of the alert rule template.
-     *
-     * @return the description value.
-     */
-    public String description() {
-        return this.innerProperties() == null ? null : this.innerProperties().description();
-    }
-
-    /**
-     * Set the description property: The description of the alert rule template.
-     *
-     * @param description the description value to set.
-     * @return the MicrosoftSecurityIncidentCreationAlertRuleTemplate object itself.
-     */
-    public MicrosoftSecurityIncidentCreationAlertRuleTemplate withDescription(String description) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new MicrosoftSecurityIncidentCreationAlertRuleTemplateProperties();
-        }
-        this.innerProperties().withDescription(description);
-        return this;
-    }
-
-    /**
-     * Get the displayName property: The display name for alert rule template.
-     *
-     * @return the displayName value.
-     */
-    public String displayName() {
-        return this.innerProperties() == null ? null : this.innerProperties().displayName();
-    }
-
-    /**
-     * Set the displayName property: The display name for alert rule template.
-     *
-     * @param displayName the displayName value to set.
-     * @return the MicrosoftSecurityIncidentCreationAlertRuleTemplate object itself.
-     */
-    public MicrosoftSecurityIncidentCreationAlertRuleTemplate withDisplayName(String displayName) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new MicrosoftSecurityIncidentCreationAlertRuleTemplateProperties();
-        }
-        this.innerProperties().withDisplayName(displayName);
-        return this;
-    }
-
-    /**
-     * Get the requiredDataConnectors property: The required data sources for this template.
-     *
-     * @return the requiredDataConnectors value.
-     */
-    public List<AlertRuleTemplateDataSource> requiredDataConnectors() {
-        return this.innerProperties() == null ? null : this.innerProperties().requiredDataConnectors();
-    }
-
-    /**
-     * Set the requiredDataConnectors property: The required data sources for this template.
-     *
-     * @param requiredDataConnectors the requiredDataConnectors value to set.
-     * @return the MicrosoftSecurityIncidentCreationAlertRuleTemplate object itself.
-     */
-    public MicrosoftSecurityIncidentCreationAlertRuleTemplate withRequiredDataConnectors(
-        List<AlertRuleTemplateDataSource> requiredDataConnectors) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new MicrosoftSecurityIncidentCreationAlertRuleTemplateProperties();
-        }
-        this.innerProperties().withRequiredDataConnectors(requiredDataConnectors);
-        return this;
-    }
-
-    /**
-     * Get the status property: The alert rule template status.
-     *
-     * @return the status value.
-     */
-    public TemplateStatus status() {
-        return this.innerProperties() == null ? null : this.innerProperties().status();
-    }
-
-    /**
-     * Set the status property: The alert rule template status.
-     *
-     * @param status the status value to set.
-     * @return the MicrosoftSecurityIncidentCreationAlertRuleTemplate object itself.
-     */
-    public MicrosoftSecurityIncidentCreationAlertRuleTemplate withStatus(TemplateStatus status) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new MicrosoftSecurityIncidentCreationAlertRuleTemplateProperties();
-        }
-        this.innerProperties().withStatus(status);
         return this;
     }
 

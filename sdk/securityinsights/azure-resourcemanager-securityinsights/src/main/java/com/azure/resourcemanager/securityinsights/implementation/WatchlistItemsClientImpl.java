@@ -72,8 +72,8 @@ public final class WatchlistItemsClientImpl implements WatchlistItemsClient {
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("workspaceName") String workspaceName,
-            @QueryParam("$skipToken") String skipToken,
             @PathParam("watchlistAlias") String watchlistAlias,
+            @QueryParam("$skipToken") String skipToken,
             @HeaderParam("Accept") String accept,
             Context context);
 
@@ -144,11 +144,11 @@ public final class WatchlistItemsClientImpl implements WatchlistItemsClient {
     }
 
     /**
-     * Gets all watchlist Items.
+     * Get all watchlist Items.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
-     * @param watchlistAlias Watchlist Alias.
+     * @param watchlistAlias The watchlist alias.
      * @param skipToken Skiptoken is only used if a previous operation returned a partial result. If a previous response
      *     contains a nextLink element, the value of the nextLink element will include a skiptoken parameter that
      *     specifies a starting point to use for subsequent calls. Optional.
@@ -193,8 +193,8 @@ public final class WatchlistItemsClientImpl implements WatchlistItemsClient {
                             this.client.getSubscriptionId(),
                             resourceGroupName,
                             workspaceName,
-                            skipToken,
                             watchlistAlias,
+                            skipToken,
                             accept,
                             context))
             .<PagedResponse<WatchlistItemInner>>map(
@@ -210,11 +210,11 @@ public final class WatchlistItemsClientImpl implements WatchlistItemsClient {
     }
 
     /**
-     * Gets all watchlist Items.
+     * Get all watchlist Items.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
-     * @param watchlistAlias Watchlist Alias.
+     * @param watchlistAlias The watchlist alias.
      * @param skipToken Skiptoken is only used if a previous operation returned a partial result. If a previous response
      *     contains a nextLink element, the value of the nextLink element will include a skiptoken parameter that
      *     specifies a starting point to use for subsequent calls. Optional.
@@ -258,8 +258,8 @@ public final class WatchlistItemsClientImpl implements WatchlistItemsClient {
                 this.client.getSubscriptionId(),
                 resourceGroupName,
                 workspaceName,
-                skipToken,
                 watchlistAlias,
+                skipToken,
                 accept,
                 context)
             .map(
@@ -274,11 +274,11 @@ public final class WatchlistItemsClientImpl implements WatchlistItemsClient {
     }
 
     /**
-     * Gets all watchlist Items.
+     * Get all watchlist Items.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
-     * @param watchlistAlias Watchlist Alias.
+     * @param watchlistAlias The watchlist alias.
      * @param skipToken Skiptoken is only used if a previous operation returned a partial result. If a previous response
      *     contains a nextLink element, the value of the nextLink element will include a skiptoken parameter that
      *     specifies a starting point to use for subsequent calls. Optional.
@@ -296,11 +296,11 @@ public final class WatchlistItemsClientImpl implements WatchlistItemsClient {
     }
 
     /**
-     * Gets all watchlist Items.
+     * Get all watchlist Items.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
-     * @param watchlistAlias Watchlist Alias.
+     * @param watchlistAlias The watchlist alias.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -316,11 +316,11 @@ public final class WatchlistItemsClientImpl implements WatchlistItemsClient {
     }
 
     /**
-     * Gets all watchlist Items.
+     * Get all watchlist Items.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
-     * @param watchlistAlias Watchlist Alias.
+     * @param watchlistAlias The watchlist alias.
      * @param skipToken Skiptoken is only used if a previous operation returned a partial result. If a previous response
      *     contains a nextLink element, the value of the nextLink element will include a skiptoken parameter that
      *     specifies a starting point to use for subsequent calls. Optional.
@@ -339,11 +339,11 @@ public final class WatchlistItemsClientImpl implements WatchlistItemsClient {
     }
 
     /**
-     * Gets all watchlist Items.
+     * Get all watchlist Items.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
-     * @param watchlistAlias Watchlist Alias.
+     * @param watchlistAlias The watchlist alias.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -357,11 +357,11 @@ public final class WatchlistItemsClientImpl implements WatchlistItemsClient {
     }
 
     /**
-     * Gets all watchlist Items.
+     * Get all watchlist Items.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
-     * @param watchlistAlias Watchlist Alias.
+     * @param watchlistAlias The watchlist alias.
      * @param skipToken Skiptoken is only used if a previous operation returned a partial result. If a previous response
      *     contains a nextLink element, the value of the nextLink element will include a skiptoken parameter that
      *     specifies a starting point to use for subsequent calls. Optional.
@@ -378,17 +378,16 @@ public final class WatchlistItemsClientImpl implements WatchlistItemsClient {
     }
 
     /**
-     * Gets a watchlist, without its watchlist items.
+     * Get a watchlist item.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
-     * @param watchlistAlias Watchlist Alias.
-     * @param watchlistItemId Watchlist Item Id (GUID).
+     * @param watchlistAlias The watchlist alias.
+     * @param watchlistItemId The watchlist item id (GUID).
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a watchlist, without its watchlist items along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return a watchlist item along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<WatchlistItemInner>> getWithResponseAsync(
@@ -438,18 +437,17 @@ public final class WatchlistItemsClientImpl implements WatchlistItemsClient {
     }
 
     /**
-     * Gets a watchlist, without its watchlist items.
+     * Get a watchlist item.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
-     * @param watchlistAlias Watchlist Alias.
-     * @param watchlistItemId Watchlist Item Id (GUID).
+     * @param watchlistAlias The watchlist alias.
+     * @param watchlistItemId The watchlist item id (GUID).
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a watchlist, without its watchlist items along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return a watchlist item along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<WatchlistItemInner>> getWithResponseAsync(
@@ -500,16 +498,16 @@ public final class WatchlistItemsClientImpl implements WatchlistItemsClient {
     }
 
     /**
-     * Gets a watchlist, without its watchlist items.
+     * Get a watchlist item.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
-     * @param watchlistAlias Watchlist Alias.
-     * @param watchlistItemId Watchlist Item Id (GUID).
+     * @param watchlistAlias The watchlist alias.
+     * @param watchlistItemId The watchlist item id (GUID).
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a watchlist, without its watchlist items on successful completion of {@link Mono}.
+     * @return a watchlist item on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<WatchlistItemInner> getAsync(
@@ -519,16 +517,16 @@ public final class WatchlistItemsClientImpl implements WatchlistItemsClient {
     }
 
     /**
-     * Gets a watchlist, without its watchlist items.
+     * Get a watchlist item.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
-     * @param watchlistAlias Watchlist Alias.
-     * @param watchlistItemId Watchlist Item Id (GUID).
+     * @param watchlistAlias The watchlist alias.
+     * @param watchlistItemId The watchlist item id (GUID).
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a watchlist, without its watchlist items.
+     * @return a watchlist item.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public WatchlistItemInner get(
@@ -537,17 +535,17 @@ public final class WatchlistItemsClientImpl implements WatchlistItemsClient {
     }
 
     /**
-     * Gets a watchlist, without its watchlist items.
+     * Get a watchlist item.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
-     * @param watchlistAlias Watchlist Alias.
-     * @param watchlistItemId Watchlist Item Id (GUID).
+     * @param watchlistAlias The watchlist alias.
+     * @param watchlistItemId The watchlist item id (GUID).
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a watchlist, without its watchlist items along with {@link Response}.
+     * @return a watchlist item along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<WatchlistItemInner> getWithResponse(
@@ -564,8 +562,8 @@ public final class WatchlistItemsClientImpl implements WatchlistItemsClient {
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
-     * @param watchlistAlias Watchlist Alias.
-     * @param watchlistItemId Watchlist Item Id (GUID).
+     * @param watchlistAlias The watchlist alias.
+     * @param watchlistItemId The watchlist item id (GUID).
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -623,8 +621,8 @@ public final class WatchlistItemsClientImpl implements WatchlistItemsClient {
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
-     * @param watchlistAlias Watchlist Alias.
-     * @param watchlistItemId Watchlist Item Id (GUID).
+     * @param watchlistAlias The watchlist alias.
+     * @param watchlistItemId The watchlist item id (GUID).
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -684,8 +682,8 @@ public final class WatchlistItemsClientImpl implements WatchlistItemsClient {
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
-     * @param watchlistAlias Watchlist Alias.
-     * @param watchlistItemId Watchlist Item Id (GUID).
+     * @param watchlistAlias The watchlist alias.
+     * @param watchlistItemId The watchlist item id (GUID).
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -703,8 +701,8 @@ public final class WatchlistItemsClientImpl implements WatchlistItemsClient {
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
-     * @param watchlistAlias Watchlist Alias.
-     * @param watchlistItemId Watchlist Item Id (GUID).
+     * @param watchlistAlias The watchlist alias.
+     * @param watchlistItemId The watchlist item id (GUID).
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -719,8 +717,8 @@ public final class WatchlistItemsClientImpl implements WatchlistItemsClient {
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
-     * @param watchlistAlias Watchlist Alias.
-     * @param watchlistItemId Watchlist Item Id (GUID).
+     * @param watchlistAlias The watchlist alias.
+     * @param watchlistItemId The watchlist item id (GUID).
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -739,17 +737,17 @@ public final class WatchlistItemsClientImpl implements WatchlistItemsClient {
     }
 
     /**
-     * Creates or updates a watchlist item.
+     * Create or update a watchlist item.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
-     * @param watchlistAlias Watchlist Alias.
-     * @param watchlistItemId Watchlist Item Id (GUID).
+     * @param watchlistAlias The watchlist alias.
+     * @param watchlistItemId The watchlist item id (GUID).
      * @param watchlistItem The watchlist item.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return represents a Watchlist item in Azure Security Insights along with {@link Response} on successful
+     * @return represents a Watchlist Item in Azure Security Insights along with {@link Response} on successful
      *     completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
@@ -810,18 +808,18 @@ public final class WatchlistItemsClientImpl implements WatchlistItemsClient {
     }
 
     /**
-     * Creates or updates a watchlist item.
+     * Create or update a watchlist item.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
-     * @param watchlistAlias Watchlist Alias.
-     * @param watchlistItemId Watchlist Item Id (GUID).
+     * @param watchlistAlias The watchlist alias.
+     * @param watchlistItemId The watchlist item id (GUID).
      * @param watchlistItem The watchlist item.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return represents a Watchlist item in Azure Security Insights along with {@link Response} on successful
+     * @return represents a Watchlist Item in Azure Security Insights along with {@link Response} on successful
      *     completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
@@ -880,17 +878,17 @@ public final class WatchlistItemsClientImpl implements WatchlistItemsClient {
     }
 
     /**
-     * Creates or updates a watchlist item.
+     * Create or update a watchlist item.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
-     * @param watchlistAlias Watchlist Alias.
-     * @param watchlistItemId Watchlist Item Id (GUID).
+     * @param watchlistAlias The watchlist alias.
+     * @param watchlistItemId The watchlist item id (GUID).
      * @param watchlistItem The watchlist item.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return represents a Watchlist item in Azure Security Insights on successful completion of {@link Mono}.
+     * @return represents a Watchlist Item in Azure Security Insights on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<WatchlistItemInner> createOrUpdateAsync(
@@ -905,17 +903,17 @@ public final class WatchlistItemsClientImpl implements WatchlistItemsClient {
     }
 
     /**
-     * Creates or updates a watchlist item.
+     * Create or update a watchlist item.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
-     * @param watchlistAlias Watchlist Alias.
-     * @param watchlistItemId Watchlist Item Id (GUID).
+     * @param watchlistAlias The watchlist alias.
+     * @param watchlistItemId The watchlist item id (GUID).
      * @param watchlistItem The watchlist item.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return represents a Watchlist item in Azure Security Insights.
+     * @return represents a Watchlist Item in Azure Security Insights.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public WatchlistItemInner createOrUpdate(
@@ -929,18 +927,18 @@ public final class WatchlistItemsClientImpl implements WatchlistItemsClient {
     }
 
     /**
-     * Creates or updates a watchlist item.
+     * Create or update a watchlist item.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
-     * @param watchlistAlias Watchlist Alias.
-     * @param watchlistItemId Watchlist Item Id (GUID).
+     * @param watchlistAlias The watchlist alias.
+     * @param watchlistItemId The watchlist item id (GUID).
      * @param watchlistItem The watchlist item.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return represents a Watchlist item in Azure Security Insights along with {@link Response}.
+     * @return represents a Watchlist Item in Azure Security Insights along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<WatchlistItemInner> createOrUpdateWithResponse(

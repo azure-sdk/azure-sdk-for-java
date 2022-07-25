@@ -5,7 +5,6 @@
 package com.azure.resourcemanager.securityinsights.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Alerts data type for data connectors. */
@@ -14,7 +13,7 @@ public class AlertsDataTypeOfDataConnector {
     /*
      * Alerts data type connection.
      */
-    @JsonProperty(value = "alerts", required = true)
+    @JsonProperty(value = "alerts")
     private DataConnectorDataTypeCommon alerts;
 
     /**
@@ -43,15 +42,8 @@ public class AlertsDataTypeOfDataConnector {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (alerts() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property alerts in model AlertsDataTypeOfDataConnector"));
-        } else {
+        if (alerts() != null) {
             alerts().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(AlertsDataTypeOfDataConnector.class);
 }

@@ -6,8 +6,6 @@ package com.azure.resourcemanager.securityinsights.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
-import com.azure.resourcemanager.securityinsights.models.AttackTactic;
-import com.azure.resourcemanager.securityinsights.models.BookmarkEntityMappings;
 import com.azure.resourcemanager.securityinsights.models.IncidentInfo;
 import com.azure.resourcemanager.securityinsights.models.UserInfo;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -94,24 +92,6 @@ public final class BookmarkProperties {
      */
     @JsonProperty(value = "incidentInfo")
     private IncidentInfo incidentInfo;
-
-    /*
-     * Describes the entity mappings of the bookmark
-     */
-    @JsonProperty(value = "entityMappings")
-    private List<BookmarkEntityMappings> entityMappings;
-
-    /*
-     * A list of relevant mitre attacks
-     */
-    @JsonProperty(value = "tactics")
-    private List<AttackTactic> tactics;
-
-    /*
-     * A list of relevant mitre techniques
-     */
-    @JsonProperty(value = "techniques")
-    private List<String> techniques;
 
     /**
      * Get the created property: The time the bookmark was created.
@@ -374,66 +354,6 @@ public final class BookmarkProperties {
     }
 
     /**
-     * Get the entityMappings property: Describes the entity mappings of the bookmark.
-     *
-     * @return the entityMappings value.
-     */
-    public List<BookmarkEntityMappings> entityMappings() {
-        return this.entityMappings;
-    }
-
-    /**
-     * Set the entityMappings property: Describes the entity mappings of the bookmark.
-     *
-     * @param entityMappings the entityMappings value to set.
-     * @return the BookmarkProperties object itself.
-     */
-    public BookmarkProperties withEntityMappings(List<BookmarkEntityMappings> entityMappings) {
-        this.entityMappings = entityMappings;
-        return this;
-    }
-
-    /**
-     * Get the tactics property: A list of relevant mitre attacks.
-     *
-     * @return the tactics value.
-     */
-    public List<AttackTactic> tactics() {
-        return this.tactics;
-    }
-
-    /**
-     * Set the tactics property: A list of relevant mitre attacks.
-     *
-     * @param tactics the tactics value to set.
-     * @return the BookmarkProperties object itself.
-     */
-    public BookmarkProperties withTactics(List<AttackTactic> tactics) {
-        this.tactics = tactics;
-        return this;
-    }
-
-    /**
-     * Get the techniques property: A list of relevant mitre techniques.
-     *
-     * @return the techniques value.
-     */
-    public List<String> techniques() {
-        return this.techniques;
-    }
-
-    /**
-     * Set the techniques property: A list of relevant mitre techniques.
-     *
-     * @param techniques the techniques value to set.
-     * @return the BookmarkProperties object itself.
-     */
-    public BookmarkProperties withTechniques(List<String> techniques) {
-        this.techniques = techniques;
-        return this;
-    }
-
-    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -457,9 +377,6 @@ public final class BookmarkProperties {
         }
         if (incidentInfo() != null) {
             incidentInfo().validate();
-        }
-        if (entityMappings() != null) {
-            entityMappings().forEach(e -> e.validate());
         }
     }
 
