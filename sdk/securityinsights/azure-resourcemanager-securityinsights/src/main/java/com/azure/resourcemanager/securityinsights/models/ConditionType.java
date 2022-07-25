@@ -13,6 +13,12 @@ public final class ConditionType extends ExpandableStringEnum<ConditionType> {
     /** Static value Property for ConditionType. */
     public static final ConditionType PROPERTY = fromString("Property");
 
+    /** Static value PropertyChanged for ConditionType. */
+    public static final ConditionType PROPERTY_CHANGED = fromString("PropertyChanged");
+
+    /** Static value PropertyArrayChanged for ConditionType. */
+    public static final ConditionType PROPERTY_ARRAY_CHANGED = fromString("PropertyArrayChanged");
+
     /**
      * Creates or finds a ConditionType from its string representation.
      *
