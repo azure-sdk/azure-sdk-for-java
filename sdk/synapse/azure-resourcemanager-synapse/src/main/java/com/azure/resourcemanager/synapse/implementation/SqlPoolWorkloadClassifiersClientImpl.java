@@ -316,14 +316,7 @@ public final class SqlPoolWorkloadClassifiersClientImpl implements SqlPoolWorklo
         String workloadClassifierName) {
         return getWithResponseAsync(
                 resourceGroupName, workspaceName, sqlPoolName, workloadGroupName, workloadClassifierName)
-            .flatMap(
-                (Response<WorkloadClassifierInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**

@@ -201,14 +201,7 @@ public final class SqlPoolOperationResultsClientImpl implements SqlPoolOperation
     private Mono<Object> getLocationHeaderResultAsync(
         String resourceGroupName, String workspaceName, String sqlPoolName, String operationId) {
         return getLocationHeaderResultWithResponseAsync(resourceGroupName, workspaceName, sqlPoolName, operationId)
-            .flatMap(
-                (Response<Object> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**

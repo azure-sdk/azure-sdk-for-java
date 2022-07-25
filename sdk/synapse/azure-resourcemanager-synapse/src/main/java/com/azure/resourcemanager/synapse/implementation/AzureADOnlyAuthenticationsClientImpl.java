@@ -257,14 +257,7 @@ public final class AzureADOnlyAuthenticationsClientImpl implements AzureADOnlyAu
     private Mono<AzureADOnlyAuthenticationInner> getAsync(
         String resourceGroupName, String workspaceName, AzureADOnlyAuthenticationName azureADOnlyAuthenticationName) {
         return getWithResponseAsync(resourceGroupName, workspaceName, azureADOnlyAuthenticationName)
-            .flatMap(
-                (Response<AzureADOnlyAuthenticationInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
