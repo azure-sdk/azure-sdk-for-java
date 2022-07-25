@@ -1067,14 +1067,7 @@ public final class DedicatedHsmsClientImpl implements DedicatedHsmsClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<DedicatedHsmInner> getByResourceGroupAsync(String resourceGroupName, String name) {
         return getByResourceGroupWithResponseAsync(resourceGroupName, name)
-            .flatMap(
-                (Response<DedicatedHsmInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
