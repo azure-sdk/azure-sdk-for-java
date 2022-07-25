@@ -12,7 +12,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /** The MLFlowModelJobInput model. */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "jobInputType")
-@JsonTypeName("MLFlowModel")
+@JsonTypeName("mlflow_model")
 @Fluent
 public final class MLFlowModelJobInput extends JobInput {
     /*
