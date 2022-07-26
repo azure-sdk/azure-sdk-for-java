@@ -19,6 +19,9 @@ public final class EntityTimelineKind extends ExpandableStringEnum<EntityTimelin
     /** Static value SecurityAlert for EntityTimelineKind. */
     public static final EntityTimelineKind SECURITY_ALERT = fromString("SecurityAlert");
 
+    /** Static value Anomaly for EntityTimelineKind. */
+    public static final EntityTimelineKind ANOMALY = fromString("Anomaly");
+
     /**
      * Creates or finds a EntityTimelineKind from its string representation.
      *
