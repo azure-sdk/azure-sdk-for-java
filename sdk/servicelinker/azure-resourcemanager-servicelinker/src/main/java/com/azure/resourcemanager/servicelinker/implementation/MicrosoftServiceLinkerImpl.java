@@ -23,8 +23,8 @@ import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.serializer.SerializerAdapter;
 import com.azure.core.util.serializer.SerializerEncoding;
 import com.azure.resourcemanager.servicelinker.fluent.LinkersClient;
+import com.azure.resourcemanager.servicelinker.fluent.MicrosoftServiceLinker;
 import com.azure.resourcemanager.servicelinker.fluent.OperationsClient;
-import com.azure.resourcemanager.servicelinker.fluent.ServiceLinkerManagementClient;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.nio.ByteBuffer;
@@ -34,9 +34,9 @@ import java.time.Duration;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-/** Initializes a new instance of the ServiceLinkerManagementClientImpl type. */
-@ServiceClient(builder = ServiceLinkerManagementClientBuilder.class)
-public final class ServiceLinkerManagementClientImpl implements ServiceLinkerManagementClient {
+/** Initializes a new instance of the MicrosoftServiceLinkerImpl type. */
+@ServiceClient(builder = MicrosoftServiceLinkerBuilder.class)
+public final class MicrosoftServiceLinkerImpl implements MicrosoftServiceLinker {
     /** server parameter. */
     private final String endpoint;
 
@@ -122,7 +122,7 @@ public final class ServiceLinkerManagementClientImpl implements ServiceLinkerMan
     }
 
     /**
-     * Initializes an instance of ServiceLinkerManagementClient client.
+     * Initializes an instance of MicrosoftServiceLinker client.
      *
      * @param httpPipeline The HTTP pipeline to send requests through.
      * @param serializerAdapter The serializer to serialize an object into a string.
@@ -130,7 +130,7 @@ public final class ServiceLinkerManagementClientImpl implements ServiceLinkerMan
      * @param environment The Azure environment.
      * @param endpoint server parameter.
      */
-    ServiceLinkerManagementClientImpl(
+    MicrosoftServiceLinkerImpl(
         HttpPipeline httpPipeline,
         SerializerAdapter serializerAdapter,
         Duration defaultPollInterval,
@@ -140,7 +140,7 @@ public final class ServiceLinkerManagementClientImpl implements ServiceLinkerMan
         this.serializerAdapter = serializerAdapter;
         this.defaultPollInterval = defaultPollInterval;
         this.endpoint = endpoint;
-        this.apiVersion = "2022-05-01";
+        this.apiVersion = "2018-05-01-preview";
         this.linkers = new LinkersClientImpl(this);
         this.operations = new OperationsClientImpl(this);
     }
@@ -285,5 +285,5 @@ public final class ServiceLinkerManagementClientImpl implements ServiceLinkerMan
         }
     }
 
-    private static final ClientLogger LOGGER = new ClientLogger(ServiceLinkerManagementClientImpl.class);
+    private static final ClientLogger LOGGER = new ClientLogger(MicrosoftServiceLinkerImpl.class);
 }
