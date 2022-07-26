@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.networkfunction.implementation;
 
+import com.azure.core.management.Region;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.networkfunction.fluent.models.CollectorPolicyInner;
@@ -13,6 +14,7 @@ import com.azure.resourcemanager.networkfunction.models.IngestionPolicyPropertie
 import com.azure.resourcemanager.networkfunction.models.ProvisioningState;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 public final class CollectorPolicyImpl implements CollectorPolicy, CollectorPolicy.Definition, CollectorPolicy.Update {
     private CollectorPolicyInner innerObject;
@@ -29,6 +31,19 @@ public final class CollectorPolicyImpl implements CollectorPolicy, CollectorPoli
 
     public String type() {
         return this.innerModel().type();
+    }
+
+    public String location() {
+        return this.innerModel().location();
+    }
+
+    public Map<String, String> tags() {
+        Map<String, String> inner = this.innerModel().tags();
+        if (inner != null) {
+            return Collections.unmodifiableMap(inner);
+        } else {
+            return Collections.emptyMap();
+        }
     }
 
     public String etag() {
@@ -54,6 +69,14 @@ public final class CollectorPolicyImpl implements CollectorPolicy, CollectorPoli
 
     public ProvisioningState provisioningState() {
         return this.innerModel().provisioningState();
+    }
+
+    public Region region() {
+        return Region.fromName(this.regionName());
+    }
+
+    public String regionName() {
+        return this.location();
     }
 
     public String resourceGroupName() {
@@ -159,6 +182,21 @@ public final class CollectorPolicyImpl implements CollectorPolicy, CollectorPoli
                 .getCollectorPolicies()
                 .getWithResponse(resourceGroupName, azureTrafficCollectorName, collectorPolicyName, context)
                 .getValue();
+        return this;
+    }
+
+    public CollectorPolicyImpl withRegion(Region location) {
+        this.innerModel().withLocation(location.toString());
+        return this;
+    }
+
+    public CollectorPolicyImpl withRegion(String location) {
+        this.innerModel().withLocation(location);
+        return this;
+    }
+
+    public CollectorPolicyImpl withTags(Map<String, String> tags) {
+        this.innerModel().withTags(tags);
         return this;
     }
 
