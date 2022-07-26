@@ -9,14 +9,14 @@ import com.azure.core.util.Context;
 /** Samples for Linker List. */
 public final class LinkerListSamples {
     /*
-     * x-ms-original-file: specification/servicelinker/resource-manager/Microsoft.ServiceLinker/stable/2022-05-01/examples/LinkList.json
+     * x-ms-original-file: specification/servicelinker/resource-manager/Microsoft.ServiceLinker/stable/2022-08-01-preview/examples/LinkList.json
      */
     /**
      * Sample code: LinkList.
      *
-     * @param manager Entry point to ServiceLinkerManager.
+     * @param manager Entry point to ServicelinkerManager.
      */
-    public static void linkList(com.azure.resourcemanager.servicelinker.ServiceLinkerManager manager) {
+    public static void linkList(com.azure.resourcemanager.servicelinker.ServicelinkerManager manager) {
         manager
             .linkers()
             .list(
