@@ -15,7 +15,7 @@ import java.util.Map;
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "datastoreType")
 @JsonTypeName("Hdfs")
 @Fluent
-public final class HdfsDatastore extends DatastoreDetails {
+public final class HdfsDatastore extends DatastoreProperties {
     /*
      * The TLS cert of the HDFS server. Needs to be a base64 encoded string.
      * Required if "Https" protocol is selected.

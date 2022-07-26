@@ -16,7 +16,7 @@ import java.util.Map;
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "jobType")
 @JsonTypeName("Command")
 @Fluent
-public final class CommandJob extends JobBaseDetails {
+public final class CommandJob extends JobBaseProperties {
     /*
      * ARM resource ID of the code asset.
      */
@@ -81,7 +81,7 @@ public final class CommandJob extends JobBaseDetails {
      * Compute Resource configuration for the job.
      */
     @JsonProperty(value = "resources")
-    private ResourceConfiguration resources;
+    private JobResourceConfiguration resources;
 
     /**
      * Get the codeId property: ARM resource ID of the code asset.
@@ -259,7 +259,7 @@ public final class CommandJob extends JobBaseDetails {
      *
      * @return the resources value.
      */
-    public ResourceConfiguration resources() {
+    public JobResourceConfiguration resources() {
         return this.resources;
     }
 
@@ -269,8 +269,15 @@ public final class CommandJob extends JobBaseDetails {
      * @param resources the resources value to set.
      * @return the CommandJob object itself.
      */
-    public CommandJob withResources(ResourceConfiguration resources) {
+    public CommandJob withResources(JobResourceConfiguration resources) {
         this.resources = resources;
+        return this;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public CommandJob withComponentId(String componentId) {
+        super.withComponentId(componentId);
         return this;
     }
 
@@ -306,13 +313,6 @@ public final class CommandJob extends JobBaseDetails {
     @Override
     public CommandJob withIsArchived(Boolean isArchived) {
         super.withIsArchived(isArchived);
-        return this;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public CommandJob withSchedule(ScheduleBase schedule) {
-        super.withSchedule(schedule);
         return this;
     }
 
