@@ -23,10 +23,10 @@ import com.azure.core.management.http.policy.ArmChallengeAuthenticationPolicy;
 import com.azure.core.management.profile.AzureProfile;
 import com.azure.core.util.Configuration;
 import com.azure.core.util.logging.ClientLogger;
-import com.azure.resourcemanager.servicelinker.fluent.ServiceLinkerManagementClient;
+import com.azure.resourcemanager.servicelinker.fluent.MicrosoftServiceLinker;
 import com.azure.resourcemanager.servicelinker.implementation.LinkersImpl;
+import com.azure.resourcemanager.servicelinker.implementation.MicrosoftServiceLinkerBuilder;
 import com.azure.resourcemanager.servicelinker.implementation.OperationsImpl;
-import com.azure.resourcemanager.servicelinker.implementation.ServiceLinkerManagementClientBuilder;
 import com.azure.resourcemanager.servicelinker.models.Linkers;
 import com.azure.resourcemanager.servicelinker.models.Operations;
 import java.time.Duration;
@@ -36,19 +36,19 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-/** Entry point to ServiceLinkerManager. Microsoft.ServiceLinker provider. */
-public final class ServiceLinkerManager {
+/** Entry point to ServicelinkerManager. Microsoft.ServiceLinker provider. */
+public final class ServicelinkerManager {
     private Linkers linkers;
 
     private Operations operations;
 
-    private final ServiceLinkerManagementClient clientObject;
+    private final MicrosoftServiceLinker clientObject;
 
-    private ServiceLinkerManager(HttpPipeline httpPipeline, AzureProfile profile, Duration defaultPollInterval) {
+    private ServicelinkerManager(HttpPipeline httpPipeline, AzureProfile profile, Duration defaultPollInterval) {
         Objects.requireNonNull(httpPipeline, "'httpPipeline' cannot be null.");
         Objects.requireNonNull(profile, "'profile' cannot be null.");
         this.clientObject =
-            new ServiceLinkerManagementClientBuilder()
+            new MicrosoftServiceLinkerBuilder()
                 .pipeline(httpPipeline)
                 .endpoint(profile.getEnvironment().getResourceManagerEndpoint())
                 .defaultPollInterval(defaultPollInterval)
@@ -56,38 +56,38 @@ public final class ServiceLinkerManager {
     }
 
     /**
-     * Creates an instance of ServiceLinker service API entry point.
+     * Creates an instance of servicelinker service API entry point.
      *
      * @param credential the credential to use.
      * @param profile the Azure profile for client.
-     * @return the ServiceLinker service API instance.
+     * @return the servicelinker service API instance.
      */
-    public static ServiceLinkerManager authenticate(TokenCredential credential, AzureProfile profile) {
+    public static ServicelinkerManager authenticate(TokenCredential credential, AzureProfile profile) {
         Objects.requireNonNull(credential, "'credential' cannot be null.");
         Objects.requireNonNull(profile, "'profile' cannot be null.");
         return configure().authenticate(credential, profile);
     }
 
     /**
-     * Creates an instance of ServiceLinker service API entry point.
+     * Creates an instance of servicelinker service API entry point.
      *
      * @param httpPipeline the {@link HttpPipeline} configured with Azure authentication credential.
      * @param profile the Azure profile for client.
-     * @return the ServiceLinker service API instance.
+     * @return the servicelinker service API instance.
      */
-    public static ServiceLinkerManager authenticate(HttpPipeline httpPipeline, AzureProfile profile) {
+    public static ServicelinkerManager authenticate(HttpPipeline httpPipeline, AzureProfile profile) {
         Objects.requireNonNull(httpPipeline, "'httpPipeline' cannot be null.");
         Objects.requireNonNull(profile, "'profile' cannot be null.");
-        return new ServiceLinkerManager(httpPipeline, profile, null);
+        return new ServicelinkerManager(httpPipeline, profile, null);
     }
 
     /**
-     * Gets a Configurable instance that can be used to create ServiceLinkerManager with optional configuration.
+     * Gets a Configurable instance that can be used to create ServicelinkerManager with optional configuration.
      *
      * @return the Configurable instance allowing configurations.
      */
     public static Configurable configure() {
-        return new ServiceLinkerManager.Configurable();
+        return new ServicelinkerManager.Configurable();
     }
 
     /** The Configurable allowing configurations to be set. */
@@ -190,13 +190,13 @@ public final class ServiceLinkerManager {
         }
 
         /**
-         * Creates an instance of ServiceLinker service API entry point.
+         * Creates an instance of servicelinker service API entry point.
          *
          * @param credential the credential to use.
          * @param profile the Azure profile for client.
-         * @return the ServiceLinker service API instance.
+         * @return the servicelinker service API instance.
          */
-        public ServiceLinkerManager authenticate(TokenCredential credential, AzureProfile profile) {
+        public ServicelinkerManager authenticate(TokenCredential credential, AzureProfile profile) {
             Objects.requireNonNull(credential, "'credential' cannot be null.");
             Objects.requireNonNull(profile, "'profile' cannot be null.");
 
@@ -206,7 +206,7 @@ public final class ServiceLinkerManager {
                 .append("-")
                 .append("com.azure.resourcemanager.servicelinker")
                 .append("/")
-                .append("1.0.0-beta.2");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder
                     .append(" (")
@@ -259,7 +259,7 @@ public final class ServiceLinkerManager {
                     .httpClient(httpClient)
                     .policies(policies.toArray(new HttpPipelinePolicy[0]))
                     .build();
-            return new ServiceLinkerManager(httpPipeline, profile, defaultPollInterval);
+            return new ServicelinkerManager(httpPipeline, profile, defaultPollInterval);
         }
     }
 
@@ -288,10 +288,10 @@ public final class ServiceLinkerManager {
     }
 
     /**
-     * @return Wrapped service client ServiceLinkerManagementClient providing direct access to the underlying
-     *     auto-generated API implementation, based on Azure REST API.
+     * @return Wrapped service client MicrosoftServiceLinker providing direct access to the underlying auto-generated
+     *     API implementation, based on Azure REST API.
      */
-    public ServiceLinkerManagementClient serviceClient() {
+    public MicrosoftServiceLinker serviceClient() {
         return this.clientObject;
     }
 }
