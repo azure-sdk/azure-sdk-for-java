@@ -451,22 +451,15 @@ public final class ImageModelSettingsObjectDetection extends ImageModelSettings 
 
     /** {@inheritDoc} */
     @Override
-    public ImageModelSettingsObjectDetection withCheckpointDatasetId(String checkpointDatasetId) {
-        super.withCheckpointDatasetId(checkpointDatasetId);
-        return this;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public ImageModelSettingsObjectDetection withCheckpointFilename(String checkpointFilename) {
-        super.withCheckpointFilename(checkpointFilename);
-        return this;
-    }
-
-    /** {@inheritDoc} */
-    @Override
     public ImageModelSettingsObjectDetection withCheckpointFrequency(Integer checkpointFrequency) {
         super.withCheckpointFrequency(checkpointFrequency);
+        return this;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public ImageModelSettingsObjectDetection withCheckpointModel(MLFlowModelJobInput checkpointModel) {
+        super.withCheckpointModel(checkpointModel);
         return this;
     }
 
@@ -593,13 +586,6 @@ public final class ImageModelSettingsObjectDetection extends ImageModelSettings 
     @Override
     public ImageModelSettingsObjectDetection withRandomSeed(Integer randomSeed) {
         super.withRandomSeed(randomSeed);
-        return this;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public ImageModelSettingsObjectDetection withSplitRatio(Float splitRatio) {
-        super.withSplitRatio(splitRatio);
         return this;
     }
 

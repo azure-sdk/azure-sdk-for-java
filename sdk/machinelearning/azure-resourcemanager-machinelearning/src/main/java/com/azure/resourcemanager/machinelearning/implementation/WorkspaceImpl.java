@@ -14,6 +14,7 @@ import com.azure.resourcemanager.machinelearning.fluent.models.WorkspaceInner;
 import com.azure.resourcemanager.machinelearning.models.DiagnoseResponseResult;
 import com.azure.resourcemanager.machinelearning.models.DiagnoseWorkspaceParameters;
 import com.azure.resourcemanager.machinelearning.models.EncryptionProperty;
+import com.azure.resourcemanager.machinelearning.models.EncryptionUpdateProperties;
 import com.azure.resourcemanager.machinelearning.models.ListNotebookKeysResult;
 import com.azure.resourcemanager.machinelearning.models.ListStorageAccountKeysResult;
 import com.azure.resourcemanager.machinelearning.models.ListWorkspaceKeysResult;
@@ -189,6 +190,10 @@ public final class WorkspaceImpl implements Workspace, Workspace.Definition, Wor
 
     public String mlFlowTrackingUri() {
         return this.innerModel().mlFlowTrackingUri();
+    }
+
+    public Boolean v1LegacyMode() {
+        return this.innerModel().v1LegacyMode();
     }
 
     public Region region() {
@@ -515,6 +520,16 @@ public final class WorkspaceImpl implements Workspace, Workspace.Definition, Wor
             this.updateParameters.withPrimaryUserAssignedIdentity(primaryUserAssignedIdentity);
             return this;
         }
+    }
+
+    public WorkspaceImpl withV1LegacyMode(Boolean v1LegacyMode) {
+        this.innerModel().withV1LegacyMode(v1LegacyMode);
+        return this;
+    }
+
+    public WorkspaceImpl withEncryption(EncryptionUpdateProperties encryption) {
+        this.updateParameters.withEncryption(encryption);
+        return this;
     }
 
     private boolean isInCreateMode() {
