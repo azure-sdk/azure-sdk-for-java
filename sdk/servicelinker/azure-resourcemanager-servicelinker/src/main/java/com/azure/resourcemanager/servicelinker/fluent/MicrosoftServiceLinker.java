@@ -7,8 +7,8 @@ package com.azure.resourcemanager.servicelinker.fluent;
 import com.azure.core.http.HttpPipeline;
 import java.time.Duration;
 
-/** The interface for ServiceLinkerManagementClient class. */
-public interface ServiceLinkerManagementClient {
+/** The interface for MicrosoftServiceLinker class. */
+public interface MicrosoftServiceLinker {
     /**
      * Gets server parameter.
      *

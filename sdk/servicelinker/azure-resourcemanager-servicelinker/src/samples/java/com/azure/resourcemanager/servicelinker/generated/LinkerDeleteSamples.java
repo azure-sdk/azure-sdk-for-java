@@ -9,14 +9,14 @@ import com.azure.core.util.Context;
 /** Samples for Linker Delete. */
 public final class LinkerDeleteSamples {
     /*
-     * x-ms-original-file: specification/servicelinker/resource-manager/Microsoft.ServiceLinker/stable/2022-05-01/examples/DeleteLink.json
+     * x-ms-original-file: specification/servicelinker/resource-manager/Microsoft.ServiceLinker/stable/2022-04-26/examples/DeleteLink.json
      */
     /**
      * Sample code: DeleteLink.
      *
-     * @param manager Entry point to ServiceLinkerManager.
+     * @param manager Entry point to ServicelinkerManager.
      */
-    public static void deleteLink(com.azure.resourcemanager.servicelinker.ServiceLinkerManager manager) {
+    public static void deleteLink(com.azure.resourcemanager.servicelinker.ServicelinkerManager manager) {
         manager
             .linkers()
             .delete(
