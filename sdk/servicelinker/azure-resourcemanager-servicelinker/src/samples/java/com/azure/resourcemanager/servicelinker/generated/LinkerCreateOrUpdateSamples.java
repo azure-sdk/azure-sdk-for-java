@@ -5,24 +5,23 @@
 package com.azure.resourcemanager.servicelinker.generated;
 
 import com.azure.resourcemanager.servicelinker.models.AzureResource;
-import com.azure.resourcemanager.servicelinker.models.KeyVaultSecretUriSecretInfo;
 import com.azure.resourcemanager.servicelinker.models.SecretAuthInfo;
 import com.azure.resourcemanager.servicelinker.models.SecretStore;
 import com.azure.resourcemanager.servicelinker.models.VNetSolution;
 import com.azure.resourcemanager.servicelinker.models.VNetSolutionType;
-import com.azure.resourcemanager.servicelinker.models.ValueSecretInfo;
 
 /** Samples for Linker CreateOrUpdate. */
 public final class LinkerCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/servicelinker/resource-manager/Microsoft.ServiceLinker/stable/2022-05-01/examples/PutLinkWithSecretStore.json
+     * x-ms-original-file: specification/servicelinker/resource-manager/Microsoft.ServiceLinker/stable/2022-07-12/examples/PutLinkWithServiceEndpoint.json
      */
     /**
-     * Sample code: PutLinkWithSecretStore.
+     * Sample code: PutLinkWithServiceEndpoint.
      *
-     * @param manager Entry point to ServiceLinkerManager.
+     * @param manager Entry point to ServicelinkerManager.
      */
-    public static void putLinkWithSecretStore(com.azure.resourcemanager.servicelinker.ServiceLinkerManager manager) {
+    public static void putLinkWithServiceEndpoint(
+        com.azure.resourcemanager.servicelinker.ServicelinkerManager manager) {
         manager
             .linkers()
             .define("linkName")
@@ -32,7 +31,8 @@ public final class LinkerCreateOrUpdateSamples {
                 new AzureResource()
                     .withId(
                         "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Microsoft.DocumentDb/databaseAccounts/test-acc/mongodbDatabases/test-db"))
-            .withAuthInfo(new SecretAuthInfo())
+            .withAuthInfo(new SecretAuthInfo().withName("name").withSecret("secret"))
+            .withVNetSolution(new VNetSolution().withType(VNetSolutionType.SERVICE_ENDPOINT))
             .withSecretStore(
                 new SecretStore()
                     .withKeyVaultId(
@@ -41,44 +41,14 @@ public final class LinkerCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/servicelinker/resource-manager/Microsoft.ServiceLinker/stable/2022-05-01/examples/PutLinkWithServiceEndpoint.json
-     */
-    /**
-     * Sample code: PutLinkWithServiceEndpoint.
-     *
-     * @param manager Entry point to ServiceLinkerManager.
-     */
-    public static void putLinkWithServiceEndpoint(
-        com.azure.resourcemanager.servicelinker.ServiceLinkerManager manager) {
-        manager
-            .linkers()
-            .define("linkName")
-            .withExistingResourceUri(
-                "subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Microsoft.Web/sites/test-app")
-            .withTargetService(
-                new AzureResource()
-                    .withId(
-                        "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Microsoft.DBforPostgreSQL/servers/test-pg/databases/test-db"))
-            .withAuthInfo(
-                new SecretAuthInfo()
-                    .withName("name")
-                    .withSecretInfo(
-                        new KeyVaultSecretUriSecretInfo()
-                            .withValue(
-                                "https://vault-name.vault.azure.net/secrets/secret-name/00000000000000000000000000000000")))
-            .withVNetSolution(new VNetSolution().withType(VNetSolutionType.SERVICE_ENDPOINT))
-            .create();
-    }
-
-    /*
-     * x-ms-original-file: specification/servicelinker/resource-manager/Microsoft.ServiceLinker/stable/2022-05-01/examples/PutLink.json
+     * x-ms-original-file: specification/servicelinker/resource-manager/Microsoft.ServiceLinker/stable/2022-07-12/examples/PutLink.json
      */
     /**
      * Sample code: PutLink.
      *
-     * @param manager Entry point to ServiceLinkerManager.
+     * @param manager Entry point to ServicelinkerManager.
      */
-    public static void putLink(com.azure.resourcemanager.servicelinker.ServiceLinkerManager manager) {
+    public static void putLink(com.azure.resourcemanager.servicelinker.ServicelinkerManager manager) {
         manager
             .linkers()
             .define("linkName")
@@ -87,9 +57,8 @@ public final class LinkerCreateOrUpdateSamples {
             .withTargetService(
                 new AzureResource()
                     .withId(
-                        "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Microsoft.DBforPostgreSQL/servers/test-pg/databases/test-db"))
-            .withAuthInfo(
-                new SecretAuthInfo().withName("name").withSecretInfo(new ValueSecretInfo().withValue("secret")))
+                        "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Microsoft.DocumentDb/databaseAccounts/test-acc/mongodbDatabases/test-db"))
+            .withAuthInfo(new SecretAuthInfo().withName("name").withSecret("secret"))
             .create();
     }
 }

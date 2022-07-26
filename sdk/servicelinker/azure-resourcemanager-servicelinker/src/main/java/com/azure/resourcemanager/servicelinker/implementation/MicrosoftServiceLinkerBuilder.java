@@ -14,9 +14,9 @@ import com.azure.core.management.serializer.SerializerFactory;
 import com.azure.core.util.serializer.SerializerAdapter;
 import java.time.Duration;
 
-/** A builder for creating a new instance of the ServiceLinkerManagementClientImpl type. */
-@ServiceClientBuilder(serviceClients = {ServiceLinkerManagementClientImpl.class})
-public final class ServiceLinkerManagementClientBuilder {
+/** A builder for creating a new instance of the MicrosoftServiceLinkerImpl type. */
+@ServiceClientBuilder(serviceClients = {MicrosoftServiceLinkerImpl.class})
+public final class MicrosoftServiceLinkerBuilder {
     /*
      * server parameter
      */
@@ -26,9 +26,9 @@ public final class ServiceLinkerManagementClientBuilder {
      * Sets server parameter.
      *
      * @param endpoint the endpoint value.
-     * @return the ServiceLinkerManagementClientBuilder.
+     * @return the MicrosoftServiceLinkerBuilder.
      */
-    public ServiceLinkerManagementClientBuilder endpoint(String endpoint) {
+    public MicrosoftServiceLinkerBuilder endpoint(String endpoint) {
         this.endpoint = endpoint;
         return this;
     }
@@ -42,9 +42,9 @@ public final class ServiceLinkerManagementClientBuilder {
      * Sets The environment to connect to.
      *
      * @param environment the environment value.
-     * @return the ServiceLinkerManagementClientBuilder.
+     * @return the MicrosoftServiceLinkerBuilder.
      */
-    public ServiceLinkerManagementClientBuilder environment(AzureEnvironment environment) {
+    public MicrosoftServiceLinkerBuilder environment(AzureEnvironment environment) {
         this.environment = environment;
         return this;
     }
@@ -58,9 +58,9 @@ public final class ServiceLinkerManagementClientBuilder {
      * Sets The HTTP pipeline to send requests through.
      *
      * @param pipeline the pipeline value.
-     * @return the ServiceLinkerManagementClientBuilder.
+     * @return the MicrosoftServiceLinkerBuilder.
      */
-    public ServiceLinkerManagementClientBuilder pipeline(HttpPipeline pipeline) {
+    public MicrosoftServiceLinkerBuilder pipeline(HttpPipeline pipeline) {
         this.pipeline = pipeline;
         return this;
     }
@@ -74,9 +74,9 @@ public final class ServiceLinkerManagementClientBuilder {
      * Sets The default poll interval for long-running operation.
      *
      * @param defaultPollInterval the defaultPollInterval value.
-     * @return the ServiceLinkerManagementClientBuilder.
+     * @return the MicrosoftServiceLinkerBuilder.
      */
-    public ServiceLinkerManagementClientBuilder defaultPollInterval(Duration defaultPollInterval) {
+    public MicrosoftServiceLinkerBuilder defaultPollInterval(Duration defaultPollInterval) {
         this.defaultPollInterval = defaultPollInterval;
         return this;
     }
@@ -90,19 +90,19 @@ public final class ServiceLinkerManagementClientBuilder {
      * Sets The serializer to serialize an object into a string.
      *
      * @param serializerAdapter the serializerAdapter value.
-     * @return the ServiceLinkerManagementClientBuilder.
+     * @return the MicrosoftServiceLinkerBuilder.
      */
-    public ServiceLinkerManagementClientBuilder serializerAdapter(SerializerAdapter serializerAdapter) {
+    public MicrosoftServiceLinkerBuilder serializerAdapter(SerializerAdapter serializerAdapter) {
         this.serializerAdapter = serializerAdapter;
         return this;
     }
 
     /**
-     * Builds an instance of ServiceLinkerManagementClientImpl with the provided parameters.
+     * Builds an instance of MicrosoftServiceLinkerImpl with the provided parameters.
      *
-     * @return an instance of ServiceLinkerManagementClientImpl.
+     * @return an instance of MicrosoftServiceLinkerImpl.
      */
-    public ServiceLinkerManagementClientImpl buildClient() {
+    public MicrosoftServiceLinkerImpl buildClient() {
         if (endpoint == null) {
             this.endpoint = "https://management.azure.com";
         }
@@ -118,9 +118,8 @@ public final class ServiceLinkerManagementClientBuilder {
         if (serializerAdapter == null) {
             this.serializerAdapter = SerializerFactory.createDefaultManagementSerializerAdapter();
         }
-        ServiceLinkerManagementClientImpl client =
-            new ServiceLinkerManagementClientImpl(
-                pipeline, serializerAdapter, defaultPollInterval, environment, endpoint);
+        MicrosoftServiceLinkerImpl client =
+            new MicrosoftServiceLinkerImpl(pipeline, serializerAdapter, defaultPollInterval, environment, endpoint);
         return client;
     }
 }
