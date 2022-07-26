@@ -71,8 +71,8 @@
     <module>sdk/eventgrid</module>
     <module>sdk/eventhubs</module>
     <module>sdk/extendedlocation</module>
-    <module>sdk/formrecognizer</module>
     <module>sdk/fluidrelay</module>
+    <module>sdk/formrecognizer</module>
     <module>sdk/frontdoor</module>
     <module>sdk/hanaonazure</module>
     <module>sdk/hardwaresecuritymodules</module>
@@ -144,6 +144,7 @@
     <module>sdk/servicefabric</module>
     <module>sdk/servicelinker</module>
     <module>sdk/signalr</module>
+    <module>sdk/solutions</module>
     <module>sdk/spring</module>
     <module>sdk/spring-experimental</module>
     <module>sdk/sqlvirtualmachine</module>
