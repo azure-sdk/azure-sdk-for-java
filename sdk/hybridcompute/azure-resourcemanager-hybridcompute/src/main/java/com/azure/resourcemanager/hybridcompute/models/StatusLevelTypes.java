@@ -30,7 +30,11 @@ public final class StatusLevelTypes extends ExpandableStringEnum<StatusLevelType
         return fromString(name, StatusLevelTypes.class);
     }
 
-    /** @return known StatusLevelTypes values. */
+    /**
+     * Gets known StatusLevelTypes values.
+     *
+     * @return known StatusLevelTypes values.
+     */
     public static Collection<StatusLevelTypes> values() {
         return values(StatusLevelTypes.class);
     }
