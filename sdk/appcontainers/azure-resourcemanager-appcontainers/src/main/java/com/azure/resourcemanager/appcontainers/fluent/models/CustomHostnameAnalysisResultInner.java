@@ -5,8 +5,6 @@
 package com.azure.resourcemanager.appcontainers.fluent.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.management.ProxyResource;
-import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.appcontainers.models.DefaultErrorResponseError;
 import com.azure.resourcemanager.appcontainers.models.DnsVerificationTestResult;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -14,37 +12,75 @@ import java.util.List;
 
 /** Custom domain analysis. */
 @Fluent
-public final class CustomHostnameAnalysisResultInner extends ProxyResource {
+public final class CustomHostnameAnalysisResultInner {
     /*
-     * CustomHostnameAnalysisResult resource specific properties
+     * Host name that was analyzed
      */
-    @JsonProperty(value = "properties")
-    private CustomHostnameAnalysisResultProperties innerProperties;
+    @JsonProperty(value = "hostName", access = JsonProperty.Access.WRITE_ONLY)
+    private String hostname;
 
     /*
-     * Azure Resource Manager metadata containing createdBy and modifiedBy
-     * information.
+     * <code>true</code> if hostname is already verified; otherwise,
+     * <code>false</code>.
      */
-    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
-    private SystemData systemData;
+    @JsonProperty(value = "isHostnameAlreadyVerified", access = JsonProperty.Access.WRITE_ONLY)
+    private Boolean isHostnameAlreadyVerified;
 
-    /**
-     * Get the innerProperties property: CustomHostnameAnalysisResult resource specific properties.
-     *
-     * @return the innerProperties value.
+    /*
+     * DNS verification test result.
      */
-    private CustomHostnameAnalysisResultProperties innerProperties() {
-        return this.innerProperties;
-    }
+    @JsonProperty(value = "customDomainVerificationTest", access = JsonProperty.Access.WRITE_ONLY)
+    private DnsVerificationTestResult customDomainVerificationTest;
 
-    /**
-     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
-     *
-     * @return the systemData value.
+    /*
+     * Raw failure information if DNS verification fails.
      */
-    public SystemData systemData() {
-        return this.systemData;
-    }
+    @JsonProperty(value = "customDomainVerificationFailureInfo", access = JsonProperty.Access.WRITE_ONLY)
+    private DefaultErrorResponseError customDomainVerificationFailureInfo;
+
+    /*
+     * <code>true</code> if there is a conflict on the Container App's managed
+     * environment; otherwise, <code>false</code>.
+     */
+    @JsonProperty(value = "hasConflictOnManagedEnvironment", access = JsonProperty.Access.WRITE_ONLY)
+    private Boolean hasConflictOnManagedEnvironment;
+
+    /*
+     * Name of the conflicting Container App on the Managed Environment if it's
+     * within the same subscription.
+     */
+    @JsonProperty(value = "conflictingContainerAppResourceId", access = JsonProperty.Access.WRITE_ONLY)
+    private String conflictingContainerAppResourceId;
+
+    /*
+     * CName records visible for this hostname.
+     */
+    @JsonProperty(value = "cNameRecords")
+    private List<String> cNameRecords;
+
+    /*
+     * TXT records visible for this hostname.
+     */
+    @JsonProperty(value = "txtRecords")
+    private List<String> txtRecords;
+
+    /*
+     * A records visible for this hostname.
+     */
+    @JsonProperty(value = "aRecords")
+    private List<String> aRecords;
+
+    /*
+     * Alternate CName records visible for this hostname.
+     */
+    @JsonProperty(value = "alternateCNameRecords")
+    private List<String> alternateCNameRecords;
+
+    /*
+     * Alternate TXT records visible for this hostname.
+     */
+    @JsonProperty(value = "alternateTxtRecords")
+    private List<String> alternateTxtRecords;
 
     /**
      * Get the hostname property: Host name that was analyzed.
@@ -52,7 +88,7 @@ public final class CustomHostnameAnalysisResultInner extends ProxyResource {
      * @return the hostname value.
      */
     public String hostname() {
-        return this.innerProperties() == null ? null : this.innerProperties().hostname();
+        return this.hostname;
     }
 
     /**
@@ -62,7 +98,7 @@ public final class CustomHostnameAnalysisResultInner extends ProxyResource {
      * @return the isHostnameAlreadyVerified value.
      */
     public Boolean isHostnameAlreadyVerified() {
-        return this.innerProperties() == null ? null : this.innerProperties().isHostnameAlreadyVerified();
+        return this.isHostnameAlreadyVerified;
     }
 
     /**
@@ -71,7 +107,7 @@ public final class CustomHostnameAnalysisResultInner extends ProxyResource {
      * @return the customDomainVerificationTest value.
      */
     public DnsVerificationTestResult customDomainVerificationTest() {
-        return this.innerProperties() == null ? null : this.innerProperties().customDomainVerificationTest();
+        return this.customDomainVerificationTest;
     }
 
     /**
@@ -80,7 +116,7 @@ public final class CustomHostnameAnalysisResultInner extends ProxyResource {
      * @return the customDomainVerificationFailureInfo value.
      */
     public DefaultErrorResponseError customDomainVerificationFailureInfo() {
-        return this.innerProperties() == null ? null : this.innerProperties().customDomainVerificationFailureInfo();
+        return this.customDomainVerificationFailureInfo;
     }
 
     /**
@@ -90,7 +126,7 @@ public final class CustomHostnameAnalysisResultInner extends ProxyResource {
      * @return the hasConflictOnManagedEnvironment value.
      */
     public Boolean hasConflictOnManagedEnvironment() {
-        return this.innerProperties() == null ? null : this.innerProperties().hasConflictOnManagedEnvironment();
+        return this.hasConflictOnManagedEnvironment;
     }
 
     /**
@@ -100,7 +136,7 @@ public final class CustomHostnameAnalysisResultInner extends ProxyResource {
      * @return the conflictingContainerAppResourceId value.
      */
     public String conflictingContainerAppResourceId() {
-        return this.innerProperties() == null ? null : this.innerProperties().conflictingContainerAppResourceId();
+        return this.conflictingContainerAppResourceId;
     }
 
     /**
@@ -109,7 +145,7 @@ public final class CustomHostnameAnalysisResultInner extends ProxyResource {
      * @return the cNameRecords value.
      */
     public List<String> cNameRecords() {
-        return this.innerProperties() == null ? null : this.innerProperties().cNameRecords();
+        return this.cNameRecords;
     }
 
     /**
@@ -119,10 +155,7 @@ public final class CustomHostnameAnalysisResultInner extends ProxyResource {
      * @return the CustomHostnameAnalysisResultInner object itself.
      */
     public CustomHostnameAnalysisResultInner withCNameRecords(List<String> cNameRecords) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new CustomHostnameAnalysisResultProperties();
-        }
-        this.innerProperties().withCNameRecords(cNameRecords);
+        this.cNameRecords = cNameRecords;
         return this;
     }
 
@@ -132,7 +165,7 @@ public final class CustomHostnameAnalysisResultInner extends ProxyResource {
      * @return the txtRecords value.
      */
     public List<String> txtRecords() {
-        return this.innerProperties() == null ? null : this.innerProperties().txtRecords();
+        return this.txtRecords;
     }
 
     /**
@@ -142,10 +175,7 @@ public final class CustomHostnameAnalysisResultInner extends ProxyResource {
      * @return the CustomHostnameAnalysisResultInner object itself.
      */
     public CustomHostnameAnalysisResultInner withTxtRecords(List<String> txtRecords) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new CustomHostnameAnalysisResultProperties();
-        }
-        this.innerProperties().withTxtRecords(txtRecords);
+        this.txtRecords = txtRecords;
         return this;
     }
 
@@ -155,7 +185,7 @@ public final class CustomHostnameAnalysisResultInner extends ProxyResource {
      * @return the aRecords value.
      */
     public List<String> aRecords() {
-        return this.innerProperties() == null ? null : this.innerProperties().aRecords();
+        return this.aRecords;
     }
 
     /**
@@ -165,10 +195,7 @@ public final class CustomHostnameAnalysisResultInner extends ProxyResource {
      * @return the CustomHostnameAnalysisResultInner object itself.
      */
     public CustomHostnameAnalysisResultInner withARecords(List<String> aRecords) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new CustomHostnameAnalysisResultProperties();
-        }
-        this.innerProperties().withARecords(aRecords);
+        this.aRecords = aRecords;
         return this;
     }
 
@@ -178,7 +205,7 @@ public final class CustomHostnameAnalysisResultInner extends ProxyResource {
      * @return the alternateCNameRecords value.
      */
     public List<String> alternateCNameRecords() {
-        return this.innerProperties() == null ? null : this.innerProperties().alternateCNameRecords();
+        return this.alternateCNameRecords;
     }
 
     /**
@@ -188,10 +215,7 @@ public final class CustomHostnameAnalysisResultInner extends ProxyResource {
      * @return the CustomHostnameAnalysisResultInner object itself.
      */
     public CustomHostnameAnalysisResultInner withAlternateCNameRecords(List<String> alternateCNameRecords) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new CustomHostnameAnalysisResultProperties();
-        }
-        this.innerProperties().withAlternateCNameRecords(alternateCNameRecords);
+        this.alternateCNameRecords = alternateCNameRecords;
         return this;
     }
 
@@ -201,7 +225,7 @@ public final class CustomHostnameAnalysisResultInner extends ProxyResource {
      * @return the alternateTxtRecords value.
      */
     public List<String> alternateTxtRecords() {
-        return this.innerProperties() == null ? null : this.innerProperties().alternateTxtRecords();
+        return this.alternateTxtRecords;
     }
 
     /**
@@ -211,10 +235,7 @@ public final class CustomHostnameAnalysisResultInner extends ProxyResource {
      * @return the CustomHostnameAnalysisResultInner object itself.
      */
     public CustomHostnameAnalysisResultInner withAlternateTxtRecords(List<String> alternateTxtRecords) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new CustomHostnameAnalysisResultProperties();
-        }
-        this.innerProperties().withAlternateTxtRecords(alternateTxtRecords);
+        this.alternateTxtRecords = alternateTxtRecords;
         return this;
     }
 
@@ -224,8 +245,8 @@ public final class CustomHostnameAnalysisResultInner extends ProxyResource {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (innerProperties() != null) {
-            innerProperties().validate();
+        if (customDomainVerificationFailureInfo() != null) {
+            customDomainVerificationFailureInfo().validate();
         }
     }
 }
