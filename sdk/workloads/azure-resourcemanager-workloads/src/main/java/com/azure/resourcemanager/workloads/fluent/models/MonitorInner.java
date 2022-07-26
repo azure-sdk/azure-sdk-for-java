@@ -158,6 +158,31 @@ public final class MonitorInner extends Resource {
     }
 
     /**
+     * Get the zoneRedundancyPreference property: Sets the preference for zone redundancy on resources created for the
+     * SAP monitor. By default resources will be created which do not support zone redundancy.
+     *
+     * @return the zoneRedundancyPreference value.
+     */
+    public String zoneRedundancyPreference() {
+        return this.innerProperties() == null ? null : this.innerProperties().zoneRedundancyPreference();
+    }
+
+    /**
+     * Set the zoneRedundancyPreference property: Sets the preference for zone redundancy on resources created for the
+     * SAP monitor. By default resources will be created which do not support zone redundancy.
+     *
+     * @param zoneRedundancyPreference the zoneRedundancyPreference value to set.
+     * @return the MonitorInner object itself.
+     */
+    public MonitorInner withZoneRedundancyPreference(String zoneRedundancyPreference) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new MonitorProperties();
+        }
+        this.innerProperties().withZoneRedundancyPreference(zoneRedundancyPreference);
+        return this;
+    }
+
+    /**
      * Get the managedResourceGroupConfiguration property: Managed resource group configuration.
      *
      * @return the managedResourceGroupConfiguration value.

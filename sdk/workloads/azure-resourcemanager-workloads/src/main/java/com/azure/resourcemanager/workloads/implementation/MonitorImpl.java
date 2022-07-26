@@ -72,6 +72,10 @@ public final class MonitorImpl implements Monitor, Monitor.Definition, Monitor.U
         return this.innerModel().routingPreference();
     }
 
+    public String zoneRedundancyPreference() {
+        return this.innerModel().zoneRedundancyPreference();
+    }
+
     public ManagedRGConfiguration managedResourceGroupConfiguration() {
         return this.innerModel().managedResourceGroupConfiguration();
     }
@@ -232,6 +236,11 @@ public final class MonitorImpl implements Monitor, Monitor.Definition, Monitor.U
 
     public MonitorImpl withRoutingPreference(RoutingPreference routingPreference) {
         this.innerModel().withRoutingPreference(routingPreference);
+        return this;
+    }
+
+    public MonitorImpl withZoneRedundancyPreference(String zoneRedundancyPreference) {
+        this.innerModel().withZoneRedundancyPreference(zoneRedundancyPreference);
         return this;
     }
 

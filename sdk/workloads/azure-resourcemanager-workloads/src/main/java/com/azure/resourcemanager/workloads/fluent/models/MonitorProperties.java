@@ -41,6 +41,14 @@ public final class MonitorProperties {
     private RoutingPreference routingPreference;
 
     /*
+     * Sets the preference for zone redundancy on resources created for the SAP
+     * monitor. By default resources will be created which do not support zone
+     * redundancy.
+     */
+    @JsonProperty(value = "zoneRedundancyPreference")
+    private String zoneRedundancyPreference;
+
+    /*
      * Managed resource group configuration
      */
     @JsonProperty(value = "managedResourceGroupConfiguration")
@@ -124,6 +132,28 @@ public final class MonitorProperties {
      */
     public MonitorProperties withRoutingPreference(RoutingPreference routingPreference) {
         this.routingPreference = routingPreference;
+        return this;
+    }
+
+    /**
+     * Get the zoneRedundancyPreference property: Sets the preference for zone redundancy on resources created for the
+     * SAP monitor. By default resources will be created which do not support zone redundancy.
+     *
+     * @return the zoneRedundancyPreference value.
+     */
+    public String zoneRedundancyPreference() {
+        return this.zoneRedundancyPreference;
+    }
+
+    /**
+     * Set the zoneRedundancyPreference property: Sets the preference for zone redundancy on resources created for the
+     * SAP monitor. By default resources will be created which do not support zone redundancy.
+     *
+     * @param zoneRedundancyPreference the zoneRedundancyPreference value to set.
+     * @return the MonitorProperties object itself.
+     */
+    public MonitorProperties withZoneRedundancyPreference(String zoneRedundancyPreference) {
+        this.zoneRedundancyPreference = zoneRedundancyPreference;
         return this;
     }
 
