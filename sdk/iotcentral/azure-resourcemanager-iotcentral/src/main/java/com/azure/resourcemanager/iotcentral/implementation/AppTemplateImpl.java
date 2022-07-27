@@ -37,7 +37,7 @@ public final class AppTemplateImpl implements AppTemplate {
         return this.innerModel().title();
     }
 
-    public Float order() {
+    public Integer order() {
         return this.innerModel().order();
     }
 

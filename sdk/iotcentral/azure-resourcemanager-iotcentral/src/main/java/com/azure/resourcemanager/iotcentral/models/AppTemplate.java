@@ -42,7 +42,7 @@ public interface AppTemplate {
      *
      * @return the order value.
      */
-    Float order();
+    Integer order();
 
     /**
      * Gets the description property: The description of the template.

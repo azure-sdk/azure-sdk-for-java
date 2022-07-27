@@ -40,7 +40,7 @@ public final class AppTemplateInner {
      * The order of the template in the templates list.
      */
     @JsonProperty(value = "order", access = JsonProperty.Access.WRITE_ONLY)
-    private Float order;
+    private Integer order;
 
     /*
      * The description of the template.
@@ -101,7 +101,7 @@ public final class AppTemplateInner {
      *
      * @return the order value.
      */
-    public Float order() {
+    public Integer order() {
         return this.order;
     }
 
