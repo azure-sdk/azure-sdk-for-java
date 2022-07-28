@@ -32,6 +32,7 @@ import com.azure.resourcemanager.securityinsights.fluent.BookmarksClient;
 import com.azure.resourcemanager.securityinsights.fluent.DataConnectorsCheckRequirementsOperationsClient;
 import com.azure.resourcemanager.securityinsights.fluent.DataConnectorsClient;
 import com.azure.resourcemanager.securityinsights.fluent.DomainWhoisClient;
+import com.azure.resourcemanager.securityinsights.fluent.EditedQueriesClient;
 import com.azure.resourcemanager.securityinsights.fluent.EntitiesClient;
 import com.azure.resourcemanager.securityinsights.fluent.EntitiesGetTimelinesClient;
 import com.azure.resourcemanager.securityinsights.fluent.EntitiesRelationsClient;
@@ -46,7 +47,9 @@ import com.azure.resourcemanager.securityinsights.fluent.MetadatasClient;
 import com.azure.resourcemanager.securityinsights.fluent.OfficeConsentsClient;
 import com.azure.resourcemanager.securityinsights.fluent.OperationsClient;
 import com.azure.resourcemanager.securityinsights.fluent.ProductSettingsClient;
+import com.azure.resourcemanager.securityinsights.fluent.QueriesClient;
 import com.azure.resourcemanager.securityinsights.fluent.SecurityInsights;
+import com.azure.resourcemanager.securityinsights.fluent.SecurityMLAnalyticsSettingsClient;
 import com.azure.resourcemanager.securityinsights.fluent.SentinelOnboardingStatesClient;
 import com.azure.resourcemanager.securityinsights.fluent.SourceControlsClient;
 import com.azure.resourcemanager.securityinsights.fluent.SourceControlsOperationsClient;
@@ -391,6 +394,18 @@ public final class SecurityInsightsImpl implements SecurityInsights {
         return this.sentinelOnboardingStates;
     }
 
+    /** The SecurityMLAnalyticsSettingsClient object to access its operations. */
+    private final SecurityMLAnalyticsSettingsClient securityMLAnalyticsSettings;
+
+    /**
+     * Gets the SecurityMLAnalyticsSettingsClient object to access its operations.
+     *
+     * @return the SecurityMLAnalyticsSettingsClient object.
+     */
+    public SecurityMLAnalyticsSettingsClient getSecurityMLAnalyticsSettings() {
+        return this.securityMLAnalyticsSettings;
+    }
+
     /** The ProductSettingsClient object to access its operations. */
     private final ProductSettingsClient productSettings;
 
@@ -523,6 +538,30 @@ public final class SecurityInsightsImpl implements SecurityInsights {
         return this.operations;
     }
 
+    /** The QueriesClient object to access its operations. */
+    private final QueriesClient queries;
+
+    /**
+     * Gets the QueriesClient object to access its operations.
+     *
+     * @return the QueriesClient object.
+     */
+    public QueriesClient getQueries() {
+        return this.queries;
+    }
+
+    /** The EditedQueriesClient object to access its operations. */
+    private final EditedQueriesClient editedQueries;
+
+    /**
+     * Gets the EditedQueriesClient object to access its operations.
+     *
+     * @return the EditedQueriesClient object.
+     */
+    public EditedQueriesClient getEditedQueries() {
+        return this.editedQueries;
+    }
+
     /**
      * Initializes an instance of SecurityInsights client.
      *
@@ -545,7 +584,7 @@ public final class SecurityInsightsImpl implements SecurityInsights {
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2022-01-01-preview";
+        this.apiVersion = "2022-11-01-preview";
         this.alertRules = new AlertRulesClientImpl(this);
         this.actions = new ActionsClientImpl(this);
         this.alertRuleTemplates = new AlertRuleTemplatesClientImpl(this);
@@ -567,6 +606,7 @@ public final class SecurityInsightsImpl implements SecurityInsights {
         this.metadatas = new MetadatasClientImpl(this);
         this.officeConsents = new OfficeConsentsClientImpl(this);
         this.sentinelOnboardingStates = new SentinelOnboardingStatesClientImpl(this);
+        this.securityMLAnalyticsSettings = new SecurityMLAnalyticsSettingsClientImpl(this);
         this.productSettings = new ProductSettingsClientImpl(this);
         this.sourceControls = new SourceControlsClientImpl(this);
         this.sourceControlsOperations = new SourceControlsOperationsClientImpl(this);
@@ -578,6 +618,8 @@ public final class SecurityInsightsImpl implements SecurityInsights {
         this.dataConnectors = new DataConnectorsClientImpl(this);
         this.dataConnectorsCheckRequirementsOperations = new DataConnectorsCheckRequirementsOperationsClientImpl(this);
         this.operations = new OperationsClientImpl(this);
+        this.queries = new QueriesClientImpl(this);
+        this.editedQueries = new EditedQueriesClientImpl(this);
     }
 
     /**

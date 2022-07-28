@@ -34,6 +34,7 @@ import com.azure.resourcemanager.securityinsights.implementation.BookmarksImpl;
 import com.azure.resourcemanager.securityinsights.implementation.DataConnectorsCheckRequirementsOperationsImpl;
 import com.azure.resourcemanager.securityinsights.implementation.DataConnectorsImpl;
 import com.azure.resourcemanager.securityinsights.implementation.DomainWhoisImpl;
+import com.azure.resourcemanager.securityinsights.implementation.EditedQueriesImpl;
 import com.azure.resourcemanager.securityinsights.implementation.EntitiesGetTimelinesImpl;
 import com.azure.resourcemanager.securityinsights.implementation.EntitiesImpl;
 import com.azure.resourcemanager.securityinsights.implementation.EntitiesRelationsImpl;
@@ -48,7 +49,9 @@ import com.azure.resourcemanager.securityinsights.implementation.MetadatasImpl;
 import com.azure.resourcemanager.securityinsights.implementation.OfficeConsentsImpl;
 import com.azure.resourcemanager.securityinsights.implementation.OperationsImpl;
 import com.azure.resourcemanager.securityinsights.implementation.ProductSettingsImpl;
+import com.azure.resourcemanager.securityinsights.implementation.QueriesImpl;
 import com.azure.resourcemanager.securityinsights.implementation.SecurityInsightsBuilder;
+import com.azure.resourcemanager.securityinsights.implementation.SecurityMLAnalyticsSettingsImpl;
 import com.azure.resourcemanager.securityinsights.implementation.SentinelOnboardingStatesImpl;
 import com.azure.resourcemanager.securityinsights.implementation.SourceControlsImpl;
 import com.azure.resourcemanager.securityinsights.implementation.SourceControlsOperationsImpl;
@@ -67,6 +70,7 @@ import com.azure.resourcemanager.securityinsights.models.Bookmarks;
 import com.azure.resourcemanager.securityinsights.models.DataConnectors;
 import com.azure.resourcemanager.securityinsights.models.DataConnectorsCheckRequirementsOperations;
 import com.azure.resourcemanager.securityinsights.models.DomainWhois;
+import com.azure.resourcemanager.securityinsights.models.EditedQueries;
 import com.azure.resourcemanager.securityinsights.models.Entities;
 import com.azure.resourcemanager.securityinsights.models.EntitiesGetTimelines;
 import com.azure.resourcemanager.securityinsights.models.EntitiesRelations;
@@ -81,6 +85,8 @@ import com.azure.resourcemanager.securityinsights.models.Metadatas;
 import com.azure.resourcemanager.securityinsights.models.OfficeConsents;
 import com.azure.resourcemanager.securityinsights.models.Operations;
 import com.azure.resourcemanager.securityinsights.models.ProductSettings;
+import com.azure.resourcemanager.securityinsights.models.Queries;
+import com.azure.resourcemanager.securityinsights.models.SecurityMLAnalyticsSettings;
 import com.azure.resourcemanager.securityinsights.models.SentinelOnboardingStates;
 import com.azure.resourcemanager.securityinsights.models.SourceControls;
 import com.azure.resourcemanager.securityinsights.models.SourceControlsOperations;
@@ -143,6 +149,8 @@ public final class SecurityInsightsManager {
 
     private SentinelOnboardingStates sentinelOnboardingStates;
 
+    private SecurityMLAnalyticsSettings securityMLAnalyticsSettings;
+
     private ProductSettings productSettings;
 
     private SourceControls sourceControls;
@@ -164,6 +172,10 @@ public final class SecurityInsightsManager {
     private DataConnectorsCheckRequirementsOperations dataConnectorsCheckRequirementsOperations;
 
     private Operations operations;
+
+    private Queries queries;
+
+    private EditedQueries editedQueries;
 
     private final SecurityInsights clientObject;
 
@@ -330,7 +342,7 @@ public final class SecurityInsightsManager {
                 .append("-")
                 .append("com.azure.resourcemanager.securityinsights")
                 .append("/")
-                .append("1.0.0-beta.3");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder
                     .append(" (")
@@ -641,6 +653,19 @@ public final class SecurityInsightsManager {
     }
 
     /**
+     * Gets the resource collection API of SecurityMLAnalyticsSettings.
+     *
+     * @return Resource collection API of SecurityMLAnalyticsSettings.
+     */
+    public SecurityMLAnalyticsSettings securityMLAnalyticsSettings() {
+        if (this.securityMLAnalyticsSettings == null) {
+            this.securityMLAnalyticsSettings =
+                new SecurityMLAnalyticsSettingsImpl(clientObject.getSecurityMLAnalyticsSettings(), this);
+        }
+        return securityMLAnalyticsSettings;
+    }
+
+    /**
      * Gets the resource collection API of ProductSettings.
      *
      * @return Resource collection API of ProductSettings.
@@ -777,6 +802,30 @@ public final class SecurityInsightsManager {
             this.operations = new OperationsImpl(clientObject.getOperations(), this);
         }
         return operations;
+    }
+
+    /**
+     * Gets the resource collection API of Queries. It manages Query.
+     *
+     * @return Resource collection API of Queries.
+     */
+    public Queries queries() {
+        if (this.queries == null) {
+            this.queries = new QueriesImpl(clientObject.getQueries(), this);
+        }
+        return queries;
+    }
+
+    /**
+     * Gets the resource collection API of EditedQueries. It manages EditedQuery.
+     *
+     * @return Resource collection API of EditedQueries.
+     */
+    public EditedQueries editedQueries() {
+        if (this.editedQueries == null) {
+            this.editedQueries = new EditedQueriesImpl(clientObject.getEditedQueries(), this);
+        }
+        return editedQueries;
     }
 
     /**
