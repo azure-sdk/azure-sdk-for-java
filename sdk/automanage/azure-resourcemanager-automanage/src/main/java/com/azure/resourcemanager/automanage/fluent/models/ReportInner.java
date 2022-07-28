@@ -8,17 +8,13 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.management.ProxyResource;
 import com.azure.core.management.SystemData;
 import com.azure.core.management.exception.ManagementError;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.automanage.models.ReportResource;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** Definition of the report. */
 @Fluent
 public final class ReportInner extends ProxyResource {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(ReportInner.class);
-
     /*
      * The properties for the report.
      */

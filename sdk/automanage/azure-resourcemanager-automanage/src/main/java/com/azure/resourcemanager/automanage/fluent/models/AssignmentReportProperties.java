@@ -6,17 +6,13 @@ package com.azure.resourcemanager.automanage.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.exception.ManagementError;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.automanage.models.ReportResource;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** Data related to the report detail. */
 @Fluent
 public final class AssignmentReportProperties {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(AssignmentReportProperties.class);
-
     /*
      * Start time of the configuration profile assignment processing.
      */

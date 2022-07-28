@@ -7,16 +7,11 @@ package com.azure.resourcemanager.automanage.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.ProxyResource;
 import com.azure.core.management.SystemData;
-import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.List;
 
 /** Definition of the Automanage best practice. */
 @Fluent
 public final class BestPracticeInner extends ProxyResource {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(BestPracticeInner.class);
-
     /*
      * Properties of the best practice.
      */
@@ -68,29 +63,6 @@ public final class BestPracticeInner extends ProxyResource {
             this.innerProperties = new ConfigurationProfileProperties();
         }
         this.innerProperties().withConfiguration(configuration);
-        return this;
-    }
-
-    /**
-     * Get the overrides property: overrides of the configuration profile.
-     *
-     * @return the overrides value.
-     */
-    public List<Object> overrides() {
-        return this.innerProperties() == null ? null : this.innerProperties().overrides();
-    }
-
-    /**
-     * Set the overrides property: overrides of the configuration profile.
-     *
-     * @param overrides the overrides value to set.
-     * @return the BestPracticeInner object itself.
-     */
-    public BestPracticeInner withOverrides(List<Object> overrides) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new ConfigurationProfileProperties();
-        }
-        this.innerProperties().withOverrides(overrides);
         return this;
     }
 
