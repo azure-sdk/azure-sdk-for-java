@@ -10,8 +10,10 @@ import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.appcontainers.models.RevisionHealthState;
 import com.azure.resourcemanager.appcontainers.models.RevisionProvisioningState;
 import com.azure.resourcemanager.appcontainers.models.Template;
+import com.azure.resourcemanager.appcontainers.models.TrafficLabel;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
+import java.util.List;
 
 /** Container App Revision. */
 @Fluent
@@ -100,6 +102,15 @@ public final class RevisionInner extends ProxyResource {
      */
     public Integer trafficWeight() {
         return this.innerProperties() == null ? null : this.innerProperties().trafficWeight();
+    }
+
+    /**
+     * Get the trafficLabels property: Traffic labels associated with this revision.
+     *
+     * @return the trafficLabels value.
+     */
+    public List<TrafficLabel> trafficLabels() {
+        return this.innerProperties() == null ? null : this.innerProperties().trafficLabels();
     }
 
     /**

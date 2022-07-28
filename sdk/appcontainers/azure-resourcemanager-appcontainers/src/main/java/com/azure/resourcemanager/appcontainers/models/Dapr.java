@@ -35,6 +35,12 @@ public final class Dapr {
     @JsonProperty(value = "appPort")
     private Integer appPort;
 
+    /*
+     * The httpReadBufferSize property.
+     */
+    @JsonProperty(value = "httpReadBufferSize")
+    private Integer httpReadBufferSize;
+
     /**
      * Get the enabled property: Boolean indicating if the Dapr side car is enabled.
      *
@@ -114,6 +120,26 @@ public final class Dapr {
      */
     public Dapr withAppPort(Integer appPort) {
         this.appPort = appPort;
+        return this;
+    }
+
+    /**
+     * Get the httpReadBufferSize property: The httpReadBufferSize property.
+     *
+     * @return the httpReadBufferSize value.
+     */
+    public Integer httpReadBufferSize() {
+        return this.httpReadBufferSize;
+    }
+
+    /**
+     * Set the httpReadBufferSize property: The httpReadBufferSize property.
+     *
+     * @param httpReadBufferSize the httpReadBufferSize value to set.
+     * @return the Dapr object itself.
+     */
+    public Dapr withHttpReadBufferSize(Integer httpReadBufferSize) {
+        this.httpReadBufferSize = httpReadBufferSize;
         return this;
     }
 
