@@ -6,10 +6,10 @@ package com.azure.resourcemanager.machinelearning.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.machinelearning.models.EncryptionProperty;
-import com.azure.resourcemanager.machinelearning.models.ProvisioningState;
 import com.azure.resourcemanager.machinelearning.models.PublicNetworkAccess;
 import com.azure.resourcemanager.machinelearning.models.ServiceManagedResourcesSettings;
 import com.azure.resourcemanager.machinelearning.models.SharedPrivateLinkResource;
+import com.azure.resourcemanager.machinelearning.models.WorkspaceProvisioningState;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
@@ -72,7 +72,7 @@ public final class WorkspacePropertiesInner {
      * provisioningState is to indicate states for resource provisioning.
      */
     @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
-    private ProvisioningState provisioningState;
+    private WorkspaceProvisioningState provisioningState;
 
     /*
      * The encryption settings of Azure ML workspace.
@@ -168,6 +168,31 @@ public final class WorkspacePropertiesInner {
      */
     @JsonProperty(value = "mlFlowTrackingUri", access = JsonProperty.Access.WRITE_ONLY)
     private String mlFlowTrackingUri;
+
+    /*
+     * Enabling v1_legacy_mode may prevent you from using features provided by
+     * the v2 API.
+     */
+    @JsonProperty(value = "v1LegacyMode")
+    private Boolean v1LegacyMode;
+
+    /*
+     * Whether to allow workspace soft deleting
+     */
+    @JsonProperty(value = "softDeleteEnabled")
+    private Boolean softDeleteEnabled;
+
+    /*
+     * The timestamp when the workspace was soft deleted
+     */
+    @JsonProperty(value = "softDeletedAt", access = JsonProperty.Access.WRITE_ONLY)
+    private String softDeletedAt;
+
+    /*
+     * The timestamp when the soft deleted workspace is going to be purged
+     */
+    @JsonProperty(value = "scheduledPurgeDate", access = JsonProperty.Access.WRITE_ONLY)
+    private String scheduledPurgeDate;
 
     /**
      * Get the workspaceId property: The immutable id associated with this workspace.
@@ -330,7 +355,7 @@ public final class WorkspacePropertiesInner {
      *
      * @return the provisioningState value.
      */
-    public ProvisioningState provisioningState() {
+    public WorkspaceProvisioningState provisioningState() {
         return this.provisioningState;
     }
 
@@ -566,6 +591,66 @@ public final class WorkspacePropertiesInner {
      */
     public String mlFlowTrackingUri() {
         return this.mlFlowTrackingUri;
+    }
+
+    /**
+     * Get the v1LegacyMode property: Enabling v1_legacy_mode may prevent you from using features provided by the v2
+     * API.
+     *
+     * @return the v1LegacyMode value.
+     */
+    public Boolean v1LegacyMode() {
+        return this.v1LegacyMode;
+    }
+
+    /**
+     * Set the v1LegacyMode property: Enabling v1_legacy_mode may prevent you from using features provided by the v2
+     * API.
+     *
+     * @param v1LegacyMode the v1LegacyMode value to set.
+     * @return the WorkspacePropertiesInner object itself.
+     */
+    public WorkspacePropertiesInner withV1LegacyMode(Boolean v1LegacyMode) {
+        this.v1LegacyMode = v1LegacyMode;
+        return this;
+    }
+
+    /**
+     * Get the softDeleteEnabled property: Whether to allow workspace soft deleting.
+     *
+     * @return the softDeleteEnabled value.
+     */
+    public Boolean softDeleteEnabled() {
+        return this.softDeleteEnabled;
+    }
+
+    /**
+     * Set the softDeleteEnabled property: Whether to allow workspace soft deleting.
+     *
+     * @param softDeleteEnabled the softDeleteEnabled value to set.
+     * @return the WorkspacePropertiesInner object itself.
+     */
+    public WorkspacePropertiesInner withSoftDeleteEnabled(Boolean softDeleteEnabled) {
+        this.softDeleteEnabled = softDeleteEnabled;
+        return this;
+    }
+
+    /**
+     * Get the softDeletedAt property: The timestamp when the workspace was soft deleted.
+     *
+     * @return the softDeletedAt value.
+     */
+    public String softDeletedAt() {
+        return this.softDeletedAt;
+    }
+
+    /**
+     * Get the scheduledPurgeDate property: The timestamp when the soft deleted workspace is going to be purged.
+     *
+     * @return the scheduledPurgeDate value.
+     */
+    public String scheduledPurgeDate() {
+        return this.scheduledPurgeDate;
     }
 
     /**

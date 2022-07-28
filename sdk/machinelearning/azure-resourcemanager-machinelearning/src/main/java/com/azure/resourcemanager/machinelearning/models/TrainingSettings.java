@@ -10,7 +10,7 @@ import java.time.Duration;
 
 /** Training related configuration. */
 @Fluent
-public final class TrainingSettings {
+public class TrainingSettings {
     /*
      * Enable recommendation of DNN models.
      */
