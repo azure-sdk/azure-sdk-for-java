@@ -14,7 +14,7 @@ import java.util.List;
 @Fluent
 public final class AutomationRuleTriggeringLogic {
     /*
-     * Determines whether the automation rule is enabled or disabled
+     * Determines whether the automation rule is enabled or disabled.
      */
     @JsonProperty(value = "isEnabled", required = true)
     private boolean isEnabled;
@@ -40,7 +40,7 @@ public final class AutomationRuleTriggeringLogic {
 
     /*
      * The conditions to evaluate to determine if the automation rule should be
-     * triggered on a given object
+     * triggered on a given object.
      */
     @JsonProperty(value = "conditions")
     private List<AutomationRuleCondition> conditions;
