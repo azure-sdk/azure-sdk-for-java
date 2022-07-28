@@ -105,8 +105,7 @@ public final class AvroDataset extends Dataset {
     }
 
     /**
-     * Get the avroCompressionCodec property: The data avroCompressionCodec. Type: string (or Expression with resultType
-     * string).
+     * Get the avroCompressionCodec property: A string from AvroCompressionCodecEnum or an expression.
      *
      * @return the avroCompressionCodec value.
      */
@@ -115,8 +114,7 @@ public final class AvroDataset extends Dataset {
     }
 
     /**
-     * Set the avroCompressionCodec property: The data avroCompressionCodec. Type: string (or Expression with resultType
-     * string).
+     * Set the avroCompressionCodec property: A string from AvroCompressionCodecEnum or an expression.
      *
      * @param avroCompressionCodec the avroCompressionCodec value to set.
      * @return the AvroDataset object itself.

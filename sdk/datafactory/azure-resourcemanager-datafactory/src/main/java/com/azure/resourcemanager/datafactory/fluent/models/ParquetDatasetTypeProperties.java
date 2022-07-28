@@ -19,8 +19,7 @@ public final class ParquetDatasetTypeProperties {
     private DatasetLocation location;
 
     /*
-     * The data compressionCodec. Type: string (or Expression with resultType
-     * string).
+     * A string from ParquetCompressionCodecEnum or an expression
      */
     @JsonProperty(value = "compressionCodec")
     private Object compressionCodec;
@@ -46,8 +45,7 @@ public final class ParquetDatasetTypeProperties {
     }
 
     /**
-     * Get the compressionCodec property: The data compressionCodec. Type: string (or Expression with resultType
-     * string).
+     * Get the compressionCodec property: A string from ParquetCompressionCodecEnum or an expression.
      *
      * @return the compressionCodec value.
      */
@@ -56,8 +54,7 @@ public final class ParquetDatasetTypeProperties {
     }
 
     /**
-     * Set the compressionCodec property: The data compressionCodec. Type: string (or Expression with resultType
-     * string).
+     * Set the compressionCodec property: A string from ParquetCompressionCodecEnum or an expression.
      *
      * @param compressionCodec the compressionCodec value to set.
      * @return the ParquetDatasetTypeProperties object itself.

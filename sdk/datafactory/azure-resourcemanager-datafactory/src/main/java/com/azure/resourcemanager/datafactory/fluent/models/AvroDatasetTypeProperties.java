@@ -19,8 +19,7 @@ public final class AvroDatasetTypeProperties {
     private DatasetLocation location;
 
     /*
-     * The data avroCompressionCodec. Type: string (or Expression with
-     * resultType string).
+     * A string from AvroCompressionCodecEnum or an expression
      */
     @JsonProperty(value = "avroCompressionCodec")
     private Object avroCompressionCodec;
@@ -52,8 +51,7 @@ public final class AvroDatasetTypeProperties {
     }
 
     /**
-     * Get the avroCompressionCodec property: The data avroCompressionCodec. Type: string (or Expression with resultType
-     * string).
+     * Get the avroCompressionCodec property: A string from AvroCompressionCodecEnum or an expression.
      *
      * @return the avroCompressionCodec value.
      */
@@ -62,8 +60,7 @@ public final class AvroDatasetTypeProperties {
     }
 
     /**
-     * Set the avroCompressionCodec property: The data avroCompressionCodec. Type: string (or Expression with resultType
-     * string).
+     * Set the avroCompressionCodec property: A string from AvroCompressionCodecEnum or an expression.
      *
      * @param avroCompressionCodec the avroCompressionCodec value to set.
      * @return the AvroDatasetTypeProperties object itself.
