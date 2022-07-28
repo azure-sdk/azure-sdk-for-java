@@ -51,7 +51,7 @@ public final class TrialComponent {
      * Compute Resource configuration for the job.
      */
     @JsonProperty(value = "resources")
-    private ResourceConfiguration resources;
+    private JobResourceConfiguration resources;
 
     /**
      * Get the codeId property: ARM resource ID of the code asset.
@@ -160,7 +160,7 @@ public final class TrialComponent {
      *
      * @return the resources value.
      */
-    public ResourceConfiguration resources() {
+    public JobResourceConfiguration resources() {
         return this.resources;
     }
 
@@ -170,7 +170,7 @@ public final class TrialComponent {
      * @param resources the resources value to set.
      * @return the TrialComponent object itself.
      */
-    public TrialComponent withResources(ResourceConfiguration resources) {
+    public TrialComponent withResources(JobResourceConfiguration resources) {
         this.resources = resources;
         return this;
     }

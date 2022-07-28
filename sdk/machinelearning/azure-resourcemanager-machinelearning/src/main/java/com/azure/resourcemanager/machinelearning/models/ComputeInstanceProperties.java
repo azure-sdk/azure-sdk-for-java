@@ -41,6 +41,12 @@ public final class ComputeInstanceProperties {
     private ComputeInstanceSshSettings sshSettings;
 
     /*
+     * List of Custom Services added to the compute.
+     */
+    @JsonProperty(value = "customServices")
+    private List<CustomService> customServices;
+
+    /*
      * Describes all connectivity endpoints available for this ComputeInstance.
      */
     @JsonProperty(value = "connectivityEndpoints", access = JsonProperty.Access.WRITE_ONLY)
@@ -101,6 +107,13 @@ public final class ComputeInstanceProperties {
      */
     @JsonProperty(value = "schedules", access = JsonProperty.Access.WRITE_ONLY)
     private ComputeSchedules schedules;
+
+    /*
+     * Stops compute instance after user defined period of inactivity. Time is
+     * defined in ISO8601 format. Minimum is 15 min, maximum is 3 days.
+     */
+    @JsonProperty(value = "idleTimeBeforeShutdown")
+    private String idleTimeBeforeShutdown;
 
     /*
      * Enable node public IP. Enable or disable node public IP address
@@ -219,6 +232,26 @@ public final class ComputeInstanceProperties {
      */
     public ComputeInstanceProperties withSshSettings(ComputeInstanceSshSettings sshSettings) {
         this.sshSettings = sshSettings;
+        return this;
+    }
+
+    /**
+     * Get the customServices property: List of Custom Services added to the compute.
+     *
+     * @return the customServices value.
+     */
+    public List<CustomService> customServices() {
+        return this.customServices;
+    }
+
+    /**
+     * Set the customServices property: List of Custom Services added to the compute.
+     *
+     * @param customServices the customServices value to set.
+     * @return the ComputeInstanceProperties object itself.
+     */
+    public ComputeInstanceProperties withCustomServices(List<CustomService> customServices) {
+        this.customServices = customServices;
         return this;
     }
 
@@ -350,6 +383,28 @@ public final class ComputeInstanceProperties {
     }
 
     /**
+     * Get the idleTimeBeforeShutdown property: Stops compute instance after user defined period of inactivity. Time is
+     * defined in ISO8601 format. Minimum is 15 min, maximum is 3 days.
+     *
+     * @return the idleTimeBeforeShutdown value.
+     */
+    public String idleTimeBeforeShutdown() {
+        return this.idleTimeBeforeShutdown;
+    }
+
+    /**
+     * Set the idleTimeBeforeShutdown property: Stops compute instance after user defined period of inactivity. Time is
+     * defined in ISO8601 format. Minimum is 15 min, maximum is 3 days.
+     *
+     * @param idleTimeBeforeShutdown the idleTimeBeforeShutdown value to set.
+     * @return the ComputeInstanceProperties object itself.
+     */
+    public ComputeInstanceProperties withIdleTimeBeforeShutdown(String idleTimeBeforeShutdown) {
+        this.idleTimeBeforeShutdown = idleTimeBeforeShutdown;
+        return this;
+    }
+
+    /**
      * Get the enableNodePublicIp property: Enable node public IP. Enable or disable node public IP address
      * provisioning. Possible values are: Possible values are: true - Indicates that the compute nodes will have public
      * IPs provisioned. false - Indicates that the compute nodes will have a private endpoint and no public IPs.
@@ -420,6 +475,9 @@ public final class ComputeInstanceProperties {
         }
         if (sshSettings() != null) {
             sshSettings().validate();
+        }
+        if (customServices() != null) {
+            customServices().forEach(e -> e.validate());
         }
         if (connectivityEndpoints() != null) {
             connectivityEndpoints().validate();

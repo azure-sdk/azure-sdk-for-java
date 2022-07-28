@@ -46,25 +46,16 @@ public class ImageModelSettings {
     private Float beta2;
 
     /*
-     * FileDataset id for pretrained checkpoint(s) for incremental training.
-     * Make sure to pass CheckpointFilename along with CheckpointDatasetId.
-     */
-    @JsonProperty(value = "checkpointDatasetId")
-    private String checkpointDatasetId;
-
-    /*
-     * The pretrained checkpoint filename in FileDataset for incremental
-     * training.
-     * Make sure to pass CheckpointDatasetId along with CheckpointFilename.
-     */
-    @JsonProperty(value = "checkpointFilename")
-    private String checkpointFilename;
-
-    /*
      * Frequency to store model checkpoints. Must be a positive integer.
      */
     @JsonProperty(value = "checkpointFrequency")
     private Integer checkpointFrequency;
+
+    /*
+     * The pretrained checkpoint model for incremental training.
+     */
+    @JsonProperty(value = "checkpointModel")
+    private MLFlowModelJobInput checkpointModel;
 
     /*
      * The id of a previous run that has a pretrained checkpoint for
@@ -193,15 +184,6 @@ public class ImageModelSettings {
      */
     @JsonProperty(value = "randomSeed")
     private Integer randomSeed;
-
-    /*
-     * If validation data is not defined, this specifies the split ratio for
-     * splitting
-     * train data into random train and validation subsets. Must be a float in
-     * the range [0, 1].
-     */
-    @JsonProperty(value = "splitRatio")
-    private Float splitRatio;
 
     /*
      * Value of gamma when learning rate scheduler is 'step'. Must be a float
@@ -355,50 +337,6 @@ public class ImageModelSettings {
     }
 
     /**
-     * Get the checkpointDatasetId property: FileDataset id for pretrained checkpoint(s) for incremental training. Make
-     * sure to pass CheckpointFilename along with CheckpointDatasetId.
-     *
-     * @return the checkpointDatasetId value.
-     */
-    public String checkpointDatasetId() {
-        return this.checkpointDatasetId;
-    }
-
-    /**
-     * Set the checkpointDatasetId property: FileDataset id for pretrained checkpoint(s) for incremental training. Make
-     * sure to pass CheckpointFilename along with CheckpointDatasetId.
-     *
-     * @param checkpointDatasetId the checkpointDatasetId value to set.
-     * @return the ImageModelSettings object itself.
-     */
-    public ImageModelSettings withCheckpointDatasetId(String checkpointDatasetId) {
-        this.checkpointDatasetId = checkpointDatasetId;
-        return this;
-    }
-
-    /**
-     * Get the checkpointFilename property: The pretrained checkpoint filename in FileDataset for incremental training.
-     * Make sure to pass CheckpointDatasetId along with CheckpointFilename.
-     *
-     * @return the checkpointFilename value.
-     */
-    public String checkpointFilename() {
-        return this.checkpointFilename;
-    }
-
-    /**
-     * Set the checkpointFilename property: The pretrained checkpoint filename in FileDataset for incremental training.
-     * Make sure to pass CheckpointDatasetId along with CheckpointFilename.
-     *
-     * @param checkpointFilename the checkpointFilename value to set.
-     * @return the ImageModelSettings object itself.
-     */
-    public ImageModelSettings withCheckpointFilename(String checkpointFilename) {
-        this.checkpointFilename = checkpointFilename;
-        return this;
-    }
-
-    /**
      * Get the checkpointFrequency property: Frequency to store model checkpoints. Must be a positive integer.
      *
      * @return the checkpointFrequency value.
@@ -415,6 +353,26 @@ public class ImageModelSettings {
      */
     public ImageModelSettings withCheckpointFrequency(Integer checkpointFrequency) {
         this.checkpointFrequency = checkpointFrequency;
+        return this;
+    }
+
+    /**
+     * Get the checkpointModel property: The pretrained checkpoint model for incremental training.
+     *
+     * @return the checkpointModel value.
+     */
+    public MLFlowModelJobInput checkpointModel() {
+        return this.checkpointModel;
+    }
+
+    /**
+     * Set the checkpointModel property: The pretrained checkpoint model for incremental training.
+     *
+     * @param checkpointModel the checkpointModel value to set.
+     * @return the ImageModelSettings object itself.
+     */
+    public ImageModelSettings withCheckpointModel(MLFlowModelJobInput checkpointModel) {
+        this.checkpointModel = checkpointModel;
         return this;
     }
 
@@ -801,28 +759,6 @@ public class ImageModelSettings {
     }
 
     /**
-     * Get the splitRatio property: If validation data is not defined, this specifies the split ratio for splitting
-     * train data into random train and validation subsets. Must be a float in the range [0, 1].
-     *
-     * @return the splitRatio value.
-     */
-    public Float splitRatio() {
-        return this.splitRatio;
-    }
-
-    /**
-     * Set the splitRatio property: If validation data is not defined, this specifies the split ratio for splitting
-     * train data into random train and validation subsets. Must be a float in the range [0, 1].
-     *
-     * @param splitRatio the splitRatio value to set.
-     * @return the ImageModelSettings object itself.
-     */
-    public ImageModelSettings withSplitRatio(Float splitRatio) {
-        this.splitRatio = splitRatio;
-        return this;
-    }
-
-    /**
      * Get the stepLRGamma property: Value of gamma when learning rate scheduler is 'step'. Must be a float in the range
      * [0, 1].
      *
@@ -978,5 +914,8 @@ public class ImageModelSettings {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+        if (checkpointModel() != null) {
+            checkpointModel().validate();
+        }
     }
 }

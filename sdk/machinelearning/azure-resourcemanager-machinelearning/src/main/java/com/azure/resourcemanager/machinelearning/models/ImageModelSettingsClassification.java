@@ -167,22 +167,15 @@ public final class ImageModelSettingsClassification extends ImageModelSettings {
 
     /** {@inheritDoc} */
     @Override
-    public ImageModelSettingsClassification withCheckpointDatasetId(String checkpointDatasetId) {
-        super.withCheckpointDatasetId(checkpointDatasetId);
-        return this;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public ImageModelSettingsClassification withCheckpointFilename(String checkpointFilename) {
-        super.withCheckpointFilename(checkpointFilename);
-        return this;
-    }
-
-    /** {@inheritDoc} */
-    @Override
     public ImageModelSettingsClassification withCheckpointFrequency(Integer checkpointFrequency) {
         super.withCheckpointFrequency(checkpointFrequency);
+        return this;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public ImageModelSettingsClassification withCheckpointModel(MLFlowModelJobInput checkpointModel) {
+        super.withCheckpointModel(checkpointModel);
         return this;
     }
 
@@ -309,13 +302,6 @@ public final class ImageModelSettingsClassification extends ImageModelSettings {
     @Override
     public ImageModelSettingsClassification withRandomSeed(Integer randomSeed) {
         super.withRandomSeed(randomSeed);
-        return this;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public ImageModelSettingsClassification withSplitRatio(Float splitRatio) {
-        super.withSplitRatio(splitRatio);
         return this;
     }
 
