@@ -47,6 +47,7 @@ import com.azure.resourcemanager.securityinsights.implementation.IpGeodatasImpl;
 import com.azure.resourcemanager.securityinsights.implementation.MetadatasImpl;
 import com.azure.resourcemanager.securityinsights.implementation.OfficeConsentsImpl;
 import com.azure.resourcemanager.securityinsights.implementation.OperationsImpl;
+import com.azure.resourcemanager.securityinsights.implementation.OverviewsImpl;
 import com.azure.resourcemanager.securityinsights.implementation.ProductSettingsImpl;
 import com.azure.resourcemanager.securityinsights.implementation.SecurityInsightsBuilder;
 import com.azure.resourcemanager.securityinsights.implementation.SentinelOnboardingStatesImpl;
@@ -80,6 +81,7 @@ import com.azure.resourcemanager.securityinsights.models.IpGeodatas;
 import com.azure.resourcemanager.securityinsights.models.Metadatas;
 import com.azure.resourcemanager.securityinsights.models.OfficeConsents;
 import com.azure.resourcemanager.securityinsights.models.Operations;
+import com.azure.resourcemanager.securityinsights.models.Overviews;
 import com.azure.resourcemanager.securityinsights.models.ProductSettings;
 import com.azure.resourcemanager.securityinsights.models.SentinelOnboardingStates;
 import com.azure.resourcemanager.securityinsights.models.SourceControls;
@@ -142,6 +144,8 @@ public final class SecurityInsightsManager {
     private OfficeConsents officeConsents;
 
     private SentinelOnboardingStates sentinelOnboardingStates;
+
+    private Overviews overviews;
 
     private ProductSettings productSettings;
 
@@ -330,7 +334,7 @@ public final class SecurityInsightsManager {
                 .append("-")
                 .append("com.azure.resourcemanager.securityinsights")
                 .append("/")
-                .append("1.0.0-beta.3");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder
                     .append(" (")
@@ -638,6 +642,18 @@ public final class SecurityInsightsManager {
                 new SentinelOnboardingStatesImpl(clientObject.getSentinelOnboardingStates(), this);
         }
         return sentinelOnboardingStates;
+    }
+
+    /**
+     * Gets the resource collection API of Overviews.
+     *
+     * @return Resource collection API of Overviews.
+     */
+    public Overviews overviews() {
+        if (this.overviews == null) {
+            this.overviews = new OverviewsImpl(clientObject.getOverviews(), this);
+        }
+        return overviews;
     }
 
     /**

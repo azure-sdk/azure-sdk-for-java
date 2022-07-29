@@ -45,6 +45,7 @@ import com.azure.resourcemanager.securityinsights.fluent.IpGeodatasClient;
 import com.azure.resourcemanager.securityinsights.fluent.MetadatasClient;
 import com.azure.resourcemanager.securityinsights.fluent.OfficeConsentsClient;
 import com.azure.resourcemanager.securityinsights.fluent.OperationsClient;
+import com.azure.resourcemanager.securityinsights.fluent.OverviewsClient;
 import com.azure.resourcemanager.securityinsights.fluent.ProductSettingsClient;
 import com.azure.resourcemanager.securityinsights.fluent.SecurityInsights;
 import com.azure.resourcemanager.securityinsights.fluent.SentinelOnboardingStatesClient;
@@ -391,6 +392,18 @@ public final class SecurityInsightsImpl implements SecurityInsights {
         return this.sentinelOnboardingStates;
     }
 
+    /** The OverviewsClient object to access its operations. */
+    private final OverviewsClient overviews;
+
+    /**
+     * Gets the OverviewsClient object to access its operations.
+     *
+     * @return the OverviewsClient object.
+     */
+    public OverviewsClient getOverviews() {
+        return this.overviews;
+    }
+
     /** The ProductSettingsClient object to access its operations. */
     private final ProductSettingsClient productSettings;
 
@@ -545,7 +558,7 @@ public final class SecurityInsightsImpl implements SecurityInsights {
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2022-01-01-preview";
+        this.apiVersion = "2022-09-01-preview";
         this.alertRules = new AlertRulesClientImpl(this);
         this.actions = new ActionsClientImpl(this);
         this.alertRuleTemplates = new AlertRuleTemplatesClientImpl(this);
@@ -567,6 +580,7 @@ public final class SecurityInsightsImpl implements SecurityInsights {
         this.metadatas = new MetadatasClientImpl(this);
         this.officeConsents = new OfficeConsentsClientImpl(this);
         this.sentinelOnboardingStates = new SentinelOnboardingStatesClientImpl(this);
+        this.overviews = new OverviewsClientImpl(this);
         this.productSettings = new ProductSettingsClientImpl(this);
         this.sourceControls = new SourceControlsClientImpl(this);
         this.sourceControlsOperations = new SourceControlsOperationsClientImpl(this);
