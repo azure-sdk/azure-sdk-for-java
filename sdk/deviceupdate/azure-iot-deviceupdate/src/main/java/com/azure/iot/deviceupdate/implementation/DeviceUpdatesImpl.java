@@ -32,6 +32,7 @@ import com.azure.core.http.rest.RestProxy;
 import com.azure.core.util.BinaryData;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
+import com.azure.core.util.polling.DefaultPollingStrategy;
 import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.polling.SyncPoller;
 import com.azure.core.util.serializer.TypeReference;
@@ -66,7 +67,7 @@ public final class DeviceUpdatesImpl {
      */
     @Host("https://{endpoint}")
     @ServiceInterface(name = "DeviceUpdateClientDe")
-    public interface DeviceUpdatesService {
+    private interface DeviceUpdatesService {
         @Get("/deviceUpdate/{instanceId}/updates")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(
@@ -992,10 +993,8 @@ public final class DeviceUpdatesImpl {
         return PollerFlux.create(
                 Duration.ofSeconds(1),
                 () -> this.importUpdateWithResponseAsync(updateToImport, requestOptions),
-                new OperationResourcePollingStrategyWithEndpoint<>(
+                new DefaultPollingStrategy<>(
                         this.client.getHttpPipeline(),
-                        "https://" + this.client.getEndpoint(),
-                        null,
                         null,
                         requestOptions != null && requestOptions.getContext() != null
                                 ? requestOptions.getContext()
@@ -1046,10 +1045,8 @@ public final class DeviceUpdatesImpl {
         return PollerFlux.create(
                 Duration.ofSeconds(1),
                 () -> this.importUpdateWithResponseAsync(updateToImport, requestOptions, context),
-                new OperationResourcePollingStrategyWithEndpoint<>(
+                new DefaultPollingStrategy<>(
                         this.client.getHttpPipeline(),
-                        "https://" + this.client.getEndpoint(),
-                        null,
                         null,
                         requestOptions != null && requestOptions.getContext() != null
                                 ? requestOptions.getContext()
@@ -1424,10 +1421,8 @@ public final class DeviceUpdatesImpl {
         return PollerFlux.create(
                 Duration.ofSeconds(1),
                 () -> this.deleteUpdateWithResponseAsync(provider, name, version, requestOptions),
-                new OperationResourcePollingStrategyWithEndpoint<>(
+                new DefaultPollingStrategy<>(
                         this.client.getHttpPipeline(),
-                        "https://" + this.client.getEndpoint(),
-                        null,
                         null,
                         requestOptions != null && requestOptions.getContext() != null
                                 ? requestOptions.getContext()
@@ -1457,10 +1452,8 @@ public final class DeviceUpdatesImpl {
         return PollerFlux.create(
                 Duration.ofSeconds(1),
                 () -> this.deleteUpdateWithResponseAsync(provider, name, version, requestOptions, context),
-                new OperationResourcePollingStrategyWithEndpoint<>(
+                new DefaultPollingStrategy<>(
                         this.client.getHttpPipeline(),
-                        "https://" + this.client.getEndpoint(),
-                        null,
                         null,
                         requestOptions != null && requestOptions.getContext() != null
                                 ? requestOptions.getContext()

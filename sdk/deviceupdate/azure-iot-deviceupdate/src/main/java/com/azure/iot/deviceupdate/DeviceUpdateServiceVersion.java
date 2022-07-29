@@ -6,7 +6,7 @@ package com.azure.iot.deviceupdate;
 
 import com.azure.core.util.ServiceVersion;
 
-/** Service version of DeviceUpdate. */
+/** Service version of DeviceUpdateClient. */
 public enum DeviceUpdateServiceVersion implements ServiceVersion {
     /** Enum value 2022-07-01-preview. */
     V2022_07_01_PREVIEW("2022-07-01-preview");
