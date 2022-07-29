@@ -56,6 +56,7 @@
     <module>sdk/datamigration</module>
     <module>sdk/dataprotection</module>
     <module>sdk/delegatednetwork</module>
+    <module>sdk/demoservice</module>
     <module>sdk/deploymentmanager</module>
     <module>sdk/desktopvirtualization</module>
     <module>sdk/deviceprovisioningservices</module>
@@ -71,8 +72,8 @@
     <module>sdk/eventgrid</module>
     <module>sdk/eventhubs</module>
     <module>sdk/extendedlocation</module>
-    <module>sdk/formrecognizer</module>
     <module>sdk/fluidrelay</module>
+    <module>sdk/formrecognizer</module>
     <module>sdk/frontdoor</module>
     <module>sdk/hanaonazure</module>
     <module>sdk/hardwaresecuritymodules</module>
