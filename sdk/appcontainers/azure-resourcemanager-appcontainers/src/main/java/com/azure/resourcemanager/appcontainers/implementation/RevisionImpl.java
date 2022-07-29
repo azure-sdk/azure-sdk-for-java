@@ -10,7 +10,10 @@ import com.azure.resourcemanager.appcontainers.models.Revision;
 import com.azure.resourcemanager.appcontainers.models.RevisionHealthState;
 import com.azure.resourcemanager.appcontainers.models.RevisionProvisioningState;
 import com.azure.resourcemanager.appcontainers.models.Template;
+import com.azure.resourcemanager.appcontainers.models.TrafficLabel;
 import java.time.OffsetDateTime;
+import java.util.Collections;
+import java.util.List;
 
 public final class RevisionImpl implements Revision {
     private RevisionInner innerObject;
@@ -61,6 +64,15 @@ public final class RevisionImpl implements Revision {
 
     public Integer trafficWeight() {
         return this.innerModel().trafficWeight();
+    }
+
+    public List<TrafficLabel> trafficLabels() {
+        List<TrafficLabel> inner = this.innerModel().trafficLabels();
+        if (inner != null) {
+            return Collections.unmodifiableList(inner);
+        } else {
+            return Collections.emptyList();
+        }
     }
 
     public String provisioningError() {
