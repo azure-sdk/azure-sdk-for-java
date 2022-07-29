@@ -23,7 +23,9 @@ public final class UpdateWorkspaceQuotas {
     private String type;
 
     /*
-     * Limit. The maximum permitted quota of the resource.
+     * Limit.
+     *
+     * The maximum permitted quota of the resource.
      */
     @JsonProperty(value = "limit")
     private Long limit;
@@ -35,7 +37,9 @@ public final class UpdateWorkspaceQuotas {
     private QuotaUnit unit;
 
     /*
-     * Update Workspace Quota Status. Status of update workspace quota.
+     * Update Workspace Quota Status.
+     *
+     * Status of update workspace quota.
      */
     @JsonProperty(value = "status")
     private Status status;
@@ -59,7 +63,9 @@ public final class UpdateWorkspaceQuotas {
     }
 
     /**
-     * Get the limit property: Limit. The maximum permitted quota of the resource.
+     * Get the limit property: Limit.
+     *
+     * <p>The maximum permitted quota of the resource.
      *
      * @return the limit value.
      */
@@ -68,7 +74,9 @@ public final class UpdateWorkspaceQuotas {
     }
 
     /**
-     * Set the limit property: Limit. The maximum permitted quota of the resource.
+     * Set the limit property: Limit.
+     *
+     * <p>The maximum permitted quota of the resource.
      *
      * @param limit the limit value to set.
      * @return the UpdateWorkspaceQuotas object itself.
@@ -88,7 +96,9 @@ public final class UpdateWorkspaceQuotas {
     }
 
     /**
-     * Get the status property: Update Workspace Quota Status. Status of update workspace quota.
+     * Get the status property: Update Workspace Quota Status.
+     *
+     * <p>Status of update workspace quota.
      *
      * @return the status value.
      */
@@ -97,7 +107,9 @@ public final class UpdateWorkspaceQuotas {
     }
 
     /**
-     * Set the status property: Update Workspace Quota Status. Status of update workspace quota.
+     * Set the status property: Update Workspace Quota Status.
+     *
+     * <p>Status of update workspace quota.
      *
      * @param status the status value to set.
      * @return the UpdateWorkspaceQuotas object itself.
