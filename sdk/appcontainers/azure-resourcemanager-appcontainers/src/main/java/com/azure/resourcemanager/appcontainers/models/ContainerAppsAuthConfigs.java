@@ -70,6 +70,8 @@ public interface ContainerAppsAuthConfigs {
     /**
      * Delete a Container App AuthConfig.
      *
+     * <p>Description for Delete a Container App AuthConfig.
+     *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param containerAppName Name of the Container App.
      * @param authConfigName Name of the Container App AuthConfig.
@@ -82,6 +84,8 @@ public interface ContainerAppsAuthConfigs {
 
     /**
      * Delete a Container App AuthConfig.
+     *
+     * <p>Description for Delete a Container App AuthConfig.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param containerAppName Name of the Container App.
@@ -124,6 +128,8 @@ public interface ContainerAppsAuthConfigs {
     /**
      * Delete a Container App AuthConfig.
      *
+     * <p>Description for Delete a Container App AuthConfig.
+     *
      * @param id the resource ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.resourcemanager.appcontainers.models.DefaultErrorResponseErrorException thrown if the request
@@ -134,6 +140,8 @@ public interface ContainerAppsAuthConfigs {
 
     /**
      * Delete a Container App AuthConfig.
+     *
+     * <p>Description for Delete a Container App AuthConfig.
      *
      * @param id the resource ID.
      * @param context The context to associate with this operation.

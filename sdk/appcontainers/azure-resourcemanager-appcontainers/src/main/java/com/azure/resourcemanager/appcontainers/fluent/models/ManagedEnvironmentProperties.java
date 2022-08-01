@@ -20,15 +20,13 @@ public final class ManagedEnvironmentProperties {
     private EnvironmentProvisioningState provisioningState;
 
     /*
-     * Azure Monitor instrumentation key used by Dapr to export Service to
-     * Service communication telemetry
+     * Azure Monitor instrumentation key used by Dapr to export Service to Service communication telemetry
      */
     @JsonProperty(value = "daprAIInstrumentationKey")
     private String daprAIInstrumentationKey;
 
     /*
-     * Application Insights connection string used by Dapr to export Service to
-     * Service communication telemetry
+     * Application Insights connection string used by Dapr to export Service to Service communication telemetry
      */
     @JsonProperty(value = "daprAIConnectionString")
     private String daprAIConnectionString;

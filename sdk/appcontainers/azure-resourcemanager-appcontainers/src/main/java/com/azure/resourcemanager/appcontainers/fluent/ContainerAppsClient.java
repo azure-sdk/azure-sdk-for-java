@@ -99,6 +99,8 @@ public interface ContainerAppsClient {
     /**
      * Create or update a Container App.
      *
+     * <p>Description for Create or update a Container App.
+     *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param containerAppName Name of the Container App.
      * @param containerAppEnvelope Properties used to create a container app.
@@ -114,6 +116,8 @@ public interface ContainerAppsClient {
 
     /**
      * Create or update a Container App.
+     *
+     * <p>Description for Create or update a Container App.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param containerAppName Name of the Container App.
@@ -132,6 +136,8 @@ public interface ContainerAppsClient {
     /**
      * Create or update a Container App.
      *
+     * <p>Description for Create or update a Container App.
+     *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param containerAppName Name of the Container App.
      * @param containerAppEnvelope Properties used to create a container app.
@@ -147,6 +153,8 @@ public interface ContainerAppsClient {
 
     /**
      * Create or update a Container App.
+     *
+     * <p>Description for Create or update a Container App.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param containerAppName Name of the Container App.
@@ -164,6 +172,8 @@ public interface ContainerAppsClient {
 
     /**
      * Delete a Container App.
+     *
+     * <p>Description for Delete a Container App.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param containerAppName Name of the Container App.
@@ -178,6 +188,8 @@ public interface ContainerAppsClient {
 
     /**
      * Delete a Container App.
+     *
+     * <p>Description for Delete a Container App.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param containerAppName Name of the Container App.
@@ -194,6 +206,8 @@ public interface ContainerAppsClient {
     /**
      * Delete a Container App.
      *
+     * <p>Description for Delete a Container App.
+     *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param containerAppName Name of the Container App.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -207,6 +221,8 @@ public interface ContainerAppsClient {
     /**
      * Delete a Container App.
      *
+     * <p>Description for Delete a Container App.
+     *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param containerAppName Name of the Container App.
      * @param context The context to associate with this operation.
@@ -219,7 +235,9 @@ public interface ContainerAppsClient {
     void delete(String resourceGroupName, String containerAppName, Context context);
 
     /**
-     * Patches a Container App using JSON Merge Patch.
+     * Update properties of a Container App
+     *
+     * <p>Patches a Container App using JSON Merge Patch.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param containerAppName Name of the Container App.
@@ -235,7 +253,9 @@ public interface ContainerAppsClient {
         String resourceGroupName, String containerAppName, ContainerAppInner containerAppEnvelope);
 
     /**
-     * Patches a Container App using JSON Merge Patch.
+     * Update properties of a Container App
+     *
+     * <p>Patches a Container App using JSON Merge Patch.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param containerAppName Name of the Container App.
@@ -252,7 +272,9 @@ public interface ContainerAppsClient {
         String resourceGroupName, String containerAppName, ContainerAppInner containerAppEnvelope, Context context);
 
     /**
-     * Patches a Container App using JSON Merge Patch.
+     * Update properties of a Container App
+     *
+     * <p>Patches a Container App using JSON Merge Patch.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param containerAppName Name of the Container App.
@@ -266,7 +288,9 @@ public interface ContainerAppsClient {
     void update(String resourceGroupName, String containerAppName, ContainerAppInner containerAppEnvelope);
 
     /**
-     * Patches a Container App using JSON Merge Patch.
+     * Update properties of a Container App
+     *
+     * <p>Patches a Container App using JSON Merge Patch.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param containerAppName Name of the Container App.

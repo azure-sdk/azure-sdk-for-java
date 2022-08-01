@@ -72,6 +72,8 @@ public interface ContainerAppsSourceControls {
     /**
      * Delete a Container App SourceControl.
      *
+     * <p>Description for Delete a Container App SourceControl.
+     *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param containerAppName Name of the Container App.
      * @param sourceControlName Name of the Container App SourceControl.
@@ -84,6 +86,8 @@ public interface ContainerAppsSourceControls {
 
     /**
      * Delete a Container App SourceControl.
+     *
+     * <p>Description for Delete a Container App SourceControl.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param containerAppName Name of the Container App.
@@ -124,6 +128,8 @@ public interface ContainerAppsSourceControls {
     /**
      * Delete a Container App SourceControl.
      *
+     * <p>Description for Delete a Container App SourceControl.
+     *
      * @param id the resource ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.resourcemanager.appcontainers.models.DefaultErrorResponseErrorException thrown if the request
@@ -134,6 +140,8 @@ public interface ContainerAppsSourceControls {
 
     /**
      * Delete a Container App SourceControl.
+     *
+     * <p>Description for Delete a Container App SourceControl.
      *
      * @param id the resource ID.
      * @param context The context to associate with this operation.

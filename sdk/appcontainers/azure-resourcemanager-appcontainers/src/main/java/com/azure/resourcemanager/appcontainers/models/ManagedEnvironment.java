@@ -290,7 +290,11 @@ public interface ManagedEnvironment {
 
     /** The template for ManagedEnvironment update. */
     interface Update
-        extends UpdateStages.WithTags, UpdateStages.WithVnetConfiguration, UpdateStages.WithAppLogsConfiguration {
+        extends UpdateStages.WithTags,
+            UpdateStages.WithDaprAIInstrumentationKey,
+            UpdateStages.WithDaprAIConnectionString,
+            UpdateStages.WithVnetConfiguration,
+            UpdateStages.WithAppLogsConfiguration {
         /**
          * Executes the update request.
          *
@@ -317,6 +321,30 @@ public interface ManagedEnvironment {
              * @return the next definition stage.
              */
             Update withTags(Map<String, String> tags);
+        }
+        /** The stage of the ManagedEnvironment update allowing to specify daprAIInstrumentationKey. */
+        interface WithDaprAIInstrumentationKey {
+            /**
+             * Specifies the daprAIInstrumentationKey property: Azure Monitor instrumentation key used by Dapr to export
+             * Service to Service communication telemetry.
+             *
+             * @param daprAIInstrumentationKey Azure Monitor instrumentation key used by Dapr to export Service to
+             *     Service communication telemetry.
+             * @return the next definition stage.
+             */
+            Update withDaprAIInstrumentationKey(String daprAIInstrumentationKey);
+        }
+        /** The stage of the ManagedEnvironment update allowing to specify daprAIConnectionString. */
+        interface WithDaprAIConnectionString {
+            /**
+             * Specifies the daprAIConnectionString property: Application Insights connection string used by Dapr to
+             * export Service to Service communication telemetry.
+             *
+             * @param daprAIConnectionString Application Insights connection string used by Dapr to export Service to
+             *     Service communication telemetry.
+             * @return the next definition stage.
+             */
+            Update withDaprAIConnectionString(String daprAIConnectionString);
         }
         /** The stage of the ManagedEnvironment update allowing to specify vnetConfiguration. */
         interface WithVnetConfiguration {

@@ -19,8 +19,7 @@ public final class TwitterRegistration {
     private String consumerKey;
 
     /*
-     * The app setting name that contains the OAuth 1.0a consumer secret of the
-     * Twitter
+     * The app setting name that contains the OAuth 1.0a consumer secret of the Twitter
      * application used for sign-in.
      */
     @JsonProperty(value = "consumerSecretSettingName")

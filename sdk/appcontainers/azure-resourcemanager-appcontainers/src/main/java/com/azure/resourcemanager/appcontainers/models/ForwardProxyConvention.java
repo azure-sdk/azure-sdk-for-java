@@ -33,6 +33,9 @@ public enum ForwardProxyConvention {
      */
     @JsonCreator
     public static ForwardProxyConvention fromString(String value) {
+        if (value == null) {
+            return null;
+        }
         ForwardProxyConvention[] items = ForwardProxyConvention.values();
         for (ForwardProxyConvention item : items) {
             if (item.toString().equalsIgnoreCase(value)) {
