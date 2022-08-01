@@ -33,7 +33,11 @@ public final class AvailabilityStateValues extends ExpandableStringEnum<Availabi
         return fromString(name, AvailabilityStateValues.class);
     }
 
-    /** @return known AvailabilityStateValues values. */
+    /**
+     * Gets known AvailabilityStateValues values.
+     *
+     * @return known AvailabilityStateValues values.
+     */
     public static Collection<AvailabilityStateValues> values() {
         return values(AvailabilityStateValues.class);
     }

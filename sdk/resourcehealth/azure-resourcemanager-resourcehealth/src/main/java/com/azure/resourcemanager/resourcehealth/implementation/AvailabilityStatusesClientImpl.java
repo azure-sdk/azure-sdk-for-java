@@ -333,7 +333,7 @@ public final class AvailabilityStatusesClientImpl implements AvailabilityStatuse
     /**
      * Lists the current availability status for all the resources in the resource group.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param filter The filter to apply on the operation. For more information please see
      *     https://docs.microsoft.com/en-us/rest/api/apimanagement/apis?redirectedfrom=MSDN.
      * @param expand Setting $expand=recommendedactions in url query expands the recommendedactions in the response.
@@ -391,7 +391,7 @@ public final class AvailabilityStatusesClientImpl implements AvailabilityStatuse
     /**
      * Lists the current availability status for all the resources in the resource group.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param filter The filter to apply on the operation. For more information please see
      *     https://docs.microsoft.com/en-us/rest/api/apimanagement/apis?redirectedfrom=MSDN.
      * @param expand Setting $expand=recommendedactions in url query expands the recommendedactions in the response.
@@ -447,7 +447,7 @@ public final class AvailabilityStatusesClientImpl implements AvailabilityStatuse
     /**
      * Lists the current availability status for all the resources in the resource group.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param filter The filter to apply on the operation. For more information please see
      *     https://docs.microsoft.com/en-us/rest/api/apimanagement/apis?redirectedfrom=MSDN.
      * @param expand Setting $expand=recommendedactions in url query expands the recommendedactions in the response.
@@ -467,7 +467,7 @@ public final class AvailabilityStatusesClientImpl implements AvailabilityStatuse
     /**
      * Lists the current availability status for all the resources in the resource group.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -485,7 +485,7 @@ public final class AvailabilityStatusesClientImpl implements AvailabilityStatuse
     /**
      * Lists the current availability status for all the resources in the resource group.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param filter The filter to apply on the operation. For more information please see
      *     https://docs.microsoft.com/en-us/rest/api/apimanagement/apis?redirectedfrom=MSDN.
      * @param expand Setting $expand=recommendedactions in url query expands the recommendedactions in the response.
@@ -506,7 +506,7 @@ public final class AvailabilityStatusesClientImpl implements AvailabilityStatuse
     /**
      * Lists the current availability status for all the resources in the resource group.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -522,7 +522,7 @@ public final class AvailabilityStatusesClientImpl implements AvailabilityStatuse
     /**
      * Lists the current availability status for all the resources in the resource group.
      *
-     * @param resourceGroupName The name of the resource group.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param filter The filter to apply on the operation. For more information please see
      *     https://docs.microsoft.com/en-us/rest/api/apimanagement/apis?redirectedfrom=MSDN.
      * @param expand Setting $expand=recommendedactions in url query expands the recommendedactions in the response.
@@ -639,14 +639,7 @@ public final class AvailabilityStatusesClientImpl implements AvailabilityStatuse
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<AvailabilityStatusInner> getByResourceAsync(String resourceUri, String filter, String expand) {
         return getByResourceWithResponseAsync(resourceUri, filter, expand)
-            .flatMap(
-                (Response<AvailabilityStatusInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -667,14 +660,7 @@ public final class AvailabilityStatusesClientImpl implements AvailabilityStatuse
         final String filter = null;
         final String expand = null;
         return getByResourceWithResponseAsync(resourceUri, filter, expand)
-            .flatMap(
-                (Response<AvailabilityStatusInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**

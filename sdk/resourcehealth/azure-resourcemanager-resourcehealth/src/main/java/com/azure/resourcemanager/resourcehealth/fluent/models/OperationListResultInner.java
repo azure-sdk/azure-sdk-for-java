@@ -4,23 +4,31 @@
 
 package com.azure.resourcemanager.resourcehealth.fluent.models;
 
-import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
+import com.azure.core.annotation.Immutable;
 import com.azure.resourcemanager.resourcehealth.models.Operation;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Lists the operations response. */
-@Fluent
+/**
+ * A list of REST API operations supported by an Azure Resource Provider. It contains an URL link to get the next set of
+ * results.
+ */
+@Immutable
 public final class OperationListResultInner {
     /*
-     * List of operations available in the resourcehealth resource provider.
+     * List of operations supported by the resource provider
      */
-    @JsonProperty(value = "value", required = true)
+    @JsonProperty(value = "value", access = JsonProperty.Access.WRITE_ONLY)
     private List<Operation> value;
 
+    /*
+     * URL to get the next set of operation list results (if there are any).
+     */
+    @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
+    private String nextLink;
+
     /**
-     * Get the value property: List of operations available in the resourcehealth resource provider.
+     * Get the value property: List of operations supported by the resource provider.
      *
      * @return the value value.
      */
@@ -29,14 +37,12 @@ public final class OperationListResultInner {
     }
 
     /**
-     * Set the value property: List of operations available in the resourcehealth resource provider.
+     * Get the nextLink property: URL to get the next set of operation list results (if there are any).
      *
-     * @param value the value value to set.
-     * @return the OperationListResultInner object itself.
+     * @return the nextLink value.
      */
-    public OperationListResultInner withValue(List<Operation> value) {
-        this.value = value;
-        return this;
+    public String nextLink() {
+        return this.nextLink;
     }
 
     /**
@@ -45,14 +51,8 @@ public final class OperationListResultInner {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (value() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property value in model OperationListResultInner"));
-        } else {
+        if (value() != null) {
             value().forEach(e -> e.validate());
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(OperationListResultInner.class);
 }

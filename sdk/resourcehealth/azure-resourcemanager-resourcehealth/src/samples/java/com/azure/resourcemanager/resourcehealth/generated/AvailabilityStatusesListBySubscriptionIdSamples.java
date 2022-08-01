@@ -9,14 +9,14 @@ import com.azure.core.util.Context;
 /** Samples for AvailabilityStatuses ListBySubscriptionId. */
 public final class AvailabilityStatusesListBySubscriptionIdSamples {
     /*
-     * x-ms-original-file: specification/resourcehealth/resource-manager/Microsoft.ResourceHealth/stable/2020-05-01/examples/AvailabilityStatuses_ListBySubscriptionId.json
+     * x-ms-original-file: specification/resourcehealth/resource-manager/Microsoft.ResourceHealth/preview/2022-07-01/examples/AvailabilityStatuses_ListBySubscriptionId.json
      */
     /**
-     * Sample code: ListHealthBySubscriptionId.
+     * Sample code: ListAvailabilityStatusBySubscriptionId.
      *
      * @param manager Entry point to ResourceHealthManager.
      */
-    public static void listHealthBySubscriptionId(
+    public static void listAvailabilityStatusBySubscriptionId(
         com.azure.resourcemanager.resourcehealth.ResourceHealthManager manager) {
         manager.availabilityStatuses().listBySubscriptionId(null, "recommendedactions", Context.NONE);
     }
