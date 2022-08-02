@@ -13,7 +13,6 @@ import com.azure.core.util.Context;
 import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.appconfiguration.fluent.models.ApiKeyInner;
 import com.azure.resourcemanager.appconfiguration.fluent.models.ConfigurationStoreInner;
-import com.azure.resourcemanager.appconfiguration.fluent.models.DeletedConfigurationStoreInner;
 import com.azure.resourcemanager.appconfiguration.models.ConfigurationStoreUpdateParameters;
 import com.azure.resourcemanager.appconfiguration.models.RegenerateKeyParameters;
 
@@ -357,108 +356,4 @@ public interface ConfigurationStoresClient {
         String configStoreName,
         RegenerateKeyParameters regenerateKeyParameters,
         Context context);
-
-    /**
-     * Gets information about the deleted configuration stores in a subscription.
-     *
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return information about the deleted configuration stores in a subscription as paginated response with {@link
-     *     PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<DeletedConfigurationStoreInner> listDeleted();
-
-    /**
-     * Gets information about the deleted configuration stores in a subscription.
-     *
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return information about the deleted configuration stores in a subscription as paginated response with {@link
-     *     PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<DeletedConfigurationStoreInner> listDeleted(Context context);
-
-    /**
-     * Gets a deleted Azure app configuration store.
-     *
-     * @param location The location in which uniqueness will be verified.
-     * @param configStoreName The name of the configuration store.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a deleted Azure app configuration store.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    DeletedConfigurationStoreInner getDeleted(String location, String configStoreName);
-
-    /**
-     * Gets a deleted Azure app configuration store.
-     *
-     * @param location The location in which uniqueness will be verified.
-     * @param configStoreName The name of the configuration store.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a deleted Azure app configuration store along with {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<DeletedConfigurationStoreInner> getDeletedWithResponse(
-        String location, String configStoreName, Context context);
-
-    /**
-     * Permanently deletes the specified configuration store.
-     *
-     * @param location The location in which uniqueness will be verified.
-     * @param configStoreName The name of the configuration store.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<Void>, Void> beginPurgeDeleted(String location, String configStoreName);
-
-    /**
-     * Permanently deletes the specified configuration store.
-     *
-     * @param location The location in which uniqueness will be verified.
-     * @param configStoreName The name of the configuration store.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<Void>, Void> beginPurgeDeleted(String location, String configStoreName, Context context);
-
-    /**
-     * Permanently deletes the specified configuration store.
-     *
-     * @param location The location in which uniqueness will be verified.
-     * @param configStoreName The name of the configuration store.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    void purgeDeleted(String location, String configStoreName);
-
-    /**
-     * Permanently deletes the specified configuration store.
-     *
-     * @param location The location in which uniqueness will be verified.
-     * @param configStoreName The name of the configuration store.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    void purgeDeleted(String location, String configStoreName, Context context);
 }

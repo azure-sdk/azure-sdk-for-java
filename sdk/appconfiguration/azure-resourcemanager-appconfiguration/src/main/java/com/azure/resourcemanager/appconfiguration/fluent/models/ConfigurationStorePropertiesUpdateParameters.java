@@ -25,18 +25,10 @@ public final class ConfigurationStorePropertiesUpdateParameters {
     private Boolean disableLocalAuth;
 
     /*
-     * Control permission for data plane traffic coming from public networks
-     * while private endpoint is enabled.
+     * Control permission for data plane traffic coming from public networks while private endpoint is enabled.
      */
     @JsonProperty(value = "publicNetworkAccess")
     private PublicNetworkAccess publicNetworkAccess;
-
-    /*
-     * Property specifying whether protection against purge is enabled for this
-     * configuration store.
-     */
-    @JsonProperty(value = "enablePurgeProtection")
-    private Boolean enablePurgeProtection;
 
     /**
      * Get the encryption property: The encryption settings of the configuration store.
@@ -98,28 +90,6 @@ public final class ConfigurationStorePropertiesUpdateParameters {
     public ConfigurationStorePropertiesUpdateParameters withPublicNetworkAccess(
         PublicNetworkAccess publicNetworkAccess) {
         this.publicNetworkAccess = publicNetworkAccess;
-        return this;
-    }
-
-    /**
-     * Get the enablePurgeProtection property: Property specifying whether protection against purge is enabled for this
-     * configuration store.
-     *
-     * @return the enablePurgeProtection value.
-     */
-    public Boolean enablePurgeProtection() {
-        return this.enablePurgeProtection;
-    }
-
-    /**
-     * Set the enablePurgeProtection property: Property specifying whether protection against purge is enabled for this
-     * configuration store.
-     *
-     * @param enablePurgeProtection the enablePurgeProtection value to set.
-     * @return the ConfigurationStorePropertiesUpdateParameters object itself.
-     */
-    public ConfigurationStorePropertiesUpdateParameters withEnablePurgeProtection(Boolean enablePurgeProtection) {
-        this.enablePurgeProtection = enablePurgeProtection;
         return this;
     }
 

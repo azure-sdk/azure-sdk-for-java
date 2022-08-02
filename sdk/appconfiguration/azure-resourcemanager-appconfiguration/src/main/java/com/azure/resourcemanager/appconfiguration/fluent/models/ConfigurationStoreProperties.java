@@ -5,7 +5,6 @@
 package com.azure.resourcemanager.appconfiguration.fluent.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.resourcemanager.appconfiguration.models.CreateMode;
 import com.azure.resourcemanager.appconfiguration.models.EncryptionProperties;
 import com.azure.resourcemanager.appconfiguration.models.PrivateEndpointConnectionReference;
 import com.azure.resourcemanager.appconfiguration.models.ProvisioningState;
@@ -42,15 +41,13 @@ public final class ConfigurationStoreProperties {
     private EncryptionProperties encryption;
 
     /*
-     * The list of private endpoint connections that are set up for this
-     * resource.
+     * The list of private endpoint connections that are set up for this resource.
      */
     @JsonProperty(value = "privateEndpointConnections", access = JsonProperty.Access.WRITE_ONLY)
     private List<PrivateEndpointConnectionReference> privateEndpointConnections;
 
     /*
-     * Control permission for data plane traffic coming from public networks
-     * while private endpoint is enabled.
+     * Control permission for data plane traffic coming from public networks while private endpoint is enabled.
      */
     @JsonProperty(value = "publicNetworkAccess")
     private PublicNetworkAccess publicNetworkAccess;
@@ -60,26 +57,6 @@ public final class ConfigurationStoreProperties {
      */
     @JsonProperty(value = "disableLocalAuth")
     private Boolean disableLocalAuth;
-
-    /*
-     * The amount of time in days that the configuration store will be retained
-     * when it is soft deleted.
-     */
-    @JsonProperty(value = "softDeleteRetentionInDays")
-    private Integer softDeleteRetentionInDays;
-
-    /*
-     * Property specifying whether protection against purge is enabled for this
-     * configuration store.
-     */
-    @JsonProperty(value = "enablePurgeProtection")
-    private Boolean enablePurgeProtection;
-
-    /*
-     * Indicates whether the configuration store need to be recovered.
-     */
-    @JsonProperty(value = "createMode")
-    private CreateMode createMode;
 
     /**
      * Get the provisioningState property: The provisioning state of the configuration store.
@@ -177,70 +154,6 @@ public final class ConfigurationStoreProperties {
      */
     public ConfigurationStoreProperties withDisableLocalAuth(Boolean disableLocalAuth) {
         this.disableLocalAuth = disableLocalAuth;
-        return this;
-    }
-
-    /**
-     * Get the softDeleteRetentionInDays property: The amount of time in days that the configuration store will be
-     * retained when it is soft deleted.
-     *
-     * @return the softDeleteRetentionInDays value.
-     */
-    public Integer softDeleteRetentionInDays() {
-        return this.softDeleteRetentionInDays;
-    }
-
-    /**
-     * Set the softDeleteRetentionInDays property: The amount of time in days that the configuration store will be
-     * retained when it is soft deleted.
-     *
-     * @param softDeleteRetentionInDays the softDeleteRetentionInDays value to set.
-     * @return the ConfigurationStoreProperties object itself.
-     */
-    public ConfigurationStoreProperties withSoftDeleteRetentionInDays(Integer softDeleteRetentionInDays) {
-        this.softDeleteRetentionInDays = softDeleteRetentionInDays;
-        return this;
-    }
-
-    /**
-     * Get the enablePurgeProtection property: Property specifying whether protection against purge is enabled for this
-     * configuration store.
-     *
-     * @return the enablePurgeProtection value.
-     */
-    public Boolean enablePurgeProtection() {
-        return this.enablePurgeProtection;
-    }
-
-    /**
-     * Set the enablePurgeProtection property: Property specifying whether protection against purge is enabled for this
-     * configuration store.
-     *
-     * @param enablePurgeProtection the enablePurgeProtection value to set.
-     * @return the ConfigurationStoreProperties object itself.
-     */
-    public ConfigurationStoreProperties withEnablePurgeProtection(Boolean enablePurgeProtection) {
-        this.enablePurgeProtection = enablePurgeProtection;
-        return this;
-    }
-
-    /**
-     * Get the createMode property: Indicates whether the configuration store need to be recovered.
-     *
-     * @return the createMode value.
-     */
-    public CreateMode createMode() {
-        return this.createMode;
-    }
-
-    /**
-     * Set the createMode property: Indicates whether the configuration store need to be recovered.
-     *
-     * @param createMode the createMode value to set.
-     * @return the ConfigurationStoreProperties object itself.
-     */
-    public ConfigurationStoreProperties withCreateMode(CreateMode createMode) {
-        this.createMode = createMode;
         return this;
     }
 

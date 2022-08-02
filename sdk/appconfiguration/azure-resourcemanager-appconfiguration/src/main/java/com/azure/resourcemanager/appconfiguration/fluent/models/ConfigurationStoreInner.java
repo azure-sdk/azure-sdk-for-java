@@ -8,7 +8,6 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.management.Resource;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.logging.ClientLogger;
-import com.azure.resourcemanager.appconfiguration.models.CreateMode;
 import com.azure.resourcemanager.appconfiguration.models.EncryptionProperties;
 import com.azure.resourcemanager.appconfiguration.models.PrivateEndpointConnectionReference;
 import com.azure.resourcemanager.appconfiguration.models.ProvisioningState;
@@ -227,79 +226,6 @@ public final class ConfigurationStoreInner extends Resource {
             this.innerProperties = new ConfigurationStoreProperties();
         }
         this.innerProperties().withDisableLocalAuth(disableLocalAuth);
-        return this;
-    }
-
-    /**
-     * Get the softDeleteRetentionInDays property: The amount of time in days that the configuration store will be
-     * retained when it is soft deleted.
-     *
-     * @return the softDeleteRetentionInDays value.
-     */
-    public Integer softDeleteRetentionInDays() {
-        return this.innerProperties() == null ? null : this.innerProperties().softDeleteRetentionInDays();
-    }
-
-    /**
-     * Set the softDeleteRetentionInDays property: The amount of time in days that the configuration store will be
-     * retained when it is soft deleted.
-     *
-     * @param softDeleteRetentionInDays the softDeleteRetentionInDays value to set.
-     * @return the ConfigurationStoreInner object itself.
-     */
-    public ConfigurationStoreInner withSoftDeleteRetentionInDays(Integer softDeleteRetentionInDays) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new ConfigurationStoreProperties();
-        }
-        this.innerProperties().withSoftDeleteRetentionInDays(softDeleteRetentionInDays);
-        return this;
-    }
-
-    /**
-     * Get the enablePurgeProtection property: Property specifying whether protection against purge is enabled for this
-     * configuration store.
-     *
-     * @return the enablePurgeProtection value.
-     */
-    public Boolean enablePurgeProtection() {
-        return this.innerProperties() == null ? null : this.innerProperties().enablePurgeProtection();
-    }
-
-    /**
-     * Set the enablePurgeProtection property: Property specifying whether protection against purge is enabled for this
-     * configuration store.
-     *
-     * @param enablePurgeProtection the enablePurgeProtection value to set.
-     * @return the ConfigurationStoreInner object itself.
-     */
-    public ConfigurationStoreInner withEnablePurgeProtection(Boolean enablePurgeProtection) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new ConfigurationStoreProperties();
-        }
-        this.innerProperties().withEnablePurgeProtection(enablePurgeProtection);
-        return this;
-    }
-
-    /**
-     * Get the createMode property: Indicates whether the configuration store need to be recovered.
-     *
-     * @return the createMode value.
-     */
-    public CreateMode createMode() {
-        return this.innerProperties() == null ? null : this.innerProperties().createMode();
-    }
-
-    /**
-     * Set the createMode property: Indicates whether the configuration store need to be recovered.
-     *
-     * @param createMode the createMode value to set.
-     * @return the ConfigurationStoreInner object itself.
-     */
-    public ConfigurationStoreInner withCreateMode(CreateMode createMode) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new ConfigurationStoreProperties();
-        }
-        this.innerProperties().withCreateMode(createMode);
         return this;
     }
 
