@@ -33,7 +33,11 @@ public final class ArcSqlServerLicenseType extends ExpandableStringEnum<ArcSqlSe
         return fromString(name, ArcSqlServerLicenseType.class);
     }
 
-    /** @return known ArcSqlServerLicenseType values. */
+    /**
+     * Gets known ArcSqlServerLicenseType values.
+     *
+     * @return known ArcSqlServerLicenseType values.
+     */
     public static Collection<ArcSqlServerLicenseType> values() {
         return values(ArcSqlServerLicenseType.class);
     }

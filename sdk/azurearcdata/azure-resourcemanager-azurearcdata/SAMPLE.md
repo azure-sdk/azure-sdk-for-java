@@ -39,7 +39,7 @@ import com.azure.core.util.Context;
 /** Samples for DataControllers Delete. */
 public final class DataControllersDeleteSamples {
     /*
-     * x-ms-original-file: specification/azurearcdata/resource-manager/Microsoft.AzureArcData/stable/2021-08-01/examples/DeleteDataController.json
+     * x-ms-original-file: specification/azurearcdata/resource-manager/Microsoft.AzureArcData/stable/2021-11-01/examples/DeleteDataController.json
      */
     /**
      * Sample code: Delete a dataController.
@@ -60,7 +60,7 @@ import com.azure.core.util.Context;
 /** Samples for DataControllers GetByResourceGroup. */
 public final class DataControllersGetByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/azurearcdata/resource-manager/Microsoft.AzureArcData/stable/2021-08-01/examples/GetDataController.json
+     * x-ms-original-file: specification/azurearcdata/resource-manager/Microsoft.AzureArcData/stable/2021-11-01/examples/GetDataController.json
      */
     /**
      * Sample code: Get a data controller.
@@ -81,7 +81,7 @@ import com.azure.core.util.Context;
 /** Samples for DataControllers List. */
 public final class DataControllersListSamples {
     /*
-     * x-ms-original-file: specification/azurearcdata/resource-manager/Microsoft.AzureArcData/stable/2021-08-01/examples/ListSubscriptionDataController.json
+     * x-ms-original-file: specification/azurearcdata/resource-manager/Microsoft.AzureArcData/stable/2021-11-01/examples/ListSubscriptionDataController.json
      */
     /**
      * Sample code: Gets all dataControllers in a subscription.
@@ -103,7 +103,7 @@ import com.azure.core.util.Context;
 /** Samples for DataControllers ListByResourceGroup. */
 public final class DataControllersListByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/azurearcdata/resource-manager/Microsoft.AzureArcData/stable/2021-08-01/examples/ListByResourceGroupDataController.json
+     * x-ms-original-file: specification/azurearcdata/resource-manager/Microsoft.AzureArcData/stable/2021-11-01/examples/ListByResourceGroupDataController.json
      */
     /**
      * Sample code: Gets all dataControllers in a resource group.
@@ -128,7 +128,7 @@ import java.util.Map;
 /** Samples for DataControllers PatchDataController. */
 public final class DataControllersPatchDataControllerSamples {
     /*
-     * x-ms-original-file: specification/azurearcdata/resource-manager/Microsoft.AzureArcData/stable/2021-08-01/examples/UpdateDataController.json
+     * x-ms-original-file: specification/azurearcdata/resource-manager/Microsoft.AzureArcData/stable/2021-11-01/examples/UpdateDataController.json
      */
     /**
      * Sample code: Updates a dataController tags.
@@ -177,7 +177,7 @@ import java.util.UUID;
 /** Samples for DataControllers PutDataController. */
 public final class DataControllersPutDataControllerSamples {
     /*
-     * x-ms-original-file: specification/azurearcdata/resource-manager/Microsoft.AzureArcData/stable/2021-08-01/examples/CreateOrUpdateDataController.json
+     * x-ms-original-file: specification/azurearcdata/resource-manager/Microsoft.AzureArcData/stable/2021-11-01/examples/CreateOrUpdateDataController.json
      */
     /**
      * Sample code: Create or update a Data Controller.
@@ -204,6 +204,10 @@ public final class DataControllersPutDataControllerSamples {
                             .withLogs(OffsetDateTime.parse("2020-01-01T17:18:19.1234567Z"))
                             .withUsages(OffsetDateTime.parse("2020-01-01T17:18:19.1234567Z")))
                     .withBasicLoginInformation(
+                        new BasicLoginInformation().withUsername("username").withPassword("********"))
+                    .withMetricsDashboardCredential(
+                        new BasicLoginInformation().withUsername("username").withPassword("********"))
+                    .withLogsDashboardCredential(
                         new BasicLoginInformation().withUsername("username").withPassword("********"))
                     .withLogAnalyticsWorkspaceConfig(
                         new LogAnalyticsWorkspaceConfig()
@@ -249,7 +253,7 @@ import com.azure.core.util.Context;
 /** Samples for Operations List. */
 public final class OperationsListSamples {
     /*
-     * x-ms-original-file: specification/azurearcdata/resource-manager/Microsoft.AzureArcData/stable/2021-08-01/examples/ListOperation.json
+     * x-ms-original-file: specification/azurearcdata/resource-manager/Microsoft.AzureArcData/stable/2021-11-01/examples/ListOperation.json
      */
     /**
      * Sample code: Lists all of the available Azure Data Services on Azure Arc API operations.
@@ -284,7 +288,7 @@ import java.util.Map;
 /** Samples for SqlManagedInstances Create. */
 public final class SqlManagedInstancesCreateSamples {
     /*
-     * x-ms-original-file: specification/azurearcdata/resource-manager/Microsoft.AzureArcData/stable/2021-08-01/examples/CreateOrUpdateSqlManagedInstance.json
+     * x-ms-original-file: specification/azurearcdata/resource-manager/Microsoft.AzureArcData/stable/2021-11-01/examples/CreateOrUpdateSqlManagedInstance.json
      */
     /**
      * Sample code: Create or update a SQL Managed Instance.
@@ -373,7 +377,7 @@ import com.azure.core.util.Context;
 /** Samples for SqlManagedInstances Delete. */
 public final class SqlManagedInstancesDeleteSamples {
     /*
-     * x-ms-original-file: specification/azurearcdata/resource-manager/Microsoft.AzureArcData/stable/2021-08-01/examples/DeleteSqlManagedInstance.json
+     * x-ms-original-file: specification/azurearcdata/resource-manager/Microsoft.AzureArcData/stable/2021-11-01/examples/DeleteSqlManagedInstance.json
      */
     /**
      * Sample code: Delete a SQL Instance.
@@ -394,7 +398,7 @@ import com.azure.core.util.Context;
 /** Samples for SqlManagedInstances GetByResourceGroup. */
 public final class SqlManagedInstancesGetByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/azurearcdata/resource-manager/Microsoft.AzureArcData/stable/2021-08-01/examples/GetSqlManagedInstance.json
+     * x-ms-original-file: specification/azurearcdata/resource-manager/Microsoft.AzureArcData/stable/2021-11-01/examples/GetSqlManagedInstance.json
      */
     /**
      * Sample code: Updates a SQL Instance tags.
@@ -415,7 +419,7 @@ import com.azure.core.util.Context;
 /** Samples for SqlManagedInstances List. */
 public final class SqlManagedInstancesListSamples {
     /*
-     * x-ms-original-file: specification/azurearcdata/resource-manager/Microsoft.AzureArcData/stable/2021-08-01/examples/ListSubscriptionSqlManagedInstance.json
+     * x-ms-original-file: specification/azurearcdata/resource-manager/Microsoft.AzureArcData/stable/2021-11-01/examples/ListSubscriptionSqlManagedInstance.json
      */
     /**
      * Sample code: Gets all SQL Instance in a subscription.
@@ -437,7 +441,7 @@ import com.azure.core.util.Context;
 /** Samples for SqlManagedInstances ListByResourceGroup. */
 public final class SqlManagedInstancesListByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/azurearcdata/resource-manager/Microsoft.AzureArcData/stable/2021-08-01/examples/ListByResourceGroupSqlManagedInstance.json
+     * x-ms-original-file: specification/azurearcdata/resource-manager/Microsoft.AzureArcData/stable/2021-11-01/examples/ListByResourceGroupSqlManagedInstance.json
      */
     /**
      * Sample code: Gets all SQL Instance in a resource group.
@@ -462,7 +466,7 @@ import java.util.Map;
 /** Samples for SqlManagedInstances Update. */
 public final class SqlManagedInstancesUpdateSamples {
     /*
-     * x-ms-original-file: specification/azurearcdata/resource-manager/Microsoft.AzureArcData/stable/2021-08-01/examples/UpdateSqlManagedInstance.json
+     * x-ms-original-file: specification/azurearcdata/resource-manager/Microsoft.AzureArcData/stable/2021-11-01/examples/UpdateSqlManagedInstance.json
      */
     /**
      * Sample code: Updates a sql Instance tags.
@@ -507,7 +511,7 @@ import java.util.Map;
 /** Samples for SqlServerInstances Create. */
 public final class SqlServerInstancesCreateSamples {
     /*
-     * x-ms-original-file: specification/azurearcdata/resource-manager/Microsoft.AzureArcData/stable/2021-08-01/examples/CreateOrUpdateSqlServerInstance.json
+     * x-ms-original-file: specification/azurearcdata/resource-manager/Microsoft.AzureArcData/stable/2021-11-01/examples/CreateOrUpdateSqlServerInstance.json
      */
     /**
      * Sample code: Updates a SQL Server Instance tags.
@@ -563,7 +567,7 @@ import com.azure.core.util.Context;
 /** Samples for SqlServerInstances Delete. */
 public final class SqlServerInstancesDeleteSamples {
     /*
-     * x-ms-original-file: specification/azurearcdata/resource-manager/Microsoft.AzureArcData/stable/2021-08-01/examples/DeleteSqlServerInstance.json
+     * x-ms-original-file: specification/azurearcdata/resource-manager/Microsoft.AzureArcData/stable/2021-11-01/examples/DeleteSqlServerInstance.json
      */
     /**
      * Sample code: Delete a SQL Server Instance.
@@ -584,7 +588,7 @@ import com.azure.core.util.Context;
 /** Samples for SqlServerInstances GetByResourceGroup. */
 public final class SqlServerInstancesGetByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/azurearcdata/resource-manager/Microsoft.AzureArcData/stable/2021-08-01/examples/GetSqlServerInstance.json
+     * x-ms-original-file: specification/azurearcdata/resource-manager/Microsoft.AzureArcData/stable/2021-11-01/examples/GetSqlServerInstance.json
      */
     /**
      * Sample code: Updates a SQL Server Instance tags.
@@ -606,7 +610,7 @@ import com.azure.core.util.Context;
 /** Samples for SqlServerInstances List. */
 public final class SqlServerInstancesListSamples {
     /*
-     * x-ms-original-file: specification/azurearcdata/resource-manager/Microsoft.AzureArcData/stable/2021-08-01/examples/ListSubscriptionSqlServerInstance.json
+     * x-ms-original-file: specification/azurearcdata/resource-manager/Microsoft.AzureArcData/stable/2021-11-01/examples/ListSubscriptionSqlServerInstance.json
      */
     /**
      * Sample code: Gets all SQL Server Instance in a subscription.
@@ -628,7 +632,7 @@ import com.azure.core.util.Context;
 /** Samples for SqlServerInstances ListByResourceGroup. */
 public final class SqlServerInstancesListByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/azurearcdata/resource-manager/Microsoft.AzureArcData/stable/2021-08-01/examples/ListByResourceGroupSqlServerInstance.json
+     * x-ms-original-file: specification/azurearcdata/resource-manager/Microsoft.AzureArcData/stable/2021-11-01/examples/ListByResourceGroupSqlServerInstance.json
      */
     /**
      * Sample code: Gets all SQL Server Instance in a resource group.
@@ -653,7 +657,7 @@ import java.util.Map;
 /** Samples for SqlServerInstances Update. */
 public final class SqlServerInstancesUpdateSamples {
     /*
-     * x-ms-original-file: specification/azurearcdata/resource-manager/Microsoft.AzureArcData/stable/2021-08-01/examples/UpdateSqlServerInstance.json
+     * x-ms-original-file: specification/azurearcdata/resource-manager/Microsoft.AzureArcData/stable/2021-11-01/examples/UpdateSqlServerInstance.json
      */
     /**
      * Sample code: Updates a SQL Server Instance tags.

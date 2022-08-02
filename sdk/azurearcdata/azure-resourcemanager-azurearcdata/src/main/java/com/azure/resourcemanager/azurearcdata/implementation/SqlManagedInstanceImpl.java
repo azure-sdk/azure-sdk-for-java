@@ -5,7 +5,6 @@
 package com.azure.resourcemanager.azurearcdata.implementation;
 
 import com.azure.core.management.Region;
-import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.azurearcdata.fluent.models.SqlManagedInstanceInner;
 import com.azure.resourcemanager.azurearcdata.models.ExtendedLocation;
@@ -59,16 +58,16 @@ public final class SqlManagedInstanceImpl
         return this.innerModel().sku();
     }
 
-    public SystemData systemData() {
-        return this.innerModel().systemData();
-    }
-
     public Region region() {
         return Region.fromName(this.regionName());
     }
 
     public String regionName() {
         return this.location();
+    }
+
+    public String resourceGroupName() {
+        return resourceGroupName;
     }
 
     public SqlManagedInstanceInner innerModel() {

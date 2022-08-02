@@ -42,6 +42,9 @@ public enum Infrastructure {
      */
     @JsonCreator
     public static Infrastructure fromString(String value) {
+        if (value == null) {
+            return null;
+        }
         Infrastructure[] items = Infrastructure.values();
         for (Infrastructure item : items) {
             if (item.toString().equalsIgnoreCase(value)) {

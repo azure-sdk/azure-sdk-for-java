@@ -5,33 +5,26 @@
 package com.azure.resourcemanager.azurearcdata.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
 /** Properties on upload watermark. Mostly timestamp for each upload data type. */
 @Fluent
 public final class UploadWatermark {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(UploadWatermark.class);
-
     /*
-     * Last uploaded date for metrics from kubernetes cluster. Defaults to
-     * current date time
+     * Last uploaded date for metrics from kubernetes cluster. Defaults to current date time
      */
     @JsonProperty(value = "metrics")
     private OffsetDateTime metrics;
 
     /*
-     * Last uploaded date for logs from kubernetes cluster. Defaults to current
-     * date time
+     * Last uploaded date for logs from kubernetes cluster. Defaults to current date time
      */
     @JsonProperty(value = "logs")
     private OffsetDateTime logs;
 
     /*
-     * Last uploaded date for usages from kubernetes cluster. Defaults to
-     * current date time
+     * Last uploaded date for usages from kubernetes cluster. Defaults to current date time
      */
     @JsonProperty(value = "usages")
     private OffsetDateTime usages;

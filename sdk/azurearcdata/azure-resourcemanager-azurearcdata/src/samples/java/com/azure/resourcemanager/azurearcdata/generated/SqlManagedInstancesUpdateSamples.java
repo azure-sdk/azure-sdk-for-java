@@ -12,7 +12,7 @@ import java.util.Map;
 /** Samples for SqlManagedInstances Update. */
 public final class SqlManagedInstancesUpdateSamples {
     /*
-     * x-ms-original-file: specification/azurearcdata/resource-manager/Microsoft.AzureArcData/stable/2021-08-01/examples/UpdateSqlManagedInstance.json
+     * x-ms-original-file: specification/azurearcdata/resource-manager/Microsoft.AzureArcData/stable/2021-11-01/examples/UpdateSqlManagedInstance.json
      */
     /**
      * Sample code: Updates a sql Instance tags.

@@ -30,7 +30,11 @@ public final class SqlVersion extends ExpandableStringEnum<SqlVersion> {
         return fromString(name, SqlVersion.class);
     }
 
-    /** @return known SqlVersion values. */
+    /**
+     * Gets known SqlVersion values.
+     *
+     * @return known SqlVersion values.
+     */
     public static Collection<SqlVersion> values() {
         return values(SqlVersion.class);
     }

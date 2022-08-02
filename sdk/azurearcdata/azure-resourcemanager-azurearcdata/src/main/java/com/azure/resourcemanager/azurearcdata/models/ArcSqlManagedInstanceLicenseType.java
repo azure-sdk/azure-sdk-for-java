@@ -30,6 +30,9 @@ public enum ArcSqlManagedInstanceLicenseType {
      */
     @JsonCreator
     public static ArcSqlManagedInstanceLicenseType fromString(String value) {
+        if (value == null) {
+            return null;
+        }
         ArcSqlManagedInstanceLicenseType[] items = ArcSqlManagedInstanceLicenseType.values();
         for (ArcSqlManagedInstanceLicenseType item : items) {
             if (item.toString().equalsIgnoreCase(value)) {

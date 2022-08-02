@@ -17,7 +17,7 @@ import java.util.Map;
 /** Samples for SqlServerInstances Create. */
 public final class SqlServerInstancesCreateSamples {
     /*
-     * x-ms-original-file: specification/azurearcdata/resource-manager/Microsoft.AzureArcData/stable/2021-08-01/examples/CreateOrUpdateSqlServerInstance.json
+     * x-ms-original-file: specification/azurearcdata/resource-manager/Microsoft.AzureArcData/stable/2021-11-01/examples/CreateOrUpdateSqlServerInstance.json
      */
     /**
      * Sample code: Updates a SQL Server Instance tags.

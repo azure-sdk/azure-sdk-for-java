@@ -30,6 +30,9 @@ public enum SqlManagedInstanceSkuTier {
      */
     @JsonCreator
     public static SqlManagedInstanceSkuTier fromString(String value) {
+        if (value == null) {
+            return null;
+        }
         SqlManagedInstanceSkuTier[] items = SqlManagedInstanceSkuTier.values();
         for (SqlManagedInstanceSkuTier item : items) {
             if (item.toString().equalsIgnoreCase(value)) {
