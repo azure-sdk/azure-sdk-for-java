@@ -5,21 +5,15 @@
 package com.azure.resourcemanager.billing.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.billing.fluent.models.InvoiceSectionWithCreateSubPermissionInner;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** The list of invoice section properties with create subscription permission. */
 @Fluent
 public final class InvoiceSectionListWithCreateSubPermissionResult {
-    @JsonIgnore
-    private final ClientLogger logger = new ClientLogger(InvoiceSectionListWithCreateSubPermissionResult.class);
-
     /*
-     * The list of invoice section properties with create subscription
-     * permission.
+     * The list of invoice section properties with create subscription permission.
      */
     @JsonProperty(value = "value")
     private List<InvoiceSectionWithCreateSubPermissionInner> value;

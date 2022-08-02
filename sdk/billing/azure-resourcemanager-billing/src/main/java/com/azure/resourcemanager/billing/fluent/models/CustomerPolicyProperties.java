@@ -5,19 +5,14 @@
 package com.azure.resourcemanager.billing.fluent.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.billing.models.ViewCharges;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** The properties of a customer's policy. */
 @Fluent
 public final class CustomerPolicyProperties {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(CustomerPolicyProperties.class);
-
     /*
-     * The policy that controls whether the users in customer's organization
-     * can view charges at pay-as-you-go prices.
+     * The policy that controls whether the users in customer's organization can view charges at pay-as-you-go prices.
      */
     @JsonProperty(value = "viewCharges")
     private ViewCharges viewCharges;
