@@ -23,8 +23,7 @@ public final class Dapr {
     private String appId;
 
     /*
-     * Tells Dapr which protocol your application is using. Valid options are
-     * http and grpc. Default is http
+     * Tells Dapr which protocol your application is using. Valid options are http and grpc. Default is http
      */
     @JsonProperty(value = "appProtocol")
     private AppProtocol appProtocol;
