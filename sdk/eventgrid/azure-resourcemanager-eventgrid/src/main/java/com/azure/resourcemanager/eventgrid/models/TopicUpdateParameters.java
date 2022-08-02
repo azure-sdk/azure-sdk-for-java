@@ -15,7 +15,7 @@ import java.util.Map;
 @Fluent
 public final class TopicUpdateParameters {
     /*
-     * Tags of the Topic resource.
+     * Tags of the resource.
      */
     @JsonProperty(value = "tags")
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
@@ -28,13 +28,13 @@ public final class TopicUpdateParameters {
     private IdentityInfo identity;
 
     /*
-     * Properties of the Topic resource.
+     * Properties of the resource.
      */
     @JsonProperty(value = "properties")
     private TopicUpdateParameterProperties innerProperties;
 
     /**
-     * Get the tags property: Tags of the Topic resource.
+     * Get the tags property: Tags of the resource.
      *
      * @return the tags value.
      */
@@ -43,7 +43,7 @@ public final class TopicUpdateParameters {
     }
 
     /**
-     * Set the tags property: Tags of the Topic resource.
+     * Set the tags property: Tags of the resource.
      *
      * @param tags the tags value to set.
      * @return the TopicUpdateParameters object itself.
@@ -74,7 +74,7 @@ public final class TopicUpdateParameters {
     }
 
     /**
-     * Get the innerProperties property: Properties of the Topic resource.
+     * Get the innerProperties property: Properties of the resource.
      *
      * @return the innerProperties value.
      */
@@ -160,29 +160,6 @@ public final class TopicUpdateParameters {
             this.innerProperties = new TopicUpdateParameterProperties();
         }
         this.innerProperties().withDisableLocalAuth(disableLocalAuth);
-        return this;
-    }
-
-    /**
-     * Get the dataResidencyBoundary property: The data residency boundary for the topic.
-     *
-     * @return the dataResidencyBoundary value.
-     */
-    public DataResidencyBoundary dataResidencyBoundary() {
-        return this.innerProperties() == null ? null : this.innerProperties().dataResidencyBoundary();
-    }
-
-    /**
-     * Set the dataResidencyBoundary property: The data residency boundary for the topic.
-     *
-     * @param dataResidencyBoundary the dataResidencyBoundary value to set.
-     * @return the TopicUpdateParameters object itself.
-     */
-    public TopicUpdateParameters withDataResidencyBoundary(DataResidencyBoundary dataResidencyBoundary) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new TopicUpdateParameterProperties();
-        }
-        this.innerProperties().withDataResidencyBoundary(dataResidencyBoundary);
         return this;
     }
 

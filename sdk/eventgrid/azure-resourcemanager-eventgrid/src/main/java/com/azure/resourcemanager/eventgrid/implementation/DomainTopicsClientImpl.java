@@ -139,7 +139,9 @@ public final class DomainTopicsClientImpl implements DomainTopicsClient {
     }
 
     /**
-     * Get properties of a domain topic.
+     * Get a domain topic.
+     *
+     * <p>Get properties of a domain topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param domainName Name of the domain.
@@ -193,7 +195,9 @@ public final class DomainTopicsClientImpl implements DomainTopicsClient {
     }
 
     /**
-     * Get properties of a domain topic.
+     * Get a domain topic.
+     *
+     * <p>Get properties of a domain topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param domainName Name of the domain.
@@ -245,7 +249,9 @@ public final class DomainTopicsClientImpl implements DomainTopicsClient {
     }
 
     /**
-     * Get properties of a domain topic.
+     * Get a domain topic.
+     *
+     * <p>Get properties of a domain topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param domainName Name of the domain.
@@ -262,7 +268,9 @@ public final class DomainTopicsClientImpl implements DomainTopicsClient {
     }
 
     /**
-     * Get properties of a domain topic.
+     * Get a domain topic.
+     *
+     * <p>Get properties of a domain topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param domainName Name of the domain.
@@ -278,7 +286,9 @@ public final class DomainTopicsClientImpl implements DomainTopicsClient {
     }
 
     /**
-     * Get properties of a domain topic.
+     * Get a domain topic.
+     *
+     * <p>Get properties of a domain topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param domainName Name of the domain.
@@ -296,7 +306,9 @@ public final class DomainTopicsClientImpl implements DomainTopicsClient {
     }
 
     /**
-     * Asynchronously creates or updates a new domain topic with the specified parameters.
+     * Create or update a domain topic.
+     *
+     * <p>Asynchronously creates or updates a new domain topic with the specified parameters.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param domainName Name of the domain.
@@ -350,7 +362,9 @@ public final class DomainTopicsClientImpl implements DomainTopicsClient {
     }
 
     /**
-     * Asynchronously creates or updates a new domain topic with the specified parameters.
+     * Create or update a domain topic.
+     *
+     * <p>Asynchronously creates or updates a new domain topic with the specified parameters.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param domainName Name of the domain.
@@ -402,7 +416,9 @@ public final class DomainTopicsClientImpl implements DomainTopicsClient {
     }
 
     /**
-     * Asynchronously creates or updates a new domain topic with the specified parameters.
+     * Create or update a domain topic.
+     *
+     * <p>Asynchronously creates or updates a new domain topic with the specified parameters.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param domainName Name of the domain.
@@ -428,7 +444,9 @@ public final class DomainTopicsClientImpl implements DomainTopicsClient {
     }
 
     /**
-     * Asynchronously creates or updates a new domain topic with the specified parameters.
+     * Create or update a domain topic.
+     *
+     * <p>Asynchronously creates or updates a new domain topic with the specified parameters.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param domainName Name of the domain.
@@ -452,7 +470,9 @@ public final class DomainTopicsClientImpl implements DomainTopicsClient {
     }
 
     /**
-     * Asynchronously creates or updates a new domain topic with the specified parameters.
+     * Create or update a domain topic.
+     *
+     * <p>Asynchronously creates or updates a new domain topic with the specified parameters.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param domainName Name of the domain.
@@ -469,7 +489,9 @@ public final class DomainTopicsClientImpl implements DomainTopicsClient {
     }
 
     /**
-     * Asynchronously creates or updates a new domain topic with the specified parameters.
+     * Create or update a domain topic.
+     *
+     * <p>Asynchronously creates or updates a new domain topic with the specified parameters.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param domainName Name of the domain.
@@ -487,7 +509,9 @@ public final class DomainTopicsClientImpl implements DomainTopicsClient {
     }
 
     /**
-     * Asynchronously creates or updates a new domain topic with the specified parameters.
+     * Create or update a domain topic.
+     *
+     * <p>Asynchronously creates or updates a new domain topic with the specified parameters.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param domainName Name of the domain.
@@ -506,7 +530,9 @@ public final class DomainTopicsClientImpl implements DomainTopicsClient {
     }
 
     /**
-     * Asynchronously creates or updates a new domain topic with the specified parameters.
+     * Create or update a domain topic.
+     *
+     * <p>Asynchronously creates or updates a new domain topic with the specified parameters.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param domainName Name of the domain.
@@ -526,7 +552,9 @@ public final class DomainTopicsClientImpl implements DomainTopicsClient {
     }
 
     /**
-     * Asynchronously creates or updates a new domain topic with the specified parameters.
+     * Create or update a domain topic.
+     *
+     * <p>Asynchronously creates or updates a new domain topic with the specified parameters.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param domainName Name of the domain.
@@ -542,7 +570,9 @@ public final class DomainTopicsClientImpl implements DomainTopicsClient {
     }
 
     /**
-     * Asynchronously creates or updates a new domain topic with the specified parameters.
+     * Create or update a domain topic.
+     *
+     * <p>Asynchronously creates or updates a new domain topic with the specified parameters.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param domainName Name of the domain.
@@ -560,7 +590,9 @@ public final class DomainTopicsClientImpl implements DomainTopicsClient {
     }
 
     /**
-     * Delete existing domain topic.
+     * Delete a domain topic.
+     *
+     * <p>Delete existing domain topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param domainName Name of the domain.
@@ -612,7 +644,9 @@ public final class DomainTopicsClientImpl implements DomainTopicsClient {
     }
 
     /**
-     * Delete existing domain topic.
+     * Delete a domain topic.
+     *
+     * <p>Delete existing domain topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param domainName Name of the domain.
@@ -662,7 +696,9 @@ public final class DomainTopicsClientImpl implements DomainTopicsClient {
     }
 
     /**
-     * Delete existing domain topic.
+     * Delete a domain topic.
+     *
+     * <p>Delete existing domain topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param domainName Name of the domain.
@@ -683,7 +719,9 @@ public final class DomainTopicsClientImpl implements DomainTopicsClient {
     }
 
     /**
-     * Delete existing domain topic.
+     * Delete a domain topic.
+     *
+     * <p>Delete existing domain topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param domainName Name of the domain.
@@ -706,7 +744,9 @@ public final class DomainTopicsClientImpl implements DomainTopicsClient {
     }
 
     /**
-     * Delete existing domain topic.
+     * Delete a domain topic.
+     *
+     * <p>Delete existing domain topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param domainName Name of the domain.
@@ -723,7 +763,9 @@ public final class DomainTopicsClientImpl implements DomainTopicsClient {
     }
 
     /**
-     * Delete existing domain topic.
+     * Delete a domain topic.
+     *
+     * <p>Delete existing domain topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param domainName Name of the domain.
@@ -741,7 +783,9 @@ public final class DomainTopicsClientImpl implements DomainTopicsClient {
     }
 
     /**
-     * Delete existing domain topic.
+     * Delete a domain topic.
+     *
+     * <p>Delete existing domain topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param domainName Name of the domain.
@@ -759,7 +803,9 @@ public final class DomainTopicsClientImpl implements DomainTopicsClient {
     }
 
     /**
-     * Delete existing domain topic.
+     * Delete a domain topic.
+     *
+     * <p>Delete existing domain topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param domainName Name of the domain.
@@ -779,7 +825,9 @@ public final class DomainTopicsClientImpl implements DomainTopicsClient {
     }
 
     /**
-     * Delete existing domain topic.
+     * Delete a domain topic.
+     *
+     * <p>Delete existing domain topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param domainName Name of the domain.
@@ -794,7 +842,9 @@ public final class DomainTopicsClientImpl implements DomainTopicsClient {
     }
 
     /**
-     * Delete existing domain topic.
+     * Delete a domain topic.
+     *
+     * <p>Delete existing domain topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param domainName Name of the domain.
@@ -810,7 +860,9 @@ public final class DomainTopicsClientImpl implements DomainTopicsClient {
     }
 
     /**
-     * List all the topics in a domain.
+     * List domain topics.
+     *
+     * <p>List all the topics in a domain.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param domainName Domain name.
@@ -878,7 +930,9 @@ public final class DomainTopicsClientImpl implements DomainTopicsClient {
     }
 
     /**
-     * List all the topics in a domain.
+     * List domain topics.
+     *
+     * <p>List all the topics in a domain.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param domainName Domain name.
@@ -944,7 +998,9 @@ public final class DomainTopicsClientImpl implements DomainTopicsClient {
     }
 
     /**
-     * List all the topics in a domain.
+     * List domain topics.
+     *
+     * <p>List all the topics in a domain.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param domainName Domain name.
@@ -970,7 +1026,9 @@ public final class DomainTopicsClientImpl implements DomainTopicsClient {
     }
 
     /**
-     * List all the topics in a domain.
+     * List domain topics.
+     *
+     * <p>List all the topics in a domain.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param domainName Domain name.
@@ -989,7 +1047,9 @@ public final class DomainTopicsClientImpl implements DomainTopicsClient {
     }
 
     /**
-     * List all the topics in a domain.
+     * List domain topics.
+     *
+     * <p>List all the topics in a domain.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param domainName Domain name.
@@ -1016,7 +1076,9 @@ public final class DomainTopicsClientImpl implements DomainTopicsClient {
     }
 
     /**
-     * List all the topics in a domain.
+     * List domain topics.
+     *
+     * <p>List all the topics in a domain.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param domainName Domain name.
@@ -1033,7 +1095,9 @@ public final class DomainTopicsClientImpl implements DomainTopicsClient {
     }
 
     /**
-     * List all the topics in a domain.
+     * List domain topics.
+     *
+     * <p>List all the topics in a domain.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param domainName Domain name.

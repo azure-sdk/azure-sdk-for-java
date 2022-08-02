@@ -17,18 +17,18 @@ import com.azure.resourcemanager.eventgrid.models.PrivateEndpointConnectionsPare
 /** An instance of this class provides access to all the operations defined in PrivateEndpointConnectionsClient. */
 public interface PrivateEndpointConnectionsClient {
     /**
-     * Get a specific private endpoint connection under a topic, domain, or partner namespace.
+     * Get a specific private endpoint connection.
+     *
+     * <p>Get a specific private endpoint connection under a topic or domain.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
-     * @param parentType The type of the parent resource. This can be either \'topics\', \'domains\', or
-     *     \'partnerNamespaces\'.
-     * @param parentName The name of the parent resource (namely, either, the topic name, domain name, or partner
-     *     namespace name).
+     * @param parentType The type of the parent resource. This can be either \'topics\' or \'domains\'.
+     * @param parentName The name of the parent resource (namely, either, the topic name or domain name).
      * @param privateEndpointConnectionName The name of the private endpoint connection connection.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a specific private endpoint connection under a topic, domain, or partner namespace.
+     * @return a specific private endpoint connection under a topic or domain.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     PrivateEndpointConnectionInner get(
@@ -38,20 +38,19 @@ public interface PrivateEndpointConnectionsClient {
         String privateEndpointConnectionName);
 
     /**
-     * Get a specific private endpoint connection under a topic, domain, or partner namespace.
+     * Get a specific private endpoint connection.
+     *
+     * <p>Get a specific private endpoint connection under a topic or domain.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
-     * @param parentType The type of the parent resource. This can be either \'topics\', \'domains\', or
-     *     \'partnerNamespaces\'.
-     * @param parentName The name of the parent resource (namely, either, the topic name, domain name, or partner
-     *     namespace name).
+     * @param parentType The type of the parent resource. This can be either \'topics\' or \'domains\'.
+     * @param parentName The name of the parent resource (namely, either, the topic name or domain name).
      * @param privateEndpointConnectionName The name of the private endpoint connection connection.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a specific private endpoint connection under a topic, domain, or partner namespace along with {@link
-     *     Response}.
+     * @return a specific private endpoint connection under a topic or domain along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<PrivateEndpointConnectionInner> getWithResponse(
@@ -62,13 +61,13 @@ public interface PrivateEndpointConnectionsClient {
         Context context);
 
     /**
-     * Update a specific private endpoint connection under a topic, domain or partner namespace.
+     * Update a specific private endpoint connection.
+     *
+     * <p>Update a specific private endpoint connection under a topic or domain.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
-     * @param parentType The type of the parent resource. This can be either \'topics\', \'domains\', or
-     *     \'partnerNamespaces\'.
-     * @param parentName The name of the parent resource (namely, either, the topic name, domain name, or partner
-     *     namespace name).
+     * @param parentType The type of the parent resource. This can be either \'topics\' or \'domains\'.
+     * @param parentName The name of the parent resource (namely, either, the topic name or domain name).
      * @param privateEndpointConnectionName The name of the private endpoint connection connection.
      * @param privateEndpointConnection The private endpoint connection object to update.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -85,13 +84,13 @@ public interface PrivateEndpointConnectionsClient {
         PrivateEndpointConnectionInner privateEndpointConnection);
 
     /**
-     * Update a specific private endpoint connection under a topic, domain or partner namespace.
+     * Update a specific private endpoint connection.
+     *
+     * <p>Update a specific private endpoint connection under a topic or domain.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
-     * @param parentType The type of the parent resource. This can be either \'topics\', \'domains\', or
-     *     \'partnerNamespaces\'.
-     * @param parentName The name of the parent resource (namely, either, the topic name, domain name, or partner
-     *     namespace name).
+     * @param parentType The type of the parent resource. This can be either \'topics\' or \'domains\'.
+     * @param parentName The name of the parent resource (namely, either, the topic name or domain name).
      * @param privateEndpointConnectionName The name of the private endpoint connection connection.
      * @param privateEndpointConnection The private endpoint connection object to update.
      * @param context The context to associate with this operation.
@@ -110,13 +109,13 @@ public interface PrivateEndpointConnectionsClient {
         Context context);
 
     /**
-     * Update a specific private endpoint connection under a topic, domain or partner namespace.
+     * Update a specific private endpoint connection.
+     *
+     * <p>Update a specific private endpoint connection under a topic or domain.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
-     * @param parentType The type of the parent resource. This can be either \'topics\', \'domains\', or
-     *     \'partnerNamespaces\'.
-     * @param parentName The name of the parent resource (namely, either, the topic name, domain name, or partner
-     *     namespace name).
+     * @param parentType The type of the parent resource. This can be either \'topics\' or \'domains\'.
+     * @param parentName The name of the parent resource (namely, either, the topic name or domain name).
      * @param privateEndpointConnectionName The name of the private endpoint connection connection.
      * @param privateEndpointConnection The private endpoint connection object to update.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -133,13 +132,13 @@ public interface PrivateEndpointConnectionsClient {
         PrivateEndpointConnectionInner privateEndpointConnection);
 
     /**
-     * Update a specific private endpoint connection under a topic, domain or partner namespace.
+     * Update a specific private endpoint connection.
+     *
+     * <p>Update a specific private endpoint connection under a topic or domain.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
-     * @param parentType The type of the parent resource. This can be either \'topics\', \'domains\', or
-     *     \'partnerNamespaces\'.
-     * @param parentName The name of the parent resource (namely, either, the topic name, domain name, or partner
-     *     namespace name).
+     * @param parentType The type of the parent resource. This can be either \'topics\' or \'domains\'.
+     * @param parentName The name of the parent resource (namely, either, the topic name or domain name).
      * @param privateEndpointConnectionName The name of the private endpoint connection connection.
      * @param privateEndpointConnection The private endpoint connection object to update.
      * @param context The context to associate with this operation.
@@ -158,13 +157,13 @@ public interface PrivateEndpointConnectionsClient {
         Context context);
 
     /**
-     * Delete a specific private endpoint connection under a topic, domain, or partner namespace.
+     * Delete a specific private endpoint connection.
+     *
+     * <p>Delete a specific private endpoint connection under a topic or domain.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
-     * @param parentType The type of the parent resource. This can be either \'topics\', \'domains\', or
-     *     \'partnerNamespaces\'.
-     * @param parentName The name of the parent resource (namely, either, the topic name, domain name, or partner
-     *     namespace name).
+     * @param parentType The type of the parent resource. This can be either \'topics\' or \'domains\'.
+     * @param parentName The name of the parent resource (namely, either, the topic name or domain name).
      * @param privateEndpointConnectionName The name of the private endpoint connection connection.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -179,13 +178,13 @@ public interface PrivateEndpointConnectionsClient {
         String privateEndpointConnectionName);
 
     /**
-     * Delete a specific private endpoint connection under a topic, domain, or partner namespace.
+     * Delete a specific private endpoint connection.
+     *
+     * <p>Delete a specific private endpoint connection under a topic or domain.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
-     * @param parentType The type of the parent resource. This can be either \'topics\', \'domains\', or
-     *     \'partnerNamespaces\'.
-     * @param parentName The name of the parent resource (namely, either, the topic name, domain name, or partner
-     *     namespace name).
+     * @param parentType The type of the parent resource. This can be either \'topics\' or \'domains\'.
+     * @param parentName The name of the parent resource (namely, either, the topic name or domain name).
      * @param privateEndpointConnectionName The name of the private endpoint connection connection.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -202,13 +201,13 @@ public interface PrivateEndpointConnectionsClient {
         Context context);
 
     /**
-     * Delete a specific private endpoint connection under a topic, domain, or partner namespace.
+     * Delete a specific private endpoint connection.
+     *
+     * <p>Delete a specific private endpoint connection under a topic or domain.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
-     * @param parentType The type of the parent resource. This can be either \'topics\', \'domains\', or
-     *     \'partnerNamespaces\'.
-     * @param parentName The name of the parent resource (namely, either, the topic name, domain name, or partner
-     *     namespace name).
+     * @param parentType The type of the parent resource. This can be either \'topics\' or \'domains\'.
+     * @param parentName The name of the parent resource (namely, either, the topic name or domain name).
      * @param privateEndpointConnectionName The name of the private endpoint connection connection.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -222,13 +221,13 @@ public interface PrivateEndpointConnectionsClient {
         String privateEndpointConnectionName);
 
     /**
-     * Delete a specific private endpoint connection under a topic, domain, or partner namespace.
+     * Delete a specific private endpoint connection.
+     *
+     * <p>Delete a specific private endpoint connection under a topic or domain.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
-     * @param parentType The type of the parent resource. This can be either \'topics\', \'domains\', or
-     *     \'partnerNamespaces\'.
-     * @param parentName The name of the parent resource (namely, either, the topic name, domain name, or partner
-     *     namespace name).
+     * @param parentType The type of the parent resource. This can be either \'topics\' or \'domains\'.
+     * @param parentName The name of the parent resource (namely, either, the topic name or domain name).
      * @param privateEndpointConnectionName The name of the private endpoint connection connection.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -244,31 +243,31 @@ public interface PrivateEndpointConnectionsClient {
         Context context);
 
     /**
-     * Get all private endpoint connections under a topic, domain, or partner namespace.
+     * Lists all private endpoint connections under a resource.
+     *
+     * <p>Get all private endpoint connections under a topic or domain.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
-     * @param parentType The type of the parent resource. This can be either \'topics\', \'domains\', or
-     *     \'partnerNamespaces\'.
-     * @param parentName The name of the parent resource (namely, either, the topic name, domain name, or partner
-     *     namespace name).
+     * @param parentType The type of the parent resource. This can be either \'topics\' or \'domains\'.
+     * @param parentName The name of the parent resource (namely, either, the topic name or domain name).
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all private endpoint connections under a topic, domain, or partner namespace as paginated response with
-     *     {@link PagedIterable}.
+     * @return all private endpoint connections under a topic or domain as paginated response with {@link
+     *     PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<PrivateEndpointConnectionInner> listByResource(
         String resourceGroupName, PrivateEndpointConnectionsParentType parentType, String parentName);
 
     /**
-     * Get all private endpoint connections under a topic, domain, or partner namespace.
+     * Lists all private endpoint connections under a resource.
+     *
+     * <p>Get all private endpoint connections under a topic or domain.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
-     * @param parentType The type of the parent resource. This can be either \'topics\', \'domains\', or
-     *     \'partnerNamespaces\'.
-     * @param parentName The name of the parent resource (namely, either, the topic name, domain name, or partner
-     *     namespace name).
+     * @param parentType The type of the parent resource. This can be either \'topics\' or \'domains\'.
+     * @param parentName The name of the parent resource (namely, either, the topic name or domain name).
      * @param filter The query used to filter the search results using OData syntax. Filtering is permitted on the
      *     'name' property only and with limited number of OData operations. These operations are: the 'contains'
      *     function as well as the following logical operations: not, and, or, eq (for equal), and ne (for not equal).
@@ -281,8 +280,8 @@ public interface PrivateEndpointConnectionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all private endpoint connections under a topic, domain, or partner namespace as paginated response with
-     *     {@link PagedIterable}.
+     * @return all private endpoint connections under a topic or domain as paginated response with {@link
+     *     PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<PrivateEndpointConnectionInner> listByResource(

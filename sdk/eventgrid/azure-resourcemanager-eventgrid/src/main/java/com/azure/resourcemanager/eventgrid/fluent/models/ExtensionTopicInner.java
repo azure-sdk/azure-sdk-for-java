@@ -19,7 +19,7 @@ public final class ExtensionTopicInner extends ProxyResource {
     private ExtensionTopicProperties innerProperties;
 
     /*
-     * The system metadata relating to Extension Topic resource.
+     * The system metadata relating to the Extension Topic resource.
      */
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
@@ -34,7 +34,7 @@ public final class ExtensionTopicInner extends ProxyResource {
     }
 
     /**
-     * Get the systemData property: The system metadata relating to Extension Topic resource.
+     * Get the systemData property: The system metadata relating to the Extension Topic resource.
      *
      * @return the systemData value.
      */

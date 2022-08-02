@@ -84,7 +84,7 @@ public interface TopicTypeInfo {
      *
      * @return the supportedScopesForSource value.
      */
-    List<TopicTypeSourceScope> supportedScopesForSource();
+    List<TopicTypePropertiesSupportedScopesForSourceItem> supportedScopesForSource();
 
     /**
      * Gets the inner com.azure.resourcemanager.eventgrid.fluent.models.TopicTypeInfoInner object.

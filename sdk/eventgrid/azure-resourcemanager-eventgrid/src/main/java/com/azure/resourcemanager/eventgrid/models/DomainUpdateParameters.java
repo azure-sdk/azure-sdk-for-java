@@ -243,29 +243,6 @@ public final class DomainUpdateParameters {
     }
 
     /**
-     * Get the dataResidencyBoundary property: The data residency boundary for the domain.
-     *
-     * @return the dataResidencyBoundary value.
-     */
-    public DataResidencyBoundary dataResidencyBoundary() {
-        return this.innerProperties() == null ? null : this.innerProperties().dataResidencyBoundary();
-    }
-
-    /**
-     * Set the dataResidencyBoundary property: The data residency boundary for the domain.
-     *
-     * @param dataResidencyBoundary the dataResidencyBoundary value to set.
-     * @return the DomainUpdateParameters object itself.
-     */
-    public DomainUpdateParameters withDataResidencyBoundary(DataResidencyBoundary dataResidencyBoundary) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new DomainUpdateParameterProperties();
-        }
-        this.innerProperties().withDataResidencyBoundary(dataResidencyBoundary);
-        return this;
-    }
-
-    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.

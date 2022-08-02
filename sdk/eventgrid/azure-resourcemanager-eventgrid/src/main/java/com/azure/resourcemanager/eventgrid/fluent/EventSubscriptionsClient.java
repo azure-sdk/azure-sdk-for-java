@@ -19,7 +19,9 @@ import com.azure.resourcemanager.eventgrid.models.EventSubscriptionUpdateParamet
 /** An instance of this class provides access to all the operations defined in EventSubscriptionsClient. */
 public interface EventSubscriptionsClient {
     /**
-     * Get properties of an event subscription.
+     * Get an event subscription.
+     *
+     * <p>Get properties of an event subscription.
      *
      * @param scope The scope of the event subscription. The scope can be a subscription, or a resource group, or a top
      *     level resource belonging to a resource provider namespace, or an EventGrid topic. For example, use
@@ -39,7 +41,9 @@ public interface EventSubscriptionsClient {
     EventSubscriptionInner get(String scope, String eventSubscriptionName);
 
     /**
-     * Get properties of an event subscription.
+     * Get an event subscription.
+     *
+     * <p>Get properties of an event subscription.
      *
      * @param scope The scope of the event subscription. The scope can be a subscription, or a resource group, or a top
      *     level resource belonging to a resource provider namespace, or an EventGrid topic. For example, use
@@ -60,8 +64,10 @@ public interface EventSubscriptionsClient {
     Response<EventSubscriptionInner> getWithResponse(String scope, String eventSubscriptionName, Context context);
 
     /**
-     * Asynchronously creates a new event subscription or updates an existing event subscription based on the specified
-     * scope.
+     * Create or update an event subscription.
+     *
+     * <p>Asynchronously creates a new event subscription or updates an existing event subscription based on the
+     * specified scope.
      *
      * @param scope The identifier of the resource to which the event subscription needs to be created or updated. The
      *     scope can be a subscription, or a resource group, or a top level resource belonging to a resource provider
@@ -84,8 +90,10 @@ public interface EventSubscriptionsClient {
         String scope, String eventSubscriptionName, EventSubscriptionInner eventSubscriptionInfo);
 
     /**
-     * Asynchronously creates a new event subscription or updates an existing event subscription based on the specified
-     * scope.
+     * Create or update an event subscription.
+     *
+     * <p>Asynchronously creates a new event subscription or updates an existing event subscription based on the
+     * specified scope.
      *
      * @param scope The identifier of the resource to which the event subscription needs to be created or updated. The
      *     scope can be a subscription, or a resource group, or a top level resource belonging to a resource provider
@@ -109,8 +117,10 @@ public interface EventSubscriptionsClient {
         String scope, String eventSubscriptionName, EventSubscriptionInner eventSubscriptionInfo, Context context);
 
     /**
-     * Asynchronously creates a new event subscription or updates an existing event subscription based on the specified
-     * scope.
+     * Create or update an event subscription.
+     *
+     * <p>Asynchronously creates a new event subscription or updates an existing event subscription based on the
+     * specified scope.
      *
      * @param scope The identifier of the resource to which the event subscription needs to be created or updated. The
      *     scope can be a subscription, or a resource group, or a top level resource belonging to a resource provider
@@ -133,8 +143,10 @@ public interface EventSubscriptionsClient {
         String scope, String eventSubscriptionName, EventSubscriptionInner eventSubscriptionInfo);
 
     /**
-     * Asynchronously creates a new event subscription or updates an existing event subscription based on the specified
-     * scope.
+     * Create or update an event subscription.
+     *
+     * <p>Asynchronously creates a new event subscription or updates an existing event subscription based on the
+     * specified scope.
      *
      * @param scope The identifier of the resource to which the event subscription needs to be created or updated. The
      *     scope can be a subscription, or a resource group, or a top level resource belonging to a resource provider
@@ -158,7 +170,9 @@ public interface EventSubscriptionsClient {
         String scope, String eventSubscriptionName, EventSubscriptionInner eventSubscriptionInfo, Context context);
 
     /**
-     * Delete an existing event subscription.
+     * Delete an event subscription.
+     *
+     * <p>Delete an existing event subscription.
      *
      * @param scope The scope of the event subscription. The scope can be a subscription, or a resource group, or a top
      *     level resource belonging to a resource provider namespace, or an EventGrid topic. For example, use
@@ -178,7 +192,9 @@ public interface EventSubscriptionsClient {
     SyncPoller<PollResult<Void>, Void> beginDelete(String scope, String eventSubscriptionName);
 
     /**
-     * Delete an existing event subscription.
+     * Delete an event subscription.
+     *
+     * <p>Delete an existing event subscription.
      *
      * @param scope The scope of the event subscription. The scope can be a subscription, or a resource group, or a top
      *     level resource belonging to a resource provider namespace, or an EventGrid topic. For example, use
@@ -199,7 +215,9 @@ public interface EventSubscriptionsClient {
     SyncPoller<PollResult<Void>, Void> beginDelete(String scope, String eventSubscriptionName, Context context);
 
     /**
-     * Delete an existing event subscription.
+     * Delete an event subscription.
+     *
+     * <p>Delete an existing event subscription.
      *
      * @param scope The scope of the event subscription. The scope can be a subscription, or a resource group, or a top
      *     level resource belonging to a resource provider namespace, or an EventGrid topic. For example, use
@@ -218,7 +236,9 @@ public interface EventSubscriptionsClient {
     void delete(String scope, String eventSubscriptionName);
 
     /**
-     * Delete an existing event subscription.
+     * Delete an event subscription.
+     *
+     * <p>Delete an existing event subscription.
      *
      * @param scope The scope of the event subscription. The scope can be a subscription, or a resource group, or a top
      *     level resource belonging to a resource provider namespace, or an EventGrid topic. For example, use
@@ -238,7 +258,9 @@ public interface EventSubscriptionsClient {
     void delete(String scope, String eventSubscriptionName, Context context);
 
     /**
-     * Asynchronously updates an existing event subscription.
+     * Update an event subscription.
+     *
+     * <p>Asynchronously updates an existing event subscription.
      *
      * @param scope The scope of existing event subscription. The scope can be a subscription, or a resource group, or a
      *     top level resource belonging to a resource provider namespace, or an EventGrid topic. For example, use
@@ -262,7 +284,9 @@ public interface EventSubscriptionsClient {
         EventSubscriptionUpdateParameters eventSubscriptionUpdateParameters);
 
     /**
-     * Asynchronously updates an existing event subscription.
+     * Update an event subscription.
+     *
+     * <p>Asynchronously updates an existing event subscription.
      *
      * @param scope The scope of existing event subscription. The scope can be a subscription, or a resource group, or a
      *     top level resource belonging to a resource provider namespace, or an EventGrid topic. For example, use
@@ -288,7 +312,9 @@ public interface EventSubscriptionsClient {
         Context context);
 
     /**
-     * Asynchronously updates an existing event subscription.
+     * Update an event subscription.
+     *
+     * <p>Asynchronously updates an existing event subscription.
      *
      * @param scope The scope of existing event subscription. The scope can be a subscription, or a resource group, or a
      *     top level resource belonging to a resource provider namespace, or an EventGrid topic. For example, use
@@ -312,7 +338,9 @@ public interface EventSubscriptionsClient {
         EventSubscriptionUpdateParameters eventSubscriptionUpdateParameters);
 
     /**
-     * Asynchronously updates an existing event subscription.
+     * Update an event subscription.
+     *
+     * <p>Asynchronously updates an existing event subscription.
      *
      * @param scope The scope of existing event subscription. The scope can be a subscription, or a resource group, or a
      *     top level resource belonging to a resource provider namespace, or an EventGrid topic. For example, use
@@ -338,7 +366,9 @@ public interface EventSubscriptionsClient {
         Context context);
 
     /**
-     * Get the full endpoint URL for an event subscription.
+     * Get full URL of an event subscription.
+     *
+     * <p>Get the full endpoint URL for an event subscription.
      *
      * @param scope The scope of the event subscription. The scope can be a subscription, or a resource group, or a top
      *     level resource belonging to a resource provider namespace, or an EventGrid topic. For example, use
@@ -358,7 +388,9 @@ public interface EventSubscriptionsClient {
     EventSubscriptionFullUrlInner getFullUrl(String scope, String eventSubscriptionName);
 
     /**
-     * Get the full endpoint URL for an event subscription.
+     * Get full URL of an event subscription.
+     *
+     * <p>Get the full endpoint URL for an event subscription.
      *
      * @param scope The scope of the event subscription. The scope can be a subscription, or a resource group, or a top
      *     level resource belonging to a resource provider namespace, or an EventGrid topic. For example, use
@@ -380,7 +412,9 @@ public interface EventSubscriptionsClient {
         String scope, String eventSubscriptionName, Context context);
 
     /**
-     * List all aggregated global event subscriptions under a specific Azure subscription.
+     * Get an aggregated list of all global event subscriptions under an Azure subscription.
+     *
+     * <p>List all aggregated global event subscriptions under a specific Azure subscription.
      *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -390,7 +424,9 @@ public interface EventSubscriptionsClient {
     PagedIterable<EventSubscriptionInner> list();
 
     /**
-     * List all aggregated global event subscriptions under a specific Azure subscription.
+     * Get an aggregated list of all global event subscriptions under an Azure subscription.
+     *
+     * <p>List all aggregated global event subscriptions under a specific Azure subscription.
      *
      * @param filter The query used to filter the search results using OData syntax. Filtering is permitted on the
      *     'name' property only and with limited number of OData operations. These operations are: the 'contains'
@@ -410,7 +446,9 @@ public interface EventSubscriptionsClient {
     PagedIterable<EventSubscriptionInner> list(String filter, Integer top, Context context);
 
     /**
-     * List all global event subscriptions under an Azure subscription for a topic type.
+     * List all global event subscriptions for a topic type.
+     *
+     * <p>List all global event subscriptions under an Azure subscription for a topic type.
      *
      * @param topicTypeName Name of the topic type.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -422,7 +460,9 @@ public interface EventSubscriptionsClient {
     PagedIterable<EventSubscriptionInner> listGlobalBySubscriptionForTopicType(String topicTypeName);
 
     /**
-     * List all global event subscriptions under an Azure subscription for a topic type.
+     * List all global event subscriptions for a topic type.
+     *
+     * <p>List all global event subscriptions under an Azure subscription for a topic type.
      *
      * @param topicTypeName Name of the topic type.
      * @param filter The query used to filter the search results using OData syntax. Filtering is permitted on the
@@ -444,7 +484,9 @@ public interface EventSubscriptionsClient {
         String topicTypeName, String filter, Integer top, Context context);
 
     /**
-     * List all global event subscriptions under a specific Azure subscription and resource group.
+     * List all global event subscriptions under an Azure subscription and resource group.
+     *
+     * <p>List all global event subscriptions under a specific Azure subscription and resource group.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -456,7 +498,9 @@ public interface EventSubscriptionsClient {
     PagedIterable<EventSubscriptionInner> listByResourceGroup(String resourceGroupName);
 
     /**
-     * List all global event subscriptions under a specific Azure subscription and resource group.
+     * List all global event subscriptions under an Azure subscription and resource group.
+     *
+     * <p>List all global event subscriptions under a specific Azure subscription and resource group.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param filter The query used to filter the search results using OData syntax. Filtering is permitted on the
@@ -478,7 +522,9 @@ public interface EventSubscriptionsClient {
         String resourceGroupName, String filter, Integer top, Context context);
 
     /**
-     * List all global event subscriptions under a resource group for a specific topic type.
+     * List all global event subscriptions under a resource group for a topic type.
+     *
+     * <p>List all global event subscriptions under a resource group for a specific topic type.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param topicTypeName Name of the topic type.
@@ -492,7 +538,9 @@ public interface EventSubscriptionsClient {
         String resourceGroupName, String topicTypeName);
 
     /**
-     * List all global event subscriptions under a resource group for a specific topic type.
+     * List all global event subscriptions under a resource group for a topic type.
+     *
+     * <p>List all global event subscriptions under a resource group for a specific topic type.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param topicTypeName Name of the topic type.
@@ -515,7 +563,9 @@ public interface EventSubscriptionsClient {
         String resourceGroupName, String topicTypeName, String filter, Integer top, Context context);
 
     /**
-     * List all event subscriptions from the given location under a specific Azure subscription.
+     * List all regional event subscriptions under an Azure subscription.
+     *
+     * <p>List all event subscriptions from the given location under a specific Azure subscription.
      *
      * @param location Name of the location.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -527,7 +577,9 @@ public interface EventSubscriptionsClient {
     PagedIterable<EventSubscriptionInner> listRegionalBySubscription(String location);
 
     /**
-     * List all event subscriptions from the given location under a specific Azure subscription.
+     * List all regional event subscriptions under an Azure subscription.
+     *
+     * <p>List all event subscriptions from the given location under a specific Azure subscription.
      *
      * @param location Name of the location.
      * @param filter The query used to filter the search results using OData syntax. Filtering is permitted on the
@@ -549,7 +601,9 @@ public interface EventSubscriptionsClient {
         String location, String filter, Integer top, Context context);
 
     /**
-     * List all event subscriptions from the given location under a specific Azure subscription and resource group.
+     * List all regional event subscriptions under an Azure subscription and resource group.
+     *
+     * <p>List all event subscriptions from the given location under a specific Azure subscription and resource group.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param location Name of the location.
@@ -562,7 +616,9 @@ public interface EventSubscriptionsClient {
     PagedIterable<EventSubscriptionInner> listRegionalByResourceGroup(String resourceGroupName, String location);
 
     /**
-     * List all event subscriptions from the given location under a specific Azure subscription and resource group.
+     * List all regional event subscriptions under an Azure subscription and resource group.
+     *
+     * <p>List all event subscriptions from the given location under a specific Azure subscription and resource group.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param location Name of the location.
@@ -585,7 +641,9 @@ public interface EventSubscriptionsClient {
         String resourceGroupName, String location, String filter, Integer top, Context context);
 
     /**
-     * List all event subscriptions from the given location under a specific Azure subscription and topic type.
+     * List all regional event subscriptions under an Azure subscription for a topic type.
+     *
+     * <p>List all event subscriptions from the given location under a specific Azure subscription and topic type.
      *
      * @param location Name of the location.
      * @param topicTypeName Name of the topic type.
@@ -598,7 +656,9 @@ public interface EventSubscriptionsClient {
     PagedIterable<EventSubscriptionInner> listRegionalBySubscriptionForTopicType(String location, String topicTypeName);
 
     /**
-     * List all event subscriptions from the given location under a specific Azure subscription and topic type.
+     * List all regional event subscriptions under an Azure subscription for a topic type.
+     *
+     * <p>List all event subscriptions from the given location under a specific Azure subscription and topic type.
      *
      * @param location Name of the location.
      * @param topicTypeName Name of the topic type.
@@ -621,8 +681,10 @@ public interface EventSubscriptionsClient {
         String location, String topicTypeName, String filter, Integer top, Context context);
 
     /**
-     * List all event subscriptions from the given location under a specific Azure subscription and resource group and
-     * topic type.
+     * List all regional event subscriptions under an Azure subscription and resource group for a topic type.
+     *
+     * <p>List all event subscriptions from the given location under a specific Azure subscription and resource group
+     * and topic type.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param location Name of the location.
@@ -637,8 +699,10 @@ public interface EventSubscriptionsClient {
         String resourceGroupName, String location, String topicTypeName);
 
     /**
-     * List all event subscriptions from the given location under a specific Azure subscription and resource group and
-     * topic type.
+     * List all regional event subscriptions under an Azure subscription and resource group for a topic type.
+     *
+     * <p>List all event subscriptions from the given location under a specific Azure subscription and resource group
+     * and topic type.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param location Name of the location.
@@ -662,7 +726,9 @@ public interface EventSubscriptionsClient {
         String resourceGroupName, String location, String topicTypeName, String filter, Integer top, Context context);
 
     /**
-     * List all event subscriptions that have been created for a specific resource.
+     * List all event subscriptions for a specific topic.
+     *
+     * <p>List all event subscriptions that have been created for a specific topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param providerNamespace Namespace of the provider of the topic.
@@ -678,7 +744,9 @@ public interface EventSubscriptionsClient {
         String resourceGroupName, String providerNamespace, String resourceTypeName, String resourceName);
 
     /**
-     * List all event subscriptions that have been created for a specific resource.
+     * List all event subscriptions for a specific topic.
+     *
+     * <p>List all event subscriptions that have been created for a specific topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param providerNamespace Namespace of the provider of the topic.
@@ -709,7 +777,9 @@ public interface EventSubscriptionsClient {
         Context context);
 
     /**
-     * List all event subscriptions that have been created for a specific domain topic.
+     * List all event subscriptions for a specific domain topic.
+     *
+     * <p>List all event subscriptions that have been created for a specific domain topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param domainName Name of the top level domain.
@@ -724,7 +794,9 @@ public interface EventSubscriptionsClient {
         String resourceGroupName, String domainName, String topicName);
 
     /**
-     * List all event subscriptions that have been created for a specific domain topic.
+     * List all event subscriptions for a specific domain topic.
+     *
+     * <p>List all event subscriptions that have been created for a specific domain topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param domainName Name of the top level domain.
@@ -748,7 +820,9 @@ public interface EventSubscriptionsClient {
         String resourceGroupName, String domainName, String topicName, String filter, Integer top, Context context);
 
     /**
-     * Get all delivery attributes for an event subscription.
+     * Get delivery attributes for an event subscription.
+     *
+     * <p>Get all delivery attributes for an event subscription.
      *
      * @param scope The scope of the event subscription. The scope can be a subscription, or a resource group, or a top
      *     level resource belonging to a resource provider namespace, or an EventGrid topic. For example, use
@@ -768,7 +842,9 @@ public interface EventSubscriptionsClient {
     DeliveryAttributeListResultInner getDeliveryAttributes(String scope, String eventSubscriptionName);
 
     /**
-     * Get all delivery attributes for an event subscription.
+     * Get delivery attributes for an event subscription.
+     *
+     * <p>Get all delivery attributes for an event subscription.
      *
      * @param scope The scope of the event subscription. The scope can be a subscription, or a resource group, or a top
      *     level resource belonging to a resource provider namespace, or an EventGrid topic. For example, use

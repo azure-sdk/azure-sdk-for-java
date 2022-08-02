@@ -7,7 +7,6 @@ package com.azure.resourcemanager.eventgrid.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.Resource;
 import com.azure.core.management.SystemData;
-import com.azure.resourcemanager.eventgrid.models.DataResidencyBoundary;
 import com.azure.resourcemanager.eventgrid.models.IdentityInfo;
 import com.azure.resourcemanager.eventgrid.models.InboundIpRule;
 import com.azure.resourcemanager.eventgrid.models.InputSchema;
@@ -255,29 +254,6 @@ public final class TopicInner extends Resource {
             this.innerProperties = new TopicProperties();
         }
         this.innerProperties().withDisableLocalAuth(disableLocalAuth);
-        return this;
-    }
-
-    /**
-     * Get the dataResidencyBoundary property: Data Residency Boundary of the resource.
-     *
-     * @return the dataResidencyBoundary value.
-     */
-    public DataResidencyBoundary dataResidencyBoundary() {
-        return this.innerProperties() == null ? null : this.innerProperties().dataResidencyBoundary();
-    }
-
-    /**
-     * Set the dataResidencyBoundary property: Data Residency Boundary of the resource.
-     *
-     * @param dataResidencyBoundary the dataResidencyBoundary value to set.
-     * @return the TopicInner object itself.
-     */
-    public TopicInner withDataResidencyBoundary(DataResidencyBoundary dataResidencyBoundary) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new TopicProperties();
-        }
-        this.innerProperties().withDataResidencyBoundary(dataResidencyBoundary);
         return this;
     }
 

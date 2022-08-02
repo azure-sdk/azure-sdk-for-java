@@ -13,8 +13,7 @@ import java.util.List;
 @Fluent
 public final class HybridConnectionEventSubscriptionDestinationProperties {
     /*
-     * The Azure Resource ID of an hybrid connection that is the destination of
-     * an event subscription.
+     * The Azure Resource ID of an hybrid connection that is the destination of an event subscription.
      */
     @JsonProperty(value = "resourceId")
     private String resourceId;

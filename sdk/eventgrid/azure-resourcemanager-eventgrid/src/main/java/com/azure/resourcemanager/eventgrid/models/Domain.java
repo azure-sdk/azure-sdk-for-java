@@ -50,7 +50,7 @@ public interface Domain {
     Map<String, String> tags();
 
     /**
-     * Gets the systemData property: The system metadata relating to the Event Grid Domain resource.
+     * Gets the systemData property: The system metadata relating to Domain resource.
      *
      * @return the systemData value.
      */
@@ -78,7 +78,7 @@ public interface Domain {
     DomainProvisioningState provisioningState();
 
     /**
-     * Gets the endpoint property: Endpoint for the Event Grid Domain Resource which is used for publishing the events.
+     * Gets the endpoint property: Endpoint for the domain.
      *
      * @return the endpoint value.
      */
@@ -86,7 +86,7 @@ public interface Domain {
 
     /**
      * Gets the inputSchema property: This determines the format that Event Grid should expect for incoming events
-     * published to the Event Grid Domain Resource.
+     * published to the domain.
      *
      * @return the inputSchema value.
      */
@@ -101,7 +101,7 @@ public interface Domain {
     InputSchemaMapping inputSchemaMapping();
 
     /**
-     * Gets the metricResourceId property: Metric resource id for the Event Grid Domain Resource.
+     * Gets the metricResourceId property: Metric resource id for the domain.
      *
      * @return the metricResourceId value.
      */
@@ -162,13 +162,6 @@ public interface Domain {
      * @return the autoDeleteTopicWithLastSubscription value.
      */
     Boolean autoDeleteTopicWithLastSubscription();
-
-    /**
-     * Gets the dataResidencyBoundary property: Data Residency Boundary of the resource.
-     *
-     * @return the dataResidencyBoundary value.
-     */
-    DataResidencyBoundary dataResidencyBoundary();
 
     /**
      * Gets the region of the resource.
@@ -251,8 +244,7 @@ public interface Domain {
                 DefinitionStages.WithInboundIpRules,
                 DefinitionStages.WithDisableLocalAuth,
                 DefinitionStages.WithAutoCreateTopicWithFirstSubscription,
-                DefinitionStages.WithAutoDeleteTopicWithLastSubscription,
-                DefinitionStages.WithDataResidencyBoundary {
+                DefinitionStages.WithAutoDeleteTopicWithLastSubscription {
             /**
              * Executes the create request.
              *
@@ -292,10 +284,10 @@ public interface Domain {
         interface WithInputSchema {
             /**
              * Specifies the inputSchema property: This determines the format that Event Grid should expect for incoming
-             * events published to the Event Grid Domain Resource..
+             * events published to the domain..
              *
              * @param inputSchema This determines the format that Event Grid should expect for incoming events published
-             *     to the Event Grid Domain Resource.
+             *     to the domain.
              * @return the next definition stage.
              */
             WithCreate withInputSchema(InputSchema inputSchema);
@@ -409,16 +401,6 @@ public interface Domain {
              */
             WithCreate withAutoDeleteTopicWithLastSubscription(Boolean autoDeleteTopicWithLastSubscription);
         }
-        /** The stage of the Domain definition allowing to specify dataResidencyBoundary. */
-        interface WithDataResidencyBoundary {
-            /**
-             * Specifies the dataResidencyBoundary property: Data Residency Boundary of the resource..
-             *
-             * @param dataResidencyBoundary Data Residency Boundary of the resource.
-             * @return the next definition stage.
-             */
-            WithCreate withDataResidencyBoundary(DataResidencyBoundary dataResidencyBoundary);
-        }
     }
     /**
      * Begins update for the Domain resource.
@@ -435,8 +417,7 @@ public interface Domain {
             UpdateStages.WithInboundIpRules,
             UpdateStages.WithDisableLocalAuth,
             UpdateStages.WithAutoCreateTopicWithFirstSubscription,
-            UpdateStages.WithAutoDeleteTopicWithLastSubscription,
-            UpdateStages.WithDataResidencyBoundary {
+            UpdateStages.WithAutoDeleteTopicWithLastSubscription {
         /**
          * Executes the update request.
          *
@@ -574,16 +555,6 @@ public interface Domain {
              */
             Update withAutoDeleteTopicWithLastSubscription(Boolean autoDeleteTopicWithLastSubscription);
         }
-        /** The stage of the Domain update allowing to specify dataResidencyBoundary. */
-        interface WithDataResidencyBoundary {
-            /**
-             * Specifies the dataResidencyBoundary property: The data residency boundary for the domain..
-             *
-             * @param dataResidencyBoundary The data residency boundary for the domain.
-             * @return the next definition stage.
-             */
-            Update withDataResidencyBoundary(DataResidencyBoundary dataResidencyBoundary);
-        }
     }
     /**
      * Refreshes the resource to sync with Azure.
@@ -601,7 +572,9 @@ public interface Domain {
     Domain refresh(Context context);
 
     /**
-     * List the two keys used to publish to a domain.
+     * List keys for a domain.
+     *
+     * <p>List the two keys used to publish to a domain.
      *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -610,7 +583,9 @@ public interface Domain {
     DomainSharedAccessKeys listSharedAccessKeys();
 
     /**
-     * List the two keys used to publish to a domain.
+     * List keys for a domain.
+     *
+     * <p>List the two keys used to publish to a domain.
      *
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -621,7 +596,9 @@ public interface Domain {
     Response<DomainSharedAccessKeys> listSharedAccessKeysWithResponse(Context context);
 
     /**
-     * Regenerate a shared access key for a domain.
+     * Regenerate key for a domain.
+     *
+     * <p>Regenerate a shared access key for a domain.
      *
      * @param regenerateKeyRequest Request body to regenerate key.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -632,7 +609,9 @@ public interface Domain {
     DomainSharedAccessKeys regenerateKey(DomainRegenerateKeyRequest regenerateKeyRequest);
 
     /**
-     * Regenerate a shared access key for a domain.
+     * Regenerate key for a domain.
+     *
+     * <p>Regenerate a shared access key for a domain.
      *
      * @param regenerateKeyRequest Request body to regenerate key.
      * @param context The context to associate with this operation.
