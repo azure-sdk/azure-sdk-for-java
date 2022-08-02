@@ -14,7 +14,9 @@ import java.util.List;
 /** An instance of this class provides access to all the operations defined in StepsClient. */
 public interface StepsClient {
     /**
-     * Synchronously creates a new step or updates an existing step.
+     * Creates or updates a rollout step with the given step properties.
+     *
+     * <p>Synchronously creates a new step or updates an existing step.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param stepName The name of the deployment step.
@@ -27,7 +29,9 @@ public interface StepsClient {
     StepResourceInner createOrUpdate(String resourceGroupName, String stepName);
 
     /**
-     * Synchronously creates a new step or updates an existing step.
+     * Creates or updates a rollout step with the given step properties.
+     *
+     * <p>Synchronously creates a new step or updates an existing step.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param stepName The name of the deployment step.
@@ -36,7 +40,7 @@ public interface StepsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the resource representation of a rollout step.
+     * @return the resource representation of a rollout step along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<StepResourceInner> createOrUpdateWithResponse(
@@ -64,7 +68,7 @@ public interface StepsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the step.
+     * @return the step along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<StepResourceInner> getByResourceGroupWithResponse(
@@ -91,7 +95,7 @@ public interface StepsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
+     * @return the {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<Void> deleteWithResponse(String resourceGroupName, String stepName, Context context);
@@ -116,7 +120,7 @@ public interface StepsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of steps.
+     * @return the list of steps along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<List<StepResourceInner>> listWithResponse(String resourceGroupName, Context context);

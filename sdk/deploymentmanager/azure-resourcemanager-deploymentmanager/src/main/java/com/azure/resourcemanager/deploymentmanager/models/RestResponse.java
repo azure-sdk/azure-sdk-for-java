@@ -5,21 +5,15 @@
 package com.azure.resourcemanager.deploymentmanager.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** The properties that make up the expected REST response. */
 @Fluent
 public final class RestResponse {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(RestResponse.class);
-
     /*
-     * The HTTP status codes expected in a successful health check response.
-     * The response is expected to match one of the given status codes. If no
-     * expected status codes are provided, default expected status code is 200
-     * OK.
+     * The HTTP status codes expected in a successful health check response. The response is expected to match one of
+     * the given status codes. If no expected status codes are provided, default expected status code is 200 OK.
      */
     @JsonProperty(value = "successStatusCodes")
     private List<String> successStatusCodes;

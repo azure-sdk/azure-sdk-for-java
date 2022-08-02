@@ -30,6 +30,9 @@ public enum RestMatchQuantifier {
      */
     @JsonCreator
     public static RestMatchQuantifier fromString(String value) {
+        if (value == null) {
+            return null;
+        }
         RestMatchQuantifier[] items = RestMatchQuantifier.values();
         for (RestMatchQuantifier item : items) {
             if (item.toString().equalsIgnoreCase(value)) {

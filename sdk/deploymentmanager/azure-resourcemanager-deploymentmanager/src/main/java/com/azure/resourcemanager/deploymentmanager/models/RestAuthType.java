@@ -30,6 +30,9 @@ public enum RestAuthType {
      */
     @JsonCreator
     public static RestAuthType fromString(String value) {
+        if (value == null) {
+            return null;
+        }
         RestAuthType[] items = RestAuthType.values();
         for (RestAuthType item : items) {
             if (item.toString().equalsIgnoreCase(value)) {

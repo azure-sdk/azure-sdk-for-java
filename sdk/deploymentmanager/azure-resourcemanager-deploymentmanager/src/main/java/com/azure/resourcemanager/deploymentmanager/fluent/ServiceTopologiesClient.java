@@ -14,7 +14,9 @@ import java.util.List;
 /** An instance of this class provides access to all the operations defined in ServiceTopologiesClient. */
 public interface ServiceTopologiesClient {
     /**
-     * Synchronously creates a new service topology or updates an existing service topology.
+     * Creates or updates a service topology.
+     *
+     * <p>Synchronously creates a new service topology or updates an existing service topology.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param serviceTopologyName The name of the service topology .
@@ -29,7 +31,9 @@ public interface ServiceTopologiesClient {
         String resourceGroupName, String serviceTopologyName, ServiceTopologyResourceInner serviceTopologyInfo);
 
     /**
-     * Synchronously creates a new service topology or updates an existing service topology.
+     * Creates or updates a service topology.
+     *
+     * <p>Synchronously creates a new service topology or updates an existing service topology.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param serviceTopologyName The name of the service topology .
@@ -38,7 +42,7 @@ public interface ServiceTopologiesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the resource representation of a service topology.
+     * @return the resource representation of a service topology along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<ServiceTopologyResourceInner> createOrUpdateWithResponse(
@@ -69,7 +73,7 @@ public interface ServiceTopologiesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the service topology.
+     * @return the service topology along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<ServiceTopologyResourceInner> getByResourceGroupWithResponse(
@@ -96,7 +100,7 @@ public interface ServiceTopologiesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
+     * @return the {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<Void> deleteWithResponse(String resourceGroupName, String serviceTopologyName, Context context);
@@ -121,7 +125,7 @@ public interface ServiceTopologiesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of service topologies.
+     * @return the list of service topologies along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<List<ServiceTopologyResourceInner>> listWithResponse(String resourceGroupName, Context context);

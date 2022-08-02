@@ -30,6 +30,9 @@ public enum RestAuthLocation {
      */
     @JsonCreator
     public static RestAuthLocation fromString(String value) {
+        if (value == null) {
+            return null;
+        }
         RestAuthLocation[] items = RestAuthLocation.values();
         for (RestAuthLocation item : items) {
             if (item.toString().equalsIgnoreCase(value)) {

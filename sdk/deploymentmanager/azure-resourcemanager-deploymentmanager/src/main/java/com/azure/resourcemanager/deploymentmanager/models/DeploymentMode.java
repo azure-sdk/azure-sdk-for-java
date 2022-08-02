@@ -30,6 +30,9 @@ public enum DeploymentMode {
      */
     @JsonCreator
     public static DeploymentMode fromString(String value) {
+        if (value == null) {
+            return null;
+        }
         DeploymentMode[] items = DeploymentMode.values();
         for (DeploymentMode item : items) {
             if (item.toString().equalsIgnoreCase(value)) {

@@ -30,6 +30,9 @@ public enum RestRequestMethod {
      */
     @JsonCreator
     public static RestRequestMethod fromString(String value) {
+        if (value == null) {
+            return null;
+        }
         RestRequestMethod[] items = RestRequestMethod.values();
         for (RestRequestMethod item : items) {
             if (item.toString().equalsIgnoreCase(value)) {
