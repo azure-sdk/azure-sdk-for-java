@@ -42,6 +42,9 @@ public enum ShareDestinationFormatType {
      */
     @JsonCreator
     public static ShareDestinationFormatType fromString(String value) {
+        if (value == null) {
+            return null;
+        }
         ShareDestinationFormatType[] items = ShareDestinationFormatType.values();
         for (ShareDestinationFormatType item : items) {
             if (item.toString().equalsIgnoreCase(value)) {

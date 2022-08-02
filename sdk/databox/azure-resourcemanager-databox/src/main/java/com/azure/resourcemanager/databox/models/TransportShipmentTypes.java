@@ -30,6 +30,9 @@ public enum TransportShipmentTypes {
      */
     @JsonCreator
     public static TransportShipmentTypes fromString(String value) {
+        if (value == null) {
+            return null;
+        }
         TransportShipmentTypes[] items = TransportShipmentTypes.values();
         for (TransportShipmentTypes item : items) {
             if (item.toString().equalsIgnoreCase(value)) {

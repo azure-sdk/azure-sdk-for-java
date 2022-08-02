@@ -30,6 +30,9 @@ public enum TransferConfigurationType {
      */
     @JsonCreator
     public static TransferConfigurationType fromString(String value) {
+        if (value == null) {
+            return null;
+        }
         TransferConfigurationType[] items = TransferConfigurationType.values();
         for (TransferConfigurationType item : items) {
             if (item.toString().equalsIgnoreCase(value)) {

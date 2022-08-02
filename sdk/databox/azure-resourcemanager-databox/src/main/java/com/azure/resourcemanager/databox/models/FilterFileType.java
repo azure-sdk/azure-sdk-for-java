@@ -30,6 +30,9 @@ public enum FilterFileType {
      */
     @JsonCreator
     public static FilterFileType fromString(String value) {
+        if (value == null) {
+            return null;
+        }
         FilterFileType[] items = FilterFileType.values();
         for (FilterFileType item : items) {
             if (item.toString().equalsIgnoreCase(value)) {

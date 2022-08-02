@@ -33,6 +33,9 @@ public enum OverallValidationStatus {
      */
     @JsonCreator
     public static OverallValidationStatus fromString(String value) {
+        if (value == null) {
+            return null;
+        }
         OverallValidationStatus[] items = OverallValidationStatus.values();
         for (OverallValidationStatus item : items) {
             if (item.toString().equalsIgnoreCase(value)) {

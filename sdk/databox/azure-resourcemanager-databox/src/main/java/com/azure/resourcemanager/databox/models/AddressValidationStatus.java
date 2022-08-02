@@ -33,6 +33,9 @@ public enum AddressValidationStatus {
      */
     @JsonCreator
     public static AddressValidationStatus fromString(String value) {
+        if (value == null) {
+            return null;
+        }
         AddressValidationStatus[] items = AddressValidationStatus.values();
         for (AddressValidationStatus item : items) {
             if (item.toString().equalsIgnoreCase(value)) {

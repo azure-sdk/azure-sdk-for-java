@@ -33,6 +33,9 @@ public enum CustomerResolutionCode {
      */
     @JsonCreator
     public static CustomerResolutionCode fromString(String value) {
+        if (value == null) {
+            return null;
+        }
         CustomerResolutionCode[] items = CustomerResolutionCode.values();
         for (CustomerResolutionCode item : items) {
             if (item.toString().equalsIgnoreCase(value)) {

@@ -42,6 +42,9 @@ public enum ValidationInputDiscriminator {
      */
     @JsonCreator
     public static ValidationInputDiscriminator fromString(String value) {
+        if (value == null) {
+            return null;
+        }
         ValidationInputDiscriminator[] items = ValidationInputDiscriminator.values();
         for (ValidationInputDiscriminator item : items) {
             if (item.toString().equalsIgnoreCase(value)) {

@@ -42,6 +42,9 @@ public enum SkuDisabledReason {
      */
     @JsonCreator
     public static SkuDisabledReason fromString(String value) {
+        if (value == null) {
+            return null;
+        }
         SkuDisabledReason[] items = SkuDisabledReason.values();
         for (SkuDisabledReason item : items) {
             if (item.toString().equalsIgnoreCase(value)) {

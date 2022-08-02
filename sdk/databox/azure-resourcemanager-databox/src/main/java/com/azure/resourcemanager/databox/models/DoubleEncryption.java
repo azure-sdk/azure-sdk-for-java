@@ -30,6 +30,9 @@ public enum DoubleEncryption {
      */
     @JsonCreator
     public static DoubleEncryption fromString(String value) {
+        if (value == null) {
+            return null;
+        }
         DoubleEncryption[] items = DoubleEncryption.values();
         for (DoubleEncryption item : items) {
             if (item.toString().equalsIgnoreCase(value)) {

@@ -30,6 +30,9 @@ public enum TransferType {
      */
     @JsonCreator
     public static TransferType fromString(String value) {
+        if (value == null) {
+            return null;
+        }
         TransferType[] items = TransferType.values();
         for (TransferType item : items) {
             if (item.toString().equalsIgnoreCase(value)) {
