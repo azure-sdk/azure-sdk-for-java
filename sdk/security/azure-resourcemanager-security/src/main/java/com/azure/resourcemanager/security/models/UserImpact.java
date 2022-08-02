@@ -30,7 +30,11 @@ public final class UserImpact extends ExpandableStringEnum<UserImpact> {
         return fromString(name, UserImpact.class);
     }
 
-    /** @return known UserImpact values. */
+    /**
+     * Gets known UserImpact values.
+     *
+     * @return known UserImpact values.
+     */
     public static Collection<UserImpact> values() {
         return values(UserImpact.class);
     }

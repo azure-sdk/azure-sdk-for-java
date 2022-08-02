@@ -27,7 +27,11 @@ public final class RecommendationConfigStatus extends ExpandableStringEnum<Recom
         return fromString(name, RecommendationConfigStatus.class);
     }
 
-    /** @return known RecommendationConfigStatus values. */
+    /**
+     * Gets known RecommendationConfigStatus values.
+     *
+     * @return known RecommendationConfigStatus values.
+     */
     public static Collection<RecommendationConfigStatus> values() {
         return values(RecommendationConfigStatus.class);
     }

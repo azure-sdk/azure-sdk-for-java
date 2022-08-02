@@ -33,6 +33,9 @@ public enum RuleState {
      */
     @JsonCreator
     public static RuleState fromString(String value) {
+        if (value == null) {
+            return null;
+        }
         RuleState[] items = RuleState.values();
         for (RuleState item : items) {
             if (item.toString().equalsIgnoreCase(value)) {

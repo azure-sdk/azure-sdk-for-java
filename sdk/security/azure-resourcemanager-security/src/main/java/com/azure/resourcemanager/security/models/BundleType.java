@@ -34,6 +34,9 @@ public final class BundleType extends ExpandableStringEnum<BundleType> {
     /** Static value VirtualMachines for BundleType. */
     public static final BundleType VIRTUAL_MACHINES = fromString("VirtualMachines");
 
+    /** Static value CosmosDbs for BundleType. */
+    public static final BundleType COSMOS_DBS = fromString("CosmosDbs");
+
     /**
      * Creates or finds a BundleType from its string representation.
      *
@@ -45,7 +48,11 @@ public final class BundleType extends ExpandableStringEnum<BundleType> {
         return fromString(name, BundleType.class);
     }
 
-    /** @return known BundleType values. */
+    /**
+     * Gets known BundleType values.
+     *
+     * @return known BundleType values.
+     */
     public static Collection<BundleType> values() {
         return values(BundleType.class);
     }

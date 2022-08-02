@@ -33,7 +33,11 @@ public final class SecurityFamily extends ExpandableStringEnum<SecurityFamily> {
         return fromString(name, SecurityFamily.class);
     }
 
-    /** @return known SecurityFamily values. */
+    /**
+     * Gets known SecurityFamily values.
+     *
+     * @return known SecurityFamily values.
+     */
     public static Collection<SecurityFamily> values() {
         return values(SecurityFamily.class);
     }

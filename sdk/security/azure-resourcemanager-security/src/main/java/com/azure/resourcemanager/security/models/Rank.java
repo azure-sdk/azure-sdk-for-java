@@ -39,6 +39,9 @@ public enum Rank {
      */
     @JsonCreator
     public static Rank fromString(String value) {
+        if (value == null) {
+            return null;
+        }
         Rank[] items = Rank.values();
         for (Rank item : items) {
             if (item.toString().equalsIgnoreCase(value)) {

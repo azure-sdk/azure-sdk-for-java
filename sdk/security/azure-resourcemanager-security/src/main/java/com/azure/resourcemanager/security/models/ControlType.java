@@ -27,7 +27,11 @@ public final class ControlType extends ExpandableStringEnum<ControlType> {
         return fromString(name, ControlType.class);
     }
 
-    /** @return known ControlType values. */
+    /**
+     * Gets known ControlType values.
+     *
+     * @return known ControlType values.
+     */
     public static Collection<ControlType> values() {
         return values(ControlType.class);
     }

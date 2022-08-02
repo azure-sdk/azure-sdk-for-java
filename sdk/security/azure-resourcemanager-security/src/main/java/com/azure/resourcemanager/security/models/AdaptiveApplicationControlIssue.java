@@ -42,7 +42,11 @@ public final class AdaptiveApplicationControlIssue extends ExpandableStringEnum<
         return fromString(name, AdaptiveApplicationControlIssue.class);
     }
 
-    /** @return known AdaptiveApplicationControlIssue values. */
+    /**
+     * Gets known AdaptiveApplicationControlIssue values.
+     *
+     * @return known AdaptiveApplicationControlIssue values.
+     */
     public static Collection<AdaptiveApplicationControlIssue> values() {
         return values(AdaptiveApplicationControlIssue.class);
     }

@@ -45,7 +45,11 @@ public final class Threats extends ExpandableStringEnum<Threats> {
         return fromString(name, Threats.class);
     }
 
-    /** @return known Threats values. */
+    /**
+     * Gets known Threats values.
+     *
+     * @return known Threats values.
+     */
     public static Collection<Threats> values() {
         return values(Threats.class);
     }

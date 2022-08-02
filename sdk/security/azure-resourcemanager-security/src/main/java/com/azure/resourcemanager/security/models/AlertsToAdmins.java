@@ -27,7 +27,11 @@ public final class AlertsToAdmins extends ExpandableStringEnum<AlertsToAdmins> {
         return fromString(name, AlertsToAdmins.class);
     }
 
-    /** @return known AlertsToAdmins values. */
+    /**
+     * Gets known AlertsToAdmins values.
+     *
+     * @return known AlertsToAdmins values.
+     */
     public static Collection<AlertsToAdmins> values() {
         return values(AlertsToAdmins.class);
     }
