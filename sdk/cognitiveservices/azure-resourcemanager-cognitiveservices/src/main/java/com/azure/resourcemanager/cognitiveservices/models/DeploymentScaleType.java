@@ -10,9 +10,6 @@ import java.util.Collection;
 
 /** Defines values for DeploymentScaleType. */
 public final class DeploymentScaleType extends ExpandableStringEnum<DeploymentScaleType> {
-    /** Static value Standard for DeploymentScaleType. */
-    public static final DeploymentScaleType STANDARD = fromString("Standard");
-
     /** Static value Manual for DeploymentScaleType. */
     public static final DeploymentScaleType MANUAL = fromString("Manual");
 

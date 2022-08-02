@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Properties of Cognitive Services account deployment model. */
 @Fluent
-public class DeploymentModel {
+public final class DeploymentModel {
     /*
      * Deployment model format.
      */

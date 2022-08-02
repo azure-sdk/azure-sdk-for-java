@@ -11,12 +11,10 @@ import com.azure.core.util.Context;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.cognitiveservices.fluent.AccountsClient;
 import com.azure.resourcemanager.cognitiveservices.fluent.models.AccountInner;
-import com.azure.resourcemanager.cognitiveservices.fluent.models.AccountModelInner;
 import com.azure.resourcemanager.cognitiveservices.fluent.models.AccountSkuListResultInner;
 import com.azure.resourcemanager.cognitiveservices.fluent.models.ApiKeysInner;
 import com.azure.resourcemanager.cognitiveservices.fluent.models.UsageListResultInner;
 import com.azure.resourcemanager.cognitiveservices.models.Account;
-import com.azure.resourcemanager.cognitiveservices.models.AccountModel;
 import com.azure.resourcemanager.cognitiveservices.models.AccountSkuListResult;
 import com.azure.resourcemanager.cognitiveservices.models.Accounts;
 import com.azure.resourcemanager.cognitiveservices.models.ApiKeys;
@@ -182,17 +180,6 @@ public final class AccountsImpl implements Accounts {
         } else {
             return null;
         }
-    }
-
-    public PagedIterable<AccountModel> listModels(String resourceGroupName, String accountName) {
-        PagedIterable<AccountModelInner> inner = this.serviceClient().listModels(resourceGroupName, accountName);
-        return Utils.mapPage(inner, inner1 -> new AccountModelImpl(inner1, this.manager()));
-    }
-
-    public PagedIterable<AccountModel> listModels(String resourceGroupName, String accountName, Context context) {
-        PagedIterable<AccountModelInner> inner =
-            this.serviceClient().listModels(resourceGroupName, accountName, context);
-        return Utils.mapPage(inner, inner1 -> new AccountModelImpl(inner1, this.manager()));
     }
 
     public Account getById(String id) {

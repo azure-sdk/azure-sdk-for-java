@@ -15,8 +15,7 @@ import java.util.Map;
 @Fluent
 public final class AccountProperties {
     /*
-     * Gets the status of the cognitive services account at the time the
-     * operation was called.
+     * Gets the status of the cognitive services account at the time the operation was called.
      */
     @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
     private ProvisioningState provisioningState;
@@ -34,9 +33,8 @@ public final class AccountProperties {
     private String internalId;
 
     /*
-     * Gets the capabilities of the cognitive services account. Each item
-     * indicates the capability of a specific feature. The values are read-only
-     * and for reference only.
+     * Gets the capabilities of the cognitive services account. Each item indicates the capability of a specific
+     * feature. The values are read-only and for reference only.
      */
     @JsonProperty(value = "capabilities", access = JsonProperty.Access.WRITE_ONLY)
     private List<SkuCapability> capabilities;
@@ -66,8 +64,7 @@ public final class AccountProperties {
     private String customSubDomainName;
 
     /*
-     * A collection of rules governing the accessibility from specific network
-     * locations.
+     * A collection of rules governing the accessibility from specific network locations.
      */
     @JsonProperty(value = "networkAcls")
     private NetworkRuleSet networkAcls;
@@ -85,14 +82,14 @@ public final class AccountProperties {
     private List<UserOwnedStorage> userOwnedStorage;
 
     /*
-     * The private endpoint connection associated with the Cognitive Services
-     * account.
+     * The private endpoint connection associated with the Cognitive Services account.
      */
     @JsonProperty(value = "privateEndpointConnections", access = JsonProperty.Access.WRITE_ONLY)
     private List<PrivateEndpointConnectionInner> privateEndpointConnections;
 
     /*
-     * Whether or not public endpoint access is allowed for this account.
+     * Whether or not public endpoint access is allowed for this account. Value is optional but if passed in, must be
+     * 'Enabled' or 'Disabled'
      */
     @JsonProperty(value = "publicNetworkAccess")
     private PublicNetworkAccess publicNetworkAccess;
@@ -114,12 +111,6 @@ public final class AccountProperties {
      */
     @JsonProperty(value = "callRateLimit", access = JsonProperty.Access.WRITE_ONLY)
     private CallRateLimit callRateLimit;
-
-    /*
-     * The flag to enable dynamic throttling.
-     */
-    @JsonProperty(value = "dynamicThrottlingEnabled")
-    private Boolean dynamicThrottlingEnabled;
 
     /*
      * The quotaLimit property.
@@ -157,18 +148,6 @@ public final class AccountProperties {
      */
     @JsonProperty(value = "restore")
     private Boolean restore;
-
-    /*
-     * The deletion date, only available for deleted account.
-     */
-    @JsonProperty(value = "deletionDate", access = JsonProperty.Access.WRITE_ONLY)
-    private String deletionDate;
-
-    /*
-     * The scheduled purge date, only available for deleted account.
-     */
-    @JsonProperty(value = "scheduledPurgeDate", access = JsonProperty.Access.WRITE_ONLY)
-    private String scheduledPurgeDate;
 
     /**
      * Get the provisioningState property: Gets the status of the cognitive services account at the time the operation
@@ -337,7 +316,8 @@ public final class AccountProperties {
     }
 
     /**
-     * Get the publicNetworkAccess property: Whether or not public endpoint access is allowed for this account.
+     * Get the publicNetworkAccess property: Whether or not public endpoint access is allowed for this account. Value is
+     * optional but if passed in, must be 'Enabled' or 'Disabled'.
      *
      * @return the publicNetworkAccess value.
      */
@@ -346,7 +326,8 @@ public final class AccountProperties {
     }
 
     /**
-     * Set the publicNetworkAccess property: Whether or not public endpoint access is allowed for this account.
+     * Set the publicNetworkAccess property: Whether or not public endpoint access is allowed for this account. Value is
+     * optional but if passed in, must be 'Enabled' or 'Disabled'.
      *
      * @param publicNetworkAccess the publicNetworkAccess value to set.
      * @return the AccountProperties object itself.
@@ -392,26 +373,6 @@ public final class AccountProperties {
      */
     public CallRateLimit callRateLimit() {
         return this.callRateLimit;
-    }
-
-    /**
-     * Get the dynamicThrottlingEnabled property: The flag to enable dynamic throttling.
-     *
-     * @return the dynamicThrottlingEnabled value.
-     */
-    public Boolean dynamicThrottlingEnabled() {
-        return this.dynamicThrottlingEnabled;
-    }
-
-    /**
-     * Set the dynamicThrottlingEnabled property: The flag to enable dynamic throttling.
-     *
-     * @param dynamicThrottlingEnabled the dynamicThrottlingEnabled value to set.
-     * @return the AccountProperties object itself.
-     */
-    public AccountProperties withDynamicThrottlingEnabled(Boolean dynamicThrottlingEnabled) {
-        this.dynamicThrottlingEnabled = dynamicThrottlingEnabled;
-        return this;
     }
 
     /**
@@ -510,24 +471,6 @@ public final class AccountProperties {
     public AccountProperties withRestore(Boolean restore) {
         this.restore = restore;
         return this;
-    }
-
-    /**
-     * Get the deletionDate property: The deletion date, only available for deleted account.
-     *
-     * @return the deletionDate value.
-     */
-    public String deletionDate() {
-        return this.deletionDate;
-    }
-
-    /**
-     * Get the scheduledPurgeDate property: The scheduled purge date, only available for deleted account.
-     *
-     * @return the scheduledPurgeDate value.
-     */
-    public String scheduledPurgeDate() {
-        return this.scheduledPurgeDate;
     }
 
     /**

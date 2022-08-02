@@ -22,13 +22,6 @@ public final class DeploymentScaleSettings {
     @JsonProperty(value = "capacity")
     private Integer capacity;
 
-    /*
-     * Deployment active capacity. This value might be different from
-     * `capacity` if customer recently updated `capacity`.
-     */
-    @JsonProperty(value = "activeCapacity", access = JsonProperty.Access.WRITE_ONLY)
-    private Integer activeCapacity;
-
     /**
      * Get the scaleType property: Deployment scale type.
      *
@@ -67,16 +60,6 @@ public final class DeploymentScaleSettings {
     public DeploymentScaleSettings withCapacity(Integer capacity) {
         this.capacity = capacity;
         return this;
-    }
-
-    /**
-     * Get the activeCapacity property: Deployment active capacity. This value might be different from `capacity` if
-     * customer recently updated `capacity`.
-     *
-     * @return the activeCapacity value.
-     */
-    public Integer activeCapacity() {
-        return this.activeCapacity;
     }
 
     /**

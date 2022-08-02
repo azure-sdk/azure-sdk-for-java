@@ -30,6 +30,9 @@ public enum ResourceSkuRestrictionsType {
      */
     @JsonCreator
     public static ResourceSkuRestrictionsType fromString(String value) {
+        if (value == null) {
+            return null;
+        }
         ResourceSkuRestrictionsType[] items = ResourceSkuRestrictionsType.values();
         for (ResourceSkuRestrictionsType item : items) {
             if (item.toString().equalsIgnoreCase(value)) {
