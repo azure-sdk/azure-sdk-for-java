@@ -6,18 +6,15 @@ package com.azure.resourcemanager.attestation.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
 /** Parameters for creating an attestation provider. */
 @Fluent
 public final class AttestationServiceCreationParams {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(AttestationServiceCreationParams.class);
-
     /*
-     * The supported Azure location where the attestation provider should be
-     * created.
+     * The supported Azure location where the attestation provider should be created.
      */
     @JsonProperty(value = "location", required = true)
     private String location;
@@ -26,6 +23,7 @@ public final class AttestationServiceCreationParams {
      * The tags that will be assigned to the attestation provider.
      */
     @JsonProperty(value = "tags")
+    @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, String> tags;
 
     /*
@@ -101,13 +99,13 @@ public final class AttestationServiceCreationParams {
      */
     public void validate() {
         if (location() == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property location in model AttestationServiceCreationParams"));
         }
         if (properties() == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property properties in model AttestationServiceCreationParams"));
@@ -115,4 +113,6 @@ public final class AttestationServiceCreationParams {
             properties().validate();
         }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(AttestationServiceCreationParams.class);
 }
