@@ -22,7 +22,6 @@ import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.dataprotection.fluent.RestorableTimeRangesClient;
 import com.azure.resourcemanager.dataprotection.fluent.models.AzureBackupFindRestorableTimeRangesResponseResourceInner;
 import com.azure.resourcemanager.dataprotection.models.AzureBackupFindRestorableTimeRangesRequest;
@@ -30,8 +29,6 @@ import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in RestorableTimeRangesClient. */
 public final class RestorableTimeRangesClientImpl implements RestorableTimeRangesClient {
-    private final ClientLogger logger = new ClientLogger(RestorableTimeRangesClientImpl.class);
-
     /** The proxy service used to perform REST calls. */
     private final RestorableTimeRangesService service;
 
@@ -76,6 +73,8 @@ public final class RestorableTimeRangesClientImpl implements RestorableTimeRange
     }
 
     /**
+     * The find operation.
+     *
      * @param vaultName The name of the backup vault.
      * @param resourceGroupName The name of the resource group where the backup vault is present.
      * @param backupInstanceName The name of the backup instance.
@@ -83,7 +82,7 @@ public final class RestorableTimeRangesClientImpl implements RestorableTimeRange
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list Restore Ranges Response.
+     * @return list Restore Ranges Response along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<AzureBackupFindRestorableTimeRangesResponseResourceInner>> findWithResponseAsync(
@@ -138,6 +137,8 @@ public final class RestorableTimeRangesClientImpl implements RestorableTimeRange
     }
 
     /**
+     * The find operation.
+     *
      * @param vaultName The name of the backup vault.
      * @param resourceGroupName The name of the resource group where the backup vault is present.
      * @param backupInstanceName The name of the backup instance.
@@ -146,7 +147,7 @@ public final class RestorableTimeRangesClientImpl implements RestorableTimeRange
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list Restore Ranges Response.
+     * @return list Restore Ranges Response along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<AzureBackupFindRestorableTimeRangesResponseResourceInner>> findWithResponseAsync(
@@ -199,6 +200,8 @@ public final class RestorableTimeRangesClientImpl implements RestorableTimeRange
     }
 
     /**
+     * The find operation.
+     *
      * @param vaultName The name of the backup vault.
      * @param resourceGroupName The name of the resource group where the backup vault is present.
      * @param backupInstanceName The name of the backup instance.
@@ -206,7 +209,7 @@ public final class RestorableTimeRangesClientImpl implements RestorableTimeRange
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list Restore Ranges Response.
+     * @return list Restore Ranges Response on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<AzureBackupFindRestorableTimeRangesResponseResourceInner> findAsync(
@@ -215,17 +218,12 @@ public final class RestorableTimeRangesClientImpl implements RestorableTimeRange
         String backupInstanceName,
         AzureBackupFindRestorableTimeRangesRequest parameters) {
         return findWithResponseAsync(vaultName, resourceGroupName, backupInstanceName, parameters)
-            .flatMap(
-                (Response<AzureBackupFindRestorableTimeRangesResponseResourceInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
+     * The find operation.
+     *
      * @param vaultName The name of the backup vault.
      * @param resourceGroupName The name of the resource group where the backup vault is present.
      * @param backupInstanceName The name of the backup instance.
@@ -245,6 +243,8 @@ public final class RestorableTimeRangesClientImpl implements RestorableTimeRange
     }
 
     /**
+     * The find operation.
+     *
      * @param vaultName The name of the backup vault.
      * @param resourceGroupName The name of the resource group where the backup vault is present.
      * @param backupInstanceName The name of the backup instance.
@@ -253,7 +253,7 @@ public final class RestorableTimeRangesClientImpl implements RestorableTimeRange
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list Restore Ranges Response.
+     * @return list Restore Ranges Response along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<AzureBackupFindRestorableTimeRangesResponseResourceInner> findWithResponse(

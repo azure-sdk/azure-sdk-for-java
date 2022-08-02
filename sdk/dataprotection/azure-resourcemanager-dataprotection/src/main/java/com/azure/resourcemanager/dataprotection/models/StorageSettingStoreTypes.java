@@ -30,7 +30,11 @@ public final class StorageSettingStoreTypes extends ExpandableStringEnum<Storage
         return fromString(name, StorageSettingStoreTypes.class);
     }
 
-    /** @return known StorageSettingStoreTypes values. */
+    /**
+     * Gets known StorageSettingStoreTypes values.
+     *
+     * @return known StorageSettingStoreTypes values.
+     */
     public static Collection<StorageSettingStoreTypes> values() {
         return values(StorageSettingStoreTypes.class);
     }

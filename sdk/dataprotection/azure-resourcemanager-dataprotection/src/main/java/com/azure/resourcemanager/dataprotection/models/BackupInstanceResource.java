@@ -46,6 +46,13 @@ public interface BackupInstanceResource {
     BackupInstance properties();
 
     /**
+     * Gets the name of the resource group.
+     *
+     * @return the name of the resource group.
+     */
+    String resourceGroupName();
+
+    /**
      * Gets the inner com.azure.resourcemanager.dataprotection.fluent.models.BackupInstanceResourceInner object.
      *
      * @return the inner object.

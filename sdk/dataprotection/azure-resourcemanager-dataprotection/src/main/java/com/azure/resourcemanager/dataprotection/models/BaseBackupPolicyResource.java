@@ -39,11 +39,20 @@ public interface BaseBackupPolicyResource {
     SystemData systemData();
 
     /**
-     * Gets the properties property: BaseBackupPolicy BaseBackupPolicyResource properties.
+     * Gets the properties property: BaseBackupPolicy
+     *
+     * <p>BaseBackupPolicyResource properties.
      *
      * @return the properties value.
      */
     BaseBackupPolicy properties();
+
+    /**
+     * Gets the name of the resource group.
+     *
+     * @return the name of the resource group.
+     */
+    String resourceGroupName();
 
     /**
      * Gets the inner com.azure.resourcemanager.dataprotection.fluent.models.BaseBackupPolicyResourceInner object.
@@ -95,9 +104,12 @@ public interface BaseBackupPolicyResource {
         /** The stage of the BaseBackupPolicyResource definition allowing to specify properties. */
         interface WithProperties {
             /**
-             * Specifies the properties property: BaseBackupPolicy BaseBackupPolicyResource properties.
+             * Specifies the properties property: BaseBackupPolicy
              *
-             * @param properties BaseBackupPolicy BaseBackupPolicyResource properties.
+             * <p>BaseBackupPolicyResource properties.
+             *
+             * @param properties BaseBackupPolicy
+             *     <p>BaseBackupPolicyResource properties.
              * @return the next definition stage.
              */
             WithCreate withProperties(BaseBackupPolicy properties);
@@ -132,9 +144,12 @@ public interface BaseBackupPolicyResource {
         /** The stage of the BaseBackupPolicyResource update allowing to specify properties. */
         interface WithProperties {
             /**
-             * Specifies the properties property: BaseBackupPolicy BaseBackupPolicyResource properties.
+             * Specifies the properties property: BaseBackupPolicy
              *
-             * @param properties BaseBackupPolicy BaseBackupPolicyResource properties.
+             * <p>BaseBackupPolicyResource properties.
+             *
+             * @param properties BaseBackupPolicy
+             *     <p>BaseBackupPolicyResource properties.
              * @return the next definition stage.
              */
             Update withProperties(BaseBackupPolicy properties);

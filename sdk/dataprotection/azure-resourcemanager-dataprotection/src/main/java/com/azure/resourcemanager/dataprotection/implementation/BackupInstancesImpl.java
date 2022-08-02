@@ -20,10 +20,9 @@ import com.azure.resourcemanager.dataprotection.models.OperationJobExtendedInfo;
 import com.azure.resourcemanager.dataprotection.models.TriggerBackupRequest;
 import com.azure.resourcemanager.dataprotection.models.ValidateForBackupRequest;
 import com.azure.resourcemanager.dataprotection.models.ValidateRestoreRequestObject;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public final class BackupInstancesImpl implements BackupInstances {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(BackupInstancesImpl.class);
+    private static final ClientLogger LOGGER = new ClientLogger(BackupInstancesImpl.class);
 
     private final BackupInstancesClient innerClient;
 
@@ -204,14 +203,14 @@ public final class BackupInstancesImpl implements BackupInstances {
     public BackupInstanceResource getById(String id) {
         String vaultName = Utils.getValueFromIdByName(id, "backupVaults");
         if (vaultName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'backupVaults'.", id)));
         }
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -219,7 +218,7 @@ public final class BackupInstancesImpl implements BackupInstances {
         }
         String backupInstanceName = Utils.getValueFromIdByName(id, "backupInstances");
         if (backupInstanceName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -231,14 +230,14 @@ public final class BackupInstancesImpl implements BackupInstances {
     public Response<BackupInstanceResource> getByIdWithResponse(String id, Context context) {
         String vaultName = Utils.getValueFromIdByName(id, "backupVaults");
         if (vaultName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'backupVaults'.", id)));
         }
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -246,7 +245,7 @@ public final class BackupInstancesImpl implements BackupInstances {
         }
         String backupInstanceName = Utils.getValueFromIdByName(id, "backupInstances");
         if (backupInstanceName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -258,14 +257,14 @@ public final class BackupInstancesImpl implements BackupInstances {
     public void deleteById(String id) {
         String vaultName = Utils.getValueFromIdByName(id, "backupVaults");
         if (vaultName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'backupVaults'.", id)));
         }
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -273,7 +272,7 @@ public final class BackupInstancesImpl implements BackupInstances {
         }
         String backupInstanceName = Utils.getValueFromIdByName(id, "backupInstances");
         if (backupInstanceName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -285,14 +284,14 @@ public final class BackupInstancesImpl implements BackupInstances {
     public void deleteByIdWithResponse(String id, Context context) {
         String vaultName = Utils.getValueFromIdByName(id, "backupVaults");
         if (vaultName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'backupVaults'.", id)));
         }
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -300,7 +299,7 @@ public final class BackupInstancesImpl implements BackupInstances {
         }
         String backupInstanceName = Utils.getValueFromIdByName(id, "backupInstances");
         if (backupInstanceName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String

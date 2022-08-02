@@ -13,10 +13,9 @@ import com.azure.resourcemanager.dataprotection.fluent.models.AzureBackupFindRes
 import com.azure.resourcemanager.dataprotection.models.AzureBackupFindRestorableTimeRangesRequest;
 import com.azure.resourcemanager.dataprotection.models.AzureBackupFindRestorableTimeRangesResponseResource;
 import com.azure.resourcemanager.dataprotection.models.RestorableTimeRanges;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public final class RestorableTimeRangesImpl implements RestorableTimeRanges {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(RestorableTimeRangesImpl.class);
+    private static final ClientLogger LOGGER = new ClientLogger(RestorableTimeRangesImpl.class);
 
     private final RestorableTimeRangesClient innerClient;
 

@@ -55,7 +55,9 @@ public interface ResourceGuardResource {
     String etag();
 
     /**
-     * Gets the identity property: DppIdentityDetails Input Managed Identity Details.
+     * Gets the identity property: DppIdentityDetails
+     *
+     * <p>Input Managed Identity Details.
      *
      * @return the identity value.
      */
@@ -88,6 +90,13 @@ public interface ResourceGuardResource {
      * @return the name of the resource region.
      */
     String regionName();
+
+    /**
+     * Gets the name of the resource group.
+     *
+     * @return the name of the resource group.
+     */
+    String resourceGroupName();
 
     /**
      * Gets the inner com.azure.resourcemanager.dataprotection.fluent.models.ResourceGuardResourceInner object.
@@ -183,9 +192,12 @@ public interface ResourceGuardResource {
         /** The stage of the ResourceGuardResource definition allowing to specify identity. */
         interface WithIdentity {
             /**
-             * Specifies the identity property: DppIdentityDetails Input Managed Identity Details.
+             * Specifies the identity property: DppIdentityDetails
              *
-             * @param identity DppIdentityDetails Input Managed Identity Details.
+             * <p>Input Managed Identity Details.
+             *
+             * @param identity DppIdentityDetails
+             *     <p>Input Managed Identity Details.
              * @return the next definition stage.
              */
             WithCreate withIdentity(DppIdentityDetails identity);
@@ -240,9 +252,12 @@ public interface ResourceGuardResource {
         /** The stage of the ResourceGuardResource update allowing to specify identity. */
         interface WithIdentity {
             /**
-             * Specifies the identity property: DppIdentityDetails Input Managed Identity Details.
+             * Specifies the identity property: DppIdentityDetails
              *
-             * @param identity DppIdentityDetails Input Managed Identity Details.
+             * <p>Input Managed Identity Details.
+             *
+             * @param identity DppIdentityDetails
+             *     <p>Input Managed Identity Details.
              * @return the next definition stage.
              */
             Update withIdentity(DppIdentityDetails identity);

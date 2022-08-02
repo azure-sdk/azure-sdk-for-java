@@ -20,7 +20,6 @@ import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.dataprotection.fluent.BackupVaultOperationResultsClient;
 import com.azure.resourcemanager.dataprotection.fluent.models.BackupVaultResourceInner;
 import com.azure.resourcemanager.dataprotection.models.BackupVaultOperationResultsGetResponse;
@@ -28,8 +27,6 @@ import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in BackupVaultOperationResultsClient. */
 public final class BackupVaultOperationResultsClientImpl implements BackupVaultOperationResultsClient {
-    private final ClientLogger logger = new ClientLogger(BackupVaultOperationResultsClientImpl.class);
-
     /** The proxy service used to perform REST calls. */
     private final BackupVaultOperationResultsService service;
 
@@ -74,13 +71,15 @@ public final class BackupVaultOperationResultsClientImpl implements BackupVaultO
     }
 
     /**
+     * The get operation.
+     *
      * @param vaultName The name of the backup vault.
      * @param resourceGroupName The name of the resource group where the backup vault is present.
      * @param operationId The operationId parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return backupVault Resource.
+     * @return backupVault Resource on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<BackupVaultOperationResultsGetResponse> getWithResponseAsync(
@@ -125,6 +124,8 @@ public final class BackupVaultOperationResultsClientImpl implements BackupVaultO
     }
 
     /**
+     * The get operation.
+     *
      * @param vaultName The name of the backup vault.
      * @param resourceGroupName The name of the resource group where the backup vault is present.
      * @param operationId The operationId parameter.
@@ -132,7 +133,7 @@ public final class BackupVaultOperationResultsClientImpl implements BackupVaultO
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return backupVault Resource.
+     * @return backupVault Resource on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<BackupVaultOperationResultsGetResponse> getWithResponseAsync(
@@ -174,28 +175,25 @@ public final class BackupVaultOperationResultsClientImpl implements BackupVaultO
     }
 
     /**
+     * The get operation.
+     *
      * @param vaultName The name of the backup vault.
      * @param resourceGroupName The name of the resource group where the backup vault is present.
      * @param operationId The operationId parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return backupVault Resource.
+     * @return backupVault Resource on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<BackupVaultResourceInner> getAsync(String vaultName, String resourceGroupName, String operationId) {
         return getWithResponseAsync(vaultName, resourceGroupName, operationId)
-            .flatMap(
-                (BackupVaultOperationResultsGetResponse res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
+     * The get operation.
+     *
      * @param vaultName The name of the backup vault.
      * @param resourceGroupName The name of the resource group where the backup vault is present.
      * @param operationId The operationId parameter.
@@ -210,6 +208,8 @@ public final class BackupVaultOperationResultsClientImpl implements BackupVaultO
     }
 
     /**
+     * The get operation.
+     *
      * @param vaultName The name of the backup vault.
      * @param resourceGroupName The name of the resource group where the backup vault is present.
      * @param operationId The operationId parameter.

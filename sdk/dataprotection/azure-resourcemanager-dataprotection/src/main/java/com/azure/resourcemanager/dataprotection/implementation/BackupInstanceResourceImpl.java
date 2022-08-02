@@ -41,6 +41,10 @@ public final class BackupInstanceResourceImpl
         return this.innerModel().properties();
     }
 
+    public String resourceGroupName() {
+        return resourceGroupName;
+    }
+
     public BackupInstanceResourceInner innerModel() {
         return this.innerObject;
     }

@@ -22,7 +22,7 @@ public interface RecoveryPointsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return azureBackupRecoveryPointResourceList.
+     * @return azureBackupRecoveryPointResourceList as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<AzureBackupRecoveryPointResourceInner> list(
@@ -40,7 +40,7 @@ public interface RecoveryPointsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return azureBackupRecoveryPointResourceList.
+     * @return azureBackupRecoveryPointResourceList as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<AzureBackupRecoveryPointResourceInner> list(
@@ -78,7 +78,7 @@ public interface RecoveryPointsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a Recovery Point using recoveryPointId for a Datasource.
+     * @return a Recovery Point using recoveryPointId for a Datasource along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<AzureBackupRecoveryPointResourceInner> getWithResponse(

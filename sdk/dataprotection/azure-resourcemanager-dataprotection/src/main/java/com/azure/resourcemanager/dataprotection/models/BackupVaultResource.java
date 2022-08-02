@@ -55,7 +55,9 @@ public interface BackupVaultResource {
     String etag();
 
     /**
-     * Gets the identity property: DppIdentityDetails Input Managed Identity Details.
+     * Gets the identity property: DppIdentityDetails
+     *
+     * <p>Input Managed Identity Details.
      *
      * @return the identity value.
      */
@@ -69,7 +71,9 @@ public interface BackupVaultResource {
     SystemData systemData();
 
     /**
-     * Gets the properties property: BackupVault BackupVaultResource properties.
+     * Gets the properties property: BackupVault
+     *
+     * <p>BackupVaultResource properties.
      *
      * @return the properties value.
      */
@@ -88,6 +92,13 @@ public interface BackupVaultResource {
      * @return the name of the resource region.
      */
     String regionName();
+
+    /**
+     * Gets the name of the resource group.
+     *
+     * @return the name of the resource group.
+     */
+    String resourceGroupName();
 
     /**
      * Gets the inner com.azure.resourcemanager.dataprotection.fluent.models.BackupVaultResourceInner object.
@@ -140,9 +151,12 @@ public interface BackupVaultResource {
         /** The stage of the BackupVaultResource definition allowing to specify properties. */
         interface WithProperties {
             /**
-             * Specifies the properties property: BackupVault BackupVaultResource properties.
+             * Specifies the properties property: BackupVault
              *
-             * @param properties BackupVault BackupVaultResource properties.
+             * <p>BackupVaultResource properties.
+             *
+             * @param properties BackupVault
+             *     <p>BackupVaultResource properties.
              * @return the next definition stage.
              */
             WithCreate withProperties(BackupVault properties);
@@ -191,9 +205,12 @@ public interface BackupVaultResource {
         /** The stage of the BackupVaultResource definition allowing to specify identity. */
         interface WithIdentity {
             /**
-             * Specifies the identity property: DppIdentityDetails Input Managed Identity Details.
+             * Specifies the identity property: DppIdentityDetails
              *
-             * @param identity DppIdentityDetails Input Managed Identity Details.
+             * <p>Input Managed Identity Details.
+             *
+             * @param identity DppIdentityDetails
+             *     <p>Input Managed Identity Details.
              * @return the next definition stage.
              */
             WithCreate withIdentity(DppIdentityDetails identity);
@@ -238,9 +255,12 @@ public interface BackupVaultResource {
         /** The stage of the BackupVaultResource update allowing to specify identity. */
         interface WithIdentity {
             /**
-             * Specifies the identity property: DppIdentityDetails Input Managed Identity Details.
+             * Specifies the identity property: DppIdentityDetails
              *
-             * @param identity DppIdentityDetails Input Managed Identity Details.
+             * <p>Input Managed Identity Details.
+             *
+             * @param identity DppIdentityDetails
+             *     <p>Input Managed Identity Details.
              * @return the next definition stage.
              */
             Update withIdentity(DppIdentityDetails identity);

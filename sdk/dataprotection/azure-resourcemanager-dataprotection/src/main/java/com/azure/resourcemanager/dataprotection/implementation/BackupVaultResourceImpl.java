@@ -70,6 +70,10 @@ public final class BackupVaultResourceImpl
         return this.location();
     }
 
+    public String resourceGroupName() {
+        return resourceGroupName;
+    }
+
     public BackupVaultResourceInner innerModel() {
         return this.innerObject;
     }

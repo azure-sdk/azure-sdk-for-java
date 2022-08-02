@@ -13,6 +13,8 @@ import com.azure.resourcemanager.dataprotection.models.BackupVaultOperationResul
 /** An instance of this class provides access to all the operations defined in BackupVaultOperationResultsClient. */
 public interface BackupVaultOperationResultsClient {
     /**
+     * The get operation.
+     *
      * @param vaultName The name of the backup vault.
      * @param resourceGroupName The name of the resource group where the backup vault is present.
      * @param operationId The operationId parameter.
@@ -25,6 +27,8 @@ public interface BackupVaultOperationResultsClient {
     BackupVaultResourceInner get(String vaultName, String resourceGroupName, String operationId);
 
     /**
+     * The get operation.
+     *
      * @param vaultName The name of the backup vault.
      * @param resourceGroupName The name of the resource group where the backup vault is present.
      * @param operationId The operationId parameter.

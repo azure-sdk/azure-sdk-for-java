@@ -39,7 +39,11 @@ public final class FeatureSupportStatus extends ExpandableStringEnum<FeatureSupp
         return fromString(name, FeatureSupportStatus.class);
     }
 
-    /** @return known FeatureSupportStatus values. */
+    /**
+     * Gets known FeatureSupportStatus values.
+     *
+     * @return known FeatureSupportStatus values.
+     */
     public static Collection<FeatureSupportStatus> values() {
         return values(FeatureSupportStatus.class);
     }

@@ -10,6 +10,8 @@ import com.azure.core.util.Context;
 /** Resource collection API of BackupVaultOperationResults. */
 public interface BackupVaultOperationResults {
     /**
+     * The get operation.
+     *
      * @param vaultName The name of the backup vault.
      * @param resourceGroupName The name of the resource group where the backup vault is present.
      * @param operationId The operationId parameter.
@@ -21,6 +23,8 @@ public interface BackupVaultOperationResults {
     BackupVaultResource get(String vaultName, String resourceGroupName, String operationId);
 
     /**
+     * The get operation.
+     *
      * @param vaultName The name of the backup vault.
      * @param resourceGroupName The name of the resource group where the backup vault is present.
      * @param operationId The operationId parameter.

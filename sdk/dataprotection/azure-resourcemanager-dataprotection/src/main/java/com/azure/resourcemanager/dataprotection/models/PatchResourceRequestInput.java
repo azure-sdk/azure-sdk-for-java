@@ -5,19 +5,21 @@
 package com.azure.resourcemanager.dataprotection.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
-/** PatchResourceRequestInput Patch Request content for Microsoft.DataProtection resources. */
+/**
+ * PatchResourceRequestInput
+ *
+ * <p>Patch Request content for Microsoft.DataProtection resources.
+ */
 @Fluent
 public final class PatchResourceRequestInput {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(PatchResourceRequestInput.class);
-
     /*
-     * DppIdentityDetails Input Managed Identity Details
+     * DppIdentityDetails
+     *
+     * Input Managed Identity Details
      */
     @JsonProperty(value = "identity")
     private DppIdentityDetails identity;
@@ -30,7 +32,9 @@ public final class PatchResourceRequestInput {
     private Map<String, String> tags;
 
     /**
-     * Get the identity property: DppIdentityDetails Input Managed Identity Details.
+     * Get the identity property: DppIdentityDetails
+     *
+     * <p>Input Managed Identity Details.
      *
      * @return the identity value.
      */
@@ -39,7 +43,9 @@ public final class PatchResourceRequestInput {
     }
 
     /**
-     * Set the identity property: DppIdentityDetails Input Managed Identity Details.
+     * Set the identity property: DppIdentityDetails
+     *
+     * <p>Input Managed Identity Details.
      *
      * @param identity the identity value to set.
      * @return the PatchResourceRequestInput object itself.

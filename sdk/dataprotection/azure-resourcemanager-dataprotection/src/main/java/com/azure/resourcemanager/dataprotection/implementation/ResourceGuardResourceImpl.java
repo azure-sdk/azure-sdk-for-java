@@ -70,6 +70,10 @@ public final class ResourceGuardResourceImpl
         return this.location();
     }
 
+    public String resourceGroupName() {
+        return resourceGroupName;
+    }
+
     public ResourceGuardResourceInner innerModel() {
         return this.innerObject;
     }

@@ -31,7 +31,6 @@ import com.azure.core.management.exception.ManagementException;
 import com.azure.core.management.polling.PollResult;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.dataprotection.fluent.BackupVaultsClient;
@@ -46,8 +45,6 @@ import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in BackupVaultsClient. */
 public final class BackupVaultsClientImpl implements BackupVaultsClient {
-    private final ClientLogger logger = new ClientLogger(BackupVaultsClientImpl.class);
-
     /** The proxy service used to perform REST calls. */
     private final BackupVaultsService service;
 
@@ -201,7 +198,7 @@ public final class BackupVaultsClientImpl implements BackupVaultsClient {
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return backupVaultResourceList.
+     * @return backupVaultResourceList along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<BackupVaultResourceInner>> listSinglePageAsync() {
@@ -247,7 +244,7 @@ public final class BackupVaultsClientImpl implements BackupVaultsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return backupVaultResourceList.
+     * @return backupVaultResourceList along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<BackupVaultResourceInner>> listSinglePageAsync(Context context) {
@@ -288,7 +285,7 @@ public final class BackupVaultsClientImpl implements BackupVaultsClient {
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return backupVaultResourceList.
+     * @return backupVaultResourceList as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<BackupVaultResourceInner> listAsync() {
@@ -302,7 +299,7 @@ public final class BackupVaultsClientImpl implements BackupVaultsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return backupVaultResourceList.
+     * @return backupVaultResourceList as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<BackupVaultResourceInner> listAsync(Context context) {
@@ -315,7 +312,7 @@ public final class BackupVaultsClientImpl implements BackupVaultsClient {
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return backupVaultResourceList.
+     * @return backupVaultResourceList as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<BackupVaultResourceInner> list() {
@@ -329,7 +326,7 @@ public final class BackupVaultsClientImpl implements BackupVaultsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return backupVaultResourceList.
+     * @return backupVaultResourceList as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<BackupVaultResourceInner> list(Context context) {
@@ -343,7 +340,7 @@ public final class BackupVaultsClientImpl implements BackupVaultsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return backupVaultResourceList.
+     * @return backupVaultResourceList along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<BackupVaultResourceInner>> listByResourceGroupSinglePageAsync(String resourceGroupName) {
@@ -395,7 +392,7 @@ public final class BackupVaultsClientImpl implements BackupVaultsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return backupVaultResourceList.
+     * @return backupVaultResourceList along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<BackupVaultResourceInner>> listByResourceGroupSinglePageAsync(
@@ -444,7 +441,7 @@ public final class BackupVaultsClientImpl implements BackupVaultsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return backupVaultResourceList.
+     * @return backupVaultResourceList as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<BackupVaultResourceInner> listByResourceGroupAsync(String resourceGroupName) {
@@ -461,7 +458,7 @@ public final class BackupVaultsClientImpl implements BackupVaultsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return backupVaultResourceList.
+     * @return backupVaultResourceList as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<BackupVaultResourceInner> listByResourceGroupAsync(String resourceGroupName, Context context) {
@@ -477,7 +474,7 @@ public final class BackupVaultsClientImpl implements BackupVaultsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return backupVaultResourceList.
+     * @return backupVaultResourceList as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<BackupVaultResourceInner> listByResourceGroup(String resourceGroupName) {
@@ -492,7 +489,7 @@ public final class BackupVaultsClientImpl implements BackupVaultsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return backupVaultResourceList.
+     * @return backupVaultResourceList as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<BackupVaultResourceInner> listByResourceGroup(String resourceGroupName, Context context) {
@@ -507,7 +504,7 @@ public final class BackupVaultsClientImpl implements BackupVaultsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return backupVault Resource.
+     * @return backupVault Resource along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<BackupVaultResourceInner>> getByResourceGroupWithResponseAsync(
@@ -556,7 +553,7 @@ public final class BackupVaultsClientImpl implements BackupVaultsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return backupVault Resource.
+     * @return backupVault Resource along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<BackupVaultResourceInner>> getByResourceGroupWithResponseAsync(
@@ -601,19 +598,12 @@ public final class BackupVaultsClientImpl implements BackupVaultsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return backupVault Resource.
+     * @return backupVault Resource on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<BackupVaultResourceInner> getByResourceGroupAsync(String resourceGroupName, String vaultName) {
         return getByResourceGroupWithResponseAsync(resourceGroupName, vaultName)
-            .flatMap(
-                (Response<BackupVaultResourceInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -640,7 +630,7 @@ public final class BackupVaultsClientImpl implements BackupVaultsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return backupVault Resource.
+     * @return backupVault Resource along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<BackupVaultResourceInner> getByResourceGroupWithResponse(
@@ -657,7 +647,7 @@ public final class BackupVaultsClientImpl implements BackupVaultsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return backupVault Resource.
+     * @return backupVault Resource along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(
@@ -713,7 +703,7 @@ public final class BackupVaultsClientImpl implements BackupVaultsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return backupVault Resource.
+     * @return backupVault Resource along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(
@@ -765,7 +755,7 @@ public final class BackupVaultsClientImpl implements BackupVaultsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return backupVault Resource.
+     * @return the {@link PollerFlux} for polling of backupVault Resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<BackupVaultResourceInner>, BackupVaultResourceInner> beginCreateOrUpdateAsync(
@@ -779,7 +769,7 @@ public final class BackupVaultsClientImpl implements BackupVaultsClient {
                 this.client.getHttpPipeline(),
                 BackupVaultResourceInner.class,
                 BackupVaultResourceInner.class,
-                Context.NONE);
+                this.client.getContext());
     }
 
     /**
@@ -792,7 +782,7 @@ public final class BackupVaultsClientImpl implements BackupVaultsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return backupVault Resource.
+     * @return the {@link PollerFlux} for polling of backupVault Resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<BackupVaultResourceInner>, BackupVaultResourceInner> beginCreateOrUpdateAsync(
@@ -819,7 +809,7 @@ public final class BackupVaultsClientImpl implements BackupVaultsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return backupVault Resource.
+     * @return the {@link SyncPoller} for polling of backupVault Resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<BackupVaultResourceInner>, BackupVaultResourceInner> beginCreateOrUpdate(
@@ -837,7 +827,7 @@ public final class BackupVaultsClientImpl implements BackupVaultsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return backupVault Resource.
+     * @return the {@link SyncPoller} for polling of backupVault Resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<BackupVaultResourceInner>, BackupVaultResourceInner> beginCreateOrUpdate(
@@ -854,7 +844,7 @@ public final class BackupVaultsClientImpl implements BackupVaultsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return backupVault Resource.
+     * @return backupVault Resource on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<BackupVaultResourceInner> createOrUpdateAsync(
@@ -874,7 +864,7 @@ public final class BackupVaultsClientImpl implements BackupVaultsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return backupVault Resource.
+     * @return backupVault Resource on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<BackupVaultResourceInner> createOrUpdateAsync(
@@ -927,7 +917,7 @@ public final class BackupVaultsClientImpl implements BackupVaultsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the completion.
+     * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Void>> deleteWithResponseAsync(String resourceGroupName, String vaultName) {
@@ -975,7 +965,7 @@ public final class BackupVaultsClientImpl implements BackupVaultsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the completion.
+     * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Void>> deleteWithResponseAsync(String resourceGroupName, String vaultName, Context context) {
@@ -1019,11 +1009,11 @@ public final class BackupVaultsClientImpl implements BackupVaultsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the completion.
+     * @return A {@link Mono} that completes when a successful response is received.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> deleteAsync(String resourceGroupName, String vaultName) {
-        return deleteWithResponseAsync(resourceGroupName, vaultName).flatMap((Response<Void> res) -> Mono.empty());
+        return deleteWithResponseAsync(resourceGroupName, vaultName).flatMap(ignored -> Mono.empty());
     }
 
     /**
@@ -1049,7 +1039,7 @@ public final class BackupVaultsClientImpl implements BackupVaultsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
+     * @return the {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<Void> deleteWithResponse(String resourceGroupName, String vaultName, Context context) {
@@ -1065,7 +1055,7 @@ public final class BackupVaultsClientImpl implements BackupVaultsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return backupVault Resource.
+     * @return backupVault Resource along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(
@@ -1121,7 +1111,7 @@ public final class BackupVaultsClientImpl implements BackupVaultsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return backupVault Resource.
+     * @return backupVault Resource along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(
@@ -1173,7 +1163,7 @@ public final class BackupVaultsClientImpl implements BackupVaultsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return backupVault Resource.
+     * @return the {@link PollerFlux} for polling of backupVault Resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<BackupVaultResourceInner>, BackupVaultResourceInner> beginUpdateAsync(
@@ -1186,7 +1176,7 @@ public final class BackupVaultsClientImpl implements BackupVaultsClient {
                 this.client.getHttpPipeline(),
                 BackupVaultResourceInner.class,
                 BackupVaultResourceInner.class,
-                Context.NONE);
+                this.client.getContext());
     }
 
     /**
@@ -1199,7 +1189,7 @@ public final class BackupVaultsClientImpl implements BackupVaultsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return backupVault Resource.
+     * @return the {@link PollerFlux} for polling of backupVault Resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<BackupVaultResourceInner>, BackupVaultResourceInner> beginUpdateAsync(
@@ -1226,7 +1216,7 @@ public final class BackupVaultsClientImpl implements BackupVaultsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return backupVault Resource.
+     * @return the {@link SyncPoller} for polling of backupVault Resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<BackupVaultResourceInner>, BackupVaultResourceInner> beginUpdate(
@@ -1244,7 +1234,7 @@ public final class BackupVaultsClientImpl implements BackupVaultsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return backupVault Resource.
+     * @return the {@link SyncPoller} for polling of backupVault Resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<BackupVaultResourceInner>, BackupVaultResourceInner> beginUpdate(
@@ -1261,7 +1251,7 @@ public final class BackupVaultsClientImpl implements BackupVaultsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return backupVault Resource.
+     * @return backupVault Resource on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<BackupVaultResourceInner> updateAsync(
@@ -1281,7 +1271,7 @@ public final class BackupVaultsClientImpl implements BackupVaultsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return backupVault Resource.
+     * @return backupVault Resource on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<BackupVaultResourceInner> updateAsync(
@@ -1335,7 +1325,7 @@ public final class BackupVaultsClientImpl implements BackupVaultsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return checkNameAvailabilityResult.
+     * @return checkNameAvailabilityResult along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<CheckNameAvailabilityResultInner>> checkNameAvailabilityWithResponseAsync(
@@ -1391,7 +1381,7 @@ public final class BackupVaultsClientImpl implements BackupVaultsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return checkNameAvailabilityResult.
+     * @return checkNameAvailabilityResult along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<CheckNameAvailabilityResultInner>> checkNameAvailabilityWithResponseAsync(
@@ -1443,20 +1433,13 @@ public final class BackupVaultsClientImpl implements BackupVaultsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return checkNameAvailabilityResult.
+     * @return checkNameAvailabilityResult on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<CheckNameAvailabilityResultInner> checkNameAvailabilityAsync(
         String resourceGroupName, String location, CheckNameAvailabilityRequest parameters) {
         return checkNameAvailabilityWithResponseAsync(resourceGroupName, location, parameters)
-            .flatMap(
-                (Response<CheckNameAvailabilityResultInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -1486,7 +1469,7 @@ public final class BackupVaultsClientImpl implements BackupVaultsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return checkNameAvailabilityResult.
+     * @return checkNameAvailabilityResult along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<CheckNameAvailabilityResultInner> checkNameAvailabilityWithResponse(
@@ -1501,7 +1484,7 @@ public final class BackupVaultsClientImpl implements BackupVaultsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return backupVaultResourceList.
+     * @return backupVaultResourceList along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<BackupVaultResourceInner>> getInSubscriptionNextSinglePageAsync(String nextLink) {
@@ -1537,7 +1520,7 @@ public final class BackupVaultsClientImpl implements BackupVaultsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return backupVaultResourceList.
+     * @return backupVaultResourceList along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<BackupVaultResourceInner>> getInSubscriptionNextSinglePageAsync(
@@ -1573,7 +1556,7 @@ public final class BackupVaultsClientImpl implements BackupVaultsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return backupVaultResourceList.
+     * @return backupVaultResourceList along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<BackupVaultResourceInner>> getInResourceGroupNextSinglePageAsync(String nextLink) {
@@ -1610,7 +1593,7 @@ public final class BackupVaultsClientImpl implements BackupVaultsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return backupVaultResourceList.
+     * @return backupVaultResourceList along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<BackupVaultResourceInner>> getInResourceGroupNextSinglePageAsync(

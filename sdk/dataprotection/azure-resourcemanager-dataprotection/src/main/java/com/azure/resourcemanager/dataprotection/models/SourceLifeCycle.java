@@ -6,23 +6,28 @@ package com.azure.resourcemanager.dataprotection.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** SourceLifeCycle Source LifeCycle. */
+/**
+ * SourceLifeCycle
+ *
+ * <p>Source LifeCycle.
+ */
 @Fluent
 public final class SourceLifeCycle {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(SourceLifeCycle.class);
-
     /*
-     * DeleteOption Delete Option
+     * DeleteOption
+     *
+     * Delete Option
      */
     @JsonProperty(value = "deleteAfter", required = true)
     private DeleteOption deleteAfter;
 
     /*
-     * DataStoreInfoBase DataStoreInfo base
+     * DataStoreInfoBase
+     *
+     * DataStoreInfo base
      */
     @JsonProperty(value = "sourceDataStore", required = true)
     private DataStoreInfoBase sourceDataStore;
@@ -34,7 +39,9 @@ public final class SourceLifeCycle {
     private List<TargetCopySetting> targetDataStoreCopySettings;
 
     /**
-     * Get the deleteAfter property: DeleteOption Delete Option.
+     * Get the deleteAfter property: DeleteOption
+     *
+     * <p>Delete Option.
      *
      * @return the deleteAfter value.
      */
@@ -43,7 +50,9 @@ public final class SourceLifeCycle {
     }
 
     /**
-     * Set the deleteAfter property: DeleteOption Delete Option.
+     * Set the deleteAfter property: DeleteOption
+     *
+     * <p>Delete Option.
      *
      * @param deleteAfter the deleteAfter value to set.
      * @return the SourceLifeCycle object itself.
@@ -54,7 +63,9 @@ public final class SourceLifeCycle {
     }
 
     /**
-     * Get the sourceDataStore property: DataStoreInfoBase DataStoreInfo base.
+     * Get the sourceDataStore property: DataStoreInfoBase
+     *
+     * <p>DataStoreInfo base.
      *
      * @return the sourceDataStore value.
      */
@@ -63,7 +74,9 @@ public final class SourceLifeCycle {
     }
 
     /**
-     * Set the sourceDataStore property: DataStoreInfoBase DataStoreInfo base.
+     * Set the sourceDataStore property: DataStoreInfoBase
+     *
+     * <p>DataStoreInfo base.
      *
      * @param sourceDataStore the sourceDataStore value to set.
      * @return the SourceLifeCycle object itself.
@@ -100,14 +113,14 @@ public final class SourceLifeCycle {
      */
     public void validate() {
         if (deleteAfter() == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property deleteAfter in model SourceLifeCycle"));
         } else {
             deleteAfter().validate();
         }
         if (sourceDataStore() == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property sourceDataStore in model SourceLifeCycle"));
         } else {
@@ -117,4 +130,6 @@ public final class SourceLifeCycle {
             targetDataStoreCopySettings().forEach(e -> e.validate());
         }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(SourceLifeCycle.class);
 }

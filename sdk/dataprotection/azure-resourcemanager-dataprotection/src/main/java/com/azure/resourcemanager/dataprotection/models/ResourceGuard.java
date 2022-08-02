@@ -5,16 +5,12 @@
 package com.azure.resourcemanager.dataprotection.models;
 
 import com.azure.core.annotation.Immutable;
-import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** The ResourceGuard model. */
 @Immutable
 public final class ResourceGuard {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(ResourceGuard.class);
-
     /*
      * Provisioning state of the BackupVault resource
      */
@@ -28,22 +24,19 @@ public final class ResourceGuard {
     private Boolean allowAutoApprovals;
 
     /*
-     * {readonly} List of operation details those are protected by the
-     * ResourceGuard resource
+     * {readonly} List of operation details those are protected by the ResourceGuard resource
      */
     @JsonProperty(value = "resourceGuardOperations", access = JsonProperty.Access.WRITE_ONLY)
     private List<ResourceGuardOperation> resourceGuardOperations;
 
     /*
-     * List of critical operations which are not protected by this
-     * resourceGuard
+     * List of critical operations which are not protected by this resourceGuard
      */
     @JsonProperty(value = "vaultCriticalOperationExclusionList", access = JsonProperty.Access.WRITE_ONLY)
     private List<String> vaultCriticalOperationExclusionList;
 
     /*
-     * Description about the pre-req steps to perform all the critical
-     * operations.
+     * Description about the pre-req steps to perform all the critical operations.
      */
     @JsonProperty(value = "description", access = JsonProperty.Access.WRITE_ONLY)
     private String description;

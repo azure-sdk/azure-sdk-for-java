@@ -30,7 +30,11 @@ public final class RehydrationPriority extends ExpandableStringEnum<RehydrationP
         return fromString(name, RehydrationPriority.class);
     }
 
-    /** @return known RehydrationPriority values. */
+    /**
+     * Gets known RehydrationPriority values.
+     *
+     * @return known RehydrationPriority values.
+     */
     public static Collection<RehydrationPriority> values() {
         return values(RehydrationPriority.class);
     }

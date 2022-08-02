@@ -36,6 +36,10 @@ public final class BaseBackupPolicyResourceImpl
         return this.innerModel().properties();
     }
 
+    public String resourceGroupName() {
+        return resourceGroupName;
+    }
+
     public BaseBackupPolicyResourceInner innerModel() {
         return this.innerObject;
     }
