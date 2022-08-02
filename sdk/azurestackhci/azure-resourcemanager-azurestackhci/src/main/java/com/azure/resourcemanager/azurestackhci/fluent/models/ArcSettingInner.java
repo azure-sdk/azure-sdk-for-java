@@ -20,7 +20,7 @@ public final class ArcSettingInner extends ProxyResource {
      * System data of ArcSetting resource
      */
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
-    private SystemData systemData;
+    private SystemData innerSystemData;
 
     /*
      * ArcSetting properties.
@@ -29,12 +29,12 @@ public final class ArcSettingInner extends ProxyResource {
     private ArcSettingProperties innerProperties;
 
     /**
-     * Get the systemData property: System data of ArcSetting resource.
+     * Get the innerSystemData property: System data of ArcSetting resource.
      *
-     * @return the systemData value.
+     * @return the innerSystemData value.
      */
-    public SystemData systemData() {
-        return this.systemData;
+    private SystemData innerSystemData() {
+        return this.innerSystemData;
     }
 
     /**
@@ -66,113 +66,6 @@ public final class ArcSettingInner extends ProxyResource {
     }
 
     /**
-     * Set the arcInstanceResourceGroup property: The resource group that hosts the Arc agents, ie. Hybrid Compute
-     * Machine resources.
-     *
-     * @param arcInstanceResourceGroup the arcInstanceResourceGroup value to set.
-     * @return the ArcSettingInner object itself.
-     */
-    public ArcSettingInner withArcInstanceResourceGroup(String arcInstanceResourceGroup) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new ArcSettingProperties();
-        }
-        this.innerProperties().withArcInstanceResourceGroup(arcInstanceResourceGroup);
-        return this;
-    }
-
-    /**
-     * Get the arcApplicationClientId property: App id of arc AAD identity.
-     *
-     * @return the arcApplicationClientId value.
-     */
-    public String arcApplicationClientId() {
-        return this.innerProperties() == null ? null : this.innerProperties().arcApplicationClientId();
-    }
-
-    /**
-     * Set the arcApplicationClientId property: App id of arc AAD identity.
-     *
-     * @param arcApplicationClientId the arcApplicationClientId value to set.
-     * @return the ArcSettingInner object itself.
-     */
-    public ArcSettingInner withArcApplicationClientId(String arcApplicationClientId) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new ArcSettingProperties();
-        }
-        this.innerProperties().withArcApplicationClientId(arcApplicationClientId);
-        return this;
-    }
-
-    /**
-     * Get the arcApplicationTenantId property: Tenant id of arc AAD identity.
-     *
-     * @return the arcApplicationTenantId value.
-     */
-    public String arcApplicationTenantId() {
-        return this.innerProperties() == null ? null : this.innerProperties().arcApplicationTenantId();
-    }
-
-    /**
-     * Set the arcApplicationTenantId property: Tenant id of arc AAD identity.
-     *
-     * @param arcApplicationTenantId the arcApplicationTenantId value to set.
-     * @return the ArcSettingInner object itself.
-     */
-    public ArcSettingInner withArcApplicationTenantId(String arcApplicationTenantId) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new ArcSettingProperties();
-        }
-        this.innerProperties().withArcApplicationTenantId(arcApplicationTenantId);
-        return this;
-    }
-
-    /**
-     * Get the arcServicePrincipalObjectId property: Object id of arc AAD service principal.
-     *
-     * @return the arcServicePrincipalObjectId value.
-     */
-    public String arcServicePrincipalObjectId() {
-        return this.innerProperties() == null ? null : this.innerProperties().arcServicePrincipalObjectId();
-    }
-
-    /**
-     * Set the arcServicePrincipalObjectId property: Object id of arc AAD service principal.
-     *
-     * @param arcServicePrincipalObjectId the arcServicePrincipalObjectId value to set.
-     * @return the ArcSettingInner object itself.
-     */
-    public ArcSettingInner withArcServicePrincipalObjectId(String arcServicePrincipalObjectId) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new ArcSettingProperties();
-        }
-        this.innerProperties().withArcServicePrincipalObjectId(arcServicePrincipalObjectId);
-        return this;
-    }
-
-    /**
-     * Get the arcApplicationObjectId property: Object id of arc AAD identity.
-     *
-     * @return the arcApplicationObjectId value.
-     */
-    public String arcApplicationObjectId() {
-        return this.innerProperties() == null ? null : this.innerProperties().arcApplicationObjectId();
-    }
-
-    /**
-     * Set the arcApplicationObjectId property: Object id of arc AAD identity.
-     *
-     * @param arcApplicationObjectId the arcApplicationObjectId value to set.
-     * @return the ArcSettingInner object itself.
-     */
-    public ArcSettingInner withArcApplicationObjectId(String arcApplicationObjectId) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new ArcSettingProperties();
-        }
-        this.innerProperties().withArcApplicationObjectId(arcApplicationObjectId);
-        return this;
-    }
-
-    /**
      * Get the aggregateState property: Aggregate state of Arc agent across the nodes in this HCI cluster.
      *
      * @return the aggregateState value.
@@ -188,29 +81,6 @@ public final class ArcSettingInner extends ProxyResource {
      */
     public List<PerNodeState> perNodeDetails() {
         return this.innerProperties() == null ? null : this.innerProperties().perNodeDetails();
-    }
-
-    /**
-     * Get the connectivityProperties property: contains connectivity related configuration for ARC resources.
-     *
-     * @return the connectivityProperties value.
-     */
-    public Object connectivityProperties() {
-        return this.innerProperties() == null ? null : this.innerProperties().connectivityProperties();
-    }
-
-    /**
-     * Set the connectivityProperties property: contains connectivity related configuration for ARC resources.
-     *
-     * @param connectivityProperties the connectivityProperties value to set.
-     * @return the ArcSettingInner object itself.
-     */
-    public ArcSettingInner withConnectivityProperties(Object connectivityProperties) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new ArcSettingProperties();
-        }
-        this.innerProperties().withConnectivityProperties(connectivityProperties);
-        return this;
     }
 
     /**

@@ -5,7 +5,6 @@
 package com.azure.resourcemanager.azurestackhci.models;
 
 import com.azure.core.management.Region;
-import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.azurestackhci.fluent.models.ClusterInner;
 import java.time.OffsetDateTime;
@@ -49,13 +48,6 @@ public interface Cluster {
     Map<String, String> tags();
 
     /**
-     * Gets the systemData property: System data of Cluster resource.
-     *
-     * @return the systemData value.
-     */
-    SystemData systemData();
-
-    /**
      * Gets the provisioningState property: Provisioning state.
      *
      * @return the provisioningState value.
@@ -96,20 +88,6 @@ public interface Cluster {
      * @return the aadTenantId value.
      */
     String aadTenantId();
-
-    /**
-     * Gets the aadApplicationObjectId property: Object id of cluster AAD identity.
-     *
-     * @return the aadApplicationObjectId value.
-     */
-    String aadApplicationObjectId();
-
-    /**
-     * Gets the aadServicePrincipalObjectId property: Id of cluster identity service principal.
-     *
-     * @return the aadServicePrincipalObjectId value.
-     */
-    String aadServicePrincipalObjectId();
 
     /**
      * Gets the desiredProperties property: Desired properties of the cluster.
@@ -159,13 +137,6 @@ public interface Cluster {
      * @return the lastBillingTimestamp value.
      */
     OffsetDateTime lastBillingTimestamp();
-
-    /**
-     * Gets the serviceEndpoint property: Region specific DataPath Endpoint of the cluster.
-     *
-     * @return the serviceEndpoint value.
-     */
-    String serviceEndpoint();
 
     /**
      * Gets the region of the resource.
@@ -244,8 +215,6 @@ public interface Cluster {
                 DefinitionStages.WithCloudManagementEndpoint,
                 DefinitionStages.WithAadClientId,
                 DefinitionStages.WithAadTenantId,
-                DefinitionStages.WithAadApplicationObjectId,
-                DefinitionStages.WithAadServicePrincipalObjectId,
                 DefinitionStages.WithDesiredProperties {
             /**
              * Executes the create request.
@@ -302,26 +271,6 @@ public interface Cluster {
              * @return the next definition stage.
              */
             WithCreate withAadTenantId(String aadTenantId);
-        }
-        /** The stage of the Cluster definition allowing to specify aadApplicationObjectId. */
-        interface WithAadApplicationObjectId {
-            /**
-             * Specifies the aadApplicationObjectId property: Object id of cluster AAD identity..
-             *
-             * @param aadApplicationObjectId Object id of cluster AAD identity.
-             * @return the next definition stage.
-             */
-            WithCreate withAadApplicationObjectId(String aadApplicationObjectId);
-        }
-        /** The stage of the Cluster definition allowing to specify aadServicePrincipalObjectId. */
-        interface WithAadServicePrincipalObjectId {
-            /**
-             * Specifies the aadServicePrincipalObjectId property: Id of cluster identity service principal..
-             *
-             * @param aadServicePrincipalObjectId Id of cluster identity service principal.
-             * @return the next definition stage.
-             */
-            WithCreate withAadServicePrincipalObjectId(String aadServicePrincipalObjectId);
         }
         /** The stage of the Cluster definition allowing to specify desiredProperties. */
         interface WithDesiredProperties {
@@ -430,45 +379,4 @@ public interface Cluster {
      * @return the refreshed resource.
      */
     Cluster refresh(Context context);
-
-    /**
-     * Upload certificate.
-     *
-     * @param uploadCertificateRequest Upload certificate request.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    void uploadCertificate(UploadCertificateRequest uploadCertificateRequest);
-
-    /**
-     * Upload certificate.
-     *
-     * @param uploadCertificateRequest Upload certificate request.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    void uploadCertificate(UploadCertificateRequest uploadCertificateRequest, Context context);
-
-    /**
-     * Create cluster identity.
-     *
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return cluster Identity details.
-     */
-    ClusterIdentityResponse createIdentity();
-
-    /**
-     * Create cluster identity.
-     *
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return cluster Identity details.
-     */
-    ClusterIdentityResponse createIdentity(Context context);
 }
