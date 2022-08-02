@@ -6,10 +6,10 @@ package com.azure.resourcemanager.communication.generated;
 
 import com.azure.core.util.Context;
 
-/** Samples for CommunicationServices Delete. */
-public final class CommunicationServicesDeleteSamples {
+/** Samples for CommunicationService Delete. */
+public final class CommunicationServiceDeleteSamples {
     /*
-     * x-ms-original-file: specification/communication/resource-manager/Microsoft.Communication/preview/2021-10-01-preview/examples/communicationServices/delete.json
+     * x-ms-original-file: specification/communication/resource-manager/Microsoft.Communication/stable/2020-08-20/examples/delete.json
      */
     /**
      * Sample code: Delete resource.

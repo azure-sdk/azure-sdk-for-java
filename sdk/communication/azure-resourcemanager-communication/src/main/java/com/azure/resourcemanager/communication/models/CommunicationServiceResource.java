@@ -6,9 +6,9 @@ package com.azure.resourcemanager.communication.models;
 
 import com.azure.core.http.rest.Response;
 import com.azure.core.management.Region;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.communication.fluent.models.CommunicationServiceResourceInner;
-import java.util.List;
 import java.util.Map;
 
 /** An immutable client-side representation of CommunicationServiceResource. */
@@ -35,14 +35,21 @@ public interface CommunicationServiceResource {
     String type();
 
     /**
-     * Gets the location property: The geo-location where the resource lives.
+     * Gets the systemData property: Metadata pertaining to creation and last modification of the resource.
+     *
+     * @return the systemData value.
+     */
+    SystemData systemData();
+
+    /**
+     * Gets the location property: The Azure location where the CommunicationService is running.
      *
      * @return the location value.
      */
     String location();
 
     /**
-     * Gets the tags property: Resource tags.
+     * Gets the tags property: Tags of the service which is a list of key value pairs that describe the resource.
      *
      * @return the tags value.
      */
@@ -53,7 +60,7 @@ public interface CommunicationServiceResource {
      *
      * @return the provisioningState value.
      */
-    CommunicationServicesProvisioningState provisioningState();
+    ProvisioningState provisioningState();
 
     /**
      * Gets the hostname property: FQDN of the CommunicationService instance.
@@ -92,13 +99,6 @@ public interface CommunicationServiceResource {
     String immutableResourceId();
 
     /**
-     * Gets the linkedDomains property: List of email Domain resource Ids.
-     *
-     * @return the linkedDomains value.
-     */
-    List<String> linkedDomains();
-
-    /**
      * Gets the region of the resource.
      *
      * @return the region of the resource.
@@ -128,33 +128,12 @@ public interface CommunicationServiceResource {
 
     /** The entirety of the CommunicationServiceResource definition. */
     interface Definition
-        extends DefinitionStages.Blank,
-            DefinitionStages.WithLocation,
-            DefinitionStages.WithResourceGroup,
-            DefinitionStages.WithCreate {
+        extends DefinitionStages.Blank, DefinitionStages.WithResourceGroup, DefinitionStages.WithCreate {
     }
     /** The CommunicationServiceResource definition stages. */
     interface DefinitionStages {
         /** The first stage of the CommunicationServiceResource definition. */
-        interface Blank extends WithLocation {
-        }
-        /** The stage of the CommunicationServiceResource definition allowing to specify location. */
-        interface WithLocation {
-            /**
-             * Specifies the region for the resource.
-             *
-             * @param location The geo-location where the resource lives.
-             * @return the next definition stage.
-             */
-            WithResourceGroup withRegion(Region location);
-
-            /**
-             * Specifies the region for the resource.
-             *
-             * @param location The geo-location where the resource lives.
-             * @return the next definition stage.
-             */
-            WithResourceGroup withRegion(String location);
+        interface Blank extends WithResourceGroup {
         }
         /** The stage of the CommunicationServiceResource definition allowing to specify parent resource. */
         interface WithResourceGroup {
@@ -171,7 +150,7 @@ public interface CommunicationServiceResource {
          * for the resource to be created, but also allows for any other optional properties to be specified.
          */
         interface WithCreate
-            extends DefinitionStages.WithTags, DefinitionStages.WithDataLocation, DefinitionStages.WithLinkedDomains {
+            extends DefinitionStages.WithLocation, DefinitionStages.WithTags, DefinitionStages.WithDataLocation {
             /**
              * Executes the create request.
              *
@@ -187,12 +166,31 @@ public interface CommunicationServiceResource {
              */
             CommunicationServiceResource create(Context context);
         }
+        /** The stage of the CommunicationServiceResource definition allowing to specify location. */
+        interface WithLocation {
+            /**
+             * Specifies the region for the resource.
+             *
+             * @param location The Azure location where the CommunicationService is running.
+             * @return the next definition stage.
+             */
+            WithCreate withRegion(Region location);
+
+            /**
+             * Specifies the region for the resource.
+             *
+             * @param location The Azure location where the CommunicationService is running.
+             * @return the next definition stage.
+             */
+            WithCreate withRegion(String location);
+        }
         /** The stage of the CommunicationServiceResource definition allowing to specify tags. */
         interface WithTags {
             /**
-             * Specifies the tags property: Resource tags..
+             * Specifies the tags property: Tags of the service which is a list of key value pairs that describe the
+             * resource..
              *
-             * @param tags Resource tags.
+             * @param tags Tags of the service which is a list of key value pairs that describe the resource.
              * @return the next definition stage.
              */
             WithCreate withTags(Map<String, String> tags);
@@ -208,16 +206,6 @@ public interface CommunicationServiceResource {
              */
             WithCreate withDataLocation(String dataLocation);
         }
-        /** The stage of the CommunicationServiceResource definition allowing to specify linkedDomains. */
-        interface WithLinkedDomains {
-            /**
-             * Specifies the linkedDomains property: List of email Domain resource Ids..
-             *
-             * @param linkedDomains List of email Domain resource Ids.
-             * @return the next definition stage.
-             */
-            WithCreate withLinkedDomains(List<String> linkedDomains);
-        }
     }
     /**
      * Begins update for the CommunicationServiceResource resource.
@@ -227,7 +215,7 @@ public interface CommunicationServiceResource {
     CommunicationServiceResource.Update update();
 
     /** The template for CommunicationServiceResource update. */
-    interface Update extends UpdateStages.WithTags, UpdateStages.WithLinkedDomains {
+    interface Update extends UpdateStages.WithTags {
         /**
          * Executes the update request.
          *
@@ -256,16 +244,6 @@ public interface CommunicationServiceResource {
              */
             Update withTags(Map<String, String> tags);
         }
-        /** The stage of the CommunicationServiceResource update allowing to specify linkedDomains. */
-        interface WithLinkedDomains {
-            /**
-             * Specifies the linkedDomains property: List of email Domain resource Ids..
-             *
-             * @param linkedDomains List of email Domain resource Ids.
-             * @return the next definition stage.
-             */
-            Update withLinkedDomains(List<String> linkedDomains);
-        }
     }
     /**
      * Refreshes the resource to sync with Azure.
@@ -283,7 +261,9 @@ public interface CommunicationServiceResource {
     CommunicationServiceResource refresh(Context context);
 
     /**
-     * Links an Azure Notification Hub to this communication service.
+     * Link Notification Hub
+     *
+     * <p>Links an Azure Notification Hub to this communication service.
      *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -292,7 +272,9 @@ public interface CommunicationServiceResource {
     LinkedNotificationHub linkNotificationHub();
 
     /**
-     * Links an Azure Notification Hub to this communication service.
+     * Link Notification Hub
+     *
+     * <p>Links an Azure Notification Hub to this communication service.
      *
      * @param linkNotificationHubParameters Parameters supplied to the operation.
      * @param context The context to associate with this operation.
@@ -305,7 +287,9 @@ public interface CommunicationServiceResource {
         LinkNotificationHubParameters linkNotificationHubParameters, Context context);
 
     /**
-     * Get the access keys of the CommunicationService resource.
+     * List Keys
+     *
+     * <p>Get the access keys of the CommunicationService resource.
      *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -314,7 +298,9 @@ public interface CommunicationServiceResource {
     CommunicationServiceKeys listKeys();
 
     /**
-     * Get the access keys of the CommunicationService resource.
+     * List Keys
+     *
+     * <p>Get the access keys of the CommunicationService resource.
      *
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -325,7 +311,10 @@ public interface CommunicationServiceResource {
     Response<CommunicationServiceKeys> listKeysWithResponse(Context context);
 
     /**
-     * Regenerate CommunicationService access key. PrimaryKey and SecondaryKey cannot be regenerated at the same time.
+     * Regenerate Key
+     *
+     * <p>Regenerate CommunicationService access key. PrimaryKey and SecondaryKey cannot be regenerated at the same
+     * time.
      *
      * @param parameters Parameter that describes the Regenerate Key Operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -336,14 +325,17 @@ public interface CommunicationServiceResource {
     CommunicationServiceKeys regenerateKey(RegenerateKeyParameters parameters);
 
     /**
-     * Regenerate CommunicationService access key. PrimaryKey and SecondaryKey cannot be regenerated at the same time.
+     * Regenerate Key
+     *
+     * <p>Regenerate CommunicationService access key. PrimaryKey and SecondaryKey cannot be regenerated at the same
+     * time.
      *
      * @param parameters Parameter that describes the Regenerate Key Operation.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a class representing the access keys of a CommunicationService.
+     * @return a class representing the access keys of a CommunicationService along with {@link Response}.
      */
-    CommunicationServiceKeys regenerateKey(RegenerateKeyParameters parameters, Context context);
+    Response<CommunicationServiceKeys> regenerateKeyWithResponse(RegenerateKeyParameters parameters, Context context);
 }

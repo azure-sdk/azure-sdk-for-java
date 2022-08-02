@@ -7,10 +7,10 @@ package com.azure.resourcemanager.communication.generated;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.communication.models.LinkNotificationHubParameters;
 
-/** Samples for CommunicationServices LinkNotificationHub. */
-public final class CommunicationServicesLinkNotificationHubSamples {
+/** Samples for CommunicationService LinkNotificationHub. */
+public final class CommunicationServiceLinkNotificationHubSamples {
     /*
-     * x-ms-original-file: specification/communication/resource-manager/Microsoft.Communication/preview/2021-10-01-preview/examples/communicationServices/linkNotificationHub.json
+     * x-ms-original-file: specification/communication/resource-manager/Microsoft.Communication/stable/2020-08-20/examples/linkNotificationHub.json
      */
     /**
      * Sample code: Link notification hub.

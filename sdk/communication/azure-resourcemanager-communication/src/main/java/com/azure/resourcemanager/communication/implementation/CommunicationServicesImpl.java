@@ -10,16 +10,16 @@ import com.azure.core.http.rest.SimpleResponse;
 import com.azure.core.util.Context;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.communication.fluent.CommunicationServicesClient;
-import com.azure.resourcemanager.communication.fluent.models.CheckNameAvailabilityResponseInner;
 import com.azure.resourcemanager.communication.fluent.models.CommunicationServiceKeysInner;
 import com.azure.resourcemanager.communication.fluent.models.CommunicationServiceResourceInner;
 import com.azure.resourcemanager.communication.fluent.models.LinkedNotificationHubInner;
-import com.azure.resourcemanager.communication.models.CheckNameAvailabilityResponse;
+import com.azure.resourcemanager.communication.fluent.models.NameAvailabilityInner;
 import com.azure.resourcemanager.communication.models.CommunicationServiceKeys;
 import com.azure.resourcemanager.communication.models.CommunicationServiceResource;
 import com.azure.resourcemanager.communication.models.CommunicationServices;
 import com.azure.resourcemanager.communication.models.LinkNotificationHubParameters;
 import com.azure.resourcemanager.communication.models.LinkedNotificationHub;
+import com.azure.resourcemanager.communication.models.NameAvailability;
 import com.azure.resourcemanager.communication.models.NameAvailabilityParameters;
 import com.azure.resourcemanager.communication.models.RegenerateKeyParameters;
 
@@ -37,26 +37,25 @@ public final class CommunicationServicesImpl implements CommunicationServices {
         this.serviceManager = serviceManager;
     }
 
-    public CheckNameAvailabilityResponse checkNameAvailability(NameAvailabilityParameters nameAvailabilityParameters) {
-        CheckNameAvailabilityResponseInner inner =
-            this.serviceClient().checkNameAvailability(nameAvailabilityParameters);
+    public NameAvailability checkNameAvailability() {
+        NameAvailabilityInner inner = this.serviceClient().checkNameAvailability();
         if (inner != null) {
-            return new CheckNameAvailabilityResponseImpl(inner, this.manager());
+            return new NameAvailabilityImpl(inner, this.manager());
         } else {
             return null;
         }
     }
 
-    public Response<CheckNameAvailabilityResponse> checkNameAvailabilityWithResponse(
+    public Response<NameAvailability> checkNameAvailabilityWithResponse(
         NameAvailabilityParameters nameAvailabilityParameters, Context context) {
-        Response<CheckNameAvailabilityResponseInner> inner =
+        Response<NameAvailabilityInner> inner =
             this.serviceClient().checkNameAvailabilityWithResponse(nameAvailabilityParameters, context);
         if (inner != null) {
             return new SimpleResponse<>(
                 inner.getRequest(),
                 inner.getStatusCode(),
                 inner.getHeaders(),
-                new CheckNameAvailabilityResponseImpl(inner.getValue(), this.manager()));
+                new NameAvailabilityImpl(inner.getValue(), this.manager()));
         } else {
             return null;
         }
@@ -184,15 +183,21 @@ public final class CommunicationServicesImpl implements CommunicationServices {
         }
     }
 
-    public CommunicationServiceKeys regenerateKey(
+    public Response<CommunicationServiceKeys> regenerateKeyWithResponse(
         String resourceGroupName,
         String communicationServiceName,
         RegenerateKeyParameters parameters,
         Context context) {
-        CommunicationServiceKeysInner inner =
-            this.serviceClient().regenerateKey(resourceGroupName, communicationServiceName, parameters, context);
+        Response<CommunicationServiceKeysInner> inner =
+            this
+                .serviceClient()
+                .regenerateKeyWithResponse(resourceGroupName, communicationServiceName, parameters, context);
         if (inner != null) {
-            return new CommunicationServiceKeysImpl(inner, this.manager());
+            return new SimpleResponse<>(
+                inner.getRequest(),
+                inner.getStatusCode(),
+                inner.getHeaders(),
+                new CommunicationServiceKeysImpl(inner.getValue(), this.manager()));
         } else {
             return null;
         }

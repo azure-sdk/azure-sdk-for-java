@@ -24,8 +24,6 @@ import com.azure.core.util.serializer.SerializerAdapter;
 import com.azure.core.util.serializer.SerializerEncoding;
 import com.azure.resourcemanager.communication.fluent.CommunicationServiceManagementClient;
 import com.azure.resourcemanager.communication.fluent.CommunicationServicesClient;
-import com.azure.resourcemanager.communication.fluent.DomainsClient;
-import com.azure.resourcemanager.communication.fluent.EmailServicesClient;
 import com.azure.resourcemanager.communication.fluent.OperationsClient;
 import java.io.IOException;
 import java.lang.reflect.Type;
@@ -135,30 +133,6 @@ public final class CommunicationServiceManagementClientImpl implements Communica
         return this.communicationServices;
     }
 
-    /** The DomainsClient object to access its operations. */
-    private final DomainsClient domains;
-
-    /**
-     * Gets the DomainsClient object to access its operations.
-     *
-     * @return the DomainsClient object.
-     */
-    public DomainsClient getDomains() {
-        return this.domains;
-    }
-
-    /** The EmailServicesClient object to access its operations. */
-    private final EmailServicesClient emailServices;
-
-    /**
-     * Gets the EmailServicesClient object to access its operations.
-     *
-     * @return the EmailServicesClient object.
-     */
-    public EmailServicesClient getEmailServices() {
-        return this.emailServices;
-    }
-
     /**
      * Initializes an instance of CommunicationServiceManagementClient client.
      *
@@ -181,11 +155,9 @@ public final class CommunicationServiceManagementClientImpl implements Communica
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2021-10-01-preview";
+        this.apiVersion = "2020-08-20";
         this.operations = new OperationsClientImpl(this);
         this.communicationServices = new CommunicationServicesClientImpl(this);
-        this.domains = new DomainsClientImpl(this);
-        this.emailServices = new EmailServicesClientImpl(this);
     }
 
     /**
