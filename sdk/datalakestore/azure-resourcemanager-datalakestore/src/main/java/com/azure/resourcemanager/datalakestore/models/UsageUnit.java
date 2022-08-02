@@ -42,6 +42,9 @@ public enum UsageUnit {
      */
     @JsonCreator
     public static UsageUnit fromString(String value) {
+        if (value == null) {
+            return null;
+        }
         UsageUnit[] items = UsageUnit.values();
         for (UsageUnit item : items) {
             if (item.toString().equalsIgnoreCase(value)) {

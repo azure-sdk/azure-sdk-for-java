@@ -30,6 +30,9 @@ public enum EncryptionProvisioningState {
      */
     @JsonCreator
     public static EncryptionProvisioningState fromString(String value) {
+        if (value == null) {
+            return null;
+        }
         EncryptionProvisioningState[] items = EncryptionProvisioningState.values();
         for (EncryptionProvisioningState item : items) {
             if (item.toString().equalsIgnoreCase(value)) {

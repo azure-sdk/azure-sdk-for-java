@@ -30,6 +30,9 @@ public enum TrustedIdProviderState {
      */
     @JsonCreator
     public static TrustedIdProviderState fromString(String value) {
+        if (value == null) {
+            return null;
+        }
         TrustedIdProviderState[] items = TrustedIdProviderState.values();
         for (TrustedIdProviderState item : items) {
             if (item.toString().equalsIgnoreCase(value)) {

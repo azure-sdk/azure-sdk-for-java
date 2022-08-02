@@ -30,6 +30,9 @@ public enum EncryptionConfigType {
      */
     @JsonCreator
     public static EncryptionConfigType fromString(String value) {
+        if (value == null) {
+            return null;
+        }
         EncryptionConfigType[] items = EncryptionConfigType.values();
         for (EncryptionConfigType item : items) {
             if (item.toString().equalsIgnoreCase(value)) {

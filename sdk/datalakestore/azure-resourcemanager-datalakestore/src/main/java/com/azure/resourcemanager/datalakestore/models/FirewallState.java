@@ -30,6 +30,9 @@ public enum FirewallState {
      */
     @JsonCreator
     public static FirewallState fromString(String value) {
+        if (value == null) {
+            return null;
+        }
         FirewallState[] items = FirewallState.values();
         for (FirewallState item : items) {
             if (item.toString().equalsIgnoreCase(value)) {

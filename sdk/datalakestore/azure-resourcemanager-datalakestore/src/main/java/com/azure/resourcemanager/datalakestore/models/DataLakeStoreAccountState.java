@@ -30,6 +30,9 @@ public enum DataLakeStoreAccountState {
      */
     @JsonCreator
     public static DataLakeStoreAccountState fromString(String value) {
+        if (value == null) {
+            return null;
+        }
         DataLakeStoreAccountState[] items = DataLakeStoreAccountState.values();
         for (DataLakeStoreAccountState item : items) {
             if (item.toString().equalsIgnoreCase(value)) {

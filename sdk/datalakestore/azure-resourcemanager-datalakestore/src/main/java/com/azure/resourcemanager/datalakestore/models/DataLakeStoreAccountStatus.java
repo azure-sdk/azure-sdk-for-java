@@ -57,6 +57,9 @@ public enum DataLakeStoreAccountStatus {
      */
     @JsonCreator
     public static DataLakeStoreAccountStatus fromString(String value) {
+        if (value == null) {
+            return null;
+        }
         DataLakeStoreAccountStatus[] items = DataLakeStoreAccountStatus.values();
         for (DataLakeStoreAccountStatus item : items) {
             if (item.toString().equalsIgnoreCase(value)) {
