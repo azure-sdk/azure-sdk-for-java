@@ -5,16 +5,12 @@
 package com.azure.resourcemanager.consumption.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** May be used to filter budgets by resource group, resource, or meter. */
 @Fluent
 public final class BudgetFilter {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(BudgetFilter.class);
-
     /*
      * The logical "AND" expression. Must have at least 2 items.
      */

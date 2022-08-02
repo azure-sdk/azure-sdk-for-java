@@ -11,10 +11,9 @@ import com.azure.resourcemanager.consumption.fluent.LotsOperationsClient;
 import com.azure.resourcemanager.consumption.fluent.models.LotSummaryInner;
 import com.azure.resourcemanager.consumption.models.LotSummary;
 import com.azure.resourcemanager.consumption.models.LotsOperations;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public final class LotsOperationsImpl implements LotsOperations {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(LotsOperationsImpl.class);
+    private static final ClientLogger LOGGER = new ClientLogger(LotsOperationsImpl.class);
 
     private final LotsOperationsClient innerClient;
 

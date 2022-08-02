@@ -39,7 +39,11 @@ public final class TimeGrainType extends ExpandableStringEnum<TimeGrainType> {
         return fromString(name, TimeGrainType.class);
     }
 
-    /** @return known TimeGrainType values. */
+    /**
+     * Gets known TimeGrainType values.
+     *
+     * @return known TimeGrainType values.
+     */
     public static Collection<TimeGrainType> values() {
         return values(TimeGrainType.class);
     }

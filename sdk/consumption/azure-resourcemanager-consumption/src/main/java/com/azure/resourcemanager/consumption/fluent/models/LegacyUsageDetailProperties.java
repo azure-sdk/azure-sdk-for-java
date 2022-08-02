@@ -5,10 +5,8 @@
 package com.azure.resourcemanager.consumption.fluent.models;
 
 import com.azure.core.annotation.Immutable;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.consumption.models.MeterDetailsResponse;
 import com.azure.resourcemanager.consumption.models.PricingModelType;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
@@ -17,8 +15,6 @@ import java.util.UUID;
 /** The properties of the legacy usage detail. */
 @Immutable
 public final class LegacyUsageDetailProperties {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(LegacyUsageDetailProperties.class);
-
     /*
      * Billing Account identifier.
      */
@@ -86,31 +82,27 @@ public final class LegacyUsageDetailProperties {
     private OffsetDateTime date;
 
     /*
-     * Product name for the consumed service or purchase. Not available for
-     * Marketplace.
+     * Product name for the consumed service or purchase. Not available for Marketplace.
      */
     @JsonProperty(value = "product", access = JsonProperty.Access.WRITE_ONLY)
     private String product;
 
     /*
-     * Part Number of the service used. Can be used to join with the price
-     * sheet. Not available for marketplace.
+     * Part Number of the service used. Can be used to join with the price sheet. Not available for marketplace.
      */
     @JsonProperty(value = "partNumber", access = JsonProperty.Access.WRITE_ONLY)
     private String partNumber;
 
     /*
-     * The meter id (GUID). Not available for marketplace. For reserved
-     * instance this represents the primary meter for which the reservation was
-     * purchased. For the actual VM Size for which the reservation is purchased
-     * see productOrderName.
+     * The meter id (GUID). Not available for marketplace. For reserved instance this represents the primary meter for
+     * which the reservation was purchased. For the actual VM Size for which the reservation is purchased see
+     * productOrderName.
      */
     @JsonProperty(value = "meterId", access = JsonProperty.Access.WRITE_ONLY)
     private UUID meterId;
 
     /*
-     * The details about the meter. By default this is not populated, unless
-     * it's specified in $expand.
+     * The details about the meter. By default this is not populated, unless it's specified in $expand.
      */
     @JsonProperty(value = "meterDetails", access = JsonProperty.Access.WRITE_ONLY)
     private MeterDetailsResponse meterDetails;
@@ -134,8 +126,7 @@ public final class LegacyUsageDetailProperties {
     private BigDecimal cost;
 
     /*
-     * Unit Price is the price applicable to you. (your EA or other contract
-     * price).
+     * Unit Price is the price applicable to you. (your EA or other contract price).
      */
     @JsonProperty(value = "unitPrice", access = JsonProperty.Access.WRITE_ONLY)
     private BigDecimal unitPrice;
@@ -153,9 +144,8 @@ public final class LegacyUsageDetailProperties {
     private String resourceLocation;
 
     /*
-     * Consumed service name. Name of the azure resource provider that emits
-     * the usage or was purchased. This value is not provided for marketplace
-     * usage.
+     * Consumed service name. Name of the azure resource provider that emits the usage or was purchased. This value is
+     * not provided for marketplace usage.
      */
     @JsonProperty(value = "consumedService", access = JsonProperty.Access.WRITE_ONLY)
     private String consumedService;
@@ -185,10 +175,9 @@ public final class LegacyUsageDetailProperties {
     private String serviceInfo2;
 
     /*
-     * Additional details of this usage item. By default this is not populated,
-     * unless it's specified in $expand. Use this field to get usage line item
-     * specific details such as the actual VM Size (ServiceType) or the ratio
-     * in which the reservation discount is applied.
+     * Additional details of this usage item. By default this is not populated, unless it's specified in $expand. Use
+     * this field to get usage line item specific details such as the actual VM Size (ServiceType) or the ratio in
+     * which the reservation discount is applied.
      */
     @JsonProperty(value = "additionalInfo", access = JsonProperty.Access.WRITE_ONLY)
     private String additionalInfo;
@@ -200,8 +189,7 @@ public final class LegacyUsageDetailProperties {
     private String invoiceSection;
 
     /*
-     * The cost center of this department if it is a department and a cost
-     * center is provided.
+     * The cost center of this department if it is a department and a cost center is provided.
      */
     @JsonProperty(value = "costCenter", access = JsonProperty.Access.WRITE_ONLY)
     private String costCenter;
@@ -213,16 +201,14 @@ public final class LegacyUsageDetailProperties {
     private String resourceGroup;
 
     /*
-     * ARM resource id of the reservation. Only applies to records relevant to
-     * reservations.
+     * ARM resource id of the reservation. Only applies to records relevant to reservations.
      */
     @JsonProperty(value = "reservationId", access = JsonProperty.Access.WRITE_ONLY)
     private String reservationId;
 
     /*
-     * User provided display name of the reservation. Last known name for a
-     * particular day is populated in the daily data. Only applies to records
-     * relevant to reservations.
+     * User provided display name of the reservation. Last known name for a particular day is populated in the daily
+     * data. Only applies to records relevant to reservations.
      */
     @JsonProperty(value = "reservationName", access = JsonProperty.Access.WRITE_ONLY)
     private String reservationName;
@@ -252,8 +238,8 @@ public final class LegacyUsageDetailProperties {
     private Boolean isAzureCreditEligible;
 
     /*
-     * Term (in months). 1 month for monthly recurring purchase. 12 months for
-     * a 1 year reservation. 36 months for a 3 year reservation.
+     * Term (in months). 1 month for monthly recurring purchase. 12 months for a 1 year reservation. 36 months for a 3
+     * year reservation.
      */
     @JsonProperty(value = "term", access = JsonProperty.Access.WRITE_ONLY)
     private String term;
@@ -277,16 +263,14 @@ public final class LegacyUsageDetailProperties {
     private String planName;
 
     /*
-     * Indicates a charge represents credits, usage, a Marketplace purchase, a
-     * reservation fee, or a refund.
+     * Indicates a charge represents credits, usage, a Marketplace purchase, a reservation fee, or a refund.
      */
     @JsonProperty(value = "chargeType", access = JsonProperty.Access.WRITE_ONLY)
     private String chargeType;
 
     /*
-     * Indicates how frequently this charge will occur. OneTime for purchases
-     * which only happen once, Monthly for fees which recur every month, and
-     * UsageBased for charges based on how much a service is used.
+     * Indicates how frequently this charge will occur. OneTime for purchases which only happen once, Monthly for fees
+     * which recur every month, and UsageBased for charges based on how much a service is used.
      */
     @JsonProperty(value = "frequency", access = JsonProperty.Access.WRITE_ONLY)
     private String frequency;

@@ -5,21 +5,17 @@
 package com.azure.resourcemanager.consumption.fluent.models;
 
 import com.azure.core.annotation.Immutable;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.consumption.models.Amount;
 import com.azure.resourcemanager.consumption.models.AmountWithExchangeRate;
 import com.azure.resourcemanager.consumption.models.LotSource;
 import com.azure.resourcemanager.consumption.models.Reseller;
 import com.azure.resourcemanager.consumption.models.Status;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
 /** The lot properties. */
 @Immutable
 public final class LotProperties {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(LotProperties.class);
-
     /*
      * The original amount of a lot.
      */
@@ -51,8 +47,8 @@ public final class LotProperties {
     private OffsetDateTime expirationDate;
 
     /*
-     * The po number of the invoice on which the lot was added. This property
-     * is not available for ConsumptionCommitment lots.
+     * The po number of the invoice on which the lot was added. This property is not available for
+     * ConsumptionCommitment lots.
      */
     @JsonProperty(value = "poNumber", access = JsonProperty.Access.WRITE_ONLY)
     private String poNumber;
