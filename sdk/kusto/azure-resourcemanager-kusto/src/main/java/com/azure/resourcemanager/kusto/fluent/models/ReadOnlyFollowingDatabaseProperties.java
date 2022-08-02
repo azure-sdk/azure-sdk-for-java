@@ -5,19 +5,15 @@
 package com.azure.resourcemanager.kusto.fluent.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.kusto.models.DatabaseStatistics;
 import com.azure.resourcemanager.kusto.models.PrincipalsModificationKind;
 import com.azure.resourcemanager.kusto.models.ProvisioningState;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.Duration;
 
 /** Class representing the Kusto database properties. */
 @Fluent
 public final class ReadOnlyFollowingDatabaseProperties {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(ReadOnlyFollowingDatabaseProperties.class);
-
     /*
      * The provisioned state of the resource.
      */
@@ -25,8 +21,7 @@ public final class ReadOnlyFollowingDatabaseProperties {
     private ProvisioningState provisioningState;
 
     /*
-     * The time the data should be kept before it stops being accessible to
-     * queries in TimeSpan.
+     * The time the data should be kept before it stops being accessible to queries in TimeSpan.
      */
     @JsonProperty(value = "softDeletePeriod", access = JsonProperty.Access.WRITE_ONLY)
     private Duration softDeletePeriod;

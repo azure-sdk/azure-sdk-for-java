@@ -31,6 +31,9 @@ public enum Type {
      */
     @JsonCreator
     public static Type fromString(String value) {
+        if (value == null) {
+            return null;
+        }
         Type[] items = Type.values();
         for (Type item : items) {
             if (item.toString().equalsIgnoreCase(value)) {

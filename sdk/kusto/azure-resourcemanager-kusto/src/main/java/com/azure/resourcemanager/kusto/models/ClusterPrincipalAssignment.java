@@ -81,11 +81,11 @@ public interface ClusterPrincipalAssignment {
     ProvisioningState provisioningState();
 
     /**
-     * Gets the aadObjectId property: The service principal object id in AAD (Azure active directory).
+     * Gets the name of the resource group.
      *
-     * @return the aadObjectId value.
+     * @return the name of the resource group.
      */
-    String aadObjectId();
+    String resourceGroupName();
 
     /**
      * Gets the inner com.azure.resourcemanager.kusto.fluent.models.ClusterPrincipalAssignmentInner object.
