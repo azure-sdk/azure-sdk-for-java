@@ -5,7 +5,7 @@
 package com.azure.resourcemanager.deviceprovisioningservices.fluent.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.resourcemanager.deviceprovisioningservices.models.ErrorMessage;
+import com.azure.resourcemanager.deviceprovisioningservices.models.ErrorMesssage;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Result of a long running operation. */
@@ -21,7 +21,7 @@ public final class AsyncOperationResultInner {
      * Error message containing code, description and details
      */
     @JsonProperty(value = "error")
-    private ErrorMessage error;
+    private ErrorMesssage error;
 
     /**
      * Get the status property: current status of a long running operation.
@@ -48,7 +48,7 @@ public final class AsyncOperationResultInner {
      *
      * @return the error value.
      */
-    public ErrorMessage error() {
+    public ErrorMesssage error() {
         return this.error;
     }
 
@@ -58,7 +58,7 @@ public final class AsyncOperationResultInner {
      * @param error the error value to set.
      * @return the AsyncOperationResultInner object itself.
      */
-    public AsyncOperationResultInner withError(ErrorMessage error) {
+    public AsyncOperationResultInner withError(ErrorMesssage error) {
         this.error = error;
         return this;
     }

@@ -6,7 +6,6 @@ package com.azure.resourcemanager.deviceprovisioningservices.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.ProxyResource;
-import com.azure.core.management.SystemData;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.deviceprovisioningservices.models.PrivateEndpointConnectionProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -19,12 +18,6 @@ public final class PrivateEndpointConnectionInner extends ProxyResource {
      */
     @JsonProperty(value = "properties", required = true)
     private PrivateEndpointConnectionProperties properties;
-
-    /*
-     * Metadata pertaining to creation and last modification of the resource.
-     */
-    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
-    private SystemData systemData;
 
     /**
      * Get the properties property: The properties of a private endpoint connection.
@@ -44,15 +37,6 @@ public final class PrivateEndpointConnectionInner extends ProxyResource {
     public PrivateEndpointConnectionInner withProperties(PrivateEndpointConnectionProperties properties) {
         this.properties = properties;
         return this;
-    }
-
-    /**
-     * Get the systemData property: Metadata pertaining to creation and last modification of the resource.
-     *
-     * @return the systemData value.
-     */
-    public SystemData systemData() {
-        return this.systemData;
     }
 
     /**

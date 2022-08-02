@@ -29,6 +29,7 @@ import com.azure.resourcemanager.deviceprovisioningservices.fluent.DpsCertificat
 import com.azure.resourcemanager.deviceprovisioningservices.fluent.models.CertificateListDescriptionInner;
 import com.azure.resourcemanager.deviceprovisioningservices.fluent.models.CertificateResponseInner;
 import com.azure.resourcemanager.deviceprovisioningservices.fluent.models.VerificationCodeResponseInner;
+import com.azure.resourcemanager.deviceprovisioningservices.models.CertificateBodyDescription;
 import com.azure.resourcemanager.deviceprovisioningservices.models.CertificatePurpose;
 import com.azure.resourcemanager.deviceprovisioningservices.models.ErrorDetailsException;
 import com.azure.resourcemanager.deviceprovisioningservices.models.VerificationCodeRequest;
@@ -92,7 +93,7 @@ public final class DpsCertificatesClientImpl implements DpsCertificatesClient {
             @PathParam("provisioningServiceName") String provisioningServiceName,
             @PathParam("certificateName") String certificateName,
             @HeaderParam("If-Match") String ifMatch,
-            @BodyParam("application/json") CertificateResponseInner certificateDescription,
+            @BodyParam("application/json") CertificateBodyDescription certificateDescription,
             @HeaderParam("Accept") String accept,
             Context context);
 
@@ -390,7 +391,9 @@ public final class DpsCertificatesClientImpl implements DpsCertificatesClient {
     }
 
     /**
-     * Add new certificate or update an existing certificate.
+     * Upload the certificate to the provisioning service.
+     *
+     * <p>Add new certificate or update an existing certificate.
      *
      * @param resourceGroupName Resource group identifier.
      * @param provisioningServiceName The name of the provisioning service.
@@ -408,7 +411,7 @@ public final class DpsCertificatesClientImpl implements DpsCertificatesClient {
         String resourceGroupName,
         String provisioningServiceName,
         String certificateName,
-        CertificateResponseInner certificateDescription,
+        CertificateBodyDescription certificateDescription,
         String ifMatch) {
         if (this.client.getEndpoint() == null) {
             return Mono
@@ -462,7 +465,9 @@ public final class DpsCertificatesClientImpl implements DpsCertificatesClient {
     }
 
     /**
-     * Add new certificate or update an existing certificate.
+     * Upload the certificate to the provisioning service.
+     *
+     * <p>Add new certificate or update an existing certificate.
      *
      * @param resourceGroupName Resource group identifier.
      * @param provisioningServiceName The name of the provisioning service.
@@ -481,7 +486,7 @@ public final class DpsCertificatesClientImpl implements DpsCertificatesClient {
         String resourceGroupName,
         String provisioningServiceName,
         String certificateName,
-        CertificateResponseInner certificateDescription,
+        CertificateBodyDescription certificateDescription,
         String ifMatch,
         Context context) {
         if (this.client.getEndpoint() == null) {
@@ -533,7 +538,9 @@ public final class DpsCertificatesClientImpl implements DpsCertificatesClient {
     }
 
     /**
-     * Add new certificate or update an existing certificate.
+     * Upload the certificate to the provisioning service.
+     *
+     * <p>Add new certificate or update an existing certificate.
      *
      * @param resourceGroupName Resource group identifier.
      * @param provisioningServiceName The name of the provisioning service.
@@ -551,7 +558,7 @@ public final class DpsCertificatesClientImpl implements DpsCertificatesClient {
         String resourceGroupName,
         String provisioningServiceName,
         String certificateName,
-        CertificateResponseInner certificateDescription,
+        CertificateBodyDescription certificateDescription,
         String ifMatch) {
         return createOrUpdateWithResponseAsync(
                 resourceGroupName, provisioningServiceName, certificateName, certificateDescription, ifMatch)
@@ -559,7 +566,9 @@ public final class DpsCertificatesClientImpl implements DpsCertificatesClient {
     }
 
     /**
-     * Add new certificate or update an existing certificate.
+     * Upload the certificate to the provisioning service.
+     *
+     * <p>Add new certificate or update an existing certificate.
      *
      * @param resourceGroupName Resource group identifier.
      * @param provisioningServiceName The name of the provisioning service.
@@ -575,7 +584,7 @@ public final class DpsCertificatesClientImpl implements DpsCertificatesClient {
         String resourceGroupName,
         String provisioningServiceName,
         String certificateName,
-        CertificateResponseInner certificateDescription) {
+        CertificateBodyDescription certificateDescription) {
         final String ifMatch = null;
         return createOrUpdateWithResponseAsync(
                 resourceGroupName, provisioningServiceName, certificateName, certificateDescription, ifMatch)
@@ -583,7 +592,9 @@ public final class DpsCertificatesClientImpl implements DpsCertificatesClient {
     }
 
     /**
-     * Add new certificate or update an existing certificate.
+     * Upload the certificate to the provisioning service.
+     *
+     * <p>Add new certificate or update an existing certificate.
      *
      * @param resourceGroupName Resource group identifier.
      * @param provisioningServiceName The name of the provisioning service.
@@ -599,7 +610,7 @@ public final class DpsCertificatesClientImpl implements DpsCertificatesClient {
         String resourceGroupName,
         String provisioningServiceName,
         String certificateName,
-        CertificateResponseInner certificateDescription) {
+        CertificateBodyDescription certificateDescription) {
         final String ifMatch = null;
         return createOrUpdateAsync(
                 resourceGroupName, provisioningServiceName, certificateName, certificateDescription, ifMatch)
@@ -607,7 +618,9 @@ public final class DpsCertificatesClientImpl implements DpsCertificatesClient {
     }
 
     /**
-     * Add new certificate or update an existing certificate.
+     * Upload the certificate to the provisioning service.
+     *
+     * <p>Add new certificate or update an existing certificate.
      *
      * @param resourceGroupName Resource group identifier.
      * @param provisioningServiceName The name of the provisioning service.
@@ -626,7 +639,7 @@ public final class DpsCertificatesClientImpl implements DpsCertificatesClient {
         String resourceGroupName,
         String provisioningServiceName,
         String certificateName,
-        CertificateResponseInner certificateDescription,
+        CertificateBodyDescription certificateDescription,
         String ifMatch,
         Context context) {
         return createOrUpdateWithResponseAsync(
@@ -635,7 +648,9 @@ public final class DpsCertificatesClientImpl implements DpsCertificatesClient {
     }
 
     /**
-     * Deletes the specified certificate associated with the Provisioning Service.
+     * Delete the Provisioning Service Certificate.
+     *
+     * <p>Deletes the specified certificate associated with the Provisioning Service.
      *
      * @param resourceGroupName Resource group identifier.
      * @param ifMatch ETag of the certificate.
@@ -725,7 +740,9 @@ public final class DpsCertificatesClientImpl implements DpsCertificatesClient {
     }
 
     /**
-     * Deletes the specified certificate associated with the Provisioning Service.
+     * Delete the Provisioning Service Certificate.
+     *
+     * <p>Deletes the specified certificate associated with the Provisioning Service.
      *
      * @param resourceGroupName Resource group identifier.
      * @param ifMatch ETag of the certificate.
@@ -814,7 +831,9 @@ public final class DpsCertificatesClientImpl implements DpsCertificatesClient {
     }
 
     /**
-     * Deletes the specified certificate associated with the Provisioning Service.
+     * Delete the Provisioning Service Certificate.
+     *
+     * <p>Deletes the specified certificate associated with the Provisioning Service.
      *
      * @param resourceGroupName Resource group identifier.
      * @param ifMatch ETag of the certificate.
@@ -865,7 +884,9 @@ public final class DpsCertificatesClientImpl implements DpsCertificatesClient {
     }
 
     /**
-     * Deletes the specified certificate associated with the Provisioning Service.
+     * Delete the Provisioning Service Certificate.
+     *
+     * <p>Deletes the specified certificate associated with the Provisioning Service.
      *
      * @param resourceGroupName Resource group identifier.
      * @param ifMatch ETag of the certificate.
@@ -905,7 +926,9 @@ public final class DpsCertificatesClientImpl implements DpsCertificatesClient {
     }
 
     /**
-     * Deletes the specified certificate associated with the Provisioning Service.
+     * Delete the Provisioning Service Certificate.
+     *
+     * <p>Deletes the specified certificate associated with the Provisioning Service.
      *
      * @param resourceGroupName Resource group identifier.
      * @param ifMatch ETag of the certificate.
@@ -944,7 +967,9 @@ public final class DpsCertificatesClientImpl implements DpsCertificatesClient {
     }
 
     /**
-     * Deletes the specified certificate associated with the Provisioning Service.
+     * Delete the Provisioning Service Certificate.
+     *
+     * <p>Deletes the specified certificate associated with the Provisioning Service.
      *
      * @param resourceGroupName Resource group identifier.
      * @param ifMatch ETag of the certificate.
@@ -1518,8 +1543,10 @@ public final class DpsCertificatesClientImpl implements DpsCertificatesClient {
     }
 
     /**
-     * Verifies the certificate's private key possession by providing the leaf cert issued by the verifying pre uploaded
-     * certificate.
+     * Verify certificate's private key possession.
+     *
+     * <p>Verifies the certificate's private key possession by providing the leaf cert issued by the verifying pre
+     * uploaded certificate.
      *
      * @param certificateName The mandatory logical name of the certificate, that the provisioning service uses to
      *     access.
@@ -1617,8 +1644,10 @@ public final class DpsCertificatesClientImpl implements DpsCertificatesClient {
     }
 
     /**
-     * Verifies the certificate's private key possession by providing the leaf cert issued by the verifying pre uploaded
-     * certificate.
+     * Verify certificate's private key possession.
+     *
+     * <p>Verifies the certificate's private key possession by providing the leaf cert issued by the verifying pre
+     * uploaded certificate.
      *
      * @param certificateName The mandatory logical name of the certificate, that the provisioning service uses to
      *     access.
@@ -1715,8 +1744,10 @@ public final class DpsCertificatesClientImpl implements DpsCertificatesClient {
     }
 
     /**
-     * Verifies the certificate's private key possession by providing the leaf cert issued by the verifying pre uploaded
-     * certificate.
+     * Verify certificate's private key possession.
+     *
+     * <p>Verifies the certificate's private key possession by providing the leaf cert issued by the verifying pre
+     * uploaded certificate.
      *
      * @param certificateName The mandatory logical name of the certificate, that the provisioning service uses to
      *     access.
@@ -1770,8 +1801,10 @@ public final class DpsCertificatesClientImpl implements DpsCertificatesClient {
     }
 
     /**
-     * Verifies the certificate's private key possession by providing the leaf cert issued by the verifying pre uploaded
-     * certificate.
+     * Verify certificate's private key possession.
+     *
+     * <p>Verifies the certificate's private key possession by providing the leaf cert issued by the verifying pre
+     * uploaded certificate.
      *
      * @param certificateName The mandatory logical name of the certificate, that the provisioning service uses to
      *     access.
@@ -1817,8 +1850,10 @@ public final class DpsCertificatesClientImpl implements DpsCertificatesClient {
     }
 
     /**
-     * Verifies the certificate's private key possession by providing the leaf cert issued by the verifying pre uploaded
-     * certificate.
+     * Verify certificate's private key possession.
+     *
+     * <p>Verifies the certificate's private key possession by providing the leaf cert issued by the verifying pre
+     * uploaded certificate.
      *
      * @param certificateName The mandatory logical name of the certificate, that the provisioning service uses to
      *     access.
@@ -1864,8 +1899,10 @@ public final class DpsCertificatesClientImpl implements DpsCertificatesClient {
     }
 
     /**
-     * Verifies the certificate's private key possession by providing the leaf cert issued by the verifying pre uploaded
-     * certificate.
+     * Verify certificate's private key possession.
+     *
+     * <p>Verifies the certificate's private key possession by providing the leaf cert issued by the verifying pre
+     * uploaded certificate.
      *
      * @param certificateName The mandatory logical name of the certificate, that the provisioning service uses to
      *     access.

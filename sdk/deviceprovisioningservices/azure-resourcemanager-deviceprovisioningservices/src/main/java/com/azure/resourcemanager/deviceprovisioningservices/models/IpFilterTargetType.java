@@ -33,6 +33,9 @@ public enum IpFilterTargetType {
      */
     @JsonCreator
     public static IpFilterTargetType fromString(String value) {
+        if (value == null) {
+            return null;
+        }
         IpFilterTargetType[] items = IpFilterTargetType.values();
         for (IpFilterTargetType item : items) {
             if (item.toString().equalsIgnoreCase(value)) {

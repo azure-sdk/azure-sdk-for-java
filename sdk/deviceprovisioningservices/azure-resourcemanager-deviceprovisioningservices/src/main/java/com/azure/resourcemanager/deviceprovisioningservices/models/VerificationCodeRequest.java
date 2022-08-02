@@ -11,8 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Fluent
 public final class VerificationCodeRequest {
     /*
-     * base-64 representation of X509 certificate .cer file or just .pem file
-     * content.
+     * base-64 representation of X509 certificate .cer file or just .pem file content.
      */
     @JsonProperty(value = "certificate")
     private String certificate;

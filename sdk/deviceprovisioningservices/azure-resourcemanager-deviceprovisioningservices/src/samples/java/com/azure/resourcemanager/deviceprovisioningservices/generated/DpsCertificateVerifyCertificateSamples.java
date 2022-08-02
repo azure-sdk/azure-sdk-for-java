@@ -10,7 +10,7 @@ import com.azure.resourcemanager.deviceprovisioningservices.models.VerificationC
 /** Samples for DpsCertificate VerifyCertificate. */
 public final class DpsCertificateVerifyCertificateSamples {
     /*
-     * x-ms-original-file: specification/deviceprovisioningservices/resource-manager/Microsoft.Devices/stable/2022-02-05/examples/DPSVerifyCertificate.json
+     * x-ms-original-file: specification/deviceprovisioningservices/resource-manager/Microsoft.Devices/stable/2020-03-01/examples/DPSVerifyCertificate.json
      */
     /**
      * Sample code: DPSVerifyCertificate.

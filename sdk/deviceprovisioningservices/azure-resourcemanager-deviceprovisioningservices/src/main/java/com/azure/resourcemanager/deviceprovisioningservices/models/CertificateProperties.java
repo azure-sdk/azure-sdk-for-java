@@ -4,14 +4,14 @@
 
 package com.azure.resourcemanager.deviceprovisioningservices.models;
 
-import com.azure.core.annotation.Fluent;
+import com.azure.core.annotation.Immutable;
 import com.azure.core.util.CoreUtils;
 import com.azure.core.util.DateTimeRfc1123;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
 /** The description of an X509 CA Certificate. */
-@Fluent
+@Immutable
 public final class CertificateProperties {
     /*
      * The certificate's subject name.
@@ -34,14 +34,13 @@ public final class CertificateProperties {
     /*
      * Determines whether certificate has been verified.
      */
-    @JsonProperty(value = "isVerified")
+    @JsonProperty(value = "isVerified", access = JsonProperty.Access.WRITE_ONLY)
     private Boolean isVerified;
 
     /*
-     * base-64 representation of X509 certificate .cer file or just .pem file
-     * content.
+     * base-64 representation of X509 certificate .cer file or just .pem file content.
      */
-    @JsonProperty(value = "certificate")
+    @JsonProperty(value = "certificate", access = JsonProperty.Access.WRITE_ONLY)
     private byte[] certificate;
 
     /*
@@ -96,34 +95,12 @@ public final class CertificateProperties {
     }
 
     /**
-     * Set the isVerified property: Determines whether certificate has been verified.
-     *
-     * @param isVerified the isVerified value to set.
-     * @return the CertificateProperties object itself.
-     */
-    public CertificateProperties withIsVerified(Boolean isVerified) {
-        this.isVerified = isVerified;
-        return this;
-    }
-
-    /**
      * Get the certificate property: base-64 representation of X509 certificate .cer file or just .pem file content.
      *
      * @return the certificate value.
      */
     public byte[] certificate() {
         return CoreUtils.clone(this.certificate);
-    }
-
-    /**
-     * Set the certificate property: base-64 representation of X509 certificate .cer file or just .pem file content.
-     *
-     * @param certificate the certificate value to set.
-     * @return the CertificateProperties object itself.
-     */
-    public CertificateProperties withCertificate(byte[] certificate) {
-        this.certificate = CoreUtils.clone(certificate);
-        return this;
     }
 
     /**

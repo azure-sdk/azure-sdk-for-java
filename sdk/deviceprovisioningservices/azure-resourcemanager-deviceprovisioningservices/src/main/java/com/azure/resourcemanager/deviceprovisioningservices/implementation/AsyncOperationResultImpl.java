@@ -6,7 +6,7 @@ package com.azure.resourcemanager.deviceprovisioningservices.implementation;
 
 import com.azure.resourcemanager.deviceprovisioningservices.fluent.models.AsyncOperationResultInner;
 import com.azure.resourcemanager.deviceprovisioningservices.models.AsyncOperationResult;
-import com.azure.resourcemanager.deviceprovisioningservices.models.ErrorMessage;
+import com.azure.resourcemanager.deviceprovisioningservices.models.ErrorMesssage;
 
 public final class AsyncOperationResultImpl implements AsyncOperationResult {
     private AsyncOperationResultInner innerObject;
@@ -24,7 +24,7 @@ public final class AsyncOperationResultImpl implements AsyncOperationResult {
         return this.innerModel().status();
     }
 
-    public ErrorMessage error() {
+    public ErrorMesssage error() {
         return this.innerModel().error();
     }
 

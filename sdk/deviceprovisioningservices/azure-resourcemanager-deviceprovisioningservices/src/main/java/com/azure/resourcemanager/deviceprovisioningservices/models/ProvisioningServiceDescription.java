@@ -6,7 +6,6 @@ package com.azure.resourcemanager.deviceprovisioningservices.models;
 
 import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.management.Region;
-import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.deviceprovisioningservices.fluent.models.ProvisioningServiceDescriptionInner;
 import java.util.Map;
@@ -69,13 +68,6 @@ public interface ProvisioningServiceDescription {
      * @return the sku value.
      */
     IotDpsSkuInfo sku();
-
-    /**
-     * Gets the systemData property: Metadata pertaining to creation and last modification of the resource.
-     *
-     * @return the systemData value.
-     */
-    SystemData systemData();
 
     /**
      * Gets the region of the resource.
@@ -264,7 +256,9 @@ public interface ProvisioningServiceDescription {
     ProvisioningServiceDescription refresh(Context context);
 
     /**
-     * List the primary and secondary keys for a provisioning service.
+     * Get the security metadata for a provisioning service.
+     *
+     * <p>List the primary and secondary keys for a provisioning service.
      *
      * @throws com.azure.resourcemanager.deviceprovisioningservices.models.ErrorDetailsException thrown if the request
      *     is rejected by server.
@@ -274,7 +268,9 @@ public interface ProvisioningServiceDescription {
     PagedIterable<SharedAccessSignatureAuthorizationRule> listKeys();
 
     /**
-     * List the primary and secondary keys for a provisioning service.
+     * Get the security metadata for a provisioning service.
+     *
+     * <p>List the primary and secondary keys for a provisioning service.
      *
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.

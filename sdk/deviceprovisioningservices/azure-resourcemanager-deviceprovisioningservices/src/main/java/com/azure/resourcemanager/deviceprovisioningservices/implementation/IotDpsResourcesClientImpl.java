@@ -378,7 +378,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Get the metadata of the provisioning service without SAS keys.
+     * Get the non-security related metadata of the provisioning service.
+     *
+     * <p>Get the metadata of the provisioning service without SAS keys.
      *
      * @param resourceGroupName Resource group name.
      * @param provisioningServiceName Name of the provisioning service to retrieve.
@@ -429,7 +431,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Get the metadata of the provisioning service without SAS keys.
+     * Get the non-security related metadata of the provisioning service.
+     *
+     * <p>Get the metadata of the provisioning service without SAS keys.
      *
      * @param resourceGroupName Resource group name.
      * @param provisioningServiceName Name of the provisioning service to retrieve.
@@ -478,7 +482,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Get the metadata of the provisioning service without SAS keys.
+     * Get the non-security related metadata of the provisioning service.
+     *
+     * <p>Get the metadata of the provisioning service without SAS keys.
      *
      * @param resourceGroupName Resource group name.
      * @param provisioningServiceName Name of the provisioning service to retrieve.
@@ -495,7 +501,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Get the metadata of the provisioning service without SAS keys.
+     * Get the non-security related metadata of the provisioning service.
+     *
+     * <p>Get the metadata of the provisioning service without SAS keys.
      *
      * @param resourceGroupName Resource group name.
      * @param provisioningServiceName Name of the provisioning service to retrieve.
@@ -511,7 +519,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Get the metadata of the provisioning service without SAS keys.
+     * Get the non-security related metadata of the provisioning service.
+     *
+     * <p>Get the metadata of the provisioning service without SAS keys.
      *
      * @param resourceGroupName Resource group name.
      * @param provisioningServiceName Name of the provisioning service to retrieve.
@@ -528,9 +538,11 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Create or update the metadata of the provisioning service. The usual pattern to modify a property is to retrieve
-     * the provisioning service metadata and security metadata, and then combine them with the modified values in a new
-     * body to update the provisioning service.
+     * Create or update the metadata of the provisioning service.
+     *
+     * <p>Create or update the metadata of the provisioning service. The usual pattern to modify a property is to
+     * retrieve the provisioning service metadata and security metadata, and then combine them with the modified values
+     * in a new body to update the provisioning service.
      *
      * @param resourceGroupName Resource group identifier.
      * @param provisioningServiceName Name of provisioning service to create or update.
@@ -591,9 +603,11 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Create or update the metadata of the provisioning service. The usual pattern to modify a property is to retrieve
-     * the provisioning service metadata and security metadata, and then combine them with the modified values in a new
-     * body to update the provisioning service.
+     * Create or update the metadata of the provisioning service.
+     *
+     * <p>Create or update the metadata of the provisioning service. The usual pattern to modify a property is to
+     * retrieve the provisioning service metadata and security metadata, and then combine them with the modified values
+     * in a new body to update the provisioning service.
      *
      * @param resourceGroupName Resource group identifier.
      * @param provisioningServiceName Name of provisioning service to create or update.
@@ -653,9 +667,11 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Create or update the metadata of the provisioning service. The usual pattern to modify a property is to retrieve
-     * the provisioning service metadata and security metadata, and then combine them with the modified values in a new
-     * body to update the provisioning service.
+     * Create or update the metadata of the provisioning service.
+     *
+     * <p>Create or update the metadata of the provisioning service. The usual pattern to modify a property is to
+     * retrieve the provisioning service metadata and security metadata, and then combine them with the modified values
+     * in a new body to update the provisioning service.
      *
      * @param resourceGroupName Resource group identifier.
      * @param provisioningServiceName Name of provisioning service to create or update.
@@ -684,9 +700,11 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Create or update the metadata of the provisioning service. The usual pattern to modify a property is to retrieve
-     * the provisioning service metadata and security metadata, and then combine them with the modified values in a new
-     * body to update the provisioning service.
+     * Create or update the metadata of the provisioning service.
+     *
+     * <p>Create or update the metadata of the provisioning service. The usual pattern to modify a property is to
+     * retrieve the provisioning service metadata and security metadata, and then combine them with the modified values
+     * in a new body to update the provisioning service.
      *
      * @param resourceGroupName Resource group identifier.
      * @param provisioningServiceName Name of provisioning service to create or update.
@@ -718,9 +736,11 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Create or update the metadata of the provisioning service. The usual pattern to modify a property is to retrieve
-     * the provisioning service metadata and security metadata, and then combine them with the modified values in a new
-     * body to update the provisioning service.
+     * Create or update the metadata of the provisioning service.
+     *
+     * <p>Create or update the metadata of the provisioning service. The usual pattern to modify a property is to
+     * retrieve the provisioning service metadata and security metadata, and then combine them with the modified values
+     * in a new body to update the provisioning service.
      *
      * @param resourceGroupName Resource group identifier.
      * @param provisioningServiceName Name of provisioning service to create or update.
@@ -740,9 +760,11 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Create or update the metadata of the provisioning service. The usual pattern to modify a property is to retrieve
-     * the provisioning service metadata and security metadata, and then combine them with the modified values in a new
-     * body to update the provisioning service.
+     * Create or update the metadata of the provisioning service.
+     *
+     * <p>Create or update the metadata of the provisioning service. The usual pattern to modify a property is to
+     * retrieve the provisioning service metadata and security metadata, and then combine them with the modified values
+     * in a new body to update the provisioning service.
      *
      * @param resourceGroupName Resource group identifier.
      * @param provisioningServiceName Name of provisioning service to create or update.
@@ -765,9 +787,11 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Create or update the metadata of the provisioning service. The usual pattern to modify a property is to retrieve
-     * the provisioning service metadata and security metadata, and then combine them with the modified values in a new
-     * body to update the provisioning service.
+     * Create or update the metadata of the provisioning service.
+     *
+     * <p>Create or update the metadata of the provisioning service. The usual pattern to modify a property is to
+     * retrieve the provisioning service metadata and security metadata, and then combine them with the modified values
+     * in a new body to update the provisioning service.
      *
      * @param resourceGroupName Resource group identifier.
      * @param provisioningServiceName Name of provisioning service to create or update.
@@ -788,9 +812,11 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Create or update the metadata of the provisioning service. The usual pattern to modify a property is to retrieve
-     * the provisioning service metadata and security metadata, and then combine them with the modified values in a new
-     * body to update the provisioning service.
+     * Create or update the metadata of the provisioning service.
+     *
+     * <p>Create or update the metadata of the provisioning service. The usual pattern to modify a property is to
+     * retrieve the provisioning service metadata and security metadata, and then combine them with the modified values
+     * in a new body to update the provisioning service.
      *
      * @param resourceGroupName Resource group identifier.
      * @param provisioningServiceName Name of provisioning service to create or update.
@@ -813,9 +839,11 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Create or update the metadata of the provisioning service. The usual pattern to modify a property is to retrieve
-     * the provisioning service metadata and security metadata, and then combine them with the modified values in a new
-     * body to update the provisioning service.
+     * Create or update the metadata of the provisioning service.
+     *
+     * <p>Create or update the metadata of the provisioning service. The usual pattern to modify a property is to
+     * retrieve the provisioning service metadata and security metadata, and then combine them with the modified values
+     * in a new body to update the provisioning service.
      *
      * @param resourceGroupName Resource group identifier.
      * @param provisioningServiceName Name of provisioning service to create or update.
@@ -834,9 +862,11 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Create or update the metadata of the provisioning service. The usual pattern to modify a property is to retrieve
-     * the provisioning service metadata and security metadata, and then combine them with the modified values in a new
-     * body to update the provisioning service.
+     * Create or update the metadata of the provisioning service.
+     *
+     * <p>Create or update the metadata of the provisioning service. The usual pattern to modify a property is to
+     * retrieve the provisioning service metadata and security metadata, and then combine them with the modified values
+     * in a new body to update the provisioning service.
      *
      * @param resourceGroupName Resource group identifier.
      * @param provisioningServiceName Name of provisioning service to create or update.
@@ -857,7 +887,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Update an existing provisioning service's tags. to update other fields use the CreateOrUpdate method.
+     * Update an existing provisioning service's tags.
+     *
+     * <p>Update an existing provisioning service's tags. to update other fields use the CreateOrUpdate method.
      *
      * @param resourceGroupName Resource group identifier.
      * @param provisioningServiceName Name of provisioning service to create or update.
@@ -917,7 +949,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Update an existing provisioning service's tags. to update other fields use the CreateOrUpdate method.
+     * Update an existing provisioning service's tags.
+     *
+     * <p>Update an existing provisioning service's tags. to update other fields use the CreateOrUpdate method.
      *
      * @param resourceGroupName Resource group identifier.
      * @param provisioningServiceName Name of provisioning service to create or update.
@@ -978,7 +1012,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Update an existing provisioning service's tags. to update other fields use the CreateOrUpdate method.
+     * Update an existing provisioning service's tags.
+     *
+     * <p>Update an existing provisioning service's tags. to update other fields use the CreateOrUpdate method.
      *
      * @param resourceGroupName Resource group identifier.
      * @param provisioningServiceName Name of provisioning service to create or update.
@@ -1005,7 +1041,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Update an existing provisioning service's tags. to update other fields use the CreateOrUpdate method.
+     * Update an existing provisioning service's tags.
+     *
+     * <p>Update an existing provisioning service's tags. to update other fields use the CreateOrUpdate method.
      *
      * @param resourceGroupName Resource group identifier.
      * @param provisioningServiceName Name of provisioning service to create or update.
@@ -1037,7 +1075,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Update an existing provisioning service's tags. to update other fields use the CreateOrUpdate method.
+     * Update an existing provisioning service's tags.
+     *
+     * <p>Update an existing provisioning service's tags. to update other fields use the CreateOrUpdate method.
      *
      * @param resourceGroupName Resource group identifier.
      * @param provisioningServiceName Name of provisioning service to create or update.
@@ -1054,7 +1094,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Update an existing provisioning service's tags. to update other fields use the CreateOrUpdate method.
+     * Update an existing provisioning service's tags.
+     *
+     * <p>Update an existing provisioning service's tags. to update other fields use the CreateOrUpdate method.
      *
      * @param resourceGroupName Resource group identifier.
      * @param provisioningServiceName Name of provisioning service to create or update.
@@ -1076,7 +1118,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Update an existing provisioning service's tags. to update other fields use the CreateOrUpdate method.
+     * Update an existing provisioning service's tags.
+     *
+     * <p>Update an existing provisioning service's tags. to update other fields use the CreateOrUpdate method.
      *
      * @param resourceGroupName Resource group identifier.
      * @param provisioningServiceName Name of provisioning service to create or update.
@@ -1095,7 +1139,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Update an existing provisioning service's tags. to update other fields use the CreateOrUpdate method.
+     * Update an existing provisioning service's tags.
+     *
+     * <p>Update an existing provisioning service's tags. to update other fields use the CreateOrUpdate method.
      *
      * @param resourceGroupName Resource group identifier.
      * @param provisioningServiceName Name of provisioning service to create or update.
@@ -1118,7 +1164,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Update an existing provisioning service's tags. to update other fields use the CreateOrUpdate method.
+     * Update an existing provisioning service's tags.
+     *
+     * <p>Update an existing provisioning service's tags. to update other fields use the CreateOrUpdate method.
      *
      * @param resourceGroupName Resource group identifier.
      * @param provisioningServiceName Name of provisioning service to create or update.
@@ -1135,7 +1183,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Update an existing provisioning service's tags. to update other fields use the CreateOrUpdate method.
+     * Update an existing provisioning service's tags.
+     *
+     * <p>Update an existing provisioning service's tags. to update other fields use the CreateOrUpdate method.
      *
      * @param resourceGroupName Resource group identifier.
      * @param provisioningServiceName Name of provisioning service to create or update.
@@ -1156,7 +1206,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Deletes the Provisioning Service.
+     * Delete the Provisioning Service
+     *
+     * <p>Deletes the Provisioning Service.
      *
      * @param resourceGroupName Resource group identifier.
      * @param provisioningServiceName Name of provisioning service to delete.
@@ -1206,7 +1258,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Deletes the Provisioning Service.
+     * Delete the Provisioning Service
+     *
+     * <p>Deletes the Provisioning Service.
      *
      * @param resourceGroupName Resource group identifier.
      * @param provisioningServiceName Name of provisioning service to delete.
@@ -1254,7 +1308,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Deletes the Provisioning Service.
+     * Delete the Provisioning Service
+     *
+     * <p>Deletes the Provisioning Service.
      *
      * @param resourceGroupName Resource group identifier.
      * @param provisioningServiceName Name of provisioning service to delete.
@@ -1274,7 +1330,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Deletes the Provisioning Service.
+     * Delete the Provisioning Service
+     *
+     * <p>Deletes the Provisioning Service.
      *
      * @param resourceGroupName Resource group identifier.
      * @param provisioningServiceName Name of provisioning service to delete.
@@ -1296,7 +1354,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Deletes the Provisioning Service.
+     * Delete the Provisioning Service
+     *
+     * <p>Deletes the Provisioning Service.
      *
      * @param resourceGroupName Resource group identifier.
      * @param provisioningServiceName Name of provisioning service to delete.
@@ -1311,7 +1371,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Deletes the Provisioning Service.
+     * Delete the Provisioning Service
+     *
+     * <p>Deletes the Provisioning Service.
      *
      * @param resourceGroupName Resource group identifier.
      * @param provisioningServiceName Name of provisioning service to delete.
@@ -1328,7 +1390,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Deletes the Provisioning Service.
+     * Delete the Provisioning Service
+     *
+     * <p>Deletes the Provisioning Service.
      *
      * @param resourceGroupName Resource group identifier.
      * @param provisioningServiceName Name of provisioning service to delete.
@@ -1345,7 +1409,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Deletes the Provisioning Service.
+     * Delete the Provisioning Service
+     *
+     * <p>Deletes the Provisioning Service.
      *
      * @param resourceGroupName Resource group identifier.
      * @param provisioningServiceName Name of provisioning service to delete.
@@ -1363,7 +1429,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Deletes the Provisioning Service.
+     * Delete the Provisioning Service
+     *
+     * <p>Deletes the Provisioning Service.
      *
      * @param resourceGroupName Resource group identifier.
      * @param provisioningServiceName Name of provisioning service to delete.
@@ -1377,7 +1445,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Deletes the Provisioning Service.
+     * Delete the Provisioning Service
+     *
+     * <p>Deletes the Provisioning Service.
      *
      * @param resourceGroupName Resource group identifier.
      * @param provisioningServiceName Name of provisioning service to delete.
@@ -1392,7 +1462,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * List all the provisioning services for a given subscription id.
+     * Get all the provisioning services in a subscription.
+     *
+     * <p>List all the provisioning services for a given subscription id.
      *
      * @throws ErrorDetailsException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1437,7 +1509,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * List all the provisioning services for a given subscription id.
+     * Get all the provisioning services in a subscription.
+     *
+     * <p>List all the provisioning services for a given subscription id.
      *
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1481,7 +1555,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * List all the provisioning services for a given subscription id.
+     * Get all the provisioning services in a subscription.
+     *
+     * <p>List all the provisioning services for a given subscription id.
      *
      * @throws ErrorDetailsException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1494,7 +1570,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * List all the provisioning services for a given subscription id.
+     * Get all the provisioning services in a subscription.
+     *
+     * <p>List all the provisioning services for a given subscription id.
      *
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1509,7 +1587,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * List all the provisioning services for a given subscription id.
+     * Get all the provisioning services in a subscription.
+     *
+     * <p>List all the provisioning services for a given subscription id.
      *
      * @throws ErrorDetailsException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1521,7 +1601,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * List all the provisioning services for a given subscription id.
+     * Get all the provisioning services in a subscription.
+     *
+     * <p>List all the provisioning services for a given subscription id.
      *
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1900,7 +1982,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Gets the list of valid SKUs and tiers for a provisioning service.
+     * Get the list of valid SKUs for a provisioning service.
+     *
+     * <p>Gets the list of valid SKUs and tiers for a provisioning service.
      *
      * @param provisioningServiceName Name of provisioning service.
      * @param resourceGroupName Name of resource group.
@@ -1960,7 +2044,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Gets the list of valid SKUs and tiers for a provisioning service.
+     * Get the list of valid SKUs for a provisioning service.
+     *
+     * <p>Gets the list of valid SKUs and tiers for a provisioning service.
      *
      * @param provisioningServiceName Name of provisioning service.
      * @param resourceGroupName Name of resource group.
@@ -2018,7 +2104,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Gets the list of valid SKUs and tiers for a provisioning service.
+     * Get the list of valid SKUs for a provisioning service.
+     *
+     * <p>Gets the list of valid SKUs and tiers for a provisioning service.
      *
      * @param provisioningServiceName Name of provisioning service.
      * @param resourceGroupName Name of resource group.
@@ -2036,7 +2124,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Gets the list of valid SKUs and tiers for a provisioning service.
+     * Get the list of valid SKUs for a provisioning service.
+     *
+     * <p>Gets the list of valid SKUs and tiers for a provisioning service.
      *
      * @param provisioningServiceName Name of provisioning service.
      * @param resourceGroupName Name of resource group.
@@ -2055,7 +2145,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Gets the list of valid SKUs and tiers for a provisioning service.
+     * Get the list of valid SKUs for a provisioning service.
+     *
+     * <p>Gets the list of valid SKUs and tiers for a provisioning service.
      *
      * @param provisioningServiceName Name of provisioning service.
      * @param resourceGroupName Name of resource group.
@@ -2072,7 +2164,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Gets the list of valid SKUs and tiers for a provisioning service.
+     * Get the list of valid SKUs for a provisioning service.
+     *
+     * <p>Gets the list of valid SKUs and tiers for a provisioning service.
      *
      * @param provisioningServiceName Name of provisioning service.
      * @param resourceGroupName Name of resource group.
@@ -2090,8 +2184,10 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Check if a provisioning service name is available. This will validate if the name is syntactically valid and if
-     * the name is usable.
+     * Check if a provisioning service name is available.
+     *
+     * <p>Check if a provisioning service name is available. This will validate if the name is syntactically valid and
+     * if the name is usable.
      *
      * @param arguments Set the name parameter in the OperationInputs structure to the name of the provisioning service
      *     to check.
@@ -2136,8 +2232,10 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Check if a provisioning service name is available. This will validate if the name is syntactically valid and if
-     * the name is usable.
+     * Check if a provisioning service name is available.
+     *
+     * <p>Check if a provisioning service name is available. This will validate if the name is syntactically valid and
+     * if the name is usable.
      *
      * @param arguments Set the name parameter in the OperationInputs structure to the name of the provisioning service
      *     to check.
@@ -2180,8 +2278,10 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Check if a provisioning service name is available. This will validate if the name is syntactically valid and if
-     * the name is usable.
+     * Check if a provisioning service name is available.
+     *
+     * <p>Check if a provisioning service name is available. This will validate if the name is syntactically valid and
+     * if the name is usable.
      *
      * @param arguments Set the name parameter in the OperationInputs structure to the name of the provisioning service
      *     to check.
@@ -2197,8 +2297,10 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Check if a provisioning service name is available. This will validate if the name is syntactically valid and if
-     * the name is usable.
+     * Check if a provisioning service name is available.
+     *
+     * <p>Check if a provisioning service name is available. This will validate if the name is syntactically valid and
+     * if the name is usable.
      *
      * @param arguments Set the name parameter in the OperationInputs structure to the name of the provisioning service
      *     to check.
@@ -2213,8 +2315,10 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Check if a provisioning service name is available. This will validate if the name is syntactically valid and if
-     * the name is usable.
+     * Check if a provisioning service name is available.
+     *
+     * <p>Check if a provisioning service name is available. This will validate if the name is syntactically valid and
+     * if the name is usable.
      *
      * @param arguments Set the name parameter in the OperationInputs structure to the name of the provisioning service
      *     to check.
@@ -2231,7 +2335,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * List the primary and secondary keys for a provisioning service.
+     * Get the security metadata for a provisioning service.
+     *
+     * <p>List the primary and secondary keys for a provisioning service.
      *
      * @param provisioningServiceName The provisioning service name to get the shared access keys for.
      * @param resourceGroupName resource group name.
@@ -2290,7 +2396,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * List the primary and secondary keys for a provisioning service.
+     * Get the security metadata for a provisioning service.
+     *
+     * <p>List the primary and secondary keys for a provisioning service.
      *
      * @param provisioningServiceName The provisioning service name to get the shared access keys for.
      * @param resourceGroupName resource group name.
@@ -2347,7 +2455,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * List the primary and secondary keys for a provisioning service.
+     * Get the security metadata for a provisioning service.
+     *
+     * <p>List the primary and secondary keys for a provisioning service.
      *
      * @param provisioningServiceName The provisioning service name to get the shared access keys for.
      * @param resourceGroupName resource group name.
@@ -2365,7 +2475,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * List the primary and secondary keys for a provisioning service.
+     * Get the security metadata for a provisioning service.
+     *
+     * <p>List the primary and secondary keys for a provisioning service.
      *
      * @param provisioningServiceName The provisioning service name to get the shared access keys for.
      * @param resourceGroupName resource group name.
@@ -2384,7 +2496,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * List the primary and secondary keys for a provisioning service.
+     * Get the security metadata for a provisioning service.
+     *
+     * <p>List the primary and secondary keys for a provisioning service.
      *
      * @param provisioningServiceName The provisioning service name to get the shared access keys for.
      * @param resourceGroupName resource group name.
@@ -2400,7 +2514,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * List the primary and secondary keys for a provisioning service.
+     * Get the security metadata for a provisioning service.
+     *
+     * <p>List the primary and secondary keys for a provisioning service.
      *
      * @param provisioningServiceName The provisioning service name to get the shared access keys for.
      * @param resourceGroupName resource group name.
@@ -2417,7 +2533,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * List primary and secondary keys for a specific key name.
+     * Get a shared access policy by name from a provisioning service.
+     *
+     * <p>List primary and secondary keys for a specific key name.
      *
      * @param provisioningServiceName Name of the provisioning service.
      * @param keyName Logical key name to get key-values for.
@@ -2473,7 +2591,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * List primary and secondary keys for a specific key name.
+     * Get a shared access policy by name from a provisioning service.
+     *
+     * <p>List primary and secondary keys for a specific key name.
      *
      * @param provisioningServiceName Name of the provisioning service.
      * @param keyName Logical key name to get key-values for.
@@ -2527,7 +2647,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * List primary and secondary keys for a specific key name.
+     * Get a shared access policy by name from a provisioning service.
+     *
+     * <p>List primary and secondary keys for a specific key name.
      *
      * @param provisioningServiceName Name of the provisioning service.
      * @param keyName Logical key name to get key-values for.
@@ -2545,7 +2667,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * List primary and secondary keys for a specific key name.
+     * Get a shared access policy by name from a provisioning service.
+     *
+     * <p>List primary and secondary keys for a specific key name.
      *
      * @param provisioningServiceName Name of the provisioning service.
      * @param keyName Logical key name to get key-values for.
@@ -2562,7 +2686,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * List primary and secondary keys for a specific key name.
+     * Get a shared access policy by name from a provisioning service.
+     *
+     * <p>List primary and secondary keys for a specific key name.
      *
      * @param provisioningServiceName Name of the provisioning service.
      * @param keyName Logical key name to get key-values for.
@@ -2581,7 +2707,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * List private link resources for the given provisioning service.
+     * List private link resources
+     *
+     * <p>List private link resources for the given provisioning service.
      *
      * @param resourceGroupName The name of the resource group that contains the provisioning service.
      * @param resourceName The name of the provisioning service.
@@ -2630,7 +2758,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * List private link resources for the given provisioning service.
+     * List private link resources
+     *
+     * <p>List private link resources for the given provisioning service.
      *
      * @param resourceGroupName The name of the resource group that contains the provisioning service.
      * @param resourceName The name of the provisioning service.
@@ -2677,7 +2807,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * List private link resources for the given provisioning service.
+     * List private link resources
+     *
+     * <p>List private link resources for the given provisioning service.
      *
      * @param resourceGroupName The name of the resource group that contains the provisioning service.
      * @param resourceName The name of the provisioning service.
@@ -2694,7 +2826,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * List private link resources for the given provisioning service.
+     * List private link resources
+     *
+     * <p>List private link resources for the given provisioning service.
      *
      * @param resourceGroupName The name of the resource group that contains the provisioning service.
      * @param resourceName The name of the provisioning service.
@@ -2709,7 +2843,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * List private link resources for the given provisioning service.
+     * List private link resources
+     *
+     * <p>List private link resources for the given provisioning service.
      *
      * @param resourceGroupName The name of the resource group that contains the provisioning service.
      * @param resourceName The name of the provisioning service.
@@ -2726,7 +2862,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Get the specified private link resource for the given provisioning service.
+     * Get the specified private link resource
+     *
+     * <p>Get the specified private link resource for the given provisioning service.
      *
      * @param resourceGroupName The name of the resource group that contains the provisioning service.
      * @param resourceName The name of the provisioning service.
@@ -2780,7 +2918,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Get the specified private link resource for the given provisioning service.
+     * Get the specified private link resource
+     *
+     * <p>Get the specified private link resource for the given provisioning service.
      *
      * @param resourceGroupName The name of the resource group that contains the provisioning service.
      * @param resourceName The name of the provisioning service.
@@ -2832,7 +2972,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Get the specified private link resource for the given provisioning service.
+     * Get the specified private link resource
+     *
+     * <p>Get the specified private link resource for the given provisioning service.
      *
      * @param resourceGroupName The name of the resource group that contains the provisioning service.
      * @param resourceName The name of the provisioning service.
@@ -2851,7 +2993,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Get the specified private link resource for the given provisioning service.
+     * Get the specified private link resource
+     *
+     * <p>Get the specified private link resource for the given provisioning service.
      *
      * @param resourceGroupName The name of the resource group that contains the provisioning service.
      * @param resourceName The name of the provisioning service.
@@ -2868,7 +3012,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Get the specified private link resource for the given provisioning service.
+     * Get the specified private link resource
+     *
+     * <p>Get the specified private link resource for the given provisioning service.
      *
      * @param resourceGroupName The name of the resource group that contains the provisioning service.
      * @param resourceName The name of the provisioning service.
@@ -2886,7 +3032,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * List private endpoint connection properties.
+     * List private endpoint connections
+     *
+     * <p>List private endpoint connection properties.
      *
      * @param resourceGroupName The name of the resource group that contains the provisioning service.
      * @param resourceName The name of the provisioning service.
@@ -2935,7 +3083,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * List private endpoint connection properties.
+     * List private endpoint connections
+     *
+     * <p>List private endpoint connection properties.
      *
      * @param resourceGroupName The name of the resource group that contains the provisioning service.
      * @param resourceName The name of the provisioning service.
@@ -2982,7 +3132,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * List private endpoint connection properties.
+     * List private endpoint connections
+     *
+     * <p>List private endpoint connection properties.
      *
      * @param resourceGroupName The name of the resource group that contains the provisioning service.
      * @param resourceName The name of the provisioning service.
@@ -3000,7 +3152,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * List private endpoint connection properties.
+     * List private endpoint connections
+     *
+     * <p>List private endpoint connection properties.
      *
      * @param resourceGroupName The name of the resource group that contains the provisioning service.
      * @param resourceName The name of the provisioning service.
@@ -3016,7 +3170,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * List private endpoint connection properties.
+     * List private endpoint connections
+     *
+     * <p>List private endpoint connection properties.
      *
      * @param resourceGroupName The name of the resource group that contains the provisioning service.
      * @param resourceName The name of the provisioning service.
@@ -3033,7 +3189,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Get private endpoint connection properties.
+     * Get private endpoint connection
+     *
+     * <p>Get private endpoint connection properties.
      *
      * @param resourceGroupName The name of the resource group that contains the provisioning service.
      * @param resourceName The name of the provisioning service.
@@ -3090,7 +3248,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Get private endpoint connection properties.
+     * Get private endpoint connection
+     *
+     * <p>Get private endpoint connection properties.
      *
      * @param resourceGroupName The name of the resource group that contains the provisioning service.
      * @param resourceName The name of the provisioning service.
@@ -3145,7 +3305,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Get private endpoint connection properties.
+     * Get private endpoint connection
+     *
+     * <p>Get private endpoint connection properties.
      *
      * @param resourceGroupName The name of the resource group that contains the provisioning service.
      * @param resourceName The name of the provisioning service.
@@ -3164,7 +3326,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Get private endpoint connection properties.
+     * Get private endpoint connection
+     *
+     * <p>Get private endpoint connection properties.
      *
      * @param resourceGroupName The name of the resource group that contains the provisioning service.
      * @param resourceName The name of the provisioning service.
@@ -3182,7 +3346,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Get private endpoint connection properties.
+     * Get private endpoint connection
+     *
+     * <p>Get private endpoint connection properties.
      *
      * @param resourceGroupName The name of the resource group that contains the provisioning service.
      * @param resourceName The name of the provisioning service.
@@ -3202,7 +3368,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Create or update the status of a private endpoint connection with the specified name.
+     * Create or update private endpoint connection
+     *
+     * <p>Create or update the status of a private endpoint connection with the specified name.
      *
      * @param resourceGroupName The name of the resource group that contains the provisioning service.
      * @param resourceName The name of the provisioning service.
@@ -3272,7 +3440,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Create or update the status of a private endpoint connection with the specified name.
+     * Create or update private endpoint connection
+     *
+     * <p>Create or update the status of a private endpoint connection with the specified name.
      *
      * @param resourceGroupName The name of the resource group that contains the provisioning service.
      * @param resourceName The name of the provisioning service.
@@ -3341,7 +3511,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Create or update the status of a private endpoint connection with the specified name.
+     * Create or update private endpoint connection
+     *
+     * <p>Create or update the status of a private endpoint connection with the specified name.
      *
      * @param resourceGroupName The name of the resource group that contains the provisioning service.
      * @param resourceName The name of the provisioning service.
@@ -3373,7 +3545,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Create or update the status of a private endpoint connection with the specified name.
+     * Create or update private endpoint connection
+     *
+     * <p>Create or update the status of a private endpoint connection with the specified name.
      *
      * @param resourceGroupName The name of the resource group that contains the provisioning service.
      * @param resourceName The name of the provisioning service.
@@ -3408,7 +3582,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Create or update the status of a private endpoint connection with the specified name.
+     * Create or update private endpoint connection
+     *
+     * <p>Create or update the status of a private endpoint connection with the specified name.
      *
      * @param resourceGroupName The name of the resource group that contains the provisioning service.
      * @param resourceName The name of the provisioning service.
@@ -3432,7 +3608,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Create or update the status of a private endpoint connection with the specified name.
+     * Create or update private endpoint connection
+     *
+     * <p>Create or update the status of a private endpoint connection with the specified name.
      *
      * @param resourceGroupName The name of the resource group that contains the provisioning service.
      * @param resourceName The name of the provisioning service.
@@ -3458,7 +3636,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Create or update the status of a private endpoint connection with the specified name.
+     * Create or update private endpoint connection
+     *
+     * <p>Create or update the status of a private endpoint connection with the specified name.
      *
      * @param resourceGroupName The name of the resource group that contains the provisioning service.
      * @param resourceName The name of the provisioning service.
@@ -3482,7 +3662,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Create or update the status of a private endpoint connection with the specified name.
+     * Create or update private endpoint connection
+     *
+     * <p>Create or update the status of a private endpoint connection with the specified name.
      *
      * @param resourceGroupName The name of the resource group that contains the provisioning service.
      * @param resourceName The name of the provisioning service.
@@ -3508,7 +3690,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Create or update the status of a private endpoint connection with the specified name.
+     * Create or update private endpoint connection
+     *
+     * <p>Create or update the status of a private endpoint connection with the specified name.
      *
      * @param resourceGroupName The name of the resource group that contains the provisioning service.
      * @param resourceName The name of the provisioning service.
@@ -3531,7 +3715,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Create or update the status of a private endpoint connection with the specified name.
+     * Create or update private endpoint connection
+     *
+     * <p>Create or update the status of a private endpoint connection with the specified name.
      *
      * @param resourceGroupName The name of the resource group that contains the provisioning service.
      * @param resourceName The name of the provisioning service.
@@ -3556,7 +3742,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Delete private endpoint connection with the specified name.
+     * Delete private endpoint connection
+     *
+     * <p>Delete private endpoint connection with the specified name.
      *
      * @param resourceGroupName The name of the resource group that contains the provisioning service.
      * @param resourceName The name of the provisioning service.
@@ -3613,7 +3801,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Delete private endpoint connection with the specified name.
+     * Delete private endpoint connection
+     *
+     * <p>Delete private endpoint connection with the specified name.
      *
      * @param resourceGroupName The name of the resource group that contains the provisioning service.
      * @param resourceName The name of the provisioning service.
@@ -3668,7 +3858,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Delete private endpoint connection with the specified name.
+     * Delete private endpoint connection
+     *
+     * <p>Delete private endpoint connection with the specified name.
      *
      * @param resourceGroupName The name of the resource group that contains the provisioning service.
      * @param resourceName The name of the provisioning service.
@@ -3696,7 +3888,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Delete private endpoint connection with the specified name.
+     * Delete private endpoint connection
+     *
+     * <p>Delete private endpoint connection with the specified name.
      *
      * @param resourceGroupName The name of the resource group that contains the provisioning service.
      * @param resourceName The name of the provisioning service.
@@ -3726,7 +3920,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Delete private endpoint connection with the specified name.
+     * Delete private endpoint connection
+     *
+     * <p>Delete private endpoint connection with the specified name.
      *
      * @param resourceGroupName The name of the resource group that contains the provisioning service.
      * @param resourceName The name of the provisioning service.
@@ -3745,7 +3941,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Delete private endpoint connection with the specified name.
+     * Delete private endpoint connection
+     *
+     * <p>Delete private endpoint connection with the specified name.
      *
      * @param resourceGroupName The name of the resource group that contains the provisioning service.
      * @param resourceName The name of the provisioning service.
@@ -3766,7 +3964,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Delete private endpoint connection with the specified name.
+     * Delete private endpoint connection
+     *
+     * <p>Delete private endpoint connection with the specified name.
      *
      * @param resourceGroupName The name of the resource group that contains the provisioning service.
      * @param resourceName The name of the provisioning service.
@@ -3785,7 +3985,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Delete private endpoint connection with the specified name.
+     * Delete private endpoint connection
+     *
+     * <p>Delete private endpoint connection with the specified name.
      *
      * @param resourceGroupName The name of the resource group that contains the provisioning service.
      * @param resourceName The name of the provisioning service.
@@ -3806,7 +4008,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Delete private endpoint connection with the specified name.
+     * Delete private endpoint connection
+     *
+     * <p>Delete private endpoint connection with the specified name.
      *
      * @param resourceGroupName The name of the resource group that contains the provisioning service.
      * @param resourceName The name of the provisioning service.
@@ -3824,7 +4028,9 @@ public final class IotDpsResourcesClientImpl implements IotDpsResourcesClient {
     }
 
     /**
-     * Delete private endpoint connection with the specified name.
+     * Delete private endpoint connection
+     *
+     * <p>Delete private endpoint connection with the specified name.
      *
      * @param resourceGroupName The name of the resource group that contains the provisioning service.
      * @param resourceName The name of the provisioning service.

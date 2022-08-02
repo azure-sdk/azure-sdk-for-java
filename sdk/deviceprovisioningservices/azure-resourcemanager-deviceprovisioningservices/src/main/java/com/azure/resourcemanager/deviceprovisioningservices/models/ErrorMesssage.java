@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Error response containing message and code. */
 @Fluent
-public final class ErrorMessage {
+public final class ErrorMesssage {
     /*
      * standard error code
      */
@@ -41,9 +41,9 @@ public final class ErrorMessage {
      * Set the code property: standard error code.
      *
      * @param code the code value to set.
-     * @return the ErrorMessage object itself.
+     * @return the ErrorMesssage object itself.
      */
-    public ErrorMessage withCode(String code) {
+    public ErrorMesssage withCode(String code) {
         this.code = code;
         return this;
     }
@@ -61,9 +61,9 @@ public final class ErrorMessage {
      * Set the message property: standard error description.
      *
      * @param message the message value to set.
-     * @return the ErrorMessage object itself.
+     * @return the ErrorMesssage object itself.
      */
-    public ErrorMessage withMessage(String message) {
+    public ErrorMesssage withMessage(String message) {
         this.message = message;
         return this;
     }
@@ -81,9 +81,9 @@ public final class ErrorMessage {
      * Set the details property: detailed summary of error.
      *
      * @param details the details value to set.
-     * @return the ErrorMessage object itself.
+     * @return the ErrorMesssage object itself.
      */
-    public ErrorMessage withDetails(String details) {
+    public ErrorMesssage withDetails(String details) {
         this.details = details;
         return this;
     }

@@ -30,6 +30,9 @@ public enum IpFilterActionType {
      */
     @JsonCreator
     public static IpFilterActionType fromString(String value) {
+        if (value == null) {
+            return null;
+        }
         IpFilterActionType[] items = IpFilterActionType.values();
         for (IpFilterActionType item : items) {
             if (item.toString().equalsIgnoreCase(value)) {
