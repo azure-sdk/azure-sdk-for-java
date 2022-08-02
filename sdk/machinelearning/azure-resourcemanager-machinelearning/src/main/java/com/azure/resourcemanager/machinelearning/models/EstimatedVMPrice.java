@@ -12,25 +12,33 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Fluent
 public final class EstimatedVMPrice {
     /*
-     * Retail price The price charged for using the VM.
+     * Retail price
+     *
+     * The price charged for using the VM.
      */
     @JsonProperty(value = "retailPrice", required = true)
     private double retailPrice;
 
     /*
-     * OS type Operating system type used by the VM.
+     * OS type
+     *
+     * Operating system type used by the VM.
      */
     @JsonProperty(value = "osType", required = true)
     private VMPriceOSType osType;
 
     /*
-     * VM tier The type of the VM.
+     * VM tier
+     *
+     * The type of the VM.
      */
     @JsonProperty(value = "vmTier", required = true)
     private VMTier vmTier;
 
     /**
-     * Get the retailPrice property: Retail price The price charged for using the VM.
+     * Get the retailPrice property: Retail price
+     *
+     * <p>The price charged for using the VM.
      *
      * @return the retailPrice value.
      */
@@ -39,7 +47,9 @@ public final class EstimatedVMPrice {
     }
 
     /**
-     * Set the retailPrice property: Retail price The price charged for using the VM.
+     * Set the retailPrice property: Retail price
+     *
+     * <p>The price charged for using the VM.
      *
      * @param retailPrice the retailPrice value to set.
      * @return the EstimatedVMPrice object itself.
@@ -50,7 +60,9 @@ public final class EstimatedVMPrice {
     }
 
     /**
-     * Get the osType property: OS type Operating system type used by the VM.
+     * Get the osType property: OS type
+     *
+     * <p>Operating system type used by the VM.
      *
      * @return the osType value.
      */
@@ -59,7 +71,9 @@ public final class EstimatedVMPrice {
     }
 
     /**
-     * Set the osType property: OS type Operating system type used by the VM.
+     * Set the osType property: OS type
+     *
+     * <p>Operating system type used by the VM.
      *
      * @param osType the osType value to set.
      * @return the EstimatedVMPrice object itself.
@@ -70,7 +84,9 @@ public final class EstimatedVMPrice {
     }
 
     /**
-     * Get the vmTier property: VM tier The type of the VM.
+     * Get the vmTier property: VM tier
+     *
+     * <p>The type of the VM.
      *
      * @return the vmTier value.
      */
@@ -79,7 +95,9 @@ public final class EstimatedVMPrice {
     }
 
     /**
-     * Set the vmTier property: VM tier The type of the VM.
+     * Set the vmTier property: VM tier
+     *
+     * <p>The type of the VM.
      *
      * @param vmTier the vmTier value to set.
      * @return the EstimatedVMPrice object itself.
