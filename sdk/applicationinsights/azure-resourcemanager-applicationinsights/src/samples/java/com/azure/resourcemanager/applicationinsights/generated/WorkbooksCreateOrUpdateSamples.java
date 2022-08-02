@@ -4,17 +4,18 @@
 
 package com.azure.resourcemanager.applicationinsights.generated;
 
+import com.azure.resourcemanager.applicationinsights.models.Kind;
 import com.azure.resourcemanager.applicationinsights.models.ManagedServiceIdentityType;
 import com.azure.resourcemanager.applicationinsights.models.UserAssignedIdentity;
 import com.azure.resourcemanager.applicationinsights.models.WorkbookResourceIdentity;
-import com.azure.resourcemanager.applicationinsights.models.WorkbookSharedTypeKind;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
 /** Samples for Workbooks CreateOrUpdate. */
 public final class WorkbooksCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/applicationinsights/resource-manager/Microsoft.Insights/stable/2022-04-01/examples/WorkbookManagedAdd.json
+     * x-ms-original-file: specification/applicationinsights/resource-manager/Microsoft.Insights/stable/2021-08-01/examples/WorkbookManagedAdd.json
      */
     /**
      * Sample code: WorkbookManagedAdd.
@@ -28,30 +29,32 @@ public final class WorkbooksCreateOrUpdateSamples {
             .define("deadb33f-5e0d-4064-8ebb-1a4ed0313eb2")
             .withRegion("westus")
             .withExistingResourceGroup("my-resource-group")
+            .withTags(mapOf("hidden-title", "tttt"))
             .withIdentity(
                 new WorkbookResourceIdentity()
                     .withType(ManagedServiceIdentityType.USER_ASSIGNED)
                     .withUserAssignedIdentities(
                         mapOf(
-                            "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/my-resource-group/providers/Microsoft.ManagedIdentity/userAssignedIdentities/myid",
+                            "/subscriptions/6b643656-33eb-422f-aee8-3ac145d124af/resourceGroups/eu2cgroup/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id1",
                             new UserAssignedIdentity())))
-            .withKind(WorkbookSharedTypeKind.SHARED)
-            .withDisplayName("Sample workbook")
+            .withKind(Kind.SHARED)
+            .withEtag("\"4a00f78d-0000-0700-0000-5f8f616c1000\"")
+            .withDisplayName("tttt")
             .withSerializedData(
                 "{\"version\":\"Notebook/1.0\",\"items\":[{\"type\":1,\"content\":{\"json\":\"test\"},\"name\":\"text -"
-                    + " 0\"}],\"isLocked\":false,\"fallbackResourceIds\":[\"/subscriptions/00000000-0000-0000-0000-00000000/resourceGroups/my-resource-group\"]}")
+                    + " 0\"}],\"isLocked\":false,\"fallbackResourceIds\":[\"/subscriptions/00000000-0000-0000-0000-00000000/resourceGroups/MyGroup\"]}")
             .withVersion("Notebook/1.0")
             .withCategory("workbook")
+            .withTagsPropertiesTags(Arrays.asList())
             .withStorageUri(
-                "/subscriptions/6b643656-33eb-422f-aee8-3ac145d124af/resourceGroups/my-resource-group/providers/Microsoft.Storage/storageAccounts/mystorage/blobServices/default/containers/mycontainer")
+                "/subscriptions/6b643656-33eb-422f-aee8-3ac145d124af/resourceGroups/MyGroup/providers/Microsoft.Storage/storageAccounts/testStorage/blobServices/default/containers/testContainer")
             .withDescription("Sample workbook")
-            .withSourceIdParameter(
-                "/subscriptions/6b643656-33eb-422f-aee8-3ac145d124af/resourcegroups/my-resource-group")
+            .withSourceIdParameter("/subscriptions/6b643656-33eb-422f-aee8-3ac145d124af/resourcegroups/MyGroup")
             .create();
     }
 
     /*
-     * x-ms-original-file: specification/applicationinsights/resource-manager/Microsoft.Insights/stable/2022-04-01/examples/WorkbookAdd.json
+     * x-ms-original-file: specification/applicationinsights/resource-manager/Microsoft.Insights/stable/2021-08-01/examples/WorkbookAdd.json
      */
     /**
      * Sample code: WorkbookAdd.
@@ -61,12 +64,12 @@ public final class WorkbooksCreateOrUpdateSamples {
     public static void workbookAdd(com.azure.resourcemanager.applicationinsights.ApplicationInsightsManager manager) {
         manager
             .workbooks()
-            .define("deadb33f-5e0d-4064-8ebb-1a4ed0313eb2")
-            .withRegion("westus")
+            .define("deadb33f-8bee-4d3b-a059-9be8dac93960")
+            .withRegion("west us")
             .withExistingResourceGroup("my-resource-group")
             .withTags(mapOf("TagSample01", "sample01", "TagSample02", "sample02"))
-            .withKind(WorkbookSharedTypeKind.SHARED)
-            .withDisplayName("Sample workbook")
+            .withKind(Kind.SHARED)
+            .withDisplayName("tttt")
             .withSerializedData(
                 "{\"version\":\"Notebook/1.0\",\"items\":[{\"type\":1,\"content\":\"{\"json\":\"## New workbook\\r"
                     + "\\n"
@@ -89,8 +92,7 @@ public final class WorkbooksCreateOrUpdateSamples {
                     + " barchart\",\"showQuery\":false,\"size\":1,\"aggregation\":0,\"showAnnotations\":false}\",\"halfWidth\":null,\"conditionalVisibility\":null}],\"isLocked\":false}")
             .withCategory("workbook")
             .withDescription("Sample workbook")
-            .withSourceIdParameter(
-                "/subscriptions/6b643656-33eb-422f-aee8-3ac145d124af/resourcegroups/my-resource-group")
+            .withSourceIdParameter("/subscriptions/6b643656-33eb-422f-aee8-3ac145d124af/resourcegroups/MyGroup")
             .create();
     }
 

@@ -30,6 +30,9 @@ public enum FavoriteType {
      */
     @JsonCreator
     public static FavoriteType fromString(String value) {
+        if (value == null) {
+            return null;
+        }
         FavoriteType[] items = FavoriteType.values();
         for (FavoriteType item : items) {
             if (item.toString().equalsIgnoreCase(value)) {

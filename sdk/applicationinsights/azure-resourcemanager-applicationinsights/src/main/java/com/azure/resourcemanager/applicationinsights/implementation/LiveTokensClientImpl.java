@@ -52,7 +52,7 @@ public final class LiveTokensClientImpl implements LiveTokensClient {
     @ServiceInterface(name = "ApplicationInsightsM")
     private interface LiveTokensService {
         @Headers({"Content-Type: application/json"})
-        @Post("/{resourceUri}/providers/Microsoft.Insights/generatelivetoken")
+        @Post("/{resourceUri}/providers/microsoft.insights/generatelivetoken")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<LiveTokenResponseInner>> get(
@@ -83,7 +83,7 @@ public final class LiveTokensClientImpl implements LiveTokensClient {
         if (resourceUri == null) {
             return Mono.error(new IllegalArgumentException("Parameter resourceUri is required and cannot be null."));
         }
-        final String apiVersion = "2021-10-14";
+        final String apiVersion = "2020-06-02-preview";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.get(this.client.getEndpoint(), resourceUri, apiVersion, accept, context))
@@ -111,7 +111,7 @@ public final class LiveTokensClientImpl implements LiveTokensClient {
         if (resourceUri == null) {
             return Mono.error(new IllegalArgumentException("Parameter resourceUri is required and cannot be null."));
         }
-        final String apiVersion = "2021-10-14";
+        final String apiVersion = "2020-06-02-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.get(this.client.getEndpoint(), resourceUri, apiVersion, accept, context);

@@ -30,6 +30,9 @@ public enum WebTestKind {
      */
     @JsonCreator
     public static WebTestKind fromString(String value) {
+        if (value == null) {
+            return null;
+        }
         WebTestKind[] items = WebTestKind.values();
         for (WebTestKind item : items) {
             if (item.toString().equalsIgnoreCase(value)) {

@@ -70,11 +70,9 @@ public final class WorkbooksImpl implements Workbooks {
     }
 
     public Response<Workbook> getByResourceGroupWithResponse(
-        String resourceGroupName, String resourceName, Boolean canFetchContent, Context context) {
+        String resourceGroupName, String resourceName, Context context) {
         Response<WorkbookInner> inner =
-            this
-                .serviceClient()
-                .getByResourceGroupWithResponse(resourceGroupName, resourceName, canFetchContent, context);
+            this.serviceClient().getByResourceGroupWithResponse(resourceGroupName, resourceName, context);
         if (inner != null) {
             return new SimpleResponse<>(
                 inner.getRequest(),
@@ -145,13 +143,10 @@ public final class WorkbooksImpl implements Workbooks {
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'workbooks'.", id)));
         }
-        Boolean localCanFetchContent = null;
-        return this
-            .getByResourceGroupWithResponse(resourceGroupName, resourceName, localCanFetchContent, Context.NONE)
-            .getValue();
+        return this.getByResourceGroupWithResponse(resourceGroupName, resourceName, Context.NONE).getValue();
     }
 
-    public Response<Workbook> getByIdWithResponse(String id, Boolean canFetchContent, Context context) {
+    public Response<Workbook> getByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
             throw LOGGER
@@ -167,7 +162,7 @@ public final class WorkbooksImpl implements Workbooks {
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'workbooks'.", id)));
         }
-        return this.getByResourceGroupWithResponse(resourceGroupName, resourceName, canFetchContent, context);
+        return this.getByResourceGroupWithResponse(resourceGroupName, resourceName, context);
     }
 
     public void deleteById(String id) {

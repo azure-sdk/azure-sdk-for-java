@@ -57,11 +57,11 @@ public interface Workbook {
     WorkbookResourceIdentity identity();
 
     /**
-     * Gets the kind property: The kind of workbook. Only valid value is shared.
+     * Gets the kind property: The kind of workbook. Choices are user and shared.
      *
      * @return the kind value.
      */
-    WorkbookSharedTypeKind kind();
+    Kind kind();
 
     /**
      * Gets the etag property: Resource etag.
@@ -281,12 +281,12 @@ public interface Workbook {
         /** The stage of the Workbook definition allowing to specify kind. */
         interface WithKind {
             /**
-             * Specifies the kind property: The kind of workbook. Only valid value is shared..
+             * Specifies the kind property: The kind of workbook. Choices are user and shared..
              *
-             * @param kind The kind of workbook. Only valid value is shared.
+             * @param kind The kind of workbook. Choices are user and shared.
              * @return the next definition stage.
              */
-            WithCreate withKind(WorkbookSharedTypeKind kind);
+            WithCreate withKind(Kind kind);
         }
         /** The stage of the Workbook definition allowing to specify etag. */
         interface WithEtag {
@@ -442,12 +442,12 @@ public interface Workbook {
         /** The stage of the Workbook update allowing to specify kind. */
         interface WithKind {
             /**
-             * Specifies the kind property: The kind of workbook. Only valid value is shared..
+             * Specifies the kind property: The kind of workbook. Choices are user and shared..
              *
-             * @param kind The kind of workbook. Only valid value is shared.
+             * @param kind The kind of workbook. Choices are user and shared.
              * @return the next definition stage.
              */
-            Update withKind(WorkbookUpdateSharedTypeKind kind);
+            Update withKind(SharedTypeKind kind);
         }
         /** The stage of the Workbook update allowing to specify displayName. */
         interface WithDisplayName {

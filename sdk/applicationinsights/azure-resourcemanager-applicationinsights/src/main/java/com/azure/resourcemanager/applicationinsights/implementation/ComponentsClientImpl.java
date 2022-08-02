@@ -90,7 +90,7 @@ public final class ComponentsClientImpl implements ComponentsClient {
             @HeaderParam("Accept") String accept,
             Context context);
 
-        @Headers({"Content-Type: application/json"})
+        @Headers({"Accept: application/json;q=0.9", "Content-Type: application/json"})
         @Delete(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Insights/components"
                 + "/{resourceName}")
@@ -102,7 +102,6 @@ public final class ComponentsClientImpl implements ComponentsClient {
             @QueryParam("api-version") String apiVersion,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceName") String resourceName,
-            @HeaderParam("Accept") String accept,
             Context context);
 
         @Headers({"Content-Type: application/json"})
@@ -124,7 +123,7 @@ public final class ComponentsClientImpl implements ComponentsClient {
         @Put(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Insights/components"
                 + "/{resourceName}")
-        @ExpectedResponses({200})
+        @ExpectedResponses({200, 201})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<ApplicationInsightsComponentInner>> createOrUpdate(
             @HostParam("$host") String endpoint,
@@ -140,7 +139,7 @@ public final class ComponentsClientImpl implements ComponentsClient {
         @Patch(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Insights/components"
                 + "/{resourceName}")
-        @ExpectedResponses({200})
+        @ExpectedResponses({200, 201})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<ApplicationInsightsComponentInner>> updateTags(
             @HostParam("$host") String endpoint,
@@ -227,7 +226,7 @@ public final class ComponentsClientImpl implements ComponentsClient {
                     new IllegalArgumentException(
                         "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        final String apiVersion = "2020-02-02";
+        final String apiVersion = "2018-05-01-preview";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -270,7 +269,7 @@ public final class ComponentsClientImpl implements ComponentsClient {
                     new IllegalArgumentException(
                         "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        final String apiVersion = "2020-02-02";
+        final String apiVersion = "2018-05-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
@@ -372,7 +371,7 @@ public final class ComponentsClientImpl implements ComponentsClient {
                     new IllegalArgumentException(
                         "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        final String apiVersion = "2020-02-02";
+        final String apiVersion = "2018-05-01-preview";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -427,7 +426,7 @@ public final class ComponentsClientImpl implements ComponentsClient {
                     new IllegalArgumentException(
                         "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        final String apiVersion = "2020-02-02";
+        final String apiVersion = "2018-05-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
@@ -548,8 +547,7 @@ public final class ComponentsClientImpl implements ComponentsClient {
         if (resourceName == null) {
             return Mono.error(new IllegalArgumentException("Parameter resourceName is required and cannot be null."));
         }
-        final String apiVersion = "2020-02-02";
-        final String accept = "application/json";
+        final String apiVersion = "2018-05-01-preview";
         return FluxUtil
             .withContext(
                 context ->
@@ -560,7 +558,6 @@ public final class ComponentsClientImpl implements ComponentsClient {
                             apiVersion,
                             this.client.getSubscriptionId(),
                             resourceName,
-                            accept,
                             context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
@@ -598,8 +595,7 @@ public final class ComponentsClientImpl implements ComponentsClient {
         if (resourceName == null) {
             return Mono.error(new IllegalArgumentException("Parameter resourceName is required and cannot be null."));
         }
-        final String apiVersion = "2020-02-02";
-        final String accept = "application/json";
+        final String apiVersion = "2018-05-01-preview";
         context = this.client.mergeContext(context);
         return service
             .delete(
@@ -608,7 +604,6 @@ public final class ComponentsClientImpl implements ComponentsClient {
                 apiVersion,
                 this.client.getSubscriptionId(),
                 resourceName,
-                accept,
                 context);
     }
 
@@ -690,7 +685,7 @@ public final class ComponentsClientImpl implements ComponentsClient {
         if (resourceName == null) {
             return Mono.error(new IllegalArgumentException("Parameter resourceName is required and cannot be null."));
         }
-        final String apiVersion = "2020-02-02";
+        final String apiVersion = "2018-05-01-preview";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -741,7 +736,7 @@ public final class ComponentsClientImpl implements ComponentsClient {
         if (resourceName == null) {
             return Mono.error(new IllegalArgumentException("Parameter resourceName is required and cannot be null."));
         }
-        final String apiVersion = "2020-02-02";
+        final String apiVersion = "2018-05-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
@@ -845,7 +840,7 @@ public final class ComponentsClientImpl implements ComponentsClient {
         } else {
             insightProperties.validate();
         }
-        final String apiVersion = "2020-02-02";
+        final String apiVersion = "2018-05-01-preview";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -908,7 +903,7 @@ public final class ComponentsClientImpl implements ComponentsClient {
         } else {
             insightProperties.validate();
         }
-        final String apiVersion = "2020-02-02";
+        final String apiVersion = "2018-05-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
@@ -1021,7 +1016,7 @@ public final class ComponentsClientImpl implements ComponentsClient {
         } else {
             componentTags.validate();
         }
-        final String apiVersion = "2020-02-02";
+        final String apiVersion = "2018-05-01-preview";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -1079,7 +1074,7 @@ public final class ComponentsClientImpl implements ComponentsClient {
         } else {
             componentTags.validate();
         }
-        final String apiVersion = "2020-02-02";
+        final String apiVersion = "2018-05-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
@@ -1191,7 +1186,7 @@ public final class ComponentsClientImpl implements ComponentsClient {
         } else {
             body.validate();
         }
-        final String apiVersion = "2020-02-02";
+        final String apiVersion = "2018-05-01-preview";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -1254,7 +1249,7 @@ public final class ComponentsClientImpl implements ComponentsClient {
         } else {
             body.validate();
         }
-        final String apiVersion = "2020-02-02";
+        final String apiVersion = "2018-05-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
@@ -1373,7 +1368,7 @@ public final class ComponentsClientImpl implements ComponentsClient {
         if (purgeId == null) {
             return Mono.error(new IllegalArgumentException("Parameter purgeId is required and cannot be null."));
         }
-        final String apiVersion = "2020-02-02";
+        final String apiVersion = "2018-05-01-preview";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -1429,7 +1424,7 @@ public final class ComponentsClientImpl implements ComponentsClient {
         if (purgeId == null) {
             return Mono.error(new IllegalArgumentException("Parameter purgeId is required and cannot be null."));
         }
-        final String apiVersion = "2020-02-02";
+        final String apiVersion = "2018-05-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service

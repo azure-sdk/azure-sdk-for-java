@@ -8,11 +8,11 @@ import com.azure.core.management.Region;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.applicationinsights.fluent.models.WorkbookInner;
+import com.azure.resourcemanager.applicationinsights.models.Kind;
+import com.azure.resourcemanager.applicationinsights.models.SharedTypeKind;
 import com.azure.resourcemanager.applicationinsights.models.Workbook;
 import com.azure.resourcemanager.applicationinsights.models.WorkbookResourceIdentity;
-import com.azure.resourcemanager.applicationinsights.models.WorkbookSharedTypeKind;
 import com.azure.resourcemanager.applicationinsights.models.WorkbookUpdateParameters;
-import com.azure.resourcemanager.applicationinsights.models.WorkbookUpdateSharedTypeKind;
 import java.time.OffsetDateTime;
 import java.util.Collections;
 import java.util.List;
@@ -52,7 +52,7 @@ public final class WorkbookImpl implements Workbook, Workbook.Definition, Workbo
         return this.innerModel().identity();
     }
 
-    public WorkbookSharedTypeKind kind() {
+    public Kind kind() {
         return this.innerModel().kind();
     }
 
@@ -214,23 +214,21 @@ public final class WorkbookImpl implements Workbook, Workbook.Definition, Workbo
     }
 
     public Workbook refresh() {
-        Boolean localCanFetchContent = null;
         this.innerObject =
             serviceManager
                 .serviceClient()
                 .getWorkbooks()
-                .getByResourceGroupWithResponse(resourceGroupName, resourceName, localCanFetchContent, Context.NONE)
+                .getByResourceGroupWithResponse(resourceGroupName, resourceName, Context.NONE)
                 .getValue();
         return this;
     }
 
     public Workbook refresh(Context context) {
-        Boolean localCanFetchContent = null;
         this.innerObject =
             serviceManager
                 .serviceClient()
                 .getWorkbooks()
-                .getByResourceGroupWithResponse(resourceGroupName, resourceName, localCanFetchContent, context)
+                .getByResourceGroupWithResponse(resourceGroupName, resourceName, context)
                 .getValue();
         return this;
     }
@@ -260,7 +258,7 @@ public final class WorkbookImpl implements Workbook, Workbook.Definition, Workbo
         return this;
     }
 
-    public WorkbookImpl withKind(WorkbookSharedTypeKind kind) {
+    public WorkbookImpl withKind(Kind kind) {
         this.innerModel().withKind(kind);
         return this;
     }
@@ -345,7 +343,7 @@ public final class WorkbookImpl implements Workbook, Workbook.Definition, Workbo
         return this;
     }
 
-    public WorkbookImpl withKind(WorkbookUpdateSharedTypeKind kind) {
+    public WorkbookImpl withKind(SharedTypeKind kind) {
         this.updateWorkbookUpdateParameters.withKind(kind);
         return this;
     }

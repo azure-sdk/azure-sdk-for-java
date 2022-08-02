@@ -60,20 +60,12 @@ public final class ApplicationInsightsComponentImpl
         return this.innerModel().kind();
     }
 
-    public String etag() {
-        return this.innerModel().etag();
-    }
-
     public String applicationId() {
         return this.innerModel().applicationId();
     }
 
     public String appId() {
         return this.innerModel().appId();
-    }
-
-    public String namePropertiesName() {
-        return this.innerModel().namePropertiesName();
     }
 
     public ApplicationType applicationType() {
@@ -132,14 +124,6 @@ public final class ApplicationInsightsComponentImpl
         return this.innerModel().immediatePurgeDataOn30Days();
     }
 
-    public String workspaceResourceId() {
-        return this.innerModel().workspaceResourceId();
-    }
-
-    public OffsetDateTime laMigrationDate() {
-        return this.innerModel().laMigrationDate();
-    }
-
     public List<PrivateLinkScopedResource> privateLinkScopedResources() {
         List<PrivateLinkScopedResource> inner = this.innerModel().privateLinkScopedResources();
         if (inner != null) {
@@ -159,14 +143,6 @@ public final class ApplicationInsightsComponentImpl
 
     public IngestionMode ingestionMode() {
         return this.innerModel().ingestionMode();
-    }
-
-    public Boolean disableLocalAuth() {
-        return this.innerModel().disableLocalAuth();
-    }
-
-    public Boolean forceCustomerStorageForProfiler() {
-        return this.innerModel().forceCustomerStorageForProfiler();
     }
 
     public Region region() {
@@ -314,11 +290,6 @@ public final class ApplicationInsightsComponentImpl
         }
     }
 
-    public ApplicationInsightsComponentImpl withEtag(String etag) {
-        this.innerModel().withEtag(etag);
-        return this;
-    }
-
     public ApplicationInsightsComponentImpl withApplicationType(ApplicationType applicationType) {
         this.innerModel().withApplicationType(applicationType);
         return this;
@@ -359,11 +330,6 @@ public final class ApplicationInsightsComponentImpl
         return this;
     }
 
-    public ApplicationInsightsComponentImpl withWorkspaceResourceId(String workspaceResourceId) {
-        this.innerModel().withWorkspaceResourceId(workspaceResourceId);
-        return this;
-    }
-
     public ApplicationInsightsComponentImpl withPublicNetworkAccessForIngestion(
         PublicNetworkAccessType publicNetworkAccessForIngestion) {
         this.innerModel().withPublicNetworkAccessForIngestion(publicNetworkAccessForIngestion);
@@ -378,17 +344,6 @@ public final class ApplicationInsightsComponentImpl
 
     public ApplicationInsightsComponentImpl withIngestionMode(IngestionMode ingestionMode) {
         this.innerModel().withIngestionMode(ingestionMode);
-        return this;
-    }
-
-    public ApplicationInsightsComponentImpl withDisableLocalAuth(Boolean disableLocalAuth) {
-        this.innerModel().withDisableLocalAuth(disableLocalAuth);
-        return this;
-    }
-
-    public ApplicationInsightsComponentImpl withForceCustomerStorageForProfiler(
-        Boolean forceCustomerStorageForProfiler) {
-        this.innerModel().withForceCustomerStorageForProfiler(forceCustomerStorageForProfiler);
         return this;
     }
 
