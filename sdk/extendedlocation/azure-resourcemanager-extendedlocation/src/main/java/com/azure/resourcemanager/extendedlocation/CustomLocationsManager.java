@@ -26,9 +26,7 @@ import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.extendedlocation.fluent.CustomLocationsManagementClient;
 import com.azure.resourcemanager.extendedlocation.implementation.CustomLocationsImpl;
 import com.azure.resourcemanager.extendedlocation.implementation.CustomLocationsManagementClientBuilder;
-import com.azure.resourcemanager.extendedlocation.implementation.ResourceSyncRulesImpl;
 import com.azure.resourcemanager.extendedlocation.models.CustomLocations;
-import com.azure.resourcemanager.extendedlocation.models.ResourceSyncRules;
 import java.time.Duration;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
@@ -39,8 +37,6 @@ import java.util.stream.Collectors;
 /** Entry point to CustomLocationsManager. The customLocations Rest API spec. */
 public final class CustomLocationsManager {
     private CustomLocations customLocations;
-
-    private ResourceSyncRules resourceSyncRules;
 
     private final CustomLocationsManagementClient clientObject;
 
@@ -207,7 +203,7 @@ public final class CustomLocationsManager {
                 .append("-")
                 .append("com.azure.resourcemanager.extendedlocation")
                 .append("/")
-                .append("1.0.0-beta.2");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder
                     .append(" (")
@@ -274,18 +270,6 @@ public final class CustomLocationsManager {
             this.customLocations = new CustomLocationsImpl(clientObject.getCustomLocations(), this);
         }
         return customLocations;
-    }
-
-    /**
-     * Gets the resource collection API of ResourceSyncRules. It manages ResourceSyncRule.
-     *
-     * @return Resource collection API of ResourceSyncRules.
-     */
-    public ResourceSyncRules resourceSyncRules() {
-        if (this.resourceSyncRules == null) {
-            this.resourceSyncRules = new ResourceSyncRulesImpl(clientObject.getResourceSyncRules(), this);
-        }
-        return resourceSyncRules;
     }
 
     /**
