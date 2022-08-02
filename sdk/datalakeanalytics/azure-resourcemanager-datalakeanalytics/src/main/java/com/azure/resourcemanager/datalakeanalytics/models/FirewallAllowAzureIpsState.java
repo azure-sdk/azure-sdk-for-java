@@ -30,6 +30,9 @@ public enum FirewallAllowAzureIpsState {
      */
     @JsonCreator
     public static FirewallAllowAzureIpsState fromString(String value) {
+        if (value == null) {
+            return null;
+        }
         FirewallAllowAzureIpsState[] items = FirewallAllowAzureIpsState.values();
         for (FirewallAllowAzureIpsState item : items) {
             if (item.toString().equalsIgnoreCase(value)) {

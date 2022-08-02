@@ -33,6 +33,9 @@ public enum DebugDataAccessLevel {
      */
     @JsonCreator
     public static DebugDataAccessLevel fromString(String value) {
+        if (value == null) {
+            return null;
+        }
         DebugDataAccessLevel[] items = DebugDataAccessLevel.values();
         for (DebugDataAccessLevel item : items) {
             if (item.toString().equalsIgnoreCase(value)) {

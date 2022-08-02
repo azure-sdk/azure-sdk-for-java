@@ -33,6 +33,9 @@ public enum VirtualNetworkRuleState {
      */
     @JsonCreator
     public static VirtualNetworkRuleState fromString(String value) {
+        if (value == null) {
+            return null;
+        }
         VirtualNetworkRuleState[] items = VirtualNetworkRuleState.values();
         for (VirtualNetworkRuleState item : items) {
             if (item.toString().equalsIgnoreCase(value)) {

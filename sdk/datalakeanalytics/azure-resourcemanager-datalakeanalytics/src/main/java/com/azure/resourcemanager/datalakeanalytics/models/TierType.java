@@ -51,6 +51,9 @@ public enum TierType {
      */
     @JsonCreator
     public static TierType fromString(String value) {
+        if (value == null) {
+            return null;
+        }
         TierType[] items = TierType.values();
         for (TierType item : items) {
             if (item.toString().equalsIgnoreCase(value)) {

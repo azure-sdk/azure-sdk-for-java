@@ -33,6 +33,9 @@ public enum NestedResourceProvisioningState {
      */
     @JsonCreator
     public static NestedResourceProvisioningState fromString(String value) {
+        if (value == null) {
+            return null;
+        }
         NestedResourceProvisioningState[] items = NestedResourceProvisioningState.values();
         for (NestedResourceProvisioningState item : items) {
             if (item.toString().equalsIgnoreCase(value)) {
