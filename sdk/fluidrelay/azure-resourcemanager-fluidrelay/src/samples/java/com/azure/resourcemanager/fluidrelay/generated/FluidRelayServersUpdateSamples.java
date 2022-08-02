@@ -12,14 +12,14 @@ import java.util.Map;
 /** Samples for FluidRelayServers Update. */
 public final class FluidRelayServersUpdateSamples {
     /*
-     * x-ms-original-file: specification/fluidrelay/resource-manager/Microsoft.FluidRelay/stable/2022-06-01/examples/FluidRelayServers_Update.json
+     * x-ms-original-file: specification/fluidrelay/resource-manager/Microsoft.FluidRelay/preview/2021-06-15-preview/examples/FluidRelayServers_Update.json
      */
     /**
-     * Sample code: Update a Fluid Relay server.
+     * Sample code: Create a Fluid Relay server.
      *
      * @param manager Entry point to FluidRelayManager.
      */
-    public static void updateAFluidRelayServer(com.azure.resourcemanager.fluidrelay.FluidRelayManager manager) {
+    public static void createAFluidRelayServer(com.azure.resourcemanager.fluidrelay.FluidRelayManager manager) {
         FluidRelayServer resource =
             manager
                 .fluidRelayServers()

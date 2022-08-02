@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for FluidRelayOperations List. */
 public final class FluidRelayOperationsListSamples {
     /*
-     * x-ms-original-file: specification/fluidrelay/resource-manager/Microsoft.FluidRelay/stable/2022-06-01/examples/FluidRelayServerOperations.json
+     * x-ms-original-file: specification/fluidrelay/resource-manager/Microsoft.FluidRelay/preview/2021-06-15-preview/examples/FluidRelayServerOperations.json
      */
     /**
      * Sample code: List Fluid Relay server operations.

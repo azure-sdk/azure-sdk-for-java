@@ -6,10 +6,10 @@ package com.azure.resourcemanager.fluidrelay.generated;
 
 import com.azure.core.util.Context;
 
-/** Samples for FluidRelayServers ListKeys. */
-public final class FluidRelayServersListKeysSamples {
+/** Samples for FluidRelayServers GetKeys. */
+public final class FluidRelayServersGetKeysSamples {
     /*
-     * x-ms-original-file: specification/fluidrelay/resource-manager/Microsoft.FluidRelay/stable/2022-06-01/examples/FluidRelayServers_ListKeys.json
+     * x-ms-original-file: specification/fluidrelay/resource-manager/Microsoft.FluidRelay/preview/2021-06-15-preview/examples/FluidRelayServers_GetKeys.json
      */
     /**
      * Sample code: Get keys for a Fluid Relay server.
@@ -17,6 +17,6 @@ public final class FluidRelayServersListKeysSamples {
      * @param manager Entry point to FluidRelayManager.
      */
     public static void getKeysForAFluidRelayServer(com.azure.resourcemanager.fluidrelay.FluidRelayManager manager) {
-        manager.fluidRelayServers().listKeysWithResponse("myResourceGroup", "myFluidRelayServer", Context.NONE);
+        manager.fluidRelayServers().getKeysWithResponse("myResourceGroup", "myFluidRelayServer", Context.NONE);
     }
 }

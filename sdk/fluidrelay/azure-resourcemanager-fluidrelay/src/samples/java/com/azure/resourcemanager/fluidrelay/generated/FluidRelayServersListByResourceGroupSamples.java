@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for FluidRelayServers ListByResourceGroup. */
 public final class FluidRelayServersListByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/fluidrelay/resource-manager/Microsoft.FluidRelay/stable/2022-06-01/examples/FluidRelayServers_ListByResourceGroup.json
+     * x-ms-original-file: specification/fluidrelay/resource-manager/Microsoft.FluidRelay/preview/2021-06-15-preview/examples/FluidRelayServers_ListByResourceGroup.json
      */
     /**
      * Sample code: List all Fluid Relay servers in a resource group.

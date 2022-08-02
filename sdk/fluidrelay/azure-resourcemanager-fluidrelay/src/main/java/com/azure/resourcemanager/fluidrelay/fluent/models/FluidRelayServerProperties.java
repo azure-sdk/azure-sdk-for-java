@@ -5,10 +5,8 @@
 package com.azure.resourcemanager.fluidrelay.fluent.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.resourcemanager.fluidrelay.models.EncryptionProperties;
 import com.azure.resourcemanager.fluidrelay.models.FluidRelayEndpoints;
 import com.azure.resourcemanager.fluidrelay.models.ProvisioningState;
-import com.azure.resourcemanager.fluidrelay.models.StorageSku;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** The properties of a Fluid Relay Service resource. */
@@ -27,24 +25,12 @@ public final class FluidRelayServerProperties {
     private FluidRelayEndpoints fluidRelayEndpoints;
 
     /*
+     * ProvisioningState
+     *
      * Provision states for FluidRelay RP
      */
     @JsonProperty(value = "provisioningState")
     private ProvisioningState provisioningState;
-
-    /*
-     * All encryption configuration for a resource.
-     */
-    @JsonProperty(value = "encryption")
-    private EncryptionProperties encryption;
-
-    /*
-     * StorageSKU
-     *
-     * Sku of the storage associated with the resource
-     */
-    @JsonProperty(value = "storagesku")
-    private StorageSku storagesku;
 
     /**
      * Get the frsTenantId property: The Fluid tenantId for this server.
@@ -65,7 +51,9 @@ public final class FluidRelayServerProperties {
     }
 
     /**
-     * Get the provisioningState property: Provision states for FluidRelay RP.
+     * Get the provisioningState property: ProvisioningState
+     *
+     * <p>Provision states for FluidRelay RP.
      *
      * @return the provisioningState value.
      */
@@ -74,57 +62,15 @@ public final class FluidRelayServerProperties {
     }
 
     /**
-     * Set the provisioningState property: Provision states for FluidRelay RP.
+     * Set the provisioningState property: ProvisioningState
+     *
+     * <p>Provision states for FluidRelay RP.
      *
      * @param provisioningState the provisioningState value to set.
      * @return the FluidRelayServerProperties object itself.
      */
     public FluidRelayServerProperties withProvisioningState(ProvisioningState provisioningState) {
         this.provisioningState = provisioningState;
-        return this;
-    }
-
-    /**
-     * Get the encryption property: All encryption configuration for a resource.
-     *
-     * @return the encryption value.
-     */
-    public EncryptionProperties encryption() {
-        return this.encryption;
-    }
-
-    /**
-     * Set the encryption property: All encryption configuration for a resource.
-     *
-     * @param encryption the encryption value to set.
-     * @return the FluidRelayServerProperties object itself.
-     */
-    public FluidRelayServerProperties withEncryption(EncryptionProperties encryption) {
-        this.encryption = encryption;
-        return this;
-    }
-
-    /**
-     * Get the storagesku property: StorageSKU
-     *
-     * <p>Sku of the storage associated with the resource.
-     *
-     * @return the storagesku value.
-     */
-    public StorageSku storagesku() {
-        return this.storagesku;
-    }
-
-    /**
-     * Set the storagesku property: StorageSKU
-     *
-     * <p>Sku of the storage associated with the resource.
-     *
-     * @param storagesku the storagesku value to set.
-     * @return the FluidRelayServerProperties object itself.
-     */
-    public FluidRelayServerProperties withStoragesku(StorageSku storagesku) {
-        this.storagesku = storagesku;
         return this;
     }
 
@@ -136,9 +82,6 @@ public final class FluidRelayServerProperties {
     public void validate() {
         if (fluidRelayEndpoints() != null) {
             fluidRelayEndpoints().validate();
-        }
-        if (encryption() != null) {
-            encryption().validate();
         }
     }
 }

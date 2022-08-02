@@ -4,21 +4,15 @@
 
 package com.azure.resourcemanager.fluidrelay.generated;
 
-import com.azure.resourcemanager.fluidrelay.models.CmkIdentityType;
-import com.azure.resourcemanager.fluidrelay.models.CustomerManagedKeyEncryptionProperties;
-import com.azure.resourcemanager.fluidrelay.models.CustomerManagedKeyEncryptionPropertiesKeyEncryptionKeyIdentity;
-import com.azure.resourcemanager.fluidrelay.models.EncryptionProperties;
 import com.azure.resourcemanager.fluidrelay.models.Identity;
 import com.azure.resourcemanager.fluidrelay.models.ResourceIdentityType;
-import com.azure.resourcemanager.fluidrelay.models.StorageSku;
-import com.azure.resourcemanager.fluidrelay.models.UserAssignedIdentitiesValue;
 import java.util.HashMap;
 import java.util.Map;
 
 /** Samples for FluidRelayServers CreateOrUpdate. */
 public final class FluidRelayServersCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/fluidrelay/resource-manager/Microsoft.FluidRelay/stable/2022-06-01/examples/FluidRelayServers_CreateOrUpdate.json
+     * x-ms-original-file: specification/fluidrelay/resource-manager/Microsoft.FluidRelay/preview/2021-06-15-preview/examples/FluidRelayServers_CreateOrUpdate.json
      */
     /**
      * Sample code: Create a Fluid Relay server.
@@ -33,71 +27,6 @@ public final class FluidRelayServersCreateOrUpdateSamples {
             .withExistingResourceGroup("myResourceGroup")
             .withTags(mapOf("Category", "sales"))
             .withIdentity(new Identity().withType(ResourceIdentityType.SYSTEM_ASSIGNED))
-            .withStoragesku(StorageSku.BASIC)
-            .create();
-    }
-
-    /*
-     * x-ms-original-file: specification/fluidrelay/resource-manager/Microsoft.FluidRelay/stable/2022-06-01/examples/FluidRelayServers_CreateWithAmi.json
-     */
-    /**
-     * Sample code: Create a Fluid Relay server with AMI.
-     *
-     * @param manager Entry point to FluidRelayManager.
-     */
-    public static void createAFluidRelayServerWithAMI(com.azure.resourcemanager.fluidrelay.FluidRelayManager manager) {
-        manager
-            .fluidRelayServers()
-            .define("myFluidRelayServer")
-            .withRegion("west-us")
-            .withExistingResourceGroup("myResourceGroup")
-            .withTags(mapOf("Category", "sales"))
-            .withIdentity(
-                new Identity()
-                    .withType(ResourceIdentityType.SYSTEM_ASSIGNED_USER_ASSIGNED)
-                    .withUserAssignedIdentities(
-                        mapOf(
-                            "/subscriptions/xxxx-xxxx-xxxx-xxxx/resourceGroups/myResourceGroup/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id1",
-                            new UserAssignedIdentitiesValue(),
-                            "/subscriptions/xxxx-xxxx-xxxx-xxxx/resourceGroups/myResourceGroup/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id2",
-                            new UserAssignedIdentitiesValue())))
-            .withStoragesku(StorageSku.BASIC)
-            .create();
-    }
-
-    /*
-     * x-ms-original-file: specification/fluidrelay/resource-manager/Microsoft.FluidRelay/stable/2022-06-01/examples/FluidRelayServers_CreateWithCmk.json
-     */
-    /**
-     * Sample code: Create a Fluid Relay server with CMK.
-     *
-     * @param manager Entry point to FluidRelayManager.
-     */
-    public static void createAFluidRelayServerWithCMK(com.azure.resourcemanager.fluidrelay.FluidRelayManager manager) {
-        manager
-            .fluidRelayServers()
-            .define("myFluidRelayServer")
-            .withRegion("west-us")
-            .withExistingResourceGroup("myResourceGroup")
-            .withTags(mapOf("Category", "sales"))
-            .withIdentity(
-                new Identity()
-                    .withType(ResourceIdentityType.USER_ASSIGNED)
-                    .withUserAssignedIdentities(
-                        mapOf(
-                            "/subscriptions/xxxx-xxxx-xxxx-xxxx/resourceGroups/myResourceGroup/providers/Microsoft.ManagedIdentity/userAssignedIdentities/identityForCMK",
-                            new UserAssignedIdentitiesValue())))
-            .withEncryption(
-                new EncryptionProperties()
-                    .withCustomerManagedKeyEncryption(
-                        new CustomerManagedKeyEncryptionProperties()
-                            .withKeyEncryptionKeyIdentity(
-                                new CustomerManagedKeyEncryptionPropertiesKeyEncryptionKeyIdentity()
-                                    .withIdentityType(CmkIdentityType.USER_ASSIGNED)
-                                    .withUserAssignedIdentityResourceId(
-                                        "/subscriptions/xxxx-xxxx-xxxx-xxxx/resourceGroups/myResourceGroup/providers/Microsoft.ManagedIdentity/userAssignedIdentities/identityForCMK"))
-                            .withKeyEncryptionKeyUrl("https://contosovault.vault.azure.net/keys/contosokek")))
-            .withStoragesku(StorageSku.BASIC)
             .create();
     }
 

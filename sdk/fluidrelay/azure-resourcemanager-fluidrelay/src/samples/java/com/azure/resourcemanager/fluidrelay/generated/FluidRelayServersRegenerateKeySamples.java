@@ -11,7 +11,7 @@ import com.azure.resourcemanager.fluidrelay.models.RegenerateKeyRequest;
 /** Samples for FluidRelayServers RegenerateKey. */
 public final class FluidRelayServersRegenerateKeySamples {
     /*
-     * x-ms-original-file: specification/fluidrelay/resource-manager/Microsoft.FluidRelay/stable/2022-06-01/examples/FluidRelayServers_RegenerateKeys.json
+     * x-ms-original-file: specification/fluidrelay/resource-manager/Microsoft.FluidRelay/preview/2021-06-15-preview/examples/FluidRelayServers_RegenerateKeys.json
      */
     /**
      * Sample code: Regenerate keys for a Fluid Relay server.

@@ -24,11 +24,9 @@ import com.azure.core.management.profile.AzureProfile;
 import com.azure.core.util.Configuration;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.fluidrelay.fluent.FluidRelayManagementClient;
-import com.azure.resourcemanager.fluidrelay.implementation.FluidRelayContainersImpl;
 import com.azure.resourcemanager.fluidrelay.implementation.FluidRelayManagementClientBuilder;
 import com.azure.resourcemanager.fluidrelay.implementation.FluidRelayOperationsImpl;
 import com.azure.resourcemanager.fluidrelay.implementation.FluidRelayServersImpl;
-import com.azure.resourcemanager.fluidrelay.models.FluidRelayContainers;
 import com.azure.resourcemanager.fluidrelay.models.FluidRelayOperations;
 import com.azure.resourcemanager.fluidrelay.models.FluidRelayServers;
 import java.time.Duration;
@@ -43,8 +41,6 @@ public final class FluidRelayManager {
     private FluidRelayOperations fluidRelayOperations;
 
     private FluidRelayServers fluidRelayServers;
-
-    private FluidRelayContainers fluidRelayContainers;
 
     private final FluidRelayManagementClient clientObject;
 
@@ -211,7 +207,7 @@ public final class FluidRelayManager {
                 .append("-")
                 .append("com.azure.resourcemanager.fluidrelay")
                 .append("/")
-                .append("1.0.0");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder
                     .append(" (")
@@ -290,18 +286,6 @@ public final class FluidRelayManager {
             this.fluidRelayServers = new FluidRelayServersImpl(clientObject.getFluidRelayServers(), this);
         }
         return fluidRelayServers;
-    }
-
-    /**
-     * Gets the resource collection API of FluidRelayContainers.
-     *
-     * @return Resource collection API of FluidRelayContainers.
-     */
-    public FluidRelayContainers fluidRelayContainers() {
-        if (this.fluidRelayContainers == null) {
-            this.fluidRelayContainers = new FluidRelayContainersImpl(clientObject.getFluidRelayContainers(), this);
-        }
-        return fluidRelayContainers;
     }
 
     /**

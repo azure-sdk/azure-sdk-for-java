@@ -7,11 +7,9 @@ package com.azure.resourcemanager.fluidrelay.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.Resource;
 import com.azure.core.management.SystemData;
-import com.azure.resourcemanager.fluidrelay.models.EncryptionProperties;
 import com.azure.resourcemanager.fluidrelay.models.FluidRelayEndpoints;
 import com.azure.resourcemanager.fluidrelay.models.Identity;
 import com.azure.resourcemanager.fluidrelay.models.ProvisioningState;
-import com.azure.resourcemanager.fluidrelay.models.StorageSku;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
@@ -107,7 +105,9 @@ public final class FluidRelayServerInner extends Resource {
     }
 
     /**
-     * Get the provisioningState property: Provision states for FluidRelay RP.
+     * Get the provisioningState property: ProvisioningState
+     *
+     * <p>Provision states for FluidRelay RP.
      *
      * @return the provisioningState value.
      */
@@ -116,7 +116,9 @@ public final class FluidRelayServerInner extends Resource {
     }
 
     /**
-     * Set the provisioningState property: Provision states for FluidRelay RP.
+     * Set the provisioningState property: ProvisioningState
+     *
+     * <p>Provision states for FluidRelay RP.
      *
      * @param provisioningState the provisioningState value to set.
      * @return the FluidRelayServerInner object itself.
@@ -126,56 +128,6 @@ public final class FluidRelayServerInner extends Resource {
             this.innerProperties = new FluidRelayServerProperties();
         }
         this.innerProperties().withProvisioningState(provisioningState);
-        return this;
-    }
-
-    /**
-     * Get the encryption property: All encryption configuration for a resource.
-     *
-     * @return the encryption value.
-     */
-    public EncryptionProperties encryption() {
-        return this.innerProperties() == null ? null : this.innerProperties().encryption();
-    }
-
-    /**
-     * Set the encryption property: All encryption configuration for a resource.
-     *
-     * @param encryption the encryption value to set.
-     * @return the FluidRelayServerInner object itself.
-     */
-    public FluidRelayServerInner withEncryption(EncryptionProperties encryption) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new FluidRelayServerProperties();
-        }
-        this.innerProperties().withEncryption(encryption);
-        return this;
-    }
-
-    /**
-     * Get the storagesku property: StorageSKU
-     *
-     * <p>Sku of the storage associated with the resource.
-     *
-     * @return the storagesku value.
-     */
-    public StorageSku storagesku() {
-        return this.innerProperties() == null ? null : this.innerProperties().storagesku();
-    }
-
-    /**
-     * Set the storagesku property: StorageSKU
-     *
-     * <p>Sku of the storage associated with the resource.
-     *
-     * @param storagesku the storagesku value to set.
-     * @return the FluidRelayServerInner object itself.
-     */
-    public FluidRelayServerInner withStoragesku(StorageSku storagesku) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new FluidRelayServerProperties();
-        }
-        this.innerProperties().withStoragesku(storagesku);
         return this;
     }
 

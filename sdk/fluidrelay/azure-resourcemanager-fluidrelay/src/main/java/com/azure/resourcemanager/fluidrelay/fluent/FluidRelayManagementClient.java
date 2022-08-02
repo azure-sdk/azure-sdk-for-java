@@ -57,11 +57,4 @@ public interface FluidRelayManagementClient {
      * @return the FluidRelayServersClient object.
      */
     FluidRelayServersClient getFluidRelayServers();
-
-    /**
-     * Gets the FluidRelayContainersClient object to access its operations.
-     *
-     * @return the FluidRelayContainersClient object.
-     */
-    FluidRelayContainersClient getFluidRelayContainers();
 }

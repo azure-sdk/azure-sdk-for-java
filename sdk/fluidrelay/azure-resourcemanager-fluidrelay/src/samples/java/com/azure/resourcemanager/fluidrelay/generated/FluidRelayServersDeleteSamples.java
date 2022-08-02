@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for FluidRelayServers Delete. */
 public final class FluidRelayServersDeleteSamples {
     /*
-     * x-ms-original-file: specification/fluidrelay/resource-manager/Microsoft.FluidRelay/stable/2022-06-01/examples/FluidRelayServers_Delete.json
+     * x-ms-original-file: specification/fluidrelay/resource-manager/Microsoft.FluidRelay/preview/2021-06-15-preview/examples/FluidRelayServers_Delete.json
      */
     /**
      * Sample code: Delete a Fluid Relay server.

@@ -22,7 +22,6 @@ import com.azure.core.util.polling.LongRunningOperationStatus;
 import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.serializer.SerializerAdapter;
 import com.azure.core.util.serializer.SerializerEncoding;
-import com.azure.resourcemanager.fluidrelay.fluent.FluidRelayContainersClient;
 import com.azure.resourcemanager.fluidrelay.fluent.FluidRelayManagementClient;
 import com.azure.resourcemanager.fluidrelay.fluent.FluidRelayOperationsClient;
 import com.azure.resourcemanager.fluidrelay.fluent.FluidRelayServersClient;
@@ -134,18 +133,6 @@ public final class FluidRelayManagementClientImpl implements FluidRelayManagemen
         return this.fluidRelayServers;
     }
 
-    /** The FluidRelayContainersClient object to access its operations. */
-    private final FluidRelayContainersClient fluidRelayContainers;
-
-    /**
-     * Gets the FluidRelayContainersClient object to access its operations.
-     *
-     * @return the FluidRelayContainersClient object.
-     */
-    public FluidRelayContainersClient getFluidRelayContainers() {
-        return this.fluidRelayContainers;
-    }
-
     /**
      * Initializes an instance of FluidRelayManagementClient client.
      *
@@ -168,10 +155,9 @@ public final class FluidRelayManagementClientImpl implements FluidRelayManagemen
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2022-06-01";
+        this.apiVersion = "2021-06-15-preview";
         this.fluidRelayOperations = new FluidRelayOperationsClientImpl(this);
         this.fluidRelayServers = new FluidRelayServersClientImpl(this);
-        this.fluidRelayContainers = new FluidRelayContainersClientImpl(this);
     }
 
     /**

@@ -14,106 +14,103 @@ public interface FluidRelayServers {
      * Get a Fluid Relay server.
      *
      * @param resourceGroup The resource group containing the resource.
-     * @param fluidRelayServerName The Fluid Relay server resource name.
+     * @param name The resource name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a Fluid Relay server.
      */
-    FluidRelayServer getByResourceGroup(String resourceGroup, String fluidRelayServerName);
+    FluidRelayServer getByResourceGroup(String resourceGroup, String name);
 
     /**
      * Get a Fluid Relay server.
      *
      * @param resourceGroup The resource group containing the resource.
-     * @param fluidRelayServerName The Fluid Relay server resource name.
+     * @param name The resource name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a Fluid Relay server along with {@link Response}.
      */
-    Response<FluidRelayServer> getByResourceGroupWithResponse(
-        String resourceGroup, String fluidRelayServerName, Context context);
+    Response<FluidRelayServer> getByResourceGroupWithResponse(String resourceGroup, String name, Context context);
 
     /**
      * Delete a Fluid Relay server.
      *
      * @param resourceGroup The resource group containing the resource.
-     * @param fluidRelayServerName The Fluid Relay server resource name.
+     * @param name The resource name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
-    void deleteByResourceGroup(String resourceGroup, String fluidRelayServerName);
+    void deleteByResourceGroup(String resourceGroup, String name);
 
     /**
      * Delete a Fluid Relay server.
      *
      * @param resourceGroup The resource group containing the resource.
-     * @param fluidRelayServerName The Fluid Relay server resource name.
+     * @param name The resource name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
-    Response<Void> deleteWithResponse(String resourceGroup, String fluidRelayServerName, Context context);
+    FluidRelayServersDeleteResponse deleteWithResponse(String resourceGroup, String name, Context context);
 
     /**
      * Regenerate the primary or secondary key for this server.
      *
      * @param resourceGroup The resource group containing the resource.
-     * @param fluidRelayServerName The Fluid Relay server resource name.
+     * @param name The resource name.
      * @param parameters The details of which keys to generate.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the set of available keys for this server.
      */
-    FluidRelayServerKeys regenerateKey(
-        String resourceGroup, String fluidRelayServerName, RegenerateKeyRequest parameters);
+    FluidRelayServerKeys regenerateKey(String resourceGroup, String name, RegenerateKeyRequest parameters);
 
     /**
      * Regenerate the primary or secondary key for this server.
      *
      * @param resourceGroup The resource group containing the resource.
-     * @param fluidRelayServerName The Fluid Relay server resource name.
+     * @param name The resource name.
      * @param parameters The details of which keys to generate.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the set of available keys for this server along with {@link Response}.
+     * @return the set of available keys for this server.
      */
     Response<FluidRelayServerKeys> regenerateKeyWithResponse(
-        String resourceGroup, String fluidRelayServerName, RegenerateKeyRequest parameters, Context context);
+        String resourceGroup, String name, RegenerateKeyRequest parameters, Context context);
 
     /**
-     * Get primary and secondary key for this server.
+     * Regenerate the primary or secondary key for this server.
      *
      * @param resourceGroup The resource group containing the resource.
-     * @param fluidRelayServerName The Fluid Relay server resource name.
+     * @param name The resource name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return primary and secondary key for this server.
+     * @return the set of available keys for this server.
      */
-    FluidRelayServerKeys listKeys(String resourceGroup, String fluidRelayServerName);
+    FluidRelayServerKeys getKeys(String resourceGroup, String name);
 
     /**
-     * Get primary and secondary key for this server.
+     * Regenerate the primary or secondary key for this server.
      *
      * @param resourceGroup The resource group containing the resource.
-     * @param fluidRelayServerName The Fluid Relay server resource name.
+     * @param name The resource name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return primary and secondary key for this server along with {@link Response}.
+     * @return the set of available keys for this server.
      */
-    Response<FluidRelayServerKeys> listKeysWithResponse(
-        String resourceGroup, String fluidRelayServerName, Context context);
+    Response<FluidRelayServerKeys> getKeysWithResponse(String resourceGroup, String name, Context context);
 
     /**
      * List all Fluid Relay servers in a subscription.
@@ -199,9 +196,9 @@ public interface FluidRelayServers {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
-    Response<Void> deleteByIdWithResponse(String id, Context context);
+    FluidRelayServersDeleteResponse deleteByIdWithResponse(String id, Context context);
 
     /**
      * Begins definition for a new FluidRelayServer resource.

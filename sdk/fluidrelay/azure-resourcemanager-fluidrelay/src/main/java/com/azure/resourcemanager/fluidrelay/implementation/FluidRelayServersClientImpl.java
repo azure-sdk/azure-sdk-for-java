@@ -35,6 +35,11 @@ import com.azure.resourcemanager.fluidrelay.fluent.models.FluidRelayServerInner;
 import com.azure.resourcemanager.fluidrelay.fluent.models.FluidRelayServerKeysInner;
 import com.azure.resourcemanager.fluidrelay.models.FluidRelayServerList;
 import com.azure.resourcemanager.fluidrelay.models.FluidRelayServerUpdate;
+import com.azure.resourcemanager.fluidrelay.models.FluidRelayServersCreateOrUpdateResponse;
+import com.azure.resourcemanager.fluidrelay.models.FluidRelayServersDeleteResponse;
+import com.azure.resourcemanager.fluidrelay.models.FluidRelayServersGetKeysResponse;
+import com.azure.resourcemanager.fluidrelay.models.FluidRelayServersRegenerateKeyResponse;
+import com.azure.resourcemanager.fluidrelay.models.FluidRelayServersUpdateResponse;
 import com.azure.resourcemanager.fluidrelay.models.RegenerateKeyRequest;
 import reactor.core.publisher.Mono;
 
@@ -67,14 +72,14 @@ public final class FluidRelayServersClientImpl implements FluidRelayServersClien
         @Headers({"Content-Type: application/json"})
         @Get(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.FluidRelay"
-                + "/fluidRelayServers/{fluidRelayServerName}")
+                + "/fluidRelayServers/{name}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<FluidRelayServerInner>> getByResourceGroup(
             @HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroup") String resourceGroup,
-            @PathParam("fluidRelayServerName") String fluidRelayServerName,
+            @PathParam("name") String name,
             @QueryParam("api-version") String apiVersion,
             @HeaderParam("Accept") String accept,
             Context context);
@@ -82,14 +87,14 @@ public final class FluidRelayServersClientImpl implements FluidRelayServersClien
         @Headers({"Content-Type: application/json"})
         @Put(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.FluidRelay"
-                + "/fluidRelayServers/{fluidRelayServerName}")
+                + "/fluidRelayServers/{name}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<FluidRelayServerInner>> createOrUpdate(
+        Mono<FluidRelayServersCreateOrUpdateResponse> createOrUpdate(
             @HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroup") String resourceGroup,
-            @PathParam("fluidRelayServerName") String fluidRelayServerName,
+            @PathParam("name") String name,
             @QueryParam("api-version") String apiVersion,
             @BodyParam("application/json") FluidRelayServerInner resource,
             @HeaderParam("Accept") String accept,
@@ -98,14 +103,14 @@ public final class FluidRelayServersClientImpl implements FluidRelayServersClien
         @Headers({"Content-Type: application/json"})
         @Patch(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.FluidRelay"
-                + "/fluidRelayServers/{fluidRelayServerName}")
+                + "/fluidRelayServers/{name}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<FluidRelayServerInner>> update(
+        Mono<FluidRelayServersUpdateResponse> update(
             @HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroup") String resourceGroup,
-            @PathParam("fluidRelayServerName") String fluidRelayServerName,
+            @PathParam("name") String name,
             @QueryParam("api-version") String apiVersion,
             @BodyParam("application/json") FluidRelayServerUpdate resource,
             @HeaderParam("Accept") String accept,
@@ -114,14 +119,14 @@ public final class FluidRelayServersClientImpl implements FluidRelayServersClien
         @Headers({"Content-Type: application/json"})
         @Delete(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.FluidRelay"
-                + "/fluidRelayServers/{fluidRelayServerName}")
+                + "/fluidRelayServers/{name}")
         @ExpectedResponses({200, 204})
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Void>> delete(
+        Mono<FluidRelayServersDeleteResponse> delete(
             @HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroup") String resourceGroup,
-            @PathParam("fluidRelayServerName") String fluidRelayServerName,
+            @PathParam("name") String name,
             @QueryParam("api-version") String apiVersion,
             @HeaderParam("Accept") String accept,
             Context context);
@@ -129,14 +134,14 @@ public final class FluidRelayServersClientImpl implements FluidRelayServersClien
         @Headers({"Content-Type: application/json"})
         @Post(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.FluidRelay"
-                + "/fluidRelayServers/{fluidRelayServerName}/regenerateKey")
+                + "/fluidRelayServers/{name}/regenerateKey")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<FluidRelayServerKeysInner>> regenerateKey(
+        Mono<FluidRelayServersRegenerateKeyResponse> regenerateKey(
             @HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroup") String resourceGroup,
-            @PathParam("fluidRelayServerName") String fluidRelayServerName,
+            @PathParam("name") String name,
             @QueryParam("api-version") String apiVersion,
             @BodyParam("application/json") RegenerateKeyRequest parameters,
             @HeaderParam("Accept") String accept,
@@ -145,14 +150,14 @@ public final class FluidRelayServersClientImpl implements FluidRelayServersClien
         @Headers({"Content-Type: application/json"})
         @Post(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.FluidRelay"
-                + "/fluidRelayServers/{fluidRelayServerName}/listKeys")
+                + "/fluidRelayServers/{name}/getKeys")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<FluidRelayServerKeysInner>> listKeys(
+        Mono<FluidRelayServersGetKeysResponse> getKeys(
             @HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroup") String resourceGroup,
-            @PathParam("fluidRelayServerName") String fluidRelayServerName,
+            @PathParam("name") String name,
             @QueryParam("api-version") String apiVersion,
             @HeaderParam("Accept") String accept,
             Context context);
@@ -207,7 +212,7 @@ public final class FluidRelayServersClientImpl implements FluidRelayServersClien
      * Get a Fluid Relay server.
      *
      * @param resourceGroup The resource group containing the resource.
-     * @param fluidRelayServerName The Fluid Relay server resource name.
+     * @param name The resource name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -215,7 +220,7 @@ public final class FluidRelayServersClientImpl implements FluidRelayServersClien
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<FluidRelayServerInner>> getByResourceGroupWithResponseAsync(
-        String resourceGroup, String fluidRelayServerName) {
+        String resourceGroup, String name) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -231,9 +236,8 @@ public final class FluidRelayServersClientImpl implements FluidRelayServersClien
         if (resourceGroup == null) {
             return Mono.error(new IllegalArgumentException("Parameter resourceGroup is required and cannot be null."));
         }
-        if (fluidRelayServerName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter fluidRelayServerName is required and cannot be null."));
+        if (name == null) {
+            return Mono.error(new IllegalArgumentException("Parameter name is required and cannot be null."));
         }
         final String accept = "application/json";
         return FluxUtil
@@ -244,7 +248,7 @@ public final class FluidRelayServersClientImpl implements FluidRelayServersClien
                             this.client.getEndpoint(),
                             this.client.getSubscriptionId(),
                             resourceGroup,
-                            fluidRelayServerName,
+                            name,
                             this.client.getApiVersion(),
                             accept,
                             context))
@@ -255,7 +259,7 @@ public final class FluidRelayServersClientImpl implements FluidRelayServersClien
      * Get a Fluid Relay server.
      *
      * @param resourceGroup The resource group containing the resource.
-     * @param fluidRelayServerName The Fluid Relay server resource name.
+     * @param name The resource name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -264,7 +268,7 @@ public final class FluidRelayServersClientImpl implements FluidRelayServersClien
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<FluidRelayServerInner>> getByResourceGroupWithResponseAsync(
-        String resourceGroup, String fluidRelayServerName, Context context) {
+        String resourceGroup, String name, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -280,9 +284,8 @@ public final class FluidRelayServersClientImpl implements FluidRelayServersClien
         if (resourceGroup == null) {
             return Mono.error(new IllegalArgumentException("Parameter resourceGroup is required and cannot be null."));
         }
-        if (fluidRelayServerName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter fluidRelayServerName is required and cannot be null."));
+        if (name == null) {
+            return Mono.error(new IllegalArgumentException("Parameter name is required and cannot be null."));
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
@@ -291,7 +294,7 @@ public final class FluidRelayServersClientImpl implements FluidRelayServersClien
                 this.client.getEndpoint(),
                 this.client.getSubscriptionId(),
                 resourceGroup,
-                fluidRelayServerName,
+                name,
                 this.client.getApiVersion(),
                 accept,
                 context);
@@ -301,15 +304,15 @@ public final class FluidRelayServersClientImpl implements FluidRelayServersClien
      * Get a Fluid Relay server.
      *
      * @param resourceGroup The resource group containing the resource.
-     * @param fluidRelayServerName The Fluid Relay server resource name.
+     * @param name The resource name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a Fluid Relay server on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<FluidRelayServerInner> getByResourceGroupAsync(String resourceGroup, String fluidRelayServerName) {
-        return getByResourceGroupWithResponseAsync(resourceGroup, fluidRelayServerName)
+    private Mono<FluidRelayServerInner> getByResourceGroupAsync(String resourceGroup, String name) {
+        return getByResourceGroupWithResponseAsync(resourceGroup, name)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
@@ -317,22 +320,22 @@ public final class FluidRelayServersClientImpl implements FluidRelayServersClien
      * Get a Fluid Relay server.
      *
      * @param resourceGroup The resource group containing the resource.
-     * @param fluidRelayServerName The Fluid Relay server resource name.
+     * @param name The resource name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a Fluid Relay server.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public FluidRelayServerInner getByResourceGroup(String resourceGroup, String fluidRelayServerName) {
-        return getByResourceGroupAsync(resourceGroup, fluidRelayServerName).block();
+    public FluidRelayServerInner getByResourceGroup(String resourceGroup, String name) {
+        return getByResourceGroupAsync(resourceGroup, name).block();
     }
 
     /**
      * Get a Fluid Relay server.
      *
      * @param resourceGroup The resource group containing the resource.
-     * @param fluidRelayServerName The Fluid Relay server resource name.
+     * @param name The resource name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -341,24 +344,24 @@ public final class FluidRelayServersClientImpl implements FluidRelayServersClien
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<FluidRelayServerInner> getByResourceGroupWithResponse(
-        String resourceGroup, String fluidRelayServerName, Context context) {
-        return getByResourceGroupWithResponseAsync(resourceGroup, fluidRelayServerName, context).block();
+        String resourceGroup, String name, Context context) {
+        return getByResourceGroupWithResponseAsync(resourceGroup, name, context).block();
     }
 
     /**
      * Create or Update a Fluid Relay server.
      *
      * @param resourceGroup The resource group containing the resource.
-     * @param fluidRelayServerName The Fluid Relay server resource name.
+     * @param name The resource name.
      * @param resource The details of the Fluid Relay server resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a FluidRelay Server along with {@link Response} on successful completion of {@link Mono}.
+     * @return a FluidRelay Server on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<FluidRelayServerInner>> createOrUpdateWithResponseAsync(
-        String resourceGroup, String fluidRelayServerName, FluidRelayServerInner resource) {
+    private Mono<FluidRelayServersCreateOrUpdateResponse> createOrUpdateWithResponseAsync(
+        String resourceGroup, String name, FluidRelayServerInner resource) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -374,9 +377,8 @@ public final class FluidRelayServersClientImpl implements FluidRelayServersClien
         if (resourceGroup == null) {
             return Mono.error(new IllegalArgumentException("Parameter resourceGroup is required and cannot be null."));
         }
-        if (fluidRelayServerName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter fluidRelayServerName is required and cannot be null."));
+        if (name == null) {
+            return Mono.error(new IllegalArgumentException("Parameter name is required and cannot be null."));
         }
         if (resource == null) {
             return Mono.error(new IllegalArgumentException("Parameter resource is required and cannot be null."));
@@ -392,7 +394,7 @@ public final class FluidRelayServersClientImpl implements FluidRelayServersClien
                             this.client.getEndpoint(),
                             this.client.getSubscriptionId(),
                             resourceGroup,
-                            fluidRelayServerName,
+                            name,
                             this.client.getApiVersion(),
                             resource,
                             accept,
@@ -404,17 +406,17 @@ public final class FluidRelayServersClientImpl implements FluidRelayServersClien
      * Create or Update a Fluid Relay server.
      *
      * @param resourceGroup The resource group containing the resource.
-     * @param fluidRelayServerName The Fluid Relay server resource name.
+     * @param name The resource name.
      * @param resource The details of the Fluid Relay server resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a FluidRelay Server along with {@link Response} on successful completion of {@link Mono}.
+     * @return a FluidRelay Server on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<FluidRelayServerInner>> createOrUpdateWithResponseAsync(
-        String resourceGroup, String fluidRelayServerName, FluidRelayServerInner resource, Context context) {
+    private Mono<FluidRelayServersCreateOrUpdateResponse> createOrUpdateWithResponseAsync(
+        String resourceGroup, String name, FluidRelayServerInner resource, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -430,9 +432,8 @@ public final class FluidRelayServersClientImpl implements FluidRelayServersClien
         if (resourceGroup == null) {
             return Mono.error(new IllegalArgumentException("Parameter resourceGroup is required and cannot be null."));
         }
-        if (fluidRelayServerName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter fluidRelayServerName is required and cannot be null."));
+        if (name == null) {
+            return Mono.error(new IllegalArgumentException("Parameter name is required and cannot be null."));
         }
         if (resource == null) {
             return Mono.error(new IllegalArgumentException("Parameter resource is required and cannot be null."));
@@ -446,7 +447,7 @@ public final class FluidRelayServersClientImpl implements FluidRelayServersClien
                 this.client.getEndpoint(),
                 this.client.getSubscriptionId(),
                 resourceGroup,
-                fluidRelayServerName,
+                name,
                 this.client.getApiVersion(),
                 resource,
                 accept,
@@ -457,7 +458,7 @@ public final class FluidRelayServersClientImpl implements FluidRelayServersClien
      * Create or Update a Fluid Relay server.
      *
      * @param resourceGroup The resource group containing the resource.
-     * @param fluidRelayServerName The Fluid Relay server resource name.
+     * @param name The resource name.
      * @param resource The details of the Fluid Relay server resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -466,8 +467,8 @@ public final class FluidRelayServersClientImpl implements FluidRelayServersClien
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<FluidRelayServerInner> createOrUpdateAsync(
-        String resourceGroup, String fluidRelayServerName, FluidRelayServerInner resource) {
-        return createOrUpdateWithResponseAsync(resourceGroup, fluidRelayServerName, resource)
+        String resourceGroup, String name, FluidRelayServerInner resource) {
+        return createOrUpdateWithResponseAsync(resourceGroup, name, resource)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
@@ -475,7 +476,7 @@ public final class FluidRelayServersClientImpl implements FluidRelayServersClien
      * Create or Update a Fluid Relay server.
      *
      * @param resourceGroup The resource group containing the resource.
-     * @param fluidRelayServerName The Fluid Relay server resource name.
+     * @param name The resource name.
      * @param resource The details of the Fluid Relay server resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -483,43 +484,42 @@ public final class FluidRelayServersClientImpl implements FluidRelayServersClien
      * @return a FluidRelay Server.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public FluidRelayServerInner createOrUpdate(
-        String resourceGroup, String fluidRelayServerName, FluidRelayServerInner resource) {
-        return createOrUpdateAsync(resourceGroup, fluidRelayServerName, resource).block();
+    public FluidRelayServerInner createOrUpdate(String resourceGroup, String name, FluidRelayServerInner resource) {
+        return createOrUpdateAsync(resourceGroup, name, resource).block();
     }
 
     /**
      * Create or Update a Fluid Relay server.
      *
      * @param resourceGroup The resource group containing the resource.
-     * @param fluidRelayServerName The Fluid Relay server resource name.
+     * @param name The resource name.
      * @param resource The details of the Fluid Relay server resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a FluidRelay Server along with {@link Response}.
+     * @return a FluidRelay Server.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<FluidRelayServerInner> createOrUpdateWithResponse(
-        String resourceGroup, String fluidRelayServerName, FluidRelayServerInner resource, Context context) {
-        return createOrUpdateWithResponseAsync(resourceGroup, fluidRelayServerName, resource, context).block();
+    public FluidRelayServersCreateOrUpdateResponse createOrUpdateWithResponse(
+        String resourceGroup, String name, FluidRelayServerInner resource, Context context) {
+        return createOrUpdateWithResponseAsync(resourceGroup, name, resource, context).block();
     }
 
     /**
      * Update a Fluid Relay server.
      *
      * @param resourceGroup The resource group containing the resource.
-     * @param fluidRelayServerName The Fluid Relay server resource name.
-     * @param resource The details of the Fluid Relay server resource included in update calls.
+     * @param name The resource name.
+     * @param resource The updatable details of the Fluid Relay server resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a FluidRelay Server along with {@link Response} on successful completion of {@link Mono}.
+     * @return a FluidRelay Server on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<FluidRelayServerInner>> updateWithResponseAsync(
-        String resourceGroup, String fluidRelayServerName, FluidRelayServerUpdate resource) {
+    private Mono<FluidRelayServersUpdateResponse> updateWithResponseAsync(
+        String resourceGroup, String name, FluidRelayServerUpdate resource) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -535,9 +535,8 @@ public final class FluidRelayServersClientImpl implements FluidRelayServersClien
         if (resourceGroup == null) {
             return Mono.error(new IllegalArgumentException("Parameter resourceGroup is required and cannot be null."));
         }
-        if (fluidRelayServerName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter fluidRelayServerName is required and cannot be null."));
+        if (name == null) {
+            return Mono.error(new IllegalArgumentException("Parameter name is required and cannot be null."));
         }
         if (resource == null) {
             return Mono.error(new IllegalArgumentException("Parameter resource is required and cannot be null."));
@@ -553,7 +552,7 @@ public final class FluidRelayServersClientImpl implements FluidRelayServersClien
                             this.client.getEndpoint(),
                             this.client.getSubscriptionId(),
                             resourceGroup,
-                            fluidRelayServerName,
+                            name,
                             this.client.getApiVersion(),
                             resource,
                             accept,
@@ -565,17 +564,17 @@ public final class FluidRelayServersClientImpl implements FluidRelayServersClien
      * Update a Fluid Relay server.
      *
      * @param resourceGroup The resource group containing the resource.
-     * @param fluidRelayServerName The Fluid Relay server resource name.
-     * @param resource The details of the Fluid Relay server resource included in update calls.
+     * @param name The resource name.
+     * @param resource The updatable details of the Fluid Relay server resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a FluidRelay Server along with {@link Response} on successful completion of {@link Mono}.
+     * @return a FluidRelay Server on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<FluidRelayServerInner>> updateWithResponseAsync(
-        String resourceGroup, String fluidRelayServerName, FluidRelayServerUpdate resource, Context context) {
+    private Mono<FluidRelayServersUpdateResponse> updateWithResponseAsync(
+        String resourceGroup, String name, FluidRelayServerUpdate resource, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -591,9 +590,8 @@ public final class FluidRelayServersClientImpl implements FluidRelayServersClien
         if (resourceGroup == null) {
             return Mono.error(new IllegalArgumentException("Parameter resourceGroup is required and cannot be null."));
         }
-        if (fluidRelayServerName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter fluidRelayServerName is required and cannot be null."));
+        if (name == null) {
+            return Mono.error(new IllegalArgumentException("Parameter name is required and cannot be null."));
         }
         if (resource == null) {
             return Mono.error(new IllegalArgumentException("Parameter resource is required and cannot be null."));
@@ -607,7 +605,7 @@ public final class FluidRelayServersClientImpl implements FluidRelayServersClien
                 this.client.getEndpoint(),
                 this.client.getSubscriptionId(),
                 resourceGroup,
-                fluidRelayServerName,
+                name,
                 this.client.getApiVersion(),
                 resource,
                 accept,
@@ -618,8 +616,8 @@ public final class FluidRelayServersClientImpl implements FluidRelayServersClien
      * Update a Fluid Relay server.
      *
      * @param resourceGroup The resource group containing the resource.
-     * @param fluidRelayServerName The Fluid Relay server resource name.
-     * @param resource The details of the Fluid Relay server resource included in update calls.
+     * @param name The resource name.
+     * @param resource The updatable details of the Fluid Relay server resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -627,58 +625,56 @@ public final class FluidRelayServersClientImpl implements FluidRelayServersClien
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<FluidRelayServerInner> updateAsync(
-        String resourceGroup, String fluidRelayServerName, FluidRelayServerUpdate resource) {
-        return updateWithResponseAsync(resourceGroup, fluidRelayServerName, resource)
-            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
+        String resourceGroup, String name, FluidRelayServerUpdate resource) {
+        return updateWithResponseAsync(resourceGroup, name, resource).flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
      * Update a Fluid Relay server.
      *
      * @param resourceGroup The resource group containing the resource.
-     * @param fluidRelayServerName The Fluid Relay server resource name.
-     * @param resource The details of the Fluid Relay server resource included in update calls.
+     * @param name The resource name.
+     * @param resource The updatable details of the Fluid Relay server resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a FluidRelay Server.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public FluidRelayServerInner update(
-        String resourceGroup, String fluidRelayServerName, FluidRelayServerUpdate resource) {
-        return updateAsync(resourceGroup, fluidRelayServerName, resource).block();
+    public FluidRelayServerInner update(String resourceGroup, String name, FluidRelayServerUpdate resource) {
+        return updateAsync(resourceGroup, name, resource).block();
     }
 
     /**
      * Update a Fluid Relay server.
      *
      * @param resourceGroup The resource group containing the resource.
-     * @param fluidRelayServerName The Fluid Relay server resource name.
-     * @param resource The details of the Fluid Relay server resource included in update calls.
+     * @param name The resource name.
+     * @param resource The updatable details of the Fluid Relay server resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a FluidRelay Server along with {@link Response}.
+     * @return a FluidRelay Server.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<FluidRelayServerInner> updateWithResponse(
-        String resourceGroup, String fluidRelayServerName, FluidRelayServerUpdate resource, Context context) {
-        return updateWithResponseAsync(resourceGroup, fluidRelayServerName, resource, context).block();
+    public FluidRelayServersUpdateResponse updateWithResponse(
+        String resourceGroup, String name, FluidRelayServerUpdate resource, Context context) {
+        return updateWithResponseAsync(resourceGroup, name, resource, context).block();
     }
 
     /**
      * Delete a Fluid Relay server.
      *
      * @param resourceGroup The resource group containing the resource.
-     * @param fluidRelayServerName The Fluid Relay server resource name.
+     * @param name The resource name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return A {@link Mono} that completes when a successful response is received.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Void>> deleteWithResponseAsync(String resourceGroup, String fluidRelayServerName) {
+    private Mono<FluidRelayServersDeleteResponse> deleteWithResponseAsync(String resourceGroup, String name) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -694,9 +690,8 @@ public final class FluidRelayServersClientImpl implements FluidRelayServersClien
         if (resourceGroup == null) {
             return Mono.error(new IllegalArgumentException("Parameter resourceGroup is required and cannot be null."));
         }
-        if (fluidRelayServerName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter fluidRelayServerName is required and cannot be null."));
+        if (name == null) {
+            return Mono.error(new IllegalArgumentException("Parameter name is required and cannot be null."));
         }
         final String accept = "application/json";
         return FluxUtil
@@ -707,7 +702,7 @@ public final class FluidRelayServersClientImpl implements FluidRelayServersClien
                             this.client.getEndpoint(),
                             this.client.getSubscriptionId(),
                             resourceGroup,
-                            fluidRelayServerName,
+                            name,
                             this.client.getApiVersion(),
                             accept,
                             context))
@@ -718,16 +713,16 @@ public final class FluidRelayServersClientImpl implements FluidRelayServersClien
      * Delete a Fluid Relay server.
      *
      * @param resourceGroup The resource group containing the resource.
-     * @param fluidRelayServerName The Fluid Relay server resource name.
+     * @param name The resource name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return A {@link Mono} that completes when a successful response is received.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Void>> deleteWithResponseAsync(
-        String resourceGroup, String fluidRelayServerName, Context context) {
+    private Mono<FluidRelayServersDeleteResponse> deleteWithResponseAsync(
+        String resourceGroup, String name, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -743,9 +738,8 @@ public final class FluidRelayServersClientImpl implements FluidRelayServersClien
         if (resourceGroup == null) {
             return Mono.error(new IllegalArgumentException("Parameter resourceGroup is required and cannot be null."));
         }
-        if (fluidRelayServerName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter fluidRelayServerName is required and cannot be null."));
+        if (name == null) {
+            return Mono.error(new IllegalArgumentException("Parameter name is required and cannot be null."));
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
@@ -754,7 +748,7 @@ public final class FluidRelayServersClientImpl implements FluidRelayServersClien
                 this.client.getEndpoint(),
                 this.client.getSubscriptionId(),
                 resourceGroup,
-                fluidRelayServerName,
+                name,
                 this.client.getApiVersion(),
                 accept,
                 context);
@@ -764,62 +758,61 @@ public final class FluidRelayServersClientImpl implements FluidRelayServersClien
      * Delete a Fluid Relay server.
      *
      * @param resourceGroup The resource group containing the resource.
-     * @param fluidRelayServerName The Fluid Relay server resource name.
+     * @param name The resource name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return A {@link Mono} that completes when a successful response is received.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Void> deleteAsync(String resourceGroup, String fluidRelayServerName) {
-        return deleteWithResponseAsync(resourceGroup, fluidRelayServerName).flatMap(ignored -> Mono.empty());
+    private Mono<Void> deleteAsync(String resourceGroup, String name) {
+        return deleteWithResponseAsync(resourceGroup, name).flatMap(ignored -> Mono.empty());
     }
 
     /**
      * Delete a Fluid Relay server.
      *
      * @param resourceGroup The resource group containing the resource.
-     * @param fluidRelayServerName The Fluid Relay server resource name.
+     * @param name The resource name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void delete(String resourceGroup, String fluidRelayServerName) {
-        deleteAsync(resourceGroup, fluidRelayServerName).block();
+    public void delete(String resourceGroup, String name) {
+        deleteAsync(resourceGroup, name).block();
     }
 
     /**
      * Delete a Fluid Relay server.
      *
      * @param resourceGroup The resource group containing the resource.
-     * @param fluidRelayServerName The Fluid Relay server resource name.
+     * @param name The resource name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<Void> deleteWithResponse(String resourceGroup, String fluidRelayServerName, Context context) {
-        return deleteWithResponseAsync(resourceGroup, fluidRelayServerName, context).block();
+    public FluidRelayServersDeleteResponse deleteWithResponse(String resourceGroup, String name, Context context) {
+        return deleteWithResponseAsync(resourceGroup, name, context).block();
     }
 
     /**
      * Regenerate the primary or secondary key for this server.
      *
      * @param resourceGroup The resource group containing the resource.
-     * @param fluidRelayServerName The Fluid Relay server resource name.
+     * @param name The resource name.
      * @param parameters The details of which keys to generate.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the set of available keys for this server along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return the set of available keys for this server on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<FluidRelayServerKeysInner>> regenerateKeyWithResponseAsync(
-        String resourceGroup, String fluidRelayServerName, RegenerateKeyRequest parameters) {
+    private Mono<FluidRelayServersRegenerateKeyResponse> regenerateKeyWithResponseAsync(
+        String resourceGroup, String name, RegenerateKeyRequest parameters) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -835,9 +828,8 @@ public final class FluidRelayServersClientImpl implements FluidRelayServersClien
         if (resourceGroup == null) {
             return Mono.error(new IllegalArgumentException("Parameter resourceGroup is required and cannot be null."));
         }
-        if (fluidRelayServerName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter fluidRelayServerName is required and cannot be null."));
+        if (name == null) {
+            return Mono.error(new IllegalArgumentException("Parameter name is required and cannot be null."));
         }
         if (parameters == null) {
             return Mono.error(new IllegalArgumentException("Parameter parameters is required and cannot be null."));
@@ -853,7 +845,7 @@ public final class FluidRelayServersClientImpl implements FluidRelayServersClien
                             this.client.getEndpoint(),
                             this.client.getSubscriptionId(),
                             resourceGroup,
-                            fluidRelayServerName,
+                            name,
                             this.client.getApiVersion(),
                             parameters,
                             accept,
@@ -865,18 +857,17 @@ public final class FluidRelayServersClientImpl implements FluidRelayServersClien
      * Regenerate the primary or secondary key for this server.
      *
      * @param resourceGroup The resource group containing the resource.
-     * @param fluidRelayServerName The Fluid Relay server resource name.
+     * @param name The resource name.
      * @param parameters The details of which keys to generate.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the set of available keys for this server along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return the set of available keys for this server on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<FluidRelayServerKeysInner>> regenerateKeyWithResponseAsync(
-        String resourceGroup, String fluidRelayServerName, RegenerateKeyRequest parameters, Context context) {
+    private Mono<FluidRelayServersRegenerateKeyResponse> regenerateKeyWithResponseAsync(
+        String resourceGroup, String name, RegenerateKeyRequest parameters, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -892,9 +883,8 @@ public final class FluidRelayServersClientImpl implements FluidRelayServersClien
         if (resourceGroup == null) {
             return Mono.error(new IllegalArgumentException("Parameter resourceGroup is required and cannot be null."));
         }
-        if (fluidRelayServerName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter fluidRelayServerName is required and cannot be null."));
+        if (name == null) {
+            return Mono.error(new IllegalArgumentException("Parameter name is required and cannot be null."));
         }
         if (parameters == null) {
             return Mono.error(new IllegalArgumentException("Parameter parameters is required and cannot be null."));
@@ -908,7 +898,7 @@ public final class FluidRelayServersClientImpl implements FluidRelayServersClien
                 this.client.getEndpoint(),
                 this.client.getSubscriptionId(),
                 resourceGroup,
-                fluidRelayServerName,
+                name,
                 this.client.getApiVersion(),
                 parameters,
                 accept,
@@ -919,7 +909,7 @@ public final class FluidRelayServersClientImpl implements FluidRelayServersClien
      * Regenerate the primary or secondary key for this server.
      *
      * @param resourceGroup The resource group containing the resource.
-     * @param fluidRelayServerName The Fluid Relay server resource name.
+     * @param name The resource name.
      * @param parameters The details of which keys to generate.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -928,8 +918,8 @@ public final class FluidRelayServersClientImpl implements FluidRelayServersClien
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<FluidRelayServerKeysInner> regenerateKeyAsync(
-        String resourceGroup, String fluidRelayServerName, RegenerateKeyRequest parameters) {
-        return regenerateKeyWithResponseAsync(resourceGroup, fluidRelayServerName, parameters)
+        String resourceGroup, String name, RegenerateKeyRequest parameters) {
+        return regenerateKeyWithResponseAsync(resourceGroup, name, parameters)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
@@ -937,7 +927,7 @@ public final class FluidRelayServersClientImpl implements FluidRelayServersClien
      * Regenerate the primary or secondary key for this server.
      *
      * @param resourceGroup The resource group containing the resource.
-     * @param fluidRelayServerName The Fluid Relay server resource name.
+     * @param name The resource name.
      * @param parameters The details of which keys to generate.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -945,43 +935,40 @@ public final class FluidRelayServersClientImpl implements FluidRelayServersClien
      * @return the set of available keys for this server.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public FluidRelayServerKeysInner regenerateKey(
-        String resourceGroup, String fluidRelayServerName, RegenerateKeyRequest parameters) {
-        return regenerateKeyAsync(resourceGroup, fluidRelayServerName, parameters).block();
+    public FluidRelayServerKeysInner regenerateKey(String resourceGroup, String name, RegenerateKeyRequest parameters) {
+        return regenerateKeyAsync(resourceGroup, name, parameters).block();
     }
 
     /**
      * Regenerate the primary or secondary key for this server.
      *
      * @param resourceGroup The resource group containing the resource.
-     * @param fluidRelayServerName The Fluid Relay server resource name.
+     * @param name The resource name.
      * @param parameters The details of which keys to generate.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the set of available keys for this server along with {@link Response}.
+     * @return the set of available keys for this server.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<FluidRelayServerKeysInner> regenerateKeyWithResponse(
-        String resourceGroup, String fluidRelayServerName, RegenerateKeyRequest parameters, Context context) {
-        return regenerateKeyWithResponseAsync(resourceGroup, fluidRelayServerName, parameters, context).block();
+    public FluidRelayServersRegenerateKeyResponse regenerateKeyWithResponse(
+        String resourceGroup, String name, RegenerateKeyRequest parameters, Context context) {
+        return regenerateKeyWithResponseAsync(resourceGroup, name, parameters, context).block();
     }
 
     /**
-     * Get primary and secondary key for this server.
+     * Regenerate the primary or secondary key for this server.
      *
      * @param resourceGroup The resource group containing the resource.
-     * @param fluidRelayServerName The Fluid Relay server resource name.
+     * @param name The resource name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return primary and secondary key for this server along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return the set of available keys for this server on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<FluidRelayServerKeysInner>> listKeysWithResponseAsync(
-        String resourceGroup, String fluidRelayServerName) {
+    private Mono<FluidRelayServersGetKeysResponse> getKeysWithResponseAsync(String resourceGroup, String name) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -997,20 +984,19 @@ public final class FluidRelayServersClientImpl implements FluidRelayServersClien
         if (resourceGroup == null) {
             return Mono.error(new IllegalArgumentException("Parameter resourceGroup is required and cannot be null."));
         }
-        if (fluidRelayServerName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter fluidRelayServerName is required and cannot be null."));
+        if (name == null) {
+            return Mono.error(new IllegalArgumentException("Parameter name is required and cannot be null."));
         }
         final String accept = "application/json";
         return FluxUtil
             .withContext(
                 context ->
                     service
-                        .listKeys(
+                        .getKeys(
                             this.client.getEndpoint(),
                             this.client.getSubscriptionId(),
                             resourceGroup,
-                            fluidRelayServerName,
+                            name,
                             this.client.getApiVersion(),
                             accept,
                             context))
@@ -1018,20 +1004,19 @@ public final class FluidRelayServersClientImpl implements FluidRelayServersClien
     }
 
     /**
-     * Get primary and secondary key for this server.
+     * Regenerate the primary or secondary key for this server.
      *
      * @param resourceGroup The resource group containing the resource.
-     * @param fluidRelayServerName The Fluid Relay server resource name.
+     * @param name The resource name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return primary and secondary key for this server along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return the set of available keys for this server on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<FluidRelayServerKeysInner>> listKeysWithResponseAsync(
-        String resourceGroup, String fluidRelayServerName, Context context) {
+    private Mono<FluidRelayServersGetKeysResponse> getKeysWithResponseAsync(
+        String resourceGroup, String name, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -1047,69 +1032,66 @@ public final class FluidRelayServersClientImpl implements FluidRelayServersClien
         if (resourceGroup == null) {
             return Mono.error(new IllegalArgumentException("Parameter resourceGroup is required and cannot be null."));
         }
-        if (fluidRelayServerName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter fluidRelayServerName is required and cannot be null."));
+        if (name == null) {
+            return Mono.error(new IllegalArgumentException("Parameter name is required and cannot be null."));
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .listKeys(
+            .getKeys(
                 this.client.getEndpoint(),
                 this.client.getSubscriptionId(),
                 resourceGroup,
-                fluidRelayServerName,
+                name,
                 this.client.getApiVersion(),
                 accept,
                 context);
     }
 
     /**
-     * Get primary and secondary key for this server.
+     * Regenerate the primary or secondary key for this server.
      *
      * @param resourceGroup The resource group containing the resource.
-     * @param fluidRelayServerName The Fluid Relay server resource name.
+     * @param name The resource name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return primary and secondary key for this server on successful completion of {@link Mono}.
+     * @return the set of available keys for this server on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<FluidRelayServerKeysInner> listKeysAsync(String resourceGroup, String fluidRelayServerName) {
-        return listKeysWithResponseAsync(resourceGroup, fluidRelayServerName)
-            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
+    private Mono<FluidRelayServerKeysInner> getKeysAsync(String resourceGroup, String name) {
+        return getKeysWithResponseAsync(resourceGroup, name).flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
-     * Get primary and secondary key for this server.
+     * Regenerate the primary or secondary key for this server.
      *
      * @param resourceGroup The resource group containing the resource.
-     * @param fluidRelayServerName The Fluid Relay server resource name.
+     * @param name The resource name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return primary and secondary key for this server.
+     * @return the set of available keys for this server.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public FluidRelayServerKeysInner listKeys(String resourceGroup, String fluidRelayServerName) {
-        return listKeysAsync(resourceGroup, fluidRelayServerName).block();
+    public FluidRelayServerKeysInner getKeys(String resourceGroup, String name) {
+        return getKeysAsync(resourceGroup, name).block();
     }
 
     /**
-     * Get primary and secondary key for this server.
+     * Regenerate the primary or secondary key for this server.
      *
      * @param resourceGroup The resource group containing the resource.
-     * @param fluidRelayServerName The Fluid Relay server resource name.
+     * @param name The resource name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return primary and secondary key for this server along with {@link Response}.
+     * @return the set of available keys for this server.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<FluidRelayServerKeysInner> listKeysWithResponse(
-        String resourceGroup, String fluidRelayServerName, Context context) {
-        return listKeysWithResponseAsync(resourceGroup, fluidRelayServerName, context).block();
+    public FluidRelayServersGetKeysResponse getKeysWithResponse(String resourceGroup, String name, Context context) {
+        return getKeysWithResponseAsync(resourceGroup, name, context).block();
     }
 
     /**

@@ -5,7 +5,6 @@
 package com.azure.resourcemanager.fluidrelay.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.resourcemanager.fluidrelay.fluent.models.FluidRelayServerUpdateProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
@@ -13,12 +12,6 @@ import java.util.Map;
 /** The updatable properties of a Fluid Relay server. */
 @Fluent
 public final class FluidRelayServerUpdate {
-    /*
-     * The resource-specific properties that can be updated for this resource.
-     */
-    @JsonProperty(value = "properties")
-    private FluidRelayServerUpdateProperties innerProperties;
-
     /*
      * Resource tags.
      */
@@ -31,21 +24,6 @@ public final class FluidRelayServerUpdate {
      */
     @JsonProperty(value = "identity")
     private Identity identity;
-
-    /*
-     * The geo-location where the resource lives
-     */
-    @JsonProperty(value = "location")
-    private String location;
-
-    /**
-     * Get the innerProperties property: The resource-specific properties that can be updated for this resource.
-     *
-     * @return the innerProperties value.
-     */
-    private FluidRelayServerUpdateProperties innerProperties() {
-        return this.innerProperties;
-    }
 
     /**
      * Get the tags property: Resource tags.
@@ -88,57 +66,11 @@ public final class FluidRelayServerUpdate {
     }
 
     /**
-     * Get the location property: The geo-location where the resource lives.
-     *
-     * @return the location value.
-     */
-    public String location() {
-        return this.location;
-    }
-
-    /**
-     * Set the location property: The geo-location where the resource lives.
-     *
-     * @param location the location value to set.
-     * @return the FluidRelayServerUpdate object itself.
-     */
-    public FluidRelayServerUpdate withLocation(String location) {
-        this.location = location;
-        return this;
-    }
-
-    /**
-     * Get the encryption property: All encryption configuration for a resource.
-     *
-     * @return the encryption value.
-     */
-    public EncryptionProperties encryption() {
-        return this.innerProperties() == null ? null : this.innerProperties().encryption();
-    }
-
-    /**
-     * Set the encryption property: All encryption configuration for a resource.
-     *
-     * @param encryption the encryption value to set.
-     * @return the FluidRelayServerUpdate object itself.
-     */
-    public FluidRelayServerUpdate withEncryption(EncryptionProperties encryption) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new FluidRelayServerUpdateProperties();
-        }
-        this.innerProperties().withEncryption(encryption);
-        return this;
-    }
-
-    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (innerProperties() != null) {
-            innerProperties().validate();
-        }
         if (identity() != null) {
             identity().validate();
         }

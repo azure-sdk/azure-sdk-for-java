@@ -78,27 +78,13 @@ public interface FluidRelayServer {
     FluidRelayEndpoints fluidRelayEndpoints();
 
     /**
-     * Gets the provisioningState property: Provision states for FluidRelay RP.
+     * Gets the provisioningState property: ProvisioningState
+     *
+     * <p>Provision states for FluidRelay RP.
      *
      * @return the provisioningState value.
      */
     ProvisioningState provisioningState();
-
-    /**
-     * Gets the encryption property: All encryption configuration for a resource.
-     *
-     * @return the encryption value.
-     */
-    EncryptionProperties encryption();
-
-    /**
-     * Gets the storagesku property: StorageSKU
-     *
-     * <p>Sku of the storage associated with the resource.
-     *
-     * @return the storagesku value.
-     */
-    StorageSku storagesku();
 
     /**
      * Gets the region of the resource.
@@ -173,11 +159,7 @@ public interface FluidRelayServer {
          * resource to be created, but also allows for any other optional properties to be specified.
          */
         interface WithCreate
-            extends DefinitionStages.WithTags,
-                DefinitionStages.WithIdentity,
-                DefinitionStages.WithProvisioningState,
-                DefinitionStages.WithEncryption,
-                DefinitionStages.WithStoragesku {
+            extends DefinitionStages.WithTags, DefinitionStages.WithIdentity, DefinitionStages.WithProvisioningState {
             /**
              * Executes the create request.
              *
@@ -216,35 +198,15 @@ public interface FluidRelayServer {
         /** The stage of the FluidRelayServer definition allowing to specify provisioningState. */
         interface WithProvisioningState {
             /**
-             * Specifies the provisioningState property: Provision states for FluidRelay RP.
+             * Specifies the provisioningState property: ProvisioningState
              *
-             * @param provisioningState Provision states for FluidRelay RP.
+             * <p>Provision states for FluidRelay RP.
+             *
+             * @param provisioningState ProvisioningState
+             *     <p>Provision states for FluidRelay RP.
              * @return the next definition stage.
              */
             WithCreate withProvisioningState(ProvisioningState provisioningState);
-        }
-        /** The stage of the FluidRelayServer definition allowing to specify encryption. */
-        interface WithEncryption {
-            /**
-             * Specifies the encryption property: All encryption configuration for a resource..
-             *
-             * @param encryption All encryption configuration for a resource.
-             * @return the next definition stage.
-             */
-            WithCreate withEncryption(EncryptionProperties encryption);
-        }
-        /** The stage of the FluidRelayServer definition allowing to specify storagesku. */
-        interface WithStoragesku {
-            /**
-             * Specifies the storagesku property: StorageSKU
-             *
-             * <p>Sku of the storage associated with the resource.
-             *
-             * @param storagesku StorageSKU
-             *     <p>Sku of the storage associated with the resource.
-             * @return the next definition stage.
-             */
-            WithCreate withStoragesku(StorageSku storagesku);
         }
     }
     /**
@@ -255,7 +217,7 @@ public interface FluidRelayServer {
     FluidRelayServer.Update update();
 
     /** The template for FluidRelayServer update. */
-    interface Update extends UpdateStages.WithTags, UpdateStages.WithIdentity, UpdateStages.WithEncryption {
+    interface Update extends UpdateStages.WithTags, UpdateStages.WithIdentity {
         /**
          * Executes the update request.
          *
@@ -293,16 +255,6 @@ public interface FluidRelayServer {
              */
             Update withIdentity(Identity identity);
         }
-        /** The stage of the FluidRelayServer update allowing to specify encryption. */
-        interface WithEncryption {
-            /**
-             * Specifies the encryption property: All encryption configuration for a resource..
-             *
-             * @param encryption All encryption configuration for a resource.
-             * @return the next definition stage.
-             */
-            Update withEncryption(EncryptionProperties encryption);
-        }
     }
     /**
      * Refreshes the resource to sync with Azure.
@@ -338,27 +290,27 @@ public interface FluidRelayServer {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the set of available keys for this server along with {@link Response}.
+     * @return the set of available keys for this server.
      */
     Response<FluidRelayServerKeys> regenerateKeyWithResponse(RegenerateKeyRequest parameters, Context context);
 
     /**
-     * Get primary and secondary key for this server.
+     * Regenerate the primary or secondary key for this server.
      *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return primary and secondary key for this server.
+     * @return the set of available keys for this server.
      */
-    FluidRelayServerKeys listKeys();
+    FluidRelayServerKeys getKeys();
 
     /**
-     * Get primary and secondary key for this server.
+     * Regenerate the primary or secondary key for this server.
      *
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return primary and secondary key for this server along with {@link Response}.
+     * @return the set of available keys for this server.
      */
-    Response<FluidRelayServerKeys> listKeysWithResponse(Context context);
+    Response<FluidRelayServerKeys> getKeysWithResponse(Context context);
 }

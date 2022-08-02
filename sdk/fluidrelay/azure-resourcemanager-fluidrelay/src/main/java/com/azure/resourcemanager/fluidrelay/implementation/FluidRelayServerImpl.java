@@ -9,7 +9,6 @@ import com.azure.core.management.Region;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.fluidrelay.fluent.models.FluidRelayServerInner;
-import com.azure.resourcemanager.fluidrelay.models.EncryptionProperties;
 import com.azure.resourcemanager.fluidrelay.models.FluidRelayEndpoints;
 import com.azure.resourcemanager.fluidrelay.models.FluidRelayServer;
 import com.azure.resourcemanager.fluidrelay.models.FluidRelayServerKeys;
@@ -17,7 +16,6 @@ import com.azure.resourcemanager.fluidrelay.models.FluidRelayServerUpdate;
 import com.azure.resourcemanager.fluidrelay.models.Identity;
 import com.azure.resourcemanager.fluidrelay.models.ProvisioningState;
 import com.azure.resourcemanager.fluidrelay.models.RegenerateKeyRequest;
-import com.azure.resourcemanager.fluidrelay.models.StorageSku;
 import java.util.Collections;
 import java.util.Map;
 
@@ -72,14 +70,6 @@ public final class FluidRelayServerImpl
         return this.innerModel().provisioningState();
     }
 
-    public EncryptionProperties encryption() {
-        return this.innerModel().encryption();
-    }
-
-    public StorageSku storagesku() {
-        return this.innerModel().storagesku();
-    }
-
     public Region region() {
         return Region.fromName(this.regionName());
     }
@@ -102,7 +92,7 @@ public final class FluidRelayServerImpl
 
     private String resourceGroup;
 
-    private String fluidRelayServerName;
+    private String name;
 
     private FluidRelayServerUpdate updateResource;
 
@@ -116,7 +106,7 @@ public final class FluidRelayServerImpl
             serviceManager
                 .serviceClient()
                 .getFluidRelayServers()
-                .createOrUpdateWithResponse(resourceGroup, fluidRelayServerName, this.innerModel(), Context.NONE)
+                .createOrUpdateWithResponse(resourceGroup, name, this.innerModel(), Context.NONE)
                 .getValue();
         return this;
     }
@@ -126,7 +116,7 @@ public final class FluidRelayServerImpl
             serviceManager
                 .serviceClient()
                 .getFluidRelayServers()
-                .createOrUpdateWithResponse(resourceGroup, fluidRelayServerName, this.innerModel(), context)
+                .createOrUpdateWithResponse(resourceGroup, name, this.innerModel(), context)
                 .getValue();
         return this;
     }
@@ -134,7 +124,7 @@ public final class FluidRelayServerImpl
     FluidRelayServerImpl(String name, com.azure.resourcemanager.fluidrelay.FluidRelayManager serviceManager) {
         this.innerObject = new FluidRelayServerInner();
         this.serviceManager = serviceManager;
-        this.fluidRelayServerName = name;
+        this.name = name;
     }
 
     public FluidRelayServerImpl update() {
@@ -147,7 +137,7 @@ public final class FluidRelayServerImpl
             serviceManager
                 .serviceClient()
                 .getFluidRelayServers()
-                .updateWithResponse(resourceGroup, fluidRelayServerName, updateResource, Context.NONE)
+                .updateWithResponse(resourceGroup, name, updateResource, Context.NONE)
                 .getValue();
         return this;
     }
@@ -157,7 +147,7 @@ public final class FluidRelayServerImpl
             serviceManager
                 .serviceClient()
                 .getFluidRelayServers()
-                .updateWithResponse(resourceGroup, fluidRelayServerName, updateResource, context)
+                .updateWithResponse(resourceGroup, name, updateResource, context)
                 .getValue();
         return this;
     }
@@ -167,7 +157,7 @@ public final class FluidRelayServerImpl
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
         this.resourceGroup = Utils.getValueFromIdByName(innerObject.id(), "resourceGroups");
-        this.fluidRelayServerName = Utils.getValueFromIdByName(innerObject.id(), "fluidRelayServers");
+        this.name = Utils.getValueFromIdByName(innerObject.id(), "fluidRelayServers");
     }
 
     public FluidRelayServer refresh() {
@@ -175,7 +165,7 @@ public final class FluidRelayServerImpl
             serviceManager
                 .serviceClient()
                 .getFluidRelayServers()
-                .getByResourceGroupWithResponse(resourceGroup, fluidRelayServerName, Context.NONE)
+                .getByResourceGroupWithResponse(resourceGroup, name, Context.NONE)
                 .getValue();
         return this;
     }
@@ -185,27 +175,25 @@ public final class FluidRelayServerImpl
             serviceManager
                 .serviceClient()
                 .getFluidRelayServers()
-                .getByResourceGroupWithResponse(resourceGroup, fluidRelayServerName, context)
+                .getByResourceGroupWithResponse(resourceGroup, name, context)
                 .getValue();
         return this;
     }
 
     public FluidRelayServerKeys regenerateKey(RegenerateKeyRequest parameters) {
-        return serviceManager.fluidRelayServers().regenerateKey(resourceGroup, fluidRelayServerName, parameters);
+        return serviceManager.fluidRelayServers().regenerateKey(resourceGroup, name, parameters);
     }
 
     public Response<FluidRelayServerKeys> regenerateKeyWithResponse(RegenerateKeyRequest parameters, Context context) {
-        return serviceManager
-            .fluidRelayServers()
-            .regenerateKeyWithResponse(resourceGroup, fluidRelayServerName, parameters, context);
+        return serviceManager.fluidRelayServers().regenerateKeyWithResponse(resourceGroup, name, parameters, context);
     }
 
-    public FluidRelayServerKeys listKeys() {
-        return serviceManager.fluidRelayServers().listKeys(resourceGroup, fluidRelayServerName);
+    public FluidRelayServerKeys getKeys() {
+        return serviceManager.fluidRelayServers().getKeys(resourceGroup, name);
     }
 
-    public Response<FluidRelayServerKeys> listKeysWithResponse(Context context) {
-        return serviceManager.fluidRelayServers().listKeysWithResponse(resourceGroup, fluidRelayServerName, context);
+    public Response<FluidRelayServerKeys> getKeysWithResponse(Context context) {
+        return serviceManager.fluidRelayServers().getKeysWithResponse(resourceGroup, name, context);
     }
 
     public FluidRelayServerImpl withRegion(Region location) {
@@ -240,21 +228,6 @@ public final class FluidRelayServerImpl
 
     public FluidRelayServerImpl withProvisioningState(ProvisioningState provisioningState) {
         this.innerModel().withProvisioningState(provisioningState);
-        return this;
-    }
-
-    public FluidRelayServerImpl withEncryption(EncryptionProperties encryption) {
-        if (isInCreateMode()) {
-            this.innerModel().withEncryption(encryption);
-            return this;
-        } else {
-            this.updateResource.withEncryption(encryption);
-            return this;
-        }
-    }
-
-    public FluidRelayServerImpl withStoragesku(StorageSku storagesku) {
-        this.innerModel().withStoragesku(storagesku);
         return this;
     }
 

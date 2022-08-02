@@ -23,12 +23,6 @@ public final class FluidRelayEndpoints {
     @JsonProperty(value = "storageEndpoints", access = JsonProperty.Access.WRITE_ONLY)
     private List<String> storageEndpoints;
 
-    /*
-     * The Fluid Relay service endpoints.
-     */
-    @JsonProperty(value = "serviceEndpoints", access = JsonProperty.Access.WRITE_ONLY)
-    private List<String> serviceEndpoints;
-
     /**
      * Get the ordererEndpoints property: The Fluid Relay Orderer endpoints.
      *
@@ -45,15 +39,6 @@ public final class FluidRelayEndpoints {
      */
     public List<String> storageEndpoints() {
         return this.storageEndpoints;
-    }
-
-    /**
-     * Get the serviceEndpoints property: The Fluid Relay service endpoints.
-     *
-     * @return the serviceEndpoints value.
-     */
-    public List<String> serviceEndpoints() {
-        return this.serviceEndpoints;
     }
 
     /**
