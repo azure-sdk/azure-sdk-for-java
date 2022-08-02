@@ -5,19 +5,14 @@
 package com.azure.resourcemanager.devtestlabs.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** Properties of a weekly schedule. */
 @Fluent
 public final class WeekDetails {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(WeekDetails.class);
-
     /*
-     * The days of the week for which the schedule is set (e.g. Sunday, Monday,
-     * Tuesday, etc.).
+     * The days of the week for which the schedule is set (e.g. Sunday, Monday, Tuesday, etc.).
      */
     @JsonProperty(value = "weekdays")
     private List<String> weekdays;

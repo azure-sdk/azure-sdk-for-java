@@ -5,15 +5,11 @@
 package com.azure.resourcemanager.devtestlabs.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Properties of a cost threshold item. */
 @Fluent
 public final class CostThresholdProperties {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(CostThresholdProperties.class);
-
     /*
      * The ID of the cost threshold item.
      */
@@ -33,15 +29,13 @@ public final class CostThresholdProperties {
     private CostThresholdStatus displayOnChart;
 
     /*
-     * Indicates whether notifications will be sent when this threshold is
-     * exceeded.
+     * Indicates whether notifications will be sent when this threshold is exceeded.
      */
     @JsonProperty(value = "sendNotificationWhenExceeded")
     private CostThresholdStatus sendNotificationWhenExceeded;
 
     /*
-     * Indicates the datetime when notifications were last sent for this
-     * threshold.
+     * Indicates the datetime when notifications were last sent for this threshold.
      */
     @JsonProperty(value = "notificationSent")
     private String notificationSent;

@@ -5,18 +5,13 @@
 package com.azure.resourcemanager.devtestlabs.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** An event to be notified for. */
 @Fluent
 public final class Event {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(Event.class);
-
     /*
-     * The event type for which this notification is enabled (i.e.
-     * AutoShutdown, Cost)
+     * The event type for which this notification is enabled (i.e. AutoShutdown, Cost)
      */
     @JsonProperty(value = "eventName")
     private NotificationChannelEventType eventName;

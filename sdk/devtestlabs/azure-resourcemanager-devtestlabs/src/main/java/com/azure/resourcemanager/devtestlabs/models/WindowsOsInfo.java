@@ -5,18 +5,13 @@
 package com.azure.resourcemanager.devtestlabs.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Information about a Windows OS. */
 @Fluent
 public final class WindowsOsInfo {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(WindowsOsInfo.class);
-
     /*
-     * The state of the Windows OS (i.e. NonSysprepped, SysprepRequested,
-     * SysprepApplied).
+     * The state of the Windows OS (i.e. NonSysprepped, SysprepRequested, SysprepApplied).
      */
     @JsonProperty(value = "windowsOsState")
     private WindowsOsState windowsOsState;
