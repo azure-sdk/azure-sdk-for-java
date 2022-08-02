@@ -51,7 +51,11 @@ public final class SaaSOfferStatus extends ExpandableStringEnum<SaaSOfferStatus>
         return fromString(name, SaaSOfferStatus.class);
     }
 
-    /** @return known SaaSOfferStatus values. */
+    /**
+     * Gets known SaaSOfferStatus values.
+     *
+     * @return known SaaSOfferStatus values.
+     */
     public static Collection<SaaSOfferStatus> values() {
         return values(SaaSOfferStatus.class);
     }

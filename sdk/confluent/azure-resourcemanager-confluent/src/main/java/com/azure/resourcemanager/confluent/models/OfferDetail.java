@@ -6,14 +6,11 @@ package com.azure.resourcemanager.confluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Confluent Offer detail. */
 @Fluent
 public final class OfferDetail {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(OfferDetail.class);
-
     /*
      * Publisher Id
      */
@@ -45,7 +42,9 @@ public final class OfferDetail {
     private String termUnit;
 
     /*
-     * SaaSOfferStatus SaaS Offer Status
+     * SaaSOfferStatus
+     *
+     * SaaS Offer Status
      */
     @JsonProperty(value = "status")
     private SaaSOfferStatus status;
@@ -151,7 +150,9 @@ public final class OfferDetail {
     }
 
     /**
-     * Get the status property: SaaSOfferStatus SaaS Offer Status.
+     * Get the status property: SaaSOfferStatus
+     *
+     * <p>SaaS Offer Status.
      *
      * @return the status value.
      */
@@ -160,7 +161,9 @@ public final class OfferDetail {
     }
 
     /**
-     * Set the status property: SaaSOfferStatus SaaS Offer Status.
+     * Set the status property: SaaSOfferStatus
+     *
+     * <p>SaaS Offer Status.
      *
      * @param status the status value to set.
      * @return the OfferDetail object itself.
@@ -177,28 +180,30 @@ public final class OfferDetail {
      */
     public void validate() {
         if (publisherId() == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property publisherId in model OfferDetail"));
         }
         if (id() == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(new IllegalArgumentException("Missing required property id in model OfferDetail"));
         }
         if (planId() == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property planId in model OfferDetail"));
         }
         if (planName() == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property planName in model OfferDetail"));
         }
         if (termUnit() == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property termUnit in model OfferDetail"));
         }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(OfferDetail.class);
 }
