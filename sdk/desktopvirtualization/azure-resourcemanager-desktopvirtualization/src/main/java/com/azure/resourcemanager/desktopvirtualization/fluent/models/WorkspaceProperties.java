@@ -43,9 +43,8 @@ public final class WorkspaceProperties {
     private Boolean cloudPcResource;
 
     /*
-     * Enabled allows this resource to be accessed from both public and private
-     * networks, Disabled allows this resource to only be accessed via private
-     * endpoints
+     * Enabled allows this resource to be accessed from both public and private networks, Disabled allows this resource
+     * to only be accessed via private endpoints
      */
     @JsonProperty(value = "publicNetworkAccess")
     private PublicNetworkAccess publicNetworkAccess;

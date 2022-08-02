@@ -233,7 +233,7 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
      * @return a list of private link resources as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedFlux<PrivateLinkResourceInner> listByHostPoolAsync(String resourceGroupName, String hostPoolName) {
+    private PagedFlux<PrivateLinkResourceInner> listByHostPoolAsync(String resourceGroupName, String hostPoolName) {
         return new PagedFlux<>(
             () -> listByHostPoolSinglePageAsync(resourceGroupName, hostPoolName),
             nextLink -> listByHostPoolNextSinglePageAsync(nextLink));
@@ -415,7 +415,7 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
      * @return a list of private link resources as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedFlux<PrivateLinkResourceInner> listByWorkspaceAsync(String resourceGroupName, String workspaceName) {
+    private PagedFlux<PrivateLinkResourceInner> listByWorkspaceAsync(String resourceGroupName, String workspaceName) {
         return new PagedFlux<>(
             () -> listByWorkspaceSinglePageAsync(resourceGroupName, workspaceName),
             nextLink -> listByWorkspaceNextSinglePageAsync(nextLink));

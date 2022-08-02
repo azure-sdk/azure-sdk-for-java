@@ -9,7 +9,11 @@ import com.azure.resourcemanager.desktopvirtualization.fluent.models.MsixPackage
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** MsixPackageList List of MSIX Package definitions. */
+/**
+ * MsixPackageList
+ *
+ * <p>List of MSIX Package definitions.
+ */
 @Fluent
 public final class MsixPackageList {
     /*

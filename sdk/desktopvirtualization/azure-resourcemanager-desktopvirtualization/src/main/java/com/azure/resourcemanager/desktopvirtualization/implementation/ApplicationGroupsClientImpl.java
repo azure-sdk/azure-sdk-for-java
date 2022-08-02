@@ -182,7 +182,7 @@ public final class ApplicationGroupsClientImpl implements ApplicationGroupsClien
      * @return an application group along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<ApplicationGroupInner>> getByResourceGroupWithResponseAsync(
+    private Mono<Response<ApplicationGroupInner>> getByResourceGroupWithResponseAsync(
         String resourceGroupName, String applicationGroupName) {
         if (this.client.getEndpoint() == null) {
             return Mono
@@ -278,7 +278,7 @@ public final class ApplicationGroupsClientImpl implements ApplicationGroupsClien
      * @return an application group on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<ApplicationGroupInner> getByResourceGroupAsync(String resourceGroupName, String applicationGroupName) {
+    private Mono<ApplicationGroupInner> getByResourceGroupAsync(String resourceGroupName, String applicationGroupName) {
         return getByResourceGroupWithResponseAsync(resourceGroupName, applicationGroupName)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
@@ -328,7 +328,7 @@ public final class ApplicationGroupsClientImpl implements ApplicationGroupsClien
      *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<ApplicationGroupInner>> createOrUpdateWithResponseAsync(
+    private Mono<Response<ApplicationGroupInner>> createOrUpdateWithResponseAsync(
         String resourceGroupName, String applicationGroupName, ApplicationGroupInner applicationGroup) {
         if (this.client.getEndpoint() == null) {
             return Mono
@@ -444,7 +444,7 @@ public final class ApplicationGroupsClientImpl implements ApplicationGroupsClien
      * @return represents a ApplicationGroup definition on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<ApplicationGroupInner> createOrUpdateAsync(
+    private Mono<ApplicationGroupInner> createOrUpdateAsync(
         String resourceGroupName, String applicationGroupName, ApplicationGroupInner applicationGroup) {
         return createOrUpdateWithResponseAsync(resourceGroupName, applicationGroupName, applicationGroup)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
@@ -500,7 +500,7 @@ public final class ApplicationGroupsClientImpl implements ApplicationGroupsClien
      * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Void>> deleteWithResponseAsync(String resourceGroupName, String applicationGroupName) {
+    private Mono<Response<Void>> deleteWithResponseAsync(String resourceGroupName, String applicationGroupName) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -595,7 +595,7 @@ public final class ApplicationGroupsClientImpl implements ApplicationGroupsClien
      * @return A {@link Mono} that completes when a successful response is received.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Void> deleteAsync(String resourceGroupName, String applicationGroupName) {
+    private Mono<Void> deleteAsync(String resourceGroupName, String applicationGroupName) {
         return deleteWithResponseAsync(resourceGroupName, applicationGroupName).flatMap(ignored -> Mono.empty());
     }
 
@@ -642,7 +642,7 @@ public final class ApplicationGroupsClientImpl implements ApplicationGroupsClien
      *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<ApplicationGroupInner>> updateWithResponseAsync(
+    private Mono<Response<ApplicationGroupInner>> updateWithResponseAsync(
         String resourceGroupName, String applicationGroupName, ApplicationGroupPatch applicationGroup) {
         if (this.client.getEndpoint() == null) {
             return Mono
@@ -752,7 +752,7 @@ public final class ApplicationGroupsClientImpl implements ApplicationGroupsClien
      * @return represents a ApplicationGroup definition on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<ApplicationGroupInner> updateAsync(
+    private Mono<ApplicationGroupInner> updateAsync(
         String resourceGroupName, String applicationGroupName, ApplicationGroupPatch applicationGroup) {
         return updateWithResponseAsync(resourceGroupName, applicationGroupName, applicationGroup)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
@@ -769,7 +769,7 @@ public final class ApplicationGroupsClientImpl implements ApplicationGroupsClien
      * @return represents a ApplicationGroup definition on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<ApplicationGroupInner> updateAsync(String resourceGroupName, String applicationGroupName) {
+    private Mono<ApplicationGroupInner> updateAsync(String resourceGroupName, String applicationGroupName) {
         final ApplicationGroupPatch applicationGroup = null;
         return updateWithResponseAsync(resourceGroupName, applicationGroupName, applicationGroup)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
@@ -929,7 +929,7 @@ public final class ApplicationGroupsClientImpl implements ApplicationGroupsClien
      * @return applicationGroupList as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedFlux<ApplicationGroupInner> listByResourceGroupAsync(String resourceGroupName, String filter) {
+    private PagedFlux<ApplicationGroupInner> listByResourceGroupAsync(String resourceGroupName, String filter) {
         return new PagedFlux<>(
             () -> listByResourceGroupSinglePageAsync(resourceGroupName, filter),
             nextLink -> listByResourceGroupNextSinglePageAsync(nextLink));
@@ -945,7 +945,7 @@ public final class ApplicationGroupsClientImpl implements ApplicationGroupsClien
      * @return applicationGroupList as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedFlux<ApplicationGroupInner> listByResourceGroupAsync(String resourceGroupName) {
+    private PagedFlux<ApplicationGroupInner> listByResourceGroupAsync(String resourceGroupName) {
         final String filter = null;
         return new PagedFlux<>(
             () -> listByResourceGroupSinglePageAsync(resourceGroupName, filter),
@@ -1105,7 +1105,7 @@ public final class ApplicationGroupsClientImpl implements ApplicationGroupsClien
      * @return applicationGroupList as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedFlux<ApplicationGroupInner> listAsync(String filter) {
+    private PagedFlux<ApplicationGroupInner> listAsync(String filter) {
         return new PagedFlux<>(
             () -> listSinglePageAsync(filter), nextLink -> listBySubscriptionNextSinglePageAsync(nextLink));
     }
@@ -1118,7 +1118,7 @@ public final class ApplicationGroupsClientImpl implements ApplicationGroupsClien
      * @return applicationGroupList as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedFlux<ApplicationGroupInner> listAsync() {
+    private PagedFlux<ApplicationGroupInner> listAsync() {
         final String filter = null;
         return new PagedFlux<>(
             () -> listSinglePageAsync(filter), nextLink -> listBySubscriptionNextSinglePageAsync(nextLink));

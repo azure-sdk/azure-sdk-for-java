@@ -9,7 +9,11 @@ import com.azure.resourcemanager.desktopvirtualization.fluent.models.DesktopInne
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** DesktopList List of Desktop definitions. */
+/**
+ * DesktopList
+ *
+ * <p>List of Desktop definitions.
+ */
 @Fluent
 public final class DesktopList {
     /*

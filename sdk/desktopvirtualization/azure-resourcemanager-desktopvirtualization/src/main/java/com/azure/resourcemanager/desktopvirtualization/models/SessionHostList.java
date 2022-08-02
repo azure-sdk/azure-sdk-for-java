@@ -9,7 +9,11 @@ import com.azure.resourcemanager.desktopvirtualization.fluent.models.SessionHost
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** SessionHostList List of SessionHost definitions. */
+/**
+ * SessionHostList
+ *
+ * <p>List of SessionHost definitions.
+ */
 @Fluent
 public final class SessionHostList {
     /*

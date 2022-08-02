@@ -104,15 +104,13 @@ public final class HostPoolPropertiesInner {
     private String ssoadfsAuthority;
 
     /*
-     * ClientId for the registered Relying Party used to issue WVD SSO
-     * certificates.
+     * ClientId for the registered Relying Party used to issue WVD SSO certificates.
      */
     @JsonProperty(value = "ssoClientId")
     private String ssoClientId;
 
     /*
-     * Path to Azure KeyVault storing the secret used for communication to
-     * ADFS.
+     * Path to Azure KeyVault storing the secret used for communication to ADFS.
      */
     @JsonProperty(value = "ssoClientSecretKeyVaultPath")
     private String ssoClientSecretKeyVaultPath;
@@ -124,8 +122,7 @@ public final class HostPoolPropertiesInner {
     private SsoSecretType ssoSecretType;
 
     /*
-     * The type of preferred application group type, default to Desktop
-     * Application Group
+     * The type of preferred application group type, default to Desktop Application Group
      */
     @JsonProperty(value = "preferredAppGroupType", required = true)
     private PreferredAppGroupType preferredAppGroupType;
@@ -149,9 +146,8 @@ public final class HostPoolPropertiesInner {
     private Boolean cloudPcResource;
 
     /*
-     * Enabled allows this resource to be accessed from both public and private
-     * networks, Disabled allows this resource to only be accessed via private
-     * endpoints
+     * Enabled allows this resource to be accessed from both public and private networks, Disabled allows this resource
+     * to only be accessed via private endpoints
      */
     @JsonProperty(value = "publicNetworkAccess")
     private PublicNetworkAccess publicNetworkAccess;

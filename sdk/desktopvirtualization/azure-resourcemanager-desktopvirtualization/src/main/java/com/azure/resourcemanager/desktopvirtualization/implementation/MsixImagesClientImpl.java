@@ -224,7 +224,7 @@ public final class MsixImagesClientImpl implements MsixImagesClient {
      * @return expandMsixImageList as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedFlux<ExpandMsixImageInner> expandAsync(
+    private PagedFlux<ExpandMsixImageInner> expandAsync(
         String resourceGroupName, String hostPoolName, MsixImageUri msixImageUri) {
         return new PagedFlux<>(
             () -> expandSinglePageAsync(resourceGroupName, hostPoolName, msixImageUri),

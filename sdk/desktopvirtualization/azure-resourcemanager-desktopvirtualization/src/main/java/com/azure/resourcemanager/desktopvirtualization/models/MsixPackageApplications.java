@@ -24,8 +24,7 @@ public final class MsixPackageApplications {
     private String description;
 
     /*
-     * Used to activate Package Application. Consists of Package Name and
-     * ApplicationID. Found in appxmanifest.xml.
+     * Used to activate Package Application. Consists of Package Name and ApplicationID. Found in appxmanifest.xml.
      */
     @JsonProperty(value = "appUserModelID")
     private String appUserModelId;

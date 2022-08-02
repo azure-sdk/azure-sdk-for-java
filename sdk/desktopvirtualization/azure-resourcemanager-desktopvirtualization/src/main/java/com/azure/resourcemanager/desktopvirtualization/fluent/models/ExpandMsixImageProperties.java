@@ -33,8 +33,7 @@ public final class ExpandMsixImageProperties {
     private String packageName;
 
     /*
-     * Package Family Name from appxmanifest.xml. Contains Package Name and
-     * Publisher name.
+     * Package Family Name from appxmanifest.xml. Contains Package Name and Publisher name.
      */
     @JsonProperty(value = "packageFamilyName")
     private String packageFamilyName;

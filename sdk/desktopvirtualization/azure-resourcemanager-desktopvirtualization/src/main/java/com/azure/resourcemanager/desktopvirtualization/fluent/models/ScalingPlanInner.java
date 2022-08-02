@@ -17,7 +17,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import java.util.Map;
 
-/** ScalingPlan Represents a scaling plan definition. */
+/**
+ * ScalingPlan
+ *
+ * <p>Represents a scaling plan definition.
+ */
 @Fluent
 public final class ScalingPlanInner extends ResourceModelWithAllowedPropertySet {
     /*

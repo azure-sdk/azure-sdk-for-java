@@ -129,7 +129,7 @@ public final class DesktopsClientImpl implements DesktopsClient {
      * @return a desktop along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<DesktopInner>> getWithResponseAsync(
+    private Mono<Response<DesktopInner>> getWithResponseAsync(
         String resourceGroupName, String applicationGroupName, String desktopName) {
         if (this.client.getEndpoint() == null) {
             return Mono
@@ -235,7 +235,7 @@ public final class DesktopsClientImpl implements DesktopsClient {
      * @return a desktop on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<DesktopInner> getAsync(String resourceGroupName, String applicationGroupName, String desktopName) {
+    private Mono<DesktopInner> getAsync(String resourceGroupName, String applicationGroupName, String desktopName) {
         return getWithResponseAsync(resourceGroupName, applicationGroupName, desktopName)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
@@ -287,7 +287,7 @@ public final class DesktopsClientImpl implements DesktopsClient {
      * @return schema for Desktop properties along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<DesktopInner>> updateWithResponseAsync(
+    private Mono<Response<DesktopInner>> updateWithResponseAsync(
         String resourceGroupName, String applicationGroupName, String desktopName, DesktopPatch desktop) {
         if (this.client.getEndpoint() == null) {
             return Mono
@@ -407,7 +407,7 @@ public final class DesktopsClientImpl implements DesktopsClient {
      * @return schema for Desktop properties on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<DesktopInner> updateAsync(
+    private Mono<DesktopInner> updateAsync(
         String resourceGroupName, String applicationGroupName, String desktopName, DesktopPatch desktop) {
         return updateWithResponseAsync(resourceGroupName, applicationGroupName, desktopName, desktop)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
@@ -425,7 +425,7 @@ public final class DesktopsClientImpl implements DesktopsClient {
      * @return schema for Desktop properties on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<DesktopInner> updateAsync(String resourceGroupName, String applicationGroupName, String desktopName) {
+    private Mono<DesktopInner> updateAsync(String resourceGroupName, String applicationGroupName, String desktopName) {
         final DesktopPatch desktop = null;
         return updateWithResponseAsync(resourceGroupName, applicationGroupName, desktopName, desktop)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
@@ -596,7 +596,7 @@ public final class DesktopsClientImpl implements DesktopsClient {
      * @return desktopList as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedFlux<DesktopInner> listAsync(String resourceGroupName, String applicationGroupName) {
+    private PagedFlux<DesktopInner> listAsync(String resourceGroupName, String applicationGroupName) {
         return new PagedFlux<>(
             () -> listSinglePageAsync(resourceGroupName, applicationGroupName),
             nextLink -> listNextSinglePageAsync(nextLink));

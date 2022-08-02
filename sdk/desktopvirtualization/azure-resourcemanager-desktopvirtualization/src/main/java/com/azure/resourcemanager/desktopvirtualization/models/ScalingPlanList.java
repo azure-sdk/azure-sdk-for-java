@@ -9,7 +9,11 @@ import com.azure.resourcemanager.desktopvirtualization.fluent.models.ScalingPlan
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** ScalingPlanList List of scaling plan definitions. */
+/**
+ * ScalingPlanList
+ *
+ * <p>List of scaling plan definitions.
+ */
 @Fluent
 public final class ScalingPlanList {
     /*
