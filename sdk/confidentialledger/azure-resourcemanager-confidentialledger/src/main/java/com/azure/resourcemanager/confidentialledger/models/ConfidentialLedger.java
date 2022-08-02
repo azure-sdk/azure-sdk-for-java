@@ -34,7 +34,9 @@ public interface ConfidentialLedger {
     String type();
 
     /**
-     * Gets the properties property: LedgerProperties Properties of Confidential Ledger Resource.
+     * Gets the properties property: LedgerProperties
+     *
+     * <p>Properties of Confidential Ledger Resource.
      *
      * @return the properties value.
      */
@@ -160,9 +162,12 @@ public interface ConfidentialLedger {
         /** The stage of the ConfidentialLedger definition allowing to specify properties. */
         interface WithProperties {
             /**
-             * Specifies the properties property: LedgerProperties Properties of Confidential Ledger Resource..
+             * Specifies the properties property: LedgerProperties
              *
-             * @param properties LedgerProperties Properties of Confidential Ledger Resource.
+             * <p>Properties of Confidential Ledger Resource..
+             *
+             * @param properties LedgerProperties
+             *     <p>Properties of Confidential Ledger Resource.
              * @return the next definition stage.
              */
             WithCreate withProperties(LedgerProperties properties);
@@ -207,9 +212,12 @@ public interface ConfidentialLedger {
         /** The stage of the ConfidentialLedger update allowing to specify properties. */
         interface WithProperties {
             /**
-             * Specifies the properties property: LedgerProperties Properties of Confidential Ledger Resource..
+             * Specifies the properties property: LedgerProperties
              *
-             * @param properties LedgerProperties Properties of Confidential Ledger Resource.
+             * <p>Properties of Confidential Ledger Resource..
+             *
+             * @param properties LedgerProperties
+             *     <p>Properties of Confidential Ledger Resource.
              * @return the next definition stage.
              */
             Update withProperties(LedgerProperties properties);

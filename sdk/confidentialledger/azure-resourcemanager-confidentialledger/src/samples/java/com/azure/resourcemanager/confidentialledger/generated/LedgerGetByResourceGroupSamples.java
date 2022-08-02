@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for Ledger GetByResourceGroup. */
 public final class LedgerGetByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/confidentialledger/resource-manager/Microsoft.ConfidentialLedger/stable/2022-05-13/examples/ConfidentialLedger_Get.json
+     * x-ms-original-file: specification/confidentialledger/resource-manager/Microsoft.ConfidentialLedger/preview/2021-05-13-preview/examples/ConfidentialLedger_Get.json
      */
     /**
      * Sample code: ConfidentialLedgerGet.

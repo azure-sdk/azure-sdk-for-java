@@ -78,7 +78,9 @@ public final class OperationsClientImpl implements OperationsClient {
     }
 
     /**
-     * Retrieves a list of available API operations.
+     * Retrieves a list of available API operations under this Resource Provider.
+     *
+     * <p>Retrieves a list of available API operations.
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -110,7 +112,9 @@ public final class OperationsClientImpl implements OperationsClient {
     }
 
     /**
-     * Retrieves a list of available API operations.
+     * Retrieves a list of available API operations under this Resource Provider.
+     *
+     * <p>Retrieves a list of available API operations.
      *
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -143,7 +147,9 @@ public final class OperationsClientImpl implements OperationsClient {
     }
 
     /**
-     * Retrieves a list of available API operations.
+     * Retrieves a list of available API operations under this Resource Provider.
+     *
+     * <p>Retrieves a list of available API operations.
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -156,7 +162,9 @@ public final class OperationsClientImpl implements OperationsClient {
     }
 
     /**
-     * Retrieves a list of available API operations.
+     * Retrieves a list of available API operations under this Resource Provider.
+     *
+     * <p>Retrieves a list of available API operations.
      *
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -172,7 +180,9 @@ public final class OperationsClientImpl implements OperationsClient {
     }
 
     /**
-     * Retrieves a list of available API operations.
+     * Retrieves a list of available API operations under this Resource Provider.
+     *
+     * <p>Retrieves a list of available API operations.
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -185,7 +195,9 @@ public final class OperationsClientImpl implements OperationsClient {
     }
 
     /**
-     * Retrieves a list of available API operations.
+     * Retrieves a list of available API operations under this Resource Provider.
+     *
+     * <p>Retrieves a list of available API operations.
      *
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.

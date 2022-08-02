@@ -16,7 +16,9 @@ import com.azure.resourcemanager.confidentialledger.fluent.models.ConfidentialLe
 /** An instance of this class provides access to all the operations defined in LedgersClient. */
 public interface LedgersClient {
     /**
-     * Retrieves the properties of a Confidential Ledger.
+     * Retrieves information about a Confidential Ledger resource.
+     *
+     * <p>Retrieves the properties of a Confidential Ledger.
      *
      * @param resourceGroupName The name of the resource group.
      * @param ledgerName Name of the Confidential Ledger.
@@ -29,7 +31,9 @@ public interface LedgersClient {
     ConfidentialLedgerInner getByResourceGroup(String resourceGroupName, String ledgerName);
 
     /**
-     * Retrieves the properties of a Confidential Ledger.
+     * Retrieves information about a Confidential Ledger resource.
+     *
+     * <p>Retrieves the properties of a Confidential Ledger.
      *
      * @param resourceGroupName The name of the resource group.
      * @param ledgerName Name of the Confidential Ledger.
@@ -44,7 +48,9 @@ public interface LedgersClient {
         String resourceGroupName, String ledgerName, Context context);
 
     /**
-     * Deletes an existing Confidential Ledger.
+     * Deletes a Confidential Ledger resource.
+     *
+     * <p>Deletes an existing Confidential Ledger.
      *
      * @param resourceGroupName The name of the resource group.
      * @param ledgerName Name of the Confidential Ledger.
@@ -57,7 +63,9 @@ public interface LedgersClient {
     SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String ledgerName);
 
     /**
-     * Deletes an existing Confidential Ledger.
+     * Deletes a Confidential Ledger resource.
+     *
+     * <p>Deletes an existing Confidential Ledger.
      *
      * @param resourceGroupName The name of the resource group.
      * @param ledgerName Name of the Confidential Ledger.
@@ -71,7 +79,9 @@ public interface LedgersClient {
     SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String ledgerName, Context context);
 
     /**
-     * Deletes an existing Confidential Ledger.
+     * Deletes a Confidential Ledger resource.
+     *
+     * <p>Deletes an existing Confidential Ledger.
      *
      * @param resourceGroupName The name of the resource group.
      * @param ledgerName Name of the Confidential Ledger.
@@ -83,7 +93,9 @@ public interface LedgersClient {
     void delete(String resourceGroupName, String ledgerName);
 
     /**
-     * Deletes an existing Confidential Ledger.
+     * Deletes a Confidential Ledger resource.
+     *
+     * <p>Deletes an existing Confidential Ledger.
      *
      * @param resourceGroupName The name of the resource group.
      * @param ledgerName Name of the Confidential Ledger.
@@ -96,7 +108,9 @@ public interface LedgersClient {
     void delete(String resourceGroupName, String ledgerName, Context context);
 
     /**
-     * Creates a Confidential Ledger with the specified ledger parameters.
+     * Creates a Confidential Ledger.
+     *
+     * <p>Creates a Confidential Ledger with the specified ledger parameters.
      *
      * @param resourceGroupName The name of the resource group.
      * @param ledgerName Name of the Confidential Ledger.
@@ -111,7 +125,9 @@ public interface LedgersClient {
         String resourceGroupName, String ledgerName, ConfidentialLedgerInner confidentialLedger);
 
     /**
-     * Creates a Confidential Ledger with the specified ledger parameters.
+     * Creates a Confidential Ledger.
+     *
+     * <p>Creates a Confidential Ledger with the specified ledger parameters.
      *
      * @param resourceGroupName The name of the resource group.
      * @param ledgerName Name of the Confidential Ledger.
@@ -127,7 +143,9 @@ public interface LedgersClient {
         String resourceGroupName, String ledgerName, ConfidentialLedgerInner confidentialLedger, Context context);
 
     /**
-     * Creates a Confidential Ledger with the specified ledger parameters.
+     * Creates a Confidential Ledger.
+     *
+     * <p>Creates a Confidential Ledger with the specified ledger parameters.
      *
      * @param resourceGroupName The name of the resource group.
      * @param ledgerName Name of the Confidential Ledger.
@@ -142,7 +160,9 @@ public interface LedgersClient {
         String resourceGroupName, String ledgerName, ConfidentialLedgerInner confidentialLedger);
 
     /**
-     * Creates a Confidential Ledger with the specified ledger parameters.
+     * Creates a Confidential Ledger.
+     *
+     * <p>Creates a Confidential Ledger with the specified ledger parameters.
      *
      * @param resourceGroupName The name of the resource group.
      * @param ledgerName Name of the Confidential Ledger.
@@ -158,7 +178,9 @@ public interface LedgersClient {
         String resourceGroupName, String ledgerName, ConfidentialLedgerInner confidentialLedger, Context context);
 
     /**
-     * Updates properties of Confidential Ledger.
+     * Update Confidential Ledger properties
+     *
+     * <p>Updates properties of Confidential Ledger.
      *
      * @param resourceGroupName The name of the resource group.
      * @param ledgerName Name of the Confidential Ledger.
@@ -173,7 +195,9 @@ public interface LedgersClient {
         String resourceGroupName, String ledgerName, ConfidentialLedgerInner confidentialLedger);
 
     /**
-     * Updates properties of Confidential Ledger.
+     * Update Confidential Ledger properties
+     *
+     * <p>Updates properties of Confidential Ledger.
      *
      * @param resourceGroupName The name of the resource group.
      * @param ledgerName Name of the Confidential Ledger.
@@ -189,7 +213,9 @@ public interface LedgersClient {
         String resourceGroupName, String ledgerName, ConfidentialLedgerInner confidentialLedger, Context context);
 
     /**
-     * Updates properties of Confidential Ledger.
+     * Update Confidential Ledger properties
+     *
+     * <p>Updates properties of Confidential Ledger.
      *
      * @param resourceGroupName The name of the resource group.
      * @param ledgerName Name of the Confidential Ledger.
@@ -204,7 +230,9 @@ public interface LedgersClient {
         String resourceGroupName, String ledgerName, ConfidentialLedgerInner confidentialLedger);
 
     /**
-     * Updates properties of Confidential Ledger.
+     * Update Confidential Ledger properties
+     *
+     * <p>Updates properties of Confidential Ledger.
      *
      * @param resourceGroupName The name of the resource group.
      * @param ledgerName Name of the Confidential Ledger.
@@ -220,7 +248,9 @@ public interface LedgersClient {
         String resourceGroupName, String ledgerName, ConfidentialLedgerInner confidentialLedger, Context context);
 
     /**
-     * Retrieves the properties of all Confidential Ledgers.
+     * Retrieves information about all Confidential Ledger resources under the given subscription and resource group
+     *
+     * <p>Retrieves the properties of all Confidential Ledgers.
      *
      * @param resourceGroupName The name of the resource group.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -233,7 +263,9 @@ public interface LedgersClient {
     PagedIterable<ConfidentialLedgerInner> listByResourceGroup(String resourceGroupName);
 
     /**
-     * Retrieves the properties of all Confidential Ledgers.
+     * Retrieves information about all Confidential Ledger resources under the given subscription and resource group
+     *
+     * <p>Retrieves the properties of all Confidential Ledgers.
      *
      * @param resourceGroupName The name of the resource group.
      * @param filter The filter to apply on the list operation. eg. $filter=ledgerType eq 'Public'.
@@ -249,7 +281,9 @@ public interface LedgersClient {
         String resourceGroupName, String filter, Context context);
 
     /**
-     * Retrieves the properties of all Confidential Ledgers.
+     * Retrieves information about all Confidential Ledger resources under the given subscription
+     *
+     * <p>Retrieves the properties of all Confidential Ledgers.
      *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -260,7 +294,9 @@ public interface LedgersClient {
     PagedIterable<ConfidentialLedgerInner> list();
 
     /**
-     * Retrieves the properties of all Confidential Ledgers.
+     * Retrieves information about all Confidential Ledger resources under the given subscription
+     *
+     * <p>Retrieves the properties of all Confidential Ledgers.
      *
      * @param filter The filter to apply on the list operation. eg. $filter=ledgerType eq 'Public'.
      * @param context The context to associate with this operation.

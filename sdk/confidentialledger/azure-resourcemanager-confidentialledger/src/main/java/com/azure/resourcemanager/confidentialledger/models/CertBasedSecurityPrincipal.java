@@ -11,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Fluent
 public final class CertBasedSecurityPrincipal {
     /*
-     * Public key of the user cert (.pem or .cer)
+     * Base64 encoded public key of the user cert (.pem or .cer)
      */
     @JsonProperty(value = "cert")
     private String cert;
@@ -23,7 +23,7 @@ public final class CertBasedSecurityPrincipal {
     private LedgerRoleName ledgerRoleName;
 
     /**
-     * Get the cert property: Public key of the user cert (.pem or .cer).
+     * Get the cert property: Base64 encoded public key of the user cert (.pem or .cer).
      *
      * @return the cert value.
      */
@@ -32,7 +32,7 @@ public final class CertBasedSecurityPrincipal {
     }
 
     /**
-     * Set the cert property: Public key of the user cert (.pem or .cer).
+     * Set the cert property: Base64 encoded public key of the user cert (.pem or .cer).
      *
      * @param cert the cert value to set.
      * @return the CertBasedSecurityPrincipal object itself.

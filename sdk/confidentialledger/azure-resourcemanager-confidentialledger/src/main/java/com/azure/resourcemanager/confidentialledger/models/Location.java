@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Location of the ARM Resource. */
 @Fluent
-public class ResourceLocation {
+public class Location {
     /*
      * The Azure location where the Confidential Ledger is running.
      */
@@ -29,9 +29,9 @@ public class ResourceLocation {
      * Set the location property: The Azure location where the Confidential Ledger is running.
      *
      * @param location the location value to set.
-     * @return the ResourceLocation object itself.
+     * @return the Location object itself.
      */
-    public ResourceLocation withLocation(String location) {
+    public Location withLocation(String location) {
         this.location = location;
         return this;
     }
