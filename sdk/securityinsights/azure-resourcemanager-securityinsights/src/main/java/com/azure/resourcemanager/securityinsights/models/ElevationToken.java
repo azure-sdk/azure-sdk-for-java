@@ -33,6 +33,9 @@ public enum ElevationToken {
      */
     @JsonCreator
     public static ElevationToken fromString(String value) {
+        if (value == null) {
+            return null;
+        }
         ElevationToken[] items = ElevationToken.values();
         for (ElevationToken item : items) {
             if (item.toString().equalsIgnoreCase(value)) {

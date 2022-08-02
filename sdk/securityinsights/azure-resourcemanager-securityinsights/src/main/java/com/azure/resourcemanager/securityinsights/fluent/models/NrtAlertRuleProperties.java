@@ -28,8 +28,8 @@ public final class NrtAlertRuleProperties {
     private String alertRuleTemplateName;
 
     /*
-     * The version of the alert rule template used to create this rule - in
-     * format <a.b.c>, where all are numbers, for example 0 <1.0.2>
+     * The version of the alert rule template used to create this rule - in format <a.b.c>, where all are numbers, for
+     * example 0 <1.0.2>
      */
     @JsonProperty(value = "templateVersion")
     private String templateVersion;
@@ -77,15 +77,13 @@ public final class NrtAlertRuleProperties {
     private OffsetDateTime lastModifiedUtc;
 
     /*
-     * The suppression (in ISO 8601 duration format) to wait since last time
-     * this alert rule been triggered.
+     * The suppression (in ISO 8601 duration format) to wait since last time this alert rule been triggered.
      */
     @JsonProperty(value = "suppressionDuration", required = true)
     private Duration suppressionDuration;
 
     /*
-     * Determines whether the suppression for this alert rule is enabled or
-     * disabled.
+     * Determines whether the suppression for this alert rule is enabled or disabled.
      */
     @JsonProperty(value = "suppressionEnabled", required = true)
     private boolean suppressionEnabled;
@@ -97,15 +95,13 @@ public final class NrtAlertRuleProperties {
     private AlertSeverity severity;
 
     /*
-     * The settings of the incidents that created from alerts triggered by this
-     * analytics rule
+     * The settings of the incidents that created from alerts triggered by this analytics rule
      */
     @JsonProperty(value = "incidentConfiguration")
     private IncidentConfiguration incidentConfiguration;
 
     /*
-     * Dictionary of string key-value pairs of columns to be attached to the
-     * alert
+     * Dictionary of string key-value pairs of columns to be attached to the alert
      */
     @JsonProperty(value = "customDetails")
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)

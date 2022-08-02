@@ -33,15 +33,13 @@ public final class NrtAlertRuleTemplateProperties extends AlertRuleTemplateWithM
     private AlertSeverity severity;
 
     /*
-     * The version of this template - in format <a.b.c>, where all are numbers.
-     * For example <1.0.2>.
+     * The version of this template - in format <a.b.c>, where all are numbers. For example <1.0.2>.
      */
     @JsonProperty(value = "version")
     private String version;
 
     /*
-     * Dictionary of string key-value pairs of columns to be attached to the
-     * alert
+     * Dictionary of string key-value pairs of columns to be attached to the alert
      */
     @JsonProperty(value = "customDetails")
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
