@@ -30,6 +30,9 @@ public enum DiskEncryptionTarget {
      */
     @JsonCreator
     public static DiskEncryptionTarget fromString(String value) {
+        if (value == null) {
+            return null;
+        }
         DiskEncryptionTarget[] items = DiskEncryptionTarget.values();
         for (DiskEncryptionTarget item : items) {
             if (item.toString().equalsIgnoreCase(value)) {

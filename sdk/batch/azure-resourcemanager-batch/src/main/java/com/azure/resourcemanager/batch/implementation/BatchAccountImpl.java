@@ -152,6 +152,10 @@ public final class BatchAccountImpl implements BatchAccount, BatchAccount.Defini
         return this.location();
     }
 
+    public String resourceGroupName() {
+        return resourceGroupName;
+    }
+
     public BatchAccountInner innerModel() {
         return this.innerObject;
     }

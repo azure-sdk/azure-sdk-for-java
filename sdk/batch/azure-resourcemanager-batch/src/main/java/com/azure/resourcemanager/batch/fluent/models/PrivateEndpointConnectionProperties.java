@@ -26,8 +26,7 @@ public final class PrivateEndpointConnectionProperties {
     private PrivateEndpoint privateEndpoint;
 
     /*
-     * The private link service connection state of the private endpoint
-     * connection
+     * The private link service connection state of the private endpoint connection
      */
     @JsonProperty(value = "privateLinkServiceConnectionState")
     private PrivateLinkServiceConnectionState privateLinkServiceConnectionState;

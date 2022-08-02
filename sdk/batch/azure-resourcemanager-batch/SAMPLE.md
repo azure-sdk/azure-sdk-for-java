@@ -22,11 +22,9 @@
 - [Create](#batchaccount_create)
 - [Delete](#batchaccount_delete)
 - [GetByResourceGroup](#batchaccount_getbyresourcegroup)
-- [GetDetector](#batchaccount_getdetector)
 - [GetKeys](#batchaccount_getkeys)
 - [List](#batchaccount_list)
 - [ListByResourceGroup](#batchaccount_listbyresourcegroup)
-- [ListDetectors](#batchaccount_listdetectors)
 - [ListOutboundNetworkDependenciesEndpoints](#batchaccount_listoutboundnetworkdependenciesendpoints)
 - [RegenerateKey](#batchaccount_regeneratekey)
 - [SynchronizeAutoStorageKeys](#batchaccount_synchronizeautostoragekeys)
@@ -47,10 +45,6 @@
 - [GetQuotas](#location_getquotas)
 - [ListSupportedCloudServiceSkus](#location_listsupportedcloudserviceskus)
 - [ListSupportedVirtualMachineSkus](#location_listsupportedvirtualmachineskus)
-
-## Operations
-
-- [List](#operations_list)
 
 ## Pool
 
@@ -78,7 +72,7 @@
 /** Samples for Application Create. */
 public final class ApplicationCreateSamples {
     /*
-     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2022-01-01/examples/ApplicationCreate.json
+     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2021-06-01/examples/ApplicationCreate.json
      */
     /**
      * Sample code: ApplicationCreate.
@@ -105,7 +99,7 @@ import com.azure.core.util.Context;
 /** Samples for Application Delete. */
 public final class ApplicationDeleteSamples {
     /*
-     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2022-01-01/examples/ApplicationDelete.json
+     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2021-06-01/examples/ApplicationDelete.json
      */
     /**
      * Sample code: ApplicationDelete.
@@ -126,7 +120,7 @@ import com.azure.core.util.Context;
 /** Samples for Application Get. */
 public final class ApplicationGetSamples {
     /*
-     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2022-01-01/examples/ApplicationGet.json
+     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2021-06-01/examples/ApplicationGet.json
      */
     /**
      * Sample code: ApplicationGet.
@@ -147,7 +141,7 @@ import com.azure.core.util.Context;
 /** Samples for Application List. */
 public final class ApplicationListSamples {
     /*
-     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2022-01-01/examples/ApplicationList.json
+     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2021-06-01/examples/ApplicationList.json
      */
     /**
      * Sample code: ApplicationList.
@@ -169,7 +163,7 @@ import com.azure.resourcemanager.batch.models.Application;
 /** Samples for Application Update. */
 public final class ApplicationUpdateSamples {
     /*
-     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2022-01-01/examples/ApplicationUpdate.json
+     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2021-06-01/examples/ApplicationUpdate.json
      */
     /**
      * Sample code: ApplicationUpdate.
@@ -196,7 +190,7 @@ import com.azure.resourcemanager.batch.models.ActivateApplicationPackageParamete
 /** Samples for ApplicationPackage Activate. */
 public final class ApplicationPackageActivateSamples {
     /*
-     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2022-01-01/examples/ApplicationPackageActivate.json
+     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2021-06-01/examples/ApplicationPackageActivate.json
      */
     /**
      * Sample code: ApplicationPackageActivate.
@@ -223,7 +217,7 @@ public final class ApplicationPackageActivateSamples {
 /** Samples for ApplicationPackage Create. */
 public final class ApplicationPackageCreateSamples {
     /*
-     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2022-01-01/examples/ApplicationPackageCreate.json
+     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2021-06-01/examples/ApplicationPackageCreate.json
      */
     /**
      * Sample code: ApplicationPackageCreate.
@@ -248,7 +242,7 @@ import com.azure.core.util.Context;
 /** Samples for ApplicationPackage Delete. */
 public final class ApplicationPackageDeleteSamples {
     /*
-     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2022-01-01/examples/ApplicationPackageDelete.json
+     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2021-06-01/examples/ApplicationPackageDelete.json
      */
     /**
      * Sample code: ApplicationPackageDelete.
@@ -271,7 +265,7 @@ import com.azure.core.util.Context;
 /** Samples for ApplicationPackage Get. */
 public final class ApplicationPackageGetSamples {
     /*
-     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2022-01-01/examples/ApplicationPackageGet.json
+     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2021-06-01/examples/ApplicationPackageGet.json
      */
     /**
      * Sample code: ApplicationPackageGet.
@@ -294,7 +288,7 @@ import com.azure.core.util.Context;
 /** Samples for ApplicationPackage List. */
 public final class ApplicationPackageListSamples {
     /*
-     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2022-01-01/examples/ApplicationPackageList.json
+     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2021-06-01/examples/ApplicationPackageList.json
      */
     /**
      * Sample code: ApplicationPackageList.
@@ -323,7 +317,7 @@ import java.util.Map;
 /** Samples for BatchAccount Create. */
 public final class BatchAccountCreateSamples {
     /*
-     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2022-01-01/examples/BatchAccountCreate_BYOS.json
+     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2021-06-01/examples/BatchAccountCreate_BYOS.json
      */
     /**
      * Sample code: BatchAccountCreate_BYOS.
@@ -350,7 +344,7 @@ public final class BatchAccountCreateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2022-01-01/examples/BatchAccountCreate_UserAssignedIdentity.json
+     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2021-06-01/examples/BatchAccountCreate_UserAssignedIdentity.json
      */
     /**
      * Sample code: BatchAccountCreate_UserAssignedIdentity.
@@ -378,7 +372,7 @@ public final class BatchAccountCreateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2022-01-01/examples/PrivateBatchAccountCreate.json
+     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2021-06-01/examples/PrivateBatchAccountCreate.json
      */
     /**
      * Sample code: PrivateBatchAccountCreate.
@@ -405,7 +399,7 @@ public final class BatchAccountCreateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2022-01-01/examples/BatchAccountCreate_SystemAssignedIdentity.json
+     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2021-06-01/examples/BatchAccountCreate_SystemAssignedIdentity.json
      */
     /**
      * Sample code: BatchAccountCreate_SystemAssignedIdentity.
@@ -427,7 +421,7 @@ public final class BatchAccountCreateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2022-01-01/examples/BatchAccountCreate_Default.json
+     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2021-06-01/examples/BatchAccountCreate_Default.json
      */
     /**
      * Sample code: BatchAccountCreate_Default.
@@ -468,7 +462,7 @@ import com.azure.core.util.Context;
 /** Samples for BatchAccount Delete. */
 public final class BatchAccountDeleteSamples {
     /*
-     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2022-01-01/examples/BatchAccountDelete.json
+     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2021-06-01/examples/BatchAccountDelete.json
      */
     /**
      * Sample code: BatchAccountDelete.
@@ -489,7 +483,7 @@ import com.azure.core.util.Context;
 /** Samples for BatchAccount GetByResourceGroup. */
 public final class BatchAccountGetByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2022-01-01/examples/PrivateBatchAccountGet.json
+     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2021-06-01/examples/PrivateBatchAccountGet.json
      */
     /**
      * Sample code: PrivateBatchAccountGet.
@@ -503,7 +497,7 @@ public final class BatchAccountGetByResourceGroupSamples {
     }
 
     /*
-     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2022-01-01/examples/BatchAccountGet.json
+     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2021-06-01/examples/BatchAccountGet.json
      */
     /**
      * Sample code: BatchAccountGet.
@@ -518,29 +512,6 @@ public final class BatchAccountGetByResourceGroupSamples {
 }
 ```
 
-### BatchAccount_GetDetector
-
-```java
-import com.azure.core.util.Context;
-
-/** Samples for BatchAccount GetDetector. */
-public final class BatchAccountGetDetectorSamples {
-    /*
-     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2022-01-01/examples/DetectorGet.json
-     */
-    /**
-     * Sample code: GetDetector.
-     *
-     * @param manager Entry point to BatchManager.
-     */
-    public static void getDetector(com.azure.resourcemanager.batch.BatchManager manager) {
-        manager
-            .batchAccounts()
-            .getDetectorWithResponse("default-azurebatch-japaneast", "sampleacct", "poolsAndNodes", Context.NONE);
-    }
-}
-```
-
 ### BatchAccount_GetKeys
 
 ```java
@@ -549,7 +520,7 @@ import com.azure.core.util.Context;
 /** Samples for BatchAccount GetKeys. */
 public final class BatchAccountGetKeysSamples {
     /*
-     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2022-01-01/examples/BatchAccountGetKeys.json
+     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2021-06-01/examples/BatchAccountGetKeys.json
      */
     /**
      * Sample code: BatchAccountGetKeys.
@@ -570,7 +541,7 @@ import com.azure.core.util.Context;
 /** Samples for BatchAccount List. */
 public final class BatchAccountListSamples {
     /*
-     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2022-01-01/examples/BatchAccountList.json
+     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2021-06-01/examples/BatchAccountList.json
      */
     /**
      * Sample code: BatchAccountList.
@@ -591,7 +562,7 @@ import com.azure.core.util.Context;
 /** Samples for BatchAccount ListByResourceGroup. */
 public final class BatchAccountListByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2022-01-01/examples/BatchAccountListByResourceGroup.json
+     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2021-06-01/examples/BatchAccountListByResourceGroup.json
      */
     /**
      * Sample code: BatchAccountListByResourceGroup.
@@ -604,27 +575,6 @@ public final class BatchAccountListByResourceGroupSamples {
 }
 ```
 
-### BatchAccount_ListDetectors
-
-```java
-import com.azure.core.util.Context;
-
-/** Samples for BatchAccount ListDetectors. */
-public final class BatchAccountListDetectorsSamples {
-    /*
-     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2022-01-01/examples/DetectorList.json
-     */
-    /**
-     * Sample code: ListDetectors.
-     *
-     * @param manager Entry point to BatchManager.
-     */
-    public static void listDetectors(com.azure.resourcemanager.batch.BatchManager manager) {
-        manager.batchAccounts().listDetectors("default-azurebatch-japaneast", "sampleacct", Context.NONE);
-    }
-}
-```
-
 ### BatchAccount_ListOutboundNetworkDependenciesEndpoints
 
 ```java
@@ -633,7 +583,7 @@ import com.azure.core.util.Context;
 /** Samples for BatchAccount ListOutboundNetworkDependenciesEndpoints. */
 public final class BatchAccountListOutboundNetworkDependenciesEndpointsSamples {
     /*
-     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2022-01-01/examples/BatchAccountListOutboundNetworkDependenciesEndpoints.json
+     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2021-06-01/examples/BatchAccountListOutboundNetworkDependenciesEndpoints.json
      */
     /**
      * Sample code: ListOutboundNetworkDependencies.
@@ -658,7 +608,7 @@ import com.azure.resourcemanager.batch.models.BatchAccountRegenerateKeyParameter
 /** Samples for BatchAccount RegenerateKey. */
 public final class BatchAccountRegenerateKeySamples {
     /*
-     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2022-01-01/examples/BatchAccountRegenerateKey.json
+     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2021-06-01/examples/BatchAccountRegenerateKey.json
      */
     /**
      * Sample code: BatchAccountRegenerateKey.
@@ -685,7 +635,7 @@ import com.azure.core.util.Context;
 /** Samples for BatchAccount SynchronizeAutoStorageKeys. */
 public final class BatchAccountSynchronizeAutoStorageKeysSamples {
     /*
-     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2022-01-01/examples/BatchAccountSynchronizeAutoStorageKeys.json
+     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2021-06-01/examples/BatchAccountSynchronizeAutoStorageKeys.json
      */
     /**
      * Sample code: BatchAccountSynchronizeAutoStorageKeys.
@@ -710,7 +660,7 @@ import com.azure.resourcemanager.batch.models.BatchAccount;
 /** Samples for BatchAccount Update. */
 public final class BatchAccountUpdateSamples {
     /*
-     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2022-01-01/examples/BatchAccountUpdate.json
+     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2021-06-01/examples/BatchAccountUpdate.json
      */
     /**
      * Sample code: BatchAccountUpdate.
@@ -742,7 +692,7 @@ import com.azure.core.util.Context;
 /** Samples for Certificate CancelDeletion. */
 public final class CertificateCancelDeletionSamples {
     /*
-     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2022-01-01/examples/CertificateCancelDeletion.json
+     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2021-06-01/examples/CertificateCancelDeletion.json
      */
     /**
      * Sample code: CertificateCancelDeletion.
@@ -769,7 +719,7 @@ import com.azure.resourcemanager.batch.models.CertificateFormat;
 /** Samples for Certificate Create. */
 public final class CertificateCreateSamples {
     /*
-     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2022-01-01/examples/CertificateCreate_Full.json
+     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2021-06-01/examples/CertificateCreate_Full.json
      */
     /**
      * Sample code: CreateCertificate - Full.
@@ -790,7 +740,7 @@ public final class CertificateCreateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2022-01-01/examples/CertificateCreate_Minimal.json
+     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2021-06-01/examples/CertificateCreate_Minimal.json
      */
     /**
      * Sample code: CreateCertificate - Minimal Pfx.
@@ -808,7 +758,7 @@ public final class CertificateCreateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2022-01-01/examples/CertificateCreate_MinimalCer.json
+     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2021-06-01/examples/CertificateCreate_MinimalCer.json
      */
     /**
      * Sample code: CreateCertificate - Minimal Cer.
@@ -835,7 +785,7 @@ import com.azure.core.util.Context;
 /** Samples for Certificate Delete. */
 public final class CertificateDeleteSamples {
     /*
-     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2022-01-01/examples/CertificateDelete.json
+     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2021-06-01/examples/CertificateDelete.json
      */
     /**
      * Sample code: CertificateDelete.
@@ -862,7 +812,7 @@ import com.azure.core.util.Context;
 /** Samples for Certificate Get. */
 public final class CertificateGetSamples {
     /*
-     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2022-01-01/examples/CertificateGetWithDeletionError.json
+     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2021-06-01/examples/CertificateGetWithDeletionError.json
      */
     /**
      * Sample code: Get Certificate with Deletion Error.
@@ -880,7 +830,7 @@ public final class CertificateGetSamples {
     }
 
     /*
-     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2022-01-01/examples/CertificateGet.json
+     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2021-06-01/examples/CertificateGet.json
      */
     /**
      * Sample code: Get Certificate.
@@ -907,7 +857,7 @@ import com.azure.core.util.Context;
 /** Samples for Certificate ListByBatchAccount. */
 public final class CertificateListByBatchAccountSamples {
     /*
-     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2022-01-01/examples/CertificateListWithFilter.json
+     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2021-06-01/examples/CertificateListWithFilter.json
      */
     /**
      * Sample code: ListCertificates - Filter and Select.
@@ -928,7 +878,7 @@ public final class CertificateListByBatchAccountSamples {
     }
 
     /*
-     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2022-01-01/examples/CertificateList.json
+     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2021-06-01/examples/CertificateList.json
      */
     /**
      * Sample code: ListCertificates.
@@ -952,7 +902,7 @@ import com.azure.resourcemanager.batch.models.Certificate;
 /** Samples for Certificate Update. */
 public final class CertificateUpdateSamples {
     /*
-     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2022-01-01/examples/CertificateUpdate.json
+     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2021-06-01/examples/CertificateUpdate.json
      */
     /**
      * Sample code: UpdateCertificate.
@@ -983,7 +933,7 @@ import com.azure.resourcemanager.batch.models.CheckNameAvailabilityParameters;
 /** Samples for Location CheckNameAvailability. */
 public final class LocationCheckNameAvailabilitySamples {
     /*
-     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2022-01-01/examples/LocationCheckNameAvailability_AlreadyExists.json
+     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2021-06-01/examples/LocationCheckNameAvailability_AlreadyExists.json
      */
     /**
      * Sample code: LocationCheckNameAvailability_AlreadyExists.
@@ -999,7 +949,7 @@ public final class LocationCheckNameAvailabilitySamples {
     }
 
     /*
-     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2022-01-01/examples/LocationCheckNameAvailability_Available.json
+     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2021-06-01/examples/LocationCheckNameAvailability_Available.json
      */
     /**
      * Sample code: LocationCheckNameAvailability_Available.
@@ -1023,7 +973,7 @@ import com.azure.core.util.Context;
 /** Samples for Location GetQuotas. */
 public final class LocationGetQuotasSamples {
     /*
-     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2022-01-01/examples/LocationGetQuotas.json
+     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2021-06-01/examples/LocationGetQuotas.json
      */
     /**
      * Sample code: LocationGetQuotas.
@@ -1044,7 +994,7 @@ import com.azure.core.util.Context;
 /** Samples for Location ListSupportedCloudServiceSkus. */
 public final class LocationListSupportedCloudServiceSkusSamples {
     /*
-     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2022-01-01/examples/LocationListCloudServiceSkus.json
+     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2021-06-01/examples/LocationListCloudServiceSkus.json
      */
     /**
      * Sample code: LocationListCloudServiceSkus.
@@ -1065,7 +1015,7 @@ import com.azure.core.util.Context;
 /** Samples for Location ListSupportedVirtualMachineSkus. */
 public final class LocationListSupportedVirtualMachineSkusSamples {
     /*
-     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2022-01-01/examples/LocationListVirtualMachineSkus.json
+     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2021-06-01/examples/LocationListVirtualMachineSkus.json
      */
     /**
      * Sample code: LocationListVirtualMachineSkus.
@@ -1074,27 +1024,6 @@ public final class LocationListSupportedVirtualMachineSkusSamples {
      */
     public static void locationListVirtualMachineSkus(com.azure.resourcemanager.batch.BatchManager manager) {
         manager.locations().listSupportedVirtualMachineSkus("japaneast", null, null, Context.NONE);
-    }
-}
-```
-
-### Operations_List
-
-```java
-import com.azure.core.util.Context;
-
-/** Samples for Operations List. */
-public final class OperationsListSamples {
-    /*
-     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2022-01-01/examples/OperationsList.json
-     */
-    /**
-     * Sample code: OperationsList.
-     *
-     * @param manager Entry point to BatchManager.
-     */
-    public static void operationsList(com.azure.resourcemanager.batch.BatchManager manager) {
-        manager.operations().list(Context.NONE);
     }
 }
 ```
@@ -1161,7 +1090,7 @@ import java.util.Map;
 /** Samples for Pool Create. */
 public final class PoolCreateSamples {
     /*
-     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2022-01-01/examples/PoolCreate_SharedImageGallery.json
+     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2021-06-01/examples/PoolCreate_SharedImageGallery.json
      */
     /**
      * Sample code: CreatePool - Custom Image.
@@ -1187,7 +1116,7 @@ public final class PoolCreateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2022-01-01/examples/PoolCreate_CloudServiceConfiguration.json
+     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2021-06-01/examples/PoolCreate_CloudServiceConfiguration.json
      */
     /**
      * Sample code: CreatePool - Full CloudServiceConfiguration.
@@ -1286,7 +1215,7 @@ public final class PoolCreateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2022-01-01/examples/PoolCreate_MinimalCloudServiceConfiguration.json
+     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2021-06-01/examples/PoolCreate_MinimalCloudServiceConfiguration.json
      */
     /**
      * Sample code: CreatePool - Minimal CloudServiceConfiguration.
@@ -1308,7 +1237,7 @@ public final class PoolCreateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2022-01-01/examples/PoolCreate_MinimalVirtualMachineConfiguration.json
+     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2021-06-01/examples/PoolCreate_MinimalVirtualMachineConfiguration.json
      */
     /**
      * Sample code: CreatePool - Minimal VirtualMachineConfiguration.
@@ -1343,7 +1272,7 @@ public final class PoolCreateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2022-01-01/examples/PoolCreate_NoPublicIPAddresses.json
+     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2021-06-01/examples/PoolCreate_NoPublicIPAddresses.json
      */
     /**
      * Sample code: CreatePool - No public IP.
@@ -1376,7 +1305,7 @@ public final class PoolCreateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2022-01-01/examples/PoolCreate_VirtualMachineConfiguration_Extensions.json
+     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2021-06-01/examples/PoolCreate_VirtualMachineConfiguration_Extensions.json
      */
     /**
      * Sample code: CreatePool - VirtualMachineConfiguration Extensions.
@@ -1433,7 +1362,7 @@ public final class PoolCreateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2022-01-01/examples/PoolCreate_UserAssignedIdentities.json
+     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2021-06-01/examples/PoolCreate_UserAssignedIdentities.json
      */
     /**
      * Sample code: CreatePool - UserAssignedIdentities.
@@ -1476,7 +1405,7 @@ public final class PoolCreateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2022-01-01/examples/PoolCreate_PublicIPs.json
+     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2021-06-01/examples/PoolCreate_PublicIPs.json
      */
     /**
      * Sample code: CreatePool - Public IPs.
@@ -1513,7 +1442,7 @@ public final class PoolCreateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2022-01-01/examples/PoolCreate_VirtualMachineConfiguration.json
+     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2021-06-01/examples/PoolCreate_VirtualMachineConfiguration.json
      */
     /**
      * Sample code: CreatePool - Full VirtualMachineConfiguration.
@@ -1619,7 +1548,7 @@ import com.azure.core.util.Context;
 /** Samples for Pool Delete. */
 public final class PoolDeleteSamples {
     /*
-     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2022-01-01/examples/PoolDelete.json
+     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2021-06-01/examples/PoolDelete.json
      */
     /**
      * Sample code: DeletePool.
@@ -1640,7 +1569,7 @@ import com.azure.core.util.Context;
 /** Samples for Pool DisableAutoScale. */
 public final class PoolDisableAutoScaleSamples {
     /*
-     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2022-01-01/examples/PoolDisableAutoScale.json
+     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2021-06-01/examples/PoolDisableAutoScale.json
      */
     /**
      * Sample code: Disable AutoScale.
@@ -1663,7 +1592,7 @@ import com.azure.core.util.Context;
 /** Samples for Pool Get. */
 public final class PoolGetSamples {
     /*
-     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2022-01-01/examples/PoolGet_VirtualMachineConfiguration_Extensions.json
+     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2021-06-01/examples/PoolGet_VirtualMachineConfiguration_Extensions.json
      */
     /**
      * Sample code: GetPool - VirtualMachineConfiguration Extensions.
@@ -1676,7 +1605,7 @@ public final class PoolGetSamples {
     }
 
     /*
-     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2022-01-01/examples/PoolGet.json
+     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2021-06-01/examples/PoolGet.json
      */
     /**
      * Sample code: GetPool.
@@ -1697,7 +1626,7 @@ import com.azure.core.util.Context;
 /** Samples for Pool ListByBatchAccount. */
 public final class PoolListByBatchAccountSamples {
     /*
-     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2022-01-01/examples/PoolList.json
+     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2021-06-01/examples/PoolList.json
      */
     /**
      * Sample code: ListPool.
@@ -1711,7 +1640,7 @@ public final class PoolListByBatchAccountSamples {
     }
 
     /*
-     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2022-01-01/examples/PoolListWithFilter.json
+     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2021-06-01/examples/PoolListWithFilter.json
      */
     /**
      * Sample code: ListPoolWithFilter.
@@ -1741,7 +1670,7 @@ import com.azure.core.util.Context;
 /** Samples for Pool StopResize. */
 public final class PoolStopResizeSamples {
     /*
-     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2022-01-01/examples/PoolStopResize.json
+     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2021-06-01/examples/PoolStopResize.json
      */
     /**
      * Sample code: StopPoolResize.
@@ -1774,7 +1703,7 @@ import java.util.Arrays;
 /** Samples for Pool Update. */
 public final class PoolUpdateSamples {
     /*
-     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2022-01-01/examples/PoolUpdate_EnableAutoScale.json
+     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2021-06-01/examples/PoolUpdate_EnableAutoScale.json
      */
     /**
      * Sample code: UpdatePool - Enable Autoscale.
@@ -1795,7 +1724,7 @@ public final class PoolUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2022-01-01/examples/PoolUpdate_RemoveStartTask.json
+     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2021-06-01/examples/PoolUpdate_RemoveStartTask.json
      */
     /**
      * Sample code: UpdatePool - Remove Start Task.
@@ -1812,7 +1741,7 @@ public final class PoolUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2022-01-01/examples/PoolUpdate_ResizePool.json
+     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2021-06-01/examples/PoolUpdate_ResizePool.json
      */
     /**
      * Sample code: UpdatePool - Resize Pool.
@@ -1839,7 +1768,7 @@ public final class PoolUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2022-01-01/examples/PoolUpdate_OtherProperties.json
+     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2021-06-01/examples/PoolUpdate_OtherProperties.json
      */
     /**
      * Sample code: UpdatePool - Other Properties.
@@ -1886,7 +1815,7 @@ import com.azure.core.util.Context;
 /** Samples for PrivateEndpointConnection Get. */
 public final class PrivateEndpointConnectionGetSamples {
     /*
-     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2022-01-01/examples/PrivateEndpointConnectionGet.json
+     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2021-06-01/examples/PrivateEndpointConnectionGet.json
      */
     /**
      * Sample code: GetPrivateEndpointConnection.
@@ -1913,7 +1842,7 @@ import com.azure.core.util.Context;
 /** Samples for PrivateEndpointConnection ListByBatchAccount. */
 public final class PrivateEndpointConnectionListByBatchAccountSamples {
     /*
-     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2022-01-01/examples/PrivateEndpointConnectionsList.json
+     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2021-06-01/examples/PrivateEndpointConnectionsList.json
      */
     /**
      * Sample code: ListPrivateEndpointConnections.
@@ -1939,7 +1868,7 @@ import com.azure.resourcemanager.batch.models.PrivateLinkServiceConnectionStatus
 /** Samples for PrivateEndpointConnection Update. */
 public final class PrivateEndpointConnectionUpdateSamples {
     /*
-     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2022-01-01/examples/PrivateEndpointConnectionUpdate.json
+     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2021-06-01/examples/PrivateEndpointConnectionUpdate.json
      */
     /**
      * Sample code: UpdatePrivateEndpointConnection.
@@ -1972,7 +1901,7 @@ import com.azure.core.util.Context;
 /** Samples for PrivateLinkResource Get. */
 public final class PrivateLinkResourceGetSamples {
     /*
-     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2022-01-01/examples/PrivateLinkResourceGet.json
+     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2021-06-01/examples/PrivateLinkResourceGet.json
      */
     /**
      * Sample code: GetPrivateLinkResource.
@@ -1995,7 +1924,7 @@ import com.azure.core.util.Context;
 /** Samples for PrivateLinkResource ListByBatchAccount. */
 public final class PrivateLinkResourceListByBatchAccountSamples {
     /*
-     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2022-01-01/examples/PrivateLinkResourcesList.json
+     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2021-06-01/examples/PrivateLinkResourcesList.json
      */
     /**
      * Sample code: ListPrivateLinkResource.

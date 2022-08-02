@@ -104,7 +104,9 @@ public interface Certificates {
         String resourceGroupName, String accountName, String certificateName, Context context);
 
     /**
-     * If you try to delete a certificate that is being used by a pool or compute node, the status of the certificate
+     * Cancels a failed deletion of a certificate from the specified account.
+     *
+     * <p>If you try to delete a certificate that is being used by a pool or compute node, the status of the certificate
      * changes to deleteFailed. If you decide that you want to continue using the certificate, you can use this
      * operation to set the status of the certificate back to active. If you intend to delete the certificate, you do
      * not need to run this operation after the deletion failed. You must make sure that the certificate is not being
@@ -122,7 +124,9 @@ public interface Certificates {
     Certificate cancelDeletion(String resourceGroupName, String accountName, String certificateName);
 
     /**
-     * If you try to delete a certificate that is being used by a pool or compute node, the status of the certificate
+     * Cancels a failed deletion of a certificate from the specified account.
+     *
+     * <p>If you try to delete a certificate that is being used by a pool or compute node, the status of the certificate
      * changes to deleteFailed. If you decide that you want to continue using the certificate, you can use this
      * operation to set the status of the certificate back to active. If you intend to delete the certificate, you do
      * not need to run this operation after the deletion failed. You must make sure that the certificate is not being

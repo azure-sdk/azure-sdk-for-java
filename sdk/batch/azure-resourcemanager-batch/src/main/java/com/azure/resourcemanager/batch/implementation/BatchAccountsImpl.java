@@ -12,13 +12,11 @@ import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.batch.fluent.BatchAccountsClient;
 import com.azure.resourcemanager.batch.fluent.models.BatchAccountInner;
 import com.azure.resourcemanager.batch.fluent.models.BatchAccountKeysInner;
-import com.azure.resourcemanager.batch.fluent.models.DetectorResponseInner;
 import com.azure.resourcemanager.batch.fluent.models.OutboundEnvironmentEndpointInner;
 import com.azure.resourcemanager.batch.models.BatchAccount;
 import com.azure.resourcemanager.batch.models.BatchAccountKeys;
 import com.azure.resourcemanager.batch.models.BatchAccountRegenerateKeyParameters;
 import com.azure.resourcemanager.batch.models.BatchAccounts;
-import com.azure.resourcemanager.batch.models.DetectorResponse;
 import com.azure.resourcemanager.batch.models.OutboundEnvironmentEndpoint;
 
 public final class BatchAccountsImpl implements BatchAccounts {
@@ -139,42 +137,6 @@ public final class BatchAccountsImpl implements BatchAccounts {
                 inner.getStatusCode(),
                 inner.getHeaders(),
                 new BatchAccountKeysImpl(inner.getValue(), this.manager()));
-        } else {
-            return null;
-        }
-    }
-
-    public PagedIterable<DetectorResponse> listDetectors(String resourceGroupName, String accountName) {
-        PagedIterable<DetectorResponseInner> inner = this.serviceClient().listDetectors(resourceGroupName, accountName);
-        return Utils.mapPage(inner, inner1 -> new DetectorResponseImpl(inner1, this.manager()));
-    }
-
-    public PagedIterable<DetectorResponse> listDetectors(
-        String resourceGroupName, String accountName, Context context) {
-        PagedIterable<DetectorResponseInner> inner =
-            this.serviceClient().listDetectors(resourceGroupName, accountName, context);
-        return Utils.mapPage(inner, inner1 -> new DetectorResponseImpl(inner1, this.manager()));
-    }
-
-    public DetectorResponse getDetector(String resourceGroupName, String accountName, String detectorId) {
-        DetectorResponseInner inner = this.serviceClient().getDetector(resourceGroupName, accountName, detectorId);
-        if (inner != null) {
-            return new DetectorResponseImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
-    public Response<DetectorResponse> getDetectorWithResponse(
-        String resourceGroupName, String accountName, String detectorId, Context context) {
-        Response<DetectorResponseInner> inner =
-            this.serviceClient().getDetectorWithResponse(resourceGroupName, accountName, detectorId, context);
-        if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
-                new DetectorResponseImpl(inner.getValue(), this.manager()));
         } else {
             return null;
         }

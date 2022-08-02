@@ -30,6 +30,9 @@ public enum AccountKeyType {
      */
     @JsonCreator
     public static AccountKeyType fromString(String value) {
+        if (value == null) {
+            return null;
+        }
         AccountKeyType[] items = AccountKeyType.values();
         for (AccountKeyType item : items) {
             if (item.toString().equalsIgnoreCase(value)) {

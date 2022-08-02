@@ -30,6 +30,9 @@ public enum PoolAllocationMode {
      */
     @JsonCreator
     public static PoolAllocationMode fromString(String value) {
+        if (value == null) {
+            return null;
+        }
         PoolAllocationMode[] items = PoolAllocationMode.values();
         for (PoolAllocationMode item : items) {
             if (item.toString().equalsIgnoreCase(value)) {

@@ -33,6 +33,9 @@ public enum PrivateEndpointConnectionProvisioningState {
      */
     @JsonCreator
     public static PrivateEndpointConnectionProvisioningState fromString(String value) {
+        if (value == null) {
+            return null;
+        }
         PrivateEndpointConnectionProvisioningState[] items = PrivateEndpointConnectionProvisioningState.values();
         for (PrivateEndpointConnectionProvisioningState item : items) {
             if (item.toString().equalsIgnoreCase(value)) {

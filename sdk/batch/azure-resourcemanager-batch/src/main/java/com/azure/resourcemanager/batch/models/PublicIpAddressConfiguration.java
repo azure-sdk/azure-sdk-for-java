@@ -12,27 +12,28 @@ import java.util.List;
 @Fluent
 public final class PublicIpAddressConfiguration {
     /*
-     * The provisioning type for Public IP Addresses for the Batch Pool. The
-     * default value is BatchManaged
+     * The provisioning type for Public IP Addresses for the Batch Pool.
+     *
+     * The default value is BatchManaged
      */
     @JsonProperty(value = "provision")
     private IpAddressProvisioningType provision;
 
     /*
-     * The list of public IPs which the Batch service will use when
-     * provisioning Compute Nodes. The number of IPs specified here limits the
-     * maximum size of the Pool - 100 dedicated nodes or 100 Spot/low-priority
-     * nodes can be allocated for each public IP. For example, a pool needing
-     * 250 dedicated VMs would need at least 3 public IPs specified. Each
-     * element of this collection is of the form:
+     * The list of public IPs which the Batch service will use when provisioning Compute Nodes.
+     *
+     * The number of IPs specified here limits the maximum size of the Pool - 100 dedicated nodes or 100 low-priority
+     * nodes can be allocated for each public IP. For example, a pool needing 250 dedicated VMs would need at least 3
+     * public IPs specified. Each element of this collection is of the form:
      * /subscriptions/{subscription}/resourceGroups/{group}/providers/Microsoft.Network/publicIPAddresses/{ip}.
      */
     @JsonProperty(value = "ipAddressIds")
     private List<String> ipAddressIds;
 
     /**
-     * Get the provision property: The provisioning type for Public IP Addresses for the Batch Pool. The default value
-     * is BatchManaged.
+     * Get the provision property: The provisioning type for Public IP Addresses for the Batch Pool.
+     *
+     * <p>The default value is BatchManaged.
      *
      * @return the provision value.
      */
@@ -41,8 +42,9 @@ public final class PublicIpAddressConfiguration {
     }
 
     /**
-     * Set the provision property: The provisioning type for Public IP Addresses for the Batch Pool. The default value
-     * is BatchManaged.
+     * Set the provision property: The provisioning type for Public IP Addresses for the Batch Pool.
+     *
+     * <p>The default value is BatchManaged.
      *
      * @param provision the provision value to set.
      * @return the PublicIpAddressConfiguration object itself.
@@ -54,9 +56,11 @@ public final class PublicIpAddressConfiguration {
 
     /**
      * Get the ipAddressIds property: The list of public IPs which the Batch service will use when provisioning Compute
-     * Nodes. The number of IPs specified here limits the maximum size of the Pool - 100 dedicated nodes or 100
-     * Spot/low-priority nodes can be allocated for each public IP. For example, a pool needing 250 dedicated VMs would
-     * need at least 3 public IPs specified. Each element of this collection is of the form:
+     * Nodes.
+     *
+     * <p>The number of IPs specified here limits the maximum size of the Pool - 100 dedicated nodes or 100 low-priority
+     * nodes can be allocated for each public IP. For example, a pool needing 250 dedicated VMs would need at least 3
+     * public IPs specified. Each element of this collection is of the form:
      * /subscriptions/{subscription}/resourceGroups/{group}/providers/Microsoft.Network/publicIPAddresses/{ip}.
      *
      * @return the ipAddressIds value.
@@ -67,9 +71,11 @@ public final class PublicIpAddressConfiguration {
 
     /**
      * Set the ipAddressIds property: The list of public IPs which the Batch service will use when provisioning Compute
-     * Nodes. The number of IPs specified here limits the maximum size of the Pool - 100 dedicated nodes or 100
-     * Spot/low-priority nodes can be allocated for each public IP. For example, a pool needing 250 dedicated VMs would
-     * need at least 3 public IPs specified. Each element of this collection is of the form:
+     * Nodes.
+     *
+     * <p>The number of IPs specified here limits the maximum size of the Pool - 100 dedicated nodes or 100 low-priority
+     * nodes can be allocated for each public IP. For example, a pool needing 250 dedicated VMs would need at least 3
+     * public IPs specified. Each element of this collection is of the form:
      * /subscriptions/{subscription}/resourceGroups/{group}/providers/Microsoft.Network/publicIPAddresses/{ip}.
      *
      * @param ipAddressIds the ipAddressIds value to set.
