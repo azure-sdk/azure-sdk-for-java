@@ -31,7 +31,6 @@ import com.azure.resourcemanager.datafactory.implementation.DataFlowsImpl;
 import com.azure.resourcemanager.datafactory.implementation.DatasetsImpl;
 import com.azure.resourcemanager.datafactory.implementation.ExposureControlsImpl;
 import com.azure.resourcemanager.datafactory.implementation.FactoriesImpl;
-import com.azure.resourcemanager.datafactory.implementation.GlobalParametersImpl;
 import com.azure.resourcemanager.datafactory.implementation.IntegrationRuntimeNodesImpl;
 import com.azure.resourcemanager.datafactory.implementation.IntegrationRuntimeObjectMetadatasImpl;
 import com.azure.resourcemanager.datafactory.implementation.IntegrationRuntimesImpl;
@@ -52,7 +51,6 @@ import com.azure.resourcemanager.datafactory.models.DataFlows;
 import com.azure.resourcemanager.datafactory.models.Datasets;
 import com.azure.resourcemanager.datafactory.models.ExposureControls;
 import com.azure.resourcemanager.datafactory.models.Factories;
-import com.azure.resourcemanager.datafactory.models.GlobalParameters;
 import com.azure.resourcemanager.datafactory.models.IntegrationRuntimeNodes;
 import com.azure.resourcemanager.datafactory.models.IntegrationRuntimeObjectMetadatas;
 import com.azure.resourcemanager.datafactory.models.IntegrationRuntimes;
@@ -118,8 +116,6 @@ public final class DataFactoryManager {
     private PrivateEndpointConnectionOperations privateEndpointConnectionOperations;
 
     private PrivateLinkResources privateLinkResources;
-
-    private GlobalParameters globalParameters;
 
     private final DataFactoryManagementClient clientObject;
 
@@ -286,7 +282,7 @@ public final class DataFactoryManager {
                 .append("-")
                 .append("com.azure.resourcemanager.datafactory")
                 .append("/")
-                .append("1.0.0-beta.16");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder
                     .append(" (")
@@ -589,18 +585,6 @@ public final class DataFactoryManager {
             this.privateLinkResources = new PrivateLinkResourcesImpl(clientObject.getPrivateLinkResources(), this);
         }
         return privateLinkResources;
-    }
-
-    /**
-     * Gets the resource collection API of GlobalParameters. It manages GlobalParameterResource.
-     *
-     * @return Resource collection API of GlobalParameters.
-     */
-    public GlobalParameters globalParameters() {
-        if (this.globalParameters == null) {
-            this.globalParameters = new GlobalParametersImpl(clientObject.getGlobalParameters(), this);
-        }
-        return globalParameters;
     }
 
     /**

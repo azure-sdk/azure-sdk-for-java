@@ -45,6 +45,9 @@ public enum DayOfWeek {
      */
     @JsonCreator
     public static DayOfWeek fromString(String value) {
+        if (value == null) {
+            return null;
+        }
         DayOfWeek[] items = DayOfWeek.values();
         for (DayOfWeek item : items) {
             if (item.toString().equalsIgnoreCase(value)) {

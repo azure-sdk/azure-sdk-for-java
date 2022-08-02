@@ -5,7 +5,6 @@
 package com.azure.resourcemanager.datafactory.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.resourcemanager.datafactory.fluent.models.FactoryUpdateProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
@@ -27,10 +26,10 @@ public final class FactoryUpdateParameters {
     private FactoryIdentity identity;
 
     /*
-     * Properties of update the factory.
+     * Whether or not public network access is allowed for the data factory.
      */
-    @JsonProperty(value = "properties")
-    private FactoryUpdateProperties innerProperties;
+    @JsonProperty(value = "publicNetworkAccess")
+    private PublicNetworkAccess publicNetworkAccess;
 
     /**
      * Get the tags property: The resource tags.
@@ -73,21 +72,12 @@ public final class FactoryUpdateParameters {
     }
 
     /**
-     * Get the innerProperties property: Properties of update the factory.
-     *
-     * @return the innerProperties value.
-     */
-    private FactoryUpdateProperties innerProperties() {
-        return this.innerProperties;
-    }
-
-    /**
      * Get the publicNetworkAccess property: Whether or not public network access is allowed for the data factory.
      *
      * @return the publicNetworkAccess value.
      */
     public PublicNetworkAccess publicNetworkAccess() {
-        return this.innerProperties() == null ? null : this.innerProperties().publicNetworkAccess();
+        return this.publicNetworkAccess;
     }
 
     /**
@@ -97,10 +87,7 @@ public final class FactoryUpdateParameters {
      * @return the FactoryUpdateParameters object itself.
      */
     public FactoryUpdateParameters withPublicNetworkAccess(PublicNetworkAccess publicNetworkAccess) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new FactoryUpdateProperties();
-        }
-        this.innerProperties().withPublicNetworkAccess(publicNetworkAccess);
+        this.publicNetworkAccess = publicNetworkAccess;
         return this;
     }
 
@@ -112,9 +99,6 @@ public final class FactoryUpdateParameters {
     public void validate() {
         if (identity() != null) {
             identity().validate();
-        }
-        if (innerProperties() != null) {
-            innerProperties().validate();
         }
     }
 }

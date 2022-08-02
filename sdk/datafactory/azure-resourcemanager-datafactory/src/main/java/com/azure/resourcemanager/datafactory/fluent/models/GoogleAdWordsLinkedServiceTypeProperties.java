@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.datafactory.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.datafactory.models.GoogleAdWordsAuthenticationType;
 import com.azure.resourcemanager.datafactory.models.SecretBase;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -13,113 +14,77 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Fluent
 public final class GoogleAdWordsLinkedServiceTypeProperties {
     /*
-     * Properties used to connect to GoogleAds. It is mutually exclusive with
-     * any other properties in the linked service. Type: object.
+     * The Client customer ID of the AdWords account that you want to fetch report data for.
      */
-    @JsonProperty(value = "connectionProperties")
-    private Object connectionProperties;
-
-    /*
-     * The Client customer ID of the AdWords account that you want to fetch
-     * report data for.
-     */
-    @JsonProperty(value = "clientCustomerID")
+    @JsonProperty(value = "clientCustomerID", required = true)
     private Object clientCustomerId;
 
     /*
-     * The developer token associated with the manager account that you use to
-     * grant access to the AdWords API.
+     * The developer token associated with the manager account that you use to grant access to the AdWords API.
      */
-    @JsonProperty(value = "developerToken")
+    @JsonProperty(value = "developerToken", required = true)
     private SecretBase developerToken;
 
     /*
-     * The OAuth 2.0 authentication mechanism used for authentication.
-     * ServiceAuthentication can only be used on self-hosted IR.
+     * The OAuth 2.0 authentication mechanism used for authentication. ServiceAuthentication can only be used on
+     * self-hosted IR.
      */
-    @JsonProperty(value = "authenticationType")
+    @JsonProperty(value = "authenticationType", required = true)
     private GoogleAdWordsAuthenticationType authenticationType;
 
     /*
-     * The refresh token obtained from Google for authorizing access to AdWords
-     * for UserAuthentication.
+     * The refresh token obtained from Google for authorizing access to AdWords for UserAuthentication.
      */
     @JsonProperty(value = "refreshToken")
     private SecretBase refreshToken;
 
     /*
-     * The client id of the google application used to acquire the refresh
-     * token. Type: string (or Expression with resultType string).
+     * The client id of the google application used to acquire the refresh token. Type: string (or Expression with
+     * resultType string).
      */
     @JsonProperty(value = "clientId")
     private Object clientId;
 
     /*
-     * The client secret of the google application used to acquire the refresh
-     * token.
+     * The client secret of the google application used to acquire the refresh token.
      */
     @JsonProperty(value = "clientSecret")
     private SecretBase clientSecret;
 
     /*
-     * The service account email ID that is used for ServiceAuthentication and
-     * can only be used on self-hosted IR.
+     * The service account email ID that is used for ServiceAuthentication and can only be used on self-hosted IR.
      */
     @JsonProperty(value = "email")
     private Object email;
 
     /*
-     * The full path to the .p12 key file that is used to authenticate the
-     * service account email address and can only be used on self-hosted IR.
+     * The full path to the .p12 key file that is used to authenticate the service account email address and can only
+     * be used on self-hosted IR.
      */
     @JsonProperty(value = "keyFilePath")
     private Object keyFilePath;
 
     /*
-     * The full path of the .pem file containing trusted CA certificates for
-     * verifying the server when connecting over SSL. This property can only be
-     * set when using SSL on self-hosted IR. The default value is the
-     * cacerts.pem file installed with the IR.
+     * The full path of the .pem file containing trusted CA certificates for verifying the server when connecting over
+     * SSL. This property can only be set when using SSL on self-hosted IR. The default value is the cacerts.pem file
+     * installed with the IR.
      */
     @JsonProperty(value = "trustedCertPath")
     private Object trustedCertPath;
 
     /*
-     * Specifies whether to use a CA certificate from the system trust store or
-     * from a specified PEM file. The default value is false.
+     * Specifies whether to use a CA certificate from the system trust store or from a specified PEM file. The default
+     * value is false.
      */
     @JsonProperty(value = "useSystemTrustStore")
     private Object useSystemTrustStore;
 
     /*
-     * The encrypted credential used for authentication. Credentials are
-     * encrypted using the integration runtime credential manager. Type: string
-     * (or Expression with resultType string).
+     * The encrypted credential used for authentication. Credentials are encrypted using the integration runtime
+     * credential manager. Type: string (or Expression with resultType string).
      */
     @JsonProperty(value = "encryptedCredential")
     private Object encryptedCredential;
-
-    /**
-     * Get the connectionProperties property: Properties used to connect to GoogleAds. It is mutually exclusive with any
-     * other properties in the linked service. Type: object.
-     *
-     * @return the connectionProperties value.
-     */
-    public Object connectionProperties() {
-        return this.connectionProperties;
-    }
-
-    /**
-     * Set the connectionProperties property: Properties used to connect to GoogleAds. It is mutually exclusive with any
-     * other properties in the linked service. Type: object.
-     *
-     * @param connectionProperties the connectionProperties value to set.
-     * @return the GoogleAdWordsLinkedServiceTypeProperties object itself.
-     */
-    public GoogleAdWordsLinkedServiceTypeProperties withConnectionProperties(Object connectionProperties) {
-        this.connectionProperties = connectionProperties;
-        return this;
-    }
 
     /**
      * Get the clientCustomerId property: The Client customer ID of the AdWords account that you want to fetch report
@@ -370,8 +335,27 @@ public final class GoogleAdWordsLinkedServiceTypeProperties {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (developerToken() != null) {
+        if (clientCustomerId() == null) {
+            throw LOGGER
+                .logExceptionAsError(
+                    new IllegalArgumentException(
+                        "Missing required property clientCustomerId in model"
+                            + " GoogleAdWordsLinkedServiceTypeProperties"));
+        }
+        if (developerToken() == null) {
+            throw LOGGER
+                .logExceptionAsError(
+                    new IllegalArgumentException(
+                        "Missing required property developerToken in model GoogleAdWordsLinkedServiceTypeProperties"));
+        } else {
             developerToken().validate();
+        }
+        if (authenticationType() == null) {
+            throw LOGGER
+                .logExceptionAsError(
+                    new IllegalArgumentException(
+                        "Missing required property authenticationType in model"
+                            + " GoogleAdWordsLinkedServiceTypeProperties"));
         }
         if (refreshToken() != null) {
             refreshToken().validate();
@@ -380,4 +364,6 @@ public final class GoogleAdWordsLinkedServiceTypeProperties {
             clientSecret().validate();
         }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(GoogleAdWordsLinkedServiceTypeProperties.class);
 }

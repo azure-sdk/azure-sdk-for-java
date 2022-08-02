@@ -91,13 +91,6 @@ public interface Factory {
     String version();
 
     /**
-     * Gets the purviewConfiguration property: Purview information of the factory.
-     *
-     * @return the purviewConfiguration value.
-     */
-    PurviewConfiguration purviewConfiguration();
-
-    /**
      * Gets the repoConfiguration property: Git repo information of the factory.
      *
      * @return the repoConfiguration value.
@@ -201,7 +194,6 @@ public interface Factory {
             extends DefinitionStages.WithTags,
                 DefinitionStages.WithIdentity,
                 DefinitionStages.WithAdditionalProperties,
-                DefinitionStages.WithPurviewConfiguration,
                 DefinitionStages.WithRepoConfiguration,
                 DefinitionStages.WithGlobalParameters,
                 DefinitionStages.WithEncryption,
@@ -251,16 +243,6 @@ public interface Factory {
              * @return the next definition stage.
              */
             WithCreate withAdditionalProperties(Map<String, Object> additionalProperties);
-        }
-        /** The stage of the Factory definition allowing to specify purviewConfiguration. */
-        interface WithPurviewConfiguration {
-            /**
-             * Specifies the purviewConfiguration property: Purview information of the factory..
-             *
-             * @param purviewConfiguration Purview information of the factory.
-             * @return the next definition stage.
-             */
-            WithCreate withPurviewConfiguration(PurviewConfiguration purviewConfiguration);
         }
         /** The stage of the Factory definition allowing to specify repoConfiguration. */
         interface WithRepoConfiguration {

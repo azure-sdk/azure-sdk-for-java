@@ -18,7 +18,6 @@ import com.azure.resourcemanager.datafactory.models.GitHubAccessTokenRequest;
 import com.azure.resourcemanager.datafactory.models.GitHubAccessTokenResponse;
 import com.azure.resourcemanager.datafactory.models.GlobalParameterSpecification;
 import com.azure.resourcemanager.datafactory.models.PublicNetworkAccess;
-import com.azure.resourcemanager.datafactory.models.PurviewConfiguration;
 import com.azure.resourcemanager.datafactory.models.UserAccessPolicy;
 import java.time.OffsetDateTime;
 import java.util.Collections;
@@ -81,10 +80,6 @@ public final class FactoryImpl implements Factory, Factory.Definition, Factory.U
 
     public String version() {
         return this.innerModel().version();
-    }
-
-    public PurviewConfiguration purviewConfiguration() {
-        return this.innerModel().purviewConfiguration();
     }
 
     public FactoryRepoConfiguration repoConfiguration() {
@@ -278,11 +273,6 @@ public final class FactoryImpl implements Factory, Factory.Definition, Factory.U
 
     public FactoryImpl withAdditionalProperties(Map<String, Object> additionalProperties) {
         this.innerModel().withAdditionalProperties(additionalProperties);
-        return this;
-    }
-
-    public FactoryImpl withPurviewConfiguration(PurviewConfiguration purviewConfiguration) {
-        this.innerModel().withPurviewConfiguration(purviewConfiguration);
         return this;
     }
 
