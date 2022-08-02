@@ -27,7 +27,11 @@ public final class DataPolicy extends ExpandableStringEnum<DataPolicy> {
         return fromString(name, DataPolicy.class);
     }
 
-    /** @return known DataPolicy values. */
+    /**
+     * Gets known DataPolicy values.
+     *
+     * @return known DataPolicy values.
+     */
     public static Collection<DataPolicy> values() {
         return values(DataPolicy.class);
     }

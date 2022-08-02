@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.databoxedge.models;
 
+import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.databoxedge.fluent.models.OrderInner;
 import java.util.List;
 
@@ -29,6 +30,13 @@ public interface Order {
      * @return the type value.
      */
     String type();
+
+    /**
+     * Gets the systemData property: Order configured on ASE resource.
+     *
+     * @return the systemData value.
+     */
+    SystemData systemData();
 
     /**
      * Gets the contactInformation property: The contact details.
@@ -80,6 +88,13 @@ public interface Order {
      * @return the returnTrackingInfo value.
      */
     List<TrackingInfo> returnTrackingInfo();
+
+    /**
+     * Gets the shipmentType property: ShipmentType of the order.
+     *
+     * @return the shipmentType value.
+     */
+    ShipmentType shipmentType();
 
     /**
      * Gets the inner com.azure.resourcemanager.databoxedge.fluent.models.OrderInner object.

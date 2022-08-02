@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.databoxedge.models;
 
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.databoxedge.fluent.models.ShareInner;
 import java.util.List;
@@ -30,6 +31,13 @@ public interface Share {
      * @return the type value.
      */
     String type();
+
+    /**
+     * Gets the systemData property: Share on ASE device.
+     *
+     * @return the systemData value.
+     */
+    SystemData systemData();
 
     /**
      * Gets the description property: Description for the share.
@@ -102,6 +110,13 @@ public interface Share {
      * @return the dataPolicy value.
      */
     DataPolicy dataPolicy();
+
+    /**
+     * Gets the name of the resource group.
+     *
+     * @return the name of the resource group.
+     */
+    String resourceGroupName();
 
     /**
      * Gets the inner com.azure.resourcemanager.databoxedge.fluent.models.ShareInner object.

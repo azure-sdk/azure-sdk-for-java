@@ -33,7 +33,11 @@ public final class UpdateOperation extends ExpandableStringEnum<UpdateOperation>
         return fromString(name, UpdateOperation.class);
     }
 
-    /** @return known UpdateOperation values. */
+    /**
+     * Gets known UpdateOperation values.
+     *
+     * @return known UpdateOperation values.
+     */
     public static Collection<UpdateOperation> values() {
         return values(UpdateOperation.class);
     }

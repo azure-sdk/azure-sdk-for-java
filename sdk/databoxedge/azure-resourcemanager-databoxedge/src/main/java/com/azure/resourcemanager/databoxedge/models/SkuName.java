@@ -37,6 +37,54 @@ public final class SkuName extends ExpandableStringEnum<SkuName> {
     /** Static value TMA for SkuName. */
     public static final SkuName TMA = fromString("TMA");
 
+    /** Static value TDC for SkuName. */
+    public static final SkuName TDC = fromString("TDC");
+
+    /** Static value TCA_Small for SkuName. */
+    public static final SkuName TCA_SMALL = fromString("TCA_Small");
+
+    /** Static value GPU for SkuName. */
+    public static final SkuName GPU = fromString("GPU");
+
+    /** Static value TCA_Large for SkuName. */
+    public static final SkuName TCA_LARGE = fromString("TCA_Large");
+
+    /** Static value EdgeP_Base for SkuName. */
+    public static final SkuName EDGE_P_BASE = fromString("EdgeP_Base");
+
+    /** Static value EdgeP_High for SkuName. */
+    public static final SkuName EDGE_P_HIGH = fromString("EdgeP_High");
+
+    /** Static value EdgePR_Base for SkuName. */
+    public static final SkuName EDGE_PR_BASE = fromString("EdgePR_Base");
+
+    /** Static value EdgePR_Base_UPS for SkuName. */
+    public static final SkuName EDGE_PR_BASE_UPS = fromString("EdgePR_Base_UPS");
+
+    /** Static value EP2_64_1VPU_W for SkuName. */
+    public static final SkuName EP2_64_1VPU_W = fromString("EP2_64_1VPU_W");
+
+    /** Static value EP2_128_1T4_Mx1_W for SkuName. */
+    public static final SkuName EP2_128_1T4_MX1_W = fromString("EP2_128_1T4_Mx1_W");
+
+    /** Static value EP2_256_2T4_W for SkuName. */
+    public static final SkuName EP2_256_2T4_W = fromString("EP2_256_2T4_W");
+
+    /** Static value EdgeMR_Mini for SkuName. */
+    public static final SkuName EDGE_MR_MINI = fromString("EdgeMR_Mini");
+
+    /** Static value RCA_Small for SkuName. */
+    public static final SkuName RCA_SMALL = fromString("RCA_Small");
+
+    /** Static value RCA_Large for SkuName. */
+    public static final SkuName RCA_LARGE = fromString("RCA_Large");
+
+    /** Static value RDC for SkuName. */
+    public static final SkuName RDC = fromString("RDC");
+
+    /** Static value Management for SkuName. */
+    public static final SkuName MANAGEMENT = fromString("Management");
+
     /**
      * Creates or finds a SkuName from its string representation.
      *
@@ -48,7 +96,11 @@ public final class SkuName extends ExpandableStringEnum<SkuName> {
         return fromString(name, SkuName.class);
     }
 
-    /** @return known SkuName values. */
+    /**
+     * Gets known SkuName values.
+     *
+     * @return known SkuName values.
+     */
     public static Collection<SkuName> values() {
         return values(SkuName.class);
     }

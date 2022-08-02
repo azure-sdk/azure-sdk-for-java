@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.databoxedge.models;
 
 import com.azure.resourcemanager.databoxedge.fluent.models.DataBoxEdgeDeviceExtendedInfoInner;
+import java.util.Map;
 
 /** An immutable client-side representation of DataBoxEdgeDeviceExtendedInfo. */
 public interface DataBoxEdgeDeviceExtendedInfo {
@@ -50,6 +51,49 @@ public interface DataBoxEdgeDeviceExtendedInfo {
      * @return the resourceKey value.
      */
     String resourceKey();
+
+    /**
+     * Gets the clientSecretStoreId property: The Key Vault ARM Id for client secrets.
+     *
+     * @return the clientSecretStoreId value.
+     */
+    String clientSecretStoreId();
+
+    /**
+     * Gets the clientSecretStoreUrl property: The url to access the Client Key Vault.
+     *
+     * @return the clientSecretStoreUrl value.
+     */
+    String clientSecretStoreUrl();
+
+    /**
+     * Gets the channelIntegrityKeyName property: The name of Channel Integrity Key stored in the Client Key Vault.
+     *
+     * @return the channelIntegrityKeyName value.
+     */
+    String channelIntegrityKeyName();
+
+    /**
+     * Gets the channelIntegrityKeyVersion property: The version of Channel Integrity Key stored in the Client Key
+     * Vault.
+     *
+     * @return the channelIntegrityKeyVersion value.
+     */
+    String channelIntegrityKeyVersion();
+
+    /**
+     * Gets the keyVaultSyncStatus property: Key vault sync status.
+     *
+     * @return the keyVaultSyncStatus value.
+     */
+    KeyVaultSyncStatus keyVaultSyncStatus();
+
+    /**
+     * Gets the deviceSecrets property: Device secrets, will be returned only with ODataFilter $expand=deviceSecrets.
+     *
+     * @return the deviceSecrets value.
+     */
+    Map<String, Secret> deviceSecrets();
 
     /**
      * Gets the inner com.azure.resourcemanager.databoxedge.fluent.models.DataBoxEdgeDeviceExtendedInfoInner object.

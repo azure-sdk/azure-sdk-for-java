@@ -6,6 +6,10 @@ package com.azure.resourcemanager.databoxedge.implementation;
 
 import com.azure.resourcemanager.databoxedge.fluent.models.DataBoxEdgeDeviceExtendedInfoInner;
 import com.azure.resourcemanager.databoxedge.models.DataBoxEdgeDeviceExtendedInfo;
+import com.azure.resourcemanager.databoxedge.models.KeyVaultSyncStatus;
+import com.azure.resourcemanager.databoxedge.models.Secret;
+import java.util.Collections;
+import java.util.Map;
 
 public final class DataBoxEdgeDeviceExtendedInfoImpl implements DataBoxEdgeDeviceExtendedInfo {
     private DataBoxEdgeDeviceExtendedInfoInner innerObject;
@@ -41,6 +45,35 @@ public final class DataBoxEdgeDeviceExtendedInfoImpl implements DataBoxEdgeDevic
 
     public String resourceKey() {
         return this.innerModel().resourceKey();
+    }
+
+    public String clientSecretStoreId() {
+        return this.innerModel().clientSecretStoreId();
+    }
+
+    public String clientSecretStoreUrl() {
+        return this.innerModel().clientSecretStoreUrl();
+    }
+
+    public String channelIntegrityKeyName() {
+        return this.innerModel().channelIntegrityKeyName();
+    }
+
+    public String channelIntegrityKeyVersion() {
+        return this.innerModel().channelIntegrityKeyVersion();
+    }
+
+    public KeyVaultSyncStatus keyVaultSyncStatus() {
+        return this.innerModel().keyVaultSyncStatus();
+    }
+
+    public Map<String, Secret> deviceSecrets() {
+        Map<String, Secret> inner = this.innerModel().deviceSecrets();
+        if (inner != null) {
+            return Collections.unmodifiableMap(inner);
+        } else {
+            return Collections.emptyMap();
+        }
     }
 
     public DataBoxEdgeDeviceExtendedInfoInner innerModel() {

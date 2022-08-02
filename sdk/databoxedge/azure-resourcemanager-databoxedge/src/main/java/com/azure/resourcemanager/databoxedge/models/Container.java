@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.databoxedge.models;
 
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.databoxedge.fluent.models.ContainerInner;
 import java.time.OffsetDateTime;
@@ -32,6 +33,13 @@ public interface Container {
     String type();
 
     /**
+     * Gets the systemData property: Container in DataBoxEdge Resource.
+     *
+     * @return the systemData value.
+     */
+    SystemData systemData();
+
+    /**
      * Gets the containerStatus property: Current status of the container.
      *
      * @return the containerStatus value.
@@ -58,6 +66,13 @@ public interface Container {
      * @return the createdDateTime value.
      */
     OffsetDateTime createdDateTime();
+
+    /**
+     * Gets the name of the resource group.
+     *
+     * @return the name of the resource group.
+     */
+    String resourceGroupName();
 
     /**
      * Gets the inner com.azure.resourcemanager.databoxedge.fluent.models.ContainerInner object.
