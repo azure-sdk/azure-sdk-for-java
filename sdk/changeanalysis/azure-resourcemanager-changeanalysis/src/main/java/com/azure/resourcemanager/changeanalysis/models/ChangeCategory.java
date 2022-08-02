@@ -30,6 +30,9 @@ public enum ChangeCategory {
      */
     @JsonCreator
     public static ChangeCategory fromString(String value) {
+        if (value == null) {
+            return null;
+        }
         ChangeCategory[] items = ChangeCategory.values();
         for (ChangeCategory item : items) {
             if (item.toString().equalsIgnoreCase(value)) {
