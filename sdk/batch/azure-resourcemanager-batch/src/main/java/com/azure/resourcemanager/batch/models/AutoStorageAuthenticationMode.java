@@ -30,6 +30,9 @@ public enum AutoStorageAuthenticationMode {
      */
     @JsonCreator
     public static AutoStorageAuthenticationMode fromString(String value) {
+        if (value == null) {
+            return null;
+        }
         AutoStorageAuthenticationMode[] items = AutoStorageAuthenticationMode.values();
         for (AutoStorageAuthenticationMode item : items) {
             if (item.toString().equalsIgnoreCase(value)) {

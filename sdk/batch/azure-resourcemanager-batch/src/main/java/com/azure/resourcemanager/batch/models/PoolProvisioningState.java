@@ -30,6 +30,9 @@ public enum PoolProvisioningState {
      */
     @JsonCreator
     public static PoolProvisioningState fromString(String value) {
+        if (value == null) {
+            return null;
+        }
         PoolProvisioningState[] items = PoolProvisioningState.values();
         for (PoolProvisioningState item : items) {
             if (item.toString().equalsIgnoreCase(value)) {

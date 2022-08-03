@@ -27,6 +27,9 @@ public enum DiffDiskPlacement {
      */
     @JsonCreator
     public static DiffDiskPlacement fromString(String value) {
+        if (value == null) {
+            return null;
+        }
         DiffDiskPlacement[] items = DiffDiskPlacement.values();
         for (DiffDiskPlacement item : items) {
             if (item.toString().equalsIgnoreCase(value)) {

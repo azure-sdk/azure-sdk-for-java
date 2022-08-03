@@ -30,6 +30,9 @@ public enum PackageState {
      */
     @JsonCreator
     public static PackageState fromString(String value) {
+        if (value == null) {
+            return null;
+        }
         PackageState[] items = PackageState.values();
         for (PackageState item : items) {
             if (item.toString().equalsIgnoreCase(value)) {

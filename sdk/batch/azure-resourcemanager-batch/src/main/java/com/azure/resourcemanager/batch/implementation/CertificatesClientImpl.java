@@ -611,14 +611,7 @@ public final class CertificatesClientImpl implements CertificatesClient {
         String ifNoneMatch) {
         return createWithResponseAsync(
                 resourceGroupName, accountName, certificateName, parameters, ifMatch, ifNoneMatch)
-            .flatMap(
-                (CertificatesCreateResponse res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -644,14 +637,7 @@ public final class CertificatesClientImpl implements CertificatesClient {
         final String ifNoneMatch = null;
         return createWithResponseAsync(
                 resourceGroupName, accountName, certificateName, parameters, ifMatch, ifNoneMatch)
-            .flatMap(
-                (CertificatesCreateResponse res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -870,14 +856,7 @@ public final class CertificatesClientImpl implements CertificatesClient {
         CertificateCreateOrUpdateParameters parameters,
         String ifMatch) {
         return updateWithResponseAsync(resourceGroupName, accountName, certificateName, parameters, ifMatch)
-            .flatMap(
-                (CertificatesUpdateResponse res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -901,14 +880,7 @@ public final class CertificatesClientImpl implements CertificatesClient {
         CertificateCreateOrUpdateParameters parameters) {
         final String ifMatch = null;
         return updateWithResponseAsync(resourceGroupName, accountName, certificateName, parameters, ifMatch)
-            .flatMap(
-                (CertificatesUpdateResponse res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -1350,14 +1322,7 @@ public final class CertificatesClientImpl implements CertificatesClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<CertificateInner> getAsync(String resourceGroupName, String accountName, String certificateName) {
         return getWithResponseAsync(resourceGroupName, accountName, certificateName)
-            .flatMap(
-                (CertificatesGetResponse res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -1397,7 +1362,9 @@ public final class CertificatesClientImpl implements CertificatesClient {
     }
 
     /**
-     * If you try to delete a certificate that is being used by a pool or compute node, the status of the certificate
+     * Cancels a failed deletion of a certificate from the specified account.
+     *
+     * <p>If you try to delete a certificate that is being used by a pool or compute node, the status of the certificate
      * changes to deleteFailed. If you decide that you want to continue using the certificate, you can use this
      * operation to set the status of the certificate back to active. If you intend to delete the certificate, you do
      * not need to run this operation after the deletion failed. You must make sure that the certificate is not being
@@ -1456,7 +1423,9 @@ public final class CertificatesClientImpl implements CertificatesClient {
     }
 
     /**
-     * If you try to delete a certificate that is being used by a pool or compute node, the status of the certificate
+     * Cancels a failed deletion of a certificate from the specified account.
+     *
+     * <p>If you try to delete a certificate that is being used by a pool or compute node, the status of the certificate
      * changes to deleteFailed. If you decide that you want to continue using the certificate, you can use this
      * operation to set the status of the certificate back to active. If you intend to delete the certificate, you do
      * not need to run this operation after the deletion failed. You must make sure that the certificate is not being
@@ -1513,7 +1482,9 @@ public final class CertificatesClientImpl implements CertificatesClient {
     }
 
     /**
-     * If you try to delete a certificate that is being used by a pool or compute node, the status of the certificate
+     * Cancels a failed deletion of a certificate from the specified account.
+     *
+     * <p>If you try to delete a certificate that is being used by a pool or compute node, the status of the certificate
      * changes to deleteFailed. If you decide that you want to continue using the certificate, you can use this
      * operation to set the status of the certificate back to active. If you intend to delete the certificate, you do
      * not need to run this operation after the deletion failed. You must make sure that the certificate is not being
@@ -1532,18 +1503,13 @@ public final class CertificatesClientImpl implements CertificatesClient {
     private Mono<CertificateInner> cancelDeletionAsync(
         String resourceGroupName, String accountName, String certificateName) {
         return cancelDeletionWithResponseAsync(resourceGroupName, accountName, certificateName)
-            .flatMap(
-                (CertificatesCancelDeletionResponse res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
-     * If you try to delete a certificate that is being used by a pool or compute node, the status of the certificate
+     * Cancels a failed deletion of a certificate from the specified account.
+     *
+     * <p>If you try to delete a certificate that is being used by a pool or compute node, the status of the certificate
      * changes to deleteFailed. If you decide that you want to continue using the certificate, you can use this
      * operation to set the status of the certificate back to active. If you intend to delete the certificate, you do
      * not need to run this operation after the deletion failed. You must make sure that the certificate is not being
@@ -1564,7 +1530,9 @@ public final class CertificatesClientImpl implements CertificatesClient {
     }
 
     /**
-     * If you try to delete a certificate that is being used by a pool or compute node, the status of the certificate
+     * Cancels a failed deletion of a certificate from the specified account.
+     *
+     * <p>If you try to delete a certificate that is being used by a pool or compute node, the status of the certificate
      * changes to deleteFailed. If you decide that you want to continue using the certificate, you can use this
      * operation to set the status of the certificate back to active. If you intend to delete the certificate, you do
      * not need to run this operation after the deletion failed. You must make sure that the certificate is not being

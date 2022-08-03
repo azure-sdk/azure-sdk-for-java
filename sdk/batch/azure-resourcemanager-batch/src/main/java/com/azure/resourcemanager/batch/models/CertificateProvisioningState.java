@@ -33,6 +33,9 @@ public enum CertificateProvisioningState {
      */
     @JsonCreator
     public static CertificateProvisioningState fromString(String value) {
+        if (value == null) {
+            return null;
+        }
         CertificateProvisioningState[] items = CertificateProvisioningState.values();
         for (CertificateProvisioningState item : items) {
             if (item.toString().equalsIgnoreCase(value)) {
