@@ -42,6 +42,9 @@ public enum JobStatus {
      */
     @JsonCreator
     public static JobStatus fromString(String value) {
+        if (value == null) {
+            return null;
+        }
         JobStatus[] items = JobStatus.values();
         for (JobStatus item : items) {
             if (item.toString().equalsIgnoreCase(value)) {

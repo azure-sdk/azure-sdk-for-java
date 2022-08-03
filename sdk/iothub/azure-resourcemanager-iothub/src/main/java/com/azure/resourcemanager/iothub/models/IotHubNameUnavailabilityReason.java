@@ -30,6 +30,9 @@ public enum IotHubNameUnavailabilityReason {
      */
     @JsonCreator
     public static IotHubNameUnavailabilityReason fromString(String value) {
+        if (value == null) {
+            return null;
+        }
         IotHubNameUnavailabilityReason[] items = IotHubNameUnavailabilityReason.values();
         for (IotHubNameUnavailabilityReason item : items) {
             if (item.toString().equalsIgnoreCase(value)) {
