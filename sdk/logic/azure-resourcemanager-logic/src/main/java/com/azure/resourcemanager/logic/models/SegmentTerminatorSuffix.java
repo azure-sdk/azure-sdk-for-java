@@ -39,6 +39,9 @@ public enum SegmentTerminatorSuffix {
      */
     @JsonCreator
     public static SegmentTerminatorSuffix fromString(String value) {
+        if (value == null) {
+            return null;
+        }
         SegmentTerminatorSuffix[] items = SegmentTerminatorSuffix.values();
         for (SegmentTerminatorSuffix item : items) {
             if (item.toString().equalsIgnoreCase(value)) {

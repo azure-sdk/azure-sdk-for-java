@@ -5,15 +5,11 @@
 package com.azure.resourcemanager.logic.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** The AS2 agreement security settings. */
 @Fluent
 public final class AS2SecuritySettings {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(AS2SecuritySettings.class);
-
     /*
      * The value indicating whether to send or request a MDN.
      */
@@ -51,15 +47,13 @@ public final class AS2SecuritySettings {
     private boolean enableNrrForOutboundMdn;
 
     /*
-     * The value indicating whether to enable NRR for outbound encoded
-     * messages.
+     * The value indicating whether to enable NRR for outbound encoded messages.
      */
     @JsonProperty(value = "enableNRRForOutboundEncodedMessages", required = true)
     private boolean enableNrrForOutboundEncodedMessages;
 
     /*
-     * The value indicating whether to enable NRR for outbound decoded
-     * messages.
+     * The value indicating whether to enable NRR for outbound decoded messages.
      */
     @JsonProperty(value = "enableNRRForOutboundDecodedMessages", required = true)
     private boolean enableNrrForOutboundDecodedMessages;
@@ -71,8 +65,7 @@ public final class AS2SecuritySettings {
     private boolean enableNrrForInboundMdn;
 
     /*
-     * The Sha2 algorithm format. Valid values are Sha2, ShaHashSize,
-     * ShaHyphenHashSize, Sha2UnderscoreHashSize.
+     * The Sha2 algorithm format. Valid values are Sha2, ShaHashSize, ShaHyphenHashSize, Sha2UnderscoreHashSize.
      */
     @JsonProperty(value = "sha2AlgorithmFormat")
     private String sha2AlgorithmFormat;

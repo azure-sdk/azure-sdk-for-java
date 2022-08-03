@@ -36,6 +36,9 @@ public enum AgreementType {
      */
     @JsonCreator
     public static AgreementType fromString(String value) {
+        if (value == null) {
+            return null;
+        }
         AgreementType[] items = AgreementType.values();
         for (AgreementType item : items) {
             if (item.toString().equalsIgnoreCase(value)) {

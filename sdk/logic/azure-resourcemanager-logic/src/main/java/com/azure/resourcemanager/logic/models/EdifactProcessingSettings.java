@@ -5,15 +5,11 @@
 package com.azure.resourcemanager.logic.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** The Edifact agreement protocol settings. */
 @Fluent
 public final class EdifactProcessingSettings {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(EdifactProcessingSettings.class);
-
     /*
      * The value indicating whether to mask security information.
      */
@@ -33,8 +29,7 @@ public final class EdifactProcessingSettings {
     private boolean suspendInterchangeOnError;
 
     /*
-     * The value indicating whether to create empty xml tags for trailing
-     * separators.
+     * The value indicating whether to create empty xml tags for trailing separators.
      */
     @JsonProperty(value = "createEmptyXmlTagsForTrailingSeparators", required = true)
     private boolean createEmptyXmlTagsForTrailingSeparators;

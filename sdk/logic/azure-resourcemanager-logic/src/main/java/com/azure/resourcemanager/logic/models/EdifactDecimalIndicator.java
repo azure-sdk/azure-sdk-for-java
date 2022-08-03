@@ -33,6 +33,9 @@ public enum EdifactDecimalIndicator {
      */
     @JsonCreator
     public static EdifactDecimalIndicator fromString(String value) {
+        if (value == null) {
+            return null;
+        }
         EdifactDecimalIndicator[] items = EdifactDecimalIndicator.values();
         for (EdifactDecimalIndicator item : items) {
             if (item.toString().equalsIgnoreCase(value)) {
