@@ -138,7 +138,9 @@ public final class StreamingPoliciesClientImpl implements StreamingPoliciesClien
     }
 
     /**
-     * Lists the Streaming Policies in the account.
+     * List Streaming Policies
+     *
+     * <p>Lists the Streaming Policies in the account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -203,7 +205,9 @@ public final class StreamingPoliciesClientImpl implements StreamingPoliciesClien
     }
 
     /**
-     * Lists the Streaming Policies in the account.
+     * List Streaming Policies
+     *
+     * <p>Lists the Streaming Policies in the account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -266,7 +270,9 @@ public final class StreamingPoliciesClientImpl implements StreamingPoliciesClien
     }
 
     /**
-     * Lists the Streaming Policies in the account.
+     * List Streaming Policies
+     *
+     * <p>Lists the Streaming Policies in the account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -288,7 +294,9 @@ public final class StreamingPoliciesClientImpl implements StreamingPoliciesClien
     }
 
     /**
-     * Lists the Streaming Policies in the account.
+     * List Streaming Policies
+     *
+     * <p>Lists the Streaming Policies in the account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -308,7 +316,9 @@ public final class StreamingPoliciesClientImpl implements StreamingPoliciesClien
     }
 
     /**
-     * Lists the Streaming Policies in the account.
+     * List Streaming Policies
+     *
+     * <p>Lists the Streaming Policies in the account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -331,7 +341,9 @@ public final class StreamingPoliciesClientImpl implements StreamingPoliciesClien
     }
 
     /**
-     * Lists the Streaming Policies in the account.
+     * List Streaming Policies
+     *
+     * <p>Lists the Streaming Policies in the account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -349,7 +361,9 @@ public final class StreamingPoliciesClientImpl implements StreamingPoliciesClien
     }
 
     /**
-     * Lists the Streaming Policies in the account.
+     * List Streaming Policies
+     *
+     * <p>Lists the Streaming Policies in the account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -370,7 +384,9 @@ public final class StreamingPoliciesClientImpl implements StreamingPoliciesClien
     }
 
     /**
-     * Get the details of a Streaming Policy in the Media Services account.
+     * Get a Streaming Policy
+     *
+     * <p>Get the details of a Streaming Policy in the Media Services account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -425,7 +441,9 @@ public final class StreamingPoliciesClientImpl implements StreamingPoliciesClien
     }
 
     /**
-     * Get the details of a Streaming Policy in the Media Services account.
+     * Get a Streaming Policy
+     *
+     * <p>Get the details of a Streaming Policy in the Media Services account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -478,7 +496,9 @@ public final class StreamingPoliciesClientImpl implements StreamingPoliciesClien
     }
 
     /**
-     * Get the details of a Streaming Policy in the Media Services account.
+     * Get a Streaming Policy
+     *
+     * <p>Get the details of a Streaming Policy in the Media Services account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -496,7 +516,9 @@ public final class StreamingPoliciesClientImpl implements StreamingPoliciesClien
     }
 
     /**
-     * Get the details of a Streaming Policy in the Media Services account.
+     * Get a Streaming Policy
+     *
+     * <p>Get the details of a Streaming Policy in the Media Services account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -512,7 +534,9 @@ public final class StreamingPoliciesClientImpl implements StreamingPoliciesClien
     }
 
     /**
-     * Get the details of a Streaming Policy in the Media Services account.
+     * Get a Streaming Policy
+     *
+     * <p>Get the details of a Streaming Policy in the Media Services account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -530,7 +554,9 @@ public final class StreamingPoliciesClientImpl implements StreamingPoliciesClien
     }
 
     /**
-     * Create a Streaming Policy in the Media Services account.
+     * Create a Streaming Policy
+     *
+     * <p>Create a Streaming Policy in the Media Services account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -591,7 +617,9 @@ public final class StreamingPoliciesClientImpl implements StreamingPoliciesClien
     }
 
     /**
-     * Create a Streaming Policy in the Media Services account.
+     * Create a Streaming Policy
+     *
+     * <p>Create a Streaming Policy in the Media Services account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -654,7 +682,9 @@ public final class StreamingPoliciesClientImpl implements StreamingPoliciesClien
     }
 
     /**
-     * Create a Streaming Policy in the Media Services account.
+     * Create a Streaming Policy
+     *
+     * <p>Create a Streaming Policy in the Media Services account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -673,7 +703,9 @@ public final class StreamingPoliciesClientImpl implements StreamingPoliciesClien
     }
 
     /**
-     * Create a Streaming Policy in the Media Services account.
+     * Create a Streaming Policy
+     *
+     * <p>Create a Streaming Policy in the Media Services account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -691,7 +723,9 @@ public final class StreamingPoliciesClientImpl implements StreamingPoliciesClien
     }
 
     /**
-     * Create a Streaming Policy in the Media Services account.
+     * Create a Streaming Policy
+     *
+     * <p>Create a Streaming Policy in the Media Services account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -715,7 +749,9 @@ public final class StreamingPoliciesClientImpl implements StreamingPoliciesClien
     }
 
     /**
-     * Deletes a Streaming Policy in the Media Services account.
+     * Delete a Streaming Policy
+     *
+     * <p>Deletes a Streaming Policy in the Media Services account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -769,7 +805,9 @@ public final class StreamingPoliciesClientImpl implements StreamingPoliciesClien
     }
 
     /**
-     * Deletes a Streaming Policy in the Media Services account.
+     * Delete a Streaming Policy
+     *
+     * <p>Deletes a Streaming Policy in the Media Services account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -821,7 +859,9 @@ public final class StreamingPoliciesClientImpl implements StreamingPoliciesClien
     }
 
     /**
-     * Deletes a Streaming Policy in the Media Services account.
+     * Delete a Streaming Policy
+     *
+     * <p>Deletes a Streaming Policy in the Media Services account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -838,7 +878,9 @@ public final class StreamingPoliciesClientImpl implements StreamingPoliciesClien
     }
 
     /**
-     * Deletes a Streaming Policy in the Media Services account.
+     * Delete a Streaming Policy
+     *
+     * <p>Deletes a Streaming Policy in the Media Services account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -853,7 +895,9 @@ public final class StreamingPoliciesClientImpl implements StreamingPoliciesClien
     }
 
     /**
-     * Deletes a Streaming Policy in the Media Services account.
+     * Delete a Streaming Policy
+     *
+     * <p>Deletes a Streaming Policy in the Media Services account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.

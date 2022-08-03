@@ -211,7 +211,9 @@ public final class MediaservicesClientImpl implements MediaservicesClient {
     }
 
     /**
-     * List Media Services accounts in the resource group.
+     * List Media Services accounts
+     *
+     * <p>List Media Services accounts in the resource group.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -263,7 +265,9 @@ public final class MediaservicesClientImpl implements MediaservicesClient {
     }
 
     /**
-     * List Media Services accounts in the resource group.
+     * List Media Services accounts
+     *
+     * <p>List Media Services accounts in the resource group.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param context The context to associate with this operation.
@@ -314,7 +318,9 @@ public final class MediaservicesClientImpl implements MediaservicesClient {
     }
 
     /**
-     * List Media Services accounts in the resource group.
+     * List Media Services accounts
+     *
+     * <p>List Media Services accounts in the resource group.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -329,7 +335,9 @@ public final class MediaservicesClientImpl implements MediaservicesClient {
     }
 
     /**
-     * List Media Services accounts in the resource group.
+     * List Media Services accounts
+     *
+     * <p>List Media Services accounts in the resource group.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param context The context to associate with this operation.
@@ -346,7 +354,9 @@ public final class MediaservicesClientImpl implements MediaservicesClient {
     }
 
     /**
-     * List Media Services accounts in the resource group.
+     * List Media Services accounts
+     *
+     * <p>List Media Services accounts in the resource group.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -360,7 +370,9 @@ public final class MediaservicesClientImpl implements MediaservicesClient {
     }
 
     /**
-     * List Media Services accounts in the resource group.
+     * List Media Services accounts
+     *
+     * <p>List Media Services accounts in the resource group.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param context The context to associate with this operation.
@@ -375,7 +387,9 @@ public final class MediaservicesClientImpl implements MediaservicesClient {
     }
 
     /**
-     * Get the details of a Media Services account.
+     * Get a Media Services account
+     *
+     * <p>Get the details of a Media Services account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -424,7 +438,9 @@ public final class MediaservicesClientImpl implements MediaservicesClient {
     }
 
     /**
-     * Get the details of a Media Services account.
+     * Get a Media Services account
+     *
+     * <p>Get the details of a Media Services account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -471,7 +487,9 @@ public final class MediaservicesClientImpl implements MediaservicesClient {
     }
 
     /**
-     * Get the details of a Media Services account.
+     * Get a Media Services account
+     *
+     * <p>Get the details of a Media Services account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -487,7 +505,9 @@ public final class MediaservicesClientImpl implements MediaservicesClient {
     }
 
     /**
-     * Get the details of a Media Services account.
+     * Get a Media Services account
+     *
+     * <p>Get the details of a Media Services account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -502,7 +522,9 @@ public final class MediaservicesClientImpl implements MediaservicesClient {
     }
 
     /**
-     * Get the details of a Media Services account.
+     * Get a Media Services account
+     *
+     * <p>Get the details of a Media Services account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -519,7 +541,9 @@ public final class MediaservicesClientImpl implements MediaservicesClient {
     }
 
     /**
-     * Creates or updates a Media Services account.
+     * Create or update a Media Services account
+     *
+     * <p>Creates or updates a Media Services account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -574,7 +598,9 @@ public final class MediaservicesClientImpl implements MediaservicesClient {
     }
 
     /**
-     * Creates or updates a Media Services account.
+     * Create or update a Media Services account
+     *
+     * <p>Creates or updates a Media Services account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -627,7 +653,9 @@ public final class MediaservicesClientImpl implements MediaservicesClient {
     }
 
     /**
-     * Creates or updates a Media Services account.
+     * Create or update a Media Services account
+     *
+     * <p>Creates or updates a Media Services account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -653,7 +681,9 @@ public final class MediaservicesClientImpl implements MediaservicesClient {
     }
 
     /**
-     * Creates or updates a Media Services account.
+     * Create or update a Media Services account
+     *
+     * <p>Creates or updates a Media Services account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -677,7 +707,9 @@ public final class MediaservicesClientImpl implements MediaservicesClient {
     }
 
     /**
-     * Creates or updates a Media Services account.
+     * Create or update a Media Services account
+     *
+     * <p>Creates or updates a Media Services account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -694,7 +726,9 @@ public final class MediaservicesClientImpl implements MediaservicesClient {
     }
 
     /**
-     * Creates or updates a Media Services account.
+     * Create or update a Media Services account
+     *
+     * <p>Creates or updates a Media Services account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -712,7 +746,9 @@ public final class MediaservicesClientImpl implements MediaservicesClient {
     }
 
     /**
-     * Creates or updates a Media Services account.
+     * Create or update a Media Services account
+     *
+     * <p>Creates or updates a Media Services account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -731,7 +767,9 @@ public final class MediaservicesClientImpl implements MediaservicesClient {
     }
 
     /**
-     * Creates or updates a Media Services account.
+     * Create or update a Media Services account
+     *
+     * <p>Creates or updates a Media Services account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -751,7 +789,9 @@ public final class MediaservicesClientImpl implements MediaservicesClient {
     }
 
     /**
-     * Creates or updates a Media Services account.
+     * Create or update a Media Services account
+     *
+     * <p>Creates or updates a Media Services account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -768,7 +808,9 @@ public final class MediaservicesClientImpl implements MediaservicesClient {
     }
 
     /**
-     * Creates or updates a Media Services account.
+     * Create or update a Media Services account
+     *
+     * <p>Creates or updates a Media Services account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -786,7 +828,9 @@ public final class MediaservicesClientImpl implements MediaservicesClient {
     }
 
     /**
-     * Deletes a Media Services account.
+     * Delete a Media Services account.
+     *
+     * <p>Deletes a Media Services account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -833,7 +877,9 @@ public final class MediaservicesClientImpl implements MediaservicesClient {
     }
 
     /**
-     * Deletes a Media Services account.
+     * Delete a Media Services account.
+     *
+     * <p>Deletes a Media Services account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -879,7 +925,9 @@ public final class MediaservicesClientImpl implements MediaservicesClient {
     }
 
     /**
-     * Deletes a Media Services account.
+     * Delete a Media Services account.
+     *
+     * <p>Deletes a Media Services account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -894,7 +942,9 @@ public final class MediaservicesClientImpl implements MediaservicesClient {
     }
 
     /**
-     * Deletes a Media Services account.
+     * Delete a Media Services account.
+     *
+     * <p>Deletes a Media Services account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -908,7 +958,9 @@ public final class MediaservicesClientImpl implements MediaservicesClient {
     }
 
     /**
-     * Deletes a Media Services account.
+     * Delete a Media Services account.
+     *
+     * <p>Deletes a Media Services account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -924,7 +976,9 @@ public final class MediaservicesClientImpl implements MediaservicesClient {
     }
 
     /**
-     * Updates an existing Media Services account.
+     * Update a Media Services account
+     *
+     * <p>Updates an existing Media Services account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -979,7 +1033,9 @@ public final class MediaservicesClientImpl implements MediaservicesClient {
     }
 
     /**
-     * Updates an existing Media Services account.
+     * Update a Media Services account
+     *
+     * <p>Updates an existing Media Services account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1032,7 +1088,9 @@ public final class MediaservicesClientImpl implements MediaservicesClient {
     }
 
     /**
-     * Updates an existing Media Services account.
+     * Update a Media Services account
+     *
+     * <p>Updates an existing Media Services account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1057,7 +1115,9 @@ public final class MediaservicesClientImpl implements MediaservicesClient {
     }
 
     /**
-     * Updates an existing Media Services account.
+     * Update a Media Services account
+     *
+     * <p>Updates an existing Media Services account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1081,7 +1141,9 @@ public final class MediaservicesClientImpl implements MediaservicesClient {
     }
 
     /**
-     * Updates an existing Media Services account.
+     * Update a Media Services account
+     *
+     * <p>Updates an existing Media Services account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1098,7 +1160,9 @@ public final class MediaservicesClientImpl implements MediaservicesClient {
     }
 
     /**
-     * Updates an existing Media Services account.
+     * Update a Media Services account
+     *
+     * <p>Updates an existing Media Services account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1116,7 +1180,9 @@ public final class MediaservicesClientImpl implements MediaservicesClient {
     }
 
     /**
-     * Updates an existing Media Services account.
+     * Update a Media Services account
+     *
+     * <p>Updates an existing Media Services account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1135,7 +1201,9 @@ public final class MediaservicesClientImpl implements MediaservicesClient {
     }
 
     /**
-     * Updates an existing Media Services account.
+     * Update a Media Services account
+     *
+     * <p>Updates an existing Media Services account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1155,7 +1223,9 @@ public final class MediaservicesClientImpl implements MediaservicesClient {
     }
 
     /**
-     * Updates an existing Media Services account.
+     * Update a Media Services account
+     *
+     * <p>Updates an existing Media Services account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1171,7 +1241,9 @@ public final class MediaservicesClientImpl implements MediaservicesClient {
     }
 
     /**
-     * Updates an existing Media Services account.
+     * Update a Media Services account
+     *
+     * <p>Updates an existing Media Services account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1189,7 +1261,9 @@ public final class MediaservicesClientImpl implements MediaservicesClient {
     }
 
     /**
-     * Synchronizes storage account keys for a storage account associated with the Media Service account.
+     * Synchronizes Storage Account Keys
+     *
+     * <p>Synchronizes storage account keys for a storage account associated with the Media Service account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1244,7 +1318,9 @@ public final class MediaservicesClientImpl implements MediaservicesClient {
     }
 
     /**
-     * Synchronizes storage account keys for a storage account associated with the Media Service account.
+     * Synchronizes Storage Account Keys
+     *
+     * <p>Synchronizes storage account keys for a storage account associated with the Media Service account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1297,7 +1373,9 @@ public final class MediaservicesClientImpl implements MediaservicesClient {
     }
 
     /**
-     * Synchronizes storage account keys for a storage account associated with the Media Service account.
+     * Synchronizes Storage Account Keys
+     *
+     * <p>Synchronizes storage account keys for a storage account associated with the Media Service account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1315,7 +1393,9 @@ public final class MediaservicesClientImpl implements MediaservicesClient {
     }
 
     /**
-     * Synchronizes storage account keys for a storage account associated with the Media Service account.
+     * Synchronizes Storage Account Keys
+     *
+     * <p>Synchronizes storage account keys for a storage account associated with the Media Service account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1330,7 +1410,9 @@ public final class MediaservicesClientImpl implements MediaservicesClient {
     }
 
     /**
-     * Synchronizes storage account keys for a storage account associated with the Media Service account.
+     * Synchronizes Storage Account Keys
+     *
+     * <p>Synchronizes storage account keys for a storage account associated with the Media Service account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1348,7 +1430,9 @@ public final class MediaservicesClientImpl implements MediaservicesClient {
     }
 
     /**
-     * List all the media edge policies associated with the Media Services account.
+     * List the media edge policies associated with the Media Services account.
+     *
+     * <p>List all the media edge policies associated with the Media Services account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1403,7 +1487,9 @@ public final class MediaservicesClientImpl implements MediaservicesClient {
     }
 
     /**
-     * List all the media edge policies associated with the Media Services account.
+     * List the media edge policies associated with the Media Services account.
+     *
+     * <p>List all the media edge policies associated with the Media Services account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1456,7 +1542,9 @@ public final class MediaservicesClientImpl implements MediaservicesClient {
     }
 
     /**
-     * List all the media edge policies associated with the Media Services account.
+     * List the media edge policies associated with the Media Services account.
+     *
+     * <p>List all the media edge policies associated with the Media Services account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1474,7 +1562,9 @@ public final class MediaservicesClientImpl implements MediaservicesClient {
     }
 
     /**
-     * List all the media edge policies associated with the Media Services account.
+     * List the media edge policies associated with the Media Services account.
+     *
+     * <p>List all the media edge policies associated with the Media Services account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1491,7 +1581,9 @@ public final class MediaservicesClientImpl implements MediaservicesClient {
     }
 
     /**
-     * List all the media edge policies associated with the Media Services account.
+     * List the media edge policies associated with the Media Services account.
+     *
+     * <p>List all the media edge policies associated with the Media Services account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1509,7 +1601,9 @@ public final class MediaservicesClientImpl implements MediaservicesClient {
     }
 
     /**
-     * List Media Services accounts in the subscription.
+     * List Media Services accounts
+     *
+     * <p>List Media Services accounts in the subscription.
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1554,7 +1648,9 @@ public final class MediaservicesClientImpl implements MediaservicesClient {
     }
 
     /**
-     * List Media Services accounts in the subscription.
+     * List Media Services accounts
+     *
+     * <p>List Media Services accounts in the subscription.
      *
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1598,7 +1694,9 @@ public final class MediaservicesClientImpl implements MediaservicesClient {
     }
 
     /**
-     * List Media Services accounts in the subscription.
+     * List Media Services accounts
+     *
+     * <p>List Media Services accounts in the subscription.
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1611,7 +1709,9 @@ public final class MediaservicesClientImpl implements MediaservicesClient {
     }
 
     /**
-     * List Media Services accounts in the subscription.
+     * List Media Services accounts
+     *
+     * <p>List Media Services accounts in the subscription.
      *
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1626,7 +1726,9 @@ public final class MediaservicesClientImpl implements MediaservicesClient {
     }
 
     /**
-     * List Media Services accounts in the subscription.
+     * List Media Services accounts
+     *
+     * <p>List Media Services accounts in the subscription.
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1638,7 +1740,9 @@ public final class MediaservicesClientImpl implements MediaservicesClient {
     }
 
     /**
-     * List Media Services accounts in the subscription.
+     * List Media Services accounts
+     *
+     * <p>List Media Services accounts in the subscription.
      *
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.

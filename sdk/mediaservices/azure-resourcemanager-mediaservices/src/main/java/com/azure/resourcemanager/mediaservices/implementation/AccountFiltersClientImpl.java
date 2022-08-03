@@ -153,7 +153,9 @@ public final class AccountFiltersClientImpl implements AccountFiltersClient {
     }
 
     /**
-     * List Account Filters in the Media Services account.
+     * List Account Filters
+     *
+     * <p>List Account Filters in the Media Services account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -210,7 +212,9 @@ public final class AccountFiltersClientImpl implements AccountFiltersClient {
     }
 
     /**
-     * List Account Filters in the Media Services account.
+     * List Account Filters
+     *
+     * <p>List Account Filters in the Media Services account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -266,7 +270,9 @@ public final class AccountFiltersClientImpl implements AccountFiltersClient {
     }
 
     /**
-     * List Account Filters in the Media Services account.
+     * List Account Filters
+     *
+     * <p>List Account Filters in the Media Services account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -282,7 +288,9 @@ public final class AccountFiltersClientImpl implements AccountFiltersClient {
     }
 
     /**
-     * List Account Filters in the Media Services account.
+     * List Account Filters
+     *
+     * <p>List Account Filters in the Media Services account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -300,7 +308,9 @@ public final class AccountFiltersClientImpl implements AccountFiltersClient {
     }
 
     /**
-     * List Account Filters in the Media Services account.
+     * List Account Filters
+     *
+     * <p>List Account Filters in the Media Services account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -315,7 +325,9 @@ public final class AccountFiltersClientImpl implements AccountFiltersClient {
     }
 
     /**
-     * List Account Filters in the Media Services account.
+     * List Account Filters
+     *
+     * <p>List Account Filters in the Media Services account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -331,7 +343,9 @@ public final class AccountFiltersClientImpl implements AccountFiltersClient {
     }
 
     /**
-     * Get the details of an Account Filter in the Media Services account.
+     * Get an Account Filter.
+     *
+     * <p>Get the details of an Account Filter in the Media Services account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -385,7 +399,9 @@ public final class AccountFiltersClientImpl implements AccountFiltersClient {
     }
 
     /**
-     * Get the details of an Account Filter in the Media Services account.
+     * Get an Account Filter.
+     *
+     * <p>Get the details of an Account Filter in the Media Services account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -437,7 +453,9 @@ public final class AccountFiltersClientImpl implements AccountFiltersClient {
     }
 
     /**
-     * Get the details of an Account Filter in the Media Services account.
+     * Get an Account Filter.
+     *
+     * <p>Get the details of an Account Filter in the Media Services account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -454,7 +472,9 @@ public final class AccountFiltersClientImpl implements AccountFiltersClient {
     }
 
     /**
-     * Get the details of an Account Filter in the Media Services account.
+     * Get an Account Filter.
+     *
+     * <p>Get the details of an Account Filter in the Media Services account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -470,7 +490,9 @@ public final class AccountFiltersClientImpl implements AccountFiltersClient {
     }
 
     /**
-     * Get the details of an Account Filter in the Media Services account.
+     * Get an Account Filter.
+     *
+     * <p>Get the details of an Account Filter in the Media Services account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -488,7 +510,9 @@ public final class AccountFiltersClientImpl implements AccountFiltersClient {
     }
 
     /**
-     * Creates or updates an Account Filter in the Media Services account.
+     * Create or update an Account Filter
+     *
+     * <p>Creates or updates an Account Filter in the Media Services account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -548,7 +572,9 @@ public final class AccountFiltersClientImpl implements AccountFiltersClient {
     }
 
     /**
-     * Creates or updates an Account Filter in the Media Services account.
+     * Create or update an Account Filter
+     *
+     * <p>Creates or updates an Account Filter in the Media Services account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -610,7 +636,9 @@ public final class AccountFiltersClientImpl implements AccountFiltersClient {
     }
 
     /**
-     * Creates or updates an Account Filter in the Media Services account.
+     * Create or update an Account Filter
+     *
+     * <p>Creates or updates an Account Filter in the Media Services account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -629,7 +657,9 @@ public final class AccountFiltersClientImpl implements AccountFiltersClient {
     }
 
     /**
-     * Creates or updates an Account Filter in the Media Services account.
+     * Create or update an Account Filter
+     *
+     * <p>Creates or updates an Account Filter in the Media Services account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -647,7 +677,9 @@ public final class AccountFiltersClientImpl implements AccountFiltersClient {
     }
 
     /**
-     * Creates or updates an Account Filter in the Media Services account.
+     * Create or update an Account Filter
+     *
+     * <p>Creates or updates an Account Filter in the Media Services account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -670,7 +702,9 @@ public final class AccountFiltersClientImpl implements AccountFiltersClient {
     }
 
     /**
-     * Deletes an Account Filter in the Media Services account.
+     * Delete an Account Filter.
+     *
+     * <p>Deletes an Account Filter in the Media Services account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -723,7 +757,9 @@ public final class AccountFiltersClientImpl implements AccountFiltersClient {
     }
 
     /**
-     * Deletes an Account Filter in the Media Services account.
+     * Delete an Account Filter.
+     *
+     * <p>Deletes an Account Filter in the Media Services account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -774,7 +810,9 @@ public final class AccountFiltersClientImpl implements AccountFiltersClient {
     }
 
     /**
-     * Deletes an Account Filter in the Media Services account.
+     * Delete an Account Filter.
+     *
+     * <p>Deletes an Account Filter in the Media Services account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -790,7 +828,9 @@ public final class AccountFiltersClientImpl implements AccountFiltersClient {
     }
 
     /**
-     * Deletes an Account Filter in the Media Services account.
+     * Delete an Account Filter.
+     *
+     * <p>Deletes an Account Filter in the Media Services account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -805,7 +845,9 @@ public final class AccountFiltersClientImpl implements AccountFiltersClient {
     }
 
     /**
-     * Deletes an Account Filter in the Media Services account.
+     * Delete an Account Filter.
+     *
+     * <p>Deletes an Account Filter in the Media Services account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -823,7 +865,9 @@ public final class AccountFiltersClientImpl implements AccountFiltersClient {
     }
 
     /**
-     * Updates an existing Account Filter in the Media Services account.
+     * Update an Account Filter
+     *
+     * <p>Updates an existing Account Filter in the Media Services account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -883,7 +927,9 @@ public final class AccountFiltersClientImpl implements AccountFiltersClient {
     }
 
     /**
-     * Updates an existing Account Filter in the Media Services account.
+     * Update an Account Filter
+     *
+     * <p>Updates an existing Account Filter in the Media Services account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -945,7 +991,9 @@ public final class AccountFiltersClientImpl implements AccountFiltersClient {
     }
 
     /**
-     * Updates an existing Account Filter in the Media Services account.
+     * Update an Account Filter
+     *
+     * <p>Updates an existing Account Filter in the Media Services account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -964,7 +1012,9 @@ public final class AccountFiltersClientImpl implements AccountFiltersClient {
     }
 
     /**
-     * Updates an existing Account Filter in the Media Services account.
+     * Update an Account Filter
+     *
+     * <p>Updates an existing Account Filter in the Media Services account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -982,7 +1032,9 @@ public final class AccountFiltersClientImpl implements AccountFiltersClient {
     }
 
     /**
-     * Updates an existing Account Filter in the Media Services account.
+     * Update an Account Filter
+     *
+     * <p>Updates an existing Account Filter in the Media Services account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.

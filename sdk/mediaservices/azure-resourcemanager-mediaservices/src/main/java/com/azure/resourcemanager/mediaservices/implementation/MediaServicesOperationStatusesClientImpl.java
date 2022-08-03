@@ -72,7 +72,9 @@ public final class MediaServicesOperationStatusesClientImpl implements MediaServ
     }
 
     /**
-     * Get media service operation status.
+     * Get operation status.
+     *
+     * <p>Get media service operation status.
      *
      * @param locationName Location name.
      * @param operationId Operation ID.
@@ -119,7 +121,9 @@ public final class MediaServicesOperationStatusesClientImpl implements MediaServ
     }
 
     /**
-     * Get media service operation status.
+     * Get operation status.
+     *
+     * <p>Get media service operation status.
      *
      * @param locationName Location name.
      * @param operationId Operation ID.
@@ -164,7 +168,9 @@ public final class MediaServicesOperationStatusesClientImpl implements MediaServ
     }
 
     /**
-     * Get media service operation status.
+     * Get operation status.
+     *
+     * <p>Get media service operation status.
      *
      * @param locationName Location name.
      * @param operationId Operation ID.
@@ -179,7 +185,9 @@ public final class MediaServicesOperationStatusesClientImpl implements MediaServ
     }
 
     /**
-     * Get media service operation status.
+     * Get operation status.
+     *
+     * <p>Get media service operation status.
      *
      * @param locationName Location name.
      * @param operationId Operation ID.
@@ -194,7 +202,9 @@ public final class MediaServicesOperationStatusesClientImpl implements MediaServ
     }
 
     /**
-     * Get media service operation status.
+     * Get operation status.
+     *
+     * <p>Get media service operation status.
      *
      * @param locationName Location name.
      * @param operationId Operation ID.

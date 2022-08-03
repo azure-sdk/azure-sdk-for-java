@@ -226,7 +226,9 @@ public final class LiveEventsClientImpl implements LiveEventsClient {
     }
 
     /**
-     * Lists all the live events in the account.
+     * List live events
+     *
+     * <p>Lists all the live events in the account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -282,7 +284,9 @@ public final class LiveEventsClientImpl implements LiveEventsClient {
     }
 
     /**
-     * Lists all the live events in the account.
+     * List live events
+     *
+     * <p>Lists all the live events in the account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -337,7 +341,9 @@ public final class LiveEventsClientImpl implements LiveEventsClient {
     }
 
     /**
-     * Lists all the live events in the account.
+     * List live events
+     *
+     * <p>Lists all the live events in the account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -353,7 +359,9 @@ public final class LiveEventsClientImpl implements LiveEventsClient {
     }
 
     /**
-     * Lists all the live events in the account.
+     * List live events
+     *
+     * <p>Lists all the live events in the account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -371,7 +379,9 @@ public final class LiveEventsClientImpl implements LiveEventsClient {
     }
 
     /**
-     * Lists all the live events in the account.
+     * List live events
+     *
+     * <p>Lists all the live events in the account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -386,7 +396,9 @@ public final class LiveEventsClientImpl implements LiveEventsClient {
     }
 
     /**
-     * Lists all the live events in the account.
+     * List live events
+     *
+     * <p>Lists all the live events in the account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -402,7 +414,9 @@ public final class LiveEventsClientImpl implements LiveEventsClient {
     }
 
     /**
-     * Gets properties of a live event.
+     * Get Live Event
+     *
+     * <p>Gets properties of a live event.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -455,7 +469,9 @@ public final class LiveEventsClientImpl implements LiveEventsClient {
     }
 
     /**
-     * Gets properties of a live event.
+     * Get Live Event
+     *
+     * <p>Gets properties of a live event.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -506,7 +522,9 @@ public final class LiveEventsClientImpl implements LiveEventsClient {
     }
 
     /**
-     * Gets properties of a live event.
+     * Get Live Event
+     *
+     * <p>Gets properties of a live event.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -523,7 +541,9 @@ public final class LiveEventsClientImpl implements LiveEventsClient {
     }
 
     /**
-     * Gets properties of a live event.
+     * Get Live Event
+     *
+     * <p>Gets properties of a live event.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -539,7 +559,9 @@ public final class LiveEventsClientImpl implements LiveEventsClient {
     }
 
     /**
-     * Gets properties of a live event.
+     * Get Live Event
+     *
+     * <p>Gets properties of a live event.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -557,7 +579,9 @@ public final class LiveEventsClientImpl implements LiveEventsClient {
     }
 
     /**
-     * Creates a new live event.
+     * Create Live Event
+     *
+     * <p>Creates a new live event.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -623,7 +647,9 @@ public final class LiveEventsClientImpl implements LiveEventsClient {
     }
 
     /**
-     * Creates a new live event.
+     * Create Live Event
+     *
+     * <p>Creates a new live event.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -688,7 +714,9 @@ public final class LiveEventsClientImpl implements LiveEventsClient {
     }
 
     /**
-     * Creates a new live event.
+     * Create Live Event
+     *
+     * <p>Creates a new live event.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -720,7 +748,9 @@ public final class LiveEventsClientImpl implements LiveEventsClient {
     }
 
     /**
-     * Creates a new live event.
+     * Create Live Event
+     *
+     * <p>Creates a new live event.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -751,7 +781,9 @@ public final class LiveEventsClientImpl implements LiveEventsClient {
     }
 
     /**
-     * Creates a new live event.
+     * Create Live Event
+     *
+     * <p>Creates a new live event.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -774,7 +806,9 @@ public final class LiveEventsClientImpl implements LiveEventsClient {
     }
 
     /**
-     * Creates a new live event.
+     * Create Live Event
+     *
+     * <p>Creates a new live event.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -800,7 +834,9 @@ public final class LiveEventsClientImpl implements LiveEventsClient {
     }
 
     /**
-     * Creates a new live event.
+     * Create Live Event
+     *
+     * <p>Creates a new live event.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -825,7 +861,9 @@ public final class LiveEventsClientImpl implements LiveEventsClient {
     }
 
     /**
-     * Creates a new live event.
+     * Create Live Event
+     *
+     * <p>Creates a new live event.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -846,7 +884,9 @@ public final class LiveEventsClientImpl implements LiveEventsClient {
     }
 
     /**
-     * Creates a new live event.
+     * Create Live Event
+     *
+     * <p>Creates a new live event.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -873,7 +913,9 @@ public final class LiveEventsClientImpl implements LiveEventsClient {
     }
 
     /**
-     * Creates a new live event.
+     * Create Live Event
+     *
+     * <p>Creates a new live event.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -896,7 +938,9 @@ public final class LiveEventsClientImpl implements LiveEventsClient {
     }
 
     /**
-     * Creates a new live event.
+     * Create Live Event
+     *
+     * <p>Creates a new live event.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -915,7 +959,9 @@ public final class LiveEventsClientImpl implements LiveEventsClient {
     }
 
     /**
-     * Creates a new live event.
+     * Create Live Event
+     *
+     * <p>Creates a new live event.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1245,7 +1291,9 @@ public final class LiveEventsClientImpl implements LiveEventsClient {
     }
 
     /**
-     * Deletes a live event.
+     * Delete Live Event
+     *
+     * <p>Deletes a live event.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1298,7 +1346,9 @@ public final class LiveEventsClientImpl implements LiveEventsClient {
     }
 
     /**
-     * Deletes a live event.
+     * Delete Live Event
+     *
+     * <p>Deletes a live event.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1349,7 +1399,9 @@ public final class LiveEventsClientImpl implements LiveEventsClient {
     }
 
     /**
-     * Deletes a live event.
+     * Delete Live Event
+     *
+     * <p>Deletes a live event.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1370,7 +1422,9 @@ public final class LiveEventsClientImpl implements LiveEventsClient {
     }
 
     /**
-     * Deletes a live event.
+     * Delete Live Event
+     *
+     * <p>Deletes a live event.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1393,7 +1447,9 @@ public final class LiveEventsClientImpl implements LiveEventsClient {
     }
 
     /**
-     * Deletes a live event.
+     * Delete Live Event
+     *
+     * <p>Deletes a live event.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1410,7 +1466,9 @@ public final class LiveEventsClientImpl implements LiveEventsClient {
     }
 
     /**
-     * Deletes a live event.
+     * Delete Live Event
+     *
+     * <p>Deletes a live event.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1428,7 +1486,9 @@ public final class LiveEventsClientImpl implements LiveEventsClient {
     }
 
     /**
-     * Deletes a live event.
+     * Delete Live Event
+     *
+     * <p>Deletes a live event.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1446,7 +1506,9 @@ public final class LiveEventsClientImpl implements LiveEventsClient {
     }
 
     /**
-     * Deletes a live event.
+     * Delete Live Event
+     *
+     * <p>Deletes a live event.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1466,7 +1528,9 @@ public final class LiveEventsClientImpl implements LiveEventsClient {
     }
 
     /**
-     * Deletes a live event.
+     * Delete Live Event
+     *
+     * <p>Deletes a live event.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1481,7 +1545,9 @@ public final class LiveEventsClientImpl implements LiveEventsClient {
     }
 
     /**
-     * Deletes a live event.
+     * Delete Live Event
+     *
+     * <p>Deletes a live event.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1497,7 +1563,9 @@ public final class LiveEventsClientImpl implements LiveEventsClient {
     }
 
     /**
-     * A live event is in StandBy state after allocation completes, and is ready to start.
+     * Allocate resources for a live event
+     *
+     * <p>A live event is in StandBy state after allocation completes, and is ready to start.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1550,7 +1618,9 @@ public final class LiveEventsClientImpl implements LiveEventsClient {
     }
 
     /**
-     * A live event is in StandBy state after allocation completes, and is ready to start.
+     * Allocate resources for a live event
+     *
+     * <p>A live event is in StandBy state after allocation completes, and is ready to start.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1601,7 +1671,9 @@ public final class LiveEventsClientImpl implements LiveEventsClient {
     }
 
     /**
-     * A live event is in StandBy state after allocation completes, and is ready to start.
+     * Allocate resources for a live event
+     *
+     * <p>A live event is in StandBy state after allocation completes, and is ready to start.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1623,7 +1695,9 @@ public final class LiveEventsClientImpl implements LiveEventsClient {
     }
 
     /**
-     * A live event is in StandBy state after allocation completes, and is ready to start.
+     * Allocate resources for a live event
+     *
+     * <p>A live event is in StandBy state after allocation completes, and is ready to start.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1646,7 +1720,9 @@ public final class LiveEventsClientImpl implements LiveEventsClient {
     }
 
     /**
-     * A live event is in StandBy state after allocation completes, and is ready to start.
+     * Allocate resources for a live event
+     *
+     * <p>A live event is in StandBy state after allocation completes, and is ready to start.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1663,7 +1739,9 @@ public final class LiveEventsClientImpl implements LiveEventsClient {
     }
 
     /**
-     * A live event is in StandBy state after allocation completes, and is ready to start.
+     * Allocate resources for a live event
+     *
+     * <p>A live event is in StandBy state after allocation completes, and is ready to start.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1681,7 +1759,9 @@ public final class LiveEventsClientImpl implements LiveEventsClient {
     }
 
     /**
-     * A live event is in StandBy state after allocation completes, and is ready to start.
+     * Allocate resources for a live event
+     *
+     * <p>A live event is in StandBy state after allocation completes, and is ready to start.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1699,7 +1779,9 @@ public final class LiveEventsClientImpl implements LiveEventsClient {
     }
 
     /**
-     * A live event is in StandBy state after allocation completes, and is ready to start.
+     * Allocate resources for a live event
+     *
+     * <p>A live event is in StandBy state after allocation completes, and is ready to start.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1719,7 +1801,9 @@ public final class LiveEventsClientImpl implements LiveEventsClient {
     }
 
     /**
-     * A live event is in StandBy state after allocation completes, and is ready to start.
+     * Allocate resources for a live event
+     *
+     * <p>A live event is in StandBy state after allocation completes, and is ready to start.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1734,7 +1818,9 @@ public final class LiveEventsClientImpl implements LiveEventsClient {
     }
 
     /**
-     * A live event is in StandBy state after allocation completes, and is ready to start.
+     * Allocate resources for a live event
+     *
+     * <p>A live event is in StandBy state after allocation completes, and is ready to start.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1750,7 +1836,9 @@ public final class LiveEventsClientImpl implements LiveEventsClient {
     }
 
     /**
-     * A live event in Stopped or StandBy state will be in Running state after the start operation completes.
+     * Start Live Event
+     *
+     * <p>A live event in Stopped or StandBy state will be in Running state after the start operation completes.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1803,7 +1891,9 @@ public final class LiveEventsClientImpl implements LiveEventsClient {
     }
 
     /**
-     * A live event in Stopped or StandBy state will be in Running state after the start operation completes.
+     * Start Live Event
+     *
+     * <p>A live event in Stopped or StandBy state will be in Running state after the start operation completes.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1854,7 +1944,9 @@ public final class LiveEventsClientImpl implements LiveEventsClient {
     }
 
     /**
-     * A live event in Stopped or StandBy state will be in Running state after the start operation completes.
+     * Start Live Event
+     *
+     * <p>A live event in Stopped or StandBy state will be in Running state after the start operation completes.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1875,7 +1967,9 @@ public final class LiveEventsClientImpl implements LiveEventsClient {
     }
 
     /**
-     * A live event in Stopped or StandBy state will be in Running state after the start operation completes.
+     * Start Live Event
+     *
+     * <p>A live event in Stopped or StandBy state will be in Running state after the start operation completes.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1898,7 +1992,9 @@ public final class LiveEventsClientImpl implements LiveEventsClient {
     }
 
     /**
-     * A live event in Stopped or StandBy state will be in Running state after the start operation completes.
+     * Start Live Event
+     *
+     * <p>A live event in Stopped or StandBy state will be in Running state after the start operation completes.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1915,7 +2011,9 @@ public final class LiveEventsClientImpl implements LiveEventsClient {
     }
 
     /**
-     * A live event in Stopped or StandBy state will be in Running state after the start operation completes.
+     * Start Live Event
+     *
+     * <p>A live event in Stopped or StandBy state will be in Running state after the start operation completes.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1933,7 +2031,9 @@ public final class LiveEventsClientImpl implements LiveEventsClient {
     }
 
     /**
-     * A live event in Stopped or StandBy state will be in Running state after the start operation completes.
+     * Start Live Event
+     *
+     * <p>A live event in Stopped or StandBy state will be in Running state after the start operation completes.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1951,7 +2051,9 @@ public final class LiveEventsClientImpl implements LiveEventsClient {
     }
 
     /**
-     * A live event in Stopped or StandBy state will be in Running state after the start operation completes.
+     * Start Live Event
+     *
+     * <p>A live event in Stopped or StandBy state will be in Running state after the start operation completes.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1970,7 +2072,9 @@ public final class LiveEventsClientImpl implements LiveEventsClient {
     }
 
     /**
-     * A live event in Stopped or StandBy state will be in Running state after the start operation completes.
+     * Start Live Event
+     *
+     * <p>A live event in Stopped or StandBy state will be in Running state after the start operation completes.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1985,7 +2089,9 @@ public final class LiveEventsClientImpl implements LiveEventsClient {
     }
 
     /**
-     * A live event in Stopped or StandBy state will be in Running state after the start operation completes.
+     * Start Live Event
+     *
+     * <p>A live event in Stopped or StandBy state will be in Running state after the start operation completes.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -2001,7 +2107,9 @@ public final class LiveEventsClientImpl implements LiveEventsClient {
     }
 
     /**
-     * Stops a running live event.
+     * Stop Live Event
+     *
+     * <p>Stops a running live event.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -2061,7 +2169,9 @@ public final class LiveEventsClientImpl implements LiveEventsClient {
     }
 
     /**
-     * Stops a running live event.
+     * Stop Live Event
+     *
+     * <p>Stops a running live event.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -2123,7 +2233,9 @@ public final class LiveEventsClientImpl implements LiveEventsClient {
     }
 
     /**
-     * Stops a running live event.
+     * Stop Live Event
+     *
+     * <p>Stops a running live event.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -2146,7 +2258,9 @@ public final class LiveEventsClientImpl implements LiveEventsClient {
     }
 
     /**
-     * Stops a running live event.
+     * Stop Live Event
+     *
+     * <p>Stops a running live event.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -2174,7 +2288,9 @@ public final class LiveEventsClientImpl implements LiveEventsClient {
     }
 
     /**
-     * Stops a running live event.
+     * Stop Live Event
+     *
+     * <p>Stops a running live event.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -2192,7 +2308,9 @@ public final class LiveEventsClientImpl implements LiveEventsClient {
     }
 
     /**
-     * Stops a running live event.
+     * Stop Live Event
+     *
+     * <p>Stops a running live event.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -2215,7 +2333,9 @@ public final class LiveEventsClientImpl implements LiveEventsClient {
     }
 
     /**
-     * Stops a running live event.
+     * Stop Live Event
+     *
+     * <p>Stops a running live event.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -2235,7 +2355,9 @@ public final class LiveEventsClientImpl implements LiveEventsClient {
     }
 
     /**
-     * Stops a running live event.
+     * Stop Live Event
+     *
+     * <p>Stops a running live event.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -2260,7 +2382,9 @@ public final class LiveEventsClientImpl implements LiveEventsClient {
     }
 
     /**
-     * Stops a running live event.
+     * Stop Live Event
+     *
+     * <p>Stops a running live event.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -2277,7 +2401,9 @@ public final class LiveEventsClientImpl implements LiveEventsClient {
     }
 
     /**
-     * Stops a running live event.
+     * Stop Live Event
+     *
+     * <p>Stops a running live event.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -2299,8 +2425,10 @@ public final class LiveEventsClientImpl implements LiveEventsClient {
     }
 
     /**
-     * Resets an existing live event. All live outputs for the live event are deleted and the live event is stopped and
-     * will be started again. All assets used by the live outputs and streaming locators created on these assets are
+     * Reset Live Event
+     *
+     * <p>Resets an existing live event. All live outputs for the live event are deleted and the live event is stopped
+     * and will be started again. All assets used by the live outputs and streaming locators created on these assets are
      * unaffected.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
@@ -2354,8 +2482,10 @@ public final class LiveEventsClientImpl implements LiveEventsClient {
     }
 
     /**
-     * Resets an existing live event. All live outputs for the live event are deleted and the live event is stopped and
-     * will be started again. All assets used by the live outputs and streaming locators created on these assets are
+     * Reset Live Event
+     *
+     * <p>Resets an existing live event. All live outputs for the live event are deleted and the live event is stopped
+     * and will be started again. All assets used by the live outputs and streaming locators created on these assets are
      * unaffected.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
@@ -2407,8 +2537,10 @@ public final class LiveEventsClientImpl implements LiveEventsClient {
     }
 
     /**
-     * Resets an existing live event. All live outputs for the live event are deleted and the live event is stopped and
-     * will be started again. All assets used by the live outputs and streaming locators created on these assets are
+     * Reset Live Event
+     *
+     * <p>Resets an existing live event. All live outputs for the live event are deleted and the live event is stopped
+     * and will be started again. All assets used by the live outputs and streaming locators created on these assets are
      * unaffected.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
@@ -2430,8 +2562,10 @@ public final class LiveEventsClientImpl implements LiveEventsClient {
     }
 
     /**
-     * Resets an existing live event. All live outputs for the live event are deleted and the live event is stopped and
-     * will be started again. All assets used by the live outputs and streaming locators created on these assets are
+     * Reset Live Event
+     *
+     * <p>Resets an existing live event. All live outputs for the live event are deleted and the live event is stopped
+     * and will be started again. All assets used by the live outputs and streaming locators created on these assets are
      * unaffected.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
@@ -2455,8 +2589,10 @@ public final class LiveEventsClientImpl implements LiveEventsClient {
     }
 
     /**
-     * Resets an existing live event. All live outputs for the live event are deleted and the live event is stopped and
-     * will be started again. All assets used by the live outputs and streaming locators created on these assets are
+     * Reset Live Event
+     *
+     * <p>Resets an existing live event. All live outputs for the live event are deleted and the live event is stopped
+     * and will be started again. All assets used by the live outputs and streaming locators created on these assets are
      * unaffected.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
@@ -2474,8 +2610,10 @@ public final class LiveEventsClientImpl implements LiveEventsClient {
     }
 
     /**
-     * Resets an existing live event. All live outputs for the live event are deleted and the live event is stopped and
-     * will be started again. All assets used by the live outputs and streaming locators created on these assets are
+     * Reset Live Event
+     *
+     * <p>Resets an existing live event. All live outputs for the live event are deleted and the live event is stopped
+     * and will be started again. All assets used by the live outputs and streaming locators created on these assets are
      * unaffected.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
@@ -2494,8 +2632,10 @@ public final class LiveEventsClientImpl implements LiveEventsClient {
     }
 
     /**
-     * Resets an existing live event. All live outputs for the live event are deleted and the live event is stopped and
-     * will be started again. All assets used by the live outputs and streaming locators created on these assets are
+     * Reset Live Event
+     *
+     * <p>Resets an existing live event. All live outputs for the live event are deleted and the live event is stopped
+     * and will be started again. All assets used by the live outputs and streaming locators created on these assets are
      * unaffected.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
@@ -2514,8 +2654,10 @@ public final class LiveEventsClientImpl implements LiveEventsClient {
     }
 
     /**
-     * Resets an existing live event. All live outputs for the live event are deleted and the live event is stopped and
-     * will be started again. All assets used by the live outputs and streaming locators created on these assets are
+     * Reset Live Event
+     *
+     * <p>Resets an existing live event. All live outputs for the live event are deleted and the live event is stopped
+     * and will be started again. All assets used by the live outputs and streaming locators created on these assets are
      * unaffected.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
@@ -2535,8 +2677,10 @@ public final class LiveEventsClientImpl implements LiveEventsClient {
     }
 
     /**
-     * Resets an existing live event. All live outputs for the live event are deleted and the live event is stopped and
-     * will be started again. All assets used by the live outputs and streaming locators created on these assets are
+     * Reset Live Event
+     *
+     * <p>Resets an existing live event. All live outputs for the live event are deleted and the live event is stopped
+     * and will be started again. All assets used by the live outputs and streaming locators created on these assets are
      * unaffected.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
@@ -2552,8 +2696,10 @@ public final class LiveEventsClientImpl implements LiveEventsClient {
     }
 
     /**
-     * Resets an existing live event. All live outputs for the live event are deleted and the live event is stopped and
-     * will be started again. All assets used by the live outputs and streaming locators created on these assets are
+     * Reset Live Event
+     *
+     * <p>Resets an existing live event. All live outputs for the live event are deleted and the live event is stopped
+     * and will be started again. All assets used by the live outputs and streaming locators created on these assets are
      * unaffected.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.

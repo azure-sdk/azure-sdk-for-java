@@ -173,7 +173,9 @@ public final class StreamingLocatorsClientImpl implements StreamingLocatorsClien
     }
 
     /**
-     * Lists the Streaming Locators in the account.
+     * List Streaming Locators
+     *
+     * <p>Lists the Streaming Locators in the account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -238,7 +240,9 @@ public final class StreamingLocatorsClientImpl implements StreamingLocatorsClien
     }
 
     /**
-     * Lists the Streaming Locators in the account.
+     * List Streaming Locators
+     *
+     * <p>Lists the Streaming Locators in the account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -301,7 +305,9 @@ public final class StreamingLocatorsClientImpl implements StreamingLocatorsClien
     }
 
     /**
-     * Lists the Streaming Locators in the account.
+     * List Streaming Locators
+     *
+     * <p>Lists the Streaming Locators in the account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -323,7 +329,9 @@ public final class StreamingLocatorsClientImpl implements StreamingLocatorsClien
     }
 
     /**
-     * Lists the Streaming Locators in the account.
+     * List Streaming Locators
+     *
+     * <p>Lists the Streaming Locators in the account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -343,7 +351,9 @@ public final class StreamingLocatorsClientImpl implements StreamingLocatorsClien
     }
 
     /**
-     * Lists the Streaming Locators in the account.
+     * List Streaming Locators
+     *
+     * <p>Lists the Streaming Locators in the account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -366,7 +376,9 @@ public final class StreamingLocatorsClientImpl implements StreamingLocatorsClien
     }
 
     /**
-     * Lists the Streaming Locators in the account.
+     * List Streaming Locators
+     *
+     * <p>Lists the Streaming Locators in the account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -384,7 +396,9 @@ public final class StreamingLocatorsClientImpl implements StreamingLocatorsClien
     }
 
     /**
-     * Lists the Streaming Locators in the account.
+     * List Streaming Locators
+     *
+     * <p>Lists the Streaming Locators in the account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -405,7 +419,9 @@ public final class StreamingLocatorsClientImpl implements StreamingLocatorsClien
     }
 
     /**
-     * Get the details of a Streaming Locator in the Media Services account.
+     * Get a Streaming Locator
+     *
+     * <p>Get the details of a Streaming Locator in the Media Services account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -460,7 +476,9 @@ public final class StreamingLocatorsClientImpl implements StreamingLocatorsClien
     }
 
     /**
-     * Get the details of a Streaming Locator in the Media Services account.
+     * Get a Streaming Locator
+     *
+     * <p>Get the details of a Streaming Locator in the Media Services account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -513,7 +531,9 @@ public final class StreamingLocatorsClientImpl implements StreamingLocatorsClien
     }
 
     /**
-     * Get the details of a Streaming Locator in the Media Services account.
+     * Get a Streaming Locator
+     *
+     * <p>Get the details of a Streaming Locator in the Media Services account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -532,7 +552,9 @@ public final class StreamingLocatorsClientImpl implements StreamingLocatorsClien
     }
 
     /**
-     * Get the details of a Streaming Locator in the Media Services account.
+     * Get a Streaming Locator
+     *
+     * <p>Get the details of a Streaming Locator in the Media Services account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -548,7 +570,9 @@ public final class StreamingLocatorsClientImpl implements StreamingLocatorsClien
     }
 
     /**
-     * Get the details of a Streaming Locator in the Media Services account.
+     * Get a Streaming Locator
+     *
+     * <p>Get the details of a Streaming Locator in the Media Services account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -566,7 +590,9 @@ public final class StreamingLocatorsClientImpl implements StreamingLocatorsClien
     }
 
     /**
-     * Create a Streaming Locator in the Media Services account.
+     * Create a Streaming Locator
+     *
+     * <p>Create a Streaming Locator in the Media Services account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -627,7 +653,9 @@ public final class StreamingLocatorsClientImpl implements StreamingLocatorsClien
     }
 
     /**
-     * Create a Streaming Locator in the Media Services account.
+     * Create a Streaming Locator
+     *
+     * <p>Create a Streaming Locator in the Media Services account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -690,7 +718,9 @@ public final class StreamingLocatorsClientImpl implements StreamingLocatorsClien
     }
 
     /**
-     * Create a Streaming Locator in the Media Services account.
+     * Create a Streaming Locator
+     *
+     * <p>Create a Streaming Locator in the Media Services account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -709,7 +739,9 @@ public final class StreamingLocatorsClientImpl implements StreamingLocatorsClien
     }
 
     /**
-     * Create a Streaming Locator in the Media Services account.
+     * Create a Streaming Locator
+     *
+     * <p>Create a Streaming Locator in the Media Services account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -727,7 +759,9 @@ public final class StreamingLocatorsClientImpl implements StreamingLocatorsClien
     }
 
     /**
-     * Create a Streaming Locator in the Media Services account.
+     * Create a Streaming Locator
+     *
+     * <p>Create a Streaming Locator in the Media Services account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -751,7 +785,9 @@ public final class StreamingLocatorsClientImpl implements StreamingLocatorsClien
     }
 
     /**
-     * Deletes a Streaming Locator in the Media Services account.
+     * Delete a Streaming Locator
+     *
+     * <p>Deletes a Streaming Locator in the Media Services account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -805,7 +841,9 @@ public final class StreamingLocatorsClientImpl implements StreamingLocatorsClien
     }
 
     /**
-     * Deletes a Streaming Locator in the Media Services account.
+     * Delete a Streaming Locator
+     *
+     * <p>Deletes a Streaming Locator in the Media Services account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -857,7 +895,9 @@ public final class StreamingLocatorsClientImpl implements StreamingLocatorsClien
     }
 
     /**
-     * Deletes a Streaming Locator in the Media Services account.
+     * Delete a Streaming Locator
+     *
+     * <p>Deletes a Streaming Locator in the Media Services account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -874,7 +914,9 @@ public final class StreamingLocatorsClientImpl implements StreamingLocatorsClien
     }
 
     /**
-     * Deletes a Streaming Locator in the Media Services account.
+     * Delete a Streaming Locator
+     *
+     * <p>Deletes a Streaming Locator in the Media Services account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -889,7 +931,9 @@ public final class StreamingLocatorsClientImpl implements StreamingLocatorsClien
     }
 
     /**
-     * Deletes a Streaming Locator in the Media Services account.
+     * Delete a Streaming Locator
+     *
+     * <p>Deletes a Streaming Locator in the Media Services account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -907,7 +951,9 @@ public final class StreamingLocatorsClientImpl implements StreamingLocatorsClien
     }
 
     /**
-     * List Content Keys used by this Streaming Locator.
+     * List Content Keys
+     *
+     * <p>List Content Keys used by this Streaming Locator.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -962,7 +1008,9 @@ public final class StreamingLocatorsClientImpl implements StreamingLocatorsClien
     }
 
     /**
-     * List Content Keys used by this Streaming Locator.
+     * List Content Keys
+     *
+     * <p>List Content Keys used by this Streaming Locator.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1015,7 +1063,9 @@ public final class StreamingLocatorsClientImpl implements StreamingLocatorsClien
     }
 
     /**
-     * List Content Keys used by this Streaming Locator.
+     * List Content Keys
+     *
+     * <p>List Content Keys used by this Streaming Locator.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1033,7 +1083,9 @@ public final class StreamingLocatorsClientImpl implements StreamingLocatorsClien
     }
 
     /**
-     * List Content Keys used by this Streaming Locator.
+     * List Content Keys
+     *
+     * <p>List Content Keys used by this Streaming Locator.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1050,7 +1102,9 @@ public final class StreamingLocatorsClientImpl implements StreamingLocatorsClien
     }
 
     /**
-     * List Content Keys used by this Streaming Locator.
+     * List Content Keys
+     *
+     * <p>List Content Keys used by this Streaming Locator.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1068,7 +1122,9 @@ public final class StreamingLocatorsClientImpl implements StreamingLocatorsClien
     }
 
     /**
-     * List Paths supported by this Streaming Locator.
+     * List Paths
+     *
+     * <p>List Paths supported by this Streaming Locator.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1123,7 +1179,9 @@ public final class StreamingLocatorsClientImpl implements StreamingLocatorsClien
     }
 
     /**
-     * List Paths supported by this Streaming Locator.
+     * List Paths
+     *
+     * <p>List Paths supported by this Streaming Locator.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1176,7 +1234,9 @@ public final class StreamingLocatorsClientImpl implements StreamingLocatorsClien
     }
 
     /**
-     * List Paths supported by this Streaming Locator.
+     * List Paths
+     *
+     * <p>List Paths supported by this Streaming Locator.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1194,7 +1254,9 @@ public final class StreamingLocatorsClientImpl implements StreamingLocatorsClien
     }
 
     /**
-     * List Paths supported by this Streaming Locator.
+     * List Paths
+     *
+     * <p>List Paths supported by this Streaming Locator.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1210,7 +1272,9 @@ public final class StreamingLocatorsClientImpl implements StreamingLocatorsClien
     }
 
     /**
-     * List Paths supported by this Streaming Locator.
+     * List Paths
+     *
+     * <p>List Paths supported by this Streaming Locator.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.

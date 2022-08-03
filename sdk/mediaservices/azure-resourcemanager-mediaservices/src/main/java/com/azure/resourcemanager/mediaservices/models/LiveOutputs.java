@@ -11,7 +11,9 @@ import com.azure.core.util.Context;
 /** Resource collection API of LiveOutputs. */
 public interface LiveOutputs {
     /**
-     * Lists the live outputs of a live event.
+     * List Live Outputs
+     *
+     * <p>Lists the live outputs of a live event.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -24,7 +26,9 @@ public interface LiveOutputs {
     PagedIterable<LiveOutput> list(String resourceGroupName, String accountName, String liveEventName);
 
     /**
-     * Lists the live outputs of a live event.
+     * List Live Outputs
+     *
+     * <p>Lists the live outputs of a live event.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -38,7 +42,9 @@ public interface LiveOutputs {
     PagedIterable<LiveOutput> list(String resourceGroupName, String accountName, String liveEventName, Context context);
 
     /**
-     * Gets a live output.
+     * Get Live Output
+     *
+     * <p>Gets a live output.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -52,7 +58,9 @@ public interface LiveOutputs {
     LiveOutput get(String resourceGroupName, String accountName, String liveEventName, String liveOutputName);
 
     /**
-     * Gets a live output.
+     * Get Live Output
+     *
+     * <p>Gets a live output.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -68,7 +76,9 @@ public interface LiveOutputs {
         String resourceGroupName, String accountName, String liveEventName, String liveOutputName, Context context);
 
     /**
-     * Deletes a live output. Deleting a live output does not delete the asset the live output is writing to.
+     * Delete Live Output
+     *
+     * <p>Deletes a live output. Deleting a live output does not delete the asset the live output is writing to.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -81,7 +91,9 @@ public interface LiveOutputs {
     void delete(String resourceGroupName, String accountName, String liveEventName, String liveOutputName);
 
     /**
-     * Deletes a live output. Deleting a live output does not delete the asset the live output is writing to.
+     * Delete Live Output
+     *
+     * <p>Deletes a live output. Deleting a live output does not delete the asset the live output is writing to.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -96,7 +108,9 @@ public interface LiveOutputs {
         String resourceGroupName, String accountName, String liveEventName, String liveOutputName, Context context);
 
     /**
-     * Gets a live output.
+     * Get Live Output
+     *
+     * <p>Gets a live output.
      *
      * @param id the resource ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -107,7 +121,9 @@ public interface LiveOutputs {
     LiveOutput getById(String id);
 
     /**
-     * Gets a live output.
+     * Get Live Output
+     *
+     * <p>Gets a live output.
      *
      * @param id the resource ID.
      * @param context The context to associate with this operation.
@@ -119,7 +135,9 @@ public interface LiveOutputs {
     Response<LiveOutput> getByIdWithResponse(String id, Context context);
 
     /**
-     * Deletes a live output. Deleting a live output does not delete the asset the live output is writing to.
+     * Delete Live Output
+     *
+     * <p>Deletes a live output. Deleting a live output does not delete the asset the live output is writing to.
      *
      * @param id the resource ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -129,7 +147,9 @@ public interface LiveOutputs {
     void deleteById(String id);
 
     /**
-     * Deletes a live output. Deleting a live output does not delete the asset the live output is writing to.
+     * Delete Live Output
+     *
+     * <p>Deletes a live output. Deleting a live output does not delete the asset the live output is writing to.
      *
      * @param id the resource ID.
      * @param context The context to associate with this operation.

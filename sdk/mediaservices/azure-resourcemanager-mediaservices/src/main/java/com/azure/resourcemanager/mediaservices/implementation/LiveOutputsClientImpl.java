@@ -144,7 +144,9 @@ public final class LiveOutputsClientImpl implements LiveOutputsClient {
     }
 
     /**
-     * Lists the live outputs of a live event.
+     * List Live Outputs
+     *
+     * <p>Lists the live outputs of a live event.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -206,7 +208,9 @@ public final class LiveOutputsClientImpl implements LiveOutputsClient {
     }
 
     /**
-     * Lists the live outputs of a live event.
+     * List Live Outputs
+     *
+     * <p>Lists the live outputs of a live event.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -266,7 +270,9 @@ public final class LiveOutputsClientImpl implements LiveOutputsClient {
     }
 
     /**
-     * Lists the live outputs of a live event.
+     * List Live Outputs
+     *
+     * <p>Lists the live outputs of a live event.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -284,7 +290,9 @@ public final class LiveOutputsClientImpl implements LiveOutputsClient {
     }
 
     /**
-     * Lists the live outputs of a live event.
+     * List Live Outputs
+     *
+     * <p>Lists the live outputs of a live event.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -304,7 +312,9 @@ public final class LiveOutputsClientImpl implements LiveOutputsClient {
     }
 
     /**
-     * Lists the live outputs of a live event.
+     * List Live Outputs
+     *
+     * <p>Lists the live outputs of a live event.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -320,7 +330,9 @@ public final class LiveOutputsClientImpl implements LiveOutputsClient {
     }
 
     /**
-     * Lists the live outputs of a live event.
+     * List Live Outputs
+     *
+     * <p>Lists the live outputs of a live event.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -338,7 +350,9 @@ public final class LiveOutputsClientImpl implements LiveOutputsClient {
     }
 
     /**
-     * Gets a live output.
+     * Get Live Output
+     *
+     * <p>Gets a live output.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -396,7 +410,9 @@ public final class LiveOutputsClientImpl implements LiveOutputsClient {
     }
 
     /**
-     * Gets a live output.
+     * Get Live Output
+     *
+     * <p>Gets a live output.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -452,7 +468,9 @@ public final class LiveOutputsClientImpl implements LiveOutputsClient {
     }
 
     /**
-     * Gets a live output.
+     * Get Live Output
+     *
+     * <p>Gets a live output.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -471,7 +489,9 @@ public final class LiveOutputsClientImpl implements LiveOutputsClient {
     }
 
     /**
-     * Gets a live output.
+     * Get Live Output
+     *
+     * <p>Gets a live output.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -489,7 +509,9 @@ public final class LiveOutputsClientImpl implements LiveOutputsClient {
     }
 
     /**
-     * Gets a live output.
+     * Get Live Output
+     *
+     * <p>Gets a live output.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -508,7 +530,9 @@ public final class LiveOutputsClientImpl implements LiveOutputsClient {
     }
 
     /**
-     * Creates a new live output.
+     * Create Live Output
+     *
+     * <p>Creates a new live output.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -577,7 +601,9 @@ public final class LiveOutputsClientImpl implements LiveOutputsClient {
     }
 
     /**
-     * Creates a new live output.
+     * Create Live Output
+     *
+     * <p>Creates a new live output.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -645,7 +671,9 @@ public final class LiveOutputsClientImpl implements LiveOutputsClient {
     }
 
     /**
-     * Creates a new live output.
+     * Create Live Output
+     *
+     * <p>Creates a new live output.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -677,7 +705,9 @@ public final class LiveOutputsClientImpl implements LiveOutputsClient {
     }
 
     /**
-     * Creates a new live output.
+     * Create Live Output
+     *
+     * <p>Creates a new live output.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -708,7 +738,9 @@ public final class LiveOutputsClientImpl implements LiveOutputsClient {
     }
 
     /**
-     * Creates a new live output.
+     * Create Live Output
+     *
+     * <p>Creates a new live output.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -732,7 +764,9 @@ public final class LiveOutputsClientImpl implements LiveOutputsClient {
     }
 
     /**
-     * Creates a new live output.
+     * Create Live Output
+     *
+     * <p>Creates a new live output.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -758,7 +792,9 @@ public final class LiveOutputsClientImpl implements LiveOutputsClient {
     }
 
     /**
-     * Creates a new live output.
+     * Create Live Output
+     *
+     * <p>Creates a new live output.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -783,7 +819,9 @@ public final class LiveOutputsClientImpl implements LiveOutputsClient {
     }
 
     /**
-     * Creates a new live output.
+     * Create Live Output
+     *
+     * <p>Creates a new live output.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -810,7 +848,9 @@ public final class LiveOutputsClientImpl implements LiveOutputsClient {
     }
 
     /**
-     * Creates a new live output.
+     * Create Live Output
+     *
+     * <p>Creates a new live output.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -833,7 +873,9 @@ public final class LiveOutputsClientImpl implements LiveOutputsClient {
     }
 
     /**
-     * Creates a new live output.
+     * Create Live Output
+     *
+     * <p>Creates a new live output.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -858,7 +900,9 @@ public final class LiveOutputsClientImpl implements LiveOutputsClient {
     }
 
     /**
-     * Deletes a live output. Deleting a live output does not delete the asset the live output is writing to.
+     * Delete Live Output
+     *
+     * <p>Deletes a live output. Deleting a live output does not delete the asset the live output is writing to.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -916,7 +960,9 @@ public final class LiveOutputsClientImpl implements LiveOutputsClient {
     }
 
     /**
-     * Deletes a live output. Deleting a live output does not delete the asset the live output is writing to.
+     * Delete Live Output
+     *
+     * <p>Deletes a live output. Deleting a live output does not delete the asset the live output is writing to.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -972,7 +1018,9 @@ public final class LiveOutputsClientImpl implements LiveOutputsClient {
     }
 
     /**
-     * Deletes a live output. Deleting a live output does not delete the asset the live output is writing to.
+     * Delete Live Output
+     *
+     * <p>Deletes a live output. Deleting a live output does not delete the asset the live output is writing to.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -995,7 +1043,9 @@ public final class LiveOutputsClientImpl implements LiveOutputsClient {
     }
 
     /**
-     * Deletes a live output. Deleting a live output does not delete the asset the live output is writing to.
+     * Delete Live Output
+     *
+     * <p>Deletes a live output. Deleting a live output does not delete the asset the live output is writing to.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1019,7 +1069,9 @@ public final class LiveOutputsClientImpl implements LiveOutputsClient {
     }
 
     /**
-     * Deletes a live output. Deleting a live output does not delete the asset the live output is writing to.
+     * Delete Live Output
+     *
+     * <p>Deletes a live output. Deleting a live output does not delete the asset the live output is writing to.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1037,7 +1089,9 @@ public final class LiveOutputsClientImpl implements LiveOutputsClient {
     }
 
     /**
-     * Deletes a live output. Deleting a live output does not delete the asset the live output is writing to.
+     * Delete Live Output
+     *
+     * <p>Deletes a live output. Deleting a live output does not delete the asset the live output is writing to.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1056,7 +1110,9 @@ public final class LiveOutputsClientImpl implements LiveOutputsClient {
     }
 
     /**
-     * Deletes a live output. Deleting a live output does not delete the asset the live output is writing to.
+     * Delete Live Output
+     *
+     * <p>Deletes a live output. Deleting a live output does not delete the asset the live output is writing to.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1076,7 +1132,9 @@ public final class LiveOutputsClientImpl implements LiveOutputsClient {
     }
 
     /**
-     * Deletes a live output. Deleting a live output does not delete the asset the live output is writing to.
+     * Delete Live Output
+     *
+     * <p>Deletes a live output. Deleting a live output does not delete the asset the live output is writing to.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1097,7 +1155,9 @@ public final class LiveOutputsClientImpl implements LiveOutputsClient {
     }
 
     /**
-     * Deletes a live output. Deleting a live output does not delete the asset the live output is writing to.
+     * Delete Live Output
+     *
+     * <p>Deletes a live output. Deleting a live output does not delete the asset the live output is writing to.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1113,7 +1173,9 @@ public final class LiveOutputsClientImpl implements LiveOutputsClient {
     }
 
     /**
-     * Deletes a live output. Deleting a live output does not delete the asset the live output is writing to.
+     * Delete Live Output
+     *
+     * <p>Deletes a live output. Deleting a live output does not delete the asset the live output is writing to.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.

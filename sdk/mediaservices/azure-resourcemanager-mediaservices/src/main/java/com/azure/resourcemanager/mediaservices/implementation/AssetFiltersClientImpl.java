@@ -158,7 +158,9 @@ public final class AssetFiltersClientImpl implements AssetFiltersClient {
     }
 
     /**
-     * List Asset Filters associated with the specified Asset.
+     * List Asset Filters
+     *
+     * <p>List Asset Filters associated with the specified Asset.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -221,7 +223,9 @@ public final class AssetFiltersClientImpl implements AssetFiltersClient {
     }
 
     /**
-     * List Asset Filters associated with the specified Asset.
+     * List Asset Filters
+     *
+     * <p>List Asset Filters associated with the specified Asset.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -282,7 +286,9 @@ public final class AssetFiltersClientImpl implements AssetFiltersClient {
     }
 
     /**
-     * List Asset Filters associated with the specified Asset.
+     * List Asset Filters
+     *
+     * <p>List Asset Filters associated with the specified Asset.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -300,7 +306,9 @@ public final class AssetFiltersClientImpl implements AssetFiltersClient {
     }
 
     /**
-     * List Asset Filters associated with the specified Asset.
+     * List Asset Filters
+     *
+     * <p>List Asset Filters associated with the specified Asset.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -320,7 +328,9 @@ public final class AssetFiltersClientImpl implements AssetFiltersClient {
     }
 
     /**
-     * List Asset Filters associated with the specified Asset.
+     * List Asset Filters
+     *
+     * <p>List Asset Filters associated with the specified Asset.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -336,7 +346,9 @@ public final class AssetFiltersClientImpl implements AssetFiltersClient {
     }
 
     /**
-     * List Asset Filters associated with the specified Asset.
+     * List Asset Filters
+     *
+     * <p>List Asset Filters associated with the specified Asset.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -354,7 +366,9 @@ public final class AssetFiltersClientImpl implements AssetFiltersClient {
     }
 
     /**
-     * Get the details of an Asset Filter associated with the specified Asset.
+     * Get an Asset Filter.
+     *
+     * <p>Get the details of an Asset Filter associated with the specified Asset.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -413,7 +427,9 @@ public final class AssetFiltersClientImpl implements AssetFiltersClient {
     }
 
     /**
-     * Get the details of an Asset Filter associated with the specified Asset.
+     * Get an Asset Filter.
+     *
+     * <p>Get the details of an Asset Filter associated with the specified Asset.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -470,7 +486,9 @@ public final class AssetFiltersClientImpl implements AssetFiltersClient {
     }
 
     /**
-     * Get the details of an Asset Filter associated with the specified Asset.
+     * Get an Asset Filter.
+     *
+     * <p>Get the details of an Asset Filter associated with the specified Asset.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -490,7 +508,9 @@ public final class AssetFiltersClientImpl implements AssetFiltersClient {
     }
 
     /**
-     * Get the details of an Asset Filter associated with the specified Asset.
+     * Get an Asset Filter.
+     *
+     * <p>Get the details of an Asset Filter associated with the specified Asset.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -507,7 +527,9 @@ public final class AssetFiltersClientImpl implements AssetFiltersClient {
     }
 
     /**
-     * Get the details of an Asset Filter associated with the specified Asset.
+     * Get an Asset Filter.
+     *
+     * <p>Get the details of an Asset Filter associated with the specified Asset.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -526,7 +548,9 @@ public final class AssetFiltersClientImpl implements AssetFiltersClient {
     }
 
     /**
-     * Creates or updates an Asset Filter associated with the specified Asset.
+     * Create or update an Asset Filter
+     *
+     * <p>Creates or updates an Asset Filter associated with the specified Asset.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -595,7 +619,9 @@ public final class AssetFiltersClientImpl implements AssetFiltersClient {
     }
 
     /**
-     * Creates or updates an Asset Filter associated with the specified Asset.
+     * Create or update an Asset Filter
+     *
+     * <p>Creates or updates an Asset Filter associated with the specified Asset.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -663,7 +689,9 @@ public final class AssetFiltersClientImpl implements AssetFiltersClient {
     }
 
     /**
-     * Creates or updates an Asset Filter associated with the specified Asset.
+     * Create or update an Asset Filter
+     *
+     * <p>Creates or updates an Asset Filter associated with the specified Asset.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -687,7 +715,9 @@ public final class AssetFiltersClientImpl implements AssetFiltersClient {
     }
 
     /**
-     * Creates or updates an Asset Filter associated with the specified Asset.
+     * Create or update an Asset Filter
+     *
+     * <p>Creates or updates an Asset Filter associated with the specified Asset.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -710,7 +740,9 @@ public final class AssetFiltersClientImpl implements AssetFiltersClient {
     }
 
     /**
-     * Creates or updates an Asset Filter associated with the specified Asset.
+     * Create or update an Asset Filter
+     *
+     * <p>Creates or updates an Asset Filter associated with the specified Asset.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -737,7 +769,9 @@ public final class AssetFiltersClientImpl implements AssetFiltersClient {
     }
 
     /**
-     * Deletes an Asset Filter associated with the specified Asset.
+     * Delete an Asset Filter.
+     *
+     * <p>Deletes an Asset Filter associated with the specified Asset.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -795,7 +829,9 @@ public final class AssetFiltersClientImpl implements AssetFiltersClient {
     }
 
     /**
-     * Deletes an Asset Filter associated with the specified Asset.
+     * Delete an Asset Filter.
+     *
+     * <p>Deletes an Asset Filter associated with the specified Asset.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -851,7 +887,9 @@ public final class AssetFiltersClientImpl implements AssetFiltersClient {
     }
 
     /**
-     * Deletes an Asset Filter associated with the specified Asset.
+     * Delete an Asset Filter.
+     *
+     * <p>Deletes an Asset Filter associated with the specified Asset.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -869,7 +907,9 @@ public final class AssetFiltersClientImpl implements AssetFiltersClient {
     }
 
     /**
-     * Deletes an Asset Filter associated with the specified Asset.
+     * Delete an Asset Filter.
+     *
+     * <p>Deletes an Asset Filter associated with the specified Asset.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -885,7 +925,9 @@ public final class AssetFiltersClientImpl implements AssetFiltersClient {
     }
 
     /**
-     * Deletes an Asset Filter associated with the specified Asset.
+     * Delete an Asset Filter.
+     *
+     * <p>Deletes an Asset Filter associated with the specified Asset.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -904,7 +946,9 @@ public final class AssetFiltersClientImpl implements AssetFiltersClient {
     }
 
     /**
-     * Updates an existing Asset Filter associated with the specified Asset.
+     * Update an Asset Filter
+     *
+     * <p>Updates an existing Asset Filter associated with the specified Asset.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -973,7 +1017,9 @@ public final class AssetFiltersClientImpl implements AssetFiltersClient {
     }
 
     /**
-     * Updates an existing Asset Filter associated with the specified Asset.
+     * Update an Asset Filter
+     *
+     * <p>Updates an existing Asset Filter associated with the specified Asset.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1041,7 +1087,9 @@ public final class AssetFiltersClientImpl implements AssetFiltersClient {
     }
 
     /**
-     * Updates an existing Asset Filter associated with the specified Asset.
+     * Update an Asset Filter
+     *
+     * <p>Updates an existing Asset Filter associated with the specified Asset.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1065,7 +1113,9 @@ public final class AssetFiltersClientImpl implements AssetFiltersClient {
     }
 
     /**
-     * Updates an existing Asset Filter associated with the specified Asset.
+     * Update an Asset Filter
+     *
+     * <p>Updates an existing Asset Filter associated with the specified Asset.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1088,7 +1138,9 @@ public final class AssetFiltersClientImpl implements AssetFiltersClient {
     }
 
     /**
-     * Updates an existing Asset Filter associated with the specified Asset.
+     * Update an Asset Filter
+     *
+     * <p>Updates an existing Asset Filter associated with the specified Asset.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.

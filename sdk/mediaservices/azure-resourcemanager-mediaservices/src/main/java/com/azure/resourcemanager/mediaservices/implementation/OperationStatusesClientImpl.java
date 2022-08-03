@@ -71,7 +71,9 @@ public final class OperationStatusesClientImpl implements OperationStatusesClien
     }
 
     /**
-     * Get asset track operation status.
+     * Get operation status.
+     *
+     * <p>Get asset track operation status.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -134,7 +136,9 @@ public final class OperationStatusesClientImpl implements OperationStatusesClien
     }
 
     /**
-     * Get asset track operation status.
+     * Get operation status.
+     *
+     * <p>Get asset track operation status.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -200,7 +204,9 @@ public final class OperationStatusesClientImpl implements OperationStatusesClien
     }
 
     /**
-     * Get asset track operation status.
+     * Get operation status.
+     *
+     * <p>Get asset track operation status.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -220,7 +226,9 @@ public final class OperationStatusesClientImpl implements OperationStatusesClien
     }
 
     /**
-     * Get asset track operation status.
+     * Get operation status.
+     *
+     * <p>Get asset track operation status.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -239,7 +247,9 @@ public final class OperationStatusesClientImpl implements OperationStatusesClien
     }
 
     /**
-     * Get asset track operation status.
+     * Get operation status.
+     *
+     * <p>Get asset track operation status.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.

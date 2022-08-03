@@ -123,7 +123,9 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
     }
 
     /**
-     * List all private endpoint connections.
+     * List private endpoint connections.
+     *
+     * <p>List all private endpoint connections.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -172,7 +174,9 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
     }
 
     /**
-     * List all private endpoint connections.
+     * List private endpoint connections.
+     *
+     * <p>List all private endpoint connections.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -219,7 +223,9 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
     }
 
     /**
-     * List all private endpoint connections.
+     * List private endpoint connections.
+     *
+     * <p>List all private endpoint connections.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -235,7 +241,9 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
     }
 
     /**
-     * List all private endpoint connections.
+     * List private endpoint connections.
+     *
+     * <p>List all private endpoint connections.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -250,7 +258,9 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
     }
 
     /**
-     * List all private endpoint connections.
+     * List private endpoint connections.
+     *
+     * <p>List all private endpoint connections.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -268,7 +278,9 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
     }
 
     /**
-     * Get the details of a private endpoint connection.
+     * Get private endpoint connection.
+     *
+     * <p>Get the details of a private endpoint connection.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -322,7 +334,9 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
     }
 
     /**
-     * Get the details of a private endpoint connection.
+     * Get private endpoint connection.
+     *
+     * <p>Get the details of a private endpoint connection.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -374,7 +388,9 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
     }
 
     /**
-     * Get the details of a private endpoint connection.
+     * Get private endpoint connection.
+     *
+     * <p>Get the details of a private endpoint connection.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -391,7 +407,9 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
     }
 
     /**
-     * Get the details of a private endpoint connection.
+     * Get private endpoint connection.
+     *
+     * <p>Get the details of a private endpoint connection.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -407,7 +425,9 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
     }
 
     /**
-     * Get the details of a private endpoint connection.
+     * Get private endpoint connection.
+     *
+     * <p>Get the details of a private endpoint connection.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -425,7 +445,9 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
     }
 
     /**
-     * Update an existing private endpoint connection.
+     * Update a private endpoint connection.
+     *
+     * <p>Update an existing private endpoint connection.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -486,7 +508,9 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
     }
 
     /**
-     * Update an existing private endpoint connection.
+     * Update a private endpoint connection.
+     *
+     * <p>Update an existing private endpoint connection.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -549,7 +573,9 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
     }
 
     /**
-     * Update an existing private endpoint connection.
+     * Update a private endpoint connection.
+     *
+     * <p>Update an existing private endpoint connection.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -568,7 +594,9 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
     }
 
     /**
-     * Update an existing private endpoint connection.
+     * Update a private endpoint connection.
+     *
+     * <p>Update an existing private endpoint connection.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -586,7 +614,9 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
     }
 
     /**
-     * Update an existing private endpoint connection.
+     * Update a private endpoint connection.
+     *
+     * <p>Update an existing private endpoint connection.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -609,7 +639,9 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
     }
 
     /**
-     * Deletes a private endpoint connection.
+     * Delete a private endpoint connection.
+     *
+     * <p>Deletes a private endpoint connection.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -661,7 +693,9 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
     }
 
     /**
-     * Deletes a private endpoint connection.
+     * Delete a private endpoint connection.
+     *
+     * <p>Deletes a private endpoint connection.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -712,7 +746,9 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
     }
 
     /**
-     * Deletes a private endpoint connection.
+     * Delete a private endpoint connection.
+     *
+     * <p>Deletes a private endpoint connection.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -728,7 +764,9 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
     }
 
     /**
-     * Deletes a private endpoint connection.
+     * Delete a private endpoint connection.
+     *
+     * <p>Deletes a private endpoint connection.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -743,7 +781,9 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
     }
 
     /**
-     * Deletes a private endpoint connection.
+     * Delete a private endpoint connection.
+     *
+     * <p>Deletes a private endpoint connection.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.

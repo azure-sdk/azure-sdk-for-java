@@ -11,7 +11,9 @@ import com.azure.core.util.Context;
 /** Resource collection API of StreamingEndpoints. */
 public interface StreamingEndpoints {
     /**
-     * Lists the streaming endpoints in the account.
+     * List StreamingEndpoints
+     *
+     * <p>Lists the streaming endpoints in the account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -23,7 +25,9 @@ public interface StreamingEndpoints {
     PagedIterable<StreamingEndpoint> list(String resourceGroupName, String accountName);
 
     /**
-     * Lists the streaming endpoints in the account.
+     * List StreamingEndpoints
+     *
+     * <p>Lists the streaming endpoints in the account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -36,7 +40,9 @@ public interface StreamingEndpoints {
     PagedIterable<StreamingEndpoint> list(String resourceGroupName, String accountName, Context context);
 
     /**
-     * Gets a streaming endpoint.
+     * Get StreamingEndpoint
+     *
+     * <p>Gets a streaming endpoint.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -49,7 +55,9 @@ public interface StreamingEndpoints {
     StreamingEndpoint get(String resourceGroupName, String accountName, String streamingEndpointName);
 
     /**
-     * Gets a streaming endpoint.
+     * Get StreamingEndpoint
+     *
+     * <p>Gets a streaming endpoint.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -64,7 +72,9 @@ public interface StreamingEndpoints {
         String resourceGroupName, String accountName, String streamingEndpointName, Context context);
 
     /**
-     * Deletes a streaming endpoint.
+     * Delete StreamingEndpoint
+     *
+     * <p>Deletes a streaming endpoint.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -76,7 +86,9 @@ public interface StreamingEndpoints {
     void delete(String resourceGroupName, String accountName, String streamingEndpointName);
 
     /**
-     * Deletes a streaming endpoint.
+     * Delete StreamingEndpoint
+     *
+     * <p>Deletes a streaming endpoint.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -89,7 +101,9 @@ public interface StreamingEndpoints {
     void delete(String resourceGroupName, String accountName, String streamingEndpointName, Context context);
 
     /**
-     * List streaming endpoint supported skus.
+     * List StreamingEndpoint skus
+     *
+     * <p>List streaming endpoint supported skus.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -102,7 +116,9 @@ public interface StreamingEndpoints {
     StreamingEndpointSkuInfoListResult skus(String resourceGroupName, String accountName, String streamingEndpointName);
 
     /**
-     * List streaming endpoint supported skus.
+     * List StreamingEndpoint skus
+     *
+     * <p>List streaming endpoint supported skus.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -117,7 +133,9 @@ public interface StreamingEndpoints {
         String resourceGroupName, String accountName, String streamingEndpointName, Context context);
 
     /**
-     * Starts an existing streaming endpoint.
+     * Start StreamingEndpoint
+     *
+     * <p>Starts an existing streaming endpoint.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -129,7 +147,9 @@ public interface StreamingEndpoints {
     void start(String resourceGroupName, String accountName, String streamingEndpointName);
 
     /**
-     * Starts an existing streaming endpoint.
+     * Start StreamingEndpoint
+     *
+     * <p>Starts an existing streaming endpoint.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -142,7 +162,9 @@ public interface StreamingEndpoints {
     void start(String resourceGroupName, String accountName, String streamingEndpointName, Context context);
 
     /**
-     * Stops an existing streaming endpoint.
+     * Stop StreamingEndpoint
+     *
+     * <p>Stops an existing streaming endpoint.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -154,7 +176,9 @@ public interface StreamingEndpoints {
     void stop(String resourceGroupName, String accountName, String streamingEndpointName);
 
     /**
-     * Stops an existing streaming endpoint.
+     * Stop StreamingEndpoint
+     *
+     * <p>Stops an existing streaming endpoint.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -167,7 +191,9 @@ public interface StreamingEndpoints {
     void stop(String resourceGroupName, String accountName, String streamingEndpointName, Context context);
 
     /**
-     * Scales an existing streaming endpoint.
+     * Scale StreamingEndpoint
+     *
+     * <p>Scales an existing streaming endpoint.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -184,7 +210,9 @@ public interface StreamingEndpoints {
         StreamingEntityScaleUnit parameters);
 
     /**
-     * Scales an existing streaming endpoint.
+     * Scale StreamingEndpoint
+     *
+     * <p>Scales an existing streaming endpoint.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -203,7 +231,9 @@ public interface StreamingEndpoints {
         Context context);
 
     /**
-     * Gets a streaming endpoint.
+     * Get StreamingEndpoint
+     *
+     * <p>Gets a streaming endpoint.
      *
      * @param id the resource ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -214,7 +244,9 @@ public interface StreamingEndpoints {
     StreamingEndpoint getById(String id);
 
     /**
-     * Gets a streaming endpoint.
+     * Get StreamingEndpoint
+     *
+     * <p>Gets a streaming endpoint.
      *
      * @param id the resource ID.
      * @param context The context to associate with this operation.
@@ -226,7 +258,9 @@ public interface StreamingEndpoints {
     Response<StreamingEndpoint> getByIdWithResponse(String id, Context context);
 
     /**
-     * Deletes a streaming endpoint.
+     * Delete StreamingEndpoint
+     *
+     * <p>Deletes a streaming endpoint.
      *
      * @param id the resource ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -236,7 +270,9 @@ public interface StreamingEndpoints {
     void deleteById(String id);
 
     /**
-     * Deletes a streaming endpoint.
+     * Delete StreamingEndpoint
+     *
+     * <p>Deletes a streaming endpoint.
      *
      * @param id the resource ID.
      * @param context The context to associate with this operation.

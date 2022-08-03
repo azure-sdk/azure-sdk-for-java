@@ -170,7 +170,9 @@ public final class TracksClientImpl implements TracksClient {
     }
 
     /**
-     * Lists the Tracks in the asset.
+     * List Tracks in the Asset
+     *
+     * <p>Lists the Tracks in the asset.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -228,7 +230,9 @@ public final class TracksClientImpl implements TracksClient {
     }
 
     /**
-     * Lists the Tracks in the asset.
+     * List Tracks in the Asset
+     *
+     * <p>Lists the Tracks in the asset.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -284,7 +288,9 @@ public final class TracksClientImpl implements TracksClient {
     }
 
     /**
-     * Lists the Tracks in the asset.
+     * List Tracks in the Asset
+     *
+     * <p>Lists the Tracks in the asset.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -300,7 +306,9 @@ public final class TracksClientImpl implements TracksClient {
     }
 
     /**
-     * Lists the Tracks in the asset.
+     * List Tracks in the Asset
+     *
+     * <p>Lists the Tracks in the asset.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -318,7 +326,9 @@ public final class TracksClientImpl implements TracksClient {
     }
 
     /**
-     * Lists the Tracks in the asset.
+     * List Tracks in the Asset
+     *
+     * <p>Lists the Tracks in the asset.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -334,7 +344,9 @@ public final class TracksClientImpl implements TracksClient {
     }
 
     /**
-     * Lists the Tracks in the asset.
+     * List Tracks in the Asset
+     *
+     * <p>Lists the Tracks in the asset.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -352,7 +364,9 @@ public final class TracksClientImpl implements TracksClient {
     }
 
     /**
-     * Get the details of a Track in the Asset.
+     * Get a Track
+     *
+     * <p>Get the details of a Track in the Asset.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -410,7 +424,9 @@ public final class TracksClientImpl implements TracksClient {
     }
 
     /**
-     * Get the details of a Track in the Asset.
+     * Get a Track
+     *
+     * <p>Get the details of a Track in the Asset.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -466,7 +482,9 @@ public final class TracksClientImpl implements TracksClient {
     }
 
     /**
-     * Get the details of a Track in the Asset.
+     * Get a Track
+     *
+     * <p>Get the details of a Track in the Asset.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -485,7 +503,9 @@ public final class TracksClientImpl implements TracksClient {
     }
 
     /**
-     * Get the details of a Track in the Asset.
+     * Get a Track
+     *
+     * <p>Get the details of a Track in the Asset.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -502,7 +522,9 @@ public final class TracksClientImpl implements TracksClient {
     }
 
     /**
-     * Get the details of a Track in the Asset.
+     * Get a Track
+     *
+     * <p>Get the details of a Track in the Asset.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -521,7 +543,9 @@ public final class TracksClientImpl implements TracksClient {
     }
 
     /**
-     * Create or update a Track in the asset.
+     * Create or update a Track
+     *
+     * <p>Create or update a Track in the asset.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -586,7 +610,9 @@ public final class TracksClientImpl implements TracksClient {
     }
 
     /**
-     * Create or update a Track in the asset.
+     * Create or update a Track
+     *
+     * <p>Create or update a Track in the asset.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -654,7 +680,9 @@ public final class TracksClientImpl implements TracksClient {
     }
 
     /**
-     * Create or update a Track in the asset.
+     * Create or update a Track
+     *
+     * <p>Create or update a Track in the asset.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -682,7 +710,9 @@ public final class TracksClientImpl implements TracksClient {
     }
 
     /**
-     * Create or update a Track in the asset.
+     * Create or update a Track
+     *
+     * <p>Create or update a Track in the asset.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -713,7 +743,9 @@ public final class TracksClientImpl implements TracksClient {
     }
 
     /**
-     * Create or update a Track in the asset.
+     * Create or update a Track
+     *
+     * <p>Create or update a Track in the asset.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -733,7 +765,9 @@ public final class TracksClientImpl implements TracksClient {
     }
 
     /**
-     * Create or update a Track in the asset.
+     * Create or update a Track
+     *
+     * <p>Create or update a Track in the asset.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -759,7 +793,9 @@ public final class TracksClientImpl implements TracksClient {
     }
 
     /**
-     * Create or update a Track in the asset.
+     * Create or update a Track
+     *
+     * <p>Create or update a Track in the asset.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -780,7 +816,9 @@ public final class TracksClientImpl implements TracksClient {
     }
 
     /**
-     * Create or update a Track in the asset.
+     * Create or update a Track
+     *
+     * <p>Create or update a Track in the asset.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -807,7 +845,9 @@ public final class TracksClientImpl implements TracksClient {
     }
 
     /**
-     * Create or update a Track in the asset.
+     * Create or update a Track
+     *
+     * <p>Create or update a Track in the asset.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -826,7 +866,9 @@ public final class TracksClientImpl implements TracksClient {
     }
 
     /**
-     * Create or update a Track in the asset.
+     * Create or update a Track
+     *
+     * <p>Create or update a Track in the asset.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -851,7 +893,9 @@ public final class TracksClientImpl implements TracksClient {
     }
 
     /**
-     * Deletes a Track in the asset.
+     * Delete a Track
+     *
+     * <p>Deletes a Track in the asset.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -909,7 +953,9 @@ public final class TracksClientImpl implements TracksClient {
     }
 
     /**
-     * Deletes a Track in the asset.
+     * Delete a Track
+     *
+     * <p>Deletes a Track in the asset.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -965,7 +1011,9 @@ public final class TracksClientImpl implements TracksClient {
     }
 
     /**
-     * Deletes a Track in the asset.
+     * Delete a Track
+     *
+     * <p>Deletes a Track in the asset.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -988,7 +1036,9 @@ public final class TracksClientImpl implements TracksClient {
     }
 
     /**
-     * Deletes a Track in the asset.
+     * Delete a Track
+     *
+     * <p>Deletes a Track in the asset.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1012,7 +1062,9 @@ public final class TracksClientImpl implements TracksClient {
     }
 
     /**
-     * Deletes a Track in the asset.
+     * Delete a Track
+     *
+     * <p>Deletes a Track in the asset.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1030,7 +1082,9 @@ public final class TracksClientImpl implements TracksClient {
     }
 
     /**
-     * Deletes a Track in the asset.
+     * Delete a Track
+     *
+     * <p>Deletes a Track in the asset.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1049,7 +1103,9 @@ public final class TracksClientImpl implements TracksClient {
     }
 
     /**
-     * Deletes a Track in the asset.
+     * Delete a Track
+     *
+     * <p>Deletes a Track in the asset.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1068,7 +1124,9 @@ public final class TracksClientImpl implements TracksClient {
     }
 
     /**
-     * Deletes a Track in the asset.
+     * Delete a Track
+     *
+     * <p>Deletes a Track in the asset.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1089,7 +1147,9 @@ public final class TracksClientImpl implements TracksClient {
     }
 
     /**
-     * Deletes a Track in the asset.
+     * Delete a Track
+     *
+     * <p>Deletes a Track in the asset.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1105,7 +1165,9 @@ public final class TracksClientImpl implements TracksClient {
     }
 
     /**
-     * Deletes a Track in the asset.
+     * Delete a Track
+     *
+     * <p>Deletes a Track in the asset.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1123,7 +1185,9 @@ public final class TracksClientImpl implements TracksClient {
     }
 
     /**
-     * Updates an existing Track in the asset.
+     * Update an Track
+     *
+     * <p>Updates an existing Track in the asset.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1188,7 +1252,9 @@ public final class TracksClientImpl implements TracksClient {
     }
 
     /**
-     * Updates an existing Track in the asset.
+     * Update an Track
+     *
+     * <p>Updates an existing Track in the asset.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1256,7 +1322,9 @@ public final class TracksClientImpl implements TracksClient {
     }
 
     /**
-     * Updates an existing Track in the asset.
+     * Update an Track
+     *
+     * <p>Updates an existing Track in the asset.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1284,7 +1352,9 @@ public final class TracksClientImpl implements TracksClient {
     }
 
     /**
-     * Updates an existing Track in the asset.
+     * Update an Track
+     *
+     * <p>Updates an existing Track in the asset.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1315,7 +1385,9 @@ public final class TracksClientImpl implements TracksClient {
     }
 
     /**
-     * Updates an existing Track in the asset.
+     * Update an Track
+     *
+     * <p>Updates an existing Track in the asset.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1334,7 +1406,9 @@ public final class TracksClientImpl implements TracksClient {
     }
 
     /**
-     * Updates an existing Track in the asset.
+     * Update an Track
+     *
+     * <p>Updates an existing Track in the asset.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1360,7 +1434,9 @@ public final class TracksClientImpl implements TracksClient {
     }
 
     /**
-     * Updates an existing Track in the asset.
+     * Update an Track
+     *
+     * <p>Updates an existing Track in the asset.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1381,7 +1457,9 @@ public final class TracksClientImpl implements TracksClient {
     }
 
     /**
-     * Updates an existing Track in the asset.
+     * Update an Track
+     *
+     * <p>Updates an existing Track in the asset.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1408,7 +1486,9 @@ public final class TracksClientImpl implements TracksClient {
     }
 
     /**
-     * Updates an existing Track in the asset.
+     * Update an Track
+     *
+     * <p>Updates an existing Track in the asset.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1427,7 +1507,9 @@ public final class TracksClientImpl implements TracksClient {
     }
 
     /**
-     * Updates an existing Track in the asset.
+     * Update an Track
+     *
+     * <p>Updates an existing Track in the asset.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1452,10 +1534,12 @@ public final class TracksClientImpl implements TracksClient {
     }
 
     /**
-     * Update the track data. Call this API after any changes are made to the track data stored in the asset container.
-     * For example, you have modified the WebVTT captions file in the Azure blob storage container for the asset,
-     * viewers will not see the new version of the captions unless this API is called. Note, the changes may not be
-     * reflected immediately. CDN cache may also need to be purged if applicable.
+     * Update the track data
+     *
+     * <p>Update the track data. Call this API after any changes are made to the track data stored in the asset
+     * container. For example, you have modified the WebVTT captions file in the Azure blob storage container for the
+     * asset, viewers will not see the new version of the captions unless this API is called. Note, the changes may not
+     * be reflected immediately. CDN cache may also need to be purged if applicable.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1513,10 +1597,12 @@ public final class TracksClientImpl implements TracksClient {
     }
 
     /**
-     * Update the track data. Call this API after any changes are made to the track data stored in the asset container.
-     * For example, you have modified the WebVTT captions file in the Azure blob storage container for the asset,
-     * viewers will not see the new version of the captions unless this API is called. Note, the changes may not be
-     * reflected immediately. CDN cache may also need to be purged if applicable.
+     * Update the track data
+     *
+     * <p>Update the track data. Call this API after any changes are made to the track data stored in the asset
+     * container. For example, you have modified the WebVTT captions file in the Azure blob storage container for the
+     * asset, viewers will not see the new version of the captions unless this API is called. Note, the changes may not
+     * be reflected immediately. CDN cache may also need to be purged if applicable.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1572,10 +1658,12 @@ public final class TracksClientImpl implements TracksClient {
     }
 
     /**
-     * Update the track data. Call this API after any changes are made to the track data stored in the asset container.
-     * For example, you have modified the WebVTT captions file in the Azure blob storage container for the asset,
-     * viewers will not see the new version of the captions unless this API is called. Note, the changes may not be
-     * reflected immediately. CDN cache may also need to be purged if applicable.
+     * Update the track data
+     *
+     * <p>Update the track data. Call this API after any changes are made to the track data stored in the asset
+     * container. For example, you have modified the WebVTT captions file in the Azure blob storage container for the
+     * asset, viewers will not see the new version of the captions unless this API is called. Note, the changes may not
+     * be reflected immediately. CDN cache may also need to be purged if applicable.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1598,10 +1686,12 @@ public final class TracksClientImpl implements TracksClient {
     }
 
     /**
-     * Update the track data. Call this API after any changes are made to the track data stored in the asset container.
-     * For example, you have modified the WebVTT captions file in the Azure blob storage container for the asset,
-     * viewers will not see the new version of the captions unless this API is called. Note, the changes may not be
-     * reflected immediately. CDN cache may also need to be purged if applicable.
+     * Update the track data
+     *
+     * <p>Update the track data. Call this API after any changes are made to the track data stored in the asset
+     * container. For example, you have modified the WebVTT captions file in the Azure blob storage container for the
+     * asset, viewers will not see the new version of the captions unless this API is called. Note, the changes may not
+     * be reflected immediately. CDN cache may also need to be purged if applicable.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1625,10 +1715,12 @@ public final class TracksClientImpl implements TracksClient {
     }
 
     /**
-     * Update the track data. Call this API after any changes are made to the track data stored in the asset container.
-     * For example, you have modified the WebVTT captions file in the Azure blob storage container for the asset,
-     * viewers will not see the new version of the captions unless this API is called. Note, the changes may not be
-     * reflected immediately. CDN cache may also need to be purged if applicable.
+     * Update the track data
+     *
+     * <p>Update the track data. Call this API after any changes are made to the track data stored in the asset
+     * container. For example, you have modified the WebVTT captions file in the Azure blob storage container for the
+     * asset, viewers will not see the new version of the captions unless this API is called. Note, the changes may not
+     * be reflected immediately. CDN cache may also need to be purged if applicable.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1646,10 +1738,12 @@ public final class TracksClientImpl implements TracksClient {
     }
 
     /**
-     * Update the track data. Call this API after any changes are made to the track data stored in the asset container.
-     * For example, you have modified the WebVTT captions file in the Azure blob storage container for the asset,
-     * viewers will not see the new version of the captions unless this API is called. Note, the changes may not be
-     * reflected immediately. CDN cache may also need to be purged if applicable.
+     * Update the track data
+     *
+     * <p>Update the track data. Call this API after any changes are made to the track data stored in the asset
+     * container. For example, you have modified the WebVTT captions file in the Azure blob storage container for the
+     * asset, viewers will not see the new version of the captions unless this API is called. Note, the changes may not
+     * be reflected immediately. CDN cache may also need to be purged if applicable.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1668,10 +1762,12 @@ public final class TracksClientImpl implements TracksClient {
     }
 
     /**
-     * Update the track data. Call this API after any changes are made to the track data stored in the asset container.
-     * For example, you have modified the WebVTT captions file in the Azure blob storage container for the asset,
-     * viewers will not see the new version of the captions unless this API is called. Note, the changes may not be
-     * reflected immediately. CDN cache may also need to be purged if applicable.
+     * Update the track data
+     *
+     * <p>Update the track data. Call this API after any changes are made to the track data stored in the asset
+     * container. For example, you have modified the WebVTT captions file in the Azure blob storage container for the
+     * asset, viewers will not see the new version of the captions unless this API is called. Note, the changes may not
+     * be reflected immediately. CDN cache may also need to be purged if applicable.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1691,10 +1787,12 @@ public final class TracksClientImpl implements TracksClient {
     }
 
     /**
-     * Update the track data. Call this API after any changes are made to the track data stored in the asset container.
-     * For example, you have modified the WebVTT captions file in the Azure blob storage container for the asset,
-     * viewers will not see the new version of the captions unless this API is called. Note, the changes may not be
-     * reflected immediately. CDN cache may also need to be purged if applicable.
+     * Update the track data
+     *
+     * <p>Update the track data. Call this API after any changes are made to the track data stored in the asset
+     * container. For example, you have modified the WebVTT captions file in the Azure blob storage container for the
+     * asset, viewers will not see the new version of the captions unless this API is called. Note, the changes may not
+     * be reflected immediately. CDN cache may also need to be purged if applicable.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1715,10 +1813,12 @@ public final class TracksClientImpl implements TracksClient {
     }
 
     /**
-     * Update the track data. Call this API after any changes are made to the track data stored in the asset container.
-     * For example, you have modified the WebVTT captions file in the Azure blob storage container for the asset,
-     * viewers will not see the new version of the captions unless this API is called. Note, the changes may not be
-     * reflected immediately. CDN cache may also need to be purged if applicable.
+     * Update the track data
+     *
+     * <p>Update the track data. Call this API after any changes are made to the track data stored in the asset
+     * container. For example, you have modified the WebVTT captions file in the Azure blob storage container for the
+     * asset, viewers will not see the new version of the captions unless this API is called. Note, the changes may not
+     * be reflected immediately. CDN cache may also need to be purged if applicable.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1734,10 +1834,12 @@ public final class TracksClientImpl implements TracksClient {
     }
 
     /**
-     * Update the track data. Call this API after any changes are made to the track data stored in the asset container.
-     * For example, you have modified the WebVTT captions file in the Azure blob storage container for the asset,
-     * viewers will not see the new version of the captions unless this API is called. Note, the changes may not be
-     * reflected immediately. CDN cache may also need to be purged if applicable.
+     * Update the track data
+     *
+     * <p>Update the track data. Call this API after any changes are made to the track data stored in the asset
+     * container. For example, you have modified the WebVTT captions file in the Azure blob storage container for the
+     * asset, viewers will not see the new version of the captions unless this API is called. Note, the changes may not
+     * be reflected immediately. CDN cache may also need to be purged if applicable.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
