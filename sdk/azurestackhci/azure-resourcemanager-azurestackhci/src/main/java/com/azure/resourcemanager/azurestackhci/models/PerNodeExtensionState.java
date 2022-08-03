@@ -17,8 +17,7 @@ public final class PerNodeExtensionState {
     private String name;
 
     /*
-     * Fully qualified resource ID for the particular Arc Extension on this
-     * node.
+     * Fully qualified resource ID for the particular Arc Extension on this node.
      */
     @JsonProperty(value = "extension", access = JsonProperty.Access.WRITE_ONLY)
     private String extension;
