@@ -33,6 +33,9 @@ public enum AuthenticationMode {
      */
     @JsonCreator
     public static AuthenticationMode fromString(String value) {
+        if (value == null) {
+            return null;
+        }
         AuthenticationMode[] items = AuthenticationMode.values();
         for (AuthenticationMode item : items) {
             if (item.toString().equalsIgnoreCase(value)) {

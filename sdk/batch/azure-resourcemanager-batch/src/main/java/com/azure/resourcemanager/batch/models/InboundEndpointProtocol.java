@@ -30,6 +30,9 @@ public enum InboundEndpointProtocol {
      */
     @JsonCreator
     public static InboundEndpointProtocol fromString(String value) {
+        if (value == null) {
+            return null;
+        }
         InboundEndpointProtocol[] items = InboundEndpointProtocol.values();
         for (InboundEndpointProtocol item : items) {
             if (item.toString().equalsIgnoreCase(value)) {

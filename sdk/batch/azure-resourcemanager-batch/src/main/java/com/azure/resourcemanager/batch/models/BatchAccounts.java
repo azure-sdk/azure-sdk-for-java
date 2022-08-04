@@ -134,7 +134,9 @@ public interface BatchAccounts {
         String resourceGroupName, String accountName, Context context);
 
     /**
-     * This operation applies only to Batch accounts with allowedAuthenticationModes containing 'SharedKey'. If the
+     * Regenerates the specified account key for the Batch account.
+     *
+     * <p>This operation applies only to Batch accounts with allowedAuthenticationModes containing 'SharedKey'. If the
      * Batch account doesn't contain 'SharedKey' in its allowedAuthenticationMode, clients cannot use shared keys to
      * authenticate, and must use another allowedAuthenticationModes instead. In this case, regenerating the keys will
      * fail.
@@ -151,7 +153,9 @@ public interface BatchAccounts {
         String resourceGroupName, String accountName, BatchAccountRegenerateKeyParameters parameters);
 
     /**
-     * This operation applies only to Batch accounts with allowedAuthenticationModes containing 'SharedKey'. If the
+     * Regenerates the specified account key for the Batch account.
+     *
+     * <p>This operation applies only to Batch accounts with allowedAuthenticationModes containing 'SharedKey'. If the
      * Batch account doesn't contain 'SharedKey' in its allowedAuthenticationMode, clients cannot use shared keys to
      * authenticate, and must use another allowedAuthenticationModes instead. In this case, regenerating the keys will
      * fail.
@@ -169,7 +173,9 @@ public interface BatchAccounts {
         String resourceGroupName, String accountName, BatchAccountRegenerateKeyParameters parameters, Context context);
 
     /**
-     * This operation applies only to Batch accounts with allowedAuthenticationModes containing 'SharedKey'. If the
+     * Gets the account keys for the specified Batch account.
+     *
+     * <p>This operation applies only to Batch accounts with allowedAuthenticationModes containing 'SharedKey'. If the
      * Batch account doesn't contain 'SharedKey' in its allowedAuthenticationMode, clients cannot use shared keys to
      * authenticate, and must use another allowedAuthenticationModes instead. In this case, getting the keys will fail.
      *
@@ -183,7 +189,9 @@ public interface BatchAccounts {
     BatchAccountKeys getKeys(String resourceGroupName, String accountName);
 
     /**
-     * This operation applies only to Batch accounts with allowedAuthenticationModes containing 'SharedKey'. If the
+     * Gets the account keys for the specified Batch account.
+     *
+     * <p>This operation applies only to Batch accounts with allowedAuthenticationModes containing 'SharedKey'. If the
      * Batch account doesn't contain 'SharedKey' in its allowedAuthenticationMode, clients cannot use shared keys to
      * authenticate, and must use another allowedAuthenticationModes instead. In this case, getting the keys will fail.
      *

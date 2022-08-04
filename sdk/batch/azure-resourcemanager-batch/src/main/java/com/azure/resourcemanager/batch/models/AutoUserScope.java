@@ -30,6 +30,9 @@ public enum AutoUserScope {
      */
     @JsonCreator
     public static AutoUserScope fromString(String value) {
+        if (value == null) {
+            return null;
+        }
         AutoUserScope[] items = AutoUserScope.values();
         for (AutoUserScope item : items) {
             if (item.toString().equalsIgnoreCase(value)) {

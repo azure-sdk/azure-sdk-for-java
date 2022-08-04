@@ -30,6 +30,9 @@ public enum NameAvailabilityReason {
      */
     @JsonCreator
     public static NameAvailabilityReason fromString(String value) {
+        if (value == null) {
+            return null;
+        }
         NameAvailabilityReason[] items = NameAvailabilityReason.values();
         for (NameAvailabilityReason item : items) {
             if (item.toString().equalsIgnoreCase(value)) {

@@ -33,6 +33,9 @@ public enum CachingType {
      */
     @JsonCreator
     public static CachingType fromString(String value) {
+        if (value == null) {
+            return null;
+        }
         CachingType[] items = CachingType.values();
         for (CachingType item : items) {
             if (item.toString().equalsIgnoreCase(value)) {

@@ -33,6 +33,9 @@ public enum IpAddressProvisioningType {
      */
     @JsonCreator
     public static IpAddressProvisioningType fromString(String value) {
+        if (value == null) {
+            return null;
+        }
         IpAddressProvisioningType[] items = IpAddressProvisioningType.values();
         for (IpAddressProvisioningType item : items) {
             if (item.toString().equalsIgnoreCase(value)) {

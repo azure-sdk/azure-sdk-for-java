@@ -30,6 +30,9 @@ public enum DynamicVNetAssignmentScope {
      */
     @JsonCreator
     public static DynamicVNetAssignmentScope fromString(String value) {
+        if (value == null) {
+            return null;
+        }
         DynamicVNetAssignmentScope[] items = DynamicVNetAssignmentScope.values();
         for (DynamicVNetAssignmentScope item : items) {
             if (item.toString().equalsIgnoreCase(value)) {

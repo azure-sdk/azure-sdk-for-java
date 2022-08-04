@@ -30,6 +30,9 @@ public enum PoolIdentityType {
      */
     @JsonCreator
     public static PoolIdentityType fromString(String value) {
+        if (value == null) {
+            return null;
+        }
         PoolIdentityType[] items = PoolIdentityType.values();
         for (PoolIdentityType item : items) {
             if (item.toString().equalsIgnoreCase(value)) {

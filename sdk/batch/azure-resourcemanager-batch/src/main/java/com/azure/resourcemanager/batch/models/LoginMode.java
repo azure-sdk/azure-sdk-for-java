@@ -30,6 +30,9 @@ public enum LoginMode {
      */
     @JsonCreator
     public static LoginMode fromString(String value) {
+        if (value == null) {
+            return null;
+        }
         LoginMode[] items = LoginMode.values();
         for (LoginMode item : items) {
             if (item.toString().equalsIgnoreCase(value)) {

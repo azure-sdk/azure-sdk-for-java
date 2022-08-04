@@ -30,6 +30,9 @@ public enum ElevationLevel {
      */
     @JsonCreator
     public static ElevationLevel fromString(String value) {
+        if (value == null) {
+            return null;
+        }
         ElevationLevel[] items = ElevationLevel.values();
         for (ElevationLevel item : items) {
             if (item.toString().equalsIgnoreCase(value)) {

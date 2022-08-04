@@ -7,37 +7,34 @@ package com.azure.resourcemanager.batch.models;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-/** Defines values for CertificateVisibility. */
-public enum CertificateVisibility {
-    /** Enum value StartTask. */
-    START_TASK("StartTask"),
+/** Defines values for EndpointAccessDefaultAction. */
+public enum EndpointAccessDefaultAction {
+    /** Enum value Allow. */
+    ALLOW("Allow"),
 
-    /** Enum value Task. */
-    TASK("Task"),
+    /** Enum value Deny. */
+    DENY("Deny");
 
-    /** Enum value RemoteUser. */
-    REMOTE_USER("RemoteUser");
-
-    /** The actual serialized value for a CertificateVisibility instance. */
+    /** The actual serialized value for a EndpointAccessDefaultAction instance. */
     private final String value;
 
-    CertificateVisibility(String value) {
+    EndpointAccessDefaultAction(String value) {
         this.value = value;
     }
 
     /**
-     * Parses a serialized value to a CertificateVisibility instance.
+     * Parses a serialized value to a EndpointAccessDefaultAction instance.
      *
      * @param value the serialized value to parse.
-     * @return the parsed CertificateVisibility object, or null if unable to parse.
+     * @return the parsed EndpointAccessDefaultAction object, or null if unable to parse.
      */
     @JsonCreator
-    public static CertificateVisibility fromString(String value) {
+    public static EndpointAccessDefaultAction fromString(String value) {
         if (value == null) {
             return null;
         }
-        CertificateVisibility[] items = CertificateVisibility.values();
-        for (CertificateVisibility item : items) {
+        EndpointAccessDefaultAction[] items = EndpointAccessDefaultAction.values();
+        for (EndpointAccessDefaultAction item : items) {
             if (item.toString().equalsIgnoreCase(value)) {
                 return item;
             }

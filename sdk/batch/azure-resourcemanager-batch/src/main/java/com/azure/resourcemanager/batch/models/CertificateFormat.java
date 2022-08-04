@@ -30,6 +30,9 @@ public enum CertificateFormat {
      */
     @JsonCreator
     public static CertificateFormat fromString(String value) {
+        if (value == null) {
+            return null;
+        }
         CertificateFormat[] items = CertificateFormat.values();
         for (CertificateFormat item : items) {
             if (item.toString().equalsIgnoreCase(value)) {

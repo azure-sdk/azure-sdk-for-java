@@ -17,16 +17,14 @@ public final class ApplicationProperties {
     private String displayName;
 
     /*
-     * A value indicating whether packages within the application may be
-     * overwritten using the same version string.
+     * A value indicating whether packages within the application may be overwritten using the same version string.
      */
     @JsonProperty(value = "allowUpdates")
     private Boolean allowUpdates;
 
     /*
-     * The package to use if a client requests the application but does not
-     * specify a version. This property can only be set to the name of an
-     * existing package.
+     * The package to use if a client requests the application but does not specify a version. This property can only
+     * be set to the name of an existing package.
      */
     @JsonProperty(value = "defaultVersion")
     private String defaultVersion;
