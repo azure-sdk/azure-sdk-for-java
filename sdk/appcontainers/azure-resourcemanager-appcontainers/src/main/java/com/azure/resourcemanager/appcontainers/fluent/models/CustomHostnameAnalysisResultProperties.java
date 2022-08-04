@@ -20,8 +20,7 @@ public final class CustomHostnameAnalysisResultProperties {
     private String hostname;
 
     /*
-     * <code>true</code> if hostname is already verified; otherwise,
-     * <code>false</code>.
+     * <code>true</code> if hostname is already verified; otherwise, <code>false</code>.
      */
     @JsonProperty(value = "isHostnameAlreadyVerified", access = JsonProperty.Access.WRITE_ONLY)
     private Boolean isHostnameAlreadyVerified;
@@ -39,15 +38,14 @@ public final class CustomHostnameAnalysisResultProperties {
     private DefaultErrorResponseError customDomainVerificationFailureInfo;
 
     /*
-     * <code>true</code> if there is a conflict on the Container App's managed
-     * environment; otherwise, <code>false</code>.
+     * <code>true</code> if there is a conflict on the Container App's managed environment; otherwise,
+     * <code>false</code>.
      */
     @JsonProperty(value = "hasConflictOnManagedEnvironment", access = JsonProperty.Access.WRITE_ONLY)
     private Boolean hasConflictOnManagedEnvironment;
 
     /*
-     * Name of the conflicting Container App on the Managed Environment if it's
-     * within the same subscription.
+     * Name of the conflicting Container App on the Managed Environment if it's within the same subscription.
      */
     @JsonProperty(value = "conflictingContainerAppResourceId", access = JsonProperty.Access.WRITE_ONLY)
     private String conflictingContainerAppResourceId;
