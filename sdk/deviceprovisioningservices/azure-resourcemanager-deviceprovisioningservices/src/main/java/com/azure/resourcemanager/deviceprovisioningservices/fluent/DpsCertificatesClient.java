@@ -55,7 +55,9 @@ public interface DpsCertificatesClient {
         Context context);
 
     /**
-     * Add new certificate or update an existing certificate.
+     * Upload the certificate to the provisioning service.
+     *
+     * <p>Add new certificate or update an existing certificate.
      *
      * @param resourceGroupName Resource group identifier.
      * @param provisioningServiceName The name of the provisioning service.
@@ -75,7 +77,9 @@ public interface DpsCertificatesClient {
         CertificateResponseInner certificateDescription);
 
     /**
-     * Add new certificate or update an existing certificate.
+     * Upload the certificate to the provisioning service.
+     *
+     * <p>Add new certificate or update an existing certificate.
      *
      * @param resourceGroupName Resource group identifier.
      * @param provisioningServiceName The name of the provisioning service.
@@ -100,7 +104,9 @@ public interface DpsCertificatesClient {
         Context context);
 
     /**
-     * Deletes the specified certificate associated with the Provisioning Service.
+     * Delete the Provisioning Service Certificate.
+     *
+     * <p>Deletes the specified certificate associated with the Provisioning Service.
      *
      * @param resourceGroupName Resource group identifier.
      * @param ifMatch ETag of the certificate.
@@ -116,7 +122,9 @@ public interface DpsCertificatesClient {
     void delete(String resourceGroupName, String ifMatch, String provisioningServiceName, String certificateName);
 
     /**
-     * Deletes the specified certificate associated with the Provisioning Service.
+     * Delete the Provisioning Service Certificate.
+     *
+     * <p>Deletes the specified certificate associated with the Provisioning Service.
      *
      * @param resourceGroupName Resource group identifier.
      * @param ifMatch ETag of the certificate.
@@ -244,8 +252,10 @@ public interface DpsCertificatesClient {
         Context context);
 
     /**
-     * Verifies the certificate's private key possession by providing the leaf cert issued by the verifying pre uploaded
-     * certificate.
+     * Verify certificate's private key possession.
+     *
+     * <p>Verifies the certificate's private key possession by providing the leaf cert issued by the verifying pre
+     * uploaded certificate.
      *
      * @param certificateName The mandatory logical name of the certificate, that the provisioning service uses to
      *     access.
@@ -268,8 +278,10 @@ public interface DpsCertificatesClient {
         VerificationCodeRequest request);
 
     /**
-     * Verifies the certificate's private key possession by providing the leaf cert issued by the verifying pre uploaded
-     * certificate.
+     * Verify certificate's private key possession.
+     *
+     * <p>Verifies the certificate's private key possession by providing the leaf cert issued by the verifying pre
+     * uploaded certificate.
      *
      * @param certificateName The mandatory logical name of the certificate, that the provisioning service uses to
      *     access.
