@@ -40,15 +40,13 @@ public final class AzureDataExplorerConnectionProperties extends TimeSeriesDatab
     private String adxTableName;
 
     /*
-     * The URL of the EventHub namespace for identity-based authentication. It
-     * must include the protocol sb://
+     * The URL of the EventHub namespace for identity-based authentication. It must include the protocol sb://
      */
     @JsonProperty(value = "eventHubEndpointUri", required = true)
     private String eventHubEndpointUri;
 
     /*
-     * The EventHub name in the EventHub namespace for identity-based
-     * authentication.
+     * The EventHub name in the EventHub namespace for identity-based authentication.
      */
     @JsonProperty(value = "eventHubEntityPath", required = true)
     private String eventHubEntityPath;
@@ -60,8 +58,7 @@ public final class AzureDataExplorerConnectionProperties extends TimeSeriesDatab
     private String eventHubNamespaceResourceId;
 
     /*
-     * The EventHub consumer group to use when ADX reads from EventHub.
-     * Defaults to $Default.
+     * The EventHub consumer group to use when ADX reads from EventHub. Defaults to $Default.
      */
     @JsonProperty(value = "eventHubConsumerGroup")
     private String eventHubConsumerGroup;
