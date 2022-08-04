@@ -6,16 +6,12 @@ package com.azure.resourcemanager.datamigration.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** Input for task that validates migration input for SQL to Azure SQL Managed Instance. */
 @Fluent
 public final class ValidateMigrationInputSqlServerSqlMITaskInput {
-    @JsonIgnore
-    private final ClientLogger logger = new ClientLogger(ValidateMigrationInputSqlServerSqlMITaskInput.class);
-
     /*
      * Information for connecting to source
      */
@@ -47,15 +43,13 @@ public final class ValidateMigrationInputSqlServerSqlMITaskInput {
     private FileShare backupFileShare;
 
     /*
-     * SAS URI of Azure Storage Account Container to be used for storing backup
-     * files.
+     * SAS URI of Azure Storage Account Container to be used for storing backup files.
      */
     @JsonProperty(value = "backupBlobShare", required = true)
     private BlobShare backupBlobShare;
 
     /*
-     * Backup Mode to specify whether to use existing backup or create new
-     * backup.
+     * Backup Mode to specify whether to use existing backup or create new backup.
      */
     @JsonProperty(value = "backupMode")
     private BackupMode backupMode;
@@ -210,7 +204,7 @@ public final class ValidateMigrationInputSqlServerSqlMITaskInput {
      */
     public void validate() {
         if (sourceConnectionInfo() == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property sourceConnectionInfo in model"
@@ -219,7 +213,7 @@ public final class ValidateMigrationInputSqlServerSqlMITaskInput {
             sourceConnectionInfo().validate();
         }
         if (targetConnectionInfo() == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property targetConnectionInfo in model"
@@ -228,7 +222,7 @@ public final class ValidateMigrationInputSqlServerSqlMITaskInput {
             targetConnectionInfo().validate();
         }
         if (selectedDatabases() == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property selectedDatabases in model"
@@ -240,7 +234,7 @@ public final class ValidateMigrationInputSqlServerSqlMITaskInput {
             backupFileShare().validate();
         }
         if (backupBlobShare() == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property backupBlobShare in model"
@@ -249,4 +243,6 @@ public final class ValidateMigrationInputSqlServerSqlMITaskInput {
             backupBlobShare().validate();
         }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(ValidateMigrationInputSqlServerSqlMITaskInput.class);
 }

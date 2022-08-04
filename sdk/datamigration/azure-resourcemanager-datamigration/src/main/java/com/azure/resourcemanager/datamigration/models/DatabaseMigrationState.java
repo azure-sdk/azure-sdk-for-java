@@ -51,7 +51,11 @@ public final class DatabaseMigrationState extends ExpandableStringEnum<DatabaseM
         return fromString(name, DatabaseMigrationState.class);
     }
 
-    /** @return known DatabaseMigrationState values. */
+    /**
+     * Gets known DatabaseMigrationState values.
+     *
+     * @return known DatabaseMigrationState values.
+     */
     public static Collection<DatabaseMigrationState> values() {
         return values(DatabaseMigrationState.class);
     }

@@ -27,7 +27,11 @@ public final class MySqlTargetPlatformType extends ExpandableStringEnum<MySqlTar
         return fromString(name, MySqlTargetPlatformType.class);
     }
 
-    /** @return known MySqlTargetPlatformType values. */
+    /**
+     * Gets known MySqlTargetPlatformType values.
+     *
+     * @return known MySqlTargetPlatformType values.
+     */
     public static Collection<MySqlTargetPlatformType> values() {
         return values(MySqlTargetPlatformType.class);
     }

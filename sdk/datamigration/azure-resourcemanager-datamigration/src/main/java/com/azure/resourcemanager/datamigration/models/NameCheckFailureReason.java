@@ -27,7 +27,11 @@ public final class NameCheckFailureReason extends ExpandableStringEnum<NameCheck
         return fromString(name, NameCheckFailureReason.class);
     }
 
-    /** @return known NameCheckFailureReason values. */
+    /**
+     * Gets known NameCheckFailureReason values.
+     *
+     * @return known NameCheckFailureReason values.
+     */
     public static Collection<NameCheckFailureReason> values() {
         return values(NameCheckFailureReason.class);
     }

@@ -48,7 +48,11 @@ public final class DatabaseState extends ExpandableStringEnum<DatabaseState> {
         return fromString(name, DatabaseState.class);
     }
 
-    /** @return known DatabaseState values. */
+    /**
+     * Gets known DatabaseState values.
+     *
+     * @return known DatabaseState values.
+     */
     public static Collection<DatabaseState> values() {
         return values(DatabaseState.class);
     }
