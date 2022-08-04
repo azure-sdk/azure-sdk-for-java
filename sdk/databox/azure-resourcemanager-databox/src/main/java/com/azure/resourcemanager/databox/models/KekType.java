@@ -30,6 +30,9 @@ public enum KekType {
      */
     @JsonCreator
     public static KekType fromString(String value) {
+        if (value == null) {
+            return null;
+        }
         KekType[] items = KekType.values();
         for (KekType item : items) {
             if (item.toString().equalsIgnoreCase(value)) {

@@ -30,6 +30,9 @@ public enum JobDeliveryType {
      */
     @JsonCreator
     public static JobDeliveryType fromString(String value) {
+        if (value == null) {
+            return null;
+        }
         JobDeliveryType[] items = JobDeliveryType.values();
         for (JobDeliveryType item : items) {
             if (item.toString().equalsIgnoreCase(value)) {

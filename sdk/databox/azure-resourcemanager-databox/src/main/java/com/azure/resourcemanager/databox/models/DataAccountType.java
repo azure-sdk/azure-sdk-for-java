@@ -30,6 +30,9 @@ public enum DataAccountType {
      */
     @JsonCreator
     public static DataAccountType fromString(String value) {
+        if (value == null) {
+            return null;
+        }
         DataAccountType[] items = DataAccountType.values();
         for (DataAccountType item : items) {
             if (item.toString().equalsIgnoreCase(value)) {

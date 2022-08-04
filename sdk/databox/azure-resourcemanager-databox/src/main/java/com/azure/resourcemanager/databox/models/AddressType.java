@@ -33,6 +33,9 @@ public enum AddressType {
      */
     @JsonCreator
     public static AddressType fromString(String value) {
+        if (value == null) {
+            return null;
+        }
         AddressType[] items = AddressType.values();
         for (AddressType item : items) {
             if (item.toString().equalsIgnoreCase(value)) {
