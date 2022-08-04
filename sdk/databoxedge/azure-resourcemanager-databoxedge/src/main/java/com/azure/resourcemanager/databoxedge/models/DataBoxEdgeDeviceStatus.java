@@ -42,7 +42,11 @@ public final class DataBoxEdgeDeviceStatus extends ExpandableStringEnum<DataBoxE
         return fromString(name, DataBoxEdgeDeviceStatus.class);
     }
 
-    /** @return known DataBoxEdgeDeviceStatus values. */
+    /**
+     * Gets known DataBoxEdgeDeviceStatus values.
+     *
+     * @return known DataBoxEdgeDeviceStatus values.
+     */
     public static Collection<DataBoxEdgeDeviceStatus> values() {
         return values(DataBoxEdgeDeviceStatus.class);
     }

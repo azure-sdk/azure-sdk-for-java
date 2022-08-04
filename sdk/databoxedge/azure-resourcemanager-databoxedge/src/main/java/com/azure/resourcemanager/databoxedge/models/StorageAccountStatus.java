@@ -36,7 +36,11 @@ public final class StorageAccountStatus extends ExpandableStringEnum<StorageAcco
         return fromString(name, StorageAccountStatus.class);
     }
 
-    /** @return known StorageAccountStatus values. */
+    /**
+     * Gets known StorageAccountStatus values.
+     *
+     * @return known StorageAccountStatus values.
+     */
     public static Collection<StorageAccountStatus> values() {
         return values(StorageAccountStatus.class);
     }

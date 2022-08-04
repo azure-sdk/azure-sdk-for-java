@@ -30,7 +30,11 @@ public final class UserType extends ExpandableStringEnum<UserType> {
         return fromString(name, UserType.class);
     }
 
-    /** @return known UserType values. */
+    /**
+     * Gets known UserType values.
+     *
+     * @return known UserType values.
+     */
     public static Collection<UserType> values() {
         return values(UserType.class);
     }

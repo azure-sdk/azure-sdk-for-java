@@ -72,7 +72,11 @@ public final class UpdateOperationStage extends ExpandableStringEnum<UpdateOpera
         return fromString(name, UpdateOperationStage.class);
     }
 
-    /** @return known UpdateOperationStage values. */
+    /**
+     * Gets known UpdateOperationStage values.
+     *
+     * @return known UpdateOperationStage values.
+     */
     public static Collection<UpdateOperationStage> values() {
         return values(UpdateOperationStage.class);
     }

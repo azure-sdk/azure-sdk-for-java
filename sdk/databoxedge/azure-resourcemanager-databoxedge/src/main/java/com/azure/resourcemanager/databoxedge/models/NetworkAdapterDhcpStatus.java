@@ -27,7 +27,11 @@ public final class NetworkAdapterDhcpStatus extends ExpandableStringEnum<Network
         return fromString(name, NetworkAdapterDhcpStatus.class);
     }
 
-    /** @return known NetworkAdapterDhcpStatus values. */
+    /**
+     * Gets known NetworkAdapterDhcpStatus values.
+     *
+     * @return known NetworkAdapterDhcpStatus values.
+     */
     public static Collection<NetworkAdapterDhcpStatus> values() {
         return values(NetworkAdapterDhcpStatus.class);
     }

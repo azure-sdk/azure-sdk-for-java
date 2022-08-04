@@ -27,7 +27,11 @@ public final class PlatformType extends ExpandableStringEnum<PlatformType> {
         return fromString(name, PlatformType.class);
     }
 
-    /** @return known PlatformType values. */
+    /**
+     * Gets known PlatformType values.
+     *
+     * @return known PlatformType values.
+     */
     public static Collection<PlatformType> values() {
         return values(PlatformType.class);
     }

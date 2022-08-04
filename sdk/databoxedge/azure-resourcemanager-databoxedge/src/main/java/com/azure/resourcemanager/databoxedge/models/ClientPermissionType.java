@@ -30,7 +30,11 @@ public final class ClientPermissionType extends ExpandableStringEnum<ClientPermi
         return fromString(name, ClientPermissionType.class);
     }
 
-    /** @return known ClientPermissionType values. */
+    /**
+     * Gets known ClientPermissionType values.
+     *
+     * @return known ClientPermissionType values.
+     */
     public static Collection<ClientPermissionType> values() {
         return values(ClientPermissionType.class);
     }

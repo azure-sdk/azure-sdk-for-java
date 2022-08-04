@@ -36,7 +36,11 @@ public final class ShareStatus extends ExpandableStringEnum<ShareStatus> {
         return fromString(name, ShareStatus.class);
     }
 
-    /** @return known ShareStatus values. */
+    /**
+     * Gets known ShareStatus values.
+     *
+     * @return known ShareStatus values.
+     */
     public static Collection<ShareStatus> values() {
         return values(ShareStatus.class);
     }

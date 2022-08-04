@@ -30,7 +30,11 @@ public final class InstallRebootBehavior extends ExpandableStringEnum<InstallReb
         return fromString(name, InstallRebootBehavior.class);
     }
 
-    /** @return known InstallRebootBehavior values. */
+    /**
+     * Gets known InstallRebootBehavior values.
+     *
+     * @return known InstallRebootBehavior values.
+     */
     public static Collection<InstallRebootBehavior> values() {
         return values(InstallRebootBehavior.class);
     }
