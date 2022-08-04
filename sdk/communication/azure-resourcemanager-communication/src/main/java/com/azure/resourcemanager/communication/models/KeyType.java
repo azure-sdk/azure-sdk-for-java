@@ -30,6 +30,9 @@ public enum KeyType {
      */
     @JsonCreator
     public static KeyType fromString(String value) {
+        if (value == null) {
+            return null;
+        }
         KeyType[] items = KeyType.values();
         for (KeyType item : items) {
             if (item.toString().equalsIgnoreCase(value)) {
