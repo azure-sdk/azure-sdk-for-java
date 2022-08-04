@@ -30,7 +30,11 @@ public final class LotSource extends ExpandableStringEnum<LotSource> {
         return fromString(name, LotSource.class);
     }
 
-    /** @return known LotSource values. */
+    /**
+     * Gets known LotSource values.
+     *
+     * @return known LotSource values.
+     */
     public static Collection<LotSource> values() {
         return values(LotSource.class);
     }
