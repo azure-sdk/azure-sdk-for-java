@@ -564,7 +564,7 @@ public final class ComponentCurrentBillingFeaturesUpdateSamples {
                 new ApplicationInsightsComponentBillingFeaturesInner()
                     .withDataVolumeCap(
                         new ApplicationInsightsComponentDataVolumeCap()
-                            .withCap(100.0f)
+                            .withCap(100.0F)
                             .withStopSendNotificationWhenHitCap(true))
                     .withCurrentBillingFeatures(Arrays.asList("Basic", "Application Insights Enterprise")),
                 Context.NONE);

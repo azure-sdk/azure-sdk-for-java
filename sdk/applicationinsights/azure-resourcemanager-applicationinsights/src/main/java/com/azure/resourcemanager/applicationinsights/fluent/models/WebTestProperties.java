@@ -16,8 +16,7 @@ import java.util.List;
 @Fluent
 public final class WebTestProperties {
     /*
-     * Unique ID of this WebTest. This is typically the same value as the Name
-     * field.
+     * Unique ID of this WebTest. This is typically the same value as the Name field.
      */
     @JsonProperty(value = "SyntheticMonitorId", required = true)
     private String syntheticMonitorId;
@@ -41,8 +40,7 @@ public final class WebTestProperties {
     private Boolean enabled;
 
     /*
-     * Interval in seconds between test runs for this WebTest. Default value is
-     * 300.
+     * Interval in seconds between test runs for this WebTest. Default value is 300.
      */
     @JsonProperty(value = "Frequency")
     private Integer frequency;
@@ -66,8 +64,7 @@ public final class WebTestProperties {
     private Boolean retryEnabled;
 
     /*
-     * A list of where to physically run the tests from to give global coverage
-     * for accessibility of your application.
+     * A list of where to physically run the tests from to give global coverage for accessibility of your application.
      */
     @JsonProperty(value = "Locations", required = true)
     private List<WebTestGeolocation> locations;
@@ -79,10 +76,9 @@ public final class WebTestProperties {
     private WebTestPropertiesConfiguration configuration;
 
     /*
-     * Current state of this component, whether or not is has been provisioned
-     * within the resource group it is defined. Users cannot change this value
-     * but are able to read from it. Values will include Succeeded, Deploying,
-     * Canceled, and Failed.
+     * Current state of this component, whether or not is has been provisioned within the resource group it is defined.
+     * Users cannot change this value but are able to read from it. Values will include Succeeded, Deploying, Canceled,
+     * and Failed.
      */
     @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
     private String provisioningState;

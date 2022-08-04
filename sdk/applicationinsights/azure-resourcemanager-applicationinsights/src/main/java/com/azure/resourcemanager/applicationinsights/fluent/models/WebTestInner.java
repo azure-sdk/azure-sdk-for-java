@@ -17,8 +17,7 @@ import java.util.Map;
 @Fluent
 public final class WebTestInner extends WebtestsResource {
     /*
-     * The kind of web test that this web test watches. Choices are ping and
-     * multistep.
+     * The kind of web test that this web test watches. Choices are ping and multistep.
      */
     @JsonProperty(value = "kind")
     private WebTestKind kind;
