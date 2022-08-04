@@ -19,8 +19,7 @@ public final class ResourceProviderOperationList {
     private List<ResourceProviderOperationDefinitionInner> value;
 
     /*
-     * The URI that can be used to request the next page for list of Azure
-     * operations.
+     * The URI that can be used to request the next page for list of Azure operations.
      */
     @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
     private String nextLink;

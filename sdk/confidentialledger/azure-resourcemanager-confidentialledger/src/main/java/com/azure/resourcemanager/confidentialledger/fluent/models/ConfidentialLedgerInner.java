@@ -16,7 +16,9 @@ import java.util.Map;
 @Fluent
 public final class ConfidentialLedgerInner extends ProxyResource {
     /*
-     * LedgerProperties Properties of Confidential Ledger Resource.
+     * LedgerProperties
+     *
+     * Properties of Confidential Ledger Resource.
      */
     @JsonProperty(value = "properties")
     private LedgerProperties properties;
@@ -41,7 +43,9 @@ public final class ConfidentialLedgerInner extends ProxyResource {
     private Map<String, String> tags;
 
     /**
-     * Get the properties property: LedgerProperties Properties of Confidential Ledger Resource.
+     * Get the properties property: LedgerProperties
+     *
+     * <p>Properties of Confidential Ledger Resource.
      *
      * @return the properties value.
      */
@@ -50,7 +54,9 @@ public final class ConfidentialLedgerInner extends ProxyResource {
     }
 
     /**
-     * Set the properties property: LedgerProperties Properties of Confidential Ledger Resource.
+     * Set the properties property: LedgerProperties
+     *
+     * <p>Properties of Confidential Ledger Resource.
      *
      * @param properties the properties value to set.
      * @return the ConfidentialLedgerInner object itself.

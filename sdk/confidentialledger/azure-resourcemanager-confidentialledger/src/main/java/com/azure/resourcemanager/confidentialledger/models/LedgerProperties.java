@@ -8,7 +8,11 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** LedgerProperties Additional Confidential Ledger properties. */
+/**
+ * LedgerProperties
+ *
+ * <p>Additional Confidential Ledger properties.
+ */
 @Fluent
 public final class LedgerProperties {
     /*
