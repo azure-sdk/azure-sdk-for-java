@@ -29,7 +29,7 @@ import java.util.Map;
 /** Samples for ContainerApps Update. */
 public final class ContainerAppsUpdateSamples {
     /*
-     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2022-03-01/examples/ContainerApps_Patch.json
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2022-05-01/examples/ContainerApps_Patch.json
      */
     /**
      * Sample code: Patch Container App.
@@ -71,7 +71,12 @@ public final class ContainerAppsUpdateSamples {
                                                     .withBindingType(BindingType.SNI_ENABLED)
                                                     .withCertificateId(
                                                         "/subscriptions/34adfa4f-cedf-4dc0-ba29-b6d1a69ab345/resourceGroups/rg/providers/Microsoft.App/managedEnvironments/demokube/certificates/my-certificate-for-my-other-name-dot-com"))))
-                            .withDapr(new Dapr().withEnabled(true).withAppProtocol(AppProtocol.HTTP).withAppPort(3000)))
+                            .withDapr(
+                                new Dapr()
+                                    .withEnabled(true)
+                                    .withAppProtocol(AppProtocol.HTTP)
+                                    .withAppPort(3000)
+                                    .withHttpReadBufferSize(30)))
                     .withTemplate(
                         new Template()
                             .withContainers(

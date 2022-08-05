@@ -121,6 +121,13 @@ public interface ManagedEnvironment {
     Boolean zoneRedundant();
 
     /**
+     * Gets the customDomainConfiguration property: Custom domain configuration for the environment.
+     *
+     * @return the customDomainConfiguration value.
+     */
+    CustomDomainConfiguration customDomainConfiguration();
+
+    /**
      * Gets the region of the resource.
      *
      * @return the region of the resource.
@@ -198,7 +205,8 @@ public interface ManagedEnvironment {
                 DefinitionStages.WithDaprAIConnectionString,
                 DefinitionStages.WithVnetConfiguration,
                 DefinitionStages.WithAppLogsConfiguration,
-                DefinitionStages.WithZoneRedundant {
+                DefinitionStages.WithZoneRedundant,
+                DefinitionStages.WithCustomDomainConfiguration {
             /**
              * Executes the create request.
              *
@@ -280,6 +288,16 @@ public interface ManagedEnvironment {
              */
             WithCreate withZoneRedundant(Boolean zoneRedundant);
         }
+        /** The stage of the ManagedEnvironment definition allowing to specify customDomainConfiguration. */
+        interface WithCustomDomainConfiguration {
+            /**
+             * Specifies the customDomainConfiguration property: Custom domain configuration for the environment.
+             *
+             * @param customDomainConfiguration Custom domain configuration for the environment.
+             * @return the next definition stage.
+             */
+            WithCreate withCustomDomainConfiguration(CustomDomainConfiguration customDomainConfiguration);
+        }
     }
     /**
      * Begins update for the ManagedEnvironment resource.
@@ -290,7 +308,10 @@ public interface ManagedEnvironment {
 
     /** The template for ManagedEnvironment update. */
     interface Update
-        extends UpdateStages.WithTags, UpdateStages.WithVnetConfiguration, UpdateStages.WithAppLogsConfiguration {
+        extends UpdateStages.WithTags,
+            UpdateStages.WithVnetConfiguration,
+            UpdateStages.WithAppLogsConfiguration,
+            UpdateStages.WithCustomDomainConfiguration {
         /**
          * Executes the update request.
          *
@@ -339,6 +360,16 @@ public interface ManagedEnvironment {
              * @return the next definition stage.
              */
             Update withAppLogsConfiguration(AppLogsConfiguration appLogsConfiguration);
+        }
+        /** The stage of the ManagedEnvironment update allowing to specify customDomainConfiguration. */
+        interface WithCustomDomainConfiguration {
+            /**
+             * Specifies the customDomainConfiguration property: Custom domain configuration for the environment.
+             *
+             * @param customDomainConfiguration Custom domain configuration for the environment.
+             * @return the next definition stage.
+             */
+            Update withCustomDomainConfiguration(CustomDomainConfiguration customDomainConfiguration);
         }
     }
     /**

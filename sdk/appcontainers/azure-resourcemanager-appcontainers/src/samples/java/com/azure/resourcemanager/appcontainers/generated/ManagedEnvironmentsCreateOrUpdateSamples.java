@@ -5,12 +5,13 @@
 package com.azure.resourcemanager.appcontainers.generated;
 
 import com.azure.resourcemanager.appcontainers.models.AppLogsConfiguration;
+import com.azure.resourcemanager.appcontainers.models.CustomDomainConfiguration;
 import com.azure.resourcemanager.appcontainers.models.LogAnalyticsConfiguration;
 
 /** Samples for ManagedEnvironments CreateOrUpdate. */
 public final class ManagedEnvironmentsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2022-03-01/examples/ManagedEnvironments_CreateOrUpdate.json
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2022-05-01/examples/ManagedEnvironments_CreateOrUpdate.json
      */
     /**
      * Sample code: Create environments.
@@ -30,6 +31,11 @@ public final class ManagedEnvironmentsCreateOrUpdateSamples {
                     .withLogAnalyticsConfiguration(
                         new LogAnalyticsConfiguration().withCustomerId("string").withSharedKey("string")))
             .withZoneRedundant(true)
+            .withCustomDomainConfiguration(
+                new CustomDomainConfiguration()
+                    .withDnsSuffix("www.my-name.com")
+                    .withCertificateValue("PFX-or-PEM-blob".getBytes())
+                    .withCertificatePassword("private key password".getBytes()))
             .create();
     }
 }
