@@ -11,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /** The UriFileJobOutput model. */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "jobOutputType")
-@JsonTypeName("UriFile")
+@JsonTypeName("uri_file")
 @Fluent
 public final class UriFileJobOutput extends JobOutput {
     /*

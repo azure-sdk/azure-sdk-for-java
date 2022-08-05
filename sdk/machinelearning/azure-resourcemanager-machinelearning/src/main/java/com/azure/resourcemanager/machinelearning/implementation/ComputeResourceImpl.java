@@ -15,10 +15,13 @@ import com.azure.resourcemanager.machinelearning.models.ClusterUpdateParameters;
 import com.azure.resourcemanager.machinelearning.models.Compute;
 import com.azure.resourcemanager.machinelearning.models.ComputeResource;
 import com.azure.resourcemanager.machinelearning.models.ComputeSecrets;
+import com.azure.resourcemanager.machinelearning.models.CustomService;
+import com.azure.resourcemanager.machinelearning.models.IdleShutdownSetting;
 import com.azure.resourcemanager.machinelearning.models.ManagedServiceIdentity;
 import com.azure.resourcemanager.machinelearning.models.ScaleSettingsInformation;
 import com.azure.resourcemanager.machinelearning.models.Sku;
 import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 
 public final class ComputeResourceImpl implements ComputeResource, ComputeResource.Definition, ComputeResource.Update {
@@ -178,6 +181,16 @@ public final class ComputeResourceImpl implements ComputeResource, ComputeResour
         return this;
     }
 
+    public void updateCustomServices(List<CustomService> customServices) {
+        serviceManager.computes().updateCustomServices(resourceGroupName, workspaceName, computeName, customServices);
+    }
+
+    public Response<Void> updateCustomServicesWithResponse(List<CustomService> customServices, Context context) {
+        return serviceManager
+            .computes()
+            .updateCustomServicesWithResponse(resourceGroupName, workspaceName, computeName, customServices, context);
+    }
+
     public PagedIterable<AmlComputeNodeInformation> listNodes() {
         return serviceManager.computes().listNodes(resourceGroupName, workspaceName, computeName);
     }
@@ -216,6 +229,16 @@ public final class ComputeResourceImpl implements ComputeResource, ComputeResour
 
     public void restart(Context context) {
         serviceManager.computes().restart(resourceGroupName, workspaceName, computeName, context);
+    }
+
+    public void updateIdleShutdownSetting(IdleShutdownSetting parameters) {
+        serviceManager.computes().updateIdleShutdownSetting(resourceGroupName, workspaceName, computeName, parameters);
+    }
+
+    public Response<Void> updateIdleShutdownSettingWithResponse(IdleShutdownSetting parameters, Context context) {
+        return serviceManager
+            .computes()
+            .updateIdleShutdownSettingWithResponse(resourceGroupName, workspaceName, computeName, parameters, context);
     }
 
     public ComputeResourceImpl withRegion(Region location) {
