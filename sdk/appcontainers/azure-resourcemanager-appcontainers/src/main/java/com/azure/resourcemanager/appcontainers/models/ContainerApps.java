@@ -87,6 +87,8 @@ public interface ContainerApps {
     /**
      * Delete a Container App.
      *
+     * <p>Description for Delete a Container App.
+     *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param containerAppName Name of the Container App.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -99,6 +101,8 @@ public interface ContainerApps {
     /**
      * Delete a Container App.
      *
+     * <p>Description for Delete a Container App.
+     *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param containerAppName Name of the Container App.
      * @param context The context to associate with this operation.
@@ -110,7 +114,9 @@ public interface ContainerApps {
     void delete(String resourceGroupName, String containerAppName, Context context);
 
     /**
-     * Patches a Container App using JSON Merge Patch.
+     * Update properties of a Container App
+     *
+     * <p>Patches a Container App using JSON Merge Patch.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param containerAppName Name of the Container App.
@@ -123,7 +129,9 @@ public interface ContainerApps {
     void update(String resourceGroupName, String containerAppName, ContainerAppInner containerAppEnvelope);
 
     /**
-     * Patches a Container App using JSON Merge Patch.
+     * Update properties of a Container App
+     *
+     * <p>Patches a Container App using JSON Merge Patch.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param containerAppName Name of the Container App.
@@ -220,6 +228,8 @@ public interface ContainerApps {
     /**
      * Delete a Container App.
      *
+     * <p>Description for Delete a Container App.
+     *
      * @param id the resource ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.resourcemanager.appcontainers.models.DefaultErrorResponseErrorException thrown if the request
@@ -230,6 +240,8 @@ public interface ContainerApps {
 
     /**
      * Delete a Container App.
+     *
+     * <p>Description for Delete a Container App.
      *
      * @param id the resource ID.
      * @param context The context to associate with this operation.
