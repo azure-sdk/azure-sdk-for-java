@@ -128,7 +128,9 @@ public final class SqlPoolTransparentDataEncryptionsClientImpl implements SqlPoo
     }
 
     /**
-     * Get a SQL pool's transparent data encryption configuration.
+     * Get a SQL pool's transparent data encryption configuration
+     *
+     * <p>Get a SQL pool's transparent data encryption configuration.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -194,7 +196,9 @@ public final class SqlPoolTransparentDataEncryptionsClientImpl implements SqlPoo
     }
 
     /**
-     * Get a SQL pool's transparent data encryption configuration.
+     * Get a SQL pool's transparent data encryption configuration
+     *
+     * <p>Get a SQL pool's transparent data encryption configuration.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -259,7 +263,9 @@ public final class SqlPoolTransparentDataEncryptionsClientImpl implements SqlPoo
     }
 
     /**
-     * Get a SQL pool's transparent data encryption configuration.
+     * Get a SQL pool's transparent data encryption configuration
+     *
+     * <p>Get a SQL pool's transparent data encryption configuration.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -277,18 +283,13 @@ public final class SqlPoolTransparentDataEncryptionsClientImpl implements SqlPoo
         String sqlPoolName,
         TransparentDataEncryptionName transparentDataEncryptionName) {
         return getWithResponseAsync(resourceGroupName, workspaceName, sqlPoolName, transparentDataEncryptionName)
-            .flatMap(
-                (Response<TransparentDataEncryptionInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
-     * Get a SQL pool's transparent data encryption configuration.
+     * Get a SQL pool's transparent data encryption configuration
+     *
+     * <p>Get a SQL pool's transparent data encryption configuration.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -309,7 +310,9 @@ public final class SqlPoolTransparentDataEncryptionsClientImpl implements SqlPoo
     }
 
     /**
-     * Get a SQL pool's transparent data encryption configuration.
+     * Get a SQL pool's transparent data encryption configuration
+     *
+     * <p>Get a SQL pool's transparent data encryption configuration.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -334,7 +337,9 @@ public final class SqlPoolTransparentDataEncryptionsClientImpl implements SqlPoo
     }
 
     /**
-     * Creates or updates a Sql pool's transparent data encryption configuration.
+     * Creates or updates a Sql pool's transparent data encryption configuration
+     *
+     * <p>Creates or updates a Sql pool's transparent data encryption configuration.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -408,7 +413,9 @@ public final class SqlPoolTransparentDataEncryptionsClientImpl implements SqlPoo
     }
 
     /**
-     * Creates or updates a Sql pool's transparent data encryption configuration.
+     * Creates or updates a Sql pool's transparent data encryption configuration
+     *
+     * <p>Creates or updates a Sql pool's transparent data encryption configuration.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -481,7 +488,9 @@ public final class SqlPoolTransparentDataEncryptionsClientImpl implements SqlPoo
     }
 
     /**
-     * Creates or updates a Sql pool's transparent data encryption configuration.
+     * Creates or updates a Sql pool's transparent data encryption configuration
+     *
+     * <p>Creates or updates a Sql pool's transparent data encryption configuration.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -502,18 +511,13 @@ public final class SqlPoolTransparentDataEncryptionsClientImpl implements SqlPoo
         TransparentDataEncryptionInner parameters) {
         return createOrUpdateWithResponseAsync(
                 resourceGroupName, workspaceName, sqlPoolName, transparentDataEncryptionName, parameters)
-            .flatMap(
-                (Response<TransparentDataEncryptionInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
-     * Creates or updates a Sql pool's transparent data encryption configuration.
+     * Creates or updates a Sql pool's transparent data encryption configuration
+     *
+     * <p>Creates or updates a Sql pool's transparent data encryption configuration.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -538,7 +542,9 @@ public final class SqlPoolTransparentDataEncryptionsClientImpl implements SqlPoo
     }
 
     /**
-     * Creates or updates a Sql pool's transparent data encryption configuration.
+     * Creates or updates a Sql pool's transparent data encryption configuration
+     *
+     * <p>Creates or updates a Sql pool's transparent data encryption configuration.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -565,7 +571,9 @@ public final class SqlPoolTransparentDataEncryptionsClientImpl implements SqlPoo
     }
 
     /**
-     * Get list of SQL pool's transparent data encryption configurations.
+     * SQL pool's transparent data encryption configurations
+     *
+     * <p>Get list of SQL pool's transparent data encryption configurations.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -629,7 +637,9 @@ public final class SqlPoolTransparentDataEncryptionsClientImpl implements SqlPoo
     }
 
     /**
-     * Get list of SQL pool's transparent data encryption configurations.
+     * SQL pool's transparent data encryption configurations
+     *
+     * <p>Get list of SQL pool's transparent data encryption configurations.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -691,7 +701,9 @@ public final class SqlPoolTransparentDataEncryptionsClientImpl implements SqlPoo
     }
 
     /**
-     * Get list of SQL pool's transparent data encryption configurations.
+     * SQL pool's transparent data encryption configurations
+     *
+     * <p>Get list of SQL pool's transparent data encryption configurations.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -711,7 +723,9 @@ public final class SqlPoolTransparentDataEncryptionsClientImpl implements SqlPoo
     }
 
     /**
-     * Get list of SQL pool's transparent data encryption configurations.
+     * SQL pool's transparent data encryption configurations
+     *
+     * <p>Get list of SQL pool's transparent data encryption configurations.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -732,7 +746,9 @@ public final class SqlPoolTransparentDataEncryptionsClientImpl implements SqlPoo
     }
 
     /**
-     * Get list of SQL pool's transparent data encryption configurations.
+     * SQL pool's transparent data encryption configurations
+     *
+     * <p>Get list of SQL pool's transparent data encryption configurations.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -750,7 +766,9 @@ public final class SqlPoolTransparentDataEncryptionsClientImpl implements SqlPoo
     }
 
     /**
-     * Get list of SQL pool's transparent data encryption configurations.
+     * SQL pool's transparent data encryption configurations
+     *
+     * <p>Get list of SQL pool's transparent data encryption configurations.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.

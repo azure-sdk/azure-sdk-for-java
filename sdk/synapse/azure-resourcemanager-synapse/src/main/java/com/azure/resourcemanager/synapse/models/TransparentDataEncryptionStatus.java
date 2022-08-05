@@ -30,6 +30,9 @@ public enum TransparentDataEncryptionStatus {
      */
     @JsonCreator
     public static TransparentDataEncryptionStatus fromString(String value) {
+        if (value == null) {
+            return null;
+        }
         TransparentDataEncryptionStatus[] items = TransparentDataEncryptionStatus.values();
         for (TransparentDataEncryptionStatus item : items) {
             if (item.toString().equalsIgnoreCase(value)) {

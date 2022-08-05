@@ -7,34 +7,43 @@ package com.azure.resourcemanager.synapse.models;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-/** Defines values for SensitivityLabelUpdateKind. */
-public enum SensitivityLabelUpdateKind {
-    /** Enum value set. */
-    SET("set"),
+/** Defines values for ActualState. */
+public enum ActualState {
+    /** Enum value Enabling. */
+    ENABLING("Enabling"),
 
-    /** Enum value remove. */
-    REMOVE("remove");
+    /** Enum value Enabled. */
+    ENABLED("Enabled"),
 
-    /** The actual serialized value for a SensitivityLabelUpdateKind instance. */
+    /** Enum value Disabling. */
+    DISABLING("Disabling"),
+
+    /** Enum value Disabled. */
+    DISABLED("Disabled"),
+
+    /** Enum value Unknown. */
+    UNKNOWN("Unknown");
+
+    /** The actual serialized value for a ActualState instance. */
     private final String value;
 
-    SensitivityLabelUpdateKind(String value) {
+    ActualState(String value) {
         this.value = value;
     }
 
     /**
-     * Parses a serialized value to a SensitivityLabelUpdateKind instance.
+     * Parses a serialized value to a ActualState instance.
      *
      * @param value the serialized value to parse.
-     * @return the parsed SensitivityLabelUpdateKind object, or null if unable to parse.
+     * @return the parsed ActualState object, or null if unable to parse.
      */
     @JsonCreator
-    public static SensitivityLabelUpdateKind fromString(String value) {
+    public static ActualState fromString(String value) {
         if (value == null) {
             return null;
         }
-        SensitivityLabelUpdateKind[] items = SensitivityLabelUpdateKind.values();
-        for (SensitivityLabelUpdateKind item : items) {
+        ActualState[] items = ActualState.values();
+        for (ActualState item : items) {
             if (item.toString().equalsIgnoreCase(value)) {
                 return item;
             }

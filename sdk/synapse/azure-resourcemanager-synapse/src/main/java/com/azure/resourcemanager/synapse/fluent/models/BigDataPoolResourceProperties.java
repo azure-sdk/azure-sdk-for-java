@@ -16,7 +16,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 import java.util.List;
 
-/** Spark pool properties Properties of a Big Data pool powered by Apache Spark. */
+/**
+ * Spark pool properties
+ *
+ * <p>Properties of a Big Data pool powered by Apache Spark.
+ */
 @Fluent
 public final class BigDataPoolResourceProperties {
     /*
@@ -26,7 +30,9 @@ public final class BigDataPoolResourceProperties {
     private String provisioningState;
 
     /*
-     * Spark pool auto-scaling properties Auto-scaling properties
+     * Spark pool auto-scaling properties
+     *
+     * Auto-scaling properties
      */
     @JsonProperty(value = "autoScale")
     private AutoScaleProperties autoScale;
@@ -38,7 +44,9 @@ public final class BigDataPoolResourceProperties {
     private OffsetDateTime creationDate;
 
     /*
-     * Spark pool auto-pausing properties Auto-pausing properties
+     * Spark pool auto-pausing properties
+     *
+     * Auto-pausing properties
      */
     @JsonProperty(value = "autoPause")
     private AutoPauseProperties autoPause;
@@ -80,7 +88,9 @@ public final class BigDataPoolResourceProperties {
     private Integer nodeCount;
 
     /*
-     * Spark pool library version requirements Library version requirements
+     * Spark pool library version requirements
+     *
+     * Library version requirements
      */
     @JsonProperty(value = "libraryRequirements")
     private LibraryRequirements libraryRequirements;
@@ -92,8 +102,9 @@ public final class BigDataPoolResourceProperties {
     private List<LibraryInfo> customLibraries;
 
     /*
-     * Spark pool Config Properties Spark configuration file to specify
-     * additional properties
+     * Spark pool Config Properties
+     *
+     * Spark configuration file to specify additional properties
      */
     @JsonProperty(value = "sparkConfigProperties")
     private SparkConfigProperties sparkConfigProperties;
@@ -149,7 +160,9 @@ public final class BigDataPoolResourceProperties {
     }
 
     /**
-     * Get the autoScale property: Spark pool auto-scaling properties Auto-scaling properties.
+     * Get the autoScale property: Spark pool auto-scaling properties
+     *
+     * <p>Auto-scaling properties.
      *
      * @return the autoScale value.
      */
@@ -158,7 +171,9 @@ public final class BigDataPoolResourceProperties {
     }
 
     /**
-     * Set the autoScale property: Spark pool auto-scaling properties Auto-scaling properties.
+     * Set the autoScale property: Spark pool auto-scaling properties
+     *
+     * <p>Auto-scaling properties.
      *
      * @param autoScale the autoScale value to set.
      * @return the BigDataPoolResourceProperties object itself.
@@ -178,7 +193,9 @@ public final class BigDataPoolResourceProperties {
     }
 
     /**
-     * Get the autoPause property: Spark pool auto-pausing properties Auto-pausing properties.
+     * Get the autoPause property: Spark pool auto-pausing properties
+     *
+     * <p>Auto-pausing properties.
      *
      * @return the autoPause value.
      */
@@ -187,7 +204,9 @@ public final class BigDataPoolResourceProperties {
     }
 
     /**
-     * Set the autoPause property: Spark pool auto-pausing properties Auto-pausing properties.
+     * Set the autoPause property: Spark pool auto-pausing properties
+     *
+     * <p>Auto-pausing properties.
      *
      * @param autoPause the autoPause value to set.
      * @return the BigDataPoolResourceProperties object itself.
@@ -319,7 +338,9 @@ public final class BigDataPoolResourceProperties {
     }
 
     /**
-     * Get the libraryRequirements property: Spark pool library version requirements Library version requirements.
+     * Get the libraryRequirements property: Spark pool library version requirements
+     *
+     * <p>Library version requirements.
      *
      * @return the libraryRequirements value.
      */
@@ -328,7 +349,9 @@ public final class BigDataPoolResourceProperties {
     }
 
     /**
-     * Set the libraryRequirements property: Spark pool library version requirements Library version requirements.
+     * Set the libraryRequirements property: Spark pool library version requirements
+     *
+     * <p>Library version requirements.
      *
      * @param libraryRequirements the libraryRequirements value to set.
      * @return the BigDataPoolResourceProperties object itself.
@@ -359,8 +382,9 @@ public final class BigDataPoolResourceProperties {
     }
 
     /**
-     * Get the sparkConfigProperties property: Spark pool Config Properties Spark configuration file to specify
-     * additional properties.
+     * Get the sparkConfigProperties property: Spark pool Config Properties
+     *
+     * <p>Spark configuration file to specify additional properties.
      *
      * @return the sparkConfigProperties value.
      */
@@ -369,8 +393,9 @@ public final class BigDataPoolResourceProperties {
     }
 
     /**
-     * Set the sparkConfigProperties property: Spark pool Config Properties Spark configuration file to specify
-     * additional properties.
+     * Set the sparkConfigProperties property: Spark pool Config Properties
+     *
+     * <p>Spark configuration file to specify additional properties.
      *
      * @param sparkConfigProperties the sparkConfigProperties value to set.
      * @return the BigDataPoolResourceProperties object itself.

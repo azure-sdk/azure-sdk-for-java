@@ -33,6 +33,9 @@ public enum QueryMetricUnit {
      */
     @JsonCreator
     public static QueryMetricUnit fromString(String value) {
+        if (value == null) {
+            return null;
+        }
         QueryMetricUnit[] items = QueryMetricUnit.values();
         for (QueryMetricUnit item : items) {
             if (item.toString().equalsIgnoreCase(value)) {

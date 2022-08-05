@@ -87,7 +87,9 @@ public final class SqlPoolTableColumnsClientImpl implements SqlPoolTableColumnsC
     }
 
     /**
-     * Gets columns in a given table in a SQL pool.
+     * Gets columns in a given table in a SQL pool
+     *
+     * <p>Gets columns in a given table in a SQL pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -168,7 +170,9 @@ public final class SqlPoolTableColumnsClientImpl implements SqlPoolTableColumnsC
     }
 
     /**
-     * Gets columns in a given table in a SQL pool.
+     * Gets columns in a given table in a SQL pool
+     *
+     * <p>Gets columns in a given table in a SQL pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -248,7 +252,9 @@ public final class SqlPoolTableColumnsClientImpl implements SqlPoolTableColumnsC
     }
 
     /**
-     * Gets columns in a given table in a SQL pool.
+     * Gets columns in a given table in a SQL pool
+     *
+     * <p>Gets columns in a given table in a SQL pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -277,7 +283,9 @@ public final class SqlPoolTableColumnsClientImpl implements SqlPoolTableColumnsC
     }
 
     /**
-     * Gets columns in a given table in a SQL pool.
+     * Gets columns in a given table in a SQL pool
+     *
+     * <p>Gets columns in a given table in a SQL pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -301,7 +309,9 @@ public final class SqlPoolTableColumnsClientImpl implements SqlPoolTableColumnsC
     }
 
     /**
-     * Gets columns in a given table in a SQL pool.
+     * Gets columns in a given table in a SQL pool
+     *
+     * <p>Gets columns in a given table in a SQL pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -332,7 +342,9 @@ public final class SqlPoolTableColumnsClientImpl implements SqlPoolTableColumnsC
     }
 
     /**
-     * Gets columns in a given table in a SQL pool.
+     * Gets columns in a given table in a SQL pool
+     *
+     * <p>Gets columns in a given table in a SQL pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -353,7 +365,9 @@ public final class SqlPoolTableColumnsClientImpl implements SqlPoolTableColumnsC
     }
 
     /**
-     * Gets columns in a given table in a SQL pool.
+     * Gets columns in a given table in a SQL pool
+     *
+     * <p>Gets columns in a given table in a SQL pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.

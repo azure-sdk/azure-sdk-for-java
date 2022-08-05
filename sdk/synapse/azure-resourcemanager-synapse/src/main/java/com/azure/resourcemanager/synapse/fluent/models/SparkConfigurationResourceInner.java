@@ -17,6 +17,7 @@ import java.util.Map;
 public final class SparkConfigurationResourceInner extends EntityResource {
     /*
      * Information about a SparkConfiguration created at the workspace level.
+     *
      * SparkConfiguration properties.
      */
     @JsonProperty(value = "properties", required = true)
@@ -24,7 +25,8 @@ public final class SparkConfigurationResourceInner extends EntityResource {
 
     /**
      * Get the innerProperties property: Information about a SparkConfiguration created at the workspace level.
-     * SparkConfiguration properties.
+     *
+     * <p>SparkConfiguration properties.
      *
      * @return the innerProperties value.
      */

@@ -84,7 +84,9 @@ public final class SqlPoolUsagesClientImpl implements SqlPoolUsagesClient {
     }
 
     /**
-     * Gets SQL pool usages.
+     * Gets SQL pool usages
+     *
+     * <p>Gets SQL pool usages.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -147,7 +149,9 @@ public final class SqlPoolUsagesClientImpl implements SqlPoolUsagesClient {
     }
 
     /**
-     * Gets SQL pool usages.
+     * Gets SQL pool usages
+     *
+     * <p>Gets SQL pool usages.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -208,7 +212,9 @@ public final class SqlPoolUsagesClientImpl implements SqlPoolUsagesClient {
     }
 
     /**
-     * Gets SQL pool usages.
+     * Gets SQL pool usages
+     *
+     * <p>Gets SQL pool usages.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -226,7 +232,9 @@ public final class SqlPoolUsagesClientImpl implements SqlPoolUsagesClient {
     }
 
     /**
-     * Gets SQL pool usages.
+     * Gets SQL pool usages
+     *
+     * <p>Gets SQL pool usages.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -246,7 +254,9 @@ public final class SqlPoolUsagesClientImpl implements SqlPoolUsagesClient {
     }
 
     /**
-     * Gets SQL pool usages.
+     * Gets SQL pool usages
+     *
+     * <p>Gets SQL pool usages.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -262,7 +272,9 @@ public final class SqlPoolUsagesClientImpl implements SqlPoolUsagesClient {
     }
 
     /**
-     * Gets SQL pool usages.
+     * Gets SQL pool usages
+     *
+     * <p>Gets SQL pool usages.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.

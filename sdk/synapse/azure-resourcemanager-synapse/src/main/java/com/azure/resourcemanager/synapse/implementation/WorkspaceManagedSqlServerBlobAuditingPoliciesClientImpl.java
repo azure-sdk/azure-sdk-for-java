@@ -132,7 +132,9 @@ public final class WorkspaceManagedSqlServerBlobAuditingPoliciesClientImpl
     }
 
     /**
-     * Get a workspace managed sql server's blob auditing policy.
+     * Get server's blob auditing policy.
+     *
+     * <p>Get a workspace managed sql server's blob auditing policy.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -189,7 +191,9 @@ public final class WorkspaceManagedSqlServerBlobAuditingPoliciesClientImpl
     }
 
     /**
-     * Get a workspace managed sql server's blob auditing policy.
+     * Get server's blob auditing policy.
+     *
+     * <p>Get a workspace managed sql server's blob auditing policy.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -247,7 +251,9 @@ public final class WorkspaceManagedSqlServerBlobAuditingPoliciesClientImpl
     }
 
     /**
-     * Get a workspace managed sql server's blob auditing policy.
+     * Get server's blob auditing policy.
+     *
+     * <p>Get a workspace managed sql server's blob auditing policy.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -261,18 +267,13 @@ public final class WorkspaceManagedSqlServerBlobAuditingPoliciesClientImpl
     private Mono<ServerBlobAuditingPolicyInner> getAsync(
         String resourceGroupName, String workspaceName, BlobAuditingPolicyName blobAuditingPolicyName) {
         return getWithResponseAsync(resourceGroupName, workspaceName, blobAuditingPolicyName)
-            .flatMap(
-                (Response<ServerBlobAuditingPolicyInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
-     * Get a workspace managed sql server's blob auditing policy.
+     * Get server's blob auditing policy.
+     *
+     * <p>Get a workspace managed sql server's blob auditing policy.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -289,7 +290,9 @@ public final class WorkspaceManagedSqlServerBlobAuditingPoliciesClientImpl
     }
 
     /**
-     * Get a workspace managed sql server's blob auditing policy.
+     * Get server's blob auditing policy.
+     *
+     * <p>Get a workspace managed sql server's blob auditing policy.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -310,7 +313,9 @@ public final class WorkspaceManagedSqlServerBlobAuditingPoliciesClientImpl
     }
 
     /**
-     * Create or Update a workspace managed sql server's blob auditing policy.
+     * Create or Update server's blob auditing policy.
+     *
+     * <p>Create or Update a workspace managed sql server's blob auditing policy.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -376,7 +381,9 @@ public final class WorkspaceManagedSqlServerBlobAuditingPoliciesClientImpl
     }
 
     /**
-     * Create or Update a workspace managed sql server's blob auditing policy.
+     * Create or Update server's blob auditing policy.
+     *
+     * <p>Create or Update a workspace managed sql server's blob auditing policy.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -441,7 +448,9 @@ public final class WorkspaceManagedSqlServerBlobAuditingPoliciesClientImpl
     }
 
     /**
-     * Create or Update a workspace managed sql server's blob auditing policy.
+     * Create or Update server's blob auditing policy.
+     *
+     * <p>Create or Update a workspace managed sql server's blob auditing policy.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -472,7 +481,9 @@ public final class WorkspaceManagedSqlServerBlobAuditingPoliciesClientImpl
     }
 
     /**
-     * Create or Update a workspace managed sql server's blob auditing policy.
+     * Create or Update server's blob auditing policy.
+     *
+     * <p>Create or Update a workspace managed sql server's blob auditing policy.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -507,7 +518,9 @@ public final class WorkspaceManagedSqlServerBlobAuditingPoliciesClientImpl
     }
 
     /**
-     * Create or Update a workspace managed sql server's blob auditing policy.
+     * Create or Update server's blob auditing policy.
+     *
+     * <p>Create or Update a workspace managed sql server's blob auditing policy.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -529,7 +542,9 @@ public final class WorkspaceManagedSqlServerBlobAuditingPoliciesClientImpl
     }
 
     /**
-     * Create or Update a workspace managed sql server's blob auditing policy.
+     * Create or Update server's blob auditing policy.
+     *
+     * <p>Create or Update a workspace managed sql server's blob auditing policy.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -553,7 +568,9 @@ public final class WorkspaceManagedSqlServerBlobAuditingPoliciesClientImpl
     }
 
     /**
-     * Create or Update a workspace managed sql server's blob auditing policy.
+     * Create or Update server's blob auditing policy.
+     *
+     * <p>Create or Update a workspace managed sql server's blob auditing policy.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -576,7 +593,9 @@ public final class WorkspaceManagedSqlServerBlobAuditingPoliciesClientImpl
     }
 
     /**
-     * Create or Update a workspace managed sql server's blob auditing policy.
+     * Create or Update server's blob auditing policy.
+     *
+     * <p>Create or Update a workspace managed sql server's blob auditing policy.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -601,7 +620,9 @@ public final class WorkspaceManagedSqlServerBlobAuditingPoliciesClientImpl
     }
 
     /**
-     * Create or Update a workspace managed sql server's blob auditing policy.
+     * Create or Update server's blob auditing policy.
+     *
+     * <p>Create or Update a workspace managed sql server's blob auditing policy.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -622,7 +643,9 @@ public final class WorkspaceManagedSqlServerBlobAuditingPoliciesClientImpl
     }
 
     /**
-     * Create or Update a workspace managed sql server's blob auditing policy.
+     * Create or Update server's blob auditing policy.
+     *
+     * <p>Create or Update a workspace managed sql server's blob auditing policy.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -646,7 +669,9 @@ public final class WorkspaceManagedSqlServerBlobAuditingPoliciesClientImpl
     }
 
     /**
-     * List workspace managed sql server's blob auditing policies.
+     * List workspace server's blob auditing policies.
+     *
+     * <p>List workspace managed sql server's blob auditing policies.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -705,7 +730,9 @@ public final class WorkspaceManagedSqlServerBlobAuditingPoliciesClientImpl
     }
 
     /**
-     * List workspace managed sql server's blob auditing policies.
+     * List workspace server's blob auditing policies.
+     *
+     * <p>List workspace managed sql server's blob auditing policies.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -762,7 +789,9 @@ public final class WorkspaceManagedSqlServerBlobAuditingPoliciesClientImpl
     }
 
     /**
-     * List workspace managed sql server's blob auditing policies.
+     * List workspace server's blob auditing policies.
+     *
+     * <p>List workspace managed sql server's blob auditing policies.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -780,7 +809,9 @@ public final class WorkspaceManagedSqlServerBlobAuditingPoliciesClientImpl
     }
 
     /**
-     * List workspace managed sql server's blob auditing policies.
+     * List workspace server's blob auditing policies.
+     *
+     * <p>List workspace managed sql server's blob auditing policies.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -799,7 +830,9 @@ public final class WorkspaceManagedSqlServerBlobAuditingPoliciesClientImpl
     }
 
     /**
-     * List workspace managed sql server's blob auditing policies.
+     * List workspace server's blob auditing policies.
+     *
+     * <p>List workspace managed sql server's blob auditing policies.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -815,7 +848,9 @@ public final class WorkspaceManagedSqlServerBlobAuditingPoliciesClientImpl
     }
 
     /**
-     * List workspace managed sql server's blob auditing policies.
+     * List workspace server's blob auditing policies.
+     *
+     * <p>List workspace managed sql server's blob auditing policies.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.

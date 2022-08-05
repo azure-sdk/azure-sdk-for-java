@@ -471,14 +471,7 @@ public final class KustoPoolDatabasesClientImpl implements KustoPoolDatabasesCli
     private Mono<DatabaseInner> getAsync(
         String resourceGroupName, String workspaceName, String kustoPoolName, String databaseName) {
         return getWithResponseAsync(resourceGroupName, workspaceName, kustoPoolName, databaseName)
-            .flatMap(
-                (Response<DatabaseInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**

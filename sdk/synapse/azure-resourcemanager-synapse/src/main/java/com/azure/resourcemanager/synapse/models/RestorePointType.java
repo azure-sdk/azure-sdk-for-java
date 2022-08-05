@@ -30,6 +30,9 @@ public enum RestorePointType {
      */
     @JsonCreator
     public static RestorePointType fromString(String value) {
+        if (value == null) {
+            return null;
+        }
         RestorePointType[] items = RestorePointType.values();
         for (RestorePointType item : items) {
             if (item.toString().equalsIgnoreCase(value)) {

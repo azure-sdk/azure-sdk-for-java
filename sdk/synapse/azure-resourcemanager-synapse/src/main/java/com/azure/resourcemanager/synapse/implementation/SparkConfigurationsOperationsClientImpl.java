@@ -87,7 +87,9 @@ public final class SparkConfigurationsOperationsClientImpl implements SparkConfi
     }
 
     /**
-     * List sparkConfigurations in a workspace.
+     * List the sparkConfigurations in a workspace.
+     *
+     * <p>List sparkConfigurations in a workspace.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -146,7 +148,9 @@ public final class SparkConfigurationsOperationsClientImpl implements SparkConfi
     }
 
     /**
-     * List sparkConfigurations in a workspace.
+     * List the sparkConfigurations in a workspace.
+     *
+     * <p>List sparkConfigurations in a workspace.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -203,7 +207,9 @@ public final class SparkConfigurationsOperationsClientImpl implements SparkConfi
     }
 
     /**
-     * List sparkConfigurations in a workspace.
+     * List the sparkConfigurations in a workspace.
+     *
+     * <p>List sparkConfigurations in a workspace.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -221,7 +227,9 @@ public final class SparkConfigurationsOperationsClientImpl implements SparkConfi
     }
 
     /**
-     * List sparkConfigurations in a workspace.
+     * List the sparkConfigurations in a workspace.
+     *
+     * <p>List sparkConfigurations in a workspace.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -240,7 +248,9 @@ public final class SparkConfigurationsOperationsClientImpl implements SparkConfi
     }
 
     /**
-     * List sparkConfigurations in a workspace.
+     * List the sparkConfigurations in a workspace.
+     *
+     * <p>List sparkConfigurations in a workspace.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -256,7 +266,9 @@ public final class SparkConfigurationsOperationsClientImpl implements SparkConfi
     }
 
     /**
-     * List sparkConfigurations in a workspace.
+     * List the sparkConfigurations in a workspace.
+     *
+     * <p>List sparkConfigurations in a workspace.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.

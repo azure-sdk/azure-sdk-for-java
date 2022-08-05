@@ -39,6 +39,9 @@ public enum ReplicationRole {
      */
     @JsonCreator
     public static ReplicationRole fromString(String value) {
+        if (value == null) {
+            return null;
+        }
         ReplicationRole[] items = ReplicationRole.values();
         for (ReplicationRole item : items) {
             if (item.toString().equalsIgnoreCase(value)) {

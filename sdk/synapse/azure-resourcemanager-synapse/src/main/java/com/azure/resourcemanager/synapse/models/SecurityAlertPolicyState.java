@@ -33,6 +33,9 @@ public enum SecurityAlertPolicyState {
      */
     @JsonCreator
     public static SecurityAlertPolicyState fromString(String value) {
+        if (value == null) {
+            return null;
+        }
         SecurityAlertPolicyState[] items = SecurityAlertPolicyState.values();
         for (SecurityAlertPolicyState item : items) {
             if (item.toString().equalsIgnoreCase(value)) {

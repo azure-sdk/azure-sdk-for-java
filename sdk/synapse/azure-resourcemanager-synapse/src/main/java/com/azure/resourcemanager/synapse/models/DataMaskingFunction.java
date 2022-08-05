@@ -42,6 +42,9 @@ public enum DataMaskingFunction {
      */
     @JsonCreator
     public static DataMaskingFunction fromString(String value) {
+        if (value == null) {
+            return null;
+        }
         DataMaskingFunction[] items = DataMaskingFunction.values();
         for (DataMaskingFunction item : items) {
             if (item.toString().equalsIgnoreCase(value)) {
