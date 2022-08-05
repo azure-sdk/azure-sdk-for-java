@@ -19,8 +19,7 @@ import java.util.List;
 @Fluent
 public final class ImageTemplateShellValidator extends ImageTemplateInVMValidator {
     /*
-     * URI of the shell script to be run for validation. It can be a github
-     * link, Azure Storage URI, etc
+     * URI of the shell script to be run for validation. It can be a github link, Azure Storage URI, etc
      */
     @JsonProperty(value = "scriptUri")
     private String scriptUri;

@@ -39,6 +39,9 @@ public enum ProvisioningState {
      */
     @JsonCreator
     public static ProvisioningState fromString(String value) {
+        if (value == null) {
+            return null;
+        }
         ProvisioningState[] items = ProvisioningState.values();
         for (ProvisioningState item : items) {
             if (item.toString().equalsIgnoreCase(value)) {
