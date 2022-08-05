@@ -219,7 +219,9 @@ public interface ContainerAppsClient {
     void delete(String resourceGroupName, String containerAppName, Context context);
 
     /**
-     * Patches a Container App using JSON Merge Patch.
+     * Update properties of a Container App
+     *
+     * <p>Patches a Container App using JSON Merge Patch.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param containerAppName Name of the Container App.
@@ -235,7 +237,9 @@ public interface ContainerAppsClient {
         String resourceGroupName, String containerAppName, ContainerAppInner containerAppEnvelope);
 
     /**
-     * Patches a Container App using JSON Merge Patch.
+     * Update properties of a Container App
+     *
+     * <p>Patches a Container App using JSON Merge Patch.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param containerAppName Name of the Container App.
@@ -252,7 +256,9 @@ public interface ContainerAppsClient {
         String resourceGroupName, String containerAppName, ContainerAppInner containerAppEnvelope, Context context);
 
     /**
-     * Patches a Container App using JSON Merge Patch.
+     * Update properties of a Container App
+     *
+     * <p>Patches a Container App using JSON Merge Patch.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param containerAppName Name of the Container App.
@@ -266,7 +272,9 @@ public interface ContainerAppsClient {
     void update(String resourceGroupName, String containerAppName, ContainerAppInner containerAppEnvelope);
 
     /**
-     * Patches a Container App using JSON Merge Patch.
+     * Update properties of a Container App
+     *
+     * <p>Patches a Container App using JSON Merge Patch.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param containerAppName Name of the Container App.
