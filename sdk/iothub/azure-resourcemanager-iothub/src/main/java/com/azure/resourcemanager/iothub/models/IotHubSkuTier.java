@@ -33,6 +33,9 @@ public enum IotHubSkuTier {
      */
     @JsonCreator
     public static IotHubSkuTier fromString(String value) {
+        if (value == null) {
+            return null;
+        }
         IotHubSkuTier[] items = IotHubSkuTier.values();
         for (IotHubSkuTier item : items) {
             if (item.toString().equalsIgnoreCase(value)) {
