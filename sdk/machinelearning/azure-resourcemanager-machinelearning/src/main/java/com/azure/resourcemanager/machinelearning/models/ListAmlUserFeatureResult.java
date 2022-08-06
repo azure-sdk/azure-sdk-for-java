@@ -19,9 +19,8 @@ public final class ListAmlUserFeatureResult {
     private List<AmlUserFeatureInner> value;
 
     /*
-     * The URI to fetch the next page of AML user features information. Call
-     * ListNext() with this to fetch the next page of AML user features
-     * information.
+     * The URI to fetch the next page of AML user features information. Call ListNext() with this to fetch the next
+     * page of AML user features information.
      */
     @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
     private String nextLink;

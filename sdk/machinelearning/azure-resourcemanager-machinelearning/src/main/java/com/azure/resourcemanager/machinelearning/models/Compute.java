@@ -41,8 +41,7 @@ public class Compute {
     private String computeLocation;
 
     /*
-     * The provision state of the cluster. Valid values are Unknown, Updating,
-     * Provisioning, Succeeded, and Failed.
+     * The provision state of the cluster. Valid values are Unknown, Updating, Provisioning, Succeeded, and Failed.
      */
     @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
     private ProvisioningState provisioningState;
@@ -78,15 +77,14 @@ public class Compute {
     private List<ManagementError> provisioningErrors;
 
     /*
-     * Indicating whether the compute was provisioned by user and brought from
-     * outside if true, or machine learning service provisioned it if false.
+     * Indicating whether the compute was provisioned by user and brought from outside if true, or machine learning
+     * service provisioned it if false.
      */
     @JsonProperty(value = "isAttachedCompute", access = JsonProperty.Access.WRITE_ONLY)
     private Boolean isAttachedCompute;
 
     /*
-     * Opt-out of local authentication and ensure customers can use only MSI
-     * and AAD exclusively for authentication.
+     * Opt-out of local authentication and ensure customers can use only MSI and AAD exclusively for authentication.
      */
     @JsonProperty(value = "disableLocalAuth")
     private Boolean disableLocalAuth;

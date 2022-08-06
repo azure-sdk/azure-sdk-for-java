@@ -19,9 +19,8 @@ public final class UpdateWorkspaceQuotasResultInner {
     private List<UpdateWorkspaceQuotas> value;
 
     /*
-     * The URI to fetch the next page of workspace quota update result. Call
-     * ListNext() with this to fetch the next page of Workspace Quota update
-     * result.
+     * The URI to fetch the next page of workspace quota update result. Call ListNext() with this to fetch the next
+     * page of Workspace Quota update result.
      */
     @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
     private String nextLink;
