@@ -33,6 +33,9 @@ public enum DatabaseTier {
      */
     @JsonCreator
     public static DatabaseTier fromString(String value) {
+        if (value == null) {
+            return null;
+        }
         DatabaseTier[] items = DatabaseTier.values();
         for (DatabaseTier item : items) {
             if (item.toString().equalsIgnoreCase(value)) {

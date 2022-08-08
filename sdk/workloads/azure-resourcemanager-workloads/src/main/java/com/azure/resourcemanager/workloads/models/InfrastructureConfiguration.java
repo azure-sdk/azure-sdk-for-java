@@ -25,11 +25,17 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @Fluent
 public class InfrastructureConfiguration {
     /*
-     * The application resource group where SAP system resources will be
-     * deployed.
+     * The application resource group where SAP system resources will be deployed.
      */
     @JsonProperty(value = "appResourceGroup", required = true)
     private String appResourceGroup;
+
+    /*
+     * A boolean, if true, specifies that the user is aware about the given infrastructure configuration to be
+     * restricted.
+     */
+    @JsonProperty(value = "isRestrictedUse")
+    private Boolean isRestrictedUse;
 
     /**
      * Get the appResourceGroup property: The application resource group where SAP system resources will be deployed.
@@ -48,6 +54,28 @@ public class InfrastructureConfiguration {
      */
     public InfrastructureConfiguration withAppResourceGroup(String appResourceGroup) {
         this.appResourceGroup = appResourceGroup;
+        return this;
+    }
+
+    /**
+     * Get the isRestrictedUse property: A boolean, if true, specifies that the user is aware about the given
+     * infrastructure configuration to be restricted.
+     *
+     * @return the isRestrictedUse value.
+     */
+    public Boolean isRestrictedUse() {
+        return this.isRestrictedUse;
+    }
+
+    /**
+     * Set the isRestrictedUse property: A boolean, if true, specifies that the user is aware about the given
+     * infrastructure configuration to be restricted.
+     *
+     * @param isRestrictedUse the isRestrictedUse value to set.
+     * @return the InfrastructureConfiguration object itself.
+     */
+    public InfrastructureConfiguration withIsRestrictedUse(Boolean isRestrictedUse) {
+        this.isRestrictedUse = isRestrictedUse;
         return this;
     }
 

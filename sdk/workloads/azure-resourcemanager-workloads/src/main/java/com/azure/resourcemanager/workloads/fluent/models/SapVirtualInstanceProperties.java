@@ -33,8 +33,7 @@ public final class SapVirtualInstanceProperties {
     private SapProductType sapProduct;
 
     /*
-     * Defines if an existing SAP system is being registered or a new SAP
-     * system is being created
+     * Defines if an existing SAP system is being registered or a new SAP system is being created
      */
     @JsonProperty(value = "configuration", required = true)
     private SapConfiguration configuration;

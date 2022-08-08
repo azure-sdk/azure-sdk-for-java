@@ -36,8 +36,7 @@ public final class PhpWorkloadResourceInner extends Resource {
     private PhpWorkloadResourceProperties innerProperties;
 
     /*
-     * Indicates which kind of php workload this resource represent e.g
-     * WordPress
+     * Indicates which kind of php workload this resource represent e.g WordPress
      */
     @JsonProperty(value = "kind", required = true)
     private WorkloadKind kind;
