@@ -30,6 +30,9 @@ public enum ServiceNameUnavailabilityReason {
      */
     @JsonCreator
     public static ServiceNameUnavailabilityReason fromString(String value) {
+        if (value == null) {
+            return null;
+        }
         ServiceNameUnavailabilityReason[] items = ServiceNameUnavailabilityReason.values();
         for (ServiceNameUnavailabilityReason item : items) {
             if (item.toString().equalsIgnoreCase(value)) {

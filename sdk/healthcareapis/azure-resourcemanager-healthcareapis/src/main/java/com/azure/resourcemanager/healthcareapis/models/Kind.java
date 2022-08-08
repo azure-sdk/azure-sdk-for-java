@@ -33,6 +33,9 @@ public enum Kind {
      */
     @JsonCreator
     public static Kind fromString(String value) {
+        if (value == null) {
+            return null;
+        }
         Kind[] items = Kind.values();
         for (Kind item : items) {
             if (item.toString().equalsIgnoreCase(value)) {

@@ -20,8 +20,8 @@ public final class OperationDetailInner {
     private String name;
 
     /*
-     * Whether the operation applies to data-plane. This is "true" for
-     * data-plane operations and "false" for ARM/control-plane operations.
+     * Whether the operation applies to data-plane. This is "true" for data-plane operations and "false" for
+     * ARM/control-plane operations.
      */
     @JsonProperty(value = "isDataAction", access = JsonProperty.Access.WRITE_ONLY)
     private Boolean isDataAction;
@@ -39,8 +39,7 @@ public final class OperationDetailInner {
     private String origin;
 
     /*
-     * Enum. Indicates the action type. "Internal" refers to actions that are
-     * for internal only APIs.
+     * Enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs.
      */
     @JsonProperty(value = "actionType", access = JsonProperty.Access.WRITE_ONLY)
     private ActionType actionType;

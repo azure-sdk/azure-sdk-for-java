@@ -6,6 +6,7 @@ package com.azure.resourcemanager.healthcareapis.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.SystemData;
+import com.azure.resourcemanager.healthcareapis.models.CorsConfiguration;
 import com.azure.resourcemanager.healthcareapis.models.DicomServiceAuthenticationConfiguration;
 import com.azure.resourcemanager.healthcareapis.models.PrivateEndpointConnection;
 import com.azure.resourcemanager.healthcareapis.models.ProvisioningState;
@@ -32,8 +33,7 @@ public final class DicomServiceInner extends TaggedResource {
     private SystemData systemData;
 
     /*
-     * Setting indicating whether the service has a managed identity associated
-     * with it.
+     * Setting indicating whether the service has a managed identity associated with it.
      */
     @JsonProperty(value = "identity")
     private ServiceManagedIdentityIdentity identity;
@@ -127,6 +127,29 @@ public final class DicomServiceInner extends TaggedResource {
             this.innerProperties = new DicomServiceProperties();
         }
         this.innerProperties().withAuthenticationConfiguration(authenticationConfiguration);
+        return this;
+    }
+
+    /**
+     * Get the corsConfiguration property: Dicom Service Cors configuration.
+     *
+     * @return the corsConfiguration value.
+     */
+    public CorsConfiguration corsConfiguration() {
+        return this.innerProperties() == null ? null : this.innerProperties().corsConfiguration();
+    }
+
+    /**
+     * Set the corsConfiguration property: Dicom Service Cors configuration.
+     *
+     * @param corsConfiguration the corsConfiguration value to set.
+     * @return the DicomServiceInner object itself.
+     */
+    public DicomServiceInner withCorsConfiguration(CorsConfiguration corsConfiguration) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new DicomServiceProperties();
+        }
+        this.innerProperties().withCorsConfiguration(corsConfiguration);
         return this;
     }
 

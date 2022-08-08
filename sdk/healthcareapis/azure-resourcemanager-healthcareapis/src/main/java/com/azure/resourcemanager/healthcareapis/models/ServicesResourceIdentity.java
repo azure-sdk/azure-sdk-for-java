@@ -23,8 +23,7 @@ public class ServicesResourceIdentity {
     private String tenantId;
 
     /*
-     * Type of identity being specified, currently SystemAssigned and None are
-     * allowed.
+     * Type of identity being specified, currently SystemAssigned and None are allowed.
      */
     @JsonProperty(value = "type")
     private ManagedServiceIdentityType type;
