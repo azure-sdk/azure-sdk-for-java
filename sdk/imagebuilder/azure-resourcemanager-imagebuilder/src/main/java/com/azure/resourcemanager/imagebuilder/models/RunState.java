@@ -42,6 +42,9 @@ public enum RunState {
      */
     @JsonCreator
     public static RunState fromString(String value) {
+        if (value == null) {
+            return null;
+        }
         RunState[] items = RunState.values();
         for (RunState item : items) {
             if (item.toString().equalsIgnoreCase(value)) {

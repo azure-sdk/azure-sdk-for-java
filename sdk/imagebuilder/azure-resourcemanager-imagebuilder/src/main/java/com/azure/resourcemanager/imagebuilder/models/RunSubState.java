@@ -39,6 +39,9 @@ public enum RunSubState {
      */
     @JsonCreator
     public static RunSubState fromString(String value) {
+        if (value == null) {
+            return null;
+        }
         RunSubState[] items = RunSubState.values();
         for (RunSubState item : items) {
             if (item.toString().equalsIgnoreCase(value)) {
