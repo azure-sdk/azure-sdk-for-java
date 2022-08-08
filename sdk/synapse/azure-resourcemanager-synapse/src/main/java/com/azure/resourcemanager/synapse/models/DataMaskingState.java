@@ -30,6 +30,9 @@ public enum DataMaskingState {
      */
     @JsonCreator
     public static DataMaskingState fromString(String value) {
+        if (value == null) {
+            return null;
+        }
         DataMaskingState[] items = DataMaskingState.values();
         for (DataMaskingState item : items) {
             if (item.toString().equalsIgnoreCase(value)) {

@@ -102,7 +102,9 @@ public final class SqlPoolReplicationLinksClientImpl implements SqlPoolReplicati
     }
 
     /**
-     * Lists a Sql pool's replication links.
+     * Get SQL pool replication links
+     *
+     * <p>Lists a Sql pool's replication links.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -166,7 +168,9 @@ public final class SqlPoolReplicationLinksClientImpl implements SqlPoolReplicati
     }
 
     /**
-     * Lists a Sql pool's replication links.
+     * Get SQL pool replication links
+     *
+     * <p>Lists a Sql pool's replication links.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -228,7 +232,9 @@ public final class SqlPoolReplicationLinksClientImpl implements SqlPoolReplicati
     }
 
     /**
-     * Lists a Sql pool's replication links.
+     * Get SQL pool replication links
+     *
+     * <p>Lists a Sql pool's replication links.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -248,7 +254,9 @@ public final class SqlPoolReplicationLinksClientImpl implements SqlPoolReplicati
     }
 
     /**
-     * Lists a Sql pool's replication links.
+     * Get SQL pool replication links
+     *
+     * <p>Lists a Sql pool's replication links.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -269,7 +277,9 @@ public final class SqlPoolReplicationLinksClientImpl implements SqlPoolReplicati
     }
 
     /**
-     * Lists a Sql pool's replication links.
+     * Get SQL pool replication links
+     *
+     * <p>Lists a Sql pool's replication links.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -287,7 +297,9 @@ public final class SqlPoolReplicationLinksClientImpl implements SqlPoolReplicati
     }
 
     /**
-     * Lists a Sql pool's replication links.
+     * Get SQL pool replication links
+     *
+     * <p>Lists a Sql pool's replication links.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -306,7 +318,9 @@ public final class SqlPoolReplicationLinksClientImpl implements SqlPoolReplicati
     }
 
     /**
-     * Get SQL pool replication link by name.
+     * Get SQL pool replication link by name
+     *
+     * <p>Get SQL pool replication link by name.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -365,7 +379,9 @@ public final class SqlPoolReplicationLinksClientImpl implements SqlPoolReplicati
     }
 
     /**
-     * Get SQL pool replication link by name.
+     * Get SQL pool replication link by name
+     *
+     * <p>Get SQL pool replication link by name.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -422,7 +438,9 @@ public final class SqlPoolReplicationLinksClientImpl implements SqlPoolReplicati
     }
 
     /**
-     * Get SQL pool replication link by name.
+     * Get SQL pool replication link by name
+     *
+     * <p>Get SQL pool replication link by name.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -437,18 +455,13 @@ public final class SqlPoolReplicationLinksClientImpl implements SqlPoolReplicati
     private Mono<ReplicationLinkInner> getByNameAsync(
         String resourceGroupName, String workspaceName, String sqlPoolName, String linkId) {
         return getByNameWithResponseAsync(resourceGroupName, workspaceName, sqlPoolName, linkId)
-            .flatMap(
-                (Response<ReplicationLinkInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
-     * Get SQL pool replication link by name.
+     * Get SQL pool replication link by name
+     *
+     * <p>Get SQL pool replication link by name.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -466,7 +479,9 @@ public final class SqlPoolReplicationLinksClientImpl implements SqlPoolReplicati
     }
 
     /**
-     * Get SQL pool replication link by name.
+     * Get SQL pool replication link by name
+     *
+     * <p>Get SQL pool replication link by name.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.

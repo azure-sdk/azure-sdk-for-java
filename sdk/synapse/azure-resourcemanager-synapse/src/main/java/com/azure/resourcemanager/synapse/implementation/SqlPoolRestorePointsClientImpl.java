@@ -144,7 +144,9 @@ public final class SqlPoolRestorePointsClientImpl implements SqlPoolRestorePoint
     }
 
     /**
-     * Get SQL pool backup information.
+     * Get SQL pool backup
+     *
+     * <p>Get SQL pool backup information.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -207,7 +209,9 @@ public final class SqlPoolRestorePointsClientImpl implements SqlPoolRestorePoint
     }
 
     /**
-     * Get SQL pool backup information.
+     * Get SQL pool backup
+     *
+     * <p>Get SQL pool backup information.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -268,7 +272,9 @@ public final class SqlPoolRestorePointsClientImpl implements SqlPoolRestorePoint
     }
 
     /**
-     * Get SQL pool backup information.
+     * Get SQL pool backup
+     *
+     * <p>Get SQL pool backup information.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -286,7 +292,9 @@ public final class SqlPoolRestorePointsClientImpl implements SqlPoolRestorePoint
     }
 
     /**
-     * Get SQL pool backup information.
+     * Get SQL pool backup
+     *
+     * <p>Get SQL pool backup information.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -306,7 +314,9 @@ public final class SqlPoolRestorePointsClientImpl implements SqlPoolRestorePoint
     }
 
     /**
-     * Get SQL pool backup information.
+     * Get SQL pool backup
+     *
+     * <p>Get SQL pool backup information.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -322,7 +332,9 @@ public final class SqlPoolRestorePointsClientImpl implements SqlPoolRestorePoint
     }
 
     /**
-     * Get SQL pool backup information.
+     * Get SQL pool backup
+     *
+     * <p>Get SQL pool backup information.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -795,14 +807,7 @@ public final class SqlPoolRestorePointsClientImpl implements SqlPoolRestorePoint
     private Mono<RestorePointInner> getAsync(
         String resourceGroupName, String workspaceName, String sqlPoolName, String restorePointName) {
         return getWithResponseAsync(resourceGroupName, workspaceName, sqlPoolName, restorePointName)
-            .flatMap(
-                (Response<RestorePointInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -972,7 +977,7 @@ public final class SqlPoolRestorePointsClientImpl implements SqlPoolRestorePoint
     private Mono<Void> deleteAsync(
         String resourceGroupName, String workspaceName, String sqlPoolName, String restorePointName) {
         return deleteWithResponseAsync(resourceGroupName, workspaceName, sqlPoolName, restorePointName)
-            .flatMap((Response<Void> res) -> Mono.empty());
+            .flatMap(ignored -> Mono.empty());
     }
 
     /**

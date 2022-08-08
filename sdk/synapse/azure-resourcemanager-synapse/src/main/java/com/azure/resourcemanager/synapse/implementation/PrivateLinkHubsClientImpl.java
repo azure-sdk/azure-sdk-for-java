@@ -450,14 +450,7 @@ public final class PrivateLinkHubsClientImpl implements PrivateLinkHubsClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PrivateLinkHubInner> getByResourceGroupAsync(String resourceGroupName, String privateLinkHubName) {
         return getByResourceGroupWithResponseAsync(resourceGroupName, privateLinkHubName)
-            .flatMap(
-                (Response<PrivateLinkHubInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -626,14 +619,7 @@ public final class PrivateLinkHubsClientImpl implements PrivateLinkHubsClient {
     private Mono<PrivateLinkHubInner> updateAsync(
         String resourceGroupName, String privateLinkHubName, PrivateLinkHubPatchInfo privateLinkHubPatchInfo) {
         return updateWithResponseAsync(resourceGroupName, privateLinkHubName, privateLinkHubPatchInfo)
-            .flatMap(
-                (Response<PrivateLinkHubInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -803,14 +789,7 @@ public final class PrivateLinkHubsClientImpl implements PrivateLinkHubsClient {
     private Mono<PrivateLinkHubInner> createOrUpdateAsync(
         String resourceGroupName, String privateLinkHubName, PrivateLinkHubInner privateLinkHubInfo) {
         return createOrUpdateWithResponseAsync(resourceGroupName, privateLinkHubName, privateLinkHubInfo)
-            .flatMap(
-                (Response<PrivateLinkHubInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**

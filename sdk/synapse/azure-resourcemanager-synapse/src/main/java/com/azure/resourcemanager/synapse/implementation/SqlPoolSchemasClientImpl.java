@@ -102,7 +102,9 @@ public final class SqlPoolSchemasClientImpl implements SqlPoolSchemasClient {
     }
 
     /**
-     * Gets schemas of a given SQL pool.
+     * Gets schemas of a given SQL pool
+     *
+     * <p>Gets schemas of a given SQL pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -167,7 +169,9 @@ public final class SqlPoolSchemasClientImpl implements SqlPoolSchemasClient {
     }
 
     /**
-     * Gets schemas of a given SQL pool.
+     * Gets schemas of a given SQL pool
+     *
+     * <p>Gets schemas of a given SQL pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -230,7 +234,9 @@ public final class SqlPoolSchemasClientImpl implements SqlPoolSchemasClient {
     }
 
     /**
-     * Gets schemas of a given SQL pool.
+     * Gets schemas of a given SQL pool
+     *
+     * <p>Gets schemas of a given SQL pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -250,7 +256,9 @@ public final class SqlPoolSchemasClientImpl implements SqlPoolSchemasClient {
     }
 
     /**
-     * Gets schemas of a given SQL pool.
+     * Gets schemas of a given SQL pool
+     *
+     * <p>Gets schemas of a given SQL pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -270,7 +278,9 @@ public final class SqlPoolSchemasClientImpl implements SqlPoolSchemasClient {
     }
 
     /**
-     * Gets schemas of a given SQL pool.
+     * Gets schemas of a given SQL pool
+     *
+     * <p>Gets schemas of a given SQL pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -291,7 +301,9 @@ public final class SqlPoolSchemasClientImpl implements SqlPoolSchemasClient {
     }
 
     /**
-     * Gets schemas of a given SQL pool.
+     * Gets schemas of a given SQL pool
+     *
+     * <p>Gets schemas of a given SQL pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -308,7 +320,9 @@ public final class SqlPoolSchemasClientImpl implements SqlPoolSchemasClient {
     }
 
     /**
-     * Gets schemas of a given SQL pool.
+     * Gets schemas of a given SQL pool
+     *
+     * <p>Gets schemas of a given SQL pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -458,14 +472,7 @@ public final class SqlPoolSchemasClientImpl implements SqlPoolSchemasClient {
     private Mono<SqlPoolSchemaInner> getAsync(
         String resourceGroupName, String workspaceName, String sqlPoolName, String schemaName) {
         return getWithResponseAsync(resourceGroupName, workspaceName, sqlPoolName, schemaName)
-            .flatMap(
-                (Response<SqlPoolSchemaInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**

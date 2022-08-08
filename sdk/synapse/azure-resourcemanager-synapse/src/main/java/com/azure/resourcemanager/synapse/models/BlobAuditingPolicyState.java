@@ -30,6 +30,9 @@ public enum BlobAuditingPolicyState {
      */
     @JsonCreator
     public static BlobAuditingPolicyState fromString(String value) {
+        if (value == null) {
+            return null;
+        }
         BlobAuditingPolicyState[] items = BlobAuditingPolicyState.values();
         for (BlobAuditingPolicyState item : items) {
             if (item.toString().equalsIgnoreCase(value)) {

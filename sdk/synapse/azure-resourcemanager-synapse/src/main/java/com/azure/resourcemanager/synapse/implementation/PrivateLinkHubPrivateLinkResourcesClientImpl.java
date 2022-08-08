@@ -105,7 +105,9 @@ public final class PrivateLinkHubPrivateLinkResourcesClientImpl implements Priva
     }
 
     /**
-     * Get all private link resources for a private link hub.
+     * Private Link Resources
+     *
+     * <p>Get all private link resources for a private link hub.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateLinkHubName The name of the private link hub.
@@ -165,7 +167,9 @@ public final class PrivateLinkHubPrivateLinkResourcesClientImpl implements Priva
     }
 
     /**
-     * Get all private link resources for a private link hub.
+     * Private Link Resources
+     *
+     * <p>Get all private link resources for a private link hub.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateLinkHubName The name of the private link hub.
@@ -223,7 +227,9 @@ public final class PrivateLinkHubPrivateLinkResourcesClientImpl implements Priva
     }
 
     /**
-     * Get all private link resources for a private link hub.
+     * Private Link Resources
+     *
+     * <p>Get all private link resources for a private link hub.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateLinkHubName The name of the private link hub.
@@ -240,7 +246,9 @@ public final class PrivateLinkHubPrivateLinkResourcesClientImpl implements Priva
     }
 
     /**
-     * Get all private link resources for a private link hub.
+     * Private Link Resources
+     *
+     * <p>Get all private link resources for a private link hub.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateLinkHubName The name of the private link hub.
@@ -259,7 +267,9 @@ public final class PrivateLinkHubPrivateLinkResourcesClientImpl implements Priva
     }
 
     /**
-     * Get all private link resources for a private link hub.
+     * Private Link Resources
+     *
+     * <p>Get all private link resources for a private link hub.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateLinkHubName The name of the private link hub.
@@ -274,7 +284,9 @@ public final class PrivateLinkHubPrivateLinkResourcesClientImpl implements Priva
     }
 
     /**
-     * Get all private link resources for a private link hub.
+     * Private Link Resources
+     *
+     * <p>Get all private link resources for a private link hub.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateLinkHubName The name of the private link hub.
@@ -291,7 +303,9 @@ public final class PrivateLinkHubPrivateLinkResourcesClientImpl implements Priva
     }
 
     /**
-     * Get private link resource in private link hub.
+     * Get Private Link Hub Private Link Resource
+     *
+     * <p>Get private link resource in private link hub.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateLinkHubName The name of the private link hub.
@@ -349,7 +363,9 @@ public final class PrivateLinkHubPrivateLinkResourcesClientImpl implements Priva
     }
 
     /**
-     * Get private link resource in private link hub.
+     * Get Private Link Hub Private Link Resource
+     *
+     * <p>Get private link resource in private link hub.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateLinkHubName The name of the private link hub.
@@ -405,7 +421,9 @@ public final class PrivateLinkHubPrivateLinkResourcesClientImpl implements Priva
     }
 
     /**
-     * Get private link resource in private link hub.
+     * Get Private Link Hub Private Link Resource
+     *
+     * <p>Get private link resource in private link hub.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateLinkHubName The name of the private link hub.
@@ -419,18 +437,13 @@ public final class PrivateLinkHubPrivateLinkResourcesClientImpl implements Priva
     private Mono<PrivateLinkResourceInner> getAsync(
         String resourceGroupName, String privateLinkHubName, String privateLinkResourceName) {
         return getWithResponseAsync(resourceGroupName, privateLinkHubName, privateLinkResourceName)
-            .flatMap(
-                (Response<PrivateLinkResourceInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
-     * Get private link resource in private link hub.
+     * Get Private Link Hub Private Link Resource
+     *
+     * <p>Get private link resource in private link hub.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateLinkHubName The name of the private link hub.
@@ -447,7 +460,9 @@ public final class PrivateLinkHubPrivateLinkResourcesClientImpl implements Priva
     }
 
     /**
-     * Get private link resource in private link hub.
+     * Get Private Link Hub Private Link Resource
+     *
+     * <p>Get private link resource in private link hub.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateLinkHubName The name of the private link hub.

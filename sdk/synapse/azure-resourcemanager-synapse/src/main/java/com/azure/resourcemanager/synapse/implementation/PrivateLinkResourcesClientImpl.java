@@ -100,7 +100,9 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
     }
 
     /**
-     * Get all private link resources for a workspaces.
+     * Private Link Resources
+     *
+     * <p>Get all private link resources for a workspaces.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -159,7 +161,9 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
     }
 
     /**
-     * Get all private link resources for a workspaces.
+     * Private Link Resources
+     *
+     * <p>Get all private link resources for a workspaces.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -216,7 +220,9 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
     }
 
     /**
-     * Get all private link resources for a workspaces.
+     * Private Link Resources
+     *
+     * <p>Get all private link resources for a workspaces.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -232,7 +238,9 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
     }
 
     /**
-     * Get all private link resources for a workspaces.
+     * Private Link Resources
+     *
+     * <p>Get all private link resources for a workspaces.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -251,7 +259,9 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
     }
 
     /**
-     * Get all private link resources for a workspaces.
+     * Private Link Resources
+     *
+     * <p>Get all private link resources for a workspaces.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -266,7 +276,9 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
     }
 
     /**
-     * Get all private link resources for a workspaces.
+     * Private Link Resources
+     *
+     * <p>Get all private link resources for a workspaces.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -283,7 +295,9 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
     }
 
     /**
-     * Get private link resource in workspace.
+     * Get Private Link Resource
+     *
+     * <p>Get private link resource in workspace.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -339,7 +353,9 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
     }
 
     /**
-     * Get private link resource in workspace.
+     * Get Private Link Resource
+     *
+     * <p>Get private link resource in workspace.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -393,7 +409,9 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
     }
 
     /**
-     * Get private link resource in workspace.
+     * Get Private Link Resource
+     *
+     * <p>Get private link resource in workspace.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -407,18 +425,13 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
     private Mono<PrivateLinkResourceInner> getAsync(
         String resourceGroupName, String workspaceName, String privateLinkResourceName) {
         return getWithResponseAsync(resourceGroupName, workspaceName, privateLinkResourceName)
-            .flatMap(
-                (Response<PrivateLinkResourceInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
-     * Get private link resource in workspace.
+     * Get Private Link Resource
+     *
+     * <p>Get private link resource in workspace.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -435,7 +448,9 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
     }
 
     /**
-     * Get private link resource in workspace.
+     * Get Private Link Resource
+     *
+     * <p>Get private link resource in workspace.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.

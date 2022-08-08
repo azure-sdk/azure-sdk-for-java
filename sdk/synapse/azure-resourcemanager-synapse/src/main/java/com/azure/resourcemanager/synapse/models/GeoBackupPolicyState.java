@@ -30,6 +30,9 @@ public enum GeoBackupPolicyState {
      */
     @JsonCreator
     public static GeoBackupPolicyState fromString(String value) {
+        if (value == null) {
+            return null;
+        }
         GeoBackupPolicyState[] items = GeoBackupPolicyState.values();
         for (GeoBackupPolicyState item : items) {
             if (item.toString().equalsIgnoreCase(value)) {

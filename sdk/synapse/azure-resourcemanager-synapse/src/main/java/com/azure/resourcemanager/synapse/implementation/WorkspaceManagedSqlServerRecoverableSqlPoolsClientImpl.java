@@ -107,7 +107,9 @@ public final class WorkspaceManagedSqlServerRecoverableSqlPoolsClientImpl
     }
 
     /**
-     * Get list of recoverable sql pools for workspace managed sql server.
+     * Get list of recoverable sql pools for the server.
+     *
+     * <p>Get list of recoverable sql pools for workspace managed sql server.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -166,7 +168,9 @@ public final class WorkspaceManagedSqlServerRecoverableSqlPoolsClientImpl
     }
 
     /**
-     * Get list of recoverable sql pools for workspace managed sql server.
+     * Get list of recoverable sql pools for the server.
+     *
+     * <p>Get list of recoverable sql pools for workspace managed sql server.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -223,7 +227,9 @@ public final class WorkspaceManagedSqlServerRecoverableSqlPoolsClientImpl
     }
 
     /**
-     * Get list of recoverable sql pools for workspace managed sql server.
+     * Get list of recoverable sql pools for the server.
+     *
+     * <p>Get list of recoverable sql pools for workspace managed sql server.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -240,7 +246,9 @@ public final class WorkspaceManagedSqlServerRecoverableSqlPoolsClientImpl
     }
 
     /**
-     * Get list of recoverable sql pools for workspace managed sql server.
+     * Get list of recoverable sql pools for the server.
+     *
+     * <p>Get list of recoverable sql pools for workspace managed sql server.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -260,7 +268,9 @@ public final class WorkspaceManagedSqlServerRecoverableSqlPoolsClientImpl
     }
 
     /**
-     * Get list of recoverable sql pools for workspace managed sql server.
+     * Get list of recoverable sql pools for the server.
+     *
+     * <p>Get list of recoverable sql pools for workspace managed sql server.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -276,7 +286,9 @@ public final class WorkspaceManagedSqlServerRecoverableSqlPoolsClientImpl
     }
 
     /**
-     * Get list of recoverable sql pools for workspace managed sql server.
+     * Get list of recoverable sql pools for the server.
+     *
+     * <p>Get list of recoverable sql pools for workspace managed sql server.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -294,7 +306,9 @@ public final class WorkspaceManagedSqlServerRecoverableSqlPoolsClientImpl
     }
 
     /**
-     * Get recoverable sql pools for workspace managed sql server.
+     * Get recoverable sql pools for the server.
+     *
+     * <p>Get recoverable sql pools for workspace managed sql server.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -349,7 +363,9 @@ public final class WorkspaceManagedSqlServerRecoverableSqlPoolsClientImpl
     }
 
     /**
-     * Get recoverable sql pools for workspace managed sql server.
+     * Get recoverable sql pools for the server.
+     *
+     * <p>Get recoverable sql pools for workspace managed sql server.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -402,7 +418,9 @@ public final class WorkspaceManagedSqlServerRecoverableSqlPoolsClientImpl
     }
 
     /**
-     * Get recoverable sql pools for workspace managed sql server.
+     * Get recoverable sql pools for the server.
+     *
+     * <p>Get recoverable sql pools for workspace managed sql server.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -415,18 +433,13 @@ public final class WorkspaceManagedSqlServerRecoverableSqlPoolsClientImpl
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<RecoverableSqlPoolInner> getAsync(String resourceGroupName, String workspaceName, String sqlPoolName) {
         return getWithResponseAsync(resourceGroupName, workspaceName, sqlPoolName)
-            .flatMap(
-                (Response<RecoverableSqlPoolInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
-     * Get recoverable sql pools for workspace managed sql server.
+     * Get recoverable sql pools for the server.
+     *
+     * <p>Get recoverable sql pools for workspace managed sql server.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -442,7 +455,9 @@ public final class WorkspaceManagedSqlServerRecoverableSqlPoolsClientImpl
     }
 
     /**
-     * Get recoverable sql pools for workspace managed sql server.
+     * Get recoverable sql pools for the server.
+     *
+     * <p>Get recoverable sql pools for workspace managed sql server.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.

@@ -83,7 +83,9 @@ public final class LibrariesOperationsClientImpl implements LibrariesOperationsC
     }
 
     /**
-     * List libraries in a workspace.
+     * List the libraries in a workspace.
+     *
+     * <p>List libraries in a workspace.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -141,7 +143,9 @@ public final class LibrariesOperationsClientImpl implements LibrariesOperationsC
     }
 
     /**
-     * List libraries in a workspace.
+     * List the libraries in a workspace.
+     *
+     * <p>List libraries in a workspace.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -197,7 +201,9 @@ public final class LibrariesOperationsClientImpl implements LibrariesOperationsC
     }
 
     /**
-     * List libraries in a workspace.
+     * List the libraries in a workspace.
+     *
+     * <p>List libraries in a workspace.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -214,7 +220,9 @@ public final class LibrariesOperationsClientImpl implements LibrariesOperationsC
     }
 
     /**
-     * List libraries in a workspace.
+     * List the libraries in a workspace.
+     *
+     * <p>List libraries in a workspace.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -233,7 +241,9 @@ public final class LibrariesOperationsClientImpl implements LibrariesOperationsC
     }
 
     /**
-     * List libraries in a workspace.
+     * List the libraries in a workspace.
+     *
+     * <p>List libraries in a workspace.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -248,7 +258,9 @@ public final class LibrariesOperationsClientImpl implements LibrariesOperationsC
     }
 
     /**
-     * List libraries in a workspace.
+     * List the libraries in a workspace.
+     *
+     * <p>List libraries in a workspace.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.

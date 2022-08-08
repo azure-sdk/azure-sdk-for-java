@@ -39,6 +39,9 @@ public enum SensitivityLabelRank {
      */
     @JsonCreator
     public static SensitivityLabelRank fromString(String value) {
+        if (value == null) {
+            return null;
+        }
         SensitivityLabelRank[] items = SensitivityLabelRank.values();
         for (SensitivityLabelRank item : items) {
             if (item.toString().equalsIgnoreCase(value)) {
