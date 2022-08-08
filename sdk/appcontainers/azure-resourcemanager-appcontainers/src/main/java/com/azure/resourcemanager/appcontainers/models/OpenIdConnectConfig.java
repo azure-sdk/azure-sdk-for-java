@@ -35,8 +35,7 @@ public final class OpenIdConnectConfig {
     private String certificationUri;
 
     /*
-     * The endpoint that contains all the configuration endpoints for the
-     * provider.
+     * The endpoint that contains all the configuration endpoints for the provider.
      */
     @JsonProperty(value = "wellKnownOpenIdConfiguration")
     private String wellKnownOpenIdConfiguration;
