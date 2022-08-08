@@ -37,8 +37,7 @@ public final class SapVirtualInstanceInner extends Resource {
     private SapVirtualInstanceProperties innerProperties = new SapVirtualInstanceProperties();
 
     /*
-     * Azure Resource Manager metadata containing createdBy and modifiedBy
-     * information.
+     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
      */
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;

@@ -29,29 +29,27 @@ public final class SkuDefinitionInner {
     private String resourceType;
 
     /*
-     * This field is required to be implemented by the Resource Provider if the
-     * service has more than one tier, but is not required on a PUT.
+     * This field is required to be implemented by the Resource Provider if the service has more than one tier, but is
+     * not required on a PUT.
      */
     @JsonProperty(value = "tier")
     private String tier;
 
     /*
-     * The SKU size. When the name field is the combination of tier and some
-     * other value, this would be the standalone code.
+     * The SKU size. When the name field is the combination of tier and some other value, this would be the standalone
+     * code.
      */
     @JsonProperty(value = "size")
     private String size;
 
     /*
-     * If the service has different generations of hardware, for the same SKU,
-     * then that can be captured here.
+     * If the service has different generations of hardware, for the same SKU, then that can be captured here.
      */
     @JsonProperty(value = "family")
     private String family;
 
     /*
-     * If the service has different kinds of hardware, for the same SKU, then
-     * that can be captured here.
+     * If the service has different kinds of hardware, for the same SKU, then that can be captured here.
      */
     @JsonProperty(value = "kind")
     private String kind;
@@ -69,9 +67,8 @@ public final class SkuDefinitionInner {
     private List<SkuLocationAndZones> locationInfo;
 
     /*
-     * If the SKU supports scale out/in then the capacity integer should be
-     * included. If scale out/in is not possible for the resource this may be
-     * omitted.
+     * If the SKU supports scale out/in then the capacity integer should be included. If scale out/in is not possible
+     * for the resource this may be omitted.
      */
     @JsonProperty(value = "capacity")
     private Object capacity;

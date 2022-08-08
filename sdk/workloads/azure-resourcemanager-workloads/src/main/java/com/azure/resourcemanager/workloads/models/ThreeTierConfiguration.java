@@ -152,6 +152,13 @@ public final class ThreeTierConfiguration extends InfrastructureConfiguration {
         return this;
     }
 
+    /** {@inheritDoc} */
+    @Override
+    public ThreeTierConfiguration withIsRestrictedUse(Boolean isRestrictedUse) {
+        super.withIsRestrictedUse(isRestrictedUse);
+        return this;
+    }
+
     /**
      * Validates the instance.
      *

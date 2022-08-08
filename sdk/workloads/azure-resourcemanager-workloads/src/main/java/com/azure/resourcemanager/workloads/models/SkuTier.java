@@ -36,6 +36,9 @@ public enum SkuTier {
      */
     @JsonCreator
     public static SkuTier fromString(String value) {
+        if (value == null) {
+            return null;
+        }
         SkuTier[] items = SkuTier.values();
         for (SkuTier item : items) {
             if (item.toString().equalsIgnoreCase(value)) {

@@ -127,6 +127,13 @@ public final class SingleServerConfiguration extends InfrastructureConfiguration
         return this;
     }
 
+    /** {@inheritDoc} */
+    @Override
+    public SingleServerConfiguration withIsRestrictedUse(Boolean isRestrictedUse) {
+        super.withIsRestrictedUse(isRestrictedUse);
+        return this;
+    }
+
     /**
      * Validates the instance.
      *

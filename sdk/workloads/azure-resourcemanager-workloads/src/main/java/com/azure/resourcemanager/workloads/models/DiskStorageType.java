@@ -33,6 +33,9 @@ public enum DiskStorageType {
      */
     @JsonCreator
     public static DiskStorageType fromString(String value) {
+        if (value == null) {
+            return null;
+        }
         DiskStorageType[] items = DiskStorageType.values();
         for (DiskStorageType item : items) {
             if (item.toString().equalsIgnoreCase(value)) {

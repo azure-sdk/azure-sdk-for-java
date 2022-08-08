@@ -11,8 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Fluent
 public final class NetworkConfiguration {
     /*
-     * Specifies whether a secondary IP address should be added to the network
-     * interface on all VMs
+     * Specifies whether a secondary IP address should be added to the network interface on all VMs
      */
     @JsonProperty(value = "isSecondaryIpEnabled")
     private Boolean isSecondaryIpEnabled;
