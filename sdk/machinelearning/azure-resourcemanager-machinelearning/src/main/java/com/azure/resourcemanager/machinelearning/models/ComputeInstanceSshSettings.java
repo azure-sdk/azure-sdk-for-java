@@ -5,16 +5,19 @@
 package com.azure.resourcemanager.machinelearning.models;
 
 import com.azure.core.annotation.Fluent;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.Map;
 
 /** Specifies policy and settings for SSH access. */
 @Fluent
 public final class ComputeInstanceSshSettings {
     /*
-     * Access policy for SSH State of the public SSH port. Possible values are:
-     * Disabled - Indicates that the public ssh port is closed on this
-     * instance. Enabled - Indicates that the public ssh port is open and
-     * accessible according to the VNet/subnet policy if applicable.
+     * Access policy for SSH
+     *
+     * State of the public SSH port. Possible values are: Disabled - Indicates that the public ssh port is closed on
+     * this instance. Enabled - Indicates that the public ssh port is open and accessible according to the VNet/subnet
+     * policy if applicable.
      */
     @JsonProperty(value = "sshPublicAccess")
     private SshPublicAccess sshPublicAccess;
@@ -32,16 +35,25 @@ public final class ComputeInstanceSshSettings {
     private Integer sshPort;
 
     /*
-     * Specifies the SSH rsa public key file as a string. Use "ssh-keygen -t
-     * rsa -b 2048" to generate your SSH key pairs.
+     * Specifies the SSH rsa public key file as a string. Use "ssh-keygen -t rsa -b 2048" to generate your SSH key
+     * pairs.
      */
     @JsonProperty(value = "adminPublicKey")
     private String adminPublicKey;
 
+    /*
+     * List of keys (with friendly names) authorized for SSH. If specified, the value of 'adminPublicKey' is ignored.
+     */
+    @JsonProperty(value = "adminPublicKeys")
+    @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
+    private Map<String, SshPublicKeyReference> adminPublicKeys;
+
     /**
-     * Get the sshPublicAccess property: Access policy for SSH State of the public SSH port. Possible values are:
-     * Disabled - Indicates that the public ssh port is closed on this instance. Enabled - Indicates that the public ssh
-     * port is open and accessible according to the VNet/subnet policy if applicable.
+     * Get the sshPublicAccess property: Access policy for SSH
+     *
+     * <p>State of the public SSH port. Possible values are: Disabled - Indicates that the public ssh port is closed on
+     * this instance. Enabled - Indicates that the public ssh port is open and accessible according to the VNet/subnet
+     * policy if applicable.
      *
      * @return the sshPublicAccess value.
      */
@@ -50,9 +62,11 @@ public final class ComputeInstanceSshSettings {
     }
 
     /**
-     * Set the sshPublicAccess property: Access policy for SSH State of the public SSH port. Possible values are:
-     * Disabled - Indicates that the public ssh port is closed on this instance. Enabled - Indicates that the public ssh
-     * port is open and accessible according to the VNet/subnet policy if applicable.
+     * Set the sshPublicAccess property: Access policy for SSH
+     *
+     * <p>State of the public SSH port. Possible values are: Disabled - Indicates that the public ssh port is closed on
+     * this instance. Enabled - Indicates that the public ssh port is open and accessible according to the VNet/subnet
+     * policy if applicable.
      *
      * @param sshPublicAccess the sshPublicAccess value to set.
      * @return the ComputeInstanceSshSettings object itself.
@@ -103,10 +117,42 @@ public final class ComputeInstanceSshSettings {
     }
 
     /**
+     * Get the adminPublicKeys property: List of keys (with friendly names) authorized for SSH. If specified, the value
+     * of 'adminPublicKey' is ignored.
+     *
+     * @return the adminPublicKeys value.
+     */
+    public Map<String, SshPublicKeyReference> adminPublicKeys() {
+        return this.adminPublicKeys;
+    }
+
+    /**
+     * Set the adminPublicKeys property: List of keys (with friendly names) authorized for SSH. If specified, the value
+     * of 'adminPublicKey' is ignored.
+     *
+     * @param adminPublicKeys the adminPublicKeys value to set.
+     * @return the ComputeInstanceSshSettings object itself.
+     */
+    public ComputeInstanceSshSettings withAdminPublicKeys(Map<String, SshPublicKeyReference> adminPublicKeys) {
+        this.adminPublicKeys = adminPublicKeys;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+        if (adminPublicKeys() != null) {
+            adminPublicKeys()
+                .values()
+                .forEach(
+                    e -> {
+                        if (e != null) {
+                            e.validate();
+                        }
+                    });
+        }
     }
 }
