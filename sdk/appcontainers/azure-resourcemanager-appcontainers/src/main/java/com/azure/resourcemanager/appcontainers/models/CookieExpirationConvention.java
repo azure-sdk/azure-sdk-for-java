@@ -30,6 +30,9 @@ public enum CookieExpirationConvention {
      */
     @JsonCreator
     public static CookieExpirationConvention fromString(String value) {
+        if (value == null) {
+            return null;
+        }
         CookieExpirationConvention[] items = CookieExpirationConvention.values();
         for (CookieExpirationConvention item : items) {
             if (item.toString().equalsIgnoreCase(value)) {

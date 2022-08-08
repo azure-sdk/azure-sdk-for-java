@@ -174,7 +174,9 @@ public final class ManagedEnvironmentsClientImpl implements ManagedEnvironmentsC
     }
 
     /**
-     * Get all Managed Environments for a subscription.
+     * Get all Environments for a subscription.
+     *
+     * <p>Get all Managed Environments for a subscription.
      *
      * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -219,7 +221,9 @@ public final class ManagedEnvironmentsClientImpl implements ManagedEnvironmentsC
     }
 
     /**
-     * Get all Managed Environments for a subscription.
+     * Get all Environments for a subscription.
+     *
+     * <p>Get all Managed Environments for a subscription.
      *
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -263,7 +267,9 @@ public final class ManagedEnvironmentsClientImpl implements ManagedEnvironmentsC
     }
 
     /**
-     * Get all Managed Environments for a subscription.
+     * Get all Environments for a subscription.
+     *
+     * <p>Get all Managed Environments for a subscription.
      *
      * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -276,7 +282,9 @@ public final class ManagedEnvironmentsClientImpl implements ManagedEnvironmentsC
     }
 
     /**
-     * Get all Managed Environments for a subscription.
+     * Get all Environments for a subscription.
+     *
+     * <p>Get all Managed Environments for a subscription.
      *
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -291,7 +299,9 @@ public final class ManagedEnvironmentsClientImpl implements ManagedEnvironmentsC
     }
 
     /**
-     * Get all Managed Environments for a subscription.
+     * Get all Environments for a subscription.
+     *
+     * <p>Get all Managed Environments for a subscription.
      *
      * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -303,7 +313,9 @@ public final class ManagedEnvironmentsClientImpl implements ManagedEnvironmentsC
     }
 
     /**
-     * Get all Managed Environments for a subscription.
+     * Get all Environments for a subscription.
+     *
+     * <p>Get all Managed Environments for a subscription.
      *
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -317,7 +329,9 @@ public final class ManagedEnvironmentsClientImpl implements ManagedEnvironmentsC
     }
 
     /**
-     * Get all the Managed Environments in a resource group.
+     * Get all the Environments in a resource group.
+     *
+     * <p>Get all the Managed Environments in a resource group.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -369,7 +383,9 @@ public final class ManagedEnvironmentsClientImpl implements ManagedEnvironmentsC
     }
 
     /**
-     * Get all the Managed Environments in a resource group.
+     * Get all the Environments in a resource group.
+     *
+     * <p>Get all the Managed Environments in a resource group.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param context The context to associate with this operation.
@@ -420,7 +436,9 @@ public final class ManagedEnvironmentsClientImpl implements ManagedEnvironmentsC
     }
 
     /**
-     * Get all the Managed Environments in a resource group.
+     * Get all the Environments in a resource group.
+     *
+     * <p>Get all the Managed Environments in a resource group.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -436,7 +454,9 @@ public final class ManagedEnvironmentsClientImpl implements ManagedEnvironmentsC
     }
 
     /**
-     * Get all the Managed Environments in a resource group.
+     * Get all the Environments in a resource group.
+     *
+     * <p>Get all the Managed Environments in a resource group.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param context The context to associate with this operation.
@@ -453,7 +473,9 @@ public final class ManagedEnvironmentsClientImpl implements ManagedEnvironmentsC
     }
 
     /**
-     * Get all the Managed Environments in a resource group.
+     * Get all the Environments in a resource group.
+     *
+     * <p>Get all the Managed Environments in a resource group.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -467,7 +489,9 @@ public final class ManagedEnvironmentsClientImpl implements ManagedEnvironmentsC
     }
 
     /**
-     * Get all the Managed Environments in a resource group.
+     * Get all the Environments in a resource group.
+     *
+     * <p>Get all the Managed Environments in a resource group.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param context The context to associate with this operation.
@@ -482,7 +506,9 @@ public final class ManagedEnvironmentsClientImpl implements ManagedEnvironmentsC
     }
 
     /**
-     * Get the properties of a Managed Environment used to host container apps.
+     * Get the properties of a Managed Environment.
+     *
+     * <p>Get the properties of a Managed Environment used to host container apps.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param environmentName Name of the Environment.
@@ -532,7 +558,9 @@ public final class ManagedEnvironmentsClientImpl implements ManagedEnvironmentsC
     }
 
     /**
-     * Get the properties of a Managed Environment used to host container apps.
+     * Get the properties of a Managed Environment.
+     *
+     * <p>Get the properties of a Managed Environment used to host container apps.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param environmentName Name of the Environment.
@@ -580,7 +608,9 @@ public final class ManagedEnvironmentsClientImpl implements ManagedEnvironmentsC
     }
 
     /**
-     * Get the properties of a Managed Environment used to host container apps.
+     * Get the properties of a Managed Environment.
+     *
+     * <p>Get the properties of a Managed Environment used to host container apps.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param environmentName Name of the Environment.
@@ -597,7 +627,9 @@ public final class ManagedEnvironmentsClientImpl implements ManagedEnvironmentsC
     }
 
     /**
-     * Get the properties of a Managed Environment used to host container apps.
+     * Get the properties of a Managed Environment.
+     *
+     * <p>Get the properties of a Managed Environment used to host container apps.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param environmentName Name of the Environment.
@@ -612,7 +644,9 @@ public final class ManagedEnvironmentsClientImpl implements ManagedEnvironmentsC
     }
 
     /**
-     * Get the properties of a Managed Environment used to host container apps.
+     * Get the properties of a Managed Environment.
+     *
+     * <p>Get the properties of a Managed Environment used to host container apps.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param environmentName Name of the Environment.
@@ -629,7 +663,9 @@ public final class ManagedEnvironmentsClientImpl implements ManagedEnvironmentsC
     }
 
     /**
-     * Creates or updates a Managed Environment used to host container apps.
+     * Creates or updates a Managed Environment.
+     *
+     * <p>Creates or updates a Managed Environment used to host container apps.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param environmentName Name of the Environment.
@@ -687,7 +723,9 @@ public final class ManagedEnvironmentsClientImpl implements ManagedEnvironmentsC
     }
 
     /**
-     * Creates or updates a Managed Environment used to host container apps.
+     * Creates or updates a Managed Environment.
+     *
+     * <p>Creates or updates a Managed Environment used to host container apps.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param environmentName Name of the Environment.
@@ -746,7 +784,9 @@ public final class ManagedEnvironmentsClientImpl implements ManagedEnvironmentsC
     }
 
     /**
-     * Creates or updates a Managed Environment used to host container apps.
+     * Creates or updates a Managed Environment.
+     *
+     * <p>Creates or updates a Managed Environment used to host container apps.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param environmentName Name of the Environment.
@@ -772,7 +812,9 @@ public final class ManagedEnvironmentsClientImpl implements ManagedEnvironmentsC
     }
 
     /**
-     * Creates or updates a Managed Environment used to host container apps.
+     * Creates or updates a Managed Environment.
+     *
+     * <p>Creates or updates a Managed Environment used to host container apps.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param environmentName Name of the Environment.
@@ -803,7 +845,9 @@ public final class ManagedEnvironmentsClientImpl implements ManagedEnvironmentsC
     }
 
     /**
-     * Creates or updates a Managed Environment used to host container apps.
+     * Creates or updates a Managed Environment.
+     *
+     * <p>Creates or updates a Managed Environment used to host container apps.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param environmentName Name of the Environment.
@@ -820,7 +864,9 @@ public final class ManagedEnvironmentsClientImpl implements ManagedEnvironmentsC
     }
 
     /**
-     * Creates or updates a Managed Environment used to host container apps.
+     * Creates or updates a Managed Environment.
+     *
+     * <p>Creates or updates a Managed Environment used to host container apps.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param environmentName Name of the Environment.
@@ -842,7 +888,9 @@ public final class ManagedEnvironmentsClientImpl implements ManagedEnvironmentsC
     }
 
     /**
-     * Creates or updates a Managed Environment used to host container apps.
+     * Creates or updates a Managed Environment.
+     *
+     * <p>Creates or updates a Managed Environment used to host container apps.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param environmentName Name of the Environment.
@@ -861,7 +909,9 @@ public final class ManagedEnvironmentsClientImpl implements ManagedEnvironmentsC
     }
 
     /**
-     * Creates or updates a Managed Environment used to host container apps.
+     * Creates or updates a Managed Environment.
+     *
+     * <p>Creates or updates a Managed Environment used to host container apps.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param environmentName Name of the Environment.
@@ -884,7 +934,9 @@ public final class ManagedEnvironmentsClientImpl implements ManagedEnvironmentsC
     }
 
     /**
-     * Creates or updates a Managed Environment used to host container apps.
+     * Creates or updates a Managed Environment.
+     *
+     * <p>Creates or updates a Managed Environment used to host container apps.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param environmentName Name of the Environment.
@@ -901,7 +953,9 @@ public final class ManagedEnvironmentsClientImpl implements ManagedEnvironmentsC
     }
 
     /**
-     * Creates or updates a Managed Environment used to host container apps.
+     * Creates or updates a Managed Environment.
+     *
+     * <p>Creates or updates a Managed Environment used to host container apps.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param environmentName Name of the Environment.
@@ -922,7 +976,9 @@ public final class ManagedEnvironmentsClientImpl implements ManagedEnvironmentsC
     }
 
     /**
-     * Delete a Managed Environment if it does not have any container apps.
+     * Delete a Managed Environment.
+     *
+     * <p>Delete a Managed Environment if it does not have any container apps.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param environmentName Name of the Environment.
@@ -970,7 +1026,9 @@ public final class ManagedEnvironmentsClientImpl implements ManagedEnvironmentsC
     }
 
     /**
-     * Delete a Managed Environment if it does not have any container apps.
+     * Delete a Managed Environment.
+     *
+     * <p>Delete a Managed Environment if it does not have any container apps.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param environmentName Name of the Environment.
@@ -1017,7 +1075,9 @@ public final class ManagedEnvironmentsClientImpl implements ManagedEnvironmentsC
     }
 
     /**
-     * Delete a Managed Environment if it does not have any container apps.
+     * Delete a Managed Environment.
+     *
+     * <p>Delete a Managed Environment if it does not have any container apps.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param environmentName Name of the Environment.
@@ -1036,7 +1096,9 @@ public final class ManagedEnvironmentsClientImpl implements ManagedEnvironmentsC
     }
 
     /**
-     * Delete a Managed Environment if it does not have any container apps.
+     * Delete a Managed Environment.
+     *
+     * <p>Delete a Managed Environment if it does not have any container apps.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param environmentName Name of the Environment.
@@ -1057,7 +1119,9 @@ public final class ManagedEnvironmentsClientImpl implements ManagedEnvironmentsC
     }
 
     /**
-     * Delete a Managed Environment if it does not have any container apps.
+     * Delete a Managed Environment.
+     *
+     * <p>Delete a Managed Environment if it does not have any container apps.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param environmentName Name of the Environment.
@@ -1072,7 +1136,9 @@ public final class ManagedEnvironmentsClientImpl implements ManagedEnvironmentsC
     }
 
     /**
-     * Delete a Managed Environment if it does not have any container apps.
+     * Delete a Managed Environment.
+     *
+     * <p>Delete a Managed Environment if it does not have any container apps.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param environmentName Name of the Environment.
@@ -1089,7 +1155,9 @@ public final class ManagedEnvironmentsClientImpl implements ManagedEnvironmentsC
     }
 
     /**
-     * Delete a Managed Environment if it does not have any container apps.
+     * Delete a Managed Environment.
+     *
+     * <p>Delete a Managed Environment if it does not have any container apps.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param environmentName Name of the Environment.
@@ -1106,7 +1174,9 @@ public final class ManagedEnvironmentsClientImpl implements ManagedEnvironmentsC
     }
 
     /**
-     * Delete a Managed Environment if it does not have any container apps.
+     * Delete a Managed Environment.
+     *
+     * <p>Delete a Managed Environment if it does not have any container apps.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param environmentName Name of the Environment.
@@ -1124,7 +1194,9 @@ public final class ManagedEnvironmentsClientImpl implements ManagedEnvironmentsC
     }
 
     /**
-     * Delete a Managed Environment if it does not have any container apps.
+     * Delete a Managed Environment.
+     *
+     * <p>Delete a Managed Environment if it does not have any container apps.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param environmentName Name of the Environment.
@@ -1138,7 +1210,9 @@ public final class ManagedEnvironmentsClientImpl implements ManagedEnvironmentsC
     }
 
     /**
-     * Delete a Managed Environment if it does not have any container apps.
+     * Delete a Managed Environment.
+     *
+     * <p>Delete a Managed Environment if it does not have any container apps.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param environmentName Name of the Environment.
@@ -1153,7 +1227,9 @@ public final class ManagedEnvironmentsClientImpl implements ManagedEnvironmentsC
     }
 
     /**
-     * Patches a Managed Environment using JSON Merge Patch.
+     * Update Managed Environment's properties.
+     *
+     * <p>Patches a Managed Environment using JSON Merge Patch.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param environmentName Name of the Environment.
@@ -1210,7 +1286,9 @@ public final class ManagedEnvironmentsClientImpl implements ManagedEnvironmentsC
     }
 
     /**
-     * Patches a Managed Environment using JSON Merge Patch.
+     * Update Managed Environment's properties.
+     *
+     * <p>Patches a Managed Environment using JSON Merge Patch.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param environmentName Name of the Environment.
@@ -1268,7 +1346,9 @@ public final class ManagedEnvironmentsClientImpl implements ManagedEnvironmentsC
     }
 
     /**
-     * Patches a Managed Environment using JSON Merge Patch.
+     * Update Managed Environment's properties.
+     *
+     * <p>Patches a Managed Environment using JSON Merge Patch.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param environmentName Name of the Environment.
@@ -1290,7 +1370,9 @@ public final class ManagedEnvironmentsClientImpl implements ManagedEnvironmentsC
     }
 
     /**
-     * Patches a Managed Environment using JSON Merge Patch.
+     * Update Managed Environment's properties.
+     *
+     * <p>Patches a Managed Environment using JSON Merge Patch.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param environmentName Name of the Environment.
@@ -1316,7 +1398,9 @@ public final class ManagedEnvironmentsClientImpl implements ManagedEnvironmentsC
     }
 
     /**
-     * Patches a Managed Environment using JSON Merge Patch.
+     * Update Managed Environment's properties.
+     *
+     * <p>Patches a Managed Environment using JSON Merge Patch.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param environmentName Name of the Environment.
@@ -1333,7 +1417,9 @@ public final class ManagedEnvironmentsClientImpl implements ManagedEnvironmentsC
     }
 
     /**
-     * Patches a Managed Environment using JSON Merge Patch.
+     * Update Managed Environment's properties.
+     *
+     * <p>Patches a Managed Environment using JSON Merge Patch.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param environmentName Name of the Environment.
@@ -1354,7 +1440,9 @@ public final class ManagedEnvironmentsClientImpl implements ManagedEnvironmentsC
     }
 
     /**
-     * Patches a Managed Environment using JSON Merge Patch.
+     * Update Managed Environment's properties.
+     *
+     * <p>Patches a Managed Environment using JSON Merge Patch.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param environmentName Name of the Environment.
@@ -1373,7 +1461,9 @@ public final class ManagedEnvironmentsClientImpl implements ManagedEnvironmentsC
     }
 
     /**
-     * Patches a Managed Environment using JSON Merge Patch.
+     * Update Managed Environment's properties.
+     *
+     * <p>Patches a Managed Environment using JSON Merge Patch.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param environmentName Name of the Environment.
@@ -1396,7 +1486,9 @@ public final class ManagedEnvironmentsClientImpl implements ManagedEnvironmentsC
     }
 
     /**
-     * Patches a Managed Environment using JSON Merge Patch.
+     * Update Managed Environment's properties.
+     *
+     * <p>Patches a Managed Environment using JSON Merge Patch.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param environmentName Name of the Environment.
@@ -1411,7 +1503,9 @@ public final class ManagedEnvironmentsClientImpl implements ManagedEnvironmentsC
     }
 
     /**
-     * Patches a Managed Environment using JSON Merge Patch.
+     * Update Managed Environment's properties.
+     *
+     * <p>Patches a Managed Environment using JSON Merge Patch.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param environmentName Name of the Environment.
