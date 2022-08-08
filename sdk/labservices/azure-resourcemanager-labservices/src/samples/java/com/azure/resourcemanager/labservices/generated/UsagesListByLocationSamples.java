@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for Usages ListByLocation. */
 public final class UsagesListByLocationSamples {
     /*
-     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/preview/2021-11-15-preview/examples/Usages/getUsages.json
+     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/Usages/getUsages.json
      */
     /**
      * Sample code: listUsages.

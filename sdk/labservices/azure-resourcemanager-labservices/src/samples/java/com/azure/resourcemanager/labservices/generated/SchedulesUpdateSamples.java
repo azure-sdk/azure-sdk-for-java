@@ -13,7 +13,7 @@ import java.time.LocalDate;
 /** Samples for Schedules Update. */
 public final class SchedulesUpdateSamples {
     /*
-     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/preview/2021-11-15-preview/examples/Schedules/patchSchedule.json
+     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/Schedules/patchSchedule.json
      */
     /**
      * Sample code: patchSchedule.

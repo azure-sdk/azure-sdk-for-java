@@ -79,7 +79,7 @@ import com.azure.resourcemanager.labservices.models.EnableState;
 /** Samples for Images CreateOrUpdate. */
 public final class ImagesCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/preview/2021-11-15-preview/examples/Images/putImage.json
+     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/Images/putImage.json
      */
     /**
      * Sample code: putImage.
@@ -105,7 +105,7 @@ import com.azure.core.util.Context;
 /** Samples for Images Get. */
 public final class ImagesGetSamples {
     /*
-     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/preview/2021-11-15-preview/examples/Images/getImage.json
+     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/Images/getImage.json
      */
     /**
      * Sample code: getImage.
@@ -126,7 +126,7 @@ import com.azure.core.util.Context;
 /** Samples for Images ListByLabPlan. */
 public final class ImagesListByLabPlanSamples {
     /*
-     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/preview/2021-11-15-preview/examples/Images/listImages.json
+     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/Images/listImages.json
      */
     /**
      * Sample code: listImages.
@@ -149,7 +149,7 @@ import com.azure.resourcemanager.labservices.models.Image;
 /** Samples for Images Update. */
 public final class ImagesUpdateSamples {
     /*
-     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/preview/2021-11-15-preview/examples/Images/patchImage.json
+     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/Images/patchImage.json
      */
     /**
      * Sample code: patchImage.
@@ -179,7 +179,7 @@ import java.time.Duration;
 /** Samples for LabPlans CreateOrUpdate. */
 public final class LabPlansCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/preview/2021-11-15-preview/examples/LabPlans/putLabPlan.json
+     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/LabPlans/putLabPlan.json
      */
     /**
      * Sample code: putLabPlan.
@@ -231,7 +231,7 @@ import com.azure.core.util.Context;
 /** Samples for LabPlans Delete. */
 public final class LabPlansDeleteSamples {
     /*
-     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/preview/2021-11-15-preview/examples/LabPlans/deleteLabPlan.json
+     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/LabPlans/deleteLabPlan.json
      */
     /**
      * Sample code: deleteLabPlan.
@@ -252,7 +252,7 @@ import com.azure.core.util.Context;
 /** Samples for LabPlans GetByResourceGroup. */
 public final class LabPlansGetByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/preview/2021-11-15-preview/examples/LabPlans/getLabPlan.json
+     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/LabPlans/getLabPlan.json
      */
     /**
      * Sample code: getLabPlan.
@@ -273,7 +273,7 @@ import com.azure.core.util.Context;
 /** Samples for LabPlans List. */
 public final class LabPlansListSamples {
     /*
-     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/preview/2021-11-15-preview/examples/LabPlans/listLabPlans.json
+     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/LabPlans/listLabPlans.json
      */
     /**
      * Sample code: listLabPlans.
@@ -294,7 +294,7 @@ import com.azure.core.util.Context;
 /** Samples for LabPlans ListByResourceGroup. */
 public final class LabPlansListByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/preview/2021-11-15-preview/examples/LabPlans/listResourceGroupLabPlans.json
+     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/LabPlans/listResourceGroupLabPlans.json
      */
     /**
      * Sample code: listResourceGroupLabPlans.
@@ -316,7 +316,7 @@ import com.azure.resourcemanager.labservices.models.SaveImageBody;
 /** Samples for LabPlans SaveImage. */
 public final class LabPlansSaveImageSamples {
     /*
-     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/preview/2021-11-15-preview/examples/LabPlans/saveImageVirtualMachine.json
+     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/LabPlans/saveImageVirtualMachine.json
      */
     /**
      * Sample code: saveImageVirtualMachine.
@@ -349,7 +349,7 @@ import com.azure.resourcemanager.labservices.models.LabPlan;
 /** Samples for LabPlans Update. */
 public final class LabPlansUpdateSamples {
     /*
-     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/preview/2021-11-15-preview/examples/LabPlans/patchLabPlan.json
+     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/LabPlans/patchLabPlan.json
      */
     /**
      * Sample code: patchLabPlan.
@@ -393,7 +393,7 @@ import java.time.Duration;
 /** Samples for Labs CreateOrUpdate. */
 public final class LabsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/preview/2021-11-15-preview/examples/Labs/putLab.json
+     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/Labs/putLab.json
      */
     /**
      * Sample code: putLab.
@@ -415,9 +415,9 @@ public final class LabsCreateOrUpdateSamples {
                     .withShutdownOnDisconnect(EnableState.ENABLED)
                     .withShutdownWhenNotConnected(EnableState.ENABLED)
                     .withShutdownOnIdle(ShutdownOnIdleMode.USER_ABSENCE)
-                    .withDisconnectDelay(Duration.parse("00:05"))
-                    .withNoConnectDelay(Duration.parse("01:00"))
-                    .withIdleDelay(Duration.parse("01:00")))
+                    .withDisconnectDelay(Duration.parse("P0Y0M0DT0H0M5S"))
+                    .withNoConnectDelay(Duration.parse("P0Y0M0DT0H1M0S"))
+                    .withIdleDelay(Duration.parse("P0Y0M0DT0H1M0S")))
             .withConnectionProfile(
                 new ConnectionProfile()
                     .withWebSshAccess(ConnectionType.NONE)
@@ -436,7 +436,7 @@ public final class LabsCreateOrUpdateSamples {
                     .withSku(new Sku().withName("Medium"))
                     .withAdditionalCapabilities(
                         new VirtualMachineAdditionalCapabilities().withInstallGpuDrivers(EnableState.DISABLED))
-                    .withUsageQuota(Duration.parse("10:00"))
+                    .withUsageQuota(Duration.parse("P0Y0M0DT0H10M0S"))
                     .withUseSharedPassword(EnableState.DISABLED)
                     .withAdminUser(new Credentials().withUsername("test-user")))
             .withSecurityProfile(new SecurityProfile().withOpenAccess(EnableState.DISABLED))
@@ -457,7 +457,7 @@ import com.azure.core.util.Context;
 /** Samples for Labs Delete. */
 public final class LabsDeleteSamples {
     /*
-     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/preview/2021-11-15-preview/examples/Labs/deleteLab.json
+     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/Labs/deleteLab.json
      */
     /**
      * Sample code: deleteLab.
@@ -478,7 +478,7 @@ import com.azure.core.util.Context;
 /** Samples for Labs GetByResourceGroup. */
 public final class LabsGetByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/preview/2021-11-15-preview/examples/Labs/getLab.json
+     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/Labs/getLab.json
      */
     /**
      * Sample code: getLab.
@@ -499,7 +499,7 @@ import com.azure.core.util.Context;
 /** Samples for Labs List. */
 public final class LabsListSamples {
     /*
-     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/preview/2021-11-15-preview/examples/Labs/listLabs.json
+     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/Labs/listLabs.json
      */
     /**
      * Sample code: listLabs.
@@ -520,7 +520,7 @@ import com.azure.core.util.Context;
 /** Samples for Labs ListByResourceGroup. */
 public final class LabsListByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/preview/2021-11-15-preview/examples/Labs/listResourceGroupLabs.json
+     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/Labs/listResourceGroupLabs.json
      */
     /**
      * Sample code: listResourceGroupLabs.
@@ -541,7 +541,7 @@ import com.azure.core.util.Context;
 /** Samples for Labs Publish. */
 public final class LabsPublishSamples {
     /*
-     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/preview/2021-11-15-preview/examples/Labs/publishLab.json
+     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/Labs/publishLab.json
      */
     /**
      * Sample code: publishLab.
@@ -562,7 +562,7 @@ import com.azure.core.util.Context;
 /** Samples for Labs SyncGroup. */
 public final class LabsSyncGroupSamples {
     /*
-     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/preview/2021-11-15-preview/examples/Labs/syncLab.json
+     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/Labs/syncLab.json
      */
     /**
      * Sample code: syncLab.
@@ -586,7 +586,7 @@ import com.azure.resourcemanager.labservices.models.SecurityProfile;
 /** Samples for Labs Update. */
 public final class LabsUpdateSamples {
     /*
-     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/preview/2021-11-15-preview/examples/Labs/patchLab.json
+     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/Labs/patchLab.json
      */
     /**
      * Sample code: patchLab.
@@ -608,7 +608,7 @@ import com.azure.core.util.Context;
 /** Samples for OperationResults Get. */
 public final class OperationResultsGetSamples {
     /*
-     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/preview/2021-11-15-preview/examples/OperationResults/getOperationResult.json
+     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/OperationResults/getOperationResult.json
      */
     /**
      * Sample code: getOperationResult.
@@ -629,7 +629,7 @@ import com.azure.core.util.Context;
 /** Samples for Operations List. */
 public final class OperationsListSamples {
     /*
-     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/preview/2021-11-15-preview/examples/LabServices/listOperations.json
+     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/LabServices/listOperations.json
      */
     /**
      * Sample code: listOperations.
@@ -653,7 +653,7 @@ import java.time.OffsetDateTime;
 /** Samples for Schedules CreateOrUpdate. */
 public final class SchedulesCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/preview/2021-11-15-preview/examples/Schedules/putSchedule.json
+     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/Schedules/putSchedule.json
      */
     /**
      * Sample code: putSchedule.
@@ -687,7 +687,7 @@ import com.azure.core.util.Context;
 /** Samples for Schedules Delete. */
 public final class SchedulesDeleteSamples {
     /*
-     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/preview/2021-11-15-preview/examples/Schedules/deleteSchedule.json
+     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/Schedules/deleteSchedule.json
      */
     /**
      * Sample code: deleteSchedule.
@@ -708,7 +708,7 @@ import com.azure.core.util.Context;
 /** Samples for Schedules Get. */
 public final class SchedulesGetSamples {
     /*
-     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/preview/2021-11-15-preview/examples/Schedules/getSchedule.json
+     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/Schedules/getSchedule.json
      */
     /**
      * Sample code: getSchedule.
@@ -729,7 +729,7 @@ import com.azure.core.util.Context;
 /** Samples for Schedules ListByLab. */
 public final class SchedulesListByLabSamples {
     /*
-     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/preview/2021-11-15-preview/examples/Schedules/listSchedule.json
+     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/Schedules/listSchedule.json
      */
     /**
      * Sample code: getListSchedule.
@@ -754,7 +754,7 @@ import java.time.LocalDate;
 /** Samples for Schedules Update. */
 public final class SchedulesUpdateSamples {
     /*
-     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/preview/2021-11-15-preview/examples/Schedules/patchSchedule.json
+     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/Schedules/patchSchedule.json
      */
     /**
      * Sample code: patchSchedule.
@@ -784,7 +784,7 @@ import com.azure.core.util.Context;
 /** Samples for Skus List. */
 public final class SkusListSamples {
     /*
-     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/preview/2021-11-15-preview/examples/Skus/listSkus.json
+     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/Skus/listSkus.json
      */
     /**
      * Sample code: listSkus.
@@ -805,7 +805,7 @@ import com.azure.core.util.Context;
 /** Samples for Usages ListByLocation. */
 public final class UsagesListByLocationSamples {
     /*
-     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/preview/2021-11-15-preview/examples/Usages/getUsages.json
+     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/Usages/getUsages.json
      */
     /**
      * Sample code: listUsages.
@@ -826,7 +826,7 @@ import java.time.Duration;
 /** Samples for Users CreateOrUpdate. */
 public final class UsersCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/preview/2021-11-15-preview/examples/Users/putUser.json
+     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/Users/putUser.json
      */
     /**
      * Sample code: putUser.
@@ -853,7 +853,7 @@ import com.azure.core.util.Context;
 /** Samples for Users Delete. */
 public final class UsersDeleteSamples {
     /*
-     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/preview/2021-11-15-preview/examples/Users/deleteUser.json
+     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/Users/deleteUser.json
      */
     /**
      * Sample code: deleteUser.
@@ -874,7 +874,7 @@ import com.azure.core.util.Context;
 /** Samples for Users Get. */
 public final class UsersGetSamples {
     /*
-     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/preview/2021-11-15-preview/examples/Users/getUser.json
+     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/Users/getUser.json
      */
     /**
      * Sample code: getUser.
@@ -896,7 +896,7 @@ import com.azure.resourcemanager.labservices.models.InviteBody;
 /** Samples for Users Invite. */
 public final class UsersInviteSamples {
     /*
-     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/preview/2021-11-15-preview/examples/Users/inviteUser.json
+     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/Users/inviteUser.json
      */
     /**
      * Sample code: inviteUser.
@@ -924,7 +924,7 @@ import com.azure.core.util.Context;
 /** Samples for Users ListByLab. */
 public final class UsersListByLabSamples {
     /*
-     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/preview/2021-11-15-preview/examples/Users/listUser.json
+     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/Users/listUser.json
      */
     /**
      * Sample code: listUser.
@@ -947,7 +947,7 @@ import java.time.Duration;
 /** Samples for Users Update. */
 public final class UsersUpdateSamples {
     /*
-     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/preview/2021-11-15-preview/examples/Users/patchUser.json
+     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/Users/patchUser.json
      */
     /**
      * Sample code: patchUser.
@@ -969,7 +969,7 @@ import com.azure.core.util.Context;
 /** Samples for VirtualMachines Get. */
 public final class VirtualMachinesGetSamples {
     /*
-     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/preview/2021-11-15-preview/examples/VirtualMachines/getVirtualMachine.json
+     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/VirtualMachines/getVirtualMachine.json
      */
     /**
      * Sample code: getVirtualMachine.
@@ -990,7 +990,7 @@ import com.azure.core.util.Context;
 /** Samples for VirtualMachines ListByLab. */
 public final class VirtualMachinesListByLabSamples {
     /*
-     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/preview/2021-11-15-preview/examples/VirtualMachines/listVirtualMachine.json
+     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/VirtualMachines/listVirtualMachine.json
      */
     /**
      * Sample code: listVirtualMachine.
@@ -1011,7 +1011,7 @@ import com.azure.core.util.Context;
 /** Samples for VirtualMachines Redeploy. */
 public final class VirtualMachinesRedeploySamples {
     /*
-     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/preview/2021-11-15-preview/examples/VirtualMachines/redeployVirtualMachine.json
+     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/VirtualMachines/redeployVirtualMachine.json
      */
     /**
      * Sample code: redeployVirtualMachine.
@@ -1032,7 +1032,7 @@ import com.azure.core.util.Context;
 /** Samples for VirtualMachines Reimage. */
 public final class VirtualMachinesReimageSamples {
     /*
-     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/preview/2021-11-15-preview/examples/VirtualMachines/reimageVirtualMachine.json
+     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/VirtualMachines/reimageVirtualMachine.json
      */
     /**
      * Sample code: reimageVirtualMachine.
@@ -1054,7 +1054,7 @@ import com.azure.resourcemanager.labservices.models.ResetPasswordBody;
 /** Samples for VirtualMachines ResetPassword. */
 public final class VirtualMachinesResetPasswordSamples {
     /*
-     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/preview/2021-11-15-preview/examples/VirtualMachines/resetPasswordVirtualMachine.json
+     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/VirtualMachines/resetPasswordVirtualMachine.json
      */
     /**
      * Sample code: resetPasswordVirtualMachine.
@@ -1082,7 +1082,7 @@ import com.azure.core.util.Context;
 /** Samples for VirtualMachines Start. */
 public final class VirtualMachinesStartSamples {
     /*
-     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/preview/2021-11-15-preview/examples/VirtualMachines/startVirtualMachine.json
+     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/VirtualMachines/startVirtualMachine.json
      */
     /**
      * Sample code: startVirtualMachine.
@@ -1103,7 +1103,7 @@ import com.azure.core.util.Context;
 /** Samples for VirtualMachines Stop. */
 public final class VirtualMachinesStopSamples {
     /*
-     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/preview/2021-11-15-preview/examples/VirtualMachines/stopVirtualMachine.json
+     * x-ms-original-file: specification/labservices/resource-manager/Microsoft.LabServices/stable/2022-08-01/examples/VirtualMachines/stopVirtualMachine.json
      */
     /**
      * Sample code: stopVirtualMachine.

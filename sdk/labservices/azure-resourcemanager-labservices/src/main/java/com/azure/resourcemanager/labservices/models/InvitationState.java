@@ -36,6 +36,9 @@ public enum InvitationState {
      */
     @JsonCreator
     public static InvitationState fromString(String value) {
+        if (value == null) {
+            return null;
+        }
         InvitationState[] items = InvitationState.values();
         for (InvitationState item : items) {
             if (item.toString().equalsIgnoreCase(value)) {

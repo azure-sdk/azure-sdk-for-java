@@ -11,7 +11,9 @@ import com.azure.core.util.Context;
 /** Resource collection API of VirtualMachines. */
 public interface VirtualMachines {
     /**
-     * Returns a list of all virtual machines for a lab.
+     * Get all virtual machines for a lab.
+     *
+     * <p>Returns a list of all virtual machines for a lab.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab that uniquely identifies it within containing lab account. Used in resource
@@ -19,12 +21,14 @@ public interface VirtualMachines {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged list of lab services virtual machines.
+     * @return paged list of lab services virtual machines as paginated response with {@link PagedIterable}.
      */
     PagedIterable<VirtualMachine> listByLab(String resourceGroupName, String labName);
 
     /**
-     * Returns a list of all virtual machines for a lab.
+     * Get all virtual machines for a lab.
+     *
+     * <p>Returns a list of all virtual machines for a lab.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab that uniquely identifies it within containing lab account. Used in resource
@@ -34,12 +38,14 @@ public interface VirtualMachines {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged list of lab services virtual machines.
+     * @return paged list of lab services virtual machines as paginated response with {@link PagedIterable}.
      */
     PagedIterable<VirtualMachine> listByLab(String resourceGroupName, String labName, String filter, Context context);
 
     /**
-     * Returns the properties for a lab virtual machine.
+     * Get a lab virtual machine.
+     *
+     * <p>Returns the properties for a lab virtual machine.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab that uniquely identifies it within containing lab account. Used in resource
@@ -54,7 +60,9 @@ public interface VirtualMachines {
     VirtualMachine get(String resourceGroupName, String labName, String virtualMachineName);
 
     /**
-     * Returns the properties for a lab virtual machine.
+     * Get a lab virtual machine.
+     *
+     * <p>Returns the properties for a lab virtual machine.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab that uniquely identifies it within containing lab account. Used in resource
@@ -71,7 +79,9 @@ public interface VirtualMachines {
         String resourceGroupName, String labName, String virtualMachineName, Context context);
 
     /**
-     * Action to start a lab virtual machine.
+     * Start a lab virtual machine.
+     *
+     * <p>Action to start a lab virtual machine.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab that uniquely identifies it within containing lab account. Used in resource
@@ -85,7 +95,9 @@ public interface VirtualMachines {
     void start(String resourceGroupName, String labName, String virtualMachineName);
 
     /**
-     * Action to start a lab virtual machine.
+     * Start a lab virtual machine.
+     *
+     * <p>Action to start a lab virtual machine.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab that uniquely identifies it within containing lab account. Used in resource
@@ -100,7 +112,9 @@ public interface VirtualMachines {
     void start(String resourceGroupName, String labName, String virtualMachineName, Context context);
 
     /**
-     * Action to stop a lab virtual machine.
+     * Stop a lab virtual machine.
+     *
+     * <p>Action to stop a lab virtual machine.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab that uniquely identifies it within containing lab account. Used in resource
@@ -114,7 +128,9 @@ public interface VirtualMachines {
     void stop(String resourceGroupName, String labName, String virtualMachineName);
 
     /**
-     * Action to stop a lab virtual machine.
+     * Stop a lab virtual machine.
+     *
+     * <p>Action to stop a lab virtual machine.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab that uniquely identifies it within containing lab account. Used in resource
@@ -129,7 +145,9 @@ public interface VirtualMachines {
     void stop(String resourceGroupName, String labName, String virtualMachineName, Context context);
 
     /**
-     * Re-image a lab virtual machine. The virtual machine will be deleted and recreated using the latest published
+     * Re-image a lab virtual machine.
+     *
+     * <p>Re-image a lab virtual machine. The virtual machine will be deleted and recreated using the latest published
      * snapshot of the reference environment of the lab.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -144,7 +162,9 @@ public interface VirtualMachines {
     void reimage(String resourceGroupName, String labName, String virtualMachineName);
 
     /**
-     * Re-image a lab virtual machine. The virtual machine will be deleted and recreated using the latest published
+     * Re-image a lab virtual machine.
+     *
+     * <p>Re-image a lab virtual machine. The virtual machine will be deleted and recreated using the latest published
      * snapshot of the reference environment of the lab.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -160,7 +180,9 @@ public interface VirtualMachines {
     void reimage(String resourceGroupName, String labName, String virtualMachineName, Context context);
 
     /**
-     * Action to redeploy a lab virtual machine to a different compute node. For troubleshooting connectivity.
+     * Redeploy a lab virtual machine to a different compute node. For troubleshooting connectivity.
+     *
+     * <p>Action to redeploy a lab virtual machine to a different compute node. For troubleshooting connectivity.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab that uniquely identifies it within containing lab account. Used in resource
@@ -174,7 +196,9 @@ public interface VirtualMachines {
     void redeploy(String resourceGroupName, String labName, String virtualMachineName);
 
     /**
-     * Action to redeploy a lab virtual machine to a different compute node. For troubleshooting connectivity.
+     * Redeploy a lab virtual machine to a different compute node. For troubleshooting connectivity.
+     *
+     * <p>Action to redeploy a lab virtual machine to a different compute node. For troubleshooting connectivity.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab that uniquely identifies it within containing lab account. Used in resource
@@ -189,7 +213,9 @@ public interface VirtualMachines {
     void redeploy(String resourceGroupName, String labName, String virtualMachineName, Context context);
 
     /**
-     * Resets a lab virtual machine password.
+     * Reset a lab virtual machine password.
+     *
+     * <p>Resets a lab virtual machine password.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab that uniquely identifies it within containing lab account. Used in resource
@@ -204,7 +230,9 @@ public interface VirtualMachines {
     void resetPassword(String resourceGroupName, String labName, String virtualMachineName, ResetPasswordBody body);
 
     /**
-     * Resets a lab virtual machine password.
+     * Reset a lab virtual machine password.
+     *
+     * <p>Resets a lab virtual machine password.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab that uniquely identifies it within containing lab account. Used in resource

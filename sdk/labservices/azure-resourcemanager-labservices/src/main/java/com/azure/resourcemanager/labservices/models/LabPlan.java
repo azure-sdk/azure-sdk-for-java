@@ -133,6 +133,13 @@ public interface LabPlan {
     String regionName();
 
     /**
+     * Gets the name of the resource group.
+     *
+     * @return the name of the resource group.
+     */
+    String resourceGroupName();
+
+    /**
      * Gets the inner com.azure.resourcemanager.labservices.fluent.models.LabPlanInner object.
      *
      * @return the inner object.
@@ -453,7 +460,9 @@ public interface LabPlan {
     LabPlan refresh(Context context);
 
     /**
-     * Saves an image from a lab VM to the attached shared image gallery.
+     * Save an image from a lab VM to the attached shared image gallery.
+     *
+     * <p>Saves an image from a lab VM to the attached shared image gallery.
      *
      * @param body The request body.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -463,7 +472,9 @@ public interface LabPlan {
     void saveImage(SaveImageBody body);
 
     /**
-     * Saves an image from a lab VM to the attached shared image gallery.
+     * Save an image from a lab VM to the attached shared image gallery.
+     *
+     * <p>Saves an image from a lab VM to the attached shared image gallery.
      *
      * @param body The request body.
      * @param context The context to associate with this operation.

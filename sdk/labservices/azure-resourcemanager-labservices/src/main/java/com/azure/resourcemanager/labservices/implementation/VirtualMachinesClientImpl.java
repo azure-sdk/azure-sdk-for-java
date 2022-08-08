@@ -28,7 +28,6 @@ import com.azure.core.management.exception.ManagementException;
 import com.azure.core.management.polling.PollResult;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.labservices.fluent.VirtualMachinesClient;
@@ -41,8 +40,6 @@ import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in VirtualMachinesClient. */
 public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
-    private final ClientLogger logger = new ClientLogger(VirtualMachinesClientImpl.class);
-
     /** The proxy service used to perform REST calls. */
     private final VirtualMachinesService service;
 
@@ -192,7 +189,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Returns a list of all virtual machines for a lab.
+     * Get all virtual machines for a lab.
+     *
+     * <p>Returns a list of all virtual machines for a lab.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab that uniquely identifies it within containing lab account. Used in resource
@@ -253,7 +252,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Returns a list of all virtual machines for a lab.
+     * Get all virtual machines for a lab.
+     *
+     * <p>Returns a list of all virtual machines for a lab.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab that uniquely identifies it within containing lab account. Used in resource
@@ -312,7 +313,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Returns a list of all virtual machines for a lab.
+     * Get all virtual machines for a lab.
+     *
+     * <p>Returns a list of all virtual machines for a lab.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab that uniquely identifies it within containing lab account. Used in resource
@@ -321,7 +324,7 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged list of lab services virtual machines.
+     * @return paged list of lab services virtual machines as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<VirtualMachineInner> listByLabAsync(String resourceGroupName, String labName, String filter) {
@@ -331,7 +334,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Returns a list of all virtual machines for a lab.
+     * Get all virtual machines for a lab.
+     *
+     * <p>Returns a list of all virtual machines for a lab.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab that uniquely identifies it within containing lab account. Used in resource
@@ -339,7 +344,7 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged list of lab services virtual machines.
+     * @return paged list of lab services virtual machines as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<VirtualMachineInner> listByLabAsync(String resourceGroupName, String labName) {
@@ -350,7 +355,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Returns a list of all virtual machines for a lab.
+     * Get all virtual machines for a lab.
+     *
+     * <p>Returns a list of all virtual machines for a lab.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab that uniquely identifies it within containing lab account. Used in resource
@@ -360,7 +367,7 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged list of lab services virtual machines.
+     * @return paged list of lab services virtual machines as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<VirtualMachineInner> listByLabAsync(
@@ -371,7 +378,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Returns a list of all virtual machines for a lab.
+     * Get all virtual machines for a lab.
+     *
+     * <p>Returns a list of all virtual machines for a lab.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab that uniquely identifies it within containing lab account. Used in resource
@@ -379,7 +388,7 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged list of lab services virtual machines.
+     * @return paged list of lab services virtual machines as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<VirtualMachineInner> listByLab(String resourceGroupName, String labName) {
@@ -388,7 +397,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Returns a list of all virtual machines for a lab.
+     * Get all virtual machines for a lab.
+     *
+     * <p>Returns a list of all virtual machines for a lab.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab that uniquely identifies it within containing lab account. Used in resource
@@ -398,7 +409,7 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged list of lab services virtual machines.
+     * @return paged list of lab services virtual machines as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<VirtualMachineInner> listByLab(
@@ -407,7 +418,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Returns the properties for a lab virtual machine.
+     * Get a lab virtual machine.
+     *
+     * <p>Returns the properties for a lab virtual machine.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab that uniquely identifies it within containing lab account. Used in resource
@@ -463,7 +476,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Returns the properties for a lab virtual machine.
+     * Get a lab virtual machine.
+     *
+     * <p>Returns the properties for a lab virtual machine.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab that uniquely identifies it within containing lab account. Used in resource
@@ -517,7 +532,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Returns the properties for a lab virtual machine.
+     * Get a lab virtual machine.
+     *
+     * <p>Returns the properties for a lab virtual machine.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab that uniquely identifies it within containing lab account. Used in resource
@@ -532,18 +549,13 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<VirtualMachineInner> getAsync(String resourceGroupName, String labName, String virtualMachineName) {
         return getWithResponseAsync(resourceGroupName, labName, virtualMachineName)
-            .flatMap(
-                (Response<VirtualMachineInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
-     * Returns the properties for a lab virtual machine.
+     * Get a lab virtual machine.
+     *
+     * <p>Returns the properties for a lab virtual machine.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab that uniquely identifies it within containing lab account. Used in resource
@@ -561,7 +573,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Returns the properties for a lab virtual machine.
+     * Get a lab virtual machine.
+     *
+     * <p>Returns the properties for a lab virtual machine.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab that uniquely identifies it within containing lab account. Used in resource
@@ -581,7 +595,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Action to start a lab virtual machine.
+     * Start a lab virtual machine.
+     *
+     * <p>Action to start a lab virtual machine.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab that uniquely identifies it within containing lab account. Used in resource
@@ -637,7 +653,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Action to start a lab virtual machine.
+     * Start a lab virtual machine.
+     *
+     * <p>Action to start a lab virtual machine.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab that uniquely identifies it within containing lab account. Used in resource
@@ -691,7 +709,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Action to start a lab virtual machine.
+     * Start a lab virtual machine.
+     *
+     * <p>Action to start a lab virtual machine.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab that uniquely identifies it within containing lab account. Used in resource
@@ -701,7 +721,7 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the {@link PollerFlux} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<Void>, Void> beginStartAsync(
@@ -714,7 +734,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Action to start a lab virtual machine.
+     * Start a lab virtual machine.
+     *
+     * <p>Action to start a lab virtual machine.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab that uniquely identifies it within containing lab account. Used in resource
@@ -725,7 +747,7 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the {@link PollerFlux} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<Void>, Void> beginStartAsync(
@@ -739,7 +761,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Action to start a lab virtual machine.
+     * Start a lab virtual machine.
+     *
+     * <p>Action to start a lab virtual machine.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab that uniquely identifies it within containing lab account. Used in resource
@@ -749,7 +773,7 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginStart(
@@ -758,7 +782,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Action to start a lab virtual machine.
+     * Start a lab virtual machine.
+     *
+     * <p>Action to start a lab virtual machine.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab that uniquely identifies it within containing lab account. Used in resource
@@ -769,7 +795,7 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginStart(
@@ -778,7 +804,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Action to start a lab virtual machine.
+     * Start a lab virtual machine.
+     *
+     * <p>Action to start a lab virtual machine.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab that uniquely identifies it within containing lab account. Used in resource
@@ -798,7 +826,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Action to start a lab virtual machine.
+     * Start a lab virtual machine.
+     *
+     * <p>Action to start a lab virtual machine.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab that uniquely identifies it within containing lab account. Used in resource
@@ -820,7 +850,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Action to start a lab virtual machine.
+     * Start a lab virtual machine.
+     *
+     * <p>Action to start a lab virtual machine.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab that uniquely identifies it within containing lab account. Used in resource
@@ -837,7 +869,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Action to start a lab virtual machine.
+     * Start a lab virtual machine.
+     *
+     * <p>Action to start a lab virtual machine.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab that uniquely identifies it within containing lab account. Used in resource
@@ -855,7 +889,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Action to stop a lab virtual machine.
+     * Stop a lab virtual machine.
+     *
+     * <p>Action to stop a lab virtual machine.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab that uniquely identifies it within containing lab account. Used in resource
@@ -911,7 +947,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Action to stop a lab virtual machine.
+     * Stop a lab virtual machine.
+     *
+     * <p>Action to stop a lab virtual machine.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab that uniquely identifies it within containing lab account. Used in resource
@@ -965,7 +1003,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Action to stop a lab virtual machine.
+     * Stop a lab virtual machine.
+     *
+     * <p>Action to stop a lab virtual machine.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab that uniquely identifies it within containing lab account. Used in resource
@@ -975,7 +1015,7 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the {@link PollerFlux} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<Void>, Void> beginStopAsync(
@@ -988,7 +1028,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Action to stop a lab virtual machine.
+     * Stop a lab virtual machine.
+     *
+     * <p>Action to stop a lab virtual machine.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab that uniquely identifies it within containing lab account. Used in resource
@@ -999,7 +1041,7 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the {@link PollerFlux} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<Void>, Void> beginStopAsync(
@@ -1013,7 +1055,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Action to stop a lab virtual machine.
+     * Stop a lab virtual machine.
+     *
+     * <p>Action to stop a lab virtual machine.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab that uniquely identifies it within containing lab account. Used in resource
@@ -1023,7 +1067,7 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginStop(
@@ -1032,7 +1076,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Action to stop a lab virtual machine.
+     * Stop a lab virtual machine.
+     *
+     * <p>Action to stop a lab virtual machine.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab that uniquely identifies it within containing lab account. Used in resource
@@ -1043,7 +1089,7 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginStop(
@@ -1052,7 +1098,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Action to stop a lab virtual machine.
+     * Stop a lab virtual machine.
+     *
+     * <p>Action to stop a lab virtual machine.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab that uniquely identifies it within containing lab account. Used in resource
@@ -1072,7 +1120,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Action to stop a lab virtual machine.
+     * Stop a lab virtual machine.
+     *
+     * <p>Action to stop a lab virtual machine.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab that uniquely identifies it within containing lab account. Used in resource
@@ -1093,7 +1143,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Action to stop a lab virtual machine.
+     * Stop a lab virtual machine.
+     *
+     * <p>Action to stop a lab virtual machine.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab that uniquely identifies it within containing lab account. Used in resource
@@ -1110,7 +1162,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Action to stop a lab virtual machine.
+     * Stop a lab virtual machine.
+     *
+     * <p>Action to stop a lab virtual machine.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab that uniquely identifies it within containing lab account. Used in resource
@@ -1128,7 +1182,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Re-image a lab virtual machine. The virtual machine will be deleted and recreated using the latest published
+     * Re-image a lab virtual machine.
+     *
+     * <p>Re-image a lab virtual machine. The virtual machine will be deleted and recreated using the latest published
      * snapshot of the reference environment of the lab.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -1185,7 +1241,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Re-image a lab virtual machine. The virtual machine will be deleted and recreated using the latest published
+     * Re-image a lab virtual machine.
+     *
+     * <p>Re-image a lab virtual machine. The virtual machine will be deleted and recreated using the latest published
      * snapshot of the reference environment of the lab.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -1240,7 +1298,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Re-image a lab virtual machine. The virtual machine will be deleted and recreated using the latest published
+     * Re-image a lab virtual machine.
+     *
+     * <p>Re-image a lab virtual machine. The virtual machine will be deleted and recreated using the latest published
      * snapshot of the reference environment of the lab.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -1251,7 +1311,7 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the {@link PollerFlux} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<Void>, Void> beginReimageAsync(
@@ -1265,7 +1325,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Re-image a lab virtual machine. The virtual machine will be deleted and recreated using the latest published
+     * Re-image a lab virtual machine.
+     *
+     * <p>Re-image a lab virtual machine. The virtual machine will be deleted and recreated using the latest published
      * snapshot of the reference environment of the lab.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -1277,7 +1339,7 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the {@link PollerFlux} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<Void>, Void> beginReimageAsync(
@@ -1291,7 +1353,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Re-image a lab virtual machine. The virtual machine will be deleted and recreated using the latest published
+     * Re-image a lab virtual machine.
+     *
+     * <p>Re-image a lab virtual machine. The virtual machine will be deleted and recreated using the latest published
      * snapshot of the reference environment of the lab.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -1302,7 +1366,7 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginReimage(
@@ -1311,7 +1375,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Re-image a lab virtual machine. The virtual machine will be deleted and recreated using the latest published
+     * Re-image a lab virtual machine.
+     *
+     * <p>Re-image a lab virtual machine. The virtual machine will be deleted and recreated using the latest published
      * snapshot of the reference environment of the lab.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -1323,7 +1389,7 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginReimage(
@@ -1332,7 +1398,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Re-image a lab virtual machine. The virtual machine will be deleted and recreated using the latest published
+     * Re-image a lab virtual machine.
+     *
+     * <p>Re-image a lab virtual machine. The virtual machine will be deleted and recreated using the latest published
      * snapshot of the reference environment of the lab.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -1353,7 +1421,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Re-image a lab virtual machine. The virtual machine will be deleted and recreated using the latest published
+     * Re-image a lab virtual machine.
+     *
+     * <p>Re-image a lab virtual machine. The virtual machine will be deleted and recreated using the latest published
      * snapshot of the reference environment of the lab.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -1376,7 +1446,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Re-image a lab virtual machine. The virtual machine will be deleted and recreated using the latest published
+     * Re-image a lab virtual machine.
+     *
+     * <p>Re-image a lab virtual machine. The virtual machine will be deleted and recreated using the latest published
      * snapshot of the reference environment of the lab.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -1394,7 +1466,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Re-image a lab virtual machine. The virtual machine will be deleted and recreated using the latest published
+     * Re-image a lab virtual machine.
+     *
+     * <p>Re-image a lab virtual machine. The virtual machine will be deleted and recreated using the latest published
      * snapshot of the reference environment of the lab.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -1413,7 +1487,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Action to redeploy a lab virtual machine to a different compute node. For troubleshooting connectivity.
+     * Redeploy a lab virtual machine to a different compute node. For troubleshooting connectivity.
+     *
+     * <p>Action to redeploy a lab virtual machine to a different compute node. For troubleshooting connectivity.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab that uniquely identifies it within containing lab account. Used in resource
@@ -1469,7 +1545,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Action to redeploy a lab virtual machine to a different compute node. For troubleshooting connectivity.
+     * Redeploy a lab virtual machine to a different compute node. For troubleshooting connectivity.
+     *
+     * <p>Action to redeploy a lab virtual machine to a different compute node. For troubleshooting connectivity.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab that uniquely identifies it within containing lab account. Used in resource
@@ -1523,7 +1601,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Action to redeploy a lab virtual machine to a different compute node. For troubleshooting connectivity.
+     * Redeploy a lab virtual machine to a different compute node. For troubleshooting connectivity.
+     *
+     * <p>Action to redeploy a lab virtual machine to a different compute node. For troubleshooting connectivity.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab that uniquely identifies it within containing lab account. Used in resource
@@ -1533,7 +1613,7 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the {@link PollerFlux} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<Void>, Void> beginRedeployAsync(
@@ -1547,7 +1627,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Action to redeploy a lab virtual machine to a different compute node. For troubleshooting connectivity.
+     * Redeploy a lab virtual machine to a different compute node. For troubleshooting connectivity.
+     *
+     * <p>Action to redeploy a lab virtual machine to a different compute node. For troubleshooting connectivity.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab that uniquely identifies it within containing lab account. Used in resource
@@ -1558,7 +1640,7 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the {@link PollerFlux} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<Void>, Void> beginRedeployAsync(
@@ -1572,7 +1654,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Action to redeploy a lab virtual machine to a different compute node. For troubleshooting connectivity.
+     * Redeploy a lab virtual machine to a different compute node. For troubleshooting connectivity.
+     *
+     * <p>Action to redeploy a lab virtual machine to a different compute node. For troubleshooting connectivity.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab that uniquely identifies it within containing lab account. Used in resource
@@ -1582,7 +1666,7 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginRedeploy(
@@ -1591,7 +1675,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Action to redeploy a lab virtual machine to a different compute node. For troubleshooting connectivity.
+     * Redeploy a lab virtual machine to a different compute node. For troubleshooting connectivity.
+     *
+     * <p>Action to redeploy a lab virtual machine to a different compute node. For troubleshooting connectivity.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab that uniquely identifies it within containing lab account. Used in resource
@@ -1602,7 +1688,7 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginRedeploy(
@@ -1611,7 +1697,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Action to redeploy a lab virtual machine to a different compute node. For troubleshooting connectivity.
+     * Redeploy a lab virtual machine to a different compute node. For troubleshooting connectivity.
+     *
+     * <p>Action to redeploy a lab virtual machine to a different compute node. For troubleshooting connectivity.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab that uniquely identifies it within containing lab account. Used in resource
@@ -1631,7 +1719,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Action to redeploy a lab virtual machine to a different compute node. For troubleshooting connectivity.
+     * Redeploy a lab virtual machine to a different compute node. For troubleshooting connectivity.
+     *
+     * <p>Action to redeploy a lab virtual machine to a different compute node. For troubleshooting connectivity.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab that uniquely identifies it within containing lab account. Used in resource
@@ -1653,7 +1743,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Action to redeploy a lab virtual machine to a different compute node. For troubleshooting connectivity.
+     * Redeploy a lab virtual machine to a different compute node. For troubleshooting connectivity.
+     *
+     * <p>Action to redeploy a lab virtual machine to a different compute node. For troubleshooting connectivity.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab that uniquely identifies it within containing lab account. Used in resource
@@ -1670,7 +1762,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Action to redeploy a lab virtual machine to a different compute node. For troubleshooting connectivity.
+     * Redeploy a lab virtual machine to a different compute node. For troubleshooting connectivity.
+     *
+     * <p>Action to redeploy a lab virtual machine to a different compute node. For troubleshooting connectivity.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab that uniquely identifies it within containing lab account. Used in resource
@@ -1688,7 +1782,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Resets a lab virtual machine password.
+     * Reset a lab virtual machine password.
+     *
+     * <p>Resets a lab virtual machine password.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab that uniquely identifies it within containing lab account. Used in resource
@@ -1751,7 +1847,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Resets a lab virtual machine password.
+     * Reset a lab virtual machine password.
+     *
+     * <p>Resets a lab virtual machine password.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab that uniquely identifies it within containing lab account. Used in resource
@@ -1812,7 +1910,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Resets a lab virtual machine password.
+     * Reset a lab virtual machine password.
+     *
+     * <p>Resets a lab virtual machine password.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab that uniquely identifies it within containing lab account. Used in resource
@@ -1823,7 +1923,7 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the {@link PollerFlux} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<Void>, Void> beginResetPasswordAsync(
@@ -1837,7 +1937,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Resets a lab virtual machine password.
+     * Reset a lab virtual machine password.
+     *
+     * <p>Resets a lab virtual machine password.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab that uniquely identifies it within containing lab account. Used in resource
@@ -1849,7 +1951,7 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the {@link PollerFlux} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<Void>, Void> beginResetPasswordAsync(
@@ -1863,7 +1965,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Resets a lab virtual machine password.
+     * Reset a lab virtual machine password.
+     *
+     * <p>Resets a lab virtual machine password.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab that uniquely identifies it within containing lab account. Used in resource
@@ -1874,7 +1978,7 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginResetPassword(
@@ -1883,7 +1987,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Resets a lab virtual machine password.
+     * Reset a lab virtual machine password.
+     *
+     * <p>Resets a lab virtual machine password.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab that uniquely identifies it within containing lab account. Used in resource
@@ -1895,7 +2001,7 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginResetPassword(
@@ -1904,7 +2010,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Resets a lab virtual machine password.
+     * Reset a lab virtual machine password.
+     *
+     * <p>Resets a lab virtual machine password.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab that uniquely identifies it within containing lab account. Used in resource
@@ -1926,7 +2034,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Resets a lab virtual machine password.
+     * Reset a lab virtual machine password.
+     *
+     * <p>Resets a lab virtual machine password.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab that uniquely identifies it within containing lab account. Used in resource
@@ -1949,7 +2059,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Resets a lab virtual machine password.
+     * Reset a lab virtual machine password.
+     *
+     * <p>Resets a lab virtual machine password.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab that uniquely identifies it within containing lab account. Used in resource
@@ -1968,7 +2080,9 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     }
 
     /**
-     * Resets a lab virtual machine password.
+     * Reset a lab virtual machine password.
+     *
+     * <p>Resets a lab virtual machine password.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab that uniquely identifies it within containing lab account. Used in resource

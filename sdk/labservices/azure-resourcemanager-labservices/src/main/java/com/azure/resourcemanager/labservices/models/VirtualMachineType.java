@@ -30,6 +30,9 @@ public enum VirtualMachineType {
      */
     @JsonCreator
     public static VirtualMachineType fromString(String value) {
+        if (value == null) {
+            return null;
+        }
         VirtualMachineType[] items = VirtualMachineType.values();
         for (VirtualMachineType item : items) {
             if (item.toString().equalsIgnoreCase(value)) {
