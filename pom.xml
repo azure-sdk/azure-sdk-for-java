@@ -19,6 +19,7 @@
     <module>sdk/appconfiguration</module>
     <module>sdk/appcontainers</module>
     <module>sdk/applicationinsights</module>
+    <module>sdk/appplatform</module>
     <module>sdk/attestation</module>
     <module>sdk/automanage</module>
     <module>sdk/automation</module>
@@ -71,8 +72,8 @@
     <module>sdk/eventgrid</module>
     <module>sdk/eventhubs</module>
     <module>sdk/extendedlocation</module>
-    <module>sdk/formrecognizer</module>
     <module>sdk/fluidrelay</module>
+    <module>sdk/formrecognizer</module>
     <module>sdk/frontdoor</module>
     <module>sdk/hanaonazure</module>
     <module>sdk/hardwaresecuritymodules</module>
