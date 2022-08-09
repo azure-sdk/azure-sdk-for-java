@@ -25,15 +25,13 @@ public final class ConfigurationStorePropertiesUpdateParameters {
     private Boolean disableLocalAuth;
 
     /*
-     * Control permission for data plane traffic coming from public networks
-     * while private endpoint is enabled.
+     * Control permission for data plane traffic coming from public networks while private endpoint is enabled.
      */
     @JsonProperty(value = "publicNetworkAccess")
     private PublicNetworkAccess publicNetworkAccess;
 
     /*
-     * Property specifying whether protection against purge is enabled for this
-     * configuration store.
+     * Property specifying whether protection against purge is enabled for this configuration store.
      */
     @JsonProperty(value = "enablePurgeProtection")
     private Boolean enablePurgeProtection;
