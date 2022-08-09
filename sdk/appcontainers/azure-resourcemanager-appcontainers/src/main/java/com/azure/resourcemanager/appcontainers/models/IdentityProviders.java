@@ -58,8 +58,7 @@ public final class IdentityProviders {
     private AzureStaticWebApps azureStaticWebApps;
 
     /*
-     * The map of the name of the alias of each custom Open ID Connect provider
-     * to the
+     * The map of the name of the alias of each custom Open ID Connect provider to the
      * configuration settings of the custom Open ID Connect provider.
      */
     @JsonProperty(value = "customOpenIdConnectProviders")
