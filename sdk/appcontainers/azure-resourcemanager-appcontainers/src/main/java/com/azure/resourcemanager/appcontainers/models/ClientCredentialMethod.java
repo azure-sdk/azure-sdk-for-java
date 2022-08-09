@@ -27,6 +27,9 @@ public enum ClientCredentialMethod {
      */
     @JsonCreator
     public static ClientCredentialMethod fromString(String value) {
+        if (value == null) {
+            return null;
+        }
         ClientCredentialMethod[] items = ClientCredentialMethod.values();
         for (ClientCredentialMethod item : items) {
             if (item.toString().equalsIgnoreCase(value)) {
