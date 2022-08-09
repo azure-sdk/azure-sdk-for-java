@@ -33,7 +33,11 @@ public final class FeatureFlags extends ExpandableStringEnum<FeatureFlags> {
         return fromString(name, FeatureFlags.class);
     }
 
-    /** @return known FeatureFlags values. */
+    /**
+     * Gets known FeatureFlags values.
+     *
+     * @return known FeatureFlags values.
+     */
     public static Collection<FeatureFlags> values() {
         return values(FeatureFlags.class);
     }

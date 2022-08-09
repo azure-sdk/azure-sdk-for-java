@@ -462,14 +462,7 @@ public final class SignalRSharedPrivateLinkResourcesClientImpl implements Signal
     private Mono<SharedPrivateLinkResourceInner> getAsync(
         String sharedPrivateLinkResourceName, String resourceGroupName, String resourceName) {
         return getWithResponseAsync(sharedPrivateLinkResourceName, resourceGroupName, resourceName)
-            .flatMap(
-                (Response<SharedPrivateLinkResourceInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**

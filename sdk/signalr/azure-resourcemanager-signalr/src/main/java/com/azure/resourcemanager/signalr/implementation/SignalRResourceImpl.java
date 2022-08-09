@@ -187,6 +187,10 @@ public final class SignalRResourceImpl implements SignalRResource, SignalRResour
         return this.location();
     }
 
+    public String resourceGroupName() {
+        return resourceGroupName;
+    }
+
     public SignalRResourceInner innerModel() {
         return this.innerObject;
     }

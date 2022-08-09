@@ -12,8 +12,7 @@ import java.util.List;
 @Fluent
 public final class ServerlessUpstreamSettings {
     /*
-     * Gets or sets the list of Upstream URL templates. Order matters, and the
-     * first matching template takes effects.
+     * Gets or sets the list of Upstream URL templates. Order matters, and the first matching template takes effects.
      */
     @JsonProperty(value = "templates")
     private List<UpstreamTemplate> templates;

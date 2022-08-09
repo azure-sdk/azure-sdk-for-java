@@ -33,7 +33,11 @@ public final class SignalRSkuTier extends ExpandableStringEnum<SignalRSkuTier> {
         return fromString(name, SignalRSkuTier.class);
     }
 
-    /** @return known SignalRSkuTier values. */
+    /**
+     * Gets known SignalRSkuTier values.
+     *
+     * @return known SignalRSkuTier values.
+     */
     public static Collection<SignalRSkuTier> values() {
         return values(SignalRSkuTier.class);
     }

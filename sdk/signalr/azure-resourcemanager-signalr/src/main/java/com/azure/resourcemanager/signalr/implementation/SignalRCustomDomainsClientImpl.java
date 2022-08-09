@@ -443,14 +443,7 @@ public final class SignalRCustomDomainsClientImpl implements SignalRCustomDomain
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<CustomDomainInner> getAsync(String resourceGroupName, String resourceName, String name) {
         return getWithResponseAsync(resourceGroupName, resourceName, name)
-            .flatMap(
-                (Response<CustomDomainInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**

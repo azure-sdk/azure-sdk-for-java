@@ -462,14 +462,7 @@ public final class SignalRPrivateEndpointConnectionsClientImpl implements Signal
     private Mono<PrivateEndpointConnectionInner> getAsync(
         String privateEndpointConnectionName, String resourceGroupName, String resourceName) {
         return getWithResponseAsync(privateEndpointConnectionName, resourceGroupName, resourceName)
-            .flatMap(
-                (Response<PrivateEndpointConnectionInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -664,14 +657,7 @@ public final class SignalRPrivateEndpointConnectionsClientImpl implements Signal
         String resourceName,
         PrivateEndpointConnectionInner parameters) {
         return updateWithResponseAsync(privateEndpointConnectionName, resourceGroupName, resourceName, parameters)
-            .flatMap(
-                (Response<PrivateEndpointConnectionInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**

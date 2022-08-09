@@ -19,9 +19,8 @@ public final class PrivateEndpointConnectionList {
     private List<PrivateEndpointConnectionInner> value;
 
     /*
-     * Request URL that can be used to query next page of private endpoint
-     * connections. Returned when the total number of requested private
-     * endpoint connections exceed maximum page size.
+     * Request URL that can be used to query next page of private endpoint connections. Returned when the total number
+     * of requested private endpoint connections exceed maximum page size.
      */
     @JsonProperty(value = "nextLink")
     private String nextLink;

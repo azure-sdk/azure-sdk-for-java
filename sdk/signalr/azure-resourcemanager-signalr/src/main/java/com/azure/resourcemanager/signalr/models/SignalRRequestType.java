@@ -33,7 +33,11 @@ public final class SignalRRequestType extends ExpandableStringEnum<SignalRReques
         return fromString(name, SignalRRequestType.class);
     }
 
-    /** @return known SignalRRequestType values. */
+    /**
+     * Gets known SignalRRequestType values.
+     *
+     * @return known SignalRRequestType values.
+     */
     public static Collection<SignalRRequestType> values() {
         return values(SignalRRequestType.class);
     }

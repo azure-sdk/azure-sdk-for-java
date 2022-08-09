@@ -366,14 +366,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
     private Mono<NameAvailabilityInner> checkNameAvailabilityAsync(
         String location, NameAvailabilityParameters parameters) {
         return checkNameAvailabilityWithResponseAsync(location, parameters)
-            .flatMap(
-                (Response<NameAvailabilityInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -840,14 +833,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<SignalRResourceInner> getByResourceGroupAsync(String resourceGroupName, String resourceName) {
         return getByResourceGroupWithResponseAsync(resourceGroupName, resourceName)
-            .flatMap(
-                (Response<SignalRResourceInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -1782,14 +1768,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<SignalRKeysInner> listKeysAsync(String resourceGroupName, String resourceName) {
         return listKeysWithResponseAsync(resourceGroupName, resourceName)
-            .flatMap(
-                (Response<SignalRKeysInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -2451,14 +2430,7 @@ public final class SignalRsClientImpl implements SignalRsClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<SkuListInner> listSkusAsync(String resourceGroupName, String resourceName) {
         return listSkusWithResponseAsync(resourceGroupName, resourceName)
-            .flatMap(
-                (Response<SkuListInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**

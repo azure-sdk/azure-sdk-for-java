@@ -449,14 +449,7 @@ public final class SignalRCustomCertificatesClientImpl implements SignalRCustomC
     private Mono<CustomCertificateInner> getAsync(
         String resourceGroupName, String resourceName, String certificateName) {
         return getWithResponseAsync(resourceGroupName, resourceName, certificateName)
-            .flatMap(
-                (Response<CustomCertificateInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -940,7 +933,7 @@ public final class SignalRCustomCertificatesClientImpl implements SignalRCustomC
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> deleteAsync(String resourceGroupName, String resourceName, String certificateName) {
         return deleteWithResponseAsync(resourceGroupName, resourceName, certificateName)
-            .flatMap((Response<Void> res) -> Mono.empty());
+            .flatMap(ignored -> Mono.empty());
     }
 
     /**
