@@ -48,11 +48,17 @@ public final class Ingress {
     private List<CustomDomain> customDomains;
 
     /*
-     * Bool indicating if HTTP connections to is allowed. If set to false HTTP
-     * connections are automatically redirected to HTTPS connections
+     * Bool indicating if HTTP connections to is allowed. If set to false HTTP connections are automatically redirected
+     * to HTTPS connections
      */
     @JsonProperty(value = "allowInsecure")
     private Boolean allowInsecure;
+
+    /*
+     * Rules to restrict incoming IP address.
+     */
+    @JsonProperty(value = "ipSecurityRestrictions")
+    private List<IpSecurityRestrictionRule> ipSecurityRestrictions;
 
     /**
      * Get the fqdn property: Hostname.
@@ -186,6 +192,26 @@ public final class Ingress {
     }
 
     /**
+     * Get the ipSecurityRestrictions property: Rules to restrict incoming IP address.
+     *
+     * @return the ipSecurityRestrictions value.
+     */
+    public List<IpSecurityRestrictionRule> ipSecurityRestrictions() {
+        return this.ipSecurityRestrictions;
+    }
+
+    /**
+     * Set the ipSecurityRestrictions property: Rules to restrict incoming IP address.
+     *
+     * @param ipSecurityRestrictions the ipSecurityRestrictions value to set.
+     * @return the Ingress object itself.
+     */
+    public Ingress withIpSecurityRestrictions(List<IpSecurityRestrictionRule> ipSecurityRestrictions) {
+        this.ipSecurityRestrictions = ipSecurityRestrictions;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -196,6 +222,9 @@ public final class Ingress {
         }
         if (customDomains() != null) {
             customDomains().forEach(e -> e.validate());
+        }
+        if (ipSecurityRestrictions() != null) {
+            ipSecurityRestrictions().forEach(e -> e.validate());
         }
     }
 }
