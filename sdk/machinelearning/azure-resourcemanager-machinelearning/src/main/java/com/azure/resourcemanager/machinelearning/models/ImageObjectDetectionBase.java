@@ -18,8 +18,7 @@ public class ImageObjectDetectionBase extends ImageVertical {
     private ImageModelSettingsObjectDetection modelSettings;
 
     /*
-     * Search space for sampling different combinations of models and their
-     * hyperparameters.
+     * Search space for sampling different combinations of models and their hyperparameters.
      */
     @JsonProperty(value = "searchSpace")
     private List<ImageModelDistributionSettingsObjectDetection> searchSpace;
@@ -68,13 +67,6 @@ public class ImageObjectDetectionBase extends ImageVertical {
 
     /** {@inheritDoc} */
     @Override
-    public ImageObjectDetectionBase withDataSettings(ImageVerticalDataSettings dataSettings) {
-        super.withDataSettings(dataSettings);
-        return this;
-    }
-
-    /** {@inheritDoc} */
-    @Override
     public ImageObjectDetectionBase withLimitSettings(ImageLimitSettings limitSettings) {
         super.withLimitSettings(limitSettings);
         return this;
@@ -84,6 +76,20 @@ public class ImageObjectDetectionBase extends ImageVertical {
     @Override
     public ImageObjectDetectionBase withSweepSettings(ImageSweepSettings sweepSettings) {
         super.withSweepSettings(sweepSettings);
+        return this;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public ImageObjectDetectionBase withValidationData(MLTableJobInput validationData) {
+        super.withValidationData(validationData);
+        return this;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public ImageObjectDetectionBase withValidationDataSize(Double validationDataSize) {
+        super.withValidationDataSize(validationDataSize);
         return this;
     }
 
