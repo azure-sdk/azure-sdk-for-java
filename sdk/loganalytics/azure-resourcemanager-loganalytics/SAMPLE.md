@@ -112,6 +112,7 @@
 
 ## Tables
 
+- [CancelSearch](#tables_cancelsearch)
 - [CreateOrUpdate](#tables_createorupdate)
 - [Delete](#tables_delete)
 - [Get](#tables_get)
@@ -555,7 +556,7 @@ import com.azure.core.util.Context;
 /** Samples for DeletedWorkspaces List. */
 public final class DeletedWorkspacesListSamples {
     /*
-     * x-ms-original-file: specification/operationalinsights/resource-manager/Microsoft.OperationalInsights/preview/2021-12-01-preview/examples/WorkspacesSubscriptionList.json
+     * x-ms-original-file: specification/operationalinsights/resource-manager/Microsoft.OperationalInsights/stable/2022-10-01/examples/WorkspacesSubscriptionList.json
      */
     /**
      * Sample code: WorkspacesSubscriptionList.
@@ -576,7 +577,7 @@ import com.azure.core.util.Context;
 /** Samples for DeletedWorkspaces ListByResourceGroup. */
 public final class DeletedWorkspacesListByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/operationalinsights/resource-manager/Microsoft.OperationalInsights/preview/2021-12-01-preview/examples/WorkspacesListByResourceGroup.json
+     * x-ms-original-file: specification/operationalinsights/resource-manager/Microsoft.OperationalInsights/stable/2022-10-01/examples/WorkspacesListByResourceGroup.json
      */
     /**
      * Sample code: WorkspacesGet.
@@ -916,7 +917,7 @@ import com.azure.core.util.Context;
 /** Samples for Operations List. */
 public final class OperationsListSamples {
     /*
-     * x-ms-original-file: specification/operationalinsights/resource-manager/Microsoft.OperationalInsights/preview/2021-12-01-preview/examples/OperationsListByTenant.json
+     * x-ms-original-file: specification/operationalinsights/resource-manager/Microsoft.OperationalInsights/stable/2022-10-01/examples/OperationsListByTenant.json
      */
     /**
      * Sample code: Get specific operation status.
@@ -1609,6 +1610,27 @@ public final class StorageInsightConfigsListByWorkspaceSamples {
 }
 ```
 
+### Tables_CancelSearch
+
+```java
+import com.azure.core.util.Context;
+
+/** Samples for Tables CancelSearch. */
+public final class TablesCancelSearchSamples {
+    /*
+     * x-ms-original-file: specification/operationalinsights/resource-manager/Microsoft.OperationalInsights/stable/2022-10-01/examples/TablesSearchCancel.json
+     */
+    /**
+     * Sample code: TablesSearchCancel.
+     *
+     * @param manager Entry point to LogAnalyticsManager.
+     */
+    public static void tablesSearchCancel(com.azure.resourcemanager.loganalytics.LogAnalyticsManager manager) {
+        manager.tables().cancelSearchWithResponse("oiautorest6685", "oiautorest6685", "table1_SRCH", Context.NONE);
+    }
+}
+```
+
 ### Tables_CreateOrUpdate
 
 ```java
@@ -1620,7 +1642,7 @@ import java.util.Arrays;
 /** Samples for Tables CreateOrUpdate. */
 public final class TablesCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/operationalinsights/resource-manager/Microsoft.OperationalInsights/preview/2021-12-01-preview/examples/TablesUpsert.json
+     * x-ms-original-file: specification/operationalinsights/resource-manager/Microsoft.OperationalInsights/stable/2022-10-01/examples/TablesUpsert.json
      */
     /**
      * Sample code: TablesUpsert.
@@ -1651,14 +1673,14 @@ import com.azure.core.util.Context;
 /** Samples for Tables Delete. */
 public final class TablesDeleteSamples {
     /*
-     * x-ms-original-file: specification/operationalinsights/resource-manager/Microsoft.OperationalInsights/preview/2021-12-01-preview/examples/TablesDelete.json
+     * x-ms-original-file: specification/operationalinsights/resource-manager/Microsoft.OperationalInsights/stable/2022-10-01/examples/TablesDelete.json
      */
     /**
-     * Sample code: TablesGet.
+     * Sample code: TablesDelete.
      *
      * @param manager Entry point to LogAnalyticsManager.
      */
-    public static void tablesGet(com.azure.resourcemanager.loganalytics.LogAnalyticsManager manager) {
+    public static void tablesDelete(com.azure.resourcemanager.loganalytics.LogAnalyticsManager manager) {
         manager.tables().delete("oiautorest6685", "oiautorest6685", "table1_CL", Context.NONE);
     }
 }
@@ -1672,7 +1694,7 @@ import com.azure.core.util.Context;
 /** Samples for Tables Get. */
 public final class TablesGetSamples {
     /*
-     * x-ms-original-file: specification/operationalinsights/resource-manager/Microsoft.OperationalInsights/preview/2021-12-01-preview/examples/TablesGet.json
+     * x-ms-original-file: specification/operationalinsights/resource-manager/Microsoft.OperationalInsights/stable/2022-10-01/examples/TablesGet.json
      */
     /**
      * Sample code: TablesGet.
@@ -1693,7 +1715,7 @@ import com.azure.core.util.Context;
 /** Samples for Tables ListByWorkspace. */
 public final class TablesListByWorkspaceSamples {
     /*
-     * x-ms-original-file: specification/operationalinsights/resource-manager/Microsoft.OperationalInsights/preview/2021-12-01-preview/examples/TablesList.json
+     * x-ms-original-file: specification/operationalinsights/resource-manager/Microsoft.OperationalInsights/stable/2022-10-01/examples/TablesList.json
      */
     /**
      * Sample code: TablesListByWorkspace.
@@ -1714,14 +1736,14 @@ import com.azure.core.util.Context;
 /** Samples for Tables Migrate. */
 public final class TablesMigrateSamples {
     /*
-     * x-ms-original-file: specification/operationalinsights/resource-manager/Microsoft.OperationalInsights/preview/2021-12-01-preview/examples/TablesMigrate.json
+     * x-ms-original-file: specification/operationalinsights/resource-manager/Microsoft.OperationalInsights/stable/2022-10-01/examples/TablesMigrate.json
      */
     /**
-     * Sample code: TablesGet.
+     * Sample code: TablesMigrate.
      *
      * @param manager Entry point to LogAnalyticsManager.
      */
-    public static void tablesGet(com.azure.resourcemanager.loganalytics.LogAnalyticsManager manager) {
+    public static void tablesMigrate(com.azure.resourcemanager.loganalytics.LogAnalyticsManager manager) {
         manager.tables().migrateWithResponse("oiautorest6685", "oiautorest6685", "table1_CL", Context.NONE);
     }
 }
@@ -1740,7 +1762,7 @@ import java.util.Arrays;
 /** Samples for Tables Update. */
 public final class TablesUpdateSamples {
     /*
-     * x-ms-original-file: specification/operationalinsights/resource-manager/Microsoft.OperationalInsights/preview/2021-12-01-preview/examples/TablesUpsert.json
+     * x-ms-original-file: specification/operationalinsights/resource-manager/Microsoft.OperationalInsights/stable/2022-10-01/examples/TablesUpsert.json
      */
     /**
      * Sample code: TablesUpsert.
@@ -1887,7 +1909,7 @@ import java.util.Map;
 /** Samples for Workspaces CreateOrUpdate. */
 public final class WorkspacesCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/operationalinsights/resource-manager/Microsoft.OperationalInsights/preview/2021-12-01-preview/examples/WorkspacesCreate.json
+     * x-ms-original-file: specification/operationalinsights/resource-manager/Microsoft.OperationalInsights/stable/2022-10-01/examples/WorkspacesCreate.json
      */
     /**
      * Sample code: WorkspacesCreate.
@@ -1927,7 +1949,7 @@ import com.azure.core.util.Context;
 /** Samples for Workspaces Delete. */
 public final class WorkspacesDeleteSamples {
     /*
-     * x-ms-original-file: specification/operationalinsights/resource-manager/Microsoft.OperationalInsights/preview/2021-12-01-preview/examples/WorkspacesDelete.json
+     * x-ms-original-file: specification/operationalinsights/resource-manager/Microsoft.OperationalInsights/stable/2022-10-01/examples/WorkspacesDelete.json
      */
     /**
      * Sample code: WorkspacesDelete.
@@ -1948,7 +1970,7 @@ import com.azure.core.util.Context;
 /** Samples for Workspaces GetByResourceGroup. */
 public final class WorkspacesGetByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/operationalinsights/resource-manager/Microsoft.OperationalInsights/preview/2021-12-01-preview/examples/WorkspacesGet.json
+     * x-ms-original-file: specification/operationalinsights/resource-manager/Microsoft.OperationalInsights/stable/2022-10-01/examples/WorkspacesGet.json
      */
     /**
      * Sample code: WorkspaceGet.
@@ -1969,7 +1991,7 @@ import com.azure.core.util.Context;
 /** Samples for Workspaces List. */
 public final class WorkspacesListSamples {
     /*
-     * x-ms-original-file: specification/operationalinsights/resource-manager/Microsoft.OperationalInsights/preview/2021-12-01-preview/examples/WorkspacesSubscriptionList.json
+     * x-ms-original-file: specification/operationalinsights/resource-manager/Microsoft.OperationalInsights/stable/2022-10-01/examples/WorkspacesSubscriptionList.json
      */
     /**
      * Sample code: WorkspacesSubscriptionList.
@@ -1990,7 +2012,7 @@ import com.azure.core.util.Context;
 /** Samples for Workspaces ListByResourceGroup. */
 public final class WorkspacesListByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/operationalinsights/resource-manager/Microsoft.OperationalInsights/preview/2021-12-01-preview/examples/WorkspacesListByResourceGroup.json
+     * x-ms-original-file: specification/operationalinsights/resource-manager/Microsoft.OperationalInsights/stable/2022-10-01/examples/WorkspacesListByResourceGroup.json
      */
     /**
      * Sample code: WorkspacesGet.
@@ -2015,7 +2037,7 @@ import com.azure.resourcemanager.loganalytics.models.WorkspaceSkuNameEnum;
 /** Samples for Workspaces Update. */
 public final class WorkspacesUpdateSamples {
     /*
-     * x-ms-original-file: specification/operationalinsights/resource-manager/Microsoft.OperationalInsights/preview/2021-12-01-preview/examples/WorkspacesUpdate.json
+     * x-ms-original-file: specification/operationalinsights/resource-manager/Microsoft.OperationalInsights/stable/2022-10-01/examples/WorkspacesUpdate.json
      */
     /**
      * Sample code: WorkspacesPatch.
@@ -2032,7 +2054,7 @@ public final class WorkspacesUpdateSamples {
             .update()
             .withSku(new WorkspaceSku().withName(WorkspaceSkuNameEnum.PER_GB2018))
             .withRetentionInDays(30)
-            .withWorkspaceCapping(new WorkspaceCapping().withDailyQuotaGb(-1.0))
+            .withWorkspaceCapping(new WorkspaceCapping().withDailyQuotaGb(-1.0D))
             .apply();
     }
 }

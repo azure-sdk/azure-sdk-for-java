@@ -48,6 +48,13 @@ public interface Workspace {
     Map<String, String> tags();
 
     /**
+     * Gets the identity property: The identity of the resource.
+     *
+     * @return the identity value.
+     */
+    Identity identity();
+
+    /**
      * Gets the systemData property: Metadata pertaining to creation and last modification of the resource.
      *
      * @return the systemData value.
@@ -229,6 +236,7 @@ public interface Workspace {
          */
         interface WithCreate
             extends DefinitionStages.WithTags,
+                DefinitionStages.WithIdentity,
                 DefinitionStages.WithEtag,
                 DefinitionStages.WithSku,
                 DefinitionStages.WithRetentionInDays,
@@ -262,6 +270,16 @@ public interface Workspace {
              * @return the next definition stage.
              */
             WithCreate withTags(Map<String, String> tags);
+        }
+        /** The stage of the Workspace definition allowing to specify identity. */
+        interface WithIdentity {
+            /**
+             * Specifies the identity property: The identity of the resource..
+             *
+             * @param identity The identity of the resource.
+             * @return the next definition stage.
+             */
+            WithCreate withIdentity(Identity identity);
         }
         /** The stage of the Workspace definition allowing to specify etag. */
         interface WithEtag {
@@ -373,6 +391,7 @@ public interface Workspace {
     /** The template for Workspace update. */
     interface Update
         extends UpdateStages.WithTags,
+            UpdateStages.WithIdentity,
             UpdateStages.WithSku,
             UpdateStages.WithRetentionInDays,
             UpdateStages.WithWorkspaceCapping,
@@ -407,6 +426,16 @@ public interface Workspace {
              * @return the next definition stage.
              */
             Update withTags(Map<String, String> tags);
+        }
+        /** The stage of the Workspace update allowing to specify identity. */
+        interface WithIdentity {
+            /**
+             * Specifies the identity property: The identity of the resource..
+             *
+             * @param identity The identity of the resource.
+             * @return the next definition stage.
+             */
+            Update withIdentity(Identity identity);
         }
         /** The stage of the Workspace update allowing to specify sku. */
         interface WithSku {

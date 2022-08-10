@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for DeletedWorkspaces ListByResourceGroup. */
 public final class DeletedWorkspacesListByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/operationalinsights/resource-manager/Microsoft.OperationalInsights/preview/2021-12-01-preview/examples/WorkspacesListByResourceGroup.json
+     * x-ms-original-file: specification/operationalinsights/resource-manager/Microsoft.OperationalInsights/stable/2022-10-01/examples/WorkspacesListByResourceGroup.json
      */
     /**
      * Sample code: WorkspacesGet.

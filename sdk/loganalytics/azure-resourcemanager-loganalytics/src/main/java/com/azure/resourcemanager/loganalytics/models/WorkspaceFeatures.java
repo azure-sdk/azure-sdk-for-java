@@ -28,8 +28,7 @@ public final class WorkspaceFeatures {
     private Boolean immediatePurgeDataOn30Days;
 
     /*
-     * Flag that indicate which permission to use - resource or workspace or
-     * both.
+     * Flag that indicate which permission to use - resource or workspace or both.
      */
     @JsonProperty(value = "enableLogAccessUsingOnlyResourcePermissions")
     private Boolean enableLogAccessUsingOnlyResourcePermissions;

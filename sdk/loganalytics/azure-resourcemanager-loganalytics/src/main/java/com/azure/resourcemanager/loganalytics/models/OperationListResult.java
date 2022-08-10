@@ -13,8 +13,7 @@ import java.util.List;
 @Fluent
 public final class OperationListResult {
     /*
-     * List of solution operations supported by the OperationsManagement
-     * resource provider.
+     * List of solution operations supported by the OperationsManagement resource provider.
      */
     @JsonProperty(value = "value")
     private List<OperationInner> value;

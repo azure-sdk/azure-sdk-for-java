@@ -39,6 +39,9 @@ public enum DataSourceType {
      */
     @JsonCreator
     public static DataSourceType fromString(String value) {
+        if (value == null) {
+            return null;
+        }
         DataSourceType[] items = DataSourceType.values();
         for (DataSourceType item : items) {
             if (item.toString().equalsIgnoreCase(value)) {

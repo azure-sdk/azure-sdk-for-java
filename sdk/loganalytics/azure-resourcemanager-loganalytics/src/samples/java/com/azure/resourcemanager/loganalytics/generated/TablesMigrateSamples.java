@@ -9,14 +9,14 @@ import com.azure.core.util.Context;
 /** Samples for Tables Migrate. */
 public final class TablesMigrateSamples {
     /*
-     * x-ms-original-file: specification/operationalinsights/resource-manager/Microsoft.OperationalInsights/preview/2021-12-01-preview/examples/TablesMigrate.json
+     * x-ms-original-file: specification/operationalinsights/resource-manager/Microsoft.OperationalInsights/stable/2022-10-01/examples/TablesMigrate.json
      */
     /**
-     * Sample code: TablesGet.
+     * Sample code: TablesMigrate.
      *
      * @param manager Entry point to LogAnalyticsManager.
      */
-    public static void tablesGet(com.azure.resourcemanager.loganalytics.LogAnalyticsManager manager) {
+    public static void tablesMigrate(com.azure.resourcemanager.loganalytics.LogAnalyticsManager manager) {
         manager.tables().migrateWithResponse("oiautorest6685", "oiautorest6685", "table1_CL", Context.NONE);
     }
 }

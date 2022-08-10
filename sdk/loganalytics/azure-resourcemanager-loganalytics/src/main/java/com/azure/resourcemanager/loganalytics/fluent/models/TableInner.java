@@ -164,20 +164,6 @@ public final class TableInner extends ProxyResource {
     }
 
     /**
-     * Set the resultStatistics property: Search job execution statistics.
-     *
-     * @param resultStatistics the resultStatistics value to set.
-     * @return the TableInner object itself.
-     */
-    public TableInner withResultStatistics(ResultStatistics resultStatistics) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new TableProperties();
-        }
-        this.innerProperties().withResultStatistics(resultStatistics);
-        return this;
-    }
-
-    /**
      * Get the plan property: Instruct the system how to handle and charge the logs ingested to this table.
      *
      * @return the plan value.
@@ -241,6 +227,26 @@ public final class TableInner extends ProxyResource {
      */
     public ProvisioningStateEnum provisioningState() {
         return this.innerProperties() == null ? null : this.innerProperties().provisioningState();
+    }
+
+    /**
+     * Get the retentionInDaysAsDefault property: True - Value originates from workspace retention in days, False -
+     * Customer specific.
+     *
+     * @return the retentionInDaysAsDefault value.
+     */
+    public Boolean retentionInDaysAsDefault() {
+        return this.innerProperties() == null ? null : this.innerProperties().retentionInDaysAsDefault();
+    }
+
+    /**
+     * Get the totalRetentionInDaysAsDefault property: True - Value originates from retention in days, False - Customer
+     * specific.
+     *
+     * @return the totalRetentionInDaysAsDefault value.
+     */
+    public Boolean totalRetentionInDaysAsDefault() {
+        return this.innerProperties() == null ? null : this.innerProperties().totalRetentionInDaysAsDefault();
     }
 
     /**

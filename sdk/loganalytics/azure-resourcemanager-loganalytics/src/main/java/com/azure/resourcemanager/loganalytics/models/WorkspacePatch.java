@@ -21,6 +21,12 @@ public final class WorkspacePatch extends AzureEntityResource {
     private WorkspaceProperties innerProperties;
 
     /*
+     * The identity of the resource.
+     */
+    @JsonProperty(value = "identity")
+    private Identity identity;
+
+    /*
      * Resource tags. Optional.
      */
     @JsonProperty(value = "tags")
@@ -34,6 +40,26 @@ public final class WorkspacePatch extends AzureEntityResource {
      */
     private WorkspaceProperties innerProperties() {
         return this.innerProperties;
+    }
+
+    /**
+     * Get the identity property: The identity of the resource.
+     *
+     * @return the identity value.
+     */
+    public Identity identity() {
+        return this.identity;
+    }
+
+    /**
+     * Set the identity property: The identity of the resource.
+     *
+     * @param identity the identity value to set.
+     * @return the WorkspacePatch object itself.
+     */
+    public WorkspacePatch withIdentity(Identity identity) {
+        this.identity = identity;
+        return this;
     }
 
     /**
@@ -301,6 +327,9 @@ public final class WorkspacePatch extends AzureEntityResource {
         super.validate();
         if (innerProperties() != null) {
             innerProperties().validate();
+        }
+        if (identity() != null) {
+            identity().validate();
         }
     }
 }

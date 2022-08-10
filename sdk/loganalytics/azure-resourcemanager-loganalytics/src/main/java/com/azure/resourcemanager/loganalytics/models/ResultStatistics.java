@@ -22,6 +22,12 @@ public final class ResultStatistics {
     @JsonProperty(value = "ingestedRecords", access = JsonProperty.Access.WRITE_ONLY)
     private Integer ingestedRecords;
 
+    /*
+     * Search job: Amount of scanned data.
+     */
+    @JsonProperty(value = "scannedGb", access = JsonProperty.Access.WRITE_ONLY)
+    private Float scannedGb;
+
     /**
      * Get the progress property: Search job completion percentage.
      *
@@ -38,6 +44,15 @@ public final class ResultStatistics {
      */
     public Integer ingestedRecords() {
         return this.ingestedRecords;
+    }
+
+    /**
+     * Get the scannedGb property: Search job: Amount of scanned data.
+     *
+     * @return the scannedGb value.
+     */
+    public Float scannedGb() {
+        return this.scannedGb;
     }
 
     /**

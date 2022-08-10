@@ -114,6 +114,22 @@ public interface Table {
     ProvisioningStateEnum provisioningState();
 
     /**
+     * Gets the retentionInDaysAsDefault property: True - Value originates from workspace retention in days, False -
+     * Customer specific.
+     *
+     * @return the retentionInDaysAsDefault value.
+     */
+    Boolean retentionInDaysAsDefault();
+
+    /**
+     * Gets the totalRetentionInDaysAsDefault property: True - Value originates from retention in days, False - Customer
+     * specific.
+     *
+     * @return the totalRetentionInDaysAsDefault value.
+     */
+    Boolean totalRetentionInDaysAsDefault();
+
+    /**
      * Gets the name of the resource group.
      *
      * @return the name of the resource group.
@@ -156,7 +172,6 @@ public interface Table {
                 DefinitionStages.WithTotalRetentionInDays,
                 DefinitionStages.WithSearchResults,
                 DefinitionStages.WithRestoredLogs,
-                DefinitionStages.WithResultStatistics,
                 DefinitionStages.WithPlan,
                 DefinitionStages.WithSchema {
             /**
@@ -218,16 +233,6 @@ public interface Table {
              */
             WithCreate withRestoredLogs(RestoredLogs restoredLogs);
         }
-        /** The stage of the Table definition allowing to specify resultStatistics. */
-        interface WithResultStatistics {
-            /**
-             * Specifies the resultStatistics property: Search job execution statistics..
-             *
-             * @param resultStatistics Search job execution statistics.
-             * @return the next definition stage.
-             */
-            WithCreate withResultStatistics(ResultStatistics resultStatistics);
-        }
         /** The stage of the Table definition allowing to specify plan. */
         interface WithPlan {
             /**
@@ -263,7 +268,6 @@ public interface Table {
             UpdateStages.WithTotalRetentionInDays,
             UpdateStages.WithSearchResults,
             UpdateStages.WithRestoredLogs,
-            UpdateStages.WithResultStatistics,
             UpdateStages.WithPlan,
             UpdateStages.WithSchema {
         /**
@@ -327,16 +331,6 @@ public interface Table {
              */
             Update withRestoredLogs(RestoredLogs restoredLogs);
         }
-        /** The stage of the Table update allowing to specify resultStatistics. */
-        interface WithResultStatistics {
-            /**
-             * Specifies the resultStatistics property: Search job execution statistics..
-             *
-             * @param resultStatistics Search job execution statistics.
-             * @return the next definition stage.
-             */
-            Update withResultStatistics(ResultStatistics resultStatistics);
-        }
         /** The stage of the Table update allowing to specify plan. */
         interface WithPlan {
             /**
@@ -394,4 +388,23 @@ public interface Table {
      * @return the {@link Response}.
      */
     Response<Void> migrateWithResponse(Context context);
+
+    /**
+     * Cancel a log analytics workspace search results table query run.
+     *
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void cancelSearch();
+
+    /**
+     * Cancel a log analytics workspace search results table query run.
+     *
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response}.
+     */
+    Response<Void> cancelSearchWithResponse(Context context);
 }
