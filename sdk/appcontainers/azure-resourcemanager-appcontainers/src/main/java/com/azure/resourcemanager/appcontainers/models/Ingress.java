@@ -30,6 +30,12 @@ public final class Ingress {
     private Integer targetPort;
 
     /*
+     * Exposed Port in containers for TCP traffic
+     */
+    @JsonProperty(value = "exposedPort")
+    private Integer exposedPort;
+
+    /*
      * Ingress transport protocol
      */
     @JsonProperty(value = "transport")
@@ -48,8 +54,8 @@ public final class Ingress {
     private List<CustomDomain> customDomains;
 
     /*
-     * Bool indicating if HTTP connections to is allowed. If set to false HTTP
-     * connections are automatically redirected to HTTPS connections
+     * Bool indicating if HTTP connections to is allowed. If set to false HTTP connections are automatically redirected
+     * to HTTPS connections
      */
     @JsonProperty(value = "allowInsecure")
     private Boolean allowInsecure;
@@ -100,6 +106,26 @@ public final class Ingress {
      */
     public Ingress withTargetPort(Integer targetPort) {
         this.targetPort = targetPort;
+        return this;
+    }
+
+    /**
+     * Get the exposedPort property: Exposed Port in containers for TCP traffic.
+     *
+     * @return the exposedPort value.
+     */
+    public Integer exposedPort() {
+        return this.exposedPort;
+    }
+
+    /**
+     * Set the exposedPort property: Exposed Port in containers for TCP traffic.
+     *
+     * @param exposedPort the exposedPort value to set.
+     * @return the Ingress object itself.
+     */
+    public Ingress withExposedPort(Integer exposedPort) {
+        this.exposedPort = exposedPort;
         return this;
     }
 

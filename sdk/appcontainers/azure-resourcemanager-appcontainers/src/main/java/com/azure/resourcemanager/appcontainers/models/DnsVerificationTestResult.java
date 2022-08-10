@@ -33,6 +33,9 @@ public enum DnsVerificationTestResult {
      */
     @JsonCreator
     public static DnsVerificationTestResult fromString(String value) {
+        if (value == null) {
+            return null;
+        }
         DnsVerificationTestResult[] items = DnsVerificationTestResult.values();
         for (DnsVerificationTestResult item : items) {
             if (item.toString().equalsIgnoreCase(value)) {
