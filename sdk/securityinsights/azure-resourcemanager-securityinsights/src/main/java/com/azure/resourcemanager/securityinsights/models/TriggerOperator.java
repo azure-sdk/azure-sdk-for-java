@@ -36,6 +36,9 @@ public enum TriggerOperator {
      */
     @JsonCreator
     public static TriggerOperator fromString(String value) {
+        if (value == null) {
+            return null;
+        }
         TriggerOperator[] items = TriggerOperator.values();
         for (TriggerOperator item : items) {
             if (item.toString().equalsIgnoreCase(value)) {
