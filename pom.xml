@@ -71,8 +71,8 @@
     <module>sdk/eventgrid</module>
     <module>sdk/eventhubs</module>
     <module>sdk/extendedlocation</module>
-    <module>sdk/formrecognizer</module>
     <module>sdk/fluidrelay</module>
+    <module>sdk/formrecognizer</module>
     <module>sdk/frontdoor</module>
     <module>sdk/hanaonazure</module>
     <module>sdk/hardwaresecuritymodules</module>
@@ -135,6 +135,7 @@
     <module>sdk/resourcehealth</module>
     <module>sdk/resourcemanager</module>
     <module>sdk/resourcemover</module>
+    <module>sdk/resources</module>
     <module>sdk/schemaregistry</module>
     <module>sdk/scvmm</module>
     <module>sdk/search</module>
