@@ -30,6 +30,9 @@ public enum CreateMode {
      */
     @JsonCreator
     public static CreateMode fromString(String value) {
+        if (value == null) {
+            return null;
+        }
         CreateMode[] items = CreateMode.values();
         for (CreateMode item : items) {
             if (item.toString().equalsIgnoreCase(value)) {
