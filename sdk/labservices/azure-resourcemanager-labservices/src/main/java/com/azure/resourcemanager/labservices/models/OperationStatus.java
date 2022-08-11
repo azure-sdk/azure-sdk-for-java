@@ -39,6 +39,9 @@ public enum OperationStatus {
      */
     @JsonCreator
     public static OperationStatus fromString(String value) {
+        if (value == null) {
+            return null;
+        }
         OperationStatus[] items = OperationStatus.values();
         for (OperationStatus item : items) {
             if (item.toString().equalsIgnoreCase(value)) {

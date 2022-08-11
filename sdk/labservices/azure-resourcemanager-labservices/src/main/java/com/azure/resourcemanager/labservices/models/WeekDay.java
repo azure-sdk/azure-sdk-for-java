@@ -45,6 +45,9 @@ public enum WeekDay {
      */
     @JsonCreator
     public static WeekDay fromString(String value) {
+        if (value == null) {
+            return null;
+        }
         WeekDay[] items = WeekDay.values();
         for (WeekDay item : items) {
             if (item.toString().equalsIgnoreCase(value)) {

@@ -30,6 +30,9 @@ public enum RegistrationState {
      */
     @JsonCreator
     public static RegistrationState fromString(String value) {
+        if (value == null) {
+            return null;
+        }
         RegistrationState[] items = RegistrationState.values();
         for (RegistrationState item : items) {
             if (item.toString().equalsIgnoreCase(value)) {

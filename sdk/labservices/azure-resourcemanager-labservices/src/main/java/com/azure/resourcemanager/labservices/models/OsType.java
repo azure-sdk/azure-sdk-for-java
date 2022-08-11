@@ -30,6 +30,9 @@ public enum OsType {
      */
     @JsonCreator
     public static OsType fromString(String value) {
+        if (value == null) {
+            return null;
+        }
         OsType[] items = OsType.values();
         for (OsType item : items) {
             if (item.toString().equalsIgnoreCase(value)) {
