@@ -28,8 +28,6 @@ import com.azure.core.http.rest.Response;
 import com.azure.core.http.rest.RestProxy;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
-import com.azure.core.util.serializer.CollectionFormat;
-import com.azure.core.util.serializer.JacksonAdapter;
 import com.azure.resourcemanager.applicationinsights.fluent.WorkbooksClient;
 import com.azure.resourcemanager.applicationinsights.fluent.models.WorkbookInner;
 import com.azure.resourcemanager.applicationinsights.models.CategoryType;
@@ -37,6 +35,8 @@ import com.azure.resourcemanager.applicationinsights.models.WorkbookErrorDefinit
 import com.azure.resourcemanager.applicationinsights.models.WorkbookUpdateParameters;
 import com.azure.resourcemanager.applicationinsights.models.WorkbooksListResult;
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in WorkbooksClient. */
@@ -148,7 +148,7 @@ public final class WorkbooksClientImpl implements WorkbooksClient {
         @Patch(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Insights/workbooks"
                 + "/{resourceName}")
-        @ExpectedResponses({201})
+        @ExpectedResponses({200, 201})
         @UnexpectedResponseExceptionType(WorkbookErrorDefinitionException.class)
         Mono<Response<WorkbookInner>> update(
             @HostParam("$host") String endpoint,
@@ -257,7 +257,9 @@ public final class WorkbooksClientImpl implements WorkbooksClient {
         final String apiVersion = "2022-04-01";
         final String accept = "application/json";
         String tagsConverted =
-            JacksonAdapter.createDefaultSerializerAdapter().serializeList(tags, CollectionFormat.CSV);
+            (tags == null)
+                ? null
+                : tags.stream().map(value -> Objects.toString(value, "")).collect(Collectors.joining(","));
         return FluxUtil
             .withContext(
                 context ->
@@ -318,7 +320,9 @@ public final class WorkbooksClientImpl implements WorkbooksClient {
         final String apiVersion = "2022-04-01";
         final String accept = "application/json";
         String tagsConverted =
-            JacksonAdapter.createDefaultSerializerAdapter().serializeList(tags, CollectionFormat.CSV);
+            (tags == null)
+                ? null
+                : tags.stream().map(value -> Objects.toString(value, "")).collect(Collectors.joining(","));
         context = this.client.mergeContext(context);
         return service
             .list(
@@ -479,7 +483,9 @@ public final class WorkbooksClientImpl implements WorkbooksClient {
         final String apiVersion = "2022-04-01";
         final String accept = "application/json";
         String tagsConverted =
-            JacksonAdapter.createDefaultSerializerAdapter().serializeList(tags, CollectionFormat.CSV);
+            (tags == null)
+                ? null
+                : tags.stream().map(value -> Objects.toString(value, "")).collect(Collectors.joining(","));
         return FluxUtil
             .withContext(
                 context ->
@@ -553,7 +559,9 @@ public final class WorkbooksClientImpl implements WorkbooksClient {
         final String apiVersion = "2022-04-01";
         final String accept = "application/json";
         String tagsConverted =
-            JacksonAdapter.createDefaultSerializerAdapter().serializeList(tags, CollectionFormat.CSV);
+            (tags == null)
+                ? null
+                : tags.stream().map(value -> Objects.toString(value, "")).collect(Collectors.joining(","));
         context = this.client.mergeContext(context);
         return service
             .listByResourceGroup(

@@ -13,7 +13,10 @@ public enum WebTestKind {
     PING("ping"),
 
     /** Enum value multistep. */
-    MULTISTEP("multistep");
+    MULTISTEP("multistep"),
+
+    /** Enum value standard. */
+    STANDARD("standard");
 
     /** The actual serialized value for a WebTestKind instance. */
     private final String value;
@@ -30,6 +33,9 @@ public enum WebTestKind {
      */
     @JsonCreator
     public static WebTestKind fromString(String value) {
+        if (value == null) {
+            return null;
+        }
         WebTestKind[] items = WebTestKind.values();
         for (WebTestKind item : items) {
             if (item.toString().equalsIgnoreCase(value)) {

@@ -22,9 +22,8 @@ import java.util.Map;
 @Fluent
 public final class ApplicationInsightsComponentInner extends ComponentsResource {
     /*
-     * The kind of application that this component refers to, used to customize
-     * UI. This value is a freeform string, values should typically be one of
-     * the following: web, ios, other, store, java, phone.
+     * The kind of application that this component refers to, used to customize UI. This value is a freeform string,
+     * values should typically be one of the following: web, ios, other, store, java, phone.
      */
     @JsonProperty(value = "kind", required = true)
     private String kind;
