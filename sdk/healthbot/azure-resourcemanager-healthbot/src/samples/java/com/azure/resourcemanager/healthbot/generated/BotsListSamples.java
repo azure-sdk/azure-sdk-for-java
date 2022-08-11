@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for Bots List. */
 public final class BotsListSamples {
     /*
-     * x-ms-original-file: specification/healthbot/resource-manager/Microsoft.HealthBot/stable/2020-12-08/examples/ListBotsBySubscription.json
+     * x-ms-original-file: specification/healthbot/resource-manager/Microsoft.HealthBot/stable/2021-06-10/examples/ListBotsBySubscription.json
      */
     /**
      * Sample code: List Bots by Subscription.
