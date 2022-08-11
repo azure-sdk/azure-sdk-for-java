@@ -39,6 +39,9 @@ public enum DeliveryAction {
      */
     @JsonCreator
     public static DeliveryAction fromString(String value) {
+        if (value == null) {
+            return null;
+        }
         DeliveryAction[] items = DeliveryAction.values();
         for (DeliveryAction item : items) {
             if (item.toString().equalsIgnoreCase(value)) {

@@ -51,6 +51,9 @@ public enum DeliveryLocation {
      */
     @JsonCreator
     public static DeliveryLocation fromString(String value) {
+        if (value == null) {
+            return null;
+        }
         DeliveryLocation[] items = DeliveryLocation.values();
         for (DeliveryLocation item : items) {
             if (item.toString().equalsIgnoreCase(value)) {
