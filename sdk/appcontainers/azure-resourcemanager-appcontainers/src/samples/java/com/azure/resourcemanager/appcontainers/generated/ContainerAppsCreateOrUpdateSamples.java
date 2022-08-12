@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.appcontainers.generated;
 
+import com.azure.resourcemanager.appcontainers.models.Action;
 import com.azure.resourcemanager.appcontainers.models.AppProtocol;
 import com.azure.resourcemanager.appcontainers.models.BindingType;
 import com.azure.resourcemanager.appcontainers.models.Configuration;
@@ -11,10 +12,14 @@ import com.azure.resourcemanager.appcontainers.models.Container;
 import com.azure.resourcemanager.appcontainers.models.ContainerAppProbe;
 import com.azure.resourcemanager.appcontainers.models.ContainerAppProbeHttpGet;
 import com.azure.resourcemanager.appcontainers.models.ContainerAppProbeHttpGetHttpHeadersItem;
+import com.azure.resourcemanager.appcontainers.models.ContainerResources;
 import com.azure.resourcemanager.appcontainers.models.CustomDomain;
 import com.azure.resourcemanager.appcontainers.models.CustomScaleRule;
 import com.azure.resourcemanager.appcontainers.models.Dapr;
 import com.azure.resourcemanager.appcontainers.models.Ingress;
+import com.azure.resourcemanager.appcontainers.models.InitContainer;
+import com.azure.resourcemanager.appcontainers.models.IpSecurityRestrictionRule;
+import com.azure.resourcemanager.appcontainers.models.LogLevel;
 import com.azure.resourcemanager.appcontainers.models.Scale;
 import com.azure.resourcemanager.appcontainers.models.ScaleRule;
 import com.azure.resourcemanager.appcontainers.models.Template;
@@ -27,7 +32,7 @@ import java.util.Map;
 /** Samples for ContainerApps CreateOrUpdate. */
 public final class ContainerAppsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2022-03-01/examples/ContainerApps_CreateOrUpdate.json
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2022-06-01-preview/examples/ContainerApps_CreateOrUpdate.json
      */
     /**
      * Sample code: Create or Update Container App.
@@ -41,7 +46,7 @@ public final class ContainerAppsCreateOrUpdateSamples {
             .define("testcontainerApp0")
             .withRegion("East US")
             .withExistingResourceGroup("rg")
-            .withManagedEnvironmentId(
+            .withEnvironmentId(
                 "/subscriptions/34adfa4f-cedf-4dc0-ba29-b6d1a69ab345/resourceGroups/rg/providers/Microsoft.App/managedEnvironments/demokube")
             .withConfiguration(
                 new Configuration()
@@ -68,10 +73,42 @@ public final class ContainerAppsCreateOrUpdateSamples {
                                             .withName("www.my-other-name.com")
                                             .withBindingType(BindingType.SNI_ENABLED)
                                             .withCertificateId(
-                                                "/subscriptions/34adfa4f-cedf-4dc0-ba29-b6d1a69ab345/resourceGroups/rg/providers/Microsoft.App/managedEnvironments/demokube/certificates/my-certificate-for-my-other-name-dot-com"))))
-                    .withDapr(new Dapr().withEnabled(true).withAppProtocol(AppProtocol.HTTP).withAppPort(3000)))
+                                                "/subscriptions/34adfa4f-cedf-4dc0-ba29-b6d1a69ab345/resourceGroups/rg/providers/Microsoft.App/managedEnvironments/demokube/certificates/my-certificate-for-my-other-name-dot-com")))
+                            .withIpSecurityRestrictions(
+                                Arrays
+                                    .asList(
+                                        new IpSecurityRestrictionRule()
+                                            .withName("Allow work IP A subnet")
+                                            .withDescription(
+                                                "Allowing all IP's within the subnet below to access containerapp")
+                                            .withIpAddressRange("192.168.1.1/32")
+                                            .withAction(Action.ALLOW),
+                                        new IpSecurityRestrictionRule()
+                                            .withName("Allow work IP B subnet")
+                                            .withDescription(
+                                                "Allowing all IP's within the subnet below to access containerapp")
+                                            .withIpAddressRange("192.168.1.1/8")
+                                            .withAction(Action.ALLOW))))
+                    .withDapr(
+                        new Dapr()
+                            .withEnabled(true)
+                            .withAppProtocol(AppProtocol.HTTP)
+                            .withAppPort(3000)
+                            .withHttpReadBufferSize(30)
+                            .withHttpMaxRequestSize(10)
+                            .withLogLevel(LogLevel.DEBUG)
+                            .withEnableApiLogging(true)))
             .withTemplate(
                 new Template()
+                    .withInitContainers(
+                        Arrays
+                            .asList(
+                                new InitContainer()
+                                    .withImage("repo/testcontainerApp0:v4")
+                                    .withName("testinitcontainerApp0")
+                                    .withCommand(Arrays.asList("/bin/sh"))
+                                    .withArgs(Arrays.asList("-c", "while true; do echo hello; sleep 10;done"))
+                                    .withResources(new ContainerResources().withCpu(0.2D).withMemory("100Mi"))))
                     .withContainers(
                         Arrays
                             .asList(
