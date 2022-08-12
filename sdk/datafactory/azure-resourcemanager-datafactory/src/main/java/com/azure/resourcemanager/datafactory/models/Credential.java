@@ -17,8 +17,8 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * The Azure Data Factory nested object which contains the information and credential which can be used to connect with
- * related store or compute resource.
+ * [test]The Azure Data Factory nested object which contains the information and credential which can be used to connect
+ * with related store or compute resource.
  */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
@@ -45,9 +45,8 @@ public class Credential {
     private List<Object> annotations;
 
     /*
-     * The Azure Data Factory nested object which contains the information and
-     * credential which can be used to connect with related store or compute
-     * resource.
+     * [test]The Azure Data Factory nested object which contains the information and credential which can be used to
+     * connect with related store or compute resource.
      */
     @JsonIgnore private Map<String, Object> additionalProperties;
 
@@ -92,8 +91,8 @@ public class Credential {
     }
 
     /**
-     * Get the additionalProperties property: The Azure Data Factory nested object which contains the information and
-     * credential which can be used to connect with related store or compute resource.
+     * Get the additionalProperties property: [test]The Azure Data Factory nested object which contains the information
+     * and credential which can be used to connect with related store or compute resource.
      *
      * @return the additionalProperties value.
      */
@@ -103,8 +102,8 @@ public class Credential {
     }
 
     /**
-     * Set the additionalProperties property: The Azure Data Factory nested object which contains the information and
-     * credential which can be used to connect with related store or compute resource.
+     * Set the additionalProperties property: [test]The Azure Data Factory nested object which contains the information
+     * and credential which can be used to connect with related store or compute resource.
      *
      * @param additionalProperties the additionalProperties value to set.
      * @return the Credential object itself.
