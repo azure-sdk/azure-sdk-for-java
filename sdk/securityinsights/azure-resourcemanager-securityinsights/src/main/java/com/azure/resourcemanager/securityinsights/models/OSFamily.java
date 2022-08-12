@@ -39,6 +39,9 @@ public enum OSFamily {
      */
     @JsonCreator
     public static OSFamily fromString(String value) {
+        if (value == null) {
+            return null;
+        }
         OSFamily[] items = OSFamily.values();
         for (OSFamily item : items) {
             if (item.toString().equalsIgnoreCase(value)) {
