@@ -30,6 +30,9 @@ public enum RecurrenceFrequency {
      */
     @JsonCreator
     public static RecurrenceFrequency fromString(String value) {
+        if (value == null) {
+            return null;
+        }
         RecurrenceFrequency[] items = RecurrenceFrequency.values();
         for (RecurrenceFrequency item : items) {
             if (item.toString().equalsIgnoreCase(value)) {

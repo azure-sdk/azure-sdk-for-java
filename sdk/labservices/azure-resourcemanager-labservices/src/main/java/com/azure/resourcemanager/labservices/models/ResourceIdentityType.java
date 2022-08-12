@@ -7,34 +7,31 @@ package com.azure.resourcemanager.labservices.models;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-/** Defines values for VirtualMachineType. */
-public enum VirtualMachineType {
-    /** Enum value User. */
-    USER("User"),
+/** Defines values for ResourceIdentityType. */
+public enum ResourceIdentityType {
+    /** Enum value SystemAssigned. */
+    SYSTEM_ASSIGNED("SystemAssigned");
 
-    /** Enum value Template. */
-    TEMPLATE("Template");
-
-    /** The actual serialized value for a VirtualMachineType instance. */
+    /** The actual serialized value for a ResourceIdentityType instance. */
     private final String value;
 
-    VirtualMachineType(String value) {
+    ResourceIdentityType(String value) {
         this.value = value;
     }
 
     /**
-     * Parses a serialized value to a VirtualMachineType instance.
+     * Parses a serialized value to a ResourceIdentityType instance.
      *
      * @param value the serialized value to parse.
-     * @return the parsed VirtualMachineType object, or null if unable to parse.
+     * @return the parsed ResourceIdentityType object, or null if unable to parse.
      */
     @JsonCreator
-    public static VirtualMachineType fromString(String value) {
+    public static ResourceIdentityType fromString(String value) {
         if (value == null) {
             return null;
         }
-        VirtualMachineType[] items = VirtualMachineType.values();
-        for (VirtualMachineType item : items) {
+        ResourceIdentityType[] items = ResourceIdentityType.values();
+        for (ResourceIdentityType item : items) {
             if (item.toString().equalsIgnoreCase(value)) {
                 return item;
             }

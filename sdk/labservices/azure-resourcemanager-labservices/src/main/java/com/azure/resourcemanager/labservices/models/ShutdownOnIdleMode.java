@@ -33,6 +33,9 @@ public enum ShutdownOnIdleMode {
      */
     @JsonCreator
     public static ShutdownOnIdleMode fromString(String value) {
+        if (value == null) {
+            return null;
+        }
         ShutdownOnIdleMode[] items = ShutdownOnIdleMode.values();
         for (ShutdownOnIdleMode item : items) {
             if (item.toString().equalsIgnoreCase(value)) {
