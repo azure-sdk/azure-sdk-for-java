@@ -272,7 +272,7 @@ public final class ContainerAppsApiClientImpl implements ContainerAppsApiClient 
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2022-03-01";
+        this.apiVersion = "2022-08-01";
         this.containerAppsAuthConfigs = new ContainerAppsAuthConfigsClientImpl(this);
         this.containerApps = new ContainerAppsClientImpl(this);
         this.containerAppsRevisions = new ContainerAppsRevisionsClientImpl(this);
