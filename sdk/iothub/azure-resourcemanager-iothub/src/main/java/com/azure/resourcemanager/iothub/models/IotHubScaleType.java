@@ -33,6 +33,9 @@ public enum IotHubScaleType {
      */
     @JsonCreator
     public static IotHubScaleType fromString(String value) {
+        if (value == null) {
+            return null;
+        }
         IotHubScaleType[] items = IotHubScaleType.values();
         for (IotHubScaleType item : items) {
             if (item.toString().equalsIgnoreCase(value)) {
