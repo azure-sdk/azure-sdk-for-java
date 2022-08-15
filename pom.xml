@@ -71,8 +71,8 @@
     <module>sdk/eventgrid</module>
     <module>sdk/eventhubs</module>
     <module>sdk/extendedlocation</module>
-    <module>sdk/formrecognizer</module>
     <module>sdk/fluidrelay</module>
+    <module>sdk/formrecognizer</module>
     <module>sdk/frontdoor</module>
     <module>sdk/hanaonazure</module>
     <module>sdk/hardwaresecuritymodules</module>
@@ -161,6 +161,7 @@
     <module>sdk/timeseriesinsights</module>
     <module>sdk/tools</module>
     <module>sdk/translation</module>
+    <module>sdk/vi</module>
     <module>sdk/videoanalyzer</module>
     <module>sdk/vmwarecloudsimple</module>
     <module>sdk/webpubsub</module>
