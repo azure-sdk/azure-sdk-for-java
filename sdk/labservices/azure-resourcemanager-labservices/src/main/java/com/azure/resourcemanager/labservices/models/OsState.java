@@ -30,6 +30,9 @@ public enum OsState {
      */
     @JsonCreator
     public static OsState fromString(String value) {
+        if (value == null) {
+            return null;
+        }
         OsState[] items = OsState.values();
         for (OsState item : items) {
             if (item.toString().equalsIgnoreCase(value)) {

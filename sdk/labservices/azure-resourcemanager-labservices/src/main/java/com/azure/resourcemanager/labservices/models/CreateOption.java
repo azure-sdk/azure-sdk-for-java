@@ -30,6 +30,9 @@ public enum CreateOption {
      */
     @JsonCreator
     public static CreateOption fromString(String value) {
+        if (value == null) {
+            return null;
+        }
         CreateOption[] items = CreateOption.values();
         for (CreateOption item : items) {
             if (item.toString().equalsIgnoreCase(value)) {

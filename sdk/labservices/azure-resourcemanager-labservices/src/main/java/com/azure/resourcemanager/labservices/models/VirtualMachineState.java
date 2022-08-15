@@ -45,6 +45,9 @@ public enum VirtualMachineState {
      */
     @JsonCreator
     public static VirtualMachineState fromString(String value) {
+        if (value == null) {
+            return null;
+        }
         VirtualMachineState[] items = VirtualMachineState.values();
         for (VirtualMachineState item : items) {
             if (item.toString().equalsIgnoreCase(value)) {

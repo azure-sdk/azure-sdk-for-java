@@ -39,6 +39,9 @@ public enum LabState {
      */
     @JsonCreator
     public static LabState fromString(String value) {
+        if (value == null) {
+            return null;
+        }
         LabState[] items = LabState.values();
         for (LabState item : items) {
             if (item.toString().equalsIgnoreCase(value)) {

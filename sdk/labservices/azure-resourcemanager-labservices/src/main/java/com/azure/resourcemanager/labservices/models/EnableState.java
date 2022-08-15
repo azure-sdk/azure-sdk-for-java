@@ -30,6 +30,9 @@ public enum EnableState {
      */
     @JsonCreator
     public static EnableState fromString(String value) {
+        if (value == null) {
+            return null;
+        }
         EnableState[] items = EnableState.values();
         for (EnableState item : items) {
             if (item.toString().equalsIgnoreCase(value)) {
