@@ -30,6 +30,9 @@ public enum InterNodeCommunicationState {
      */
     @JsonCreator
     public static InterNodeCommunicationState fromString(String value) {
+        if (value == null) {
+            return null;
+        }
         InterNodeCommunicationState[] items = InterNodeCommunicationState.values();
         for (InterNodeCommunicationState item : items) {
             if (item.toString().equalsIgnoreCase(value)) {

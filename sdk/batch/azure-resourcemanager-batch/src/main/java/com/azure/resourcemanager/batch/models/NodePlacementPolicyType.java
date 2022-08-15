@@ -30,6 +30,9 @@ public enum NodePlacementPolicyType {
      */
     @JsonCreator
     public static NodePlacementPolicyType fromString(String value) {
+        if (value == null) {
+            return null;
+        }
         NodePlacementPolicyType[] items = NodePlacementPolicyType.values();
         for (NodePlacementPolicyType item : items) {
             if (item.toString().equalsIgnoreCase(value)) {

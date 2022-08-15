@@ -33,6 +33,9 @@ public enum AllocationState {
      */
     @JsonCreator
     public static AllocationState fromString(String value) {
+        if (value == null) {
+            return null;
+        }
         AllocationState[] items = AllocationState.values();
         for (AllocationState item : items) {
             if (item.toString().equalsIgnoreCase(value)) {

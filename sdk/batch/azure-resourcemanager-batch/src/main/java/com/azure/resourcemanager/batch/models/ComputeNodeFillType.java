@@ -30,6 +30,9 @@ public enum ComputeNodeFillType {
      */
     @JsonCreator
     public static ComputeNodeFillType fromString(String value) {
+        if (value == null) {
+            return null;
+        }
         ComputeNodeFillType[] items = ComputeNodeFillType.values();
         for (ComputeNodeFillType item : items) {
             if (item.toString().equalsIgnoreCase(value)) {

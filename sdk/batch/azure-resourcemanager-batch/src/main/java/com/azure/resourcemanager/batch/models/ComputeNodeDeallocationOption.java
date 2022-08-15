@@ -36,6 +36,9 @@ public enum ComputeNodeDeallocationOption {
      */
     @JsonCreator
     public static ComputeNodeDeallocationOption fromString(String value) {
+        if (value == null) {
+            return null;
+        }
         ComputeNodeDeallocationOption[] items = ComputeNodeDeallocationOption.values();
         for (ComputeNodeDeallocationOption item : items) {
             if (item.toString().equalsIgnoreCase(value)) {

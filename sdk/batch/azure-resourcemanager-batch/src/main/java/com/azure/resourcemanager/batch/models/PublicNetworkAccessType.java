@@ -30,6 +30,9 @@ public enum PublicNetworkAccessType {
      */
     @JsonCreator
     public static PublicNetworkAccessType fromString(String value) {
+        if (value == null) {
+            return null;
+        }
         PublicNetworkAccessType[] items = PublicNetworkAccessType.values();
         for (PublicNetworkAccessType item : items) {
             if (item.toString().equalsIgnoreCase(value)) {

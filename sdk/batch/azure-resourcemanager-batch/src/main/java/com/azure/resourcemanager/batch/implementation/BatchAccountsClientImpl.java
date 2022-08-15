@@ -727,14 +727,7 @@ public final class BatchAccountsClientImpl implements BatchAccountsClient {
     private Mono<BatchAccountInner> updateAsync(
         String resourceGroupName, String accountName, BatchAccountUpdateParameters parameters) {
         return updateWithResponseAsync(resourceGroupName, accountName, parameters)
-            .flatMap(
-                (Response<BatchAccountInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -1108,14 +1101,7 @@ public final class BatchAccountsClientImpl implements BatchAccountsClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<BatchAccountInner> getByResourceGroupAsync(String resourceGroupName, String accountName) {
         return getByResourceGroupWithResponseAsync(resourceGroupName, accountName)
-            .flatMap(
-                (Response<BatchAccountInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -1575,7 +1561,7 @@ public final class BatchAccountsClientImpl implements BatchAccountsClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> synchronizeAutoStorageKeysAsync(String resourceGroupName, String accountName) {
         return synchronizeAutoStorageKeysWithResponseAsync(resourceGroupName, accountName)
-            .flatMap((Response<Void> res) -> Mono.empty());
+            .flatMap(ignored -> Mono.empty());
     }
 
     /**
@@ -1612,7 +1598,9 @@ public final class BatchAccountsClientImpl implements BatchAccountsClient {
     }
 
     /**
-     * This operation applies only to Batch accounts with allowedAuthenticationModes containing 'SharedKey'. If the
+     * Regenerates the specified account key for the Batch account.
+     *
+     * <p>This operation applies only to Batch accounts with allowedAuthenticationModes containing 'SharedKey'. If the
      * Batch account doesn't contain 'SharedKey' in its allowedAuthenticationMode, clients cannot use shared keys to
      * authenticate, and must use another allowedAuthenticationModes instead. In this case, regenerating the keys will
      * fail.
@@ -1670,7 +1658,9 @@ public final class BatchAccountsClientImpl implements BatchAccountsClient {
     }
 
     /**
-     * This operation applies only to Batch accounts with allowedAuthenticationModes containing 'SharedKey'. If the
+     * Regenerates the specified account key for the Batch account.
+     *
+     * <p>This operation applies only to Batch accounts with allowedAuthenticationModes containing 'SharedKey'. If the
      * Batch account doesn't contain 'SharedKey' in its allowedAuthenticationMode, clients cannot use shared keys to
      * authenticate, and must use another allowedAuthenticationModes instead. In this case, regenerating the keys will
      * fail.
@@ -1726,7 +1716,9 @@ public final class BatchAccountsClientImpl implements BatchAccountsClient {
     }
 
     /**
-     * This operation applies only to Batch accounts with allowedAuthenticationModes containing 'SharedKey'. If the
+     * Regenerates the specified account key for the Batch account.
+     *
+     * <p>This operation applies only to Batch accounts with allowedAuthenticationModes containing 'SharedKey'. If the
      * Batch account doesn't contain 'SharedKey' in its allowedAuthenticationMode, clients cannot use shared keys to
      * authenticate, and must use another allowedAuthenticationModes instead. In this case, regenerating the keys will
      * fail.
@@ -1743,18 +1735,13 @@ public final class BatchAccountsClientImpl implements BatchAccountsClient {
     private Mono<BatchAccountKeysInner> regenerateKeyAsync(
         String resourceGroupName, String accountName, BatchAccountRegenerateKeyParameters parameters) {
         return regenerateKeyWithResponseAsync(resourceGroupName, accountName, parameters)
-            .flatMap(
-                (Response<BatchAccountKeysInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
-     * This operation applies only to Batch accounts with allowedAuthenticationModes containing 'SharedKey'. If the
+     * Regenerates the specified account key for the Batch account.
+     *
+     * <p>This operation applies only to Batch accounts with allowedAuthenticationModes containing 'SharedKey'. If the
      * Batch account doesn't contain 'SharedKey' in its allowedAuthenticationMode, clients cannot use shared keys to
      * authenticate, and must use another allowedAuthenticationModes instead. In this case, regenerating the keys will
      * fail.
@@ -1774,7 +1761,9 @@ public final class BatchAccountsClientImpl implements BatchAccountsClient {
     }
 
     /**
-     * This operation applies only to Batch accounts with allowedAuthenticationModes containing 'SharedKey'. If the
+     * Regenerates the specified account key for the Batch account.
+     *
+     * <p>This operation applies only to Batch accounts with allowedAuthenticationModes containing 'SharedKey'. If the
      * Batch account doesn't contain 'SharedKey' in its allowedAuthenticationMode, clients cannot use shared keys to
      * authenticate, and must use another allowedAuthenticationModes instead. In this case, regenerating the keys will
      * fail.
@@ -1795,7 +1784,9 @@ public final class BatchAccountsClientImpl implements BatchAccountsClient {
     }
 
     /**
-     * This operation applies only to Batch accounts with allowedAuthenticationModes containing 'SharedKey'. If the
+     * Gets the account keys for the specified Batch account.
+     *
+     * <p>This operation applies only to Batch accounts with allowedAuthenticationModes containing 'SharedKey'. If the
      * Batch account doesn't contain 'SharedKey' in its allowedAuthenticationMode, clients cannot use shared keys to
      * authenticate, and must use another allowedAuthenticationModes instead. In this case, getting the keys will fail.
      *
@@ -1845,7 +1836,9 @@ public final class BatchAccountsClientImpl implements BatchAccountsClient {
     }
 
     /**
-     * This operation applies only to Batch accounts with allowedAuthenticationModes containing 'SharedKey'. If the
+     * Gets the account keys for the specified Batch account.
+     *
+     * <p>This operation applies only to Batch accounts with allowedAuthenticationModes containing 'SharedKey'. If the
      * Batch account doesn't contain 'SharedKey' in its allowedAuthenticationMode, clients cannot use shared keys to
      * authenticate, and must use another allowedAuthenticationModes instead. In this case, getting the keys will fail.
      *
@@ -1893,7 +1886,9 @@ public final class BatchAccountsClientImpl implements BatchAccountsClient {
     }
 
     /**
-     * This operation applies only to Batch accounts with allowedAuthenticationModes containing 'SharedKey'. If the
+     * Gets the account keys for the specified Batch account.
+     *
+     * <p>This operation applies only to Batch accounts with allowedAuthenticationModes containing 'SharedKey'. If the
      * Batch account doesn't contain 'SharedKey' in its allowedAuthenticationMode, clients cannot use shared keys to
      * authenticate, and must use another allowedAuthenticationModes instead. In this case, getting the keys will fail.
      *
@@ -1907,18 +1902,13 @@ public final class BatchAccountsClientImpl implements BatchAccountsClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<BatchAccountKeysInner> getKeysAsync(String resourceGroupName, String accountName) {
         return getKeysWithResponseAsync(resourceGroupName, accountName)
-            .flatMap(
-                (Response<BatchAccountKeysInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
-     * This operation applies only to Batch accounts with allowedAuthenticationModes containing 'SharedKey'. If the
+     * Gets the account keys for the specified Batch account.
+     *
+     * <p>This operation applies only to Batch accounts with allowedAuthenticationModes containing 'SharedKey'. If the
      * Batch account doesn't contain 'SharedKey' in its allowedAuthenticationMode, clients cannot use shared keys to
      * authenticate, and must use another allowedAuthenticationModes instead. In this case, getting the keys will fail.
      *
@@ -1935,7 +1925,9 @@ public final class BatchAccountsClientImpl implements BatchAccountsClient {
     }
 
     /**
-     * This operation applies only to Batch accounts with allowedAuthenticationModes containing 'SharedKey'. If the
+     * Gets the account keys for the specified Batch account.
+     *
+     * <p>This operation applies only to Batch accounts with allowedAuthenticationModes containing 'SharedKey'. If the
      * Batch account doesn't contain 'SharedKey' in its allowedAuthenticationMode, clients cannot use shared keys to
      * authenticate, and must use another allowedAuthenticationModes instead. In this case, getting the keys will fail.
      *
@@ -2260,14 +2252,7 @@ public final class BatchAccountsClientImpl implements BatchAccountsClient {
     private Mono<DetectorResponseInner> getDetectorAsync(
         String resourceGroupName, String accountName, String detectorId) {
         return getDetectorWithResponseAsync(resourceGroupName, accountName, detectorId)
-            .flatMap(
-                (Response<DetectorResponseInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -2309,7 +2294,7 @@ public final class BatchAccountsClientImpl implements BatchAccountsClient {
      * administration. If you are deploying a Pool inside of a virtual network that you specify, you must make sure your
      * network allows outbound access to these endpoints. Failure to allow access to these endpoints may cause Batch to
      * mark the affected nodes as unusable. For more information about creating a pool inside of a virtual network, see
-     * https://docs.microsoft.com/en-us/azure/batch/batch-virtual-network.
+     * https://docs.microsoft.com/azure/batch/batch-virtual-network.
      *
      * @param resourceGroupName The name of the resource group that contains the Batch account.
      * @param accountName The name of the Batch account.
@@ -2371,7 +2356,7 @@ public final class BatchAccountsClientImpl implements BatchAccountsClient {
      * administration. If you are deploying a Pool inside of a virtual network that you specify, you must make sure your
      * network allows outbound access to these endpoints. Failure to allow access to these endpoints may cause Batch to
      * mark the affected nodes as unusable. For more information about creating a pool inside of a virtual network, see
-     * https://docs.microsoft.com/en-us/azure/batch/batch-virtual-network.
+     * https://docs.microsoft.com/azure/batch/batch-virtual-network.
      *
      * @param resourceGroupName The name of the resource group that contains the Batch account.
      * @param accountName The name of the Batch account.
@@ -2432,7 +2417,7 @@ public final class BatchAccountsClientImpl implements BatchAccountsClient {
      * administration. If you are deploying a Pool inside of a virtual network that you specify, you must make sure your
      * network allows outbound access to these endpoints. Failure to allow access to these endpoints may cause Batch to
      * mark the affected nodes as unusable. For more information about creating a pool inside of a virtual network, see
-     * https://docs.microsoft.com/en-us/azure/batch/batch-virtual-network.
+     * https://docs.microsoft.com/azure/batch/batch-virtual-network.
      *
      * @param resourceGroupName The name of the resource group that contains the Batch account.
      * @param accountName The name of the Batch account.
@@ -2454,7 +2439,7 @@ public final class BatchAccountsClientImpl implements BatchAccountsClient {
      * administration. If you are deploying a Pool inside of a virtual network that you specify, you must make sure your
      * network allows outbound access to these endpoints. Failure to allow access to these endpoints may cause Batch to
      * mark the affected nodes as unusable. For more information about creating a pool inside of a virtual network, see
-     * https://docs.microsoft.com/en-us/azure/batch/batch-virtual-network.
+     * https://docs.microsoft.com/azure/batch/batch-virtual-network.
      *
      * @param resourceGroupName The name of the resource group that contains the Batch account.
      * @param accountName The name of the Batch account.
@@ -2477,7 +2462,7 @@ public final class BatchAccountsClientImpl implements BatchAccountsClient {
      * administration. If you are deploying a Pool inside of a virtual network that you specify, you must make sure your
      * network allows outbound access to these endpoints. Failure to allow access to these endpoints may cause Batch to
      * mark the affected nodes as unusable. For more information about creating a pool inside of a virtual network, see
-     * https://docs.microsoft.com/en-us/azure/batch/batch-virtual-network.
+     * https://docs.microsoft.com/azure/batch/batch-virtual-network.
      *
      * @param resourceGroupName The name of the resource group that contains the Batch account.
      * @param accountName The name of the Batch account.
@@ -2497,7 +2482,7 @@ public final class BatchAccountsClientImpl implements BatchAccountsClient {
      * administration. If you are deploying a Pool inside of a virtual network that you specify, you must make sure your
      * network allows outbound access to these endpoints. Failure to allow access to these endpoints may cause Batch to
      * mark the affected nodes as unusable. For more information about creating a pool inside of a virtual network, see
-     * https://docs.microsoft.com/en-us/azure/batch/batch-virtual-network.
+     * https://docs.microsoft.com/azure/batch/batch-virtual-network.
      *
      * @param resourceGroupName The name of the resource group that contains the Batch account.
      * @param accountName The name of the Batch account.

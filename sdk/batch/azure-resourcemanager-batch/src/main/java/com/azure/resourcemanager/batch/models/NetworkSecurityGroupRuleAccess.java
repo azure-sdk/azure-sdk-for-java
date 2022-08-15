@@ -30,6 +30,9 @@ public enum NetworkSecurityGroupRuleAccess {
      */
     @JsonCreator
     public static NetworkSecurityGroupRuleAccess fromString(String value) {
+        if (value == null) {
+            return null;
+        }
         NetworkSecurityGroupRuleAccess[] items = NetworkSecurityGroupRuleAccess.values();
         for (NetworkSecurityGroupRuleAccess item : items) {
             if (item.toString().equalsIgnoreCase(value)) {

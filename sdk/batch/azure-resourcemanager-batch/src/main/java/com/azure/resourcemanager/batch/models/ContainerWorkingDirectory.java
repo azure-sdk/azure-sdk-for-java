@@ -30,6 +30,9 @@ public enum ContainerWorkingDirectory {
      */
     @JsonCreator
     public static ContainerWorkingDirectory fromString(String value) {
+        if (value == null) {
+            return null;
+        }
         ContainerWorkingDirectory[] items = ContainerWorkingDirectory.values();
         for (ContainerWorkingDirectory item : items) {
             if (item.toString().equalsIgnoreCase(value)) {

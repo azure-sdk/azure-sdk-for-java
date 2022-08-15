@@ -11,8 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Immutable
 public final class BatchLocationQuotaInner {
     /*
-     * The number of Batch accounts that may be created under the subscription
-     * in the specified region.
+     * The number of Batch accounts that may be created under the subscription in the specified region.
      */
     @JsonProperty(value = "accountQuota", access = JsonProperty.Access.WRITE_ONLY)
     private Integer accountQuota;

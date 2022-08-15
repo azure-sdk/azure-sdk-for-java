@@ -30,6 +30,9 @@ public enum StorageAccountType {
      */
     @JsonCreator
     public static StorageAccountType fromString(String value) {
+        if (value == null) {
+            return null;
+        }
         StorageAccountType[] items = StorageAccountType.values();
         for (StorageAccountType item : items) {
             if (item.toString().equalsIgnoreCase(value)) {

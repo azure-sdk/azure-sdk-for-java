@@ -36,6 +36,9 @@ public enum PrivateLinkServiceConnectionStatus {
      */
     @JsonCreator
     public static PrivateLinkServiceConnectionStatus fromString(String value) {
+        if (value == null) {
+            return null;
+        }
         PrivateLinkServiceConnectionStatus[] items = PrivateLinkServiceConnectionStatus.values();
         for (PrivateLinkServiceConnectionStatus item : items) {
             if (item.toString().equalsIgnoreCase(value)) {
