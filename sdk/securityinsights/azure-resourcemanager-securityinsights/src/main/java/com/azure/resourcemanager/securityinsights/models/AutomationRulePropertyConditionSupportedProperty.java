@@ -40,6 +40,18 @@ public final class AutomationRulePropertyConditionSupportedProperty
     public static final AutomationRulePropertyConditionSupportedProperty INCIDENT_PROVIDER_NAME =
         fromString("IncidentProviderName");
 
+    /** Static value IncidentUpdatedBySource for AutomationRulePropertyConditionSupportedProperty. */
+    public static final AutomationRulePropertyConditionSupportedProperty INCIDENT_UPDATED_BY_SOURCE =
+        fromString("IncidentUpdatedBySource");
+
+    /** Static value IncidentCustomDetailsKey for AutomationRulePropertyConditionSupportedProperty. */
+    public static final AutomationRulePropertyConditionSupportedProperty INCIDENT_CUSTOM_DETAILS_KEY =
+        fromString("IncidentCustomDetailsKey");
+
+    /** Static value IncidentCustomDetailsValue for AutomationRulePropertyConditionSupportedProperty. */
+    public static final AutomationRulePropertyConditionSupportedProperty INCIDENT_CUSTOM_DETAILS_VALUE =
+        fromString("IncidentCustomDetailsValue");
+
     /** Static value AccountAadTenantId for AutomationRulePropertyConditionSupportedProperty. */
     public static final AutomationRulePropertyConditionSupportedProperty ACCOUNT_AAD_TENANT_ID =
         fromString("AccountAadTenantId");
@@ -72,6 +84,10 @@ public final class AutomationRulePropertyConditionSupportedProperty
     /** Static value AlertProductNames for AutomationRulePropertyConditionSupportedProperty. */
     public static final AutomationRulePropertyConditionSupportedProperty ALERT_PRODUCT_NAMES =
         fromString("AlertProductNames");
+
+    /** Static value AlertAnalyticRuleIds for AutomationRulePropertyConditionSupportedProperty. */
+    public static final AutomationRulePropertyConditionSupportedProperty ALERT_ANALYTIC_RULE_IDS =
+        fromString("AlertAnalyticRuleIds");
 
     /** Static value AzureResourceResourceId for AutomationRulePropertyConditionSupportedProperty. */
     public static final AutomationRulePropertyConditionSupportedProperty AZURE_RESOURCE_RESOURCE_ID =
