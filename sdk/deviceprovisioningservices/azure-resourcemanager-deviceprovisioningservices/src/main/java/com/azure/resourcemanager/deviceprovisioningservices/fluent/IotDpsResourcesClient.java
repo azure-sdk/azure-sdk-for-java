@@ -26,7 +26,9 @@ import java.util.List;
 /** An instance of this class provides access to all the operations defined in IotDpsResourcesClient. */
 public interface IotDpsResourcesClient {
     /**
-     * Get the metadata of the provisioning service without SAS keys.
+     * Get the non-security related metadata of the provisioning service.
+     *
+     * <p>Get the metadata of the provisioning service without SAS keys.
      *
      * @param resourceGroupName Resource group name.
      * @param provisioningServiceName Name of the provisioning service to retrieve.
@@ -40,7 +42,9 @@ public interface IotDpsResourcesClient {
     ProvisioningServiceDescriptionInner getByResourceGroup(String resourceGroupName, String provisioningServiceName);
 
     /**
-     * Get the metadata of the provisioning service without SAS keys.
+     * Get the non-security related metadata of the provisioning service.
+     *
+     * <p>Get the metadata of the provisioning service without SAS keys.
      *
      * @param resourceGroupName Resource group name.
      * @param provisioningServiceName Name of the provisioning service to retrieve.
@@ -56,9 +60,11 @@ public interface IotDpsResourcesClient {
         String resourceGroupName, String provisioningServiceName, Context context);
 
     /**
-     * Create or update the metadata of the provisioning service. The usual pattern to modify a property is to retrieve
-     * the provisioning service metadata and security metadata, and then combine them with the modified values in a new
-     * body to update the provisioning service.
+     * Create or update the metadata of the provisioning service.
+     *
+     * <p>Create or update the metadata of the provisioning service. The usual pattern to modify a property is to
+     * retrieve the provisioning service metadata and security metadata, and then combine them with the modified values
+     * in a new body to update the provisioning service.
      *
      * @param resourceGroupName Resource group identifier.
      * @param provisioningServiceName Name of provisioning service to create or update.
@@ -77,9 +83,11 @@ public interface IotDpsResourcesClient {
             ProvisioningServiceDescriptionInner iotDpsDescription);
 
     /**
-     * Create or update the metadata of the provisioning service. The usual pattern to modify a property is to retrieve
-     * the provisioning service metadata and security metadata, and then combine them with the modified values in a new
-     * body to update the provisioning service.
+     * Create or update the metadata of the provisioning service.
+     *
+     * <p>Create or update the metadata of the provisioning service. The usual pattern to modify a property is to
+     * retrieve the provisioning service metadata and security metadata, and then combine them with the modified values
+     * in a new body to update the provisioning service.
      *
      * @param resourceGroupName Resource group identifier.
      * @param provisioningServiceName Name of provisioning service to create or update.
@@ -100,9 +108,11 @@ public interface IotDpsResourcesClient {
             Context context);
 
     /**
-     * Create or update the metadata of the provisioning service. The usual pattern to modify a property is to retrieve
-     * the provisioning service metadata and security metadata, and then combine them with the modified values in a new
-     * body to update the provisioning service.
+     * Create or update the metadata of the provisioning service.
+     *
+     * <p>Create or update the metadata of the provisioning service. The usual pattern to modify a property is to
+     * retrieve the provisioning service metadata and security metadata, and then combine them with the modified values
+     * in a new body to update the provisioning service.
      *
      * @param resourceGroupName Resource group identifier.
      * @param provisioningServiceName Name of provisioning service to create or update.
@@ -120,9 +130,11 @@ public interface IotDpsResourcesClient {
         ProvisioningServiceDescriptionInner iotDpsDescription);
 
     /**
-     * Create or update the metadata of the provisioning service. The usual pattern to modify a property is to retrieve
-     * the provisioning service metadata and security metadata, and then combine them with the modified values in a new
-     * body to update the provisioning service.
+     * Create or update the metadata of the provisioning service.
+     *
+     * <p>Create or update the metadata of the provisioning service. The usual pattern to modify a property is to
+     * retrieve the provisioning service metadata and security metadata, and then combine them with the modified values
+     * in a new body to update the provisioning service.
      *
      * @param resourceGroupName Resource group identifier.
      * @param provisioningServiceName Name of provisioning service to create or update.
@@ -142,7 +154,9 @@ public interface IotDpsResourcesClient {
         Context context);
 
     /**
-     * Update an existing provisioning service's tags. to update other fields use the CreateOrUpdate method.
+     * Update an existing provisioning service's tags.
+     *
+     * <p>Update an existing provisioning service's tags. to update other fields use the CreateOrUpdate method.
      *
      * @param resourceGroupName Resource group identifier.
      * @param provisioningServiceName Name of provisioning service to create or update.
@@ -157,7 +171,9 @@ public interface IotDpsResourcesClient {
         String resourceGroupName, String provisioningServiceName, TagsResource provisioningServiceTags);
 
     /**
-     * Update an existing provisioning service's tags. to update other fields use the CreateOrUpdate method.
+     * Update an existing provisioning service's tags.
+     *
+     * <p>Update an existing provisioning service's tags. to update other fields use the CreateOrUpdate method.
      *
      * @param resourceGroupName Resource group identifier.
      * @param provisioningServiceName Name of provisioning service to create or update.
@@ -176,7 +192,9 @@ public interface IotDpsResourcesClient {
         Context context);
 
     /**
-     * Update an existing provisioning service's tags. to update other fields use the CreateOrUpdate method.
+     * Update an existing provisioning service's tags.
+     *
+     * <p>Update an existing provisioning service's tags. to update other fields use the CreateOrUpdate method.
      *
      * @param resourceGroupName Resource group identifier.
      * @param provisioningServiceName Name of provisioning service to create or update.
@@ -191,7 +209,9 @@ public interface IotDpsResourcesClient {
         String resourceGroupName, String provisioningServiceName, TagsResource provisioningServiceTags);
 
     /**
-     * Update an existing provisioning service's tags. to update other fields use the CreateOrUpdate method.
+     * Update an existing provisioning service's tags.
+     *
+     * <p>Update an existing provisioning service's tags. to update other fields use the CreateOrUpdate method.
      *
      * @param resourceGroupName Resource group identifier.
      * @param provisioningServiceName Name of provisioning service to create or update.
@@ -210,7 +230,9 @@ public interface IotDpsResourcesClient {
         Context context);
 
     /**
-     * Deletes the Provisioning Service.
+     * Delete the Provisioning Service
+     *
+     * <p>Deletes the Provisioning Service.
      *
      * @param resourceGroupName Resource group identifier.
      * @param provisioningServiceName Name of provisioning service to delete.
@@ -224,7 +246,9 @@ public interface IotDpsResourcesClient {
     SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String provisioningServiceName);
 
     /**
-     * Deletes the Provisioning Service.
+     * Delete the Provisioning Service
+     *
+     * <p>Deletes the Provisioning Service.
      *
      * @param resourceGroupName Resource group identifier.
      * @param provisioningServiceName Name of provisioning service to delete.
@@ -240,7 +264,9 @@ public interface IotDpsResourcesClient {
         String resourceGroupName, String provisioningServiceName, Context context);
 
     /**
-     * Deletes the Provisioning Service.
+     * Delete the Provisioning Service
+     *
+     * <p>Deletes the Provisioning Service.
      *
      * @param resourceGroupName Resource group identifier.
      * @param provisioningServiceName Name of provisioning service to delete.
@@ -253,7 +279,9 @@ public interface IotDpsResourcesClient {
     void delete(String resourceGroupName, String provisioningServiceName);
 
     /**
-     * Deletes the Provisioning Service.
+     * Delete the Provisioning Service
+     *
+     * <p>Deletes the Provisioning Service.
      *
      * @param resourceGroupName Resource group identifier.
      * @param provisioningServiceName Name of provisioning service to delete.
@@ -267,7 +295,9 @@ public interface IotDpsResourcesClient {
     void delete(String resourceGroupName, String provisioningServiceName, Context context);
 
     /**
-     * List all the provisioning services for a given subscription id.
+     * Get all the provisioning services in a subscription.
+     *
+     * <p>List all the provisioning services for a given subscription id.
      *
      * @throws com.azure.resourcemanager.deviceprovisioningservices.models.ErrorDetailsException thrown if the request
      *     is rejected by server.
@@ -278,7 +308,9 @@ public interface IotDpsResourcesClient {
     PagedIterable<ProvisioningServiceDescriptionInner> list();
 
     /**
-     * List all the provisioning services for a given subscription id.
+     * Get all the provisioning services in a subscription.
+     *
+     * <p>List all the provisioning services for a given subscription id.
      *
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -362,7 +394,9 @@ public interface IotDpsResourcesClient {
         Context context);
 
     /**
-     * Gets the list of valid SKUs and tiers for a provisioning service.
+     * Get the list of valid SKUs for a provisioning service.
+     *
+     * <p>Gets the list of valid SKUs and tiers for a provisioning service.
      *
      * @param provisioningServiceName Name of provisioning service.
      * @param resourceGroupName Name of resource group.
@@ -377,7 +411,9 @@ public interface IotDpsResourcesClient {
     PagedIterable<IotDpsSkuDefinitionInner> listValidSkus(String provisioningServiceName, String resourceGroupName);
 
     /**
-     * Gets the list of valid SKUs and tiers for a provisioning service.
+     * Get the list of valid SKUs for a provisioning service.
+     *
+     * <p>Gets the list of valid SKUs and tiers for a provisioning service.
      *
      * @param provisioningServiceName Name of provisioning service.
      * @param resourceGroupName Name of resource group.
@@ -394,8 +430,10 @@ public interface IotDpsResourcesClient {
         String provisioningServiceName, String resourceGroupName, Context context);
 
     /**
-     * Check if a provisioning service name is available. This will validate if the name is syntactically valid and if
-     * the name is usable.
+     * Check if a provisioning service name is available.
+     *
+     * <p>Check if a provisioning service name is available. This will validate if the name is syntactically valid and
+     * if the name is usable.
      *
      * @param arguments Set the name parameter in the OperationInputs structure to the name of the provisioning service
      *     to check.
@@ -409,8 +447,10 @@ public interface IotDpsResourcesClient {
     NameAvailabilityInfoInner checkProvisioningServiceNameAvailability(OperationInputs arguments);
 
     /**
-     * Check if a provisioning service name is available. This will validate if the name is syntactically valid and if
-     * the name is usable.
+     * Check if a provisioning service name is available.
+     *
+     * <p>Check if a provisioning service name is available. This will validate if the name is syntactically valid and
+     * if the name is usable.
      *
      * @param arguments Set the name parameter in the OperationInputs structure to the name of the provisioning service
      *     to check.
@@ -426,7 +466,9 @@ public interface IotDpsResourcesClient {
         OperationInputs arguments, Context context);
 
     /**
-     * List the primary and secondary keys for a provisioning service.
+     * Get the security metadata for a provisioning service.
+     *
+     * <p>List the primary and secondary keys for a provisioning service.
      *
      * @param provisioningServiceName The provisioning service name to get the shared access keys for.
      * @param resourceGroupName resource group name.
@@ -441,7 +483,9 @@ public interface IotDpsResourcesClient {
         String provisioningServiceName, String resourceGroupName);
 
     /**
-     * List the primary and secondary keys for a provisioning service.
+     * Get the security metadata for a provisioning service.
+     *
+     * <p>List the primary and secondary keys for a provisioning service.
      *
      * @param provisioningServiceName The provisioning service name to get the shared access keys for.
      * @param resourceGroupName resource group name.
@@ -457,7 +501,9 @@ public interface IotDpsResourcesClient {
         String provisioningServiceName, String resourceGroupName, Context context);
 
     /**
-     * List primary and secondary keys for a specific key name.
+     * Get a shared access policy by name from a provisioning service.
+     *
+     * <p>List primary and secondary keys for a specific key name.
      *
      * @param provisioningServiceName Name of the provisioning service.
      * @param keyName Logical key name to get key-values for.
@@ -473,7 +519,9 @@ public interface IotDpsResourcesClient {
         String provisioningServiceName, String keyName, String resourceGroupName);
 
     /**
-     * List primary and secondary keys for a specific key name.
+     * Get a shared access policy by name from a provisioning service.
+     *
+     * <p>List primary and secondary keys for a specific key name.
      *
      * @param provisioningServiceName Name of the provisioning service.
      * @param keyName Logical key name to get key-values for.
@@ -490,7 +538,9 @@ public interface IotDpsResourcesClient {
         String provisioningServiceName, String keyName, String resourceGroupName, Context context);
 
     /**
-     * List private link resources for the given provisioning service.
+     * List private link resources
+     *
+     * <p>List private link resources for the given provisioning service.
      *
      * @param resourceGroupName The name of the resource group that contains the provisioning service.
      * @param resourceName The name of the provisioning service.
@@ -504,7 +554,9 @@ public interface IotDpsResourcesClient {
     PrivateLinkResourcesInner listPrivateLinkResources(String resourceGroupName, String resourceName);
 
     /**
-     * List private link resources for the given provisioning service.
+     * List private link resources
+     *
+     * <p>List private link resources for the given provisioning service.
      *
      * @param resourceGroupName The name of the resource group that contains the provisioning service.
      * @param resourceName The name of the provisioning service.
@@ -520,7 +572,9 @@ public interface IotDpsResourcesClient {
         String resourceGroupName, String resourceName, Context context);
 
     /**
-     * Get the specified private link resource for the given provisioning service.
+     * Get the specified private link resource
+     *
+     * <p>Get the specified private link resource for the given provisioning service.
      *
      * @param resourceGroupName The name of the resource group that contains the provisioning service.
      * @param resourceName The name of the provisioning service.
@@ -535,7 +589,9 @@ public interface IotDpsResourcesClient {
     GroupIdInformationInner getPrivateLinkResources(String resourceGroupName, String resourceName, String groupId);
 
     /**
-     * Get the specified private link resource for the given provisioning service.
+     * Get the specified private link resource
+     *
+     * <p>Get the specified private link resource for the given provisioning service.
      *
      * @param resourceGroupName The name of the resource group that contains the provisioning service.
      * @param resourceName The name of the provisioning service.
@@ -552,7 +608,9 @@ public interface IotDpsResourcesClient {
         String resourceGroupName, String resourceName, String groupId, Context context);
 
     /**
-     * List private endpoint connection properties.
+     * List private endpoint connections
+     *
+     * <p>List private endpoint connection properties.
      *
      * @param resourceGroupName The name of the resource group that contains the provisioning service.
      * @param resourceName The name of the provisioning service.
@@ -566,7 +624,9 @@ public interface IotDpsResourcesClient {
     List<PrivateEndpointConnectionInner> listPrivateEndpointConnections(String resourceGroupName, String resourceName);
 
     /**
-     * List private endpoint connection properties.
+     * List private endpoint connections
+     *
+     * <p>List private endpoint connection properties.
      *
      * @param resourceGroupName The name of the resource group that contains the provisioning service.
      * @param resourceName The name of the provisioning service.
@@ -582,7 +642,9 @@ public interface IotDpsResourcesClient {
         String resourceGroupName, String resourceName, Context context);
 
     /**
-     * Get private endpoint connection properties.
+     * Get private endpoint connection
+     *
+     * <p>Get private endpoint connection properties.
      *
      * @param resourceGroupName The name of the resource group that contains the provisioning service.
      * @param resourceName The name of the provisioning service.
@@ -598,7 +660,9 @@ public interface IotDpsResourcesClient {
         String resourceGroupName, String resourceName, String privateEndpointConnectionName);
 
     /**
-     * Get private endpoint connection properties.
+     * Get private endpoint connection
+     *
+     * <p>Get private endpoint connection properties.
      *
      * @param resourceGroupName The name of the resource group that contains the provisioning service.
      * @param resourceName The name of the provisioning service.
@@ -615,7 +679,9 @@ public interface IotDpsResourcesClient {
         String resourceGroupName, String resourceName, String privateEndpointConnectionName, Context context);
 
     /**
-     * Create or update the status of a private endpoint connection with the specified name.
+     * Create or update private endpoint connection
+     *
+     * <p>Create or update the status of a private endpoint connection with the specified name.
      *
      * @param resourceGroupName The name of the resource group that contains the provisioning service.
      * @param resourceName The name of the provisioning service.
@@ -636,7 +702,9 @@ public interface IotDpsResourcesClient {
             PrivateEndpointConnectionInner privateEndpointConnection);
 
     /**
-     * Create or update the status of a private endpoint connection with the specified name.
+     * Create or update private endpoint connection
+     *
+     * <p>Create or update the status of a private endpoint connection with the specified name.
      *
      * @param resourceGroupName The name of the resource group that contains the provisioning service.
      * @param resourceName The name of the provisioning service.
@@ -659,7 +727,9 @@ public interface IotDpsResourcesClient {
             Context context);
 
     /**
-     * Create or update the status of a private endpoint connection with the specified name.
+     * Create or update private endpoint connection
+     *
+     * <p>Create or update the status of a private endpoint connection with the specified name.
      *
      * @param resourceGroupName The name of the resource group that contains the provisioning service.
      * @param resourceName The name of the provisioning service.
@@ -679,7 +749,9 @@ public interface IotDpsResourcesClient {
         PrivateEndpointConnectionInner privateEndpointConnection);
 
     /**
-     * Create or update the status of a private endpoint connection with the specified name.
+     * Create or update private endpoint connection
+     *
+     * <p>Create or update the status of a private endpoint connection with the specified name.
      *
      * @param resourceGroupName The name of the resource group that contains the provisioning service.
      * @param resourceName The name of the provisioning service.
@@ -701,7 +773,9 @@ public interface IotDpsResourcesClient {
         Context context);
 
     /**
-     * Delete private endpoint connection with the specified name.
+     * Delete private endpoint connection
+     *
+     * <p>Delete private endpoint connection with the specified name.
      *
      * @param resourceGroupName The name of the resource group that contains the provisioning service.
      * @param resourceName The name of the provisioning service.
@@ -718,7 +792,9 @@ public interface IotDpsResourcesClient {
             String resourceGroupName, String resourceName, String privateEndpointConnectionName);
 
     /**
-     * Delete private endpoint connection with the specified name.
+     * Delete private endpoint connection
+     *
+     * <p>Delete private endpoint connection with the specified name.
      *
      * @param resourceGroupName The name of the resource group that contains the provisioning service.
      * @param resourceName The name of the provisioning service.
@@ -736,7 +812,9 @@ public interface IotDpsResourcesClient {
             String resourceGroupName, String resourceName, String privateEndpointConnectionName, Context context);
 
     /**
-     * Delete private endpoint connection with the specified name.
+     * Delete private endpoint connection
+     *
+     * <p>Delete private endpoint connection with the specified name.
      *
      * @param resourceGroupName The name of the resource group that contains the provisioning service.
      * @param resourceName The name of the provisioning service.
@@ -752,7 +830,9 @@ public interface IotDpsResourcesClient {
         String resourceGroupName, String resourceName, String privateEndpointConnectionName);
 
     /**
-     * Delete private endpoint connection with the specified name.
+     * Delete private endpoint connection
+     *
+     * <p>Delete private endpoint connection with the specified name.
      *
      * @param resourceGroupName The name of the resource group that contains the provisioning service.
      * @param resourceName The name of the provisioning service.
