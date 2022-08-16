@@ -77,7 +77,9 @@ public interface PrivateEndpointConnectionsClient {
         String resourceGroupName, String configStoreName, String privateEndpointConnectionName, Context context);
 
     /**
-     * Update the state of the specified private endpoint connection associated with the configuration store.
+     * Update the state of the specified private endpoint connection associated with the configuration store. This
+     * operation cannot be used to create a private endpoint connection. Private endpoint connections must be created
+     * with the Network resource provider.
      *
      * @param resourceGroupName The name of the resource group to which the container registry belongs.
      * @param configStoreName The name of the configuration store.
@@ -96,7 +98,9 @@ public interface PrivateEndpointConnectionsClient {
         PrivateEndpointConnectionInner privateEndpointConnection);
 
     /**
-     * Update the state of the specified private endpoint connection associated with the configuration store.
+     * Update the state of the specified private endpoint connection associated with the configuration store. This
+     * operation cannot be used to create a private endpoint connection. Private endpoint connections must be created
+     * with the Network resource provider.
      *
      * @param resourceGroupName The name of the resource group to which the container registry belongs.
      * @param configStoreName The name of the configuration store.
@@ -117,7 +121,9 @@ public interface PrivateEndpointConnectionsClient {
         Context context);
 
     /**
-     * Update the state of the specified private endpoint connection associated with the configuration store.
+     * Update the state of the specified private endpoint connection associated with the configuration store. This
+     * operation cannot be used to create a private endpoint connection. Private endpoint connections must be created
+     * with the Network resource provider.
      *
      * @param resourceGroupName The name of the resource group to which the container registry belongs.
      * @param configStoreName The name of the configuration store.
@@ -136,7 +142,9 @@ public interface PrivateEndpointConnectionsClient {
         PrivateEndpointConnectionInner privateEndpointConnection);
 
     /**
-     * Update the state of the specified private endpoint connection associated with the configuration store.
+     * Update the state of the specified private endpoint connection associated with the configuration store. This
+     * operation cannot be used to create a private endpoint connection. Private endpoint connections must be created
+     * with the Network resource provider.
      *
      * @param resourceGroupName The name of the resource group to which the container registry belongs.
      * @param configStoreName The name of the configuration store.

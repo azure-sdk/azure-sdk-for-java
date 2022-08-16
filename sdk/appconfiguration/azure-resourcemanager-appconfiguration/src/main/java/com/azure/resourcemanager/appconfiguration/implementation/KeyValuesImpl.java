@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.appconfiguration.implementation;
 
-import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.http.rest.Response;
 import com.azure.core.http.rest.SimpleResponse;
 import com.azure.core.util.Context;
@@ -26,19 +25,6 @@ public final class KeyValuesImpl implements KeyValues {
         com.azure.resourcemanager.appconfiguration.AppConfigurationManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
-    }
-
-    public PagedIterable<KeyValue> listByConfigurationStore(String resourceGroupName, String configStoreName) {
-        PagedIterable<KeyValueInner> inner =
-            this.serviceClient().listByConfigurationStore(resourceGroupName, configStoreName);
-        return Utils.mapPage(inner, inner1 -> new KeyValueImpl(inner1, this.manager()));
-    }
-
-    public PagedIterable<KeyValue> listByConfigurationStore(
-        String resourceGroupName, String configStoreName, String skipToken, Context context) {
-        PagedIterable<KeyValueInner> inner =
-            this.serviceClient().listByConfigurationStore(resourceGroupName, configStoreName, skipToken, context);
-        return Utils.mapPage(inner, inner1 -> new KeyValueImpl(inner1, this.manager()));
     }
 
     public KeyValue get(String resourceGroupName, String configStoreName, String keyValueName) {

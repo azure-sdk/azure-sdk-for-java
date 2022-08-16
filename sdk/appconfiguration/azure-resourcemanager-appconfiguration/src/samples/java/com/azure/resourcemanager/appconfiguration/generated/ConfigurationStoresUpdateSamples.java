@@ -34,7 +34,7 @@ public final class ConfigurationStoresUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/stable/2022-05-01/examples/ConfigurationStoresUpdate.json
+     * x-ms-original-file: specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/stable/2022-05-01/examples/ConfigurationStoresCreate.json
      */
     /**
      * Sample code: ConfigurationStores_Update.
@@ -48,7 +48,7 @@ public final class ConfigurationStoresUpdateSamples {
                 .configurationStores()
                 .getByResourceGroupWithResponse("myResourceGroup", "contoso", Context.NONE)
                 .getValue();
-        resource.update().withTags(mapOf("Category", "Marketing")).withSku(new Sku().withName("Standard")).apply();
+        resource.update().apply();
     }
 
     /*

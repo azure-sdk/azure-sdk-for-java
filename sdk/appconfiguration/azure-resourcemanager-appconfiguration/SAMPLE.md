@@ -20,11 +20,11 @@
 - [CreateOrUpdate](#keyvalues_createorupdate)
 - [Delete](#keyvalues_delete)
 - [Get](#keyvalues_get)
-- [ListByConfigurationStore](#keyvalues_listbyconfigurationstore)
 
 ## Operations
 
 - [CheckNameAvailability](#operations_checknameavailability)
+- [List](#operations_list)
 - [RegionalCheckNameAvailability](#operations_regionalchecknameavailability)
 
 ## PrivateEndpointConnections
@@ -365,7 +365,7 @@ public final class ConfigurationStoresUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/stable/2022-05-01/examples/ConfigurationStoresUpdate.json
+     * x-ms-original-file: specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/stable/2022-05-01/examples/ConfigurationStoresCreate.json
      */
     /**
      * Sample code: ConfigurationStores_Update.
@@ -379,7 +379,7 @@ public final class ConfigurationStoresUpdateSamples {
                 .configurationStores()
                 .getByResourceGroupWithResponse("myResourceGroup", "contoso", Context.NONE)
                 .getValue();
-        resource.update().withTags(mapOf("Category", "Marketing")).withSku(new Sku().withName("Standard")).apply();
+        resource.update().apply();
     }
 
     /*
@@ -506,28 +506,6 @@ public final class KeyValuesGetSamples {
 }
 ```
 
-### KeyValues_ListByConfigurationStore
-
-```java
-import com.azure.core.util.Context;
-
-/** Samples for KeyValues ListByConfigurationStore. */
-public final class KeyValuesListByConfigurationStoreSamples {
-    /*
-     * x-ms-original-file: specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/stable/2022-05-01/examples/ConfigurationStoresListKeyValues.json
-     */
-    /**
-     * Sample code: KeyValues_ListByConfigurationStore.
-     *
-     * @param manager Entry point to AppConfigurationManager.
-     */
-    public static void keyValuesListByConfigurationStore(
-        com.azure.resourcemanager.appconfiguration.AppConfigurationManager manager) {
-        manager.keyValues().listByConfigurationStore("myResourceGroup", "contoso", null, Context.NONE);
-    }
-}
-```
-
 ### Operations_CheckNameAvailability
 
 ```java
@@ -573,6 +551,27 @@ public final class OperationsCheckNameAvailabilitySamples {
                     .withName("contoso")
                     .withType(ConfigurationResourceType.MICROSOFT_APP_CONFIGURATION_CONFIGURATION_STORES),
                 Context.NONE);
+    }
+}
+```
+
+### Operations_List
+
+```java
+import com.azure.core.util.Context;
+
+/** Samples for Operations List. */
+public final class OperationsListSamples {
+    /*
+     * x-ms-original-file: specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/stable/2022-05-01/examples/OperationsList.json
+     */
+    /**
+     * Sample code: Operations_List.
+     *
+     * @param manager Entry point to AppConfigurationManager.
+     */
+    public static void operationsList(com.azure.resourcemanager.appconfiguration.AppConfigurationManager manager) {
+        manager.operations().list(null, Context.NONE);
     }
 }
 ```
@@ -631,30 +630,35 @@ public final class OperationsRegionalCheckNameAvailabilitySamples {
 ### PrivateEndpointConnections_CreateOrUpdate
 
 ```java
+import com.azure.core.util.Context;
 import com.azure.resourcemanager.appconfiguration.models.ConnectionStatus;
+import com.azure.resourcemanager.appconfiguration.models.PrivateEndpointConnection;
 import com.azure.resourcemanager.appconfiguration.models.PrivateLinkServiceConnectionState;
 
 /** Samples for PrivateEndpointConnections CreateOrUpdate. */
 public final class PrivateEndpointConnectionsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/stable/2022-05-01/examples/ConfigurationStoresCreatePrivateEndpointConnection.json
+     * x-ms-original-file: specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/stable/2022-05-01/examples/ConfigurationStoresUpdatePrivateEndpointConnection.json
      */
     /**
-     * Sample code: PrivateEndpointConnection_CreateOrUpdate.
+     * Sample code: PrivateEndpointConnection_Update.
      *
      * @param manager Entry point to AppConfigurationManager.
      */
-    public static void privateEndpointConnectionCreateOrUpdate(
+    public static void privateEndpointConnectionUpdate(
         com.azure.resourcemanager.appconfiguration.AppConfigurationManager manager) {
-        manager
-            .privateEndpointConnections()
-            .define("myConnection")
-            .withExistingConfigurationStore("myResourceGroup", "contoso")
+        PrivateEndpointConnection resource =
+            manager
+                .privateEndpointConnections()
+                .getWithResponse("myResourceGroup", "contoso", "myConnection", Context.NONE)
+                .getValue();
+        resource
+            .update()
             .withPrivateLinkServiceConnectionState(
                 new PrivateLinkServiceConnectionState()
                     .withStatus(ConnectionStatus.APPROVED)
                     .withDescription("Auto-Approved"))
-            .create();
+            .apply();
     }
 }
 ```
