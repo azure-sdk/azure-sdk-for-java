@@ -18,8 +18,7 @@ public final class EncryptionProperty {
     private EncryptionStatus status;
 
     /*
-     * The identity that will be used to access the key vault for encryption at
-     * rest.
+     * The identity that will be used to access the key vault for encryption at rest.
      */
     @JsonProperty(value = "identity")
     private IdentityForCmk identity;

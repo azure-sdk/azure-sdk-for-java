@@ -19,9 +19,8 @@ public final class ListWorkspaceQuotas {
     private List<ResourceQuotaInner> value;
 
     /*
-     * The URI to fetch the next page of workspace quota information by VM
-     * Family. Call ListNext() with this to fetch the next page of Workspace
-     * Quota information.
+     * The URI to fetch the next page of workspace quota information by VM Family. Call ListNext() with this to fetch
+     * the next page of Workspace Quota information.
      */
     @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
     private String nextLink;
