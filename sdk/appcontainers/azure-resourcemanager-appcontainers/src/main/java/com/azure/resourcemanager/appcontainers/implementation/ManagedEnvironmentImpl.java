@@ -9,6 +9,7 @@ import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.appcontainers.fluent.models.ManagedEnvironmentInner;
 import com.azure.resourcemanager.appcontainers.models.AppLogsConfiguration;
+import com.azure.resourcemanager.appcontainers.models.CustomDomainConfiguration;
 import com.azure.resourcemanager.appcontainers.models.EnvironmentProvisioningState;
 import com.azure.resourcemanager.appcontainers.models.ManagedEnvironment;
 import com.azure.resourcemanager.appcontainers.models.VnetConfiguration;
@@ -84,6 +85,10 @@ public final class ManagedEnvironmentImpl
 
     public Boolean zoneRedundant() {
         return this.innerModel().zoneRedundant();
+    }
+
+    public CustomDomainConfiguration customDomainConfiguration() {
+        return this.innerModel().customDomainConfiguration();
     }
 
     public Region region() {
@@ -228,6 +233,11 @@ public final class ManagedEnvironmentImpl
 
     public ManagedEnvironmentImpl withZoneRedundant(Boolean zoneRedundant) {
         this.innerModel().withZoneRedundant(zoneRedundant);
+        return this;
+    }
+
+    public ManagedEnvironmentImpl withCustomDomainConfiguration(CustomDomainConfiguration customDomainConfiguration) {
+        this.innerModel().withCustomDomainConfiguration(customDomainConfiguration);
         return this;
     }
 }
