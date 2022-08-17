@@ -23,7 +23,7 @@ import java.util.Map;
 /** Samples for WebPubSub CreateOrUpdate. */
 public final class WebPubSubCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/webpubsub/resource-manager/Microsoft.SignalRService/stable/2021-10-01/examples/WebPubSub_CreateOrUpdate.json
+     * x-ms-original-file: specification/webpubsub/resource-manager/Microsoft.SignalRService/preview/2022-08-01-preview/examples/WebPubSub_CreateOrUpdate.json
      */
     /**
      * Sample code: WebPubSub_CreateOrUpdate.
