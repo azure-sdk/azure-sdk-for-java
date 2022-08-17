@@ -24,27 +24,28 @@ public final class UserAccount {
     private String password;
 
     /*
-     * The elevation level of the user. nonAdmin - The auto user is a standard
-     * user without elevated access. admin - The auto user is a user with
-     * elevated access and operates with full Administrator permissions. The
-     * default value is nonAdmin.
+     * The elevation level of the user.
+     *
+     * nonAdmin - The auto user is a standard user without elevated access. admin - The auto user is a user with
+     * elevated access and operates with full Administrator permissions. The default value is nonAdmin.
      */
     @JsonProperty(value = "elevationLevel")
     private ElevationLevel elevationLevel;
 
     /*
-     * Properties used to create a user account on a Linux node. This property
-     * is ignored if specified on a Windows pool. If not specified, the user is
-     * created with the default options.
+     * Properties used to create a user account on a Linux node.
+     *
+     * This property is ignored if specified on a Windows pool. If not specified, the user is created with the default
+     * options.
      */
     @JsonProperty(value = "linuxUserConfiguration")
     private LinuxUserConfiguration linuxUserConfiguration;
 
     /*
-     * Properties used to create a user account on a Windows node. This
-     * property can only be specified if the user is on a Windows pool. If not
-     * specified and on a Windows pool, the user is created with the default
-     * options.
+     * Properties used to create a user account on a Windows node.
+     *
+     * This property can only be specified if the user is on a Windows pool. If not specified and on a Windows pool,
+     * the user is created with the default options.
      */
     @JsonProperty(value = "windowsUserConfiguration")
     private WindowsUserConfiguration windowsUserConfiguration;
@@ -90,9 +91,10 @@ public final class UserAccount {
     }
 
     /**
-     * Get the elevationLevel property: The elevation level of the user. nonAdmin - The auto user is a standard user
-     * without elevated access. admin - The auto user is a user with elevated access and operates with full
-     * Administrator permissions. The default value is nonAdmin.
+     * Get the elevationLevel property: The elevation level of the user.
+     *
+     * <p>nonAdmin - The auto user is a standard user without elevated access. admin - The auto user is a user with
+     * elevated access and operates with full Administrator permissions. The default value is nonAdmin.
      *
      * @return the elevationLevel value.
      */
@@ -101,9 +103,10 @@ public final class UserAccount {
     }
 
     /**
-     * Set the elevationLevel property: The elevation level of the user. nonAdmin - The auto user is a standard user
-     * without elevated access. admin - The auto user is a user with elevated access and operates with full
-     * Administrator permissions. The default value is nonAdmin.
+     * Set the elevationLevel property: The elevation level of the user.
+     *
+     * <p>nonAdmin - The auto user is a standard user without elevated access. admin - The auto user is a user with
+     * elevated access and operates with full Administrator permissions. The default value is nonAdmin.
      *
      * @param elevationLevel the elevationLevel value to set.
      * @return the UserAccount object itself.
@@ -114,8 +117,10 @@ public final class UserAccount {
     }
 
     /**
-     * Get the linuxUserConfiguration property: Properties used to create a user account on a Linux node. This property
-     * is ignored if specified on a Windows pool. If not specified, the user is created with the default options.
+     * Get the linuxUserConfiguration property: Properties used to create a user account on a Linux node.
+     *
+     * <p>This property is ignored if specified on a Windows pool. If not specified, the user is created with the
+     * default options.
      *
      * @return the linuxUserConfiguration value.
      */
@@ -124,8 +129,10 @@ public final class UserAccount {
     }
 
     /**
-     * Set the linuxUserConfiguration property: Properties used to create a user account on a Linux node. This property
-     * is ignored if specified on a Windows pool. If not specified, the user is created with the default options.
+     * Set the linuxUserConfiguration property: Properties used to create a user account on a Linux node.
+     *
+     * <p>This property is ignored if specified on a Windows pool. If not specified, the user is created with the
+     * default options.
      *
      * @param linuxUserConfiguration the linuxUserConfiguration value to set.
      * @return the UserAccount object itself.
@@ -136,9 +143,10 @@ public final class UserAccount {
     }
 
     /**
-     * Get the windowsUserConfiguration property: Properties used to create a user account on a Windows node. This
-     * property can only be specified if the user is on a Windows pool. If not specified and on a Windows pool, the user
-     * is created with the default options.
+     * Get the windowsUserConfiguration property: Properties used to create a user account on a Windows node.
+     *
+     * <p>This property can only be specified if the user is on a Windows pool. If not specified and on a Windows pool,
+     * the user is created with the default options.
      *
      * @return the windowsUserConfiguration value.
      */
@@ -147,9 +155,10 @@ public final class UserAccount {
     }
 
     /**
-     * Set the windowsUserConfiguration property: Properties used to create a user account on a Windows node. This
-     * property can only be specified if the user is on a Windows pool. If not specified and on a Windows pool, the user
-     * is created with the default options.
+     * Set the windowsUserConfiguration property: Properties used to create a user account on a Windows node.
+     *
+     * <p>This property can only be specified if the user is on a Windows pool. If not specified and on a Windows pool,
+     * the user is created with the default options.
      *
      * @param windowsUserConfiguration the windowsUserConfiguration value to set.
      * @return the UserAccount object itself.

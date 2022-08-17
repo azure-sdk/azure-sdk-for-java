@@ -43,8 +43,9 @@ public final class PrivateLinkResourceInner extends ProxyResource {
     }
 
     /**
-     * Get the groupId property: The group id of the private link resource. The group id is used to establish the
-     * private link connection.
+     * Get the groupId property: The group id of the private link resource.
+     *
+     * <p>The group id is used to establish the private link connection.
      *
      * @return the groupId value.
      */
