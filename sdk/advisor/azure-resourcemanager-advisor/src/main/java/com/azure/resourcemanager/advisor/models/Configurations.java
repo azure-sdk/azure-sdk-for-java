@@ -12,27 +12,33 @@ import com.azure.resourcemanager.advisor.fluent.models.ConfigDataInner;
 /** Resource collection API of Configurations. */
 public interface Configurations {
     /**
-     * Retrieve Azure Advisor configurations and also retrieve configurations of contained resource groups.
+     * Retrieve Azure Advisor configurations.
+     *
+     * <p>Retrieve Azure Advisor configurations and also retrieve configurations of contained resource groups.
      *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of Advisor configurations.
+     * @return the list of Advisor configurations as paginated response with {@link PagedIterable}.
      */
     PagedIterable<ConfigData> list();
 
     /**
-     * Retrieve Azure Advisor configurations and also retrieve configurations of contained resource groups.
+     * Retrieve Azure Advisor configurations.
+     *
+     * <p>Retrieve Azure Advisor configurations and also retrieve configurations of contained resource groups.
      *
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of Advisor configurations.
+     * @return the list of Advisor configurations as paginated response with {@link PagedIterable}.
      */
     PagedIterable<ConfigData> list(Context context);
 
     /**
-     * Create/Overwrite Azure Advisor configuration and also delete all configurations of contained resource groups.
+     * Create/Overwrite Azure Advisor configuration.
+     *
+     * <p>Create/Overwrite Azure Advisor configuration and also delete all configurations of contained resource groups.
      *
      * @param configurationName Advisor configuration name. Value must be 'default'.
      * @param configContract The Azure Advisor configuration data structure.
@@ -44,7 +50,9 @@ public interface Configurations {
     ConfigData createInSubscription(ConfigurationName configurationName, ConfigDataInner configContract);
 
     /**
-     * Create/Overwrite Azure Advisor configuration and also delete all configurations of contained resource groups.
+     * Create/Overwrite Azure Advisor configuration.
+     *
+     * <p>Create/Overwrite Azure Advisor configuration and also delete all configurations of contained resource groups.
      *
      * @param configurationName Advisor configuration name. Value must be 'default'.
      * @param configContract The Azure Advisor configuration data structure.
@@ -52,7 +60,7 @@ public interface Configurations {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the Advisor configuration data structure.
+     * @return the Advisor configuration data structure along with {@link Response}.
      */
     Response<ConfigData> createInSubscriptionWithResponse(
         ConfigurationName configurationName, ConfigDataInner configContract, Context context);
@@ -64,7 +72,7 @@ public interface Configurations {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of Advisor configurations.
+     * @return the list of Advisor configurations as paginated response with {@link PagedIterable}.
      */
     PagedIterable<ConfigData> listByResourceGroup(String resourceGroup);
 
@@ -76,7 +84,7 @@ public interface Configurations {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of Advisor configurations.
+     * @return the list of Advisor configurations as paginated response with {@link PagedIterable}.
      */
     PagedIterable<ConfigData> listByResourceGroup(String resourceGroup, Context context);
 
