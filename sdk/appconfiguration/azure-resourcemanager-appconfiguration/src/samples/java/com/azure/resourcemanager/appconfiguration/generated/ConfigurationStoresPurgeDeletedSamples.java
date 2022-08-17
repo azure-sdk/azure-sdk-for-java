@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for ConfigurationStores PurgeDeleted. */
 public final class ConfigurationStoresPurgeDeletedSamples {
     /*
-     * x-ms-original-file: specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/stable/2022-05-01/examples/DeletedConfigurationStoresPurge.json
+     * x-ms-original-file: specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/stable/2022-08-03/examples/DeletedConfigurationStoresPurge.json
      */
     /**
      * Sample code: Purge a deleted configuration store.
