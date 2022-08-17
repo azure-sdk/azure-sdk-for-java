@@ -19,8 +19,7 @@ public final class DeploymentListResult {
     private String nextLink;
 
     /*
-     * Gets the list of Cognitive Services accounts Deployment and their
-     * properties.
+     * Gets the list of Cognitive Services accounts Deployment and their properties.
      */
     @JsonProperty(value = "value", access = JsonProperty.Access.WRITE_ONLY)
     private List<DeploymentInner> value;
