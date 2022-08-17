@@ -6,6 +6,7 @@ package com.azure.resourcemanager.consumption.generated;
 
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.consumption.models.LookBackPeriod;
+import com.azure.resourcemanager.consumption.models.Scope;
 import com.azure.resourcemanager.consumption.models.Term;
 
 /** Samples for ReservationRecommendationDetails Get. */
@@ -22,7 +23,14 @@ public final class ReservationRecommendationDetailsGetSamples {
         com.azure.resourcemanager.consumption.ConsumptionManager manager) {
         manager
             .reservationRecommendationDetails()
-            .getWithResponse("Single", "westus", Term.P3Y, LookBackPeriod.LAST30DAYS, "Standard_DS13_v2", Context.NONE);
+            .getWithResponse(
+                "subscriptions/00000000-0000-0000-0000-00000000",
+                Scope.SINGLE,
+                "westus",
+                Term.P3Y,
+                LookBackPeriod.LAST30DAYS,
+                "Standard_DS13_v2",
+                Context.NONE);
     }
 
     /*
@@ -38,7 +46,13 @@ public final class ReservationRecommendationDetailsGetSamples {
         manager
             .reservationRecommendationDetails()
             .getWithResponse(
-                "Shared", "australiaeast", Term.P1Y, LookBackPeriod.LAST7DAYS, "Standard_B2s", Context.NONE);
+                "providers/Microsoft.Billing/billingAccounts/00000000-0000-0000-0000-00000000:00000000-0000-0000-0000-00000000/billingProfiles/00000000-0000-0000-0000-00000000",
+                Scope.SHARED,
+                "australiaeast",
+                Term.P1Y,
+                LookBackPeriod.LAST7DAYS,
+                "Standard_B2s",
+                Context.NONE);
     }
 
     /*
@@ -53,7 +67,14 @@ public final class ReservationRecommendationDetailsGetSamples {
         com.azure.resourcemanager.consumption.ConsumptionManager manager) {
         manager
             .reservationRecommendationDetails()
-            .getWithResponse("Single", "westus", Term.P3Y, LookBackPeriod.LAST30DAYS, "Standard_DS13_v2", Context.NONE);
+            .getWithResponse(
+                "subscriptions/00000000-0000-0000-0000-00000000/resourceGroups/testGroup",
+                Scope.SINGLE,
+                "westus",
+                Term.P3Y,
+                LookBackPeriod.LAST30DAYS,
+                "Standard_DS13_v2",
+                Context.NONE);
     }
 
     /*
@@ -68,6 +89,13 @@ public final class ReservationRecommendationDetailsGetSamples {
         com.azure.resourcemanager.consumption.ConsumptionManager manager) {
         manager
             .reservationRecommendationDetails()
-            .getWithResponse("Shared", "eastus", Term.P1Y, LookBackPeriod.LAST60DAYS, "Standard_DS14_v2", Context.NONE);
+            .getWithResponse(
+                "providers/Microsoft.Billing/billingAccounts/000000",
+                Scope.SHARED,
+                "eastus",
+                Term.P1Y,
+                LookBackPeriod.LAST60DAYS,
+                "Standard_DS14_v2",
+                Context.NONE);
     }
 }
