@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for Operations List. */
 public final class OperationsListSamples {
     /*
-     * x-ms-original-file: specification/deviceprovisioningservices/resource-manager/Microsoft.Devices/stable/2022-02-05/examples/DPSOperations.json
+     * x-ms-original-file: specification/deviceprovisioningservices/resource-manager/Microsoft.Devices/preview/2022-08-07-preview/examples/DPSOperations.json
      */
     /**
      * Sample code: DPSOperations.

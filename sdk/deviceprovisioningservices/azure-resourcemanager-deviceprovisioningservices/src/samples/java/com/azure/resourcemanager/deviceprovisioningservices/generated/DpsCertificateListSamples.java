@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for DpsCertificate List. */
 public final class DpsCertificateListSamples {
     /*
-     * x-ms-original-file: specification/deviceprovisioningservices/resource-manager/Microsoft.Devices/stable/2022-02-05/examples/DPSGetCertificates.json
+     * x-ms-original-file: specification/deviceprovisioningservices/resource-manager/Microsoft.Devices/preview/2022-08-07-preview/examples/DPSGetCertificates.json
      */
     /**
      * Sample code: DPSGetCertificates.
