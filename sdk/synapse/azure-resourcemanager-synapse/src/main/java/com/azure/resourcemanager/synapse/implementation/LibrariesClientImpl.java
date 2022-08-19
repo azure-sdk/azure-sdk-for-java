@@ -69,7 +69,9 @@ public final class LibrariesClientImpl implements LibrariesClient {
     }
 
     /**
-     * Get library by name in a workspace.
+     * Get library by name.
+     *
+     * <p>Get library by name in a workspace.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param libraryName Library name.
@@ -123,7 +125,9 @@ public final class LibrariesClientImpl implements LibrariesClient {
     }
 
     /**
-     * Get library by name in a workspace.
+     * Get library by name.
+     *
+     * <p>Get library by name in a workspace.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param libraryName Library name.
@@ -175,7 +179,9 @@ public final class LibrariesClientImpl implements LibrariesClient {
     }
 
     /**
-     * Get library by name in a workspace.
+     * Get library by name.
+     *
+     * <p>Get library by name in a workspace.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param libraryName Library name.
@@ -188,18 +194,13 @@ public final class LibrariesClientImpl implements LibrariesClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<LibraryResourceInner> getAsync(String resourceGroupName, String libraryName, String workspaceName) {
         return getWithResponseAsync(resourceGroupName, libraryName, workspaceName)
-            .flatMap(
-                (Response<LibraryResourceInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
-     * Get library by name in a workspace.
+     * Get library by name.
+     *
+     * <p>Get library by name in a workspace.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param libraryName Library name.
@@ -215,7 +216,9 @@ public final class LibrariesClientImpl implements LibrariesClient {
     }
 
     /**
-     * Get library by name in a workspace.
+     * Get library by name.
+     *
+     * <p>Get library by name in a workspace.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param libraryName Library name.

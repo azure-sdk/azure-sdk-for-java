@@ -124,7 +124,9 @@ public final class SqlPoolSecurityAlertPoliciesClientImpl implements SqlPoolSecu
     }
 
     /**
-     * Get a list of Sql pool's security alert policies.
+     * List Sql pool's security alert policies
+     *
+     * <p>Get a list of Sql pool's security alert policies.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -188,7 +190,9 @@ public final class SqlPoolSecurityAlertPoliciesClientImpl implements SqlPoolSecu
     }
 
     /**
-     * Get a list of Sql pool's security alert policies.
+     * List Sql pool's security alert policies
+     *
+     * <p>Get a list of Sql pool's security alert policies.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -250,7 +254,9 @@ public final class SqlPoolSecurityAlertPoliciesClientImpl implements SqlPoolSecu
     }
 
     /**
-     * Get a list of Sql pool's security alert policies.
+     * List Sql pool's security alert policies
+     *
+     * <p>Get a list of Sql pool's security alert policies.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -269,7 +275,9 @@ public final class SqlPoolSecurityAlertPoliciesClientImpl implements SqlPoolSecu
     }
 
     /**
-     * Get a list of Sql pool's security alert policies.
+     * List Sql pool's security alert policies
+     *
+     * <p>Get a list of Sql pool's security alert policies.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -289,7 +297,9 @@ public final class SqlPoolSecurityAlertPoliciesClientImpl implements SqlPoolSecu
     }
 
     /**
-     * Get a list of Sql pool's security alert policies.
+     * List Sql pool's security alert policies
+     *
+     * <p>Get a list of Sql pool's security alert policies.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -306,7 +316,9 @@ public final class SqlPoolSecurityAlertPoliciesClientImpl implements SqlPoolSecu
     }
 
     /**
-     * Get a list of Sql pool's security alert policies.
+     * List Sql pool's security alert policies
+     *
+     * <p>Get a list of Sql pool's security alert policies.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -324,7 +336,9 @@ public final class SqlPoolSecurityAlertPoliciesClientImpl implements SqlPoolSecu
     }
 
     /**
-     * Get a Sql pool's security alert policy.
+     * Get a Sql pool's security alert policy
+     *
+     * <p>Get a Sql pool's security alert policy.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -388,7 +402,9 @@ public final class SqlPoolSecurityAlertPoliciesClientImpl implements SqlPoolSecu
     }
 
     /**
-     * Get a Sql pool's security alert policy.
+     * Get a Sql pool's security alert policy
+     *
+     * <p>Get a Sql pool's security alert policy.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -451,7 +467,9 @@ public final class SqlPoolSecurityAlertPoliciesClientImpl implements SqlPoolSecu
     }
 
     /**
-     * Get a Sql pool's security alert policy.
+     * Get a Sql pool's security alert policy
+     *
+     * <p>Get a Sql pool's security alert policy.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -469,18 +487,13 @@ public final class SqlPoolSecurityAlertPoliciesClientImpl implements SqlPoolSecu
         String sqlPoolName,
         SecurityAlertPolicyName securityAlertPolicyName) {
         return getWithResponseAsync(resourceGroupName, workspaceName, sqlPoolName, securityAlertPolicyName)
-            .flatMap(
-                (Response<SqlPoolSecurityAlertPolicyInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
-     * Get a Sql pool's security alert policy.
+     * Get a Sql pool's security alert policy
+     *
+     * <p>Get a Sql pool's security alert policy.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -501,7 +514,9 @@ public final class SqlPoolSecurityAlertPoliciesClientImpl implements SqlPoolSecu
     }
 
     /**
-     * Get a Sql pool's security alert policy.
+     * Get a Sql pool's security alert policy
+     *
+     * <p>Get a Sql pool's security alert policy.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -525,7 +540,9 @@ public final class SqlPoolSecurityAlertPoliciesClientImpl implements SqlPoolSecu
     }
 
     /**
-     * Create or update a Sql pool's security alert policy.
+     * Create or update a Sql pool's security alert policy
+     *
+     * <p>Create or update a Sql pool's security alert policy.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -597,7 +614,9 @@ public final class SqlPoolSecurityAlertPoliciesClientImpl implements SqlPoolSecu
     }
 
     /**
-     * Create or update a Sql pool's security alert policy.
+     * Create or update a Sql pool's security alert policy
+     *
+     * <p>Create or update a Sql pool's security alert policy.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -668,7 +687,9 @@ public final class SqlPoolSecurityAlertPoliciesClientImpl implements SqlPoolSecu
     }
 
     /**
-     * Create or update a Sql pool's security alert policy.
+     * Create or update a Sql pool's security alert policy
+     *
+     * <p>Create or update a Sql pool's security alert policy.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -689,18 +710,13 @@ public final class SqlPoolSecurityAlertPoliciesClientImpl implements SqlPoolSecu
         SqlPoolSecurityAlertPolicyInner parameters) {
         return createOrUpdateWithResponseAsync(
                 resourceGroupName, workspaceName, sqlPoolName, securityAlertPolicyName, parameters)
-            .flatMap(
-                (Response<SqlPoolSecurityAlertPolicyInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
-     * Create or update a Sql pool's security alert policy.
+     * Create or update a Sql pool's security alert policy
+     *
+     * <p>Create or update a Sql pool's security alert policy.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -724,7 +740,9 @@ public final class SqlPoolSecurityAlertPoliciesClientImpl implements SqlPoolSecu
     }
 
     /**
-     * Create or update a Sql pool's security alert policy.
+     * Create or update a Sql pool's security alert policy
+     *
+     * <p>Create or update a Sql pool's security alert policy.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -753,7 +771,8 @@ public final class SqlPoolSecurityAlertPoliciesClientImpl implements SqlPoolSecu
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -789,7 +808,8 @@ public final class SqlPoolSecurityAlertPoliciesClientImpl implements SqlPoolSecu
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.

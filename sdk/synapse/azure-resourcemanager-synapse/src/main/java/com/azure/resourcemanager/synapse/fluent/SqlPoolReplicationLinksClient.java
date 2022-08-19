@@ -14,7 +14,9 @@ import com.azure.resourcemanager.synapse.fluent.models.ReplicationLinkInner;
 /** An instance of this class provides access to all the operations defined in SqlPoolReplicationLinksClient. */
 public interface SqlPoolReplicationLinksClient {
     /**
-     * Lists a Sql pool's replication links.
+     * Get SQL pool replication links
+     *
+     * <p>Lists a Sql pool's replication links.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -29,7 +31,9 @@ public interface SqlPoolReplicationLinksClient {
     PagedIterable<ReplicationLinkInner> list(String resourceGroupName, String workspaceName, String sqlPoolName);
 
     /**
-     * Lists a Sql pool's replication links.
+     * Get SQL pool replication links
+     *
+     * <p>Lists a Sql pool's replication links.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -46,7 +50,9 @@ public interface SqlPoolReplicationLinksClient {
         String resourceGroupName, String workspaceName, String sqlPoolName, Context context);
 
     /**
-     * Get SQL pool replication link by name.
+     * Get SQL pool replication link by name
+     *
+     * <p>Get SQL pool replication link by name.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -61,7 +67,9 @@ public interface SqlPoolReplicationLinksClient {
     ReplicationLinkInner getByName(String resourceGroupName, String workspaceName, String sqlPoolName, String linkId);
 
     /**
-     * Get SQL pool replication link by name.
+     * Get SQL pool replication link by name
+     *
+     * <p>Get SQL pool replication link by name.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.

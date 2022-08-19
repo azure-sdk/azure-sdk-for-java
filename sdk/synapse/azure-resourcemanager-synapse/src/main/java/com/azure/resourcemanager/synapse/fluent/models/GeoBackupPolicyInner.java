@@ -20,8 +20,7 @@ public final class GeoBackupPolicyInner extends ProxyResource {
     private GeoBackupPolicyProperties innerProperties = new GeoBackupPolicyProperties();
 
     /*
-     * Kind of geo backup policy.  This is metadata used for the Azure portal
-     * experience.
+     * Kind of geo backup policy.  This is metadata used for the Azure portal experience.
      */
     @JsonProperty(value = "kind", access = JsonProperty.Access.WRITE_ONLY)
     private String kind;

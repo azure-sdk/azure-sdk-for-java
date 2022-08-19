@@ -9,7 +9,11 @@ import com.azure.resourcemanager.synapse.fluent.models.BigDataPoolResourceInfoIn
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Collection of Big Data pools Collection of Big Data pool information. */
+/**
+ * Collection of Big Data pools
+ *
+ * <p>Collection of Big Data pool information.
+ */
 @Fluent
 public final class BigDataPoolResourceInfoListResult {
     /*

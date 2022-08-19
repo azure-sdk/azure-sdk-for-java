@@ -138,6 +138,10 @@ public final class BigDataPoolResourceInfoImpl
         return this.location();
     }
 
+    public String resourceGroupName() {
+        return resourceGroupName;
+    }
+
     public BigDataPoolResourceInfoInner innerModel() {
         return this.innerObject;
     }
