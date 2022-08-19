@@ -121,14 +121,16 @@ public final class ResourceProvidersClientImpl implements ResourceProvidersClien
     }
 
     /**
-     * Get SAP sizing recommendations.
+     * Get SAP sizing recommendations by providing input SAPS for application tier and memory required for database
+     * tier.
      *
      * @param location The name of Azure region.
      * @param sapSizingRecommendation SAP Sizing Recommendation Request body.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return sAP sizing recommendations along with {@link Response} on successful completion of {@link Mono}.
+     * @return sAP sizing recommendations by providing input SAPS for application tier and memory required for database
+     *     tier along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<SapSizingRecommendationResultInner>> sapSizingRecommendationsWithResponseAsync(
@@ -168,7 +170,8 @@ public final class ResourceProvidersClientImpl implements ResourceProvidersClien
     }
 
     /**
-     * Get SAP sizing recommendations.
+     * Get SAP sizing recommendations by providing input SAPS for application tier and memory required for database
+     * tier.
      *
      * @param location The name of Azure region.
      * @param sapSizingRecommendation SAP Sizing Recommendation Request body.
@@ -176,7 +179,8 @@ public final class ResourceProvidersClientImpl implements ResourceProvidersClien
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return sAP sizing recommendations along with {@link Response} on successful completion of {@link Mono}.
+     * @return sAP sizing recommendations by providing input SAPS for application tier and memory required for database
+     *     tier along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<SapSizingRecommendationResultInner>> sapSizingRecommendationsWithResponseAsync(
@@ -213,14 +217,16 @@ public final class ResourceProvidersClientImpl implements ResourceProvidersClien
     }
 
     /**
-     * Get SAP sizing recommendations.
+     * Get SAP sizing recommendations by providing input SAPS for application tier and memory required for database
+     * tier.
      *
      * @param location The name of Azure region.
      * @param sapSizingRecommendation SAP Sizing Recommendation Request body.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return sAP sizing recommendations on successful completion of {@link Mono}.
+     * @return sAP sizing recommendations by providing input SAPS for application tier and memory required for database
+     *     tier on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<SapSizingRecommendationResultInner> sapSizingRecommendationsAsync(
@@ -230,13 +236,15 @@ public final class ResourceProvidersClientImpl implements ResourceProvidersClien
     }
 
     /**
-     * Get SAP sizing recommendations.
+     * Get SAP sizing recommendations by providing input SAPS for application tier and memory required for database
+     * tier.
      *
      * @param location The name of Azure region.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return sAP sizing recommendations on successful completion of {@link Mono}.
+     * @return sAP sizing recommendations by providing input SAPS for application tier and memory required for database
+     *     tier on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<SapSizingRecommendationResultInner> sapSizingRecommendationsAsync(String location) {
@@ -246,13 +254,15 @@ public final class ResourceProvidersClientImpl implements ResourceProvidersClien
     }
 
     /**
-     * Get SAP sizing recommendations.
+     * Get SAP sizing recommendations by providing input SAPS for application tier and memory required for database
+     * tier.
      *
      * @param location The name of Azure region.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return sAP sizing recommendations.
+     * @return sAP sizing recommendations by providing input SAPS for application tier and memory required for database
+     *     tier.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public SapSizingRecommendationResultInner sapSizingRecommendations(String location) {
@@ -261,7 +271,8 @@ public final class ResourceProvidersClientImpl implements ResourceProvidersClien
     }
 
     /**
-     * Get SAP sizing recommendations.
+     * Get SAP sizing recommendations by providing input SAPS for application tier and memory required for database
+     * tier.
      *
      * @param location The name of Azure region.
      * @param sapSizingRecommendation SAP Sizing Recommendation Request body.
@@ -269,7 +280,8 @@ public final class ResourceProvidersClientImpl implements ResourceProvidersClien
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return sAP sizing recommendations along with {@link Response}.
+     * @return sAP sizing recommendations by providing input SAPS for application tier and memory required for database
+     *     tier along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<SapSizingRecommendationResultInner> sapSizingRecommendationsWithResponse(
@@ -278,14 +290,15 @@ public final class ResourceProvidersClientImpl implements ResourceProvidersClien
     }
 
     /**
-     * Get SAP supported SKUs.
+     * Get a list of SAP supported SKUs for ASCS, Application and Database tier.
      *
      * @param location The name of Azure region.
      * @param sapSupportedSku SAP Supported SKU Request body.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return sAP supported SKUs along with {@link Response} on successful completion of {@link Mono}.
+     * @return a list of SAP supported SKUs for ASCS, Application and Database tier along with {@link Response} on
+     *     successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<SapSupportedResourceSkusResultInner>> sapSupportedSkuWithResponseAsync(
@@ -325,7 +338,7 @@ public final class ResourceProvidersClientImpl implements ResourceProvidersClien
     }
 
     /**
-     * Get SAP supported SKUs.
+     * Get a list of SAP supported SKUs for ASCS, Application and Database tier.
      *
      * @param location The name of Azure region.
      * @param sapSupportedSku SAP Supported SKU Request body.
@@ -333,7 +346,8 @@ public final class ResourceProvidersClientImpl implements ResourceProvidersClien
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return sAP supported SKUs along with {@link Response} on successful completion of {@link Mono}.
+     * @return a list of SAP supported SKUs for ASCS, Application and Database tier along with {@link Response} on
+     *     successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<SapSupportedResourceSkusResultInner>> sapSupportedSkuWithResponseAsync(
@@ -370,14 +384,15 @@ public final class ResourceProvidersClientImpl implements ResourceProvidersClien
     }
 
     /**
-     * Get SAP supported SKUs.
+     * Get a list of SAP supported SKUs for ASCS, Application and Database tier.
      *
      * @param location The name of Azure region.
      * @param sapSupportedSku SAP Supported SKU Request body.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return sAP supported SKUs on successful completion of {@link Mono}.
+     * @return a list of SAP supported SKUs for ASCS, Application and Database tier on successful completion of {@link
+     *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<SapSupportedResourceSkusResultInner> sapSupportedSkuAsync(
@@ -387,13 +402,14 @@ public final class ResourceProvidersClientImpl implements ResourceProvidersClien
     }
 
     /**
-     * Get SAP supported SKUs.
+     * Get a list of SAP supported SKUs for ASCS, Application and Database tier.
      *
      * @param location The name of Azure region.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return sAP supported SKUs on successful completion of {@link Mono}.
+     * @return a list of SAP supported SKUs for ASCS, Application and Database tier on successful completion of {@link
+     *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<SapSupportedResourceSkusResultInner> sapSupportedSkuAsync(String location) {
@@ -403,13 +419,13 @@ public final class ResourceProvidersClientImpl implements ResourceProvidersClien
     }
 
     /**
-     * Get SAP supported SKUs.
+     * Get a list of SAP supported SKUs for ASCS, Application and Database tier.
      *
      * @param location The name of Azure region.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return sAP supported SKUs.
+     * @return a list of SAP supported SKUs for ASCS, Application and Database tier.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public SapSupportedResourceSkusResultInner sapSupportedSku(String location) {
@@ -418,7 +434,7 @@ public final class ResourceProvidersClientImpl implements ResourceProvidersClien
     }
 
     /**
-     * Get SAP supported SKUs.
+     * Get a list of SAP supported SKUs for ASCS, Application and Database tier.
      *
      * @param location The name of Azure region.
      * @param sapSupportedSku SAP Supported SKU Request body.
@@ -426,7 +442,7 @@ public final class ResourceProvidersClientImpl implements ResourceProvidersClien
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return sAP supported SKUs along with {@link Response}.
+     * @return a list of SAP supported SKUs for ASCS, Application and Database tier along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<SapSupportedResourceSkusResultInner> sapSupportedSkuWithResponse(
@@ -435,14 +451,15 @@ public final class ResourceProvidersClientImpl implements ResourceProvidersClien
     }
 
     /**
-     * Get SAP Disk Configurations.
+     * Get the SAP Disk Configuration Layout prod/non-prod SAP System.
      *
      * @param location The name of Azure region.
      * @param sapDiskConfigurations SAP Disk Configurations Request body.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return sAP Disk Configurations along with {@link Response} on successful completion of {@link Mono}.
+     * @return the SAP Disk Configuration Layout prod/non-prod SAP System along with {@link Response} on successful
+     *     completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<SapDiskConfigurationsResultInner>> sapDiskConfigurationsWithResponseAsync(
@@ -482,7 +499,7 @@ public final class ResourceProvidersClientImpl implements ResourceProvidersClien
     }
 
     /**
-     * Get SAP Disk Configurations.
+     * Get the SAP Disk Configuration Layout prod/non-prod SAP System.
      *
      * @param location The name of Azure region.
      * @param sapDiskConfigurations SAP Disk Configurations Request body.
@@ -490,7 +507,8 @@ public final class ResourceProvidersClientImpl implements ResourceProvidersClien
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return sAP Disk Configurations along with {@link Response} on successful completion of {@link Mono}.
+     * @return the SAP Disk Configuration Layout prod/non-prod SAP System along with {@link Response} on successful
+     *     completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<SapDiskConfigurationsResultInner>> sapDiskConfigurationsWithResponseAsync(
@@ -527,14 +545,14 @@ public final class ResourceProvidersClientImpl implements ResourceProvidersClien
     }
 
     /**
-     * Get SAP Disk Configurations.
+     * Get the SAP Disk Configuration Layout prod/non-prod SAP System.
      *
      * @param location The name of Azure region.
      * @param sapDiskConfigurations SAP Disk Configurations Request body.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return sAP Disk Configurations on successful completion of {@link Mono}.
+     * @return the SAP Disk Configuration Layout prod/non-prod SAP System on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<SapDiskConfigurationsResultInner> sapDiskConfigurationsAsync(
@@ -544,13 +562,13 @@ public final class ResourceProvidersClientImpl implements ResourceProvidersClien
     }
 
     /**
-     * Get SAP Disk Configurations.
+     * Get the SAP Disk Configuration Layout prod/non-prod SAP System.
      *
      * @param location The name of Azure region.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return sAP Disk Configurations on successful completion of {@link Mono}.
+     * @return the SAP Disk Configuration Layout prod/non-prod SAP System on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<SapDiskConfigurationsResultInner> sapDiskConfigurationsAsync(String location) {
@@ -560,13 +578,13 @@ public final class ResourceProvidersClientImpl implements ResourceProvidersClien
     }
 
     /**
-     * Get SAP Disk Configurations.
+     * Get the SAP Disk Configuration Layout prod/non-prod SAP System.
      *
      * @param location The name of Azure region.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return sAP Disk Configurations.
+     * @return the SAP Disk Configuration Layout prod/non-prod SAP System.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public SapDiskConfigurationsResultInner sapDiskConfigurations(String location) {
@@ -575,7 +593,7 @@ public final class ResourceProvidersClientImpl implements ResourceProvidersClien
     }
 
     /**
-     * Get SAP Disk Configurations.
+     * Get the SAP Disk Configuration Layout prod/non-prod SAP System.
      *
      * @param location The name of Azure region.
      * @param sapDiskConfigurations SAP Disk Configurations Request body.
@@ -583,7 +601,7 @@ public final class ResourceProvidersClientImpl implements ResourceProvidersClien
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return sAP Disk Configurations along with {@link Response}.
+     * @return the SAP Disk Configuration Layout prod/non-prod SAP System along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<SapDiskConfigurationsResultInner> sapDiskConfigurationsWithResponse(
@@ -592,14 +610,15 @@ public final class ResourceProvidersClientImpl implements ResourceProvidersClien
     }
 
     /**
-     * Get SAP Availability Zone Details.
+     * Get the recommended SAP Availability Zone Pair Details for your region.
      *
      * @param location The name of Azure region.
      * @param sapAvailabilityZoneDetails SAP Availability Zone Details Request body.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return sAP Availability Zone Details along with {@link Response} on successful completion of {@link Mono}.
+     * @return the recommended SAP Availability Zone Pair Details for your region along with {@link Response} on
+     *     successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<SapAvailabilityZoneDetailsResultInner>> sapAvailabilityZoneDetailsWithResponseAsync(
@@ -639,7 +658,7 @@ public final class ResourceProvidersClientImpl implements ResourceProvidersClien
     }
 
     /**
-     * Get SAP Availability Zone Details.
+     * Get the recommended SAP Availability Zone Pair Details for your region.
      *
      * @param location The name of Azure region.
      * @param sapAvailabilityZoneDetails SAP Availability Zone Details Request body.
@@ -647,7 +666,8 @@ public final class ResourceProvidersClientImpl implements ResourceProvidersClien
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return sAP Availability Zone Details along with {@link Response} on successful completion of {@link Mono}.
+     * @return the recommended SAP Availability Zone Pair Details for your region along with {@link Response} on
+     *     successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<SapAvailabilityZoneDetailsResultInner>> sapAvailabilityZoneDetailsWithResponseAsync(
@@ -684,14 +704,15 @@ public final class ResourceProvidersClientImpl implements ResourceProvidersClien
     }
 
     /**
-     * Get SAP Availability Zone Details.
+     * Get the recommended SAP Availability Zone Pair Details for your region.
      *
      * @param location The name of Azure region.
      * @param sapAvailabilityZoneDetails SAP Availability Zone Details Request body.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return sAP Availability Zone Details on successful completion of {@link Mono}.
+     * @return the recommended SAP Availability Zone Pair Details for your region on successful completion of {@link
+     *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<SapAvailabilityZoneDetailsResultInner> sapAvailabilityZoneDetailsAsync(
@@ -701,13 +722,14 @@ public final class ResourceProvidersClientImpl implements ResourceProvidersClien
     }
 
     /**
-     * Get SAP Availability Zone Details.
+     * Get the recommended SAP Availability Zone Pair Details for your region.
      *
      * @param location The name of Azure region.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return sAP Availability Zone Details on successful completion of {@link Mono}.
+     * @return the recommended SAP Availability Zone Pair Details for your region on successful completion of {@link
+     *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<SapAvailabilityZoneDetailsResultInner> sapAvailabilityZoneDetailsAsync(String location) {
@@ -717,13 +739,13 @@ public final class ResourceProvidersClientImpl implements ResourceProvidersClien
     }
 
     /**
-     * Get SAP Availability Zone Details.
+     * Get the recommended SAP Availability Zone Pair Details for your region.
      *
      * @param location The name of Azure region.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return sAP Availability Zone Details.
+     * @return the recommended SAP Availability Zone Pair Details for your region.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public SapAvailabilityZoneDetailsResultInner sapAvailabilityZoneDetails(String location) {
@@ -732,7 +754,7 @@ public final class ResourceProvidersClientImpl implements ResourceProvidersClien
     }
 
     /**
-     * Get SAP Availability Zone Details.
+     * Get the recommended SAP Availability Zone Pair Details for your region.
      *
      * @param location The name of Azure region.
      * @param sapAvailabilityZoneDetails SAP Availability Zone Details Request body.
@@ -740,7 +762,7 @@ public final class ResourceProvidersClientImpl implements ResourceProvidersClien
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return sAP Availability Zone Details along with {@link Response}.
+     * @return the recommended SAP Availability Zone Pair Details for your region along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<SapAvailabilityZoneDetailsResultInner> sapAvailabilityZoneDetailsWithResponse(

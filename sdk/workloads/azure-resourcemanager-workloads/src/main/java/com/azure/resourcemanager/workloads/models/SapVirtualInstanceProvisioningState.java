@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for SapVirtualInstanceProvisioningState. */
+/** Defines the provisioning states. */
 public final class SapVirtualInstanceProvisioningState
     extends ExpandableStringEnum<SapVirtualInstanceProvisioningState> {
     /** Static value Succeeded for SapVirtualInstanceProvisioningState. */

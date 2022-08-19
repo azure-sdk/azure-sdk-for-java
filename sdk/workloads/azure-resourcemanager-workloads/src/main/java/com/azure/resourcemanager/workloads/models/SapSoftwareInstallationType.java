@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for SapSoftwareInstallationType. */
+/** The SAP software installation Type. */
 public final class SapSoftwareInstallationType extends ExpandableStringEnum<SapSoftwareInstallationType> {
     /** Static value ServiceInitiated for SapSoftwareInstallationType. */
     public static final SapSoftwareInstallationType SERVICE_INITIATED = fromString("ServiceInitiated");

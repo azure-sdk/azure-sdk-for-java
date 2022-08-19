@@ -31,8 +31,7 @@ public final class MonitorInner extends Resource {
     private MonitorProperties innerProperties;
 
     /*
-     * Azure Resource Manager metadata containing createdBy and modifiedBy
-     * information.
+     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
      */
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
@@ -154,6 +153,31 @@ public final class MonitorInner extends Resource {
             this.innerProperties = new MonitorProperties();
         }
         this.innerProperties().withRoutingPreference(routingPreference);
+        return this;
+    }
+
+    /**
+     * Get the zoneRedundancyPreference property: Sets the preference for zone redundancy on resources created for the
+     * SAP monitor. By default resources will be created which do not support zone redundancy.
+     *
+     * @return the zoneRedundancyPreference value.
+     */
+    public String zoneRedundancyPreference() {
+        return this.innerProperties() == null ? null : this.innerProperties().zoneRedundancyPreference();
+    }
+
+    /**
+     * Set the zoneRedundancyPreference property: Sets the preference for zone redundancy on resources created for the
+     * SAP monitor. By default resources will be created which do not support zone redundancy.
+     *
+     * @param zoneRedundancyPreference the zoneRedundancyPreference value to set.
+     * @return the MonitorInner object itself.
+     */
+    public MonitorInner withZoneRedundancyPreference(String zoneRedundancyPreference) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new MonitorProperties();
+        }
+        this.innerProperties().withZoneRedundancyPreference(zoneRedundancyPreference);
         return this;
     }
 

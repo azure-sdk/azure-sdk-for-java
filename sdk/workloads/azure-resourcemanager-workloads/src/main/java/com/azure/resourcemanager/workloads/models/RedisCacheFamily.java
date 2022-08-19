@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for RedisCacheFamily. */
+/** Cache family. */
 public final class RedisCacheFamily extends ExpandableStringEnum<RedisCacheFamily> {
     /** Static value C for RedisCacheFamily. */
     public static final RedisCacheFamily C = fromString("C");
