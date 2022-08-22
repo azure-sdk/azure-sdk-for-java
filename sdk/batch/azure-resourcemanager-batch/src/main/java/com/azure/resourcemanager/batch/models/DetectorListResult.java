@@ -13,8 +13,7 @@ import java.util.List;
 @Fluent
 public final class DetectorListResult {
     /*
-     * The collection of Batch account detectors returned by the listing
-     * operation.
+     * The collection of Batch account detectors returned by the listing operation.
      */
     @JsonProperty(value = "value")
     private List<DetectorResponseInner> value;
