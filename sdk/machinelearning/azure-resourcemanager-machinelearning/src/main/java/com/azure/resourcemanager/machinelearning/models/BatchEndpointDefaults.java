@@ -12,8 +12,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public final class BatchEndpointDefaults {
     /*
      * Name of the deployment that will be default for the endpoint.
-     * This deployment will end up getting 100% traffic when the endpoint
-     * scoring URL is invoked.
+     * This deployment will end up getting 100% traffic when the endpoint scoring URL is invoked.
      */
     @JsonProperty(value = "deploymentName")
     private String deploymentName;

@@ -30,8 +30,7 @@ public final class SharedPrivateLinkResourceProperty {
     private String requestMessage;
 
     /*
-     * Indicates whether the connection has been Approved/Rejected/Removed by
-     * the owner of the service.
+     * Indicates whether the connection has been Approved/Rejected/Removed by the owner of the service.
      */
     @JsonProperty(value = "status")
     private PrivateEndpointServiceConnectionStatus status;

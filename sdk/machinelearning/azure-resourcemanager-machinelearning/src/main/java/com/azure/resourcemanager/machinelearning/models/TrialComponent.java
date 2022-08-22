@@ -20,22 +20,19 @@ public final class TrialComponent {
     private String codeId;
 
     /*
-     * [Required] The command to execute on startup of the job. eg. "python
-     * train.py"
+     * [Required] The command to execute on startup of the job. eg. "python train.py"
      */
     @JsonProperty(value = "command", required = true)
     private String command;
 
     /*
-     * Distribution configuration of the job. If set, this should be one of
-     * Mpi, Tensorflow, PyTorch, or null.
+     * Distribution configuration of the job. If set, this should be one of Mpi, Tensorflow, PyTorch, or null.
      */
     @JsonProperty(value = "distribution")
     private DistributionConfiguration distribution;
 
     /*
-     * [Required] The ARM resource ID of the Environment specification for the
-     * job.
+     * [Required] The ARM resource ID of the Environment specification for the job.
      */
     @JsonProperty(value = "environmentId", required = true)
     private String environmentId;
