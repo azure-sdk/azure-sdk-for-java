@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for WebTests Delete. */
 public final class WebTestsDeleteSamples {
     /*
-     * x-ms-original-file: specification/applicationinsights/resource-manager/Microsoft.Insights/stable/2015-05-01/examples/WebTestDelete.json
+     * x-ms-original-file: specification/applicationinsights/resource-manager/Microsoft.Insights/stable/2022-06-15/examples/WebTestDelete.json
      */
     /**
      * Sample code: webTestDelete.
