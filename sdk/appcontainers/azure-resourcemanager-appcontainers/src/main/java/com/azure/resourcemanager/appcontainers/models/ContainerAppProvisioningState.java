@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for ContainerAppProvisioningState. */
+/** Provisioning state of the Container App. */
 public final class ContainerAppProvisioningState extends ExpandableStringEnum<ContainerAppProvisioningState> {
     /** Static value InProgress for ContainerAppProvisioningState. */
     public static final ContainerAppProvisioningState IN_PROGRESS = fromString("InProgress");
