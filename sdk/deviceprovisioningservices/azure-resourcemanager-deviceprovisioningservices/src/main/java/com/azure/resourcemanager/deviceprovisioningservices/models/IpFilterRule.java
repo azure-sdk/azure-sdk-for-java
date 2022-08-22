@@ -24,8 +24,7 @@ public final class IpFilterRule {
     private IpFilterActionType action;
 
     /*
-     * A string that contains the IP address range in CIDR notation for the
-     * rule.
+     * A string that contains the IP address range in CIDR notation for the rule.
      */
     @JsonProperty(value = "ipMask", required = true)
     private String ipMask;

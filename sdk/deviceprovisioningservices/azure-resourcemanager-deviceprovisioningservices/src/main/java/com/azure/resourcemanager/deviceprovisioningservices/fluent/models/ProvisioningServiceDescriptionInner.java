@@ -17,9 +17,8 @@ import java.util.Map;
 @Fluent
 public final class ProvisioningServiceDescriptionInner extends Resource {
     /*
-     * The Etag field is *not* required. If it is provided in the response
-     * body, it must also be provided as a header per the normal ETag
-     * convention.
+     * The Etag field is *not* required. If it is provided in the response body, it must also be provided as a header
+     * per the normal ETag convention.
      */
     @JsonProperty(value = "etag")
     private String etag;
