@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for ScsiControllerType. */
+/** Defines the different types of SCSI controllers. */
 public final class ScsiControllerType extends ExpandableStringEnum<ScsiControllerType> {
     /** Static value lsilogic for ScsiControllerType. */
     public static final ScsiControllerType LSILOGIC = fromString("lsilogic");
