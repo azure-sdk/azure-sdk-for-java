@@ -635,14 +635,7 @@ public final class PoolsClientImpl implements PoolsClient {
         String ifMatch,
         String ifNoneMatch) {
         return createWithResponseAsync(resourceGroupName, accountName, poolName, parameters, ifMatch, ifNoneMatch)
-            .flatMap(
-                (PoolsCreateResponse res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -663,14 +656,7 @@ public final class PoolsClientImpl implements PoolsClient {
         final String ifMatch = null;
         final String ifNoneMatch = null;
         return createWithResponseAsync(resourceGroupName, accountName, poolName, parameters, ifMatch, ifNoneMatch)
-            .flatMap(
-                (PoolsCreateResponse res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -873,14 +859,7 @@ public final class PoolsClientImpl implements PoolsClient {
     private Mono<PoolInner> updateAsync(
         String resourceGroupName, String accountName, String poolName, PoolInner parameters, String ifMatch) {
         return updateWithResponseAsync(resourceGroupName, accountName, poolName, parameters, ifMatch)
-            .flatMap(
-                (PoolsUpdateResponse res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -901,14 +880,7 @@ public final class PoolsClientImpl implements PoolsClient {
         String resourceGroupName, String accountName, String poolName, PoolInner parameters) {
         final String ifMatch = null;
         return updateWithResponseAsync(resourceGroupName, accountName, poolName, parameters, ifMatch)
-            .flatMap(
-                (PoolsUpdateResponse res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -1325,14 +1297,7 @@ public final class PoolsClientImpl implements PoolsClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PoolInner> getAsync(String resourceGroupName, String accountName, String poolName) {
         return getWithResponseAsync(resourceGroupName, accountName, poolName)
-            .flatMap(
-                (PoolsGetResponse res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -1487,14 +1452,7 @@ public final class PoolsClientImpl implements PoolsClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PoolInner> disableAutoScaleAsync(String resourceGroupName, String accountName, String poolName) {
         return disableAutoScaleWithResponseAsync(resourceGroupName, accountName, poolName)
-            .flatMap(
-                (PoolsDisableAutoScaleResponse res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -1532,7 +1490,9 @@ public final class PoolsClientImpl implements PoolsClient {
     }
 
     /**
-     * This does not restore the pool to its previous state before the resize operation: it only stops any further
+     * Stops an ongoing resize operation on the pool.
+     *
+     * <p>This does not restore the pool to its previous state before the resize operation: it only stops any further
      * changes being made, and the pool maintains its current state. After stopping, the pool stabilizes at the number
      * of nodes it was at when the stop operation was done. During the stop operation, the pool allocation state changes
      * first to stopping and then to steady. A resize operation need not be an explicit resize pool request; this API
@@ -1589,7 +1549,9 @@ public final class PoolsClientImpl implements PoolsClient {
     }
 
     /**
-     * This does not restore the pool to its previous state before the resize operation: it only stops any further
+     * Stops an ongoing resize operation on the pool.
+     *
+     * <p>This does not restore the pool to its previous state before the resize operation: it only stops any further
      * changes being made, and the pool maintains its current state. After stopping, the pool stabilizes at the number
      * of nodes it was at when the stop operation was done. During the stop operation, the pool allocation state changes
      * first to stopping and then to steady. A resize operation need not be an explicit resize pool request; this API
@@ -1644,7 +1606,9 @@ public final class PoolsClientImpl implements PoolsClient {
     }
 
     /**
-     * This does not restore the pool to its previous state before the resize operation: it only stops any further
+     * Stops an ongoing resize operation on the pool.
+     *
+     * <p>This does not restore the pool to its previous state before the resize operation: it only stops any further
      * changes being made, and the pool maintains its current state. After stopping, the pool stabilizes at the number
      * of nodes it was at when the stop operation was done. During the stop operation, the pool allocation state changes
      * first to stopping and then to steady. A resize operation need not be an explicit resize pool request; this API
@@ -1661,18 +1625,13 @@ public final class PoolsClientImpl implements PoolsClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PoolInner> stopResizeAsync(String resourceGroupName, String accountName, String poolName) {
         return stopResizeWithResponseAsync(resourceGroupName, accountName, poolName)
-            .flatMap(
-                (PoolsStopResizeResponse res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
-     * This does not restore the pool to its previous state before the resize operation: it only stops any further
+     * Stops an ongoing resize operation on the pool.
+     *
+     * <p>This does not restore the pool to its previous state before the resize operation: it only stops any further
      * changes being made, and the pool maintains its current state. After stopping, the pool stabilizes at the number
      * of nodes it was at when the stop operation was done. During the stop operation, the pool allocation state changes
      * first to stopping and then to steady. A resize operation need not be an explicit resize pool request; this API
@@ -1692,7 +1651,9 @@ public final class PoolsClientImpl implements PoolsClient {
     }
 
     /**
-     * This does not restore the pool to its previous state before the resize operation: it only stops any further
+     * Stops an ongoing resize operation on the pool.
+     *
+     * <p>This does not restore the pool to its previous state before the resize operation: it only stops any further
      * changes being made, and the pool maintains its current state. After stopping, the pool stabilizes at the number
      * of nodes it was at when the stop operation was done. During the stop operation, the pool allocation state changes
      * first to stopping and then to steady. A resize operation need not be an explicit resize pool request; this API
@@ -1716,7 +1677,8 @@ public final class PoolsClientImpl implements PoolsClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1753,7 +1715,8 @@ public final class PoolsClientImpl implements PoolsClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.

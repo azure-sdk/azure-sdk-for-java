@@ -19,9 +19,9 @@ public final class AutoScaleRun {
     private OffsetDateTime evaluationTime;
 
     /*
-     * The final values of all variables used in the evaluation of the
-     * autoscale formula. Each variable value is returned in the form
-     * $variable=value, and variables are separated by semicolons.
+     * The final values of all variables used in the evaluation of the autoscale formula.
+     *
+     * Each variable value is returned in the form $variable=value, and variables are separated by semicolons.
      */
     @JsonProperty(value = "results")
     private String results;
@@ -53,8 +53,9 @@ public final class AutoScaleRun {
     }
 
     /**
-     * Get the results property: The final values of all variables used in the evaluation of the autoscale formula. Each
-     * variable value is returned in the form $variable=value, and variables are separated by semicolons.
+     * Get the results property: The final values of all variables used in the evaluation of the autoscale formula.
+     *
+     * <p>Each variable value is returned in the form $variable=value, and variables are separated by semicolons.
      *
      * @return the results value.
      */
@@ -63,8 +64,9 @@ public final class AutoScaleRun {
     }
 
     /**
-     * Set the results property: The final values of all variables used in the evaluation of the autoscale formula. Each
-     * variable value is returned in the form $variable=value, and variables are separated by semicolons.
+     * Set the results property: The final values of all variables used in the evaluation of the autoscale formula.
+     *
+     * <p>Each variable value is returned in the form $variable=value, and variables are separated by semicolons.
      *
      * @param results the results value to set.
      * @return the AutoScaleRun object itself.

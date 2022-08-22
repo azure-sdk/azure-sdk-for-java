@@ -23,14 +23,15 @@ public final class ContainerRegistry {
     private String password;
 
     /*
-     * The registry URL. If omitted, the default is "docker.io".
+     * The registry URL.
+     *
+     * If omitted, the default is "docker.io".
      */
     @JsonProperty(value = "registryServer")
     private String registryServer;
 
     /*
-     * The reference to a user assigned identity associated with the Batch pool
-     * which a compute node will use.
+     * The reference to a user assigned identity associated with the Batch pool which a compute node will use.
      */
     @JsonProperty(value = "identityReference")
     private ComputeNodeIdentityReference identityReference;
@@ -76,7 +77,9 @@ public final class ContainerRegistry {
     }
 
     /**
-     * Get the registryServer property: The registry URL. If omitted, the default is "docker.io".
+     * Get the registryServer property: The registry URL.
+     *
+     * <p>If omitted, the default is "docker.io".
      *
      * @return the registryServer value.
      */
@@ -85,7 +88,9 @@ public final class ContainerRegistry {
     }
 
     /**
-     * Set the registryServer property: The registry URL. If omitted, the default is "docker.io".
+     * Set the registryServer property: The registry URL.
+     *
+     * <p>If omitted, the default is "docker.io".
      *
      * @param registryServer the registryServer value to set.
      * @return the ContainerRegistry object itself.
