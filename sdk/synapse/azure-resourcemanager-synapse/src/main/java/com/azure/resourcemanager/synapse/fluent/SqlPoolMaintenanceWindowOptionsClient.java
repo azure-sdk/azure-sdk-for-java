@@ -13,7 +13,9 @@ import com.azure.resourcemanager.synapse.fluent.models.MaintenanceWindowOptionsI
 /** An instance of this class provides access to all the operations defined in SqlPoolMaintenanceWindowOptionsClient. */
 public interface SqlPoolMaintenanceWindowOptionsClient {
     /**
-     * Get list of SQL pool's available maintenance windows.
+     * SQL pool's available maintenance windows.
+     *
+     * <p>Get list of SQL pool's available maintenance windows.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -29,7 +31,9 @@ public interface SqlPoolMaintenanceWindowOptionsClient {
         String resourceGroupName, String workspaceName, String sqlPoolName, String maintenanceWindowOptionsName);
 
     /**
-     * Get list of SQL pool's available maintenance windows.
+     * SQL pool's available maintenance windows.
+     *
+     * <p>Get list of SQL pool's available maintenance windows.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.

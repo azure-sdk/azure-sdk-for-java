@@ -39,6 +39,10 @@ public final class IntegrationRuntimeResourceImpl
         return this.innerModel().properties();
     }
 
+    public String resourceGroupName() {
+        return resourceGroupName;
+    }
+
     public IntegrationRuntimeResourceInner innerModel() {
         return this.innerObject;
     }

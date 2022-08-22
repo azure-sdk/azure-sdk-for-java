@@ -12,8 +12,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Fluent
 public final class OperationInner {
     /*
-     * The operation name. This is of the format
-     * {provider}/{resource}/{operation}.
+     * The operation name.
+     *
+     * This is of the format {provider}/{resource}/{operation}.
      */
     @JsonProperty(value = "name")
     private String name;
@@ -37,7 +38,9 @@ public final class OperationInner {
     private Object properties;
 
     /**
-     * Get the name property: The operation name. This is of the format {provider}/{resource}/{operation}.
+     * Get the name property: The operation name.
+     *
+     * <p>This is of the format {provider}/{resource}/{operation}.
      *
      * @return the name value.
      */
@@ -46,7 +49,9 @@ public final class OperationInner {
     }
 
     /**
-     * Set the name property: The operation name. This is of the format {provider}/{resource}/{operation}.
+     * Set the name property: The operation name.
+     *
+     * <p>This is of the format {provider}/{resource}/{operation}.
      *
      * @param name the name value to set.
      * @return the OperationInner object itself.

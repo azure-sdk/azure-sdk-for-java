@@ -10,7 +10,9 @@ import com.azure.core.util.Context;
 /** Resource collection API of Libraries. */
 public interface Libraries {
     /**
-     * Get library by name in a workspace.
+     * Get library by name.
+     *
+     * <p>Get library by name in a workspace.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param libraryName Library name.
@@ -23,7 +25,9 @@ public interface Libraries {
     LibraryResource get(String resourceGroupName, String libraryName, String workspaceName);
 
     /**
-     * Get library by name in a workspace.
+     * Get library by name.
+     *
+     * <p>Get library by name in a workspace.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param libraryName Library name.

@@ -8,7 +8,11 @@ import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.synapse.models.ManagedIdentitySqlControlSettingsModelPropertiesGrantSqlControlToManagedIdentity;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Managed Identity Sql Control Settings Sql Control Settings for workspace managed identity. */
+/**
+ * Managed Identity Sql Control Settings
+ *
+ * <p>Sql Control Settings for workspace managed identity.
+ */
 @Fluent
 public final class ManagedIdentitySqlControlSettingsModelProperties {
     /*
