@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for ServiceCorrelationScheme. */
+/** The service correlation scheme. */
 public final class ServiceCorrelationScheme extends ExpandableStringEnum<ServiceCorrelationScheme> {
     /** Static value Invalid for ServiceCorrelationScheme. */
     public static final ServiceCorrelationScheme INVALID = fromString("Invalid");
@@ -33,7 +33,11 @@ public final class ServiceCorrelationScheme extends ExpandableStringEnum<Service
         return fromString(name, ServiceCorrelationScheme.class);
     }
 
-    /** @return known ServiceCorrelationScheme values. */
+    /**
+     * Gets known ServiceCorrelationScheme values.
+     *
+     * @return known ServiceCorrelationScheme values.
+     */
     public static Collection<ServiceCorrelationScheme> values() {
         return values(ServiceCorrelationScheme.class);
     }

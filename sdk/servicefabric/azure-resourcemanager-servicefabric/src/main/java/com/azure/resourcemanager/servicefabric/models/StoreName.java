@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for StoreName. */
+/** The local certificate store location. */
 public final class StoreName extends ExpandableStringEnum<StoreName> {
     /** Static value AddressBook for StoreName. */
     public static final StoreName ADDRESS_BOOK = fromString("AddressBook");
@@ -45,7 +45,11 @@ public final class StoreName extends ExpandableStringEnum<StoreName> {
         return fromString(name, StoreName.class);
     }
 
-    /** @return known StoreName values. */
+    /**
+     * Gets known StoreName values.
+     *
+     * @return known StoreName values.
+     */
     public static Collection<StoreName> values() {
         return values(StoreName.class);
     }

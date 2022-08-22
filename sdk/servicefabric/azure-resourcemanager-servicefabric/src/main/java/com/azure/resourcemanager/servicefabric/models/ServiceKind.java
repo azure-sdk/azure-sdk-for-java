@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for ServiceKind. */
+/** The kind of service (Stateless or Stateful). */
 public final class ServiceKind extends ExpandableStringEnum<ServiceKind> {
     /** Static value Invalid for ServiceKind. */
     public static final ServiceKind INVALID = fromString("Invalid");
@@ -30,7 +30,11 @@ public final class ServiceKind extends ExpandableStringEnum<ServiceKind> {
         return fromString(name, ServiceKind.class);
     }
 
-    /** @return known ServiceKind values. */
+    /**
+     * Gets known ServiceKind values.
+     *
+     * @return known ServiceKind values.
+     */
     public static Collection<ServiceKind> values() {
         return values(ServiceKind.class);
     }
