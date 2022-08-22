@@ -383,7 +383,7 @@ public final class IotHubResourceCreateOrUpdateSamples {
                                     .withTtlAsIso8601(Duration.parse("PT1H"))
                                     .withMaxDeliveryCount(10)))
                     .withFeatures(Capabilities.NONE)
-                    .withEnableDataResidency(true))
+                    .withEnableDataResidency(false))
             .create();
     }
 
