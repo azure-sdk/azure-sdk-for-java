@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.appcontainers.implementation;
 
-import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.appcontainers.fluent.models.CustomHostnameAnalysisResultInner;
 import com.azure.resourcemanager.appcontainers.models.CustomHostnameAnalysisResult;
 import com.azure.resourcemanager.appcontainers.models.DefaultErrorResponseError;
@@ -22,22 +21,6 @@ public final class CustomHostnameAnalysisResultImpl implements CustomHostnameAna
         com.azure.resourcemanager.appcontainers.ContainerAppsApiManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
-    }
-
-    public String id() {
-        return this.innerModel().id();
-    }
-
-    public String name() {
-        return this.innerModel().name();
-    }
-
-    public String type() {
-        return this.innerModel().type();
-    }
-
-    public SystemData systemData() {
-        return this.innerModel().systemData();
     }
 
     public String hostname() {
