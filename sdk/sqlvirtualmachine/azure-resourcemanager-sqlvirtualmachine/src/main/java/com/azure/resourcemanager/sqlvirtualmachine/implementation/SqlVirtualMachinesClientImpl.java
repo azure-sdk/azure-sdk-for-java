@@ -31,7 +31,6 @@ import com.azure.core.management.exception.ManagementException;
 import com.azure.core.management.polling.PollResult;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.sqlvirtualmachine.fluent.SqlVirtualMachinesClient;
@@ -44,8 +43,6 @@ import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in SqlVirtualMachinesClient. */
 public final class SqlVirtualMachinesClientImpl implements SqlVirtualMachinesClient {
-    private final ClientLogger logger = new ClientLogger(SqlVirtualMachinesClientImpl.class);
-
     /** The proxy service used to perform REST calls. */
     private final SqlVirtualMachinesService service;
 
@@ -94,20 +91,6 @@ public final class SqlVirtualMachinesClientImpl implements SqlVirtualMachinesCli
             @PathParam("subscriptionId") String subscriptionId,
             @QueryParam("api-version") String apiVersion,
             @HeaderParam("Accept") String accept,
-            Context context);
-
-        @Headers({"Accept: application/json;q=0.9", "Content-Type: application/json"})
-        @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SqlVirtualMachine"
-                + "/sqlVirtualMachines/{sqlVirtualMachineName}/redeploy")
-        @ExpectedResponses({200, 202})
-        @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Flux<ByteBuffer>>> redeploy(
-            @HostParam("$host") String endpoint,
-            @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("sqlVirtualMachineName") String sqlVirtualMachineName,
-            @PathParam("subscriptionId") String subscriptionId,
-            @QueryParam("api-version") String apiVersion,
             Context context);
 
         @Headers({"Content-Type: application/json"})
@@ -184,6 +167,20 @@ public final class SqlVirtualMachinesClientImpl implements SqlVirtualMachinesCli
             @PathParam("subscriptionId") String subscriptionId,
             @QueryParam("api-version") String apiVersion,
             @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({"Accept: application/json;q=0.9", "Content-Type: application/json"})
+        @Post(
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SqlVirtualMachine"
+                + "/sqlVirtualMachines/{sqlVirtualMachineName}/redeploy")
+        @ExpectedResponses({200, 202})
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<Flux<ByteBuffer>>> redeploy(
+            @HostParam("$host") String endpoint,
+            @PathParam("resourceGroupName") String resourceGroupName,
+            @PathParam("sqlVirtualMachineName") String sqlVirtualMachineName,
+            @PathParam("subscriptionId") String subscriptionId,
+            @QueryParam("api-version") String apiVersion,
             Context context);
 
         @Headers({"Accept: application/json;q=0.9", "Content-Type: application/json"})
@@ -574,246 +571,6 @@ public final class SqlVirtualMachinesClientImpl implements SqlVirtualMachinesCli
     }
 
     /**
-     * Uninstalls and reinstalls the SQL Iaas Extension.
-     *
-     * @param resourceGroupName Name of the resource group that contains the resource. You can obtain this value from
-     *     the Azure Resource Manager API or the portal.
-     * @param sqlVirtualMachineName Name of the SQL virtual machine.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> redeployWithResponseAsync(
-        String resourceGroupName, String sqlVirtualMachineName) {
-        if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (sqlVirtualMachineName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter sqlVirtualMachineName is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .redeploy(
-                            this.client.getEndpoint(),
-                            resourceGroupName,
-                            sqlVirtualMachineName,
-                            this.client.getSubscriptionId(),
-                            this.client.getApiVersion(),
-                            context))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * Uninstalls and reinstalls the SQL Iaas Extension.
-     *
-     * @param resourceGroupName Name of the resource group that contains the resource. You can obtain this value from
-     *     the Azure Resource Manager API or the portal.
-     * @param sqlVirtualMachineName Name of the SQL virtual machine.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> redeployWithResponseAsync(
-        String resourceGroupName, String sqlVirtualMachineName, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (sqlVirtualMachineName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter sqlVirtualMachineName is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        context = this.client.mergeContext(context);
-        return service
-            .redeploy(
-                this.client.getEndpoint(),
-                resourceGroupName,
-                sqlVirtualMachineName,
-                this.client.getSubscriptionId(),
-                this.client.getApiVersion(),
-                context);
-    }
-
-    /**
-     * Uninstalls and reinstalls the SQL Iaas Extension.
-     *
-     * @param resourceGroupName Name of the resource group that contains the resource. You can obtain this value from
-     *     the Azure Resource Manager API or the portal.
-     * @param sqlVirtualMachineName Name of the SQL virtual machine.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of long-running operation.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<Void>, Void> beginRedeployAsync(
-        String resourceGroupName, String sqlVirtualMachineName) {
-        Mono<Response<Flux<ByteBuffer>>> mono = redeployWithResponseAsync(resourceGroupName, sqlVirtualMachineName);
-        return this
-            .client
-            .<Void, Void>getLroResult(
-                mono, this.client.getHttpPipeline(), Void.class, Void.class, this.client.getContext());
-    }
-
-    /**
-     * Uninstalls and reinstalls the SQL Iaas Extension.
-     *
-     * @param resourceGroupName Name of the resource group that contains the resource. You can obtain this value from
-     *     the Azure Resource Manager API or the portal.
-     * @param sqlVirtualMachineName Name of the SQL virtual machine.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of long-running operation.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<Void>, Void> beginRedeployAsync(
-        String resourceGroupName, String sqlVirtualMachineName, Context context) {
-        context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono =
-            redeployWithResponseAsync(resourceGroupName, sqlVirtualMachineName, context);
-        return this
-            .client
-            .<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class, context);
-    }
-
-    /**
-     * Uninstalls and reinstalls the SQL Iaas Extension.
-     *
-     * @param resourceGroupName Name of the resource group that contains the resource. You can obtain this value from
-     *     the Azure Resource Manager API or the portal.
-     * @param sqlVirtualMachineName Name of the SQL virtual machine.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<Void>, Void> beginRedeploy(String resourceGroupName, String sqlVirtualMachineName) {
-        return beginRedeployAsync(resourceGroupName, sqlVirtualMachineName).getSyncPoller();
-    }
-
-    /**
-     * Uninstalls and reinstalls the SQL Iaas Extension.
-     *
-     * @param resourceGroupName Name of the resource group that contains the resource. You can obtain this value from
-     *     the Azure Resource Manager API or the portal.
-     * @param sqlVirtualMachineName Name of the SQL virtual machine.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<Void>, Void> beginRedeploy(
-        String resourceGroupName, String sqlVirtualMachineName, Context context) {
-        return beginRedeployAsync(resourceGroupName, sqlVirtualMachineName, context).getSyncPoller();
-    }
-
-    /**
-     * Uninstalls and reinstalls the SQL Iaas Extension.
-     *
-     * @param resourceGroupName Name of the resource group that contains the resource. You can obtain this value from
-     *     the Azure Resource Manager API or the portal.
-     * @param sqlVirtualMachineName Name of the SQL virtual machine.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Void> redeployAsync(String resourceGroupName, String sqlVirtualMachineName) {
-        return beginRedeployAsync(resourceGroupName, sqlVirtualMachineName)
-            .last()
-            .flatMap(this.client::getLroFinalResultOrError);
-    }
-
-    /**
-     * Uninstalls and reinstalls the SQL Iaas Extension.
-     *
-     * @param resourceGroupName Name of the resource group that contains the resource. You can obtain this value from
-     *     the Azure Resource Manager API or the portal.
-     * @param sqlVirtualMachineName Name of the SQL virtual machine.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Void> redeployAsync(String resourceGroupName, String sqlVirtualMachineName, Context context) {
-        return beginRedeployAsync(resourceGroupName, sqlVirtualMachineName, context)
-            .last()
-            .flatMap(this.client::getLroFinalResultOrError);
-    }
-
-    /**
-     * Uninstalls and reinstalls the SQL Iaas Extension.
-     *
-     * @param resourceGroupName Name of the resource group that contains the resource. You can obtain this value from
-     *     the Azure Resource Manager API or the portal.
-     * @param sqlVirtualMachineName Name of the SQL virtual machine.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public void redeploy(String resourceGroupName, String sqlVirtualMachineName) {
-        redeployAsync(resourceGroupName, sqlVirtualMachineName).block();
-    }
-
-    /**
-     * Uninstalls and reinstalls the SQL Iaas Extension.
-     *
-     * @param resourceGroupName Name of the resource group that contains the resource. You can obtain this value from
-     *     the Azure Resource Manager API or the portal.
-     * @param sqlVirtualMachineName Name of the SQL virtual machine.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public void redeploy(String resourceGroupName, String sqlVirtualMachineName, Context context) {
-        redeployAsync(resourceGroupName, sqlVirtualMachineName, context).block();
-    }
-
-    /**
      * Gets a SQL virtual machine.
      *
      * @param resourceGroupName Name of the resource group that contains the resource. You can obtain this value from
@@ -931,14 +688,7 @@ public final class SqlVirtualMachinesClientImpl implements SqlVirtualMachinesCli
     private Mono<SqlVirtualMachineInner> getByResourceGroupAsync(
         String resourceGroupName, String sqlVirtualMachineName, String expand) {
         return getByResourceGroupWithResponseAsync(resourceGroupName, sqlVirtualMachineName, expand)
-            .flatMap(
-                (Response<SqlVirtualMachineInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -957,14 +707,7 @@ public final class SqlVirtualMachinesClientImpl implements SqlVirtualMachinesCli
         String resourceGroupName, String sqlVirtualMachineName) {
         final String expand = null;
         return getByResourceGroupWithResponseAsync(resourceGroupName, sqlVirtualMachineName, expand)
-            .flatMap(
-                (Response<SqlVirtualMachineInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -1981,6 +1724,246 @@ public final class SqlVirtualMachinesClientImpl implements SqlVirtualMachinesCli
     }
 
     /**
+     * Uninstalls and reinstalls the SQL Iaas Extension.
+     *
+     * @param resourceGroupName Name of the resource group that contains the resource. You can obtain this value from
+     *     the Azure Resource Manager API or the portal.
+     * @param sqlVirtualMachineName Name of the SQL virtual machine.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Flux<ByteBuffer>>> redeployWithResponseAsync(
+        String resourceGroupName, String sqlVirtualMachineName) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (sqlVirtualMachineName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter sqlVirtualMachineName is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        return FluxUtil
+            .withContext(
+                context ->
+                    service
+                        .redeploy(
+                            this.client.getEndpoint(),
+                            resourceGroupName,
+                            sqlVirtualMachineName,
+                            this.client.getSubscriptionId(),
+                            this.client.getApiVersion(),
+                            context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Uninstalls and reinstalls the SQL Iaas Extension.
+     *
+     * @param resourceGroupName Name of the resource group that contains the resource. You can obtain this value from
+     *     the Azure Resource Manager API or the portal.
+     * @param sqlVirtualMachineName Name of the SQL virtual machine.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Flux<ByteBuffer>>> redeployWithResponseAsync(
+        String resourceGroupName, String sqlVirtualMachineName, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (sqlVirtualMachineName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter sqlVirtualMachineName is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        context = this.client.mergeContext(context);
+        return service
+            .redeploy(
+                this.client.getEndpoint(),
+                resourceGroupName,
+                sqlVirtualMachineName,
+                this.client.getSubscriptionId(),
+                this.client.getApiVersion(),
+                context);
+    }
+
+    /**
+     * Uninstalls and reinstalls the SQL Iaas Extension.
+     *
+     * @param resourceGroupName Name of the resource group that contains the resource. You can obtain this value from
+     *     the Azure Resource Manager API or the portal.
+     * @param sqlVirtualMachineName Name of the SQL virtual machine.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<Void>, Void> beginRedeployAsync(
+        String resourceGroupName, String sqlVirtualMachineName) {
+        Mono<Response<Flux<ByteBuffer>>> mono = redeployWithResponseAsync(resourceGroupName, sqlVirtualMachineName);
+        return this
+            .client
+            .<Void, Void>getLroResult(
+                mono, this.client.getHttpPipeline(), Void.class, Void.class, this.client.getContext());
+    }
+
+    /**
+     * Uninstalls and reinstalls the SQL Iaas Extension.
+     *
+     * @param resourceGroupName Name of the resource group that contains the resource. You can obtain this value from
+     *     the Azure Resource Manager API or the portal.
+     * @param sqlVirtualMachineName Name of the SQL virtual machine.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<Void>, Void> beginRedeployAsync(
+        String resourceGroupName, String sqlVirtualMachineName, Context context) {
+        context = this.client.mergeContext(context);
+        Mono<Response<Flux<ByteBuffer>>> mono =
+            redeployWithResponseAsync(resourceGroupName, sqlVirtualMachineName, context);
+        return this
+            .client
+            .<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class, context);
+    }
+
+    /**
+     * Uninstalls and reinstalls the SQL Iaas Extension.
+     *
+     * @param resourceGroupName Name of the resource group that contains the resource. You can obtain this value from
+     *     the Azure Resource Manager API or the portal.
+     * @param sqlVirtualMachineName Name of the SQL virtual machine.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<Void>, Void> beginRedeploy(String resourceGroupName, String sqlVirtualMachineName) {
+        return beginRedeployAsync(resourceGroupName, sqlVirtualMachineName).getSyncPoller();
+    }
+
+    /**
+     * Uninstalls and reinstalls the SQL Iaas Extension.
+     *
+     * @param resourceGroupName Name of the resource group that contains the resource. You can obtain this value from
+     *     the Azure Resource Manager API or the portal.
+     * @param sqlVirtualMachineName Name of the SQL virtual machine.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<Void>, Void> beginRedeploy(
+        String resourceGroupName, String sqlVirtualMachineName, Context context) {
+        return beginRedeployAsync(resourceGroupName, sqlVirtualMachineName, context).getSyncPoller();
+    }
+
+    /**
+     * Uninstalls and reinstalls the SQL Iaas Extension.
+     *
+     * @param resourceGroupName Name of the resource group that contains the resource. You can obtain this value from
+     *     the Azure Resource Manager API or the portal.
+     * @param sqlVirtualMachineName Name of the SQL virtual machine.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return A {@link Mono} that completes when a successful response is received.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Void> redeployAsync(String resourceGroupName, String sqlVirtualMachineName) {
+        return beginRedeployAsync(resourceGroupName, sqlVirtualMachineName)
+            .last()
+            .flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Uninstalls and reinstalls the SQL Iaas Extension.
+     *
+     * @param resourceGroupName Name of the resource group that contains the resource. You can obtain this value from
+     *     the Azure Resource Manager API or the portal.
+     * @param sqlVirtualMachineName Name of the SQL virtual machine.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return A {@link Mono} that completes when a successful response is received.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Void> redeployAsync(String resourceGroupName, String sqlVirtualMachineName, Context context) {
+        return beginRedeployAsync(resourceGroupName, sqlVirtualMachineName, context)
+            .last()
+            .flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Uninstalls and reinstalls the SQL Iaas Extension.
+     *
+     * @param resourceGroupName Name of the resource group that contains the resource. You can obtain this value from
+     *     the Azure Resource Manager API or the portal.
+     * @param sqlVirtualMachineName Name of the SQL virtual machine.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public void redeploy(String resourceGroupName, String sqlVirtualMachineName) {
+        redeployAsync(resourceGroupName, sqlVirtualMachineName).block();
+    }
+
+    /**
+     * Uninstalls and reinstalls the SQL Iaas Extension.
+     *
+     * @param resourceGroupName Name of the resource group that contains the resource. You can obtain this value from
+     *     the Azure Resource Manager API or the portal.
+     * @param sqlVirtualMachineName Name of the SQL virtual machine.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public void redeploy(String resourceGroupName, String sqlVirtualMachineName, Context context) {
+        redeployAsync(resourceGroupName, sqlVirtualMachineName, context).block();
+    }
+
+    /**
      * Starts Assessment on SQL virtual machine.
      *
      * @param resourceGroupName Name of the resource group that contains the resource. You can obtain this value from
@@ -2225,7 +2208,8 @@ public final class SqlVirtualMachinesClientImpl implements SqlVirtualMachinesCli
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -2260,7 +2244,8 @@ public final class SqlVirtualMachinesClientImpl implements SqlVirtualMachinesCli
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -2297,7 +2282,8 @@ public final class SqlVirtualMachinesClientImpl implements SqlVirtualMachinesCli
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -2332,7 +2318,8 @@ public final class SqlVirtualMachinesClientImpl implements SqlVirtualMachinesCli
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -2368,7 +2355,8 @@ public final class SqlVirtualMachinesClientImpl implements SqlVirtualMachinesCli
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -2404,7 +2392,8 @@ public final class SqlVirtualMachinesClientImpl implements SqlVirtualMachinesCli
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
