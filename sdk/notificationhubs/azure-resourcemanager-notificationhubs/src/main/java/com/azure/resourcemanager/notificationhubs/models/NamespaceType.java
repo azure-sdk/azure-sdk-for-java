@@ -7,7 +7,7 @@ package com.azure.resourcemanager.notificationhubs.models;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-/** Defines values for NamespaceType. */
+/** The namespace type. */
 public enum NamespaceType {
     /** Enum value Messaging. */
     MESSAGING("Messaging"),
@@ -30,6 +30,9 @@ public enum NamespaceType {
      */
     @JsonCreator
     public static NamespaceType fromString(String value) {
+        if (value == null) {
+            return null;
+        }
         NamespaceType[] items = NamespaceType.values();
         for (NamespaceType item : items) {
             if (item.toString().equalsIgnoreCase(value)) {
@@ -39,6 +42,7 @@ public enum NamespaceType {
         return null;
     }
 
+    /** {@inheritDoc} */
     @JsonValue
     @Override
     public String toString() {
