@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for ErrorResponseCode. */
+/** The error response code. */
 public final class ErrorResponseCode extends ExpandableStringEnum<ErrorResponseCode> {
     /** Static value NotSpecified for ErrorResponseCode. */
     public static final ErrorResponseCode NOT_SPECIFIED = fromString("NotSpecified");
@@ -34,7 +34,11 @@ public final class ErrorResponseCode extends ExpandableStringEnum<ErrorResponseC
         return fromString(name, ErrorResponseCode.class);
     }
 
-    /** @return known ErrorResponseCode values. */
+    /**
+     * Gets known ErrorResponseCode values.
+     *
+     * @return known ErrorResponseCode values.
+     */
     public static Collection<ErrorResponseCode> values() {
         return values(ErrorResponseCode.class);
     }
