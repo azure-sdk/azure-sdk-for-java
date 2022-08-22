@@ -31,7 +31,6 @@ import com.azure.core.management.exception.ManagementException;
 import com.azure.core.management.polling.PollResult;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.labservices.fluent.LabsClient;
@@ -44,8 +43,6 @@ import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in LabsClient. */
 public final class LabsClientImpl implements LabsClient {
-    private final ClientLogger logger = new ClientLogger(LabsClientImpl.class);
-
     /** The proxy service used to perform REST calls. */
     private final LabsService service;
 
@@ -207,7 +204,9 @@ public final class LabsClientImpl implements LabsClient {
     }
 
     /**
-     * Returns a list of all labs for a subscription.
+     * Get all labs for a subscription.
+     *
+     * <p>Returns a list of all labs for a subscription.
      *
      * @param filter The filter to apply to the operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -254,7 +253,9 @@ public final class LabsClientImpl implements LabsClient {
     }
 
     /**
-     * Returns a list of all labs for a subscription.
+     * Get all labs for a subscription.
+     *
+     * <p>Returns a list of all labs for a subscription.
      *
      * @param filter The filter to apply to the operation.
      * @param context The context to associate with this operation.
@@ -299,13 +300,15 @@ public final class LabsClientImpl implements LabsClient {
     }
 
     /**
-     * Returns a list of all labs for a subscription.
+     * Get all labs for a subscription.
+     *
+     * <p>Returns a list of all labs for a subscription.
      *
      * @param filter The filter to apply to the operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged list of labs.
+     * @return paged list of labs as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<LabInner> listAsync(String filter) {
@@ -314,11 +317,13 @@ public final class LabsClientImpl implements LabsClient {
     }
 
     /**
-     * Returns a list of all labs for a subscription.
+     * Get all labs for a subscription.
+     *
+     * <p>Returns a list of all labs for a subscription.
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged list of labs.
+     * @return paged list of labs as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<LabInner> listAsync() {
@@ -328,14 +333,16 @@ public final class LabsClientImpl implements LabsClient {
     }
 
     /**
-     * Returns a list of all labs for a subscription.
+     * Get all labs for a subscription.
+     *
+     * <p>Returns a list of all labs for a subscription.
      *
      * @param filter The filter to apply to the operation.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged list of labs.
+     * @return paged list of labs as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<LabInner> listAsync(String filter, Context context) {
@@ -345,11 +352,13 @@ public final class LabsClientImpl implements LabsClient {
     }
 
     /**
-     * Returns a list of all labs for a subscription.
+     * Get all labs for a subscription.
+     *
+     * <p>Returns a list of all labs for a subscription.
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged list of labs.
+     * @return paged list of labs as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<LabInner> list() {
@@ -358,14 +367,16 @@ public final class LabsClientImpl implements LabsClient {
     }
 
     /**
-     * Returns a list of all labs for a subscription.
+     * Get all labs for a subscription.
+     *
+     * <p>Returns a list of all labs for a subscription.
      *
      * @param filter The filter to apply to the operation.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged list of labs.
+     * @return paged list of labs as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<LabInner> list(String filter, Context context) {
@@ -373,7 +384,9 @@ public final class LabsClientImpl implements LabsClient {
     }
 
     /**
-     * Returns a list of all labs in a resource group.
+     * Get all labs for a subscription and resource group.
+     *
+     * <p>Returns a list of all labs in a resource group.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -424,7 +437,9 @@ public final class LabsClientImpl implements LabsClient {
     }
 
     /**
-     * Returns a list of all labs in a resource group.
+     * Get all labs for a subscription and resource group.
+     *
+     * <p>Returns a list of all labs in a resource group.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param context The context to associate with this operation.
@@ -474,13 +489,15 @@ public final class LabsClientImpl implements LabsClient {
     }
 
     /**
-     * Returns a list of all labs in a resource group.
+     * Get all labs for a subscription and resource group.
+     *
+     * <p>Returns a list of all labs in a resource group.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged list of labs.
+     * @return paged list of labs as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<LabInner> listByResourceGroupAsync(String resourceGroupName) {
@@ -490,14 +507,16 @@ public final class LabsClientImpl implements LabsClient {
     }
 
     /**
-     * Returns a list of all labs in a resource group.
+     * Get all labs for a subscription and resource group.
+     *
+     * <p>Returns a list of all labs in a resource group.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged list of labs.
+     * @return paged list of labs as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<LabInner> listByResourceGroupAsync(String resourceGroupName, Context context) {
@@ -507,13 +526,15 @@ public final class LabsClientImpl implements LabsClient {
     }
 
     /**
-     * Returns a list of all labs in a resource group.
+     * Get all labs for a subscription and resource group.
+     *
+     * <p>Returns a list of all labs in a resource group.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged list of labs.
+     * @return paged list of labs as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<LabInner> listByResourceGroup(String resourceGroupName) {
@@ -521,14 +542,16 @@ public final class LabsClientImpl implements LabsClient {
     }
 
     /**
-     * Returns a list of all labs in a resource group.
+     * Get all labs for a subscription and resource group.
+     *
+     * <p>Returns a list of all labs in a resource group.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged list of labs.
+     * @return paged list of labs as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<LabInner> listByResourceGroup(String resourceGroupName, Context context) {
@@ -536,7 +559,9 @@ public final class LabsClientImpl implements LabsClient {
     }
 
     /**
-     * Returns the properties of a lab resource.
+     * Get a lab resource.
+     *
+     * <p>Returns the properties of a lab resource.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab that uniquely identifies it within containing lab account. Used in resource
@@ -584,7 +609,9 @@ public final class LabsClientImpl implements LabsClient {
     }
 
     /**
-     * Returns the properties of a lab resource.
+     * Get a lab resource.
+     *
+     * <p>Returns the properties of a lab resource.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab that uniquely identifies it within containing lab account. Used in resource
@@ -631,7 +658,9 @@ public final class LabsClientImpl implements LabsClient {
     }
 
     /**
-     * Returns the properties of a lab resource.
+     * Get a lab resource.
+     *
+     * <p>Returns the properties of a lab resource.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab that uniquely identifies it within containing lab account. Used in resource
@@ -644,18 +673,13 @@ public final class LabsClientImpl implements LabsClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<LabInner> getByResourceGroupAsync(String resourceGroupName, String labName) {
         return getByResourceGroupWithResponseAsync(resourceGroupName, labName)
-            .flatMap(
-                (Response<LabInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
-     * Returns the properties of a lab resource.
+     * Get a lab resource.
+     *
+     * <p>Returns the properties of a lab resource.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab that uniquely identifies it within containing lab account. Used in resource
@@ -671,7 +695,9 @@ public final class LabsClientImpl implements LabsClient {
     }
 
     /**
-     * Returns the properties of a lab resource.
+     * Get a lab resource.
+     *
+     * <p>Returns the properties of a lab resource.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab that uniquely identifies it within containing lab account. Used in resource
@@ -689,7 +715,9 @@ public final class LabsClientImpl implements LabsClient {
     }
 
     /**
-     * Operation to create or update a lab resource.
+     * Create or update a lab resource.
+     *
+     * <p>Operation to create or update a lab resource.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab that uniquely identifies it within containing lab account. Used in resource
@@ -745,7 +773,9 @@ public final class LabsClientImpl implements LabsClient {
     }
 
     /**
-     * Operation to create or update a lab resource.
+     * Create or update a lab resource.
+     *
+     * <p>Operation to create or update a lab resource.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab that uniquely identifies it within containing lab account. Used in resource
@@ -799,7 +829,9 @@ public final class LabsClientImpl implements LabsClient {
     }
 
     /**
-     * Operation to create or update a lab resource.
+     * Create or update a lab resource.
+     *
+     * <p>Operation to create or update a lab resource.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab that uniquely identifies it within containing lab account. Used in resource
@@ -808,7 +840,7 @@ public final class LabsClientImpl implements LabsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the lab resource along with {@link Response} on successful completion of {@link Mono}.
+     * @return the {@link PollerFlux} for polling of the lab resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<LabInner>, LabInner> beginCreateOrUpdateAsync(
@@ -821,7 +853,9 @@ public final class LabsClientImpl implements LabsClient {
     }
 
     /**
-     * Operation to create or update a lab resource.
+     * Create or update a lab resource.
+     *
+     * <p>Operation to create or update a lab resource.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab that uniquely identifies it within containing lab account. Used in resource
@@ -831,7 +865,7 @@ public final class LabsClientImpl implements LabsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the lab resource along with {@link Response} on successful completion of {@link Mono}.
+     * @return the {@link PollerFlux} for polling of the lab resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<LabInner>, LabInner> beginCreateOrUpdateAsync(
@@ -846,7 +880,9 @@ public final class LabsClientImpl implements LabsClient {
     }
 
     /**
-     * Operation to create or update a lab resource.
+     * Create or update a lab resource.
+     *
+     * <p>Operation to create or update a lab resource.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab that uniquely identifies it within containing lab account. Used in resource
@@ -855,7 +891,7 @@ public final class LabsClientImpl implements LabsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the lab resource along with {@link Response} on successful completion of {@link Mono}.
+     * @return the {@link SyncPoller} for polling of the lab resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<LabInner>, LabInner> beginCreateOrUpdate(
@@ -864,7 +900,9 @@ public final class LabsClientImpl implements LabsClient {
     }
 
     /**
-     * Operation to create or update a lab resource.
+     * Create or update a lab resource.
+     *
+     * <p>Operation to create or update a lab resource.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab that uniquely identifies it within containing lab account. Used in resource
@@ -874,7 +912,7 @@ public final class LabsClientImpl implements LabsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the lab resource along with {@link Response} on successful completion of {@link Mono}.
+     * @return the {@link SyncPoller} for polling of the lab resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<LabInner>, LabInner> beginCreateOrUpdate(
@@ -883,7 +921,9 @@ public final class LabsClientImpl implements LabsClient {
     }
 
     /**
-     * Operation to create or update a lab resource.
+     * Create or update a lab resource.
+     *
+     * <p>Operation to create or update a lab resource.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab that uniquely identifies it within containing lab account. Used in resource
@@ -902,7 +942,9 @@ public final class LabsClientImpl implements LabsClient {
     }
 
     /**
-     * Operation to create or update a lab resource.
+     * Create or update a lab resource.
+     *
+     * <p>Operation to create or update a lab resource.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab that uniquely identifies it within containing lab account. Used in resource
@@ -923,7 +965,9 @@ public final class LabsClientImpl implements LabsClient {
     }
 
     /**
-     * Operation to create or update a lab resource.
+     * Create or update a lab resource.
+     *
+     * <p>Operation to create or update a lab resource.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab that uniquely identifies it within containing lab account. Used in resource
@@ -940,7 +984,9 @@ public final class LabsClientImpl implements LabsClient {
     }
 
     /**
-     * Operation to create or update a lab resource.
+     * Create or update a lab resource.
+     *
+     * <p>Operation to create or update a lab resource.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab that uniquely identifies it within containing lab account. Used in resource
@@ -958,7 +1004,9 @@ public final class LabsClientImpl implements LabsClient {
     }
 
     /**
-     * Operation to update a lab resource.
+     * Update a lab resource.
+     *
+     * <p>Operation to update a lab resource.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab that uniquely identifies it within containing lab account. Used in resource
@@ -1014,7 +1062,9 @@ public final class LabsClientImpl implements LabsClient {
     }
 
     /**
-     * Operation to update a lab resource.
+     * Update a lab resource.
+     *
+     * <p>Operation to update a lab resource.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab that uniquely identifies it within containing lab account. Used in resource
@@ -1068,7 +1118,9 @@ public final class LabsClientImpl implements LabsClient {
     }
 
     /**
-     * Operation to update a lab resource.
+     * Update a lab resource.
+     *
+     * <p>Operation to update a lab resource.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab that uniquely identifies it within containing lab account. Used in resource
@@ -1077,7 +1129,7 @@ public final class LabsClientImpl implements LabsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the lab resource along with {@link Response} on successful completion of {@link Mono}.
+     * @return the {@link PollerFlux} for polling of the lab resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<LabInner>, LabInner> beginUpdateAsync(
@@ -1090,7 +1142,9 @@ public final class LabsClientImpl implements LabsClient {
     }
 
     /**
-     * Operation to update a lab resource.
+     * Update a lab resource.
+     *
+     * <p>Operation to update a lab resource.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab that uniquely identifies it within containing lab account. Used in resource
@@ -1100,7 +1154,7 @@ public final class LabsClientImpl implements LabsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the lab resource along with {@link Response} on successful completion of {@link Mono}.
+     * @return the {@link PollerFlux} for polling of the lab resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<LabInner>, LabInner> beginUpdateAsync(
@@ -1114,7 +1168,9 @@ public final class LabsClientImpl implements LabsClient {
     }
 
     /**
-     * Operation to update a lab resource.
+     * Update a lab resource.
+     *
+     * <p>Operation to update a lab resource.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab that uniquely identifies it within containing lab account. Used in resource
@@ -1123,7 +1179,7 @@ public final class LabsClientImpl implements LabsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the lab resource along with {@link Response} on successful completion of {@link Mono}.
+     * @return the {@link SyncPoller} for polling of the lab resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<LabInner>, LabInner> beginUpdate(
@@ -1132,7 +1188,9 @@ public final class LabsClientImpl implements LabsClient {
     }
 
     /**
-     * Operation to update a lab resource.
+     * Update a lab resource.
+     *
+     * <p>Operation to update a lab resource.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab that uniquely identifies it within containing lab account. Used in resource
@@ -1142,7 +1200,7 @@ public final class LabsClientImpl implements LabsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the lab resource along with {@link Response} on successful completion of {@link Mono}.
+     * @return the {@link SyncPoller} for polling of the lab resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<LabInner>, LabInner> beginUpdate(
@@ -1151,7 +1209,9 @@ public final class LabsClientImpl implements LabsClient {
     }
 
     /**
-     * Operation to update a lab resource.
+     * Update a lab resource.
+     *
+     * <p>Operation to update a lab resource.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab that uniquely identifies it within containing lab account. Used in resource
@@ -1168,7 +1228,9 @@ public final class LabsClientImpl implements LabsClient {
     }
 
     /**
-     * Operation to update a lab resource.
+     * Update a lab resource.
+     *
+     * <p>Operation to update a lab resource.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab that uniquely identifies it within containing lab account. Used in resource
@@ -1188,7 +1250,9 @@ public final class LabsClientImpl implements LabsClient {
     }
 
     /**
-     * Operation to update a lab resource.
+     * Update a lab resource.
+     *
+     * <p>Operation to update a lab resource.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab that uniquely identifies it within containing lab account. Used in resource
@@ -1205,7 +1269,9 @@ public final class LabsClientImpl implements LabsClient {
     }
 
     /**
-     * Operation to update a lab resource.
+     * Update a lab resource.
+     *
+     * <p>Operation to update a lab resource.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab that uniquely identifies it within containing lab account. Used in resource
@@ -1223,7 +1289,9 @@ public final class LabsClientImpl implements LabsClient {
     }
 
     /**
-     * Operation to delete a lab resource.
+     * Deletes a lab resource.
+     *
+     * <p>Operation to delete a lab resource.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab that uniquely identifies it within containing lab account. Used in resource
@@ -1271,7 +1339,9 @@ public final class LabsClientImpl implements LabsClient {
     }
 
     /**
-     * Operation to delete a lab resource.
+     * Deletes a lab resource.
+     *
+     * <p>Operation to delete a lab resource.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab that uniquely identifies it within containing lab account. Used in resource
@@ -1318,7 +1388,9 @@ public final class LabsClientImpl implements LabsClient {
     }
 
     /**
-     * Operation to delete a lab resource.
+     * Deletes a lab resource.
+     *
+     * <p>Operation to delete a lab resource.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab that uniquely identifies it within containing lab account. Used in resource
@@ -1326,7 +1398,7 @@ public final class LabsClientImpl implements LabsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the {@link PollerFlux} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(String resourceGroupName, String labName) {
@@ -1338,7 +1410,9 @@ public final class LabsClientImpl implements LabsClient {
     }
 
     /**
-     * Operation to delete a lab resource.
+     * Deletes a lab resource.
+     *
+     * <p>Operation to delete a lab resource.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab that uniquely identifies it within containing lab account. Used in resource
@@ -1347,7 +1421,7 @@ public final class LabsClientImpl implements LabsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the {@link PollerFlux} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(
@@ -1360,7 +1434,9 @@ public final class LabsClientImpl implements LabsClient {
     }
 
     /**
-     * Operation to delete a lab resource.
+     * Deletes a lab resource.
+     *
+     * <p>Operation to delete a lab resource.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab that uniquely identifies it within containing lab account. Used in resource
@@ -1368,7 +1444,7 @@ public final class LabsClientImpl implements LabsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String labName) {
@@ -1376,7 +1452,9 @@ public final class LabsClientImpl implements LabsClient {
     }
 
     /**
-     * Operation to delete a lab resource.
+     * Deletes a lab resource.
+     *
+     * <p>Operation to delete a lab resource.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab that uniquely identifies it within containing lab account. Used in resource
@@ -1385,7 +1463,7 @@ public final class LabsClientImpl implements LabsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String labName, Context context) {
@@ -1393,7 +1471,9 @@ public final class LabsClientImpl implements LabsClient {
     }
 
     /**
-     * Operation to delete a lab resource.
+     * Deletes a lab resource.
+     *
+     * <p>Operation to delete a lab resource.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab that uniquely identifies it within containing lab account. Used in resource
@@ -1409,7 +1489,9 @@ public final class LabsClientImpl implements LabsClient {
     }
 
     /**
-     * Operation to delete a lab resource.
+     * Deletes a lab resource.
+     *
+     * <p>Operation to delete a lab resource.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab that uniquely identifies it within containing lab account. Used in resource
@@ -1428,7 +1510,9 @@ public final class LabsClientImpl implements LabsClient {
     }
 
     /**
-     * Operation to delete a lab resource.
+     * Deletes a lab resource.
+     *
+     * <p>Operation to delete a lab resource.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab that uniquely identifies it within containing lab account. Used in resource
@@ -1443,7 +1527,9 @@ public final class LabsClientImpl implements LabsClient {
     }
 
     /**
-     * Operation to delete a lab resource.
+     * Deletes a lab resource.
+     *
+     * <p>Operation to delete a lab resource.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab that uniquely identifies it within containing lab account. Used in resource
@@ -1459,7 +1545,9 @@ public final class LabsClientImpl implements LabsClient {
     }
 
     /**
-     * Publish or re-publish a lab. This will create or update all lab resources, such as virtual machines.
+     * Publish or re-publish a lab.
+     *
+     * <p>Publish or re-publish a lab. This will create or update all lab resources, such as virtual machines.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab that uniquely identifies it within containing lab account. Used in resource
@@ -1507,7 +1595,9 @@ public final class LabsClientImpl implements LabsClient {
     }
 
     /**
-     * Publish or re-publish a lab. This will create or update all lab resources, such as virtual machines.
+     * Publish or re-publish a lab.
+     *
+     * <p>Publish or re-publish a lab. This will create or update all lab resources, such as virtual machines.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab that uniquely identifies it within containing lab account. Used in resource
@@ -1554,7 +1644,9 @@ public final class LabsClientImpl implements LabsClient {
     }
 
     /**
-     * Publish or re-publish a lab. This will create or update all lab resources, such as virtual machines.
+     * Publish or re-publish a lab.
+     *
+     * <p>Publish or re-publish a lab. This will create or update all lab resources, such as virtual machines.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab that uniquely identifies it within containing lab account. Used in resource
@@ -1562,7 +1654,7 @@ public final class LabsClientImpl implements LabsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the {@link PollerFlux} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<Void>, Void> beginPublishAsync(String resourceGroupName, String labName) {
@@ -1574,7 +1666,9 @@ public final class LabsClientImpl implements LabsClient {
     }
 
     /**
-     * Publish or re-publish a lab. This will create or update all lab resources, such as virtual machines.
+     * Publish or re-publish a lab.
+     *
+     * <p>Publish or re-publish a lab. This will create or update all lab resources, such as virtual machines.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab that uniquely identifies it within containing lab account. Used in resource
@@ -1583,7 +1677,7 @@ public final class LabsClientImpl implements LabsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the {@link PollerFlux} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<Void>, Void> beginPublishAsync(
@@ -1596,7 +1690,9 @@ public final class LabsClientImpl implements LabsClient {
     }
 
     /**
-     * Publish or re-publish a lab. This will create or update all lab resources, such as virtual machines.
+     * Publish or re-publish a lab.
+     *
+     * <p>Publish or re-publish a lab. This will create or update all lab resources, such as virtual machines.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab that uniquely identifies it within containing lab account. Used in resource
@@ -1604,7 +1700,7 @@ public final class LabsClientImpl implements LabsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginPublish(String resourceGroupName, String labName) {
@@ -1612,7 +1708,9 @@ public final class LabsClientImpl implements LabsClient {
     }
 
     /**
-     * Publish or re-publish a lab. This will create or update all lab resources, such as virtual machines.
+     * Publish or re-publish a lab.
+     *
+     * <p>Publish or re-publish a lab. This will create or update all lab resources, such as virtual machines.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab that uniquely identifies it within containing lab account. Used in resource
@@ -1621,7 +1719,7 @@ public final class LabsClientImpl implements LabsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginPublish(String resourceGroupName, String labName, Context context) {
@@ -1629,7 +1727,9 @@ public final class LabsClientImpl implements LabsClient {
     }
 
     /**
-     * Publish or re-publish a lab. This will create or update all lab resources, such as virtual machines.
+     * Publish or re-publish a lab.
+     *
+     * <p>Publish or re-publish a lab. This will create or update all lab resources, such as virtual machines.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab that uniquely identifies it within containing lab account. Used in resource
@@ -1645,7 +1745,9 @@ public final class LabsClientImpl implements LabsClient {
     }
 
     /**
-     * Publish or re-publish a lab. This will create or update all lab resources, such as virtual machines.
+     * Publish or re-publish a lab.
+     *
+     * <p>Publish or re-publish a lab. This will create or update all lab resources, such as virtual machines.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab that uniquely identifies it within containing lab account. Used in resource
@@ -1664,7 +1766,9 @@ public final class LabsClientImpl implements LabsClient {
     }
 
     /**
-     * Publish or re-publish a lab. This will create or update all lab resources, such as virtual machines.
+     * Publish or re-publish a lab.
+     *
+     * <p>Publish or re-publish a lab. This will create or update all lab resources, such as virtual machines.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab that uniquely identifies it within containing lab account. Used in resource
@@ -1679,7 +1783,9 @@ public final class LabsClientImpl implements LabsClient {
     }
 
     /**
-     * Publish or re-publish a lab. This will create or update all lab resources, such as virtual machines.
+     * Publish or re-publish a lab.
+     *
+     * <p>Publish or re-publish a lab. This will create or update all lab resources, such as virtual machines.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab that uniquely identifies it within containing lab account. Used in resource
@@ -1695,7 +1801,9 @@ public final class LabsClientImpl implements LabsClient {
     }
 
     /**
-     * Action used to manually kick off an AAD group sync job.
+     * Manually sync the lab group.
+     *
+     * <p>Action used to manually kick off an AAD group sync job.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab that uniquely identifies it within containing lab account. Used in resource
@@ -1743,7 +1851,9 @@ public final class LabsClientImpl implements LabsClient {
     }
 
     /**
-     * Action used to manually kick off an AAD group sync job.
+     * Manually sync the lab group.
+     *
+     * <p>Action used to manually kick off an AAD group sync job.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab that uniquely identifies it within containing lab account. Used in resource
@@ -1790,7 +1900,9 @@ public final class LabsClientImpl implements LabsClient {
     }
 
     /**
-     * Action used to manually kick off an AAD group sync job.
+     * Manually sync the lab group.
+     *
+     * <p>Action used to manually kick off an AAD group sync job.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab that uniquely identifies it within containing lab account. Used in resource
@@ -1798,7 +1910,7 @@ public final class LabsClientImpl implements LabsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the {@link PollerFlux} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<Void>, Void> beginSyncGroupAsync(String resourceGroupName, String labName) {
@@ -1810,7 +1922,9 @@ public final class LabsClientImpl implements LabsClient {
     }
 
     /**
-     * Action used to manually kick off an AAD group sync job.
+     * Manually sync the lab group.
+     *
+     * <p>Action used to manually kick off an AAD group sync job.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab that uniquely identifies it within containing lab account. Used in resource
@@ -1819,7 +1933,7 @@ public final class LabsClientImpl implements LabsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the {@link PollerFlux} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<Void>, Void> beginSyncGroupAsync(
@@ -1832,7 +1946,9 @@ public final class LabsClientImpl implements LabsClient {
     }
 
     /**
-     * Action used to manually kick off an AAD group sync job.
+     * Manually sync the lab group.
+     *
+     * <p>Action used to manually kick off an AAD group sync job.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab that uniquely identifies it within containing lab account. Used in resource
@@ -1840,7 +1956,7 @@ public final class LabsClientImpl implements LabsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginSyncGroup(String resourceGroupName, String labName) {
@@ -1848,7 +1964,9 @@ public final class LabsClientImpl implements LabsClient {
     }
 
     /**
-     * Action used to manually kick off an AAD group sync job.
+     * Manually sync the lab group.
+     *
+     * <p>Action used to manually kick off an AAD group sync job.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab that uniquely identifies it within containing lab account. Used in resource
@@ -1857,7 +1975,7 @@ public final class LabsClientImpl implements LabsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginSyncGroup(
@@ -1866,7 +1984,9 @@ public final class LabsClientImpl implements LabsClient {
     }
 
     /**
-     * Action used to manually kick off an AAD group sync job.
+     * Manually sync the lab group.
+     *
+     * <p>Action used to manually kick off an AAD group sync job.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab that uniquely identifies it within containing lab account. Used in resource
@@ -1882,7 +2002,9 @@ public final class LabsClientImpl implements LabsClient {
     }
 
     /**
-     * Action used to manually kick off an AAD group sync job.
+     * Manually sync the lab group.
+     *
+     * <p>Action used to manually kick off an AAD group sync job.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab that uniquely identifies it within containing lab account. Used in resource
@@ -1901,7 +2023,9 @@ public final class LabsClientImpl implements LabsClient {
     }
 
     /**
-     * Action used to manually kick off an AAD group sync job.
+     * Manually sync the lab group.
+     *
+     * <p>Action used to manually kick off an AAD group sync job.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab that uniquely identifies it within containing lab account. Used in resource
@@ -1916,7 +2040,9 @@ public final class LabsClientImpl implements LabsClient {
     }
 
     /**
-     * Action used to manually kick off an AAD group sync job.
+     * Manually sync the lab group.
+     *
+     * <p>Action used to manually kick off an AAD group sync job.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab that uniquely identifies it within containing lab account. Used in resource
@@ -1934,7 +2060,8 @@ public final class LabsClientImpl implements LabsClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1970,7 +2097,8 @@ public final class LabsClientImpl implements LabsClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -2006,7 +2134,8 @@ public final class LabsClientImpl implements LabsClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -2042,7 +2171,8 @@ public final class LabsClientImpl implements LabsClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.

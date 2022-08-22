@@ -11,7 +11,9 @@ import com.azure.core.util.Context;
 /** Resource collection API of Schedules. */
 public interface Schedules {
     /**
-     * Returns a list of all schedules for a lab.
+     * Get all schedules for a lab.
+     *
+     * <p>Returns a list of all schedules for a lab.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab that uniquely identifies it within containing lab account. Used in resource
@@ -19,12 +21,14 @@ public interface Schedules {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged list of schedules.
+     * @return paged list of schedules as paginated response with {@link PagedIterable}.
      */
     PagedIterable<Schedule> listByLab(String resourceGroupName, String labName);
 
     /**
-     * Returns a list of all schedules for a lab.
+     * Get all schedules for a lab.
+     *
+     * <p>Returns a list of all schedules for a lab.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab that uniquely identifies it within containing lab account. Used in resource
@@ -34,12 +38,14 @@ public interface Schedules {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged list of schedules.
+     * @return paged list of schedules as paginated response with {@link PagedIterable}.
      */
     PagedIterable<Schedule> listByLab(String resourceGroupName, String labName, String filter, Context context);
 
     /**
-     * Returns the properties of a lab Schedule.
+     * Get a lab Schedule.
+     *
+     * <p>Returns the properties of a lab Schedule.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab that uniquely identifies it within containing lab account. Used in resource
@@ -54,7 +60,9 @@ public interface Schedules {
     Schedule get(String resourceGroupName, String labName, String scheduleName);
 
     /**
-     * Returns the properties of a lab Schedule.
+     * Get a lab Schedule.
+     *
+     * <p>Returns the properties of a lab Schedule.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab that uniquely identifies it within containing lab account. Used in resource
@@ -71,7 +79,9 @@ public interface Schedules {
     Response<Schedule> getWithResponse(String resourceGroupName, String labName, String scheduleName, Context context);
 
     /**
-     * Operation to delete a schedule resource.
+     * Deletes a schedule resource.
+     *
+     * <p>Operation to delete a schedule resource.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab that uniquely identifies it within containing lab account. Used in resource
@@ -85,7 +95,9 @@ public interface Schedules {
     void delete(String resourceGroupName, String labName, String scheduleName);
 
     /**
-     * Operation to delete a schedule resource.
+     * Deletes a schedule resource.
+     *
+     * <p>Operation to delete a schedule resource.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab that uniquely identifies it within containing lab account. Used in resource
@@ -100,7 +112,9 @@ public interface Schedules {
     void delete(String resourceGroupName, String labName, String scheduleName, Context context);
 
     /**
-     * Returns the properties of a lab Schedule.
+     * Get a lab Schedule.
+     *
+     * <p>Returns the properties of a lab Schedule.
      *
      * @param id the resource ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -112,7 +126,9 @@ public interface Schedules {
     Schedule getById(String id);
 
     /**
-     * Returns the properties of a lab Schedule.
+     * Get a lab Schedule.
+     *
+     * <p>Returns the properties of a lab Schedule.
      *
      * @param id the resource ID.
      * @param context The context to associate with this operation.
@@ -125,7 +141,9 @@ public interface Schedules {
     Response<Schedule> getByIdWithResponse(String id, Context context);
 
     /**
-     * Operation to delete a schedule resource.
+     * Deletes a schedule resource.
+     *
+     * <p>Operation to delete a schedule resource.
      *
      * @param id the resource ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -135,7 +153,9 @@ public interface Schedules {
     void deleteById(String id);
 
     /**
-     * Operation to delete a schedule resource.
+     * Deletes a schedule resource.
+     *
+     * <p>Operation to delete a schedule resource.
      *
      * @param id the resource ID.
      * @param context The context to associate with this operation.
