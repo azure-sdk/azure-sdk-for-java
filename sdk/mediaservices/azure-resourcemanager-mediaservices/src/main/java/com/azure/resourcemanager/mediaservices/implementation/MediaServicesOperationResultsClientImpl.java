@@ -72,7 +72,9 @@ public final class MediaServicesOperationResultsClientImpl implements MediaServi
     }
 
     /**
-     * Get media service operation result.
+     * Get operation result.
+     *
+     * <p>Get media service operation result.
      *
      * @param locationName Location name.
      * @param operationId Operation Id.
@@ -119,7 +121,9 @@ public final class MediaServicesOperationResultsClientImpl implements MediaServi
     }
 
     /**
-     * Get media service operation result.
+     * Get operation result.
+     *
+     * <p>Get media service operation result.
      *
      * @param locationName Location name.
      * @param operationId Operation Id.
@@ -164,7 +168,9 @@ public final class MediaServicesOperationResultsClientImpl implements MediaServi
     }
 
     /**
-     * Get media service operation result.
+     * Get operation result.
+     *
+     * <p>Get media service operation result.
      *
      * @param locationName Location name.
      * @param operationId Operation Id.
@@ -179,7 +185,9 @@ public final class MediaServicesOperationResultsClientImpl implements MediaServi
     }
 
     /**
-     * Get media service operation result.
+     * Get operation result.
+     *
+     * <p>Get media service operation result.
      *
      * @param locationName Location name.
      * @param operationId Operation Id.
@@ -194,7 +202,9 @@ public final class MediaServicesOperationResultsClientImpl implements MediaServi
     }
 
     /**
-     * Get media service operation result.
+     * Get operation result.
+     *
+     * <p>Get media service operation result.
      *
      * @param locationName Location name.
      * @param operationId Operation Id.

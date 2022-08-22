@@ -69,7 +69,9 @@ public final class LocationsClientImpl implements LocationsClient {
     }
 
     /**
-     * Checks whether the Media Service resource name is available.
+     * Check Name Availability
+     *
+     * <p>Checks whether the Media Service resource name is available.
      *
      * @param locationName Location name.
      * @param parameters The request parameters.
@@ -119,7 +121,9 @@ public final class LocationsClientImpl implements LocationsClient {
     }
 
     /**
-     * Checks whether the Media Service resource name is available.
+     * Check Name Availability
+     *
+     * <p>Checks whether the Media Service resource name is available.
      *
      * @param locationName Location name.
      * @param parameters The request parameters.
@@ -167,7 +171,9 @@ public final class LocationsClientImpl implements LocationsClient {
     }
 
     /**
-     * Checks whether the Media Service resource name is available.
+     * Check Name Availability
+     *
+     * <p>Checks whether the Media Service resource name is available.
      *
      * @param locationName Location name.
      * @param parameters The request parameters.
@@ -184,7 +190,9 @@ public final class LocationsClientImpl implements LocationsClient {
     }
 
     /**
-     * Checks whether the Media Service resource name is available.
+     * Check Name Availability
+     *
+     * <p>Checks whether the Media Service resource name is available.
      *
      * @param locationName Location name.
      * @param parameters The request parameters.
@@ -200,7 +208,9 @@ public final class LocationsClientImpl implements LocationsClient {
     }
 
     /**
-     * Checks whether the Media Service resource name is available.
+     * Check Name Availability
+     *
+     * <p>Checks whether the Media Service resource name is available.
      *
      * @param locationName Location name.
      * @param parameters The request parameters.

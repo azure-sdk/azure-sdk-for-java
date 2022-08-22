@@ -24,8 +24,7 @@ public final class CommonEncryptionCenc {
     private List<TrackSelection> clearTracks;
 
     /*
-     * Representing default content key for each encryption scheme and separate
-     * content keys for specific tracks
+     * Representing default content key for each encryption scheme and separate content keys for specific tracks
      */
     @JsonProperty(value = "contentKeys")
     private StreamingPolicyContentKeys contentKeys;

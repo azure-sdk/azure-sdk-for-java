@@ -227,7 +227,9 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
     }
 
     /**
-     * Lists the streaming endpoints in the account.
+     * List StreamingEndpoints
+     *
+     * <p>Lists the streaming endpoints in the account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -284,7 +286,9 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
     }
 
     /**
-     * Lists the streaming endpoints in the account.
+     * List StreamingEndpoints
+     *
+     * <p>Lists the streaming endpoints in the account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -339,7 +343,9 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
     }
 
     /**
-     * Lists the streaming endpoints in the account.
+     * List StreamingEndpoints
+     *
+     * <p>Lists the streaming endpoints in the account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -355,7 +361,9 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
     }
 
     /**
-     * Lists the streaming endpoints in the account.
+     * List StreamingEndpoints
+     *
+     * <p>Lists the streaming endpoints in the account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -373,7 +381,9 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
     }
 
     /**
-     * Lists the streaming endpoints in the account.
+     * List StreamingEndpoints
+     *
+     * <p>Lists the streaming endpoints in the account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -388,7 +398,9 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
     }
 
     /**
-     * Lists the streaming endpoints in the account.
+     * List StreamingEndpoints
+     *
+     * <p>Lists the streaming endpoints in the account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -404,7 +416,9 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
     }
 
     /**
-     * Gets a streaming endpoint.
+     * Get StreamingEndpoint
+     *
+     * <p>Gets a streaming endpoint.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -458,7 +472,9 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
     }
 
     /**
-     * Gets a streaming endpoint.
+     * Get StreamingEndpoint
+     *
+     * <p>Gets a streaming endpoint.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -510,7 +526,9 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
     }
 
     /**
-     * Gets a streaming endpoint.
+     * Get StreamingEndpoint
+     *
+     * <p>Gets a streaming endpoint.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -528,7 +546,9 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
     }
 
     /**
-     * Gets a streaming endpoint.
+     * Get StreamingEndpoint
+     *
+     * <p>Gets a streaming endpoint.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -544,7 +564,9 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
     }
 
     /**
-     * Gets a streaming endpoint.
+     * Get StreamingEndpoint
+     *
+     * <p>Gets a streaming endpoint.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -562,7 +584,9 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
     }
 
     /**
-     * Creates a streaming endpoint.
+     * Create StreamingEndpoint
+     *
+     * <p>Creates a streaming endpoint.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -629,7 +653,9 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
     }
 
     /**
-     * Creates a streaming endpoint.
+     * Create StreamingEndpoint
+     *
+     * <p>Creates a streaming endpoint.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -695,7 +721,9 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
     }
 
     /**
-     * Creates a streaming endpoint.
+     * Create StreamingEndpoint
+     *
+     * <p>Creates a streaming endpoint.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -727,7 +755,9 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
     }
 
     /**
-     * Creates a streaming endpoint.
+     * Create StreamingEndpoint
+     *
+     * <p>Creates a streaming endpoint.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -763,7 +793,9 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
     }
 
     /**
-     * Creates a streaming endpoint.
+     * Create StreamingEndpoint
+     *
+     * <p>Creates a streaming endpoint.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -787,7 +819,9 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
     }
 
     /**
-     * Creates a streaming endpoint.
+     * Create StreamingEndpoint
+     *
+     * <p>Creates a streaming endpoint.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -813,7 +847,9 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
     }
 
     /**
-     * Creates a streaming endpoint.
+     * Create StreamingEndpoint
+     *
+     * <p>Creates a streaming endpoint.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -838,7 +874,9 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
     }
 
     /**
-     * Creates a streaming endpoint.
+     * Create StreamingEndpoint
+     *
+     * <p>Creates a streaming endpoint.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -859,7 +897,9 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
     }
 
     /**
-     * Creates a streaming endpoint.
+     * Create StreamingEndpoint
+     *
+     * <p>Creates a streaming endpoint.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -886,7 +926,9 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
     }
 
     /**
-     * Creates a streaming endpoint.
+     * Create StreamingEndpoint
+     *
+     * <p>Creates a streaming endpoint.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -909,7 +951,9 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
     }
 
     /**
-     * Creates a streaming endpoint.
+     * Create StreamingEndpoint
+     *
+     * <p>Creates a streaming endpoint.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -928,7 +972,9 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
     }
 
     /**
-     * Creates a streaming endpoint.
+     * Create StreamingEndpoint
+     *
+     * <p>Creates a streaming endpoint.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -954,7 +1000,9 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
     }
 
     /**
-     * Updates a existing streaming endpoint.
+     * Update StreamingEndpoint
+     *
+     * <p>Updates a existing streaming endpoint.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1015,7 +1063,9 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
     }
 
     /**
-     * Updates a existing streaming endpoint.
+     * Update StreamingEndpoint
+     *
+     * <p>Updates a existing streaming endpoint.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1078,7 +1128,9 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
     }
 
     /**
-     * Updates a existing streaming endpoint.
+     * Update StreamingEndpoint
+     *
+     * <p>Updates a existing streaming endpoint.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1105,7 +1157,9 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
     }
 
     /**
-     * Updates a existing streaming endpoint.
+     * Update StreamingEndpoint
+     *
+     * <p>Updates a existing streaming endpoint.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1138,7 +1192,9 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
     }
 
     /**
-     * Updates a existing streaming endpoint.
+     * Update StreamingEndpoint
+     *
+     * <p>Updates a existing streaming endpoint.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1156,7 +1212,9 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
     }
 
     /**
-     * Updates a existing streaming endpoint.
+     * Update StreamingEndpoint
+     *
+     * <p>Updates a existing streaming endpoint.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1180,7 +1238,9 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
     }
 
     /**
-     * Updates a existing streaming endpoint.
+     * Update StreamingEndpoint
+     *
+     * <p>Updates a existing streaming endpoint.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1200,7 +1260,9 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
     }
 
     /**
-     * Updates a existing streaming endpoint.
+     * Update StreamingEndpoint
+     *
+     * <p>Updates a existing streaming endpoint.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1225,7 +1287,9 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
     }
 
     /**
-     * Updates a existing streaming endpoint.
+     * Update StreamingEndpoint
+     *
+     * <p>Updates a existing streaming endpoint.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1243,7 +1307,9 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
     }
 
     /**
-     * Updates a existing streaming endpoint.
+     * Update StreamingEndpoint
+     *
+     * <p>Updates a existing streaming endpoint.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1266,7 +1332,9 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
     }
 
     /**
-     * Deletes a streaming endpoint.
+     * Delete StreamingEndpoint
+     *
+     * <p>Deletes a streaming endpoint.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1320,7 +1388,9 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
     }
 
     /**
-     * Deletes a streaming endpoint.
+     * Delete StreamingEndpoint
+     *
+     * <p>Deletes a streaming endpoint.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1372,7 +1442,9 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
     }
 
     /**
-     * Deletes a streaming endpoint.
+     * Delete StreamingEndpoint
+     *
+     * <p>Deletes a streaming endpoint.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1394,7 +1466,9 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
     }
 
     /**
-     * Deletes a streaming endpoint.
+     * Delete StreamingEndpoint
+     *
+     * <p>Deletes a streaming endpoint.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1417,7 +1491,9 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
     }
 
     /**
-     * Deletes a streaming endpoint.
+     * Delete StreamingEndpoint
+     *
+     * <p>Deletes a streaming endpoint.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1434,7 +1510,9 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
     }
 
     /**
-     * Deletes a streaming endpoint.
+     * Delete StreamingEndpoint
+     *
+     * <p>Deletes a streaming endpoint.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1452,7 +1530,9 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
     }
 
     /**
-     * Deletes a streaming endpoint.
+     * Delete StreamingEndpoint
+     *
+     * <p>Deletes a streaming endpoint.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1470,7 +1550,9 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
     }
 
     /**
-     * Deletes a streaming endpoint.
+     * Delete StreamingEndpoint
+     *
+     * <p>Deletes a streaming endpoint.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1490,7 +1572,9 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
     }
 
     /**
-     * Deletes a streaming endpoint.
+     * Delete StreamingEndpoint
+     *
+     * <p>Deletes a streaming endpoint.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1505,7 +1589,9 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
     }
 
     /**
-     * Deletes a streaming endpoint.
+     * Delete StreamingEndpoint
+     *
+     * <p>Deletes a streaming endpoint.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1521,7 +1607,9 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
     }
 
     /**
-     * List streaming endpoint supported skus.
+     * List StreamingEndpoint skus
+     *
+     * <p>List streaming endpoint supported skus.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1575,7 +1663,9 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
     }
 
     /**
-     * List streaming endpoint supported skus.
+     * List StreamingEndpoint skus
+     *
+     * <p>List streaming endpoint supported skus.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1627,7 +1717,9 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
     }
 
     /**
-     * List streaming endpoint supported skus.
+     * List StreamingEndpoint skus
+     *
+     * <p>List streaming endpoint supported skus.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1645,7 +1737,9 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
     }
 
     /**
-     * List streaming endpoint supported skus.
+     * List StreamingEndpoint skus
+     *
+     * <p>List streaming endpoint supported skus.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1662,7 +1756,9 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
     }
 
     /**
-     * List streaming endpoint supported skus.
+     * List StreamingEndpoint skus
+     *
+     * <p>List streaming endpoint supported skus.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1680,7 +1776,9 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
     }
 
     /**
-     * Starts an existing streaming endpoint.
+     * Start StreamingEndpoint
+     *
+     * <p>Starts an existing streaming endpoint.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1734,7 +1832,9 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
     }
 
     /**
-     * Starts an existing streaming endpoint.
+     * Start StreamingEndpoint
+     *
+     * <p>Starts an existing streaming endpoint.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1786,7 +1886,9 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
     }
 
     /**
-     * Starts an existing streaming endpoint.
+     * Start StreamingEndpoint
+     *
+     * <p>Starts an existing streaming endpoint.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1808,7 +1910,9 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
     }
 
     /**
-     * Starts an existing streaming endpoint.
+     * Start StreamingEndpoint
+     *
+     * <p>Starts an existing streaming endpoint.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1831,7 +1935,9 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
     }
 
     /**
-     * Starts an existing streaming endpoint.
+     * Start StreamingEndpoint
+     *
+     * <p>Starts an existing streaming endpoint.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1848,7 +1954,9 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
     }
 
     /**
-     * Starts an existing streaming endpoint.
+     * Start StreamingEndpoint
+     *
+     * <p>Starts an existing streaming endpoint.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1866,7 +1974,9 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
     }
 
     /**
-     * Starts an existing streaming endpoint.
+     * Start StreamingEndpoint
+     *
+     * <p>Starts an existing streaming endpoint.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1884,7 +1994,9 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
     }
 
     /**
-     * Starts an existing streaming endpoint.
+     * Start StreamingEndpoint
+     *
+     * <p>Starts an existing streaming endpoint.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1904,7 +2016,9 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
     }
 
     /**
-     * Starts an existing streaming endpoint.
+     * Start StreamingEndpoint
+     *
+     * <p>Starts an existing streaming endpoint.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1919,7 +2033,9 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
     }
 
     /**
-     * Starts an existing streaming endpoint.
+     * Start StreamingEndpoint
+     *
+     * <p>Starts an existing streaming endpoint.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1935,7 +2051,9 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
     }
 
     /**
-     * Stops an existing streaming endpoint.
+     * Stop StreamingEndpoint
+     *
+     * <p>Stops an existing streaming endpoint.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1989,7 +2107,9 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
     }
 
     /**
-     * Stops an existing streaming endpoint.
+     * Stop StreamingEndpoint
+     *
+     * <p>Stops an existing streaming endpoint.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -2041,7 +2161,9 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
     }
 
     /**
-     * Stops an existing streaming endpoint.
+     * Stop StreamingEndpoint
+     *
+     * <p>Stops an existing streaming endpoint.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -2063,7 +2185,9 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
     }
 
     /**
-     * Stops an existing streaming endpoint.
+     * Stop StreamingEndpoint
+     *
+     * <p>Stops an existing streaming endpoint.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -2086,7 +2210,9 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
     }
 
     /**
-     * Stops an existing streaming endpoint.
+     * Stop StreamingEndpoint
+     *
+     * <p>Stops an existing streaming endpoint.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -2103,7 +2229,9 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
     }
 
     /**
-     * Stops an existing streaming endpoint.
+     * Stop StreamingEndpoint
+     *
+     * <p>Stops an existing streaming endpoint.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -2121,7 +2249,9 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
     }
 
     /**
-     * Stops an existing streaming endpoint.
+     * Stop StreamingEndpoint
+     *
+     * <p>Stops an existing streaming endpoint.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -2139,7 +2269,9 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
     }
 
     /**
-     * Stops an existing streaming endpoint.
+     * Stop StreamingEndpoint
+     *
+     * <p>Stops an existing streaming endpoint.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -2159,7 +2291,9 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
     }
 
     /**
-     * Stops an existing streaming endpoint.
+     * Stop StreamingEndpoint
+     *
+     * <p>Stops an existing streaming endpoint.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -2174,7 +2308,9 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
     }
 
     /**
-     * Stops an existing streaming endpoint.
+     * Stop StreamingEndpoint
+     *
+     * <p>Stops an existing streaming endpoint.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -2190,7 +2326,9 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
     }
 
     /**
-     * Scales an existing streaming endpoint.
+     * Scale StreamingEndpoint
+     *
+     * <p>Scales an existing streaming endpoint.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -2254,7 +2392,9 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
     }
 
     /**
-     * Scales an existing streaming endpoint.
+     * Scale StreamingEndpoint
+     *
+     * <p>Scales an existing streaming endpoint.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -2317,7 +2457,9 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
     }
 
     /**
-     * Scales an existing streaming endpoint.
+     * Scale StreamingEndpoint
+     *
+     * <p>Scales an existing streaming endpoint.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -2343,7 +2485,9 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
     }
 
     /**
-     * Scales an existing streaming endpoint.
+     * Scale StreamingEndpoint
+     *
+     * <p>Scales an existing streaming endpoint.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -2371,7 +2515,9 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
     }
 
     /**
-     * Scales an existing streaming endpoint.
+     * Scale StreamingEndpoint
+     *
+     * <p>Scales an existing streaming endpoint.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -2392,7 +2538,9 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
     }
 
     /**
-     * Scales an existing streaming endpoint.
+     * Scale StreamingEndpoint
+     *
+     * <p>Scales an existing streaming endpoint.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -2416,7 +2564,9 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
     }
 
     /**
-     * Scales an existing streaming endpoint.
+     * Scale StreamingEndpoint
+     *
+     * <p>Scales an existing streaming endpoint.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -2439,7 +2589,9 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
     }
 
     /**
-     * Scales an existing streaming endpoint.
+     * Scale StreamingEndpoint
+     *
+     * <p>Scales an existing streaming endpoint.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -2464,7 +2616,9 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
     }
 
     /**
-     * Scales an existing streaming endpoint.
+     * Scale StreamingEndpoint
+     *
+     * <p>Scales an existing streaming endpoint.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -2484,7 +2638,9 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
     }
 
     /**
-     * Scales an existing streaming endpoint.
+     * Scale StreamingEndpoint
+     *
+     * <p>Scales an existing streaming endpoint.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -2508,7 +2664,8 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -2543,7 +2700,8 @@ public final class StreamingEndpointsClientImpl implements StreamingEndpointsCli
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.

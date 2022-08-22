@@ -16,7 +16,9 @@ import com.azure.resourcemanager.mediaservices.fluent.models.LiveOutputInner;
 /** An instance of this class provides access to all the operations defined in LiveOutputsClient. */
 public interface LiveOutputsClient {
     /**
-     * Lists the live outputs of a live event.
+     * List Live Outputs
+     *
+     * <p>Lists the live outputs of a live event.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -30,7 +32,9 @@ public interface LiveOutputsClient {
     PagedIterable<LiveOutputInner> list(String resourceGroupName, String accountName, String liveEventName);
 
     /**
-     * Lists the live outputs of a live event.
+     * List Live Outputs
+     *
+     * <p>Lists the live outputs of a live event.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -46,7 +50,9 @@ public interface LiveOutputsClient {
         String resourceGroupName, String accountName, String liveEventName, Context context);
 
     /**
-     * Gets a live output.
+     * Get Live Output
+     *
+     * <p>Gets a live output.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -61,7 +67,9 @@ public interface LiveOutputsClient {
     LiveOutputInner get(String resourceGroupName, String accountName, String liveEventName, String liveOutputName);
 
     /**
-     * Gets a live output.
+     * Get Live Output
+     *
+     * <p>Gets a live output.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -78,7 +86,9 @@ public interface LiveOutputsClient {
         String resourceGroupName, String accountName, String liveEventName, String liveOutputName, Context context);
 
     /**
-     * Creates a new live output.
+     * Create Live Output
+     *
+     * <p>Creates a new live output.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -99,7 +109,9 @@ public interface LiveOutputsClient {
         LiveOutputInner parameters);
 
     /**
-     * Creates a new live output.
+     * Create Live Output
+     *
+     * <p>Creates a new live output.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -122,7 +134,9 @@ public interface LiveOutputsClient {
         Context context);
 
     /**
-     * Creates a new live output.
+     * Create Live Output
+     *
+     * <p>Creates a new live output.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -143,7 +157,9 @@ public interface LiveOutputsClient {
         LiveOutputInner parameters);
 
     /**
-     * Creates a new live output.
+     * Create Live Output
+     *
+     * <p>Creates a new live output.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -166,7 +182,9 @@ public interface LiveOutputsClient {
         Context context);
 
     /**
-     * Deletes a live output. Deleting a live output does not delete the asset the live output is writing to.
+     * Delete Live Output
+     *
+     * <p>Deletes a live output. Deleting a live output does not delete the asset the live output is writing to.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -182,7 +200,9 @@ public interface LiveOutputsClient {
         String resourceGroupName, String accountName, String liveEventName, String liveOutputName);
 
     /**
-     * Deletes a live output. Deleting a live output does not delete the asset the live output is writing to.
+     * Delete Live Output
+     *
+     * <p>Deletes a live output. Deleting a live output does not delete the asset the live output is writing to.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -199,7 +219,9 @@ public interface LiveOutputsClient {
         String resourceGroupName, String accountName, String liveEventName, String liveOutputName, Context context);
 
     /**
-     * Deletes a live output. Deleting a live output does not delete the asset the live output is writing to.
+     * Delete Live Output
+     *
+     * <p>Deletes a live output. Deleting a live output does not delete the asset the live output is writing to.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -213,7 +235,9 @@ public interface LiveOutputsClient {
     void delete(String resourceGroupName, String accountName, String liveEventName, String liveOutputName);
 
     /**
-     * Deletes a live output. Deleting a live output does not delete the asset the live output is writing to.
+     * Delete Live Output
+     *
+     * <p>Deletes a live output. Deleting a live output does not delete the asset the live output is writing to.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.

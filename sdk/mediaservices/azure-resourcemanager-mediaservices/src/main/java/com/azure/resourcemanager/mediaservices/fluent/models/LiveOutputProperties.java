@@ -28,18 +28,15 @@ public final class LiveOutputProperties {
     private String assetName;
 
     /*
-     * ISO 8601 time between 1 minute to 25 hours to indicate the maximum
-     * content length that can be archived in the asset for this live output.
-     * This also sets the maximum content length for the rewind window. For
-     * example, use PT1H30M to indicate 1 hour and 30 minutes of archive
-     * window.
+     * ISO 8601 time between 1 minute to 25 hours to indicate the maximum content length that can be archived in the
+     * asset for this live output. This also sets the maximum content length for the rewind window. For example, use
+     * PT1H30M to indicate 1 hour and 30 minutes of archive window.
      */
     @JsonProperty(value = "archiveWindowLength", required = true)
     private Duration archiveWindowLength;
 
     /*
-     * The manifest file name. If not provided, the service will generate one
-     * automatically.
+     * The manifest file name. If not provided, the service will generate one automatically.
      */
     @JsonProperty(value = "manifestName")
     private String manifestName;
@@ -51,8 +48,7 @@ public final class LiveOutputProperties {
     private Hls hls;
 
     /*
-     * The initial timestamp that the live output will start at, any content
-     * before this value will not be archived.
+     * The initial timestamp that the live output will start at, any content before this value will not be archived.
      */
     @JsonProperty(value = "outputSnapTime")
     private Long outputSnapTime;

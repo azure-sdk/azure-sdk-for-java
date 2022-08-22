@@ -71,7 +71,9 @@ public final class OperationResultsClientImpl implements OperationResultsClient 
     }
 
     /**
-     * Get asset track operation result.
+     * Get operation result.
+     *
+     * <p>Get asset track operation result.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -134,7 +136,9 @@ public final class OperationResultsClientImpl implements OperationResultsClient 
     }
 
     /**
-     * Get asset track operation result.
+     * Get operation result.
+     *
+     * <p>Get asset track operation result.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -200,7 +204,9 @@ public final class OperationResultsClientImpl implements OperationResultsClient 
     }
 
     /**
-     * Get asset track operation result.
+     * Get operation result.
+     *
+     * <p>Get asset track operation result.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -220,7 +226,9 @@ public final class OperationResultsClientImpl implements OperationResultsClient 
     }
 
     /**
-     * Get asset track operation result.
+     * Get operation result.
+     *
+     * <p>Get asset track operation result.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -239,7 +247,9 @@ public final class OperationResultsClientImpl implements OperationResultsClient 
     }
 
     /**
-     * Get asset track operation result.
+     * Get operation result.
+     *
+     * <p>Get asset track operation result.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.

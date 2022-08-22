@@ -174,7 +174,9 @@ public final class ContentKeyPoliciesClientImpl implements ContentKeyPoliciesCli
     }
 
     /**
-     * Lists the Content Key Policies in the account.
+     * List Content Key Policies
+     *
+     * <p>Lists the Content Key Policies in the account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -239,7 +241,9 @@ public final class ContentKeyPoliciesClientImpl implements ContentKeyPoliciesCli
     }
 
     /**
-     * Lists the Content Key Policies in the account.
+     * List Content Key Policies
+     *
+     * <p>Lists the Content Key Policies in the account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -302,7 +306,9 @@ public final class ContentKeyPoliciesClientImpl implements ContentKeyPoliciesCli
     }
 
     /**
-     * Lists the Content Key Policies in the account.
+     * List Content Key Policies
+     *
+     * <p>Lists the Content Key Policies in the account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -324,7 +330,9 @@ public final class ContentKeyPoliciesClientImpl implements ContentKeyPoliciesCli
     }
 
     /**
-     * Lists the Content Key Policies in the account.
+     * List Content Key Policies
+     *
+     * <p>Lists the Content Key Policies in the account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -344,7 +352,9 @@ public final class ContentKeyPoliciesClientImpl implements ContentKeyPoliciesCli
     }
 
     /**
-     * Lists the Content Key Policies in the account.
+     * List Content Key Policies
+     *
+     * <p>Lists the Content Key Policies in the account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -367,7 +377,9 @@ public final class ContentKeyPoliciesClientImpl implements ContentKeyPoliciesCli
     }
 
     /**
-     * Lists the Content Key Policies in the account.
+     * List Content Key Policies
+     *
+     * <p>Lists the Content Key Policies in the account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -385,7 +397,9 @@ public final class ContentKeyPoliciesClientImpl implements ContentKeyPoliciesCli
     }
 
     /**
-     * Lists the Content Key Policies in the account.
+     * List Content Key Policies
+     *
+     * <p>Lists the Content Key Policies in the account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -406,7 +420,9 @@ public final class ContentKeyPoliciesClientImpl implements ContentKeyPoliciesCli
     }
 
     /**
-     * Get the details of a Content Key Policy in the Media Services account.
+     * Get a Content Key Policy
+     *
+     * <p>Get the details of a Content Key Policy in the Media Services account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -461,7 +477,9 @@ public final class ContentKeyPoliciesClientImpl implements ContentKeyPoliciesCli
     }
 
     /**
-     * Get the details of a Content Key Policy in the Media Services account.
+     * Get a Content Key Policy
+     *
+     * <p>Get the details of a Content Key Policy in the Media Services account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -514,7 +532,9 @@ public final class ContentKeyPoliciesClientImpl implements ContentKeyPoliciesCli
     }
 
     /**
-     * Get the details of a Content Key Policy in the Media Services account.
+     * Get a Content Key Policy
+     *
+     * <p>Get the details of a Content Key Policy in the Media Services account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -533,7 +553,9 @@ public final class ContentKeyPoliciesClientImpl implements ContentKeyPoliciesCli
     }
 
     /**
-     * Get the details of a Content Key Policy in the Media Services account.
+     * Get a Content Key Policy
+     *
+     * <p>Get the details of a Content Key Policy in the Media Services account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -549,7 +571,9 @@ public final class ContentKeyPoliciesClientImpl implements ContentKeyPoliciesCli
     }
 
     /**
-     * Get the details of a Content Key Policy in the Media Services account.
+     * Get a Content Key Policy
+     *
+     * <p>Get the details of a Content Key Policy in the Media Services account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -567,7 +591,9 @@ public final class ContentKeyPoliciesClientImpl implements ContentKeyPoliciesCli
     }
 
     /**
-     * Create or update a Content Key Policy in the Media Services account.
+     * Create or update an Content Key Policy
+     *
+     * <p>Create or update a Content Key Policy in the Media Services account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -628,7 +654,9 @@ public final class ContentKeyPoliciesClientImpl implements ContentKeyPoliciesCli
     }
 
     /**
-     * Create or update a Content Key Policy in the Media Services account.
+     * Create or update an Content Key Policy
+     *
+     * <p>Create or update a Content Key Policy in the Media Services account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -691,7 +719,9 @@ public final class ContentKeyPoliciesClientImpl implements ContentKeyPoliciesCli
     }
 
     /**
-     * Create or update a Content Key Policy in the Media Services account.
+     * Create or update an Content Key Policy
+     *
+     * <p>Create or update a Content Key Policy in the Media Services account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -710,7 +740,9 @@ public final class ContentKeyPoliciesClientImpl implements ContentKeyPoliciesCli
     }
 
     /**
-     * Create or update a Content Key Policy in the Media Services account.
+     * Create or update an Content Key Policy
+     *
+     * <p>Create or update a Content Key Policy in the Media Services account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -728,7 +760,9 @@ public final class ContentKeyPoliciesClientImpl implements ContentKeyPoliciesCli
     }
 
     /**
-     * Create or update a Content Key Policy in the Media Services account.
+     * Create or update an Content Key Policy
+     *
+     * <p>Create or update a Content Key Policy in the Media Services account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -753,7 +787,9 @@ public final class ContentKeyPoliciesClientImpl implements ContentKeyPoliciesCli
     }
 
     /**
-     * Deletes a Content Key Policy in the Media Services account.
+     * Delete a Content Key Policy
+     *
+     * <p>Deletes a Content Key Policy in the Media Services account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -807,7 +843,9 @@ public final class ContentKeyPoliciesClientImpl implements ContentKeyPoliciesCli
     }
 
     /**
-     * Deletes a Content Key Policy in the Media Services account.
+     * Delete a Content Key Policy
+     *
+     * <p>Deletes a Content Key Policy in the Media Services account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -859,7 +897,9 @@ public final class ContentKeyPoliciesClientImpl implements ContentKeyPoliciesCli
     }
 
     /**
-     * Deletes a Content Key Policy in the Media Services account.
+     * Delete a Content Key Policy
+     *
+     * <p>Deletes a Content Key Policy in the Media Services account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -876,7 +916,9 @@ public final class ContentKeyPoliciesClientImpl implements ContentKeyPoliciesCli
     }
 
     /**
-     * Deletes a Content Key Policy in the Media Services account.
+     * Delete a Content Key Policy
+     *
+     * <p>Deletes a Content Key Policy in the Media Services account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -891,7 +933,9 @@ public final class ContentKeyPoliciesClientImpl implements ContentKeyPoliciesCli
     }
 
     /**
-     * Deletes a Content Key Policy in the Media Services account.
+     * Delete a Content Key Policy
+     *
+     * <p>Deletes a Content Key Policy in the Media Services account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -909,7 +953,9 @@ public final class ContentKeyPoliciesClientImpl implements ContentKeyPoliciesCli
     }
 
     /**
-     * Updates an existing Content Key Policy in the Media Services account.
+     * Update a Content Key Policy
+     *
+     * <p>Updates an existing Content Key Policy in the Media Services account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -970,7 +1016,9 @@ public final class ContentKeyPoliciesClientImpl implements ContentKeyPoliciesCli
     }
 
     /**
-     * Updates an existing Content Key Policy in the Media Services account.
+     * Update a Content Key Policy
+     *
+     * <p>Updates an existing Content Key Policy in the Media Services account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1033,7 +1081,9 @@ public final class ContentKeyPoliciesClientImpl implements ContentKeyPoliciesCli
     }
 
     /**
-     * Updates an existing Content Key Policy in the Media Services account.
+     * Update a Content Key Policy
+     *
+     * <p>Updates an existing Content Key Policy in the Media Services account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1052,7 +1102,9 @@ public final class ContentKeyPoliciesClientImpl implements ContentKeyPoliciesCli
     }
 
     /**
-     * Updates an existing Content Key Policy in the Media Services account.
+     * Update a Content Key Policy
+     *
+     * <p>Updates an existing Content Key Policy in the Media Services account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1070,7 +1122,9 @@ public final class ContentKeyPoliciesClientImpl implements ContentKeyPoliciesCli
     }
 
     /**
-     * Updates an existing Content Key Policy in the Media Services account.
+     * Update a Content Key Policy
+     *
+     * <p>Updates an existing Content Key Policy in the Media Services account.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1094,7 +1148,9 @@ public final class ContentKeyPoliciesClientImpl implements ContentKeyPoliciesCli
     }
 
     /**
-     * Get a Content Key Policy including secret values.
+     * Get a Content Key Policy with secrets
+     *
+     * <p>Get a Content Key Policy including secret values.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1149,7 +1205,9 @@ public final class ContentKeyPoliciesClientImpl implements ContentKeyPoliciesCli
     }
 
     /**
-     * Get a Content Key Policy including secret values.
+     * Get a Content Key Policy with secrets
+     *
+     * <p>Get a Content Key Policy including secret values.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1202,7 +1260,9 @@ public final class ContentKeyPoliciesClientImpl implements ContentKeyPoliciesCli
     }
 
     /**
-     * Get a Content Key Policy including secret values.
+     * Get a Content Key Policy with secrets
+     *
+     * <p>Get a Content Key Policy including secret values.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1220,7 +1280,9 @@ public final class ContentKeyPoliciesClientImpl implements ContentKeyPoliciesCli
     }
 
     /**
-     * Get a Content Key Policy including secret values.
+     * Get a Content Key Policy with secrets
+     *
+     * <p>Get a Content Key Policy including secret values.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1237,7 +1299,9 @@ public final class ContentKeyPoliciesClientImpl implements ContentKeyPoliciesCli
     }
 
     /**
-     * Get a Content Key Policy including secret values.
+     * Get a Content Key Policy with secrets
+     *
+     * <p>Get a Content Key Policy including secret values.
      *
      * @param resourceGroupName The name of the resource group within the Azure subscription.
      * @param accountName The Media Services account name.
@@ -1259,7 +1323,8 @@ public final class ContentKeyPoliciesClientImpl implements ContentKeyPoliciesCli
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1295,7 +1360,8 @@ public final class ContentKeyPoliciesClientImpl implements ContentKeyPoliciesCli
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
