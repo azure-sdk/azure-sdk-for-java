@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for ProvisioningErrorCode. */
+/** Error code of the provisioning failure. */
 public final class ProvisioningErrorCode extends ExpandableStringEnum<ProvisioningErrorCode> {
     /** Static value BadSourceType for ProvisioningErrorCode. */
     public static final ProvisioningErrorCode BAD_SOURCE_TYPE = fromString("BadSourceType");
