@@ -100,7 +100,9 @@ public final class IntegrationRuntimeObjectMetadatasClientImpl implements Integr
     }
 
     /**
-     * Get object metadata from an integration runtime.
+     * Get integration runtime object metadata
+     *
+     * <p>Get object metadata from an integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -165,7 +167,9 @@ public final class IntegrationRuntimeObjectMetadatasClientImpl implements Integr
     }
 
     /**
-     * Get object metadata from an integration runtime.
+     * Get integration runtime object metadata
+     *
+     * <p>Get object metadata from an integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -229,7 +233,9 @@ public final class IntegrationRuntimeObjectMetadatasClientImpl implements Integr
     }
 
     /**
-     * Get object metadata from an integration runtime.
+     * Get integration runtime object metadata
+     *
+     * <p>Get object metadata from an integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -247,18 +253,13 @@ public final class IntegrationRuntimeObjectMetadatasClientImpl implements Integr
         String integrationRuntimeName,
         GetSsisObjectMetadataRequest getMetadataRequest) {
         return listWithResponseAsync(resourceGroupName, workspaceName, integrationRuntimeName, getMetadataRequest)
-            .flatMap(
-                (Response<SsisObjectMetadataListResponseInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
-     * Get object metadata from an integration runtime.
+     * Get integration runtime object metadata
+     *
+     * <p>Get object metadata from an integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -273,18 +274,13 @@ public final class IntegrationRuntimeObjectMetadatasClientImpl implements Integr
         String resourceGroupName, String workspaceName, String integrationRuntimeName) {
         final GetSsisObjectMetadataRequest getMetadataRequest = null;
         return listWithResponseAsync(resourceGroupName, workspaceName, integrationRuntimeName, getMetadataRequest)
-            .flatMap(
-                (Response<SsisObjectMetadataListResponseInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
-     * Get object metadata from an integration runtime.
+     * Get integration runtime object metadata
+     *
+     * <p>Get object metadata from an integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -302,7 +298,9 @@ public final class IntegrationRuntimeObjectMetadatasClientImpl implements Integr
     }
 
     /**
-     * Get object metadata from an integration runtime.
+     * Get integration runtime object metadata
+     *
+     * <p>Get object metadata from an integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -327,7 +325,9 @@ public final class IntegrationRuntimeObjectMetadatasClientImpl implements Integr
     }
 
     /**
-     * Refresh the object metadata in an integration runtime.
+     * Refresh integration runtime object metadata
+     *
+     * <p>Refresh the object metadata in an integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -383,7 +383,9 @@ public final class IntegrationRuntimeObjectMetadatasClientImpl implements Integr
     }
 
     /**
-     * Refresh the object metadata in an integration runtime.
+     * Refresh integration runtime object metadata
+     *
+     * <p>Refresh the object metadata in an integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -437,7 +439,9 @@ public final class IntegrationRuntimeObjectMetadatasClientImpl implements Integr
     }
 
     /**
-     * Refresh the object metadata in an integration runtime.
+     * Refresh integration runtime object metadata
+     *
+     * <p>Refresh the object metadata in an integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -463,7 +467,9 @@ public final class IntegrationRuntimeObjectMetadatasClientImpl implements Integr
     }
 
     /**
-     * Refresh the object metadata in an integration runtime.
+     * Refresh integration runtime object metadata
+     *
+     * <p>Refresh the object metadata in an integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -492,7 +498,9 @@ public final class IntegrationRuntimeObjectMetadatasClientImpl implements Integr
     }
 
     /**
-     * Refresh the object metadata in an integration runtime.
+     * Refresh integration runtime object metadata
+     *
+     * <p>Refresh the object metadata in an integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -509,7 +517,9 @@ public final class IntegrationRuntimeObjectMetadatasClientImpl implements Integr
     }
 
     /**
-     * Refresh the object metadata in an integration runtime.
+     * Refresh integration runtime object metadata
+     *
+     * <p>Refresh the object metadata in an integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -527,7 +537,9 @@ public final class IntegrationRuntimeObjectMetadatasClientImpl implements Integr
     }
 
     /**
-     * Refresh the object metadata in an integration runtime.
+     * Refresh integration runtime object metadata
+     *
+     * <p>Refresh the object metadata in an integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -546,7 +558,9 @@ public final class IntegrationRuntimeObjectMetadatasClientImpl implements Integr
     }
 
     /**
-     * Refresh the object metadata in an integration runtime.
+     * Refresh integration runtime object metadata
+     *
+     * <p>Refresh the object metadata in an integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -566,7 +580,9 @@ public final class IntegrationRuntimeObjectMetadatasClientImpl implements Integr
     }
 
     /**
-     * Refresh the object metadata in an integration runtime.
+     * Refresh integration runtime object metadata
+     *
+     * <p>Refresh the object metadata in an integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -583,7 +599,9 @@ public final class IntegrationRuntimeObjectMetadatasClientImpl implements Integr
     }
 
     /**
-     * Refresh the object metadata in an integration runtime.
+     * Refresh integration runtime object metadata
+     *
+     * <p>Refresh the object metadata in an integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.

@@ -11,7 +11,9 @@ import com.azure.core.util.Context;
 /** Resource collection API of SqlPoolReplicationLinks. */
 public interface SqlPoolReplicationLinks {
     /**
-     * Lists a Sql pool's replication links.
+     * Get SQL pool replication links
+     *
+     * <p>Lists a Sql pool's replication links.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -25,7 +27,9 @@ public interface SqlPoolReplicationLinks {
     PagedIterable<ReplicationLink> list(String resourceGroupName, String workspaceName, String sqlPoolName);
 
     /**
-     * Lists a Sql pool's replication links.
+     * Get SQL pool replication links
+     *
+     * <p>Lists a Sql pool's replication links.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -41,7 +45,9 @@ public interface SqlPoolReplicationLinks {
         String resourceGroupName, String workspaceName, String sqlPoolName, Context context);
 
     /**
-     * Get SQL pool replication link by name.
+     * Get SQL pool replication link by name
+     *
+     * <p>Get SQL pool replication link by name.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -55,7 +61,9 @@ public interface SqlPoolReplicationLinks {
     ReplicationLink getByName(String resourceGroupName, String workspaceName, String sqlPoolName, String linkId);
 
     /**
-     * Get SQL pool replication link by name.
+     * Get SQL pool replication link by name
+     *
+     * <p>Get SQL pool replication link by name.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
