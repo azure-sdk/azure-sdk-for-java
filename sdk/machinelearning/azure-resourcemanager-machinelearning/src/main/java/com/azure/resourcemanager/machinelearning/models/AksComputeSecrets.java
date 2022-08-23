@@ -16,15 +16,13 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @Fluent
 public final class AksComputeSecrets extends ComputeSecretsInner {
     /*
-     * Content of kubeconfig file that can be used to connect to the Kubernetes
-     * cluster.
+     * Content of kubeconfig file that can be used to connect to the Kubernetes cluster.
      */
     @JsonProperty(value = "userKubeConfig")
     private String userKubeConfig;
 
     /*
-     * Content of kubeconfig file that can be used to connect to the Kubernetes
-     * cluster.
+     * Content of kubeconfig file that can be used to connect to the Kubernetes cluster.
      */
     @JsonProperty(value = "adminKubeConfig")
     private String adminKubeConfig;
