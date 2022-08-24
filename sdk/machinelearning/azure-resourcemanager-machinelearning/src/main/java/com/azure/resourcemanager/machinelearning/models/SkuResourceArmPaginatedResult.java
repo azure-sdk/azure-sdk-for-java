@@ -13,8 +13,7 @@ import java.util.List;
 @Fluent
 public final class SkuResourceArmPaginatedResult {
     /*
-     * The link to the next page of SkuResource objects. If null, there are no
-     * additional pages.
+     * The link to the next page of SkuResource objects. If null, there are no additional pages.
      */
     @JsonProperty(value = "nextLink")
     private String nextLink;

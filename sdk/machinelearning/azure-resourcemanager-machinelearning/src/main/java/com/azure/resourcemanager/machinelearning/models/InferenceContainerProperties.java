@@ -23,8 +23,7 @@ public final class InferenceContainerProperties {
     private Route readinessRoute;
 
     /*
-     * The port to send the scoring requests to, within the inference server
-     * container.
+     * The port to send the scoring requests to, within the inference server container.
      */
     @JsonProperty(value = "scoringRoute")
     private Route scoringRoute;
