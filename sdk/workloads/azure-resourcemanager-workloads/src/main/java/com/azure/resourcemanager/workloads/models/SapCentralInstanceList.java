@@ -9,11 +9,11 @@ import com.azure.resourcemanager.workloads.fluent.models.SapCentralServerInstanc
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Defines the collection of SAP Central Instances. */
+/** Defines the collection of SAP Central Services Instance resources. */
 @Fluent
 public final class SapCentralInstanceList {
     /*
-     * Gets the list of SAP central instances.
+     * Gets the list of SAP central services instance resources.
      */
     @JsonProperty(value = "value")
     private List<SapCentralServerInstanceInner> value;
@@ -25,7 +25,7 @@ public final class SapCentralInstanceList {
     private String nextLink;
 
     /**
-     * Get the value property: Gets the list of SAP central instances.
+     * Get the value property: Gets the list of SAP central services instance resources.
      *
      * @return the value value.
      */
@@ -34,7 +34,7 @@ public final class SapCentralInstanceList {
     }
 
     /**
-     * Set the value property: Gets the list of SAP central instances.
+     * Set the value property: Gets the list of SAP central services instance resources.
      *
      * @param value the value value to set.
      * @return the SapCentralInstanceList object itself.

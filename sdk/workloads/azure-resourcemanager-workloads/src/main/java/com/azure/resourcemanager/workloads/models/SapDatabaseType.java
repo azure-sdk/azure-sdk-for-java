@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for SapDatabaseType. */
+/** Defines the supported SAP Database types. */
 public final class SapDatabaseType extends ExpandableStringEnum<SapDatabaseType> {
     /** Static value HANA for SapDatabaseType. */
     public static final SapDatabaseType HANA = fromString("HANA");

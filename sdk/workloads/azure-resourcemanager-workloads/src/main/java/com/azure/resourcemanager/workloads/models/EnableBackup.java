@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for EnableBackup. */
+/** Whether to enable Azure backup for the workload. */
 public final class EnableBackup extends ExpandableStringEnum<EnableBackup> {
     /** Static value Enabled for EnableBackup. */
     public static final EnableBackup ENABLED = fromString("Enabled");

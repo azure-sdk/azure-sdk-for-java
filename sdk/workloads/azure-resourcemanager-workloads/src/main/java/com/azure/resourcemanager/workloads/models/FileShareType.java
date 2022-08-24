@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for FileShareType. */
+/** Share type. */
 public final class FileShareType extends ExpandableStringEnum<FileShareType> {
     /** Static value NfsOnController for FileShareType. */
     public static final FileShareType NFS_ON_CONTROLLER = fromString("NfsOnController");

@@ -7,7 +7,7 @@ package com.azure.resourcemanager.workloads.models;
 import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The Central Server VM Details. */
+/** The SAP Central Services Instance VM details. */
 @Immutable
 public final class CentralServerVmDetails {
     /*
