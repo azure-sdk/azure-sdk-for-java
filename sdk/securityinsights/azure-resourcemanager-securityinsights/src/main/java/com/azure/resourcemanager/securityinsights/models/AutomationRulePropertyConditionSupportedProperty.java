@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for AutomationRulePropertyConditionSupportedProperty. */
+/** The property to evaluate in an automation rule property condition. */
 public final class AutomationRulePropertyConditionSupportedProperty
     extends ExpandableStringEnum<AutomationRulePropertyConditionSupportedProperty> {
     /** Static value IncidentTitle for AutomationRulePropertyConditionSupportedProperty. */
@@ -72,6 +72,10 @@ public final class AutomationRulePropertyConditionSupportedProperty
     /** Static value AlertProductNames for AutomationRulePropertyConditionSupportedProperty. */
     public static final AutomationRulePropertyConditionSupportedProperty ALERT_PRODUCT_NAMES =
         fromString("AlertProductNames");
+
+    /** Static value AlertAnalyticRuleIds for AutomationRulePropertyConditionSupportedProperty. */
+    public static final AutomationRulePropertyConditionSupportedProperty ALERT_ANALYTIC_RULE_IDS =
+        fromString("AlertAnalyticRuleIds");
 
     /** Static value AzureResourceResourceId for AutomationRulePropertyConditionSupportedProperty. */
     public static final AutomationRulePropertyConditionSupportedProperty AZURE_RESOURCE_RESOURCE_ID =
