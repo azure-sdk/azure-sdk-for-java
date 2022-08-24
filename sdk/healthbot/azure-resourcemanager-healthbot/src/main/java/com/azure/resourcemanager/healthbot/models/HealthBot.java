@@ -47,14 +47,23 @@ public interface HealthBot {
     Map<String, String> tags();
 
     /**
-     * Gets the sku property: SKU of the HealthBot.
+     * Gets the sku property: SKU of the Azure Health Bot.
      *
      * @return the sku value.
      */
     Sku sku();
 
     /**
-     * Gets the properties property: HealthBotProperties The set of properties specific to Healthbot resource.
+     * Gets the identity property: The identity of the Azure Health Bot.
+     *
+     * @return the identity value.
+     */
+    Identity identity();
+
+    /**
+     * Gets the properties property: HealthBotProperties
+     *
+     * <p>The set of properties specific to Azure Health Bot resource.
      *
      * @return the properties value.
      */
@@ -132,9 +141,9 @@ public interface HealthBot {
         /** The stage of the HealthBot definition allowing to specify sku. */
         interface WithSku {
             /**
-             * Specifies the sku property: SKU of the HealthBot..
+             * Specifies the sku property: SKU of the Azure Health Bot..
              *
-             * @param sku SKU of the HealthBot.
+             * @param sku SKU of the Azure Health Bot.
              * @return the next definition stage.
              */
             WithCreate withSku(Sku sku);
@@ -143,7 +152,8 @@ public interface HealthBot {
          * The stage of the HealthBot definition which contains all the minimum required properties for the resource to
          * be created, but also allows for any other optional properties to be specified.
          */
-        interface WithCreate extends DefinitionStages.WithTags, DefinitionStages.WithProperties {
+        interface WithCreate
+            extends DefinitionStages.WithTags, DefinitionStages.WithIdentity, DefinitionStages.WithProperties {
             /**
              * Executes the create request.
              *
@@ -169,13 +179,25 @@ public interface HealthBot {
              */
             WithCreate withTags(Map<String, String> tags);
         }
+        /** The stage of the HealthBot definition allowing to specify identity. */
+        interface WithIdentity {
+            /**
+             * Specifies the identity property: The identity of the Azure Health Bot..
+             *
+             * @param identity The identity of the Azure Health Bot.
+             * @return the next definition stage.
+             */
+            WithCreate withIdentity(Identity identity);
+        }
         /** The stage of the HealthBot definition allowing to specify properties. */
         interface WithProperties {
             /**
-             * Specifies the properties property: HealthBotProperties The set of properties specific to Healthbot
-             * resource..
+             * Specifies the properties property: HealthBotProperties
              *
-             * @param properties HealthBotProperties The set of properties specific to Healthbot resource.
+             * <p>The set of properties specific to Azure Health Bot resource..
+             *
+             * @param properties HealthBotProperties
+             *     <p>The set of properties specific to Azure Health Bot resource.
              * @return the next definition stage.
              */
             WithCreate withProperties(HealthBotProperties properties);
@@ -189,7 +211,7 @@ public interface HealthBot {
     HealthBot.Update update();
 
     /** The template for HealthBot update. */
-    interface Update extends UpdateStages.WithTags, UpdateStages.WithSku {
+    interface Update extends UpdateStages.WithTags, UpdateStages.WithSku, UpdateStages.WithIdentity {
         /**
          * Executes the update request.
          *
@@ -210,9 +232,9 @@ public interface HealthBot {
         /** The stage of the HealthBot update allowing to specify tags. */
         interface WithTags {
             /**
-             * Specifies the tags property: Tags for a HealthBot..
+             * Specifies the tags property: Tags for a Azure Health Bot..
              *
-             * @param tags Tags for a HealthBot.
+             * @param tags Tags for a Azure Health Bot.
              * @return the next definition stage.
              */
             Update withTags(Map<String, String> tags);
@@ -220,12 +242,22 @@ public interface HealthBot {
         /** The stage of the HealthBot update allowing to specify sku. */
         interface WithSku {
             /**
-             * Specifies the sku property: SKU of the HealthBot..
+             * Specifies the sku property: SKU of the Azure Health Bot..
              *
-             * @param sku SKU of the HealthBot.
+             * @param sku SKU of the Azure Health Bot.
              * @return the next definition stage.
              */
             Update withSku(Sku sku);
+        }
+        /** The stage of the HealthBot update allowing to specify identity. */
+        interface WithIdentity {
+            /**
+             * Specifies the identity property: The identity of the Azure Health Bot..
+             *
+             * @param identity The identity of the Azure Health Bot.
+             * @return the next definition stage.
+             */
+            Update withIdentity(Identity identity);
         }
     }
     /**
