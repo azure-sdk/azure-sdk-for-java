@@ -30,15 +30,13 @@ import java.util.Map;
 @Fluent
 public class AzureWorkloadSqlRestoreRequest extends AzureWorkloadRestoreRequest {
     /*
-     * Default option set to true. If this is set to false, alternate data
-     * directory must be provided
+     * Default option set to true. If this is set to false, alternate data directory must be provided
      */
     @JsonProperty(value = "shouldUseAlternateTargetLocation")
     private Boolean shouldUseAlternateTargetLocation;
 
     /*
-     * SQL specific property where user can chose to set no-recovery when
-     * restore operation is tried
+     * SQL specific property where user can chose to set no-recovery when restore operation is tried
      */
     @JsonProperty(value = "isNonRecoverable")
     private Boolean isNonRecoverable;

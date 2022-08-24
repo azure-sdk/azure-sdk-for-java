@@ -203,20 +203,6 @@ public final class AzureFileshareProtectedItem extends ProtectedItem {
 
     /** {@inheritDoc} */
     @Override
-    public AzureFileshareProtectedItem withBackupManagementType(BackupManagementType backupManagementType) {
-        super.withBackupManagementType(backupManagementType);
-        return this;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public AzureFileshareProtectedItem withWorkloadType(DataSourceType workloadType) {
-        super.withWorkloadType(workloadType);
-        return this;
-    }
-
-    /** {@inheritDoc} */
-    @Override
     public AzureFileshareProtectedItem withContainerName(String containerName) {
         super.withContainerName(containerName);
         return this;

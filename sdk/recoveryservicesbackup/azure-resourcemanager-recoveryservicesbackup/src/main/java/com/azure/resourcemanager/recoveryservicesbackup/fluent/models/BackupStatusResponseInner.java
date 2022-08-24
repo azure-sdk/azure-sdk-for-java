@@ -31,15 +31,13 @@ public final class BackupStatusResponseInner {
     private FabricName fabricName;
 
     /*
-     * Specifies the product specific container name. E.g.
-     * iaasvmcontainer;iaasvmcontainer;csname;vmname.
+     * Specifies the product specific container name. E.g. iaasvmcontainer;iaasvmcontainer;csname;vmname.
      */
     @JsonProperty(value = "containerName")
     private String containerName;
 
     /*
-     * Specifies the product specific ds name. E.g.
-     * vm;iaasvmcontainer;csname;vmname.
+     * Specifies the product specific ds name. E.g. vm;iaasvmcontainer;csname;vmname.
      */
     @JsonProperty(value = "protectedItemName")
     private String protectedItemName;

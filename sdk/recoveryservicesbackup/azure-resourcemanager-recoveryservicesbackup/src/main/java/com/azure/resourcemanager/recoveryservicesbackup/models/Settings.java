@@ -11,8 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Fluent
 public final class Settings {
     /*
-     * TimeZone optional input as string. For example: TimeZone = "Pacific
-     * Standard Time".
+     * TimeZone optional input as string. For example: TimeZone = "Pacific Standard Time".
      */
     @JsonProperty(value = "timeZone")
     private String timeZone;
@@ -24,8 +23,7 @@ public final class Settings {
     private Boolean issqlcompression;
 
     /*
-     * Workload compression flag. This has been added so that
-     * 'isSqlCompression'
+     * Workload compression flag. This has been added so that 'isSqlCompression'
      * will be deprecated once clients upgrade to consider this flag.
      */
     @JsonProperty(value = "isCompression")

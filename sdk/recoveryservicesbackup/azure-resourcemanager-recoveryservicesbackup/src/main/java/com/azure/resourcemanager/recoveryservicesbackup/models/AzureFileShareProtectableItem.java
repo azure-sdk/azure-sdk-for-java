@@ -15,8 +15,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @Fluent
 public final class AzureFileShareProtectableItem extends WorkloadProtectableItem {
     /*
-     * Full Fabric ID of container to which this protectable item belongs. For
-     * example, ARM ID.
+     * Full Fabric ID of container to which this protectable item belongs. For example, ARM ID.
      */
     @JsonProperty(value = "parentContainerFabricId")
     private String parentContainerFabricId;

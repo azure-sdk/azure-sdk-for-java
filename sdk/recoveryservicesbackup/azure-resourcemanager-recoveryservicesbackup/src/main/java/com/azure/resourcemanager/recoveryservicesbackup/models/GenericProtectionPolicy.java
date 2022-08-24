@@ -22,8 +22,7 @@ public final class GenericProtectionPolicy extends ProtectionPolicy {
     private List<SubProtectionPolicy> subProtectionPolicy;
 
     /*
-     * TimeZone optional input as string. For example: TimeZone = "Pacific
-     * Standard Time".
+     * TimeZone optional input as string. For example: TimeZone = "Pacific Standard Time".
      */
     @JsonProperty(value = "timeZone")
     private String timeZone;
