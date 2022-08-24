@@ -23,8 +23,7 @@ public final class BackupResourceConfig {
     private StorageType storageType;
 
     /*
-     * Locked or Unlocked. Once a machine is registered against a resource, the
-     * storageTypeState is always Locked.
+     * Locked or Unlocked. Once a machine is registered against a resource, the storageTypeState is always Locked.
      */
     @JsonProperty(value = "storageTypeState")
     private StorageTypeState storageTypeState;

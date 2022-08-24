@@ -11,8 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Fluent
 public final class EncryptionDetails {
     /*
-     * Identifies whether this backup copy represents an encrypted VM at the
-     * time of backup.
+     * Identifies whether this backup copy represents an encrypted VM at the time of backup.
      */
     @JsonProperty(value = "encryptionEnabled")
     private Boolean encryptionEnabled;

@@ -18,13 +18,6 @@ import java.util.Map;
 public final class AzureVmWorkloadSapHanaDatabaseProtectedItem extends AzureVmWorkloadProtectedItem {
     /** {@inheritDoc} */
     @Override
-    public AzureVmWorkloadSapHanaDatabaseProtectedItem withFriendlyName(String friendlyName) {
-        super.withFriendlyName(friendlyName);
-        return this;
-    }
-
-    /** {@inheritDoc} */
-    @Override
     public AzureVmWorkloadSapHanaDatabaseProtectedItem withServerName(String serverName) {
         super.withServerName(serverName);
         return this;
@@ -41,13 +34,6 @@ public final class AzureVmWorkloadSapHanaDatabaseProtectedItem extends AzureVmWo
     @Override
     public AzureVmWorkloadSapHanaDatabaseProtectedItem withParentType(String parentType) {
         super.withParentType(parentType);
-        return this;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public AzureVmWorkloadSapHanaDatabaseProtectedItem withProtectionStatus(String protectionStatus) {
-        super.withProtectionStatus(protectionStatus);
         return this;
     }
 
@@ -107,21 +93,6 @@ public final class AzureVmWorkloadSapHanaDatabaseProtectedItem extends AzureVmWo
     public AzureVmWorkloadSapHanaDatabaseProtectedItem withKpisHealths(
         Map<String, KpiResourceHealthDetails> kpisHealths) {
         super.withKpisHealths(kpisHealths);
-        return this;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public AzureVmWorkloadSapHanaDatabaseProtectedItem withBackupManagementType(
-        BackupManagementType backupManagementType) {
-        super.withBackupManagementType(backupManagementType);
-        return this;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public AzureVmWorkloadSapHanaDatabaseProtectedItem withWorkloadType(DataSourceType workloadType) {
-        super.withWorkloadType(workloadType);
         return this;
     }
 
