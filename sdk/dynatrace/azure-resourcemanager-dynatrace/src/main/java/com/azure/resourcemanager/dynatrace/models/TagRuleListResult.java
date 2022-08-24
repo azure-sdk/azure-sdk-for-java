@@ -5,7 +5,6 @@
 package com.azure.resourcemanager.dynatrace.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.dynatrace.fluent.models.TagRuleInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
@@ -16,13 +15,13 @@ public final class TagRuleListResult {
     /*
      * The items on this page
      */
-    @JsonProperty(value = "value", required = true)
+    @JsonProperty(value = "value")
     private List<TagRuleInner> value;
 
     /*
      * The link to the next page of items
      */
-    @JsonProperty(value = "nextLink", required = true)
+    @JsonProperty(value = "nextLink")
     private String nextLink;
 
     /**
@@ -71,19 +70,8 @@ public final class TagRuleListResult {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (value() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property value in model TagRuleListResult"));
-        } else {
+        if (value() != null) {
             value().forEach(e -> e.validate());
         }
-        if (nextLink() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property nextLink in model TagRuleListResult"));
-        }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(TagRuleListResult.class);
 }
