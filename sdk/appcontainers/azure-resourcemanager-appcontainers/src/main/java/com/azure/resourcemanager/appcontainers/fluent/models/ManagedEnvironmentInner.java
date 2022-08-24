@@ -8,6 +8,7 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.management.Resource;
 import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.appcontainers.models.AppLogsConfiguration;
+import com.azure.resourcemanager.appcontainers.models.CustomDomainConfiguration;
 import com.azure.resourcemanager.appcontainers.models.EnvironmentProvisioningState;
 import com.azure.resourcemanager.appcontainers.models.VnetConfiguration;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -23,8 +24,7 @@ public final class ManagedEnvironmentInner extends Resource {
     private ManagedEnvironmentProperties innerProperties;
 
     /*
-     * Azure Resource Manager metadata containing createdBy and modifiedBy
-     * information.
+     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
      */
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
@@ -216,6 +216,38 @@ public final class ManagedEnvironmentInner extends Resource {
         }
         this.innerProperties().withZoneRedundant(zoneRedundant);
         return this;
+    }
+
+    /**
+     * Get the customDomainConfiguration property: Custom domain configuration for the environment.
+     *
+     * @return the customDomainConfiguration value.
+     */
+    public CustomDomainConfiguration customDomainConfiguration() {
+        return this.innerProperties() == null ? null : this.innerProperties().customDomainConfiguration();
+    }
+
+    /**
+     * Set the customDomainConfiguration property: Custom domain configuration for the environment.
+     *
+     * @param customDomainConfiguration the customDomainConfiguration value to set.
+     * @return the ManagedEnvironmentInner object itself.
+     */
+    public ManagedEnvironmentInner withCustomDomainConfiguration(CustomDomainConfiguration customDomainConfiguration) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ManagedEnvironmentProperties();
+        }
+        this.innerProperties().withCustomDomainConfiguration(customDomainConfiguration);
+        return this;
+    }
+
+    /**
+     * Get the eventStreamEndpoint property: The endpoint of the eventstream of the Environment.
+     *
+     * @return the eventStreamEndpoint value.
+     */
+    public String eventStreamEndpoint() {
+        return this.innerProperties() == null ? null : this.innerProperties().eventStreamEndpoint();
     }
 
     /**

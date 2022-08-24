@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.appcontainers.models;
 
+import com.azure.core.http.rest.Response;
 import com.azure.core.management.Region;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
@@ -121,6 +122,20 @@ public interface ManagedEnvironment {
     Boolean zoneRedundant();
 
     /**
+     * Gets the customDomainConfiguration property: Custom domain configuration for the environment.
+     *
+     * @return the customDomainConfiguration value.
+     */
+    CustomDomainConfiguration customDomainConfiguration();
+
+    /**
+     * Gets the eventStreamEndpoint property: The endpoint of the eventstream of the Environment.
+     *
+     * @return the eventStreamEndpoint value.
+     */
+    String eventStreamEndpoint();
+
+    /**
      * Gets the region of the resource.
      *
      * @return the region of the resource.
@@ -198,7 +213,8 @@ public interface ManagedEnvironment {
                 DefinitionStages.WithDaprAIConnectionString,
                 DefinitionStages.WithVnetConfiguration,
                 DefinitionStages.WithAppLogsConfiguration,
-                DefinitionStages.WithZoneRedundant {
+                DefinitionStages.WithZoneRedundant,
+                DefinitionStages.WithCustomDomainConfiguration {
             /**
              * Executes the create request.
              *
@@ -280,6 +296,16 @@ public interface ManagedEnvironment {
              */
             WithCreate withZoneRedundant(Boolean zoneRedundant);
         }
+        /** The stage of the ManagedEnvironment definition allowing to specify customDomainConfiguration. */
+        interface WithCustomDomainConfiguration {
+            /**
+             * Specifies the customDomainConfiguration property: Custom domain configuration for the environment.
+             *
+             * @param customDomainConfiguration Custom domain configuration for the environment.
+             * @return the next definition stage.
+             */
+            WithCreate withCustomDomainConfiguration(CustomDomainConfiguration customDomainConfiguration);
+        }
     }
     /**
      * Begins update for the ManagedEnvironment resource.
@@ -290,7 +316,10 @@ public interface ManagedEnvironment {
 
     /** The template for ManagedEnvironment update. */
     interface Update
-        extends UpdateStages.WithTags, UpdateStages.WithVnetConfiguration, UpdateStages.WithAppLogsConfiguration {
+        extends UpdateStages.WithTags,
+            UpdateStages.WithVnetConfiguration,
+            UpdateStages.WithAppLogsConfiguration,
+            UpdateStages.WithCustomDomainConfiguration {
         /**
          * Executes the update request.
          *
@@ -340,6 +369,16 @@ public interface ManagedEnvironment {
              */
             Update withAppLogsConfiguration(AppLogsConfiguration appLogsConfiguration);
         }
+        /** The stage of the ManagedEnvironment update allowing to specify customDomainConfiguration. */
+        interface WithCustomDomainConfiguration {
+            /**
+             * Specifies the customDomainConfiguration property: Custom domain configuration for the environment.
+             *
+             * @param customDomainConfiguration Custom domain configuration for the environment.
+             * @return the next definition stage.
+             */
+            Update withCustomDomainConfiguration(CustomDomainConfiguration customDomainConfiguration);
+        }
     }
     /**
      * Refreshes the resource to sync with Azure.
@@ -355,4 +394,28 @@ public interface ManagedEnvironment {
      * @return the refreshed resource.
      */
     ManagedEnvironment refresh(Context context);
+
+    /**
+     * Get auth token for a managed environment
+     *
+     * <p>Checks if resource name is available.
+     *
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return environment Auth Token.
+     */
+    EnvironmentAuthToken getAuthToken();
+
+    /**
+     * Get auth token for a managed environment
+     *
+     * <p>Checks if resource name is available.
+     *
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return environment Auth Token along with {@link Response}.
+     */
+    Response<EnvironmentAuthToken> getAuthTokenWithResponse(Context context);
 }

@@ -13,6 +13,7 @@
 
 - [CreateOrUpdate](#containerapps_createorupdate)
 - [Delete](#containerapps_delete)
+- [GetAuthToken](#containerapps_getauthtoken)
 - [GetByResourceGroup](#containerapps_getbyresourcegroup)
 - [List](#containerapps_list)
 - [ListByResourceGroup](#containerapps_listbyresourcegroup)
@@ -26,6 +27,14 @@
 - [Delete](#containerappsauthconfigs_delete)
 - [Get](#containerappsauthconfigs_get)
 - [ListByContainerApp](#containerappsauthconfigs_listbycontainerapp)
+
+## ContainerAppsDiagnostics
+
+- [GetDetector](#containerappsdiagnostics_getdetector)
+- [GetRevision](#containerappsdiagnostics_getrevision)
+- [GetRoot](#containerappsdiagnostics_getroot)
+- [ListDetectors](#containerappsdiagnostics_listdetectors)
+- [ListRevisions](#containerappsdiagnostics_listrevisions)
 
 ## ContainerAppsRevisionReplicas
 
@@ -55,14 +64,24 @@
 - [List](#daprcomponents_list)
 - [ListSecrets](#daprcomponents_listsecrets)
 
+## ManagedEnvironmentDiagnostics
+
+- [GetDetector](#managedenvironmentdiagnostics_getdetector)
+- [ListDetectors](#managedenvironmentdiagnostics_listdetectors)
+
 ## ManagedEnvironments
 
 - [CreateOrUpdate](#managedenvironments_createorupdate)
 - [Delete](#managedenvironments_delete)
+- [GetAuthToken](#managedenvironments_getauthtoken)
 - [GetByResourceGroup](#managedenvironments_getbyresourcegroup)
 - [List](#managedenvironments_list)
 - [ListByResourceGroup](#managedenvironments_listbyresourcegroup)
 - [Update](#managedenvironments_update)
+
+## ManagedEnvironmentsDiagnostics
+
+- [GetRoot](#managedenvironmentsdiagnostics_getroot)
 
 ## ManagedEnvironmentsStorages
 
@@ -86,7 +105,7 @@ import com.azure.resourcemanager.appcontainers.models.CertificateProperties;
 /** Samples for Certificates CreateOrUpdate. */
 public final class CertificatesCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2022-03-01/examples/Certificate_CreateOrUpdate.json
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2022-05-01/examples/Certificate_CreateOrUpdate.json
      */
     /**
      * Sample code: Create or Update Certificate.
@@ -117,7 +136,7 @@ import com.azure.core.util.Context;
 /** Samples for Certificates Delete. */
 public final class CertificatesDeleteSamples {
     /*
-     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2022-03-01/examples/Certificate_Delete.json
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2022-05-01/examples/Certificate_Delete.json
      */
     /**
      * Sample code: Delete Certificate.
@@ -140,7 +159,7 @@ import com.azure.core.util.Context;
 /** Samples for Certificates Get. */
 public final class CertificatesGetSamples {
     /*
-     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2022-03-01/examples/Certificate_Get.json
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2022-05-01/examples/Certificate_Get.json
      */
     /**
      * Sample code: Get Certificate.
@@ -163,7 +182,7 @@ import com.azure.core.util.Context;
 /** Samples for Certificates List. */
 public final class CertificatesListSamples {
     /*
-     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2022-03-01/examples/Certificates_ListByManagedEnvironment.json
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2022-05-01/examples/Certificates_ListByManagedEnvironment.json
      */
     /**
      * Sample code: List Certificates by Managed Environment.
@@ -188,7 +207,7 @@ import java.util.Map;
 /** Samples for Certificates Update. */
 public final class CertificatesUpdateSamples {
     /*
-     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2022-03-01/examples/Certificates_Patch.json
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2022-05-01/examples/Certificates_Patch.json
      */
     /**
      * Sample code: Patch Certificate.
@@ -231,6 +250,7 @@ import com.azure.resourcemanager.appcontainers.models.CustomDomain;
 import com.azure.resourcemanager.appcontainers.models.CustomScaleRule;
 import com.azure.resourcemanager.appcontainers.models.Dapr;
 import com.azure.resourcemanager.appcontainers.models.Ingress;
+import com.azure.resourcemanager.appcontainers.models.LogLevel;
 import com.azure.resourcemanager.appcontainers.models.Scale;
 import com.azure.resourcemanager.appcontainers.models.ScaleRule;
 import com.azure.resourcemanager.appcontainers.models.Template;
@@ -243,7 +263,7 @@ import java.util.Map;
 /** Samples for ContainerApps CreateOrUpdate. */
 public final class ContainerAppsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2022-03-01/examples/ContainerApps_CreateOrUpdate.json
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2022-05-01/examples/ContainerApps_CreateOrUpdate.json
      */
     /**
      * Sample code: Create or Update Container App.
@@ -285,7 +305,15 @@ public final class ContainerAppsCreateOrUpdateSamples {
                                             .withBindingType(BindingType.SNI_ENABLED)
                                             .withCertificateId(
                                                 "/subscriptions/34adfa4f-cedf-4dc0-ba29-b6d1a69ab345/resourceGroups/rg/providers/Microsoft.App/managedEnvironments/demokube/certificates/my-certificate-for-my-other-name-dot-com"))))
-                    .withDapr(new Dapr().withEnabled(true).withAppProtocol(AppProtocol.HTTP).withAppPort(3000)))
+                    .withDapr(
+                        new Dapr()
+                            .withEnabled(true)
+                            .withAppProtocol(AppProtocol.HTTP)
+                            .withAppPort(3000)
+                            .withHttpReadBufferSize(30)
+                            .withHttpMaxRequestSize(10)
+                            .withLogLevel(LogLevel.DEBUG)
+                            .withEnableApiLogging(true)))
             .withTemplate(
                 new Template()
                     .withContainers(
@@ -348,7 +376,7 @@ import com.azure.core.util.Context;
 /** Samples for ContainerApps Delete. */
 public final class ContainerAppsDeleteSamples {
     /*
-     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2022-03-01/examples/ContainerApps_Delete.json
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2022-05-01/examples/ContainerApps_Delete.json
      */
     /**
      * Sample code: Delete Container App.
@@ -361,6 +389,28 @@ public final class ContainerAppsDeleteSamples {
 }
 ```
 
+### ContainerApps_GetAuthToken
+
+```java
+import com.azure.core.util.Context;
+
+/** Samples for ContainerApps GetAuthToken. */
+public final class ContainerAppsGetAuthTokenSamples {
+    /*
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2022-05-01/examples/ContainerApps_GetAuthToken.json
+     */
+    /**
+     * Sample code: Get Container App Auth Token.
+     *
+     * @param manager Entry point to ContainerAppsApiManager.
+     */
+    public static void getContainerAppAuthToken(
+        com.azure.resourcemanager.appcontainers.ContainerAppsApiManager manager) {
+        manager.containerApps().getAuthTokenWithResponse("rg", "testcontainerApp0", Context.NONE);
+    }
+}
+```
+
 ### ContainerApps_GetByResourceGroup
 
 ```java
@@ -369,7 +419,7 @@ import com.azure.core.util.Context;
 /** Samples for ContainerApps GetByResourceGroup. */
 public final class ContainerAppsGetByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2022-03-01/examples/ContainerApps_Get.json
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2022-05-01/examples/ContainerApps_Get.json
      */
     /**
      * Sample code: Get Container App.
@@ -390,7 +440,7 @@ import com.azure.core.util.Context;
 /** Samples for ContainerApps List. */
 public final class ContainerAppsListSamples {
     /*
-     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2022-03-01/examples/ContainerApps_ListBySubscription.json
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2022-05-01/examples/ContainerApps_ListBySubscription.json
      */
     /**
      * Sample code: List Container Apps by subscription.
@@ -412,7 +462,7 @@ import com.azure.core.util.Context;
 /** Samples for ContainerApps ListByResourceGroup. */
 public final class ContainerAppsListByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2022-03-01/examples/ContainerApps_ListByResourceGroup.json
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2022-05-01/examples/ContainerApps_ListByResourceGroup.json
      */
     /**
      * Sample code: List Container Apps by resource group.
@@ -434,7 +484,7 @@ import com.azure.core.util.Context;
 /** Samples for ContainerApps ListCustomHostnameAnalysis. */
 public final class ContainerAppsListCustomHostnameAnalysisSamples {
     /*
-     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2022-03-01/examples/ContainerApps_ListCustomHostNameAnalysis.json
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2022-05-01/examples/ContainerApps_ListCustomHostNameAnalysis.json
      */
     /**
      * Sample code: Analyze Custom Hostname.
@@ -457,7 +507,7 @@ import com.azure.core.util.Context;
 /** Samples for ContainerApps ListSecrets. */
 public final class ContainerAppsListSecretsSamples {
     /*
-     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2022-03-01/examples/ContainerApps_ListSecrets.json
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2022-05-01/examples/ContainerApps_ListSecrets.json
      */
     /**
      * Sample code: List Container Apps Secrets.
@@ -487,6 +537,7 @@ import com.azure.resourcemanager.appcontainers.models.CustomDomain;
 import com.azure.resourcemanager.appcontainers.models.CustomScaleRule;
 import com.azure.resourcemanager.appcontainers.models.Dapr;
 import com.azure.resourcemanager.appcontainers.models.Ingress;
+import com.azure.resourcemanager.appcontainers.models.LogLevel;
 import com.azure.resourcemanager.appcontainers.models.Scale;
 import com.azure.resourcemanager.appcontainers.models.ScaleRule;
 import com.azure.resourcemanager.appcontainers.models.Template;
@@ -499,7 +550,7 @@ import java.util.Map;
 /** Samples for ContainerApps Update. */
 public final class ContainerAppsUpdateSamples {
     /*
-     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2022-03-01/examples/ContainerApps_Patch.json
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2022-05-01/examples/ContainerApps_Patch.json
      */
     /**
      * Sample code: Patch Container App.
@@ -541,7 +592,15 @@ public final class ContainerAppsUpdateSamples {
                                                     .withBindingType(BindingType.SNI_ENABLED)
                                                     .withCertificateId(
                                                         "/subscriptions/34adfa4f-cedf-4dc0-ba29-b6d1a69ab345/resourceGroups/rg/providers/Microsoft.App/managedEnvironments/demokube/certificates/my-certificate-for-my-other-name-dot-com"))))
-                            .withDapr(new Dapr().withEnabled(true).withAppProtocol(AppProtocol.HTTP).withAppPort(3000)))
+                            .withDapr(
+                                new Dapr()
+                                    .withEnabled(true)
+                                    .withAppProtocol(AppProtocol.HTTP)
+                                    .withAppPort(3000)
+                                    .withHttpReadBufferSize(30)
+                                    .withHttpMaxRequestSize(10)
+                                    .withLogLevel(LogLevel.DEBUG)
+                                    .withEnableApiLogging(true)))
                     .withTemplate(
                         new Template()
                             .withContainers(
@@ -609,7 +668,7 @@ import com.azure.resourcemanager.appcontainers.models.UnauthenticatedClientActio
 /** Samples for ContainerAppsAuthConfigs CreateOrUpdate. */
 public final class ContainerAppsAuthConfigsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2022-03-01/examples/AuthConfigs_CreateOrUpdate.json
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2022-05-01/examples/AuthConfigs_CreateOrUpdate.json
      */
     /**
      * Sample code: Create or Update Container App AuthConfig.
@@ -644,7 +703,7 @@ import com.azure.core.util.Context;
 /** Samples for ContainerAppsAuthConfigs Delete. */
 public final class ContainerAppsAuthConfigsDeleteSamples {
     /*
-     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2022-03-01/examples/AuthConfigs_Delete.json
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2022-05-01/examples/AuthConfigs_Delete.json
      */
     /**
      * Sample code: Delete Container App AuthConfig.
@@ -668,7 +727,7 @@ import com.azure.core.util.Context;
 /** Samples for ContainerAppsAuthConfigs Get. */
 public final class ContainerAppsAuthConfigsGetSamples {
     /*
-     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2022-03-01/examples/AuthConfigs_Get.json
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2022-05-01/examples/AuthConfigs_Get.json
      */
     /**
      * Sample code: Get Container App's AuthConfig.
@@ -692,7 +751,7 @@ import com.azure.core.util.Context;
 /** Samples for ContainerAppsAuthConfigs ListByContainerApp. */
 public final class ContainerAppsAuthConfigsListByContainerAppSamples {
     /*
-     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2022-03-01/examples/AuthConfigs_ListByContainer.json
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2022-05-01/examples/AuthConfigs_ListByContainer.json
      */
     /**
      * Sample code: List Auth Configs by Container Apps.
@@ -706,6 +765,122 @@ public final class ContainerAppsAuthConfigsListByContainerAppSamples {
 }
 ```
 
+### ContainerAppsDiagnostics_GetDetector
+
+```java
+import com.azure.core.util.Context;
+
+/** Samples for ContainerAppsDiagnostics GetDetector. */
+public final class ContainerAppsDiagnosticsGetDetectorSamples {
+    /*
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2022-05-01/examples/ContainerAppsDiagnostics_Get.json
+     */
+    /**
+     * Sample code: Get Container App's diagnostics info.
+     *
+     * @param manager Entry point to ContainerAppsApiManager.
+     */
+    public static void getContainerAppSDiagnosticsInfo(
+        com.azure.resourcemanager.appcontainers.ContainerAppsApiManager manager) {
+        manager
+            .containerAppsDiagnostics()
+            .getDetectorWithResponse(
+                "mikono-workerapp-test-rg", "mikono-capp-stage1", "cappcontainerappnetworkIO", Context.NONE);
+    }
+}
+```
+
+### ContainerAppsDiagnostics_GetRevision
+
+```java
+import com.azure.core.util.Context;
+
+/** Samples for ContainerAppsDiagnostics GetRevision. */
+public final class ContainerAppsDiagnosticsGetRevisionSamples {
+    /*
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2022-05-01/examples/Revisions_Get.json
+     */
+    /**
+     * Sample code: Get Container App's revision.
+     *
+     * @param manager Entry point to ContainerAppsApiManager.
+     */
+    public static void getContainerAppSRevision(
+        com.azure.resourcemanager.appcontainers.ContainerAppsApiManager manager) {
+        manager
+            .containerAppsDiagnostics()
+            .getRevisionWithResponse("rg", "testcontainerApp0", "testcontainerApp0-pjxhsye", Context.NONE);
+    }
+}
+```
+
+### ContainerAppsDiagnostics_GetRoot
+
+```java
+import com.azure.core.util.Context;
+
+/** Samples for ContainerAppsDiagnostics GetRoot. */
+public final class ContainerAppsDiagnosticsGetRootSamples {
+    /*
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2022-05-01/examples/ContainerApps_Get.json
+     */
+    /**
+     * Sample code: Get Container App.
+     *
+     * @param manager Entry point to ContainerAppsApiManager.
+     */
+    public static void getContainerApp(com.azure.resourcemanager.appcontainers.ContainerAppsApiManager manager) {
+        manager.containerAppsDiagnostics().getRootWithResponse("rg", "testcontainerApp0", Context.NONE);
+    }
+}
+```
+
+### ContainerAppsDiagnostics_ListDetectors
+
+```java
+import com.azure.core.util.Context;
+
+/** Samples for ContainerAppsDiagnostics ListDetectors. */
+public final class ContainerAppsDiagnosticsListDetectorsSamples {
+    /*
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2022-05-01/examples/ContainerAppsDiagnostics_List.json
+     */
+    /**
+     * Sample code: Get the list of available diagnostics for a given Container App.
+     *
+     * @param manager Entry point to ContainerAppsApiManager.
+     */
+    public static void getTheListOfAvailableDiagnosticsForAGivenContainerApp(
+        com.azure.resourcemanager.appcontainers.ContainerAppsApiManager manager) {
+        manager
+            .containerAppsDiagnostics()
+            .listDetectors("mikono-workerapp-test-rg", "mikono-capp-stage1", Context.NONE);
+    }
+}
+```
+
+### ContainerAppsDiagnostics_ListRevisions
+
+```java
+import com.azure.core.util.Context;
+
+/** Samples for ContainerAppsDiagnostics ListRevisions. */
+public final class ContainerAppsDiagnosticsListRevisionsSamples {
+    /*
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2022-05-01/examples/Revisions_List.json
+     */
+    /**
+     * Sample code: List Container App's revisions.
+     *
+     * @param manager Entry point to ContainerAppsApiManager.
+     */
+    public static void listContainerAppSRevisions(
+        com.azure.resourcemanager.appcontainers.ContainerAppsApiManager manager) {
+        manager.containerAppsDiagnostics().listRevisions("rg", "testcontainerApp0", null, Context.NONE);
+    }
+}
+```
+
 ### ContainerAppsRevisionReplicas_GetReplica
 
 ```java
@@ -714,7 +889,7 @@ import com.azure.core.util.Context;
 /** Samples for ContainerAppsRevisionReplicas GetReplica. */
 public final class ContainerAppsRevisionReplicasGetReplicaSamples {
     /*
-     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2022-03-01/examples/Replicas_Get.json
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2022-05-01/examples/Replicas_Get.json
      */
     /**
      * Sample code: Get Container App's revision replica.
@@ -739,7 +914,7 @@ import com.azure.core.util.Context;
 /** Samples for ContainerAppsRevisionReplicas ListReplicas. */
 public final class ContainerAppsRevisionReplicasListReplicasSamples {
     /*
-     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2022-03-01/examples/Replicas_List.json
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2022-05-01/examples/Replicas_List.json
      */
     /**
      * Sample code: List Container App's replicas.
@@ -763,7 +938,7 @@ import com.azure.core.util.Context;
 /** Samples for ContainerAppsRevisions ActivateRevision. */
 public final class ContainerAppsRevisionsActivateRevisionSamples {
     /*
-     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2022-03-01/examples/Revisions_Activate.json
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2022-05-01/examples/Revisions_Activate.json
      */
     /**
      * Sample code: Activate Container App's revision.
@@ -787,7 +962,7 @@ import com.azure.core.util.Context;
 /** Samples for ContainerAppsRevisions DeactivateRevision. */
 public final class ContainerAppsRevisionsDeactivateRevisionSamples {
     /*
-     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2022-03-01/examples/Revisions_Deactivate.json
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2022-05-01/examples/Revisions_Deactivate.json
      */
     /**
      * Sample code: Deactivate Container App's revision.
@@ -811,7 +986,7 @@ import com.azure.core.util.Context;
 /** Samples for ContainerAppsRevisions GetRevision. */
 public final class ContainerAppsRevisionsGetRevisionSamples {
     /*
-     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2022-03-01/examples/Revisions_Get.json
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2022-05-01/examples/Revisions_Get.json
      */
     /**
      * Sample code: Get Container App's revision.
@@ -835,7 +1010,7 @@ import com.azure.core.util.Context;
 /** Samples for ContainerAppsRevisions ListRevisions. */
 public final class ContainerAppsRevisionsListRevisionsSamples {
     /*
-     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2022-03-01/examples/Revisions_List.json
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2022-05-01/examples/Revisions_List.json
      */
     /**
      * Sample code: List Container App's revisions.
@@ -857,7 +1032,7 @@ import com.azure.core.util.Context;
 /** Samples for ContainerAppsRevisions RestartRevision. */
 public final class ContainerAppsRevisionsRestartRevisionSamples {
     /*
-     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2022-03-01/examples/Revisions_Restart.json
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2022-05-01/examples/Revisions_Restart.json
      */
     /**
      * Sample code: Restart Container App's revision.
@@ -883,7 +1058,7 @@ import com.azure.resourcemanager.appcontainers.models.RegistryInfo;
 /** Samples for ContainerAppsSourceControls CreateOrUpdate. */
 public final class ContainerAppsSourceControlsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2022-03-01/examples/SourceControls_CreateOrUpdate.json
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2022-05-01/examples/SourceControls_CreateOrUpdate.json
      */
     /**
      * Sample code: Create or Update Container App SourceControl.
@@ -925,7 +1100,7 @@ import com.azure.core.util.Context;
 /** Samples for ContainerAppsSourceControls Delete. */
 public final class ContainerAppsSourceControlsDeleteSamples {
     /*
-     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2022-03-01/examples/SourceControls_Delete.json
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2022-05-01/examples/SourceControls_Delete.json
      */
     /**
      * Sample code: Delete Container App SourceControl.
@@ -947,7 +1122,7 @@ import com.azure.core.util.Context;
 /** Samples for ContainerAppsSourceControls Get. */
 public final class ContainerAppsSourceControlsGetSamples {
     /*
-     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2022-03-01/examples/SourceControls_Get.json
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2022-05-01/examples/SourceControls_Get.json
      */
     /**
      * Sample code: Get Container App's SourceControl.
@@ -971,7 +1146,7 @@ import com.azure.core.util.Context;
 /** Samples for ContainerAppsSourceControls ListByContainerApp. */
 public final class ContainerAppsSourceControlsListByContainerAppSamples {
     /*
-     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2022-03-01/examples/SourceControls_ListByContainer.json
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2022-05-01/examples/SourceControls_ListByContainer.json
      */
     /**
      * Sample code: List App's Source Controls.
@@ -994,7 +1169,7 @@ import java.util.Arrays;
 /** Samples for DaprComponents CreateOrUpdate. */
 public final class DaprComponentsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2022-03-01/examples/DaprComponents_CreateOrUpdate.json
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2022-05-01/examples/DaprComponents_CreateOrUpdate.json
      */
     /**
      * Sample code: Create or update dapr component.
@@ -1033,7 +1208,7 @@ import com.azure.core.util.Context;
 /** Samples for DaprComponents Delete. */
 public final class DaprComponentsDeleteSamples {
     /*
-     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2022-03-01/examples/DaprComponents_Delete.json
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2022-05-01/examples/DaprComponents_Delete.json
      */
     /**
      * Sample code: Delete dapr component.
@@ -1054,7 +1229,7 @@ import com.azure.core.util.Context;
 /** Samples for DaprComponents Get. */
 public final class DaprComponentsGetSamples {
     /*
-     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2022-03-01/examples/DaprComponents_Get.json
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2022-05-01/examples/DaprComponents_Get.json
      */
     /**
      * Sample code: Get Dapr Component.
@@ -1075,7 +1250,7 @@ import com.azure.core.util.Context;
 /** Samples for DaprComponents List. */
 public final class DaprComponentsListSamples {
     /*
-     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2022-03-01/examples/DaprComponents_List.json
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2022-05-01/examples/DaprComponents_List.json
      */
     /**
      * Sample code: List Dapr Components.
@@ -1096,7 +1271,7 @@ import com.azure.core.util.Context;
 /** Samples for DaprComponents ListSecrets. */
 public final class DaprComponentsListSecretsSamples {
     /*
-     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2022-03-01/examples/DaprComponents_ListSecrets.json
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2022-05-01/examples/DaprComponents_ListSecrets.json
      */
     /**
      * Sample code: List Container Apps Secrets.
@@ -1110,16 +1285,66 @@ public final class DaprComponentsListSecretsSamples {
 }
 ```
 
+### ManagedEnvironmentDiagnostics_GetDetector
+
+```java
+import com.azure.core.util.Context;
+
+/** Samples for ManagedEnvironmentDiagnostics GetDetector. */
+public final class ManagedEnvironmentDiagnosticsGetDetectorSamples {
+    /*
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2022-05-01/examples/ManagedEnvironmentDiagnostics_Get.json
+     */
+    /**
+     * Sample code: Get diagnostic data for a managed environments.
+     *
+     * @param manager Entry point to ContainerAppsApiManager.
+     */
+    public static void getDiagnosticDataForAManagedEnvironments(
+        com.azure.resourcemanager.appcontainers.ContainerAppsApiManager manager) {
+        manager
+            .managedEnvironmentDiagnostics()
+            .getDetectorWithResponse(
+                "mikono-workerapp-test-rg", "mikonokubeenv", "ManagedEnvAvailabilityMetrics", Context.NONE);
+    }
+}
+```
+
+### ManagedEnvironmentDiagnostics_ListDetectors
+
+```java
+import com.azure.core.util.Context;
+
+/** Samples for ManagedEnvironmentDiagnostics ListDetectors. */
+public final class ManagedEnvironmentDiagnosticsListDetectorsSamples {
+    /*
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2022-05-01/examples/ManagedEnvironmentDiagnostics_List.json
+     */
+    /**
+     * Sample code: Get the list of available diagnostic data for a managed environments.
+     *
+     * @param manager Entry point to ContainerAppsApiManager.
+     */
+    public static void getTheListOfAvailableDiagnosticDataForAManagedEnvironments(
+        com.azure.resourcemanager.appcontainers.ContainerAppsApiManager manager) {
+        manager
+            .managedEnvironmentDiagnostics()
+            .listDetectorsWithResponse("mikono-workerapp-test-rg", "mikonokubeenv", Context.NONE);
+    }
+}
+```
+
 ### ManagedEnvironments_CreateOrUpdate
 
 ```java
 import com.azure.resourcemanager.appcontainers.models.AppLogsConfiguration;
+import com.azure.resourcemanager.appcontainers.models.CustomDomainConfiguration;
 import com.azure.resourcemanager.appcontainers.models.LogAnalyticsConfiguration;
 
 /** Samples for ManagedEnvironments CreateOrUpdate. */
 public final class ManagedEnvironmentsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2022-03-01/examples/ManagedEnvironments_CreateOrUpdate.json
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2022-05-01/examples/ManagedEnvironments_CreateOrUpdate.json
      */
     /**
      * Sample code: Create environments.
@@ -1139,6 +1364,11 @@ public final class ManagedEnvironmentsCreateOrUpdateSamples {
                     .withLogAnalyticsConfiguration(
                         new LogAnalyticsConfiguration().withCustomerId("string").withSharedKey("string")))
             .withZoneRedundant(true)
+            .withCustomDomainConfiguration(
+                new CustomDomainConfiguration()
+                    .withDnsSuffix("www.my-name.com")
+                    .withCertificateValue("PFX-or-PEM-blob".getBytes())
+                    .withCertificatePassword("private key password".getBytes()))
             .create();
     }
 }
@@ -1152,7 +1382,7 @@ import com.azure.core.util.Context;
 /** Samples for ManagedEnvironments Delete. */
 public final class ManagedEnvironmentsDeleteSamples {
     /*
-     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2022-03-01/examples/ManagedEnvironments_Delete.json
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2022-05-01/examples/ManagedEnvironments_Delete.json
      */
     /**
      * Sample code: Delete environment by name.
@@ -1166,6 +1396,28 @@ public final class ManagedEnvironmentsDeleteSamples {
 }
 ```
 
+### ManagedEnvironments_GetAuthToken
+
+```java
+import com.azure.core.util.Context;
+
+/** Samples for ManagedEnvironments GetAuthToken. */
+public final class ManagedEnvironmentsGetAuthTokenSamples {
+    /*
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2022-05-01/examples/ManagedEnvironments_GetAuthToken.json
+     */
+    /**
+     * Sample code: Get Managed Environment Auth Token.
+     *
+     * @param manager Entry point to ContainerAppsApiManager.
+     */
+    public static void getManagedEnvironmentAuthToken(
+        com.azure.resourcemanager.appcontainers.ContainerAppsApiManager manager) {
+        manager.managedEnvironments().getAuthTokenWithResponse("rg", "testenv", Context.NONE);
+    }
+}
+```
+
 ### ManagedEnvironments_GetByResourceGroup
 
 ```java
@@ -1174,7 +1426,7 @@ import com.azure.core.util.Context;
 /** Samples for ManagedEnvironments GetByResourceGroup. */
 public final class ManagedEnvironmentsGetByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2022-03-01/examples/ManagedEnvironments_Get.json
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2022-05-01/examples/ManagedEnvironments_Get.json
      */
     /**
      * Sample code: Get environments by name.
@@ -1195,7 +1447,7 @@ import com.azure.core.util.Context;
 /** Samples for ManagedEnvironments List. */
 public final class ManagedEnvironmentsListSamples {
     /*
-     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2022-03-01/examples/ManagedEnvironments_ListBySubscription.json
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2022-05-01/examples/ManagedEnvironments_ListBySubscription.json
      */
     /**
      * Sample code: List environments by subscription.
@@ -1217,7 +1469,7 @@ import com.azure.core.util.Context;
 /** Samples for ManagedEnvironments ListByResourceGroup. */
 public final class ManagedEnvironmentsListByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2022-03-01/examples/ManagedEnvironments_ListByResourceGroup.json
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2022-05-01/examples/ManagedEnvironments_ListByResourceGroup.json
      */
     /**
      * Sample code: List environments by resource group.
@@ -1242,7 +1494,7 @@ import java.util.Map;
 /** Samples for ManagedEnvironments Update. */
 public final class ManagedEnvironmentsUpdateSamples {
     /*
-     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2022-03-01/examples/ManagedEnvironments_Patch.json
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2022-05-01/examples/ManagedEnvironments_Patch.json
      */
     /**
      * Sample code: Patch Managed Environment.
@@ -1275,6 +1527,27 @@ public final class ManagedEnvironmentsUpdateSamples {
 }
 ```
 
+### ManagedEnvironmentsDiagnostics_GetRoot
+
+```java
+import com.azure.core.util.Context;
+
+/** Samples for ManagedEnvironmentsDiagnostics GetRoot. */
+public final class ManagedEnvironmentsDiagnosticsGetRootSamples {
+    /*
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2022-05-01/examples/ManagedEnvironments_Get.json
+     */
+    /**
+     * Sample code: Get environments by name.
+     *
+     * @param manager Entry point to ContainerAppsApiManager.
+     */
+    public static void getEnvironmentsByName(com.azure.resourcemanager.appcontainers.ContainerAppsApiManager manager) {
+        manager.managedEnvironmentsDiagnostics().getRootWithResponse("examplerg", "jlaw-demo1", Context.NONE);
+    }
+}
+```
+
 ### ManagedEnvironmentsStorages_CreateOrUpdate
 
 ```java
@@ -1285,7 +1558,7 @@ import com.azure.resourcemanager.appcontainers.models.ManagedEnvironmentStorageP
 /** Samples for ManagedEnvironmentsStorages CreateOrUpdate. */
 public final class ManagedEnvironmentsStoragesCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2022-03-01/examples/ManagedEnvironmentsStorages_CreateOrUpdate.json
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2022-05-01/examples/ManagedEnvironmentsStorages_CreateOrUpdate.json
      */
     /**
      * Sample code: Create or update environments storage.
@@ -1319,7 +1592,7 @@ import com.azure.core.util.Context;
 /** Samples for ManagedEnvironmentsStorages Delete. */
 public final class ManagedEnvironmentsStoragesDeleteSamples {
     /*
-     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2022-03-01/examples/ManagedEnvironmentsStorages_Delete.json
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2022-05-01/examples/ManagedEnvironmentsStorages_Delete.json
      */
     /**
      * Sample code: List environments storages by subscription.
@@ -1341,7 +1614,7 @@ import com.azure.core.util.Context;
 /** Samples for ManagedEnvironmentsStorages Get. */
 public final class ManagedEnvironmentsStoragesGetSamples {
     /*
-     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2022-03-01/examples/ManagedEnvironmentsStorages_Get.json
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2022-05-01/examples/ManagedEnvironmentsStorages_Get.json
      */
     /**
      * Sample code: get a environments storage properties by subscription.
@@ -1363,7 +1636,7 @@ import com.azure.core.util.Context;
 /** Samples for ManagedEnvironmentsStorages List. */
 public final class ManagedEnvironmentsStoragesListSamples {
     /*
-     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2022-03-01/examples/ManagedEnvironmentsStorages_List.json
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2022-05-01/examples/ManagedEnvironmentsStorages_List.json
      */
     /**
      * Sample code: List environments storages by subscription.
@@ -1386,7 +1659,7 @@ import com.azure.resourcemanager.appcontainers.models.CheckNameAvailabilityReque
 /** Samples for Namespaces CheckNameAvailability. */
 public final class NamespacesCheckNameAvailabilitySamples {
     /*
-     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2022-03-01/examples/Certificates_CheckNameAvailability.json
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2022-05-01/examples/Certificates_CheckNameAvailability.json
      */
     /**
      * Sample code: Certificates_CheckNameAvailability.
@@ -1407,7 +1680,7 @@ public final class NamespacesCheckNameAvailabilitySamples {
     }
 
     /*
-     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2022-03-01/examples/ContainerApps_CheckNameAvailability.json
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2022-05-01/examples/ContainerApps_CheckNameAvailability.json
      */
     /**
      * Sample code: ContainerApps_CheckNameAvailability.
@@ -1435,7 +1708,7 @@ import com.azure.core.util.Context;
 /** Samples for Operations List. */
 public final class OperationsListSamples {
     /*
-     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2022-03-01/examples/Operations_List.json
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2022-05-01/examples/Operations_List.json
      */
     /**
      * Sample code: List all operations.

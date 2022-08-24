@@ -4,11 +4,14 @@
 
 package com.azure.resourcemanager.appcontainers.implementation;
 
+import com.azure.core.http.rest.Response;
 import com.azure.core.management.Region;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.appcontainers.fluent.models.ManagedEnvironmentInner;
 import com.azure.resourcemanager.appcontainers.models.AppLogsConfiguration;
+import com.azure.resourcemanager.appcontainers.models.CustomDomainConfiguration;
+import com.azure.resourcemanager.appcontainers.models.EnvironmentAuthToken;
 import com.azure.resourcemanager.appcontainers.models.EnvironmentProvisioningState;
 import com.azure.resourcemanager.appcontainers.models.ManagedEnvironment;
 import com.azure.resourcemanager.appcontainers.models.VnetConfiguration;
@@ -84,6 +87,14 @@ public final class ManagedEnvironmentImpl
 
     public Boolean zoneRedundant() {
         return this.innerModel().zoneRedundant();
+    }
+
+    public CustomDomainConfiguration customDomainConfiguration() {
+        return this.innerModel().customDomainConfiguration();
+    }
+
+    public String eventStreamEndpoint() {
+        return this.innerModel().eventStreamEndpoint();
     }
 
     public Region region() {
@@ -191,6 +202,16 @@ public final class ManagedEnvironmentImpl
         return this;
     }
 
+    public EnvironmentAuthToken getAuthToken() {
+        return serviceManager.managedEnvironments().getAuthToken(resourceGroupName, environmentName);
+    }
+
+    public Response<EnvironmentAuthToken> getAuthTokenWithResponse(Context context) {
+        return serviceManager
+            .managedEnvironments()
+            .getAuthTokenWithResponse(resourceGroupName, environmentName, context);
+    }
+
     public ManagedEnvironmentImpl withRegion(Region location) {
         this.innerModel().withLocation(location.toString());
         return this;
@@ -228,6 +249,11 @@ public final class ManagedEnvironmentImpl
 
     public ManagedEnvironmentImpl withZoneRedundant(Boolean zoneRedundant) {
         this.innerModel().withZoneRedundant(zoneRedundant);
+        return this;
+    }
+
+    public ManagedEnvironmentImpl withCustomDomainConfiguration(CustomDomainConfiguration customDomainConfiguration) {
+        this.innerModel().withCustomDomainConfiguration(customDomainConfiguration);
         return this;
     }
 }

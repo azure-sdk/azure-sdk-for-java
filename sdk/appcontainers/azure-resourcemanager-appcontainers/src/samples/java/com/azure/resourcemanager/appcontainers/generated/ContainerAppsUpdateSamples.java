@@ -17,6 +17,7 @@ import com.azure.resourcemanager.appcontainers.models.CustomDomain;
 import com.azure.resourcemanager.appcontainers.models.CustomScaleRule;
 import com.azure.resourcemanager.appcontainers.models.Dapr;
 import com.azure.resourcemanager.appcontainers.models.Ingress;
+import com.azure.resourcemanager.appcontainers.models.LogLevel;
 import com.azure.resourcemanager.appcontainers.models.Scale;
 import com.azure.resourcemanager.appcontainers.models.ScaleRule;
 import com.azure.resourcemanager.appcontainers.models.Template;
@@ -29,7 +30,7 @@ import java.util.Map;
 /** Samples for ContainerApps Update. */
 public final class ContainerAppsUpdateSamples {
     /*
-     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2022-03-01/examples/ContainerApps_Patch.json
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2022-05-01/examples/ContainerApps_Patch.json
      */
     /**
      * Sample code: Patch Container App.
@@ -71,7 +72,15 @@ public final class ContainerAppsUpdateSamples {
                                                     .withBindingType(BindingType.SNI_ENABLED)
                                                     .withCertificateId(
                                                         "/subscriptions/34adfa4f-cedf-4dc0-ba29-b6d1a69ab345/resourceGroups/rg/providers/Microsoft.App/managedEnvironments/demokube/certificates/my-certificate-for-my-other-name-dot-com"))))
-                            .withDapr(new Dapr().withEnabled(true).withAppProtocol(AppProtocol.HTTP).withAppPort(3000)))
+                            .withDapr(
+                                new Dapr()
+                                    .withEnabled(true)
+                                    .withAppProtocol(AppProtocol.HTTP)
+                                    .withAppPort(3000)
+                                    .withHttpReadBufferSize(30)
+                                    .withHttpMaxRequestSize(10)
+                                    .withLogLevel(LogLevel.DEBUG)
+                                    .withEnableApiLogging(true)))
                     .withTemplate(
                         new Template()
                             .withContainers(

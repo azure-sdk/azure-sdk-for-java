@@ -18,8 +18,8 @@ import java.util.Map;
 @Fluent
 public final class ContainerAppInner extends Resource {
     /*
-     * managed identities for the Container App to interact with other Azure
-     * services without maintaining any secrets or credentials in code.
+     * managed identities for the Container App to interact with other Azure services without maintaining any secrets
+     * or credentials in code.
      */
     @JsonProperty(value = "identity")
     private ManagedServiceIdentity identity;
@@ -187,6 +187,15 @@ public final class ContainerAppInner extends Resource {
      */
     public List<String> outboundIpAddresses() {
         return this.innerProperties() == null ? null : this.innerProperties().outboundIpAddresses();
+    }
+
+    /**
+     * Get the eventStreamEndpoint property: The endpoint of the eventstream of the container app.
+     *
+     * @return the eventStreamEndpoint value.
+     */
+    public String eventStreamEndpoint() {
+        return this.innerProperties() == null ? null : this.innerProperties().eventStreamEndpoint();
     }
 
     /**

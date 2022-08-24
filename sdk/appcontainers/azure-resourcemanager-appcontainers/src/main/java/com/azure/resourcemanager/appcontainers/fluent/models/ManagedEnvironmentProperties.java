@@ -6,6 +6,7 @@ package com.azure.resourcemanager.appcontainers.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.appcontainers.models.AppLogsConfiguration;
+import com.azure.resourcemanager.appcontainers.models.CustomDomainConfiguration;
 import com.azure.resourcemanager.appcontainers.models.EnvironmentProvisioningState;
 import com.azure.resourcemanager.appcontainers.models.VnetConfiguration;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -20,15 +21,13 @@ public final class ManagedEnvironmentProperties {
     private EnvironmentProvisioningState provisioningState;
 
     /*
-     * Azure Monitor instrumentation key used by Dapr to export Service to
-     * Service communication telemetry
+     * Azure Monitor instrumentation key used by Dapr to export Service to Service communication telemetry
      */
     @JsonProperty(value = "daprAIInstrumentationKey")
     private String daprAIInstrumentationKey;
 
     /*
-     * Application Insights connection string used by Dapr to export Service to
-     * Service communication telemetry
+     * Application Insights connection string used by Dapr to export Service to Service communication telemetry
      */
     @JsonProperty(value = "daprAIConnectionString")
     private String daprAIConnectionString;
@@ -70,6 +69,18 @@ public final class ManagedEnvironmentProperties {
      */
     @JsonProperty(value = "zoneRedundant")
     private Boolean zoneRedundant;
+
+    /*
+     * Custom domain configuration for the environment
+     */
+    @JsonProperty(value = "customDomainConfiguration")
+    private CustomDomainConfiguration customDomainConfiguration;
+
+    /*
+     * The endpoint of the eventstream of the Environment.
+     */
+    @JsonProperty(value = "eventStreamEndpoint", access = JsonProperty.Access.WRITE_ONLY)
+    private String eventStreamEndpoint;
 
     /**
      * Get the provisioningState property: Provisioning state of the Environment.
@@ -214,6 +225,36 @@ public final class ManagedEnvironmentProperties {
     }
 
     /**
+     * Get the customDomainConfiguration property: Custom domain configuration for the environment.
+     *
+     * @return the customDomainConfiguration value.
+     */
+    public CustomDomainConfiguration customDomainConfiguration() {
+        return this.customDomainConfiguration;
+    }
+
+    /**
+     * Set the customDomainConfiguration property: Custom domain configuration for the environment.
+     *
+     * @param customDomainConfiguration the customDomainConfiguration value to set.
+     * @return the ManagedEnvironmentProperties object itself.
+     */
+    public ManagedEnvironmentProperties withCustomDomainConfiguration(
+        CustomDomainConfiguration customDomainConfiguration) {
+        this.customDomainConfiguration = customDomainConfiguration;
+        return this;
+    }
+
+    /**
+     * Get the eventStreamEndpoint property: The endpoint of the eventstream of the Environment.
+     *
+     * @return the eventStreamEndpoint value.
+     */
+    public String eventStreamEndpoint() {
+        return this.eventStreamEndpoint;
+    }
+
+    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -224,6 +265,9 @@ public final class ManagedEnvironmentProperties {
         }
         if (appLogsConfiguration() != null) {
             appLogsConfiguration().validate();
+        }
+        if (customDomainConfiguration() != null) {
+            customDomainConfiguration().validate();
         }
     }
 }

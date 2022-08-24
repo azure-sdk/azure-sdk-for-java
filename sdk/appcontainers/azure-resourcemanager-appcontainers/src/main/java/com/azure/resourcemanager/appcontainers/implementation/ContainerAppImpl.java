@@ -10,6 +10,7 @@ import com.azure.core.util.Context;
 import com.azure.resourcemanager.appcontainers.fluent.models.ContainerAppInner;
 import com.azure.resourcemanager.appcontainers.models.Configuration;
 import com.azure.resourcemanager.appcontainers.models.ContainerApp;
+import com.azure.resourcemanager.appcontainers.models.ContainerAppAuthToken;
 import com.azure.resourcemanager.appcontainers.models.ContainerAppProvisioningState;
 import com.azure.resourcemanager.appcontainers.models.CustomHostnameAnalysisResult;
 import com.azure.resourcemanager.appcontainers.models.ManagedServiceIdentity;
@@ -88,6 +89,10 @@ public final class ContainerAppImpl implements ContainerApp, ContainerApp.Defini
         } else {
             return Collections.emptyList();
         }
+    }
+
+    public String eventStreamEndpoint() {
+        return this.innerModel().eventStreamEndpoint();
     }
 
     public Region region() {
@@ -210,6 +215,14 @@ public final class ContainerAppImpl implements ContainerApp, ContainerApp.Defini
 
     public Response<SecretsCollection> listSecretsWithResponse(Context context) {
         return serviceManager.containerApps().listSecretsWithResponse(resourceGroupName, containerAppName, context);
+    }
+
+    public ContainerAppAuthToken getAuthToken() {
+        return serviceManager.containerApps().getAuthToken(resourceGroupName, containerAppName);
+    }
+
+    public Response<ContainerAppAuthToken> getAuthTokenWithResponse(Context context) {
+        return serviceManager.containerApps().getAuthTokenWithResponse(resourceGroupName, containerAppName, context);
     }
 
     public ContainerAppImpl withRegion(Region location) {

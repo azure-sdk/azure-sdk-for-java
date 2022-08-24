@@ -62,6 +62,12 @@ public final class ContainerAppProperties {
     @JsonProperty(value = "outboundIPAddresses", access = JsonProperty.Access.WRITE_ONLY)
     private List<String> outboundIpAddresses;
 
+    /*
+     * The endpoint of the eventstream of the container app.
+     */
+    @JsonProperty(value = "eventStreamEndpoint", access = JsonProperty.Access.WRITE_ONLY)
+    private String eventStreamEndpoint;
+
     /**
      * Get the provisioningState property: Provisioning state of the Container App.
      *
@@ -165,6 +171,15 @@ public final class ContainerAppProperties {
      */
     public List<String> outboundIpAddresses() {
         return this.outboundIpAddresses;
+    }
+
+    /**
+     * Get the eventStreamEndpoint property: The endpoint of the eventstream of the container app.
+     *
+     * @return the eventStreamEndpoint value.
+     */
+    public String eventStreamEndpoint() {
+        return this.eventStreamEndpoint;
     }
 
     /**

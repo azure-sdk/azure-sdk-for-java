@@ -26,11 +26,14 @@ import com.azure.resourcemanager.appcontainers.fluent.CertificatesClient;
 import com.azure.resourcemanager.appcontainers.fluent.ContainerAppsApiClient;
 import com.azure.resourcemanager.appcontainers.fluent.ContainerAppsAuthConfigsClient;
 import com.azure.resourcemanager.appcontainers.fluent.ContainerAppsClient;
+import com.azure.resourcemanager.appcontainers.fluent.ContainerAppsDiagnosticsClient;
 import com.azure.resourcemanager.appcontainers.fluent.ContainerAppsRevisionReplicasClient;
 import com.azure.resourcemanager.appcontainers.fluent.ContainerAppsRevisionsClient;
 import com.azure.resourcemanager.appcontainers.fluent.ContainerAppsSourceControlsClient;
 import com.azure.resourcemanager.appcontainers.fluent.DaprComponentsClient;
+import com.azure.resourcemanager.appcontainers.fluent.ManagedEnvironmentDiagnosticsClient;
 import com.azure.resourcemanager.appcontainers.fluent.ManagedEnvironmentsClient;
+import com.azure.resourcemanager.appcontainers.fluent.ManagedEnvironmentsDiagnosticsClient;
 import com.azure.resourcemanager.appcontainers.fluent.ManagedEnvironmentsStoragesClient;
 import com.azure.resourcemanager.appcontainers.fluent.NamespacesClient;
 import com.azure.resourcemanager.appcontainers.fluent.OperationsClient;
@@ -178,6 +181,42 @@ public final class ContainerAppsApiClientImpl implements ContainerAppsApiClient 
         return this.daprComponents;
     }
 
+    /** The ContainerAppsDiagnosticsClient object to access its operations. */
+    private final ContainerAppsDiagnosticsClient containerAppsDiagnostics;
+
+    /**
+     * Gets the ContainerAppsDiagnosticsClient object to access its operations.
+     *
+     * @return the ContainerAppsDiagnosticsClient object.
+     */
+    public ContainerAppsDiagnosticsClient getContainerAppsDiagnostics() {
+        return this.containerAppsDiagnostics;
+    }
+
+    /** The ManagedEnvironmentDiagnosticsClient object to access its operations. */
+    private final ManagedEnvironmentDiagnosticsClient managedEnvironmentDiagnostics;
+
+    /**
+     * Gets the ManagedEnvironmentDiagnosticsClient object to access its operations.
+     *
+     * @return the ManagedEnvironmentDiagnosticsClient object.
+     */
+    public ManagedEnvironmentDiagnosticsClient getManagedEnvironmentDiagnostics() {
+        return this.managedEnvironmentDiagnostics;
+    }
+
+    /** The ManagedEnvironmentsDiagnosticsClient object to access its operations. */
+    private final ManagedEnvironmentsDiagnosticsClient managedEnvironmentsDiagnostics;
+
+    /**
+     * Gets the ManagedEnvironmentsDiagnosticsClient object to access its operations.
+     *
+     * @return the ManagedEnvironmentsDiagnosticsClient object.
+     */
+    public ManagedEnvironmentsDiagnosticsClient getManagedEnvironmentsDiagnostics() {
+        return this.managedEnvironmentsDiagnostics;
+    }
+
     /** The OperationsClient object to access its operations. */
     private final OperationsClient operations;
 
@@ -272,12 +311,15 @@ public final class ContainerAppsApiClientImpl implements ContainerAppsApiClient 
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2022-03-01";
+        this.apiVersion = "2022-05-01";
         this.containerAppsAuthConfigs = new ContainerAppsAuthConfigsClientImpl(this);
         this.containerApps = new ContainerAppsClientImpl(this);
         this.containerAppsRevisions = new ContainerAppsRevisionsClientImpl(this);
         this.containerAppsRevisionReplicas = new ContainerAppsRevisionReplicasClientImpl(this);
         this.daprComponents = new DaprComponentsClientImpl(this);
+        this.containerAppsDiagnostics = new ContainerAppsDiagnosticsClientImpl(this);
+        this.managedEnvironmentDiagnostics = new ManagedEnvironmentDiagnosticsClientImpl(this);
+        this.managedEnvironmentsDiagnostics = new ManagedEnvironmentsDiagnosticsClientImpl(this);
         this.operations = new OperationsClientImpl(this);
         this.managedEnvironments = new ManagedEnvironmentsClientImpl(this);
         this.certificates = new CertificatesClientImpl(this);

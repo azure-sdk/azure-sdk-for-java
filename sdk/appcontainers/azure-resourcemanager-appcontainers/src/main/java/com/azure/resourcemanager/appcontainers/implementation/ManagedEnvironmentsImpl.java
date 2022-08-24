@@ -10,7 +10,9 @@ import com.azure.core.http.rest.SimpleResponse;
 import com.azure.core.util.Context;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.appcontainers.fluent.ManagedEnvironmentsClient;
+import com.azure.resourcemanager.appcontainers.fluent.models.EnvironmentAuthTokenInner;
 import com.azure.resourcemanager.appcontainers.fluent.models.ManagedEnvironmentInner;
+import com.azure.resourcemanager.appcontainers.models.EnvironmentAuthToken;
 import com.azure.resourcemanager.appcontainers.models.ManagedEnvironment;
 import com.azure.resourcemanager.appcontainers.models.ManagedEnvironments;
 
@@ -91,6 +93,30 @@ public final class ManagedEnvironmentsImpl implements ManagedEnvironments {
         ManagedEnvironmentInner environmentEnvelope,
         Context context) {
         this.serviceClient().update(resourceGroupName, environmentName, environmentEnvelope, context);
+    }
+
+    public EnvironmentAuthToken getAuthToken(String resourceGroupName, String environmentName) {
+        EnvironmentAuthTokenInner inner = this.serviceClient().getAuthToken(resourceGroupName, environmentName);
+        if (inner != null) {
+            return new EnvironmentAuthTokenImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
+    public Response<EnvironmentAuthToken> getAuthTokenWithResponse(
+        String resourceGroupName, String environmentName, Context context) {
+        Response<EnvironmentAuthTokenInner> inner =
+            this.serviceClient().getAuthTokenWithResponse(resourceGroupName, environmentName, context);
+        if (inner != null) {
+            return new SimpleResponse<>(
+                inner.getRequest(),
+                inner.getStatusCode(),
+                inner.getHeaders(),
+                new EnvironmentAuthTokenImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
     }
 
     public ManagedEnvironment getById(String id) {
