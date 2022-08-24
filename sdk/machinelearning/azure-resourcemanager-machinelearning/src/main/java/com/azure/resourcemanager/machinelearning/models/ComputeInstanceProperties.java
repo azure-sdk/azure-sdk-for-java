@@ -25,10 +25,10 @@ public final class ComputeInstanceProperties {
     private ResourceId subnet;
 
     /*
-     * Sharing policy for applications on this compute instance Policy for
-     * sharing applications on this compute instance among users of parent
-     * workspace. If Personal, only the creator can access applications on this
-     * compute instance. When Shared, any workspace user can access
+     * Sharing policy for applications on this compute instance
+     *
+     * Policy for sharing applications on this compute instance among users of parent workspace. If Personal, only the
+     * creator can access applications on this compute instance. When Shared, any workspace user can access
      * applications on this instance depending on his/her assigned role.
      */
     @JsonProperty(value = "applicationSharingPolicy")
@@ -41,14 +41,19 @@ public final class ComputeInstanceProperties {
     private ComputeInstanceSshSettings sshSettings;
 
     /*
+     * List of Custom Services added to the compute.
+     */
+    @JsonProperty(value = "customServices")
+    private List<CustomService> customServices;
+
+    /*
      * Describes all connectivity endpoints available for this ComputeInstance.
      */
     @JsonProperty(value = "connectivityEndpoints", access = JsonProperty.Access.WRITE_ONLY)
     private ComputeInstanceConnectivityEndpoints connectivityEndpoints;
 
     /*
-     * Describes available applications and their endpoints on this
-     * ComputeInstance.
+     * Describes available applications and their endpoints on this ComputeInstance.
      */
     @JsonProperty(value = "applications", access = JsonProperty.Access.WRITE_ONLY)
     private List<ComputeInstanceApplication> applications;
@@ -60,7 +65,9 @@ public final class ComputeInstanceProperties {
     private ComputeInstanceCreatedBy createdBy;
 
     /*
-     * Errors. Collection of errors encountered on this ComputeInstance.
+     * Errors.
+     *
+     * Collection of errors encountered on this ComputeInstance.
      */
     @JsonProperty(value = "errors", access = JsonProperty.Access.WRITE_ONLY)
     private List<ManagementError> errors;
@@ -72,8 +79,9 @@ public final class ComputeInstanceProperties {
     private ComputeInstanceState state;
 
     /*
-     * Compute Instance Authorization type. The Compute Instance Authorization
-     * type. Available values are personal (default).
+     * Compute Instance Authorization type.
+     *
+     * The Compute Instance Authorization type. Available values are personal (default).
      */
     @JsonProperty(value = "computeInstanceAuthorizationType")
     private ComputeInstanceAuthorizationType computeInstanceAuthorizationType;
@@ -103,11 +111,18 @@ public final class ComputeInstanceProperties {
     private ComputeSchedules schedules;
 
     /*
-     * Enable node public IP. Enable or disable node public IP address
-     * provisioning. Possible values are: Possible values are: true - Indicates
-     * that the compute nodes will have public IPs provisioned. false -
-     * Indicates that the compute nodes will have a private endpoint and no
-     * public IPs.
+     * Stops compute instance after user defined period of inactivity. Time is defined in ISO8601 format. Minimum is 15
+     * min, maximum is 3 days.
+     */
+    @JsonProperty(value = "idleTimeBeforeShutdown")
+    private String idleTimeBeforeShutdown;
+
+    /*
+     * Enable node public IP.
+     *
+     * Enable or disable node public IP address provisioning. Possible values are: Possible values are: true -
+     * Indicates that the compute nodes will have public IPs provisioned. false - Indicates that the compute nodes will
+     * have a private endpoint and no public IPs.
      */
     @JsonProperty(value = "enableNodePublicIp")
     private Boolean enableNodePublicIp;
@@ -177,10 +192,11 @@ public final class ComputeInstanceProperties {
     }
 
     /**
-     * Get the applicationSharingPolicy property: Sharing policy for applications on this compute instance Policy for
-     * sharing applications on this compute instance among users of parent workspace. If Personal, only the creator can
-     * access applications on this compute instance. When Shared, any workspace user can access applications on this
-     * instance depending on his/her assigned role.
+     * Get the applicationSharingPolicy property: Sharing policy for applications on this compute instance
+     *
+     * <p>Policy for sharing applications on this compute instance among users of parent workspace. If Personal, only
+     * the creator can access applications on this compute instance. When Shared, any workspace user can access
+     * applications on this instance depending on his/her assigned role.
      *
      * @return the applicationSharingPolicy value.
      */
@@ -189,10 +205,11 @@ public final class ComputeInstanceProperties {
     }
 
     /**
-     * Set the applicationSharingPolicy property: Sharing policy for applications on this compute instance Policy for
-     * sharing applications on this compute instance among users of parent workspace. If Personal, only the creator can
-     * access applications on this compute instance. When Shared, any workspace user can access applications on this
-     * instance depending on his/her assigned role.
+     * Set the applicationSharingPolicy property: Sharing policy for applications on this compute instance
+     *
+     * <p>Policy for sharing applications on this compute instance among users of parent workspace. If Personal, only
+     * the creator can access applications on this compute instance. When Shared, any workspace user can access
+     * applications on this instance depending on his/her assigned role.
      *
      * @param applicationSharingPolicy the applicationSharingPolicy value to set.
      * @return the ComputeInstanceProperties object itself.
@@ -219,6 +236,26 @@ public final class ComputeInstanceProperties {
      */
     public ComputeInstanceProperties withSshSettings(ComputeInstanceSshSettings sshSettings) {
         this.sshSettings = sshSettings;
+        return this;
+    }
+
+    /**
+     * Get the customServices property: List of Custom Services added to the compute.
+     *
+     * @return the customServices value.
+     */
+    public List<CustomService> customServices() {
+        return this.customServices;
+    }
+
+    /**
+     * Set the customServices property: List of Custom Services added to the compute.
+     *
+     * @param customServices the customServices value to set.
+     * @return the ComputeInstanceProperties object itself.
+     */
+    public ComputeInstanceProperties withCustomServices(List<CustomService> customServices) {
+        this.customServices = customServices;
         return this;
     }
 
@@ -250,7 +287,9 @@ public final class ComputeInstanceProperties {
     }
 
     /**
-     * Get the errors property: Errors. Collection of errors encountered on this ComputeInstance.
+     * Get the errors property: Errors.
+     *
+     * <p>Collection of errors encountered on this ComputeInstance.
      *
      * @return the errors value.
      */
@@ -268,8 +307,9 @@ public final class ComputeInstanceProperties {
     }
 
     /**
-     * Get the computeInstanceAuthorizationType property: Compute Instance Authorization type. The Compute Instance
-     * Authorization type. Available values are personal (default).
+     * Get the computeInstanceAuthorizationType property: Compute Instance Authorization type.
+     *
+     * <p>The Compute Instance Authorization type. Available values are personal (default).
      *
      * @return the computeInstanceAuthorizationType value.
      */
@@ -278,8 +318,9 @@ public final class ComputeInstanceProperties {
     }
 
     /**
-     * Set the computeInstanceAuthorizationType property: Compute Instance Authorization type. The Compute Instance
-     * Authorization type. Available values are personal (default).
+     * Set the computeInstanceAuthorizationType property: Compute Instance Authorization type.
+     *
+     * <p>The Compute Instance Authorization type. Available values are personal (default).
      *
      * @param computeInstanceAuthorizationType the computeInstanceAuthorizationType value to set.
      * @return the ComputeInstanceProperties object itself.
@@ -350,9 +391,33 @@ public final class ComputeInstanceProperties {
     }
 
     /**
-     * Get the enableNodePublicIp property: Enable node public IP. Enable or disable node public IP address
-     * provisioning. Possible values are: Possible values are: true - Indicates that the compute nodes will have public
-     * IPs provisioned. false - Indicates that the compute nodes will have a private endpoint and no public IPs.
+     * Get the idleTimeBeforeShutdown property: Stops compute instance after user defined period of inactivity. Time is
+     * defined in ISO8601 format. Minimum is 15 min, maximum is 3 days.
+     *
+     * @return the idleTimeBeforeShutdown value.
+     */
+    public String idleTimeBeforeShutdown() {
+        return this.idleTimeBeforeShutdown;
+    }
+
+    /**
+     * Set the idleTimeBeforeShutdown property: Stops compute instance after user defined period of inactivity. Time is
+     * defined in ISO8601 format. Minimum is 15 min, maximum is 3 days.
+     *
+     * @param idleTimeBeforeShutdown the idleTimeBeforeShutdown value to set.
+     * @return the ComputeInstanceProperties object itself.
+     */
+    public ComputeInstanceProperties withIdleTimeBeforeShutdown(String idleTimeBeforeShutdown) {
+        this.idleTimeBeforeShutdown = idleTimeBeforeShutdown;
+        return this;
+    }
+
+    /**
+     * Get the enableNodePublicIp property: Enable node public IP.
+     *
+     * <p>Enable or disable node public IP address provisioning. Possible values are: Possible values are: true -
+     * Indicates that the compute nodes will have public IPs provisioned. false - Indicates that the compute nodes will
+     * have a private endpoint and no public IPs.
      *
      * @return the enableNodePublicIp value.
      */
@@ -361,9 +426,11 @@ public final class ComputeInstanceProperties {
     }
 
     /**
-     * Set the enableNodePublicIp property: Enable node public IP. Enable or disable node public IP address
-     * provisioning. Possible values are: Possible values are: true - Indicates that the compute nodes will have public
-     * IPs provisioned. false - Indicates that the compute nodes will have a private endpoint and no public IPs.
+     * Set the enableNodePublicIp property: Enable node public IP.
+     *
+     * <p>Enable or disable node public IP address provisioning. Possible values are: Possible values are: true -
+     * Indicates that the compute nodes will have public IPs provisioned. false - Indicates that the compute nodes will
+     * have a private endpoint and no public IPs.
      *
      * @param enableNodePublicIp the enableNodePublicIp value to set.
      * @return the ComputeInstanceProperties object itself.
@@ -420,6 +487,9 @@ public final class ComputeInstanceProperties {
         }
         if (sshSettings() != null) {
             sshSettings().validate();
+        }
+        if (customServices() != null) {
+            customServices().forEach(e -> e.validate());
         }
         if (connectivityEndpoints() != null) {
             connectivityEndpoints().validate();

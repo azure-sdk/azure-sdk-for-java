@@ -25,8 +25,7 @@ public class EndpointDeploymentPropertiesBase {
     private String description;
 
     /*
-     * ARM resource ID of the environment specification for the endpoint
-     * deployment.
+     * ARM resource ID of the environment specification for the endpoint deployment.
      */
     @JsonProperty(value = "environmentId")
     private String environmentId;
@@ -39,8 +38,7 @@ public class EndpointDeploymentPropertiesBase {
     private Map<String, String> environmentVariables;
 
     /*
-     * Property dictionary. Properties can be added, but not removed or
-     * altered.
+     * Property dictionary. Properties can be added, but not removed or altered.
      */
     @JsonProperty(value = "properties")
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
