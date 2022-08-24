@@ -20,8 +20,8 @@ public final class ApplicationInsightsComponentListResult {
     private List<ApplicationInsightsComponentInner> value;
 
     /*
-     * The URI to get the next set of Application Insights component
-     * definitions if too many components where returned in the result set.
+     * The URI to get the next set of Application Insights component definitions if too many components where returned
+     * in the result set.
      */
     @JsonProperty(value = "nextLink")
     private String nextLink;
