@@ -15,6 +15,7 @@ import java.time.OffsetDateTime;
 public final class LibraryResourceInner extends EntityResource {
     /*
      * Information about a library/package created at the workspace level.
+     *
      * Library/package properties.
      */
     @JsonProperty(value = "properties", required = true)
@@ -22,7 +23,8 @@ public final class LibraryResourceInner extends EntityResource {
 
     /**
      * Get the innerProperties property: Information about a library/package created at the workspace level.
-     * Library/package properties.
+     *
+     * <p>Library/package properties.
      *
      * @return the innerProperties value.
      */

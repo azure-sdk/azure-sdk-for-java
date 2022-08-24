@@ -19,7 +19,9 @@ import com.azure.resourcemanager.synapse.models.UpdateIntegrationRuntimeRequest;
 /** An instance of this class provides access to all the operations defined in IntegrationRuntimesClient. */
 public interface IntegrationRuntimesClient {
     /**
-     * Update an integration runtime.
+     * Update integration runtime
+     *
+     * <p>Update an integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -38,7 +40,9 @@ public interface IntegrationRuntimesClient {
         UpdateIntegrationRuntimeRequest updateIntegrationRuntimeRequest);
 
     /**
-     * Update an integration runtime.
+     * Update integration runtime
+     *
+     * <p>Update an integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -59,7 +63,9 @@ public interface IntegrationRuntimesClient {
         Context context);
 
     /**
-     * Get an integration runtime.
+     * Get integration runtime
+     *
+     * <p>Get an integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -73,7 +79,9 @@ public interface IntegrationRuntimesClient {
     IntegrationRuntimeResourceInner get(String resourceGroupName, String workspaceName, String integrationRuntimeName);
 
     /**
-     * Get an integration runtime.
+     * Get integration runtime
+     *
+     * <p>Get an integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -95,7 +103,9 @@ public interface IntegrationRuntimesClient {
         Context context);
 
     /**
-     * Create an integration runtime.
+     * Create integration runtime
+     *
+     * <p>Create an integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -117,7 +127,9 @@ public interface IntegrationRuntimesClient {
         String ifMatch);
 
     /**
-     * Create an integration runtime.
+     * Create integration runtime
+     *
+     * <p>Create an integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -141,7 +153,9 @@ public interface IntegrationRuntimesClient {
         Context context);
 
     /**
-     * Create an integration runtime.
+     * Create integration runtime
+     *
+     * <p>Create an integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -163,7 +177,9 @@ public interface IntegrationRuntimesClient {
         String ifMatch);
 
     /**
-     * Create an integration runtime.
+     * Create integration runtime
+     *
+     * <p>Create an integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -182,7 +198,9 @@ public interface IntegrationRuntimesClient {
         IntegrationRuntimeResourceInner integrationRuntime);
 
     /**
-     * Create an integration runtime.
+     * Create integration runtime
+     *
+     * <p>Create an integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -206,7 +224,9 @@ public interface IntegrationRuntimesClient {
         Context context);
 
     /**
-     * Delete an integration runtime.
+     * Delete integration runtime
+     *
+     * <p>Delete an integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -221,7 +241,9 @@ public interface IntegrationRuntimesClient {
         String resourceGroupName, String workspaceName, String integrationRuntimeName);
 
     /**
-     * Delete an integration runtime.
+     * Delete integration runtime
+     *
+     * <p>Delete an integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -237,7 +259,9 @@ public interface IntegrationRuntimesClient {
         String resourceGroupName, String workspaceName, String integrationRuntimeName, Context context);
 
     /**
-     * Delete an integration runtime.
+     * Delete integration runtime
+     *
+     * <p>Delete an integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -250,7 +274,9 @@ public interface IntegrationRuntimesClient {
     void delete(String resourceGroupName, String workspaceName, String integrationRuntimeName);
 
     /**
-     * Delete an integration runtime.
+     * Delete integration runtime
+     *
+     * <p>Delete an integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -264,7 +290,9 @@ public interface IntegrationRuntimesClient {
     void delete(String resourceGroupName, String workspaceName, String integrationRuntimeName, Context context);
 
     /**
-     * Upgrade an integration runtime.
+     * Upgrade integration runtime
+     *
+     * <p>Upgrade an integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -277,7 +305,9 @@ public interface IntegrationRuntimesClient {
     void upgrade(String resourceGroupName, String workspaceName, String integrationRuntimeName);
 
     /**
-     * Upgrade an integration runtime.
+     * Upgrade integration runtime
+     *
+     * <p>Upgrade an integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -293,7 +323,9 @@ public interface IntegrationRuntimesClient {
         String resourceGroupName, String workspaceName, String integrationRuntimeName, Context context);
 
     /**
-     * List all integration runtimes.
+     * List integration runtimes
+     *
+     * <p>List all integration runtimes.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -306,7 +338,9 @@ public interface IntegrationRuntimesClient {
     PagedIterable<IntegrationRuntimeResourceInner> listByWorkspace(String resourceGroupName, String workspaceName);
 
     /**
-     * List all integration runtimes.
+     * List integration runtimes
+     *
+     * <p>List all integration runtimes.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -321,7 +355,9 @@ public interface IntegrationRuntimesClient {
         String resourceGroupName, String workspaceName, Context context);
 
     /**
-     * Start an integration runtime.
+     * Start integration runtime
+     *
+     * <p>Start an integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -336,7 +372,9 @@ public interface IntegrationRuntimesClient {
         String resourceGroupName, String workspaceName, String integrationRuntimeName);
 
     /**
-     * Start an integration runtime.
+     * Start integration runtime
+     *
+     * <p>Start an integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -352,7 +390,9 @@ public interface IntegrationRuntimesClient {
         String resourceGroupName, String workspaceName, String integrationRuntimeName, Context context);
 
     /**
-     * Start an integration runtime.
+     * Start integration runtime
+     *
+     * <p>Start an integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -367,7 +407,9 @@ public interface IntegrationRuntimesClient {
         String resourceGroupName, String workspaceName, String integrationRuntimeName);
 
     /**
-     * Start an integration runtime.
+     * Start integration runtime
+     *
+     * <p>Start an integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -383,7 +425,9 @@ public interface IntegrationRuntimesClient {
         String resourceGroupName, String workspaceName, String integrationRuntimeName, Context context);
 
     /**
-     * Stop an integration runtime.
+     * Stop integration runtime
+     *
+     * <p>Stop an integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -398,7 +442,9 @@ public interface IntegrationRuntimesClient {
         String resourceGroupName, String workspaceName, String integrationRuntimeName);
 
     /**
-     * Stop an integration runtime.
+     * Stop integration runtime
+     *
+     * <p>Stop an integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -414,7 +460,9 @@ public interface IntegrationRuntimesClient {
         String resourceGroupName, String workspaceName, String integrationRuntimeName, Context context);
 
     /**
-     * Stop an integration runtime.
+     * Stop integration runtime
+     *
+     * <p>Stop an integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -427,7 +475,9 @@ public interface IntegrationRuntimesClient {
     void stop(String resourceGroupName, String workspaceName, String integrationRuntimeName);
 
     /**
-     * Stop an integration runtime.
+     * Stop integration runtime
+     *
+     * <p>Stop an integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -441,7 +491,9 @@ public interface IntegrationRuntimesClient {
     void stop(String resourceGroupName, String workspaceName, String integrationRuntimeName, Context context);
 
     /**
-     * Gets the list of outbound network dependencies for a given Azure-SSIS integration runtime.
+     * Gets list of outbound network dependencies for a given Azure-SSIS integration runtime.
+     *
+     * <p>Gets the list of outbound network dependencies for a given Azure-SSIS integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -456,7 +508,9 @@ public interface IntegrationRuntimesClient {
         String resourceGroupName, String workspaceName, String integrationRuntimeName);
 
     /**
-     * Gets the list of outbound network dependencies for a given Azure-SSIS integration runtime.
+     * Gets list of outbound network dependencies for a given Azure-SSIS integration runtime.
+     *
+     * <p>Gets the list of outbound network dependencies for a given Azure-SSIS integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.

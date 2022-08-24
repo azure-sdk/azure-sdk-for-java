@@ -12,7 +12,9 @@ import com.azure.core.util.Context;
 /** An instance of this class provides access to all the operations defined in SqlPoolOperationResultsClient. */
 public interface SqlPoolOperationResultsClient {
     /**
-     * Get the status of a SQL pool operation.
+     * Get SQL pool operation status
+     *
+     * <p>Get the status of a SQL pool operation.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -28,7 +30,9 @@ public interface SqlPoolOperationResultsClient {
         String resourceGroupName, String workspaceName, String sqlPoolName, String operationId);
 
     /**
-     * Get the status of a SQL pool operation.
+     * Get SQL pool operation status
+     *
+     * <p>Get the status of a SQL pool operation.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.

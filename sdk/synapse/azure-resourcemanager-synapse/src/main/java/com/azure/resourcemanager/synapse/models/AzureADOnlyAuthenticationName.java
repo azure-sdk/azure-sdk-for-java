@@ -24,7 +24,11 @@ public final class AzureADOnlyAuthenticationName extends ExpandableStringEnum<Az
         return fromString(name, AzureADOnlyAuthenticationName.class);
     }
 
-    /** @return known AzureADOnlyAuthenticationName values. */
+    /**
+     * Gets known AzureADOnlyAuthenticationName values.
+     *
+     * @return known AzureADOnlyAuthenticationName values.
+     */
     public static Collection<AzureADOnlyAuthenticationName> values() {
         return values(AzureADOnlyAuthenticationName.class);
     }
