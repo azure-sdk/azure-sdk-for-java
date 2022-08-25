@@ -24,8 +24,8 @@ public final class CheckNameResultInner {
     private String name;
 
     /*
-     * Message indicating an unavailable name due to a conflict, or a
-     * description of the naming rules that are violated.
+     * Message indicating an unavailable name due to a conflict, or a description of the naming rules that are
+     * violated.
      */
     @JsonProperty(value = "message")
     private String message;

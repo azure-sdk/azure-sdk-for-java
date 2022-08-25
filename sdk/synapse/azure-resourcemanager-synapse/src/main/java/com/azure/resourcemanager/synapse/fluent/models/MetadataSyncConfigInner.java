@@ -8,7 +8,11 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.management.ProxyResource;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Metadata sync configuration Configuration for metadata sync. */
+/**
+ * Metadata sync configuration
+ *
+ * <p>Configuration for metadata sync.
+ */
 @Fluent
 public final class MetadataSyncConfigInner extends ProxyResource {
     /*

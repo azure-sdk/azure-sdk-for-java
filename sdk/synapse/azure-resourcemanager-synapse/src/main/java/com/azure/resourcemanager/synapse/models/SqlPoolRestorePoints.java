@@ -11,7 +11,9 @@ import com.azure.core.util.Context;
 /** Resource collection API of SqlPoolRestorePoints. */
 public interface SqlPoolRestorePoints {
     /**
-     * Get SQL pool backup information.
+     * Get SQL pool backup
+     *
+     * <p>Get SQL pool backup information.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -24,7 +26,9 @@ public interface SqlPoolRestorePoints {
     PagedIterable<RestorePoint> list(String resourceGroupName, String workspaceName, String sqlPoolName);
 
     /**
-     * Get SQL pool backup information.
+     * Get SQL pool backup
+     *
+     * <p>Get SQL pool backup information.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
