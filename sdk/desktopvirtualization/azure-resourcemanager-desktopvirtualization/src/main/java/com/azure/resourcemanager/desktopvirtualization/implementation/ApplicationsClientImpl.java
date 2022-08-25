@@ -169,7 +169,7 @@ public final class ApplicationsClientImpl implements ApplicationsClient {
      * @return an application along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<ApplicationInner>> getWithResponseAsync(
+    private Mono<Response<ApplicationInner>> getWithResponseAsync(
         String resourceGroupName, String applicationGroupName, String applicationName) {
         if (this.client.getEndpoint() == null) {
             return Mono
@@ -277,7 +277,7 @@ public final class ApplicationsClientImpl implements ApplicationsClient {
      * @return an application on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<ApplicationInner> getAsync(
+    private Mono<ApplicationInner> getAsync(
         String resourceGroupName, String applicationGroupName, String applicationName) {
         return getWithResponseAsync(resourceGroupName, applicationGroupName, applicationName)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
@@ -330,7 +330,7 @@ public final class ApplicationsClientImpl implements ApplicationsClient {
      * @return schema for Application properties along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<ApplicationInner>> createOrUpdateWithResponseAsync(
+    private Mono<Response<ApplicationInner>> createOrUpdateWithResponseAsync(
         String resourceGroupName, String applicationGroupName, String applicationName, ApplicationInner application) {
         if (this.client.getEndpoint() == null) {
             return Mono
@@ -456,7 +456,7 @@ public final class ApplicationsClientImpl implements ApplicationsClient {
      * @return schema for Application properties on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<ApplicationInner> createOrUpdateAsync(
+    private Mono<ApplicationInner> createOrUpdateAsync(
         String resourceGroupName, String applicationGroupName, String applicationName, ApplicationInner application) {
         return createOrUpdateWithResponseAsync(resourceGroupName, applicationGroupName, applicationName, application)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
@@ -517,7 +517,7 @@ public final class ApplicationsClientImpl implements ApplicationsClient {
      * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Void>> deleteWithResponseAsync(
+    private Mono<Response<Void>> deleteWithResponseAsync(
         String resourceGroupName, String applicationGroupName, String applicationName) {
         if (this.client.getEndpoint() == null) {
             return Mono
@@ -625,7 +625,7 @@ public final class ApplicationsClientImpl implements ApplicationsClient {
      * @return A {@link Mono} that completes when a successful response is received.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Void> deleteAsync(String resourceGroupName, String applicationGroupName, String applicationName) {
+    private Mono<Void> deleteAsync(String resourceGroupName, String applicationGroupName, String applicationName) {
         return deleteWithResponseAsync(resourceGroupName, applicationGroupName, applicationName)
             .flatMap(ignored -> Mono.empty());
     }
@@ -676,7 +676,7 @@ public final class ApplicationsClientImpl implements ApplicationsClient {
      * @return schema for Application properties along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<ApplicationInner>> updateWithResponseAsync(
+    private Mono<Response<ApplicationInner>> updateWithResponseAsync(
         String resourceGroupName, String applicationGroupName, String applicationName, ApplicationPatch application) {
         if (this.client.getEndpoint() == null) {
             return Mono
@@ -798,7 +798,7 @@ public final class ApplicationsClientImpl implements ApplicationsClient {
      * @return schema for Application properties on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<ApplicationInner> updateAsync(
+    private Mono<ApplicationInner> updateAsync(
         String resourceGroupName, String applicationGroupName, String applicationName, ApplicationPatch application) {
         return updateWithResponseAsync(resourceGroupName, applicationGroupName, applicationName, application)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
@@ -816,7 +816,7 @@ public final class ApplicationsClientImpl implements ApplicationsClient {
      * @return schema for Application properties on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<ApplicationInner> updateAsync(
+    private Mono<ApplicationInner> updateAsync(
         String resourceGroupName, String applicationGroupName, String applicationName) {
         final ApplicationPatch application = null;
         return updateWithResponseAsync(resourceGroupName, applicationGroupName, applicationName, application)
@@ -989,7 +989,7 @@ public final class ApplicationsClientImpl implements ApplicationsClient {
      * @return applicationList as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedFlux<ApplicationInner> listAsync(String resourceGroupName, String applicationGroupName) {
+    private PagedFlux<ApplicationInner> listAsync(String resourceGroupName, String applicationGroupName) {
         return new PagedFlux<>(
             () -> listSinglePageAsync(resourceGroupName, applicationGroupName),
             nextLink -> listNextSinglePageAsync(nextLink));
@@ -1049,7 +1049,8 @@ public final class ApplicationsClientImpl implements ApplicationsClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1084,7 +1085,8 @@ public final class ApplicationsClientImpl implements ApplicationsClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.

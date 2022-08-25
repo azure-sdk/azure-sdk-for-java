@@ -9,14 +9,14 @@ import com.azure.core.util.Context;
 /** Samples for ScalingPlans ListByHostPool. */
 public final class ScalingPlansListByHostPoolSamples {
     /*
-     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2021-09-03-preview/examples/ScalingPlan_ListByHostPool.json
+     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2022-08-10/examples/ScalingPlan_ListByHostPool.json
      */
     /**
-     * Sample code: ScalingPlan_ListByHostPool.
+     * Sample code: UserSession_SendMessage_Post.
      *
      * @param manager Entry point to DesktopVirtualizationManager.
      */
-    public static void scalingPlanListByHostPool(
+    public static void userSessionSendMessagePost(
         com.azure.resourcemanager.desktopvirtualization.DesktopVirtualizationManager manager) {
         manager.scalingPlans().listByHostPool("resourceGroup1", "hostPool1", Context.NONE);
     }

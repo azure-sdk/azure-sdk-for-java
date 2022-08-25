@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.desktopvirtualization.implementation;
 
-import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.desktopvirtualization.fluent.models.ApplicationInner;
 import com.azure.resourcemanager.desktopvirtualization.models.Application;
@@ -28,10 +27,6 @@ public final class ApplicationImpl implements Application, Application.Definitio
 
     public String type() {
         return this.innerModel().type();
-    }
-
-    public SystemData systemData() {
-        return this.innerModel().systemData();
     }
 
     public String objectId() {

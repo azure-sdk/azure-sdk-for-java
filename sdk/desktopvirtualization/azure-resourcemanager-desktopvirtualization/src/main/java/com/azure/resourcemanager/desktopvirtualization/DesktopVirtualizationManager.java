@@ -32,8 +32,6 @@ import com.azure.resourcemanager.desktopvirtualization.implementation.HostPoolsI
 import com.azure.resourcemanager.desktopvirtualization.implementation.MsixImagesImpl;
 import com.azure.resourcemanager.desktopvirtualization.implementation.MsixPackagesImpl;
 import com.azure.resourcemanager.desktopvirtualization.implementation.OperationsImpl;
-import com.azure.resourcemanager.desktopvirtualization.implementation.PrivateEndpointConnectionsImpl;
-import com.azure.resourcemanager.desktopvirtualization.implementation.PrivateLinkResourcesImpl;
 import com.azure.resourcemanager.desktopvirtualization.implementation.ScalingPlansImpl;
 import com.azure.resourcemanager.desktopvirtualization.implementation.SessionHostsImpl;
 import com.azure.resourcemanager.desktopvirtualization.implementation.StartMenuItemsImpl;
@@ -46,8 +44,6 @@ import com.azure.resourcemanager.desktopvirtualization.models.HostPools;
 import com.azure.resourcemanager.desktopvirtualization.models.MsixImages;
 import com.azure.resourcemanager.desktopvirtualization.models.MsixPackages;
 import com.azure.resourcemanager.desktopvirtualization.models.Operations;
-import com.azure.resourcemanager.desktopvirtualization.models.PrivateEndpointConnections;
-import com.azure.resourcemanager.desktopvirtualization.models.PrivateLinkResources;
 import com.azure.resourcemanager.desktopvirtualization.models.ScalingPlans;
 import com.azure.resourcemanager.desktopvirtualization.models.SessionHosts;
 import com.azure.resourcemanager.desktopvirtualization.models.StartMenuItems;
@@ -85,10 +81,6 @@ public final class DesktopVirtualizationManager {
     private MsixPackages msixPackages;
 
     private MsixImages msixImages;
-
-    private PrivateEndpointConnections privateEndpointConnections;
-
-    private PrivateLinkResources privateLinkResources;
 
     private final DesktopVirtualizationApiClient clientObject;
 
@@ -256,7 +248,7 @@ public final class DesktopVirtualizationManager {
                 .append("-")
                 .append("com.azure.resourcemanager.desktopvirtualization")
                 .append("/")
-                .append("1.0.0-beta.2");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder
                     .append(" (")
@@ -455,31 +447,6 @@ public final class DesktopVirtualizationManager {
             this.msixImages = new MsixImagesImpl(clientObject.getMsixImages(), this);
         }
         return msixImages;
-    }
-
-    /**
-     * Gets the resource collection API of PrivateEndpointConnections.
-     *
-     * @return Resource collection API of PrivateEndpointConnections.
-     */
-    public PrivateEndpointConnections privateEndpointConnections() {
-        if (this.privateEndpointConnections == null) {
-            this.privateEndpointConnections =
-                new PrivateEndpointConnectionsImpl(clientObject.getPrivateEndpointConnections(), this);
-        }
-        return privateEndpointConnections;
-    }
-
-    /**
-     * Gets the resource collection API of PrivateLinkResources.
-     *
-     * @return Resource collection API of PrivateLinkResources.
-     */
-    public PrivateLinkResources privateLinkResources() {
-        if (this.privateLinkResources == null) {
-            this.privateLinkResources = new PrivateLinkResourcesImpl(clientObject.getPrivateLinkResources(), this);
-        }
-        return privateLinkResources;
     }
 
     /**

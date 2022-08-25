@@ -6,7 +6,6 @@ package com.azure.resourcemanager.desktopvirtualization.implementation;
 
 import com.azure.core.http.rest.Response;
 import com.azure.core.management.Region;
-import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.desktopvirtualization.fluent.models.HostPoolInner;
 import com.azure.resourcemanager.desktopvirtualization.fluent.models.RegistrationInfoInner;
@@ -17,7 +16,6 @@ import com.azure.resourcemanager.desktopvirtualization.models.LoadBalancerType;
 import com.azure.resourcemanager.desktopvirtualization.models.MigrationRequestProperties;
 import com.azure.resourcemanager.desktopvirtualization.models.PersonalDesktopAssignmentType;
 import com.azure.resourcemanager.desktopvirtualization.models.PreferredAppGroupType;
-import com.azure.resourcemanager.desktopvirtualization.models.PublicNetworkAccess;
 import com.azure.resourcemanager.desktopvirtualization.models.RegistrationInfo;
 import com.azure.resourcemanager.desktopvirtualization.models.RegistrationInfoPatch;
 import com.azure.resourcemanager.desktopvirtualization.models.ResourceModelWithAllowedPropertySetIdentity;
@@ -80,10 +78,6 @@ public final class HostPoolImpl implements HostPool, HostPool.Definition, HostPo
 
     public ResourceModelWithAllowedPropertySetPlan plan() {
         return this.innerModel().plan();
-    }
-
-    public SystemData systemData() {
-        return this.innerModel().systemData();
     }
 
     public String objectId() {
@@ -178,10 +172,6 @@ public final class HostPoolImpl implements HostPool, HostPool.Definition, HostPo
 
     public Boolean cloudPcResource() {
         return this.innerModel().cloudPcResource();
-    }
-
-    public PublicNetworkAccess publicNetworkAccess() {
-        return this.innerModel().publicNetworkAccess();
     }
 
     public Region region() {
@@ -514,16 +504,6 @@ public final class HostPoolImpl implements HostPool, HostPool.Definition, HostPo
     public HostPoolImpl withMigrationRequest(MigrationRequestProperties migrationRequest) {
         this.innerModel().withMigrationRequest(migrationRequest);
         return this;
-    }
-
-    public HostPoolImpl withPublicNetworkAccess(PublicNetworkAccess publicNetworkAccess) {
-        if (isInCreateMode()) {
-            this.innerModel().withPublicNetworkAccess(publicNetworkAccess);
-            return this;
-        } else {
-            this.updateHostPool.withPublicNetworkAccess(publicNetworkAccess);
-            return this;
-        }
     }
 
     public HostPoolImpl withRegistrationInfo(RegistrationInfoPatch registrationInfo) {

@@ -4,63 +4,23 @@
 
 package com.azure.resourcemanager.desktopvirtualization.models;
 
-import com.azure.core.annotation.Fluent;
-import com.azure.resourcemanager.desktopvirtualization.fluent.models.ResourceProviderOperationInner;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.azure.resourcemanager.desktopvirtualization.fluent.models.ResourceProviderOperationListInner;
 import java.util.List;
 
-/** Result of the request to list operations. */
-@Fluent
-public final class ResourceProviderOperationList {
-    /*
-     * List of operations supported by this resource provider.
-     */
-    @JsonProperty(value = "value")
-    private List<ResourceProviderOperationInner> value;
-
-    /*
-     * Link to the next page of results.
-     */
-    @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
-    private String nextLink;
-
+/** An immutable client-side representation of ResourceProviderOperationList. */
+public interface ResourceProviderOperationList {
     /**
-     * Get the value property: List of operations supported by this resource provider.
+     * Gets the value property: List of operations supported by this resource provider.
      *
      * @return the value value.
      */
-    public List<ResourceProviderOperationInner> value() {
-        return this.value;
-    }
+    List<ResourceProviderOperation> value();
 
     /**
-     * Set the value property: List of operations supported by this resource provider.
+     * Gets the inner com.azure.resourcemanager.desktopvirtualization.fluent.models.ResourceProviderOperationListInner
+     * object.
      *
-     * @param value the value value to set.
-     * @return the ResourceProviderOperationList object itself.
+     * @return the inner object.
      */
-    public ResourceProviderOperationList withValue(List<ResourceProviderOperationInner> value) {
-        this.value = value;
-        return this;
-    }
-
-    /**
-     * Get the nextLink property: Link to the next page of results.
-     *
-     * @return the nextLink value.
-     */
-    public String nextLink() {
-        return this.nextLink;
-    }
-
-    /**
-     * Validates the instance.
-     *
-     * @throws IllegalArgumentException thrown if the instance is not valid.
-     */
-    public void validate() {
-        if (value() != null) {
-            value().forEach(e -> e.validate());
-        }
-    }
+    ResourceProviderOperationListInner innerModel();
 }

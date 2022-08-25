@@ -6,7 +6,6 @@ package com.azure.resourcemanager.desktopvirtualization.models;
 
 import com.azure.core.http.rest.Response;
 import com.azure.core.management.Region;
-import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.desktopvirtualization.fluent.models.HostPoolInner;
 import com.azure.resourcemanager.desktopvirtualization.fluent.models.RegistrationInfoInner;
@@ -98,13 +97,6 @@ public interface HostPool {
      * @return the plan value.
      */
     ResourceModelWithAllowedPropertySetPlan plan();
-
-    /**
-     * Gets the systemData property: Metadata pertaining to creation and last modification of the resource.
-     *
-     * @return the systemData value.
-     */
-    SystemData systemData();
 
     /**
      * Gets the objectId property: ObjectId of HostPool. (internal use).
@@ -256,14 +248,6 @@ public interface HostPool {
     Boolean cloudPcResource();
 
     /**
-     * Gets the publicNetworkAccess property: Enabled allows this resource to be accessed from both public and private
-     * networks, Disabled allows this resource to only be accessed via private endpoints.
-     *
-     * @return the publicNetworkAccess value.
-     */
-    PublicNetworkAccess publicNetworkAccess();
-
-    /**
      * Gets the region of the resource.
      *
      * @return the region of the resource.
@@ -391,8 +375,7 @@ public interface HostPool {
                 DefinitionStages.WithSsoClientSecretKeyVaultPath,
                 DefinitionStages.WithSsoSecretType,
                 DefinitionStages.WithStartVMOnConnect,
-                DefinitionStages.WithMigrationRequest,
-                DefinitionStages.WithPublicNetworkAccess {
+                DefinitionStages.WithMigrationRequest {
             /**
              * Executes the create request.
              *
@@ -630,18 +613,6 @@ public interface HostPool {
              */
             WithCreate withMigrationRequest(MigrationRequestProperties migrationRequest);
         }
-        /** The stage of the HostPool definition allowing to specify publicNetworkAccess. */
-        interface WithPublicNetworkAccess {
-            /**
-             * Specifies the publicNetworkAccess property: Enabled allows this resource to be accessed from both public
-             * and private networks, Disabled allows this resource to only be accessed via private endpoints.
-             *
-             * @param publicNetworkAccess Enabled allows this resource to be accessed from both public and private
-             *     networks, Disabled allows this resource to only be accessed via private endpoints.
-             * @return the next definition stage.
-             */
-            WithCreate withPublicNetworkAccess(PublicNetworkAccess publicNetworkAccess);
-        }
     }
     /**
      * Begins update for the HostPool resource.
@@ -668,8 +639,7 @@ public interface HostPool {
             UpdateStages.WithSsoClientSecretKeyVaultPath,
             UpdateStages.WithSsoSecretType,
             UpdateStages.WithPreferredAppGroupType,
-            UpdateStages.WithStartVMOnConnect,
-            UpdateStages.WithPublicNetworkAccess {
+            UpdateStages.WithStartVMOnConnect {
         /**
          * Executes the update request.
          *
@@ -861,17 +831,6 @@ public interface HostPool {
              * @return the next definition stage.
              */
             Update withStartVMOnConnect(Boolean startVMOnConnect);
-        }
-        /** The stage of the HostPool update allowing to specify publicNetworkAccess. */
-        interface WithPublicNetworkAccess {
-            /**
-             * Specifies the publicNetworkAccess property: Enabled to allow this resource to be access from the public
-             * network.
-             *
-             * @param publicNetworkAccess Enabled to allow this resource to be access from the public network.
-             * @return the next definition stage.
-             */
-            Update withPublicNetworkAccess(PublicNetworkAccess publicNetworkAccess);
         }
     }
     /**

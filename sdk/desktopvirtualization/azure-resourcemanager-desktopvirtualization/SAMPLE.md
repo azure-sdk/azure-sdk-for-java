@@ -50,22 +50,6 @@
 
 - [List](#operations_list)
 
-## PrivateEndpointConnections
-
-- [DeleteByHostPool](#privateendpointconnections_deletebyhostpool)
-- [DeleteByWorkspace](#privateendpointconnections_deletebyworkspace)
-- [GetByHostPool](#privateendpointconnections_getbyhostpool)
-- [GetByWorkspace](#privateendpointconnections_getbyworkspace)
-- [ListByHostPool](#privateendpointconnections_listbyhostpool)
-- [ListByWorkspace](#privateendpointconnections_listbyworkspace)
-- [UpdateByHostPool](#privateendpointconnections_updatebyhostpool)
-- [UpdateByWorkspace](#privateendpointconnections_updatebyworkspace)
-
-## PrivateLinkResources
-
-- [ListByHostPool](#privatelinkresources_listbyhostpool)
-- [ListByWorkspace](#privatelinkresources_listbyworkspace)
-
 ## ScalingPlans
 
 - [Create](#scalingplans_create)
@@ -116,7 +100,7 @@ import java.util.Map;
 /** Samples for ApplicationGroups CreateOrUpdate. */
 public final class ApplicationGroupsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2021-09-03-preview/examples/ApplicationGroup_Create.json
+     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2022-08-10/examples/ApplicationGroup_Create.json
      */
     /**
      * Sample code: ApplicationGroup_Create.
@@ -165,7 +149,7 @@ import com.azure.core.util.Context;
 /** Samples for ApplicationGroups Delete. */
 public final class ApplicationGroupsDeleteSamples {
     /*
-     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2021-09-03-preview/examples/ApplicationGroup_Delete.json
+     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2022-08-10/examples/ApplicationGroup_Delete.json
      */
     /**
      * Sample code: ApplicationGroup_Delete.
@@ -187,7 +171,7 @@ import com.azure.core.util.Context;
 /** Samples for ApplicationGroups GetByResourceGroup. */
 public final class ApplicationGroupsGetByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2021-09-03-preview/examples/ApplicationGroup_Get.json
+     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2022-08-10/examples/ApplicationGroup_Get.json
      */
     /**
      * Sample code: ApplicationGroup_Get.
@@ -209,7 +193,7 @@ import com.azure.core.util.Context;
 /** Samples for ApplicationGroups List. */
 public final class ApplicationGroupsListSamples {
     /*
-     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2021-09-03-preview/examples/ApplicationGroup_ListBySubscription.json
+     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2022-08-10/examples/ApplicationGroup_ListBySubscription.json
      */
     /**
      * Sample code: ApplicationGroup_List.
@@ -231,7 +215,7 @@ import com.azure.core.util.Context;
 /** Samples for ApplicationGroups ListByResourceGroup. */
 public final class ApplicationGroupsListByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2021-09-03-preview/examples/ApplicationGroup_ListByResourceGroup.json
+     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2022-08-10/examples/ApplicationGroup_ListByResourceGroup.json
      */
     /**
      * Sample code: ApplicationGroup_ListByResourceGroup.
@@ -258,7 +242,7 @@ import java.util.Map;
 /** Samples for ApplicationGroups Update. */
 public final class ApplicationGroupsUpdateSamples {
     /*
-     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2021-09-03-preview/examples/ApplicationGroup_Update.json
+     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2022-08-10/examples/ApplicationGroup_Update.json
      */
     /**
      * Sample code: ApplicationGroups_Update.
@@ -301,7 +285,7 @@ import com.azure.resourcemanager.desktopvirtualization.models.CommandLineSetting
 /** Samples for Applications CreateOrUpdate. */
 public final class ApplicationsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2021-09-03-preview/examples/Application_Create.json
+     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2022-08-10/examples/Application_Create.json
      */
     /**
      * Sample code: Application_Create.
@@ -335,7 +319,7 @@ import com.azure.core.util.Context;
 /** Samples for Applications Delete. */
 public final class ApplicationsDeleteSamples {
     /*
-     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2021-09-03-preview/examples/Application_Delete.json
+     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2022-08-10/examples/Application_Delete.json
      */
     /**
      * Sample code: Application_Delete.
@@ -357,7 +341,7 @@ import com.azure.core.util.Context;
 /** Samples for Applications Get. */
 public final class ApplicationsGetSamples {
     /*
-     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2021-09-03-preview/examples/Application_Get.json
+     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2022-08-10/examples/Application_Get.json
      */
     /**
      * Sample code: Application_Get.
@@ -379,7 +363,7 @@ import com.azure.core.util.Context;
 /** Samples for Applications List. */
 public final class ApplicationsListSamples {
     /*
-     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2021-09-03-preview/examples/Application_List.json
+     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2022-08-10/examples/Application_List.json
      */
     /**
      * Sample code: Applications_List.
@@ -404,7 +388,7 @@ import com.azure.resourcemanager.desktopvirtualization.models.RemoteApplicationT
 /** Samples for Applications Update. */
 public final class ApplicationsUpdateSamples {
     /*
-     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2021-09-03-preview/examples/Application_Update.json
+     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2022-08-10/examples/Application_Update.json
      */
     /**
      * Sample code: Application_Update.
@@ -442,7 +426,7 @@ import com.azure.core.util.Context;
 /** Samples for Desktops Get. */
 public final class DesktopsGetSamples {
     /*
-     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2021-09-03-preview/examples/Desktop_Get.json
+     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2022-08-10/examples/Desktop_Get.json
      */
     /**
      * Sample code: Desktop_Get.
@@ -464,7 +448,7 @@ import com.azure.core.util.Context;
 /** Samples for Desktops List. */
 public final class DesktopsListSamples {
     /*
-     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2021-09-03-preview/examples/Desktop_List.json
+     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2022-08-10/examples/Desktop_List.json
      */
     /**
      * Sample code: Desktop_List.
@@ -473,7 +457,7 @@ public final class DesktopsListSamples {
      */
     public static void desktopList(
         com.azure.resourcemanager.desktopvirtualization.DesktopVirtualizationManager manager) {
-        manager.desktops().list("resourceGroup1", "applicationGroup1", Context.NONE);
+        manager.desktops().listWithResponse("resourceGroup1", "applicationGroup1", Context.NONE);
     }
 }
 ```
@@ -487,7 +471,7 @@ import com.azure.resourcemanager.desktopvirtualization.models.DesktopPatch;
 /** Samples for Desktops Update. */
 public final class DesktopsUpdateSamples {
     /*
-     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2021-09-03-preview/examples/Desktop_Update.json
+     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2022-08-10/examples/Desktop_Update.json
      */
     /**
      * Sample code: Desktop_Update.
@@ -518,7 +502,6 @@ import com.azure.resourcemanager.desktopvirtualization.models.MigrationRequestPr
 import com.azure.resourcemanager.desktopvirtualization.models.Operation;
 import com.azure.resourcemanager.desktopvirtualization.models.PersonalDesktopAssignmentType;
 import com.azure.resourcemanager.desktopvirtualization.models.PreferredAppGroupType;
-import com.azure.resourcemanager.desktopvirtualization.models.PublicNetworkAccess;
 import com.azure.resourcemanager.desktopvirtualization.models.RegistrationTokenOperation;
 import com.azure.resourcemanager.desktopvirtualization.models.SsoSecretType;
 import java.time.OffsetDateTime;
@@ -528,7 +511,7 @@ import java.util.Map;
 /** Samples for HostPools CreateOrUpdate. */
 public final class HostPoolsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2021-09-03-preview/examples/HostPool_Create.json
+     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2022-08-10/examples/HostPool_Create.json
      */
     /**
      * Sample code: HostPool_Create.
@@ -565,7 +548,6 @@ public final class HostPoolsCreateOrUpdateSamples {
                     .withOperation(Operation.START)
                     .withMigrationPath(
                         "TenantGroups/{defaultV1TenantGroup.Name}/Tenants/{defaultV1Tenant.Name}/HostPools/{sessionHostPool.Name}"))
-            .withPublicNetworkAccess(PublicNetworkAccess.ENABLED)
             .create();
     }
 
@@ -590,7 +572,7 @@ import com.azure.core.util.Context;
 /** Samples for HostPools Delete. */
 public final class HostPoolsDeleteSamples {
     /*
-     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2021-09-03-preview/examples/HostPool_Delete.json
+     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2022-08-10/examples/HostPool_Delete.json
      */
     /**
      * Sample code: HostPool_Delete.
@@ -612,7 +594,7 @@ import com.azure.core.util.Context;
 /** Samples for HostPools GetByResourceGroup. */
 public final class HostPoolsGetByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2021-09-03-preview/examples/HostPool_Get.json
+     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2022-08-10/examples/HostPool_Get.json
      */
     /**
      * Sample code: HostPool_Get.
@@ -634,7 +616,7 @@ import com.azure.core.util.Context;
 /** Samples for HostPools List. */
 public final class HostPoolsListSamples {
     /*
-     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2021-09-03-preview/examples/HostPool_List.json
+     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2022-08-10/examples/HostPool_List.json
      */
     /**
      * Sample code: HostPool_List.
@@ -656,7 +638,7 @@ import com.azure.core.util.Context;
 /** Samples for HostPools ListByResourceGroup. */
 public final class HostPoolsListByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2021-09-03-preview/examples/HostPool_ListByResourceGroup.json
+     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2022-08-10/examples/HostPool_ListByResourceGroup.json
      */
     /**
      * Sample code: HostPool_ListByResourceGroup.
@@ -678,7 +660,7 @@ import com.azure.core.util.Context;
 /** Samples for HostPools RetrieveRegistrationToken. */
 public final class HostPoolsRetrieveRegistrationTokenSamples {
     /*
-     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2021-09-03-preview/examples/HostPools_RetrieveRegistrationToken_Post.json
+     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2022-08-10/examples/HostPools_RetrieveRegistrationToken_Post.json
      */
     /**
      * Sample code: HostPools_RetrieveRegistrationToken_Post.
@@ -699,7 +681,6 @@ import com.azure.core.util.Context;
 import com.azure.resourcemanager.desktopvirtualization.models.HostPool;
 import com.azure.resourcemanager.desktopvirtualization.models.LoadBalancerType;
 import com.azure.resourcemanager.desktopvirtualization.models.PersonalDesktopAssignmentType;
-import com.azure.resourcemanager.desktopvirtualization.models.PublicNetworkAccess;
 import com.azure.resourcemanager.desktopvirtualization.models.RegistrationInfoPatch;
 import com.azure.resourcemanager.desktopvirtualization.models.RegistrationTokenOperation;
 import com.azure.resourcemanager.desktopvirtualization.models.SsoSecretType;
@@ -710,7 +691,7 @@ import java.util.Map;
 /** Samples for HostPools Update. */
 public final class HostPoolsUpdateSamples {
     /*
-     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2021-09-03-preview/examples/HostPool_Update.json
+     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2022-08-10/examples/HostPool_Update.json
      */
     /**
      * Sample code: HostPool_Update.
@@ -739,7 +720,6 @@ public final class HostPoolsUpdateSamples {
             .withSsoClientSecretKeyVaultPath("https://keyvault/secret")
             .withSsoSecretType(SsoSecretType.SHARED_KEY)
             .withStartVMOnConnect(false)
-            .withPublicNetworkAccess(PublicNetworkAccess.ENABLED)
             .apply();
     }
 
@@ -765,7 +745,7 @@ import com.azure.resourcemanager.desktopvirtualization.models.MsixImageUri;
 /** Samples for MsixImages Expand. */
 public final class MsixImagesExpandSamples {
     /*
-     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2021-09-03-preview/examples/MsixImage_Expand_Post.json
+     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2022-08-10/examples/MsixImage_Expand_Post.json
      */
     /**
      * Sample code: MsixImage_Expand.
@@ -792,7 +772,7 @@ import java.util.Arrays;
 /** Samples for MsixPackages CreateOrUpdate. */
 public final class MsixPackagesCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2021-09-03-preview/examples/MsixPackage_Create.json
+     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2022-08-10/examples/MsixPackage_Create.json
      */
     /**
      * Sample code: MSIXPackage_Create.
@@ -845,7 +825,7 @@ import com.azure.core.util.Context;
 /** Samples for MsixPackages Delete. */
 public final class MsixPackagesDeleteSamples {
     /*
-     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2021-09-03-preview/examples/MsixPackage_Delete.json
+     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2022-08-10/examples/MsixPackage_Delete.json
      */
     /**
      * Sample code: MSIXPackage_Delete.
@@ -867,7 +847,7 @@ import com.azure.core.util.Context;
 /** Samples for MsixPackages Get. */
 public final class MsixPackagesGetSamples {
     /*
-     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2021-09-03-preview/examples/MsixPackage_Get.json
+     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2022-08-10/examples/MsixPackage_Get.json
      */
     /**
      * Sample code: MSIXPackage_Get.
@@ -889,7 +869,7 @@ import com.azure.core.util.Context;
 /** Samples for MsixPackages List. */
 public final class MsixPackagesListSamples {
     /*
-     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2021-09-03-preview/examples/MsixPackage_List.json
+     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2022-08-10/examples/MsixPackage_List.json
      */
     /**
      * Sample code: MSIXPackage_List.
@@ -912,7 +892,7 @@ import com.azure.resourcemanager.desktopvirtualization.models.MsixPackage;
 /** Samples for MsixPackages Update. */
 public final class MsixPackagesUpdateSamples {
     /*
-     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2021-09-03-preview/examples/MsixPackage_Update.json
+     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2022-08-10/examples/MsixPackage_Update.json
      */
     /**
      * Sample code: MSIXPackage_Update.
@@ -939,7 +919,7 @@ import com.azure.core.util.Context;
 /** Samples for Operations List. */
 public final class OperationsListSamples {
     /*
-     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2021-09-03-preview/examples/OperationDescription_List.json
+     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2022-08-10/examples/OperationDescription_List.json
      */
     /**
      * Sample code: OperationDescription_List.
@@ -948,269 +928,7 @@ public final class OperationsListSamples {
      */
     public static void operationDescriptionList(
         com.azure.resourcemanager.desktopvirtualization.DesktopVirtualizationManager manager) {
-        manager.operations().list(Context.NONE);
-    }
-}
-```
-
-### PrivateEndpointConnections_DeleteByHostPool
-
-```java
-import com.azure.core.util.Context;
-
-/** Samples for PrivateEndpointConnections DeleteByHostPool. */
-public final class PrivateEndpointConnectionsDeleteByHostPoolSamples {
-    /*
-     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2021-09-03-preview/examples/PrivateEndpointConnection_DeleteByHostPool.json
-     */
-    /**
-     * Sample code: PrivateEndpointConnection_DeleteByHostPool.
-     *
-     * @param manager Entry point to DesktopVirtualizationManager.
-     */
-    public static void privateEndpointConnectionDeleteByHostPool(
-        com.azure.resourcemanager.desktopvirtualization.DesktopVirtualizationManager manager) {
-        manager
-            .privateEndpointConnections()
-            .deleteByHostPoolWithResponse(
-                "resourceGroup1", "hostPool1", "hostPool1.377103f1-5179-4bdf-8556-4cdd3207cc5b", Context.NONE);
-    }
-}
-```
-
-### PrivateEndpointConnections_DeleteByWorkspace
-
-```java
-import com.azure.core.util.Context;
-
-/** Samples for PrivateEndpointConnections DeleteByWorkspace. */
-public final class PrivateEndpointConnectionsDeleteByWorkspaceSamples {
-    /*
-     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2021-09-03-preview/examples/PrivateEndpointConnection_DeleteByWorkspace.json
-     */
-    /**
-     * Sample code: PrivateEndpointConnection_DeleteByWorkspace.
-     *
-     * @param manager Entry point to DesktopVirtualizationManager.
-     */
-    public static void privateEndpointConnectionDeleteByWorkspace(
-        com.azure.resourcemanager.desktopvirtualization.DesktopVirtualizationManager manager) {
-        manager
-            .privateEndpointConnections()
-            .deleteByWorkspaceWithResponse(
-                "resourceGroup1", "workspace1", "workspace1.377103f1-5179-4bdf-8556-4cdd3207cc5b", Context.NONE);
-    }
-}
-```
-
-### PrivateEndpointConnections_GetByHostPool
-
-```java
-import com.azure.core.util.Context;
-
-/** Samples for PrivateEndpointConnections GetByHostPool. */
-public final class PrivateEndpointConnectionsGetByHostPoolSamples {
-    /*
-     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2021-09-03-preview/examples/PrivateEndpointConnection_GetByHostPool.json
-     */
-    /**
-     * Sample code: PrivateEndpointConnection_GetByHostPool.
-     *
-     * @param manager Entry point to DesktopVirtualizationManager.
-     */
-    public static void privateEndpointConnectionGetByHostPool(
-        com.azure.resourcemanager.desktopvirtualization.DesktopVirtualizationManager manager) {
-        manager
-            .privateEndpointConnections()
-            .getByHostPoolWithResponse(
-                "resourceGroup1", "hostPool1", "hostPool1.377103f1-5179-4bdf-8556-4cdd3207cc5b", Context.NONE);
-    }
-}
-```
-
-### PrivateEndpointConnections_GetByWorkspace
-
-```java
-import com.azure.core.util.Context;
-
-/** Samples for PrivateEndpointConnections GetByWorkspace. */
-public final class PrivateEndpointConnectionsGetByWorkspaceSamples {
-    /*
-     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2021-09-03-preview/examples/PrivateEndpointConnection_GetByWorkspace.json
-     */
-    /**
-     * Sample code: PrivateEndpointConnection_GetByWorkspace.
-     *
-     * @param manager Entry point to DesktopVirtualizationManager.
-     */
-    public static void privateEndpointConnectionGetByWorkspace(
-        com.azure.resourcemanager.desktopvirtualization.DesktopVirtualizationManager manager) {
-        manager
-            .privateEndpointConnections()
-            .getByWorkspaceWithResponse(
-                "resourceGroup1", "workspace1", "workspace1.377103f1-5179-4bdf-8556-4cdd3207cc5b", Context.NONE);
-    }
-}
-```
-
-### PrivateEndpointConnections_ListByHostPool
-
-```java
-import com.azure.core.util.Context;
-
-/** Samples for PrivateEndpointConnections ListByHostPool. */
-public final class PrivateEndpointConnectionsListByHostPoolSamples {
-    /*
-     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2021-09-03-preview/examples/PrivateEndpointConnection_ListByHostPool.json
-     */
-    /**
-     * Sample code: PrivateEndpointConnection_ListByHostPool.
-     *
-     * @param manager Entry point to DesktopVirtualizationManager.
-     */
-    public static void privateEndpointConnectionListByHostPool(
-        com.azure.resourcemanager.desktopvirtualization.DesktopVirtualizationManager manager) {
-        manager.privateEndpointConnections().listByHostPool("resourceGroup1", "hostPool1", Context.NONE);
-    }
-}
-```
-
-### PrivateEndpointConnections_ListByWorkspace
-
-```java
-import com.azure.core.util.Context;
-
-/** Samples for PrivateEndpointConnections ListByWorkspace. */
-public final class PrivateEndpointConnectionsListByWorkspaceSamples {
-    /*
-     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2021-09-03-preview/examples/PrivateEndpointConnection_ListByWorkspace.json
-     */
-    /**
-     * Sample code: PrivateEndpointConnection_ListByWorkspace.
-     *
-     * @param manager Entry point to DesktopVirtualizationManager.
-     */
-    public static void privateEndpointConnectionListByWorkspace(
-        com.azure.resourcemanager.desktopvirtualization.DesktopVirtualizationManager manager) {
-        manager.privateEndpointConnections().listByWorkspace("resourceGroup1", "workspace1", Context.NONE);
-    }
-}
-```
-
-### PrivateEndpointConnections_UpdateByHostPool
-
-```java
-import com.azure.core.util.Context;
-import com.azure.resourcemanager.desktopvirtualization.models.PrivateEndpointConnection;
-import com.azure.resourcemanager.desktopvirtualization.models.PrivateEndpointServiceConnectionStatus;
-import com.azure.resourcemanager.desktopvirtualization.models.PrivateLinkServiceConnectionState;
-
-/** Samples for PrivateEndpointConnections UpdateByHostPool. */
-public final class PrivateEndpointConnectionsUpdateByHostPoolSamples {
-    /*
-     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2021-09-03-preview/examples/PrivateEndpointConnection_UpdateByHostPool.json
-     */
-    /**
-     * Sample code: PrivateEndpointConnection_UpdateByHostPool.
-     *
-     * @param manager Entry point to DesktopVirtualizationManager.
-     */
-    public static void privateEndpointConnectionUpdateByHostPool(
-        com.azure.resourcemanager.desktopvirtualization.DesktopVirtualizationManager manager) {
-        manager
-            .privateEndpointConnections()
-            .updateByHostPoolWithResponse(
-                "resourceGroup1",
-                "hostPool1",
-                "hostPool1.377103f1-5179-4bdf-8556-4cdd3207cc5b",
-                new PrivateEndpointConnection()
-                    .withPrivateLinkServiceConnectionState(
-                        new PrivateLinkServiceConnectionState()
-                            .withStatus(PrivateEndpointServiceConnectionStatus.APPROVED)
-                            .withDescription("Approved by admin@consoto.com")
-                            .withActionsRequired("None")),
-                Context.NONE);
-    }
-}
-```
-
-### PrivateEndpointConnections_UpdateByWorkspace
-
-```java
-import com.azure.core.util.Context;
-import com.azure.resourcemanager.desktopvirtualization.models.PrivateEndpointConnection;
-import com.azure.resourcemanager.desktopvirtualization.models.PrivateEndpointServiceConnectionStatus;
-import com.azure.resourcemanager.desktopvirtualization.models.PrivateLinkServiceConnectionState;
-
-/** Samples for PrivateEndpointConnections UpdateByWorkspace. */
-public final class PrivateEndpointConnectionsUpdateByWorkspaceSamples {
-    /*
-     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2021-09-03-preview/examples/PrivateEndpointConnection_UpdateByWorkspace.json
-     */
-    /**
-     * Sample code: PrivateEndpointConnection_UpdateByWorkspace.
-     *
-     * @param manager Entry point to DesktopVirtualizationManager.
-     */
-    public static void privateEndpointConnectionUpdateByWorkspace(
-        com.azure.resourcemanager.desktopvirtualization.DesktopVirtualizationManager manager) {
-        manager
-            .privateEndpointConnections()
-            .updateByWorkspaceWithResponse(
-                "resourceGroup1",
-                "workspace1",
-                "workspace1.377103f1-5179-4bdf-8556-4cdd3207cc5b",
-                new PrivateEndpointConnection()
-                    .withPrivateLinkServiceConnectionState(
-                        new PrivateLinkServiceConnectionState()
-                            .withStatus(PrivateEndpointServiceConnectionStatus.APPROVED)
-                            .withDescription("Approved by admin@consoto.com")
-                            .withActionsRequired("None")),
-                Context.NONE);
-    }
-}
-```
-
-### PrivateLinkResources_ListByHostPool
-
-```java
-import com.azure.core.util.Context;
-
-/** Samples for PrivateLinkResources ListByHostPool. */
-public final class PrivateLinkResourcesListByHostPoolSamples {
-    /*
-     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2021-09-03-preview/examples/PrivateLinkResources_ListByHostPool.json
-     */
-    /**
-     * Sample code: PrivateLinkResources_ListByHostPool.
-     *
-     * @param manager Entry point to DesktopVirtualizationManager.
-     */
-    public static void privateLinkResourcesListByHostPool(
-        com.azure.resourcemanager.desktopvirtualization.DesktopVirtualizationManager manager) {
-        manager.privateLinkResources().listByHostPool("resourceGroup1", "hostPool1", Context.NONE);
-    }
-}
-```
-
-### PrivateLinkResources_ListByWorkspace
-
-```java
-import com.azure.core.util.Context;
-
-/** Samples for PrivateLinkResources ListByWorkspace. */
-public final class PrivateLinkResourcesListByWorkspaceSamples {
-    /*
-     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2021-09-03-preview/examples/PrivateLinkResources_ListByWorkspace.json
-     */
-    /**
-     * Sample code: PrivateLinkResources_ListByWorkspace.
-     *
-     * @param manager Entry point to DesktopVirtualizationManager.
-     */
-    public static void privateLinkResourcesListByWorkspace(
-        com.azure.resourcemanager.desktopvirtualization.DesktopVirtualizationManager manager) {
-        manager.privateLinkResources().listByWorkspace("resourceGroup1", "workspace1", Context.NONE);
+        manager.operations().listWithResponse(Context.NONE);
     }
 }
 ```
@@ -1218,12 +936,12 @@ public final class PrivateLinkResourcesListByWorkspaceSamples {
 ### ScalingPlans_Create
 
 ```java
+import com.azure.resourcemanager.desktopvirtualization.models.HostPoolType;
 import com.azure.resourcemanager.desktopvirtualization.models.ScalingHostPoolReference;
-import com.azure.resourcemanager.desktopvirtualization.models.ScalingHostPoolType;
 import com.azure.resourcemanager.desktopvirtualization.models.ScalingSchedule;
 import com.azure.resourcemanager.desktopvirtualization.models.ScalingScheduleDaysOfWeekItem;
 import com.azure.resourcemanager.desktopvirtualization.models.SessionHostLoadBalancingAlgorithm;
-import com.azure.resourcemanager.desktopvirtualization.models.Time;
+import java.time.OffsetDateTime;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -1231,7 +949,7 @@ import java.util.Map;
 /** Samples for ScalingPlans Create. */
 public final class ScalingPlansCreateSamples {
     /*
-     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2021-09-03-preview/examples/ScalingPlan_Create.json
+     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2022-08-10/examples/ScalingPlan_Create.json
      */
     /**
      * Sample code: ScalingPlans_Create.
@@ -1246,10 +964,10 @@ public final class ScalingPlansCreateSamples {
             .withRegion("centralus")
             .withExistingResourceGroup("resourceGroup1")
             .withTags(mapOf("tag1", "value1", "tag2", "value2"))
-            .withDescription("Description of Scaling Plan")
-            .withFriendlyName("Scaling Plan 1")
-            .withTimeZone("Central Standard Time")
-            .withHostPoolType(ScalingHostPoolType.POOLED)
+            .withDescription("des1")
+            .withFriendlyName("friendly")
+            .withTimeZone("")
+            .withHostPoolType(HostPoolType.PERSONAL)
             .withExclusionTag("value")
             .withSchedules(
                 Arrays
@@ -1264,20 +982,20 @@ public final class ScalingPlansCreateSamples {
                                         ScalingScheduleDaysOfWeekItem.WEDNESDAY,
                                         ScalingScheduleDaysOfWeekItem.THURSDAY,
                                         ScalingScheduleDaysOfWeekItem.FRIDAY))
-                            .withRampUpStartTime(new Time().withHour(6).withMinute(0))
+                            .withRampUpStartTime(OffsetDateTime.parse("2020-11-10T06:00:00.000Z"))
                             .withRampUpLoadBalancingAlgorithm(SessionHostLoadBalancingAlgorithm.DEPTH_FIRST)
                             .withRampUpMinimumHostsPct(20)
                             .withRampUpCapacityThresholdPct(80)
-                            .withPeakStartTime(new Time().withHour(8).withMinute(0))
+                            .withPeakStartTime(OffsetDateTime.parse("2020-11-10T08:00:00.000Z"))
                             .withPeakLoadBalancingAlgorithm(SessionHostLoadBalancingAlgorithm.BREADTH_FIRST)
-                            .withRampDownStartTime(new Time().withHour(18).withMinute(0))
+                            .withRampDownStartTime(OffsetDateTime.parse("2020-11-10T18:00:00.000Z"))
                             .withRampDownLoadBalancingAlgorithm(SessionHostLoadBalancingAlgorithm.DEPTH_FIRST)
                             .withRampDownMinimumHostsPct(20)
                             .withRampDownCapacityThresholdPct(50)
                             .withRampDownForceLogoffUsers(true)
                             .withRampDownWaitTimeMinutes(30)
                             .withRampDownNotificationMessage("message")
-                            .withOffPeakStartTime(new Time().withHour(20).withMinute(0))
+                            .withOffPeakStartTime(OffsetDateTime.parse("2020-11-10T20:00:00.000Z"))
                             .withOffPeakLoadBalancingAlgorithm(SessionHostLoadBalancingAlgorithm.DEPTH_FIRST)))
             .withHostPoolReferences(
                 Arrays
@@ -1310,7 +1028,7 @@ import com.azure.core.util.Context;
 /** Samples for ScalingPlans Delete. */
 public final class ScalingPlansDeleteSamples {
     /*
-     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2021-09-03-preview/examples/ScalingPlan_Delete.json
+     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2022-08-10/examples/ScalingPlan_Delete.json
      */
     /**
      * Sample code: ScalingPlans_Delete.
@@ -1332,7 +1050,7 @@ import com.azure.core.util.Context;
 /** Samples for ScalingPlans GetByResourceGroup. */
 public final class ScalingPlansGetByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2021-09-03-preview/examples/ScalingPlan_Get.json
+     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2022-08-10/examples/ScalingPlan_Get.json
      */
     /**
      * Sample code: ScalingPlans_Get.
@@ -1354,7 +1072,7 @@ import com.azure.core.util.Context;
 /** Samples for ScalingPlans List. */
 public final class ScalingPlansListSamples {
     /*
-     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2021-09-03-preview/examples/ScalingPlan_ListBySubscription.json
+     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2022-08-10/examples/ScalingPlan_ListBySubscription.json
      */
     /**
      * Sample code: ScalingPlans_ListBySubscription.
@@ -1376,14 +1094,14 @@ import com.azure.core.util.Context;
 /** Samples for ScalingPlans ListByHostPool. */
 public final class ScalingPlansListByHostPoolSamples {
     /*
-     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2021-09-03-preview/examples/ScalingPlan_ListByHostPool.json
+     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2022-08-10/examples/ScalingPlan_ListByHostPool.json
      */
     /**
-     * Sample code: ScalingPlan_ListByHostPool.
+     * Sample code: UserSession_SendMessage_Post.
      *
      * @param manager Entry point to DesktopVirtualizationManager.
      */
-    public static void scalingPlanListByHostPool(
+    public static void userSessionSendMessagePost(
         com.azure.resourcemanager.desktopvirtualization.DesktopVirtualizationManager manager) {
         manager.scalingPlans().listByHostPool("resourceGroup1", "hostPool1", Context.NONE);
     }
@@ -1398,7 +1116,7 @@ import com.azure.core.util.Context;
 /** Samples for ScalingPlans ListByResourceGroup. */
 public final class ScalingPlansListByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2021-09-03-preview/examples/ScalingPlan_ListByResourceGroup.json
+     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2022-08-10/examples/ScalingPlan_ListByResourceGroup.json
      */
     /**
      * Sample code: ScalingPlans_ListByResourceGroup.
@@ -1421,7 +1139,7 @@ import com.azure.resourcemanager.desktopvirtualization.models.ScalingPlan;
 /** Samples for ScalingPlans Update. */
 public final class ScalingPlansUpdateSamples {
     /*
-     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2021-09-03-preview/examples/ScalingPlan_Update.json
+     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2022-08-10/examples/ScalingPlan_Update.json
      */
     /**
      * Sample code: ScalingPlans_Update.
@@ -1448,7 +1166,7 @@ import com.azure.core.util.Context;
 /** Samples for SessionHosts Delete. */
 public final class SessionHostsDeleteSamples {
     /*
-     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2021-09-03-preview/examples/SessionHost_Delete.json
+     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2022-08-10/examples/SessionHost_Delete.json
      */
     /**
      * Sample code: SessionHost_Delete.
@@ -1472,7 +1190,7 @@ import com.azure.core.util.Context;
 /** Samples for SessionHosts Get. */
 public final class SessionHostsGetSamples {
     /*
-     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2021-09-03-preview/examples/SessionHost_Get.json
+     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2022-08-10/examples/SessionHost_Get.json
      */
     /**
      * Sample code: SessionHost_Get.
@@ -1496,7 +1214,7 @@ import com.azure.core.util.Context;
 /** Samples for SessionHosts List. */
 public final class SessionHostsListSamples {
     /*
-     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2021-09-03-preview/examples/SessionHost_List.json
+     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2022-08-10/examples/SessionHost_List.json
      */
     /**
      * Sample code: SessionHost_List.
@@ -1519,7 +1237,7 @@ import com.azure.resourcemanager.desktopvirtualization.models.SessionHostPatch;
 /** Samples for SessionHosts Update. */
 public final class SessionHostsUpdateSamples {
     /*
-     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2021-09-03-preview/examples/SessionHost_Update.json
+     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2022-08-10/examples/SessionHost_Update.json
      */
     /**
      * Sample code: SessionHost_Update.
@@ -1534,7 +1252,7 @@ public final class SessionHostsUpdateSamples {
                 "resourceGroup1",
                 "hostPool1",
                 "sessionHost1.microsoft.com",
-                true,
+                null,
                 new SessionHostPatch().withAllowNewSession(true).withAssignedUser("user1@microsoft.com"),
                 Context.NONE);
     }
@@ -1549,7 +1267,7 @@ import com.azure.core.util.Context;
 /** Samples for StartMenuItems List. */
 public final class StartMenuItemsListSamples {
     /*
-     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2021-09-03-preview/examples/StartMenuItem_List.json
+     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2022-08-10/examples/StartMenuItem_List.json
      */
     /**
      * Sample code: StartMenuItem_List.
@@ -1571,7 +1289,7 @@ import com.azure.core.util.Context;
 /** Samples for UserSessions Delete. */
 public final class UserSessionsDeleteSamples {
     /*
-     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2021-09-03-preview/examples/UserSession_Delete.json
+     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2022-08-10/examples/UserSession_Delete.json
      */
     /**
      * Sample code: UserSession_Delete.
@@ -1595,7 +1313,7 @@ import com.azure.core.util.Context;
 /** Samples for UserSessions Disconnect. */
 public final class UserSessionsDisconnectSamples {
     /*
-     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2021-09-03-preview/examples/UserSession_Disconnect_Post.json
+     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2022-08-10/examples/UserSession_Disconnect_Post.json
      */
     /**
      * Sample code: UserSession_Disconnect_Post.
@@ -1619,7 +1337,7 @@ import com.azure.core.util.Context;
 /** Samples for UserSessions Get. */
 public final class UserSessionsGetSamples {
     /*
-     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2021-09-03-preview/examples/UserSession_Get.json
+     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2022-08-10/examples/UserSession_Get.json
      */
     /**
      * Sample code: UserSession_Get.
@@ -1643,7 +1361,7 @@ import com.azure.core.util.Context;
 /** Samples for UserSessions List. */
 public final class UserSessionsListSamples {
     /*
-     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2021-09-03-preview/examples/UserSession_List.json
+     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2022-08-10/examples/UserSession_List.json
      */
     /**
      * Sample code: UserSession_List.
@@ -1665,7 +1383,7 @@ import com.azure.core.util.Context;
 /** Samples for UserSessions ListByHostPool. */
 public final class UserSessionsListByHostPoolSamples {
     /*
-     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2021-09-03-preview/examples/UserSession_ListByHostPool.json
+     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2022-08-10/examples/UserSession_ListByHostPool.json
      */
     /**
      * Sample code: UserSession_ListByHostPool.
@@ -1694,7 +1412,7 @@ import com.azure.resourcemanager.desktopvirtualization.models.SendMessage;
 /** Samples for UserSessions SendMessage. */
 public final class UserSessionsSendMessageSamples {
     /*
-     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2021-09-03-preview/examples/UserSession_SendMessage_Post.json
+     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2022-08-10/examples/UserSession_SendMessage_Post.json
      */
     /**
      * Sample code: UserSession_SendMessage_Post.
@@ -1725,7 +1443,7 @@ import java.util.Map;
 /** Samples for Workspaces CreateOrUpdate. */
 public final class WorkspacesCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2021-09-03-preview/examples/Workspace_Create.json
+     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2022-08-10/examples/Workspace_Create.json
      */
     /**
      * Sample code: Workspace_Create.
@@ -1766,7 +1484,7 @@ import com.azure.core.util.Context;
 /** Samples for Workspaces Delete. */
 public final class WorkspacesDeleteSamples {
     /*
-     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2021-09-03-preview/examples/Workspace_Delete.json
+     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2022-08-10/examples/Workspace_Delete.json
      */
     /**
      * Sample code: Workspace_Delete.
@@ -1788,7 +1506,7 @@ import com.azure.core.util.Context;
 /** Samples for Workspaces GetByResourceGroup. */
 public final class WorkspacesGetByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2021-09-03-preview/examples/Workspace_Get.json
+     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2022-08-10/examples/Workspace_Get.json
      */
     /**
      * Sample code: Workspace_Get.
@@ -1810,7 +1528,7 @@ import com.azure.core.util.Context;
 /** Samples for Workspaces List. */
 public final class WorkspacesListSamples {
     /*
-     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2021-09-03-preview/examples/Workspace_ListBySubscription.json
+     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2022-08-10/examples/Workspace_ListBySubscription.json
      */
     /**
      * Sample code: Workspace_ListBySubscription.
@@ -1832,7 +1550,7 @@ import com.azure.core.util.Context;
 /** Samples for Workspaces ListByResourceGroup. */
 public final class WorkspacesListByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2021-09-03-preview/examples/Workspace_ListByResourceGroup.json
+     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2022-08-10/examples/Workspace_ListByResourceGroup.json
      */
     /**
      * Sample code: Workspace_ListByResourceGroup.
@@ -1850,7 +1568,6 @@ public final class WorkspacesListByResourceGroupSamples {
 
 ```java
 import com.azure.core.util.Context;
-import com.azure.resourcemanager.desktopvirtualization.models.PublicNetworkAccess;
 import com.azure.resourcemanager.desktopvirtualization.models.Workspace;
 import java.util.HashMap;
 import java.util.Map;
@@ -1858,7 +1575,7 @@ import java.util.Map;
 /** Samples for Workspaces Update. */
 public final class WorkspacesUpdateSamples {
     /*
-     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2021-09-03-preview/examples/Workspace_Update.json
+     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2022-08-10/examples/Workspace_Update.json
      */
     /**
      * Sample code: Workspace_Update.
@@ -1877,7 +1594,6 @@ public final class WorkspacesUpdateSamples {
             .withTags(mapOf("tag1", "value1", "tag2", "value2"))
             .withDescription("des1")
             .withFriendlyName("friendly")
-            .withPublicNetworkAccess(PublicNetworkAccess.ENABLED)
             .apply();
     }
 

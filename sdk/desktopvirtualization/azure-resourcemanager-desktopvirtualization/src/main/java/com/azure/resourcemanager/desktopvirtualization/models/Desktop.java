@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.desktopvirtualization.models;
 
-import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.desktopvirtualization.fluent.models.DesktopInner;
 
 /** An immutable client-side representation of Desktop. */
@@ -29,13 +28,6 @@ public interface Desktop {
      * @return the type value.
      */
     String type();
-
-    /**
-     * Gets the systemData property: Metadata pertaining to creation and last modification of the resource.
-     *
-     * @return the systemData value.
-     */
-    SystemData systemData();
 
     /**
      * Gets the objectId property: ObjectId of Desktop. (internal use).

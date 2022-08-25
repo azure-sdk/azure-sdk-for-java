@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for Operation. */
+/** The type of operation for migration. */
 public final class Operation extends ExpandableStringEnum<Operation> {
     /** Static value Start for Operation. */
     public static final Operation START = fromString("Start");

@@ -5,7 +5,6 @@
 package com.azure.resourcemanager.desktopvirtualization.fluent.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.management.SystemData;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.desktopvirtualization.models.ApplicationGroupType;
 import com.azure.resourcemanager.desktopvirtualization.models.MigrationRequestProperties;
@@ -20,25 +19,10 @@ import java.util.Map;
 @Fluent
 public final class ApplicationGroupInner extends ResourceModelWithAllowedPropertySet {
     /*
-     * Metadata pertaining to creation and last modification of the resource.
-     */
-    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
-    private SystemData systemData;
-
-    /*
      * Detailed properties for ApplicationGroup
      */
     @JsonProperty(value = "properties", required = true)
     private ApplicationGroupProperties innerProperties = new ApplicationGroupProperties();
-
-    /**
-     * Get the systemData property: Metadata pertaining to creation and last modification of the resource.
-     *
-     * @return the systemData value.
-     */
-    public SystemData systemData() {
-        return this.systemData;
-    }
 
     /**
      * Get the innerProperties property: Detailed properties for ApplicationGroup.

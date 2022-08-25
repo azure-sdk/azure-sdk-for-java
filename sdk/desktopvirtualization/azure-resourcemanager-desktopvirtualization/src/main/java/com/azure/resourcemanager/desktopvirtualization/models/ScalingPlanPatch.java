@@ -126,6 +126,29 @@ public final class ScalingPlanPatch {
     }
 
     /**
+     * Get the hostPoolType property: HostPool type for desktop.
+     *
+     * @return the hostPoolType value.
+     */
+    public HostPoolType hostPoolType() {
+        return this.innerProperties() == null ? null : this.innerProperties().hostPoolType();
+    }
+
+    /**
+     * Set the hostPoolType property: HostPool type for desktop.
+     *
+     * @param hostPoolType the hostPoolType value to set.
+     * @return the ScalingPlanPatch object itself.
+     */
+    public ScalingPlanPatch withHostPoolType(HostPoolType hostPoolType) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ScalingPlanPatchProperties();
+        }
+        this.innerProperties().withHostPoolType(hostPoolType);
+        return this;
+    }
+
+    /**
      * Get the exclusionTag property: Exclusion tag for scaling plan.
      *
      * @return the exclusionTag value.

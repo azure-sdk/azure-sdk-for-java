@@ -4,7 +4,7 @@
 
 package com.azure.resourcemanager.desktopvirtualization.models;
 
-import com.azure.core.http.rest.PagedIterable;
+import com.azure.core.http.rest.Response;
 import com.azure.core.util.Context;
 
 /** Resource collection API of Operations. */
@@ -14,9 +14,9 @@ public interface Operations {
      *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of the request to list operations as paginated response with {@link PagedIterable}.
+     * @return result of the request to list operations.
      */
-    PagedIterable<ResourceProviderOperation> list();
+    ResourceProviderOperationList list();
 
     /**
      * List all of the available operations the Desktop Virtualization resource provider supports.
@@ -25,7 +25,7 @@ public interface Operations {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of the request to list operations as paginated response with {@link PagedIterable}.
+     * @return result of the request to list operations along with {@link Response}.
      */
-    PagedIterable<ResourceProviderOperation> list(Context context);
+    Response<ResourceProviderOperationList> listWithResponse(Context context);
 }

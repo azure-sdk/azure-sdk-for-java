@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.desktopvirtualization.implementation;
 
-import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.desktopvirtualization.fluent.models.MsixPackageInner;
 import com.azure.resourcemanager.desktopvirtualization.models.MsixPackage;
@@ -30,10 +29,6 @@ public final class MsixPackageImpl implements MsixPackage, MsixPackage.Definitio
 
     public String type() {
         return this.innerModel().type();
-    }
-
-    public SystemData systemData() {
-        return this.innerModel().systemData();
     }
 
     public String imagePath() {

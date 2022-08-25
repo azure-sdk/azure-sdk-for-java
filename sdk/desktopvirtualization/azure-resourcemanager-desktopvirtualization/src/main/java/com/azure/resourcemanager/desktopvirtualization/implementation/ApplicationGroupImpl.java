@@ -5,7 +5,6 @@
 package com.azure.resourcemanager.desktopvirtualization.implementation;
 
 import com.azure.core.management.Region;
-import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.desktopvirtualization.fluent.models.ApplicationGroupInner;
 import com.azure.resourcemanager.desktopvirtualization.models.ApplicationGroup;
@@ -71,10 +70,6 @@ public final class ApplicationGroupImpl
 
     public ResourceModelWithAllowedPropertySetPlan plan() {
         return this.innerModel().plan();
-    }
-
-    public SystemData systemData() {
-        return this.innerModel().systemData();
     }
 
     public String objectId() {

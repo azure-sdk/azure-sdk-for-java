@@ -430,29 +430,6 @@ public final class HostPoolPatch extends ProxyResource {
     }
 
     /**
-     * Get the publicNetworkAccess property: Enabled to allow this resource to be access from the public network.
-     *
-     * @return the publicNetworkAccess value.
-     */
-    public PublicNetworkAccess publicNetworkAccess() {
-        return this.innerProperties() == null ? null : this.innerProperties().publicNetworkAccess();
-    }
-
-    /**
-     * Set the publicNetworkAccess property: Enabled to allow this resource to be access from the public network.
-     *
-     * @param publicNetworkAccess the publicNetworkAccess value to set.
-     * @return the HostPoolPatch object itself.
-     */
-    public HostPoolPatch withPublicNetworkAccess(PublicNetworkAccess publicNetworkAccess) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new HostPoolPatchProperties();
-        }
-        this.innerProperties().withPublicNetworkAccess(publicNetworkAccess);
-        return this;
-    }
-
-    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.

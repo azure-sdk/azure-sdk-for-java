@@ -5,14 +5,12 @@
 package com.azure.resourcemanager.desktopvirtualization.fluent.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.management.SystemData;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.desktopvirtualization.models.HostPoolType;
 import com.azure.resourcemanager.desktopvirtualization.models.LoadBalancerType;
 import com.azure.resourcemanager.desktopvirtualization.models.MigrationRequestProperties;
 import com.azure.resourcemanager.desktopvirtualization.models.PersonalDesktopAssignmentType;
 import com.azure.resourcemanager.desktopvirtualization.models.PreferredAppGroupType;
-import com.azure.resourcemanager.desktopvirtualization.models.PublicNetworkAccess;
 import com.azure.resourcemanager.desktopvirtualization.models.ResourceModelWithAllowedPropertySet;
 import com.azure.resourcemanager.desktopvirtualization.models.ResourceModelWithAllowedPropertySetIdentity;
 import com.azure.resourcemanager.desktopvirtualization.models.ResourceModelWithAllowedPropertySetPlan;
@@ -26,25 +24,10 @@ import java.util.Map;
 @Fluent
 public final class HostPoolInner extends ResourceModelWithAllowedPropertySet {
     /*
-     * Metadata pertaining to creation and last modification of the resource.
-     */
-    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
-    private SystemData systemData;
-
-    /*
      * Detailed properties for HostPool
      */
     @JsonProperty(value = "properties", required = true)
     private HostPoolPropertiesInner innerProperties = new HostPoolPropertiesInner();
-
-    /**
-     * Get the systemData property: Metadata pertaining to creation and last modification of the resource.
-     *
-     * @return the systemData value.
-     */
-    public SystemData systemData() {
-        return this.systemData;
-    }
 
     /**
      * Get the innerProperties property: Detailed properties for HostPool.
@@ -548,31 +531,6 @@ public final class HostPoolInner extends ResourceModelWithAllowedPropertySet {
      */
     public Boolean cloudPcResource() {
         return this.innerProperties() == null ? null : this.innerProperties().cloudPcResource();
-    }
-
-    /**
-     * Get the publicNetworkAccess property: Enabled allows this resource to be accessed from both public and private
-     * networks, Disabled allows this resource to only be accessed via private endpoints.
-     *
-     * @return the publicNetworkAccess value.
-     */
-    public PublicNetworkAccess publicNetworkAccess() {
-        return this.innerProperties() == null ? null : this.innerProperties().publicNetworkAccess();
-    }
-
-    /**
-     * Set the publicNetworkAccess property: Enabled allows this resource to be accessed from both public and private
-     * networks, Disabled allows this resource to only be accessed via private endpoints.
-     *
-     * @param publicNetworkAccess the publicNetworkAccess value to set.
-     * @return the HostPoolInner object itself.
-     */
-    public HostPoolInner withPublicNetworkAccess(PublicNetworkAccess publicNetworkAccess) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new HostPoolPropertiesInner();
-        }
-        this.innerProperties().withPublicNetworkAccess(publicNetworkAccess);
-        return this;
     }
 
     /**

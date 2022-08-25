@@ -6,6 +6,7 @@ package com.azure.resourcemanager.desktopvirtualization.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.time.OffsetDateTime;
 import java.util.List;
 
 /** Scaling plan schedule. */
@@ -27,7 +28,7 @@ public final class ScalingSchedule {
      * Starting time for ramp up period.
      */
     @JsonProperty(value = "rampUpStartTime")
-    private Time rampUpStartTime;
+    private OffsetDateTime rampUpStartTime;
 
     /*
      * Load balancing algorithm for ramp up period.
@@ -51,7 +52,7 @@ public final class ScalingSchedule {
      * Starting time for peak period.
      */
     @JsonProperty(value = "peakStartTime")
-    private Time peakStartTime;
+    private OffsetDateTime peakStartTime;
 
     /*
      * Load balancing algorithm for peak period.
@@ -63,7 +64,7 @@ public final class ScalingSchedule {
      * Starting time for ramp down period.
      */
     @JsonProperty(value = "rampDownStartTime")
-    private Time rampDownStartTime;
+    private OffsetDateTime rampDownStartTime;
 
     /*
      * Load balancing algorithm for ramp down period.
@@ -111,7 +112,7 @@ public final class ScalingSchedule {
      * Starting time for off-peak period.
      */
     @JsonProperty(value = "offPeakStartTime")
-    private Time offPeakStartTime;
+    private OffsetDateTime offPeakStartTime;
 
     /*
      * Load balancing algorithm for off-peak period.
@@ -164,7 +165,7 @@ public final class ScalingSchedule {
      *
      * @return the rampUpStartTime value.
      */
-    public Time rampUpStartTime() {
+    public OffsetDateTime rampUpStartTime() {
         return this.rampUpStartTime;
     }
 
@@ -174,7 +175,7 @@ public final class ScalingSchedule {
      * @param rampUpStartTime the rampUpStartTime value to set.
      * @return the ScalingSchedule object itself.
      */
-    public ScalingSchedule withRampUpStartTime(Time rampUpStartTime) {
+    public ScalingSchedule withRampUpStartTime(OffsetDateTime rampUpStartTime) {
         this.rampUpStartTime = rampUpStartTime;
         return this;
     }
@@ -245,7 +246,7 @@ public final class ScalingSchedule {
      *
      * @return the peakStartTime value.
      */
-    public Time peakStartTime() {
+    public OffsetDateTime peakStartTime() {
         return this.peakStartTime;
     }
 
@@ -255,7 +256,7 @@ public final class ScalingSchedule {
      * @param peakStartTime the peakStartTime value to set.
      * @return the ScalingSchedule object itself.
      */
-    public ScalingSchedule withPeakStartTime(Time peakStartTime) {
+    public ScalingSchedule withPeakStartTime(OffsetDateTime peakStartTime) {
         this.peakStartTime = peakStartTime;
         return this;
     }
@@ -286,7 +287,7 @@ public final class ScalingSchedule {
      *
      * @return the rampDownStartTime value.
      */
-    public Time rampDownStartTime() {
+    public OffsetDateTime rampDownStartTime() {
         return this.rampDownStartTime;
     }
 
@@ -296,7 +297,7 @@ public final class ScalingSchedule {
      * @param rampDownStartTime the rampDownStartTime value to set.
      * @return the ScalingSchedule object itself.
      */
-    public ScalingSchedule withRampDownStartTime(Time rampDownStartTime) {
+    public ScalingSchedule withRampDownStartTime(OffsetDateTime rampDownStartTime) {
         this.rampDownStartTime = rampDownStartTime;
         return this;
     }
@@ -447,7 +448,7 @@ public final class ScalingSchedule {
      *
      * @return the offPeakStartTime value.
      */
-    public Time offPeakStartTime() {
+    public OffsetDateTime offPeakStartTime() {
         return this.offPeakStartTime;
     }
 
@@ -457,7 +458,7 @@ public final class ScalingSchedule {
      * @param offPeakStartTime the offPeakStartTime value to set.
      * @return the ScalingSchedule object itself.
      */
-    public ScalingSchedule withOffPeakStartTime(Time offPeakStartTime) {
+    public ScalingSchedule withOffPeakStartTime(OffsetDateTime offPeakStartTime) {
         this.offPeakStartTime = offPeakStartTime;
         return this;
     }
@@ -489,17 +490,5 @@ public final class ScalingSchedule {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (rampUpStartTime() != null) {
-            rampUpStartTime().validate();
-        }
-        if (peakStartTime() != null) {
-            peakStartTime().validate();
-        }
-        if (rampDownStartTime() != null) {
-            rampDownStartTime().validate();
-        }
-        if (offPeakStartTime() != null) {
-            offPeakStartTime().validate();
-        }
     }
 }

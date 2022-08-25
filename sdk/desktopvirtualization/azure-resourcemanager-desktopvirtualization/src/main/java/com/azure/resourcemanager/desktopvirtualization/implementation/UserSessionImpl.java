@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.desktopvirtualization.implementation;
 
-import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.desktopvirtualization.fluent.models.UserSessionInner;
 import com.azure.resourcemanager.desktopvirtualization.models.ApplicationType;
 import com.azure.resourcemanager.desktopvirtualization.models.SessionState;
@@ -33,10 +32,6 @@ public final class UserSessionImpl implements UserSession {
 
     public String type() {
         return this.innerModel().type();
-    }
-
-    public SystemData systemData() {
-        return this.innerModel().systemData();
     }
 
     public String objectId() {

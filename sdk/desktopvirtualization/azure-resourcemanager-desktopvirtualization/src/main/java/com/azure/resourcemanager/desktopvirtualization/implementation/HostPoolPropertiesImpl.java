@@ -12,7 +12,6 @@ import com.azure.resourcemanager.desktopvirtualization.models.LoadBalancerType;
 import com.azure.resourcemanager.desktopvirtualization.models.MigrationRequestProperties;
 import com.azure.resourcemanager.desktopvirtualization.models.PersonalDesktopAssignmentType;
 import com.azure.resourcemanager.desktopvirtualization.models.PreferredAppGroupType;
-import com.azure.resourcemanager.desktopvirtualization.models.PublicNetworkAccess;
 import com.azure.resourcemanager.desktopvirtualization.models.RegistrationInfo;
 import com.azure.resourcemanager.desktopvirtualization.models.SsoSecretType;
 import java.util.Collections;
@@ -122,10 +121,6 @@ public final class HostPoolPropertiesImpl implements HostPoolProperties {
 
     public Boolean cloudPcResource() {
         return this.innerModel().cloudPcResource();
-    }
-
-    public PublicNetworkAccess publicNetworkAccess() {
-        return this.innerModel().publicNetworkAccess();
     }
 
     public HostPoolPropertiesInner innerModel() {

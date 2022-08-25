@@ -9,7 +9,11 @@ import com.azure.resourcemanager.desktopvirtualization.fluent.models.UserSession
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** UserSessionList List of UserSession definitions. */
+/**
+ * UserSessionList
+ *
+ * <p>List of UserSession definitions.
+ */
 @Fluent
 public final class UserSessionList {
     /*

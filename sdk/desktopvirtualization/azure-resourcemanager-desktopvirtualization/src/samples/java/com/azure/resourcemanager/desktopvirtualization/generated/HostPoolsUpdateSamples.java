@@ -8,7 +8,6 @@ import com.azure.core.util.Context;
 import com.azure.resourcemanager.desktopvirtualization.models.HostPool;
 import com.azure.resourcemanager.desktopvirtualization.models.LoadBalancerType;
 import com.azure.resourcemanager.desktopvirtualization.models.PersonalDesktopAssignmentType;
-import com.azure.resourcemanager.desktopvirtualization.models.PublicNetworkAccess;
 import com.azure.resourcemanager.desktopvirtualization.models.RegistrationInfoPatch;
 import com.azure.resourcemanager.desktopvirtualization.models.RegistrationTokenOperation;
 import com.azure.resourcemanager.desktopvirtualization.models.SsoSecretType;
@@ -19,7 +18,7 @@ import java.util.Map;
 /** Samples for HostPools Update. */
 public final class HostPoolsUpdateSamples {
     /*
-     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2021-09-03-preview/examples/HostPool_Update.json
+     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2022-08-10/examples/HostPool_Update.json
      */
     /**
      * Sample code: HostPool_Update.
@@ -48,7 +47,6 @@ public final class HostPoolsUpdateSamples {
             .withSsoClientSecretKeyVaultPath("https://keyvault/secret")
             .withSsoSecretType(SsoSecretType.SHARED_KEY)
             .withStartVMOnConnect(false)
-            .withPublicNetworkAccess(PublicNetworkAccess.ENABLED)
             .apply();
     }
 

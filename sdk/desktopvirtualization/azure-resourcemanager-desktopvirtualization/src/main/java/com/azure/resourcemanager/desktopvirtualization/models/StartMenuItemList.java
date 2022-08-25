@@ -9,7 +9,11 @@ import com.azure.resourcemanager.desktopvirtualization.fluent.models.StartMenuIt
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** StartMenuItemList List of StartMenuItem definitions. */
+/**
+ * StartMenuItemList
+ *
+ * <p>List of StartMenuItem definitions.
+ */
 @Fluent
 public final class StartMenuItemList {
     /*

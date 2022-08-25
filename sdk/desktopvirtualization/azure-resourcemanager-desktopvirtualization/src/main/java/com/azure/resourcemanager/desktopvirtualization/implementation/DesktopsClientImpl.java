@@ -18,10 +18,6 @@ import com.azure.core.annotation.ReturnType;
 import com.azure.core.annotation.ServiceInterface;
 import com.azure.core.annotation.ServiceMethod;
 import com.azure.core.annotation.UnexpectedResponseExceptionType;
-import com.azure.core.http.rest.PagedFlux;
-import com.azure.core.http.rest.PagedIterable;
-import com.azure.core.http.rest.PagedResponse;
-import com.azure.core.http.rest.PagedResponseBase;
 import com.azure.core.http.rest.Response;
 import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
@@ -29,7 +25,7 @@ import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
 import com.azure.resourcemanager.desktopvirtualization.fluent.DesktopsClient;
 import com.azure.resourcemanager.desktopvirtualization.fluent.models.DesktopInner;
-import com.azure.resourcemanager.desktopvirtualization.models.DesktopList;
+import com.azure.resourcemanager.desktopvirtualization.fluent.models.DesktopListInner;
 import com.azure.resourcemanager.desktopvirtualization.models.DesktopPatch;
 import reactor.core.publisher.Mono;
 
@@ -97,22 +93,12 @@ public final class DesktopsClientImpl implements DesktopsClient {
                 + "/Microsoft.DesktopVirtualization/applicationGroups/{applicationGroupName}/desktops")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<DesktopList>> list(
+        Mono<Response<DesktopListInner>> list(
             @HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("applicationGroupName") String applicationGroupName,
-            @HeaderParam("Accept") String accept,
-            Context context);
-
-        @Headers({"Content-Type: application/json"})
-        @Get("{nextLink}")
-        @ExpectedResponses({200})
-        @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<DesktopList>> listNext(
-            @PathParam(value = "nextLink", encoded = true) String nextLink,
-            @HostParam("$host") String endpoint,
             @HeaderParam("Accept") String accept,
             Context context);
     }
@@ -129,7 +115,7 @@ public final class DesktopsClientImpl implements DesktopsClient {
      * @return a desktop along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<DesktopInner>> getWithResponseAsync(
+    private Mono<Response<DesktopInner>> getWithResponseAsync(
         String resourceGroupName, String applicationGroupName, String desktopName) {
         if (this.client.getEndpoint() == null) {
             return Mono
@@ -235,7 +221,7 @@ public final class DesktopsClientImpl implements DesktopsClient {
      * @return a desktop on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<DesktopInner> getAsync(String resourceGroupName, String applicationGroupName, String desktopName) {
+    private Mono<DesktopInner> getAsync(String resourceGroupName, String applicationGroupName, String desktopName) {
         return getWithResponseAsync(resourceGroupName, applicationGroupName, desktopName)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
@@ -287,7 +273,7 @@ public final class DesktopsClientImpl implements DesktopsClient {
      * @return schema for Desktop properties along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<DesktopInner>> updateWithResponseAsync(
+    private Mono<Response<DesktopInner>> updateWithResponseAsync(
         String resourceGroupName, String applicationGroupName, String desktopName, DesktopPatch desktop) {
         if (this.client.getEndpoint() == null) {
             return Mono
@@ -407,7 +393,7 @@ public final class DesktopsClientImpl implements DesktopsClient {
      * @return schema for Desktop properties on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<DesktopInner> updateAsync(
+    private Mono<DesktopInner> updateAsync(
         String resourceGroupName, String applicationGroupName, String desktopName, DesktopPatch desktop) {
         return updateWithResponseAsync(resourceGroupName, applicationGroupName, desktopName, desktop)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
@@ -425,7 +411,7 @@ public final class DesktopsClientImpl implements DesktopsClient {
      * @return schema for Desktop properties on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<DesktopInner> updateAsync(String resourceGroupName, String applicationGroupName, String desktopName) {
+    private Mono<DesktopInner> updateAsync(String resourceGroupName, String applicationGroupName, String desktopName) {
         final DesktopPatch desktop = null;
         return updateWithResponseAsync(resourceGroupName, applicationGroupName, desktopName, desktop)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
@@ -479,10 +465,10 @@ public final class DesktopsClientImpl implements DesktopsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return desktopList along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return desktopList along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<DesktopInner>> listSinglePageAsync(
+    private Mono<Response<DesktopListInner>> listWithResponseAsync(
         String resourceGroupName, String applicationGroupName) {
         if (this.client.getEndpoint() == null) {
             return Mono
@@ -517,15 +503,6 @@ public final class DesktopsClientImpl implements DesktopsClient {
                             applicationGroupName,
                             accept,
                             context))
-            .<PagedResponse<DesktopInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -538,10 +515,10 @@ public final class DesktopsClientImpl implements DesktopsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return desktopList along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return desktopList along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<DesktopInner>> listSinglePageAsync(
+    private Mono<Response<DesktopListInner>> listWithResponseAsync(
         String resourceGroupName, String applicationGroupName, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono
@@ -573,16 +550,7 @@ public final class DesktopsClientImpl implements DesktopsClient {
                 resourceGroupName,
                 applicationGroupName,
                 accept,
-                context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+                context);
     }
 
     /**
@@ -593,132 +561,43 @@ public final class DesktopsClientImpl implements DesktopsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return desktopList as paginated response with {@link PagedFlux}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedFlux<DesktopInner> listAsync(String resourceGroupName, String applicationGroupName) {
-        return new PagedFlux<>(
-            () -> listSinglePageAsync(resourceGroupName, applicationGroupName),
-            nextLink -> listNextSinglePageAsync(nextLink));
-    }
-
-    /**
-     * List desktops.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param applicationGroupName The name of the application group.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return desktopList as paginated response with {@link PagedFlux}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<DesktopInner> listAsync(String resourceGroupName, String applicationGroupName, Context context) {
-        return new PagedFlux<>(
-            () -> listSinglePageAsync(resourceGroupName, applicationGroupName, context),
-            nextLink -> listNextSinglePageAsync(nextLink, context));
-    }
-
-    /**
-     * List desktops.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param applicationGroupName The name of the application group.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return desktopList as paginated response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<DesktopInner> list(String resourceGroupName, String applicationGroupName) {
-        return new PagedIterable<>(listAsync(resourceGroupName, applicationGroupName));
-    }
-
-    /**
-     * List desktops.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param applicationGroupName The name of the application group.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return desktopList as paginated response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<DesktopInner> list(String resourceGroupName, String applicationGroupName, Context context) {
-        return new PagedIterable<>(listAsync(resourceGroupName, applicationGroupName, context));
-    }
-
-    /**
-     * Get the next page of items.
-     *
-     * @param nextLink The nextLink parameter.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return desktopList along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return desktopList on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<DesktopInner>> listNextSinglePageAsync(String nextLink) {
-        if (nextLink == null) {
-            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
-        }
-        if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        return FluxUtil
-            .withContext(context -> service.listNext(nextLink, this.client.getEndpoint(), accept, context))
-            .<PagedResponse<DesktopInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    private Mono<DesktopListInner> listAsync(String resourceGroupName, String applicationGroupName) {
+        return listWithResponseAsync(resourceGroupName, applicationGroupName)
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
-     * Get the next page of items.
+     * List desktops.
      *
-     * @param nextLink The nextLink parameter.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param applicationGroupName The name of the application group.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return desktopList.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public DesktopListInner list(String resourceGroupName, String applicationGroupName) {
+        return listAsync(resourceGroupName, applicationGroupName).block();
+    }
+
+    /**
+     * List desktops.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param applicationGroupName The name of the application group.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return desktopList along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return desktopList along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<DesktopInner>> listNextSinglePageAsync(String nextLink, Context context) {
-        if (nextLink == null) {
-            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
-        }
-        if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service
-            .listNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+    public Response<DesktopListInner> listWithResponse(
+        String resourceGroupName, String applicationGroupName, Context context) {
+        return listWithResponseAsync(resourceGroupName, applicationGroupName, context).block();
     }
 }

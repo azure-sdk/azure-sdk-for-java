@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.desktopvirtualization.models;
 
-import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.http.rest.Response;
 import com.azure.core.util.Context;
 
@@ -79,9 +78,9 @@ public interface Desktops {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return desktopList as paginated response with {@link PagedIterable}.
+     * @return desktopList.
      */
-    PagedIterable<Desktop> list(String resourceGroupName, String applicationGroupName);
+    DesktopList list(String resourceGroupName, String applicationGroupName);
 
     /**
      * List desktops.
@@ -92,7 +91,7 @@ public interface Desktops {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return desktopList as paginated response with {@link PagedIterable}.
+     * @return desktopList along with {@link Response}.
      */
-    PagedIterable<Desktop> list(String resourceGroupName, String applicationGroupName, Context context);
+    Response<DesktopList> listWithResponse(String resourceGroupName, String applicationGroupName, Context context);
 }

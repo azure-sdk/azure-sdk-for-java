@@ -165,7 +165,7 @@ public final class MsixPackagesClientImpl implements MsixPackagesClient {
      * @return a msixpackage along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<MsixPackageInner>> getWithResponseAsync(
+    private Mono<Response<MsixPackageInner>> getWithResponseAsync(
         String resourceGroupName, String hostPoolName, String msixPackageFullName) {
         if (this.client.getEndpoint() == null) {
             return Mono
@@ -271,7 +271,7 @@ public final class MsixPackagesClientImpl implements MsixPackagesClient {
      * @return a msixpackage on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<MsixPackageInner> getAsync(String resourceGroupName, String hostPoolName, String msixPackageFullName) {
+    private Mono<MsixPackageInner> getAsync(String resourceGroupName, String hostPoolName, String msixPackageFullName) {
         return getWithResponseAsync(resourceGroupName, hostPoolName, msixPackageFullName)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
@@ -323,7 +323,7 @@ public final class MsixPackagesClientImpl implements MsixPackagesClient {
      * @return schema for MSIX Package properties along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<MsixPackageInner>> createOrUpdateWithResponseAsync(
+    private Mono<Response<MsixPackageInner>> createOrUpdateWithResponseAsync(
         String resourceGroupName, String hostPoolName, String msixPackageFullName, MsixPackageInner msixPackage) {
         if (this.client.getEndpoint() == null) {
             return Mono
@@ -447,7 +447,7 @@ public final class MsixPackagesClientImpl implements MsixPackagesClient {
      * @return schema for MSIX Package properties on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<MsixPackageInner> createOrUpdateAsync(
+    private Mono<MsixPackageInner> createOrUpdateAsync(
         String resourceGroupName, String hostPoolName, String msixPackageFullName, MsixPackageInner msixPackage) {
         return createOrUpdateWithResponseAsync(resourceGroupName, hostPoolName, msixPackageFullName, msixPackage)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
@@ -508,7 +508,7 @@ public final class MsixPackagesClientImpl implements MsixPackagesClient {
      * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Void>> deleteWithResponseAsync(
+    private Mono<Response<Void>> deleteWithResponseAsync(
         String resourceGroupName, String hostPoolName, String msixPackageFullName) {
         if (this.client.getEndpoint() == null) {
             return Mono
@@ -614,7 +614,7 @@ public final class MsixPackagesClientImpl implements MsixPackagesClient {
      * @return A {@link Mono} that completes when a successful response is received.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Void> deleteAsync(String resourceGroupName, String hostPoolName, String msixPackageFullName) {
+    private Mono<Void> deleteAsync(String resourceGroupName, String hostPoolName, String msixPackageFullName) {
         return deleteWithResponseAsync(resourceGroupName, hostPoolName, msixPackageFullName)
             .flatMap(ignored -> Mono.empty());
     }
@@ -665,7 +665,7 @@ public final class MsixPackagesClientImpl implements MsixPackagesClient {
      * @return schema for MSIX Package properties along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<MsixPackageInner>> updateWithResponseAsync(
+    private Mono<Response<MsixPackageInner>> updateWithResponseAsync(
         String resourceGroupName, String hostPoolName, String msixPackageFullName, MsixPackagePatch msixPackage) {
         if (this.client.getEndpoint() == null) {
             return Mono
@@ -785,7 +785,7 @@ public final class MsixPackagesClientImpl implements MsixPackagesClient {
      * @return schema for MSIX Package properties on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<MsixPackageInner> updateAsync(
+    private Mono<MsixPackageInner> updateAsync(
         String resourceGroupName, String hostPoolName, String msixPackageFullName, MsixPackagePatch msixPackage) {
         return updateWithResponseAsync(resourceGroupName, hostPoolName, msixPackageFullName, msixPackage)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
@@ -803,7 +803,7 @@ public final class MsixPackagesClientImpl implements MsixPackagesClient {
      * @return schema for MSIX Package properties on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<MsixPackageInner> updateAsync(
+    private Mono<MsixPackageInner> updateAsync(
         String resourceGroupName, String hostPoolName, String msixPackageFullName) {
         final MsixPackagePatch msixPackage = null;
         return updateWithResponseAsync(resourceGroupName, hostPoolName, msixPackageFullName, msixPackage)
@@ -973,7 +973,7 @@ public final class MsixPackagesClientImpl implements MsixPackagesClient {
      * @return msixPackageList as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedFlux<MsixPackageInner> listAsync(String resourceGroupName, String hostPoolName) {
+    private PagedFlux<MsixPackageInner> listAsync(String resourceGroupName, String hostPoolName) {
         return new PagedFlux<>(
             () -> listSinglePageAsync(resourceGroupName, hostPoolName), nextLink -> listNextSinglePageAsync(nextLink));
     }
@@ -1030,7 +1030,8 @@ public final class MsixPackagesClientImpl implements MsixPackagesClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1065,7 +1066,8 @@ public final class MsixPackagesClientImpl implements MsixPackagesClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.

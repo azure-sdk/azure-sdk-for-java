@@ -9,7 +9,11 @@ import com.azure.resourcemanager.desktopvirtualization.fluent.models.Application
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** ApplicationGroupList List of ApplicationGroup definitions. */
+/**
+ * ApplicationGroupList
+ *
+ * <p>List of ApplicationGroup definitions.
+ */
 @Fluent
 public final class ApplicationGroupList {
     /*

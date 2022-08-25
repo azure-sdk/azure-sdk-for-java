@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for Workspaces GetByResourceGroup. */
 public final class WorkspacesGetByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2021-09-03-preview/examples/Workspace_Get.json
+     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2022-08-10/examples/Workspace_Get.json
      */
     /**
      * Sample code: Workspace_Get.

@@ -5,8 +5,8 @@
 package com.azure.resourcemanager.desktopvirtualization.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.resourcemanager.desktopvirtualization.models.HostPoolType;
 import com.azure.resourcemanager.desktopvirtualization.models.ScalingHostPoolReference;
-import com.azure.resourcemanager.desktopvirtualization.models.ScalingHostPoolType;
 import com.azure.resourcemanager.desktopvirtualization.models.ScalingSchedule;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
@@ -42,7 +42,7 @@ public final class ScalingPlanProperties {
      * HostPool type for desktop.
      */
     @JsonProperty(value = "hostPoolType")
-    private ScalingHostPoolType hostPoolType;
+    private HostPoolType hostPoolType;
 
     /*
      * Exclusion tag for scaling plan.
@@ -136,7 +136,7 @@ public final class ScalingPlanProperties {
      *
      * @return the hostPoolType value.
      */
-    public ScalingHostPoolType hostPoolType() {
+    public HostPoolType hostPoolType() {
         return this.hostPoolType;
     }
 
@@ -146,7 +146,7 @@ public final class ScalingPlanProperties {
      * @param hostPoolType the hostPoolType value to set.
      * @return the ScalingPlanProperties object itself.
      */
-    public ScalingPlanProperties withHostPoolType(ScalingHostPoolType hostPoolType) {
+    public ScalingPlanProperties withHostPoolType(HostPoolType hostPoolType) {
         this.hostPoolType = hostPoolType;
         return this;
     }

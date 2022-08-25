@@ -9,7 +9,11 @@ import com.azure.resourcemanager.desktopvirtualization.fluent.models.HostPoolInn
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** HostPoolList List of HostPool definitions. */
+/**
+ * HostPoolList
+ *
+ * <p>List of HostPool definitions.
+ */
 @Fluent
 public final class HostPoolList {
     /*

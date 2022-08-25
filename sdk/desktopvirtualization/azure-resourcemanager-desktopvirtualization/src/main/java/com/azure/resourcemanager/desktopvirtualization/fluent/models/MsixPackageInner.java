@@ -6,7 +6,6 @@ package com.azure.resourcemanager.desktopvirtualization.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.ProxyResource;
-import com.azure.core.management.SystemData;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.desktopvirtualization.models.MsixPackageApplications;
 import com.azure.resourcemanager.desktopvirtualization.models.MsixPackageDependencies;
@@ -18,25 +17,10 @@ import java.util.List;
 @Fluent
 public final class MsixPackageInner extends ProxyResource {
     /*
-     * Metadata pertaining to creation and last modification of the resource.
-     */
-    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
-    private SystemData systemData;
-
-    /*
      * Detailed properties for MSIX Package
      */
     @JsonProperty(value = "properties", required = true)
     private MsixPackageProperties innerProperties = new MsixPackageProperties();
-
-    /**
-     * Get the systemData property: Metadata pertaining to creation and last modification of the resource.
-     *
-     * @return the systemData value.
-     */
-    public SystemData systemData() {
-        return this.systemData;
-    }
 
     /**
      * Get the innerProperties property: Detailed properties for MSIX Package.

@@ -4,12 +4,12 @@
 
 package com.azure.resourcemanager.desktopvirtualization.generated;
 
+import com.azure.resourcemanager.desktopvirtualization.models.HostPoolType;
 import com.azure.resourcemanager.desktopvirtualization.models.ScalingHostPoolReference;
-import com.azure.resourcemanager.desktopvirtualization.models.ScalingHostPoolType;
 import com.azure.resourcemanager.desktopvirtualization.models.ScalingSchedule;
 import com.azure.resourcemanager.desktopvirtualization.models.ScalingScheduleDaysOfWeekItem;
 import com.azure.resourcemanager.desktopvirtualization.models.SessionHostLoadBalancingAlgorithm;
-import com.azure.resourcemanager.desktopvirtualization.models.Time;
+import java.time.OffsetDateTime;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -17,7 +17,7 @@ import java.util.Map;
 /** Samples for ScalingPlans Create. */
 public final class ScalingPlansCreateSamples {
     /*
-     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2021-09-03-preview/examples/ScalingPlan_Create.json
+     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2022-08-10/examples/ScalingPlan_Create.json
      */
     /**
      * Sample code: ScalingPlans_Create.
@@ -32,10 +32,10 @@ public final class ScalingPlansCreateSamples {
             .withRegion("centralus")
             .withExistingResourceGroup("resourceGroup1")
             .withTags(mapOf("tag1", "value1", "tag2", "value2"))
-            .withDescription("Description of Scaling Plan")
-            .withFriendlyName("Scaling Plan 1")
-            .withTimeZone("Central Standard Time")
-            .withHostPoolType(ScalingHostPoolType.POOLED)
+            .withDescription("des1")
+            .withFriendlyName("friendly")
+            .withTimeZone("")
+            .withHostPoolType(HostPoolType.PERSONAL)
             .withExclusionTag("value")
             .withSchedules(
                 Arrays
@@ -50,20 +50,20 @@ public final class ScalingPlansCreateSamples {
                                         ScalingScheduleDaysOfWeekItem.WEDNESDAY,
                                         ScalingScheduleDaysOfWeekItem.THURSDAY,
                                         ScalingScheduleDaysOfWeekItem.FRIDAY))
-                            .withRampUpStartTime(new Time().withHour(6).withMinute(0))
+                            .withRampUpStartTime(OffsetDateTime.parse("2020-11-10T06:00:00.000Z"))
                             .withRampUpLoadBalancingAlgorithm(SessionHostLoadBalancingAlgorithm.DEPTH_FIRST)
                             .withRampUpMinimumHostsPct(20)
                             .withRampUpCapacityThresholdPct(80)
-                            .withPeakStartTime(new Time().withHour(8).withMinute(0))
+                            .withPeakStartTime(OffsetDateTime.parse("2020-11-10T08:00:00.000Z"))
                             .withPeakLoadBalancingAlgorithm(SessionHostLoadBalancingAlgorithm.BREADTH_FIRST)
-                            .withRampDownStartTime(new Time().withHour(18).withMinute(0))
+                            .withRampDownStartTime(OffsetDateTime.parse("2020-11-10T18:00:00.000Z"))
                             .withRampDownLoadBalancingAlgorithm(SessionHostLoadBalancingAlgorithm.DEPTH_FIRST)
                             .withRampDownMinimumHostsPct(20)
                             .withRampDownCapacityThresholdPct(50)
                             .withRampDownForceLogoffUsers(true)
                             .withRampDownWaitTimeMinutes(30)
                             .withRampDownNotificationMessage("message")
-                            .withOffPeakStartTime(new Time().withHour(20).withMinute(0))
+                            .withOffPeakStartTime(OffsetDateTime.parse("2020-11-10T20:00:00.000Z"))
                             .withOffPeakLoadBalancingAlgorithm(SessionHostLoadBalancingAlgorithm.DEPTH_FIRST)))
             .withHostPoolReferences(
                 Arrays

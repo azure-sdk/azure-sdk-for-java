@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for StartMenuItems List. */
 public final class StartMenuItemsListSamples {
     /*
-     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2021-09-03-preview/examples/StartMenuItem_List.json
+     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2022-08-10/examples/StartMenuItem_List.json
      */
     /**
      * Sample code: StartMenuItem_List.

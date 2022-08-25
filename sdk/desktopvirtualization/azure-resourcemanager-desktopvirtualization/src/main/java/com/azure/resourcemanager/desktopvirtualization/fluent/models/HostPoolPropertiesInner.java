@@ -11,7 +11,6 @@ import com.azure.resourcemanager.desktopvirtualization.models.LoadBalancerType;
 import com.azure.resourcemanager.desktopvirtualization.models.MigrationRequestProperties;
 import com.azure.resourcemanager.desktopvirtualization.models.PersonalDesktopAssignmentType;
 import com.azure.resourcemanager.desktopvirtualization.models.PreferredAppGroupType;
-import com.azure.resourcemanager.desktopvirtualization.models.PublicNetworkAccess;
 import com.azure.resourcemanager.desktopvirtualization.models.SsoSecretType;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
@@ -104,15 +103,13 @@ public final class HostPoolPropertiesInner {
     private String ssoadfsAuthority;
 
     /*
-     * ClientId for the registered Relying Party used to issue WVD SSO
-     * certificates.
+     * ClientId for the registered Relying Party used to issue WVD SSO certificates.
      */
     @JsonProperty(value = "ssoClientId")
     private String ssoClientId;
 
     /*
-     * Path to Azure KeyVault storing the secret used for communication to
-     * ADFS.
+     * Path to Azure KeyVault storing the secret used for communication to ADFS.
      */
     @JsonProperty(value = "ssoClientSecretKeyVaultPath")
     private String ssoClientSecretKeyVaultPath;
@@ -124,8 +121,7 @@ public final class HostPoolPropertiesInner {
     private SsoSecretType ssoSecretType;
 
     /*
-     * The type of preferred application group type, default to Desktop
-     * Application Group
+     * The type of preferred application group type, default to Desktop Application Group
      */
     @JsonProperty(value = "preferredAppGroupType", required = true)
     private PreferredAppGroupType preferredAppGroupType;
@@ -147,14 +143,6 @@ public final class HostPoolPropertiesInner {
      */
     @JsonProperty(value = "cloudPcResource", access = JsonProperty.Access.WRITE_ONLY)
     private Boolean cloudPcResource;
-
-    /*
-     * Enabled allows this resource to be accessed from both public and private
-     * networks, Disabled allows this resource to only be accessed via private
-     * endpoints
-     */
-    @JsonProperty(value = "publicNetworkAccess")
-    private PublicNetworkAccess publicNetworkAccess;
 
     /**
      * Get the objectId property: ObjectId of HostPool. (internal use).
@@ -546,28 +534,6 @@ public final class HostPoolPropertiesInner {
      */
     public Boolean cloudPcResource() {
         return this.cloudPcResource;
-    }
-
-    /**
-     * Get the publicNetworkAccess property: Enabled allows this resource to be accessed from both public and private
-     * networks, Disabled allows this resource to only be accessed via private endpoints.
-     *
-     * @return the publicNetworkAccess value.
-     */
-    public PublicNetworkAccess publicNetworkAccess() {
-        return this.publicNetworkAccess;
-    }
-
-    /**
-     * Set the publicNetworkAccess property: Enabled allows this resource to be accessed from both public and private
-     * networks, Disabled allows this resource to only be accessed via private endpoints.
-     *
-     * @param publicNetworkAccess the publicNetworkAccess value to set.
-     * @return the HostPoolPropertiesInner object itself.
-     */
-    public HostPoolPropertiesInner withPublicNetworkAccess(PublicNetworkAccess publicNetworkAccess) {
-        this.publicNetworkAccess = publicNetworkAccess;
-        return this;
     }
 
     /**

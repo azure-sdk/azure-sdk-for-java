@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for UpdateState. */
+/** Update state of a SessionHost. */
 public final class UpdateState extends ExpandableStringEnum<UpdateState> {
     /** Static value Initial for UpdateState. */
     public static final UpdateState INITIAL = fromString("Initial");

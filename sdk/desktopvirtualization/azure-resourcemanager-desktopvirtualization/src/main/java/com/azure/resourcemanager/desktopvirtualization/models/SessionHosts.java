@@ -85,7 +85,7 @@ public interface SessionHosts {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param hostPoolName The name of the host pool within the specified resource group.
      * @param sessionHostname The name of the session host within the specified host pool.
-     * @param force Force flag to update assign, unassign or reassign personal desktop.
+     * @param force Force flag to update sessionHost.
      * @param sessionHost Object containing SessionHost definitions.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.

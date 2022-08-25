@@ -9,7 +9,11 @@ import com.azure.resourcemanager.desktopvirtualization.fluent.models.WorkspaceIn
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** WorkspaceList List of Workspace definitions. */
+/**
+ * WorkspaceList
+ *
+ * <p>List of Workspace definitions.
+ */
 @Fluent
 public final class WorkspaceList {
     /*

@@ -4,63 +4,29 @@
 
 package com.azure.resourcemanager.desktopvirtualization.models;
 
-import com.azure.core.annotation.Fluent;
-import com.azure.resourcemanager.desktopvirtualization.fluent.models.DesktopInner;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.azure.resourcemanager.desktopvirtualization.fluent.models.DesktopListInner;
 import java.util.List;
 
-/** DesktopList List of Desktop definitions. */
-@Fluent
-public final class DesktopList {
-    /*
-     * List of Desktop definitions.
-     */
-    @JsonProperty(value = "value")
-    private List<DesktopInner> value;
-
-    /*
-     * Link to the next page of results.
-     */
-    @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
-    private String nextLink;
-
+/** An immutable client-side representation of DesktopList. */
+public interface DesktopList {
     /**
-     * Get the value property: List of Desktop definitions.
+     * Gets the value property: List of Desktop definitions.
      *
      * @return the value value.
      */
-    public List<DesktopInner> value() {
-        return this.value;
-    }
+    List<Desktop> value();
 
     /**
-     * Set the value property: List of Desktop definitions.
-     *
-     * @param value the value value to set.
-     * @return the DesktopList object itself.
-     */
-    public DesktopList withValue(List<DesktopInner> value) {
-        this.value = value;
-        return this;
-    }
-
-    /**
-     * Get the nextLink property: Link to the next page of results.
+     * Gets the nextLink property: Link to the next page of results.
      *
      * @return the nextLink value.
      */
-    public String nextLink() {
-        return this.nextLink;
-    }
+    String nextLink();
 
     /**
-     * Validates the instance.
+     * Gets the inner com.azure.resourcemanager.desktopvirtualization.fluent.models.DesktopListInner object.
      *
-     * @throws IllegalArgumentException thrown if the instance is not valid.
+     * @return the inner object.
      */
-    public void validate() {
-        if (value() != null) {
-            value().forEach(e -> e.validate());
-        }
-    }
+    DesktopListInner innerModel();
 }

@@ -4,13 +4,14 @@
 
 package com.azure.resourcemanager.desktopvirtualization.implementation;
 
-import com.azure.core.http.rest.PagedIterable;
+import com.azure.core.http.rest.Response;
+import com.azure.core.http.rest.SimpleResponse;
 import com.azure.core.util.Context;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.desktopvirtualization.fluent.OperationsClient;
-import com.azure.resourcemanager.desktopvirtualization.fluent.models.ResourceProviderOperationInner;
+import com.azure.resourcemanager.desktopvirtualization.fluent.models.ResourceProviderOperationListInner;
 import com.azure.resourcemanager.desktopvirtualization.models.Operations;
-import com.azure.resourcemanager.desktopvirtualization.models.ResourceProviderOperation;
+import com.azure.resourcemanager.desktopvirtualization.models.ResourceProviderOperationList;
 
 public final class OperationsImpl implements Operations {
     private static final ClientLogger LOGGER = new ClientLogger(OperationsImpl.class);
@@ -26,14 +27,26 @@ public final class OperationsImpl implements Operations {
         this.serviceManager = serviceManager;
     }
 
-    public PagedIterable<ResourceProviderOperation> list() {
-        PagedIterable<ResourceProviderOperationInner> inner = this.serviceClient().list();
-        return Utils.mapPage(inner, inner1 -> new ResourceProviderOperationImpl(inner1, this.manager()));
+    public ResourceProviderOperationList list() {
+        ResourceProviderOperationListInner inner = this.serviceClient().list();
+        if (inner != null) {
+            return new ResourceProviderOperationListImpl(inner, this.manager());
+        } else {
+            return null;
+        }
     }
 
-    public PagedIterable<ResourceProviderOperation> list(Context context) {
-        PagedIterable<ResourceProviderOperationInner> inner = this.serviceClient().list(context);
-        return Utils.mapPage(inner, inner1 -> new ResourceProviderOperationImpl(inner1, this.manager()));
+    public Response<ResourceProviderOperationList> listWithResponse(Context context) {
+        Response<ResourceProviderOperationListInner> inner = this.serviceClient().listWithResponse(context);
+        if (inner != null) {
+            return new SimpleResponse<>(
+                inner.getRequest(),
+                inner.getStatusCode(),
+                inner.getHeaders(),
+                new ResourceProviderOperationListImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
     }
 
     private OperationsClient serviceClient() {

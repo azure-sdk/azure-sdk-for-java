@@ -5,14 +5,13 @@
 package com.azure.resourcemanager.desktopvirtualization.implementation;
 
 import com.azure.core.management.Region;
-import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.desktopvirtualization.fluent.models.ScalingPlanInner;
+import com.azure.resourcemanager.desktopvirtualization.models.HostPoolType;
 import com.azure.resourcemanager.desktopvirtualization.models.ResourceModelWithAllowedPropertySetIdentity;
 import com.azure.resourcemanager.desktopvirtualization.models.ResourceModelWithAllowedPropertySetPlan;
 import com.azure.resourcemanager.desktopvirtualization.models.ResourceModelWithAllowedPropertySetSku;
 import com.azure.resourcemanager.desktopvirtualization.models.ScalingHostPoolReference;
-import com.azure.resourcemanager.desktopvirtualization.models.ScalingHostPoolType;
 import com.azure.resourcemanager.desktopvirtualization.models.ScalingPlan;
 import com.azure.resourcemanager.desktopvirtualization.models.ScalingPlanPatch;
 import com.azure.resourcemanager.desktopvirtualization.models.ScalingSchedule;
@@ -74,10 +73,6 @@ public final class ScalingPlanImpl implements ScalingPlan, ScalingPlan.Definitio
         return this.innerModel().plan();
     }
 
-    public SystemData systemData() {
-        return this.innerModel().systemData();
-    }
-
     public String objectId() {
         return this.innerModel().objectId();
     }
@@ -94,7 +89,7 @@ public final class ScalingPlanImpl implements ScalingPlan, ScalingPlan.Definitio
         return this.innerModel().timeZone();
     }
 
-    public ScalingHostPoolType hostPoolType() {
+    public HostPoolType hostPoolType() {
         return this.innerModel().hostPoolType();
     }
 
@@ -307,9 +302,14 @@ public final class ScalingPlanImpl implements ScalingPlan, ScalingPlan.Definitio
         }
     }
 
-    public ScalingPlanImpl withHostPoolType(ScalingHostPoolType hostPoolType) {
-        this.innerModel().withHostPoolType(hostPoolType);
-        return this;
+    public ScalingPlanImpl withHostPoolType(HostPoolType hostPoolType) {
+        if (isInCreateMode()) {
+            this.innerModel().withHostPoolType(hostPoolType);
+            return this;
+        } else {
+            this.updateScalingPlan.withHostPoolType(hostPoolType);
+            return this;
+        }
     }
 
     public ScalingPlanImpl withExclusionTag(String exclusionTag) {

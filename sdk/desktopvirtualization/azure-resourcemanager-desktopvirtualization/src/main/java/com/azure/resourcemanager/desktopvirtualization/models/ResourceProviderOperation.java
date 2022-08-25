@@ -4,43 +4,127 @@
 
 package com.azure.resourcemanager.desktopvirtualization.models;
 
-import com.azure.resourcemanager.desktopvirtualization.fluent.models.ResourceProviderOperationInner;
+import com.azure.core.annotation.Fluent;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** An immutable client-side representation of ResourceProviderOperation. */
-public interface ResourceProviderOperation {
+/** Supported operation of this resource provider. */
+@Fluent
+public final class ResourceProviderOperation {
+    /*
+     * Operation name, in format of {provider}/{resource}/{operation}
+     */
+    @JsonProperty(value = "name")
+    private String name;
+
+    /*
+     * Display metadata associated with the operation.
+     */
+    @JsonProperty(value = "display")
+    private ResourceProviderOperationDisplay display;
+
+    /*
+     * Is a data action.
+     */
+    @JsonProperty(value = "isDataAction")
+    private Boolean isDataAction;
+
+    /*
+     * Properties of the operation
+     */
+    @JsonProperty(value = "properties")
+    private OperationProperties properties;
+
     /**
-     * Gets the name property: Operation name, in format of {provider}/{resource}/{operation}.
+     * Get the name property: Operation name, in format of {provider}/{resource}/{operation}.
      *
      * @return the name value.
      */
-    String name();
+    public String name() {
+        return this.name;
+    }
 
     /**
-     * Gets the display property: Display metadata associated with the operation.
+     * Set the name property: Operation name, in format of {provider}/{resource}/{operation}.
+     *
+     * @param name the name value to set.
+     * @return the ResourceProviderOperation object itself.
+     */
+    public ResourceProviderOperation withName(String name) {
+        this.name = name;
+        return this;
+    }
+
+    /**
+     * Get the display property: Display metadata associated with the operation.
      *
      * @return the display value.
      */
-    ResourceProviderOperationDisplay display();
+    public ResourceProviderOperationDisplay display() {
+        return this.display;
+    }
 
     /**
-     * Gets the isDataAction property: Is a data action.
+     * Set the display property: Display metadata associated with the operation.
+     *
+     * @param display the display value to set.
+     * @return the ResourceProviderOperation object itself.
+     */
+    public ResourceProviderOperation withDisplay(ResourceProviderOperationDisplay display) {
+        this.display = display;
+        return this;
+    }
+
+    /**
+     * Get the isDataAction property: Is a data action.
      *
      * @return the isDataAction value.
      */
-    Boolean isDataAction();
+    public Boolean isDataAction() {
+        return this.isDataAction;
+    }
 
     /**
-     * Gets the properties property: Properties of the operation.
+     * Set the isDataAction property: Is a data action.
+     *
+     * @param isDataAction the isDataAction value to set.
+     * @return the ResourceProviderOperation object itself.
+     */
+    public ResourceProviderOperation withIsDataAction(Boolean isDataAction) {
+        this.isDataAction = isDataAction;
+        return this;
+    }
+
+    /**
+     * Get the properties property: Properties of the operation.
      *
      * @return the properties value.
      */
-    OperationProperties properties();
+    public OperationProperties properties() {
+        return this.properties;
+    }
 
     /**
-     * Gets the inner com.azure.resourcemanager.desktopvirtualization.fluent.models.ResourceProviderOperationInner
-     * object.
+     * Set the properties property: Properties of the operation.
      *
-     * @return the inner object.
+     * @param properties the properties value to set.
+     * @return the ResourceProviderOperation object itself.
      */
-    ResourceProviderOperationInner innerModel();
+    public ResourceProviderOperation withProperties(OperationProperties properties) {
+        this.properties = properties;
+        return this;
+    }
+
+    /**
+     * Validates the instance.
+     *
+     * @throws IllegalArgumentException thrown if the instance is not valid.
+     */
+    public void validate() {
+        if (display() != null) {
+            display().validate();
+        }
+        if (properties() != null) {
+            properties().validate();
+        }
+    }
 }

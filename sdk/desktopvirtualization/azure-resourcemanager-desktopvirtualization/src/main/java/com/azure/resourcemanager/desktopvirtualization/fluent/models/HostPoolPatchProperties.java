@@ -8,7 +8,6 @@ import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.desktopvirtualization.models.LoadBalancerType;
 import com.azure.resourcemanager.desktopvirtualization.models.PersonalDesktopAssignmentType;
 import com.azure.resourcemanager.desktopvirtualization.models.PreferredAppGroupType;
-import com.azure.resourcemanager.desktopvirtualization.models.PublicNetworkAccess;
 import com.azure.resourcemanager.desktopvirtualization.models.RegistrationInfoPatch;
 import com.azure.resourcemanager.desktopvirtualization.models.SsoSecretType;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -83,15 +82,13 @@ public final class HostPoolPatchProperties {
     private String ssoadfsAuthority;
 
     /*
-     * ClientId for the registered Relying Party used to issue WVD SSO
-     * certificates.
+     * ClientId for the registered Relying Party used to issue WVD SSO certificates.
      */
     @JsonProperty(value = "ssoClientId")
     private String ssoClientId;
 
     /*
-     * Path to Azure KeyVault storing the secret used for communication to
-     * ADFS.
+     * Path to Azure KeyVault storing the secret used for communication to ADFS.
      */
     @JsonProperty(value = "ssoClientSecretKeyVaultPath")
     private String ssoClientSecretKeyVaultPath;
@@ -103,8 +100,7 @@ public final class HostPoolPatchProperties {
     private SsoSecretType ssoSecretType;
 
     /*
-     * The type of preferred application group type, default to Desktop
-     * Application Group
+     * The type of preferred application group type, default to Desktop Application Group
      */
     @JsonProperty(value = "preferredAppGroupType")
     private PreferredAppGroupType preferredAppGroupType;
@@ -114,12 +110,6 @@ public final class HostPoolPatchProperties {
      */
     @JsonProperty(value = "startVMOnConnect")
     private Boolean startVMOnConnect;
-
-    /*
-     * Enabled to allow this resource to be access from the public network
-     */
-    @JsonProperty(value = "publicNetworkAccess")
-    private PublicNetworkAccess publicNetworkAccess;
 
     /**
      * Get the friendlyName property: Friendly name of HostPool.
@@ -443,26 +433,6 @@ public final class HostPoolPatchProperties {
      */
     public HostPoolPatchProperties withStartVMOnConnect(Boolean startVMOnConnect) {
         this.startVMOnConnect = startVMOnConnect;
-        return this;
-    }
-
-    /**
-     * Get the publicNetworkAccess property: Enabled to allow this resource to be access from the public network.
-     *
-     * @return the publicNetworkAccess value.
-     */
-    public PublicNetworkAccess publicNetworkAccess() {
-        return this.publicNetworkAccess;
-    }
-
-    /**
-     * Set the publicNetworkAccess property: Enabled to allow this resource to be access from the public network.
-     *
-     * @param publicNetworkAccess the publicNetworkAccess value to set.
-     * @return the HostPoolPatchProperties object itself.
-     */
-    public HostPoolPatchProperties withPublicNetworkAccess(PublicNetworkAccess publicNetworkAccess) {
-        this.publicNetworkAccess = publicNetworkAccess;
         return this;
     }
 

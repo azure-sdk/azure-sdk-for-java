@@ -6,7 +6,6 @@ package com.azure.resourcemanager.desktopvirtualization.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.ProxyResource;
-import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.desktopvirtualization.models.ApplicationType;
 import com.azure.resourcemanager.desktopvirtualization.models.SessionState;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -16,25 +15,10 @@ import java.time.OffsetDateTime;
 @Fluent
 public final class UserSessionInner extends ProxyResource {
     /*
-     * Metadata pertaining to creation and last modification of the resource.
-     */
-    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
-    private SystemData systemData;
-
-    /*
      * Detailed properties for UserSession
      */
     @JsonProperty(value = "properties")
     private UserSessionProperties innerProperties;
-
-    /**
-     * Get the systemData property: Metadata pertaining to creation and last modification of the resource.
-     *
-     * @return the systemData value.
-     */
-    public SystemData systemData() {
-        return this.systemData;
-    }
 
     /**
      * Get the innerProperties property: Detailed properties for UserSession.

@@ -5,7 +5,6 @@
 package com.azure.resourcemanager.desktopvirtualization.models;
 
 import com.azure.core.management.Region;
-import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.desktopvirtualization.fluent.models.ScalingPlanInner;
 import java.util.List;
@@ -98,13 +97,6 @@ public interface ScalingPlan {
     ResourceModelWithAllowedPropertySetPlan plan();
 
     /**
-     * Gets the systemData property: Metadata pertaining to creation and last modification of the resource.
-     *
-     * @return the systemData value.
-     */
-    SystemData systemData();
-
-    /**
      * Gets the objectId property: ObjectId of scaling plan. (internal use).
      *
      * @return the objectId value.
@@ -137,7 +129,7 @@ public interface ScalingPlan {
      *
      * @return the hostPoolType value.
      */
-    ScalingHostPoolType hostPoolType();
+    HostPoolType hostPoolType();
 
     /**
      * Gets the exclusionTag property: Exclusion tag for scaling plan.
@@ -368,7 +360,7 @@ public interface ScalingPlan {
              * @param hostPoolType HostPool type for desktop.
              * @return the next definition stage.
              */
-            WithCreate withHostPoolType(ScalingHostPoolType hostPoolType);
+            WithCreate withHostPoolType(HostPoolType hostPoolType);
         }
         /** The stage of the ScalingPlan definition allowing to specify exclusionTag. */
         interface WithExclusionTag {
@@ -414,6 +406,7 @@ public interface ScalingPlan {
             UpdateStages.WithDescription,
             UpdateStages.WithFriendlyName,
             UpdateStages.WithTimeZone,
+            UpdateStages.WithHostPoolType,
             UpdateStages.WithExclusionTag,
             UpdateStages.WithSchedules,
             UpdateStages.WithHostPoolReferences {
@@ -473,6 +466,16 @@ public interface ScalingPlan {
              * @return the next definition stage.
              */
             Update withTimeZone(String timeZone);
+        }
+        /** The stage of the ScalingPlan update allowing to specify hostPoolType. */
+        interface WithHostPoolType {
+            /**
+             * Specifies the hostPoolType property: HostPool type for desktop..
+             *
+             * @param hostPoolType HostPool type for desktop.
+             * @return the next definition stage.
+             */
+            Update withHostPoolType(HostPoolType hostPoolType);
         }
         /** The stage of the ScalingPlan update allowing to specify exclusionTag. */
         interface WithExclusionTag {

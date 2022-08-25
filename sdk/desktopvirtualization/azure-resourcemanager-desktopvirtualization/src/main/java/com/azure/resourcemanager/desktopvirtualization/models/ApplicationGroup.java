@@ -5,7 +5,6 @@
 package com.azure.resourcemanager.desktopvirtualization.models;
 
 import com.azure.core.management.Region;
-import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.desktopvirtualization.fluent.models.ApplicationGroupInner;
 import java.util.Map;
@@ -95,13 +94,6 @@ public interface ApplicationGroup {
      * @return the plan value.
      */
     ResourceModelWithAllowedPropertySetPlan plan();
-
-    /**
-     * Gets the systemData property: Metadata pertaining to creation and last modification of the resource.
-     *
-     * @return the systemData value.
-     */
-    SystemData systemData();
 
     /**
      * Gets the objectId property: ObjectId of ApplicationGroup. (internal use).

@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.desktopvirtualization.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.resourcemanager.desktopvirtualization.models.HostPoolType;
 import com.azure.resourcemanager.desktopvirtualization.models.ScalingHostPoolReference;
 import com.azure.resourcemanager.desktopvirtualization.models.ScalingSchedule;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -30,6 +31,12 @@ public final class ScalingPlanPatchProperties {
      */
     @JsonProperty(value = "timeZone")
     private String timeZone;
+
+    /*
+     * HostPool type for desktop.
+     */
+    @JsonProperty(value = "hostPoolType")
+    private HostPoolType hostPoolType;
 
     /*
      * Exclusion tag for scaling plan.
@@ -106,6 +113,26 @@ public final class ScalingPlanPatchProperties {
      */
     public ScalingPlanPatchProperties withTimeZone(String timeZone) {
         this.timeZone = timeZone;
+        return this;
+    }
+
+    /**
+     * Get the hostPoolType property: HostPool type for desktop.
+     *
+     * @return the hostPoolType value.
+     */
+    public HostPoolType hostPoolType() {
+        return this.hostPoolType;
+    }
+
+    /**
+     * Set the hostPoolType property: HostPool type for desktop.
+     *
+     * @param hostPoolType the hostPoolType value to set.
+     * @return the ScalingPlanPatchProperties object itself.
+     */
+    public ScalingPlanPatchProperties withHostPoolType(HostPoolType hostPoolType) {
+        this.hostPoolType = hostPoolType;
         return this;
     }
 

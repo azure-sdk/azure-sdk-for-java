@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.desktopvirtualization.implementation;
 
-import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.desktopvirtualization.fluent.models.SessionHostInner;
 import com.azure.resourcemanager.desktopvirtualization.models.SessionHost;
 import com.azure.resourcemanager.desktopvirtualization.models.SessionHostHealthCheckReport;
@@ -36,10 +35,6 @@ public final class SessionHostImpl implements SessionHost {
 
     public String type() {
         return this.innerModel().type();
-    }
-
-    public SystemData systemData() {
-        return this.innerModel().systemData();
     }
 
     public String objectId() {

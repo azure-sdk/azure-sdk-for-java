@@ -316,7 +316,7 @@ public final class UserSessionsClientImpl implements UserSessionsClient {
      * @return userSessionList as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedFlux<UserSessionInner> listByHostPoolAsync(
+    private PagedFlux<UserSessionInner> listByHostPoolAsync(
         String resourceGroupName, String hostPoolName, String filter) {
         return new PagedFlux<>(
             () -> listByHostPoolSinglePageAsync(resourceGroupName, hostPoolName, filter),
@@ -334,7 +334,7 @@ public final class UserSessionsClientImpl implements UserSessionsClient {
      * @return userSessionList as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedFlux<UserSessionInner> listByHostPoolAsync(String resourceGroupName, String hostPoolName) {
+    private PagedFlux<UserSessionInner> listByHostPoolAsync(String resourceGroupName, String hostPoolName) {
         final String filter = null;
         return new PagedFlux<>(
             () -> listByHostPoolSinglePageAsync(resourceGroupName, hostPoolName, filter),
@@ -408,7 +408,7 @@ public final class UserSessionsClientImpl implements UserSessionsClient {
      * @return a userSession along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<UserSessionInner>> getWithResponseAsync(
+    private Mono<Response<UserSessionInner>> getWithResponseAsync(
         String resourceGroupName, String hostPoolName, String sessionHostname, String userSessionId) {
         if (this.client.getEndpoint() == null) {
             return Mono
@@ -524,7 +524,7 @@ public final class UserSessionsClientImpl implements UserSessionsClient {
      * @return a userSession on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<UserSessionInner> getAsync(
+    private Mono<UserSessionInner> getAsync(
         String resourceGroupName, String hostPoolName, String sessionHostname, String userSessionId) {
         return getWithResponseAsync(resourceGroupName, hostPoolName, sessionHostname, userSessionId)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
@@ -581,7 +581,7 @@ public final class UserSessionsClientImpl implements UserSessionsClient {
      * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Void>> deleteWithResponseAsync(
+    private Mono<Response<Void>> deleteWithResponseAsync(
         String resourceGroupName, String hostPoolName, String sessionHostname, String userSessionId, Boolean force) {
         if (this.client.getEndpoint() == null) {
             return Mono
@@ -706,7 +706,7 @@ public final class UserSessionsClientImpl implements UserSessionsClient {
      * @return A {@link Mono} that completes when a successful response is received.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Void> deleteAsync(
+    private Mono<Void> deleteAsync(
         String resourceGroupName, String hostPoolName, String sessionHostname, String userSessionId, Boolean force) {
         return deleteWithResponseAsync(resourceGroupName, hostPoolName, sessionHostname, userSessionId, force)
             .flatMap(ignored -> Mono.empty());
@@ -725,7 +725,7 @@ public final class UserSessionsClientImpl implements UserSessionsClient {
      * @return A {@link Mono} that completes when a successful response is received.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Void> deleteAsync(
+    private Mono<Void> deleteAsync(
         String resourceGroupName, String hostPoolName, String sessionHostname, String userSessionId) {
         final Boolean force = null;
         return deleteWithResponseAsync(resourceGroupName, hostPoolName, sessionHostname, userSessionId, force)
@@ -911,7 +911,7 @@ public final class UserSessionsClientImpl implements UserSessionsClient {
      * @return userSessionList as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedFlux<UserSessionInner> listAsync(
+    private PagedFlux<UserSessionInner> listAsync(
         String resourceGroupName, String hostPoolName, String sessionHostname) {
         return new PagedFlux<>(
             () -> listSinglePageAsync(resourceGroupName, hostPoolName, sessionHostname),
@@ -985,7 +985,7 @@ public final class UserSessionsClientImpl implements UserSessionsClient {
      * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Void>> disconnectWithResponseAsync(
+    private Mono<Response<Void>> disconnectWithResponseAsync(
         String resourceGroupName, String hostPoolName, String sessionHostname, String userSessionId) {
         if (this.client.getEndpoint() == null) {
             return Mono
@@ -1101,7 +1101,7 @@ public final class UserSessionsClientImpl implements UserSessionsClient {
      * @return A {@link Mono} that completes when a successful response is received.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Void> disconnectAsync(
+    private Mono<Void> disconnectAsync(
         String resourceGroupName, String hostPoolName, String sessionHostname, String userSessionId) {
         return disconnectWithResponseAsync(resourceGroupName, hostPoolName, sessionHostname, userSessionId)
             .flatMap(ignored -> Mono.empty());
@@ -1158,7 +1158,7 @@ public final class UserSessionsClientImpl implements UserSessionsClient {
      * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Void>> sendMessageWithResponseAsync(
+    private Mono<Response<Void>> sendMessageWithResponseAsync(
         String resourceGroupName,
         String hostPoolName,
         String sessionHostname,
@@ -1293,7 +1293,7 @@ public final class UserSessionsClientImpl implements UserSessionsClient {
      * @return A {@link Mono} that completes when a successful response is received.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Void> sendMessageAsync(
+    private Mono<Void> sendMessageAsync(
         String resourceGroupName,
         String hostPoolName,
         String sessionHostname,
@@ -1317,7 +1317,7 @@ public final class UserSessionsClientImpl implements UserSessionsClient {
      * @return A {@link Mono} that completes when a successful response is received.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Void> sendMessageAsync(
+    private Mono<Void> sendMessageAsync(
         String resourceGroupName, String hostPoolName, String sessionHostname, String userSessionId) {
         final SendMessage sendMessage = null;
         return sendMessageWithResponseAsync(
@@ -1373,7 +1373,8 @@ public final class UserSessionsClientImpl implements UserSessionsClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1408,7 +1409,8 @@ public final class UserSessionsClientImpl implements UserSessionsClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1444,7 +1446,8 @@ public final class UserSessionsClientImpl implements UserSessionsClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1479,7 +1482,8 @@ public final class UserSessionsClientImpl implements UserSessionsClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.

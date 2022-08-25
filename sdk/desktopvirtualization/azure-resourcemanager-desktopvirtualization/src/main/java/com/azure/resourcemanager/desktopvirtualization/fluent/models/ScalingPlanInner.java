@@ -5,41 +5,29 @@
 package com.azure.resourcemanager.desktopvirtualization.fluent.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.management.SystemData;
+import com.azure.resourcemanager.desktopvirtualization.models.HostPoolType;
 import com.azure.resourcemanager.desktopvirtualization.models.ResourceModelWithAllowedPropertySet;
 import com.azure.resourcemanager.desktopvirtualization.models.ResourceModelWithAllowedPropertySetIdentity;
 import com.azure.resourcemanager.desktopvirtualization.models.ResourceModelWithAllowedPropertySetPlan;
 import com.azure.resourcemanager.desktopvirtualization.models.ResourceModelWithAllowedPropertySetSku;
 import com.azure.resourcemanager.desktopvirtualization.models.ScalingHostPoolReference;
-import com.azure.resourcemanager.desktopvirtualization.models.ScalingHostPoolType;
 import com.azure.resourcemanager.desktopvirtualization.models.ScalingSchedule;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import java.util.Map;
 
-/** ScalingPlan Represents a scaling plan definition. */
+/**
+ * ScalingPlan
+ *
+ * <p>Represents a scaling plan definition.
+ */
 @Fluent
 public final class ScalingPlanInner extends ResourceModelWithAllowedPropertySet {
-    /*
-     * Metadata pertaining to creation and last modification of the resource.
-     */
-    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
-    private SystemData systemData;
-
     /*
      * Detailed properties for scaling plan.
      */
     @JsonProperty(value = "properties")
     private ScalingPlanProperties innerProperties;
-
-    /**
-     * Get the systemData property: Metadata pertaining to creation and last modification of the resource.
-     *
-     * @return the systemData value.
-     */
-    public SystemData systemData() {
-        return this.systemData;
-    }
 
     /**
      * Get the innerProperties property: Detailed properties for scaling plan.
@@ -182,7 +170,7 @@ public final class ScalingPlanInner extends ResourceModelWithAllowedPropertySet 
      *
      * @return the hostPoolType value.
      */
-    public ScalingHostPoolType hostPoolType() {
+    public HostPoolType hostPoolType() {
         return this.innerProperties() == null ? null : this.innerProperties().hostPoolType();
     }
 
@@ -192,7 +180,7 @@ public final class ScalingPlanInner extends ResourceModelWithAllowedPropertySet 
      * @param hostPoolType the hostPoolType value to set.
      * @return the ScalingPlanInner object itself.
      */
-    public ScalingPlanInner withHostPoolType(ScalingHostPoolType hostPoolType) {
+    public ScalingPlanInner withHostPoolType(HostPoolType hostPoolType) {
         if (this.innerProperties() == null) {
             this.innerProperties = new ScalingPlanProperties();
         }

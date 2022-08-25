@@ -9,7 +9,11 @@ import com.azure.resourcemanager.desktopvirtualization.fluent.models.Application
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** ApplicationList List of Application definitions. */
+/**
+ * ApplicationList
+ *
+ * <p>List of Application definitions.
+ */
 @Fluent
 public final class ApplicationList {
     /*

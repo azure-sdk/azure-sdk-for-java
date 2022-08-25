@@ -5,7 +5,6 @@
 package com.azure.resourcemanager.desktopvirtualization.models;
 
 import com.azure.core.management.Region;
-import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.desktopvirtualization.fluent.models.WorkspaceInner;
 import java.util.List;
@@ -98,13 +97,6 @@ public interface Workspace {
     ResourceModelWithAllowedPropertySetPlan plan();
 
     /**
-     * Gets the systemData property: Metadata pertaining to creation and last modification of the resource.
-     *
-     * @return the systemData value.
-     */
-    SystemData systemData();
-
-    /**
      * Gets the objectId property: ObjectId of Workspace. (internal use).
      *
      * @return the objectId value.
@@ -138,14 +130,6 @@ public interface Workspace {
      * @return the cloudPcResource value.
      */
     Boolean cloudPcResource();
-
-    /**
-     * Gets the publicNetworkAccess property: Enabled allows this resource to be accessed from both public and private
-     * networks, Disabled allows this resource to only be accessed via private endpoints.
-     *
-     * @return the publicNetworkAccess value.
-     */
-    PublicNetworkAccess publicNetworkAccess();
 
     /**
      * Gets the region of the resource.
@@ -228,8 +212,7 @@ public interface Workspace {
                 DefinitionStages.WithPlan,
                 DefinitionStages.WithDescription,
                 DefinitionStages.WithFriendlyName,
-                DefinitionStages.WithApplicationGroupReferences,
-                DefinitionStages.WithPublicNetworkAccess {
+                DefinitionStages.WithApplicationGroupReferences {
             /**
              * Executes the create request.
              *
@@ -344,18 +327,6 @@ public interface Workspace {
              */
             WithCreate withApplicationGroupReferences(List<String> applicationGroupReferences);
         }
-        /** The stage of the Workspace definition allowing to specify publicNetworkAccess. */
-        interface WithPublicNetworkAccess {
-            /**
-             * Specifies the publicNetworkAccess property: Enabled allows this resource to be accessed from both public
-             * and private networks, Disabled allows this resource to only be accessed via private endpoints.
-             *
-             * @param publicNetworkAccess Enabled allows this resource to be accessed from both public and private
-             *     networks, Disabled allows this resource to only be accessed via private endpoints.
-             * @return the next definition stage.
-             */
-            WithCreate withPublicNetworkAccess(PublicNetworkAccess publicNetworkAccess);
-        }
     }
     /**
      * Begins update for the Workspace resource.
@@ -369,8 +340,7 @@ public interface Workspace {
         extends UpdateStages.WithTags,
             UpdateStages.WithDescription,
             UpdateStages.WithFriendlyName,
-            UpdateStages.WithApplicationGroupReferences,
-            UpdateStages.WithPublicNetworkAccess {
+            UpdateStages.WithApplicationGroupReferences {
         /**
          * Executes the update request.
          *
@@ -427,17 +397,6 @@ public interface Workspace {
              * @return the next definition stage.
              */
             Update withApplicationGroupReferences(List<String> applicationGroupReferences);
-        }
-        /** The stage of the Workspace update allowing to specify publicNetworkAccess. */
-        interface WithPublicNetworkAccess {
-            /**
-             * Specifies the publicNetworkAccess property: Enabled to allow this resource to be access from the public
-             * network.
-             *
-             * @param publicNetworkAccess Enabled to allow this resource to be access from the public network.
-             * @return the next definition stage.
-             */
-            Update withPublicNetworkAccess(PublicNetworkAccess publicNetworkAccess);
         }
     }
     /**

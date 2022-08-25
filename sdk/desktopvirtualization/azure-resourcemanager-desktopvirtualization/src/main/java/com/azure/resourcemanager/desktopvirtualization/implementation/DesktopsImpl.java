@@ -4,14 +4,15 @@
 
 package com.azure.resourcemanager.desktopvirtualization.implementation;
 
-import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.http.rest.Response;
 import com.azure.core.http.rest.SimpleResponse;
 import com.azure.core.util.Context;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.desktopvirtualization.fluent.DesktopsClient;
 import com.azure.resourcemanager.desktopvirtualization.fluent.models.DesktopInner;
+import com.azure.resourcemanager.desktopvirtualization.fluent.models.DesktopListInner;
 import com.azure.resourcemanager.desktopvirtualization.models.Desktop;
+import com.azure.resourcemanager.desktopvirtualization.models.DesktopList;
 import com.azure.resourcemanager.desktopvirtualization.models.DesktopPatch;
 import com.azure.resourcemanager.desktopvirtualization.models.Desktops;
 
@@ -83,14 +84,28 @@ public final class DesktopsImpl implements Desktops {
         }
     }
 
-    public PagedIterable<Desktop> list(String resourceGroupName, String applicationGroupName) {
-        PagedIterable<DesktopInner> inner = this.serviceClient().list(resourceGroupName, applicationGroupName);
-        return Utils.mapPage(inner, inner1 -> new DesktopImpl(inner1, this.manager()));
+    public DesktopList list(String resourceGroupName, String applicationGroupName) {
+        DesktopListInner inner = this.serviceClient().list(resourceGroupName, applicationGroupName);
+        if (inner != null) {
+            return new DesktopListImpl(inner, this.manager());
+        } else {
+            return null;
+        }
     }
 
-    public PagedIterable<Desktop> list(String resourceGroupName, String applicationGroupName, Context context) {
-        PagedIterable<DesktopInner> inner = this.serviceClient().list(resourceGroupName, applicationGroupName, context);
-        return Utils.mapPage(inner, inner1 -> new DesktopImpl(inner1, this.manager()));
+    public Response<DesktopList> listWithResponse(
+        String resourceGroupName, String applicationGroupName, Context context) {
+        Response<DesktopListInner> inner =
+            this.serviceClient().listWithResponse(resourceGroupName, applicationGroupName, context);
+        if (inner != null) {
+            return new SimpleResponse<>(
+                inner.getRequest(),
+                inner.getStatusCode(),
+                inner.getHeaders(),
+                new DesktopListImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
     }
 
     private DesktopsClient serviceClient() {

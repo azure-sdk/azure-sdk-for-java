@@ -159,14 +159,6 @@ public interface HostPoolProperties {
     Boolean cloudPcResource();
 
     /**
-     * Gets the publicNetworkAccess property: Enabled allows this resource to be accessed from both public and private
-     * networks, Disabled allows this resource to only be accessed via private endpoints.
-     *
-     * @return the publicNetworkAccess value.
-     */
-    PublicNetworkAccess publicNetworkAccess();
-
-    /**
      * Gets the inner com.azure.resourcemanager.desktopvirtualization.fluent.models.HostPoolPropertiesInner object.
      *
      * @return the inner object.

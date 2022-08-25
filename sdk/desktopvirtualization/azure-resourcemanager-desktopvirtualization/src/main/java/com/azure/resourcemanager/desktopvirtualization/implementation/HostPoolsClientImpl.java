@@ -198,7 +198,7 @@ public final class HostPoolsClientImpl implements HostPoolsClient {
      * @return a host pool along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<HostPoolInner>> getByResourceGroupWithResponseAsync(
+    private Mono<Response<HostPoolInner>> getByResourceGroupWithResponseAsync(
         String resourceGroupName, String hostPoolName) {
         if (this.client.getEndpoint() == null) {
             return Mono
@@ -292,7 +292,7 @@ public final class HostPoolsClientImpl implements HostPoolsClient {
      * @return a host pool on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<HostPoolInner> getByResourceGroupAsync(String resourceGroupName, String hostPoolName) {
+    private Mono<HostPoolInner> getByResourceGroupAsync(String resourceGroupName, String hostPoolName) {
         return getByResourceGroupWithResponseAsync(resourceGroupName, hostPoolName)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
@@ -341,7 +341,7 @@ public final class HostPoolsClientImpl implements HostPoolsClient {
      * @return represents a HostPool definition along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<HostPoolInner>> createOrUpdateWithResponseAsync(
+    private Mono<Response<HostPoolInner>> createOrUpdateWithResponseAsync(
         String resourceGroupName, String hostPoolName, HostPoolInner hostPool) {
         if (this.client.getEndpoint() == null) {
             return Mono
@@ -449,7 +449,7 @@ public final class HostPoolsClientImpl implements HostPoolsClient {
      * @return represents a HostPool definition on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<HostPoolInner> createOrUpdateAsync(
+    private Mono<HostPoolInner> createOrUpdateAsync(
         String resourceGroupName, String hostPoolName, HostPoolInner hostPool) {
         return createOrUpdateWithResponseAsync(resourceGroupName, hostPoolName, hostPool)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
@@ -501,7 +501,7 @@ public final class HostPoolsClientImpl implements HostPoolsClient {
      * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Void>> deleteWithResponseAsync(String resourceGroupName, String hostPoolName, Boolean force) {
+    private Mono<Response<Void>> deleteWithResponseAsync(String resourceGroupName, String hostPoolName, Boolean force) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -598,7 +598,7 @@ public final class HostPoolsClientImpl implements HostPoolsClient {
      * @return A {@link Mono} that completes when a successful response is received.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Void> deleteAsync(String resourceGroupName, String hostPoolName, Boolean force) {
+    private Mono<Void> deleteAsync(String resourceGroupName, String hostPoolName, Boolean force) {
         return deleteWithResponseAsync(resourceGroupName, hostPoolName, force).flatMap(ignored -> Mono.empty());
     }
 
@@ -613,7 +613,7 @@ public final class HostPoolsClientImpl implements HostPoolsClient {
      * @return A {@link Mono} that completes when a successful response is received.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Void> deleteAsync(String resourceGroupName, String hostPoolName) {
+    private Mono<Void> deleteAsync(String resourceGroupName, String hostPoolName) {
         final Boolean force = null;
         return deleteWithResponseAsync(resourceGroupName, hostPoolName, force).flatMap(ignored -> Mono.empty());
     }
@@ -663,7 +663,7 @@ public final class HostPoolsClientImpl implements HostPoolsClient {
      * @return represents a HostPool definition along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<HostPoolInner>> updateWithResponseAsync(
+    private Mono<Response<HostPoolInner>> updateWithResponseAsync(
         String resourceGroupName, String hostPoolName, HostPoolPatch hostPool) {
         if (this.client.getEndpoint() == null) {
             return Mono
@@ -767,7 +767,7 @@ public final class HostPoolsClientImpl implements HostPoolsClient {
      * @return represents a HostPool definition on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<HostPoolInner> updateAsync(String resourceGroupName, String hostPoolName, HostPoolPatch hostPool) {
+    private Mono<HostPoolInner> updateAsync(String resourceGroupName, String hostPoolName, HostPoolPatch hostPool) {
         return updateWithResponseAsync(resourceGroupName, hostPoolName, hostPool)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
@@ -783,7 +783,7 @@ public final class HostPoolsClientImpl implements HostPoolsClient {
      * @return represents a HostPool definition on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<HostPoolInner> updateAsync(String resourceGroupName, String hostPoolName) {
+    private Mono<HostPoolInner> updateAsync(String resourceGroupName, String hostPoolName) {
         final HostPoolPatch hostPool = null;
         return updateWithResponseAsync(resourceGroupName, hostPoolName, hostPool)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
@@ -934,7 +934,7 @@ public final class HostPoolsClientImpl implements HostPoolsClient {
      * @return hostPoolList as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedFlux<HostPoolInner> listByResourceGroupAsync(String resourceGroupName) {
+    private PagedFlux<HostPoolInner> listByResourceGroupAsync(String resourceGroupName) {
         return new PagedFlux<>(
             () -> listByResourceGroupSinglePageAsync(resourceGroupName),
             nextLink -> listByResourceGroupNextSinglePageAsync(nextLink));
@@ -1081,7 +1081,7 @@ public final class HostPoolsClientImpl implements HostPoolsClient {
      * @return hostPoolList as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedFlux<HostPoolInner> listAsync() {
+    private PagedFlux<HostPoolInner> listAsync() {
         return new PagedFlux<>(() -> listSinglePageAsync(), nextLink -> listNextSinglePageAsync(nextLink));
     }
 
@@ -1138,7 +1138,7 @@ public final class HostPoolsClientImpl implements HostPoolsClient {
      *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<RegistrationInfoInner>> retrieveRegistrationTokenWithResponseAsync(
+    private Mono<Response<RegistrationInfoInner>> retrieveRegistrationTokenWithResponseAsync(
         String resourceGroupName, String hostPoolName) {
         if (this.client.getEndpoint() == null) {
             return Mono
@@ -1233,7 +1233,7 @@ public final class HostPoolsClientImpl implements HostPoolsClient {
      * @return represents a RegistrationInfo definition on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<RegistrationInfoInner> retrieveRegistrationTokenAsync(String resourceGroupName, String hostPoolName) {
+    private Mono<RegistrationInfoInner> retrieveRegistrationTokenAsync(String resourceGroupName, String hostPoolName) {
         return retrieveRegistrationTokenWithResponseAsync(resourceGroupName, hostPoolName)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
@@ -1273,7 +1273,8 @@ public final class HostPoolsClientImpl implements HostPoolsClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1309,7 +1310,8 @@ public final class HostPoolsClientImpl implements HostPoolsClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1346,7 +1348,8 @@ public final class HostPoolsClientImpl implements HostPoolsClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1381,7 +1384,8 @@ public final class HostPoolsClientImpl implements HostPoolsClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
