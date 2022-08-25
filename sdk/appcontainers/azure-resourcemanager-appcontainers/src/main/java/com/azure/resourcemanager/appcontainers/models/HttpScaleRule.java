@@ -10,7 +10,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import java.util.Map;
 
-/** Container App container Custom scaling rule. */
+/** Container App container Http scaling rule. */
 @Fluent
 public final class HttpScaleRule {
     /*
