@@ -192,6 +192,13 @@ public interface AzureMachineLearningWorkspaces {
     JobsClient getJobs();
 
     /**
+     * Gets the LabelingJobsClient object to access its operations.
+     *
+     * @return the LabelingJobsClient object.
+     */
+    LabelingJobsClient getLabelingJobs();
+
+    /**
      * Gets the ModelContainersClient object to access its operations.
      *
      * @return the ModelContainersClient object.
@@ -218,6 +225,13 @@ public interface AzureMachineLearningWorkspaces {
      * @return the OnlineDeploymentsClient object.
      */
     OnlineDeploymentsClient getOnlineDeployments();
+
+    /**
+     * Gets the SchedulesClient object to access its operations.
+     *
+     * @return the SchedulesClient object.
+     */
+    SchedulesClient getSchedules();
 
     /**
      * Gets the WorkspaceFeaturesClient object to access its operations.

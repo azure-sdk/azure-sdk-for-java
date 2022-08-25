@@ -13,8 +13,7 @@ import java.util.List;
 @Fluent
 public final class AmlOperationListResult {
     /*
-     * List of AML workspace operations supported by the AML workspace resource
-     * provider.
+     * List of AML workspace operations supported by the AML workspace resource provider.
      */
     @JsonProperty(value = "value")
     private List<AmlOperationInner> value;
