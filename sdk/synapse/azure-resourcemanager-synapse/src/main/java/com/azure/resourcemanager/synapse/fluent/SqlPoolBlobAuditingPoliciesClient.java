@@ -14,7 +14,9 @@ import com.azure.resourcemanager.synapse.fluent.models.SqlPoolBlobAuditingPolicy
 /** An instance of this class provides access to all the operations defined in SqlPoolBlobAuditingPoliciesClient. */
 public interface SqlPoolBlobAuditingPoliciesClient {
     /**
-     * Get a SQL pool's blob auditing policy.
+     * Get a SQL pool's blob auditing policy
+     *
+     * <p>Get a SQL pool's blob auditing policy.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -28,7 +30,9 @@ public interface SqlPoolBlobAuditingPoliciesClient {
     SqlPoolBlobAuditingPolicyInner get(String resourceGroupName, String workspaceName, String sqlPoolName);
 
     /**
-     * Get a SQL pool's blob auditing policy.
+     * Get a SQL pool's blob auditing policy
+     *
+     * <p>Get a SQL pool's blob auditing policy.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -44,7 +48,9 @@ public interface SqlPoolBlobAuditingPoliciesClient {
         String resourceGroupName, String workspaceName, String sqlPoolName, Context context);
 
     /**
-     * Creates or updates a SQL pool's blob auditing policy.
+     * Creates or updates a SQL pool's blob auditing policy
+     *
+     * <p>Creates or updates a SQL pool's blob auditing policy.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -60,7 +66,9 @@ public interface SqlPoolBlobAuditingPoliciesClient {
         String resourceGroupName, String workspaceName, String sqlPoolName, SqlPoolBlobAuditingPolicyInner parameters);
 
     /**
-     * Creates or updates a SQL pool's blob auditing policy.
+     * Creates or updates a SQL pool's blob auditing policy
+     *
+     * <p>Creates or updates a SQL pool's blob auditing policy.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.

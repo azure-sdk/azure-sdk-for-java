@@ -546,6 +546,7 @@ public final class BigDataPoolsCreateOrUpdateSamples {
             .withTags(mapOf("key", "value"))
             .withAutoScale(new AutoScaleProperties().withMinNodeCount(3).withEnabled(true).withMaxNodeCount(50))
             .withAutoPause(new AutoPauseProperties().withDelayInMinutes(15).withEnabled(true))
+            .withIsAutotuneEnabled(false)
             .withSparkEventsFolder("/events")
             .withNodeCount(4)
             .withLibraryRequirements(new LibraryRequirements().withContent("").withFilename("requirements.txt"))
@@ -5420,7 +5421,7 @@ public final class SqlPoolWorkloadGroupCreateOrUpdateSamples {
             .withMinResourcePercent(0)
             .withMaxResourcePercent(100)
             .withMinResourcePercentPerRequest(3.0)
-            .withMaxResourcePercentPerRequest(3.0)
+            .withMaxResourcePercentPerRequest(3.0D)
             .withImportance("normal")
             .withQueryExecutionTimeout(0)
             .create();
@@ -5824,8 +5825,8 @@ public final class WorkspaceAadAdminsGetSamples {
 ```java
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.synapse.fluent.models.ManagedIdentitySqlControlSettingsModelInner;
+import com.azure.resourcemanager.synapse.models.DesiredState;
 import com.azure.resourcemanager.synapse.models.ManagedIdentitySqlControlSettingsModelPropertiesGrantSqlControlToManagedIdentity;
-import com.azure.resourcemanager.synapse.models.ManagedIdentitySqlControlSettingsModelPropertiesGrantSqlControlToManagedIdentityDesiredState;
 
 /** Samples for WorkspaceManagedIdentitySqlControlSettings CreateOrUpdate. */
 public final class WorkspaceManagedIdentitySqlControlSettingsCreateOrUpdateSamples {
@@ -5847,9 +5848,7 @@ public final class WorkspaceManagedIdentitySqlControlSettingsCreateOrUpdateSampl
                 new ManagedIdentitySqlControlSettingsModelInner()
                     .withGrantSqlControlToManagedIdentity(
                         new ManagedIdentitySqlControlSettingsModelPropertiesGrantSqlControlToManagedIdentity()
-                            .withDesiredState(
-                                ManagedIdentitySqlControlSettingsModelPropertiesGrantSqlControlToManagedIdentityDesiredState
-                                    .ENABLED)),
+                            .withDesiredState(DesiredState.ENABLED)),
                 Context.NONE);
     }
 }

@@ -241,7 +241,9 @@ public final class SqlPoolSensitivityLabelsClientImpl implements SqlPoolSensitiv
     }
 
     /**
-     * Gets SQL pool sensitivity labels.
+     * Gets SQL pool sensitivity labels
+     *
+     * <p>Gets SQL pool sensitivity labels.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -306,7 +308,9 @@ public final class SqlPoolSensitivityLabelsClientImpl implements SqlPoolSensitiv
     }
 
     /**
-     * Gets SQL pool sensitivity labels.
+     * Gets SQL pool sensitivity labels
+     *
+     * <p>Gets SQL pool sensitivity labels.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -369,7 +373,9 @@ public final class SqlPoolSensitivityLabelsClientImpl implements SqlPoolSensitiv
     }
 
     /**
-     * Gets SQL pool sensitivity labels.
+     * Gets SQL pool sensitivity labels
+     *
+     * <p>Gets SQL pool sensitivity labels.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -389,7 +395,9 @@ public final class SqlPoolSensitivityLabelsClientImpl implements SqlPoolSensitiv
     }
 
     /**
-     * Gets SQL pool sensitivity labels.
+     * Gets SQL pool sensitivity labels
+     *
+     * <p>Gets SQL pool sensitivity labels.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -409,7 +417,9 @@ public final class SqlPoolSensitivityLabelsClientImpl implements SqlPoolSensitiv
     }
 
     /**
-     * Gets SQL pool sensitivity labels.
+     * Gets SQL pool sensitivity labels
+     *
+     * <p>Gets SQL pool sensitivity labels.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -430,7 +440,9 @@ public final class SqlPoolSensitivityLabelsClientImpl implements SqlPoolSensitiv
     }
 
     /**
-     * Gets SQL pool sensitivity labels.
+     * Gets SQL pool sensitivity labels
+     *
+     * <p>Gets SQL pool sensitivity labels.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -448,7 +460,9 @@ public final class SqlPoolSensitivityLabelsClientImpl implements SqlPoolSensitiv
     }
 
     /**
-     * Gets SQL pool sensitivity labels.
+     * Gets SQL pool sensitivity labels
+     *
+     * <p>Gets SQL pool sensitivity labels.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -602,7 +616,7 @@ public final class SqlPoolSensitivityLabelsClientImpl implements SqlPoolSensitiv
     private Mono<Void> updateAsync(
         String resourceGroupName, String workspaceName, String sqlPoolName, SensitivityLabelUpdateList parameters) {
         return updateWithResponseAsync(resourceGroupName, workspaceName, sqlPoolName, parameters)
-            .flatMap((Response<Void> res) -> Mono.empty());
+            .flatMap(ignored -> Mono.empty());
     }
 
     /**
@@ -646,7 +660,9 @@ public final class SqlPoolSensitivityLabelsClientImpl implements SqlPoolSensitiv
     }
 
     /**
-     * Gets sensitivity labels of a given SQL pool.
+     * Gets sensitivity labels of a given SQL pool
+     *
+     * <p>Gets sensitivity labels of a given SQL pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -721,7 +737,9 @@ public final class SqlPoolSensitivityLabelsClientImpl implements SqlPoolSensitiv
     }
 
     /**
-     * Gets sensitivity labels of a given SQL pool.
+     * Gets sensitivity labels of a given SQL pool
+     *
+     * <p>Gets sensitivity labels of a given SQL pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -795,7 +813,9 @@ public final class SqlPoolSensitivityLabelsClientImpl implements SqlPoolSensitiv
     }
 
     /**
-     * Gets sensitivity labels of a given SQL pool.
+     * Gets sensitivity labels of a given SQL pool
+     *
+     * <p>Gets sensitivity labels of a given SQL pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -824,7 +844,9 @@ public final class SqlPoolSensitivityLabelsClientImpl implements SqlPoolSensitiv
     }
 
     /**
-     * Gets sensitivity labels of a given SQL pool.
+     * Gets sensitivity labels of a given SQL pool
+     *
+     * <p>Gets sensitivity labels of a given SQL pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -848,7 +870,9 @@ public final class SqlPoolSensitivityLabelsClientImpl implements SqlPoolSensitiv
     }
 
     /**
-     * Gets sensitivity labels of a given SQL pool.
+     * Gets sensitivity labels of a given SQL pool
+     *
+     * <p>Gets sensitivity labels of a given SQL pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -885,7 +909,9 @@ public final class SqlPoolSensitivityLabelsClientImpl implements SqlPoolSensitiv
     }
 
     /**
-     * Gets sensitivity labels of a given SQL pool.
+     * Gets sensitivity labels of a given SQL pool
+     *
+     * <p>Gets sensitivity labels of a given SQL pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -907,7 +933,9 @@ public final class SqlPoolSensitivityLabelsClientImpl implements SqlPoolSensitiv
     }
 
     /**
-     * Gets sensitivity labels of a given SQL pool.
+     * Gets sensitivity labels of a given SQL pool
+     *
+     * <p>Gets sensitivity labels of a given SQL pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -1134,14 +1162,7 @@ public final class SqlPoolSensitivityLabelsClientImpl implements SqlPoolSensitiv
         SensitivityLabelInner parameters) {
         return createOrUpdateWithResponseAsync(
                 resourceGroupName, workspaceName, sqlPoolName, schemaName, tableName, columnName, parameters)
-            .flatMap(
-                (Response<SensitivityLabelInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -1374,7 +1395,7 @@ public final class SqlPoolSensitivityLabelsClientImpl implements SqlPoolSensitiv
         String tableName,
         String columnName) {
         return deleteWithResponseAsync(resourceGroupName, workspaceName, sqlPoolName, schemaName, tableName, columnName)
-            .flatMap((Response<Void> res) -> Mono.empty());
+            .flatMap(ignored -> Mono.empty());
     }
 
     /**
@@ -1627,14 +1648,7 @@ public final class SqlPoolSensitivityLabelsClientImpl implements SqlPoolSensitiv
                 tableName,
                 columnName,
                 sensitivityLabelSource)
-            .flatMap(
-                (Response<SensitivityLabelInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -1881,7 +1895,7 @@ public final class SqlPoolSensitivityLabelsClientImpl implements SqlPoolSensitiv
         String columnName) {
         return enableRecommendationWithResponseAsync(
                 resourceGroupName, workspaceName, sqlPoolName, schemaName, tableName, columnName)
-            .flatMap((Response<Void> res) -> Mono.empty());
+            .flatMap(ignored -> Mono.empty());
     }
 
     /**
@@ -2109,7 +2123,7 @@ public final class SqlPoolSensitivityLabelsClientImpl implements SqlPoolSensitiv
         String columnName) {
         return disableRecommendationWithResponseAsync(
                 resourceGroupName, workspaceName, sqlPoolName, schemaName, tableName, columnName)
-            .flatMap((Response<Void> res) -> Mono.empty());
+            .flatMap(ignored -> Mono.empty());
     }
 
     /**
@@ -2169,7 +2183,8 @@ public final class SqlPoolSensitivityLabelsClientImpl implements SqlPoolSensitiv
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -2204,7 +2219,8 @@ public final class SqlPoolSensitivityLabelsClientImpl implements SqlPoolSensitiv
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -2241,7 +2257,8 @@ public final class SqlPoolSensitivityLabelsClientImpl implements SqlPoolSensitiv
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -2276,7 +2293,8 @@ public final class SqlPoolSensitivityLabelsClientImpl implements SqlPoolSensitiv
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
