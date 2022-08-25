@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for ItemType. */
+/** Enum indicating the type of the Analytics item. */
 public final class ItemType extends ExpandableStringEnum<ItemType> {
     /** Static value none for ItemType. */
     public static final ItemType NONE = fromString("none");
