@@ -12,7 +12,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /** The TritonModelJobInput model. */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "jobInputType")
-@JsonTypeName("TritonModel")
+@JsonTypeName("triton_model")
 @Fluent
 public final class TritonModelJobInput extends JobInput {
     /*
