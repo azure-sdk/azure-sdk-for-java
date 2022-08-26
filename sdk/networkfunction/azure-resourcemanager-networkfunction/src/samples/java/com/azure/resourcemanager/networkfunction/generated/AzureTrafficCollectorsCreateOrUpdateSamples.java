@@ -11,7 +11,7 @@ import java.util.Map;
 /** Samples for AzureTrafficCollectors CreateOrUpdate. */
 public final class AzureTrafficCollectorsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/networkfunction/resource-manager/Microsoft.NetworkFunction/stable/2022-05-01/examples/AzureTrafficCollectorCreate.json
+     * x-ms-original-file: specification/networkfunction/resource-manager/Microsoft.NetworkFunction/stable/2022-08-01/examples/AzureTrafficCollectorCreate.json
      */
     /**
      * Sample code: Create a traffic collector.

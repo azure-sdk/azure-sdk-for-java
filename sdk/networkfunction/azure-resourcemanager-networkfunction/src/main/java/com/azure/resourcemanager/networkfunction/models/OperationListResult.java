@@ -16,8 +16,7 @@ import java.util.List;
 @Fluent
 public final class OperationListResult {
     /*
-     * List of operations supported by the Azure Traffic Collector resource
-     * provider.
+     * List of operations supported by the Azure Traffic Collector resource provider.
      */
     @JsonProperty(value = "value")
     private List<OperationInner> value;

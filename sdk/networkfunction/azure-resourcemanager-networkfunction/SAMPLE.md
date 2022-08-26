@@ -36,7 +36,7 @@ import java.util.Map;
 /** Samples for AzureTrafficCollectors CreateOrUpdate. */
 public final class AzureTrafficCollectorsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/networkfunction/resource-manager/Microsoft.NetworkFunction/stable/2022-05-01/examples/AzureTrafficCollectorCreate.json
+     * x-ms-original-file: specification/networkfunction/resource-manager/Microsoft.NetworkFunction/stable/2022-08-01/examples/AzureTrafficCollectorCreate.json
      */
     /**
      * Sample code: Create a traffic collector.
@@ -76,7 +76,7 @@ import com.azure.core.util.Context;
 /** Samples for AzureTrafficCollectors Delete. */
 public final class AzureTrafficCollectorsDeleteSamples {
     /*
-     * x-ms-original-file: specification/networkfunction/resource-manager/Microsoft.NetworkFunction/stable/2022-05-01/examples/AzureTrafficCollectorDelete.json
+     * x-ms-original-file: specification/networkfunction/resource-manager/Microsoft.NetworkFunction/stable/2022-08-01/examples/AzureTrafficCollectorDelete.json
      */
     /**
      * Sample code: Delete Traffic Collector.
@@ -98,7 +98,7 @@ import com.azure.core.util.Context;
 /** Samples for AzureTrafficCollectors GetByResourceGroup. */
 public final class AzureTrafficCollectorsGetByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/networkfunction/resource-manager/Microsoft.NetworkFunction/stable/2022-05-01/examples/AzureTrafficCollectorGet.json
+     * x-ms-original-file: specification/networkfunction/resource-manager/Microsoft.NetworkFunction/stable/2022-08-01/examples/AzureTrafficCollectorGet.json
      */
     /**
      * Sample code: Get Traffic Collector.
@@ -123,7 +123,7 @@ import java.util.Map;
 /** Samples for AzureTrafficCollectors UpdateTags. */
 public final class AzureTrafficCollectorsUpdateTagsSamples {
     /*
-     * x-ms-original-file: specification/networkfunction/resource-manager/Microsoft.NetworkFunction/stable/2022-05-01/examples/AzureTrafficCollectorUpdateTags.json
+     * x-ms-original-file: specification/networkfunction/resource-manager/Microsoft.NetworkFunction/stable/2022-08-01/examples/AzureTrafficCollectorUpdateTags.json
      */
     /**
      * Sample code: Update Traffic Collector tags.
@@ -158,7 +158,7 @@ import com.azure.core.util.Context;
 /** Samples for AzureTrafficCollectorsByResourceGroup ListByResourceGroup. */
 public final class AzureTrafficCollectorsByResourceGroupListByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/networkfunction/resource-manager/Microsoft.NetworkFunction/stable/2022-05-01/examples/AzureTrafficCollectorsByResourceGroupList.json
+     * x-ms-original-file: specification/networkfunction/resource-manager/Microsoft.NetworkFunction/stable/2022-08-01/examples/AzureTrafficCollectorsByResourceGroupList.json
      */
     /**
      * Sample code: List of Traffic Collectors by ResourceGroup.
@@ -180,7 +180,7 @@ import com.azure.core.util.Context;
 /** Samples for AzureTrafficCollectorsBySubscription List. */
 public final class AzureTrafficCollectorsBySubscriptionListSamples {
     /*
-     * x-ms-original-file: specification/networkfunction/resource-manager/Microsoft.NetworkFunction/stable/2022-05-01/examples/AzureTrafficCollectorsBySubscriptionList.json
+     * x-ms-original-file: specification/networkfunction/resource-manager/Microsoft.NetworkFunction/stable/2022-08-01/examples/AzureTrafficCollectorsBySubscriptionList.json
      */
     /**
      * Sample code: List of Traffic Collectors by Subscription.
@@ -210,7 +210,7 @@ import java.util.Arrays;
 /** Samples for CollectorPolicies CreateOrUpdate. */
 public final class CollectorPoliciesCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/networkfunction/resource-manager/Microsoft.NetworkFunction/stable/2022-05-01/examples/CollectorPolicyCreate.json
+     * x-ms-original-file: specification/networkfunction/resource-manager/Microsoft.NetworkFunction/stable/2022-08-01/examples/CollectorPolicyCreate.json
      */
     /**
      * Sample code: Create a collection policy.
@@ -222,6 +222,7 @@ public final class CollectorPoliciesCreateOrUpdateSamples {
         manager
             .collectorPolicies()
             .define("cp1")
+            .withRegion("West US")
             .withExistingAzureTrafficCollector("rg1", "atc")
             .withIngestionPolicy(
                 new IngestionPolicyPropertiesFormat()
@@ -256,7 +257,7 @@ import com.azure.core.util.Context;
 /** Samples for CollectorPolicies Delete. */
 public final class CollectorPoliciesDeleteSamples {
     /*
-     * x-ms-original-file: specification/networkfunction/resource-manager/Microsoft.NetworkFunction/stable/2022-05-01/examples/CollectorPolicyDelete.json
+     * x-ms-original-file: specification/networkfunction/resource-manager/Microsoft.NetworkFunction/stable/2022-08-01/examples/CollectorPolicyDelete.json
      */
     /**
      * Sample code: Delete Collection Policy.
@@ -278,7 +279,7 @@ import com.azure.core.util.Context;
 /** Samples for CollectorPolicies Get. */
 public final class CollectorPoliciesGetSamples {
     /*
-     * x-ms-original-file: specification/networkfunction/resource-manager/Microsoft.NetworkFunction/stable/2022-05-01/examples/CollectorPolicyGet.json
+     * x-ms-original-file: specification/networkfunction/resource-manager/Microsoft.NetworkFunction/stable/2022-08-01/examples/CollectorPolicyGet.json
      */
     /**
      * Sample code: Get Collection Policy.
@@ -300,7 +301,7 @@ import com.azure.core.util.Context;
 /** Samples for CollectorPolicies List. */
 public final class CollectorPoliciesListSamples {
     /*
-     * x-ms-original-file: specification/networkfunction/resource-manager/Microsoft.NetworkFunction/stable/2022-05-01/examples/CollectorPoliciesList.json
+     * x-ms-original-file: specification/networkfunction/resource-manager/Microsoft.NetworkFunction/stable/2022-08-01/examples/CollectorPoliciesList.json
      */
     /**
      * Sample code: List of Collection Policies.
@@ -322,7 +323,7 @@ import com.azure.core.util.Context;
 /** Samples for NetworkFunction ListOperations. */
 public final class NetworkFunctionListOperationsSamples {
     /*
-     * x-ms-original-file: specification/networkfunction/resource-manager/Microsoft.NetworkFunction/stable/2022-05-01/examples/OperationsList.json
+     * x-ms-original-file: specification/networkfunction/resource-manager/Microsoft.NetworkFunction/stable/2022-08-01/examples/OperationsList.json
      */
     /**
      * Sample code: OperationsList.
