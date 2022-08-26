@@ -23,8 +23,7 @@ public final class EnvironmentVar {
     private String value;
 
     /*
-     * Name of the Container App secret from which to pull the environment
-     * variable value.
+     * Name of the Container App secret from which to pull the environment variable value.
      */
     @JsonProperty(value = "secretRef")
     private String secretRef;

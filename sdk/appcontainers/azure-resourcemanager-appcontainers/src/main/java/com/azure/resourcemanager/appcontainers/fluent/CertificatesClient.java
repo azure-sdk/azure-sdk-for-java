@@ -145,7 +145,9 @@ public interface CertificatesClient {
         String resourceGroupName, String environmentName, String certificateName, Context context);
 
     /**
-     * Patches a certificate. Currently only patching of tags is supported.
+     * Update properties of a certificate
+     *
+     * <p>Patches a certificate. Currently only patching of tags is supported.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param environmentName Name of the Managed Environment.
@@ -162,7 +164,9 @@ public interface CertificatesClient {
         String resourceGroupName, String environmentName, String certificateName, CertificatePatch certificateEnvelope);
 
     /**
-     * Patches a certificate. Currently only patching of tags is supported.
+     * Update properties of a certificate
+     *
+     * <p>Patches a certificate. Currently only patching of tags is supported.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param environmentName Name of the Managed Environment.
