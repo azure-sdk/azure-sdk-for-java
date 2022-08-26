@@ -49,10 +49,12 @@
 ## LiveEvents
 
 - [Allocate](#liveevents_allocate)
+- [AsyncOperation](#liveevents_asyncoperation)
 - [Create](#liveevents_create)
 - [Delete](#liveevents_delete)
 - [Get](#liveevents_get)
 - [List](#liveevents_list)
+- [OperationLocation](#liveevents_operationlocation)
 - [Reset](#liveevents_reset)
 - [Start](#liveevents_start)
 - [Stop](#liveevents_stop)
@@ -60,10 +62,12 @@
 
 ## LiveOutputs
 
+- [AsyncOperation](#liveoutputs_asyncoperation)
 - [Create](#liveoutputs_create)
 - [Delete](#liveoutputs_delete)
 - [Get](#liveoutputs_get)
 - [List](#liveoutputs_list)
+- [OperationLocation](#liveoutputs_operationlocation)
 
 ## Locations
 
@@ -114,10 +118,12 @@
 
 ## StreamingEndpoints
 
+- [AsyncOperation](#streamingendpoints_asyncoperation)
 - [Create](#streamingendpoints_create)
 - [Delete](#streamingendpoints_delete)
 - [Get](#streamingendpoints_get)
 - [List](#streamingendpoints_list)
+- [OperationLocation](#streamingendpoints_operationlocation)
 - [Scale](#streamingendpoints_scale)
 - [Skus](#streamingendpoints_skus)
 - [Start](#streamingendpoints_start)
@@ -1398,7 +1404,7 @@ import com.azure.core.util.Context;
 /** Samples for LiveEvents Allocate. */
 public final class LiveEventsAllocateSamples {
     /*
-     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/stable/2021-11-01/examples/liveevent-allocate.json
+     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/stable/2022-08-01/examples/liveevent-allocate.json
      */
     /**
      * Sample code: Allocate a LiveEvent.
@@ -1407,6 +1413,31 @@ public final class LiveEventsAllocateSamples {
      */
     public static void allocateALiveEvent(com.azure.resourcemanager.mediaservices.MediaServicesManager manager) {
         manager.liveEvents().allocate("mediaresources", "slitestmedia10", "myLiveEvent1", Context.NONE);
+    }
+}
+```
+
+### LiveEvents_AsyncOperation
+
+```java
+import com.azure.core.util.Context;
+
+/** Samples for LiveEvents AsyncOperation. */
+public final class LiveEventsAsyncOperationSamples {
+    /*
+     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/stable/2022-08-01/examples/async-operation-result.json
+     */
+    /**
+     * Sample code: Get the LiveEvent operation status.
+     *
+     * @param manager Entry point to MediaServicesManager.
+     */
+    public static void getTheLiveEventOperationStatus(
+        com.azure.resourcemanager.mediaservices.MediaServicesManager manager) {
+        manager
+            .liveEvents()
+            .asyncOperationWithResponse(
+                "mediaresources", "slitestmedia10", "62e4d893-d233-4005-988e-a428d9f77076", Context.NONE);
     }
 }
 ```
@@ -1428,7 +1459,7 @@ import java.util.Map;
 /** Samples for LiveEvents Create. */
 public final class LiveEventsCreateSamples {
     /*
-     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/stable/2021-11-01/examples/liveevent-create.json
+     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/stable/2022-08-01/examples/liveevent-create.json
      */
     /**
      * Sample code: Create a LiveEvent.
@@ -1495,7 +1526,7 @@ import com.azure.core.util.Context;
 /** Samples for LiveEvents Delete. */
 public final class LiveEventsDeleteSamples {
     /*
-     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/stable/2021-11-01/examples/liveevent-delete.json
+     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/stable/2022-08-01/examples/liveevent-delete.json
      */
     /**
      * Sample code: Delete a LiveEvent.
@@ -1516,7 +1547,7 @@ import com.azure.core.util.Context;
 /** Samples for LiveEvents Get. */
 public final class LiveEventsGetSamples {
     /*
-     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/stable/2021-11-01/examples/liveevent-list-by-name.json
+     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/stable/2022-08-01/examples/liveevent-list-by-name.json
      */
     /**
      * Sample code: Get a LiveEvent by name.
@@ -1537,7 +1568,7 @@ import com.azure.core.util.Context;
 /** Samples for LiveEvents List. */
 public final class LiveEventsListSamples {
     /*
-     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/stable/2021-11-01/examples/liveevent-list-all.json
+     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/stable/2022-08-01/examples/liveevent-list-all.json
      */
     /**
      * Sample code: List all LiveEvents.
@@ -1550,6 +1581,35 @@ public final class LiveEventsListSamples {
 }
 ```
 
+### LiveEvents_OperationLocation
+
+```java
+import com.azure.core.util.Context;
+
+/** Samples for LiveEvents OperationLocation. */
+public final class LiveEventsOperationLocationSamples {
+    /*
+     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/stable/2022-08-01/examples/liveevent-operation-location.json
+     */
+    /**
+     * Sample code: Get the LiveEvent operation status.
+     *
+     * @param manager Entry point to MediaServicesManager.
+     */
+    public static void getTheLiveEventOperationStatus(
+        com.azure.resourcemanager.mediaservices.MediaServicesManager manager) {
+        manager
+            .liveEvents()
+            .operationLocationWithResponse(
+                "mediaresources",
+                "slitestmedia10",
+                "myLiveEvent1",
+                "62e4d893-d233-4005-988e-a428d9f77076",
+                Context.NONE);
+    }
+}
+```
+
 ### LiveEvents_Reset
 
 ```java
@@ -1558,7 +1618,7 @@ import com.azure.core.util.Context;
 /** Samples for LiveEvents Reset. */
 public final class LiveEventsResetSamples {
     /*
-     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/stable/2021-11-01/examples/liveevent-reset.json
+     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/stable/2022-08-01/examples/liveevent-reset.json
      */
     /**
      * Sample code: Reset a LiveEvent.
@@ -1579,7 +1639,7 @@ import com.azure.core.util.Context;
 /** Samples for LiveEvents Start. */
 public final class LiveEventsStartSamples {
     /*
-     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/stable/2021-11-01/examples/liveevent-start.json
+     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/stable/2022-08-01/examples/liveevent-start.json
      */
     /**
      * Sample code: Start a LiveEvent.
@@ -1601,7 +1661,7 @@ import com.azure.resourcemanager.mediaservices.models.LiveEventActionInput;
 /** Samples for LiveEvents Stop. */
 public final class LiveEventsStopSamples {
     /*
-     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/stable/2021-11-01/examples/liveevent-stop.json
+     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/stable/2022-08-01/examples/liveevent-stop.json
      */
     /**
      * Sample code: Stop a LiveEvent.
@@ -1640,7 +1700,7 @@ import java.util.Map;
 /** Samples for LiveEvents Update. */
 public final class LiveEventsUpdateSamples {
     /*
-     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/stable/2021-11-01/examples/liveevent-update.json
+     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/stable/2022-08-01/examples/liveevent-update.json
      */
     /**
      * Sample code: Update a LiveEvent.
@@ -1691,6 +1751,31 @@ public final class LiveEventsUpdateSamples {
 }
 ```
 
+### LiveOutputs_AsyncOperation
+
+```java
+import com.azure.core.util.Context;
+
+/** Samples for LiveOutputs AsyncOperation. */
+public final class LiveOutputsAsyncOperationSamples {
+    /*
+     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/stable/2022-08-01/examples/async-operation-result.json
+     */
+    /**
+     * Sample code: Get the LiveOutput operation status.
+     *
+     * @param manager Entry point to MediaServicesManager.
+     */
+    public static void getTheLiveOutputOperationStatus(
+        com.azure.resourcemanager.mediaservices.MediaServicesManager manager) {
+        manager
+            .liveOutputs()
+            .asyncOperationWithResponse(
+                "mediaresources", "slitestmedia10", "62e4d893-d233-4005-988e-a428d9f77076", Context.NONE);
+    }
+}
+```
+
 ### LiveOutputs_Create
 
 ```java
@@ -1700,7 +1785,7 @@ import java.time.Duration;
 /** Samples for LiveOutputs Create. */
 public final class LiveOutputsCreateSamples {
     /*
-     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/stable/2021-11-01/examples/liveoutput-create.json
+     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/stable/2022-08-01/examples/liveoutput-create.json
      */
     /**
      * Sample code: Create a LiveOutput.
@@ -1715,6 +1800,7 @@ public final class LiveOutputsCreateSamples {
             .withDescription("test live output 1")
             .withAssetName("6f3264f5-a189-48b4-a29a-a40f22575212")
             .withArchiveWindowLength(Duration.parse("PT5M"))
+            .withRewindWindowLength(Duration.parse("PT4M"))
             .withManifestName("testmanifest")
             .withHls(new Hls().withFragmentsPerTsSegment(5))
             .create();
@@ -1730,7 +1816,7 @@ import com.azure.core.util.Context;
 /** Samples for LiveOutputs Delete. */
 public final class LiveOutputsDeleteSamples {
     /*
-     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/stable/2021-11-01/examples/liveoutput-delete.json
+     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/stable/2022-08-01/examples/liveoutput-delete.json
      */
     /**
      * Sample code: Delete a LiveOutput.
@@ -1751,7 +1837,7 @@ import com.azure.core.util.Context;
 /** Samples for LiveOutputs Get. */
 public final class LiveOutputsGetSamples {
     /*
-     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/stable/2021-11-01/examples/liveoutput-list-by-name.json
+     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/stable/2022-08-01/examples/liveoutput-list-by-name.json
      */
     /**
      * Sample code: Get a LiveOutput by name.
@@ -1774,7 +1860,7 @@ import com.azure.core.util.Context;
 /** Samples for LiveOutputs List. */
 public final class LiveOutputsListSamples {
     /*
-     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/stable/2021-11-01/examples/liveoutput-list-all.json
+     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/stable/2022-08-01/examples/liveoutput-list-all.json
      */
     /**
      * Sample code: List all LiveOutputs.
@@ -1783,6 +1869,36 @@ public final class LiveOutputsListSamples {
      */
     public static void listAllLiveOutputs(com.azure.resourcemanager.mediaservices.MediaServicesManager manager) {
         manager.liveOutputs().list("mediaresources", "slitestmedia10", "myLiveEvent1", Context.NONE);
+    }
+}
+```
+
+### LiveOutputs_OperationLocation
+
+```java
+import com.azure.core.util.Context;
+
+/** Samples for LiveOutputs OperationLocation. */
+public final class LiveOutputsOperationLocationSamples {
+    /*
+     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/stable/2022-08-01/examples/liveoutput-operation-location.json
+     */
+    /**
+     * Sample code: Get the LiveOutput operation status.
+     *
+     * @param manager Entry point to MediaServicesManager.
+     */
+    public static void getTheLiveOutputOperationStatus(
+        com.azure.resourcemanager.mediaservices.MediaServicesManager manager) {
+        manager
+            .liveOutputs()
+            .operationLocationWithResponse(
+                "mediaresources",
+                "slitestmedia10",
+                "myLiveEvent1",
+                "myLiveOutput1",
+                "62e4d893-d233-4005-988e-a428d9f77076",
+                Context.NONE);
     }
 }
 ```
@@ -2429,6 +2545,31 @@ public final class PrivateLinkResourcesListSamples {
 }
 ```
 
+### StreamingEndpoints_AsyncOperation
+
+```java
+import com.azure.core.util.Context;
+
+/** Samples for StreamingEndpoints AsyncOperation. */
+public final class StreamingEndpointsAsyncOperationSamples {
+    /*
+     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/stable/2022-08-01/examples/async-operation-result.json
+     */
+    /**
+     * Sample code: Get the streaming endpoint operation status.
+     *
+     * @param manager Entry point to MediaServicesManager.
+     */
+    public static void getTheStreamingEndpointOperationStatus(
+        com.azure.resourcemanager.mediaservices.MediaServicesManager manager) {
+        manager
+            .streamingEndpoints()
+            .asyncOperationWithResponse(
+                "mediaresources", "slitestmedia10", "62e4d893-d233-4005-988e-a428d9f77076", Context.NONE);
+    }
+}
+```
+
 ### StreamingEndpoints_Create
 
 ```java
@@ -2445,7 +2586,7 @@ import java.util.Map;
 /** Samples for StreamingEndpoints Create. */
 public final class StreamingEndpointsCreateSamples {
     /*
-     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/stable/2021-11-01/examples/streamingendpoint-create.json
+     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/stable/2022-08-01/examples/streamingendpoint-create.json
      */
     /**
      * Sample code: Create a streaming endpoint.
@@ -2505,7 +2646,7 @@ import com.azure.core.util.Context;
 /** Samples for StreamingEndpoints Delete. */
 public final class StreamingEndpointsDeleteSamples {
     /*
-     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/stable/2021-11-01/examples/streamingendpoint-delete.json
+     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/stable/2022-08-01/examples/streamingendpoint-delete.json
      */
     /**
      * Sample code: Delete a streaming endpoint.
@@ -2526,7 +2667,7 @@ import com.azure.core.util.Context;
 /** Samples for StreamingEndpoints Get. */
 public final class StreamingEndpointsGetSamples {
     /*
-     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/stable/2021-11-01/examples/streamingendpoint-list-by-name.json
+     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/stable/2022-08-01/examples/streamingendpoint-list-by-name.json
      */
     /**
      * Sample code: Get a streaming endpoint by name.
@@ -2550,7 +2691,7 @@ import com.azure.core.util.Context;
 /** Samples for StreamingEndpoints List. */
 public final class StreamingEndpointsListSamples {
     /*
-     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/stable/2021-11-01/examples/streamingendpoint-list-all.json
+     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/stable/2022-08-01/examples/streamingendpoint-list-all.json
      */
     /**
      * Sample code: List all streaming endpoints.
@@ -2559,6 +2700,35 @@ public final class StreamingEndpointsListSamples {
      */
     public static void listAllStreamingEndpoints(com.azure.resourcemanager.mediaservices.MediaServicesManager manager) {
         manager.streamingEndpoints().list("mediaresources", "slitestmedia10", Context.NONE);
+    }
+}
+```
+
+### StreamingEndpoints_OperationLocation
+
+```java
+import com.azure.core.util.Context;
+
+/** Samples for StreamingEndpoints OperationLocation. */
+public final class StreamingEndpointsOperationLocationSamples {
+    /*
+     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/stable/2022-08-01/examples/streamingendpoint-operation-location.json
+     */
+    /**
+     * Sample code: Get the streaming endpoint operation status.
+     *
+     * @param manager Entry point to MediaServicesManager.
+     */
+    public static void getTheStreamingEndpointOperationStatus(
+        com.azure.resourcemanager.mediaservices.MediaServicesManager manager) {
+        manager
+            .streamingEndpoints()
+            .operationLocationWithResponse(
+                "mediaresources",
+                "slitestmedia10",
+                "myStreamingEndpoint1",
+                "62e4d893-d233-4005-988e-a428d9f77076",
+                Context.NONE);
     }
 }
 ```
@@ -2572,7 +2742,7 @@ import com.azure.resourcemanager.mediaservices.models.StreamingEntityScaleUnit;
 /** Samples for StreamingEndpoints Scale. */
 public final class StreamingEndpointsScaleSamples {
     /*
-     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/stable/2021-11-01/examples/streamingendpoint-scale.json
+     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/stable/2022-08-01/examples/streamingendpoint-scale.json
      */
     /**
      * Sample code: Scale a StreamingEndpoint.
@@ -2600,7 +2770,7 @@ import com.azure.core.util.Context;
 /** Samples for StreamingEndpoints Skus. */
 public final class StreamingEndpointsSkusSamples {
     /*
-     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/stable/2021-11-01/examples/streamingendpoint-list-skus.json
+     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/stable/2022-08-01/examples/streamingendpoint-list-skus.json
      */
     /**
      * Sample code: List a streaming endpoint sku.
@@ -2623,7 +2793,7 @@ import com.azure.core.util.Context;
 /** Samples for StreamingEndpoints Start. */
 public final class StreamingEndpointsStartSamples {
     /*
-     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/stable/2021-11-01/examples/streamingendpoint-start.json
+     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/stable/2022-08-01/examples/streamingendpoint-start.json
      */
     /**
      * Sample code: Start a streaming endpoint.
@@ -2644,7 +2814,7 @@ import com.azure.core.util.Context;
 /** Samples for StreamingEndpoints Stop. */
 public final class StreamingEndpointsStopSamples {
     /*
-     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/stable/2021-11-01/examples/streamingendpoint-stop.json
+     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/stable/2022-08-01/examples/streamingendpoint-stop.json
      */
     /**
      * Sample code: Stop a streaming endpoint.
@@ -2668,7 +2838,7 @@ import java.util.Map;
 /** Samples for StreamingEndpoints Update. */
 public final class StreamingEndpointsUpdateSamples {
     /*
-     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/stable/2021-11-01/examples/streamingendpoint-update.json
+     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/stable/2022-08-01/examples/streamingendpoint-update.json
      */
     /**
      * Sample code: Update a streaming endpoint.
