@@ -17,8 +17,8 @@ public final class ContainerAppProbeTcpSocket {
     private String host;
 
     /*
-     * Number or name of the port to access on the container. Number must be in
-     * the range 1 to 65535. Name must be an IANA_SVC_NAME.
+     * Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an
+     * IANA_SVC_NAME.
      */
     @JsonProperty(value = "port", required = true)
     private int port;
