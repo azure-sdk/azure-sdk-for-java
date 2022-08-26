@@ -20,22 +20,19 @@ public final class WorkbookProperties {
     private String displayName;
 
     /*
-     * Configuration of this particular workbook. Configuration data is a
-     * string containing valid JSON
+     * Configuration of this particular workbook. Configuration data is a string containing valid JSON
      */
     @JsonProperty(value = "serializedData", required = true)
     private String serializedData;
 
     /*
-     * Workbook schema version format, like 'Notebook/1.0', which should match
-     * the workbook in serializedData
+     * Workbook schema version format, like 'Notebook/1.0', which should match the workbook in serializedData
      */
     @JsonProperty(value = "version")
     private String version;
 
     /*
-     * Date and time in UTC of the last modification that was made to this
-     * workbook definition.
+     * Date and time in UTC of the last modification that was made to this workbook definition.
      */
     @JsonProperty(value = "timeModified", access = JsonProperty.Access.WRITE_ONLY)
     private OffsetDateTime timeModified;
@@ -65,8 +62,7 @@ public final class WorkbookProperties {
     private String sourceId;
 
     /*
-     * The resourceId to the storage account when bring your own storage is
-     * used
+     * The resourceId to the storage account when bring your own storage is used
      */
     @JsonProperty(value = "storageUri")
     private String storageUri;

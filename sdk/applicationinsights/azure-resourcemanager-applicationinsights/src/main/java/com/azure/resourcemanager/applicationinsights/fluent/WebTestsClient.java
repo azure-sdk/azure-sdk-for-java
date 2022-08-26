@@ -15,27 +15,27 @@ import com.azure.resourcemanager.applicationinsights.models.TagsResource;
 /** An instance of this class provides access to all the operations defined in WebTestsClient. */
 public interface WebTestsClient {
     /**
-     * Get all Application Insights web tests defined within a specified resource group.
+     * Get all Application Insights web tests defined for the specified resource group.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all Application Insights web tests defined within a specified resource group as paginated response with
+     * @return all Application Insights web tests defined for the specified resource group as paginated response with
      *     {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<WebTestInner> listByResourceGroup(String resourceGroupName);
 
     /**
-     * Get all Application Insights web tests defined within a specified resource group.
+     * Get all Application Insights web tests defined for the specified resource group.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all Application Insights web tests defined within a specified resource group as paginated response with
+     * @return all Application Insights web tests defined for the specified resource group as paginated response with
      *     {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
@@ -45,7 +45,7 @@ public interface WebTestsClient {
      * Get a specific Application Insights web test definition.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param webTestName The name of the Application Insights webtest resource.
+     * @param webTestName The name of the Application Insights WebTest resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -58,7 +58,7 @@ public interface WebTestsClient {
      * Get a specific Application Insights web test definition.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param webTestName The name of the Application Insights webtest resource.
+     * @param webTestName The name of the Application Insights WebTest resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -73,13 +73,13 @@ public interface WebTestsClient {
      * Creates or updates an Application Insights web test definition.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param webTestName The name of the Application Insights webtest resource.
+     * @param webTestName The name of the Application Insights WebTest resource.
      * @param webTestDefinition Properties that need to be specified to create or update an Application Insights web
      *     test definition.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an Application Insights web test definition.
+     * @return an Application Insights WebTest definition.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     WebTestInner createOrUpdate(String resourceGroupName, String webTestName, WebTestInner webTestDefinition);
@@ -88,44 +88,44 @@ public interface WebTestsClient {
      * Creates or updates an Application Insights web test definition.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param webTestName The name of the Application Insights webtest resource.
+     * @param webTestName The name of the Application Insights WebTest resource.
      * @param webTestDefinition Properties that need to be specified to create or update an Application Insights web
      *     test definition.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an Application Insights web test definition along with {@link Response}.
+     * @return an Application Insights WebTest definition along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<WebTestInner> createOrUpdateWithResponse(
         String resourceGroupName, String webTestName, WebTestInner webTestDefinition, Context context);
 
     /**
-     * Creates or updates an Application Insights web test definition.
+     * Updates the tags associated with an Application Insights web test.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param webTestName The name of the Application Insights webtest resource.
-     * @param webTestTags Updated tag information to set into the web test instance.
+     * @param webTestName The name of the Application Insights WebTest resource.
+     * @param webTestTags Updated tag information to associate with the web test resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an Application Insights web test definition.
+     * @return an Application Insights WebTest definition.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     WebTestInner updateTags(String resourceGroupName, String webTestName, TagsResource webTestTags);
 
     /**
-     * Creates or updates an Application Insights web test definition.
+     * Updates the tags associated with an Application Insights web test.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param webTestName The name of the Application Insights webtest resource.
-     * @param webTestTags Updated tag information to set into the web test instance.
+     * @param webTestName The name of the Application Insights WebTest resource.
+     * @param webTestTags Updated tag information to associate with the web test resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an Application Insights web test definition along with {@link Response}.
+     * @return an Application Insights WebTest definition along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<WebTestInner> updateTagsWithResponse(
@@ -135,7 +135,7 @@ public interface WebTestsClient {
      * Deletes an Application Insights web test.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param webTestName The name of the Application Insights webtest resource.
+     * @param webTestName The name of the Application Insights WebTest resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -147,7 +147,7 @@ public interface WebTestsClient {
      * Deletes an Application Insights web test.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param webTestName The name of the Application Insights webtest resource.
+     * @param webTestName The name of the Application Insights WebTest resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -158,24 +158,24 @@ public interface WebTestsClient {
     Response<Void> deleteWithResponse(String resourceGroupName, String webTestName, Context context);
 
     /**
-     * Get all Application Insights web test alerts definitions within a subscription.
+     * Get all Application Insights web test definitions for the specified subscription.
      *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all Application Insights web test alerts definitions within a subscription as paginated response with
+     * @return all Application Insights web test definitions for the specified subscription as paginated response with
      *     {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<WebTestInner> list();
 
     /**
-     * Get all Application Insights web test alerts definitions within a subscription.
+     * Get all Application Insights web test definitions for the specified subscription.
      *
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all Application Insights web test alerts definitions within a subscription as paginated response with
+     * @return all Application Insights web test definitions for the specified subscription as paginated response with
      *     {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
