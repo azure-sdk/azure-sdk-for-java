@@ -25,7 +25,6 @@ import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.consumption.fluent.UsageDetailsClient;
 import com.azure.resourcemanager.consumption.fluent.models.UsageDetailInner;
 import com.azure.resourcemanager.consumption.models.Metrictype;
@@ -34,8 +33,6 @@ import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in UsageDetailsClient. */
 public final class UsageDetailsClientImpl implements UsageDetailsClient {
-    private final ClientLogger logger = new ClientLogger(UsageDetailsClientImpl.class);
-
     /** The proxy service used to perform REST calls. */
     private final UsageDetailsService service;
 
@@ -62,7 +59,7 @@ public final class UsageDetailsClientImpl implements UsageDetailsClient {
     private interface UsageDetailsService {
         @Headers({"Content-Type: application/json"})
         @Get("/{scope}/providers/Microsoft.Consumption/usageDetails")
-        @ExpectedResponses({200})
+        @ExpectedResponses({200, 204})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<UsageDetailsListResult>> list(
             @HostParam("$host") String endpoint,
@@ -78,7 +75,7 @@ public final class UsageDetailsClientImpl implements UsageDetailsClient {
 
         @Headers({"Content-Type: application/json"})
         @Get("{nextLink}")
-        @ExpectedResponses({200})
+        @ExpectedResponses({200, 204})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<UsageDetailsListResult>> listNext(
             @PathParam(value = "nextLink", encoded = true) String nextLink,
@@ -88,8 +85,11 @@ public final class UsageDetailsClientImpl implements UsageDetailsClient {
     }
 
     /**
-     * Lists the usage details for the defined scope. Usage details are available via this API only for May 1, 2014 or
-     * later.
+     * Note: _**Enterprise Agreement and Microsoft Customer Agreement customers:** Please do not use this API. Use the
+     * [Cost Details API](/rest/api/cost-management/generate-cost-details-report/create-operation?tabs=HTTP) instead._
+     *
+     * <p>Lists the usage details for the defined scope. Usage details are available via this API only for May 1, 2014
+     * or later.
      *
      * @param scope The scope associated with usage details operations. This includes '/subscriptions/{subscriptionId}/'
      *     for subscription scope, '/providers/Microsoft.Billing/billingAccounts/{billingAccountId}' for Billing Account
@@ -123,7 +123,8 @@ public final class UsageDetailsClientImpl implements UsageDetailsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing usage details.
+     * @return result of listing usage details along with {@link PagedResponse} on successful completion of {@link
+     *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<UsageDetailInner>> listSinglePageAsync(
@@ -166,8 +167,11 @@ public final class UsageDetailsClientImpl implements UsageDetailsClient {
     }
 
     /**
-     * Lists the usage details for the defined scope. Usage details are available via this API only for May 1, 2014 or
-     * later.
+     * Note: _**Enterprise Agreement and Microsoft Customer Agreement customers:** Please do not use this API. Use the
+     * [Cost Details API](/rest/api/cost-management/generate-cost-details-report/create-operation?tabs=HTTP) instead._
+     *
+     * <p>Lists the usage details for the defined scope. Usage details are available via this API only for May 1, 2014
+     * or later.
      *
      * @param scope The scope associated with usage details operations. This includes '/subscriptions/{subscriptionId}/'
      *     for subscription scope, '/providers/Microsoft.Billing/billingAccounts/{billingAccountId}' for Billing Account
@@ -202,7 +206,8 @@ public final class UsageDetailsClientImpl implements UsageDetailsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing usage details.
+     * @return result of listing usage details along with {@link PagedResponse} on successful completion of {@link
+     *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<UsageDetailInner>> listSinglePageAsync(
@@ -242,8 +247,11 @@ public final class UsageDetailsClientImpl implements UsageDetailsClient {
     }
 
     /**
-     * Lists the usage details for the defined scope. Usage details are available via this API only for May 1, 2014 or
-     * later.
+     * Note: _**Enterprise Agreement and Microsoft Customer Agreement customers:** Please do not use this API. Use the
+     * [Cost Details API](/rest/api/cost-management/generate-cost-details-report/create-operation?tabs=HTTP) instead._
+     *
+     * <p>Lists the usage details for the defined scope. Usage details are available via this API only for May 1, 2014
+     * or later.
      *
      * @param scope The scope associated with usage details operations. This includes '/subscriptions/{subscriptionId}/'
      *     for subscription scope, '/providers/Microsoft.Billing/billingAccounts/{billingAccountId}' for Billing Account
@@ -277,7 +285,7 @@ public final class UsageDetailsClientImpl implements UsageDetailsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing usage details.
+     * @return result of listing usage details as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<UsageDetailInner> listAsync(
@@ -288,8 +296,11 @@ public final class UsageDetailsClientImpl implements UsageDetailsClient {
     }
 
     /**
-     * Lists the usage details for the defined scope. Usage details are available via this API only for May 1, 2014 or
-     * later.
+     * Note: _**Enterprise Agreement and Microsoft Customer Agreement customers:** Please do not use this API. Use the
+     * [Cost Details API](/rest/api/cost-management/generate-cost-details-report/create-operation?tabs=HTTP) instead._
+     *
+     * <p>Lists the usage details for the defined scope. Usage details are available via this API only for May 1, 2014
+     * or later.
      *
      * @param scope The scope associated with usage details operations. This includes '/subscriptions/{subscriptionId}/'
      *     for subscription scope, '/providers/Microsoft.Billing/billingAccounts/{billingAccountId}' for Billing Account
@@ -311,7 +322,7 @@ public final class UsageDetailsClientImpl implements UsageDetailsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing usage details.
+     * @return result of listing usage details as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<UsageDetailInner> listAsync(String scope) {
@@ -326,8 +337,11 @@ public final class UsageDetailsClientImpl implements UsageDetailsClient {
     }
 
     /**
-     * Lists the usage details for the defined scope. Usage details are available via this API only for May 1, 2014 or
-     * later.
+     * Note: _**Enterprise Agreement and Microsoft Customer Agreement customers:** Please do not use this API. Use the
+     * [Cost Details API](/rest/api/cost-management/generate-cost-details-report/create-operation?tabs=HTTP) instead._
+     *
+     * <p>Lists the usage details for the defined scope. Usage details are available via this API only for May 1, 2014
+     * or later.
      *
      * @param scope The scope associated with usage details operations. This includes '/subscriptions/{subscriptionId}/'
      *     for subscription scope, '/providers/Microsoft.Billing/billingAccounts/{billingAccountId}' for Billing Account
@@ -362,7 +376,7 @@ public final class UsageDetailsClientImpl implements UsageDetailsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing usage details.
+     * @return result of listing usage details as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<UsageDetailInner> listAsync(
@@ -373,8 +387,11 @@ public final class UsageDetailsClientImpl implements UsageDetailsClient {
     }
 
     /**
-     * Lists the usage details for the defined scope. Usage details are available via this API only for May 1, 2014 or
-     * later.
+     * Note: _**Enterprise Agreement and Microsoft Customer Agreement customers:** Please do not use this API. Use the
+     * [Cost Details API](/rest/api/cost-management/generate-cost-details-report/create-operation?tabs=HTTP) instead._
+     *
+     * <p>Lists the usage details for the defined scope. Usage details are available via this API only for May 1, 2014
+     * or later.
      *
      * @param scope The scope associated with usage details operations. This includes '/subscriptions/{subscriptionId}/'
      *     for subscription scope, '/providers/Microsoft.Billing/billingAccounts/{billingAccountId}' for Billing Account
@@ -396,7 +413,7 @@ public final class UsageDetailsClientImpl implements UsageDetailsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing usage details.
+     * @return result of listing usage details as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<UsageDetailInner> list(String scope) {
@@ -409,8 +426,11 @@ public final class UsageDetailsClientImpl implements UsageDetailsClient {
     }
 
     /**
-     * Lists the usage details for the defined scope. Usage details are available via this API only for May 1, 2014 or
-     * later.
+     * Note: _**Enterprise Agreement and Microsoft Customer Agreement customers:** Please do not use this API. Use the
+     * [Cost Details API](/rest/api/cost-management/generate-cost-details-report/create-operation?tabs=HTTP) instead._
+     *
+     * <p>Lists the usage details for the defined scope. Usage details are available via this API only for May 1, 2014
+     * or later.
      *
      * @param scope The scope associated with usage details operations. This includes '/subscriptions/{subscriptionId}/'
      *     for subscription scope, '/providers/Microsoft.Billing/billingAccounts/{billingAccountId}' for Billing Account
@@ -445,7 +465,7 @@ public final class UsageDetailsClientImpl implements UsageDetailsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing usage details.
+     * @return result of listing usage details as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<UsageDetailInner> list(
@@ -456,11 +476,13 @@ public final class UsageDetailsClientImpl implements UsageDetailsClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing usage details.
+     * @return result of listing usage details along with {@link PagedResponse} on successful completion of {@link
+     *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<UsageDetailInner>> listNextSinglePageAsync(String nextLink) {
@@ -491,12 +513,14 @@ public final class UsageDetailsClientImpl implements UsageDetailsClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing usage details.
+     * @return result of listing usage details along with {@link PagedResponse} on successful completion of {@link
+     *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<UsageDetailInner>> listNextSinglePageAsync(String nextLink, Context context) {

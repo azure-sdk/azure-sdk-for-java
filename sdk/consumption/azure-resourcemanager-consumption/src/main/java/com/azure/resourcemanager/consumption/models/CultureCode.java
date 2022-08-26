@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for CultureCode. */
+/** Language in which the recipient will receive the notification. */
 public final class CultureCode extends ExpandableStringEnum<CultureCode> {
     /** Static value en-us for CultureCode. */
     public static final CultureCode EN_US = fromString("en-us");
@@ -84,7 +84,11 @@ public final class CultureCode extends ExpandableStringEnum<CultureCode> {
         return fromString(name, CultureCode.class);
     }
 
-    /** @return known CultureCode values. */
+    /**
+     * Gets known CultureCode values.
+     *
+     * @return known CultureCode values.
+     */
     public static Collection<CultureCode> values() {
         return values(CultureCode.class);
     }
