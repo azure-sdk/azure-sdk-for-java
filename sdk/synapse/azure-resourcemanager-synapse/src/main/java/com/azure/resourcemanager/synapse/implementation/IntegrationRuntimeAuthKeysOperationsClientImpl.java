@@ -96,7 +96,9 @@ public final class IntegrationRuntimeAuthKeysOperationsClientImpl
     }
 
     /**
-     * Regenerate the authentication key for an integration runtime.
+     * Regenerate integration runtime authentication key
+     *
+     * <p>Regenerate the authentication key for an integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -165,7 +167,9 @@ public final class IntegrationRuntimeAuthKeysOperationsClientImpl
     }
 
     /**
-     * Regenerate the authentication key for an integration runtime.
+     * Regenerate integration runtime authentication key
+     *
+     * <p>Regenerate the authentication key for an integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -233,7 +237,9 @@ public final class IntegrationRuntimeAuthKeysOperationsClientImpl
     }
 
     /**
-     * Regenerate the authentication key for an integration runtime.
+     * Regenerate integration runtime authentication key
+     *
+     * <p>Regenerate the authentication key for an integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -252,18 +258,13 @@ public final class IntegrationRuntimeAuthKeysOperationsClientImpl
         IntegrationRuntimeRegenerateKeyParameters regenerateKeyParameters) {
         return regenerateWithResponseAsync(
                 resourceGroupName, workspaceName, integrationRuntimeName, regenerateKeyParameters)
-            .flatMap(
-                (Response<IntegrationRuntimeAuthKeysInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
-     * Regenerate the authentication key for an integration runtime.
+     * Regenerate integration runtime authentication key
+     *
+     * <p>Regenerate the authentication key for an integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -285,7 +286,9 @@ public final class IntegrationRuntimeAuthKeysOperationsClientImpl
     }
 
     /**
-     * Regenerate the authentication key for an integration runtime.
+     * Regenerate integration runtime authentication key
+     *
+     * <p>Regenerate the authentication key for an integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -310,7 +313,9 @@ public final class IntegrationRuntimeAuthKeysOperationsClientImpl
     }
 
     /**
-     * List authentication keys in an integration runtime.
+     * List integration runtime authentication keys
+     *
+     * <p>List authentication keys in an integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -367,7 +372,9 @@ public final class IntegrationRuntimeAuthKeysOperationsClientImpl
     }
 
     /**
-     * List authentication keys in an integration runtime.
+     * List integration runtime authentication keys
+     *
+     * <p>List authentication keys in an integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -422,7 +429,9 @@ public final class IntegrationRuntimeAuthKeysOperationsClientImpl
     }
 
     /**
-     * List authentication keys in an integration runtime.
+     * List integration runtime authentication keys
+     *
+     * <p>List authentication keys in an integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -436,18 +445,13 @@ public final class IntegrationRuntimeAuthKeysOperationsClientImpl
     private Mono<IntegrationRuntimeAuthKeysInner> listAsync(
         String resourceGroupName, String workspaceName, String integrationRuntimeName) {
         return listWithResponseAsync(resourceGroupName, workspaceName, integrationRuntimeName)
-            .flatMap(
-                (Response<IntegrationRuntimeAuthKeysInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
-     * List authentication keys in an integration runtime.
+     * List integration runtime authentication keys
+     *
+     * <p>List authentication keys in an integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -464,7 +468,9 @@ public final class IntegrationRuntimeAuthKeysOperationsClientImpl
     }
 
     /**
-     * List authentication keys in an integration runtime.
+     * List integration runtime authentication keys
+     *
+     * <p>List authentication keys in an integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.

@@ -13,7 +13,9 @@ import com.azure.resourcemanager.synapse.fluent.models.SparkConfigurationResourc
 /** An instance of this class provides access to all the operations defined in SparkConfigurationsClient. */
 public interface SparkConfigurationsClient {
     /**
-     * Get SparkConfiguration by name in a workspace.
+     * Get SparkConfiguration by name.
+     *
+     * <p>Get SparkConfiguration by name in a workspace.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param sparkConfigurationName SparkConfiguration name.
@@ -27,7 +29,9 @@ public interface SparkConfigurationsClient {
     SparkConfigurationResourceInner get(String resourceGroupName, String sparkConfigurationName, String workspaceName);
 
     /**
-     * Get SparkConfiguration by name in a workspace.
+     * Get SparkConfiguration by name.
+     *
+     * <p>Get SparkConfiguration by name in a workspace.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param sparkConfigurationName SparkConfiguration name.

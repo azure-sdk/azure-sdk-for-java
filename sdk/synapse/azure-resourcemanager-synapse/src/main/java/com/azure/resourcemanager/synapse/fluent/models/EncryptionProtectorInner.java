@@ -13,8 +13,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Fluent
 public final class EncryptionProtectorInner extends ProxyResource {
     /*
-     * Kind of encryption protector. This is metadata used for the Azure portal
-     * experience.
+     * Kind of encryption protector. This is metadata used for the Azure portal experience.
      */
     @JsonProperty(value = "kind", access = JsonProperty.Access.WRITE_ONLY)
     private String kind;

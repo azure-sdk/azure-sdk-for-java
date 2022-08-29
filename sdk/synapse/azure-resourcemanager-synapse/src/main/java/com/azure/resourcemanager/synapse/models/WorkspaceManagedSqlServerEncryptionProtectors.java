@@ -11,7 +11,9 @@ import com.azure.core.util.Context;
 /** Resource collection API of WorkspaceManagedSqlServerEncryptionProtectors. */
 public interface WorkspaceManagedSqlServerEncryptionProtectors {
     /**
-     * Get workspace managed sql server's encryption protector.
+     * Get workspace server's encryption protector.
+     *
+     * <p>Get workspace managed sql server's encryption protector.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -25,7 +27,9 @@ public interface WorkspaceManagedSqlServerEncryptionProtectors {
         String resourceGroupName, String workspaceName, EncryptionProtectorName encryptionProtectorName);
 
     /**
-     * Get workspace managed sql server's encryption protector.
+     * Get workspace server's encryption protector.
+     *
+     * <p>Get workspace managed sql server's encryption protector.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -43,7 +47,9 @@ public interface WorkspaceManagedSqlServerEncryptionProtectors {
         Context context);
 
     /**
-     * Get list of encryption protectors for workspace managed sql server.
+     * Get list of encryption protectors for the server.
+     *
+     * <p>Get list of encryption protectors for workspace managed sql server.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -56,7 +62,9 @@ public interface WorkspaceManagedSqlServerEncryptionProtectors {
     PagedIterable<EncryptionProtector> list(String resourceGroupName, String workspaceName);
 
     /**
-     * Get list of encryption protectors for workspace managed sql server.
+     * Get list of encryption protectors for the server.
+     *
+     * <p>Get list of encryption protectors for workspace managed sql server.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -70,7 +78,9 @@ public interface WorkspaceManagedSqlServerEncryptionProtectors {
     PagedIterable<EncryptionProtector> list(String resourceGroupName, String workspaceName, Context context);
 
     /**
-     * Revalidates workspace managed sql server's existing encryption protector.
+     * Revalidates server's existing encryption protector.
+     *
+     * <p>Revalidates workspace managed sql server's existing encryption protector.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -82,7 +92,9 @@ public interface WorkspaceManagedSqlServerEncryptionProtectors {
     void revalidate(String resourceGroupName, String workspaceName, EncryptionProtectorName encryptionProtectorName);
 
     /**
-     * Revalidates workspace managed sql server's existing encryption protector.
+     * Revalidates server's existing encryption protector.
+     *
+     * <p>Revalidates workspace managed sql server's existing encryption protector.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -99,7 +111,9 @@ public interface WorkspaceManagedSqlServerEncryptionProtectors {
         Context context);
 
     /**
-     * Get workspace managed sql server's encryption protector.
+     * Get workspace server's encryption protector.
+     *
+     * <p>Get workspace managed sql server's encryption protector.
      *
      * @param id the resource ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -110,7 +124,9 @@ public interface WorkspaceManagedSqlServerEncryptionProtectors {
     EncryptionProtector getById(String id);
 
     /**
-     * Get workspace managed sql server's encryption protector.
+     * Get workspace server's encryption protector.
+     *
+     * <p>Get workspace managed sql server's encryption protector.
      *
      * @param id the resource ID.
      * @param context The context to associate with this operation.
