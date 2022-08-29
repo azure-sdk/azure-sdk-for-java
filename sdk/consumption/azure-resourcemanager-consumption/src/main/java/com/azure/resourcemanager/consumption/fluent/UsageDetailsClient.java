@@ -14,8 +14,11 @@ import com.azure.resourcemanager.consumption.models.Metrictype;
 /** An instance of this class provides access to all the operations defined in UsageDetailsClient. */
 public interface UsageDetailsClient {
     /**
-     * Lists the usage details for the defined scope. Usage details are available via this API only for May 1, 2014 or
-     * later.
+     * Note: _**Enterprise Agreement and Microsoft Customer Agreement customers:** Please do not use this API. Use the
+     * [Cost Details API](/rest/api/cost-management/generate-cost-details-report/create-operation?tabs=HTTP) instead._
+     *
+     * <p>Lists the usage details for the defined scope. Usage details are available via this API only for May 1, 2014
+     * or later.
      *
      * @param scope The scope associated with usage details operations. This includes '/subscriptions/{subscriptionId}/'
      *     for subscription scope, '/providers/Microsoft.Billing/billingAccounts/{billingAccountId}' for Billing Account
@@ -37,14 +40,17 @@ public interface UsageDetailsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing usage details.
+     * @return result of listing usage details as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<UsageDetailInner> list(String scope);
 
     /**
-     * Lists the usage details for the defined scope. Usage details are available via this API only for May 1, 2014 or
-     * later.
+     * Note: _**Enterprise Agreement and Microsoft Customer Agreement customers:** Please do not use this API. Use the
+     * [Cost Details API](/rest/api/cost-management/generate-cost-details-report/create-operation?tabs=HTTP) instead._
+     *
+     * <p>Lists the usage details for the defined scope. Usage details are available via this API only for May 1, 2014
+     * or later.
      *
      * @param scope The scope associated with usage details operations. This includes '/subscriptions/{subscriptionId}/'
      *     for subscription scope, '/providers/Microsoft.Billing/billingAccounts/{billingAccountId}' for Billing Account
@@ -79,7 +85,7 @@ public interface UsageDetailsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing usage details.
+     * @return result of listing usage details as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<UsageDetailInner> list(
