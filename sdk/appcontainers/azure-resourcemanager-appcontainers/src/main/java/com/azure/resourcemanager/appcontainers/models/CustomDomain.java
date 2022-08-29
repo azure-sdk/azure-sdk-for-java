@@ -24,8 +24,7 @@ public final class CustomDomain {
     private BindingType bindingType;
 
     /*
-     * Resource Id of the Certificate to be bound to this hostname. Must exist
-     * in the Managed Environment.
+     * Resource Id of the Certificate to be bound to this hostname. Must exist in the Managed Environment.
      */
     @JsonProperty(value = "certificateId", required = true)
     private String certificateId;

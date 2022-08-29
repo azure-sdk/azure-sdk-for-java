@@ -6,18 +6,18 @@ package com.azure.resourcemanager.appcontainers.generated;
 
 import com.azure.core.util.Context;
 
-/** Samples for ManagedEnvironments List. */
-public final class ManagedEnvironmentsListSamples {
+/** Samples for ConnectedEnvironments Update. */
+public final class ConnectedEnvironmentsUpdateSamples {
     /*
-     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2022-03-01/examples/ManagedEnvironments_ListBySubscription.json
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2022-06-01-preview/examples/ConnectedEnvironments_Patch.json
      */
     /**
-     * Sample code: List environments by subscription.
+     * Sample code: Patch Managed Environment.
      *
      * @param manager Entry point to ContainerAppsApiManager.
      */
-    public static void listEnvironmentsBySubscription(
+    public static void patchManagedEnvironment(
         com.azure.resourcemanager.appcontainers.ContainerAppsApiManager manager) {
-        manager.managedEnvironments().list(Context.NONE);
+        manager.connectedEnvironments().updateWithResponse("examplerg", "testenv", Context.NONE);
     }
 }

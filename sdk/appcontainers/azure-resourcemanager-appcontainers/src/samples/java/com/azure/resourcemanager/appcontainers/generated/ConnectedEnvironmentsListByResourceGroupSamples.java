@@ -6,10 +6,10 @@ package com.azure.resourcemanager.appcontainers.generated;
 
 import com.azure.core.util.Context;
 
-/** Samples for ManagedEnvironments ListByResourceGroup. */
-public final class ManagedEnvironmentsListByResourceGroupSamples {
+/** Samples for ConnectedEnvironments ListByResourceGroup. */
+public final class ConnectedEnvironmentsListByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2022-03-01/examples/ManagedEnvironments_ListByResourceGroup.json
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2022-06-01-preview/examples/ConnectedEnvironments_ListByResourceGroup.json
      */
     /**
      * Sample code: List environments by resource group.
@@ -18,6 +18,6 @@ public final class ManagedEnvironmentsListByResourceGroupSamples {
      */
     public static void listEnvironmentsByResourceGroup(
         com.azure.resourcemanager.appcontainers.ContainerAppsApiManager manager) {
-        manager.managedEnvironments().listByResourceGroup("examplerg", Context.NONE);
+        manager.connectedEnvironments().listByResourceGroup("examplerg", Context.NONE);
     }
 }
