@@ -6,14 +6,17 @@ package com.azure.resourcemanager.dataprotection.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.List;
 
-/** BaseBackupPolicy BackupPolicy base. */
+/**
+ * BaseBackupPolicy
+ *
+ * <p>BackupPolicy base.
+ */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
     include = JsonTypeInfo.As.PROPERTY,
@@ -23,8 +26,6 @@ import java.util.List;
 @JsonSubTypes({@JsonSubTypes.Type(name = "BackupPolicy", value = BackupPolicy.class)})
 @Fluent
 public class BaseBackupPolicy {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(BaseBackupPolicy.class);
-
     /*
      * Type of datasource for the backup management
      */
@@ -58,10 +59,12 @@ public class BaseBackupPolicy {
      */
     public void validate() {
         if (datasourceTypes() == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property datasourceTypes in model BaseBackupPolicy"));
         }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(BaseBackupPolicy.class);
 }
