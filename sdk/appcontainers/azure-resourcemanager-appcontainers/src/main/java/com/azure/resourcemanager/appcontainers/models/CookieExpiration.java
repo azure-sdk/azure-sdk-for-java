@@ -17,8 +17,7 @@ public final class CookieExpiration {
     private CookieExpirationConvention convention;
 
     /*
-     * The time after the request is made when the session cookie should
-     * expire.
+     * The time after the request is made when the session cookie should expire.
      */
     @JsonProperty(value = "timeToExpiration")
     private String timeToExpiration;
