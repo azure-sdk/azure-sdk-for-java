@@ -21,15 +21,12 @@ import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.consumption.fluent.CreditsClient;
 import com.azure.resourcemanager.consumption.fluent.models.CreditSummaryInner;
 import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in CreditsClient. */
 public final class CreditsClientImpl implements CreditsClient {
-    private final ClientLogger logger = new ClientLogger(CreditsClientImpl.class);
-
     /** The proxy service used to perform REST calls. */
     private final CreditsService service;
 
@@ -76,7 +73,7 @@ public final class CreditsClientImpl implements CreditsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a credit summary resource.
+     * @return a credit summary resource along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<CreditSummaryInner>> getWithResponseAsync(String billingAccountId, String billingProfileId) {
@@ -118,7 +115,7 @@ public final class CreditsClientImpl implements CreditsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a credit summary resource.
+     * @return a credit summary resource along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<CreditSummaryInner>> getWithResponseAsync(
@@ -157,19 +154,12 @@ public final class CreditsClientImpl implements CreditsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a credit summary resource.
+     * @return a credit summary resource on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<CreditSummaryInner> getAsync(String billingAccountId, String billingProfileId) {
         return getWithResponseAsync(billingAccountId, billingProfileId)
-            .flatMap(
-                (Response<CreditSummaryInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -196,7 +186,7 @@ public final class CreditsClientImpl implements CreditsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a credit summary resource.
+     * @return a credit summary resource along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<CreditSummaryInner> getWithResponse(

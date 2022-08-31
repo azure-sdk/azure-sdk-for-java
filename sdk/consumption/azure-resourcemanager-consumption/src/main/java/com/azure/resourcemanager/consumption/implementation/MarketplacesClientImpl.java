@@ -25,7 +25,6 @@ import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.consumption.fluent.MarketplacesClient;
 import com.azure.resourcemanager.consumption.fluent.models.MarketplaceInner;
 import com.azure.resourcemanager.consumption.models.MarketplacesListResult;
@@ -33,8 +32,6 @@ import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in MarketplacesClient. */
 public final class MarketplacesClientImpl implements MarketplacesClient {
-    private final ClientLogger logger = new ClientLogger(MarketplacesClientImpl.class);
-
     /** The proxy service used to perform REST calls. */
     private final MarketplacesService service;
 
@@ -61,7 +58,7 @@ public final class MarketplacesClientImpl implements MarketplacesClient {
     private interface MarketplacesService {
         @Headers({"Content-Type: application/json"})
         @Get("/{scope}/providers/Microsoft.Consumption/marketplaces")
-        @ExpectedResponses({200})
+        @ExpectedResponses({200, 204})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<MarketplacesListResult>> list(
             @HostParam("$host") String endpoint,
@@ -75,7 +72,7 @@ public final class MarketplacesClientImpl implements MarketplacesClient {
 
         @Headers({"Content-Type: application/json"})
         @Get("{nextLink}")
-        @ExpectedResponses({200})
+        @ExpectedResponses({200, 204})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<MarketplacesListResult>> listNext(
             @PathParam(value = "nextLink", encoded = true) String nextLink,
@@ -107,7 +104,7 @@ public final class MarketplacesClientImpl implements MarketplacesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing marketplaces.
+     * @return result of listing marketplaces along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<MarketplaceInner>> listSinglePageAsync(
@@ -171,7 +168,7 @@ public final class MarketplacesClientImpl implements MarketplacesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing marketplaces.
+     * @return result of listing marketplaces along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<MarketplaceInner>> listSinglePageAsync(
@@ -224,7 +221,7 @@ public final class MarketplacesClientImpl implements MarketplacesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing marketplaces.
+     * @return result of listing marketplaces as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<MarketplaceInner> listAsync(String scope, String filter, Integer top, String skiptoken) {
@@ -248,7 +245,7 @@ public final class MarketplacesClientImpl implements MarketplacesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing marketplaces.
+     * @return result of listing marketplaces as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<MarketplaceInner> listAsync(String scope) {
@@ -283,7 +280,7 @@ public final class MarketplacesClientImpl implements MarketplacesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing marketplaces.
+     * @return result of listing marketplaces as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<MarketplaceInner> listAsync(
@@ -309,7 +306,7 @@ public final class MarketplacesClientImpl implements MarketplacesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing marketplaces.
+     * @return result of listing marketplaces as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<MarketplaceInner> list(String scope) {
@@ -343,7 +340,7 @@ public final class MarketplacesClientImpl implements MarketplacesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing marketplaces.
+     * @return result of listing marketplaces as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<MarketplaceInner> list(
@@ -354,11 +351,12 @@ public final class MarketplacesClientImpl implements MarketplacesClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing marketplaces.
+     * @return result of listing marketplaces along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<MarketplaceInner>> listNextSinglePageAsync(String nextLink) {
@@ -389,12 +387,13 @@ public final class MarketplacesClientImpl implements MarketplacesClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return result of listing marketplaces.
+     * @return result of listing marketplaces along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<MarketplaceInner>> listNextSinglePageAsync(String nextLink, Context context) {
