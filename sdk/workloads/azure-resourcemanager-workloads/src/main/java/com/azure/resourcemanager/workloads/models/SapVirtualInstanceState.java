@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for SapVirtualInstanceState. */
+/** Defines the Virtual Instance for SAP state. */
 public final class SapVirtualInstanceState extends ExpandableStringEnum<SapVirtualInstanceState> {
     /** Static value InfrastructureDeploymentPending for SapVirtualInstanceState. */
     public static final SapVirtualInstanceState INFRASTRUCTURE_DEPLOYMENT_PENDING =

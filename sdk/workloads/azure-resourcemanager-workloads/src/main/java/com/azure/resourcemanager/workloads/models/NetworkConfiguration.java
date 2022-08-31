@@ -7,19 +7,19 @@ package com.azure.resourcemanager.workloads.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Defines the network configuration for SAP infrastructure. */
+/** Defines the network configuration type for SAP system infrastructure that is being deployed. */
 @Fluent
 public final class NetworkConfiguration {
     /*
-     * Specifies whether a secondary IP address should be added to the network
-     * interface on all VMs
+     * Specifies whether a secondary IP address should be added to the network interface on all VMs of the SAP system
+     * being deployed
      */
     @JsonProperty(value = "isSecondaryIpEnabled")
     private Boolean isSecondaryIpEnabled;
 
     /**
      * Get the isSecondaryIpEnabled property: Specifies whether a secondary IP address should be added to the network
-     * interface on all VMs.
+     * interface on all VMs of the SAP system being deployed.
      *
      * @return the isSecondaryIpEnabled value.
      */
@@ -29,7 +29,7 @@ public final class NetworkConfiguration {
 
     /**
      * Set the isSecondaryIpEnabled property: Specifies whether a secondary IP address should be added to the network
-     * interface on all VMs.
+     * interface on all VMs of the SAP system being deployed.
      *
      * @param isSecondaryIpEnabled the isSecondaryIpEnabled value to set.
      * @return the NetworkConfiguration object itself.

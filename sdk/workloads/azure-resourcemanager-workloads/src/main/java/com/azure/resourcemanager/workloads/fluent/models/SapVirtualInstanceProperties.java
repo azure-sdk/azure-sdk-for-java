@@ -17,7 +17,7 @@ import com.azure.resourcemanager.workloads.models.SapVirtualInstanceState;
 import com.azure.resourcemanager.workloads.models.SapVirtualInstanceStatus;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Defines the Virtual Instance for SAP properties. */
+/** Defines the Virtual Instance for SAP solutions resource properties. */
 @Fluent
 public final class SapVirtualInstanceProperties {
     /*
@@ -33,8 +33,8 @@ public final class SapVirtualInstanceProperties {
     private SapProductType sapProduct;
 
     /*
-     * Defines if an existing SAP system is being registered or a new SAP
-     * system is being created
+     * Defines if the SAP system is being created using Azure Center for SAP solutions (ACSS) or if an existing SAP
+     * system is being registered with ACSS
      */
     @JsonProperty(value = "configuration", required = true)
     private SapConfiguration configuration;
@@ -52,7 +52,7 @@ public final class SapVirtualInstanceProperties {
     private SapVirtualInstanceStatus status;
 
     /*
-     * Defines the SAP Instance health.
+     * Defines the health of SAP Instances.
      */
     @JsonProperty(value = "health", access = JsonProperty.Access.WRITE_ONLY)
     private SapHealthState health;
@@ -70,7 +70,7 @@ public final class SapVirtualInstanceProperties {
     private SapVirtualInstanceProvisioningState provisioningState;
 
     /*
-     * Defines the Virtual Instance for SAP errors.
+     * Indicates any errors on the Virtual Instance for SAP solutions resource.
      */
     @JsonProperty(value = "errors", access = JsonProperty.Access.WRITE_ONLY)
     private SapVirtualInstanceError errors;
@@ -116,8 +116,8 @@ public final class SapVirtualInstanceProperties {
     }
 
     /**
-     * Get the configuration property: Defines if an existing SAP system is being registered or a new SAP system is
-     * being created.
+     * Get the configuration property: Defines if the SAP system is being created using Azure Center for SAP solutions
+     * (ACSS) or if an existing SAP system is being registered with ACSS.
      *
      * @return the configuration value.
      */
@@ -126,8 +126,8 @@ public final class SapVirtualInstanceProperties {
     }
 
     /**
-     * Set the configuration property: Defines if an existing SAP system is being registered or a new SAP system is
-     * being created.
+     * Set the configuration property: Defines if the SAP system is being created using Azure Center for SAP solutions
+     * (ACSS) or if an existing SAP system is being registered with ACSS.
      *
      * @param configuration the configuration value to set.
      * @return the SapVirtualInstanceProperties object itself.
@@ -168,7 +168,7 @@ public final class SapVirtualInstanceProperties {
     }
 
     /**
-     * Get the health property: Defines the SAP Instance health.
+     * Get the health property: Defines the health of SAP Instances.
      *
      * @return the health value.
      */
@@ -195,7 +195,7 @@ public final class SapVirtualInstanceProperties {
     }
 
     /**
-     * Get the errors property: Defines the Virtual Instance for SAP errors.
+     * Get the errors property: Indicates any errors on the Virtual Instance for SAP solutions resource.
      *
      * @return the errors value.
      */

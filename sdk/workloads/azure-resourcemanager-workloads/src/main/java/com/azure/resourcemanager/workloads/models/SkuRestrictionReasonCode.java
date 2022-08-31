@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for SkuRestrictionReasonCode. */
+/** The SKU restriction reason code. */
 public final class SkuRestrictionReasonCode extends ExpandableStringEnum<SkuRestrictionReasonCode> {
     /** Static value NotSpecified for SkuRestrictionReasonCode. */
     public static final SkuRestrictionReasonCode NOT_SPECIFIED = fromString("NotSpecified");

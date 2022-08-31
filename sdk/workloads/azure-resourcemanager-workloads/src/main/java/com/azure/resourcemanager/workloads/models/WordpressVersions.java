@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for WordpressVersions. */
+/** Application version. */
 public final class WordpressVersions extends ExpandableStringEnum<WordpressVersions> {
     /** Static value 5.4.3 for WordpressVersions. */
     public static final WordpressVersions FIVE_FOUR_THREE = fromString("5.4.3");

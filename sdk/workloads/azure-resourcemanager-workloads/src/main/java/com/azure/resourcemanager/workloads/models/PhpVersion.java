@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for PhpVersion. */
+/** PHP version. */
 public final class PhpVersion extends ExpandableStringEnum<PhpVersion> {
     /** Static value 7.2 for PhpVersion. */
     public static final PhpVersion SEVEN_TWO = fromString("7.2");
