@@ -1153,7 +1153,10 @@ public final class ComponentsClientImpl implements ComponentsClient {
      * <p>In order to manage system resources, purge requests are throttled at 50 requests per hour. You should batch
      * the execution of purge requests by sending a single command whose predicate includes all user identities that
      * require purging. Use the in operator to specify multiple identities. You should run the query prior to using for
-     * a purge request to verify that the results are expected.
+     * a purge request to verify that the results are expected. Note: this operation is intended for Classic resources,
+     * for workspace-based Application Insights resource please run purge operation (directly on the
+     * workspace)(https://docs.microsoft.com/en-us/rest/api/loganalytics/workspace-purge/purge) , scoped to specific
+     * resource id.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the Application Insights component resource.
@@ -1215,7 +1218,10 @@ public final class ComponentsClientImpl implements ComponentsClient {
      * <p>In order to manage system resources, purge requests are throttled at 50 requests per hour. You should batch
      * the execution of purge requests by sending a single command whose predicate includes all user identities that
      * require purging. Use the in operator to specify multiple identities. You should run the query prior to using for
-     * a purge request to verify that the results are expected.
+     * a purge request to verify that the results are expected. Note: this operation is intended for Classic resources,
+     * for workspace-based Application Insights resource please run purge operation (directly on the
+     * workspace)(https://docs.microsoft.com/en-us/rest/api/loganalytics/workspace-purge/purge) , scoped to specific
+     * resource id.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the Application Insights component resource.
@@ -1275,7 +1281,10 @@ public final class ComponentsClientImpl implements ComponentsClient {
      * <p>In order to manage system resources, purge requests are throttled at 50 requests per hour. You should batch
      * the execution of purge requests by sending a single command whose predicate includes all user identities that
      * require purging. Use the in operator to specify multiple identities. You should run the query prior to using for
-     * a purge request to verify that the results are expected.
+     * a purge request to verify that the results are expected. Note: this operation is intended for Classic resources,
+     * for workspace-based Application Insights resource please run purge operation (directly on the
+     * workspace)(https://docs.microsoft.com/en-us/rest/api/loganalytics/workspace-purge/purge) , scoped to specific
+     * resource id.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the Application Insights component resource.
@@ -1298,7 +1307,10 @@ public final class ComponentsClientImpl implements ComponentsClient {
      * <p>In order to manage system resources, purge requests are throttled at 50 requests per hour. You should batch
      * the execution of purge requests by sending a single command whose predicate includes all user identities that
      * require purging. Use the in operator to specify multiple identities. You should run the query prior to using for
-     * a purge request to verify that the results are expected.
+     * a purge request to verify that the results are expected. Note: this operation is intended for Classic resources,
+     * for workspace-based Application Insights resource please run purge operation (directly on the
+     * workspace)(https://docs.microsoft.com/en-us/rest/api/loganalytics/workspace-purge/purge) , scoped to specific
+     * resource id.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the Application Insights component resource.
@@ -1319,7 +1331,10 @@ public final class ComponentsClientImpl implements ComponentsClient {
      * <p>In order to manage system resources, purge requests are throttled at 50 requests per hour. You should batch
      * the execution of purge requests by sending a single command whose predicate includes all user identities that
      * require purging. Use the in operator to specify multiple identities. You should run the query prior to using for
-     * a purge request to verify that the results are expected.
+     * a purge request to verify that the results are expected. Note: this operation is intended for Classic resources,
+     * for workspace-based Application Insights resource please run purge operation (directly on the
+     * workspace)(https://docs.microsoft.com/en-us/rest/api/loganalytics/workspace-purge/purge) , scoped to specific
+     * resource id.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName The name of the Application Insights component resource.
@@ -1500,7 +1515,8 @@ public final class ComponentsClientImpl implements ComponentsClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1536,7 +1552,8 @@ public final class ComponentsClientImpl implements ComponentsClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1574,7 +1591,8 @@ public final class ComponentsClientImpl implements ComponentsClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1612,7 +1630,8 @@ public final class ComponentsClientImpl implements ComponentsClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
