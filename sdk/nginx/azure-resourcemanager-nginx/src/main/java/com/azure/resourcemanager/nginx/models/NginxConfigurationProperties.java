@@ -24,6 +24,12 @@ public final class NginxConfigurationProperties {
     private List<NginxConfigurationFile> files;
 
     /*
+     * The protectedFiles property.
+     */
+    @JsonProperty(value = "protectedFiles")
+    private List<NginxConfigurationFile> protectedFiles;
+
+    /*
      * The package property.
      */
     @JsonProperty(value = "package")
@@ -76,6 +82,26 @@ public final class NginxConfigurationProperties {
     }
 
     /**
+     * Get the protectedFiles property: The protectedFiles property.
+     *
+     * @return the protectedFiles value.
+     */
+    public List<NginxConfigurationFile> protectedFiles() {
+        return this.protectedFiles;
+    }
+
+    /**
+     * Set the protectedFiles property: The protectedFiles property.
+     *
+     * @param protectedFiles the protectedFiles value to set.
+     * @return the NginxConfigurationProperties object itself.
+     */
+    public NginxConfigurationProperties withProtectedFiles(List<NginxConfigurationFile> protectedFiles) {
+        this.protectedFiles = protectedFiles;
+        return this;
+    }
+
+    /**
      * Get the packageProperty property: The package property.
      *
      * @return the packageProperty value.
@@ -123,6 +149,9 @@ public final class NginxConfigurationProperties {
     public void validate() {
         if (files() != null) {
             files().forEach(e -> e.validate());
+        }
+        if (protectedFiles() != null) {
+            protectedFiles().forEach(e -> e.validate());
         }
         if (packageProperty() != null) {
             packageProperty().validate();
