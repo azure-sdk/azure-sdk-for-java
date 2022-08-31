@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for AlertNotifications. */
+/** Whether to send security alerts notifications to the security contact. */
 public final class AlertNotifications extends ExpandableStringEnum<AlertNotifications> {
     /** Static value On for AlertNotifications. */
     public static final AlertNotifications ON = fromString("On");
@@ -27,7 +27,11 @@ public final class AlertNotifications extends ExpandableStringEnum<AlertNotifica
         return fromString(name, AlertNotifications.class);
     }
 
-    /** @return known AlertNotifications values. */
+    /**
+     * Gets known AlertNotifications values.
+     *
+     * @return known AlertNotifications values.
+     */
     public static Collection<AlertNotifications> values() {
         return values(AlertNotifications.class);
     }

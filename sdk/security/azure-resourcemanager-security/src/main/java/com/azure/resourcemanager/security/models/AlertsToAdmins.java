@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for AlertsToAdmins. */
+/** Whether to send security alerts notifications to subscription admins. */
 public final class AlertsToAdmins extends ExpandableStringEnum<AlertsToAdmins> {
     /** Static value On for AlertsToAdmins. */
     public static final AlertsToAdmins ON = fromString("On");
@@ -27,7 +27,11 @@ public final class AlertsToAdmins extends ExpandableStringEnum<AlertsToAdmins> {
         return fromString(name, AlertsToAdmins.class);
     }
 
-    /** @return known AlertsToAdmins values. */
+    /**
+     * Gets known AlertsToAdmins values.
+     *
+     * @return known AlertsToAdmins values.
+     */
     public static Collection<AlertsToAdmins> values() {
         return values(AlertsToAdmins.class);
     }
