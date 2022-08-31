@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for DiskType. */
+/** Defines the different types of disks. */
 public final class DiskType extends ExpandableStringEnum<DiskType> {
     /** Static value flat for DiskType. */
     public static final DiskType FLAT = fromString("flat");
