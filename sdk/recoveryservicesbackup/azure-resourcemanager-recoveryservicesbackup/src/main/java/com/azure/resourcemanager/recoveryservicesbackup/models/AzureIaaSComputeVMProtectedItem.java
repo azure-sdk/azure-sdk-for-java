@@ -18,20 +18,6 @@ import java.util.Map;
 public final class AzureIaaSComputeVMProtectedItem extends AzureIaaSvmProtectedItem {
     /** {@inheritDoc} */
     @Override
-    public AzureIaaSComputeVMProtectedItem withFriendlyName(String friendlyName) {
-        super.withFriendlyName(friendlyName);
-        return this;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public AzureIaaSComputeVMProtectedItem withVirtualMachineId(String virtualMachineId) {
-        super.withVirtualMachineId(virtualMachineId);
-        return this;
-    }
-
-    /** {@inheritDoc} */
-    @Override
     public AzureIaaSComputeVMProtectedItem withProtectionStatus(String protectionStatus) {
         super.withProtectionStatus(protectionStatus);
         return this;
@@ -41,13 +27,6 @@ public final class AzureIaaSComputeVMProtectedItem extends AzureIaaSvmProtectedI
     @Override
     public AzureIaaSComputeVMProtectedItem withProtectionState(ProtectionState protectionState) {
         super.withProtectionState(protectionState);
-        return this;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public AzureIaaSComputeVMProtectedItem withHealthStatus(HealthStatus healthStatus) {
-        super.withHealthStatus(healthStatus);
         return this;
     }
 
@@ -74,20 +53,6 @@ public final class AzureIaaSComputeVMProtectedItem extends AzureIaaSvmProtectedI
 
     /** {@inheritDoc} */
     @Override
-    public AzureIaaSComputeVMProtectedItem withLastBackupTime(OffsetDateTime lastBackupTime) {
-        super.withLastBackupTime(lastBackupTime);
-        return this;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public AzureIaaSComputeVMProtectedItem withProtectedItemDataId(String protectedItemDataId) {
-        super.withProtectedItemDataId(protectedItemDataId);
-        return this;
-    }
-
-    /** {@inheritDoc} */
-    @Override
     public AzureIaaSComputeVMProtectedItem withExtendedInfo(AzureIaaSvmProtectedItemExtendedInfo extendedInfo) {
         super.withExtendedInfo(extendedInfo);
         return this;
@@ -97,20 +62,6 @@ public final class AzureIaaSComputeVMProtectedItem extends AzureIaaSvmProtectedI
     @Override
     public AzureIaaSComputeVMProtectedItem withExtendedProperties(ExtendedProperties extendedProperties) {
         super.withExtendedProperties(extendedProperties);
-        return this;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public AzureIaaSComputeVMProtectedItem withBackupManagementType(BackupManagementType backupManagementType) {
-        super.withBackupManagementType(backupManagementType);
-        return this;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public AzureIaaSComputeVMProtectedItem withWorkloadType(DataSourceType workloadType) {
-        super.withWorkloadType(workloadType);
         return this;
     }
 

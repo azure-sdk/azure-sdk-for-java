@@ -25,8 +25,7 @@ public final class GenericProtectedItem extends ProtectedItem {
     private String friendlyName;
 
     /*
-     * Indicates consistency of policy object and policy applied to this backup
-     * item.
+     * Indicates consistency of policy object and policy applied to this backup item.
      */
     @JsonProperty(value = "policyState")
     private String policyState;
@@ -44,8 +43,7 @@ public final class GenericProtectedItem extends ProtectedItem {
     private Long protectedItemId;
 
     /*
-     * Loosely coupled (type, value) associations (example - parent of a
-     * protected item)
+     * Loosely coupled (type, value) associations (example - parent of a protected item)
      */
     @JsonProperty(value = "sourceAssociations")
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
@@ -176,20 +174,6 @@ public final class GenericProtectedItem extends ProtectedItem {
      */
     public GenericProtectedItem withFabricName(String fabricName) {
         this.fabricName = fabricName;
-        return this;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public GenericProtectedItem withBackupManagementType(BackupManagementType backupManagementType) {
-        super.withBackupManagementType(backupManagementType);
-        return this;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public GenericProtectedItem withWorkloadType(DataSourceType workloadType) {
-        super.withWorkloadType(workloadType);
         return this;
     }
 

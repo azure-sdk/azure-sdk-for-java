@@ -200,20 +200,6 @@ public final class MabFileFolderProtectedItem extends ProtectedItem {
 
     /** {@inheritDoc} */
     @Override
-    public MabFileFolderProtectedItem withBackupManagementType(BackupManagementType backupManagementType) {
-        super.withBackupManagementType(backupManagementType);
-        return this;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public MabFileFolderProtectedItem withWorkloadType(DataSourceType workloadType) {
-        super.withWorkloadType(workloadType);
-        return this;
-    }
-
-    /** {@inheritDoc} */
-    @Override
     public MabFileFolderProtectedItem withContainerName(String containerName) {
         super.withContainerName(containerName);
         return this;
