@@ -25,8 +25,8 @@ import java.time.Duration;
 @Fluent
 public class JobLimits {
     /*
-     * The max run duration in ISO 8601 format, after which the job will be
-     * cancelled. Only supports duration with precision as low as Seconds.
+     * The max run duration in ISO 8601 format, after which the job will be cancelled. Only supports duration with
+     * precision as low as Seconds.
      */
     @JsonProperty(value = "timeout")
     private Duration timeout;
