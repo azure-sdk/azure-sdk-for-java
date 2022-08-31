@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for AccessRightsDescription. */
+/** Rights that this key has. */
 public final class AccessRightsDescription extends ExpandableStringEnum<AccessRightsDescription> {
     /** Static value ServiceConfig for AccessRightsDescription. */
     public static final AccessRightsDescription SERVICE_CONFIG = fromString("ServiceConfig");

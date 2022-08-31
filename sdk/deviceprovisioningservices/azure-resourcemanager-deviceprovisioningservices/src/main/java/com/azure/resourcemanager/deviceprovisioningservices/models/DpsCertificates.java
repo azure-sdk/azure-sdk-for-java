@@ -46,7 +46,9 @@ public interface DpsCertificates {
         Context context);
 
     /**
-     * Deletes the specified certificate associated with the Provisioning Service.
+     * Delete the Provisioning Service Certificate.
+     *
+     * <p>Deletes the specified certificate associated with the Provisioning Service.
      *
      * @param resourceGroupName Resource group identifier.
      * @param ifMatch ETag of the certificate.
@@ -61,7 +63,9 @@ public interface DpsCertificates {
     void delete(String resourceGroupName, String ifMatch, String provisioningServiceName, String certificateName);
 
     /**
-     * Deletes the specified certificate associated with the Provisioning Service.
+     * Delete the Provisioning Service Certificate.
+     *
+     * <p>Deletes the specified certificate associated with the Provisioning Service.
      *
      * @param resourceGroupName Resource group identifier.
      * @param ifMatch ETag of the certificate.
@@ -184,8 +188,10 @@ public interface DpsCertificates {
         Context context);
 
     /**
-     * Verifies the certificate's private key possession by providing the leaf cert issued by the verifying pre uploaded
-     * certificate.
+     * Verify certificate's private key possession.
+     *
+     * <p>Verifies the certificate's private key possession by providing the leaf cert issued by the verifying pre
+     * uploaded certificate.
      *
      * @param certificateName The mandatory logical name of the certificate, that the provisioning service uses to
      *     access.
@@ -207,8 +213,10 @@ public interface DpsCertificates {
         VerificationCodeRequest request);
 
     /**
-     * Verifies the certificate's private key possession by providing the leaf cert issued by the verifying pre uploaded
-     * certificate.
+     * Verify certificate's private key possession.
+     *
+     * <p>Verifies the certificate's private key possession by providing the leaf cert issued by the verifying pre
+     * uploaded certificate.
      *
      * @param certificateName The mandatory logical name of the certificate, that the provisioning service uses to
      *     access.
@@ -274,7 +282,9 @@ public interface DpsCertificates {
     Response<CertificateResponse> getByIdWithResponse(String id, String ifMatch, Context context);
 
     /**
-     * Deletes the specified certificate associated with the Provisioning Service.
+     * Delete the Provisioning Service Certificate.
+     *
+     * <p>Deletes the specified certificate associated with the Provisioning Service.
      *
      * @param id the resource ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -285,7 +295,9 @@ public interface DpsCertificates {
     void deleteById(String id);
 
     /**
-     * Deletes the specified certificate associated with the Provisioning Service.
+     * Delete the Provisioning Service Certificate.
+     *
+     * <p>Deletes the specified certificate associated with the Provisioning Service.
      *
      * @param id the resource ID.
      * @param ifMatch ETag of the certificate.
