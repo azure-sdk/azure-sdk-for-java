@@ -12,13 +12,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Fluent
 public final class Sku {
     /*
-     * The name of the HealthBot SKU
+     * The name of the Azure Health Bot SKU
      */
     @JsonProperty(value = "name", required = true)
     private SkuName name;
 
     /**
-     * Get the name property: The name of the HealthBot SKU.
+     * Get the name property: The name of the Azure Health Bot SKU.
      *
      * @return the name value.
      */
@@ -27,7 +27,7 @@ public final class Sku {
     }
 
     /**
-     * Set the name property: The name of the HealthBot SKU.
+     * Set the name property: The name of the Azure Health Bot SKU.
      *
      * @param name the name value to set.
      * @return the Sku object itself.
