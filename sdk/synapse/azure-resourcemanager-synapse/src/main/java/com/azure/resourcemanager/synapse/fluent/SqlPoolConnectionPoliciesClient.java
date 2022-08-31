@@ -14,7 +14,9 @@ import com.azure.resourcemanager.synapse.models.ConnectionPolicyName;
 /** An instance of this class provides access to all the operations defined in SqlPoolConnectionPoliciesClient. */
 public interface SqlPoolConnectionPoliciesClient {
     /**
-     * Get a Sql pool's connection policy, which is used with table auditing.
+     * Get a Sql pool's connection policy, which is used with table auditing
+     *
+     * <p>Get a Sql pool's connection policy, which is used with table auditing.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -30,7 +32,9 @@ public interface SqlPoolConnectionPoliciesClient {
         String resourceGroupName, String workspaceName, String sqlPoolName, ConnectionPolicyName connectionPolicyName);
 
     /**
-     * Get a Sql pool's connection policy, which is used with table auditing.
+     * Get a Sql pool's connection policy, which is used with table auditing
+     *
+     * <p>Get a Sql pool's connection policy, which is used with table auditing.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.

@@ -20,7 +20,9 @@ import com.azure.resourcemanager.synapse.models.BlobAuditingPolicyName;
  */
 public interface WorkspaceManagedSqlServerBlobAuditingPoliciesClient {
     /**
-     * Get a workspace managed sql server's blob auditing policy.
+     * Get server's blob auditing policy.
+     *
+     * <p>Get a workspace managed sql server's blob auditing policy.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -35,7 +37,9 @@ public interface WorkspaceManagedSqlServerBlobAuditingPoliciesClient {
         String resourceGroupName, String workspaceName, BlobAuditingPolicyName blobAuditingPolicyName);
 
     /**
-     * Get a workspace managed sql server's blob auditing policy.
+     * Get server's blob auditing policy.
+     *
+     * <p>Get a workspace managed sql server's blob auditing policy.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -51,7 +55,9 @@ public interface WorkspaceManagedSqlServerBlobAuditingPoliciesClient {
         String resourceGroupName, String workspaceName, BlobAuditingPolicyName blobAuditingPolicyName, Context context);
 
     /**
-     * Create or Update a workspace managed sql server's blob auditing policy.
+     * Create or Update server's blob auditing policy.
+     *
+     * <p>Create or Update a workspace managed sql server's blob auditing policy.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -70,7 +76,9 @@ public interface WorkspaceManagedSqlServerBlobAuditingPoliciesClient {
         ServerBlobAuditingPolicyInner parameters);
 
     /**
-     * Create or Update a workspace managed sql server's blob auditing policy.
+     * Create or Update server's blob auditing policy.
+     *
+     * <p>Create or Update a workspace managed sql server's blob auditing policy.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -91,7 +99,9 @@ public interface WorkspaceManagedSqlServerBlobAuditingPoliciesClient {
         Context context);
 
     /**
-     * Create or Update a workspace managed sql server's blob auditing policy.
+     * Create or Update server's blob auditing policy.
+     *
+     * <p>Create or Update a workspace managed sql server's blob auditing policy.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -110,7 +120,9 @@ public interface WorkspaceManagedSqlServerBlobAuditingPoliciesClient {
         ServerBlobAuditingPolicyInner parameters);
 
     /**
-     * Create or Update a workspace managed sql server's blob auditing policy.
+     * Create or Update server's blob auditing policy.
+     *
+     * <p>Create or Update a workspace managed sql server's blob auditing policy.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -131,7 +143,9 @@ public interface WorkspaceManagedSqlServerBlobAuditingPoliciesClient {
         Context context);
 
     /**
-     * List workspace managed sql server's blob auditing policies.
+     * List workspace server's blob auditing policies.
+     *
+     * <p>List workspace managed sql server's blob auditing policies.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -144,7 +158,9 @@ public interface WorkspaceManagedSqlServerBlobAuditingPoliciesClient {
     PagedIterable<ServerBlobAuditingPolicyInner> listByWorkspace(String resourceGroupName, String workspaceName);
 
     /**
-     * List workspace managed sql server's blob auditing policies.
+     * List workspace server's blob auditing policies.
+     *
+     * <p>List workspace managed sql server's blob auditing policies.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.

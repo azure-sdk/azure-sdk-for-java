@@ -110,7 +110,9 @@ public final class IntegrationRuntimeNodesClientImpl implements IntegrationRunti
     }
 
     /**
-     * Get an integration runtime node.
+     * Get integration runtime node
+     *
+     * <p>Get an integration runtime node.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -171,7 +173,9 @@ public final class IntegrationRuntimeNodesClientImpl implements IntegrationRunti
     }
 
     /**
-     * Get an integration runtime node.
+     * Get integration runtime node
+     *
+     * <p>Get an integration runtime node.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -234,7 +238,9 @@ public final class IntegrationRuntimeNodesClientImpl implements IntegrationRunti
     }
 
     /**
-     * Get an integration runtime node.
+     * Get integration runtime node
+     *
+     * <p>Get an integration runtime node.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -249,18 +255,13 @@ public final class IntegrationRuntimeNodesClientImpl implements IntegrationRunti
     private Mono<SelfHostedIntegrationRuntimeNodeInner> getAsync(
         String resourceGroupName, String workspaceName, String integrationRuntimeName, String nodeName) {
         return getWithResponseAsync(resourceGroupName, workspaceName, integrationRuntimeName, nodeName)
-            .flatMap(
-                (Response<SelfHostedIntegrationRuntimeNodeInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
-     * Get an integration runtime node.
+     * Get integration runtime node
+     *
+     * <p>Get an integration runtime node.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -278,7 +279,9 @@ public final class IntegrationRuntimeNodesClientImpl implements IntegrationRunti
     }
 
     /**
-     * Get an integration runtime node.
+     * Get integration runtime node
+     *
+     * <p>Get an integration runtime node.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -302,7 +305,9 @@ public final class IntegrationRuntimeNodesClientImpl implements IntegrationRunti
     }
 
     /**
-     * Create an integration runtime node.
+     * Create integration runtime node
+     *
+     * <p>Create an integration runtime node.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -378,7 +383,9 @@ public final class IntegrationRuntimeNodesClientImpl implements IntegrationRunti
     }
 
     /**
-     * Create an integration runtime node.
+     * Create integration runtime node
+     *
+     * <p>Create an integration runtime node.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -453,7 +460,9 @@ public final class IntegrationRuntimeNodesClientImpl implements IntegrationRunti
     }
 
     /**
-     * Create an integration runtime node.
+     * Create integration runtime node
+     *
+     * <p>Create an integration runtime node.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -474,18 +483,13 @@ public final class IntegrationRuntimeNodesClientImpl implements IntegrationRunti
         UpdateIntegrationRuntimeNodeRequest updateIntegrationRuntimeNodeRequest) {
         return updateWithResponseAsync(
                 resourceGroupName, workspaceName, integrationRuntimeName, nodeName, updateIntegrationRuntimeNodeRequest)
-            .flatMap(
-                (Response<SelfHostedIntegrationRuntimeNodeInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
-     * Create an integration runtime node.
+     * Create integration runtime node
+     *
+     * <p>Create an integration runtime node.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -510,7 +514,9 @@ public final class IntegrationRuntimeNodesClientImpl implements IntegrationRunti
     }
 
     /**
-     * Create an integration runtime node.
+     * Create integration runtime node
+     *
+     * <p>Create an integration runtime node.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -542,7 +548,9 @@ public final class IntegrationRuntimeNodesClientImpl implements IntegrationRunti
     }
 
     /**
-     * Delete an integration runtime node.
+     * Delete integration runtime node
+     *
+     * <p>Delete an integration runtime node.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -603,7 +611,9 @@ public final class IntegrationRuntimeNodesClientImpl implements IntegrationRunti
     }
 
     /**
-     * Delete an integration runtime node.
+     * Delete integration runtime node
+     *
+     * <p>Delete an integration runtime node.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -666,7 +676,9 @@ public final class IntegrationRuntimeNodesClientImpl implements IntegrationRunti
     }
 
     /**
-     * Delete an integration runtime node.
+     * Delete integration runtime node
+     *
+     * <p>Delete an integration runtime node.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -681,11 +693,13 @@ public final class IntegrationRuntimeNodesClientImpl implements IntegrationRunti
     private Mono<Void> deleteAsync(
         String resourceGroupName, String workspaceName, String integrationRuntimeName, String nodeName) {
         return deleteWithResponseAsync(resourceGroupName, workspaceName, integrationRuntimeName, nodeName)
-            .flatMap((Response<Void> res) -> Mono.empty());
+            .flatMap(ignored -> Mono.empty());
     }
 
     /**
-     * Delete an integration runtime node.
+     * Delete integration runtime node
+     *
+     * <p>Delete an integration runtime node.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -701,7 +715,9 @@ public final class IntegrationRuntimeNodesClientImpl implements IntegrationRunti
     }
 
     /**
-     * Delete an integration runtime node.
+     * Delete integration runtime node
+     *
+     * <p>Delete an integration runtime node.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
