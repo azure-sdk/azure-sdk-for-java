@@ -45,221 +45,25 @@ public interface SecurityInsights {
     Duration getDefaultPollInterval();
 
     /**
-     * Gets the AlertRulesClient object to access its operations.
+     * Gets the PackagesClient object to access its operations.
      *
-     * @return the AlertRulesClient object.
+     * @return the PackagesClient object.
      */
-    AlertRulesClient getAlertRules();
+    PackagesClient getPackages();
 
     /**
-     * Gets the ActionsClient object to access its operations.
+     * Gets the PackageOperationsClient object to access its operations.
      *
-     * @return the ActionsClient object.
+     * @return the PackageOperationsClient object.
      */
-    ActionsClient getActions();
+    PackageOperationsClient getPackageOperations();
 
     /**
-     * Gets the AlertRuleTemplatesClient object to access its operations.
+     * Gets the TemplatesClient object to access its operations.
      *
-     * @return the AlertRuleTemplatesClient object.
+     * @return the TemplatesClient object.
      */
-    AlertRuleTemplatesClient getAlertRuleTemplates();
-
-    /**
-     * Gets the AutomationRulesClient object to access its operations.
-     *
-     * @return the AutomationRulesClient object.
-     */
-    AutomationRulesClient getAutomationRules();
-
-    /**
-     * Gets the IncidentsClient object to access its operations.
-     *
-     * @return the IncidentsClient object.
-     */
-    IncidentsClient getIncidents();
-
-    /**
-     * Gets the BookmarksClient object to access its operations.
-     *
-     * @return the BookmarksClient object.
-     */
-    BookmarksClient getBookmarks();
-
-    /**
-     * Gets the BookmarkRelationsClient object to access its operations.
-     *
-     * @return the BookmarkRelationsClient object.
-     */
-    BookmarkRelationsClient getBookmarkRelations();
-
-    /**
-     * Gets the BookmarkOperationsClient object to access its operations.
-     *
-     * @return the BookmarkOperationsClient object.
-     */
-    BookmarkOperationsClient getBookmarkOperations();
-
-    /**
-     * Gets the IpGeodatasClient object to access its operations.
-     *
-     * @return the IpGeodatasClient object.
-     */
-    IpGeodatasClient getIpGeodatas();
-
-    /**
-     * Gets the DomainWhoisClient object to access its operations.
-     *
-     * @return the DomainWhoisClient object.
-     */
-    DomainWhoisClient getDomainWhois();
-
-    /**
-     * Gets the EntitiesClient object to access its operations.
-     *
-     * @return the EntitiesClient object.
-     */
-    EntitiesClient getEntities();
-
-    /**
-     * Gets the EntitiesGetTimelinesClient object to access its operations.
-     *
-     * @return the EntitiesGetTimelinesClient object.
-     */
-    EntitiesGetTimelinesClient getEntitiesGetTimelines();
-
-    /**
-     * Gets the EntitiesRelationsClient object to access its operations.
-     *
-     * @return the EntitiesRelationsClient object.
-     */
-    EntitiesRelationsClient getEntitiesRelations();
-
-    /**
-     * Gets the EntityRelationsClient object to access its operations.
-     *
-     * @return the EntityRelationsClient object.
-     */
-    EntityRelationsClient getEntityRelations();
-
-    /**
-     * Gets the EntityQueriesClient object to access its operations.
-     *
-     * @return the EntityQueriesClient object.
-     */
-    EntityQueriesClient getEntityQueries();
-
-    /**
-     * Gets the EntityQueryTemplatesClient object to access its operations.
-     *
-     * @return the EntityQueryTemplatesClient object.
-     */
-    EntityQueryTemplatesClient getEntityQueryTemplates();
-
-    /**
-     * Gets the IncidentCommentsClient object to access its operations.
-     *
-     * @return the IncidentCommentsClient object.
-     */
-    IncidentCommentsClient getIncidentComments();
-
-    /**
-     * Gets the IncidentRelationsClient object to access its operations.
-     *
-     * @return the IncidentRelationsClient object.
-     */
-    IncidentRelationsClient getIncidentRelations();
-
-    /**
-     * Gets the MetadatasClient object to access its operations.
-     *
-     * @return the MetadatasClient object.
-     */
-    MetadatasClient getMetadatas();
-
-    /**
-     * Gets the OfficeConsentsClient object to access its operations.
-     *
-     * @return the OfficeConsentsClient object.
-     */
-    OfficeConsentsClient getOfficeConsents();
-
-    /**
-     * Gets the SentinelOnboardingStatesClient object to access its operations.
-     *
-     * @return the SentinelOnboardingStatesClient object.
-     */
-    SentinelOnboardingStatesClient getSentinelOnboardingStates();
-
-    /**
-     * Gets the ProductSettingsClient object to access its operations.
-     *
-     * @return the ProductSettingsClient object.
-     */
-    ProductSettingsClient getProductSettings();
-
-    /**
-     * Gets the SourceControlsClient object to access its operations.
-     *
-     * @return the SourceControlsClient object.
-     */
-    SourceControlsClient getSourceControls();
-
-    /**
-     * Gets the SourceControlsOperationsClient object to access its operations.
-     *
-     * @return the SourceControlsOperationsClient object.
-     */
-    SourceControlsOperationsClient getSourceControlsOperations();
-
-    /**
-     * Gets the ThreatIntelligenceIndicatorsClient object to access its operations.
-     *
-     * @return the ThreatIntelligenceIndicatorsClient object.
-     */
-    ThreatIntelligenceIndicatorsClient getThreatIntelligenceIndicators();
-
-    /**
-     * Gets the ThreatIntelligenceIndicatorsOperationsClient object to access its operations.
-     *
-     * @return the ThreatIntelligenceIndicatorsOperationsClient object.
-     */
-    ThreatIntelligenceIndicatorsOperationsClient getThreatIntelligenceIndicatorsOperations();
-
-    /**
-     * Gets the ThreatIntelligenceIndicatorMetricsClient object to access its operations.
-     *
-     * @return the ThreatIntelligenceIndicatorMetricsClient object.
-     */
-    ThreatIntelligenceIndicatorMetricsClient getThreatIntelligenceIndicatorMetrics();
-
-    /**
-     * Gets the WatchlistsClient object to access its operations.
-     *
-     * @return the WatchlistsClient object.
-     */
-    WatchlistsClient getWatchlists();
-
-    /**
-     * Gets the WatchlistItemsClient object to access its operations.
-     *
-     * @return the WatchlistItemsClient object.
-     */
-    WatchlistItemsClient getWatchlistItems();
-
-    /**
-     * Gets the DataConnectorsClient object to access its operations.
-     *
-     * @return the DataConnectorsClient object.
-     */
-    DataConnectorsClient getDataConnectors();
-
-    /**
-     * Gets the DataConnectorsCheckRequirementsOperationsClient object to access its operations.
-     *
-     * @return the DataConnectorsCheckRequirementsOperationsClient object.
-     */
-    DataConnectorsCheckRequirementsOperationsClient getDataConnectorsCheckRequirementsOperations();
+    TemplatesClient getTemplates();
 
     /**
      * Gets the OperationsClient object to access its operations.

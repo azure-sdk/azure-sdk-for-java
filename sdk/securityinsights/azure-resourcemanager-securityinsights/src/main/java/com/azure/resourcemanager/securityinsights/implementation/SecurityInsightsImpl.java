@@ -22,39 +22,11 @@ import com.azure.core.util.polling.LongRunningOperationStatus;
 import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.serializer.SerializerAdapter;
 import com.azure.core.util.serializer.SerializerEncoding;
-import com.azure.resourcemanager.securityinsights.fluent.ActionsClient;
-import com.azure.resourcemanager.securityinsights.fluent.AlertRuleTemplatesClient;
-import com.azure.resourcemanager.securityinsights.fluent.AlertRulesClient;
-import com.azure.resourcemanager.securityinsights.fluent.AutomationRulesClient;
-import com.azure.resourcemanager.securityinsights.fluent.BookmarkOperationsClient;
-import com.azure.resourcemanager.securityinsights.fluent.BookmarkRelationsClient;
-import com.azure.resourcemanager.securityinsights.fluent.BookmarksClient;
-import com.azure.resourcemanager.securityinsights.fluent.DataConnectorsCheckRequirementsOperationsClient;
-import com.azure.resourcemanager.securityinsights.fluent.DataConnectorsClient;
-import com.azure.resourcemanager.securityinsights.fluent.DomainWhoisClient;
-import com.azure.resourcemanager.securityinsights.fluent.EntitiesClient;
-import com.azure.resourcemanager.securityinsights.fluent.EntitiesGetTimelinesClient;
-import com.azure.resourcemanager.securityinsights.fluent.EntitiesRelationsClient;
-import com.azure.resourcemanager.securityinsights.fluent.EntityQueriesClient;
-import com.azure.resourcemanager.securityinsights.fluent.EntityQueryTemplatesClient;
-import com.azure.resourcemanager.securityinsights.fluent.EntityRelationsClient;
-import com.azure.resourcemanager.securityinsights.fluent.IncidentCommentsClient;
-import com.azure.resourcemanager.securityinsights.fluent.IncidentRelationsClient;
-import com.azure.resourcemanager.securityinsights.fluent.IncidentsClient;
-import com.azure.resourcemanager.securityinsights.fluent.IpGeodatasClient;
-import com.azure.resourcemanager.securityinsights.fluent.MetadatasClient;
-import com.azure.resourcemanager.securityinsights.fluent.OfficeConsentsClient;
 import com.azure.resourcemanager.securityinsights.fluent.OperationsClient;
-import com.azure.resourcemanager.securityinsights.fluent.ProductSettingsClient;
+import com.azure.resourcemanager.securityinsights.fluent.PackageOperationsClient;
+import com.azure.resourcemanager.securityinsights.fluent.PackagesClient;
 import com.azure.resourcemanager.securityinsights.fluent.SecurityInsights;
-import com.azure.resourcemanager.securityinsights.fluent.SentinelOnboardingStatesClient;
-import com.azure.resourcemanager.securityinsights.fluent.SourceControlsClient;
-import com.azure.resourcemanager.securityinsights.fluent.SourceControlsOperationsClient;
-import com.azure.resourcemanager.securityinsights.fluent.ThreatIntelligenceIndicatorMetricsClient;
-import com.azure.resourcemanager.securityinsights.fluent.ThreatIntelligenceIndicatorsClient;
-import com.azure.resourcemanager.securityinsights.fluent.ThreatIntelligenceIndicatorsOperationsClient;
-import com.azure.resourcemanager.securityinsights.fluent.WatchlistItemsClient;
-import com.azure.resourcemanager.securityinsights.fluent.WatchlistsClient;
+import com.azure.resourcemanager.securityinsights.fluent.TemplatesClient;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.nio.ByteBuffer;
@@ -139,376 +111,40 @@ public final class SecurityInsightsImpl implements SecurityInsights {
         return this.defaultPollInterval;
     }
 
-    /** The AlertRulesClient object to access its operations. */
-    private final AlertRulesClient alertRules;
+    /** The PackagesClient object to access its operations. */
+    private final PackagesClient packages;
 
     /**
-     * Gets the AlertRulesClient object to access its operations.
+     * Gets the PackagesClient object to access its operations.
      *
-     * @return the AlertRulesClient object.
+     * @return the PackagesClient object.
      */
-    public AlertRulesClient getAlertRules() {
-        return this.alertRules;
+    public PackagesClient getPackages() {
+        return this.packages;
     }
 
-    /** The ActionsClient object to access its operations. */
-    private final ActionsClient actions;
+    /** The PackageOperationsClient object to access its operations. */
+    private final PackageOperationsClient packageOperations;
 
     /**
-     * Gets the ActionsClient object to access its operations.
+     * Gets the PackageOperationsClient object to access its operations.
      *
-     * @return the ActionsClient object.
+     * @return the PackageOperationsClient object.
      */
-    public ActionsClient getActions() {
-        return this.actions;
+    public PackageOperationsClient getPackageOperations() {
+        return this.packageOperations;
     }
 
-    /** The AlertRuleTemplatesClient object to access its operations. */
-    private final AlertRuleTemplatesClient alertRuleTemplates;
+    /** The TemplatesClient object to access its operations. */
+    private final TemplatesClient templates;
 
     /**
-     * Gets the AlertRuleTemplatesClient object to access its operations.
+     * Gets the TemplatesClient object to access its operations.
      *
-     * @return the AlertRuleTemplatesClient object.
+     * @return the TemplatesClient object.
      */
-    public AlertRuleTemplatesClient getAlertRuleTemplates() {
-        return this.alertRuleTemplates;
-    }
-
-    /** The AutomationRulesClient object to access its operations. */
-    private final AutomationRulesClient automationRules;
-
-    /**
-     * Gets the AutomationRulesClient object to access its operations.
-     *
-     * @return the AutomationRulesClient object.
-     */
-    public AutomationRulesClient getAutomationRules() {
-        return this.automationRules;
-    }
-
-    /** The IncidentsClient object to access its operations. */
-    private final IncidentsClient incidents;
-
-    /**
-     * Gets the IncidentsClient object to access its operations.
-     *
-     * @return the IncidentsClient object.
-     */
-    public IncidentsClient getIncidents() {
-        return this.incidents;
-    }
-
-    /** The BookmarksClient object to access its operations. */
-    private final BookmarksClient bookmarks;
-
-    /**
-     * Gets the BookmarksClient object to access its operations.
-     *
-     * @return the BookmarksClient object.
-     */
-    public BookmarksClient getBookmarks() {
-        return this.bookmarks;
-    }
-
-    /** The BookmarkRelationsClient object to access its operations. */
-    private final BookmarkRelationsClient bookmarkRelations;
-
-    /**
-     * Gets the BookmarkRelationsClient object to access its operations.
-     *
-     * @return the BookmarkRelationsClient object.
-     */
-    public BookmarkRelationsClient getBookmarkRelations() {
-        return this.bookmarkRelations;
-    }
-
-    /** The BookmarkOperationsClient object to access its operations. */
-    private final BookmarkOperationsClient bookmarkOperations;
-
-    /**
-     * Gets the BookmarkOperationsClient object to access its operations.
-     *
-     * @return the BookmarkOperationsClient object.
-     */
-    public BookmarkOperationsClient getBookmarkOperations() {
-        return this.bookmarkOperations;
-    }
-
-    /** The IpGeodatasClient object to access its operations. */
-    private final IpGeodatasClient ipGeodatas;
-
-    /**
-     * Gets the IpGeodatasClient object to access its operations.
-     *
-     * @return the IpGeodatasClient object.
-     */
-    public IpGeodatasClient getIpGeodatas() {
-        return this.ipGeodatas;
-    }
-
-    /** The DomainWhoisClient object to access its operations. */
-    private final DomainWhoisClient domainWhois;
-
-    /**
-     * Gets the DomainWhoisClient object to access its operations.
-     *
-     * @return the DomainWhoisClient object.
-     */
-    public DomainWhoisClient getDomainWhois() {
-        return this.domainWhois;
-    }
-
-    /** The EntitiesClient object to access its operations. */
-    private final EntitiesClient entities;
-
-    /**
-     * Gets the EntitiesClient object to access its operations.
-     *
-     * @return the EntitiesClient object.
-     */
-    public EntitiesClient getEntities() {
-        return this.entities;
-    }
-
-    /** The EntitiesGetTimelinesClient object to access its operations. */
-    private final EntitiesGetTimelinesClient entitiesGetTimelines;
-
-    /**
-     * Gets the EntitiesGetTimelinesClient object to access its operations.
-     *
-     * @return the EntitiesGetTimelinesClient object.
-     */
-    public EntitiesGetTimelinesClient getEntitiesGetTimelines() {
-        return this.entitiesGetTimelines;
-    }
-
-    /** The EntitiesRelationsClient object to access its operations. */
-    private final EntitiesRelationsClient entitiesRelations;
-
-    /**
-     * Gets the EntitiesRelationsClient object to access its operations.
-     *
-     * @return the EntitiesRelationsClient object.
-     */
-    public EntitiesRelationsClient getEntitiesRelations() {
-        return this.entitiesRelations;
-    }
-
-    /** The EntityRelationsClient object to access its operations. */
-    private final EntityRelationsClient entityRelations;
-
-    /**
-     * Gets the EntityRelationsClient object to access its operations.
-     *
-     * @return the EntityRelationsClient object.
-     */
-    public EntityRelationsClient getEntityRelations() {
-        return this.entityRelations;
-    }
-
-    /** The EntityQueriesClient object to access its operations. */
-    private final EntityQueriesClient entityQueries;
-
-    /**
-     * Gets the EntityQueriesClient object to access its operations.
-     *
-     * @return the EntityQueriesClient object.
-     */
-    public EntityQueriesClient getEntityQueries() {
-        return this.entityQueries;
-    }
-
-    /** The EntityQueryTemplatesClient object to access its operations. */
-    private final EntityQueryTemplatesClient entityQueryTemplates;
-
-    /**
-     * Gets the EntityQueryTemplatesClient object to access its operations.
-     *
-     * @return the EntityQueryTemplatesClient object.
-     */
-    public EntityQueryTemplatesClient getEntityQueryTemplates() {
-        return this.entityQueryTemplates;
-    }
-
-    /** The IncidentCommentsClient object to access its operations. */
-    private final IncidentCommentsClient incidentComments;
-
-    /**
-     * Gets the IncidentCommentsClient object to access its operations.
-     *
-     * @return the IncidentCommentsClient object.
-     */
-    public IncidentCommentsClient getIncidentComments() {
-        return this.incidentComments;
-    }
-
-    /** The IncidentRelationsClient object to access its operations. */
-    private final IncidentRelationsClient incidentRelations;
-
-    /**
-     * Gets the IncidentRelationsClient object to access its operations.
-     *
-     * @return the IncidentRelationsClient object.
-     */
-    public IncidentRelationsClient getIncidentRelations() {
-        return this.incidentRelations;
-    }
-
-    /** The MetadatasClient object to access its operations. */
-    private final MetadatasClient metadatas;
-
-    /**
-     * Gets the MetadatasClient object to access its operations.
-     *
-     * @return the MetadatasClient object.
-     */
-    public MetadatasClient getMetadatas() {
-        return this.metadatas;
-    }
-
-    /** The OfficeConsentsClient object to access its operations. */
-    private final OfficeConsentsClient officeConsents;
-
-    /**
-     * Gets the OfficeConsentsClient object to access its operations.
-     *
-     * @return the OfficeConsentsClient object.
-     */
-    public OfficeConsentsClient getOfficeConsents() {
-        return this.officeConsents;
-    }
-
-    /** The SentinelOnboardingStatesClient object to access its operations. */
-    private final SentinelOnboardingStatesClient sentinelOnboardingStates;
-
-    /**
-     * Gets the SentinelOnboardingStatesClient object to access its operations.
-     *
-     * @return the SentinelOnboardingStatesClient object.
-     */
-    public SentinelOnboardingStatesClient getSentinelOnboardingStates() {
-        return this.sentinelOnboardingStates;
-    }
-
-    /** The ProductSettingsClient object to access its operations. */
-    private final ProductSettingsClient productSettings;
-
-    /**
-     * Gets the ProductSettingsClient object to access its operations.
-     *
-     * @return the ProductSettingsClient object.
-     */
-    public ProductSettingsClient getProductSettings() {
-        return this.productSettings;
-    }
-
-    /** The SourceControlsClient object to access its operations. */
-    private final SourceControlsClient sourceControls;
-
-    /**
-     * Gets the SourceControlsClient object to access its operations.
-     *
-     * @return the SourceControlsClient object.
-     */
-    public SourceControlsClient getSourceControls() {
-        return this.sourceControls;
-    }
-
-    /** The SourceControlsOperationsClient object to access its operations. */
-    private final SourceControlsOperationsClient sourceControlsOperations;
-
-    /**
-     * Gets the SourceControlsOperationsClient object to access its operations.
-     *
-     * @return the SourceControlsOperationsClient object.
-     */
-    public SourceControlsOperationsClient getSourceControlsOperations() {
-        return this.sourceControlsOperations;
-    }
-
-    /** The ThreatIntelligenceIndicatorsClient object to access its operations. */
-    private final ThreatIntelligenceIndicatorsClient threatIntelligenceIndicators;
-
-    /**
-     * Gets the ThreatIntelligenceIndicatorsClient object to access its operations.
-     *
-     * @return the ThreatIntelligenceIndicatorsClient object.
-     */
-    public ThreatIntelligenceIndicatorsClient getThreatIntelligenceIndicators() {
-        return this.threatIntelligenceIndicators;
-    }
-
-    /** The ThreatIntelligenceIndicatorsOperationsClient object to access its operations. */
-    private final ThreatIntelligenceIndicatorsOperationsClient threatIntelligenceIndicatorsOperations;
-
-    /**
-     * Gets the ThreatIntelligenceIndicatorsOperationsClient object to access its operations.
-     *
-     * @return the ThreatIntelligenceIndicatorsOperationsClient object.
-     */
-    public ThreatIntelligenceIndicatorsOperationsClient getThreatIntelligenceIndicatorsOperations() {
-        return this.threatIntelligenceIndicatorsOperations;
-    }
-
-    /** The ThreatIntelligenceIndicatorMetricsClient object to access its operations. */
-    private final ThreatIntelligenceIndicatorMetricsClient threatIntelligenceIndicatorMetrics;
-
-    /**
-     * Gets the ThreatIntelligenceIndicatorMetricsClient object to access its operations.
-     *
-     * @return the ThreatIntelligenceIndicatorMetricsClient object.
-     */
-    public ThreatIntelligenceIndicatorMetricsClient getThreatIntelligenceIndicatorMetrics() {
-        return this.threatIntelligenceIndicatorMetrics;
-    }
-
-    /** The WatchlistsClient object to access its operations. */
-    private final WatchlistsClient watchlists;
-
-    /**
-     * Gets the WatchlistsClient object to access its operations.
-     *
-     * @return the WatchlistsClient object.
-     */
-    public WatchlistsClient getWatchlists() {
-        return this.watchlists;
-    }
-
-    /** The WatchlistItemsClient object to access its operations. */
-    private final WatchlistItemsClient watchlistItems;
-
-    /**
-     * Gets the WatchlistItemsClient object to access its operations.
-     *
-     * @return the WatchlistItemsClient object.
-     */
-    public WatchlistItemsClient getWatchlistItems() {
-        return this.watchlistItems;
-    }
-
-    /** The DataConnectorsClient object to access its operations. */
-    private final DataConnectorsClient dataConnectors;
-
-    /**
-     * Gets the DataConnectorsClient object to access its operations.
-     *
-     * @return the DataConnectorsClient object.
-     */
-    public DataConnectorsClient getDataConnectors() {
-        return this.dataConnectors;
-    }
-
-    /** The DataConnectorsCheckRequirementsOperationsClient object to access its operations. */
-    private final DataConnectorsCheckRequirementsOperationsClient dataConnectorsCheckRequirementsOperations;
-
-    /**
-     * Gets the DataConnectorsCheckRequirementsOperationsClient object to access its operations.
-     *
-     * @return the DataConnectorsCheckRequirementsOperationsClient object.
-     */
-    public DataConnectorsCheckRequirementsOperationsClient getDataConnectorsCheckRequirementsOperations() {
-        return this.dataConnectorsCheckRequirementsOperations;
+    public TemplatesClient getTemplates() {
+        return this.templates;
     }
 
     /** The OperationsClient object to access its operations. */
@@ -545,38 +181,10 @@ public final class SecurityInsightsImpl implements SecurityInsights {
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2022-01-01-preview";
-        this.alertRules = new AlertRulesClientImpl(this);
-        this.actions = new ActionsClientImpl(this);
-        this.alertRuleTemplates = new AlertRuleTemplatesClientImpl(this);
-        this.automationRules = new AutomationRulesClientImpl(this);
-        this.incidents = new IncidentsClientImpl(this);
-        this.bookmarks = new BookmarksClientImpl(this);
-        this.bookmarkRelations = new BookmarkRelationsClientImpl(this);
-        this.bookmarkOperations = new BookmarkOperationsClientImpl(this);
-        this.ipGeodatas = new IpGeodatasClientImpl(this);
-        this.domainWhois = new DomainWhoisClientImpl(this);
-        this.entities = new EntitiesClientImpl(this);
-        this.entitiesGetTimelines = new EntitiesGetTimelinesClientImpl(this);
-        this.entitiesRelations = new EntitiesRelationsClientImpl(this);
-        this.entityRelations = new EntityRelationsClientImpl(this);
-        this.entityQueries = new EntityQueriesClientImpl(this);
-        this.entityQueryTemplates = new EntityQueryTemplatesClientImpl(this);
-        this.incidentComments = new IncidentCommentsClientImpl(this);
-        this.incidentRelations = new IncidentRelationsClientImpl(this);
-        this.metadatas = new MetadatasClientImpl(this);
-        this.officeConsents = new OfficeConsentsClientImpl(this);
-        this.sentinelOnboardingStates = new SentinelOnboardingStatesClientImpl(this);
-        this.productSettings = new ProductSettingsClientImpl(this);
-        this.sourceControls = new SourceControlsClientImpl(this);
-        this.sourceControlsOperations = new SourceControlsOperationsClientImpl(this);
-        this.threatIntelligenceIndicators = new ThreatIntelligenceIndicatorsClientImpl(this);
-        this.threatIntelligenceIndicatorsOperations = new ThreatIntelligenceIndicatorsOperationsClientImpl(this);
-        this.threatIntelligenceIndicatorMetrics = new ThreatIntelligenceIndicatorMetricsClientImpl(this);
-        this.watchlists = new WatchlistsClientImpl(this);
-        this.watchlistItems = new WatchlistItemsClientImpl(this);
-        this.dataConnectors = new DataConnectorsClientImpl(this);
-        this.dataConnectorsCheckRequirementsOperations = new DataConnectorsCheckRequirementsOperationsClientImpl(this);
+        this.apiVersion = "2022-11-01-preview";
+        this.packages = new PackagesClientImpl(this);
+        this.packageOperations = new PackageOperationsClientImpl(this);
+        this.templates = new TemplatesClientImpl(this);
         this.operations = new OperationsClientImpl(this);
     }
 
