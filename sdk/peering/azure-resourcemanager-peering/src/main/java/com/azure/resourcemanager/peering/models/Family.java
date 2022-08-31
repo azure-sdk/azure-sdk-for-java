@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for Family. */
+/** The family of the peering SKU. */
 public final class Family extends ExpandableStringEnum<Family> {
     /** Static value Direct for Family. */
     public static final Family DIRECT = fromString("Direct");
@@ -27,7 +27,11 @@ public final class Family extends ExpandableStringEnum<Family> {
         return fromString(name, Family.class);
     }
 
-    /** @return known Family values. */
+    /**
+     * Gets known Family values.
+     *
+     * @return known Family values.
+     */
     public static Collection<Family> values() {
         return values(Family.class);
     }

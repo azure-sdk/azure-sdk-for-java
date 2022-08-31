@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for LearnedType. */
+/** The prefix learned type. */
 public final class LearnedType extends ExpandableStringEnum<LearnedType> {
     /** Static value None for LearnedType. */
     public static final LearnedType NONE = fromString("None");
@@ -30,7 +30,11 @@ public final class LearnedType extends ExpandableStringEnum<LearnedType> {
         return fromString(name, LearnedType.class);
     }
 
-    /** @return known LearnedType values. */
+    /**
+     * Gets known LearnedType values.
+     *
+     * @return known LearnedType values.
+     */
     public static Collection<LearnedType> values() {
         return values(LearnedType.class);
     }

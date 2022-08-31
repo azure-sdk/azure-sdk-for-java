@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for SessionStateV4. */
+/** The state of the IPv4 session. */
 public final class SessionStateV4 extends ExpandableStringEnum<SessionStateV4> {
     /** Static value None for SessionStateV4. */
     public static final SessionStateV4 NONE = fromString("None");
@@ -54,7 +54,11 @@ public final class SessionStateV4 extends ExpandableStringEnum<SessionStateV4> {
         return fromString(name, SessionStateV4.class);
     }
 
-    /** @return known SessionStateV4 values. */
+    /**
+     * Gets known SessionStateV4 values.
+     *
+     * @return known SessionStateV4 values.
+     */
     public static Collection<SessionStateV4> values() {
         return values(SessionStateV4.class);
     }

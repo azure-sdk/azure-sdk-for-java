@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for ConnectionState. */
+/** The state of the connection. */
 public final class ConnectionState extends ExpandableStringEnum<ConnectionState> {
     /** Static value None for ConnectionState. */
     public static final ConnectionState NONE = fromString("None");
@@ -34,6 +34,12 @@ public final class ConnectionState extends ExpandableStringEnum<ConnectionState>
     /** Static value Active for ConnectionState. */
     public static final ConnectionState ACTIVE = fromString("Active");
 
+    /** Static value TypeChangeRequested for ConnectionState. */
+    public static final ConnectionState TYPE_CHANGE_REQUESTED = fromString("TypeChangeRequested");
+
+    /** Static value TypeChangeInProgress for ConnectionState. */
+    public static final ConnectionState TYPE_CHANGE_IN_PROGRESS = fromString("TypeChangeInProgress");
+
     /**
      * Creates or finds a ConnectionState from its string representation.
      *
@@ -45,7 +51,11 @@ public final class ConnectionState extends ExpandableStringEnum<ConnectionState>
         return fromString(name, ConnectionState.class);
     }
 
-    /** @return known ConnectionState values. */
+    /**
+     * Gets known ConnectionState values.
+     *
+     * @return known ConnectionState values.
+     */
     public static Collection<ConnectionState> values() {
         return values(ConnectionState.class);
     }

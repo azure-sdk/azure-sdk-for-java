@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for Role. */
+/** The role of the contact. */
 public final class Role extends ExpandableStringEnum<Role> {
     /** Static value Noc for Role. */
     public static final Role NOC = fromString("Noc");
@@ -39,7 +39,11 @@ public final class Role extends ExpandableStringEnum<Role> {
         return fromString(name, Role.class);
     }
 
-    /** @return known Role values. */
+    /**
+     * Gets known Role values.
+     *
+     * @return known Role values.
+     */
     public static Collection<Role> values() {
         return values(Role.class);
     }
