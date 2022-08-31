@@ -21,10 +21,22 @@ public final class ContainerAppProperties {
     private ContainerAppProvisioningState provisioningState;
 
     /*
-     * Resource ID of the Container App's environment.
+     * Deprecated. Resource ID of the Container App's environment.
      */
     @JsonProperty(value = "managedEnvironmentId")
     private String managedEnvironmentId;
+
+    /*
+     * Resource ID of environment.
+     */
+    @JsonProperty(value = "environmentId")
+    private String environmentId;
+
+    /*
+     * Workload profile type to pin for container app execution.
+     */
+    @JsonProperty(value = "workloadProfileType")
+    private String workloadProfileType;
 
     /*
      * Name of the latest revision of the Container App.
@@ -72,7 +84,7 @@ public final class ContainerAppProperties {
     }
 
     /**
-     * Get the managedEnvironmentId property: Resource ID of the Container App's environment.
+     * Get the managedEnvironmentId property: Deprecated. Resource ID of the Container App's environment.
      *
      * @return the managedEnvironmentId value.
      */
@@ -81,13 +93,53 @@ public final class ContainerAppProperties {
     }
 
     /**
-     * Set the managedEnvironmentId property: Resource ID of the Container App's environment.
+     * Set the managedEnvironmentId property: Deprecated. Resource ID of the Container App's environment.
      *
      * @param managedEnvironmentId the managedEnvironmentId value to set.
      * @return the ContainerAppProperties object itself.
      */
     public ContainerAppProperties withManagedEnvironmentId(String managedEnvironmentId) {
         this.managedEnvironmentId = managedEnvironmentId;
+        return this;
+    }
+
+    /**
+     * Get the environmentId property: Resource ID of environment.
+     *
+     * @return the environmentId value.
+     */
+    public String environmentId() {
+        return this.environmentId;
+    }
+
+    /**
+     * Set the environmentId property: Resource ID of environment.
+     *
+     * @param environmentId the environmentId value to set.
+     * @return the ContainerAppProperties object itself.
+     */
+    public ContainerAppProperties withEnvironmentId(String environmentId) {
+        this.environmentId = environmentId;
+        return this;
+    }
+
+    /**
+     * Get the workloadProfileType property: Workload profile type to pin for container app execution.
+     *
+     * @return the workloadProfileType value.
+     */
+    public String workloadProfileType() {
+        return this.workloadProfileType;
+    }
+
+    /**
+     * Set the workloadProfileType property: Workload profile type to pin for container app execution.
+     *
+     * @param workloadProfileType the workloadProfileType value to set.
+     * @return the ContainerAppProperties object itself.
+     */
+    public ContainerAppProperties withWorkloadProfileType(String workloadProfileType) {
+        this.workloadProfileType = workloadProfileType;
         return this;
     }
 

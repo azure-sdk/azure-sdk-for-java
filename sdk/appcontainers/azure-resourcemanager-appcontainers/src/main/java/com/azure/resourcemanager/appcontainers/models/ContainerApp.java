@@ -49,6 +49,13 @@ public interface ContainerApp {
     Map<String, String> tags();
 
     /**
+     * Gets the extendedLocation property: The complex type of the extended location.
+     *
+     * @return the extendedLocation value.
+     */
+    ExtendedLocation extendedLocation();
+
+    /**
      * Gets the identity property: managed identities for the Container App to interact with other Azure services
      * without maintaining any secrets or credentials in code.
      *
@@ -64,11 +71,25 @@ public interface ContainerApp {
     ContainerAppProvisioningState provisioningState();
 
     /**
-     * Gets the managedEnvironmentId property: Resource ID of the Container App's environment.
+     * Gets the managedEnvironmentId property: Deprecated. Resource ID of the Container App's environment.
      *
      * @return the managedEnvironmentId value.
      */
     String managedEnvironmentId();
+
+    /**
+     * Gets the environmentId property: Resource ID of environment.
+     *
+     * @return the environmentId value.
+     */
+    String environmentId();
+
+    /**
+     * Gets the workloadProfileType property: Workload profile type to pin for container app execution.
+     *
+     * @return the workloadProfileType value.
+     */
+    String workloadProfileType();
 
     /**
      * Gets the latestRevisionName property: Name of the latest revision of the Container App.
@@ -186,8 +207,11 @@ public interface ContainerApp {
          */
         interface WithCreate
             extends DefinitionStages.WithTags,
+                DefinitionStages.WithExtendedLocation,
                 DefinitionStages.WithIdentity,
                 DefinitionStages.WithManagedEnvironmentId,
+                DefinitionStages.WithEnvironmentId,
+                DefinitionStages.WithWorkloadProfileType,
                 DefinitionStages.WithConfiguration,
                 DefinitionStages.WithTemplate {
             /**
@@ -215,6 +239,16 @@ public interface ContainerApp {
              */
             WithCreate withTags(Map<String, String> tags);
         }
+        /** The stage of the ContainerApp definition allowing to specify extendedLocation. */
+        interface WithExtendedLocation {
+            /**
+             * Specifies the extendedLocation property: The complex type of the extended location..
+             *
+             * @param extendedLocation The complex type of the extended location.
+             * @return the next definition stage.
+             */
+            WithCreate withExtendedLocation(ExtendedLocation extendedLocation);
+        }
         /** The stage of the ContainerApp definition allowing to specify identity. */
         interface WithIdentity {
             /**
@@ -230,12 +264,32 @@ public interface ContainerApp {
         /** The stage of the ContainerApp definition allowing to specify managedEnvironmentId. */
         interface WithManagedEnvironmentId {
             /**
-             * Specifies the managedEnvironmentId property: Resource ID of the Container App's environment..
+             * Specifies the managedEnvironmentId property: Deprecated. Resource ID of the Container App's environment..
              *
-             * @param managedEnvironmentId Resource ID of the Container App's environment.
+             * @param managedEnvironmentId Deprecated. Resource ID of the Container App's environment.
              * @return the next definition stage.
              */
             WithCreate withManagedEnvironmentId(String managedEnvironmentId);
+        }
+        /** The stage of the ContainerApp definition allowing to specify environmentId. */
+        interface WithEnvironmentId {
+            /**
+             * Specifies the environmentId property: Resource ID of environment..
+             *
+             * @param environmentId Resource ID of environment.
+             * @return the next definition stage.
+             */
+            WithCreate withEnvironmentId(String environmentId);
+        }
+        /** The stage of the ContainerApp definition allowing to specify workloadProfileType. */
+        interface WithWorkloadProfileType {
+            /**
+             * Specifies the workloadProfileType property: Workload profile type to pin for container app execution..
+             *
+             * @param workloadProfileType Workload profile type to pin for container app execution.
+             * @return the next definition stage.
+             */
+            WithCreate withWorkloadProfileType(String workloadProfileType);
         }
         /** The stage of the ContainerApp definition allowing to specify configuration. */
         interface WithConfiguration {
@@ -268,7 +322,9 @@ public interface ContainerApp {
     /** The template for ContainerApp update. */
     interface Update
         extends UpdateStages.WithTags,
+            UpdateStages.WithExtendedLocation,
             UpdateStages.WithIdentity,
+            UpdateStages.WithWorkloadProfileType,
             UpdateStages.WithConfiguration,
             UpdateStages.WithTemplate {
         /**
@@ -298,6 +354,16 @@ public interface ContainerApp {
              */
             Update withTags(Map<String, String> tags);
         }
+        /** The stage of the ContainerApp update allowing to specify extendedLocation. */
+        interface WithExtendedLocation {
+            /**
+             * Specifies the extendedLocation property: The complex type of the extended location..
+             *
+             * @param extendedLocation The complex type of the extended location.
+             * @return the next definition stage.
+             */
+            Update withExtendedLocation(ExtendedLocation extendedLocation);
+        }
         /** The stage of the ContainerApp update allowing to specify identity. */
         interface WithIdentity {
             /**
@@ -309,6 +375,16 @@ public interface ContainerApp {
              * @return the next definition stage.
              */
             Update withIdentity(ManagedServiceIdentity identity);
+        }
+        /** The stage of the ContainerApp update allowing to specify workloadProfileType. */
+        interface WithWorkloadProfileType {
+            /**
+             * Specifies the workloadProfileType property: Workload profile type to pin for container app execution..
+             *
+             * @param workloadProfileType Workload profile type to pin for container app execution.
+             * @return the next definition stage.
+             */
+            Update withWorkloadProfileType(String workloadProfileType);
         }
         /** The stage of the ContainerApp update allowing to specify configuration. */
         interface WithConfiguration {
