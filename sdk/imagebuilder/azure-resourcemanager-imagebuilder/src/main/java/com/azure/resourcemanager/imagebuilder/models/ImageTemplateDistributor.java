@@ -34,8 +34,7 @@ public class ImageTemplateDistributor {
     private String runOutputName;
 
     /*
-     * Tags that will be applied to the artifact once it has been
-     * created/updated by the distributor.
+     * Tags that will be applied to the artifact once it has been created/updated by the distributor.
      */
     @JsonProperty(value = "artifactTags")
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
