@@ -17,7 +17,9 @@ import com.azure.resourcemanager.synapse.models.CreateSqlPoolRestorePointDefinit
 /** An instance of this class provides access to all the operations defined in SqlPoolRestorePointsClient. */
 public interface SqlPoolRestorePointsClient {
     /**
-     * Get SQL pool backup information.
+     * Get SQL pool backup
+     *
+     * <p>Get SQL pool backup information.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -31,7 +33,9 @@ public interface SqlPoolRestorePointsClient {
     PagedIterable<RestorePointInner> list(String resourceGroupName, String workspaceName, String sqlPoolName);
 
     /**
-     * Get SQL pool backup information.
+     * Get SQL pool backup
+     *
+     * <p>Get SQL pool backup information.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.

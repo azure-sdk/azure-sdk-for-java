@@ -75,7 +75,9 @@ public final class IntegrationRuntimeConnectionInfosClientImpl implements Integr
     }
 
     /**
-     * Get connection info for an integration runtime.
+     * Get integration runtime connection info
+     *
+     * <p>Get connection info for an integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -132,7 +134,9 @@ public final class IntegrationRuntimeConnectionInfosClientImpl implements Integr
     }
 
     /**
-     * Get connection info for an integration runtime.
+     * Get integration runtime connection info
+     *
+     * <p>Get connection info for an integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -187,7 +191,9 @@ public final class IntegrationRuntimeConnectionInfosClientImpl implements Integr
     }
 
     /**
-     * Get connection info for an integration runtime.
+     * Get integration runtime connection info
+     *
+     * <p>Get connection info for an integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -201,18 +207,13 @@ public final class IntegrationRuntimeConnectionInfosClientImpl implements Integr
     private Mono<IntegrationRuntimeConnectionInfoInner> getAsync(
         String resourceGroupName, String workspaceName, String integrationRuntimeName) {
         return getWithResponseAsync(resourceGroupName, workspaceName, integrationRuntimeName)
-            .flatMap(
-                (Response<IntegrationRuntimeConnectionInfoInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
-     * Get connection info for an integration runtime.
+     * Get integration runtime connection info
+     *
+     * <p>Get connection info for an integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -229,7 +230,9 @@ public final class IntegrationRuntimeConnectionInfosClientImpl implements Integr
     }
 
     /**
-     * Get connection info for an integration runtime.
+     * Get integration runtime connection info
+     *
+     * <p>Get connection info for an integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.

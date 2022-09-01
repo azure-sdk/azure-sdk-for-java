@@ -19,7 +19,9 @@ import com.azure.resourcemanager.synapse.models.GetSsisObjectMetadataRequest;
  */
 public interface IntegrationRuntimeObjectMetadatasClient {
     /**
-     * Get object metadata from an integration runtime.
+     * Get integration runtime object metadata
+     *
+     * <p>Get object metadata from an integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -34,7 +36,9 @@ public interface IntegrationRuntimeObjectMetadatasClient {
         String resourceGroupName, String workspaceName, String integrationRuntimeName);
 
     /**
-     * Get object metadata from an integration runtime.
+     * Get integration runtime object metadata
+     *
+     * <p>Get object metadata from an integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -55,7 +59,9 @@ public interface IntegrationRuntimeObjectMetadatasClient {
         Context context);
 
     /**
-     * Refresh the object metadata in an integration runtime.
+     * Refresh integration runtime object metadata
+     *
+     * <p>Refresh the object metadata in an integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -70,7 +76,9 @@ public interface IntegrationRuntimeObjectMetadatasClient {
         String resourceGroupName, String workspaceName, String integrationRuntimeName);
 
     /**
-     * Refresh the object metadata in an integration runtime.
+     * Refresh integration runtime object metadata
+     *
+     * <p>Refresh the object metadata in an integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -86,7 +94,9 @@ public interface IntegrationRuntimeObjectMetadatasClient {
         String resourceGroupName, String workspaceName, String integrationRuntimeName, Context context);
 
     /**
-     * Refresh the object metadata in an integration runtime.
+     * Refresh integration runtime object metadata
+     *
+     * <p>Refresh the object metadata in an integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -101,7 +111,9 @@ public interface IntegrationRuntimeObjectMetadatasClient {
         String resourceGroupName, String workspaceName, String integrationRuntimeName);
 
     /**
-     * Refresh the object metadata in an integration runtime.
+     * Refresh integration runtime object metadata
+     *
+     * <p>Refresh the object metadata in an integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
