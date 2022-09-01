@@ -11,7 +11,7 @@ import com.azure.core.util.Context;
 /** Resource collection API of Machines. */
 public interface Machines {
     /**
-     * The operation to remove a hybrid machine identity in Azure.
+     * The operation to delete a hybrid machine.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param machineName The name of the hybrid machine.
@@ -22,7 +22,7 @@ public interface Machines {
     void deleteByResourceGroup(String resourceGroupName, String machineName);
 
     /**
-     * The operation to remove a hybrid machine identity in Azure.
+     * The operation to delete a hybrid machine.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param machineName The name of the hybrid machine.
@@ -30,7 +30,7 @@ public interface Machines {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
+     * @return the {@link Response}.
      */
     Response<Void> deleteWithResponse(String resourceGroupName, String machineName, Context context);
 
@@ -56,7 +56,7 @@ public interface Machines {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return describes a hybrid machine.
+     * @return describes a hybrid machine along with {@link Response}.
      */
     Response<Machine> getByResourceGroupWithResponse(
         String resourceGroupName, String machineName, InstanceViewTypes expand, Context context);
@@ -69,7 +69,7 @@ public interface Machines {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the List hybrid machine operation response.
+     * @return the List hybrid machine operation response as paginated response with {@link PagedIterable}.
      */
     PagedIterable<Machine> listByResourceGroup(String resourceGroupName);
 
@@ -82,7 +82,7 @@ public interface Machines {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the List hybrid machine operation response.
+     * @return the List hybrid machine operation response as paginated response with {@link PagedIterable}.
      */
     PagedIterable<Machine> listByResourceGroup(String resourceGroupName, Context context);
 
@@ -92,7 +92,7 @@ public interface Machines {
      *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the List hybrid machine operation response.
+     * @return the List hybrid machine operation response as paginated response with {@link PagedIterable}.
      */
     PagedIterable<Machine> list();
 
@@ -104,7 +104,7 @@ public interface Machines {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the List hybrid machine operation response.
+     * @return the List hybrid machine operation response as paginated response with {@link PagedIterable}.
      */
     PagedIterable<Machine> list(Context context);
 }

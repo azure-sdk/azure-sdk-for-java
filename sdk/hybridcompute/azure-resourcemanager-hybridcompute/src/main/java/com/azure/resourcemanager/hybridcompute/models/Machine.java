@@ -6,6 +6,7 @@ package com.azure.resourcemanager.hybridcompute.models;
 
 import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.hybridcompute.fluent.models.MachineInner;
+import java.util.List;
 import java.util.Map;
 
 /** An immutable client-side representation of Machine. */
@@ -51,6 +52,13 @@ public interface Machine {
      * @return the properties value.
      */
     MachineProperties properties();
+
+    /**
+     * Gets the resources property: The list of extensions affiliated to the machine.
+     *
+     * @return the resources value.
+     */
+    List<MachineExtension> resources();
 
     /**
      * Gets the identity property: Identity for the resource.

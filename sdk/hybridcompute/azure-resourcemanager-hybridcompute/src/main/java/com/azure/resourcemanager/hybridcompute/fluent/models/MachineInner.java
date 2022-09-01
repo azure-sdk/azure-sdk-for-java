@@ -7,23 +7,26 @@ package com.azure.resourcemanager.hybridcompute.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.Resource;
 import com.azure.core.management.SystemData;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.hybridcompute.models.Identity;
 import com.azure.resourcemanager.hybridcompute.models.MachineProperties;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.List;
 import java.util.Map;
 
 /** Describes a hybrid machine. */
 @Fluent
 public final class MachineInner extends Resource {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(MachineInner.class);
-
     /*
      * Hybrid Compute Machine properties
      */
     @JsonProperty(value = "properties")
     private MachineProperties properties;
+
+    /*
+     * The list of extensions affiliated to the machine
+     */
+    @JsonProperty(value = "resources", access = JsonProperty.Access.WRITE_ONLY)
+    private List<MachineExtensionInner> resources;
 
     /*
      * Identity for the resource.
@@ -55,6 +58,15 @@ public final class MachineInner extends Resource {
     public MachineInner withProperties(MachineProperties properties) {
         this.properties = properties;
         return this;
+    }
+
+    /**
+     * Get the resources property: The list of extensions affiliated to the machine.
+     *
+     * @return the resources value.
+     */
+    public List<MachineExtensionInner> resources() {
+        return this.resources;
     }
 
     /**
@@ -108,6 +120,9 @@ public final class MachineInner extends Resource {
     public void validate() {
         if (properties() != null) {
             properties().validate();
+        }
+        if (resources() != null) {
+            resources().forEach(e -> e.validate());
         }
         if (identity() != null) {
             identity().validate();
