@@ -11,7 +11,9 @@ import java.util.List;
 /** Resource collection API of Operations. */
 public interface Operations {
     /**
-     * Check whether a workspace name is available.
+     * Check name availability
+     *
+     * <p>Check whether a workspace name is available.
      *
      * @param request The check request.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -22,7 +24,9 @@ public interface Operations {
     CheckNameAvailabilityResponse checkNameAvailability(CheckNameAvailabilityRequest request);
 
     /**
-     * Check whether a workspace name is available.
+     * Check name availability
+     *
+     * <p>Check whether a workspace name is available.
      *
      * @param request The check request.
      * @param context The context to associate with this operation.
@@ -35,7 +39,9 @@ public interface Operations {
         CheckNameAvailabilityRequest request, Context context);
 
     /**
-     * Get all available operations.
+     * All operations
+     *
+     * <p>Get all available operations.
      *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -44,7 +50,9 @@ public interface Operations {
     List<AvailableRpOperation> list();
 
     /**
-     * Get all available operations.
+     * All operations
+     *
+     * <p>Get all available operations.
      *
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -55,7 +63,9 @@ public interface Operations {
     Response<List<AvailableRpOperation>> listWithResponse(Context context);
 
     /**
-     * Get the result of an operation.
+     * Get operation result
+     *
+     * <p>Get the result of an operation.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -67,7 +77,9 @@ public interface Operations {
     void getLocationHeaderResult(String resourceGroupName, String workspaceName, String operationId);
 
     /**
-     * Get the result of an operation.
+     * Get operation result
+     *
+     * <p>Get the result of an operation.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -82,7 +94,9 @@ public interface Operations {
         String resourceGroupName, String workspaceName, String operationId, Context context);
 
     /**
-     * Get the status of an operation.
+     * Get operation status
+     *
+     * <p>Get the status of an operation.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -95,7 +109,9 @@ public interface Operations {
     OperationResource getAzureAsyncHeaderResult(String resourceGroupName, String workspaceName, String operationId);
 
     /**
-     * Get the status of an operation.
+     * Get operation status
+     *
+     * <p>Get the status of an operation.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
