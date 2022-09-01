@@ -5,26 +5,20 @@
 package com.azure.resourcemanager.webpubsub.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** Network ACL. */
 @Fluent
 public class NetworkAcl {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(NetworkAcl.class);
-
     /*
-     * Allowed request types. The value can be one or more of:
-     * ClientConnection, ServerConnection, RESTAPI.
+     * Allowed request types. The value can be one or more of: ClientConnection, ServerConnection, RESTAPI.
      */
     @JsonProperty(value = "allow")
     private List<WebPubSubRequestType> allow;
 
     /*
-     * Denied request types. The value can be one or more of: ClientConnection,
-     * ServerConnection, RESTAPI.
+     * Denied request types. The value can be one or more of: ClientConnection, ServerConnection, RESTAPI.
      */
     @JsonProperty(value = "deny")
     private List<WebPubSubRequestType> deny;

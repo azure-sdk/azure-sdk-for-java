@@ -163,6 +163,10 @@ public final class WebPubSubResourceImpl
         return this.location();
     }
 
+    public String resourceGroupName() {
+        return resourceGroupName;
+    }
+
     public WebPubSubResourceInner innerModel() {
         return this.innerObject;
     }
