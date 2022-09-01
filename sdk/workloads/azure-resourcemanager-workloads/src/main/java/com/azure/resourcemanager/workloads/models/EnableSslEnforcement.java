@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for EnableSslEnforcement. */
+/** Whether to enable SSL enforcement on the database. */
 public final class EnableSslEnforcement extends ExpandableStringEnum<EnableSslEnforcement> {
     /** Static value Enabled for EnableSslEnforcement. */
     public static final EnableSslEnforcement ENABLED = fromString("Enabled");

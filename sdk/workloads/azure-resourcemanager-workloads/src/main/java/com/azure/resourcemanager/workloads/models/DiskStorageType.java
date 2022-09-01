@@ -7,7 +7,7 @@ package com.azure.resourcemanager.workloads.models;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-/** Defines values for DiskStorageType. */
+/** Storage type. */
 public enum DiskStorageType {
     /** Enum value Premium_LRS. */
     PREMIUM_LRS("Premium_LRS"),
@@ -33,6 +33,9 @@ public enum DiskStorageType {
      */
     @JsonCreator
     public static DiskStorageType fromString(String value) {
+        if (value == null) {
+            return null;
+        }
         DiskStorageType[] items = DiskStorageType.values();
         for (DiskStorageType item : items) {
             if (item.toString().equalsIgnoreCase(value)) {
@@ -42,6 +45,7 @@ public enum DiskStorageType {
         return null;
     }
 
+    /** {@inheritDoc} */
     @JsonValue
     @Override
     public String toString() {

@@ -12,8 +12,7 @@ import java.util.List;
 @Immutable
 public final class ErrorDefinition {
     /*
-     * Service specific error code which serves as the substatus for the HTTP
-     * error code.
+     * Service specific error code which serves as the substatus for the HTTP error code.
      */
     @JsonProperty(value = "code", access = JsonProperty.Access.WRITE_ONLY)
     private String code;

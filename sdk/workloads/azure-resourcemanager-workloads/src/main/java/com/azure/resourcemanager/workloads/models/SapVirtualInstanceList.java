@@ -9,11 +9,11 @@ import com.azure.resourcemanager.workloads.fluent.models.SapVirtualInstanceInner
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Defines the collection of Virtual Instance for SAP. */
+/** Defines the collection of Virtual Instance for SAP solutions resources. */
 @Fluent
 public final class SapVirtualInstanceList {
     /*
-     * Gets the list of Virtual Instances for SAP.
+     * Gets the list of Virtual Instances for SAP solutions resources.
      */
     @JsonProperty(value = "value")
     private List<SapVirtualInstanceInner> value;
@@ -25,7 +25,7 @@ public final class SapVirtualInstanceList {
     private String nextLink;
 
     /**
-     * Get the value property: Gets the list of Virtual Instances for SAP.
+     * Get the value property: Gets the list of Virtual Instances for SAP solutions resources.
      *
      * @return the value value.
      */
@@ -34,7 +34,7 @@ public final class SapVirtualInstanceList {
     }
 
     /**
-     * Set the value property: Gets the list of Virtual Instances for SAP.
+     * Set the value property: Gets the list of Virtual Instances for SAP solutions resources.
      *
      * @param value the value value to set.
      * @return the SapVirtualInstanceList object itself.

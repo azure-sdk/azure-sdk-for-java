@@ -56,35 +56,36 @@ public interface SapDatabaseInstance {
     SystemData systemData();
 
     /**
-     * Gets the subnet property: The database subnet.
+     * Gets the subnet property: Database subnet.
      *
      * @return the subnet value.
      */
     String subnet();
 
     /**
-     * Gets the databaseSid property: The database SID.
+     * Gets the databaseSid property: Database SID name.
      *
      * @return the databaseSid value.
      */
     String databaseSid();
 
     /**
-     * Gets the databaseType property: The SAP database type.
+     * Gets the databaseType property: Database type, that is if the DB is HANA, DB2, Oracle, SAP ASE, Max DB or MS SQL
+     * Server.
      *
      * @return the databaseType value.
      */
     String databaseType();
 
     /**
-     * Gets the ipAddress property: The database IP Address.
+     * Gets the ipAddress property: Database IP Address.
      *
      * @return the ipAddress value.
      */
     String ipAddress();
 
     /**
-     * Gets the vmDetails property: The list of virtual machines.
+     * Gets the vmDetails property: The list of virtual machines corresponding to the Database resource.
      *
      * @return the vmDetails value.
      */
@@ -105,7 +106,7 @@ public interface SapDatabaseInstance {
     SapVirtualInstanceProvisioningState provisioningState();
 
     /**
-     * Gets the errors property: Defines the Database Instance errors.
+     * Gets the errors property: Defines the errors related to Database resource.
      *
      * @return the errors value.
      */
@@ -175,7 +176,7 @@ public interface SapDatabaseInstance {
              * Specifies resourceGroupName, sapVirtualInstanceName.
              *
              * @param resourceGroupName The name of the resource group. The name is case insensitive.
-             * @param sapVirtualInstanceName The name of the Virtual Instances for SAP.
+             * @param sapVirtualInstanceName The name of the Virtual Instances for SAP solutions resource.
              * @return the next definition stage.
              */
             WithCreate withExistingSapVirtualInstance(String resourceGroupName, String sapVirtualInstanceName);

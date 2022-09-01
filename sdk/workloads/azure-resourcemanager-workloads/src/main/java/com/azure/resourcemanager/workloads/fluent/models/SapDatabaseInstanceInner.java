@@ -15,24 +15,23 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import java.util.Map;
 
-/** Define the SAP Database Instance. */
+/** Define the Database resource. */
 @Fluent
 public final class SapDatabaseInstanceInner extends Resource {
     /*
-     * Defines the SAP Database properties.
+     * Defines the Database properties.
      */
     @JsonProperty(value = "properties")
     private SapDatabaseProperties innerProperties;
 
     /*
-     * Azure Resource Manager metadata containing createdBy and modifiedBy
-     * information.
+     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
      */
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
     /**
-     * Get the innerProperties property: Defines the SAP Database properties.
+     * Get the innerProperties property: Defines the Database properties.
      *
      * @return the innerProperties value.
      */
@@ -64,7 +63,7 @@ public final class SapDatabaseInstanceInner extends Resource {
     }
 
     /**
-     * Get the subnet property: The database subnet.
+     * Get the subnet property: Database subnet.
      *
      * @return the subnet value.
      */
@@ -73,7 +72,7 @@ public final class SapDatabaseInstanceInner extends Resource {
     }
 
     /**
-     * Get the databaseSid property: The database SID.
+     * Get the databaseSid property: Database SID name.
      *
      * @return the databaseSid value.
      */
@@ -82,7 +81,8 @@ public final class SapDatabaseInstanceInner extends Resource {
     }
 
     /**
-     * Get the databaseType property: The SAP database type.
+     * Get the databaseType property: Database type, that is if the DB is HANA, DB2, Oracle, SAP ASE, Max DB or MS SQL
+     * Server.
      *
      * @return the databaseType value.
      */
@@ -91,7 +91,7 @@ public final class SapDatabaseInstanceInner extends Resource {
     }
 
     /**
-     * Get the ipAddress property: The database IP Address.
+     * Get the ipAddress property: Database IP Address.
      *
      * @return the ipAddress value.
      */
@@ -100,7 +100,7 @@ public final class SapDatabaseInstanceInner extends Resource {
     }
 
     /**
-     * Get the vmDetails property: The list of virtual machines.
+     * Get the vmDetails property: The list of virtual machines corresponding to the Database resource.
      *
      * @return the vmDetails value.
      */
@@ -127,7 +127,7 @@ public final class SapDatabaseInstanceInner extends Resource {
     }
 
     /**
-     * Get the errors property: Defines the Database Instance errors.
+     * Get the errors property: Defines the errors related to Database resource.
      *
      * @return the errors value.
      */

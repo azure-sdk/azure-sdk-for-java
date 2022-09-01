@@ -92,6 +92,14 @@ public interface Monitor {
     RoutingPreference routingPreference();
 
     /**
+     * Gets the zoneRedundancyPreference property: Sets the preference for zone redundancy on resources created for the
+     * SAP monitor. By default resources will be created which do not support zone redundancy.
+     *
+     * @return the zoneRedundancyPreference value.
+     */
+    String zoneRedundancyPreference();
+
+    /**
      * Gets the managedResourceGroupConfiguration property: Managed resource group configuration.
      *
      * @return the managedResourceGroupConfiguration value.
@@ -197,6 +205,7 @@ public interface Monitor {
                 DefinitionStages.WithIdentity,
                 DefinitionStages.WithAppLocation,
                 DefinitionStages.WithRoutingPreference,
+                DefinitionStages.WithZoneRedundancyPreference,
                 DefinitionStages.WithManagedResourceGroupConfiguration,
                 DefinitionStages.WithLogAnalyticsWorkspaceArmId,
                 DefinitionStages.WithMonitorSubnet {
@@ -258,6 +267,18 @@ public interface Monitor {
              * @return the next definition stage.
              */
             WithCreate withRoutingPreference(RoutingPreference routingPreference);
+        }
+        /** The stage of the Monitor definition allowing to specify zoneRedundancyPreference. */
+        interface WithZoneRedundancyPreference {
+            /**
+             * Specifies the zoneRedundancyPreference property: Sets the preference for zone redundancy on resources
+             * created for the SAP monitor. By default resources will be created which do not support zone redundancy..
+             *
+             * @param zoneRedundancyPreference Sets the preference for zone redundancy on resources created for the SAP
+             *     monitor. By default resources will be created which do not support zone redundancy.
+             * @return the next definition stage.
+             */
+            WithCreate withZoneRedundancyPreference(String zoneRedundancyPreference);
         }
         /** The stage of the Monitor definition allowing to specify managedResourceGroupConfiguration. */
         interface WithManagedResourceGroupConfiguration {

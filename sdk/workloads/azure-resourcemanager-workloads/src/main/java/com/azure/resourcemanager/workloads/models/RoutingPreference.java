@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for RoutingPreference. */
+/** Sets the routing preference of the SAP monitor. By default only RFC1918 traffic is routed to the customer VNET. */
 public final class RoutingPreference extends ExpandableStringEnum<RoutingPreference> {
     /** Static value Default for RoutingPreference. */
     public static final RoutingPreference DEFAULT = fromString("Default");
