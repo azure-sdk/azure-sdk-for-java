@@ -38,7 +38,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-/** Entry point to IotDpsManager. API for using the Azure IoT Hub Device Provisioning Service features. */
+/** Entry point to IotDpsManager. API for using the Azure IoT Hub Device Provisioning Service features testing. */
 public final class IotDpsManager {
     private Operations operations;
 
@@ -211,7 +211,7 @@ public final class IotDpsManager {
                 .append("-")
                 .append("com.azure.resourcemanager.deviceprovisioningservices")
                 .append("/")
-                .append("1.1.0-beta.2");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder
                     .append(" (")

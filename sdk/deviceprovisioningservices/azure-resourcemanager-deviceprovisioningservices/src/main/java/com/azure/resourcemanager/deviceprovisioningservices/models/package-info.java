@@ -4,6 +4,6 @@
 
 /**
  * Package containing the data models for IotDpsClient. API for using the Azure IoT Hub Device Provisioning Service
- * features.
+ * features testing.
  */
 package com.azure.resourcemanager.deviceprovisioningservices.models;
