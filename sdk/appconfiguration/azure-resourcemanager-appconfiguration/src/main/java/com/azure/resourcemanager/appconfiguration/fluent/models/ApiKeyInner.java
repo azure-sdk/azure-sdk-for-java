@@ -30,8 +30,7 @@ public final class ApiKeyInner {
     private String value;
 
     /*
-     * A connection string that can be used by supporting clients for
-     * authentication.
+     * A connection string that can be used by supporting clients for authentication.
      */
     @JsonProperty(value = "connectionString", access = JsonProperty.Access.WRITE_ONLY)
     private String connectionString;
