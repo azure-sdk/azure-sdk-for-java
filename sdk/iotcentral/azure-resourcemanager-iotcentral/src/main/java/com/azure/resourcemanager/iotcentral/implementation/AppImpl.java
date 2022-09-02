@@ -113,6 +113,10 @@ public final class AppImpl implements App, App.Definition, App.Update {
         return this.location();
     }
 
+    public String resourceGroupName() {
+        return resourceGroupName;
+    }
+
     public AppInner innerModel() {
         return this.innerObject;
     }
