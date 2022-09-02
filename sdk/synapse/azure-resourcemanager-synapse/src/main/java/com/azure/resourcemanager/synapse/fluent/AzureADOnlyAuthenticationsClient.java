@@ -17,7 +17,9 @@ import com.azure.resourcemanager.synapse.models.AzureADOnlyAuthenticationName;
 /** An instance of this class provides access to all the operations defined in AzureADOnlyAuthenticationsClient. */
 public interface AzureADOnlyAuthenticationsClient {
     /**
-     * Gets a Azure Active Directory only authentication property.
+     * Get Azure Active Directory only authentication property
+     *
+     * <p>Gets a Azure Active Directory only authentication property.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -32,7 +34,9 @@ public interface AzureADOnlyAuthenticationsClient {
         String resourceGroupName, String workspaceName, AzureADOnlyAuthenticationName azureADOnlyAuthenticationName);
 
     /**
-     * Gets a Azure Active Directory only authentication property.
+     * Get Azure Active Directory only authentication property
+     *
+     * <p>Gets a Azure Active Directory only authentication property.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -51,7 +55,9 @@ public interface AzureADOnlyAuthenticationsClient {
         Context context);
 
     /**
-     * Create or Update a Azure Active Directory only authentication property for the workspaces.
+     * Create or Update Azure Active Directory only authentication property
+     *
+     * <p>Create or Update a Azure Active Directory only authentication property for the workspaces.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -70,7 +76,9 @@ public interface AzureADOnlyAuthenticationsClient {
         AzureADOnlyAuthenticationInner azureADOnlyAuthenticationInfo);
 
     /**
-     * Create or Update a Azure Active Directory only authentication property for the workspaces.
+     * Create or Update Azure Active Directory only authentication property
+     *
+     * <p>Create or Update a Azure Active Directory only authentication property for the workspaces.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -91,7 +99,9 @@ public interface AzureADOnlyAuthenticationsClient {
         Context context);
 
     /**
-     * Create or Update a Azure Active Directory only authentication property for the workspaces.
+     * Create or Update Azure Active Directory only authentication property
+     *
+     * <p>Create or Update a Azure Active Directory only authentication property for the workspaces.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -110,7 +120,9 @@ public interface AzureADOnlyAuthenticationsClient {
         AzureADOnlyAuthenticationInner azureADOnlyAuthenticationInfo);
 
     /**
-     * Create or Update a Azure Active Directory only authentication property for the workspaces.
+     * Create or Update Azure Active Directory only authentication property
+     *
+     * <p>Create or Update a Azure Active Directory only authentication property for the workspaces.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -131,7 +143,9 @@ public interface AzureADOnlyAuthenticationsClient {
         Context context);
 
     /**
-     * Gets a list of Azure Active Directory only authentication property for a workspace.
+     * Gets a list of Azure Active Directory only authentication property
+     *
+     * <p>Gets a list of Azure Active Directory only authentication property for a workspace.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -145,7 +159,9 @@ public interface AzureADOnlyAuthenticationsClient {
     PagedIterable<AzureADOnlyAuthenticationInner> list(String resourceGroupName, String workspaceName);
 
     /**
-     * Gets a list of Azure Active Directory only authentication property for a workspace.
+     * Gets a list of Azure Active Directory only authentication property
+     *
+     * <p>Gets a list of Azure Active Directory only authentication property for a workspace.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
