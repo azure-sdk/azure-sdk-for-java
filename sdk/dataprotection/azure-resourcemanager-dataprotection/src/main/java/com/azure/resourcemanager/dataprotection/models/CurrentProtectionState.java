@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for CurrentProtectionState. */
+/** Specifies the current protection state of the resource. */
 public final class CurrentProtectionState extends ExpandableStringEnum<CurrentProtectionState> {
     /** Static value Invalid for CurrentProtectionState. */
     public static final CurrentProtectionState INVALID = fromString("Invalid");
@@ -59,7 +59,11 @@ public final class CurrentProtectionState extends ExpandableStringEnum<CurrentPr
         return fromString(name, CurrentProtectionState.class);
     }
 
-    /** @return known CurrentProtectionState values. */
+    /**
+     * Gets known CurrentProtectionState values.
+     *
+     * @return known CurrentProtectionState values.
+     */
     public static Collection<CurrentProtectionState> values() {
         return values(CurrentProtectionState.class);
     }
