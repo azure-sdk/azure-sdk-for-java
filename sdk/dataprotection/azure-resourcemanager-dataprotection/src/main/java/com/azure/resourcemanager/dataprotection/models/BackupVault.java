@@ -6,14 +6,21 @@ package com.azure.resourcemanager.dataprotection.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** BackupVault Backup Vault. */
+/**
+ * BackupVault
+ *
+ * <p>Backup Vault.
+ */
 @Fluent
 public final class BackupVault {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(BackupVault.class);
+    /*
+     * Monitoring Settings
+     */
+    @JsonProperty(value = "monitoringSettings")
+    private MonitoringSettings monitoringSettings;
 
     /*
      * Provisioning state of the BackupVault resource
@@ -38,6 +45,26 @@ public final class BackupVault {
      */
     @JsonProperty(value = "storageSettings", required = true)
     private List<StorageSetting> storageSettings;
+
+    /**
+     * Get the monitoringSettings property: Monitoring Settings.
+     *
+     * @return the monitoringSettings value.
+     */
+    public MonitoringSettings monitoringSettings() {
+        return this.monitoringSettings;
+    }
+
+    /**
+     * Set the monitoringSettings property: Monitoring Settings.
+     *
+     * @param monitoringSettings the monitoringSettings value to set.
+     * @return the BackupVault object itself.
+     */
+    public BackupVault withMonitoringSettings(MonitoringSettings monitoringSettings) {
+        this.monitoringSettings = monitoringSettings;
+        return this;
+    }
 
     /**
      * Get the provisioningState property: Provisioning state of the BackupVault resource.
@@ -92,15 +119,20 @@ public final class BackupVault {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+        if (monitoringSettings() != null) {
+            monitoringSettings().validate();
+        }
         if (resourceMoveDetails() != null) {
             resourceMoveDetails().validate();
         }
         if (storageSettings() == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property storageSettings in model BackupVault"));
         } else {
             storageSettings().forEach(e -> e.validate());
         }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(BackupVault.class);
 }

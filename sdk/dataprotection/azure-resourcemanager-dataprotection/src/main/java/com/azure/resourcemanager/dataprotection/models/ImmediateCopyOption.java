@@ -5,18 +5,18 @@
 package com.azure.resourcemanager.dataprotection.models;
 
 import com.azure.core.annotation.Immutable;
-import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** ImmediateCopyOption Immediate copy Option. */
+/**
+ * ImmediateCopyOption
+ *
+ * <p>Immediate copy Option.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "objectType")
 @JsonTypeName("ImmediateCopyOption")
 @Immutable
 public final class ImmediateCopyOption extends CopyOption {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(ImmediateCopyOption.class);
-
     /**
      * Validates the instance.
      *
