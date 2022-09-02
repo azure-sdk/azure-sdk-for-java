@@ -104,6 +104,10 @@ public final class SqlPoolImpl implements SqlPool, SqlPool.Definition, SqlPool.U
         return this.location();
     }
 
+    public String resourceGroupName() {
+        return resourceGroupName;
+    }
+
     public SqlPoolInner innerModel() {
         return this.innerObject;
     }
@@ -310,13 +314,8 @@ public final class SqlPoolImpl implements SqlPool, SqlPool.Definition, SqlPool.U
     }
 
     public SqlPoolImpl withRestorePointInTime(OffsetDateTime restorePointInTime) {
-        if (isInCreateMode()) {
-            this.innerModel().withRestorePointInTime(restorePointInTime);
-            return this;
-        } else {
-            this.updateSqlPoolInfo.withRestorePointInTime(restorePointInTime);
-            return this;
-        }
+        this.innerModel().withRestorePointInTime(restorePointInTime);
+        return this;
     }
 
     public SqlPoolImpl withCreateMode(CreateMode createMode) {

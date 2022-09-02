@@ -49,7 +49,9 @@ public interface SqlPool {
     Map<String, String> tags();
 
     /**
-     * Gets the sku property: Sku SQL pool SKU.
+     * Gets the sku property: Sku
+     *
+     * <p>SQL pool SKU.
      *
      * @return the sku value.
      */
@@ -159,6 +161,13 @@ public interface SqlPool {
     String regionName();
 
     /**
+     * Gets the name of the resource group.
+     *
+     * @return the name of the resource group.
+     */
+    String resourceGroupName();
+
+    /**
      * Gets the inner com.azure.resourcemanager.synapse.fluent.models.SqlPoolInner object.
      *
      * @return the inner object.
@@ -250,9 +259,12 @@ public interface SqlPool {
         /** The stage of the SqlPool definition allowing to specify sku. */
         interface WithSku {
             /**
-             * Specifies the sku property: Sku SQL pool SKU.
+             * Specifies the sku property: Sku
              *
-             * @param sku Sku SQL pool SKU.
+             * <p>SQL pool SKU.
+             *
+             * @param sku Sku
+             *     <p>SQL pool SKU.
              * @return the next definition stage.
              */
             WithCreate withSku(Sku sku);
@@ -386,7 +398,6 @@ public interface SqlPool {
             UpdateStages.WithSourceDatabaseId,
             UpdateStages.WithRecoverableDatabaseId,
             UpdateStages.WithProvisioningState,
-            UpdateStages.WithRestorePointInTime,
             UpdateStages.WithCreateMode,
             UpdateStages.WithStorageAccountType {
         /**
@@ -419,9 +430,12 @@ public interface SqlPool {
         /** The stage of the SqlPool update allowing to specify sku. */
         interface WithSku {
             /**
-             * Specifies the sku property: Sku SQL pool SKU.
+             * Specifies the sku property: Sku
              *
-             * @param sku Sku SQL pool SKU.
+             * <p>SQL pool SKU.
+             *
+             * @param sku Sku
+             *     <p>SQL pool SKU.
              * @return the next definition stage.
              */
             Update withSku(Sku sku);
@@ -475,16 +489,6 @@ public interface SqlPool {
              * @return the next definition stage.
              */
             Update withProvisioningState(String provisioningState);
-        }
-        /** The stage of the SqlPool update allowing to specify restorePointInTime. */
-        interface WithRestorePointInTime {
-            /**
-             * Specifies the restorePointInTime property: Snapshot time to restore.
-             *
-             * @param restorePointInTime Snapshot time to restore.
-             * @return the next definition stage.
-             */
-            Update withRestorePointInTime(OffsetDateTime restorePointInTime);
         }
         /** The stage of the SqlPool update allowing to specify createMode. */
         interface WithCreateMode {
@@ -545,7 +549,9 @@ public interface SqlPool {
     SqlPool refresh(Context context);
 
     /**
-     * Pause a SQL pool.
+     * Pause SQL pool
+     *
+     * <p>Pause a SQL pool.
      *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -554,7 +560,9 @@ public interface SqlPool {
     Object pause();
 
     /**
-     * Pause a SQL pool.
+     * Pause SQL pool
+     *
+     * <p>Pause a SQL pool.
      *
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -565,7 +573,9 @@ public interface SqlPool {
     Object pause(Context context);
 
     /**
-     * Resume a SQL pool.
+     * Resume SQL pool
+     *
+     * <p>Resume a SQL pool.
      *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -574,7 +584,9 @@ public interface SqlPool {
     Object resume();
 
     /**
-     * Resume a SQL pool.
+     * Resume SQL pool
+     *
+     * <p>Resume a SQL pool.
      *
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -585,7 +597,9 @@ public interface SqlPool {
     Object resume(Context context);
 
     /**
-     * Rename a SQL pool.
+     * Rename a SQL pool
+     *
+     * <p>Rename a SQL pool.
      *
      * @param parameters The resource move definition for renaming this Sql pool.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -595,7 +609,9 @@ public interface SqlPool {
     void rename(ResourceMoveDefinition parameters);
 
     /**
-     * Rename a SQL pool.
+     * Rename a SQL pool
+     *
+     * <p>Rename a SQL pool.
      *
      * @param parameters The resource move definition for renaming this Sql pool.
      * @param context The context to associate with this operation.

@@ -15,7 +15,9 @@ import com.azure.resourcemanager.synapse.fluent.models.IntegrationRuntimeMonitor
  */
 public interface IntegrationRuntimeMonitoringDatasClient {
     /**
-     * Get monitoring data for an integration runtime.
+     * Get integration runtime monitoring data
+     *
+     * <p>Get monitoring data for an integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -30,7 +32,9 @@ public interface IntegrationRuntimeMonitoringDatasClient {
         String resourceGroupName, String workspaceName, String integrationRuntimeName);
 
     /**
-     * Get monitoring data for an integration runtime.
+     * Get integration runtime monitoring data
+     *
+     * <p>Get monitoring data for an integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.

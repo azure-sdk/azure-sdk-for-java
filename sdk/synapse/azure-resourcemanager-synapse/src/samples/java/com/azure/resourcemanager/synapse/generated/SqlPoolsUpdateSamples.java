@@ -7,7 +7,6 @@ package com.azure.resourcemanager.synapse.generated;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.synapse.models.Sku;
 import com.azure.resourcemanager.synapse.models.SqlPool;
-import java.time.OffsetDateTime;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -33,7 +32,6 @@ public final class SqlPoolsUpdateSamples {
             .withSku(new Sku().withTier("").withName(""))
             .withMaxSizeBytes(0L)
             .withCollation("")
-            .withRestorePointInTime(OffsetDateTime.parse("1970-01-01T00:00:00.000Z"))
             .apply();
     }
 

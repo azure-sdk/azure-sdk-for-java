@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for OperationStatus. */
+/** Operation status. */
 public final class OperationStatus extends ExpandableStringEnum<OperationStatus> {
     /** Static value InProgress for OperationStatus. */
     public static final OperationStatus IN_PROGRESS = fromString("InProgress");
@@ -33,7 +33,11 @@ public final class OperationStatus extends ExpandableStringEnum<OperationStatus>
         return fromString(name, OperationStatus.class);
     }
 
-    /** @return known OperationStatus values. */
+    /**
+     * Gets known OperationStatus values.
+     *
+     * @return known OperationStatus values.
+     */
     public static Collection<OperationStatus> values() {
         return values(OperationStatus.class);
     }

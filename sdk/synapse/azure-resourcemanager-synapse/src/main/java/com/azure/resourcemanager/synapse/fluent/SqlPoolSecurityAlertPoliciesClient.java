@@ -15,7 +15,9 @@ import com.azure.resourcemanager.synapse.models.SecurityAlertPolicyName;
 /** An instance of this class provides access to all the operations defined in SqlPoolSecurityAlertPoliciesClient. */
 public interface SqlPoolSecurityAlertPoliciesClient {
     /**
-     * Get a list of Sql pool's security alert policies.
+     * List Sql pool's security alert policies
+     *
+     * <p>Get a list of Sql pool's security alert policies.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -30,7 +32,9 @@ public interface SqlPoolSecurityAlertPoliciesClient {
         String resourceGroupName, String workspaceName, String sqlPoolName);
 
     /**
-     * Get a list of Sql pool's security alert policies.
+     * List Sql pool's security alert policies
+     *
+     * <p>Get a list of Sql pool's security alert policies.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -46,7 +50,9 @@ public interface SqlPoolSecurityAlertPoliciesClient {
         String resourceGroupName, String workspaceName, String sqlPoolName, Context context);
 
     /**
-     * Get a Sql pool's security alert policy.
+     * Get a Sql pool's security alert policy
+     *
+     * <p>Get a Sql pool's security alert policy.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -65,7 +71,9 @@ public interface SqlPoolSecurityAlertPoliciesClient {
         SecurityAlertPolicyName securityAlertPolicyName);
 
     /**
-     * Get a Sql pool's security alert policy.
+     * Get a Sql pool's security alert policy
+     *
+     * <p>Get a Sql pool's security alert policy.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -86,7 +94,9 @@ public interface SqlPoolSecurityAlertPoliciesClient {
         Context context);
 
     /**
-     * Create or update a Sql pool's security alert policy.
+     * Create or update a Sql pool's security alert policy
+     *
+     * <p>Create or update a Sql pool's security alert policy.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -107,7 +117,9 @@ public interface SqlPoolSecurityAlertPoliciesClient {
         SqlPoolSecurityAlertPolicyInner parameters);
 
     /**
-     * Create or update a Sql pool's security alert policy.
+     * Create or update a Sql pool's security alert policy
+     *
+     * <p>Create or update a Sql pool's security alert policy.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.

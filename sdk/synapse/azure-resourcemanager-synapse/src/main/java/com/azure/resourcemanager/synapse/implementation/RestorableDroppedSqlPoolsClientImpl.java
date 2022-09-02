@@ -222,14 +222,7 @@ public final class RestorableDroppedSqlPoolsClientImpl implements RestorableDrop
     private Mono<RestorableDroppedSqlPoolInner> getAsync(
         String resourceGroupName, String workspaceName, String restorableDroppedSqlPoolId) {
         return getWithResponseAsync(resourceGroupName, workspaceName, restorableDroppedSqlPoolId)
-            .flatMap(
-                (Response<RestorableDroppedSqlPoolInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
