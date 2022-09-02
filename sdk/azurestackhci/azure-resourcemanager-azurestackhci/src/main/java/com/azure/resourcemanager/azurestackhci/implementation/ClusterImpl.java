@@ -14,6 +14,8 @@ import com.azure.resourcemanager.azurestackhci.models.ClusterIdentityResponse;
 import com.azure.resourcemanager.azurestackhci.models.ClusterPatch;
 import com.azure.resourcemanager.azurestackhci.models.ClusterReportedProperties;
 import com.azure.resourcemanager.azurestackhci.models.ProvisioningState;
+import com.azure.resourcemanager.azurestackhci.models.SoftwareAssuranceChangeRequest;
+import com.azure.resourcemanager.azurestackhci.models.SoftwareAssuranceProperties;
 import com.azure.resourcemanager.azurestackhci.models.Status;
 import com.azure.resourcemanager.azurestackhci.models.UploadCertificateRequest;
 import java.time.OffsetDateTime;
@@ -84,6 +86,10 @@ public final class ClusterImpl implements Cluster, Cluster.Definition, Cluster.U
 
     public String aadServicePrincipalObjectId() {
         return this.innerModel().aadServicePrincipalObjectId();
+    }
+
+    public SoftwareAssuranceProperties softwareAssuranceProperties() {
+        return this.innerModel().softwareAssuranceProperties();
     }
 
     public ClusterDesiredProperties desiredProperties() {
@@ -243,6 +249,19 @@ public final class ClusterImpl implements Cluster, Cluster.Definition, Cluster.U
         return serviceManager.clusters().createIdentity(resourceGroupName, clusterName, context);
     }
 
+    public Cluster extendSoftwareAssuranceBenefit(SoftwareAssuranceChangeRequest softwareAssuranceChangeRequest) {
+        return serviceManager
+            .clusters()
+            .extendSoftwareAssuranceBenefit(resourceGroupName, clusterName, softwareAssuranceChangeRequest);
+    }
+
+    public Cluster extendSoftwareAssuranceBenefit(
+        SoftwareAssuranceChangeRequest softwareAssuranceChangeRequest, Context context) {
+        return serviceManager
+            .clusters()
+            .extendSoftwareAssuranceBenefit(resourceGroupName, clusterName, softwareAssuranceChangeRequest, context);
+    }
+
     public ClusterImpl withRegion(Region location) {
         this.innerModel().withLocation(location.toString());
         return this;
@@ -300,6 +319,11 @@ public final class ClusterImpl implements Cluster, Cluster.Definition, Cluster.U
 
     public ClusterImpl withAadServicePrincipalObjectId(String aadServicePrincipalObjectId) {
         this.innerModel().withAadServicePrincipalObjectId(aadServicePrincipalObjectId);
+        return this;
+    }
+
+    public ClusterImpl withSoftwareAssuranceProperties(SoftwareAssuranceProperties softwareAssuranceProperties) {
+        this.innerModel().withSoftwareAssuranceProperties(softwareAssuranceProperties);
         return this;
     }
 

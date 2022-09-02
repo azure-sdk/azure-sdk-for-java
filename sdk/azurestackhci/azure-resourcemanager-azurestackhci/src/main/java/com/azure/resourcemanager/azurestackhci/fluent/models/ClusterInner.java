@@ -10,6 +10,7 @@ import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.azurestackhci.models.ClusterDesiredProperties;
 import com.azure.resourcemanager.azurestackhci.models.ClusterReportedProperties;
 import com.azure.resourcemanager.azurestackhci.models.ProvisioningState;
+import com.azure.resourcemanager.azurestackhci.models.SoftwareAssuranceProperties;
 import com.azure.resourcemanager.azurestackhci.models.Status;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
@@ -201,6 +202,29 @@ public final class ClusterInner extends Resource {
             this.innerProperties = new ClusterProperties();
         }
         this.innerProperties().withAadServicePrincipalObjectId(aadServicePrincipalObjectId);
+        return this;
+    }
+
+    /**
+     * Get the softwareAssuranceProperties property: Software Assurance properties of the cluster.
+     *
+     * @return the softwareAssuranceProperties value.
+     */
+    public SoftwareAssuranceProperties softwareAssuranceProperties() {
+        return this.innerProperties() == null ? null : this.innerProperties().softwareAssuranceProperties();
+    }
+
+    /**
+     * Set the softwareAssuranceProperties property: Software Assurance properties of the cluster.
+     *
+     * @param softwareAssuranceProperties the softwareAssuranceProperties value to set.
+     * @return the ClusterInner object itself.
+     */
+    public ClusterInner withSoftwareAssuranceProperties(SoftwareAssuranceProperties softwareAssuranceProperties) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ClusterProperties();
+        }
+        this.innerProperties().withSoftwareAssuranceProperties(softwareAssuranceProperties);
         return this;
     }
 
