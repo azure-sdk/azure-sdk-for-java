@@ -11,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /** The UriFolderJobOutput model. */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "jobOutputType")
-@JsonTypeName("UriFolder")
+@JsonTypeName("uri_folder")
 @Fluent
 public final class UriFolderJobOutput extends JobOutput {
     /*
