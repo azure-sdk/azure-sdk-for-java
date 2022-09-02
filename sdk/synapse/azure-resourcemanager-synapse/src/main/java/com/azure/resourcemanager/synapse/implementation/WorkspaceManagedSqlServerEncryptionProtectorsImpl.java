@@ -100,9 +100,8 @@ public final class WorkspaceManagedSqlServerEncryptionProtectorsImpl
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'workspaces'.", id)));
         }
-        EncryptionProtectorName encryptionProtectorName =
-            EncryptionProtectorName.fromString(Utils.getValueFromIdByName(id, "encryptionProtector"));
-        if (encryptionProtectorName == null) {
+        String encryptionProtectorNameLocal = Utils.getValueFromIdByName(id, "encryptionProtector");
+        if (encryptionProtectorNameLocal == null) {
             throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
@@ -110,6 +109,8 @@ public final class WorkspaceManagedSqlServerEncryptionProtectorsImpl
                             .format(
                                 "The resource ID '%s' is not valid. Missing path segment 'encryptionProtector'.", id)));
         }
+        EncryptionProtectorName encryptionProtectorName =
+            EncryptionProtectorName.fromString(encryptionProtectorNameLocal);
         return this.getWithResponse(resourceGroupName, workspaceName, encryptionProtectorName, Context.NONE).getValue();
     }
 
@@ -129,9 +130,8 @@ public final class WorkspaceManagedSqlServerEncryptionProtectorsImpl
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'workspaces'.", id)));
         }
-        EncryptionProtectorName encryptionProtectorName =
-            EncryptionProtectorName.fromString(Utils.getValueFromIdByName(id, "encryptionProtector"));
-        if (encryptionProtectorName == null) {
+        String encryptionProtectorNameLocal = Utils.getValueFromIdByName(id, "encryptionProtector");
+        if (encryptionProtectorNameLocal == null) {
             throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
@@ -139,6 +139,8 @@ public final class WorkspaceManagedSqlServerEncryptionProtectorsImpl
                             .format(
                                 "The resource ID '%s' is not valid. Missing path segment 'encryptionProtector'.", id)));
         }
+        EncryptionProtectorName encryptionProtectorName =
+            EncryptionProtectorName.fromString(encryptionProtectorNameLocal);
         return this.getWithResponse(resourceGroupName, workspaceName, encryptionProtectorName, context);
     }
 

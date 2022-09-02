@@ -11,7 +11,9 @@ import com.azure.core.util.Context;
 /** Resource collection API of SqlPoolTables. */
 public interface SqlPoolTables {
     /**
-     * Gets tables of a given schema in a SQL pool.
+     * Gets tables of a given schema in a SQL pool
+     *
+     * <p>Gets tables of a given schema in a SQL pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -26,7 +28,9 @@ public interface SqlPoolTables {
         String resourceGroupName, String workspaceName, String sqlPoolName, String schemaName);
 
     /**
-     * Gets tables of a given schema in a SQL pool.
+     * Gets tables of a given schema in a SQL pool
+     *
+     * <p>Gets tables of a given schema in a SQL pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
