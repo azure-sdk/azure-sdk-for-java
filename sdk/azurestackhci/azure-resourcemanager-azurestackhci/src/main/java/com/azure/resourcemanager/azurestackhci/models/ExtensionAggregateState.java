@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for ExtensionAggregateState. */
+/** Aggregate state of Arc Extensions across the nodes in this HCI cluster. */
 public final class ExtensionAggregateState extends ExpandableStringEnum<ExtensionAggregateState> {
     /** Static value NotSpecified for ExtensionAggregateState. */
     public static final ExtensionAggregateState NOT_SPECIFIED = fromString("NotSpecified");

@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for ArcSettings CreateIdentity. */
 public final class ArcSettingsCreateIdentitySamples {
     /*
-     * x-ms-original-file: specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/stable/2022-05-01/examples/CreateArcIdentity.json
+     * x-ms-original-file: specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/stable/2022-09-01/examples/CreateArcIdentity.json
      */
     /**
      * Sample code: Create Arc Identity.
