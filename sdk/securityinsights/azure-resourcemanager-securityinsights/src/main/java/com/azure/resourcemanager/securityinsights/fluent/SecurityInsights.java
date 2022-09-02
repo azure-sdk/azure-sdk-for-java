@@ -157,6 +157,13 @@ public interface SecurityInsights {
     EntityQueryTemplatesClient getEntityQueryTemplates();
 
     /**
+     * Gets the FileImportsClient object to access its operations.
+     *
+     * @return the FileImportsClient object.
+     */
+    FileImportsClient getFileImports();
+
+    /**
      * Gets the IncidentCommentsClient object to access its operations.
      *
      * @return the IncidentCommentsClient object.
@@ -190,6 +197,13 @@ public interface SecurityInsights {
      * @return the SentinelOnboardingStatesClient object.
      */
     SentinelOnboardingStatesClient getSentinelOnboardingStates();
+
+    /**
+     * Gets the SecurityMLAnalyticsSettingsClient object to access its operations.
+     *
+     * @return the SecurityMLAnalyticsSettingsClient object.
+     */
+    SecurityMLAnalyticsSettingsClient getSecurityMLAnalyticsSettings();
 
     /**
      * Gets the ProductSettingsClient object to access its operations.
@@ -267,4 +281,32 @@ public interface SecurityInsights {
      * @return the OperationsClient object.
      */
     OperationsClient getOperations();
+
+    /**
+     * Gets the ContentPackagesClient object to access its operations.
+     *
+     * @return the ContentPackagesClient object.
+     */
+    ContentPackagesClient getContentPackages();
+
+    /**
+     * Gets the ContentPackageOperationsClient object to access its operations.
+     *
+     * @return the ContentPackageOperationsClient object.
+     */
+    ContentPackageOperationsClient getContentPackageOperations();
+
+    /**
+     * Gets the ContentTemplatesClient object to access its operations.
+     *
+     * @return the ContentTemplatesClient object.
+     */
+    ContentTemplatesClient getContentTemplates();
+
+    /**
+     * Gets the ContentTemplateOperationsClient object to access its operations.
+     *
+     * @return the ContentTemplateOperationsClient object.
+     */
+    ContentTemplateOperationsClient getContentTemplateOperations();
 }

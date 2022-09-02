@@ -29,6 +29,10 @@ import com.azure.resourcemanager.securityinsights.fluent.AutomationRulesClient;
 import com.azure.resourcemanager.securityinsights.fluent.BookmarkOperationsClient;
 import com.azure.resourcemanager.securityinsights.fluent.BookmarkRelationsClient;
 import com.azure.resourcemanager.securityinsights.fluent.BookmarksClient;
+import com.azure.resourcemanager.securityinsights.fluent.ContentPackageOperationsClient;
+import com.azure.resourcemanager.securityinsights.fluent.ContentPackagesClient;
+import com.azure.resourcemanager.securityinsights.fluent.ContentTemplateOperationsClient;
+import com.azure.resourcemanager.securityinsights.fluent.ContentTemplatesClient;
 import com.azure.resourcemanager.securityinsights.fluent.DataConnectorsCheckRequirementsOperationsClient;
 import com.azure.resourcemanager.securityinsights.fluent.DataConnectorsClient;
 import com.azure.resourcemanager.securityinsights.fluent.DomainWhoisClient;
@@ -38,6 +42,7 @@ import com.azure.resourcemanager.securityinsights.fluent.EntitiesRelationsClient
 import com.azure.resourcemanager.securityinsights.fluent.EntityQueriesClient;
 import com.azure.resourcemanager.securityinsights.fluent.EntityQueryTemplatesClient;
 import com.azure.resourcemanager.securityinsights.fluent.EntityRelationsClient;
+import com.azure.resourcemanager.securityinsights.fluent.FileImportsClient;
 import com.azure.resourcemanager.securityinsights.fluent.IncidentCommentsClient;
 import com.azure.resourcemanager.securityinsights.fluent.IncidentRelationsClient;
 import com.azure.resourcemanager.securityinsights.fluent.IncidentsClient;
@@ -47,6 +52,7 @@ import com.azure.resourcemanager.securityinsights.fluent.OfficeConsentsClient;
 import com.azure.resourcemanager.securityinsights.fluent.OperationsClient;
 import com.azure.resourcemanager.securityinsights.fluent.ProductSettingsClient;
 import com.azure.resourcemanager.securityinsights.fluent.SecurityInsights;
+import com.azure.resourcemanager.securityinsights.fluent.SecurityMLAnalyticsSettingsClient;
 import com.azure.resourcemanager.securityinsights.fluent.SentinelOnboardingStatesClient;
 import com.azure.resourcemanager.securityinsights.fluent.SourceControlsClient;
 import com.azure.resourcemanager.securityinsights.fluent.SourceControlsOperationsClient;
@@ -331,6 +337,18 @@ public final class SecurityInsightsImpl implements SecurityInsights {
         return this.entityQueryTemplates;
     }
 
+    /** The FileImportsClient object to access its operations. */
+    private final FileImportsClient fileImports;
+
+    /**
+     * Gets the FileImportsClient object to access its operations.
+     *
+     * @return the FileImportsClient object.
+     */
+    public FileImportsClient getFileImports() {
+        return this.fileImports;
+    }
+
     /** The IncidentCommentsClient object to access its operations. */
     private final IncidentCommentsClient incidentComments;
 
@@ -389,6 +407,18 @@ public final class SecurityInsightsImpl implements SecurityInsights {
      */
     public SentinelOnboardingStatesClient getSentinelOnboardingStates() {
         return this.sentinelOnboardingStates;
+    }
+
+    /** The SecurityMLAnalyticsSettingsClient object to access its operations. */
+    private final SecurityMLAnalyticsSettingsClient securityMLAnalyticsSettings;
+
+    /**
+     * Gets the SecurityMLAnalyticsSettingsClient object to access its operations.
+     *
+     * @return the SecurityMLAnalyticsSettingsClient object.
+     */
+    public SecurityMLAnalyticsSettingsClient getSecurityMLAnalyticsSettings() {
+        return this.securityMLAnalyticsSettings;
     }
 
     /** The ProductSettingsClient object to access its operations. */
@@ -523,6 +553,54 @@ public final class SecurityInsightsImpl implements SecurityInsights {
         return this.operations;
     }
 
+    /** The ContentPackagesClient object to access its operations. */
+    private final ContentPackagesClient contentPackages;
+
+    /**
+     * Gets the ContentPackagesClient object to access its operations.
+     *
+     * @return the ContentPackagesClient object.
+     */
+    public ContentPackagesClient getContentPackages() {
+        return this.contentPackages;
+    }
+
+    /** The ContentPackageOperationsClient object to access its operations. */
+    private final ContentPackageOperationsClient contentPackageOperations;
+
+    /**
+     * Gets the ContentPackageOperationsClient object to access its operations.
+     *
+     * @return the ContentPackageOperationsClient object.
+     */
+    public ContentPackageOperationsClient getContentPackageOperations() {
+        return this.contentPackageOperations;
+    }
+
+    /** The ContentTemplatesClient object to access its operations. */
+    private final ContentTemplatesClient contentTemplates;
+
+    /**
+     * Gets the ContentTemplatesClient object to access its operations.
+     *
+     * @return the ContentTemplatesClient object.
+     */
+    public ContentTemplatesClient getContentTemplates() {
+        return this.contentTemplates;
+    }
+
+    /** The ContentTemplateOperationsClient object to access its operations. */
+    private final ContentTemplateOperationsClient contentTemplateOperations;
+
+    /**
+     * Gets the ContentTemplateOperationsClient object to access its operations.
+     *
+     * @return the ContentTemplateOperationsClient object.
+     */
+    public ContentTemplateOperationsClient getContentTemplateOperations() {
+        return this.contentTemplateOperations;
+    }
+
     /**
      * Initializes an instance of SecurityInsights client.
      *
@@ -545,7 +623,7 @@ public final class SecurityInsightsImpl implements SecurityInsights {
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2022-01-01-preview";
+        this.apiVersion = "2022-11-01-preview";
         this.alertRules = new AlertRulesClientImpl(this);
         this.actions = new ActionsClientImpl(this);
         this.alertRuleTemplates = new AlertRuleTemplatesClientImpl(this);
@@ -562,11 +640,13 @@ public final class SecurityInsightsImpl implements SecurityInsights {
         this.entityRelations = new EntityRelationsClientImpl(this);
         this.entityQueries = new EntityQueriesClientImpl(this);
         this.entityQueryTemplates = new EntityQueryTemplatesClientImpl(this);
+        this.fileImports = new FileImportsClientImpl(this);
         this.incidentComments = new IncidentCommentsClientImpl(this);
         this.incidentRelations = new IncidentRelationsClientImpl(this);
         this.metadatas = new MetadatasClientImpl(this);
         this.officeConsents = new OfficeConsentsClientImpl(this);
         this.sentinelOnboardingStates = new SentinelOnboardingStatesClientImpl(this);
+        this.securityMLAnalyticsSettings = new SecurityMLAnalyticsSettingsClientImpl(this);
         this.productSettings = new ProductSettingsClientImpl(this);
         this.sourceControls = new SourceControlsClientImpl(this);
         this.sourceControlsOperations = new SourceControlsOperationsClientImpl(this);
@@ -578,6 +658,10 @@ public final class SecurityInsightsImpl implements SecurityInsights {
         this.dataConnectors = new DataConnectorsClientImpl(this);
         this.dataConnectorsCheckRequirementsOperations = new DataConnectorsCheckRequirementsOperationsClientImpl(this);
         this.operations = new OperationsClientImpl(this);
+        this.contentPackages = new ContentPackagesClientImpl(this);
+        this.contentPackageOperations = new ContentPackageOperationsClientImpl(this);
+        this.contentTemplates = new ContentTemplatesClientImpl(this);
+        this.contentTemplateOperations = new ContentTemplateOperationsClientImpl(this);
     }
 
     /**
