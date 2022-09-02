@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for AuthenticationType. */
+/** An enumeration of possible authentication types when connecting. */
 public final class AuthenticationType extends ExpandableStringEnum<AuthenticationType> {
     /** Static value None for AuthenticationType. */
     public static final AuthenticationType NONE = fromString("None");
@@ -36,7 +36,11 @@ public final class AuthenticationType extends ExpandableStringEnum<Authenticatio
         return fromString(name, AuthenticationType.class);
     }
 
-    /** @return known AuthenticationType values. */
+    /**
+     * Gets known AuthenticationType values.
+     *
+     * @return known AuthenticationType values.
+     */
     public static Collection<AuthenticationType> values() {
         return values(AuthenticationType.class);
     }
