@@ -18,8 +18,8 @@ import java.util.Map;
 @Fluent
 public final class ContainerAppInner extends Resource {
     /*
-     * managed identities for the Container App to interact with other Azure
-     * services without maintaining any secrets or credentials in code.
+     * managed identities for the Container App to interact with other Azure services without maintaining any secrets
+     * or credentials in code.
      */
     @JsonProperty(value = "identity")
     private ManagedServiceIdentity identity;
