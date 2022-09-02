@@ -31,6 +31,7 @@ public final class BigDataPoolsCreateOrUpdateSamples {
             .withTags(mapOf("key", "value"))
             .withAutoScale(new AutoScaleProperties().withMinNodeCount(3).withEnabled(true).withMaxNodeCount(50))
             .withAutoPause(new AutoPauseProperties().withDelayInMinutes(15).withEnabled(true))
+            .withIsAutotuneEnabled(false)
             .withSparkEventsFolder("/events")
             .withNodeCount(4)
             .withLibraryRequirements(new LibraryRequirements().withContent("").withFilename("requirements.txt"))

@@ -11,8 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Fluent
 public final class DatabaseStatistics {
     /*
-     * The database size - the total size of compressed data and index in
-     * bytes.
+     * The database size - the total size of compressed data and index in bytes.
      */
     @JsonProperty(value = "size")
     private Float size;
