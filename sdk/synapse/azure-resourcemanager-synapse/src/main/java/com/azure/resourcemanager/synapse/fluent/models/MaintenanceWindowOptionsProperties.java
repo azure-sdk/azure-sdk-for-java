@@ -19,8 +19,7 @@ public final class MaintenanceWindowOptionsProperties {
     private Boolean isEnabled;
 
     /*
-     * Available maintenance cycles e.g. {Saturday, 0, 48*60}, {Wednesday, 0,
-     * 24*60}.
+     * Available maintenance cycles e.g. {Saturday, 0, 48*60}, {Wednesday, 0, 24*60}.
      */
     @JsonProperty(value = "maintenanceWindowCycles")
     private List<MaintenanceWindowTimeRange> maintenanceWindowCycles;
