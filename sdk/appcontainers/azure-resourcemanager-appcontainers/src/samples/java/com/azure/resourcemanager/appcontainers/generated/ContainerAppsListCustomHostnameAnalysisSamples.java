@@ -9,7 +9,22 @@ import com.azure.core.util.Context;
 /** Samples for ContainerApps ListCustomHostnameAnalysis. */
 public final class ContainerAppsListCustomHostnameAnalysisSamples {
     /*
-     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2022-03-01/examples/ContainerApps_ListCustomHostNameAnalysis.json
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2022-01-09/examples/ContainerApps_ListCustomHostNameAnalysisErrorResponse.json
+     */
+    /**
+     * Sample code: Analyse Custom Hostname Error Response.
+     *
+     * @param manager Entry point to ContainerAppsApiManager.
+     */
+    public static void analyseCustomHostnameErrorResponse(
+        com.azure.resourcemanager.appcontainers.ContainerAppsApiManager manager) {
+        manager
+            .containerApps()
+            .listCustomHostnameAnalysisWithResponse("rg", "testcontainerApp0", "my.name.corp", Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2022-01-09/examples/ContainerApps_ListCustomHostNameAnalysis.json
      */
     /**
      * Sample code: Analyze Custom Hostname.

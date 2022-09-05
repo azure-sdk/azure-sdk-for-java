@@ -27,7 +27,7 @@ import java.util.Map;
 /** Samples for ContainerApps CreateOrUpdate. */
 public final class ContainerAppsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2022-03-01/examples/ContainerApps_CreateOrUpdate.json
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2022-01-09/examples/ContainerApps_CreateOrUpdate.json
      */
     /**
      * Sample code: Create or Update Container App.
