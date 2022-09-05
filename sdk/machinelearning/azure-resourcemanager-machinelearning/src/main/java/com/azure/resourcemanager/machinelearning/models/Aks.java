@@ -54,13 +54,6 @@ public final class Aks extends Compute {
         return this;
     }
 
-    /** {@inheritDoc} */
-    @Override
-    public Aks withDisableLocalAuth(Boolean disableLocalAuth) {
-        super.withDisableLocalAuth(disableLocalAuth);
-        return this;
-    }
-
     /**
      * Validates the instance.
      *

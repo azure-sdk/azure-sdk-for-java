@@ -27,13 +27,6 @@ public final class DataFactory extends Compute {
         return this;
     }
 
-    /** {@inheritDoc} */
-    @Override
-    public DataFactory withDisableLocalAuth(Boolean disableLocalAuth) {
-        super.withDisableLocalAuth(disableLocalAuth);
-        return this;
-    }
-
     /**
      * Validates the instance.
      *

@@ -54,13 +54,6 @@ public final class VirtualMachine extends Compute {
         return this;
     }
 
-    /** {@inheritDoc} */
-    @Override
-    public VirtualMachine withDisableLocalAuth(Boolean disableLocalAuth) {
-        super.withDisableLocalAuth(disableLocalAuth);
-        return this;
-    }
-
     /**
      * Validates the instance.
      *
