@@ -12,8 +12,7 @@ import java.util.List;
 @Fluent
 public final class AllowedAudiencesValidation {
     /*
-     * The configuration settings of the allowed list of audiences from which
-     * to validate the JWT token.
+     * The configuration settings of the allowed list of audiences from which to validate the JWT token.
      */
     @JsonProperty(value = "allowedAudiences")
     private List<String> allowedAudiences;
