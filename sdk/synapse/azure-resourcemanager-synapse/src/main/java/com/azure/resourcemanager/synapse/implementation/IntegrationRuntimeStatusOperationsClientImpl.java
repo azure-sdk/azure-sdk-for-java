@@ -75,7 +75,9 @@ public final class IntegrationRuntimeStatusOperationsClientImpl implements Integ
     }
 
     /**
-     * Get the integration runtime status.
+     * Get integration runtime status
+     *
+     * <p>Get the integration runtime status.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -131,7 +133,9 @@ public final class IntegrationRuntimeStatusOperationsClientImpl implements Integ
     }
 
     /**
-     * Get the integration runtime status.
+     * Get integration runtime status
+     *
+     * <p>Get the integration runtime status.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -185,7 +189,9 @@ public final class IntegrationRuntimeStatusOperationsClientImpl implements Integ
     }
 
     /**
-     * Get the integration runtime status.
+     * Get integration runtime status
+     *
+     * <p>Get the integration runtime status.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -199,18 +205,13 @@ public final class IntegrationRuntimeStatusOperationsClientImpl implements Integ
     private Mono<IntegrationRuntimeStatusResponseInner> getAsync(
         String resourceGroupName, String workspaceName, String integrationRuntimeName) {
         return getWithResponseAsync(resourceGroupName, workspaceName, integrationRuntimeName)
-            .flatMap(
-                (Response<IntegrationRuntimeStatusResponseInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
-     * Get the integration runtime status.
+     * Get integration runtime status
+     *
+     * <p>Get the integration runtime status.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -227,7 +228,9 @@ public final class IntegrationRuntimeStatusOperationsClientImpl implements Integ
     }
 
     /**
-     * Get the integration runtime status.
+     * Get integration runtime status
+     *
+     * <p>Get the integration runtime status.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.

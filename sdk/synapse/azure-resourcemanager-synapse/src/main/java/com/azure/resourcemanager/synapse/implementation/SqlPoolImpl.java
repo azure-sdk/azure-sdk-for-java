@@ -104,6 +104,10 @@ public final class SqlPoolImpl implements SqlPool, SqlPool.Definition, SqlPool.U
         return this.location();
     }
 
+    public String resourceGroupName() {
+        return resourceGroupName;
+    }
+
     public SqlPoolInner innerModel() {
         return this.innerObject;
     }

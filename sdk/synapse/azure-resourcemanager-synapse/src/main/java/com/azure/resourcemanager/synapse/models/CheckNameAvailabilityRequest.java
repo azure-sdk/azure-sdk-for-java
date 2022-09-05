@@ -7,7 +7,11 @@ package com.azure.resourcemanager.synapse.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Check name availability request A request about whether a workspace name is available. */
+/**
+ * Check name availability request
+ *
+ * <p>A request about whether a workspace name is available.
+ */
 @Fluent
 public final class CheckNameAvailabilityRequest {
     /*
