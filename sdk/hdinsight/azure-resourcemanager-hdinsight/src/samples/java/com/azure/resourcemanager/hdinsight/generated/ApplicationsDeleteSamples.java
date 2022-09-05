@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for Applications Delete. */
 public final class ApplicationsDeleteSamples {
     /*
-     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/stable/2021-06-01/examples/DeleteApplication.json
+     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2022-11-01-preview/examples/DeleteApplication.json
      */
     /**
      * Sample code: Delete Application from HDInsight cluster.

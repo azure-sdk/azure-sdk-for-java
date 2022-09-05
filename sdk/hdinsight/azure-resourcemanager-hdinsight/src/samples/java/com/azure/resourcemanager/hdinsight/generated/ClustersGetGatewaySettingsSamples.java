@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for Clusters GetGatewaySettings. */
 public final class ClustersGetGatewaySettingsSamples {
     /*
-     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/stable/2021-06-01/examples/HDI_Clusters_GetGatewaySettings.json
+     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2022-11-01-preview/examples/HDI_Clusters_GetGatewaySettings.json
      */
     /**
      * Sample code: Get HTTP settings.

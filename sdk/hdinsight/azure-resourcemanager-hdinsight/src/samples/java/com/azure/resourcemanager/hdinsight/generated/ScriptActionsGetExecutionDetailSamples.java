@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for ScriptActions GetExecutionDetail. */
 public final class ScriptActionsGetExecutionDetailSamples {
     /*
-     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/stable/2021-06-01/examples/GetScriptActionById.json
+     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2022-11-01-preview/examples/GetScriptActionById.json
      */
     /**
      * Sample code: Get script execution history by script id.

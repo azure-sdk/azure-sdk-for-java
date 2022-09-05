@@ -13,6 +13,7 @@ import com.azure.resourcemanager.hdinsight.fluent.ClustersClient;
 import com.azure.resourcemanager.hdinsight.fluent.models.AsyncOperationResultInner;
 import com.azure.resourcemanager.hdinsight.fluent.models.ClusterInner;
 import com.azure.resourcemanager.hdinsight.fluent.models.GatewaySettingsInner;
+import com.azure.resourcemanager.hdinsight.fluent.models.OutboundNetworkDependenciesEndpointInner;
 import com.azure.resourcemanager.hdinsight.models.AsyncOperationResult;
 import com.azure.resourcemanager.hdinsight.models.AutoscaleConfigurationUpdateParameter;
 import com.azure.resourcemanager.hdinsight.models.Cluster;
@@ -21,13 +22,13 @@ import com.azure.resourcemanager.hdinsight.models.ClusterResizeParameters;
 import com.azure.resourcemanager.hdinsight.models.Clusters;
 import com.azure.resourcemanager.hdinsight.models.ExecuteScriptActionParameters;
 import com.azure.resourcemanager.hdinsight.models.GatewaySettings;
+import com.azure.resourcemanager.hdinsight.models.OutboundNetworkDependenciesEndpoint;
 import com.azure.resourcemanager.hdinsight.models.RoleName;
 import com.azure.resourcemanager.hdinsight.models.UpdateClusterIdentityCertificateParameters;
 import com.azure.resourcemanager.hdinsight.models.UpdateGatewaySettingsParameters;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public final class ClustersImpl implements Clusters {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(ClustersImpl.class);
+    private static final ClientLogger LOGGER = new ClientLogger(ClustersImpl.class);
 
     private final ClustersClient innerClient;
 
@@ -209,6 +210,20 @@ public final class ClustersImpl implements Clusters {
         this.serviceClient().updateIdentityCertificate(resourceGroupName, clusterName, parameters, context);
     }
 
+    public PagedIterable<OutboundNetworkDependenciesEndpoint> listOutboundNetworkDependenciesEndpoints(
+        String resourceGroupName, String clusterName) {
+        PagedIterable<OutboundNetworkDependenciesEndpointInner> inner =
+            this.serviceClient().listOutboundNetworkDependenciesEndpoints(resourceGroupName, clusterName);
+        return Utils.mapPage(inner, inner1 -> new OutboundNetworkDependenciesEndpointImpl(inner1, this.manager()));
+    }
+
+    public PagedIterable<OutboundNetworkDependenciesEndpoint> listOutboundNetworkDependenciesEndpoints(
+        String resourceGroupName, String clusterName, Context context) {
+        PagedIterable<OutboundNetworkDependenciesEndpointInner> inner =
+            this.serviceClient().listOutboundNetworkDependenciesEndpoints(resourceGroupName, clusterName, context);
+        return Utils.mapPage(inner, inner1 -> new OutboundNetworkDependenciesEndpointImpl(inner1, this.manager()));
+    }
+
     public void executeScriptActions(
         String resourceGroupName, String clusterName, ExecuteScriptActionParameters parameters) {
         this.serviceClient().executeScriptActions(resourceGroupName, clusterName, parameters);
@@ -222,7 +237,7 @@ public final class ClustersImpl implements Clusters {
     public Cluster getById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -230,7 +245,7 @@ public final class ClustersImpl implements Clusters {
         }
         String clusterName = Utils.getValueFromIdByName(id, "clusters");
         if (clusterName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'clusters'.", id)));
@@ -241,7 +256,7 @@ public final class ClustersImpl implements Clusters {
     public Response<Cluster> getByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -249,7 +264,7 @@ public final class ClustersImpl implements Clusters {
         }
         String clusterName = Utils.getValueFromIdByName(id, "clusters");
         if (clusterName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'clusters'.", id)));
@@ -260,7 +275,7 @@ public final class ClustersImpl implements Clusters {
     public void deleteById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -268,7 +283,7 @@ public final class ClustersImpl implements Clusters {
         }
         String clusterName = Utils.getValueFromIdByName(id, "clusters");
         if (clusterName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'clusters'.", id)));
@@ -279,7 +294,7 @@ public final class ClustersImpl implements Clusters {
     public void deleteByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -287,7 +302,7 @@ public final class ClustersImpl implements Clusters {
         }
         String clusterName = Utils.getValueFromIdByName(id, "clusters");
         if (clusterName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'clusters'.", id)));

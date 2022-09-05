@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for Locations ListBillingSpecs. */
 public final class LocationsListBillingSpecsSamples {
     /*
-     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/stable/2021-06-01/examples/HDI_Locations_ListBillingSpecs.json
+     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2022-11-01-preview/examples/HDI_Locations_ListBillingSpecs.json
      */
     /**
      * Sample code: Get the subscription billingSpecs for the specified location.

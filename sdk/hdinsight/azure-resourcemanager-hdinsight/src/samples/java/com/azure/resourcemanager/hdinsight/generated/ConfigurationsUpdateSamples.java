@@ -11,7 +11,7 @@ import java.util.Map;
 /** Samples for Configurations Update. */
 public final class ConfigurationsUpdateSamples {
     /*
-     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/stable/2021-06-01/examples/ChangeHttpConnectivityEnable.json
+     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2022-11-01-preview/examples/ChangeHttpConnectivityEnable.json
      */
     /**
      * Sample code: Enable HTTP connectivity.
@@ -36,7 +36,7 @@ public final class ConfigurationsUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/stable/2021-06-01/examples/ChangeHttpConnectivityDisable.json
+     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2022-11-01-preview/examples/ChangeHttpConnectivityDisable.json
      */
     /**
      * Sample code: Disable HTTP connectivity.

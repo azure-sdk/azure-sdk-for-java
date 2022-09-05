@@ -10,7 +10,7 @@ import com.azure.resourcemanager.hdinsight.models.PrivateLinkServiceConnectionSt
 /** Samples for PrivateEndpointConnections CreateOrUpdate. */
 public final class PrivateEndpointConnectionsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/stable/2021-06-01/examples/ApprovePrivateEndpointConnection.json
+     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2022-11-01-preview/examples/ApprovePrivateEndpointConnection.json
      */
     /**
      * Sample code: Approve a private endpoint connection manually.

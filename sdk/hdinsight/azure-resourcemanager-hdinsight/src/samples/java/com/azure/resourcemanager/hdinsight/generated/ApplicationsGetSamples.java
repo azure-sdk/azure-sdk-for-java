@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for Applications Get. */
 public final class ApplicationsGetSamples {
     /*
-     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/stable/2021-06-01/examples/GetApplicationInProgress.json
+     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2022-11-01-preview/examples/GetApplicationInProgress.json
      */
     /**
      * Sample code: Get application on HDInsight cluster creation in progress.
@@ -22,7 +22,7 @@ public final class ApplicationsGetSamples {
     }
 
     /*
-     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/stable/2021-06-01/examples/GetApplicationCreated.json
+     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2022-11-01-preview/examples/GetApplicationCreated.json
      */
     /**
      * Sample code: Get application on HDInsight cluster successfully created.

@@ -27,7 +27,7 @@ import java.util.Map;
 /** Samples for Locations ValidateClusterCreateRequest. */
 public final class LocationsValidateClusterCreateRequestSamples {
     /*
-     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/stable/2021-06-01/examples/HDI_Locations_ValidateClusterCreateRequest.json
+     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2022-11-01-preview/examples/HDI_Locations_ValidateClusterCreateRequest.json
      */
     /**
      * Sample code: Get the subscription usages for specific location.

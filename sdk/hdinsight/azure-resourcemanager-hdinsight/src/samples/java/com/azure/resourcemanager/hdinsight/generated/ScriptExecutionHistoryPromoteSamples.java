@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for ScriptExecutionHistory Promote. */
 public final class ScriptExecutionHistoryPromoteSamples {
     /*
-     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/stable/2021-06-01/examples/PromoteLinuxHadoopScriptAction.json
+     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2022-11-01-preview/examples/PromoteLinuxHadoopScriptAction.json
      */
     /**
      * Sample code: Promote a script action on HDInsight cluster.

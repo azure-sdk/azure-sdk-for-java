@@ -10,7 +10,7 @@ import com.azure.resourcemanager.hdinsight.models.ClusterDiskEncryptionParameter
 /** Samples for Clusters RotateDiskEncryptionKey. */
 public final class ClustersRotateDiskEncryptionKeySamples {
     /*
-     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/stable/2021-06-01/examples/RotateLinuxHadoopClusterDiskEncryptionKey.json
+     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/preview/2022-11-01-preview/examples/RotateLinuxHadoopClusterDiskEncryptionKey.json
      */
     /**
      * Sample code: Rotate disk encryption key of the specified HDInsight cluster.
