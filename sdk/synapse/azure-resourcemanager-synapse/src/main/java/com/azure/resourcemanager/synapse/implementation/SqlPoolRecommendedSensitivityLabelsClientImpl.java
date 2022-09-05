@@ -216,7 +216,7 @@ public final class SqlPoolRecommendedSensitivityLabelsClientImpl implements SqlP
         String sqlPoolName,
         RecommendedSensitivityLabelUpdateList parameters) {
         return updateWithResponseAsync(resourceGroupName, workspaceName, sqlPoolName, parameters)
-            .flatMap((Response<Void> res) -> Mono.empty());
+            .flatMap(ignored -> Mono.empty());
     }
 
     /**

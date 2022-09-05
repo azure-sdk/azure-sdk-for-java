@@ -17,8 +17,7 @@ public final class OptimizedAutoscale {
     private int version;
 
     /*
-     * A boolean value that indicate if the optimized autoscale feature is
-     * enabled or not.
+     * A boolean value that indicate if the optimized autoscale feature is enabled or not.
      */
     @JsonProperty(value = "isEnabled", required = true)
     private boolean isEnabled;
