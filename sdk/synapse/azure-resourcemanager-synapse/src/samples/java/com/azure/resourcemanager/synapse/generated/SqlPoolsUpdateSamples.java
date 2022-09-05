@@ -32,7 +32,6 @@ public final class SqlPoolsUpdateSamples {
             .withTags(mapOf())
             .withSku(new Sku().withTier("").withName(""))
             .withMaxSizeBytes(0L)
-            .withCollation("")
             .withRestorePointInTime(OffsetDateTime.parse("1970-01-01T00:00:00.000Z"))
             .apply();
     }

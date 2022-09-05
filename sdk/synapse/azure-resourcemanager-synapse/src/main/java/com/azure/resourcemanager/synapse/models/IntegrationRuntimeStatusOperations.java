@@ -10,7 +10,9 @@ import com.azure.core.util.Context;
 /** Resource collection API of IntegrationRuntimeStatusOperations. */
 public interface IntegrationRuntimeStatusOperations {
     /**
-     * Get the integration runtime status.
+     * Get integration runtime status
+     *
+     * <p>Get the integration runtime status.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -23,7 +25,9 @@ public interface IntegrationRuntimeStatusOperations {
     IntegrationRuntimeStatusResponse get(String resourceGroupName, String workspaceName, String integrationRuntimeName);
 
     /**
-     * Get the integration runtime status.
+     * Get integration runtime status
+     *
+     * <p>Get the integration runtime status.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.

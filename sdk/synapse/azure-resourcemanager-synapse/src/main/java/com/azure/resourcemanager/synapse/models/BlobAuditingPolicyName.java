@@ -24,7 +24,11 @@ public final class BlobAuditingPolicyName extends ExpandableStringEnum<BlobAudit
         return fromString(name, BlobAuditingPolicyName.class);
     }
 
-    /** @return known BlobAuditingPolicyName values. */
+    /**
+     * Gets known BlobAuditingPolicyName values.
+     *
+     * @return known BlobAuditingPolicyName values.
+     */
     public static Collection<BlobAuditingPolicyName> values() {
         return values(BlobAuditingPolicyName.class);
     }

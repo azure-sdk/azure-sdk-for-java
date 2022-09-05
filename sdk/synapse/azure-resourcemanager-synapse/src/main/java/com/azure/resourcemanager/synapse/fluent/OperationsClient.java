@@ -17,7 +17,9 @@ import java.util.List;
 /** An instance of this class provides access to all the operations defined in OperationsClient. */
 public interface OperationsClient {
     /**
-     * Check whether a workspace name is available.
+     * Check name availability
+     *
+     * <p>Check whether a workspace name is available.
      *
      * @param request The check request.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -29,7 +31,9 @@ public interface OperationsClient {
     CheckNameAvailabilityResponseInner checkNameAvailability(CheckNameAvailabilityRequest request);
 
     /**
-     * Check whether a workspace name is available.
+     * Check name availability
+     *
+     * <p>Check whether a workspace name is available.
      *
      * @param request The check request.
      * @param context The context to associate with this operation.
@@ -43,7 +47,9 @@ public interface OperationsClient {
         CheckNameAvailabilityRequest request, Context context);
 
     /**
-     * Get all available operations.
+     * All operations
+     *
+     * <p>Get all available operations.
      *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -53,7 +59,9 @@ public interface OperationsClient {
     List<AvailableRpOperationInner> list();
 
     /**
-     * Get all available operations.
+     * All operations
+     *
+     * <p>Get all available operations.
      *
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -65,7 +73,9 @@ public interface OperationsClient {
     Response<List<AvailableRpOperationInner>> listWithResponse(Context context);
 
     /**
-     * Get the result of an operation.
+     * Get operation result
+     *
+     * <p>Get the result of an operation.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -78,7 +88,9 @@ public interface OperationsClient {
     void getLocationHeaderResult(String resourceGroupName, String workspaceName, String operationId);
 
     /**
-     * Get the result of an operation.
+     * Get operation result
+     *
+     * <p>Get the result of an operation.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -94,7 +106,9 @@ public interface OperationsClient {
         String resourceGroupName, String workspaceName, String operationId, Context context);
 
     /**
-     * Get the status of an operation.
+     * Get operation status
+     *
+     * <p>Get the status of an operation.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -109,7 +123,9 @@ public interface OperationsClient {
         String resourceGroupName, String workspaceName, String operationId);
 
     /**
-     * Get the status of an operation.
+     * Get operation status
+     *
+     * <p>Get the status of an operation.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.

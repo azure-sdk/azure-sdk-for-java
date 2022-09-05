@@ -104,6 +104,10 @@ public final class SqlPoolImpl implements SqlPool, SqlPool.Definition, SqlPool.U
         return this.location();
     }
 
+    public String resourceGroupName() {
+        return resourceGroupName;
+    }
+
     public SqlPoolInner innerModel() {
         return this.innerObject;
     }
@@ -270,13 +274,8 @@ public final class SqlPoolImpl implements SqlPool, SqlPool.Definition, SqlPool.U
     }
 
     public SqlPoolImpl withCollation(String collation) {
-        if (isInCreateMode()) {
-            this.innerModel().withCollation(collation);
-            return this;
-        } else {
-            this.updateSqlPoolInfo.withCollation(collation);
-            return this;
-        }
+        this.innerModel().withCollation(collation);
+        return this;
     }
 
     public SqlPoolImpl withSourceDatabaseId(String sourceDatabaseId) {

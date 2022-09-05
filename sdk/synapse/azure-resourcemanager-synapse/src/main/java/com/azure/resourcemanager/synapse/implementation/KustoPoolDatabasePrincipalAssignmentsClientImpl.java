@@ -337,14 +337,7 @@ public final class KustoPoolDatabasePrincipalAssignmentsClientImpl
         DatabasePrincipalAssignmentCheckNameRequest principalAssignmentName) {
         return checkNameAvailabilityWithResponseAsync(
                 workspaceName, kustoPoolName, databaseName, resourceGroupName, principalAssignmentName)
-            .flatMap(
-                (Response<CheckNameResultInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -768,14 +761,7 @@ public final class KustoPoolDatabasePrincipalAssignmentsClientImpl
         String resourceGroupName) {
         return getWithResponseAsync(
                 workspaceName, kustoPoolName, databaseName, principalAssignmentName, resourceGroupName)
-            .flatMap(
-                (Response<DatabasePrincipalAssignmentInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
