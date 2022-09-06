@@ -34,8 +34,7 @@ public final class AzureFileShareProtectionPolicy extends ProtectionPolicy {
     private RetentionPolicy retentionPolicy;
 
     /*
-     * TimeZone optional input as string. For example: TimeZone = "Pacific
-     * Standard Time".
+     * TimeZone optional input as string. For example: TimeZone = "Pacific Standard Time".
      */
     @JsonProperty(value = "timeZone")
     private String timeZone;
