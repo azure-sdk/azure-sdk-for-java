@@ -113,7 +113,9 @@ public final class SqlPoolGeoBackupPoliciesClientImpl implements SqlPoolGeoBacku
     }
 
     /**
-     * Get list of SQL pool geo backup policies.
+     * List SQL pool geo backup policies
+     *
+     * <p>Get list of SQL pool geo backup policies.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -172,7 +174,9 @@ public final class SqlPoolGeoBackupPoliciesClientImpl implements SqlPoolGeoBacku
     }
 
     /**
-     * Get list of SQL pool geo backup policies.
+     * List SQL pool geo backup policies
+     *
+     * <p>Get list of SQL pool geo backup policies.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -229,7 +233,9 @@ public final class SqlPoolGeoBackupPoliciesClientImpl implements SqlPoolGeoBacku
     }
 
     /**
-     * Get list of SQL pool geo backup policies.
+     * List SQL pool geo backup policies
+     *
+     * <p>Get list of SQL pool geo backup policies.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -246,7 +252,9 @@ public final class SqlPoolGeoBackupPoliciesClientImpl implements SqlPoolGeoBacku
     }
 
     /**
-     * Get list of SQL pool geo backup policies.
+     * List SQL pool geo backup policies
+     *
+     * <p>Get list of SQL pool geo backup policies.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -264,7 +272,9 @@ public final class SqlPoolGeoBackupPoliciesClientImpl implements SqlPoolGeoBacku
     }
 
     /**
-     * Get list of SQL pool geo backup policies.
+     * List SQL pool geo backup policies
+     *
+     * <p>Get list of SQL pool geo backup policies.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -281,7 +291,9 @@ public final class SqlPoolGeoBackupPoliciesClientImpl implements SqlPoolGeoBacku
     }
 
     /**
-     * Get list of SQL pool geo backup policies.
+     * List SQL pool geo backup policies
+     *
+     * <p>Get list of SQL pool geo backup policies.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -461,14 +473,7 @@ public final class SqlPoolGeoBackupPoliciesClientImpl implements SqlPoolGeoBacku
         GeoBackupPolicyInner parameters) {
         return createOrUpdateWithResponseAsync(
                 resourceGroupName, workspaceName, sqlPoolName, geoBackupPolicyName, parameters)
-            .flatMap(
-                (Response<GeoBackupPolicyInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -523,7 +528,9 @@ public final class SqlPoolGeoBackupPoliciesClientImpl implements SqlPoolGeoBacku
     }
 
     /**
-     * Get the specified SQL pool geo backup policy.
+     * Get a SQL pool geo backup policy
+     *
+     * <p>Get the specified SQL pool geo backup policy.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -584,7 +591,9 @@ public final class SqlPoolGeoBackupPoliciesClientImpl implements SqlPoolGeoBacku
     }
 
     /**
-     * Get the specified SQL pool geo backup policy.
+     * Get a SQL pool geo backup policy
+     *
+     * <p>Get the specified SQL pool geo backup policy.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -647,7 +656,9 @@ public final class SqlPoolGeoBackupPoliciesClientImpl implements SqlPoolGeoBacku
     }
 
     /**
-     * Get the specified SQL pool geo backup policy.
+     * Get a SQL pool geo backup policy
+     *
+     * <p>Get the specified SQL pool geo backup policy.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -662,18 +673,13 @@ public final class SqlPoolGeoBackupPoliciesClientImpl implements SqlPoolGeoBacku
     private Mono<GeoBackupPolicyInner> getAsync(
         String resourceGroupName, String workspaceName, String sqlPoolName, GeoBackupPolicyName geoBackupPolicyName) {
         return getWithResponseAsync(resourceGroupName, workspaceName, sqlPoolName, geoBackupPolicyName)
-            .flatMap(
-                (Response<GeoBackupPolicyInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
-     * Get the specified SQL pool geo backup policy.
+     * Get a SQL pool geo backup policy
+     *
+     * <p>Get the specified SQL pool geo backup policy.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -691,7 +697,9 @@ public final class SqlPoolGeoBackupPoliciesClientImpl implements SqlPoolGeoBacku
     }
 
     /**
-     * Get the specified SQL pool geo backup policy.
+     * Get a SQL pool geo backup policy
+     *
+     * <p>Get the specified SQL pool geo backup policy.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
