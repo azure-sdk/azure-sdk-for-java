@@ -16,7 +16,9 @@ import com.azure.resourcemanager.synapse.fluent.models.IntegrationRuntimeNodeIpA
  */
 public interface IntegrationRuntimeNodeIpAddressOperationsClient {
     /**
-     * Get the IP address of an integration runtime node.
+     * Get integration runtime node IP address
+     *
+     * <p>Get the IP address of an integration runtime node.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -32,7 +34,9 @@ public interface IntegrationRuntimeNodeIpAddressOperationsClient {
         String resourceGroupName, String workspaceName, String integrationRuntimeName, String nodeName);
 
     /**
-     * Get the IP address of an integration runtime node.
+     * Get integration runtime node IP address
+     *
+     * <p>Get the IP address of an integration runtime node.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.

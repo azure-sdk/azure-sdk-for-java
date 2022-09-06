@@ -7,34 +7,34 @@ package com.azure.resourcemanager.synapse.models;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-/** The state of the data masking policy. */
-public enum DataMaskingState {
-    /** Enum value Disabled. */
-    DISABLED("Disabled"),
-
+/** Desired state. */
+public enum DesiredState {
     /** Enum value Enabled. */
-    ENABLED("Enabled");
+    ENABLED("Enabled"),
 
-    /** The actual serialized value for a DataMaskingState instance. */
+    /** Enum value Disabled. */
+    DISABLED("Disabled");
+
+    /** The actual serialized value for a DesiredState instance. */
     private final String value;
 
-    DataMaskingState(String value) {
+    DesiredState(String value) {
         this.value = value;
     }
 
     /**
-     * Parses a serialized value to a DataMaskingState instance.
+     * Parses a serialized value to a DesiredState instance.
      *
      * @param value the serialized value to parse.
-     * @return the parsed DataMaskingState object, or null if unable to parse.
+     * @return the parsed DesiredState object, or null if unable to parse.
      */
     @JsonCreator
-    public static DataMaskingState fromString(String value) {
+    public static DesiredState fromString(String value) {
         if (value == null) {
             return null;
         }
-        DataMaskingState[] items = DataMaskingState.values();
-        for (DataMaskingState item : items) {
+        DesiredState[] items = DesiredState.values();
+        for (DesiredState item : items) {
             if (item.toString().equalsIgnoreCase(value)) {
                 return item;
             }

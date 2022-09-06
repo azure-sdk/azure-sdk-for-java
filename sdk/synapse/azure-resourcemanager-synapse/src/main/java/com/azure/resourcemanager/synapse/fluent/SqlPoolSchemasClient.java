@@ -14,7 +14,9 @@ import com.azure.resourcemanager.synapse.fluent.models.SqlPoolSchemaInner;
 /** An instance of this class provides access to all the operations defined in SqlPoolSchemasClient. */
 public interface SqlPoolSchemasClient {
     /**
-     * Gets schemas of a given SQL pool.
+     * Gets schemas of a given SQL pool
+     *
+     * <p>Gets schemas of a given SQL pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -28,7 +30,9 @@ public interface SqlPoolSchemasClient {
     PagedIterable<SqlPoolSchemaInner> list(String resourceGroupName, String workspaceName, String sqlPoolName);
 
     /**
-     * Gets schemas of a given SQL pool.
+     * Gets schemas of a given SQL pool
+     *
+     * <p>Gets schemas of a given SQL pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.

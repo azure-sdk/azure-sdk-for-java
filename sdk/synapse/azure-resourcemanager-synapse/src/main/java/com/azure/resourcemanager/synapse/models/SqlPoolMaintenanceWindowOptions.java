@@ -10,7 +10,9 @@ import com.azure.core.util.Context;
 /** Resource collection API of SqlPoolMaintenanceWindowOptions. */
 public interface SqlPoolMaintenanceWindowOptions {
     /**
-     * Get list of SQL pool's available maintenance windows.
+     * SQL pool's available maintenance windows.
+     *
+     * <p>Get list of SQL pool's available maintenance windows.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -25,7 +27,9 @@ public interface SqlPoolMaintenanceWindowOptions {
         String resourceGroupName, String workspaceName, String sqlPoolName, String maintenanceWindowOptionsName);
 
     /**
-     * Get list of SQL pool's available maintenance windows.
+     * SQL pool's available maintenance windows.
+     *
+     * <p>Get list of SQL pool's available maintenance windows.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
