@@ -21,8 +21,7 @@ public final class ReadOnlyFollowingDatabaseProperties {
     private ResourceProvisioningState provisioningState;
 
     /*
-     * The time the data should be kept before it stops being accessible to
-     * queries in TimeSpan.
+     * The time the data should be kept before it stops being accessible to queries in TimeSpan.
      */
     @JsonProperty(value = "softDeletePeriod", access = JsonProperty.Access.WRITE_ONLY)
     private Duration softDeletePeriod;

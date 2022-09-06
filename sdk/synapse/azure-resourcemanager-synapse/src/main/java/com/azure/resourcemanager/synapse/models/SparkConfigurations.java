@@ -10,7 +10,9 @@ import com.azure.core.util.Context;
 /** Resource collection API of SparkConfigurations. */
 public interface SparkConfigurations {
     /**
-     * Get SparkConfiguration by name in a workspace.
+     * Get SparkConfiguration by name.
+     *
+     * <p>Get SparkConfiguration by name in a workspace.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param sparkConfigurationName SparkConfiguration name.
@@ -23,7 +25,9 @@ public interface SparkConfigurations {
     SparkConfigurationResource get(String resourceGroupName, String sparkConfigurationName, String workspaceName);
 
     /**
-     * Get SparkConfiguration by name in a workspace.
+     * Get SparkConfiguration by name.
+     *
+     * <p>Get SparkConfiguration by name in a workspace.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param sparkConfigurationName SparkConfiguration name.

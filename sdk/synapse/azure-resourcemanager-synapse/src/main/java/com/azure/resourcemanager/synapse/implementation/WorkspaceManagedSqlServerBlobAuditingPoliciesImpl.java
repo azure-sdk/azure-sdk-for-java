@@ -89,9 +89,8 @@ public final class WorkspaceManagedSqlServerBlobAuditingPoliciesImpl
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'workspaces'.", id)));
         }
-        BlobAuditingPolicyName blobAuditingPolicyName =
-            BlobAuditingPolicyName.fromString(Utils.getValueFromIdByName(id, "auditingSettings"));
-        if (blobAuditingPolicyName == null) {
+        String blobAuditingPolicyNameLocal = Utils.getValueFromIdByName(id, "auditingSettings");
+        if (blobAuditingPolicyNameLocal == null) {
             throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
@@ -99,6 +98,7 @@ public final class WorkspaceManagedSqlServerBlobAuditingPoliciesImpl
                             .format(
                                 "The resource ID '%s' is not valid. Missing path segment 'auditingSettings'.", id)));
         }
+        BlobAuditingPolicyName blobAuditingPolicyName = BlobAuditingPolicyName.fromString(blobAuditingPolicyNameLocal);
         return this.getWithResponse(resourceGroupName, workspaceName, blobAuditingPolicyName, Context.NONE).getValue();
     }
 
@@ -118,9 +118,8 @@ public final class WorkspaceManagedSqlServerBlobAuditingPoliciesImpl
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'workspaces'.", id)));
         }
-        BlobAuditingPolicyName blobAuditingPolicyName =
-            BlobAuditingPolicyName.fromString(Utils.getValueFromIdByName(id, "auditingSettings"));
-        if (blobAuditingPolicyName == null) {
+        String blobAuditingPolicyNameLocal = Utils.getValueFromIdByName(id, "auditingSettings");
+        if (blobAuditingPolicyNameLocal == null) {
             throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
@@ -128,6 +127,7 @@ public final class WorkspaceManagedSqlServerBlobAuditingPoliciesImpl
                             .format(
                                 "The resource ID '%s' is not valid. Missing path segment 'auditingSettings'.", id)));
         }
+        BlobAuditingPolicyName blobAuditingPolicyName = BlobAuditingPolicyName.fromString(blobAuditingPolicyNameLocal);
         return this.getWithResponse(resourceGroupName, workspaceName, blobAuditingPolicyName, context);
     }
 
