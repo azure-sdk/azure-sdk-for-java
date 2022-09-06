@@ -357,4 +357,24 @@ public interface ComputeResource {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
     void restart(Context context);
+
+    /**
+     * Updates schedules of a compute instance.
+     *
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void updateSchedules();
+
+    /**
+     * Updates schedules of a compute instance.
+     *
+     * @param parameters The object for updating schedules of specified ComputeInstance.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response}.
+     */
+    Response<Void> updateSchedulesWithResponse(ComputeSchedules parameters, Context context);
 }

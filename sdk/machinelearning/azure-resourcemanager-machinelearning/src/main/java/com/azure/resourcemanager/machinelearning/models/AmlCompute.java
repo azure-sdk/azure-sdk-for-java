@@ -54,13 +54,6 @@ public final class AmlCompute extends Compute {
         return this;
     }
 
-    /** {@inheritDoc} */
-    @Override
-    public AmlCompute withDisableLocalAuth(Boolean disableLocalAuth) {
-        super.withDisableLocalAuth(disableLocalAuth);
-        return this;
-    }
-
     /**
      * Validates the instance.
      *

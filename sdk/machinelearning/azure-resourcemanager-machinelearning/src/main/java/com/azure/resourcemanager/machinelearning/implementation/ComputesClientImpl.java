@@ -39,6 +39,7 @@ import com.azure.resourcemanager.machinelearning.fluent.models.ComputeSecretsInn
 import com.azure.resourcemanager.machinelearning.models.AmlComputeNodeInformation;
 import com.azure.resourcemanager.machinelearning.models.AmlComputeNodesInformation;
 import com.azure.resourcemanager.machinelearning.models.ClusterUpdateParameters;
+import com.azure.resourcemanager.machinelearning.models.ComputeSchedules;
 import com.azure.resourcemanager.machinelearning.models.PaginatedComputeResourcesList;
 import com.azure.resourcemanager.machinelearning.models.UnderlyingResourceAction;
 import java.nio.ByteBuffer;
@@ -230,6 +231,24 @@ public final class ComputesClientImpl implements ComputesClient {
             @PathParam("workspaceName") String workspaceName,
             @PathParam("computeName") String computeName,
             @QueryParam("api-version") String apiVersion,
+            @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({"Content-Type: application/json"})
+        @Post(
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers"
+                + "/Microsoft.MachineLearningServices/workspaces/{workspaceName}/computes/{computeName}"
+                + "/updateSchedules")
+        @ExpectedResponses({200})
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<Void>> updateSchedules(
+            @HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName,
+            @PathParam("workspaceName") String workspaceName,
+            @PathParam("computeName") String computeName,
+            @QueryParam("api-version") String apiVersion,
+            @BodyParam("application/json") ComputeSchedules parameters,
             @HeaderParam("Accept") String accept,
             Context context);
 
@@ -2703,9 +2722,205 @@ public final class ComputesClientImpl implements ComputesClient {
     }
 
     /**
+     * Updates schedules of a compute instance.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param computeName Name of the Azure Machine Learning compute.
+     * @param parameters The object for updating schedules of specified ComputeInstance.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Void>> updateSchedulesWithResponseAsync(
+        String resourceGroupName, String workspaceName, String computeName, ComputeSchedules parameters) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (workspaceName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
+        }
+        if (computeName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter computeName is required and cannot be null."));
+        }
+        if (parameters != null) {
+            parameters.validate();
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(
+                context ->
+                    service
+                        .updateSchedules(
+                            this.client.getEndpoint(),
+                            this.client.getSubscriptionId(),
+                            resourceGroupName,
+                            workspaceName,
+                            computeName,
+                            this.client.getApiVersion(),
+                            parameters,
+                            accept,
+                            context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Updates schedules of a compute instance.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param computeName Name of the Azure Machine Learning compute.
+     * @param parameters The object for updating schedules of specified ComputeInstance.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Void>> updateSchedulesWithResponseAsync(
+        String resourceGroupName,
+        String workspaceName,
+        String computeName,
+        ComputeSchedules parameters,
+        Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (workspaceName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
+        }
+        if (computeName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter computeName is required and cannot be null."));
+        }
+        if (parameters != null) {
+            parameters.validate();
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service
+            .updateSchedules(
+                this.client.getEndpoint(),
+                this.client.getSubscriptionId(),
+                resourceGroupName,
+                workspaceName,
+                computeName,
+                this.client.getApiVersion(),
+                parameters,
+                accept,
+                context);
+    }
+
+    /**
+     * Updates schedules of a compute instance.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param computeName Name of the Azure Machine Learning compute.
+     * @param parameters The object for updating schedules of specified ComputeInstance.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return A {@link Mono} that completes when a successful response is received.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Void> updateSchedulesAsync(
+        String resourceGroupName, String workspaceName, String computeName, ComputeSchedules parameters) {
+        return updateSchedulesWithResponseAsync(resourceGroupName, workspaceName, computeName, parameters)
+            .flatMap(ignored -> Mono.empty());
+    }
+
+    /**
+     * Updates schedules of a compute instance.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param computeName Name of the Azure Machine Learning compute.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return A {@link Mono} that completes when a successful response is received.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Void> updateSchedulesAsync(String resourceGroupName, String workspaceName, String computeName) {
+        final ComputeSchedules parameters = null;
+        return updateSchedulesWithResponseAsync(resourceGroupName, workspaceName, computeName, parameters)
+            .flatMap(ignored -> Mono.empty());
+    }
+
+    /**
+     * Updates schedules of a compute instance.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param computeName Name of the Azure Machine Learning compute.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public void updateSchedules(String resourceGroupName, String workspaceName, String computeName) {
+        final ComputeSchedules parameters = null;
+        updateSchedulesAsync(resourceGroupName, workspaceName, computeName, parameters).block();
+    }
+
+    /**
+     * Updates schedules of a compute instance.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param computeName Name of the Azure Machine Learning compute.
+     * @param parameters The object for updating schedules of specified ComputeInstance.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<Void> updateSchedulesWithResponse(
+        String resourceGroupName,
+        String workspaceName,
+        String computeName,
+        ComputeSchedules parameters,
+        Context context) {
+        return updateSchedulesWithResponseAsync(resourceGroupName, workspaceName, computeName, parameters, context)
+            .block();
+    }
+
+    /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -2741,7 +2956,8 @@ public final class ComputesClientImpl implements ComputesClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -2778,7 +2994,8 @@ public final class ComputesClientImpl implements ComputesClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -2813,7 +3030,8 @@ public final class ComputesClientImpl implements ComputesClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.

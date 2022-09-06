@@ -14,6 +14,7 @@ import com.azure.resourcemanager.machinelearning.fluent.models.ComputeResourceIn
 import com.azure.resourcemanager.machinelearning.fluent.models.ComputeSecretsInner;
 import com.azure.resourcemanager.machinelearning.models.AmlComputeNodeInformation;
 import com.azure.resourcemanager.machinelearning.models.ComputeResource;
+import com.azure.resourcemanager.machinelearning.models.ComputeSchedules;
 import com.azure.resourcemanager.machinelearning.models.ComputeSecrets;
 import com.azure.resourcemanager.machinelearning.models.Computes;
 import com.azure.resourcemanager.machinelearning.models.UnderlyingResourceAction;
@@ -140,6 +141,21 @@ public final class ComputesImpl implements Computes {
 
     public void restart(String resourceGroupName, String workspaceName, String computeName, Context context) {
         this.serviceClient().restart(resourceGroupName, workspaceName, computeName, context);
+    }
+
+    public void updateSchedules(String resourceGroupName, String workspaceName, String computeName) {
+        this.serviceClient().updateSchedules(resourceGroupName, workspaceName, computeName);
+    }
+
+    public Response<Void> updateSchedulesWithResponse(
+        String resourceGroupName,
+        String workspaceName,
+        String computeName,
+        ComputeSchedules parameters,
+        Context context) {
+        return this
+            .serviceClient()
+            .updateSchedulesWithResponse(resourceGroupName, workspaceName, computeName, parameters, context);
     }
 
     public ComputeResource getById(String id) {

@@ -37,8 +37,7 @@ public final class WorkspacePropertiesUpdateParameters {
     private ServiceManagedResourcesSettings serviceManagedResourcesSettings;
 
     /*
-     * The user assigned identity resource id that represents the workspace
-     * identity.
+     * The user assigned identity resource id that represents the workspace identity.
      */
     @JsonProperty(value = "primaryUserAssignedIdentity")
     private String primaryUserAssignedIdentity;

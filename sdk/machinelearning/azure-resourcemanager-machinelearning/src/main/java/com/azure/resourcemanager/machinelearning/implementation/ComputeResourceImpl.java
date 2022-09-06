@@ -14,6 +14,7 @@ import com.azure.resourcemanager.machinelearning.models.AmlComputeNodeInformatio
 import com.azure.resourcemanager.machinelearning.models.ClusterUpdateParameters;
 import com.azure.resourcemanager.machinelearning.models.Compute;
 import com.azure.resourcemanager.machinelearning.models.ComputeResource;
+import com.azure.resourcemanager.machinelearning.models.ComputeSchedules;
 import com.azure.resourcemanager.machinelearning.models.ComputeSecrets;
 import com.azure.resourcemanager.machinelearning.models.ManagedServiceIdentity;
 import com.azure.resourcemanager.machinelearning.models.ScaleSettingsInformation;
@@ -216,6 +217,16 @@ public final class ComputeResourceImpl implements ComputeResource, ComputeResour
 
     public void restart(Context context) {
         serviceManager.computes().restart(resourceGroupName, workspaceName, computeName, context);
+    }
+
+    public void updateSchedules() {
+        serviceManager.computes().updateSchedules(resourceGroupName, workspaceName, computeName);
+    }
+
+    public Response<Void> updateSchedulesWithResponse(ComputeSchedules parameters, Context context) {
+        return serviceManager
+            .computes()
+            .updateSchedulesWithResponse(resourceGroupName, workspaceName, computeName, parameters, context);
     }
 
     public ComputeResourceImpl withRegion(Region location) {
