@@ -58,7 +58,9 @@ public interface KustoPools {
         String location, KustoPoolCheckNameRequest kustoPoolName, Context context);
 
     /**
-     * List all Kusto pools.
+     * List Kusto pools
+     *
+     * <p>List all Kusto pools.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -70,7 +72,9 @@ public interface KustoPools {
     KustoPoolListResult listByWorkspace(String resourceGroupName, String workspaceName);
 
     /**
-     * List all Kusto pools.
+     * List Kusto pools
+     *
+     * <p>List all Kusto pools.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.

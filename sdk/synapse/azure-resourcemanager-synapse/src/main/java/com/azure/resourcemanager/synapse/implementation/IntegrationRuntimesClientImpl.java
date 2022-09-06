@@ -261,7 +261,9 @@ public final class IntegrationRuntimesClientImpl implements IntegrationRuntimesC
     }
 
     /**
-     * Update an integration runtime.
+     * Update integration runtime
+     *
+     * <p>Update an integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -330,7 +332,9 @@ public final class IntegrationRuntimesClientImpl implements IntegrationRuntimesC
     }
 
     /**
-     * Update an integration runtime.
+     * Update integration runtime
+     *
+     * <p>Update an integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -398,7 +402,9 @@ public final class IntegrationRuntimesClientImpl implements IntegrationRuntimesC
     }
 
     /**
-     * Update an integration runtime.
+     * Update integration runtime
+     *
+     * <p>Update an integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -417,18 +423,13 @@ public final class IntegrationRuntimesClientImpl implements IntegrationRuntimesC
         UpdateIntegrationRuntimeRequest updateIntegrationRuntimeRequest) {
         return updateWithResponseAsync(
                 resourceGroupName, workspaceName, integrationRuntimeName, updateIntegrationRuntimeRequest)
-            .flatMap(
-                (Response<IntegrationRuntimeResourceInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
-     * Update an integration runtime.
+     * Update integration runtime
+     *
+     * <p>Update an integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -450,7 +451,9 @@ public final class IntegrationRuntimesClientImpl implements IntegrationRuntimesC
     }
 
     /**
-     * Update an integration runtime.
+     * Update integration runtime
+     *
+     * <p>Update an integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -475,7 +478,9 @@ public final class IntegrationRuntimesClientImpl implements IntegrationRuntimesC
     }
 
     /**
-     * Get an integration runtime.
+     * Get integration runtime
+     *
+     * <p>Get an integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -534,7 +539,9 @@ public final class IntegrationRuntimesClientImpl implements IntegrationRuntimesC
     }
 
     /**
-     * Get an integration runtime.
+     * Get integration runtime
+     *
+     * <p>Get an integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -595,7 +602,9 @@ public final class IntegrationRuntimesClientImpl implements IntegrationRuntimesC
     }
 
     /**
-     * Get an integration runtime.
+     * Get integration runtime
+     *
+     * <p>Get an integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -611,18 +620,13 @@ public final class IntegrationRuntimesClientImpl implements IntegrationRuntimesC
     private Mono<IntegrationRuntimeResourceInner> getAsync(
         String resourceGroupName, String workspaceName, String integrationRuntimeName, String ifNoneMatch) {
         return getWithResponseAsync(resourceGroupName, workspaceName, integrationRuntimeName, ifNoneMatch)
-            .flatMap(
-                (Response<IntegrationRuntimeResourceInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
-     * Get an integration runtime.
+     * Get integration runtime
+     *
+     * <p>Get an integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -637,18 +641,13 @@ public final class IntegrationRuntimesClientImpl implements IntegrationRuntimesC
         String resourceGroupName, String workspaceName, String integrationRuntimeName) {
         final String ifNoneMatch = null;
         return getWithResponseAsync(resourceGroupName, workspaceName, integrationRuntimeName, ifNoneMatch)
-            .flatMap(
-                (Response<IntegrationRuntimeResourceInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
-     * Get an integration runtime.
+     * Get integration runtime
+     *
+     * <p>Get an integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -666,7 +665,9 @@ public final class IntegrationRuntimesClientImpl implements IntegrationRuntimesC
     }
 
     /**
-     * Get an integration runtime.
+     * Get integration runtime
+     *
+     * <p>Get an integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -691,7 +692,9 @@ public final class IntegrationRuntimesClientImpl implements IntegrationRuntimesC
     }
 
     /**
-     * Create an integration runtime.
+     * Create integration runtime
+     *
+     * <p>Create an integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -762,7 +765,9 @@ public final class IntegrationRuntimesClientImpl implements IntegrationRuntimesC
     }
 
     /**
-     * Create an integration runtime.
+     * Create integration runtime
+     *
+     * <p>Create an integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -832,7 +837,9 @@ public final class IntegrationRuntimesClientImpl implements IntegrationRuntimesC
     }
 
     /**
-     * Create an integration runtime.
+     * Create integration runtime
+     *
+     * <p>Create an integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -866,7 +873,9 @@ public final class IntegrationRuntimesClientImpl implements IntegrationRuntimesC
     }
 
     /**
-     * Create an integration runtime.
+     * Create integration runtime
+     *
+     * <p>Create an integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -903,7 +912,9 @@ public final class IntegrationRuntimesClientImpl implements IntegrationRuntimesC
     }
 
     /**
-     * Create an integration runtime.
+     * Create integration runtime
+     *
+     * <p>Create an integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -928,7 +939,9 @@ public final class IntegrationRuntimesClientImpl implements IntegrationRuntimesC
     }
 
     /**
-     * Create an integration runtime.
+     * Create integration runtime
+     *
+     * <p>Create an integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -956,7 +969,9 @@ public final class IntegrationRuntimesClientImpl implements IntegrationRuntimesC
     }
 
     /**
-     * Create an integration runtime.
+     * Create integration runtime
+     *
+     * <p>Create an integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -982,7 +997,9 @@ public final class IntegrationRuntimesClientImpl implements IntegrationRuntimesC
     }
 
     /**
-     * Create an integration runtime.
+     * Create integration runtime
+     *
+     * <p>Create an integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -1006,7 +1023,9 @@ public final class IntegrationRuntimesClientImpl implements IntegrationRuntimesC
     }
 
     /**
-     * Create an integration runtime.
+     * Create integration runtime
+     *
+     * <p>Create an integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -1035,7 +1054,9 @@ public final class IntegrationRuntimesClientImpl implements IntegrationRuntimesC
     }
 
     /**
-     * Create an integration runtime.
+     * Create integration runtime
+     *
+     * <p>Create an integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -1060,7 +1081,9 @@ public final class IntegrationRuntimesClientImpl implements IntegrationRuntimesC
     }
 
     /**
-     * Create an integration runtime.
+     * Create integration runtime
+     *
+     * <p>Create an integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -1083,7 +1106,9 @@ public final class IntegrationRuntimesClientImpl implements IntegrationRuntimesC
     }
 
     /**
-     * Create an integration runtime.
+     * Create integration runtime
+     *
+     * <p>Create an integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -1111,7 +1136,9 @@ public final class IntegrationRuntimesClientImpl implements IntegrationRuntimesC
     }
 
     /**
-     * Delete an integration runtime.
+     * Delete integration runtime
+     *
+     * <p>Delete an integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -1167,7 +1194,9 @@ public final class IntegrationRuntimesClientImpl implements IntegrationRuntimesC
     }
 
     /**
-     * Delete an integration runtime.
+     * Delete integration runtime
+     *
+     * <p>Delete an integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -1221,7 +1250,9 @@ public final class IntegrationRuntimesClientImpl implements IntegrationRuntimesC
     }
 
     /**
-     * Delete an integration runtime.
+     * Delete integration runtime
+     *
+     * <p>Delete an integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -1243,7 +1274,9 @@ public final class IntegrationRuntimesClientImpl implements IntegrationRuntimesC
     }
 
     /**
-     * Delete an integration runtime.
+     * Delete integration runtime
+     *
+     * <p>Delete an integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -1266,7 +1299,9 @@ public final class IntegrationRuntimesClientImpl implements IntegrationRuntimesC
     }
 
     /**
-     * Delete an integration runtime.
+     * Delete integration runtime
+     *
+     * <p>Delete an integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -1283,7 +1318,9 @@ public final class IntegrationRuntimesClientImpl implements IntegrationRuntimesC
     }
 
     /**
-     * Delete an integration runtime.
+     * Delete integration runtime
+     *
+     * <p>Delete an integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -1301,7 +1338,9 @@ public final class IntegrationRuntimesClientImpl implements IntegrationRuntimesC
     }
 
     /**
-     * Delete an integration runtime.
+     * Delete integration runtime
+     *
+     * <p>Delete an integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -1319,7 +1358,9 @@ public final class IntegrationRuntimesClientImpl implements IntegrationRuntimesC
     }
 
     /**
-     * Delete an integration runtime.
+     * Delete integration runtime
+     *
+     * <p>Delete an integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -1339,7 +1380,9 @@ public final class IntegrationRuntimesClientImpl implements IntegrationRuntimesC
     }
 
     /**
-     * Delete an integration runtime.
+     * Delete integration runtime
+     *
+     * <p>Delete an integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -1354,7 +1397,9 @@ public final class IntegrationRuntimesClientImpl implements IntegrationRuntimesC
     }
 
     /**
-     * Delete an integration runtime.
+     * Delete integration runtime
+     *
+     * <p>Delete an integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -1370,7 +1415,9 @@ public final class IntegrationRuntimesClientImpl implements IntegrationRuntimesC
     }
 
     /**
-     * Upgrade an integration runtime.
+     * Upgrade integration runtime
+     *
+     * <p>Upgrade an integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -1426,7 +1473,9 @@ public final class IntegrationRuntimesClientImpl implements IntegrationRuntimesC
     }
 
     /**
-     * Upgrade an integration runtime.
+     * Upgrade integration runtime
+     *
+     * <p>Upgrade an integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -1480,7 +1529,9 @@ public final class IntegrationRuntimesClientImpl implements IntegrationRuntimesC
     }
 
     /**
-     * Upgrade an integration runtime.
+     * Upgrade integration runtime
+     *
+     * <p>Upgrade an integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -1493,11 +1544,13 @@ public final class IntegrationRuntimesClientImpl implements IntegrationRuntimesC
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> upgradeAsync(String resourceGroupName, String workspaceName, String integrationRuntimeName) {
         return upgradeWithResponseAsync(resourceGroupName, workspaceName, integrationRuntimeName)
-            .flatMap((Response<Void> res) -> Mono.empty());
+            .flatMap(ignored -> Mono.empty());
     }
 
     /**
-     * Upgrade an integration runtime.
+     * Upgrade integration runtime
+     *
+     * <p>Upgrade an integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -1512,7 +1565,9 @@ public final class IntegrationRuntimesClientImpl implements IntegrationRuntimesC
     }
 
     /**
-     * Upgrade an integration runtime.
+     * Upgrade integration runtime
+     *
+     * <p>Upgrade an integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -1530,7 +1585,9 @@ public final class IntegrationRuntimesClientImpl implements IntegrationRuntimesC
     }
 
     /**
-     * List all integration runtimes.
+     * List integration runtimes
+     *
+     * <p>List all integration runtimes.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -1589,7 +1646,9 @@ public final class IntegrationRuntimesClientImpl implements IntegrationRuntimesC
     }
 
     /**
-     * List all integration runtimes.
+     * List integration runtimes
+     *
+     * <p>List all integration runtimes.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -1646,7 +1705,9 @@ public final class IntegrationRuntimesClientImpl implements IntegrationRuntimesC
     }
 
     /**
-     * List all integration runtimes.
+     * List integration runtimes
+     *
+     * <p>List all integration runtimes.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -1664,7 +1725,9 @@ public final class IntegrationRuntimesClientImpl implements IntegrationRuntimesC
     }
 
     /**
-     * List all integration runtimes.
+     * List integration runtimes
+     *
+     * <p>List all integration runtimes.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -1683,7 +1746,9 @@ public final class IntegrationRuntimesClientImpl implements IntegrationRuntimesC
     }
 
     /**
-     * List all integration runtimes.
+     * List integration runtimes
+     *
+     * <p>List all integration runtimes.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -1699,7 +1764,9 @@ public final class IntegrationRuntimesClientImpl implements IntegrationRuntimesC
     }
 
     /**
-     * List all integration runtimes.
+     * List integration runtimes
+     *
+     * <p>List all integration runtimes.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -1716,7 +1783,9 @@ public final class IntegrationRuntimesClientImpl implements IntegrationRuntimesC
     }
 
     /**
-     * Start an integration runtime.
+     * Start integration runtime
+     *
+     * <p>Start an integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -1772,7 +1841,9 @@ public final class IntegrationRuntimesClientImpl implements IntegrationRuntimesC
     }
 
     /**
-     * Start an integration runtime.
+     * Start integration runtime
+     *
+     * <p>Start an integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -1826,7 +1897,9 @@ public final class IntegrationRuntimesClientImpl implements IntegrationRuntimesC
     }
 
     /**
-     * Start an integration runtime.
+     * Start integration runtime
+     *
+     * <p>Start an integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -1852,7 +1925,9 @@ public final class IntegrationRuntimesClientImpl implements IntegrationRuntimesC
     }
 
     /**
-     * Start an integration runtime.
+     * Start integration runtime
+     *
+     * <p>Start an integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -1881,7 +1956,9 @@ public final class IntegrationRuntimesClientImpl implements IntegrationRuntimesC
     }
 
     /**
-     * Start an integration runtime.
+     * Start integration runtime
+     *
+     * <p>Start an integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -1898,7 +1975,9 @@ public final class IntegrationRuntimesClientImpl implements IntegrationRuntimesC
     }
 
     /**
-     * Start an integration runtime.
+     * Start integration runtime
+     *
+     * <p>Start an integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -1916,7 +1995,9 @@ public final class IntegrationRuntimesClientImpl implements IntegrationRuntimesC
     }
 
     /**
-     * Start an integration runtime.
+     * Start integration runtime
+     *
+     * <p>Start an integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -1935,7 +2016,9 @@ public final class IntegrationRuntimesClientImpl implements IntegrationRuntimesC
     }
 
     /**
-     * Start an integration runtime.
+     * Start integration runtime
+     *
+     * <p>Start an integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -1955,7 +2038,9 @@ public final class IntegrationRuntimesClientImpl implements IntegrationRuntimesC
     }
 
     /**
-     * Start an integration runtime.
+     * Start integration runtime
+     *
+     * <p>Start an integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -1972,7 +2057,9 @@ public final class IntegrationRuntimesClientImpl implements IntegrationRuntimesC
     }
 
     /**
-     * Start an integration runtime.
+     * Start integration runtime
+     *
+     * <p>Start an integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -1990,7 +2077,9 @@ public final class IntegrationRuntimesClientImpl implements IntegrationRuntimesC
     }
 
     /**
-     * Stop an integration runtime.
+     * Stop integration runtime
+     *
+     * <p>Stop an integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -2046,7 +2135,9 @@ public final class IntegrationRuntimesClientImpl implements IntegrationRuntimesC
     }
 
     /**
-     * Stop an integration runtime.
+     * Stop integration runtime
+     *
+     * <p>Stop an integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -2100,7 +2191,9 @@ public final class IntegrationRuntimesClientImpl implements IntegrationRuntimesC
     }
 
     /**
-     * Stop an integration runtime.
+     * Stop integration runtime
+     *
+     * <p>Stop an integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -2122,7 +2215,9 @@ public final class IntegrationRuntimesClientImpl implements IntegrationRuntimesC
     }
 
     /**
-     * Stop an integration runtime.
+     * Stop integration runtime
+     *
+     * <p>Stop an integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -2145,7 +2240,9 @@ public final class IntegrationRuntimesClientImpl implements IntegrationRuntimesC
     }
 
     /**
-     * Stop an integration runtime.
+     * Stop integration runtime
+     *
+     * <p>Stop an integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -2162,7 +2259,9 @@ public final class IntegrationRuntimesClientImpl implements IntegrationRuntimesC
     }
 
     /**
-     * Stop an integration runtime.
+     * Stop integration runtime
+     *
+     * <p>Stop an integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -2180,7 +2279,9 @@ public final class IntegrationRuntimesClientImpl implements IntegrationRuntimesC
     }
 
     /**
-     * Stop an integration runtime.
+     * Stop integration runtime
+     *
+     * <p>Stop an integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -2198,7 +2299,9 @@ public final class IntegrationRuntimesClientImpl implements IntegrationRuntimesC
     }
 
     /**
-     * Stop an integration runtime.
+     * Stop integration runtime
+     *
+     * <p>Stop an integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -2218,7 +2321,9 @@ public final class IntegrationRuntimesClientImpl implements IntegrationRuntimesC
     }
 
     /**
-     * Stop an integration runtime.
+     * Stop integration runtime
+     *
+     * <p>Stop an integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -2233,7 +2338,9 @@ public final class IntegrationRuntimesClientImpl implements IntegrationRuntimesC
     }
 
     /**
-     * Stop an integration runtime.
+     * Stop integration runtime
+     *
+     * <p>Stop an integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -2249,7 +2356,9 @@ public final class IntegrationRuntimesClientImpl implements IntegrationRuntimesC
     }
 
     /**
-     * Gets the list of outbound network dependencies for a given Azure-SSIS integration runtime.
+     * Gets list of outbound network dependencies for a given Azure-SSIS integration runtime.
+     *
+     * <p>Gets the list of outbound network dependencies for a given Azure-SSIS integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -2307,7 +2416,9 @@ public final class IntegrationRuntimesClientImpl implements IntegrationRuntimesC
     }
 
     /**
-     * Gets the list of outbound network dependencies for a given Azure-SSIS integration runtime.
+     * Gets list of outbound network dependencies for a given Azure-SSIS integration runtime.
+     *
+     * <p>Gets the list of outbound network dependencies for a given Azure-SSIS integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -2363,7 +2474,9 @@ public final class IntegrationRuntimesClientImpl implements IntegrationRuntimesC
     }
 
     /**
-     * Gets the list of outbound network dependencies for a given Azure-SSIS integration runtime.
+     * Gets list of outbound network dependencies for a given Azure-SSIS integration runtime.
+     *
+     * <p>Gets the list of outbound network dependencies for a given Azure-SSIS integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -2380,18 +2493,13 @@ public final class IntegrationRuntimesClientImpl implements IntegrationRuntimesC
             String resourceGroupName, String workspaceName, String integrationRuntimeName) {
         return listOutboundNetworkDependenciesEndpointsWithResponseAsync(
                 resourceGroupName, workspaceName, integrationRuntimeName)
-            .flatMap(
-                (Response<IntegrationRuntimeOutboundNetworkDependenciesEndpointsResponseInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
-     * Gets the list of outbound network dependencies for a given Azure-SSIS integration runtime.
+     * Gets list of outbound network dependencies for a given Azure-SSIS integration runtime.
+     *
+     * <p>Gets the list of outbound network dependencies for a given Azure-SSIS integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -2409,7 +2517,9 @@ public final class IntegrationRuntimesClientImpl implements IntegrationRuntimesC
     }
 
     /**
-     * Gets the list of outbound network dependencies for a given Azure-SSIS integration runtime.
+     * Gets list of outbound network dependencies for a given Azure-SSIS integration runtime.
+     *
+     * <p>Gets the list of outbound network dependencies for a given Azure-SSIS integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -2959,7 +3069,8 @@ public final class IntegrationRuntimesClientImpl implements IntegrationRuntimesC
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -2995,7 +3106,8 @@ public final class IntegrationRuntimesClientImpl implements IntegrationRuntimesC
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.

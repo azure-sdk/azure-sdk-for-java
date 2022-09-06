@@ -17,7 +17,9 @@ import com.azure.resourcemanager.synapse.fluent.models.RecoverableSqlPoolInner;
  */
 public interface WorkspaceManagedSqlServerRecoverableSqlPoolsClient {
     /**
-     * Get list of recoverable sql pools for workspace managed sql server.
+     * Get list of recoverable sql pools for the server.
+     *
+     * <p>Get list of recoverable sql pools for workspace managed sql server.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -31,7 +33,9 @@ public interface WorkspaceManagedSqlServerRecoverableSqlPoolsClient {
     PagedIterable<RecoverableSqlPoolInner> list(String resourceGroupName, String workspaceName);
 
     /**
-     * Get list of recoverable sql pools for workspace managed sql server.
+     * Get list of recoverable sql pools for the server.
+     *
+     * <p>Get list of recoverable sql pools for workspace managed sql server.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -46,7 +50,9 @@ public interface WorkspaceManagedSqlServerRecoverableSqlPoolsClient {
     PagedIterable<RecoverableSqlPoolInner> list(String resourceGroupName, String workspaceName, Context context);
 
     /**
-     * Get recoverable sql pools for workspace managed sql server.
+     * Get recoverable sql pools for the server.
+     *
+     * <p>Get recoverable sql pools for workspace managed sql server.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -60,7 +66,9 @@ public interface WorkspaceManagedSqlServerRecoverableSqlPoolsClient {
     RecoverableSqlPoolInner get(String resourceGroupName, String workspaceName, String sqlPoolName);
 
     /**
-     * Get recoverable sql pools for workspace managed sql server.
+     * Get recoverable sql pools for the server.
+     *
+     * <p>Get recoverable sql pools for workspace managed sql server.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.

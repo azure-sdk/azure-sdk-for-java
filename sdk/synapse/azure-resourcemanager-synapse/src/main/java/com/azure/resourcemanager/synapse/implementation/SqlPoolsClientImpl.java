@@ -208,7 +208,9 @@ public final class SqlPoolsClientImpl implements SqlPoolsClient {
     }
 
     /**
-     * Get SQL pool properties.
+     * Get SQL pool
+     *
+     * <p>Get SQL pool properties.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -262,7 +264,9 @@ public final class SqlPoolsClientImpl implements SqlPoolsClient {
     }
 
     /**
-     * Get SQL pool properties.
+     * Get SQL pool
+     *
+     * <p>Get SQL pool properties.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -314,7 +318,9 @@ public final class SqlPoolsClientImpl implements SqlPoolsClient {
     }
 
     /**
-     * Get SQL pool properties.
+     * Get SQL pool
+     *
+     * <p>Get SQL pool properties.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -327,18 +333,13 @@ public final class SqlPoolsClientImpl implements SqlPoolsClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<SqlPoolInner> getAsync(String resourceGroupName, String workspaceName, String sqlPoolName) {
         return getWithResponseAsync(resourceGroupName, workspaceName, sqlPoolName)
-            .flatMap(
-                (Response<SqlPoolInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
-     * Get SQL pool properties.
+     * Get SQL pool
+     *
+     * <p>Get SQL pool properties.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -354,7 +355,9 @@ public final class SqlPoolsClientImpl implements SqlPoolsClient {
     }
 
     /**
-     * Get SQL pool properties.
+     * Get SQL pool
+     *
+     * <p>Get SQL pool properties.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -372,7 +375,9 @@ public final class SqlPoolsClientImpl implements SqlPoolsClient {
     }
 
     /**
-     * Apply a partial update to a SQL pool.
+     * Update SQL pool
+     *
+     * <p>Apply a partial update to a SQL pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -433,7 +438,9 @@ public final class SqlPoolsClientImpl implements SqlPoolsClient {
     }
 
     /**
-     * Apply a partial update to a SQL pool.
+     * Update SQL pool
+     *
+     * <p>Apply a partial update to a SQL pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -496,7 +503,9 @@ public final class SqlPoolsClientImpl implements SqlPoolsClient {
     }
 
     /**
-     * Apply a partial update to a SQL pool.
+     * Update SQL pool
+     *
+     * <p>Apply a partial update to a SQL pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -511,18 +520,13 @@ public final class SqlPoolsClientImpl implements SqlPoolsClient {
     private Mono<SqlPoolInner> updateAsync(
         String resourceGroupName, String workspaceName, String sqlPoolName, SqlPoolPatchInfo sqlPoolInfo) {
         return updateWithResponseAsync(resourceGroupName, workspaceName, sqlPoolName, sqlPoolInfo)
-            .flatMap(
-                (Response<SqlPoolInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
-     * Apply a partial update to a SQL pool.
+     * Update SQL pool
+     *
+     * <p>Apply a partial update to a SQL pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -540,7 +544,9 @@ public final class SqlPoolsClientImpl implements SqlPoolsClient {
     }
 
     /**
-     * Apply a partial update to a SQL pool.
+     * Update SQL pool
+     *
+     * <p>Apply a partial update to a SQL pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -563,7 +569,9 @@ public final class SqlPoolsClientImpl implements SqlPoolsClient {
     }
 
     /**
-     * Create a SQL pool.
+     * Create SQL pool
+     *
+     * <p>Create a SQL pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -624,7 +632,9 @@ public final class SqlPoolsClientImpl implements SqlPoolsClient {
     }
 
     /**
-     * Create a SQL pool.
+     * Create SQL pool
+     *
+     * <p>Create a SQL pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -683,7 +693,9 @@ public final class SqlPoolsClientImpl implements SqlPoolsClient {
     }
 
     /**
-     * Create a SQL pool.
+     * Create SQL pool
+     *
+     * <p>Create a SQL pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -706,7 +718,9 @@ public final class SqlPoolsClientImpl implements SqlPoolsClient {
     }
 
     /**
-     * Create a SQL pool.
+     * Create SQL pool
+     *
+     * <p>Create a SQL pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -731,7 +745,9 @@ public final class SqlPoolsClientImpl implements SqlPoolsClient {
     }
 
     /**
-     * Create a SQL pool.
+     * Create SQL pool
+     *
+     * <p>Create a SQL pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -749,7 +765,9 @@ public final class SqlPoolsClientImpl implements SqlPoolsClient {
     }
 
     /**
-     * Create a SQL pool.
+     * Create SQL pool
+     *
+     * <p>Create a SQL pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -768,7 +786,9 @@ public final class SqlPoolsClientImpl implements SqlPoolsClient {
     }
 
     /**
-     * Create a SQL pool.
+     * Create SQL pool
+     *
+     * <p>Create a SQL pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -788,7 +808,9 @@ public final class SqlPoolsClientImpl implements SqlPoolsClient {
     }
 
     /**
-     * Create a SQL pool.
+     * Create SQL pool
+     *
+     * <p>Create a SQL pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -809,7 +831,9 @@ public final class SqlPoolsClientImpl implements SqlPoolsClient {
     }
 
     /**
-     * Create a SQL pool.
+     * Create SQL pool
+     *
+     * <p>Create a SQL pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -827,7 +851,9 @@ public final class SqlPoolsClientImpl implements SqlPoolsClient {
     }
 
     /**
-     * Create a SQL pool.
+     * Create SQL pool
+     *
+     * <p>Create a SQL pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -846,7 +872,9 @@ public final class SqlPoolsClientImpl implements SqlPoolsClient {
     }
 
     /**
-     * Delete a SQL pool.
+     * Delete SQL pool
+     *
+     * <p>Delete a SQL pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -900,7 +928,9 @@ public final class SqlPoolsClientImpl implements SqlPoolsClient {
     }
 
     /**
-     * Delete a SQL pool.
+     * Delete SQL pool
+     *
+     * <p>Delete a SQL pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -952,7 +982,9 @@ public final class SqlPoolsClientImpl implements SqlPoolsClient {
     }
 
     /**
-     * Delete a SQL pool.
+     * Delete SQL pool
+     *
+     * <p>Delete a SQL pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -973,7 +1005,9 @@ public final class SqlPoolsClientImpl implements SqlPoolsClient {
     }
 
     /**
-     * Delete a SQL pool.
+     * Delete SQL pool
+     *
+     * <p>Delete a SQL pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -996,7 +1030,9 @@ public final class SqlPoolsClientImpl implements SqlPoolsClient {
     }
 
     /**
-     * Delete a SQL pool.
+     * Delete SQL pool
+     *
+     * <p>Delete a SQL pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -1013,7 +1049,9 @@ public final class SqlPoolsClientImpl implements SqlPoolsClient {
     }
 
     /**
-     * Delete a SQL pool.
+     * Delete SQL pool
+     *
+     * <p>Delete a SQL pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -1031,7 +1069,9 @@ public final class SqlPoolsClientImpl implements SqlPoolsClient {
     }
 
     /**
-     * Delete a SQL pool.
+     * Delete SQL pool
+     *
+     * <p>Delete a SQL pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -1049,7 +1089,9 @@ public final class SqlPoolsClientImpl implements SqlPoolsClient {
     }
 
     /**
-     * Delete a SQL pool.
+     * Delete SQL pool
+     *
+     * <p>Delete a SQL pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -1069,7 +1111,9 @@ public final class SqlPoolsClientImpl implements SqlPoolsClient {
     }
 
     /**
-     * Delete a SQL pool.
+     * Delete SQL pool
+     *
+     * <p>Delete a SQL pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -1085,7 +1129,9 @@ public final class SqlPoolsClientImpl implements SqlPoolsClient {
     }
 
     /**
-     * Delete a SQL pool.
+     * Delete SQL pool
+     *
+     * <p>Delete a SQL pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -1102,7 +1148,9 @@ public final class SqlPoolsClientImpl implements SqlPoolsClient {
     }
 
     /**
-     * List all SQL pools.
+     * List SQL pools
+     *
+     * <p>List all SQL pools.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -1160,7 +1208,9 @@ public final class SqlPoolsClientImpl implements SqlPoolsClient {
     }
 
     /**
-     * List all SQL pools.
+     * List SQL pools
+     *
+     * <p>List all SQL pools.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -1216,7 +1266,9 @@ public final class SqlPoolsClientImpl implements SqlPoolsClient {
     }
 
     /**
-     * List all SQL pools.
+     * List SQL pools
+     *
+     * <p>List all SQL pools.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -1233,7 +1285,9 @@ public final class SqlPoolsClientImpl implements SqlPoolsClient {
     }
 
     /**
-     * List all SQL pools.
+     * List SQL pools
+     *
+     * <p>List all SQL pools.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -1252,7 +1306,9 @@ public final class SqlPoolsClientImpl implements SqlPoolsClient {
     }
 
     /**
-     * List all SQL pools.
+     * List SQL pools
+     *
+     * <p>List all SQL pools.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -1267,7 +1323,9 @@ public final class SqlPoolsClientImpl implements SqlPoolsClient {
     }
 
     /**
-     * List all SQL pools.
+     * List SQL pools
+     *
+     * <p>List all SQL pools.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -1284,7 +1342,9 @@ public final class SqlPoolsClientImpl implements SqlPoolsClient {
     }
 
     /**
-     * Pause a SQL pool.
+     * Pause SQL pool
+     *
+     * <p>Pause a SQL pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -1338,7 +1398,9 @@ public final class SqlPoolsClientImpl implements SqlPoolsClient {
     }
 
     /**
-     * Pause a SQL pool.
+     * Pause SQL pool
+     *
+     * <p>Pause a SQL pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -1390,7 +1452,9 @@ public final class SqlPoolsClientImpl implements SqlPoolsClient {
     }
 
     /**
-     * Pause a SQL pool.
+     * Pause SQL pool
+     *
+     * <p>Pause a SQL pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -1411,7 +1475,9 @@ public final class SqlPoolsClientImpl implements SqlPoolsClient {
     }
 
     /**
-     * Pause a SQL pool.
+     * Pause SQL pool
+     *
+     * <p>Pause a SQL pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -1434,7 +1500,9 @@ public final class SqlPoolsClientImpl implements SqlPoolsClient {
     }
 
     /**
-     * Pause a SQL pool.
+     * Pause SQL pool
+     *
+     * <p>Pause a SQL pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -1451,7 +1519,9 @@ public final class SqlPoolsClientImpl implements SqlPoolsClient {
     }
 
     /**
-     * Pause a SQL pool.
+     * Pause SQL pool
+     *
+     * <p>Pause a SQL pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -1469,7 +1539,9 @@ public final class SqlPoolsClientImpl implements SqlPoolsClient {
     }
 
     /**
-     * Pause a SQL pool.
+     * Pause SQL pool
+     *
+     * <p>Pause a SQL pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -1487,7 +1559,9 @@ public final class SqlPoolsClientImpl implements SqlPoolsClient {
     }
 
     /**
-     * Pause a SQL pool.
+     * Pause SQL pool
+     *
+     * <p>Pause a SQL pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -1507,7 +1581,9 @@ public final class SqlPoolsClientImpl implements SqlPoolsClient {
     }
 
     /**
-     * Pause a SQL pool.
+     * Pause SQL pool
+     *
+     * <p>Pause a SQL pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -1523,7 +1599,9 @@ public final class SqlPoolsClientImpl implements SqlPoolsClient {
     }
 
     /**
-     * Pause a SQL pool.
+     * Pause SQL pool
+     *
+     * <p>Pause a SQL pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -1540,7 +1618,9 @@ public final class SqlPoolsClientImpl implements SqlPoolsClient {
     }
 
     /**
-     * Resume a SQL pool.
+     * Resume SQL pool
+     *
+     * <p>Resume a SQL pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -1594,7 +1674,9 @@ public final class SqlPoolsClientImpl implements SqlPoolsClient {
     }
 
     /**
-     * Resume a SQL pool.
+     * Resume SQL pool
+     *
+     * <p>Resume a SQL pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -1646,7 +1728,9 @@ public final class SqlPoolsClientImpl implements SqlPoolsClient {
     }
 
     /**
-     * Resume a SQL pool.
+     * Resume SQL pool
+     *
+     * <p>Resume a SQL pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -1667,7 +1751,9 @@ public final class SqlPoolsClientImpl implements SqlPoolsClient {
     }
 
     /**
-     * Resume a SQL pool.
+     * Resume SQL pool
+     *
+     * <p>Resume a SQL pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -1690,7 +1776,9 @@ public final class SqlPoolsClientImpl implements SqlPoolsClient {
     }
 
     /**
-     * Resume a SQL pool.
+     * Resume SQL pool
+     *
+     * <p>Resume a SQL pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -1707,7 +1795,9 @@ public final class SqlPoolsClientImpl implements SqlPoolsClient {
     }
 
     /**
-     * Resume a SQL pool.
+     * Resume SQL pool
+     *
+     * <p>Resume a SQL pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -1725,7 +1815,9 @@ public final class SqlPoolsClientImpl implements SqlPoolsClient {
     }
 
     /**
-     * Resume a SQL pool.
+     * Resume SQL pool
+     *
+     * <p>Resume a SQL pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -1743,7 +1835,9 @@ public final class SqlPoolsClientImpl implements SqlPoolsClient {
     }
 
     /**
-     * Resume a SQL pool.
+     * Resume SQL pool
+     *
+     * <p>Resume a SQL pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -1763,7 +1857,9 @@ public final class SqlPoolsClientImpl implements SqlPoolsClient {
     }
 
     /**
-     * Resume a SQL pool.
+     * Resume SQL pool
+     *
+     * <p>Resume a SQL pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -1779,7 +1875,9 @@ public final class SqlPoolsClientImpl implements SqlPoolsClient {
     }
 
     /**
-     * Resume a SQL pool.
+     * Resume SQL pool
+     *
+     * <p>Resume a SQL pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -1796,7 +1894,9 @@ public final class SqlPoolsClientImpl implements SqlPoolsClient {
     }
 
     /**
-     * Rename a SQL pool.
+     * Rename a SQL pool
+     *
+     * <p>Rename a SQL pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -1855,7 +1955,9 @@ public final class SqlPoolsClientImpl implements SqlPoolsClient {
     }
 
     /**
-     * Rename a SQL pool.
+     * Rename a SQL pool
+     *
+     * <p>Rename a SQL pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -1916,7 +2018,9 @@ public final class SqlPoolsClientImpl implements SqlPoolsClient {
     }
 
     /**
-     * Rename a SQL pool.
+     * Rename a SQL pool
+     *
+     * <p>Rename a SQL pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -1931,11 +2035,13 @@ public final class SqlPoolsClientImpl implements SqlPoolsClient {
     private Mono<Void> renameAsync(
         String resourceGroupName, String workspaceName, String sqlPoolName, ResourceMoveDefinition parameters) {
         return renameWithResponseAsync(resourceGroupName, workspaceName, sqlPoolName, parameters)
-            .flatMap((Response<Void> res) -> Mono.empty());
+            .flatMap(ignored -> Mono.empty());
     }
 
     /**
-     * Rename a SQL pool.
+     * Rename a SQL pool
+     *
+     * <p>Rename a SQL pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -1952,7 +2058,9 @@ public final class SqlPoolsClientImpl implements SqlPoolsClient {
     }
 
     /**
-     * Rename a SQL pool.
+     * Rename a SQL pool
+     *
+     * <p>Rename a SQL pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -1977,7 +2085,8 @@ public final class SqlPoolsClientImpl implements SqlPoolsClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -2012,7 +2121,8 @@ public final class SqlPoolsClientImpl implements SqlPoolsClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
