@@ -9,10 +9,14 @@ import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.appcontainers.fluent.models.ManagedEnvironmentInner;
 import com.azure.resourcemanager.appcontainers.models.AppLogsConfiguration;
+import com.azure.resourcemanager.appcontainers.models.CustomDomainConfiguration;
 import com.azure.resourcemanager.appcontainers.models.EnvironmentProvisioningState;
+import com.azure.resourcemanager.appcontainers.models.EnvironmentSkuProperties;
 import com.azure.resourcemanager.appcontainers.models.ManagedEnvironment;
 import com.azure.resourcemanager.appcontainers.models.VnetConfiguration;
+import com.azure.resourcemanager.appcontainers.models.WorkloadProfile;
 import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 
 public final class ManagedEnvironmentImpl
@@ -44,6 +48,10 @@ public final class ManagedEnvironmentImpl
         } else {
             return Collections.emptyMap();
         }
+    }
+
+    public EnvironmentSkuProperties sku() {
+        return this.innerModel().sku();
     }
 
     public SystemData systemData() {
@@ -84,6 +92,19 @@ public final class ManagedEnvironmentImpl
 
     public Boolean zoneRedundant() {
         return this.innerModel().zoneRedundant();
+    }
+
+    public CustomDomainConfiguration customDomainConfiguration() {
+        return this.innerModel().customDomainConfiguration();
+    }
+
+    public List<WorkloadProfile> workloadProfiles() {
+        List<WorkloadProfile> inner = this.innerModel().workloadProfiles();
+        if (inner != null) {
+            return Collections.unmodifiableList(inner);
+        } else {
+            return Collections.emptyList();
+        }
     }
 
     public Region region() {
@@ -206,6 +227,11 @@ public final class ManagedEnvironmentImpl
         return this;
     }
 
+    public ManagedEnvironmentImpl withSku(EnvironmentSkuProperties sku) {
+        this.innerModel().withSku(sku);
+        return this;
+    }
+
     public ManagedEnvironmentImpl withDaprAIInstrumentationKey(String daprAIInstrumentationKey) {
         this.innerModel().withDaprAIInstrumentationKey(daprAIInstrumentationKey);
         return this;
@@ -228,6 +254,16 @@ public final class ManagedEnvironmentImpl
 
     public ManagedEnvironmentImpl withZoneRedundant(Boolean zoneRedundant) {
         this.innerModel().withZoneRedundant(zoneRedundant);
+        return this;
+    }
+
+    public ManagedEnvironmentImpl withCustomDomainConfiguration(CustomDomainConfiguration customDomainConfiguration) {
+        this.innerModel().withCustomDomainConfiguration(customDomainConfiguration);
+        return this;
+    }
+
+    public ManagedEnvironmentImpl withWorkloadProfiles(List<WorkloadProfile> workloadProfiles) {
+        this.innerModel().withWorkloadProfiles(workloadProfiles);
         return this;
     }
 }
