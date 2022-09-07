@@ -47,6 +47,14 @@ public interface ConfigData {
     CpuThreshold lowCpuThreshold();
 
     /**
+     * Gets the duration property: Minimum duration for Advisor low CPU utilization evaluation. Valid only for
+     * subscriptions. Valid values: 7 (default), 14, 21, 30, 60 or 90.
+     *
+     * @return the duration value.
+     */
+    DurationModel duration();
+
+    /**
      * Gets the digests property: Advisor digest configuration. Valid only for subscriptions.
      *
      * @return the digests value.
@@ -84,7 +92,10 @@ public interface ConfigData {
          * be created, but also allows for any other optional properties to be specified.
          */
         interface WithCreate
-            extends DefinitionStages.WithExclude, DefinitionStages.WithLowCpuThreshold, DefinitionStages.WithDigests {
+            extends DefinitionStages.WithExclude,
+                DefinitionStages.WithLowCpuThreshold,
+                DefinitionStages.WithDuration,
+                DefinitionStages.WithDigests {
             /**
              * Executes the create request.
              *
@@ -122,6 +133,18 @@ public interface ConfigData {
              * @return the next definition stage.
              */
             WithCreate withLowCpuThreshold(CpuThreshold lowCpuThreshold);
+        }
+        /** The stage of the ConfigData definition allowing to specify duration. */
+        interface WithDuration {
+            /**
+             * Specifies the duration property: Minimum duration for Advisor low CPU utilization evaluation. Valid only
+             * for subscriptions. Valid values: 7 (default), 14, 21, 30, 60 or 90..
+             *
+             * @param duration Minimum duration for Advisor low CPU utilization evaluation. Valid only for
+             *     subscriptions. Valid values: 7 (default), 14, 21, 30, 60 or 90.
+             * @return the next definition stage.
+             */
+            WithCreate withDuration(DurationModel duration);
         }
         /** The stage of the ConfigData definition allowing to specify digests. */
         interface WithDigests {
