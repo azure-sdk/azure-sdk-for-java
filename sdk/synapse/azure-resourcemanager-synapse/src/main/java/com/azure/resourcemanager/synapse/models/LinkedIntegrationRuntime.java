@@ -24,15 +24,13 @@ public final class LinkedIntegrationRuntime {
     private String subscriptionId;
 
     /*
-     * The name of the workspace for which the linked integration runtime
-     * belong to.
+     * The name of the workspace for which the linked integration runtime belong to.
      */
     @JsonProperty(value = "dataFactoryName", access = JsonProperty.Access.WRITE_ONLY)
     private String dataFactoryName;
 
     /*
-     * The location of the workspace for which the linked integration runtime
-     * belong to.
+     * The location of the workspace for which the linked integration runtime belong to.
      */
     @JsonProperty(value = "dataFactoryLocation", access = JsonProperty.Access.WRITE_ONLY)
     private String dataFactoryLocation;

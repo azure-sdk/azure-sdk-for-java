@@ -17,6 +17,7 @@ import java.util.Map;
 public final class SparkConfigurationResourceInner extends EntityResource {
     /*
      * Information about a SparkConfiguration created at the workspace level.
+     *
      * SparkConfiguration properties.
      */
     @JsonProperty(value = "properties", required = true)
@@ -24,7 +25,8 @@ public final class SparkConfigurationResourceInner extends EntityResource {
 
     /**
      * Get the innerProperties property: Information about a SparkConfiguration created at the workspace level.
-     * SparkConfiguration properties.
+     *
+     * <p>SparkConfiguration properties.
      *
      * @return the innerProperties value.
      */
@@ -167,6 +169,29 @@ public final class SparkConfigurationResourceInner extends EntityResource {
             this.innerProperties = new SparkConfigurationInfo();
         }
         this.innerProperties().withCreated(created);
+        return this;
+    }
+
+    /**
+     * Get the configMergeRule property: SparkConfiguration merge configs.
+     *
+     * @return the configMergeRule value.
+     */
+    public Map<String, String> configMergeRule() {
+        return this.innerProperties() == null ? null : this.innerProperties().configMergeRule();
+    }
+
+    /**
+     * Set the configMergeRule property: SparkConfiguration merge configs.
+     *
+     * @param configMergeRule the configMergeRule value to set.
+     * @return the SparkConfigurationResourceInner object itself.
+     */
+    public SparkConfigurationResourceInner withConfigMergeRule(Map<String, String> configMergeRule) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new SparkConfigurationInfo();
+        }
+        this.innerProperties().withConfigMergeRule(configMergeRule);
         return this;
     }
 

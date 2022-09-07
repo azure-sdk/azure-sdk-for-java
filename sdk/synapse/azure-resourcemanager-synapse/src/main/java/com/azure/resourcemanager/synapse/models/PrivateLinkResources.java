@@ -11,7 +11,9 @@ import com.azure.core.util.Context;
 /** Resource collection API of PrivateLinkResources. */
 public interface PrivateLinkResources {
     /**
-     * Get all private link resources for a workspaces.
+     * Private Link Resources
+     *
+     * <p>Get all private link resources for a workspaces.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -23,7 +25,9 @@ public interface PrivateLinkResources {
     PagedIterable<PrivateLinkResource> list(String resourceGroupName, String workspaceName);
 
     /**
-     * Get all private link resources for a workspaces.
+     * Private Link Resources
+     *
+     * <p>Get all private link resources for a workspaces.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -36,7 +40,9 @@ public interface PrivateLinkResources {
     PagedIterable<PrivateLinkResource> list(String resourceGroupName, String workspaceName, Context context);
 
     /**
-     * Get private link resource in workspace.
+     * Get Private Link Resource
+     *
+     * <p>Get private link resource in workspace.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -49,7 +55,9 @@ public interface PrivateLinkResources {
     PrivateLinkResource get(String resourceGroupName, String workspaceName, String privateLinkResourceName);
 
     /**
-     * Get private link resource in workspace.
+     * Get Private Link Resource
+     *
+     * <p>Get private link resource in workspace.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
