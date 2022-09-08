@@ -66,8 +66,8 @@ public final class Schema {
     private TableTypeEnum tableType;
 
     /*
-     * The subtype describes what APIs can be used to interact with the table,
-     * and what features are available against it.
+     * The subtype describes what APIs can be used to interact with the table, and what features are available against
+     * it.
      */
     @JsonProperty(value = "tableSubType", access = JsonProperty.Access.WRITE_ONLY)
     private TableSubTypeEnum tableSubType;

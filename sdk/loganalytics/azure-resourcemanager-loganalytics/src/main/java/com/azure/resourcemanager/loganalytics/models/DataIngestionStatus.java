@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for DataIngestionStatus. */
+/** The status of data ingestion for this workspace. */
 public final class DataIngestionStatus extends ExpandableStringEnum<DataIngestionStatus> {
     /** Static value RespectQuota for DataIngestionStatus. */
     public static final DataIngestionStatus RESPECT_QUOTA = fromString("RespectQuota");

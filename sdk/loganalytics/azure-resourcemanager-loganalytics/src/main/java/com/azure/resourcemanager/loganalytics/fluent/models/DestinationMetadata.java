@@ -11,8 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Fluent
 public final class DestinationMetadata {
     /*
-     * Optional. Allows to define an Event Hub name. Not applicable when
-     * destination is Storage Account.
+     * Optional. Allows to define an Event Hub name. Not applicable when destination is Storage Account.
      */
     @JsonProperty(value = "eventHubName")
     private String eventHubName;

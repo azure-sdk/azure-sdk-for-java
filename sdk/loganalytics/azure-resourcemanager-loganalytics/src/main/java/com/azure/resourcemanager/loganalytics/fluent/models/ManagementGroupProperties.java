@@ -18,8 +18,7 @@ public final class ManagementGroupProperties {
     private Integer serverCount;
 
     /*
-     * Gets or sets a value indicating whether the management group is a
-     * gateway.
+     * Gets or sets a value indicating whether the management group is a gateway.
      */
     @JsonProperty(value = "isGateway")
     private Boolean isGateway;

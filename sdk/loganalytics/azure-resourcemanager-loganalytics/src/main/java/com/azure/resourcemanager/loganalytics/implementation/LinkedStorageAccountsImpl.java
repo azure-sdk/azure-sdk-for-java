@@ -94,9 +94,8 @@ public final class LinkedStorageAccountsImpl implements LinkedStorageAccounts {
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'workspaces'.", id)));
         }
-        DataSourceType dataSourceType =
-            DataSourceType.fromString(Utils.getValueFromIdByName(id, "linkedStorageAccounts"));
-        if (dataSourceType == null) {
+        String dataSourceTypeLocal = Utils.getValueFromIdByName(id, "linkedStorageAccounts");
+        if (dataSourceTypeLocal == null) {
             throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
@@ -105,6 +104,7 @@ public final class LinkedStorageAccountsImpl implements LinkedStorageAccounts {
                                 "The resource ID '%s' is not valid. Missing path segment 'linkedStorageAccounts'.",
                                 id)));
         }
+        DataSourceType dataSourceType = DataSourceType.fromString(dataSourceTypeLocal);
         return this.getWithResponse(resourceGroupName, workspaceName, dataSourceType, Context.NONE).getValue();
     }
 
@@ -124,9 +124,8 @@ public final class LinkedStorageAccountsImpl implements LinkedStorageAccounts {
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'workspaces'.", id)));
         }
-        DataSourceType dataSourceType =
-            DataSourceType.fromString(Utils.getValueFromIdByName(id, "linkedStorageAccounts"));
-        if (dataSourceType == null) {
+        String dataSourceTypeLocal = Utils.getValueFromIdByName(id, "linkedStorageAccounts");
+        if (dataSourceTypeLocal == null) {
             throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
@@ -135,6 +134,7 @@ public final class LinkedStorageAccountsImpl implements LinkedStorageAccounts {
                                 "The resource ID '%s' is not valid. Missing path segment 'linkedStorageAccounts'.",
                                 id)));
         }
+        DataSourceType dataSourceType = DataSourceType.fromString(dataSourceTypeLocal);
         return this.getWithResponse(resourceGroupName, workspaceName, dataSourceType, context);
     }
 
@@ -154,9 +154,8 @@ public final class LinkedStorageAccountsImpl implements LinkedStorageAccounts {
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'workspaces'.", id)));
         }
-        DataSourceType dataSourceType =
-            DataSourceType.fromString(Utils.getValueFromIdByName(id, "linkedStorageAccounts"));
-        if (dataSourceType == null) {
+        String dataSourceTypeLocal = Utils.getValueFromIdByName(id, "linkedStorageAccounts");
+        if (dataSourceTypeLocal == null) {
             throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
@@ -165,6 +164,7 @@ public final class LinkedStorageAccountsImpl implements LinkedStorageAccounts {
                                 "The resource ID '%s' is not valid. Missing path segment 'linkedStorageAccounts'.",
                                 id)));
         }
+        DataSourceType dataSourceType = DataSourceType.fromString(dataSourceTypeLocal);
         this.deleteWithResponse(resourceGroupName, workspaceName, dataSourceType, Context.NONE);
     }
 
@@ -184,9 +184,8 @@ public final class LinkedStorageAccountsImpl implements LinkedStorageAccounts {
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'workspaces'.", id)));
         }
-        DataSourceType dataSourceType =
-            DataSourceType.fromString(Utils.getValueFromIdByName(id, "linkedStorageAccounts"));
-        if (dataSourceType == null) {
+        String dataSourceTypeLocal = Utils.getValueFromIdByName(id, "linkedStorageAccounts");
+        if (dataSourceTypeLocal == null) {
             throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
@@ -195,6 +194,7 @@ public final class LinkedStorageAccountsImpl implements LinkedStorageAccounts {
                                 "The resource ID '%s' is not valid. Missing path segment 'linkedStorageAccounts'.",
                                 id)));
         }
+        DataSourceType dataSourceType = DataSourceType.fromString(dataSourceTypeLocal);
         return this.deleteWithResponse(resourceGroupName, workspaceName, dataSourceType, context);
     }
 
