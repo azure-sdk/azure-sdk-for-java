@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for Status. */
+/** Status of the cluster agent. */
 public final class Status extends ExpandableStringEnum<Status> {
     /** Static value NotYetRegistered for Status. */
     public static final Status NOT_YET_REGISTERED = fromString("NotYetRegistered");
