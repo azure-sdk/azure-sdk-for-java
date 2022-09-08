@@ -14,9 +14,9 @@ public final class PrivateEndpointConnectionsDeleteSamples {
     /**
      * Sample code: PrivateEndpointConnections_Delete.
      *
-     * @param manager Entry point to AgriFoodManager.
+     * @param manager Entry point to AgrifoodManager.
      */
-    public static void privateEndpointConnectionsDelete(com.azure.resourcemanager.agrifood.AgriFoodManager manager) {
+    public static void privateEndpointConnectionsDelete(com.azure.resourcemanager.agrifood.AgrifoodManager manager) {
         manager
             .privateEndpointConnections()
             .delete("examples-rg", "examples-farmbeatsResourceName", "privateEndpointConnectionName", Context.NONE);

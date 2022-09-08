@@ -44,14 +44,14 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
     private final PrivateEndpointConnectionsService service;
 
     /** The service client containing this operation class. */
-    private final AgriFoodManagementClientImpl client;
+    private final AzureAgFoodPlatformRPServiceImpl client;
 
     /**
      * Initializes an instance of PrivateEndpointConnectionsClientImpl.
      *
      * @param client the instance of the service client containing this operation class.
      */
-    PrivateEndpointConnectionsClientImpl(AgriFoodManagementClientImpl client) {
+    PrivateEndpointConnectionsClientImpl(AzureAgFoodPlatformRPServiceImpl client) {
         this.service =
             RestProxy
                 .create(
@@ -60,11 +60,11 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
     }
 
     /**
-     * The interface defining all the services for AgriFoodManagementClientPrivateEndpointConnections to be used by the
-     * proxy service to perform REST calls.
+     * The interface defining all the services for AzureAgFoodPlatformRPServicePrivateEndpointConnections to be used by
+     * the proxy service to perform REST calls.
      */
     @Host("{$host}")
-    @ServiceInterface(name = "AgriFoodManagementCl")
+    @ServiceInterface(name = "AzureAgFoodPlatformR")
     private interface PrivateEndpointConnectionsService {
         @Headers({"Content-Type: application/json"})
         @Put(

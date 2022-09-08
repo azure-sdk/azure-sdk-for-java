@@ -15,10 +15,10 @@ public final class PrivateEndpointConnectionsCreateOrUpdateSamples {
     /**
      * Sample code: PrivateEndpointConnections_CreateOrUpdate.
      *
-     * @param manager Entry point to AgriFoodManager.
+     * @param manager Entry point to AgrifoodManager.
      */
     public static void privateEndpointConnectionsCreateOrUpdate(
-        com.azure.resourcemanager.agrifood.AgriFoodManager manager) {
+        com.azure.resourcemanager.agrifood.AgrifoodManager manager) {
         manager
             .privateEndpointConnections()
             .define("privateEndpointConnectionName")

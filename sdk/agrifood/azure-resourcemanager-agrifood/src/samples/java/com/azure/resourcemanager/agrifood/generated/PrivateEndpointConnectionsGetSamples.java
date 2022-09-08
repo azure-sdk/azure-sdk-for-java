@@ -14,9 +14,9 @@ public final class PrivateEndpointConnectionsGetSamples {
     /**
      * Sample code: PrivateEndpointConnections_Get.
      *
-     * @param manager Entry point to AgriFoodManager.
+     * @param manager Entry point to AgrifoodManager.
      */
-    public static void privateEndpointConnectionsGet(com.azure.resourcemanager.agrifood.AgriFoodManager manager) {
+    public static void privateEndpointConnectionsGet(com.azure.resourcemanager.agrifood.AgrifoodManager manager) {
         manager
             .privateEndpointConnections()
             .getWithResponse(

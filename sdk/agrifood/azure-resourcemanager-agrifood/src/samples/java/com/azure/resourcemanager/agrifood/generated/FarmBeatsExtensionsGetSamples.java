@@ -14,9 +14,9 @@ public final class FarmBeatsExtensionsGetSamples {
     /**
      * Sample code: FarmBeatsExtensions_Get.
      *
-     * @param manager Entry point to AgriFoodManager.
+     * @param manager Entry point to AgrifoodManager.
      */
-    public static void farmBeatsExtensionsGet(com.azure.resourcemanager.agrifood.AgriFoodManager manager) {
+    public static void farmBeatsExtensionsGet(com.azure.resourcemanager.agrifood.AgrifoodManager manager) {
         manager.farmBeatsExtensions().getWithResponse("DTN.ContentServices", Context.NONE);
     }
 }

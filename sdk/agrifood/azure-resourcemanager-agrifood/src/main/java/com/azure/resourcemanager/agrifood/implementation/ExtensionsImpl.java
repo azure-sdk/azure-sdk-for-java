@@ -20,10 +20,10 @@ public final class ExtensionsImpl implements Extensions {
 
     private final ExtensionsClient innerClient;
 
-    private final com.azure.resourcemanager.agrifood.AgriFoodManager serviceManager;
+    private final com.azure.resourcemanager.agrifood.AgrifoodManager serviceManager;
 
     public ExtensionsImpl(
-        ExtensionsClient innerClient, com.azure.resourcemanager.agrifood.AgriFoodManager serviceManager) {
+        ExtensionsClient innerClient, com.azure.resourcemanager.agrifood.AgrifoodManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
     }
@@ -141,7 +141,7 @@ public final class ExtensionsImpl implements Extensions {
         return this.innerClient;
     }
 
-    private com.azure.resourcemanager.agrifood.AgriFoodManager manager() {
+    private com.azure.resourcemanager.agrifood.AgrifoodManager manager() {
         return this.serviceManager;
     }
 }

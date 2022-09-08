@@ -14,9 +14,9 @@ public final class FarmBeatsModelsListByResourceGroupSamples {
     /**
      * Sample code: FarmBeatsModels_ListByResourceGroup.
      *
-     * @param manager Entry point to AgriFoodManager.
+     * @param manager Entry point to AgrifoodManager.
      */
-    public static void farmBeatsModelsListByResourceGroup(com.azure.resourcemanager.agrifood.AgriFoodManager manager) {
+    public static void farmBeatsModelsListByResourceGroup(com.azure.resourcemanager.agrifood.AgrifoodManager manager) {
         manager.farmBeatsModels().listByResourceGroup("examples-rg", null, null, Context.NONE);
     }
 }

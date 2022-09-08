@@ -14,9 +14,9 @@ public final class PrivateLinkResourcesListByResourceSamples {
     /**
      * Sample code: PrivateLinkResources_ListByResource.
      *
-     * @param manager Entry point to AgriFoodManager.
+     * @param manager Entry point to AgrifoodManager.
      */
-    public static void privateLinkResourcesListByResource(com.azure.resourcemanager.agrifood.AgriFoodManager manager) {
+    public static void privateLinkResourcesListByResource(com.azure.resourcemanager.agrifood.AgrifoodManager manager) {
         manager.privateLinkResources().listByResource("examples-rg", "examples-farmbeatsResourceName", Context.NONE);
     }
 }

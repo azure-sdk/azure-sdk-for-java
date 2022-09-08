@@ -11,11 +11,11 @@ import com.azure.resourcemanager.agrifood.models.CheckNameAvailabilityResponse;
 public final class CheckNameAvailabilityResponseImpl implements CheckNameAvailabilityResponse {
     private CheckNameAvailabilityResponseInner innerObject;
 
-    private final com.azure.resourcemanager.agrifood.AgriFoodManager serviceManager;
+    private final com.azure.resourcemanager.agrifood.AgrifoodManager serviceManager;
 
     CheckNameAvailabilityResponseImpl(
         CheckNameAvailabilityResponseInner innerObject,
-        com.azure.resourcemanager.agrifood.AgriFoodManager serviceManager) {
+        com.azure.resourcemanager.agrifood.AgrifoodManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
     }
@@ -36,7 +36,7 @@ public final class CheckNameAvailabilityResponseImpl implements CheckNameAvailab
         return this.innerObject;
     }
 
-    private com.azure.resourcemanager.agrifood.AgriFoodManager manager() {
+    private com.azure.resourcemanager.agrifood.AgrifoodManager manager() {
         return this.serviceManager;
     }
 }

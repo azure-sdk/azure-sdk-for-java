@@ -14,9 +14,9 @@ public final class FarmBeatsExtensionsListSamples {
     /**
      * Sample code: FarmBeatsExtensions_List.
      *
-     * @param manager Entry point to AgriFoodManager.
+     * @param manager Entry point to AgrifoodManager.
      */
-    public static void farmBeatsExtensionsList(com.azure.resourcemanager.agrifood.AgriFoodManager manager) {
+    public static void farmBeatsExtensionsList(com.azure.resourcemanager.agrifood.AgrifoodManager manager) {
         manager.farmBeatsExtensions().list(null, null, null, null, null, Context.NONE);
     }
 }

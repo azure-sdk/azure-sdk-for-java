@@ -14,9 +14,9 @@ public final class ExtensionsGetSamples {
     /**
      * Sample code: Extensions_Get.
      *
-     * @param manager Entry point to AgriFoodManager.
+     * @param manager Entry point to AgrifoodManager.
      */
-    public static void extensionsGet(com.azure.resourcemanager.agrifood.AgriFoodManager manager) {
+    public static void extensionsGet(com.azure.resourcemanager.agrifood.AgrifoodManager manager) {
         manager
             .extensions()
             .getWithResponse("examples-rg", "examples-farmbeatsResourceName", "provider.extension", Context.NONE);

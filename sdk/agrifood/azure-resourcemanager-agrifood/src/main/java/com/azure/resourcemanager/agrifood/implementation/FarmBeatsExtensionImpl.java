@@ -14,10 +14,10 @@ import java.util.List;
 public final class FarmBeatsExtensionImpl implements FarmBeatsExtension {
     private FarmBeatsExtensionInner innerObject;
 
-    private final com.azure.resourcemanager.agrifood.AgriFoodManager serviceManager;
+    private final com.azure.resourcemanager.agrifood.AgrifoodManager serviceManager;
 
     FarmBeatsExtensionImpl(
-        FarmBeatsExtensionInner innerObject, com.azure.resourcemanager.agrifood.AgriFoodManager serviceManager) {
+        FarmBeatsExtensionInner innerObject, com.azure.resourcemanager.agrifood.AgrifoodManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
     }
@@ -87,7 +87,7 @@ public final class FarmBeatsExtensionImpl implements FarmBeatsExtension {
         return this.innerObject;
     }
 
-    private com.azure.resourcemanager.agrifood.AgriFoodManager manager() {
+    private com.azure.resourcemanager.agrifood.AgrifoodManager manager() {
         return this.serviceManager;
     }
 }

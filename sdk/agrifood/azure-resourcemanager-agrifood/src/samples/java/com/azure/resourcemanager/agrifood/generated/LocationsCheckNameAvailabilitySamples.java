@@ -15,10 +15,10 @@ public final class LocationsCheckNameAvailabilitySamples {
     /**
      * Sample code: Locations_CheckNameAvailability_Available.
      *
-     * @param manager Entry point to AgriFoodManager.
+     * @param manager Entry point to AgrifoodManager.
      */
     public static void locationsCheckNameAvailabilityAvailable(
-        com.azure.resourcemanager.agrifood.AgriFoodManager manager) {
+        com.azure.resourcemanager.agrifood.AgrifoodManager manager) {
         manager
             .locations()
             .checkNameAvailabilityWithResponse(
@@ -34,10 +34,10 @@ public final class LocationsCheckNameAvailabilitySamples {
     /**
      * Sample code: Locations_CheckNameAvailability_AlreadyExists.
      *
-     * @param manager Entry point to AgriFoodManager.
+     * @param manager Entry point to AgrifoodManager.
      */
     public static void locationsCheckNameAvailabilityAlreadyExists(
-        com.azure.resourcemanager.agrifood.AgriFoodManager manager) {
+        com.azure.resourcemanager.agrifood.AgrifoodManager manager) {
         manager
             .locations()
             .checkNameAvailabilityWithResponse(

@@ -56,9 +56,9 @@ public final class ExtensionsCreateSamples {
     /**
      * Sample code: Extensions_Create.
      *
-     * @param manager Entry point to AgriFoodManager.
+     * @param manager Entry point to AgrifoodManager.
      */
-    public static void extensionsCreate(com.azure.resourcemanager.agrifood.AgriFoodManager manager) {
+    public static void extensionsCreate(com.azure.resourcemanager.agrifood.AgrifoodManager manager) {
         manager
             .extensions()
             .createWithResponse("examples-rg", "examples-farmbeatsResourceName", "provider.extension", Context.NONE);
@@ -79,9 +79,9 @@ public final class ExtensionsDeleteSamples {
     /**
      * Sample code: Extensions_Delete.
      *
-     * @param manager Entry point to AgriFoodManager.
+     * @param manager Entry point to AgrifoodManager.
      */
-    public static void extensionsDelete(com.azure.resourcemanager.agrifood.AgriFoodManager manager) {
+    public static void extensionsDelete(com.azure.resourcemanager.agrifood.AgrifoodManager manager) {
         manager
             .extensions()
             .deleteWithResponse("examples-rg", "examples-farmbeatsResourceName", "provider.extension", Context.NONE);
@@ -102,9 +102,9 @@ public final class ExtensionsGetSamples {
     /**
      * Sample code: Extensions_Get.
      *
-     * @param manager Entry point to AgriFoodManager.
+     * @param manager Entry point to AgrifoodManager.
      */
-    public static void extensionsGet(com.azure.resourcemanager.agrifood.AgriFoodManager manager) {
+    public static void extensionsGet(com.azure.resourcemanager.agrifood.AgrifoodManager manager) {
         manager
             .extensions()
             .getWithResponse("examples-rg", "examples-farmbeatsResourceName", "provider.extension", Context.NONE);
@@ -125,9 +125,9 @@ public final class ExtensionsListByFarmBeatsSamples {
     /**
      * Sample code: Extensions_ListByFarmBeats.
      *
-     * @param manager Entry point to AgriFoodManager.
+     * @param manager Entry point to AgrifoodManager.
      */
-    public static void extensionsListByFarmBeats(com.azure.resourcemanager.agrifood.AgriFoodManager manager) {
+    public static void extensionsListByFarmBeats(com.azure.resourcemanager.agrifood.AgrifoodManager manager) {
         manager
             .extensions()
             .listByFarmBeats("examples-rg", "examples-farmbeatsResourceName", null, null, null, null, Context.NONE);
@@ -148,9 +148,9 @@ public final class ExtensionsUpdateSamples {
     /**
      * Sample code: Extensions_Update.
      *
-     * @param manager Entry point to AgriFoodManager.
+     * @param manager Entry point to AgrifoodManager.
      */
-    public static void extensionsUpdate(com.azure.resourcemanager.agrifood.AgriFoodManager manager) {
+    public static void extensionsUpdate(com.azure.resourcemanager.agrifood.AgrifoodManager manager) {
         manager
             .extensions()
             .updateWithResponse("examples-rg", "examples-farmbeatsResourceName", "provider.extension", Context.NONE);
@@ -171,9 +171,9 @@ public final class FarmBeatsExtensionsGetSamples {
     /**
      * Sample code: FarmBeatsExtensions_Get.
      *
-     * @param manager Entry point to AgriFoodManager.
+     * @param manager Entry point to AgrifoodManager.
      */
-    public static void farmBeatsExtensionsGet(com.azure.resourcemanager.agrifood.AgriFoodManager manager) {
+    public static void farmBeatsExtensionsGet(com.azure.resourcemanager.agrifood.AgrifoodManager manager) {
         manager.farmBeatsExtensions().getWithResponse("DTN.ContentServices", Context.NONE);
     }
 }
@@ -192,9 +192,9 @@ public final class FarmBeatsExtensionsListSamples {
     /**
      * Sample code: FarmBeatsExtensions_List.
      *
-     * @param manager Entry point to AgriFoodManager.
+     * @param manager Entry point to AgrifoodManager.
      */
-    public static void farmBeatsExtensionsList(com.azure.resourcemanager.agrifood.AgriFoodManager manager) {
+    public static void farmBeatsExtensionsList(com.azure.resourcemanager.agrifood.AgrifoodManager manager) {
         manager.farmBeatsExtensions().list(null, null, null, null, null, Context.NONE);
     }
 }
@@ -214,9 +214,9 @@ public final class FarmBeatsModelsCreateOrUpdateSamples {
     /**
      * Sample code: FarmBeatsModels_CreateOrUpdate.
      *
-     * @param manager Entry point to AgriFoodManager.
+     * @param manager Entry point to AgrifoodManager.
      */
-    public static void farmBeatsModelsCreateOrUpdate(com.azure.resourcemanager.agrifood.AgriFoodManager manager) {
+    public static void farmBeatsModelsCreateOrUpdate(com.azure.resourcemanager.agrifood.AgrifoodManager manager) {
         manager
             .farmBeatsModels()
             .define("examples-farmbeatsResourceName")
@@ -252,9 +252,9 @@ public final class FarmBeatsModelsDeleteSamples {
     /**
      * Sample code: FarmBeatsModels_Delete.
      *
-     * @param manager Entry point to AgriFoodManager.
+     * @param manager Entry point to AgrifoodManager.
      */
-    public static void farmBeatsModelsDelete(com.azure.resourcemanager.agrifood.AgriFoodManager manager) {
+    public static void farmBeatsModelsDelete(com.azure.resourcemanager.agrifood.AgrifoodManager manager) {
         manager.farmBeatsModels().deleteWithResponse("examples-rg", "examples-farmBeatsResourceName", Context.NONE);
     }
 }
@@ -273,9 +273,9 @@ public final class FarmBeatsModelsGetByResourceGroupSamples {
     /**
      * Sample code: FarmBeatsModels_Get.
      *
-     * @param manager Entry point to AgriFoodManager.
+     * @param manager Entry point to AgrifoodManager.
      */
-    public static void farmBeatsModelsGet(com.azure.resourcemanager.agrifood.AgriFoodManager manager) {
+    public static void farmBeatsModelsGet(com.azure.resourcemanager.agrifood.AgrifoodManager manager) {
         manager
             .farmBeatsModels()
             .getByResourceGroupWithResponse("examples-rg", "examples-farmBeatsResourceName", Context.NONE);
@@ -296,9 +296,9 @@ public final class FarmBeatsModelsGetOperationResultSamples {
     /**
      * Sample code: FarmBeatsModels_GetOperationResult.
      *
-     * @param manager Entry point to AgriFoodManager.
+     * @param manager Entry point to AgrifoodManager.
      */
-    public static void farmBeatsModelsGetOperationResult(com.azure.resourcemanager.agrifood.AgriFoodManager manager) {
+    public static void farmBeatsModelsGetOperationResult(com.azure.resourcemanager.agrifood.AgrifoodManager manager) {
         manager
             .farmBeatsModels()
             .getOperationResultWithResponse(
@@ -323,9 +323,9 @@ public final class FarmBeatsModelsListSamples {
     /**
      * Sample code: FarmBeatsModels_ListBySubscription.
      *
-     * @param manager Entry point to AgriFoodManager.
+     * @param manager Entry point to AgrifoodManager.
      */
-    public static void farmBeatsModelsListBySubscription(com.azure.resourcemanager.agrifood.AgriFoodManager manager) {
+    public static void farmBeatsModelsListBySubscription(com.azure.resourcemanager.agrifood.AgrifoodManager manager) {
         manager.farmBeatsModels().list(null, null, Context.NONE);
     }
 }
@@ -344,9 +344,9 @@ public final class FarmBeatsModelsListByResourceGroupSamples {
     /**
      * Sample code: FarmBeatsModels_ListByResourceGroup.
      *
-     * @param manager Entry point to AgriFoodManager.
+     * @param manager Entry point to AgrifoodManager.
      */
-    public static void farmBeatsModelsListByResourceGroup(com.azure.resourcemanager.agrifood.AgriFoodManager manager) {
+    public static void farmBeatsModelsListByResourceGroup(com.azure.resourcemanager.agrifood.AgrifoodManager manager) {
         manager.farmBeatsModels().listByResourceGroup("examples-rg", null, null, Context.NONE);
     }
 }
@@ -372,9 +372,9 @@ public final class FarmBeatsModelsUpdateSamples {
     /**
      * Sample code: FarmBeatsModels_Update.
      *
-     * @param manager Entry point to AgriFoodManager.
+     * @param manager Entry point to AgrifoodManager.
      */
-    public static void farmBeatsModelsUpdate(com.azure.resourcemanager.agrifood.AgriFoodManager manager) {
+    public static void farmBeatsModelsUpdate(com.azure.resourcemanager.agrifood.AgrifoodManager manager) {
         FarmBeats resource =
             manager
                 .farmBeatsModels()
@@ -389,9 +389,9 @@ public final class FarmBeatsModelsUpdateSamples {
     /**
      * Sample code: FarmBeatsModels_UpdateWithSensor.
      *
-     * @param manager Entry point to AgriFoodManager.
+     * @param manager Entry point to AgrifoodManager.
      */
-    public static void farmBeatsModelsUpdateWithSensor(com.azure.resourcemanager.agrifood.AgriFoodManager manager) {
+    public static void farmBeatsModelsUpdateWithSensor(com.azure.resourcemanager.agrifood.AgrifoodManager manager) {
         FarmBeats resource =
             manager
                 .farmBeatsModels()
@@ -433,10 +433,10 @@ public final class LocationsCheckNameAvailabilitySamples {
     /**
      * Sample code: Locations_CheckNameAvailability_Available.
      *
-     * @param manager Entry point to AgriFoodManager.
+     * @param manager Entry point to AgrifoodManager.
      */
     public static void locationsCheckNameAvailabilityAvailable(
-        com.azure.resourcemanager.agrifood.AgriFoodManager manager) {
+        com.azure.resourcemanager.agrifood.AgrifoodManager manager) {
         manager
             .locations()
             .checkNameAvailabilityWithResponse(
@@ -452,10 +452,10 @@ public final class LocationsCheckNameAvailabilitySamples {
     /**
      * Sample code: Locations_CheckNameAvailability_AlreadyExists.
      *
-     * @param manager Entry point to AgriFoodManager.
+     * @param manager Entry point to AgrifoodManager.
      */
     public static void locationsCheckNameAvailabilityAlreadyExists(
-        com.azure.resourcemanager.agrifood.AgriFoodManager manager) {
+        com.azure.resourcemanager.agrifood.AgrifoodManager manager) {
         manager
             .locations()
             .checkNameAvailabilityWithResponse(
@@ -480,9 +480,9 @@ public final class OperationsListSamples {
     /**
      * Sample code: Operations_List.
      *
-     * @param manager Entry point to AgriFoodManager.
+     * @param manager Entry point to AgrifoodManager.
      */
-    public static void operationsList(com.azure.resourcemanager.agrifood.AgriFoodManager manager) {
+    public static void operationsList(com.azure.resourcemanager.agrifood.AgrifoodManager manager) {
         manager.operations().list(Context.NONE);
     }
 }
@@ -502,10 +502,10 @@ public final class PrivateEndpointConnectionsCreateOrUpdateSamples {
     /**
      * Sample code: PrivateEndpointConnections_CreateOrUpdate.
      *
-     * @param manager Entry point to AgriFoodManager.
+     * @param manager Entry point to AgrifoodManager.
      */
     public static void privateEndpointConnectionsCreateOrUpdate(
-        com.azure.resourcemanager.agrifood.AgriFoodManager manager) {
+        com.azure.resourcemanager.agrifood.AgrifoodManager manager) {
         manager
             .privateEndpointConnections()
             .define("privateEndpointConnectionName")
@@ -532,9 +532,9 @@ public final class PrivateEndpointConnectionsDeleteSamples {
     /**
      * Sample code: PrivateEndpointConnections_Delete.
      *
-     * @param manager Entry point to AgriFoodManager.
+     * @param manager Entry point to AgrifoodManager.
      */
-    public static void privateEndpointConnectionsDelete(com.azure.resourcemanager.agrifood.AgriFoodManager manager) {
+    public static void privateEndpointConnectionsDelete(com.azure.resourcemanager.agrifood.AgrifoodManager manager) {
         manager
             .privateEndpointConnections()
             .delete("examples-rg", "examples-farmbeatsResourceName", "privateEndpointConnectionName", Context.NONE);
@@ -555,9 +555,9 @@ public final class PrivateEndpointConnectionsGetSamples {
     /**
      * Sample code: PrivateEndpointConnections_Get.
      *
-     * @param manager Entry point to AgriFoodManager.
+     * @param manager Entry point to AgrifoodManager.
      */
-    public static void privateEndpointConnectionsGet(com.azure.resourcemanager.agrifood.AgriFoodManager manager) {
+    public static void privateEndpointConnectionsGet(com.azure.resourcemanager.agrifood.AgrifoodManager manager) {
         manager
             .privateEndpointConnections()
             .getWithResponse(
@@ -579,10 +579,10 @@ public final class PrivateEndpointConnectionsListByResourceSamples {
     /**
      * Sample code: PrivateEndpointConnections_ListByResource.
      *
-     * @param manager Entry point to AgriFoodManager.
+     * @param manager Entry point to AgrifoodManager.
      */
     public static void privateEndpointConnectionsListByResource(
-        com.azure.resourcemanager.agrifood.AgriFoodManager manager) {
+        com.azure.resourcemanager.agrifood.AgrifoodManager manager) {
         manager
             .privateEndpointConnections()
             .listByResource("examples-rg", "examples-farmbeatsResourceName", Context.NONE);
@@ -603,9 +603,9 @@ public final class PrivateLinkResourcesGetSamples {
     /**
      * Sample code: PrivateLinkResources_Get.
      *
-     * @param manager Entry point to AgriFoodManager.
+     * @param manager Entry point to AgrifoodManager.
      */
-    public static void privateLinkResourcesGet(com.azure.resourcemanager.agrifood.AgriFoodManager manager) {
+    public static void privateLinkResourcesGet(com.azure.resourcemanager.agrifood.AgrifoodManager manager) {
         manager
             .privateLinkResources()
             .getWithResponse("examples-rg", "examples-farmbeatsResourceName", "farmbeats", Context.NONE);
@@ -626,9 +626,9 @@ public final class PrivateLinkResourcesListByResourceSamples {
     /**
      * Sample code: PrivateLinkResources_ListByResource.
      *
-     * @param manager Entry point to AgriFoodManager.
+     * @param manager Entry point to AgrifoodManager.
      */
-    public static void privateLinkResourcesListByResource(com.azure.resourcemanager.agrifood.AgriFoodManager manager) {
+    public static void privateLinkResourcesListByResource(com.azure.resourcemanager.agrifood.AgrifoodManager manager) {
         manager.privateLinkResources().listByResource("examples-rg", "examples-farmbeatsResourceName", Context.NONE);
     }
 }

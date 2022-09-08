@@ -36,14 +36,14 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
     private final PrivateLinkResourcesService service;
 
     /** The service client containing this operation class. */
-    private final AgriFoodManagementClientImpl client;
+    private final AzureAgFoodPlatformRPServiceImpl client;
 
     /**
      * Initializes an instance of PrivateLinkResourcesClientImpl.
      *
      * @param client the instance of the service client containing this operation class.
      */
-    PrivateLinkResourcesClientImpl(AgriFoodManagementClientImpl client) {
+    PrivateLinkResourcesClientImpl(AzureAgFoodPlatformRPServiceImpl client) {
         this.service =
             RestProxy
                 .create(PrivateLinkResourcesService.class, client.getHttpPipeline(), client.getSerializerAdapter());
@@ -51,11 +51,11 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
     }
 
     /**
-     * The interface defining all the services for AgriFoodManagementClientPrivateLinkResources to be used by the proxy
-     * service to perform REST calls.
+     * The interface defining all the services for AzureAgFoodPlatformRPServicePrivateLinkResources to be used by the
+     * proxy service to perform REST calls.
      */
     @Host("{$host}")
-    @ServiceInterface(name = "AgriFoodManagementCl")
+    @ServiceInterface(name = "AzureAgFoodPlatformR")
     private interface PrivateLinkResourcesService {
         @Headers({"Content-Type: application/json"})
         @Get(

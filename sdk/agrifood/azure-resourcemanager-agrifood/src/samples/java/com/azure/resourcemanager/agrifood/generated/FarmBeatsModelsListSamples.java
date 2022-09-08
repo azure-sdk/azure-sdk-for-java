@@ -14,9 +14,9 @@ public final class FarmBeatsModelsListSamples {
     /**
      * Sample code: FarmBeatsModels_ListBySubscription.
      *
-     * @param manager Entry point to AgriFoodManager.
+     * @param manager Entry point to AgrifoodManager.
      */
-    public static void farmBeatsModelsListBySubscription(com.azure.resourcemanager.agrifood.AgriFoodManager manager) {
+    public static void farmBeatsModelsListBySubscription(com.azure.resourcemanager.agrifood.AgrifoodManager manager) {
         manager.farmBeatsModels().list(null, null, Context.NONE);
     }
 }

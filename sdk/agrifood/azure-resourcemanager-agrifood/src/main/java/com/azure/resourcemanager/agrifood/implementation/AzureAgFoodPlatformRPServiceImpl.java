@@ -22,7 +22,7 @@ import com.azure.core.util.polling.LongRunningOperationStatus;
 import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.serializer.SerializerAdapter;
 import com.azure.core.util.serializer.SerializerEncoding;
-import com.azure.resourcemanager.agrifood.fluent.AgriFoodManagementClient;
+import com.azure.resourcemanager.agrifood.fluent.AzureAgFoodPlatformRPService;
 import com.azure.resourcemanager.agrifood.fluent.ExtensionsClient;
 import com.azure.resourcemanager.agrifood.fluent.FarmBeatsExtensionsClient;
 import com.azure.resourcemanager.agrifood.fluent.FarmBeatsModelsClient;
@@ -39,9 +39,9 @@ import java.time.Duration;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-/** Initializes a new instance of the AgriFoodManagementClientImpl type. */
-@ServiceClient(builder = AgriFoodManagementClientBuilder.class)
-public final class AgriFoodManagementClientImpl implements AgriFoodManagementClient {
+/** Initializes a new instance of the AzureAgFoodPlatformRPServiceImpl type. */
+@ServiceClient(builder = AzureAgFoodPlatformRPServiceBuilder.class)
+public final class AzureAgFoodPlatformRPServiceImpl implements AzureAgFoodPlatformRPService {
     /** The ID of the target subscription. */
     private final String subscriptionId;
 
@@ -199,7 +199,7 @@ public final class AgriFoodManagementClientImpl implements AgriFoodManagementCli
     }
 
     /**
-     * Initializes an instance of AgriFoodManagementClient client.
+     * Initializes an instance of AzureAgFoodPlatformRPService client.
      *
      * @param httpPipeline The HTTP pipeline to send requests through.
      * @param serializerAdapter The serializer to serialize an object into a string.
@@ -208,7 +208,7 @@ public final class AgriFoodManagementClientImpl implements AgriFoodManagementCli
      * @param subscriptionId The ID of the target subscription.
      * @param endpoint server parameter.
      */
-    AgriFoodManagementClientImpl(
+    AzureAgFoodPlatformRPServiceImpl(
         HttpPipeline httpPipeline,
         SerializerAdapter serializerAdapter,
         Duration defaultPollInterval,
@@ -370,5 +370,5 @@ public final class AgriFoodManagementClientImpl implements AgriFoodManagementCli
         }
     }
 
-    private static final ClientLogger LOGGER = new ClientLogger(AgriFoodManagementClientImpl.class);
+    private static final ClientLogger LOGGER = new ClientLogger(AzureAgFoodPlatformRPServiceImpl.class);
 }

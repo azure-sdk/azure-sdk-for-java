@@ -13,9 +13,9 @@ import com.azure.resourcemanager.agrifood.models.Origin;
 public final class OperationImpl implements Operation {
     private OperationInner innerObject;
 
-    private final com.azure.resourcemanager.agrifood.AgriFoodManager serviceManager;
+    private final com.azure.resourcemanager.agrifood.AgrifoodManager serviceManager;
 
-    OperationImpl(OperationInner innerObject, com.azure.resourcemanager.agrifood.AgriFoodManager serviceManager) {
+    OperationImpl(OperationInner innerObject, com.azure.resourcemanager.agrifood.AgrifoodManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
     }
@@ -44,7 +44,7 @@ public final class OperationImpl implements Operation {
         return this.innerObject;
     }
 
-    private com.azure.resourcemanager.agrifood.AgriFoodManager manager() {
+    private com.azure.resourcemanager.agrifood.AgrifoodManager manager() {
         return this.serviceManager;
     }
 }

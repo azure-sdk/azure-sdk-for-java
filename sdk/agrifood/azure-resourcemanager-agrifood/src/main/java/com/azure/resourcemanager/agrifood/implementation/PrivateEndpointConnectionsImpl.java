@@ -19,11 +19,11 @@ public final class PrivateEndpointConnectionsImpl implements PrivateEndpointConn
 
     private final PrivateEndpointConnectionsClient innerClient;
 
-    private final com.azure.resourcemanager.agrifood.AgriFoodManager serviceManager;
+    private final com.azure.resourcemanager.agrifood.AgrifoodManager serviceManager;
 
     public PrivateEndpointConnectionsImpl(
         PrivateEndpointConnectionsClient innerClient,
-        com.azure.resourcemanager.agrifood.AgriFoodManager serviceManager) {
+        com.azure.resourcemanager.agrifood.AgrifoodManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
     }
@@ -201,7 +201,7 @@ public final class PrivateEndpointConnectionsImpl implements PrivateEndpointConn
         return this.innerClient;
     }
 
-    private com.azure.resourcemanager.agrifood.AgriFoodManager manager() {
+    private com.azure.resourcemanager.agrifood.AgrifoodManager manager() {
         return this.serviceManager;
     }
 

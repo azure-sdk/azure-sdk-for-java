@@ -14,9 +14,9 @@ import com.azure.core.management.serializer.SerializerFactory;
 import com.azure.core.util.serializer.SerializerAdapter;
 import java.time.Duration;
 
-/** A builder for creating a new instance of the AgriFoodManagementClientImpl type. */
-@ServiceClientBuilder(serviceClients = {AgriFoodManagementClientImpl.class})
-public final class AgriFoodManagementClientBuilder {
+/** A builder for creating a new instance of the AzureAgFoodPlatformRPServiceImpl type. */
+@ServiceClientBuilder(serviceClients = {AzureAgFoodPlatformRPServiceImpl.class})
+public final class AzureAgFoodPlatformRPServiceBuilder {
     /*
      * The ID of the target subscription.
      */
@@ -26,9 +26,9 @@ public final class AgriFoodManagementClientBuilder {
      * Sets The ID of the target subscription.
      *
      * @param subscriptionId the subscriptionId value.
-     * @return the AgriFoodManagementClientBuilder.
+     * @return the AzureAgFoodPlatformRPServiceBuilder.
      */
-    public AgriFoodManagementClientBuilder subscriptionId(String subscriptionId) {
+    public AzureAgFoodPlatformRPServiceBuilder subscriptionId(String subscriptionId) {
         this.subscriptionId = subscriptionId;
         return this;
     }
@@ -42,9 +42,9 @@ public final class AgriFoodManagementClientBuilder {
      * Sets server parameter.
      *
      * @param endpoint the endpoint value.
-     * @return the AgriFoodManagementClientBuilder.
+     * @return the AzureAgFoodPlatformRPServiceBuilder.
      */
-    public AgriFoodManagementClientBuilder endpoint(String endpoint) {
+    public AzureAgFoodPlatformRPServiceBuilder endpoint(String endpoint) {
         this.endpoint = endpoint;
         return this;
     }
@@ -58,9 +58,9 @@ public final class AgriFoodManagementClientBuilder {
      * Sets The environment to connect to.
      *
      * @param environment the environment value.
-     * @return the AgriFoodManagementClientBuilder.
+     * @return the AzureAgFoodPlatformRPServiceBuilder.
      */
-    public AgriFoodManagementClientBuilder environment(AzureEnvironment environment) {
+    public AzureAgFoodPlatformRPServiceBuilder environment(AzureEnvironment environment) {
         this.environment = environment;
         return this;
     }
@@ -74,9 +74,9 @@ public final class AgriFoodManagementClientBuilder {
      * Sets The HTTP pipeline to send requests through.
      *
      * @param pipeline the pipeline value.
-     * @return the AgriFoodManagementClientBuilder.
+     * @return the AzureAgFoodPlatformRPServiceBuilder.
      */
-    public AgriFoodManagementClientBuilder pipeline(HttpPipeline pipeline) {
+    public AzureAgFoodPlatformRPServiceBuilder pipeline(HttpPipeline pipeline) {
         this.pipeline = pipeline;
         return this;
     }
@@ -90,9 +90,9 @@ public final class AgriFoodManagementClientBuilder {
      * Sets The default poll interval for long-running operation.
      *
      * @param defaultPollInterval the defaultPollInterval value.
-     * @return the AgriFoodManagementClientBuilder.
+     * @return the AzureAgFoodPlatformRPServiceBuilder.
      */
-    public AgriFoodManagementClientBuilder defaultPollInterval(Duration defaultPollInterval) {
+    public AzureAgFoodPlatformRPServiceBuilder defaultPollInterval(Duration defaultPollInterval) {
         this.defaultPollInterval = defaultPollInterval;
         return this;
     }
@@ -106,19 +106,19 @@ public final class AgriFoodManagementClientBuilder {
      * Sets The serializer to serialize an object into a string.
      *
      * @param serializerAdapter the serializerAdapter value.
-     * @return the AgriFoodManagementClientBuilder.
+     * @return the AzureAgFoodPlatformRPServiceBuilder.
      */
-    public AgriFoodManagementClientBuilder serializerAdapter(SerializerAdapter serializerAdapter) {
+    public AzureAgFoodPlatformRPServiceBuilder serializerAdapter(SerializerAdapter serializerAdapter) {
         this.serializerAdapter = serializerAdapter;
         return this;
     }
 
     /**
-     * Builds an instance of AgriFoodManagementClientImpl with the provided parameters.
+     * Builds an instance of AzureAgFoodPlatformRPServiceImpl with the provided parameters.
      *
-     * @return an instance of AgriFoodManagementClientImpl.
+     * @return an instance of AzureAgFoodPlatformRPServiceImpl.
      */
-    public AgriFoodManagementClientImpl buildClient() {
+    public AzureAgFoodPlatformRPServiceImpl buildClient() {
         String localEndpoint = (endpoint != null) ? endpoint : "https://management.azure.com";
         AzureEnvironment localEnvironment = (environment != null) ? environment : AzureEnvironment.AZURE;
         HttpPipeline localPipeline =
@@ -131,8 +131,8 @@ public final class AgriFoodManagementClientBuilder {
             (serializerAdapter != null)
                 ? serializerAdapter
                 : SerializerFactory.createDefaultManagementSerializerAdapter();
-        AgriFoodManagementClientImpl client =
-            new AgriFoodManagementClientImpl(
+        AzureAgFoodPlatformRPServiceImpl client =
+            new AzureAgFoodPlatformRPServiceImpl(
                 localPipeline,
                 localSerializerAdapter,
                 localDefaultPollInterval,

@@ -14,9 +14,9 @@ public final class ExtensionsUpdateSamples {
     /**
      * Sample code: Extensions_Update.
      *
-     * @param manager Entry point to AgriFoodManager.
+     * @param manager Entry point to AgrifoodManager.
      */
-    public static void extensionsUpdate(com.azure.resourcemanager.agrifood.AgriFoodManager manager) {
+    public static void extensionsUpdate(com.azure.resourcemanager.agrifood.AgrifoodManager manager) {
         manager
             .extensions()
             .updateWithResponse("examples-rg", "examples-farmbeatsResourceName", "provider.extension", Context.NONE);

@@ -16,7 +16,7 @@ public final class PrivateEndpointConnectionImpl
     implements PrivateEndpointConnection, PrivateEndpointConnection.Definition, PrivateEndpointConnection.Update {
     private PrivateEndpointConnectionInner innerObject;
 
-    private final com.azure.resourcemanager.agrifood.AgriFoodManager serviceManager;
+    private final com.azure.resourcemanager.agrifood.AgrifoodManager serviceManager;
 
     public String id() {
         return this.innerModel().id();
@@ -54,7 +54,7 @@ public final class PrivateEndpointConnectionImpl
         return this.innerObject;
     }
 
-    private com.azure.resourcemanager.agrifood.AgriFoodManager manager() {
+    private com.azure.resourcemanager.agrifood.AgrifoodManager manager() {
         return this.serviceManager;
     }
 
@@ -96,7 +96,7 @@ public final class PrivateEndpointConnectionImpl
         return this;
     }
 
-    PrivateEndpointConnectionImpl(String name, com.azure.resourcemanager.agrifood.AgriFoodManager serviceManager) {
+    PrivateEndpointConnectionImpl(String name, com.azure.resourcemanager.agrifood.AgrifoodManager serviceManager) {
         this.innerObject = new PrivateEndpointConnectionInner();
         this.serviceManager = serviceManager;
         this.privateEndpointConnectionName = name;
@@ -133,7 +133,7 @@ public final class PrivateEndpointConnectionImpl
     }
 
     PrivateEndpointConnectionImpl(
-        PrivateEndpointConnectionInner innerObject, com.azure.resourcemanager.agrifood.AgriFoodManager serviceManager) {
+        PrivateEndpointConnectionInner innerObject, com.azure.resourcemanager.agrifood.AgrifoodManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
         this.resourceGroupName = Utils.getValueFromIdByName(innerObject.id(), "resourceGroups");

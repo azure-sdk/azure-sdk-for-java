@@ -14,10 +14,10 @@ public final class PrivateEndpointConnectionsListByResourceSamples {
     /**
      * Sample code: PrivateEndpointConnections_ListByResource.
      *
-     * @param manager Entry point to AgriFoodManager.
+     * @param manager Entry point to AgrifoodManager.
      */
     public static void privateEndpointConnectionsListByResource(
-        com.azure.resourcemanager.agrifood.AgriFoodManager manager) {
+        com.azure.resourcemanager.agrifood.AgrifoodManager manager) {
         manager
             .privateEndpointConnections()
             .listByResource("examples-rg", "examples-farmbeatsResourceName", Context.NONE);

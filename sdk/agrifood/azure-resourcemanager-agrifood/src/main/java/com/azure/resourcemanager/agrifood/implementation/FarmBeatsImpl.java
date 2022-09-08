@@ -22,7 +22,7 @@ import java.util.Map;
 public final class FarmBeatsImpl implements FarmBeats, FarmBeats.Definition, FarmBeats.Update {
     private FarmBeatsInner innerObject;
 
-    private final com.azure.resourcemanager.agrifood.AgriFoodManager serviceManager;
+    private final com.azure.resourcemanager.agrifood.AgrifoodManager serviceManager;
 
     public String id() {
         return this.innerModel().id();
@@ -94,7 +94,7 @@ public final class FarmBeatsImpl implements FarmBeats, FarmBeats.Definition, Far
         return this.innerObject;
     }
 
-    private com.azure.resourcemanager.agrifood.AgriFoodManager manager() {
+    private com.azure.resourcemanager.agrifood.AgrifoodManager manager() {
         return this.serviceManager;
     }
 
@@ -129,7 +129,7 @@ public final class FarmBeatsImpl implements FarmBeats, FarmBeats.Definition, Far
         return this;
     }
 
-    FarmBeatsImpl(String name, com.azure.resourcemanager.agrifood.AgriFoodManager serviceManager) {
+    FarmBeatsImpl(String name, com.azure.resourcemanager.agrifood.AgrifoodManager serviceManager) {
         this.innerObject = new FarmBeatsInner();
         this.serviceManager = serviceManager;
         this.farmBeatsResourceName = name;
@@ -158,7 +158,7 @@ public final class FarmBeatsImpl implements FarmBeats, FarmBeats.Definition, Far
         return this;
     }
 
-    FarmBeatsImpl(FarmBeatsInner innerObject, com.azure.resourcemanager.agrifood.AgriFoodManager serviceManager) {
+    FarmBeatsImpl(FarmBeatsInner innerObject, com.azure.resourcemanager.agrifood.AgrifoodManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
         this.resourceGroupName = Utils.getValueFromIdByName(innerObject.id(), "resourceGroups");

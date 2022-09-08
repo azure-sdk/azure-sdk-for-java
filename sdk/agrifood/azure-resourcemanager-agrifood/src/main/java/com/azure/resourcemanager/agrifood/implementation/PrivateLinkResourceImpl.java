@@ -13,10 +13,10 @@ import java.util.List;
 public final class PrivateLinkResourceImpl implements PrivateLinkResource {
     private PrivateLinkResourceInner innerObject;
 
-    private final com.azure.resourcemanager.agrifood.AgriFoodManager serviceManager;
+    private final com.azure.resourcemanager.agrifood.AgrifoodManager serviceManager;
 
     PrivateLinkResourceImpl(
-        PrivateLinkResourceInner innerObject, com.azure.resourcemanager.agrifood.AgriFoodManager serviceManager) {
+        PrivateLinkResourceInner innerObject, com.azure.resourcemanager.agrifood.AgrifoodManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
     }
@@ -63,7 +63,7 @@ public final class PrivateLinkResourceImpl implements PrivateLinkResource {
         return this.innerObject;
     }
 
-    private com.azure.resourcemanager.agrifood.AgriFoodManager manager() {
+    private com.azure.resourcemanager.agrifood.AgrifoodManager manager() {
         return this.serviceManager;
     }
 }

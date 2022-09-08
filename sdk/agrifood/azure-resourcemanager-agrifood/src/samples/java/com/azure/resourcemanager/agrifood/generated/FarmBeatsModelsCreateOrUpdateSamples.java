@@ -15,9 +15,9 @@ public final class FarmBeatsModelsCreateOrUpdateSamples {
     /**
      * Sample code: FarmBeatsModels_CreateOrUpdate.
      *
-     * @param manager Entry point to AgriFoodManager.
+     * @param manager Entry point to AgrifoodManager.
      */
-    public static void farmBeatsModelsCreateOrUpdate(com.azure.resourcemanager.agrifood.AgriFoodManager manager) {
+    public static void farmBeatsModelsCreateOrUpdate(com.azure.resourcemanager.agrifood.AgrifoodManager manager) {
         manager
             .farmBeatsModels()
             .define("examples-farmbeatsResourceName")

@@ -19,10 +19,10 @@ public final class LocationsImpl implements Locations {
 
     private final LocationsClient innerClient;
 
-    private final com.azure.resourcemanager.agrifood.AgriFoodManager serviceManager;
+    private final com.azure.resourcemanager.agrifood.AgrifoodManager serviceManager;
 
     public LocationsImpl(
-        LocationsClient innerClient, com.azure.resourcemanager.agrifood.AgriFoodManager serviceManager) {
+        LocationsClient innerClient, com.azure.resourcemanager.agrifood.AgrifoodManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
     }
@@ -55,7 +55,7 @@ public final class LocationsImpl implements Locations {
         return this.innerClient;
     }
 
-    private com.azure.resourcemanager.agrifood.AgriFoodManager manager() {
+    private com.azure.resourcemanager.agrifood.AgrifoodManager manager() {
         return this.serviceManager;
     }
 }

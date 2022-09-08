@@ -10,10 +10,10 @@ import com.azure.resourcemanager.agrifood.models.ArmAsyncOperation;
 public final class ArmAsyncOperationImpl implements ArmAsyncOperation {
     private ArmAsyncOperationInner innerObject;
 
-    private final com.azure.resourcemanager.agrifood.AgriFoodManager serviceManager;
+    private final com.azure.resourcemanager.agrifood.AgrifoodManager serviceManager;
 
     ArmAsyncOperationImpl(
-        ArmAsyncOperationInner innerObject, com.azure.resourcemanager.agrifood.AgriFoodManager serviceManager) {
+        ArmAsyncOperationInner innerObject, com.azure.resourcemanager.agrifood.AgrifoodManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
     }
@@ -26,7 +26,7 @@ public final class ArmAsyncOperationImpl implements ArmAsyncOperation {
         return this.innerObject;
     }
 
-    private com.azure.resourcemanager.agrifood.AgriFoodManager manager() {
+    private com.azure.resourcemanager.agrifood.AgrifoodManager manager() {
         return this.serviceManager;
     }
 }

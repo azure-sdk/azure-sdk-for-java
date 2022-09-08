@@ -33,25 +33,25 @@ public final class LocationsClientImpl implements LocationsClient {
     private final LocationsService service;
 
     /** The service client containing this operation class. */
-    private final AgriFoodManagementClientImpl client;
+    private final AzureAgFoodPlatformRPServiceImpl client;
 
     /**
      * Initializes an instance of LocationsClientImpl.
      *
      * @param client the instance of the service client containing this operation class.
      */
-    LocationsClientImpl(AgriFoodManagementClientImpl client) {
+    LocationsClientImpl(AzureAgFoodPlatformRPServiceImpl client) {
         this.service =
             RestProxy.create(LocationsService.class, client.getHttpPipeline(), client.getSerializerAdapter());
         this.client = client;
     }
 
     /**
-     * The interface defining all the services for AgriFoodManagementClientLocations to be used by the proxy service to
-     * perform REST calls.
+     * The interface defining all the services for AzureAgFoodPlatformRPServiceLocations to be used by the proxy service
+     * to perform REST calls.
      */
     @Host("{$host}")
-    @ServiceInterface(name = "AgriFoodManagementCl")
+    @ServiceInterface(name = "AzureAgFoodPlatformR")
     private interface LocationsService {
         @Headers({"Content-Type: application/json"})
         @Post("/subscriptions/{subscriptionId}/providers/Microsoft.AgFoodPlatform/checkNameAvailability")

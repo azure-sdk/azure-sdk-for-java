@@ -15,10 +15,10 @@ import com.azure.resourcemanager.agrifood.models.SensorIntegration;
 public final class FarmBeatsPropertiesImpl implements FarmBeatsProperties {
     private FarmBeatsPropertiesInner innerObject;
 
-    private final com.azure.resourcemanager.agrifood.AgriFoodManager serviceManager;
+    private final com.azure.resourcemanager.agrifood.AgrifoodManager serviceManager;
 
     FarmBeatsPropertiesImpl(
-        FarmBeatsPropertiesInner innerObject, com.azure.resourcemanager.agrifood.AgriFoodManager serviceManager) {
+        FarmBeatsPropertiesInner innerObject, com.azure.resourcemanager.agrifood.AgrifoodManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
     }
@@ -52,7 +52,7 @@ public final class FarmBeatsPropertiesImpl implements FarmBeatsProperties {
         return this.innerObject;
     }
 
-    private com.azure.resourcemanager.agrifood.AgriFoodManager manager() {
+    private com.azure.resourcemanager.agrifood.AgrifoodManager manager() {
         return this.serviceManager;
     }
 }

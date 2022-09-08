@@ -21,9 +21,9 @@ public final class FarmBeatsModelsUpdateSamples {
     /**
      * Sample code: FarmBeatsModels_Update.
      *
-     * @param manager Entry point to AgriFoodManager.
+     * @param manager Entry point to AgrifoodManager.
      */
-    public static void farmBeatsModelsUpdate(com.azure.resourcemanager.agrifood.AgriFoodManager manager) {
+    public static void farmBeatsModelsUpdate(com.azure.resourcemanager.agrifood.AgrifoodManager manager) {
         FarmBeats resource =
             manager
                 .farmBeatsModels()
@@ -38,9 +38,9 @@ public final class FarmBeatsModelsUpdateSamples {
     /**
      * Sample code: FarmBeatsModels_UpdateWithSensor.
      *
-     * @param manager Entry point to AgriFoodManager.
+     * @param manager Entry point to AgrifoodManager.
      */
-    public static void farmBeatsModelsUpdateWithSensor(com.azure.resourcemanager.agrifood.AgriFoodManager manager) {
+    public static void farmBeatsModelsUpdateWithSensor(com.azure.resourcemanager.agrifood.AgrifoodManager manager) {
         FarmBeats resource =
             manager
                 .farmBeatsModels()

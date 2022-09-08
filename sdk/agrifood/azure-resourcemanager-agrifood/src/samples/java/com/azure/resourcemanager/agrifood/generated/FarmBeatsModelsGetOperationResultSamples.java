@@ -14,9 +14,9 @@ public final class FarmBeatsModelsGetOperationResultSamples {
     /**
      * Sample code: FarmBeatsModels_GetOperationResult.
      *
-     * @param manager Entry point to AgriFoodManager.
+     * @param manager Entry point to AgrifoodManager.
      */
-    public static void farmBeatsModelsGetOperationResult(com.azure.resourcemanager.agrifood.AgriFoodManager manager) {
+    public static void farmBeatsModelsGetOperationResult(com.azure.resourcemanager.agrifood.AgrifoodManager manager) {
         manager
             .farmBeatsModels()
             .getOperationResultWithResponse(

@@ -14,9 +14,9 @@ public final class ExtensionsCreateSamples {
     /**
      * Sample code: Extensions_Create.
      *
-     * @param manager Entry point to AgriFoodManager.
+     * @param manager Entry point to AgrifoodManager.
      */
-    public static void extensionsCreate(com.azure.resourcemanager.agrifood.AgriFoodManager manager) {
+    public static void extensionsCreate(com.azure.resourcemanager.agrifood.AgrifoodManager manager) {
         manager
             .extensions()
             .createWithResponse("examples-rg", "examples-farmbeatsResourceName", "provider.extension", Context.NONE);

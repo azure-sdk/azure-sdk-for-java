@@ -14,9 +14,9 @@ public final class ExtensionsListByFarmBeatsSamples {
     /**
      * Sample code: Extensions_ListByFarmBeats.
      *
-     * @param manager Entry point to AgriFoodManager.
+     * @param manager Entry point to AgrifoodManager.
      */
-    public static void extensionsListByFarmBeats(com.azure.resourcemanager.agrifood.AgriFoodManager manager) {
+    public static void extensionsListByFarmBeats(com.azure.resourcemanager.agrifood.AgrifoodManager manager) {
         manager
             .extensions()
             .listByFarmBeats("examples-rg", "examples-farmbeatsResourceName", null, null, null, null, Context.NONE);

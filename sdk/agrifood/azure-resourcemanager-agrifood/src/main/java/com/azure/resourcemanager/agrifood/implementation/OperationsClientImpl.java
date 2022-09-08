@@ -36,25 +36,25 @@ public final class OperationsClientImpl implements OperationsClient {
     private final OperationsService service;
 
     /** The service client containing this operation class. */
-    private final AgriFoodManagementClientImpl client;
+    private final AzureAgFoodPlatformRPServiceImpl client;
 
     /**
      * Initializes an instance of OperationsClientImpl.
      *
      * @param client the instance of the service client containing this operation class.
      */
-    OperationsClientImpl(AgriFoodManagementClientImpl client) {
+    OperationsClientImpl(AzureAgFoodPlatformRPServiceImpl client) {
         this.service =
             RestProxy.create(OperationsService.class, client.getHttpPipeline(), client.getSerializerAdapter());
         this.client = client;
     }
 
     /**
-     * The interface defining all the services for AgriFoodManagementClientOperations to be used by the proxy service to
-     * perform REST calls.
+     * The interface defining all the services for AzureAgFoodPlatformRPServiceOperations to be used by the proxy
+     * service to perform REST calls.
      */
     @Host("{$host}")
-    @ServiceInterface(name = "AgriFoodManagementCl")
+    @ServiceInterface(name = "AzureAgFoodPlatformR")
     private interface OperationsService {
         @Headers({"Content-Type: application/json"})
         @Get("/providers/Microsoft.AgFoodPlatform/operations")

@@ -7,8 +7,8 @@ package com.azure.resourcemanager.agrifood.fluent;
 import com.azure.core.http.HttpPipeline;
 import java.time.Duration;
 
-/** The interface for AgriFoodManagementClient class. */
-public interface AgriFoodManagementClient {
+/** The interface for AzureAgFoodPlatformRPService class. */
+public interface AzureAgFoodPlatformRPService {
     /**
      * Gets The ID of the target subscription.
      *

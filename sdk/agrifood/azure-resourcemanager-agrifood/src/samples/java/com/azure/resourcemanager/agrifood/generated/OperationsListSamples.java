@@ -14,9 +14,9 @@ public final class OperationsListSamples {
     /**
      * Sample code: Operations_List.
      *
-     * @param manager Entry point to AgriFoodManager.
+     * @param manager Entry point to AgrifoodManager.
      */
-    public static void operationsList(com.azure.resourcemanager.agrifood.AgriFoodManager manager) {
+    public static void operationsList(com.azure.resourcemanager.agrifood.AgrifoodManager manager) {
         manager.operations().list(Context.NONE);
     }
 }

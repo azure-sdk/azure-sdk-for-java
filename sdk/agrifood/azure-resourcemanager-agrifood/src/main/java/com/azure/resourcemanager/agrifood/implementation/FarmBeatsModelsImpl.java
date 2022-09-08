@@ -21,10 +21,10 @@ public final class FarmBeatsModelsImpl implements FarmBeatsModels {
 
     private final FarmBeatsModelsClient innerClient;
 
-    private final com.azure.resourcemanager.agrifood.AgriFoodManager serviceManager;
+    private final com.azure.resourcemanager.agrifood.AgrifoodManager serviceManager;
 
     public FarmBeatsModelsImpl(
-        FarmBeatsModelsClient innerClient, com.azure.resourcemanager.agrifood.AgriFoodManager serviceManager) {
+        FarmBeatsModelsClient innerClient, com.azure.resourcemanager.agrifood.AgrifoodManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
     }
@@ -191,7 +191,7 @@ public final class FarmBeatsModelsImpl implements FarmBeatsModels {
         return this.innerClient;
     }
 
-    private com.azure.resourcemanager.agrifood.AgriFoodManager manager() {
+    private com.azure.resourcemanager.agrifood.AgrifoodManager manager() {
         return this.serviceManager;
     }
 

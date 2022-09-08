@@ -23,8 +23,8 @@ import com.azure.core.management.http.policy.ArmChallengeAuthenticationPolicy;
 import com.azure.core.management.profile.AzureProfile;
 import com.azure.core.util.Configuration;
 import com.azure.core.util.logging.ClientLogger;
-import com.azure.resourcemanager.agrifood.fluent.AgriFoodManagementClient;
-import com.azure.resourcemanager.agrifood.implementation.AgriFoodManagementClientBuilder;
+import com.azure.resourcemanager.agrifood.fluent.AzureAgFoodPlatformRPService;
+import com.azure.resourcemanager.agrifood.implementation.AzureAgFoodPlatformRPServiceBuilder;
 import com.azure.resourcemanager.agrifood.implementation.ExtensionsImpl;
 import com.azure.resourcemanager.agrifood.implementation.FarmBeatsExtensionsImpl;
 import com.azure.resourcemanager.agrifood.implementation.FarmBeatsModelsImpl;
@@ -46,8 +46,8 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-/** Entry point to AgriFoodManager. APIs documentation for Azure AgFoodPlatform Resource Provider Service. */
-public final class AgriFoodManager {
+/** Entry point to AgrifoodManager. APIs documentation for Azure AgFoodPlatform Resource Provider Service. */
+public final class AgrifoodManager {
     private Extensions extensions;
 
     private FarmBeatsExtensions farmBeatsExtensions;
@@ -62,13 +62,13 @@ public final class AgriFoodManager {
 
     private PrivateLinkResources privateLinkResources;
 
-    private final AgriFoodManagementClient clientObject;
+    private final AzureAgFoodPlatformRPService clientObject;
 
-    private AgriFoodManager(HttpPipeline httpPipeline, AzureProfile profile, Duration defaultPollInterval) {
+    private AgrifoodManager(HttpPipeline httpPipeline, AzureProfile profile, Duration defaultPollInterval) {
         Objects.requireNonNull(httpPipeline, "'httpPipeline' cannot be null.");
         Objects.requireNonNull(profile, "'profile' cannot be null.");
         this.clientObject =
-            new AgriFoodManagementClientBuilder()
+            new AzureAgFoodPlatformRPServiceBuilder()
                 .pipeline(httpPipeline)
                 .endpoint(profile.getEnvironment().getResourceManagerEndpoint())
                 .subscriptionId(profile.getSubscriptionId())
@@ -77,38 +77,38 @@ public final class AgriFoodManager {
     }
 
     /**
-     * Creates an instance of AgriFood service API entry point.
+     * Creates an instance of agrifood service API entry point.
      *
      * @param credential the credential to use.
      * @param profile the Azure profile for client.
-     * @return the AgriFood service API instance.
+     * @return the agrifood service API instance.
      */
-    public static AgriFoodManager authenticate(TokenCredential credential, AzureProfile profile) {
+    public static AgrifoodManager authenticate(TokenCredential credential, AzureProfile profile) {
         Objects.requireNonNull(credential, "'credential' cannot be null.");
         Objects.requireNonNull(profile, "'profile' cannot be null.");
         return configure().authenticate(credential, profile);
     }
 
     /**
-     * Creates an instance of AgriFood service API entry point.
+     * Creates an instance of agrifood service API entry point.
      *
      * @param httpPipeline the {@link HttpPipeline} configured with Azure authentication credential.
      * @param profile the Azure profile for client.
-     * @return the AgriFood service API instance.
+     * @return the agrifood service API instance.
      */
-    public static AgriFoodManager authenticate(HttpPipeline httpPipeline, AzureProfile profile) {
+    public static AgrifoodManager authenticate(HttpPipeline httpPipeline, AzureProfile profile) {
         Objects.requireNonNull(httpPipeline, "'httpPipeline' cannot be null.");
         Objects.requireNonNull(profile, "'profile' cannot be null.");
-        return new AgriFoodManager(httpPipeline, profile, null);
+        return new AgrifoodManager(httpPipeline, profile, null);
     }
 
     /**
-     * Gets a Configurable instance that can be used to create AgriFoodManager with optional configuration.
+     * Gets a Configurable instance that can be used to create AgrifoodManager with optional configuration.
      *
      * @return the Configurable instance allowing configurations.
      */
     public static Configurable configure() {
-        return new AgriFoodManager.Configurable();
+        return new AgrifoodManager.Configurable();
     }
 
     /** The Configurable allowing configurations to be set. */
@@ -211,13 +211,13 @@ public final class AgriFoodManager {
         }
 
         /**
-         * Creates an instance of AgriFood service API entry point.
+         * Creates an instance of agrifood service API entry point.
          *
          * @param credential the credential to use.
          * @param profile the Azure profile for client.
-         * @return the AgriFood service API instance.
+         * @return the agrifood service API instance.
          */
-        public AgriFoodManager authenticate(TokenCredential credential, AzureProfile profile) {
+        public AgrifoodManager authenticate(TokenCredential credential, AzureProfile profile) {
             Objects.requireNonNull(credential, "'credential' cannot be null.");
             Objects.requireNonNull(profile, "'profile' cannot be null.");
 
@@ -280,7 +280,7 @@ public final class AgriFoodManager {
                     .httpClient(httpClient)
                     .policies(policies.toArray(new HttpPipelinePolicy[0]))
                     .build();
-            return new AgriFoodManager(httpPipeline, profile, defaultPollInterval);
+            return new AgrifoodManager(httpPipeline, profile, defaultPollInterval);
         }
     }
 
@@ -370,10 +370,10 @@ public final class AgriFoodManager {
     }
 
     /**
-     * @return Wrapped service client AgriFoodManagementClient providing direct access to the underlying auto-generated
-     *     API implementation, based on Azure REST API.
+     * @return Wrapped service client AzureAgFoodPlatformRPService providing direct access to the underlying
+     *     auto-generated API implementation, based on Azure REST API.
      */
-    public AgriFoodManagementClient serviceClient() {
+    public AzureAgFoodPlatformRPService serviceClient() {
         return this.clientObject;
     }
 }

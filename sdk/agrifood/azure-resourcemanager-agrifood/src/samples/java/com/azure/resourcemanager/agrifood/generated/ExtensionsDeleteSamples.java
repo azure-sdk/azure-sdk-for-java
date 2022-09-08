@@ -14,9 +14,9 @@ public final class ExtensionsDeleteSamples {
     /**
      * Sample code: Extensions_Delete.
      *
-     * @param manager Entry point to AgriFoodManager.
+     * @param manager Entry point to AgrifoodManager.
      */
-    public static void extensionsDelete(com.azure.resourcemanager.agrifood.AgriFoodManager manager) {
+    public static void extensionsDelete(com.azure.resourcemanager.agrifood.AgrifoodManager manager) {
         manager
             .extensions()
             .deleteWithResponse("examples-rg", "examples-farmbeatsResourceName", "provider.extension", Context.NONE);
