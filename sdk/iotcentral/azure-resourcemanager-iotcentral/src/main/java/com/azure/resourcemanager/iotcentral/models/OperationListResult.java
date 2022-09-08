@@ -19,8 +19,7 @@ public final class OperationListResult {
     private String nextLink;
 
     /*
-     * A list of operations supported by the Microsoft.IoTCentral resource
-     * provider.
+     * A list of operations supported by the Microsoft.IoTCentral resource provider.
      */
     @JsonProperty(value = "value", access = JsonProperty.Access.WRITE_ONLY)
     private List<OperationInner> value;
