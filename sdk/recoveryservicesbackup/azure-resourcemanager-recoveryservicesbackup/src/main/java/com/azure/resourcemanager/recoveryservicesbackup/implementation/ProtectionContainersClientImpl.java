@@ -713,7 +713,9 @@ public final class ProtectionContainersClientImpl implements ProtectionContainer
     }
 
     /**
-     * This is an async operation and the results should be tracked using location header or Azure-async-url.
+     * Inquires all the protectable items under the given container.
+     *
+     * <p>This is an async operation and the results should be tracked using location header or Azure-async-url.
      *
      * @param vaultName The name of the recovery services vault.
      * @param resourceGroupName The name of the resource group where the recovery services vault is present.
@@ -773,7 +775,9 @@ public final class ProtectionContainersClientImpl implements ProtectionContainer
     }
 
     /**
-     * This is an async operation and the results should be tracked using location header or Azure-async-url.
+     * Inquires all the protectable items under the given container.
+     *
+     * <p>This is an async operation and the results should be tracked using location header or Azure-async-url.
      *
      * @param vaultName The name of the recovery services vault.
      * @param resourceGroupName The name of the resource group where the recovery services vault is present.
@@ -836,7 +840,9 @@ public final class ProtectionContainersClientImpl implements ProtectionContainer
     }
 
     /**
-     * This is an async operation and the results should be tracked using location header or Azure-async-url.
+     * Inquires all the protectable items under the given container.
+     *
+     * <p>This is an async operation and the results should be tracked using location header or Azure-async-url.
      *
      * @param vaultName The name of the recovery services vault.
      * @param resourceGroupName The name of the resource group where the recovery services vault is present.
@@ -856,7 +862,9 @@ public final class ProtectionContainersClientImpl implements ProtectionContainer
     }
 
     /**
-     * This is an async operation and the results should be tracked using location header or Azure-async-url.
+     * Inquires all the protectable items under the given container.
+     *
+     * <p>This is an async operation and the results should be tracked using location header or Azure-async-url.
      *
      * @param vaultName The name of the recovery services vault.
      * @param resourceGroupName The name of the resource group where the recovery services vault is present.
@@ -876,7 +884,9 @@ public final class ProtectionContainersClientImpl implements ProtectionContainer
     }
 
     /**
-     * This is an async operation and the results should be tracked using location header or Azure-async-url.
+     * Inquires all the protectable items under the given container.
+     *
+     * <p>This is an async operation and the results should be tracked using location header or Azure-async-url.
      *
      * @param vaultName The name of the recovery services vault.
      * @param resourceGroupName The name of the resource group where the recovery services vault is present.
@@ -893,7 +903,9 @@ public final class ProtectionContainersClientImpl implements ProtectionContainer
     }
 
     /**
-     * This is an async operation and the results should be tracked using location header or Azure-async-url.
+     * Inquires all the protectable items under the given container.
+     *
+     * <p>This is an async operation and the results should be tracked using location header or Azure-async-url.
      *
      * @param vaultName The name of the recovery services vault.
      * @param resourceGroupName The name of the resource group where the recovery services vault is present.

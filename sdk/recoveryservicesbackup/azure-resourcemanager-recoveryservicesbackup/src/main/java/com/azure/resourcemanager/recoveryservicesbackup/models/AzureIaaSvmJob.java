@@ -36,8 +36,7 @@ public final class AzureIaaSvmJob extends Job {
     private List<AzureIaaSvmErrorInfo> errorDetails;
 
     /*
-     * Specifies whether the backup item is a Classic or an Azure Resource
-     * Manager VM.
+     * Specifies whether the backup item is a Classic or an Azure Resource Manager VM.
      */
     @JsonProperty(value = "virtualMachineVersion")
     private String virtualMachineVersion;

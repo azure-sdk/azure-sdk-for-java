@@ -257,7 +257,9 @@ public interface ProtectionContainerResource {
     ProtectionContainerResource refresh(Context context);
 
     /**
-     * This is an async operation and the results should be tracked using location header or Azure-async-url.
+     * Inquires all the protectable items under the given container.
+     *
+     * <p>This is an async operation and the results should be tracked using location header or Azure-async-url.
      *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -265,7 +267,9 @@ public interface ProtectionContainerResource {
     void inquire();
 
     /**
-     * This is an async operation and the results should be tracked using location header or Azure-async-url.
+     * Inquires all the protectable items under the given container.
+     *
+     * <p>This is an async operation and the results should be tracked using location header or Azure-async-url.
      *
      * @param filter OData filter options.
      * @param context The context to associate with this operation.

@@ -766,7 +766,7 @@ public final class RecoveryServicesBackupClientImpl implements RecoveryServicesB
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2022-02-01";
+        this.apiVersion = "2022-06-01-preview";
         this.backupResourceStorageConfigsNonCrrs = new BackupResourceStorageConfigsNonCrrsClientImpl(this);
         this.protectionIntents = new ProtectionIntentsClientImpl(this);
         this.backupStatus = new BackupStatusClientImpl(this);

@@ -18,8 +18,7 @@ public final class DiskExclusionProperties {
     private List<Integer> diskLunList;
 
     /*
-     * Flag to indicate whether DiskLunList is to be included/ excluded from
-     * backup.
+     * Flag to indicate whether DiskLunList is to be included/ excluded from backup.
      */
     @JsonProperty(value = "isInclusionList")
     private Boolean isInclusionList;

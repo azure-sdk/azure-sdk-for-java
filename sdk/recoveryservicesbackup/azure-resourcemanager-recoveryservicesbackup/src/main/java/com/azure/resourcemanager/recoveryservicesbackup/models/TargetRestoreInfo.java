@@ -23,8 +23,7 @@ public final class TargetRestoreInfo {
     private String containerId;
 
     /*
-     * Database name InstanceName/DataBaseName for SQL or System/DbName for SAP
-     * Hana
+     * Database name InstanceName/DataBaseName for SQL or System/DbName for SAP Hana
      */
     @JsonProperty(value = "databaseName")
     private String databaseName;

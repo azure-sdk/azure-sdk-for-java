@@ -15,8 +15,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @Fluent
 public final class ExportJobsOperationResultInfo extends OperationResultInfoBase {
     /*
-     * URL of the blob into which the serialized string of list of jobs is
-     * exported.
+     * URL of the blob into which the serialized string of list of jobs is exported.
      */
     @JsonProperty(value = "blobUrl")
     private String blobUrl;
