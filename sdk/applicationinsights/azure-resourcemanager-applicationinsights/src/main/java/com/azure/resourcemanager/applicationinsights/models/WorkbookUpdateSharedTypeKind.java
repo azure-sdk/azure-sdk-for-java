@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for WorkbookUpdateSharedTypeKind. */
+/** The kind of workbook. Only valid value is shared. */
 public final class WorkbookUpdateSharedTypeKind extends ExpandableStringEnum<WorkbookUpdateSharedTypeKind> {
     /** Static value shared for WorkbookUpdateSharedTypeKind. */
     public static final WorkbookUpdateSharedTypeKind SHARED = fromString("shared");
