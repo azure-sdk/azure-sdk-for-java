@@ -13,15 +13,15 @@ import java.util.UUID;
 @Fluent
 public class SystemAssignedServiceIdentity {
     /*
-     * The service principal ID of the system assigned identity. This property
-     * will only be provided for a system assigned identity.
+     * The service principal ID of the system assigned identity. This property will only be provided for a system
+     * assigned identity.
      */
     @JsonProperty(value = "principalId", access = JsonProperty.Access.WRITE_ONLY)
     private UUID principalId;
 
     /*
-     * The tenant ID of the system assigned identity. This property will only
-     * be provided for a system assigned identity.
+     * The tenant ID of the system assigned identity. This property will only be provided for a system assigned
+     * identity.
      */
     @JsonProperty(value = "tenantId", access = JsonProperty.Access.WRITE_ONLY)
     private UUID tenantId;

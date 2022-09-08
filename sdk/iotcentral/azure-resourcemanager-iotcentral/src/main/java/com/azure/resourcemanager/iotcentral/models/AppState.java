@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for AppState. */
+/** The current state of the application. */
 public final class AppState extends ExpandableStringEnum<AppState> {
     /** Static value created for AppState. */
     public static final AppState CREATED = fromString("created");
@@ -27,7 +27,11 @@ public final class AppState extends ExpandableStringEnum<AppState> {
         return fromString(name, AppState.class);
     }
 
-    /** @return known AppState values. */
+    /**
+     * Gets known AppState values.
+     *
+     * @return known AppState values.
+     */
     public static Collection<AppState> values() {
         return values(AppState.class);
     }
