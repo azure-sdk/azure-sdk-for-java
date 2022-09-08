@@ -16,7 +16,9 @@ import com.azure.resourcemanager.synapse.models.DataWarehouseUserActivityName;
  */
 public interface SqlPoolDataWarehouseUserActivitiesClient {
     /**
-     * Gets the user activities of a SQL pool which includes running and suspended queries.
+     * Get SQL pool user activities
+     *
+     * <p>Gets the user activities of a SQL pool which includes running and suspended queries.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -35,7 +37,9 @@ public interface SqlPoolDataWarehouseUserActivitiesClient {
         DataWarehouseUserActivityName dataWarehouseUserActivityName);
 
     /**
-     * Gets the user activities of a SQL pool which includes running and suspended queries.
+     * Get SQL pool user activities
+     *
+     * <p>Gets the user activities of a SQL pool which includes running and suspended queries.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.

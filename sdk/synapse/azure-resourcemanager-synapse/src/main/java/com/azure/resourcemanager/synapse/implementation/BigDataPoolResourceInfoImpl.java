@@ -73,6 +73,10 @@ public final class BigDataPoolResourceInfoImpl
         return this.innerModel().isComputeIsolationEnabled();
     }
 
+    public Boolean isAutotuneEnabled() {
+        return this.innerModel().isAutotuneEnabled();
+    }
+
     public Boolean sessionLevelPackagesEnabled() {
         return this.innerModel().sessionLevelPackagesEnabled();
     }
@@ -136,6 +140,10 @@ public final class BigDataPoolResourceInfoImpl
 
     public String regionName() {
         return this.location();
+    }
+
+    public String resourceGroupName() {
+        return resourceGroupName;
     }
 
     public BigDataPoolResourceInfoInner innerModel() {
@@ -282,6 +290,11 @@ public final class BigDataPoolResourceInfoImpl
 
     public BigDataPoolResourceInfoImpl withIsComputeIsolationEnabled(Boolean isComputeIsolationEnabled) {
         this.innerModel().withIsComputeIsolationEnabled(isComputeIsolationEnabled);
+        return this;
+    }
+
+    public BigDataPoolResourceInfoImpl withIsAutotuneEnabled(Boolean isAutotuneEnabled) {
+        this.innerModel().withIsAutotuneEnabled(isAutotuneEnabled);
         return this;
     }
 

@@ -20,7 +20,9 @@ import com.azure.resourcemanager.synapse.models.EncryptionProtectorName;
  */
 public interface WorkspaceManagedSqlServerEncryptionProtectorsClient {
     /**
-     * Get workspace managed sql server's encryption protector.
+     * Get workspace server's encryption protector.
+     *
+     * <p>Get workspace managed sql server's encryption protector.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -35,7 +37,9 @@ public interface WorkspaceManagedSqlServerEncryptionProtectorsClient {
         String resourceGroupName, String workspaceName, EncryptionProtectorName encryptionProtectorName);
 
     /**
-     * Get workspace managed sql server's encryption protector.
+     * Get workspace server's encryption protector.
+     *
+     * <p>Get workspace managed sql server's encryption protector.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -54,7 +58,9 @@ public interface WorkspaceManagedSqlServerEncryptionProtectorsClient {
         Context context);
 
     /**
-     * Updates workspace managed sql server's encryption protector.
+     * Updates workspace server's encryption protector.
+     *
+     * <p>Updates workspace managed sql server's encryption protector.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -73,7 +79,9 @@ public interface WorkspaceManagedSqlServerEncryptionProtectorsClient {
         EncryptionProtectorInner parameters);
 
     /**
-     * Updates workspace managed sql server's encryption protector.
+     * Updates workspace server's encryption protector.
+     *
+     * <p>Updates workspace managed sql server's encryption protector.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -94,7 +102,9 @@ public interface WorkspaceManagedSqlServerEncryptionProtectorsClient {
         Context context);
 
     /**
-     * Updates workspace managed sql server's encryption protector.
+     * Updates workspace server's encryption protector.
+     *
+     * <p>Updates workspace managed sql server's encryption protector.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -113,7 +123,9 @@ public interface WorkspaceManagedSqlServerEncryptionProtectorsClient {
         EncryptionProtectorInner parameters);
 
     /**
-     * Updates workspace managed sql server's encryption protector.
+     * Updates workspace server's encryption protector.
+     *
+     * <p>Updates workspace managed sql server's encryption protector.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -134,7 +146,9 @@ public interface WorkspaceManagedSqlServerEncryptionProtectorsClient {
         Context context);
 
     /**
-     * Get list of encryption protectors for workspace managed sql server.
+     * Get list of encryption protectors for the server.
+     *
+     * <p>Get list of encryption protectors for workspace managed sql server.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -148,7 +162,9 @@ public interface WorkspaceManagedSqlServerEncryptionProtectorsClient {
     PagedIterable<EncryptionProtectorInner> list(String resourceGroupName, String workspaceName);
 
     /**
-     * Get list of encryption protectors for workspace managed sql server.
+     * Get list of encryption protectors for the server.
+     *
+     * <p>Get list of encryption protectors for workspace managed sql server.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -163,7 +179,9 @@ public interface WorkspaceManagedSqlServerEncryptionProtectorsClient {
     PagedIterable<EncryptionProtectorInner> list(String resourceGroupName, String workspaceName, Context context);
 
     /**
-     * Revalidates workspace managed sql server's existing encryption protector.
+     * Revalidates server's existing encryption protector.
+     *
+     * <p>Revalidates workspace managed sql server's existing encryption protector.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -178,7 +196,9 @@ public interface WorkspaceManagedSqlServerEncryptionProtectorsClient {
         String resourceGroupName, String workspaceName, EncryptionProtectorName encryptionProtectorName);
 
     /**
-     * Revalidates workspace managed sql server's existing encryption protector.
+     * Revalidates server's existing encryption protector.
+     *
+     * <p>Revalidates workspace managed sql server's existing encryption protector.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -197,7 +217,9 @@ public interface WorkspaceManagedSqlServerEncryptionProtectorsClient {
         Context context);
 
     /**
-     * Revalidates workspace managed sql server's existing encryption protector.
+     * Revalidates server's existing encryption protector.
+     *
+     * <p>Revalidates workspace managed sql server's existing encryption protector.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -210,7 +232,9 @@ public interface WorkspaceManagedSqlServerEncryptionProtectorsClient {
     void revalidate(String resourceGroupName, String workspaceName, EncryptionProtectorName encryptionProtectorName);
 
     /**
-     * Revalidates workspace managed sql server's existing encryption protector.
+     * Revalidates server's existing encryption protector.
+     *
+     * <p>Revalidates workspace managed sql server's existing encryption protector.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
