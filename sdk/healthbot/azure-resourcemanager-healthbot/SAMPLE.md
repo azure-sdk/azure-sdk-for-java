@@ -16,13 +16,18 @@
 ### Bots_Create
 
 ```java
+import com.azure.resourcemanager.healthbot.models.Identity;
+import com.azure.resourcemanager.healthbot.models.ResourceIdentityType;
 import com.azure.resourcemanager.healthbot.models.Sku;
 import com.azure.resourcemanager.healthbot.models.SkuName;
+import com.azure.resourcemanager.healthbot.models.UserAssignedIdentity;
+import java.util.HashMap;
+import java.util.Map;
 
 /** Samples for Bots Create. */
 public final class BotsCreateSamples {
     /*
-     * x-ms-original-file: specification/healthbot/resource-manager/Microsoft.HealthBot/stable/2020-12-08/examples/ResourceCreationPut.json
+     * x-ms-original-file: specification/healthbot/resource-manager/Microsoft.HealthBot/stable/2021-06-10/examples/ResourceCreationPut.json
      */
     /**
      * Sample code: BotCreate.
@@ -36,7 +41,27 @@ public final class BotsCreateSamples {
             .withRegion("East US")
             .withExistingResourceGroup("healthbotClient")
             .withSku(new Sku().withName(SkuName.F0))
+            .withIdentity(
+                new Identity()
+                    .withType(ResourceIdentityType.SYSTEM_ASSIGNED_USER_ASSIGNED)
+                    .withUserAssignedIdentities(
+                        mapOf(
+                            "/subscriptions/subscription-id/resourcegroups/myrg/providers/microsoft.managedidentity/userassignedidentities/my-mi",
+                            new UserAssignedIdentity(),
+                            "/subscriptions/subscription-id/resourcegroups/myrg/providers/microsoft.managedidentity/userassignedidentities/my-mi2",
+                            new UserAssignedIdentity())))
             .create();
+    }
+
+    @SuppressWarnings("unchecked")
+    private static <T> Map<String, T> mapOf(Object... inputs) {
+        Map<String, T> map = new HashMap<>();
+        for (int i = 0; i < inputs.length; i += 2) {
+            String key = (String) inputs[i];
+            T value = (T) inputs[i + 1];
+            map.put(key, value);
+        }
+        return map;
     }
 }
 ```
@@ -49,7 +74,7 @@ import com.azure.core.util.Context;
 /** Samples for Bots Delete. */
 public final class BotsDeleteSamples {
     /*
-     * x-ms-original-file: specification/healthbot/resource-manager/Microsoft.HealthBot/stable/2020-12-08/examples/ResourceDeletionDelete.json
+     * x-ms-original-file: specification/healthbot/resource-manager/Microsoft.HealthBot/stable/2021-06-10/examples/ResourceDeletionDelete.json
      */
     /**
      * Sample code: BotDelete.
@@ -70,7 +95,7 @@ import com.azure.core.util.Context;
 /** Samples for Bots GetByResourceGroup. */
 public final class BotsGetByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/healthbot/resource-manager/Microsoft.HealthBot/stable/2020-12-08/examples/ResourceInfoGet.json
+     * x-ms-original-file: specification/healthbot/resource-manager/Microsoft.HealthBot/stable/2021-06-10/examples/ResourceInfoGet.json
      */
     /**
      * Sample code: ResourceInfoGet.
@@ -91,7 +116,7 @@ import com.azure.core.util.Context;
 /** Samples for Bots List. */
 public final class BotsListSamples {
     /*
-     * x-ms-original-file: specification/healthbot/resource-manager/Microsoft.HealthBot/stable/2020-12-08/examples/ListBotsBySubscription.json
+     * x-ms-original-file: specification/healthbot/resource-manager/Microsoft.HealthBot/stable/2021-06-10/examples/ListBotsBySubscription.json
      */
     /**
      * Sample code: List Bots by Subscription.
@@ -112,7 +137,7 @@ import com.azure.core.util.Context;
 /** Samples for Bots ListByResourceGroup. */
 public final class BotsListByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/healthbot/resource-manager/Microsoft.HealthBot/stable/2020-12-08/examples/ListBotsByResourceGroup.json
+     * x-ms-original-file: specification/healthbot/resource-manager/Microsoft.HealthBot/stable/2021-06-10/examples/ListBotsByResourceGroup.json
      */
     /**
      * Sample code: List Bots by Resource Group.
@@ -136,7 +161,7 @@ import com.azure.resourcemanager.healthbot.models.SkuName;
 /** Samples for Bots Update. */
 public final class BotsUpdateSamples {
     /*
-     * x-ms-original-file: specification/healthbot/resource-manager/Microsoft.HealthBot/stable/2020-12-08/examples/ResourceUpdatePatch.json
+     * x-ms-original-file: specification/healthbot/resource-manager/Microsoft.HealthBot/stable/2021-06-10/examples/ResourceUpdatePatch.json
      */
     /**
      * Sample code: BotUpdate.
@@ -159,7 +184,7 @@ import com.azure.core.util.Context;
 /** Samples for Operations List. */
 public final class OperationsListSamples {
     /*
-     * x-ms-original-file: specification/healthbot/resource-manager/Microsoft.HealthBot/stable/2020-12-08/examples/GetOperations.json
+     * x-ms-original-file: specification/healthbot/resource-manager/Microsoft.HealthBot/stable/2021-06-10/examples/GetOperations.json
      */
     /**
      * Sample code: Get Operations.
