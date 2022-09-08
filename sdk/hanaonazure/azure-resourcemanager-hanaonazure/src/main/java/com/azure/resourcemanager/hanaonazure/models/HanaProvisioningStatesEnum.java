@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for HanaProvisioningStatesEnum. */
+/** State of provisioning of the HanaInstance. */
 public final class HanaProvisioningStatesEnum extends ExpandableStringEnum<HanaProvisioningStatesEnum> {
     /** Static value Accepted for HanaProvisioningStatesEnum. */
     public static final HanaProvisioningStatesEnum ACCEPTED = fromString("Accepted");
@@ -42,7 +42,11 @@ public final class HanaProvisioningStatesEnum extends ExpandableStringEnum<HanaP
         return fromString(name, HanaProvisioningStatesEnum.class);
     }
 
-    /** @return known HanaProvisioningStatesEnum values. */
+    /**
+     * Gets known HanaProvisioningStatesEnum values.
+     *
+     * @return known HanaProvisioningStatesEnum values.
+     */
     public static Collection<HanaProvisioningStatesEnum> values() {
         return values(HanaProvisioningStatesEnum.class);
     }
