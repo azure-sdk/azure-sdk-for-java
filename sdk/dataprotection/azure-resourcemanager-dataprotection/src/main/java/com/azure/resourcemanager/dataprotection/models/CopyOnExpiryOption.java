@@ -5,18 +5,18 @@
 package com.azure.resourcemanager.dataprotection.models;
 
 import com.azure.core.annotation.Immutable;
-import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** CopyOnExpiryOption Copy on Expiry Option. */
+/**
+ * CopyOnExpiryOption
+ *
+ * <p>Copy on Expiry Option.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "objectType")
 @JsonTypeName("CopyOnExpiryOption")
 @Immutable
 public final class CopyOnExpiryOption extends CopyOption {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(CopyOnExpiryOption.class);
-
     /**
      * Validates the instance.
      *

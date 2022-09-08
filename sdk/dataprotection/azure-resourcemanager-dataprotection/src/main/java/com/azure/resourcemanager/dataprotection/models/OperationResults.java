@@ -10,7 +10,9 @@ import com.azure.core.util.Context;
 /** Resource collection API of OperationResults. */
 public interface OperationResults {
     /**
-     * Gets the operation result for a resource.
+     * Gets the operation status for a resource.
+     *
+     * <p>Gets the operation result for a resource.
      *
      * @param operationId The operationId parameter.
      * @param location The location parameter.
@@ -22,7 +24,9 @@ public interface OperationResults {
     OperationJobExtendedInfo get(String operationId, String location);
 
     /**
-     * Gets the operation result for a resource.
+     * Gets the operation status for a resource.
+     *
+     * <p>Gets the operation result for a resource.
      *
      * @param operationId The operationId parameter.
      * @param location The location parameter.
