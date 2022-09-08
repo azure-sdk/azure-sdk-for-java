@@ -5,15 +5,11 @@
 package com.azure.resourcemanager.resourcemover.models;
 
 import com.azure.core.annotation.Immutable;
-import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Defines the job status. */
 @Immutable
 public final class JobStatus {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(JobStatus.class);
-
     /*
      * Defines the job name.
      */

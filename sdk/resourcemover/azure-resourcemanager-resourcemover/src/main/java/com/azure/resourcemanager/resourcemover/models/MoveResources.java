@@ -18,7 +18,7 @@ public interface MoveResources {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return defines the collection of move resources.
+     * @return defines the collection of move resources as paginated response with {@link PagedIterable}.
      */
     PagedIterable<MoveResource> list(String resourceGroupName, String moveCollectionName);
 
@@ -33,7 +33,7 @@ public interface MoveResources {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return defines the collection of move resources.
+     * @return defines the collection of move resources as paginated response with {@link PagedIterable}.
      */
     PagedIterable<MoveResource> list(
         String resourceGroupName, String moveCollectionName, String filter, Context context);
@@ -89,7 +89,7 @@ public interface MoveResources {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the Move Resource.
+     * @return the Move Resource along with {@link Response}.
      */
     Response<MoveResource> getWithResponse(
         String resourceGroupName, String moveCollectionName, String moveResourceName, Context context);
@@ -101,7 +101,7 @@ public interface MoveResources {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the Move Resource.
+     * @return the Move Resource along with {@link Response}.
      */
     MoveResource getById(String id);
 
@@ -113,7 +113,7 @@ public interface MoveResources {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the Move Resource.
+     * @return the Move Resource along with {@link Response}.
      */
     Response<MoveResource> getByIdWithResponse(String id, Context context);
 

@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for MoveState. */
+/** Defines the MoveResource states. */
 public final class MoveState extends ExpandableStringEnum<MoveState> {
     /** Static value AssignmentPending for MoveState. */
     public static final MoveState ASSIGNMENT_PENDING = fromString("AssignmentPending");
@@ -66,7 +66,11 @@ public final class MoveState extends ExpandableStringEnum<MoveState> {
         return fromString(name, MoveState.class);
     }
 
-    /** @return known MoveState values. */
+    /**
+     * Gets known MoveState values.
+     *
+     * @return known MoveState values.
+     */
     public static Collection<MoveState> values() {
         return values(MoveState.class);
     }

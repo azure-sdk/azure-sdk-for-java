@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for DependencyType. */
+/** Defines the dependency type. */
 public final class DependencyType extends ExpandableStringEnum<DependencyType> {
     /** Static value RequiredForPrepare for DependencyType. */
     public static final DependencyType REQUIRED_FOR_PREPARE = fromString("RequiredForPrepare");
@@ -27,7 +27,11 @@ public final class DependencyType extends ExpandableStringEnum<DependencyType> {
         return fromString(name, DependencyType.class);
     }
 
-    /** @return known DependencyType values. */
+    /**
+     * Gets known DependencyType values.
+     *
+     * @return known DependencyType values.
+     */
     public static Collection<DependencyType> values() {
         return values(DependencyType.class);
     }

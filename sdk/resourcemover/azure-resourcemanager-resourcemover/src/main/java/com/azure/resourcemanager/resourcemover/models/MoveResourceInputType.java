@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for MoveResourceInputType. */
+/** Defines the move resource input type. */
 public final class MoveResourceInputType extends ExpandableStringEnum<MoveResourceInputType> {
     /** Static value MoveResourceId for MoveResourceInputType. */
     public static final MoveResourceInputType MOVE_RESOURCE_ID = fromString("MoveResourceId");
@@ -27,7 +27,11 @@ public final class MoveResourceInputType extends ExpandableStringEnum<MoveResour
         return fromString(name, MoveResourceInputType.class);
     }
 
-    /** @return known MoveResourceInputType values. */
+    /**
+     * Gets known MoveResourceInputType values.
+     *
+     * @return known MoveResourceInputType values.
+     */
     public static Collection<MoveResourceInputType> values() {
         return values(MoveResourceInputType.class);
     }

@@ -29,7 +29,6 @@ import com.azure.core.management.exception.ManagementException;
 import com.azure.core.management.polling.PollResult;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.resourcemover.fluent.MoveResourcesClient;
@@ -42,8 +41,6 @@ import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in MoveResourcesClient. */
 public final class MoveResourcesClientImpl implements MoveResourcesClient {
-    private final ClientLogger logger = new ClientLogger(MoveResourcesClientImpl.class);
-
     /** The proxy service used to perform REST calls. */
     private final MoveResourcesService service;
 
@@ -154,7 +151,8 @@ public final class MoveResourcesClientImpl implements MoveResourcesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return defines the collection of move resources.
+     * @return defines the collection of move resources along with {@link PagedResponse} on successful completion of
+     *     {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<MoveResourceInner>> listSinglePageAsync(
@@ -216,7 +214,8 @@ public final class MoveResourcesClientImpl implements MoveResourcesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return defines the collection of move resources.
+     * @return defines the collection of move resources along with {@link PagedResponse} on successful completion of
+     *     {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<MoveResourceInner>> listSinglePageAsync(
@@ -274,7 +273,7 @@ public final class MoveResourcesClientImpl implements MoveResourcesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return defines the collection of move resources.
+     * @return defines the collection of move resources as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<MoveResourceInner> listAsync(String resourceGroupName, String moveCollectionName, String filter) {
@@ -291,7 +290,7 @@ public final class MoveResourcesClientImpl implements MoveResourcesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return defines the collection of move resources.
+     * @return defines the collection of move resources as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<MoveResourceInner> listAsync(String resourceGroupName, String moveCollectionName) {
@@ -312,7 +311,7 @@ public final class MoveResourcesClientImpl implements MoveResourcesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return defines the collection of move resources.
+     * @return defines the collection of move resources as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<MoveResourceInner> listAsync(
@@ -330,7 +329,7 @@ public final class MoveResourcesClientImpl implements MoveResourcesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return defines the collection of move resources.
+     * @return defines the collection of move resources as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<MoveResourceInner> list(String resourceGroupName, String moveCollectionName) {
@@ -349,7 +348,7 @@ public final class MoveResourcesClientImpl implements MoveResourcesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return defines the collection of move resources.
+     * @return defines the collection of move resources as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<MoveResourceInner> list(
@@ -367,7 +366,7 @@ public final class MoveResourcesClientImpl implements MoveResourcesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return defines the move resource.
+     * @return defines the move resource along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> createWithResponseAsync(
@@ -428,7 +427,7 @@ public final class MoveResourcesClientImpl implements MoveResourcesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return defines the move resource.
+     * @return defines the move resource along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> createWithResponseAsync(
@@ -489,9 +488,9 @@ public final class MoveResourcesClientImpl implements MoveResourcesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return defines the move resource.
+     * @return the {@link PollerFlux} for polling of defines the move resource.
      */
-    @ServiceMethod(returns = ReturnType.SINGLE)
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<MoveResourceInner>, MoveResourceInner> beginCreateAsync(
         String resourceGroupName, String moveCollectionName, String moveResourceName, MoveResourceInner body) {
         Mono<Response<Flux<ByteBuffer>>> mono =
@@ -499,7 +498,11 @@ public final class MoveResourcesClientImpl implements MoveResourcesClient {
         return this
             .client
             .<MoveResourceInner, MoveResourceInner>getLroResult(
-                mono, this.client.getHttpPipeline(), MoveResourceInner.class, MoveResourceInner.class, Context.NONE);
+                mono,
+                this.client.getHttpPipeline(),
+                MoveResourceInner.class,
+                MoveResourceInner.class,
+                this.client.getContext());
     }
 
     /**
@@ -513,9 +516,9 @@ public final class MoveResourcesClientImpl implements MoveResourcesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return defines the move resource.
+     * @return the {@link PollerFlux} for polling of defines the move resource.
      */
-    @ServiceMethod(returns = ReturnType.SINGLE)
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<MoveResourceInner>, MoveResourceInner> beginCreateAsync(
         String resourceGroupName,
         String moveCollectionName,
@@ -541,9 +544,9 @@ public final class MoveResourcesClientImpl implements MoveResourcesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return defines the move resource.
+     * @return the {@link SyncPoller} for polling of defines the move resource.
      */
-    @ServiceMethod(returns = ReturnType.SINGLE)
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<MoveResourceInner>, MoveResourceInner> beginCreate(
         String resourceGroupName, String moveCollectionName, String moveResourceName, MoveResourceInner body) {
         return beginCreateAsync(resourceGroupName, moveCollectionName, moveResourceName, body).getSyncPoller();
@@ -560,9 +563,9 @@ public final class MoveResourcesClientImpl implements MoveResourcesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return defines the move resource.
+     * @return the {@link SyncPoller} for polling of defines the move resource.
      */
-    @ServiceMethod(returns = ReturnType.SINGLE)
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<MoveResourceInner>, MoveResourceInner> beginCreate(
         String resourceGroupName,
         String moveCollectionName,
@@ -582,7 +585,7 @@ public final class MoveResourcesClientImpl implements MoveResourcesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return defines the move resource.
+     * @return defines the move resource on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<MoveResourceInner> createAsync(
@@ -601,7 +604,7 @@ public final class MoveResourcesClientImpl implements MoveResourcesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return defines the move resource.
+     * @return defines the move resource on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<MoveResourceInner> createAsync(
@@ -623,7 +626,7 @@ public final class MoveResourcesClientImpl implements MoveResourcesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return defines the move resource.
+     * @return defines the move resource on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<MoveResourceInner> createAsync(
@@ -704,7 +707,7 @@ public final class MoveResourcesClientImpl implements MoveResourcesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return operation status REST resource.
+     * @return operation status REST resource along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(
@@ -760,7 +763,7 @@ public final class MoveResourcesClientImpl implements MoveResourcesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return operation status REST resource.
+     * @return operation status REST resource along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(
@@ -812,9 +815,9 @@ public final class MoveResourcesClientImpl implements MoveResourcesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return operation status REST resource.
+     * @return the {@link PollerFlux} for polling of operation status REST resource.
      */
-    @ServiceMethod(returns = ReturnType.SINGLE)
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<OperationStatusInner>, OperationStatusInner> beginDeleteAsync(
         String resourceGroupName, String moveCollectionName, String moveResourceName) {
         Mono<Response<Flux<ByteBuffer>>> mono =
@@ -826,7 +829,7 @@ public final class MoveResourcesClientImpl implements MoveResourcesClient {
                 this.client.getHttpPipeline(),
                 OperationStatusInner.class,
                 OperationStatusInner.class,
-                Context.NONE);
+                this.client.getContext());
     }
 
     /**
@@ -839,9 +842,9 @@ public final class MoveResourcesClientImpl implements MoveResourcesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return operation status REST resource.
+     * @return the {@link PollerFlux} for polling of operation status REST resource.
      */
-    @ServiceMethod(returns = ReturnType.SINGLE)
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<OperationStatusInner>, OperationStatusInner> beginDeleteAsync(
         String resourceGroupName, String moveCollectionName, String moveResourceName, Context context) {
         context = this.client.mergeContext(context);
@@ -862,9 +865,9 @@ public final class MoveResourcesClientImpl implements MoveResourcesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return operation status REST resource.
+     * @return the {@link SyncPoller} for polling of operation status REST resource.
      */
-    @ServiceMethod(returns = ReturnType.SINGLE)
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<OperationStatusInner>, OperationStatusInner> beginDelete(
         String resourceGroupName, String moveCollectionName, String moveResourceName) {
         return beginDeleteAsync(resourceGroupName, moveCollectionName, moveResourceName).getSyncPoller();
@@ -880,9 +883,9 @@ public final class MoveResourcesClientImpl implements MoveResourcesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return operation status REST resource.
+     * @return the {@link SyncPoller} for polling of operation status REST resource.
      */
-    @ServiceMethod(returns = ReturnType.SINGLE)
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<OperationStatusInner>, OperationStatusInner> beginDelete(
         String resourceGroupName, String moveCollectionName, String moveResourceName, Context context) {
         return beginDeleteAsync(resourceGroupName, moveCollectionName, moveResourceName, context).getSyncPoller();
@@ -897,7 +900,7 @@ public final class MoveResourcesClientImpl implements MoveResourcesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return operation status REST resource.
+     * @return operation status REST resource on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<OperationStatusInner> deleteAsync(
@@ -917,7 +920,7 @@ public final class MoveResourcesClientImpl implements MoveResourcesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return operation status REST resource.
+     * @return operation status REST resource on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<OperationStatusInner> deleteAsync(
@@ -970,7 +973,7 @@ public final class MoveResourcesClientImpl implements MoveResourcesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the Move Resource.
+     * @return the Move Resource along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<MoveResourceInner>> getWithResponseAsync(
@@ -1026,7 +1029,7 @@ public final class MoveResourcesClientImpl implements MoveResourcesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the Move Resource.
+     * @return the Move Resource along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<MoveResourceInner>> getWithResponseAsync(
@@ -1078,20 +1081,13 @@ public final class MoveResourcesClientImpl implements MoveResourcesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the Move Resource.
+     * @return the Move Resource on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<MoveResourceInner> getAsync(
         String resourceGroupName, String moveCollectionName, String moveResourceName) {
         return getWithResponseAsync(resourceGroupName, moveCollectionName, moveResourceName)
-            .flatMap(
-                (Response<MoveResourceInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -1120,7 +1116,7 @@ public final class MoveResourcesClientImpl implements MoveResourcesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the Move Resource.
+     * @return the Move Resource along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<MoveResourceInner> getWithResponse(
@@ -1131,11 +1127,13 @@ public final class MoveResourcesClientImpl implements MoveResourcesClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return defines the collection of move resources.
+     * @return defines the collection of move resources along with {@link PagedResponse} on successful completion of
+     *     {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<MoveResourceInner>> listNextSinglePageAsync(String nextLink) {
@@ -1166,12 +1164,14 @@ public final class MoveResourcesClientImpl implements MoveResourcesClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return defines the collection of move resources.
+     * @return defines the collection of move resources along with {@link PagedResponse} on successful completion of
+     *     {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<MoveResourceInner>> listNextSinglePageAsync(String nextLink, Context context) {

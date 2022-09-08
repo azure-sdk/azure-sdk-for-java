@@ -6,15 +6,12 @@ package com.azure.resourcemanager.resourcemover.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** Defines the move resource properties. */
 @Fluent
 public final class MoveResourceProperties {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(MoveResourceProperties.class);
-
     /*
      * Defines the provisioning states.
      */
@@ -70,8 +67,7 @@ public final class MoveResourceProperties {
     private List<MoveResourceDependencyOverride> dependsOnOverrides;
 
     /*
-     * Gets a value indicating whether the resolve action is required over the
-     * move collection.
+     * Gets a value indicating whether the resolve action is required over the move collection.
      */
     @JsonProperty(value = "isResolveRequired", access = JsonProperty.Access.WRITE_ONLY)
     private Boolean isResolveRequired;
@@ -233,7 +229,7 @@ public final class MoveResourceProperties {
      */
     public void validate() {
         if (sourceId() == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property sourceId in model MoveResourceProperties"));
         }
@@ -256,4 +252,6 @@ public final class MoveResourceProperties {
             errors().validate();
         }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(MoveResourceProperties.class);
 }

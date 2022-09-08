@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for ZoneRedundant. */
+/** Defines the zone redundant resource setting. */
 public final class ZoneRedundant extends ExpandableStringEnum<ZoneRedundant> {
     /** Static value Enable for ZoneRedundant. */
     public static final ZoneRedundant ENABLE = fromString("Enable");
@@ -27,7 +27,11 @@ public final class ZoneRedundant extends ExpandableStringEnum<ZoneRedundant> {
         return fromString(name, ZoneRedundant.class);
     }
 
-    /** @return known ZoneRedundant values. */
+    /**
+     * Gets known ZoneRedundant values.
+     *
+     * @return known ZoneRedundant values.
+     */
     public static Collection<ZoneRedundant> values() {
         return values(ZoneRedundant.class);
     }

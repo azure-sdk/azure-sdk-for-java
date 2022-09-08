@@ -22,10 +22,9 @@ import com.azure.resourcemanager.resourcemover.models.OperationStatus;
 import com.azure.resourcemanager.resourcemover.models.PrepareRequest;
 import com.azure.resourcemanager.resourcemover.models.RequiredForResourcesCollection;
 import com.azure.resourcemanager.resourcemover.models.ResourceMoveRequest;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public final class MoveCollectionsImpl implements MoveCollections {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(MoveCollectionsImpl.class);
+    private static final ClientLogger LOGGER = new ClientLogger(MoveCollectionsImpl.class);
 
     private final MoveCollectionsClient innerClient;
 
@@ -290,7 +289,7 @@ public final class MoveCollectionsImpl implements MoveCollections {
     public MoveCollection getById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -298,7 +297,7 @@ public final class MoveCollectionsImpl implements MoveCollections {
         }
         String moveCollectionName = Utils.getValueFromIdByName(id, "moveCollections");
         if (moveCollectionName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -310,7 +309,7 @@ public final class MoveCollectionsImpl implements MoveCollections {
     public Response<MoveCollection> getByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -318,7 +317,7 @@ public final class MoveCollectionsImpl implements MoveCollections {
         }
         String moveCollectionName = Utils.getValueFromIdByName(id, "moveCollections");
         if (moveCollectionName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -330,7 +329,7 @@ public final class MoveCollectionsImpl implements MoveCollections {
     public OperationStatus deleteById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -338,7 +337,7 @@ public final class MoveCollectionsImpl implements MoveCollections {
         }
         String moveCollectionName = Utils.getValueFromIdByName(id, "moveCollections");
         if (moveCollectionName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -350,7 +349,7 @@ public final class MoveCollectionsImpl implements MoveCollections {
     public OperationStatus deleteByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -358,7 +357,7 @@ public final class MoveCollectionsImpl implements MoveCollections {
         }
         String moveCollectionName = Utils.getValueFromIdByName(id, "moveCollections");
         if (moveCollectionName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
