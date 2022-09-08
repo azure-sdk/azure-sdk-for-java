@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for CredentialsType. */
+/** Enum to determine the datastore credentials type. */
 public final class CredentialsType extends ExpandableStringEnum<CredentialsType> {
     /** Static value AccountKey for CredentialsType. */
     public static final CredentialsType ACCOUNT_KEY = fromString("AccountKey");
