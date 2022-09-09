@@ -5,14 +5,23 @@
 package com.azure.resourcemanager.devtestlabs.implementation;
 
 import com.azure.core.management.Region;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.devtestlabs.fluent.models.FormulaInner;
+import com.azure.resourcemanager.devtestlabs.models.ArtifactInstallProperties;
+import com.azure.resourcemanager.devtestlabs.models.ComputeDataDisk;
+import com.azure.resourcemanager.devtestlabs.models.ComputeVmInstanceViewStatus;
+import com.azure.resourcemanager.devtestlabs.models.DataDiskProperties;
+import com.azure.resourcemanager.devtestlabs.models.EnableStatus;
 import com.azure.resourcemanager.devtestlabs.models.Formula;
 import com.azure.resourcemanager.devtestlabs.models.FormulaFragment;
-import com.azure.resourcemanager.devtestlabs.models.FormulaPropertiesFromVm;
-import com.azure.resourcemanager.devtestlabs.models.LabVirtualMachineCreationParameter;
+import com.azure.resourcemanager.devtestlabs.models.InboundNatRule;
+import com.azure.resourcemanager.devtestlabs.models.ScheduleCreationParameter;
+import com.azure.resourcemanager.devtestlabs.models.StorageType;
+import com.azure.resourcemanager.devtestlabs.models.VirtualMachineCreationSource;
 import java.time.OffsetDateTime;
 import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 
 public final class FormulaImpl implements Formula, Formula.Definition, Formula.Update {
@@ -45,6 +54,10 @@ public final class FormulaImpl implements Formula, Formula.Definition, Formula.U
         }
     }
 
+    public SystemData systemData() {
+        return this.innerModel().systemData();
+    }
+
     public String description() {
         return this.innerModel().description();
     }
@@ -61,14 +74,6 @@ public final class FormulaImpl implements Formula, Formula.Definition, Formula.U
         return this.innerModel().creationDate();
     }
 
-    public LabVirtualMachineCreationParameter formulaContent() {
-        return this.innerModel().formulaContent();
-    }
-
-    public FormulaPropertiesFromVm vm() {
-        return this.innerModel().vm();
-    }
-
     public String provisioningState() {
         return this.innerModel().provisioningState();
     }
@@ -77,12 +82,491 @@ public final class FormulaImpl implements Formula, Formula.Definition, Formula.U
         return this.innerModel().uniqueIdentifier();
     }
 
+    public String namePropertiesName() {
+        return this.innerModel().namePropertiesName();
+    }
+
+    public String locationPropertiesLocation() {
+        return this.innerModel().locationPropertiesLocation();
+    }
+
+    public Map<String, String> tagsPropertiesTags() {
+        Map<String, String> inner = this.innerModel().tagsPropertiesTags();
+        if (inner != null) {
+            return Collections.unmodifiableMap(inner);
+        } else {
+            return Collections.emptyMap();
+        }
+    }
+
+    public String notes() {
+        return this.innerModel().notes();
+    }
+
+    public String ownerObjectId() {
+        return this.innerModel().ownerObjectId();
+    }
+
+    public String ownerUserPrincipalName() {
+        return this.innerModel().ownerUserPrincipalName();
+    }
+
+    public String createdByUserId() {
+        return this.innerModel().createdByUserId();
+    }
+
+    public String createdByUser() {
+        return this.innerModel().createdByUser();
+    }
+
+    public OffsetDateTime createdDate() {
+        return this.innerModel().createdDate();
+    }
+
+    public String computeId() {
+        return this.innerModel().computeId();
+    }
+
+    public String customImageId() {
+        return this.innerModel().customImageId();
+    }
+
+    public String galleryImageVersionId() {
+        return this.innerModel().galleryImageVersionId();
+    }
+
+    public String sharedImageId() {
+        return this.innerModel().sharedImageId();
+    }
+
+    public String sharedImageVersion() {
+        return this.innerModel().sharedImageVersion();
+    }
+
+    public String osTypeFormulaContentOsType() {
+        return this.innerModel().osTypeFormulaContentOsType();
+    }
+
+    public String size() {
+        return this.innerModel().size();
+    }
+
+    public String username() {
+        return this.innerModel().username();
+    }
+
+    public String password() {
+        return this.innerModel().password();
+    }
+
+    public String sshKey() {
+        return this.innerModel().sshKey();
+    }
+
+    public Boolean isAuthenticationWithSshKey() {
+        return this.innerModel().isAuthenticationWithSshKey();
+    }
+
+    public String fqdn() {
+        return this.innerModel().fqdn();
+    }
+
+    public String labSubnetName() {
+        return this.innerModel().labSubnetName();
+    }
+
+    public String labVirtualNetworkId() {
+        return this.innerModel().labVirtualNetworkId();
+    }
+
+    public Boolean disallowPublicIpAddress() {
+        return this.innerModel().disallowPublicIpAddress();
+    }
+
+    public List<ArtifactInstallProperties> artifacts() {
+        List<ArtifactInstallProperties> inner = this.innerModel().artifacts();
+        if (inner != null) {
+            return Collections.unmodifiableList(inner);
+        } else {
+            return Collections.emptyList();
+        }
+    }
+
+    public String planId() {
+        return this.innerModel().planId();
+    }
+
+    public Integer osDiskSizeGb() {
+        return this.innerModel().osDiskSizeGb();
+    }
+
+    public OffsetDateTime expirationDate() {
+        return this.innerModel().expirationDate();
+    }
+
+    public Boolean allowClaim() {
+        return this.innerModel().allowClaim();
+    }
+
+    public StorageType storageType() {
+        return this.innerModel().storageType();
+    }
+
+    public VirtualMachineCreationSource virtualMachineCreationSource() {
+        return this.innerModel().virtualMachineCreationSource();
+    }
+
+    public String environmentId() {
+        return this.innerModel().environmentId();
+    }
+
+    public List<DataDiskProperties> dataDiskParameters() {
+        List<DataDiskProperties> inner = this.innerModel().dataDiskParameters();
+        if (inner != null) {
+            return Collections.unmodifiableList(inner);
+        } else {
+            return Collections.emptyList();
+        }
+    }
+
+    public List<ScheduleCreationParameter> scheduleParameters() {
+        List<ScheduleCreationParameter> inner = this.innerModel().scheduleParameters();
+        if (inner != null) {
+            return Collections.unmodifiableList(inner);
+        } else {
+            return Collections.emptyList();
+        }
+    }
+
+    public String lastKnownPowerState() {
+        return this.innerModel().lastKnownPowerState();
+    }
+
+    public Boolean canApplyArtifacts() {
+        return this.innerModel().canApplyArtifacts();
+    }
+
+    public String provisioningStateFormulaContentProvisioningState() {
+        return this.innerModel().provisioningStateFormulaContentProvisioningState();
+    }
+
+    public String uniqueIdentifierFormulaContentUniqueIdentifier() {
+        return this.innerModel().uniqueIdentifierFormulaContentUniqueIdentifier();
+    }
+
+    public Integer instanceCount() {
+        return this.innerModel().instanceCount();
+    }
+
+    public String deploymentStatus() {
+        return this.innerModel().deploymentStatus();
+    }
+
+    public Integer artifactsApplied() {
+        return this.innerModel().artifactsApplied();
+    }
+
+    public Integer totalArtifacts() {
+        return this.innerModel().totalArtifacts();
+    }
+
+    public String offer() {
+        return this.innerModel().offer();
+    }
+
+    public String publisher() {
+        return this.innerModel().publisher();
+    }
+
+    public String sku() {
+        return this.innerModel().sku();
+    }
+
+    public String osTypeGalleryImageReferenceOsType() {
+        return this.innerModel().osTypeGalleryImageReferenceOsType();
+    }
+
+    public String version() {
+        return this.innerModel().version();
+    }
+
+    public List<ComputeVmInstanceViewStatus> statuses() {
+        List<ComputeVmInstanceViewStatus> inner = this.innerModel().statuses();
+        if (inner != null) {
+            return Collections.unmodifiableList(inner);
+        } else {
+            return Collections.emptyList();
+        }
+    }
+
+    public String osTypeComputeVmOsType() {
+        return this.innerModel().osTypeComputeVmOsType();
+    }
+
+    public String vmSize() {
+        return this.innerModel().vmSize();
+    }
+
+    public String networkInterfaceId() {
+        return this.innerModel().networkInterfaceId();
+    }
+
+    public String osDiskId() {
+        return this.innerModel().osDiskId();
+    }
+
+    public List<String> dataDiskIds() {
+        List<String> inner = this.innerModel().dataDiskIds();
+        if (inner != null) {
+            return Collections.unmodifiableList(inner);
+        } else {
+            return Collections.emptyList();
+        }
+    }
+
+    public List<ComputeDataDisk> dataDisks() {
+        List<ComputeDataDisk> inner = this.innerModel().dataDisks();
+        if (inner != null) {
+            return Collections.unmodifiableList(inner);
+        } else {
+            return Collections.emptyList();
+        }
+    }
+
+    public String virtualNetworkId() {
+        return this.innerModel().virtualNetworkId();
+    }
+
+    public String subnetId() {
+        return this.innerModel().subnetId();
+    }
+
+    public String publicIpAddressId() {
+        return this.innerModel().publicIpAddressId();
+    }
+
+    public String publicIpAddress() {
+        return this.innerModel().publicIpAddress();
+    }
+
+    public String privateIpAddress() {
+        return this.innerModel().privateIpAddress();
+    }
+
+    public String dnsName() {
+        return this.innerModel().dnsName();
+    }
+
+    public String rdpAuthority() {
+        return this.innerModel().rdpAuthority();
+    }
+
+    public String sshAuthority() {
+        return this.innerModel().sshAuthority();
+    }
+
+    public List<InboundNatRule> inboundNatRules() {
+        List<InboundNatRule> inner = this.innerModel().inboundNatRules();
+        if (inner != null) {
+            return Collections.unmodifiableList(inner);
+        } else {
+            return Collections.emptyList();
+        }
+    }
+
+    public SystemData systemDataPropertiesSystemData() {
+        return this.innerModel().systemDataPropertiesSystemData();
+    }
+
+    public EnableStatus status() {
+        return this.innerModel().status();
+    }
+
+    public String taskType() {
+        return this.innerModel().taskType();
+    }
+
+    public String timeZoneId() {
+        return this.innerModel().timeZoneId();
+    }
+
+    public OffsetDateTime createdDateApplicableScheduleCreatedDate() {
+        return this.innerModel().createdDateApplicableScheduleCreatedDate();
+    }
+
+    public String targetResourceId() {
+        return this.innerModel().targetResourceId();
+    }
+
+    public String provisioningStateApplicableScheduleProvisioningState() {
+        return this.innerModel().provisioningStateApplicableScheduleProvisioningState();
+    }
+
+    public String uniqueIdentifierApplicableScheduleUniqueIdentifier() {
+        return this.innerModel().uniqueIdentifierApplicableScheduleUniqueIdentifier();
+    }
+
+    public List<String> weekdays() {
+        List<String> inner = this.innerModel().weekdays();
+        if (inner != null) {
+            return Collections.unmodifiableList(inner);
+        } else {
+            return Collections.emptyList();
+        }
+    }
+
+    public String time() {
+        return this.innerModel().time();
+    }
+
+    public String timeDailyRecurrenceTime() {
+        return this.innerModel().timeDailyRecurrenceTime();
+    }
+
+    public Integer minute() {
+        return this.innerModel().minute();
+    }
+
+    public EnableStatus statusNotificationSettingsStatus() {
+        return this.innerModel().statusNotificationSettingsStatus();
+    }
+
+    public Integer timeInMinutes() {
+        return this.innerModel().timeInMinutes();
+    }
+
+    public String webhookUrl() {
+        return this.innerModel().webhookUrl();
+    }
+
+    public String emailRecipient() {
+        return this.innerModel().emailRecipient();
+    }
+
+    public String notificationLocale() {
+        return this.innerModel().notificationLocale();
+    }
+
+    public String idPropertiesId() {
+        return this.innerModel().idPropertiesId();
+    }
+
+    public String typePropertiesType() {
+        return this.innerModel().typePropertiesType();
+    }
+
+    public SystemData systemDataLabVmsStartupSystemData() {
+        return this.innerModel().systemDataLabVmsStartupSystemData();
+    }
+
+    public EnableStatus statusLabVmsStartupStatus() {
+        return this.innerModel().statusLabVmsStartupStatus();
+    }
+
+    public String taskTypeLabVmsStartupTaskType() {
+        return this.innerModel().taskTypeLabVmsStartupTaskType();
+    }
+
+    public String timeZoneIdLabVmsStartupTimeZoneId() {
+        return this.innerModel().timeZoneIdLabVmsStartupTimeZoneId();
+    }
+
+    public OffsetDateTime createdDateLabVmsStartupCreatedDate() {
+        return this.innerModel().createdDateLabVmsStartupCreatedDate();
+    }
+
+    public String targetResourceIdLabVmsStartupTargetResourceId() {
+        return this.innerModel().targetResourceIdLabVmsStartupTargetResourceId();
+    }
+
+    public String provisioningStateLabVmsStartupProvisioningState() {
+        return this.innerModel().provisioningStateLabVmsStartupProvisioningState();
+    }
+
+    public String uniqueIdentifierLabVmsStartupUniqueIdentifier() {
+        return this.innerModel().uniqueIdentifierLabVmsStartupUniqueIdentifier();
+    }
+
+    public List<String> weekdaysLabVmsStartupWeekdays() {
+        List<String> inner = this.innerModel().weekdaysLabVmsStartupWeekdays();
+        if (inner != null) {
+            return Collections.unmodifiableList(inner);
+        } else {
+            return Collections.emptyList();
+        }
+    }
+
+    public String timeLabVmsStartupTime() {
+        return this.innerModel().timeLabVmsStartupTime();
+    }
+
+    public String timeDailyRecurrenceTimeLabVmsStartupTimeDailyRecurrenceTime() {
+        return this.innerModel().timeDailyRecurrenceTimeLabVmsStartupTimeDailyRecurrenceTime();
+    }
+
+    public Integer minuteLabVmsStartupMinute() {
+        return this.innerModel().minuteLabVmsStartupMinute();
+    }
+
+    public EnableStatus statusNotificationSettingsStatusLabVmsStartupStatusNotificationSettingsStatus() {
+        return this.innerModel().statusNotificationSettingsStatusLabVmsStartupStatusNotificationSettingsStatus();
+    }
+
+    public Integer timeInMinutesLabVmsStartupTimeInMinutes() {
+        return this.innerModel().timeInMinutesLabVmsStartupTimeInMinutes();
+    }
+
+    public String webhookUrlLabVmsStartupWebhookUrl() {
+        return this.innerModel().webhookUrlLabVmsStartupWebhookUrl();
+    }
+
+    public String emailRecipientLabVmsStartupEmailRecipient() {
+        return this.innerModel().emailRecipientLabVmsStartupEmailRecipient();
+    }
+
+    public String notificationLocaleLabVmsStartupNotificationLocale() {
+        return this.innerModel().notificationLocaleLabVmsStartupNotificationLocale();
+    }
+
+    public String idLabVmsStartupId() {
+        return this.innerModel().idLabVmsStartupId();
+    }
+
+    public String nameLabVmsStartupName() {
+        return this.innerModel().nameLabVmsStartupName();
+    }
+
+    public String typeLabVmsStartupType() {
+        return this.innerModel().typeLabVmsStartupType();
+    }
+
+    public Map<String, String> tagsLabVmsStartupTags() {
+        Map<String, String> inner = this.innerModel().tagsLabVmsStartupTags();
+        if (inner != null) {
+            return Collections.unmodifiableMap(inner);
+        } else {
+            return Collections.emptyMap();
+        }
+    }
+
+    public String locationLabVmsStartupLocation() {
+        return this.innerModel().locationLabVmsStartupLocation();
+    }
+
+    public String labVmId() {
+        return this.innerModel().labVmId();
+    }
+
     public Region region() {
         return Region.fromName(this.regionName());
     }
 
     public String regionName() {
         return this.location();
+    }
+
+    public String resourceGroupName() {
+        return resourceGroupName;
     }
 
     public FormulaInner innerModel() {
@@ -216,13 +700,223 @@ public final class FormulaImpl implements Formula, Formula.Definition, Formula.U
         return this;
     }
 
-    public FormulaImpl withFormulaContent(LabVirtualMachineCreationParameter formulaContent) {
-        this.innerModel().withFormulaContent(formulaContent);
+    public FormulaImpl withNamePropertiesName(String namePropertiesName) {
+        this.innerModel().withNamePropertiesName(namePropertiesName);
         return this;
     }
 
-    public FormulaImpl withVm(FormulaPropertiesFromVm vm) {
-        this.innerModel().withVm(vm);
+    public FormulaImpl withLocationPropertiesLocation(String locationPropertiesLocation) {
+        this.innerModel().withLocationPropertiesLocation(locationPropertiesLocation);
+        return this;
+    }
+
+    public FormulaImpl withTagsPropertiesTags(Map<String, String> tagsPropertiesTags) {
+        this.innerModel().withTagsPropertiesTags(tagsPropertiesTags);
+        return this;
+    }
+
+    public FormulaImpl withNotes(String notes) {
+        this.innerModel().withNotes(notes);
+        return this;
+    }
+
+    public FormulaImpl withOwnerObjectId(String ownerObjectId) {
+        this.innerModel().withOwnerObjectId(ownerObjectId);
+        return this;
+    }
+
+    public FormulaImpl withOwnerUserPrincipalName(String ownerUserPrincipalName) {
+        this.innerModel().withOwnerUserPrincipalName(ownerUserPrincipalName);
+        return this;
+    }
+
+    public FormulaImpl withCreatedDate(OffsetDateTime createdDate) {
+        this.innerModel().withCreatedDate(createdDate);
+        return this;
+    }
+
+    public FormulaImpl withCustomImageId(String customImageId) {
+        this.innerModel().withCustomImageId(customImageId);
+        return this;
+    }
+
+    public FormulaImpl withGalleryImageVersionId(String galleryImageVersionId) {
+        this.innerModel().withGalleryImageVersionId(galleryImageVersionId);
+        return this;
+    }
+
+    public FormulaImpl withSharedImageId(String sharedImageId) {
+        this.innerModel().withSharedImageId(sharedImageId);
+        return this;
+    }
+
+    public FormulaImpl withSharedImageVersion(String sharedImageVersion) {
+        this.innerModel().withSharedImageVersion(sharedImageVersion);
+        return this;
+    }
+
+    public FormulaImpl withSize(String size) {
+        this.innerModel().withSize(size);
+        return this;
+    }
+
+    public FormulaImpl withUsername(String username) {
+        this.innerModel().withUsername(username);
+        return this;
+    }
+
+    public FormulaImpl withPassword(String password) {
+        this.innerModel().withPassword(password);
+        return this;
+    }
+
+    public FormulaImpl withSshKey(String sshKey) {
+        this.innerModel().withSshKey(sshKey);
+        return this;
+    }
+
+    public FormulaImpl withIsAuthenticationWithSshKey(Boolean isAuthenticationWithSshKey) {
+        this.innerModel().withIsAuthenticationWithSshKey(isAuthenticationWithSshKey);
+        return this;
+    }
+
+    public FormulaImpl withLabSubnetName(String labSubnetName) {
+        this.innerModel().withLabSubnetName(labSubnetName);
+        return this;
+    }
+
+    public FormulaImpl withLabVirtualNetworkId(String labVirtualNetworkId) {
+        this.innerModel().withLabVirtualNetworkId(labVirtualNetworkId);
+        return this;
+    }
+
+    public FormulaImpl withDisallowPublicIpAddress(Boolean disallowPublicIpAddress) {
+        this.innerModel().withDisallowPublicIpAddress(disallowPublicIpAddress);
+        return this;
+    }
+
+    public FormulaImpl withArtifacts(List<ArtifactInstallProperties> artifacts) {
+        this.innerModel().withArtifacts(artifacts);
+        return this;
+    }
+
+    public FormulaImpl withPlanId(String planId) {
+        this.innerModel().withPlanId(planId);
+        return this;
+    }
+
+    public FormulaImpl withOsDiskSizeGb(Integer osDiskSizeGb) {
+        this.innerModel().withOsDiskSizeGb(osDiskSizeGb);
+        return this;
+    }
+
+    public FormulaImpl withExpirationDate(OffsetDateTime expirationDate) {
+        this.innerModel().withExpirationDate(expirationDate);
+        return this;
+    }
+
+    public FormulaImpl withAllowClaim(Boolean allowClaim) {
+        this.innerModel().withAllowClaim(allowClaim);
+        return this;
+    }
+
+    public FormulaImpl withStorageType(StorageType storageType) {
+        this.innerModel().withStorageType(storageType);
+        return this;
+    }
+
+    public FormulaImpl withEnvironmentId(String environmentId) {
+        this.innerModel().withEnvironmentId(environmentId);
+        return this;
+    }
+
+    public FormulaImpl withDataDiskParameters(List<DataDiskProperties> dataDiskParameters) {
+        this.innerModel().withDataDiskParameters(dataDiskParameters);
+        return this;
+    }
+
+    public FormulaImpl withScheduleParameters(List<ScheduleCreationParameter> scheduleParameters) {
+        this.innerModel().withScheduleParameters(scheduleParameters);
+        return this;
+    }
+
+    public FormulaImpl withInstanceCount(Integer instanceCount) {
+        this.innerModel().withInstanceCount(instanceCount);
+        return this;
+    }
+
+    public FormulaImpl withOffer(String offer) {
+        this.innerModel().withOffer(offer);
+        return this;
+    }
+
+    public FormulaImpl withPublisher(String publisher) {
+        this.innerModel().withPublisher(publisher);
+        return this;
+    }
+
+    public FormulaImpl withSku(String sku) {
+        this.innerModel().withSku(sku);
+        return this;
+    }
+
+    public FormulaImpl withOsTypeGalleryImageReferenceOsType(String osTypeGalleryImageReferenceOsType) {
+        this.innerModel().withOsTypeGalleryImageReferenceOsType(osTypeGalleryImageReferenceOsType);
+        return this;
+    }
+
+    public FormulaImpl withVersion(String version) {
+        this.innerModel().withVersion(version);
+        return this;
+    }
+
+    public FormulaImpl withVirtualNetworkId(String virtualNetworkId) {
+        this.innerModel().withVirtualNetworkId(virtualNetworkId);
+        return this;
+    }
+
+    public FormulaImpl withSubnetId(String subnetId) {
+        this.innerModel().withSubnetId(subnetId);
+        return this;
+    }
+
+    public FormulaImpl withPublicIpAddressId(String publicIpAddressId) {
+        this.innerModel().withPublicIpAddressId(publicIpAddressId);
+        return this;
+    }
+
+    public FormulaImpl withPublicIpAddress(String publicIpAddress) {
+        this.innerModel().withPublicIpAddress(publicIpAddress);
+        return this;
+    }
+
+    public FormulaImpl withPrivateIpAddress(String privateIpAddress) {
+        this.innerModel().withPrivateIpAddress(privateIpAddress);
+        return this;
+    }
+
+    public FormulaImpl withDnsName(String dnsName) {
+        this.innerModel().withDnsName(dnsName);
+        return this;
+    }
+
+    public FormulaImpl withRdpAuthority(String rdpAuthority) {
+        this.innerModel().withRdpAuthority(rdpAuthority);
+        return this;
+    }
+
+    public FormulaImpl withSshAuthority(String sshAuthority) {
+        this.innerModel().withSshAuthority(sshAuthority);
+        return this;
+    }
+
+    public FormulaImpl withInboundNatRules(List<InboundNatRule> inboundNatRules) {
+        this.innerModel().withInboundNatRules(inboundNatRules);
+        return this;
+    }
+
+    public FormulaImpl withLabVmId(String labVmId) {
+        this.innerModel().withLabVmId(labVmId);
         return this;
     }
 

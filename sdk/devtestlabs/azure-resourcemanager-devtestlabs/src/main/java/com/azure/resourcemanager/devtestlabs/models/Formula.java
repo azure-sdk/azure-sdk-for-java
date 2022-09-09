@@ -5,9 +5,11 @@
 package com.azure.resourcemanager.devtestlabs.models;
 
 import com.azure.core.management.Region;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.devtestlabs.fluent.models.FormulaInner;
 import java.time.OffsetDateTime;
+import java.util.List;
 import java.util.Map;
 
 /** An immutable client-side representation of Formula. */
@@ -48,6 +50,13 @@ public interface Formula {
     Map<String, String> tags();
 
     /**
+     * Gets the systemData property: The system metadata relating to this resource.
+     *
+     * @return the systemData value.
+     */
+    SystemData systemData();
+
+    /**
      * Gets the description property: The description of the formula.
      *
      * @return the description value.
@@ -76,20 +85,6 @@ public interface Formula {
     OffsetDateTime creationDate();
 
     /**
-     * Gets the formulaContent property: The content of the formula.
-     *
-     * @return the formulaContent value.
-     */
-    LabVirtualMachineCreationParameter formulaContent();
-
-    /**
-     * Gets the vm property: Information about a VM from which a formula is to be created.
-     *
-     * @return the vm value.
-     */
-    FormulaPropertiesFromVm vm();
-
-    /**
      * Gets the provisioningState property: The provisioning status of the resource.
      *
      * @return the provisioningState value.
@@ -104,6 +99,768 @@ public interface Formula {
     String uniqueIdentifier();
 
     /**
+     * Gets the namePropertiesName property: The name of the virtual machine or environment.
+     *
+     * @return the namePropertiesName value.
+     */
+    String namePropertiesName();
+
+    /**
+     * Gets the locationPropertiesLocation property: The location of the new virtual machine or environment.
+     *
+     * @return the locationPropertiesLocation value.
+     */
+    String locationPropertiesLocation();
+
+    /**
+     * Gets the tagsPropertiesTags property: The tags of the resource.
+     *
+     * @return the tagsPropertiesTags value.
+     */
+    Map<String, String> tagsPropertiesTags();
+
+    /**
+     * Gets the notes property: The notes of the virtual machine.
+     *
+     * @return the notes value.
+     */
+    String notes();
+
+    /**
+     * Gets the ownerObjectId property: The object identifier of the owner of the virtual machine.
+     *
+     * @return the ownerObjectId value.
+     */
+    String ownerObjectId();
+
+    /**
+     * Gets the ownerUserPrincipalName property: The user principal name of the virtual machine owner.
+     *
+     * @return the ownerUserPrincipalName value.
+     */
+    String ownerUserPrincipalName();
+
+    /**
+     * Gets the createdByUserId property: The object identifier of the creator of the virtual machine.
+     *
+     * @return the createdByUserId value.
+     */
+    String createdByUserId();
+
+    /**
+     * Gets the createdByUser property: The email address of creator of the virtual machine.
+     *
+     * @return the createdByUser value.
+     */
+    String createdByUser();
+
+    /**
+     * Gets the createdDate property: The creation date of the virtual machine.
+     *
+     * @return the createdDate value.
+     */
+    OffsetDateTime createdDate();
+
+    /**
+     * Gets the computeId property: The resource identifier (Microsoft.Compute) of the virtual machine.
+     *
+     * @return the computeId value.
+     */
+    String computeId();
+
+    /**
+     * Gets the customImageId property: The custom image identifier of the virtual machine.
+     *
+     * @return the customImageId value.
+     */
+    String customImageId();
+
+    /**
+     * Gets the galleryImageVersionId property: The shared gallery image version resource identifier of the virtual
+     * machine.
+     *
+     * @return the galleryImageVersionId value.
+     */
+    String galleryImageVersionId();
+
+    /**
+     * Gets the sharedImageId property: The shared image resource identifier of the virtual machine.
+     *
+     * @return the sharedImageId value.
+     */
+    String sharedImageId();
+
+    /**
+     * Gets the sharedImageVersion property: The shared image version for the specified shared image Id. Will use latest
+     * if not specified.
+     *
+     * @return the sharedImageVersion value.
+     */
+    String sharedImageVersion();
+
+    /**
+     * Gets the osTypeFormulaContentOsType property: The OS type of the virtual machine.
+     *
+     * @return the osTypeFormulaContentOsType value.
+     */
+    String osTypeFormulaContentOsType();
+
+    /**
+     * Gets the size property: The size of the virtual machine.
+     *
+     * @return the size value.
+     */
+    String size();
+
+    /**
+     * Gets the username property: The user name of the virtual machine.
+     *
+     * @return the username value.
+     */
+    String username();
+
+    /**
+     * Gets the password property: The password of the virtual machine administrator.
+     *
+     * @return the password value.
+     */
+    String password();
+
+    /**
+     * Gets the sshKey property: The SSH key of the virtual machine administrator.
+     *
+     * @return the sshKey value.
+     */
+    String sshKey();
+
+    /**
+     * Gets the isAuthenticationWithSshKey property: Indicates whether this virtual machine uses an SSH key for
+     * authentication.
+     *
+     * @return the isAuthenticationWithSshKey value.
+     */
+    Boolean isAuthenticationWithSshKey();
+
+    /**
+     * Gets the fqdn property: The fully-qualified domain name of the virtual machine.
+     *
+     * @return the fqdn value.
+     */
+    String fqdn();
+
+    /**
+     * Gets the labSubnetName property: The lab subnet name of the virtual machine.
+     *
+     * @return the labSubnetName value.
+     */
+    String labSubnetName();
+
+    /**
+     * Gets the labVirtualNetworkId property: The lab virtual network identifier of the virtual machine.
+     *
+     * @return the labVirtualNetworkId value.
+     */
+    String labVirtualNetworkId();
+
+    /**
+     * Gets the disallowPublicIpAddress property: Indicates whether the virtual machine is to be created without a
+     * public IP address.
+     *
+     * @return the disallowPublicIpAddress value.
+     */
+    Boolean disallowPublicIpAddress();
+
+    /**
+     * Gets the artifacts property: The artifacts to be installed on the virtual machine.
+     *
+     * @return the artifacts value.
+     */
+    List<ArtifactInstallProperties> artifacts();
+
+    /**
+     * Gets the planId property: The id of the plan associated with the virtual machine image.
+     *
+     * @return the planId value.
+     */
+    String planId();
+
+    /**
+     * Gets the osDiskSizeGb property: Specifies the size of an empty data disk in gigabytes. This element can be used
+     * to overwrite the size of the disk in a virtual machine image.
+     *
+     * @return the osDiskSizeGb value.
+     */
+    Integer osDiskSizeGb();
+
+    /**
+     * Gets the expirationDate property: The expiration date for VM.
+     *
+     * @return the expirationDate value.
+     */
+    OffsetDateTime expirationDate();
+
+    /**
+     * Gets the allowClaim property: Indicates whether another user can take ownership of the virtual machine.
+     *
+     * @return the allowClaim value.
+     */
+    Boolean allowClaim();
+
+    /**
+     * Gets the storageType property: Storage type to use for virtual machine (i.e. Standard, Premium, StandardSSD).
+     *
+     * @return the storageType value.
+     */
+    StorageType storageType();
+
+    /**
+     * Gets the virtualMachineCreationSource property: Tells source of creation of lab virtual machine. Output property
+     * only.
+     *
+     * @return the virtualMachineCreationSource value.
+     */
+    VirtualMachineCreationSource virtualMachineCreationSource();
+
+    /**
+     * Gets the environmentId property: The resource ID of the environment that contains this virtual machine, if any.
+     *
+     * @return the environmentId value.
+     */
+    String environmentId();
+
+    /**
+     * Gets the dataDiskParameters property: New or existing data disks to attach to the virtual machine after creation.
+     *
+     * @return the dataDiskParameters value.
+     */
+    List<DataDiskProperties> dataDiskParameters();
+
+    /**
+     * Gets the scheduleParameters property: Virtual Machine schedules to be created.
+     *
+     * @return the scheduleParameters value.
+     */
+    List<ScheduleCreationParameter> scheduleParameters();
+
+    /**
+     * Gets the lastKnownPowerState property: Last known compute power state captured in DTL.
+     *
+     * @return the lastKnownPowerState value.
+     */
+    String lastKnownPowerState();
+
+    /**
+     * Gets the canApplyArtifacts property: Flag to determine if apply artifacts can be triggered at the time of
+     * fetching the document.
+     *
+     * @return the canApplyArtifacts value.
+     */
+    Boolean canApplyArtifacts();
+
+    /**
+     * Gets the provisioningStateFormulaContentProvisioningState property: The provisioning status of the resource.
+     *
+     * @return the provisioningStateFormulaContentProvisioningState value.
+     */
+    String provisioningStateFormulaContentProvisioningState();
+
+    /**
+     * Gets the uniqueIdentifierFormulaContentUniqueIdentifier property: The unique immutable identifier of a resource
+     * (Guid).
+     *
+     * @return the uniqueIdentifierFormulaContentUniqueIdentifier value.
+     */
+    String uniqueIdentifierFormulaContentUniqueIdentifier();
+
+    /**
+     * Gets the instanceCount property: The number of virtual machine instances to create.
+     *
+     * @return the instanceCount value.
+     */
+    Integer instanceCount();
+
+    /**
+     * Gets the deploymentStatus property: The deployment status of the artifact.
+     *
+     * @return the deploymentStatus value.
+     */
+    String deploymentStatus();
+
+    /**
+     * Gets the artifactsApplied property: The total count of the artifacts that were successfully applied.
+     *
+     * @return the artifactsApplied value.
+     */
+    Integer artifactsApplied();
+
+    /**
+     * Gets the totalArtifacts property: The total count of the artifacts that were tentatively applied.
+     *
+     * @return the totalArtifacts value.
+     */
+    Integer totalArtifacts();
+
+    /**
+     * Gets the offer property: The offer of the gallery image.
+     *
+     * @return the offer value.
+     */
+    String offer();
+
+    /**
+     * Gets the publisher property: The publisher of the gallery image.
+     *
+     * @return the publisher value.
+     */
+    String publisher();
+
+    /**
+     * Gets the sku property: The SKU of the gallery image.
+     *
+     * @return the sku value.
+     */
+    String sku();
+
+    /**
+     * Gets the osTypeGalleryImageReferenceOsType property: The OS type of the gallery image.
+     *
+     * @return the osTypeGalleryImageReferenceOsType value.
+     */
+    String osTypeGalleryImageReferenceOsType();
+
+    /**
+     * Gets the version property: The version of the gallery image.
+     *
+     * @return the version value.
+     */
+    String version();
+
+    /**
+     * Gets the statuses property: Gets the statuses of the virtual machine.
+     *
+     * @return the statuses value.
+     */
+    List<ComputeVmInstanceViewStatus> statuses();
+
+    /**
+     * Gets the osTypeComputeVmOsType property: Gets the OS type of the virtual machine.
+     *
+     * @return the osTypeComputeVmOsType value.
+     */
+    String osTypeComputeVmOsType();
+
+    /**
+     * Gets the vmSize property: Gets the size of the virtual machine.
+     *
+     * @return the vmSize value.
+     */
+    String vmSize();
+
+    /**
+     * Gets the networkInterfaceId property: Gets the network interface ID of the virtual machine.
+     *
+     * @return the networkInterfaceId value.
+     */
+    String networkInterfaceId();
+
+    /**
+     * Gets the osDiskId property: Gets OS disk blob uri for the virtual machine.
+     *
+     * @return the osDiskId value.
+     */
+    String osDiskId();
+
+    /**
+     * Gets the dataDiskIds property: Gets data disks blob uri for the virtual machine.
+     *
+     * @return the dataDiskIds value.
+     */
+    List<String> dataDiskIds();
+
+    /**
+     * Gets the dataDisks property: Gets all data disks attached to the virtual machine.
+     *
+     * @return the dataDisks value.
+     */
+    List<ComputeDataDisk> dataDisks();
+
+    /**
+     * Gets the virtualNetworkId property: The resource ID of the virtual network.
+     *
+     * @return the virtualNetworkId value.
+     */
+    String virtualNetworkId();
+
+    /**
+     * Gets the subnetId property: The resource ID of the sub net.
+     *
+     * @return the subnetId value.
+     */
+    String subnetId();
+
+    /**
+     * Gets the publicIpAddressId property: The resource ID of the public IP address.
+     *
+     * @return the publicIpAddressId value.
+     */
+    String publicIpAddressId();
+
+    /**
+     * Gets the publicIpAddress property: The public IP address.
+     *
+     * @return the publicIpAddress value.
+     */
+    String publicIpAddress();
+
+    /**
+     * Gets the privateIpAddress property: The private IP address.
+     *
+     * @return the privateIpAddress value.
+     */
+    String privateIpAddress();
+
+    /**
+     * Gets the dnsName property: The DNS name.
+     *
+     * @return the dnsName value.
+     */
+    String dnsName();
+
+    /**
+     * Gets the rdpAuthority property: The RdpAuthority property is a server DNS host name or IP address followed by the
+     * service port number for RDP (Remote Desktop Protocol).
+     *
+     * @return the rdpAuthority value.
+     */
+    String rdpAuthority();
+
+    /**
+     * Gets the sshAuthority property: The SshAuthority property is a server DNS host name or IP address followed by the
+     * service port number for SSH.
+     *
+     * @return the sshAuthority value.
+     */
+    String sshAuthority();
+
+    /**
+     * Gets the inboundNatRules property: The incoming NAT rules.
+     *
+     * @return the inboundNatRules value.
+     */
+    List<InboundNatRule> inboundNatRules();
+
+    /**
+     * Gets the systemDataPropertiesSystemData property: The system metadata relating to this resource.
+     *
+     * @return the systemDataPropertiesSystemData value.
+     */
+    SystemData systemDataPropertiesSystemData();
+
+    /**
+     * Gets the status property: The status of the schedule (i.e. Enabled, Disabled).
+     *
+     * @return the status value.
+     */
+    EnableStatus status();
+
+    /**
+     * Gets the taskType property: The task type of the schedule (e.g. LabVmsShutdownTask, LabVmAutoStart).
+     *
+     * @return the taskType value.
+     */
+    String taskType();
+
+    /**
+     * Gets the timeZoneId property: The time zone ID (e.g. Pacific Standard time).
+     *
+     * @return the timeZoneId value.
+     */
+    String timeZoneId();
+
+    /**
+     * Gets the createdDateApplicableScheduleCreatedDate property: The creation date of the schedule.
+     *
+     * @return the createdDateApplicableScheduleCreatedDate value.
+     */
+    OffsetDateTime createdDateApplicableScheduleCreatedDate();
+
+    /**
+     * Gets the targetResourceId property: The resource ID to which the schedule belongs.
+     *
+     * @return the targetResourceId value.
+     */
+    String targetResourceId();
+
+    /**
+     * Gets the provisioningStateApplicableScheduleProvisioningState property: The provisioning status of the resource.
+     *
+     * @return the provisioningStateApplicableScheduleProvisioningState value.
+     */
+    String provisioningStateApplicableScheduleProvisioningState();
+
+    /**
+     * Gets the uniqueIdentifierApplicableScheduleUniqueIdentifier property: The unique immutable identifier of a
+     * resource (Guid).
+     *
+     * @return the uniqueIdentifierApplicableScheduleUniqueIdentifier value.
+     */
+    String uniqueIdentifierApplicableScheduleUniqueIdentifier();
+
+    /**
+     * Gets the weekdays property: The days of the week for which the schedule is set (e.g. Sunday, Monday, Tuesday,
+     * etc.).
+     *
+     * @return the weekdays value.
+     */
+    List<String> weekdays();
+
+    /**
+     * Gets the time property: The time of the day the schedule will occur.
+     *
+     * @return the time value.
+     */
+    String time();
+
+    /**
+     * Gets the timeDailyRecurrenceTime property: The time of day the schedule will occur.
+     *
+     * @return the timeDailyRecurrenceTime value.
+     */
+    String timeDailyRecurrenceTime();
+
+    /**
+     * Gets the minute property: Minutes of the hour the schedule will run.
+     *
+     * @return the minute value.
+     */
+    Integer minute();
+
+    /**
+     * Gets the statusNotificationSettingsStatus property: If notifications are enabled for this schedule (i.e. Enabled,
+     * Disabled).
+     *
+     * @return the statusNotificationSettingsStatus value.
+     */
+    EnableStatus statusNotificationSettingsStatus();
+
+    /**
+     * Gets the timeInMinutes property: Time in minutes before event at which notification will be sent.
+     *
+     * @return the timeInMinutes value.
+     */
+    Integer timeInMinutes();
+
+    /**
+     * Gets the webhookUrl property: The webhook URL to which the notification will be sent.
+     *
+     * @return the webhookUrl value.
+     */
+    String webhookUrl();
+
+    /**
+     * Gets the emailRecipient property: The email recipient to send notifications to (can be a list of semi-colon
+     * separated email addresses).
+     *
+     * @return the emailRecipient value.
+     */
+    String emailRecipient();
+
+    /**
+     * Gets the notificationLocale property: The locale to use when sending a notification (fallback for unsupported
+     * languages is EN).
+     *
+     * @return the notificationLocale value.
+     */
+    String notificationLocale();
+
+    /**
+     * Gets the idPropertiesId property: Fully qualified resource ID for the resource. Ex -
+     * /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+     *
+     * @return the idPropertiesId value.
+     */
+    String idPropertiesId();
+
+    /**
+     * Gets the typePropertiesType property: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
+     * "Microsoft.Storage/storageAccounts".
+     *
+     * @return the typePropertiesType value.
+     */
+    String typePropertiesType();
+
+    /**
+     * Gets the systemDataLabVmsStartupSystemData property: The system metadata relating to this resource.
+     *
+     * @return the systemDataLabVmsStartupSystemData value.
+     */
+    SystemData systemDataLabVmsStartupSystemData();
+
+    /**
+     * Gets the statusLabVmsStartupStatus property: The status of the schedule (i.e. Enabled, Disabled).
+     *
+     * @return the statusLabVmsStartupStatus value.
+     */
+    EnableStatus statusLabVmsStartupStatus();
+
+    /**
+     * Gets the taskTypeLabVmsStartupTaskType property: The task type of the schedule (e.g. LabVmsShutdownTask,
+     * LabVmAutoStart).
+     *
+     * @return the taskTypeLabVmsStartupTaskType value.
+     */
+    String taskTypeLabVmsStartupTaskType();
+
+    /**
+     * Gets the timeZoneIdLabVmsStartupTimeZoneId property: The time zone ID (e.g. Pacific Standard time).
+     *
+     * @return the timeZoneIdLabVmsStartupTimeZoneId value.
+     */
+    String timeZoneIdLabVmsStartupTimeZoneId();
+
+    /**
+     * Gets the createdDateLabVmsStartupCreatedDate property: The creation date of the schedule.
+     *
+     * @return the createdDateLabVmsStartupCreatedDate value.
+     */
+    OffsetDateTime createdDateLabVmsStartupCreatedDate();
+
+    /**
+     * Gets the targetResourceIdLabVmsStartupTargetResourceId property: The resource ID to which the schedule belongs.
+     *
+     * @return the targetResourceIdLabVmsStartupTargetResourceId value.
+     */
+    String targetResourceIdLabVmsStartupTargetResourceId();
+
+    /**
+     * Gets the provisioningStateLabVmsStartupProvisioningState property: The provisioning status of the resource.
+     *
+     * @return the provisioningStateLabVmsStartupProvisioningState value.
+     */
+    String provisioningStateLabVmsStartupProvisioningState();
+
+    /**
+     * Gets the uniqueIdentifierLabVmsStartupUniqueIdentifier property: The unique immutable identifier of a resource
+     * (Guid).
+     *
+     * @return the uniqueIdentifierLabVmsStartupUniqueIdentifier value.
+     */
+    String uniqueIdentifierLabVmsStartupUniqueIdentifier();
+
+    /**
+     * Gets the weekdaysLabVmsStartupWeekdays property: The days of the week for which the schedule is set (e.g. Sunday,
+     * Monday, Tuesday, etc.).
+     *
+     * @return the weekdaysLabVmsStartupWeekdays value.
+     */
+    List<String> weekdaysLabVmsStartupWeekdays();
+
+    /**
+     * Gets the timeLabVmsStartupTime property: The time of the day the schedule will occur.
+     *
+     * @return the timeLabVmsStartupTime value.
+     */
+    String timeLabVmsStartupTime();
+
+    /**
+     * Gets the timeDailyRecurrenceTimeLabVmsStartupTimeDailyRecurrenceTime property: The time of day the schedule will
+     * occur.
+     *
+     * @return the timeDailyRecurrenceTimeLabVmsStartupTimeDailyRecurrenceTime value.
+     */
+    String timeDailyRecurrenceTimeLabVmsStartupTimeDailyRecurrenceTime();
+
+    /**
+     * Gets the minuteLabVmsStartupMinute property: Minutes of the hour the schedule will run.
+     *
+     * @return the minuteLabVmsStartupMinute value.
+     */
+    Integer minuteLabVmsStartupMinute();
+
+    /**
+     * Gets the statusNotificationSettingsStatusLabVmsStartupStatusNotificationSettingsStatus property: If notifications
+     * are enabled for this schedule (i.e. Enabled, Disabled).
+     *
+     * @return the statusNotificationSettingsStatusLabVmsStartupStatusNotificationSettingsStatus value.
+     */
+    EnableStatus statusNotificationSettingsStatusLabVmsStartupStatusNotificationSettingsStatus();
+
+    /**
+     * Gets the timeInMinutesLabVmsStartupTimeInMinutes property: Time in minutes before event at which notification
+     * will be sent.
+     *
+     * @return the timeInMinutesLabVmsStartupTimeInMinutes value.
+     */
+    Integer timeInMinutesLabVmsStartupTimeInMinutes();
+
+    /**
+     * Gets the webhookUrlLabVmsStartupWebhookUrl property: The webhook URL to which the notification will be sent.
+     *
+     * @return the webhookUrlLabVmsStartupWebhookUrl value.
+     */
+    String webhookUrlLabVmsStartupWebhookUrl();
+
+    /**
+     * Gets the emailRecipientLabVmsStartupEmailRecipient property: The email recipient to send notifications to (can be
+     * a list of semi-colon separated email addresses).
+     *
+     * @return the emailRecipientLabVmsStartupEmailRecipient value.
+     */
+    String emailRecipientLabVmsStartupEmailRecipient();
+
+    /**
+     * Gets the notificationLocaleLabVmsStartupNotificationLocale property: The locale to use when sending a
+     * notification (fallback for unsupported languages is EN).
+     *
+     * @return the notificationLocaleLabVmsStartupNotificationLocale value.
+     */
+    String notificationLocaleLabVmsStartupNotificationLocale();
+
+    /**
+     * Gets the idLabVmsStartupId property: Fully qualified resource ID for the resource. Ex -
+     * /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+     *
+     * @return the idLabVmsStartupId value.
+     */
+    String idLabVmsStartupId();
+
+    /**
+     * Gets the nameLabVmsStartupName property: The name of the resource.
+     *
+     * @return the nameLabVmsStartupName value.
+     */
+    String nameLabVmsStartupName();
+
+    /**
+     * Gets the typeLabVmsStartupType property: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
+     * "Microsoft.Storage/storageAccounts".
+     *
+     * @return the typeLabVmsStartupType value.
+     */
+    String typeLabVmsStartupType();
+
+    /**
+     * Gets the tagsLabVmsStartupTags property: Resource tags.
+     *
+     * @return the tagsLabVmsStartupTags value.
+     */
+    Map<String, String> tagsLabVmsStartupTags();
+
+    /**
+     * Gets the locationLabVmsStartupLocation property: The geo-location where the resource lives.
+     *
+     * @return the locationLabVmsStartupLocation value.
+     */
+    String locationLabVmsStartupLocation();
+
+    /**
+     * Gets the labVmId property: The identifier of the VM from which a formula is to be created.
+     *
+     * @return the labVmId value.
+     */
+    String labVmId();
+
+    /**
      * Gets the region of the resource.
      *
      * @return the region of the resource.
@@ -116,6 +873,13 @@ public interface Formula {
      * @return the name of the resource region.
      */
     String regionName();
+
+    /**
+     * Gets the name of the resource group.
+     *
+     * @return the name of the resource group.
+     */
+    String resourceGroupName();
 
     /**
      * Gets the inner com.azure.resourcemanager.devtestlabs.fluent.models.FormulaInner object.
@@ -173,8 +937,50 @@ public interface Formula {
             extends DefinitionStages.WithTags,
                 DefinitionStages.WithDescription,
                 DefinitionStages.WithOsType,
-                DefinitionStages.WithFormulaContent,
-                DefinitionStages.WithVm {
+                DefinitionStages.WithNamePropertiesName,
+                DefinitionStages.WithLocationPropertiesLocation,
+                DefinitionStages.WithTagsPropertiesTags,
+                DefinitionStages.WithNotes,
+                DefinitionStages.WithOwnerObjectId,
+                DefinitionStages.WithOwnerUserPrincipalName,
+                DefinitionStages.WithCreatedDate,
+                DefinitionStages.WithCustomImageId,
+                DefinitionStages.WithGalleryImageVersionId,
+                DefinitionStages.WithSharedImageId,
+                DefinitionStages.WithSharedImageVersion,
+                DefinitionStages.WithSize,
+                DefinitionStages.WithUsername,
+                DefinitionStages.WithPassword,
+                DefinitionStages.WithSshKey,
+                DefinitionStages.WithIsAuthenticationWithSshKey,
+                DefinitionStages.WithLabSubnetName,
+                DefinitionStages.WithLabVirtualNetworkId,
+                DefinitionStages.WithDisallowPublicIpAddress,
+                DefinitionStages.WithArtifacts,
+                DefinitionStages.WithPlanId,
+                DefinitionStages.WithOsDiskSizeGb,
+                DefinitionStages.WithExpirationDate,
+                DefinitionStages.WithAllowClaim,
+                DefinitionStages.WithStorageType,
+                DefinitionStages.WithEnvironmentId,
+                DefinitionStages.WithDataDiskParameters,
+                DefinitionStages.WithScheduleParameters,
+                DefinitionStages.WithInstanceCount,
+                DefinitionStages.WithOffer,
+                DefinitionStages.WithPublisher,
+                DefinitionStages.WithSku,
+                DefinitionStages.WithOsTypeGalleryImageReferenceOsType,
+                DefinitionStages.WithVersion,
+                DefinitionStages.WithVirtualNetworkId,
+                DefinitionStages.WithSubnetId,
+                DefinitionStages.WithPublicIpAddressId,
+                DefinitionStages.WithPublicIpAddress,
+                DefinitionStages.WithPrivateIpAddress,
+                DefinitionStages.WithDnsName,
+                DefinitionStages.WithRdpAuthority,
+                DefinitionStages.WithSshAuthority,
+                DefinitionStages.WithInboundNatRules,
+                DefinitionStages.WithLabVmId {
             /**
              * Executes the create request.
              *
@@ -220,25 +1026,463 @@ public interface Formula {
              */
             WithCreate withOsType(String osType);
         }
-        /** The stage of the Formula definition allowing to specify formulaContent. */
-        interface WithFormulaContent {
+        /** The stage of the Formula definition allowing to specify namePropertiesName. */
+        interface WithNamePropertiesName {
             /**
-             * Specifies the formulaContent property: The content of the formula..
+             * Specifies the namePropertiesName property: The name of the virtual machine or environment.
              *
-             * @param formulaContent The content of the formula.
+             * @param namePropertiesName The name of the virtual machine or environment.
              * @return the next definition stage.
              */
-            WithCreate withFormulaContent(LabVirtualMachineCreationParameter formulaContent);
+            WithCreate withNamePropertiesName(String namePropertiesName);
         }
-        /** The stage of the Formula definition allowing to specify vm. */
-        interface WithVm {
+        /** The stage of the Formula definition allowing to specify locationPropertiesLocation. */
+        interface WithLocationPropertiesLocation {
             /**
-             * Specifies the vm property: Information about a VM from which a formula is to be created..
+             * Specifies the locationPropertiesLocation property: The location of the new virtual machine or
+             * environment.
              *
-             * @param vm Information about a VM from which a formula is to be created.
+             * @param locationPropertiesLocation The location of the new virtual machine or environment.
              * @return the next definition stage.
              */
-            WithCreate withVm(FormulaPropertiesFromVm vm);
+            WithCreate withLocationPropertiesLocation(String locationPropertiesLocation);
+        }
+        /** The stage of the Formula definition allowing to specify tagsPropertiesTags. */
+        interface WithTagsPropertiesTags {
+            /**
+             * Specifies the tagsPropertiesTags property: The tags of the resource..
+             *
+             * @param tagsPropertiesTags The tags of the resource.
+             * @return the next definition stage.
+             */
+            WithCreate withTagsPropertiesTags(Map<String, String> tagsPropertiesTags);
+        }
+        /** The stage of the Formula definition allowing to specify notes. */
+        interface WithNotes {
+            /**
+             * Specifies the notes property: The notes of the virtual machine..
+             *
+             * @param notes The notes of the virtual machine.
+             * @return the next definition stage.
+             */
+            WithCreate withNotes(String notes);
+        }
+        /** The stage of the Formula definition allowing to specify ownerObjectId. */
+        interface WithOwnerObjectId {
+            /**
+             * Specifies the ownerObjectId property: The object identifier of the owner of the virtual machine..
+             *
+             * @param ownerObjectId The object identifier of the owner of the virtual machine.
+             * @return the next definition stage.
+             */
+            WithCreate withOwnerObjectId(String ownerObjectId);
+        }
+        /** The stage of the Formula definition allowing to specify ownerUserPrincipalName. */
+        interface WithOwnerUserPrincipalName {
+            /**
+             * Specifies the ownerUserPrincipalName property: The user principal name of the virtual machine owner..
+             *
+             * @param ownerUserPrincipalName The user principal name of the virtual machine owner.
+             * @return the next definition stage.
+             */
+            WithCreate withOwnerUserPrincipalName(String ownerUserPrincipalName);
+        }
+        /** The stage of the Formula definition allowing to specify createdDate. */
+        interface WithCreatedDate {
+            /**
+             * Specifies the createdDate property: The creation date of the virtual machine..
+             *
+             * @param createdDate The creation date of the virtual machine.
+             * @return the next definition stage.
+             */
+            WithCreate withCreatedDate(OffsetDateTime createdDate);
+        }
+        /** The stage of the Formula definition allowing to specify customImageId. */
+        interface WithCustomImageId {
+            /**
+             * Specifies the customImageId property: The custom image identifier of the virtual machine..
+             *
+             * @param customImageId The custom image identifier of the virtual machine.
+             * @return the next definition stage.
+             */
+            WithCreate withCustomImageId(String customImageId);
+        }
+        /** The stage of the Formula definition allowing to specify galleryImageVersionId. */
+        interface WithGalleryImageVersionId {
+            /**
+             * Specifies the galleryImageVersionId property: The shared gallery image version resource identifier of the
+             * virtual machine..
+             *
+             * @param galleryImageVersionId The shared gallery image version resource identifier of the virtual machine.
+             * @return the next definition stage.
+             */
+            WithCreate withGalleryImageVersionId(String galleryImageVersionId);
+        }
+        /** The stage of the Formula definition allowing to specify sharedImageId. */
+        interface WithSharedImageId {
+            /**
+             * Specifies the sharedImageId property: The shared image resource identifier of the virtual machine..
+             *
+             * @param sharedImageId The shared image resource identifier of the virtual machine.
+             * @return the next definition stage.
+             */
+            WithCreate withSharedImageId(String sharedImageId);
+        }
+        /** The stage of the Formula definition allowing to specify sharedImageVersion. */
+        interface WithSharedImageVersion {
+            /**
+             * Specifies the sharedImageVersion property: The shared image version for the specified shared image Id.
+             * Will use latest if not specified..
+             *
+             * @param sharedImageVersion The shared image version for the specified shared image Id. Will use latest if
+             *     not specified.
+             * @return the next definition stage.
+             */
+            WithCreate withSharedImageVersion(String sharedImageVersion);
+        }
+        /** The stage of the Formula definition allowing to specify size. */
+        interface WithSize {
+            /**
+             * Specifies the size property: The size of the virtual machine..
+             *
+             * @param size The size of the virtual machine.
+             * @return the next definition stage.
+             */
+            WithCreate withSize(String size);
+        }
+        /** The stage of the Formula definition allowing to specify username. */
+        interface WithUsername {
+            /**
+             * Specifies the username property: The user name of the virtual machine..
+             *
+             * @param username The user name of the virtual machine.
+             * @return the next definition stage.
+             */
+            WithCreate withUsername(String username);
+        }
+        /** The stage of the Formula definition allowing to specify password. */
+        interface WithPassword {
+            /**
+             * Specifies the password property: The password of the virtual machine administrator..
+             *
+             * @param password The password of the virtual machine administrator.
+             * @return the next definition stage.
+             */
+            WithCreate withPassword(String password);
+        }
+        /** The stage of the Formula definition allowing to specify sshKey. */
+        interface WithSshKey {
+            /**
+             * Specifies the sshKey property: The SSH key of the virtual machine administrator..
+             *
+             * @param sshKey The SSH key of the virtual machine administrator.
+             * @return the next definition stage.
+             */
+            WithCreate withSshKey(String sshKey);
+        }
+        /** The stage of the Formula definition allowing to specify isAuthenticationWithSshKey. */
+        interface WithIsAuthenticationWithSshKey {
+            /**
+             * Specifies the isAuthenticationWithSshKey property: Indicates whether this virtual machine uses an SSH key
+             * for authentication..
+             *
+             * @param isAuthenticationWithSshKey Indicates whether this virtual machine uses an SSH key for
+             *     authentication.
+             * @return the next definition stage.
+             */
+            WithCreate withIsAuthenticationWithSshKey(Boolean isAuthenticationWithSshKey);
+        }
+        /** The stage of the Formula definition allowing to specify labSubnetName. */
+        interface WithLabSubnetName {
+            /**
+             * Specifies the labSubnetName property: The lab subnet name of the virtual machine..
+             *
+             * @param labSubnetName The lab subnet name of the virtual machine.
+             * @return the next definition stage.
+             */
+            WithCreate withLabSubnetName(String labSubnetName);
+        }
+        /** The stage of the Formula definition allowing to specify labVirtualNetworkId. */
+        interface WithLabVirtualNetworkId {
+            /**
+             * Specifies the labVirtualNetworkId property: The lab virtual network identifier of the virtual machine..
+             *
+             * @param labVirtualNetworkId The lab virtual network identifier of the virtual machine.
+             * @return the next definition stage.
+             */
+            WithCreate withLabVirtualNetworkId(String labVirtualNetworkId);
+        }
+        /** The stage of the Formula definition allowing to specify disallowPublicIpAddress. */
+        interface WithDisallowPublicIpAddress {
+            /**
+             * Specifies the disallowPublicIpAddress property: Indicates whether the virtual machine is to be created
+             * without a public IP address..
+             *
+             * @param disallowPublicIpAddress Indicates whether the virtual machine is to be created without a public IP
+             *     address.
+             * @return the next definition stage.
+             */
+            WithCreate withDisallowPublicIpAddress(Boolean disallowPublicIpAddress);
+        }
+        /** The stage of the Formula definition allowing to specify artifacts. */
+        interface WithArtifacts {
+            /**
+             * Specifies the artifacts property: The artifacts to be installed on the virtual machine..
+             *
+             * @param artifacts The artifacts to be installed on the virtual machine.
+             * @return the next definition stage.
+             */
+            WithCreate withArtifacts(List<ArtifactInstallProperties> artifacts);
+        }
+        /** The stage of the Formula definition allowing to specify planId. */
+        interface WithPlanId {
+            /**
+             * Specifies the planId property: The id of the plan associated with the virtual machine image.
+             *
+             * @param planId The id of the plan associated with the virtual machine image.
+             * @return the next definition stage.
+             */
+            WithCreate withPlanId(String planId);
+        }
+        /** The stage of the Formula definition allowing to specify osDiskSizeGb. */
+        interface WithOsDiskSizeGb {
+            /**
+             * Specifies the osDiskSizeGb property: Specifies the size of an empty data disk in gigabytes. This element
+             * can be used to overwrite the size of the disk in a virtual machine image..
+             *
+             * @param osDiskSizeGb Specifies the size of an empty data disk in gigabytes. This element can be used to
+             *     overwrite the size of the disk in a virtual machine image.
+             * @return the next definition stage.
+             */
+            WithCreate withOsDiskSizeGb(Integer osDiskSizeGb);
+        }
+        /** The stage of the Formula definition allowing to specify expirationDate. */
+        interface WithExpirationDate {
+            /**
+             * Specifies the expirationDate property: The expiration date for VM..
+             *
+             * @param expirationDate The expiration date for VM.
+             * @return the next definition stage.
+             */
+            WithCreate withExpirationDate(OffsetDateTime expirationDate);
+        }
+        /** The stage of the Formula definition allowing to specify allowClaim. */
+        interface WithAllowClaim {
+            /**
+             * Specifies the allowClaim property: Indicates whether another user can take ownership of the virtual
+             * machine.
+             *
+             * @param allowClaim Indicates whether another user can take ownership of the virtual machine.
+             * @return the next definition stage.
+             */
+            WithCreate withAllowClaim(Boolean allowClaim);
+        }
+        /** The stage of the Formula definition allowing to specify storageType. */
+        interface WithStorageType {
+            /**
+             * Specifies the storageType property: Storage type to use for virtual machine (i.e. Standard, Premium,
+             * StandardSSD)..
+             *
+             * @param storageType Storage type to use for virtual machine (i.e. Standard, Premium, StandardSSD).
+             * @return the next definition stage.
+             */
+            WithCreate withStorageType(StorageType storageType);
+        }
+        /** The stage of the Formula definition allowing to specify environmentId. */
+        interface WithEnvironmentId {
+            /**
+             * Specifies the environmentId property: The resource ID of the environment that contains this virtual
+             * machine, if any..
+             *
+             * @param environmentId The resource ID of the environment that contains this virtual machine, if any.
+             * @return the next definition stage.
+             */
+            WithCreate withEnvironmentId(String environmentId);
+        }
+        /** The stage of the Formula definition allowing to specify dataDiskParameters. */
+        interface WithDataDiskParameters {
+            /**
+             * Specifies the dataDiskParameters property: New or existing data disks to attach to the virtual machine
+             * after creation.
+             *
+             * @param dataDiskParameters New or existing data disks to attach to the virtual machine after creation.
+             * @return the next definition stage.
+             */
+            WithCreate withDataDiskParameters(List<DataDiskProperties> dataDiskParameters);
+        }
+        /** The stage of the Formula definition allowing to specify scheduleParameters. */
+        interface WithScheduleParameters {
+            /**
+             * Specifies the scheduleParameters property: Virtual Machine schedules to be created.
+             *
+             * @param scheduleParameters Virtual Machine schedules to be created.
+             * @return the next definition stage.
+             */
+            WithCreate withScheduleParameters(List<ScheduleCreationParameter> scheduleParameters);
+        }
+        /** The stage of the Formula definition allowing to specify instanceCount. */
+        interface WithInstanceCount {
+            /**
+             * Specifies the instanceCount property: The number of virtual machine instances to create..
+             *
+             * @param instanceCount The number of virtual machine instances to create.
+             * @return the next definition stage.
+             */
+            WithCreate withInstanceCount(Integer instanceCount);
+        }
+        /** The stage of the Formula definition allowing to specify offer. */
+        interface WithOffer {
+            /**
+             * Specifies the offer property: The offer of the gallery image..
+             *
+             * @param offer The offer of the gallery image.
+             * @return the next definition stage.
+             */
+            WithCreate withOffer(String offer);
+        }
+        /** The stage of the Formula definition allowing to specify publisher. */
+        interface WithPublisher {
+            /**
+             * Specifies the publisher property: The publisher of the gallery image..
+             *
+             * @param publisher The publisher of the gallery image.
+             * @return the next definition stage.
+             */
+            WithCreate withPublisher(String publisher);
+        }
+        /** The stage of the Formula definition allowing to specify sku. */
+        interface WithSku {
+            /**
+             * Specifies the sku property: The SKU of the gallery image..
+             *
+             * @param sku The SKU of the gallery image.
+             * @return the next definition stage.
+             */
+            WithCreate withSku(String sku);
+        }
+        /** The stage of the Formula definition allowing to specify osTypeGalleryImageReferenceOsType. */
+        interface WithOsTypeGalleryImageReferenceOsType {
+            /**
+             * Specifies the osTypeGalleryImageReferenceOsType property: The OS type of the gallery image..
+             *
+             * @param osTypeGalleryImageReferenceOsType The OS type of the gallery image.
+             * @return the next definition stage.
+             */
+            WithCreate withOsTypeGalleryImageReferenceOsType(String osTypeGalleryImageReferenceOsType);
+        }
+        /** The stage of the Formula definition allowing to specify version. */
+        interface WithVersion {
+            /**
+             * Specifies the version property: The version of the gallery image..
+             *
+             * @param version The version of the gallery image.
+             * @return the next definition stage.
+             */
+            WithCreate withVersion(String version);
+        }
+        /** The stage of the Formula definition allowing to specify virtualNetworkId. */
+        interface WithVirtualNetworkId {
+            /**
+             * Specifies the virtualNetworkId property: The resource ID of the virtual network..
+             *
+             * @param virtualNetworkId The resource ID of the virtual network.
+             * @return the next definition stage.
+             */
+            WithCreate withVirtualNetworkId(String virtualNetworkId);
+        }
+        /** The stage of the Formula definition allowing to specify subnetId. */
+        interface WithSubnetId {
+            /**
+             * Specifies the subnetId property: The resource ID of the sub net..
+             *
+             * @param subnetId The resource ID of the sub net.
+             * @return the next definition stage.
+             */
+            WithCreate withSubnetId(String subnetId);
+        }
+        /** The stage of the Formula definition allowing to specify publicIpAddressId. */
+        interface WithPublicIpAddressId {
+            /**
+             * Specifies the publicIpAddressId property: The resource ID of the public IP address..
+             *
+             * @param publicIpAddressId The resource ID of the public IP address.
+             * @return the next definition stage.
+             */
+            WithCreate withPublicIpAddressId(String publicIpAddressId);
+        }
+        /** The stage of the Formula definition allowing to specify publicIpAddress. */
+        interface WithPublicIpAddress {
+            /**
+             * Specifies the publicIpAddress property: The public IP address..
+             *
+             * @param publicIpAddress The public IP address.
+             * @return the next definition stage.
+             */
+            WithCreate withPublicIpAddress(String publicIpAddress);
+        }
+        /** The stage of the Formula definition allowing to specify privateIpAddress. */
+        interface WithPrivateIpAddress {
+            /**
+             * Specifies the privateIpAddress property: The private IP address..
+             *
+             * @param privateIpAddress The private IP address.
+             * @return the next definition stage.
+             */
+            WithCreate withPrivateIpAddress(String privateIpAddress);
+        }
+        /** The stage of the Formula definition allowing to specify dnsName. */
+        interface WithDnsName {
+            /**
+             * Specifies the dnsName property: The DNS name..
+             *
+             * @param dnsName The DNS name.
+             * @return the next definition stage.
+             */
+            WithCreate withDnsName(String dnsName);
+        }
+        /** The stage of the Formula definition allowing to specify rdpAuthority. */
+        interface WithRdpAuthority {
+            /**
+             * Specifies the rdpAuthority property: The RdpAuthority property is a server DNS host name or IP address
+             * followed by the service port number for RDP (Remote Desktop Protocol)..
+             *
+             * @param rdpAuthority The RdpAuthority property is a server DNS host name or IP address followed by the
+             *     service port number for RDP (Remote Desktop Protocol).
+             * @return the next definition stage.
+             */
+            WithCreate withRdpAuthority(String rdpAuthority);
+        }
+        /** The stage of the Formula definition allowing to specify sshAuthority. */
+        interface WithSshAuthority {
+            /**
+             * Specifies the sshAuthority property: The SshAuthority property is a server DNS host name or IP address
+             * followed by the service port number for SSH..
+             *
+             * @param sshAuthority The SshAuthority property is a server DNS host name or IP address followed by the
+             *     service port number for SSH.
+             * @return the next definition stage.
+             */
+            WithCreate withSshAuthority(String sshAuthority);
+        }
+        /** The stage of the Formula definition allowing to specify inboundNatRules. */
+        interface WithInboundNatRules {
+            /**
+             * Specifies the inboundNatRules property: The incoming NAT rules.
+             *
+             * @param inboundNatRules The incoming NAT rules.
+             * @return the next definition stage.
+             */
+            WithCreate withInboundNatRules(List<InboundNatRule> inboundNatRules);
+        }
+        /** The stage of the Formula definition allowing to specify labVmId. */
+        interface WithLabVmId {
+            /**
+             * Specifies the labVmId property: The identifier of the VM from which a formula is to be created..
+             *
+             * @param labVmId The identifier of the VM from which a formula is to be created.
+             * @return the next definition stage.
+             */
+            WithCreate withLabVmId(String labVmId);
         }
     }
     /**

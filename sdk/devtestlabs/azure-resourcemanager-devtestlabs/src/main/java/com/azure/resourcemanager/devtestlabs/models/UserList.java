@@ -5,31 +5,27 @@
 package com.azure.resourcemanager.devtestlabs.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.devtestlabs.fluent.models.UserInner;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The response of a list operation. */
+/** Contains a list of users and their properties. */
 @Fluent
 public final class UserList {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(UserList.class);
-
     /*
-     * Results of the list operation.
+     * List of users and their properties
      */
     @JsonProperty(value = "value")
     private List<UserInner> value;
 
     /*
-     * Link for next set of results.
+     * URL to get the next set of operation list results if there are any
      */
     @JsonProperty(value = "nextLink")
     private String nextLink;
 
     /**
-     * Get the value property: Results of the list operation.
+     * Get the value property: List of users and their properties.
      *
      * @return the value value.
      */
@@ -38,7 +34,7 @@ public final class UserList {
     }
 
     /**
-     * Set the value property: Results of the list operation.
+     * Set the value property: List of users and their properties.
      *
      * @param value the value value to set.
      * @return the UserList object itself.
@@ -49,7 +45,7 @@ public final class UserList {
     }
 
     /**
-     * Get the nextLink property: Link for next set of results.
+     * Get the nextLink property: URL to get the next set of operation list results if there are any.
      *
      * @return the nextLink value.
      */
@@ -58,7 +54,7 @@ public final class UserList {
     }
 
     /**
-     * Set the nextLink property: Link for next set of results.
+     * Set the nextLink property: URL to get the next set of operation list results if there are any.
      *
      * @param nextLink the nextLink value to set.
      * @return the UserList object itself.

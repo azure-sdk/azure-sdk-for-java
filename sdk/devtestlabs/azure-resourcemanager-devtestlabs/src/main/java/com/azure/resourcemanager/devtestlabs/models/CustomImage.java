@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.devtestlabs.models;
 
 import com.azure.core.management.Region;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.devtestlabs.fluent.models.CustomImageInner;
 import java.time.OffsetDateTime;
@@ -49,18 +50,11 @@ public interface CustomImage {
     Map<String, String> tags();
 
     /**
-     * Gets the vm property: The virtual machine from which the image is to be created.
+     * Gets the systemData property: The system metadata relating to this resource.
      *
-     * @return the vm value.
+     * @return the systemData value.
      */
-    CustomImagePropertiesFromVm vm();
-
-    /**
-     * Gets the vhd property: The VHD from which the image is to be created.
-     *
-     * @return the vhd value.
-     */
-    CustomImagePropertiesCustom vhd();
+    SystemData systemData();
 
     /**
      * Gets the description property: The description of the custom image.
@@ -105,13 +99,6 @@ public interface CustomImage {
     List<DataDiskStorageTypeInfo> dataDiskStorageInfo();
 
     /**
-     * Gets the customImagePlan property: Storage information about the plan related to this custom image.
-     *
-     * @return the customImagePlan value.
-     */
-    CustomImagePropertiesFromPlan customImagePlan();
-
-    /**
      * Gets the isPlanAuthorized property: Whether or not the custom images underlying offer/plan has been enabled for
      * programmatic deployment.
      *
@@ -134,6 +121,72 @@ public interface CustomImage {
     String uniqueIdentifier();
 
     /**
+     * Gets the sourceVmId property: The source vm identifier.
+     *
+     * @return the sourceVmId value.
+     */
+    String sourceVmId();
+
+    /**
+     * Gets the windowsOsState property: The state of the Windows OS (i.e. NonSysprepped, SysprepRequested,
+     * SysprepApplied).
+     *
+     * @return the windowsOsState value.
+     */
+    WindowsOsState windowsOsState();
+
+    /**
+     * Gets the linuxOsState property: The state of the Linux OS (i.e. NonDeprovisioned, DeprovisionRequested,
+     * DeprovisionApplied).
+     *
+     * @return the linuxOsState value.
+     */
+    LinuxOsState linuxOsState();
+
+    /**
+     * Gets the imageName property: The image name.
+     *
+     * @return the imageName value.
+     */
+    String imageName();
+
+    /**
+     * Gets the sysPrep property: Indicates whether sysprep has been run on the VHD.
+     *
+     * @return the sysPrep value.
+     */
+    Boolean sysPrep();
+
+    /**
+     * Gets the osType property: The OS type of the custom image (i.e. Windows, Linux).
+     *
+     * @return the osType value.
+     */
+    CustomImageOsType osType();
+
+    /**
+     * Gets the idPropertiesId property: The id of the plan, equivalent to name of the plan.
+     *
+     * @return the idPropertiesId value.
+     */
+    String idPropertiesId();
+
+    /**
+     * Gets the publisher property: The publisher for the plan from the marketplace image the custom image is derived
+     * from.
+     *
+     * @return the publisher value.
+     */
+    String publisher();
+
+    /**
+     * Gets the offer property: The offer for the plan from the marketplace image the custom image is derived from.
+     *
+     * @return the offer value.
+     */
+    String offer();
+
+    /**
      * Gets the region of the resource.
      *
      * @return the region of the resource.
@@ -146,6 +199,13 @@ public interface CustomImage {
      * @return the name of the resource region.
      */
     String regionName();
+
+    /**
+     * Gets the name of the resource group.
+     *
+     * @return the name of the resource group.
+     */
+    String resourceGroupName();
 
     /**
      * Gets the inner com.azure.resourcemanager.devtestlabs.fluent.models.CustomImageInner object.
@@ -201,15 +261,21 @@ public interface CustomImage {
          */
         interface WithCreate
             extends DefinitionStages.WithTags,
-                DefinitionStages.WithVm,
-                DefinitionStages.WithVhd,
                 DefinitionStages.WithDescription,
                 DefinitionStages.WithAuthor,
                 DefinitionStages.WithManagedImageId,
                 DefinitionStages.WithManagedSnapshotId,
                 DefinitionStages.WithDataDiskStorageInfo,
-                DefinitionStages.WithCustomImagePlan,
-                DefinitionStages.WithIsPlanAuthorized {
+                DefinitionStages.WithIsPlanAuthorized,
+                DefinitionStages.WithSourceVmId,
+                DefinitionStages.WithWindowsOsState,
+                DefinitionStages.WithLinuxOsState,
+                DefinitionStages.WithImageName,
+                DefinitionStages.WithSysPrep,
+                DefinitionStages.WithOsType,
+                DefinitionStages.WithIdPropertiesId,
+                DefinitionStages.WithPublisher,
+                DefinitionStages.WithOffer {
             /**
              * Executes the create request.
              *
@@ -234,26 +300,6 @@ public interface CustomImage {
              * @return the next definition stage.
              */
             WithCreate withTags(Map<String, String> tags);
-        }
-        /** The stage of the CustomImage definition allowing to specify vm. */
-        interface WithVm {
-            /**
-             * Specifies the vm property: The virtual machine from which the image is to be created..
-             *
-             * @param vm The virtual machine from which the image is to be created.
-             * @return the next definition stage.
-             */
-            WithCreate withVm(CustomImagePropertiesFromVm vm);
-        }
-        /** The stage of the CustomImage definition allowing to specify vhd. */
-        interface WithVhd {
-            /**
-             * Specifies the vhd property: The VHD from which the image is to be created..
-             *
-             * @param vhd The VHD from which the image is to be created.
-             * @return the next definition stage.
-             */
-            WithCreate withVhd(CustomImagePropertiesCustom vhd);
         }
         /** The stage of the CustomImage definition allowing to specify description. */
         interface WithDescription {
@@ -306,16 +352,6 @@ public interface CustomImage {
              */
             WithCreate withDataDiskStorageInfo(List<DataDiskStorageTypeInfo> dataDiskStorageInfo);
         }
-        /** The stage of the CustomImage definition allowing to specify customImagePlan. */
-        interface WithCustomImagePlan {
-            /**
-             * Specifies the customImagePlan property: Storage information about the plan related to this custom image.
-             *
-             * @param customImagePlan Storage information about the plan related to this custom image.
-             * @return the next definition stage.
-             */
-            WithCreate withCustomImagePlan(CustomImagePropertiesFromPlan customImagePlan);
-        }
         /** The stage of the CustomImage definition allowing to specify isPlanAuthorized. */
         interface WithIsPlanAuthorized {
             /**
@@ -327,6 +363,101 @@ public interface CustomImage {
              * @return the next definition stage.
              */
             WithCreate withIsPlanAuthorized(Boolean isPlanAuthorized);
+        }
+        /** The stage of the CustomImage definition allowing to specify sourceVmId. */
+        interface WithSourceVmId {
+            /**
+             * Specifies the sourceVmId property: The source vm identifier..
+             *
+             * @param sourceVmId The source vm identifier.
+             * @return the next definition stage.
+             */
+            WithCreate withSourceVmId(String sourceVmId);
+        }
+        /** The stage of the CustomImage definition allowing to specify windowsOsState. */
+        interface WithWindowsOsState {
+            /**
+             * Specifies the windowsOsState property: The state of the Windows OS (i.e. NonSysprepped, SysprepRequested,
+             * SysprepApplied)..
+             *
+             * @param windowsOsState The state of the Windows OS (i.e. NonSysprepped, SysprepRequested, SysprepApplied).
+             * @return the next definition stage.
+             */
+            WithCreate withWindowsOsState(WindowsOsState windowsOsState);
+        }
+        /** The stage of the CustomImage definition allowing to specify linuxOsState. */
+        interface WithLinuxOsState {
+            /**
+             * Specifies the linuxOsState property: The state of the Linux OS (i.e. NonDeprovisioned,
+             * DeprovisionRequested, DeprovisionApplied)..
+             *
+             * @param linuxOsState The state of the Linux OS (i.e. NonDeprovisioned, DeprovisionRequested,
+             *     DeprovisionApplied).
+             * @return the next definition stage.
+             */
+            WithCreate withLinuxOsState(LinuxOsState linuxOsState);
+        }
+        /** The stage of the CustomImage definition allowing to specify imageName. */
+        interface WithImageName {
+            /**
+             * Specifies the imageName property: The image name..
+             *
+             * @param imageName The image name.
+             * @return the next definition stage.
+             */
+            WithCreate withImageName(String imageName);
+        }
+        /** The stage of the CustomImage definition allowing to specify sysPrep. */
+        interface WithSysPrep {
+            /**
+             * Specifies the sysPrep property: Indicates whether sysprep has been run on the VHD..
+             *
+             * @param sysPrep Indicates whether sysprep has been run on the VHD.
+             * @return the next definition stage.
+             */
+            WithCreate withSysPrep(Boolean sysPrep);
+        }
+        /** The stage of the CustomImage definition allowing to specify osType. */
+        interface WithOsType {
+            /**
+             * Specifies the osType property: The OS type of the custom image (i.e. Windows, Linux).
+             *
+             * @param osType The OS type of the custom image (i.e. Windows, Linux).
+             * @return the next definition stage.
+             */
+            WithCreate withOsType(CustomImageOsType osType);
+        }
+        /** The stage of the CustomImage definition allowing to specify idPropertiesId. */
+        interface WithIdPropertiesId {
+            /**
+             * Specifies the idPropertiesId property: The id of the plan, equivalent to name of the plan.
+             *
+             * @param idPropertiesId The id of the plan, equivalent to name of the plan.
+             * @return the next definition stage.
+             */
+            WithCreate withIdPropertiesId(String idPropertiesId);
+        }
+        /** The stage of the CustomImage definition allowing to specify publisher. */
+        interface WithPublisher {
+            /**
+             * Specifies the publisher property: The publisher for the plan from the marketplace image the custom image
+             * is derived from.
+             *
+             * @param publisher The publisher for the plan from the marketplace image the custom image is derived from.
+             * @return the next definition stage.
+             */
+            WithCreate withPublisher(String publisher);
+        }
+        /** The stage of the CustomImage definition allowing to specify offer. */
+        interface WithOffer {
+            /**
+             * Specifies the offer property: The offer for the plan from the marketplace image the custom image is
+             * derived from.
+             *
+             * @param offer The offer for the plan from the marketplace image the custom image is derived from.
+             * @return the next definition stage.
+             */
+            WithCreate withOffer(String offer);
         }
     }
     /**

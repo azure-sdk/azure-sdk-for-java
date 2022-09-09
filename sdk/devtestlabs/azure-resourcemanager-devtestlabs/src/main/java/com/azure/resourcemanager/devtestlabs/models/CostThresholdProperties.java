@@ -5,15 +5,12 @@
 package com.azure.resourcemanager.devtestlabs.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.azure.resourcemanager.devtestlabs.fluent.models.PercentageCostThresholdProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Properties of a cost threshold item. */
 @Fluent
 public final class CostThresholdProperties {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(CostThresholdProperties.class);
-
     /*
      * The ID of the cost threshold item.
      */
@@ -24,7 +21,7 @@ public final class CostThresholdProperties {
      * The value of the percentage cost threshold.
      */
     @JsonProperty(value = "percentageThreshold")
-    private PercentageCostThresholdProperties percentageThreshold;
+    private PercentageCostThresholdProperties innerPercentageThreshold;
 
     /*
      * Indicates whether this threshold will be displayed on cost charts.
@@ -33,15 +30,13 @@ public final class CostThresholdProperties {
     private CostThresholdStatus displayOnChart;
 
     /*
-     * Indicates whether notifications will be sent when this threshold is
-     * exceeded.
+     * Indicates whether notifications will be sent when this threshold is exceeded.
      */
     @JsonProperty(value = "sendNotificationWhenExceeded")
     private CostThresholdStatus sendNotificationWhenExceeded;
 
     /*
-     * Indicates the datetime when notifications were last sent for this
-     * threshold.
+     * Indicates the datetime when notifications were last sent for this threshold.
      */
     @JsonProperty(value = "notificationSent")
     private String notificationSent;
@@ -67,23 +62,12 @@ public final class CostThresholdProperties {
     }
 
     /**
-     * Get the percentageThreshold property: The value of the percentage cost threshold.
+     * Get the innerPercentageThreshold property: The value of the percentage cost threshold.
      *
-     * @return the percentageThreshold value.
+     * @return the innerPercentageThreshold value.
      */
-    public PercentageCostThresholdProperties percentageThreshold() {
-        return this.percentageThreshold;
-    }
-
-    /**
-     * Set the percentageThreshold property: The value of the percentage cost threshold.
-     *
-     * @param percentageThreshold the percentageThreshold value to set.
-     * @return the CostThresholdProperties object itself.
-     */
-    public CostThresholdProperties withPercentageThreshold(PercentageCostThresholdProperties percentageThreshold) {
-        this.percentageThreshold = percentageThreshold;
-        return this;
+    private PercentageCostThresholdProperties innerPercentageThreshold() {
+        return this.innerPercentageThreshold;
     }
 
     /**
@@ -149,13 +133,36 @@ public final class CostThresholdProperties {
     }
 
     /**
+     * Get the thresholdValue property: The cost threshold value.
+     *
+     * @return the thresholdValue value.
+     */
+    public Double thresholdValue() {
+        return this.innerPercentageThreshold() == null ? null : this.innerPercentageThreshold().thresholdValue();
+    }
+
+    /**
+     * Set the thresholdValue property: The cost threshold value.
+     *
+     * @param thresholdValue the thresholdValue value to set.
+     * @return the CostThresholdProperties object itself.
+     */
+    public CostThresholdProperties withThresholdValue(Double thresholdValue) {
+        if (this.innerPercentageThreshold() == null) {
+            this.innerPercentageThreshold = new PercentageCostThresholdProperties();
+        }
+        this.innerPercentageThreshold().withThresholdValue(thresholdValue);
+        return this;
+    }
+
+    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (percentageThreshold() != null) {
-            percentageThreshold().validate();
+        if (innerPercentageThreshold() != null) {
+            innerPercentageThreshold().validate();
         }
     }
 }

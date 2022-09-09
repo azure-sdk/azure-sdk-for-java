@@ -7,19 +7,21 @@ package com.azure.resourcemanager.devtestlabs.implementation;
 import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.http.rest.Response;
 import com.azure.core.management.Region;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.devtestlabs.fluent.models.LabInner;
+import com.azure.resourcemanager.devtestlabs.fluent.models.LabVirtualMachineCreationParameterInner;
+import com.azure.resourcemanager.devtestlabs.models.EnableStatus;
+import com.azure.resourcemanager.devtestlabs.models.EncryptionType;
 import com.azure.resourcemanager.devtestlabs.models.EnvironmentPermission;
 import com.azure.resourcemanager.devtestlabs.models.ExportResourceUsageParameters;
 import com.azure.resourcemanager.devtestlabs.models.GenerateUploadUriParameter;
 import com.azure.resourcemanager.devtestlabs.models.GenerateUploadUriResponse;
 import com.azure.resourcemanager.devtestlabs.models.ImportLabVirtualMachineRequest;
 import com.azure.resourcemanager.devtestlabs.models.Lab;
-import com.azure.resourcemanager.devtestlabs.models.LabAnnouncementProperties;
 import com.azure.resourcemanager.devtestlabs.models.LabFragment;
-import com.azure.resourcemanager.devtestlabs.models.LabSupportProperties;
 import com.azure.resourcemanager.devtestlabs.models.LabVhd;
-import com.azure.resourcemanager.devtestlabs.models.LabVirtualMachineCreationParameter;
+import com.azure.resourcemanager.devtestlabs.models.ManagedIdentityType;
 import com.azure.resourcemanager.devtestlabs.models.PremiumDataDisk;
 import com.azure.resourcemanager.devtestlabs.models.StorageType;
 import java.time.OffsetDateTime;
@@ -55,6 +57,10 @@ public final class LabImpl implements Lab, Lab.Definition, Lab.Update {
         } else {
             return Collections.emptyMap();
         }
+    }
+
+    public SystemData systemData() {
+        return this.innerModel().systemData();
     }
 
     public String defaultStorageAccount() {
@@ -111,14 +117,6 @@ public final class LabImpl implements Lab, Lab.Definition, Lab.Update {
         return this.innerModel().environmentPermission();
     }
 
-    public LabAnnouncementProperties announcement() {
-        return this.innerModel().announcement();
-    }
-
-    public LabSupportProperties support() {
-        return this.innerModel().support();
-    }
-
     public String vmCreationResourceGroup() {
         return this.innerModel().vmCreationResourceGroup();
     }
@@ -144,6 +142,31 @@ public final class LabImpl implements Lab, Lab.Definition, Lab.Update {
         }
     }
 
+    public EnableStatus browserConnect() {
+        return this.innerModel().browserConnect();
+    }
+
+    public Boolean disableAutoUpgradeCseMinorVersion() {
+        return this.innerModel().disableAutoUpgradeCseMinorVersion();
+    }
+
+    public Map<String, Object> managementIdentities() {
+        Map<String, Object> inner = this.innerModel().managementIdentities();
+        if (inner != null) {
+            return Collections.unmodifiableMap(inner);
+        } else {
+            return Collections.emptyMap();
+        }
+    }
+
+    public EnableStatus isolateLabResources() {
+        return this.innerModel().isolateLabResources();
+    }
+
+    public String defaultSecretName() {
+        return this.innerModel().defaultSecretName();
+    }
+
     public String provisioningState() {
         return this.innerModel().provisioningState();
     }
@@ -152,12 +175,85 @@ public final class LabImpl implements Lab, Lab.Definition, Lab.Update {
         return this.innerModel().uniqueIdentifier();
     }
 
+    public String title() {
+        return this.innerModel().title();
+    }
+
+    public String markdown() {
+        return this.innerModel().markdown();
+    }
+
+    public EnableStatus enabled() {
+        return this.innerModel().enabled();
+    }
+
+    public OffsetDateTime expirationDate() {
+        return this.innerModel().expirationDate();
+    }
+
+    public Boolean expired() {
+        return this.innerModel().expired();
+    }
+
+    public String provisioningStateAnnouncementProvisioningState() {
+        return this.innerModel().provisioningStateAnnouncementProvisioningState();
+    }
+
+    public String uniqueIdentifierAnnouncementUniqueIdentifier() {
+        return this.innerModel().uniqueIdentifierAnnouncementUniqueIdentifier();
+    }
+
+    public EnableStatus enabledSupportEnabled() {
+        return this.innerModel().enabledSupportEnabled();
+    }
+
+    public String markdownSupportMarkdown() {
+        return this.innerModel().markdownSupportMarkdown();
+    }
+
+    public String diskEncryptionSetId() {
+        return this.innerModel().diskEncryptionSetId();
+    }
+
+    public EncryptionType typePropertiesType() {
+        return this.innerModel().typePropertiesType();
+    }
+
+    public ManagedIdentityType typeIdentityType() {
+        return this.innerModel().typeIdentityType();
+    }
+
+    public String principalId() {
+        return this.innerModel().principalId();
+    }
+
+    public String tenantId() {
+        return this.innerModel().tenantId();
+    }
+
+    public String clientSecretUrl() {
+        return this.innerModel().clientSecretUrl();
+    }
+
+    public Map<String, Object> userAssignedIdentities() {
+        Map<String, Object> inner = this.innerModel().userAssignedIdentities();
+        if (inner != null) {
+            return Collections.unmodifiableMap(inner);
+        } else {
+            return Collections.emptyMap();
+        }
+    }
+
     public Region region() {
         return Region.fromName(this.regionName());
     }
 
     public String regionName() {
         return this.location();
+    }
+
+    public String resourceGroupName() {
+        return resourceGroupName;
     }
 
     public LabInner innerModel() {
@@ -265,13 +361,21 @@ public final class LabImpl implements Lab, Lab.Definition, Lab.Update {
         serviceManager.labs().claimAnyVm(resourceGroupName, name, context);
     }
 
-    public void createEnvironment(LabVirtualMachineCreationParameter labVirtualMachineCreationParameter) {
+    public void createEnvironment(LabVirtualMachineCreationParameterInner labVirtualMachineCreationParameter) {
         serviceManager.labs().createEnvironment(resourceGroupName, name, labVirtualMachineCreationParameter);
     }
 
     public void createEnvironment(
-        LabVirtualMachineCreationParameter labVirtualMachineCreationParameter, Context context) {
+        LabVirtualMachineCreationParameterInner labVirtualMachineCreationParameter, Context context) {
         serviceManager.labs().createEnvironment(resourceGroupName, name, labVirtualMachineCreationParameter, context);
+    }
+
+    public void ensureCurrentUserProfile() {
+        serviceManager.labs().ensureCurrentUserProfile(resourceGroupName, name);
+    }
+
+    public Response<Void> ensureCurrentUserProfileWithResponse(Context context) {
+        return serviceManager.labs().ensureCurrentUserProfileWithResponse(resourceGroupName, name, context);
     }
 
     public void exportResourceUsage(ExportResourceUsageParameters exportResourceUsageParameters) {
@@ -354,18 +458,103 @@ public final class LabImpl implements Lab, Lab.Definition, Lab.Update {
         return this;
     }
 
-    public LabImpl withAnnouncement(LabAnnouncementProperties announcement) {
-        this.innerModel().withAnnouncement(announcement);
-        return this;
-    }
-
-    public LabImpl withSupport(LabSupportProperties support) {
-        this.innerModel().withSupport(support);
-        return this;
-    }
-
     public LabImpl withExtendedProperties(Map<String, String> extendedProperties) {
         this.innerModel().withExtendedProperties(extendedProperties);
+        return this;
+    }
+
+    public LabImpl withBrowserConnect(EnableStatus browserConnect) {
+        this.innerModel().withBrowserConnect(browserConnect);
+        return this;
+    }
+
+    public LabImpl withDisableAutoUpgradeCseMinorVersion(Boolean disableAutoUpgradeCseMinorVersion) {
+        this.innerModel().withDisableAutoUpgradeCseMinorVersion(disableAutoUpgradeCseMinorVersion);
+        return this;
+    }
+
+    public LabImpl withManagementIdentities(Map<String, Object> managementIdentities) {
+        this.innerModel().withManagementIdentities(managementIdentities);
+        return this;
+    }
+
+    public LabImpl withIsolateLabResources(EnableStatus isolateLabResources) {
+        this.innerModel().withIsolateLabResources(isolateLabResources);
+        return this;
+    }
+
+    public LabImpl withDefaultSecretName(String defaultSecretName) {
+        this.innerModel().withDefaultSecretName(defaultSecretName);
+        return this;
+    }
+
+    public LabImpl withTitle(String title) {
+        this.innerModel().withTitle(title);
+        return this;
+    }
+
+    public LabImpl withMarkdown(String markdown) {
+        this.innerModel().withMarkdown(markdown);
+        return this;
+    }
+
+    public LabImpl withEnabled(EnableStatus enabled) {
+        this.innerModel().withEnabled(enabled);
+        return this;
+    }
+
+    public LabImpl withExpirationDate(OffsetDateTime expirationDate) {
+        this.innerModel().withExpirationDate(expirationDate);
+        return this;
+    }
+
+    public LabImpl withExpired(Boolean expired) {
+        this.innerModel().withExpired(expired);
+        return this;
+    }
+
+    public LabImpl withEnabledSupportEnabled(EnableStatus enabledSupportEnabled) {
+        this.innerModel().withEnabledSupportEnabled(enabledSupportEnabled);
+        return this;
+    }
+
+    public LabImpl withMarkdownSupportMarkdown(String markdownSupportMarkdown) {
+        this.innerModel().withMarkdownSupportMarkdown(markdownSupportMarkdown);
+        return this;
+    }
+
+    public LabImpl withDiskEncryptionSetId(String diskEncryptionSetId) {
+        this.innerModel().withDiskEncryptionSetId(diskEncryptionSetId);
+        return this;
+    }
+
+    public LabImpl withTypePropertiesType(EncryptionType typePropertiesType) {
+        this.innerModel().withTypePropertiesType(typePropertiesType);
+        return this;
+    }
+
+    public LabImpl withTypeIdentityType(ManagedIdentityType typeIdentityType) {
+        this.innerModel().withTypeIdentityType(typeIdentityType);
+        return this;
+    }
+
+    public LabImpl withPrincipalId(String principalId) {
+        this.innerModel().withPrincipalId(principalId);
+        return this;
+    }
+
+    public LabImpl withTenantId(String tenantId) {
+        this.innerModel().withTenantId(tenantId);
+        return this;
+    }
+
+    public LabImpl withClientSecretUrl(String clientSecretUrl) {
+        this.innerModel().withClientSecretUrl(clientSecretUrl);
+        return this;
+    }
+
+    public LabImpl withUserAssignedIdentities(Map<String, Object> userAssignedIdentities) {
+        this.innerModel().withUserAssignedIdentities(userAssignedIdentities);
         return this;
     }
 

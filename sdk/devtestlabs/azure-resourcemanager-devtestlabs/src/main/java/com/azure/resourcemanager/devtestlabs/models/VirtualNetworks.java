@@ -18,7 +18,7 @@ public interface VirtualNetworks {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation.
+     * @return contains a list of virtualNetworks and their properties as paginated response with {@link PagedIterable}.
      */
     PagedIterable<VirtualNetwork> list(String resourceGroupName, String labName);
 
@@ -28,14 +28,14 @@ public interface VirtualNetworks {
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
      * @param expand Specify the $expand query. Example: 'properties($expand=externalSubnets)'.
-     * @param filter The filter to apply to the operation. Example: '$filter=contains(name,'myName').
+     * @param filter The filter to apply to the operation. Example: '$filter=contains(name,'myName')'.
      * @param top The maximum number of resources to return from the operation. Example: '$top=10'.
      * @param orderby The ordering expression for the results, using OData notation. Example: '$orderby=name desc'.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation.
+     * @return contains a list of virtualNetworks and their properties as paginated response with {@link PagedIterable}.
      */
     PagedIterable<VirtualNetwork> list(
         String resourceGroupName,
@@ -70,7 +70,7 @@ public interface VirtualNetworks {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return virtual network.
+     * @return virtual network along with {@link Response}.
      */
     Response<VirtualNetwork> getWithResponse(
         String resourceGroupName, String labName, String name, String expand, Context context);
@@ -107,7 +107,7 @@ public interface VirtualNetworks {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return virtual network.
+     * @return virtual network along with {@link Response}.
      */
     VirtualNetwork getById(String id);
 
@@ -120,7 +120,7 @@ public interface VirtualNetworks {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return virtual network.
+     * @return virtual network along with {@link Response}.
      */
     Response<VirtualNetwork> getByIdWithResponse(String id, String expand, Context context);
 

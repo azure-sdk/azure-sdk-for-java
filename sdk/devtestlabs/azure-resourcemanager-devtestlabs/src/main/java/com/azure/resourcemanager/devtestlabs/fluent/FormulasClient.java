@@ -24,7 +24,7 @@ public interface FormulasClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation.
+     * @return contains a list of formulas and their properties as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<FormulaInner> list(String resourceGroupName, String labName);
@@ -35,14 +35,14 @@ public interface FormulasClient {
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
      * @param expand Specify the $expand query. Example: 'properties($select=description)'.
-     * @param filter The filter to apply to the operation. Example: '$filter=contains(name,'myName').
+     * @param filter The filter to apply to the operation. Example: '$filter=contains(name,'myName')'.
      * @param top The maximum number of resources to return from the operation. Example: '$top=10'.
      * @param orderby The ordering expression for the results, using OData notation. Example: '$orderby=name desc'.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation.
+     * @return contains a list of formulas and their properties as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<FormulaInner> list(
@@ -79,14 +79,14 @@ public interface FormulasClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return formula.
+     * @return formula along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<FormulaInner> getWithResponse(
         String resourceGroupName, String labName, String name, String expand, Context context);
 
     /**
-     * Create or replace an existing formula. This operation can take a while to complete.
+     * Create or replace an existing Formula. This operation can take a while to complete.
      *
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
@@ -95,14 +95,15 @@ public interface FormulasClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a formula for creating a VM, specifying an image base and other parameters.
+     * @return the {@link SyncPoller} for polling of a formula for creating a VM, specifying an image base and other
+     *     parameters.
      */
-    @ServiceMethod(returns = ReturnType.SINGLE)
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<FormulaInner>, FormulaInner> beginCreateOrUpdate(
         String resourceGroupName, String labName, String name, FormulaInner formula);
 
     /**
-     * Create or replace an existing formula. This operation can take a while to complete.
+     * Create or replace an existing Formula. This operation can take a while to complete.
      *
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
@@ -112,14 +113,15 @@ public interface FormulasClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a formula for creating a VM, specifying an image base and other parameters.
+     * @return the {@link SyncPoller} for polling of a formula for creating a VM, specifying an image base and other
+     *     parameters.
      */
-    @ServiceMethod(returns = ReturnType.SINGLE)
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<FormulaInner>, FormulaInner> beginCreateOrUpdate(
         String resourceGroupName, String labName, String name, FormulaInner formula, Context context);
 
     /**
-     * Create or replace an existing formula. This operation can take a while to complete.
+     * Create or replace an existing Formula. This operation can take a while to complete.
      *
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
@@ -134,7 +136,7 @@ public interface FormulasClient {
     FormulaInner createOrUpdate(String resourceGroupName, String labName, String name, FormulaInner formula);
 
     /**
-     * Create or replace an existing formula. This operation can take a while to complete.
+     * Create or replace an existing Formula. This operation can take a while to complete.
      *
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
@@ -173,7 +175,7 @@ public interface FormulasClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
+     * @return the {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<Void> deleteWithResponse(String resourceGroupName, String labName, String name, Context context);
@@ -184,7 +186,7 @@ public interface FormulasClient {
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
      * @param name The name of the formula.
-     * @param formula A formula for creating a VM, specifying an image base and other parameters.
+     * @param formula Allows modifying tags of formulas. All other properties will be ignored.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -199,12 +201,12 @@ public interface FormulasClient {
      * @param resourceGroupName The name of the resource group.
      * @param labName The name of the lab.
      * @param name The name of the formula.
-     * @param formula A formula for creating a VM, specifying an image base and other parameters.
+     * @param formula Allows modifying tags of formulas. All other properties will be ignored.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a formula for creating a VM, specifying an image base and other parameters.
+     * @return a formula for creating a VM, specifying an image base and other parameters along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<FormulaInner> updateWithResponse(

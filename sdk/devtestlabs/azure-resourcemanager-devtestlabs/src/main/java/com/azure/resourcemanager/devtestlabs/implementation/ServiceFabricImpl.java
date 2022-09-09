@@ -6,13 +6,16 @@ package com.azure.resourcemanager.devtestlabs.implementation;
 
 import com.azure.core.http.rest.Response;
 import com.azure.core.management.Region;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
-import com.azure.resourcemanager.devtestlabs.fluent.models.ApplicableScheduleInner;
 import com.azure.resourcemanager.devtestlabs.fluent.models.ServiceFabricInner;
 import com.azure.resourcemanager.devtestlabs.models.ApplicableSchedule;
+import com.azure.resourcemanager.devtestlabs.models.EnableStatus;
 import com.azure.resourcemanager.devtestlabs.models.ServiceFabric;
 import com.azure.resourcemanager.devtestlabs.models.ServiceFabricFragment;
+import java.time.OffsetDateTime;
 import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 
 public final class ServiceFabricImpl implements ServiceFabric, ServiceFabric.Definition, ServiceFabric.Update {
@@ -45,21 +48,16 @@ public final class ServiceFabricImpl implements ServiceFabric, ServiceFabric.Def
         }
     }
 
+    public SystemData systemData() {
+        return this.innerModel().systemData();
+    }
+
     public String externalServiceFabricId() {
         return this.innerModel().externalServiceFabricId();
     }
 
     public String environmentId() {
         return this.innerModel().environmentId();
-    }
-
-    public ApplicableSchedule applicableSchedule() {
-        ApplicableScheduleInner inner = this.innerModel().applicableSchedule();
-        if (inner != null) {
-            return new ApplicableScheduleImpl(inner, this.manager());
-        } else {
-            return null;
-        }
     }
 
     public String provisioningState() {
@@ -70,12 +68,212 @@ public final class ServiceFabricImpl implements ServiceFabric, ServiceFabric.Def
         return this.innerModel().uniqueIdentifier();
     }
 
+    public SystemData systemDataPropertiesSystemData() {
+        return this.innerModel().systemDataPropertiesSystemData();
+    }
+
+    public EnableStatus status() {
+        return this.innerModel().status();
+    }
+
+    public String taskType() {
+        return this.innerModel().taskType();
+    }
+
+    public String timeZoneId() {
+        return this.innerModel().timeZoneId();
+    }
+
+    public OffsetDateTime createdDate() {
+        return this.innerModel().createdDate();
+    }
+
+    public String targetResourceId() {
+        return this.innerModel().targetResourceId();
+    }
+
+    public String provisioningStateApplicableScheduleProvisioningState() {
+        return this.innerModel().provisioningStateApplicableScheduleProvisioningState();
+    }
+
+    public String uniqueIdentifierApplicableScheduleUniqueIdentifier() {
+        return this.innerModel().uniqueIdentifierApplicableScheduleUniqueIdentifier();
+    }
+
+    public List<String> weekdays() {
+        List<String> inner = this.innerModel().weekdays();
+        if (inner != null) {
+            return Collections.unmodifiableList(inner);
+        } else {
+            return Collections.emptyList();
+        }
+    }
+
+    public String time() {
+        return this.innerModel().time();
+    }
+
+    public String timeDailyRecurrenceTime() {
+        return this.innerModel().timeDailyRecurrenceTime();
+    }
+
+    public Integer minute() {
+        return this.innerModel().minute();
+    }
+
+    public EnableStatus statusNotificationSettingsStatus() {
+        return this.innerModel().statusNotificationSettingsStatus();
+    }
+
+    public Integer timeInMinutes() {
+        return this.innerModel().timeInMinutes();
+    }
+
+    public String webhookUrl() {
+        return this.innerModel().webhookUrl();
+    }
+
+    public String emailRecipient() {
+        return this.innerModel().emailRecipient();
+    }
+
+    public String notificationLocale() {
+        return this.innerModel().notificationLocale();
+    }
+
+    public String idPropertiesId() {
+        return this.innerModel().idPropertiesId();
+    }
+
+    public String namePropertiesName() {
+        return this.innerModel().namePropertiesName();
+    }
+
+    public String typePropertiesType() {
+        return this.innerModel().typePropertiesType();
+    }
+
+    public Map<String, String> tagsPropertiesTags() {
+        Map<String, String> inner = this.innerModel().tagsPropertiesTags();
+        if (inner != null) {
+            return Collections.unmodifiableMap(inner);
+        } else {
+            return Collections.emptyMap();
+        }
+    }
+
+    public String locationPropertiesLocation() {
+        return this.innerModel().locationPropertiesLocation();
+    }
+
+    public SystemData systemDataLabVmsStartupSystemData() {
+        return this.innerModel().systemDataLabVmsStartupSystemData();
+    }
+
+    public EnableStatus statusLabVmsStartupStatus() {
+        return this.innerModel().statusLabVmsStartupStatus();
+    }
+
+    public String taskTypeLabVmsStartupTaskType() {
+        return this.innerModel().taskTypeLabVmsStartupTaskType();
+    }
+
+    public String timeZoneIdLabVmsStartupTimeZoneId() {
+        return this.innerModel().timeZoneIdLabVmsStartupTimeZoneId();
+    }
+
+    public OffsetDateTime createdDateLabVmsStartupCreatedDate() {
+        return this.innerModel().createdDateLabVmsStartupCreatedDate();
+    }
+
+    public String targetResourceIdLabVmsStartupTargetResourceId() {
+        return this.innerModel().targetResourceIdLabVmsStartupTargetResourceId();
+    }
+
+    public String provisioningStateLabVmsStartupProvisioningState() {
+        return this.innerModel().provisioningStateLabVmsStartupProvisioningState();
+    }
+
+    public String uniqueIdentifierLabVmsStartupUniqueIdentifier() {
+        return this.innerModel().uniqueIdentifierLabVmsStartupUniqueIdentifier();
+    }
+
+    public List<String> weekdaysLabVmsStartupWeekdays() {
+        List<String> inner = this.innerModel().weekdaysLabVmsStartupWeekdays();
+        if (inner != null) {
+            return Collections.unmodifiableList(inner);
+        } else {
+            return Collections.emptyList();
+        }
+    }
+
+    public String timeLabVmsStartupTime() {
+        return this.innerModel().timeLabVmsStartupTime();
+    }
+
+    public String timeDailyRecurrenceTimeLabVmsStartupTimeDailyRecurrenceTime() {
+        return this.innerModel().timeDailyRecurrenceTimeLabVmsStartupTimeDailyRecurrenceTime();
+    }
+
+    public Integer minuteLabVmsStartupMinute() {
+        return this.innerModel().minuteLabVmsStartupMinute();
+    }
+
+    public EnableStatus statusNotificationSettingsStatusLabVmsStartupStatusNotificationSettingsStatus() {
+        return this.innerModel().statusNotificationSettingsStatusLabVmsStartupStatusNotificationSettingsStatus();
+    }
+
+    public Integer timeInMinutesLabVmsStartupTimeInMinutes() {
+        return this.innerModel().timeInMinutesLabVmsStartupTimeInMinutes();
+    }
+
+    public String webhookUrlLabVmsStartupWebhookUrl() {
+        return this.innerModel().webhookUrlLabVmsStartupWebhookUrl();
+    }
+
+    public String emailRecipientLabVmsStartupEmailRecipient() {
+        return this.innerModel().emailRecipientLabVmsStartupEmailRecipient();
+    }
+
+    public String notificationLocaleLabVmsStartupNotificationLocale() {
+        return this.innerModel().notificationLocaleLabVmsStartupNotificationLocale();
+    }
+
+    public String idLabVmsStartupId() {
+        return this.innerModel().idLabVmsStartupId();
+    }
+
+    public String nameLabVmsStartupName() {
+        return this.innerModel().nameLabVmsStartupName();
+    }
+
+    public String typeLabVmsStartupType() {
+        return this.innerModel().typeLabVmsStartupType();
+    }
+
+    public Map<String, String> tagsLabVmsStartupTags() {
+        Map<String, String> inner = this.innerModel().tagsLabVmsStartupTags();
+        if (inner != null) {
+            return Collections.unmodifiableMap(inner);
+        } else {
+            return Collections.emptyMap();
+        }
+    }
+
+    public String locationLabVmsStartupLocation() {
+        return this.innerModel().locationLabVmsStartupLocation();
+    }
+
     public Region region() {
         return Region.fromName(this.regionName());
     }
 
     public String regionName() {
         return this.location();
+    }
+
+    public String resourceGroupName() {
+        return resourceGroupName;
     }
 
     public ServiceFabricInner innerModel() {

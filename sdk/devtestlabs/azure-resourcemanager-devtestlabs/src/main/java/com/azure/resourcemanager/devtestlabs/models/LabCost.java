@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.devtestlabs.models;
 
 import com.azure.core.management.Region;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.devtestlabs.fluent.models.LabCostInner;
 import java.time.OffsetDateTime;
@@ -49,18 +50,11 @@ public interface LabCost {
     Map<String, String> tags();
 
     /**
-     * Gets the targetCost property: The target cost properties.
+     * Gets the systemData property: The system metadata relating to this resource.
      *
-     * @return the targetCost value.
+     * @return the systemData value.
      */
-    TargetCostProperties targetCost();
-
-    /**
-     * Gets the labCostSummary property: The lab cost summary component of the cost data.
-     *
-     * @return the labCostSummary value.
-     */
-    LabCostSummaryProperties labCostSummary();
+    SystemData systemData();
 
     /**
      * Gets the labCostDetails property: The lab cost details component of the cost data.
@@ -119,6 +113,55 @@ public interface LabCost {
     String uniqueIdentifier();
 
     /**
+     * Gets the status property: Target cost status.
+     *
+     * @return the status value.
+     */
+    TargetCostStatus status();
+
+    /**
+     * Gets the target property: Lab target cost.
+     *
+     * @return the target value.
+     */
+    Integer target();
+
+    /**
+     * Gets the costThresholds property: Cost thresholds.
+     *
+     * @return the costThresholds value.
+     */
+    List<CostThresholdProperties> costThresholds();
+
+    /**
+     * Gets the cycleStartDateTime property: Reporting cycle start date.
+     *
+     * @return the cycleStartDateTime value.
+     */
+    OffsetDateTime cycleStartDateTime();
+
+    /**
+     * Gets the cycleEndDateTime property: Reporting cycle end date.
+     *
+     * @return the cycleEndDateTime value.
+     */
+    OffsetDateTime cycleEndDateTime();
+
+    /**
+     * Gets the cycleType property: Reporting cycle type.
+     *
+     * @return the cycleType value.
+     */
+    ReportingCycleType cycleType();
+
+    /**
+     * Gets the estimatedLabCost property: The cost component of the cost item.
+     *
+     * @return the estimatedLabCost value.
+     */
+    Double estimatedLabCost();
+
+    /**
      * Gets the region of the resource.
      *
      * @return the region of the resource.
@@ -131,6 +174,13 @@ public interface LabCost {
      * @return the name of the resource region.
      */
     String regionName();
+
+    /**
+     * Gets the name of the resource group.
+     *
+     * @return the name of the resource group.
+     */
+    String resourceGroupName();
 
     /**
      * Gets the inner com.azure.resourcemanager.devtestlabs.fluent.models.LabCostInner object.
@@ -186,11 +236,16 @@ public interface LabCost {
          */
         interface WithCreate
             extends DefinitionStages.WithTags,
-                DefinitionStages.WithTargetCost,
                 DefinitionStages.WithCurrencyCode,
                 DefinitionStages.WithStartDateTime,
                 DefinitionStages.WithEndDateTime,
-                DefinitionStages.WithCreatedDate {
+                DefinitionStages.WithCreatedDate,
+                DefinitionStages.WithStatus,
+                DefinitionStages.WithTarget,
+                DefinitionStages.WithCostThresholds,
+                DefinitionStages.WithCycleStartDateTime,
+                DefinitionStages.WithCycleEndDateTime,
+                DefinitionStages.WithCycleType {
             /**
              * Executes the create request.
              *
@@ -215,16 +270,6 @@ public interface LabCost {
              * @return the next definition stage.
              */
             WithCreate withTags(Map<String, String> tags);
-        }
-        /** The stage of the LabCost definition allowing to specify targetCost. */
-        interface WithTargetCost {
-            /**
-             * Specifies the targetCost property: The target cost properties.
-             *
-             * @param targetCost The target cost properties.
-             * @return the next definition stage.
-             */
-            WithCreate withTargetCost(TargetCostProperties targetCost);
         }
         /** The stage of the LabCost definition allowing to specify currencyCode. */
         interface WithCurrencyCode {
@@ -266,6 +311,66 @@ public interface LabCost {
              */
             WithCreate withCreatedDate(OffsetDateTime createdDate);
         }
+        /** The stage of the LabCost definition allowing to specify status. */
+        interface WithStatus {
+            /**
+             * Specifies the status property: Target cost status.
+             *
+             * @param status Target cost status.
+             * @return the next definition stage.
+             */
+            WithCreate withStatus(TargetCostStatus status);
+        }
+        /** The stage of the LabCost definition allowing to specify target. */
+        interface WithTarget {
+            /**
+             * Specifies the target property: Lab target cost.
+             *
+             * @param target Lab target cost.
+             * @return the next definition stage.
+             */
+            WithCreate withTarget(Integer target);
+        }
+        /** The stage of the LabCost definition allowing to specify costThresholds. */
+        interface WithCostThresholds {
+            /**
+             * Specifies the costThresholds property: Cost thresholds..
+             *
+             * @param costThresholds Cost thresholds.
+             * @return the next definition stage.
+             */
+            WithCreate withCostThresholds(List<CostThresholdProperties> costThresholds);
+        }
+        /** The stage of the LabCost definition allowing to specify cycleStartDateTime. */
+        interface WithCycleStartDateTime {
+            /**
+             * Specifies the cycleStartDateTime property: Reporting cycle start date..
+             *
+             * @param cycleStartDateTime Reporting cycle start date.
+             * @return the next definition stage.
+             */
+            WithCreate withCycleStartDateTime(OffsetDateTime cycleStartDateTime);
+        }
+        /** The stage of the LabCost definition allowing to specify cycleEndDateTime. */
+        interface WithCycleEndDateTime {
+            /**
+             * Specifies the cycleEndDateTime property: Reporting cycle end date..
+             *
+             * @param cycleEndDateTime Reporting cycle end date.
+             * @return the next definition stage.
+             */
+            WithCreate withCycleEndDateTime(OffsetDateTime cycleEndDateTime);
+        }
+        /** The stage of the LabCost definition allowing to specify cycleType. */
+        interface WithCycleType {
+            /**
+             * Specifies the cycleType property: Reporting cycle type..
+             *
+             * @param cycleType Reporting cycle type.
+             * @return the next definition stage.
+             */
+            WithCreate withCycleType(ReportingCycleType cycleType);
+        }
     }
     /**
      * Begins update for the LabCost resource.
@@ -277,11 +382,16 @@ public interface LabCost {
     /** The template for LabCost update. */
     interface Update
         extends UpdateStages.WithTags,
-            UpdateStages.WithTargetCost,
             UpdateStages.WithCurrencyCode,
             UpdateStages.WithStartDateTime,
             UpdateStages.WithEndDateTime,
-            UpdateStages.WithCreatedDate {
+            UpdateStages.WithCreatedDate,
+            UpdateStages.WithStatus,
+            UpdateStages.WithTarget,
+            UpdateStages.WithCostThresholds,
+            UpdateStages.WithCycleStartDateTime,
+            UpdateStages.WithCycleEndDateTime,
+            UpdateStages.WithCycleType {
         /**
          * Executes the update request.
          *
@@ -308,16 +418,6 @@ public interface LabCost {
              * @return the next definition stage.
              */
             Update withTags(Map<String, String> tags);
-        }
-        /** The stage of the LabCost update allowing to specify targetCost. */
-        interface WithTargetCost {
-            /**
-             * Specifies the targetCost property: The target cost properties.
-             *
-             * @param targetCost The target cost properties.
-             * @return the next definition stage.
-             */
-            Update withTargetCost(TargetCostProperties targetCost);
         }
         /** The stage of the LabCost update allowing to specify currencyCode. */
         interface WithCurrencyCode {
@@ -358,6 +458,66 @@ public interface LabCost {
              * @return the next definition stage.
              */
             Update withCreatedDate(OffsetDateTime createdDate);
+        }
+        /** The stage of the LabCost update allowing to specify status. */
+        interface WithStatus {
+            /**
+             * Specifies the status property: Target cost status.
+             *
+             * @param status Target cost status.
+             * @return the next definition stage.
+             */
+            Update withStatus(TargetCostStatus status);
+        }
+        /** The stage of the LabCost update allowing to specify target. */
+        interface WithTarget {
+            /**
+             * Specifies the target property: Lab target cost.
+             *
+             * @param target Lab target cost.
+             * @return the next definition stage.
+             */
+            Update withTarget(Integer target);
+        }
+        /** The stage of the LabCost update allowing to specify costThresholds. */
+        interface WithCostThresholds {
+            /**
+             * Specifies the costThresholds property: Cost thresholds..
+             *
+             * @param costThresholds Cost thresholds.
+             * @return the next definition stage.
+             */
+            Update withCostThresholds(List<CostThresholdProperties> costThresholds);
+        }
+        /** The stage of the LabCost update allowing to specify cycleStartDateTime. */
+        interface WithCycleStartDateTime {
+            /**
+             * Specifies the cycleStartDateTime property: Reporting cycle start date..
+             *
+             * @param cycleStartDateTime Reporting cycle start date.
+             * @return the next definition stage.
+             */
+            Update withCycleStartDateTime(OffsetDateTime cycleStartDateTime);
+        }
+        /** The stage of the LabCost update allowing to specify cycleEndDateTime. */
+        interface WithCycleEndDateTime {
+            /**
+             * Specifies the cycleEndDateTime property: Reporting cycle end date..
+             *
+             * @param cycleEndDateTime Reporting cycle end date.
+             * @return the next definition stage.
+             */
+            Update withCycleEndDateTime(OffsetDateTime cycleEndDateTime);
+        }
+        /** The stage of the LabCost update allowing to specify cycleType. */
+        interface WithCycleType {
+            /**
+             * Specifies the cycleType property: Reporting cycle type..
+             *
+             * @param cycleType Reporting cycle type.
+             * @return the next definition stage.
+             */
+            Update withCycleType(ReportingCycleType cycleType);
         }
     }
     /**

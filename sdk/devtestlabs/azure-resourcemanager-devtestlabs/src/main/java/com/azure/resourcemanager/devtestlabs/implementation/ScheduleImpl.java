@@ -5,18 +5,16 @@
 package com.azure.resourcemanager.devtestlabs.implementation;
 
 import com.azure.core.management.Region;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.devtestlabs.fluent.models.ScheduleInner;
-import com.azure.resourcemanager.devtestlabs.models.DayDetails;
 import com.azure.resourcemanager.devtestlabs.models.EnableStatus;
-import com.azure.resourcemanager.devtestlabs.models.HourDetails;
-import com.azure.resourcemanager.devtestlabs.models.NotificationSettings;
 import com.azure.resourcemanager.devtestlabs.models.RetargetScheduleProperties;
 import com.azure.resourcemanager.devtestlabs.models.Schedule;
 import com.azure.resourcemanager.devtestlabs.models.ScheduleFragment;
-import com.azure.resourcemanager.devtestlabs.models.WeekDetails;
 import java.time.OffsetDateTime;
 import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 
 public final class ScheduleImpl implements Schedule, Schedule.Definition, Schedule.Update {
@@ -49,6 +47,10 @@ public final class ScheduleImpl implements Schedule, Schedule.Definition, Schedu
         }
     }
 
+    public SystemData systemData() {
+        return this.innerModel().systemData();
+    }
+
     public EnableStatus status() {
         return this.innerModel().status();
     }
@@ -57,24 +59,8 @@ public final class ScheduleImpl implements Schedule, Schedule.Definition, Schedu
         return this.innerModel().taskType();
     }
 
-    public WeekDetails weeklyRecurrence() {
-        return this.innerModel().weeklyRecurrence();
-    }
-
-    public DayDetails dailyRecurrence() {
-        return this.innerModel().dailyRecurrence();
-    }
-
-    public HourDetails hourlyRecurrence() {
-        return this.innerModel().hourlyRecurrence();
-    }
-
     public String timeZoneId() {
         return this.innerModel().timeZoneId();
-    }
-
-    public NotificationSettings notificationSettings() {
-        return this.innerModel().notificationSettings();
     }
 
     public OffsetDateTime createdDate() {
@@ -93,12 +79,57 @@ public final class ScheduleImpl implements Schedule, Schedule.Definition, Schedu
         return this.innerModel().uniqueIdentifier();
     }
 
+    public List<String> weekdays() {
+        List<String> inner = this.innerModel().weekdays();
+        if (inner != null) {
+            return Collections.unmodifiableList(inner);
+        } else {
+            return Collections.emptyList();
+        }
+    }
+
+    public String time() {
+        return this.innerModel().time();
+    }
+
+    public String timeDailyRecurrenceTime() {
+        return this.innerModel().timeDailyRecurrenceTime();
+    }
+
+    public Integer minute() {
+        return this.innerModel().minute();
+    }
+
+    public EnableStatus statusNotificationSettingsStatus() {
+        return this.innerModel().statusNotificationSettingsStatus();
+    }
+
+    public Integer timeInMinutes() {
+        return this.innerModel().timeInMinutes();
+    }
+
+    public String webhookUrl() {
+        return this.innerModel().webhookUrl();
+    }
+
+    public String emailRecipient() {
+        return this.innerModel().emailRecipient();
+    }
+
+    public String notificationLocale() {
+        return this.innerModel().notificationLocale();
+    }
+
     public Region region() {
         return Region.fromName(this.regionName());
     }
 
     public String regionName() {
         return this.location();
+    }
+
+    public String resourceGroupName() {
+        return resourceGroupName;
     }
 
     public ScheduleInner innerModel() {
@@ -246,33 +277,58 @@ public final class ScheduleImpl implements Schedule, Schedule.Definition, Schedu
         return this;
     }
 
-    public ScheduleImpl withWeeklyRecurrence(WeekDetails weeklyRecurrence) {
-        this.innerModel().withWeeklyRecurrence(weeklyRecurrence);
-        return this;
-    }
-
-    public ScheduleImpl withDailyRecurrence(DayDetails dailyRecurrence) {
-        this.innerModel().withDailyRecurrence(dailyRecurrence);
-        return this;
-    }
-
-    public ScheduleImpl withHourlyRecurrence(HourDetails hourlyRecurrence) {
-        this.innerModel().withHourlyRecurrence(hourlyRecurrence);
-        return this;
-    }
-
     public ScheduleImpl withTimeZoneId(String timeZoneId) {
         this.innerModel().withTimeZoneId(timeZoneId);
         return this;
     }
 
-    public ScheduleImpl withNotificationSettings(NotificationSettings notificationSettings) {
-        this.innerModel().withNotificationSettings(notificationSettings);
+    public ScheduleImpl withTargetResourceId(String targetResourceId) {
+        this.innerModel().withTargetResourceId(targetResourceId);
         return this;
     }
 
-    public ScheduleImpl withTargetResourceId(String targetResourceId) {
-        this.innerModel().withTargetResourceId(targetResourceId);
+    public ScheduleImpl withWeekdays(List<String> weekdays) {
+        this.innerModel().withWeekdays(weekdays);
+        return this;
+    }
+
+    public ScheduleImpl withTime(String time) {
+        this.innerModel().withTime(time);
+        return this;
+    }
+
+    public ScheduleImpl withTimeDailyRecurrenceTime(String timeDailyRecurrenceTime) {
+        this.innerModel().withTimeDailyRecurrenceTime(timeDailyRecurrenceTime);
+        return this;
+    }
+
+    public ScheduleImpl withMinute(Integer minute) {
+        this.innerModel().withMinute(minute);
+        return this;
+    }
+
+    public ScheduleImpl withStatusNotificationSettingsStatus(EnableStatus statusNotificationSettingsStatus) {
+        this.innerModel().withStatusNotificationSettingsStatus(statusNotificationSettingsStatus);
+        return this;
+    }
+
+    public ScheduleImpl withTimeInMinutes(Integer timeInMinutes) {
+        this.innerModel().withTimeInMinutes(timeInMinutes);
+        return this;
+    }
+
+    public ScheduleImpl withWebhookUrl(String webhookUrl) {
+        this.innerModel().withWebhookUrl(webhookUrl);
+        return this;
+    }
+
+    public ScheduleImpl withEmailRecipient(String emailRecipient) {
+        this.innerModel().withEmailRecipient(emailRecipient);
+        return this;
+    }
+
+    public ScheduleImpl withNotificationLocale(String notificationLocale) {
+        this.innerModel().withNotificationLocale(notificationLocale);
         return this;
     }
 

@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for NotificationChannelEventType. */
+/** The event type for which this notification is enabled (i.e. AutoShutdown, Cost). */
 public final class NotificationChannelEventType extends ExpandableStringEnum<NotificationChannelEventType> {
     /** Static value AutoShutdown for NotificationChannelEventType. */
     public static final NotificationChannelEventType AUTO_SHUTDOWN = fromString("AutoShutdown");
@@ -27,7 +27,11 @@ public final class NotificationChannelEventType extends ExpandableStringEnum<Not
         return fromString(name, NotificationChannelEventType.class);
     }
 
-    /** @return known NotificationChannelEventType values. */
+    /**
+     * Gets known NotificationChannelEventType values.
+     *
+     * @return known NotificationChannelEventType values.
+     */
     public static Collection<NotificationChannelEventType> values() {
         return values(NotificationChannelEventType.class);
     }

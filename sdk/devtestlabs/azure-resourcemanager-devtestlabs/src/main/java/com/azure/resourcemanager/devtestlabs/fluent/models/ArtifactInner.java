@@ -4,139 +4,45 @@
 
 package com.azure.resourcemanager.devtestlabs.fluent.models;
 
-import com.azure.core.annotation.Immutable;
-import com.azure.core.annotation.JsonFlatten;
+import com.azure.core.annotation.Fluent;
 import com.azure.core.management.Resource;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 import java.util.Map;
 
 /** An artifact. */
-@JsonFlatten
-@Immutable
-public class ArtifactInner extends Resource {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(ArtifactInner.class);
+@Fluent
+public final class ArtifactInner extends Resource {
+    /*
+     * The properties of the resource.
+     */
+    @JsonProperty(value = "properties", required = true)
+    private ArtifactProperties innerProperties = new ArtifactProperties();
 
     /*
-     * The artifact's title.
+     * The system metadata relating to this resource
      */
-    @JsonProperty(value = "properties.title", access = JsonProperty.Access.WRITE_ONLY)
-    private String title;
-
-    /*
-     * The artifact's description.
-     */
-    @JsonProperty(value = "properties.description", access = JsonProperty.Access.WRITE_ONLY)
-    private String description;
-
-    /*
-     * The artifact's publisher.
-     */
-    @JsonProperty(value = "properties.publisher", access = JsonProperty.Access.WRITE_ONLY)
-    private String publisher;
-
-    /*
-     * The file path to the artifact.
-     */
-    @JsonProperty(value = "properties.filePath", access = JsonProperty.Access.WRITE_ONLY)
-    private String filePath;
-
-    /*
-     * The URI to the artifact icon.
-     */
-    @JsonProperty(value = "properties.icon", access = JsonProperty.Access.WRITE_ONLY)
-    private String icon;
-
-    /*
-     * The artifact's target OS.
-     */
-    @JsonProperty(value = "properties.targetOsType", access = JsonProperty.Access.WRITE_ONLY)
-    private String targetOsType;
-
-    /*
-     * The artifact's parameters.
-     */
-    @JsonProperty(value = "properties.parameters", access = JsonProperty.Access.WRITE_ONLY)
-    private Object parameters;
-
-    /*
-     * The artifact's creation date.
-     */
-    @JsonProperty(value = "properties.createdDate", access = JsonProperty.Access.WRITE_ONLY)
-    private OffsetDateTime createdDate;
+    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
+    private SystemData systemData;
 
     /**
-     * Get the title property: The artifact's title.
+     * Get the innerProperties property: The properties of the resource.
      *
-     * @return the title value.
+     * @return the innerProperties value.
      */
-    public String title() {
-        return this.title;
+    private ArtifactProperties innerProperties() {
+        return this.innerProperties;
     }
 
     /**
-     * Get the description property: The artifact's description.
+     * Get the systemData property: The system metadata relating to this resource.
      *
-     * @return the description value.
+     * @return the systemData value.
      */
-    public String description() {
-        return this.description;
-    }
-
-    /**
-     * Get the publisher property: The artifact's publisher.
-     *
-     * @return the publisher value.
-     */
-    public String publisher() {
-        return this.publisher;
-    }
-
-    /**
-     * Get the filePath property: The file path to the artifact.
-     *
-     * @return the filePath value.
-     */
-    public String filePath() {
-        return this.filePath;
-    }
-
-    /**
-     * Get the icon property: The URI to the artifact icon.
-     *
-     * @return the icon value.
-     */
-    public String icon() {
-        return this.icon;
-    }
-
-    /**
-     * Get the targetOsType property: The artifact's target OS.
-     *
-     * @return the targetOsType value.
-     */
-    public String targetOsType() {
-        return this.targetOsType;
-    }
-
-    /**
-     * Get the parameters property: The artifact's parameters.
-     *
-     * @return the parameters value.
-     */
-    public Object parameters() {
-        return this.parameters;
-    }
-
-    /**
-     * Get the createdDate property: The artifact's creation date.
-     *
-     * @return the createdDate value.
-     */
-    public OffsetDateTime createdDate() {
-        return this.createdDate;
+    public SystemData systemData() {
+        return this.systemData;
     }
 
     /** {@inheritDoc} */
@@ -154,10 +60,91 @@ public class ArtifactInner extends Resource {
     }
 
     /**
+     * Get the title property: The artifact's title.
+     *
+     * @return the title value.
+     */
+    public String title() {
+        return this.innerProperties() == null ? null : this.innerProperties().title();
+    }
+
+    /**
+     * Get the description property: The artifact's description.
+     *
+     * @return the description value.
+     */
+    public String description() {
+        return this.innerProperties() == null ? null : this.innerProperties().description();
+    }
+
+    /**
+     * Get the publisher property: The artifact's publisher.
+     *
+     * @return the publisher value.
+     */
+    public String publisher() {
+        return this.innerProperties() == null ? null : this.innerProperties().publisher();
+    }
+
+    /**
+     * Get the filePath property: The file path to the artifact.
+     *
+     * @return the filePath value.
+     */
+    public String filePath() {
+        return this.innerProperties() == null ? null : this.innerProperties().filePath();
+    }
+
+    /**
+     * Get the icon property: The URI to the artifact icon.
+     *
+     * @return the icon value.
+     */
+    public String icon() {
+        return this.innerProperties() == null ? null : this.innerProperties().icon();
+    }
+
+    /**
+     * Get the targetOsType property: The artifact's target OS.
+     *
+     * @return the targetOsType value.
+     */
+    public String targetOsType() {
+        return this.innerProperties() == null ? null : this.innerProperties().targetOsType();
+    }
+
+    /**
+     * Get the parameters property: The artifact's parameters.
+     *
+     * @return the parameters value.
+     */
+    public Object parameters() {
+        return this.innerProperties() == null ? null : this.innerProperties().parameters();
+    }
+
+    /**
+     * Get the createdDate property: The artifact's creation date.
+     *
+     * @return the createdDate value.
+     */
+    public OffsetDateTime createdDate() {
+        return this.innerProperties() == null ? null : this.innerProperties().createdDate();
+    }
+
+    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+        if (innerProperties() == null) {
+            throw LOGGER
+                .logExceptionAsError(
+                    new IllegalArgumentException("Missing required property innerProperties in model ArtifactInner"));
+        } else {
+            innerProperties().validate();
+        }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(ArtifactInner.class);
 }
