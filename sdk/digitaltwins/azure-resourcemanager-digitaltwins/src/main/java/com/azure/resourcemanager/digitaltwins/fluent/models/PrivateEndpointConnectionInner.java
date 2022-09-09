@@ -21,8 +21,7 @@ public final class PrivateEndpointConnectionInner extends ProxyResource {
     private ConnectionProperties properties;
 
     /*
-     * Metadata pertaining to creation and last modification of the private
-     * endpoint connection.
+     * Metadata pertaining to creation and last modification of the private endpoint connection.
      */
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;

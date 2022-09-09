@@ -20,8 +20,7 @@ public class DigitalTwinsResource extends Resource {
     private DigitalTwinsIdentity identity;
 
     /*
-     * Metadata pertaining to creation and last modification of the
-     * DigitalTwinsInstance.
+     * Metadata pertaining to creation and last modification of the DigitalTwinsInstance.
      */
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;

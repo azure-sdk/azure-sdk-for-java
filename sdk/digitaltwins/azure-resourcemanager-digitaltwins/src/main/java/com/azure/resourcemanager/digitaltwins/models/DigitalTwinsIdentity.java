@@ -11,24 +11,21 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Fluent
 public class DigitalTwinsIdentity {
     /*
-     * The type of Managed Identity used by the DigitalTwinsInstance. Only
-     * SystemAssigned is supported.
+     * The type of Managed Identity used by the DigitalTwinsInstance. Only SystemAssigned is supported.
      */
     @JsonProperty(value = "type")
     private DigitalTwinsIdentityType type;
 
     /*
-     * The object id of the Managed Identity Resource. This will be sent to the
-     * RP from ARM via the x-ms-identity-principal-id header in the PUT request
-     * if the resource has a systemAssigned(implicit) identity
+     * The object id of the Managed Identity Resource. This will be sent to the RP from ARM via the
+     * x-ms-identity-principal-id header in the PUT request if the resource has a systemAssigned(implicit) identity
      */
     @JsonProperty(value = "principalId", access = JsonProperty.Access.WRITE_ONLY)
     private String principalId;
 
     /*
-     * The tenant id of the Managed Identity Resource. This will be sent to the
-     * RP from ARM via the x-ms-client-tenant-id header in the PUT request if
-     * the resource has a systemAssigned(implicit) identity
+     * The tenant id of the Managed Identity Resource. This will be sent to the RP from ARM via the
+     * x-ms-client-tenant-id header in the PUT request if the resource has a systemAssigned(implicit) identity
      */
     @JsonProperty(value = "tenantId", access = JsonProperty.Access.WRITE_ONLY)
     private String tenantId;
