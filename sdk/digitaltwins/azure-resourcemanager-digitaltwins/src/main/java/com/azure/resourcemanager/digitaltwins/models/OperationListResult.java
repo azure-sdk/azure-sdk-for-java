@@ -22,8 +22,7 @@ public final class OperationListResult {
     private String nextLink;
 
     /*
-     * A list of DigitalTwins operations supported by the
-     * Microsoft.DigitalTwins resource provider.
+     * A list of DigitalTwins operations supported by the Microsoft.DigitalTwins resource provider.
      */
     @JsonProperty(value = "value", access = JsonProperty.Access.WRITE_ONLY)
     private List<OperationInner> value;

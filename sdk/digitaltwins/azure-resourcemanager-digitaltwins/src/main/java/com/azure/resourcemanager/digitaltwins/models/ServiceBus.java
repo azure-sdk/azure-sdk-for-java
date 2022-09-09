@@ -15,22 +15,19 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @Fluent
 public final class ServiceBus extends DigitalTwinsEndpointResourceProperties {
     /*
-     * PrimaryConnectionString of the endpoint for key-based authentication.
-     * Will be obfuscated during read.
+     * PrimaryConnectionString of the endpoint for key-based authentication. Will be obfuscated during read.
      */
     @JsonProperty(value = "primaryConnectionString")
     private String primaryConnectionString;
 
     /*
-     * SecondaryConnectionString of the endpoint for key-based authentication.
-     * Will be obfuscated during read.
+     * SecondaryConnectionString of the endpoint for key-based authentication. Will be obfuscated during read.
      */
     @JsonProperty(value = "secondaryConnectionString")
     private String secondaryConnectionString;
 
     /*
-     * The URL of the ServiceBus namespace for identity-based authentication.
-     * It must include the protocol 'sb://'.
+     * The URL of the ServiceBus namespace for identity-based authentication. It must include the protocol 'sb://'.
      */
     @JsonProperty(value = "endpointUri")
     private String endpointUri;
