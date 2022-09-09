@@ -21,6 +21,12 @@ public final class Template {
     private String revisionSuffix;
 
     /*
+     * List of specialized containers that run before app containers.
+     */
+    @JsonProperty(value = "initContainers")
+    private List<InitContainer> initContainers;
+
+    /*
      * List of container definitions for the Container App.
      */
     @JsonProperty(value = "containers")
@@ -55,6 +61,26 @@ public final class Template {
      */
     public Template withRevisionSuffix(String revisionSuffix) {
         this.revisionSuffix = revisionSuffix;
+        return this;
+    }
+
+    /**
+     * Get the initContainers property: List of specialized containers that run before app containers.
+     *
+     * @return the initContainers value.
+     */
+    public List<InitContainer> initContainers() {
+        return this.initContainers;
+    }
+
+    /**
+     * Set the initContainers property: List of specialized containers that run before app containers.
+     *
+     * @param initContainers the initContainers value to set.
+     * @return the Template object itself.
+     */
+    public Template withInitContainers(List<InitContainer> initContainers) {
+        this.initContainers = initContainers;
         return this;
     }
 
@@ -124,6 +150,9 @@ public final class Template {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+        if (initContainers() != null) {
+            initContainers().forEach(e -> e.validate());
+        }
         if (containers() != null) {
             containers().forEach(e -> e.validate());
         }
