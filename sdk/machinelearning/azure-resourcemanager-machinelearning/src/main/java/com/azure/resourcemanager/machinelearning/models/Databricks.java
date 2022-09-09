@@ -54,13 +54,6 @@ public final class Databricks extends Compute {
         return this;
     }
 
-    /** {@inheritDoc} */
-    @Override
-    public Databricks withDisableLocalAuth(Boolean disableLocalAuth) {
-        super.withDisableLocalAuth(disableLocalAuth);
-        return this;
-    }
-
     /**
      * Validates the instance.
      *
