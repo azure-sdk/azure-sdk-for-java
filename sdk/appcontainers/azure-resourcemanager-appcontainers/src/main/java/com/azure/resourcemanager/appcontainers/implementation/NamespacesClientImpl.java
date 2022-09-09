@@ -71,7 +71,9 @@ public final class NamespacesClientImpl implements NamespacesClient {
     }
 
     /**
-     * Checks if resource name is available.
+     * Checks the resource name availability.
+     *
+     * <p>Checks if resource name is available.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param environmentName Name of the Managed Environment.
@@ -130,7 +132,9 @@ public final class NamespacesClientImpl implements NamespacesClient {
     }
 
     /**
-     * Checks if resource name is available.
+     * Checks the resource name availability.
+     *
+     * <p>Checks if resource name is available.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param environmentName Name of the Managed Environment.
@@ -190,7 +194,9 @@ public final class NamespacesClientImpl implements NamespacesClient {
     }
 
     /**
-     * Checks if resource name is available.
+     * Checks the resource name availability.
+     *
+     * <p>Checks if resource name is available.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param environmentName Name of the Managed Environment.
@@ -208,7 +214,9 @@ public final class NamespacesClientImpl implements NamespacesClient {
     }
 
     /**
-     * Checks if resource name is available.
+     * Checks the resource name availability.
+     *
+     * <p>Checks if resource name is available.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param environmentName Name of the Managed Environment.
@@ -225,7 +233,9 @@ public final class NamespacesClientImpl implements NamespacesClient {
     }
 
     /**
-     * Checks if resource name is available.
+     * Checks the resource name availability.
+     *
+     * <p>Checks if resource name is available.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param environmentName Name of the Managed Environment.
