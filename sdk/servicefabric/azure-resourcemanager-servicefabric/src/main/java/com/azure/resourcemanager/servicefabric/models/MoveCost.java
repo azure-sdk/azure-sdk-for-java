@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for MoveCost. */
+/** Specifies the move cost for the service. */
 public final class MoveCost extends ExpandableStringEnum<MoveCost> {
     /** Static value Zero for MoveCost. */
     public static final MoveCost ZERO = fromString("Zero");
@@ -33,7 +33,11 @@ public final class MoveCost extends ExpandableStringEnum<MoveCost> {
         return fromString(name, MoveCost.class);
     }
 
-    /** @return known MoveCost values. */
+    /**
+     * Gets known MoveCost values.
+     *
+     * @return known MoveCost values.
+     */
     public static Collection<MoveCost> values() {
         return values(MoveCost.class);
     }

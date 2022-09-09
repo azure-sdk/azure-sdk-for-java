@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for PartitionScheme. */
+/** Enumerates the ways that a service can be partitioned. */
 public final class PartitionScheme extends ExpandableStringEnum<PartitionScheme> {
     /** Static value Invalid for PartitionScheme. */
     public static final PartitionScheme INVALID = fromString("Invalid");
@@ -33,7 +33,11 @@ public final class PartitionScheme extends ExpandableStringEnum<PartitionScheme>
         return fromString(name, PartitionScheme.class);
     }
 
-    /** @return known PartitionScheme values. */
+    /**
+     * Gets known PartitionScheme values.
+     *
+     * @return known PartitionScheme values.
+     */
     public static Collection<PartitionScheme> values() {
         return values(PartitionScheme.class);
     }
