@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for Clusters Delete. */
 public final class ClustersDeleteSamples {
     /*
-     * x-ms-original-file: specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/stable/2022-05-01/examples/DeleteCluster.json
+     * x-ms-original-file: specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/stable/2022-09-01/examples/DeleteCluster.json
      */
     /**
      * Sample code: Delete cluster.

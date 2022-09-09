@@ -21,8 +21,7 @@ public final class ArcSettingProperties {
     private ProvisioningState provisioningState;
 
     /*
-     * The resource group that hosts the Arc agents, ie. Hybrid Compute Machine
-     * resources.
+     * The resource group that hosts the Arc agents, ie. Hybrid Compute Machine resources.
      */
     @JsonProperty(value = "arcInstanceResourceGroup")
     private String arcInstanceResourceGroup;

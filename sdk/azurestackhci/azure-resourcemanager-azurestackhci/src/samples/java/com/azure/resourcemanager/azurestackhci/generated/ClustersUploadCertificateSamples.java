@@ -12,7 +12,7 @@ import java.util.Arrays;
 /** Samples for Clusters UploadCertificate. */
 public final class ClustersUploadCertificateSamples {
     /*
-     * x-ms-original-file: specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/stable/2022-05-01/examples/UploadCertificate.json
+     * x-ms-original-file: specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/stable/2022-09-01/examples/UploadCertificate.json
      */
     /**
      * Sample code: Upload certificate.

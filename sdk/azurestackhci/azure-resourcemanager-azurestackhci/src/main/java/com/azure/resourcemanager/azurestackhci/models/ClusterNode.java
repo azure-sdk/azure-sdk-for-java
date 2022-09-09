@@ -29,6 +29,12 @@ public final class ClusterNode {
     private WindowsServerSubscription windowsServerSubscription;
 
     /*
+     * Type of the cluster node hardware.
+     */
+    @JsonProperty(value = "nodeType", access = JsonProperty.Access.WRITE_ONLY)
+    private ClusterNodeType nodeType;
+
+    /*
      * Manufacturer of the cluster node hardware.
      */
     @JsonProperty(value = "manufacturer", access = JsonProperty.Access.WRITE_ONLY)
@@ -51,6 +57,12 @@ public final class ClusterNode {
      */
     @JsonProperty(value = "osVersion", access = JsonProperty.Access.WRITE_ONLY)
     private String osVersion;
+
+    /*
+     * Display version of the operating system running on the cluster node.
+     */
+    @JsonProperty(value = "osDisplayVersion", access = JsonProperty.Access.WRITE_ONLY)
+    private String osDisplayVersion;
 
     /*
      * Immutable id of the cluster node.
@@ -98,6 +110,15 @@ public final class ClusterNode {
     }
 
     /**
+     * Get the nodeType property: Type of the cluster node hardware.
+     *
+     * @return the nodeType value.
+     */
+    public ClusterNodeType nodeType() {
+        return this.nodeType;
+    }
+
+    /**
      * Get the manufacturer property: Manufacturer of the cluster node hardware.
      *
      * @return the manufacturer value.
@@ -131,6 +152,15 @@ public final class ClusterNode {
      */
     public String osVersion() {
         return this.osVersion;
+    }
+
+    /**
+     * Get the osDisplayVersion property: Display version of the operating system running on the cluster node.
+     *
+     * @return the osDisplayVersion value.
+     */
+    public String osDisplayVersion() {
+        return this.osDisplayVersion;
     }
 
     /**

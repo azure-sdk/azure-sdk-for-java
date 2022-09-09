@@ -13,7 +13,7 @@ import java.io.IOException;
 /** Samples for ArcSettings Update. */
 public final class ArcSettingsUpdateSamples {
     /*
-     * x-ms-original-file: specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/stable/2022-05-01/examples/PatchArcSetting.json
+     * x-ms-original-file: specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/stable/2022-09-01/examples/PatchArcSetting.json
      */
     /**
      * Sample code: Patch ArcSetting.

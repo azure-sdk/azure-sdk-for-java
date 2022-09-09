@@ -112,6 +112,13 @@ public interface Cluster {
     String aadServicePrincipalObjectId();
 
     /**
+     * Gets the softwareAssuranceProperties property: Software Assurance properties of the cluster.
+     *
+     * @return the softwareAssuranceProperties value.
+     */
+    SoftwareAssuranceProperties softwareAssuranceProperties();
+
+    /**
      * Gets the desiredProperties property: Desired properties of the cluster.
      *
      * @return the desiredProperties value.
@@ -246,6 +253,7 @@ public interface Cluster {
                 DefinitionStages.WithAadTenantId,
                 DefinitionStages.WithAadApplicationObjectId,
                 DefinitionStages.WithAadServicePrincipalObjectId,
+                DefinitionStages.WithSoftwareAssuranceProperties,
                 DefinitionStages.WithDesiredProperties {
             /**
              * Executes the create request.
@@ -322,6 +330,16 @@ public interface Cluster {
              * @return the next definition stage.
              */
             WithCreate withAadServicePrincipalObjectId(String aadServicePrincipalObjectId);
+        }
+        /** The stage of the Cluster definition allowing to specify softwareAssuranceProperties. */
+        interface WithSoftwareAssuranceProperties {
+            /**
+             * Specifies the softwareAssuranceProperties property: Software Assurance properties of the cluster..
+             *
+             * @param softwareAssuranceProperties Software Assurance properties of the cluster.
+             * @return the next definition stage.
+             */
+            WithCreate withSoftwareAssuranceProperties(SoftwareAssuranceProperties softwareAssuranceProperties);
         }
         /** The stage of the Cluster definition allowing to specify desiredProperties. */
         interface WithDesiredProperties {
@@ -471,4 +489,28 @@ public interface Cluster {
      * @return cluster Identity details.
      */
     ClusterIdentityResponse createIdentity(Context context);
+
+    /**
+     * Extends Software Assurance Benefit to a cluster.
+     *
+     * @param softwareAssuranceChangeRequest Software Assurance Change Request Payload.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return cluster details.
+     */
+    Cluster extendSoftwareAssuranceBenefit(SoftwareAssuranceChangeRequest softwareAssuranceChangeRequest);
+
+    /**
+     * Extends Software Assurance Benefit to a cluster.
+     *
+     * @param softwareAssuranceChangeRequest Software Assurance Change Request Payload.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return cluster details.
+     */
+    Cluster extendSoftwareAssuranceBenefit(
+        SoftwareAssuranceChangeRequest softwareAssuranceChangeRequest, Context context);
 }

@@ -8,6 +8,7 @@ import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.azurestackhci.models.ClusterDesiredProperties;
 import com.azure.resourcemanager.azurestackhci.models.ClusterReportedProperties;
 import com.azure.resourcemanager.azurestackhci.models.ProvisioningState;
+import com.azure.resourcemanager.azurestackhci.models.SoftwareAssuranceProperties;
 import com.azure.resourcemanager.azurestackhci.models.Status;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
@@ -62,6 +63,12 @@ public final class ClusterProperties {
      */
     @JsonProperty(value = "aadServicePrincipalObjectId")
     private String aadServicePrincipalObjectId;
+
+    /*
+     * Software Assurance properties of the cluster.
+     */
+    @JsonProperty(value = "softwareAssuranceProperties")
+    private SoftwareAssuranceProperties softwareAssuranceProperties;
 
     /*
      * Desired properties of the cluster.
@@ -239,6 +246,26 @@ public final class ClusterProperties {
     }
 
     /**
+     * Get the softwareAssuranceProperties property: Software Assurance properties of the cluster.
+     *
+     * @return the softwareAssuranceProperties value.
+     */
+    public SoftwareAssuranceProperties softwareAssuranceProperties() {
+        return this.softwareAssuranceProperties;
+    }
+
+    /**
+     * Set the softwareAssuranceProperties property: Software Assurance properties of the cluster.
+     *
+     * @param softwareAssuranceProperties the softwareAssuranceProperties value to set.
+     * @return the ClusterProperties object itself.
+     */
+    public ClusterProperties withSoftwareAssuranceProperties(SoftwareAssuranceProperties softwareAssuranceProperties) {
+        this.softwareAssuranceProperties = softwareAssuranceProperties;
+        return this;
+    }
+
+    /**
      * Get the desiredProperties property: Desired properties of the cluster.
      *
      * @return the desiredProperties value.
@@ -327,6 +354,9 @@ public final class ClusterProperties {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+        if (softwareAssuranceProperties() != null) {
+            softwareAssuranceProperties().validate();
+        }
         if (desiredProperties() != null) {
             desiredProperties().validate();
         }
