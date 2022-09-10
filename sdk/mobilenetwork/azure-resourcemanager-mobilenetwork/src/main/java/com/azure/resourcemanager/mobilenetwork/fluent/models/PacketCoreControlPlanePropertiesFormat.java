@@ -49,29 +49,26 @@ public final class PacketCoreControlPlanePropertiesFormat {
     private String version;
 
     /*
-     * The control plane interface on the access network. For 5G networks, this
-     * is the N2 interface. For 4G networks, this is the S1-MME interface.
+     * The control plane interface on the access network. For 5G networks, this is the N2 interface. For 4G networks,
+     * this is the S1-MME interface.
      */
     @JsonProperty(value = "controlPlaneAccessInterface", required = true)
     private InterfaceProperties controlPlaneAccessInterface;
 
     /*
-     * The SKU defining the throughput and SIM allowances for this packet core
-     * control plane deployment.
+     * The SKU defining the throughput and SIM allowances for this packet core control plane deployment.
      */
     @JsonProperty(value = "sku", required = true)
     private BillingSku sku;
 
     /*
-     * The kubernetes ingress configuration to control access to packet core
-     * diagnostics over local APIs.
+     * The kubernetes ingress configuration to control access to packet core diagnostics over local APIs.
      */
     @JsonProperty(value = "localDiagnosticsAccess")
     private LocalDiagnosticsAccessConfiguration localDiagnosticsAccess;
 
     /*
-     * Settings to allow interoperability with third party components e.g. RANs
-     * and UEs.
+     * Settings to allow interoperability with third party components e.g. RANs and UEs.
      */
     @JsonProperty(value = "interopSettings")
     private Object interopSettings;

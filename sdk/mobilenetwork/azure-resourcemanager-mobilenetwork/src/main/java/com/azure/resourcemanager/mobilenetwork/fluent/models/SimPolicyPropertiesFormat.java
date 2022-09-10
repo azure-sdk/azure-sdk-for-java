@@ -23,23 +23,22 @@ public final class SimPolicyPropertiesFormat {
     private ProvisioningState provisioningState;
 
     /*
-     * Aggregate maximum bit rate across all non-GBR QoS flows of all PDU
-     * sessions of a given UE. See 3GPP TS23.501 section 5.7.2.6 for a full
-     * description of the UE-AMBR.
+     * Aggregate maximum bit rate across all non-GBR QoS flows of all PDU sessions of a given UE. See 3GPP TS23.501
+     * section 5.7.2.6 for a full description of the UE-AMBR.
      */
     @JsonProperty(value = "ueAmbr", required = true)
     private Ambr ueAmbr;
 
     /*
-     * The default slice to use if the UE does not explicitly specify it. This
-     * slice must exist in the `sliceConfigurations` map.
+     * The default slice to use if the UE does not explicitly specify it. This slice must exist in the
+     * `sliceConfigurations` map.
      */
     @JsonProperty(value = "defaultSlice", required = true)
     private SliceResourceId defaultSlice;
 
     /*
-     * RAT/Frequency Selection Priority Index, defined in 3GPP TS 36.413. This
-     * is an optional setting and by default is unspecified.
+     * RAT/Frequency Selection Priority Index, defined in 3GPP TS 36.413. This is an optional setting and by default is
+     * unspecified.
      */
     @JsonProperty(value = "rfspIndex")
     private Integer rfspIndex;
@@ -51,8 +50,8 @@ public final class SimPolicyPropertiesFormat {
     private Integer registrationTimer;
 
     /*
-     * The allowed slices and the settings to use for them. The list must not
-     * contain duplicate items and must contain at least one item.
+     * The allowed slices and the settings to use for them. The list must not contain duplicate items and must contain
+     * at least one item.
      */
     @JsonProperty(value = "sliceConfigurations", required = true)
     private List<SliceConfiguration> sliceConfigurations;

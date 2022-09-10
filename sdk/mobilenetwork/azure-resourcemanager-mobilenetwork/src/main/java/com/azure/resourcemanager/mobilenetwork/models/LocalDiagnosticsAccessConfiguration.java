@@ -11,8 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Fluent
 public final class LocalDiagnosticsAccessConfiguration {
     /*
-     * The HTTPS server TLS certificate used to secure local access to
-     * diagnostics.
+     * The HTTPS server TLS certificate used to secure local access to diagnostics.
      */
     @JsonProperty(value = "httpsServerCertificate")
     private KeyVaultCertificate httpsServerCertificate;

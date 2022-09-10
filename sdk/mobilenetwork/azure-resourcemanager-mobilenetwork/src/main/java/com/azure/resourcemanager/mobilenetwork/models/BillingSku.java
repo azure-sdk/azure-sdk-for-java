@@ -8,7 +8,10 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for BillingSku. */
+/**
+ * The SKU of the packet core control plane resource. The SKU list may change over time when a new SKU gets added or an
+ * exiting SKU gets removed.
+ */
 public final class BillingSku extends ExpandableStringEnum<BillingSku> {
     /** Static value EvaluationPackage for BillingSku. */
     public static final BillingSku EVALUATION_PACKAGE = fromString("EvaluationPackage");

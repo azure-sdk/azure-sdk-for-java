@@ -20,8 +20,8 @@ public final class PacketCoreDataPlanePropertiesFormat {
     private ProvisioningState provisioningState;
 
     /*
-     * The user plane interface on the access network. For 5G networks, this is
-     * the N3 interface. For 4G networks, this is the S1-U interface.
+     * The user plane interface on the access network. For 5G networks, this is the N3 interface. For 4G networks, this
+     * is the S1-U interface.
      */
     @JsonProperty(value = "userPlaneAccessInterface", required = true)
     private InterfaceProperties userPlaneAccessInterface;

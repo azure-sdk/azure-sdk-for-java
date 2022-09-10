@@ -20,8 +20,7 @@ public final class SitePropertiesFormat {
     private ProvisioningState provisioningState;
 
     /*
-     * An array of IDs of the network functions deployed on the site,
-     * maintained by the user.
+     * An array of IDs of the network functions deployed on the site, maintained by the user.
      */
     @JsonProperty(value = "networkFunctions")
     private List<SubResource> networkFunctions;

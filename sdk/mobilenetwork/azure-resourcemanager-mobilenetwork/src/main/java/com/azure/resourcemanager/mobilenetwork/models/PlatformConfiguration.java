@@ -18,9 +18,8 @@ public final class PlatformConfiguration {
     private PlatformType type;
 
     /*
-     * The Azure Stack Edge device where where the packet core is deployed. If
-     * the device is part of a fault tolerant pair, either device in the pair
-     * can be specified.
+     * The Azure Stack Edge device where where the packet core is deployed. If the device is part of a fault tolerant
+     * pair, either device in the pair can be specified.
      */
     @JsonProperty(value = "azureStackEdgeDevice")
     private AzureStackEdgeDeviceResourceId azureStackEdgeDevice;

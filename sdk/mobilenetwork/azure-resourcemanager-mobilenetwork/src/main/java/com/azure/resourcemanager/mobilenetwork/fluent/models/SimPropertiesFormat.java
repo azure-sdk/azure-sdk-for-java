@@ -53,9 +53,8 @@ public final class SimPropertiesFormat {
     private String operatorKeyCode;
 
     /*
-     * An optional free-form text field that can be used to record the device
-     * type this SIM is associated with, for example 'Video camera'. The Azure
-     * portal allows SIMs to be grouped and filtered based on this value.
+     * An optional free-form text field that can be used to record the device type this SIM is associated with, for
+     * example 'Video camera'. The Azure portal allows SIMs to be grouped and filtered based on this value.
      */
     @JsonProperty(value = "deviceType")
     private String deviceType;
@@ -67,9 +66,8 @@ public final class SimPropertiesFormat {
     private SimPolicyResourceId simPolicy;
 
     /*
-     * A list of static IP addresses assigned to this SIM. Each address is
-     * assigned at a defined network scope, made up of {attached data network,
-     * slice}.
+     * A list of static IP addresses assigned to this SIM. Each address is assigned at a defined network scope, made up
+     * of {attached data network, slice}.
      */
     @JsonProperty(value = "staticIpConfiguration")
     private List<SimStaticIpProperties> staticIpConfiguration;

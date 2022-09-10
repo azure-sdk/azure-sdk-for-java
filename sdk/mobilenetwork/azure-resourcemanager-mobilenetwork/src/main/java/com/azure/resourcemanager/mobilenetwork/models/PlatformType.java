@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for PlatformType. */
+/** The platform type where packet core is deployed. The contents of this enum can change. */
 public final class PlatformType extends ExpandableStringEnum<PlatformType> {
     /** Static value AKS-HCI for PlatformType. */
     public static final PlatformType AKS_HCI = fromString("AKS-HCI");

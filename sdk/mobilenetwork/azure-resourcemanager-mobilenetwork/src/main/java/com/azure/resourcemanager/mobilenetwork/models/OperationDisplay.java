@@ -17,8 +17,7 @@ public final class OperationDisplay {
     private String provider;
 
     /*
-     * Resource on which the operation is performed: Registration definition,
-     * registration assignment etc.
+     * Resource on which the operation is performed: Registration definition, registration assignment etc.
      */
     @JsonProperty(value = "resource")
     private String resource;

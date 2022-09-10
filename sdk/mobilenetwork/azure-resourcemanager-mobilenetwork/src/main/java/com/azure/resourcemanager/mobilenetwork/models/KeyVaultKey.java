@@ -11,8 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Fluent
 public final class KeyVaultKey {
     /*
-     * The key URL, unversioned. For example:
-     * https://contosovault.vault.azure.net/keys/azureKey.
+     * The key URL, unversioned. For example: https://contosovault.vault.azure.net/keys/azureKey.
      */
     @JsonProperty(value = "keyUrl")
     private String keyUrl;

@@ -20,8 +20,7 @@ public final class SlicePropertiesFormat {
     private ProvisioningState provisioningState;
 
     /*
-     * Single-network slice selection assistance information (S-NSSAI). Unique
-     * at the scope of a mobile network.
+     * Single-network slice selection assistance information (S-NSSAI). Unique at the scope of a mobile network.
      */
     @JsonProperty(value = "snssai", required = true)
     private Snssai snssai;

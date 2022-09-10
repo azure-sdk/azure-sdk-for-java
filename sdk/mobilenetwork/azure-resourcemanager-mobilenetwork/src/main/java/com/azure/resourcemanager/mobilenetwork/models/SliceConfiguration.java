@@ -19,16 +19,15 @@ public final class SliceConfiguration {
     private SliceResourceId slice;
 
     /*
-     * The default data network to use if the UE does not explicitly specify
-     * it. Configuration for this object must exist in the
-     * `dataNetworkConfigurations` map.
+     * The default data network to use if the UE does not explicitly specify it. Configuration for this object must
+     * exist in the `dataNetworkConfigurations` map.
      */
     @JsonProperty(value = "defaultDataNetwork", required = true)
     private DataNetworkResourceId defaultDataNetwork;
 
     /*
-     * The allowed data networks and the settings to use for them. The list
-     * must not contain duplicate items and must contain at least one item.
+     * The allowed data networks and the settings to use for them. The list must not contain duplicate items and must
+     * contain at least one item.
      */
     @JsonProperty(value = "dataNetworkConfigurations", required = true)
     private List<DataNetworkConfiguration> dataNetworkConfigurations;
