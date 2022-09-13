@@ -5,8 +5,10 @@
 package com.azure.resourcemanager.devtestlabs.models;
 
 import com.azure.core.management.Region;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.devtestlabs.fluent.models.DtlEnvironmentInner;
+import java.util.List;
 import java.util.Map;
 
 /** An immutable client-side representation of DtlEnvironment. */
@@ -47,11 +49,11 @@ public interface DtlEnvironment {
     Map<String, String> tags();
 
     /**
-     * Gets the deploymentProperties property: The deployment properties of the environment.
+     * Gets the systemData property: The system metadata relating to this resource.
      *
-     * @return the deploymentProperties value.
+     * @return the systemData value.
      */
-    EnvironmentDeploymentProperties deploymentProperties();
+    SystemData systemData();
 
     /**
      * Gets the armTemplateDisplayName property: The display name of the Azure Resource Manager template that produced
@@ -90,6 +92,20 @@ public interface DtlEnvironment {
     String uniqueIdentifier();
 
     /**
+     * Gets the armTemplateId property: The Azure Resource Manager template's identifier.
+     *
+     * @return the armTemplateId value.
+     */
+    String armTemplateId();
+
+    /**
+     * Gets the parameters property: The parameters of the Azure Resource Manager template.
+     *
+     * @return the parameters value.
+     */
+    List<ArmTemplateParameterProperties> parameters();
+
+    /**
      * Gets the region of the resource.
      *
      * @return the region of the resource.
@@ -102,6 +118,13 @@ public interface DtlEnvironment {
      * @return the name of the resource region.
      */
     String regionName();
+
+    /**
+     * Gets the name of the resource group.
+     *
+     * @return the name of the resource group.
+     */
+    String resourceGroupName();
 
     /**
      * Gets the inner com.azure.resourcemanager.devtestlabs.fluent.models.DtlEnvironmentInner object.
@@ -158,8 +181,9 @@ public interface DtlEnvironment {
          */
         interface WithCreate
             extends DefinitionStages.WithTags,
-                DefinitionStages.WithDeploymentProperties,
-                DefinitionStages.WithArmTemplateDisplayName {
+                DefinitionStages.WithArmTemplateDisplayName,
+                DefinitionStages.WithArmTemplateId,
+                DefinitionStages.WithParameters {
             /**
              * Executes the create request.
              *
@@ -185,16 +209,6 @@ public interface DtlEnvironment {
              */
             WithCreate withTags(Map<String, String> tags);
         }
-        /** The stage of the DtlEnvironment definition allowing to specify deploymentProperties. */
-        interface WithDeploymentProperties {
-            /**
-             * Specifies the deploymentProperties property: The deployment properties of the environment..
-             *
-             * @param deploymentProperties The deployment properties of the environment.
-             * @return the next definition stage.
-             */
-            WithCreate withDeploymentProperties(EnvironmentDeploymentProperties deploymentProperties);
-        }
         /** The stage of the DtlEnvironment definition allowing to specify armTemplateDisplayName. */
         interface WithArmTemplateDisplayName {
             /**
@@ -206,6 +220,26 @@ public interface DtlEnvironment {
              * @return the next definition stage.
              */
             WithCreate withArmTemplateDisplayName(String armTemplateDisplayName);
+        }
+        /** The stage of the DtlEnvironment definition allowing to specify armTemplateId. */
+        interface WithArmTemplateId {
+            /**
+             * Specifies the armTemplateId property: The Azure Resource Manager template's identifier..
+             *
+             * @param armTemplateId The Azure Resource Manager template's identifier.
+             * @return the next definition stage.
+             */
+            WithCreate withArmTemplateId(String armTemplateId);
+        }
+        /** The stage of the DtlEnvironment definition allowing to specify parameters. */
+        interface WithParameters {
+            /**
+             * Specifies the parameters property: The parameters of the Azure Resource Manager template..
+             *
+             * @param parameters The parameters of the Azure Resource Manager template.
+             * @return the next definition stage.
+             */
+            WithCreate withParameters(List<ArmTemplateParameterProperties> parameters);
         }
     }
     /**

@@ -8,13 +8,19 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for HttpStatusCode. */
+/** The status code for the operation. */
 public final class HttpStatusCode extends ExpandableStringEnum<HttpStatusCode> {
     /** Static value Continue for HttpStatusCode. */
     public static final HttpStatusCode CONTINUE = fromString("Continue");
 
     /** Static value SwitchingProtocols for HttpStatusCode. */
     public static final HttpStatusCode SWITCHING_PROTOCOLS = fromString("SwitchingProtocols");
+
+    /** Static value Processing for HttpStatusCode. */
+    public static final HttpStatusCode PROCESSING = fromString("Processing");
+
+    /** Static value EarlyHints for HttpStatusCode. */
+    public static final HttpStatusCode EARLY_HINTS = fromString("EarlyHints");
 
     /** Static value OK for HttpStatusCode. */
     public static final HttpStatusCode OK = fromString("OK");
@@ -36,6 +42,15 @@ public final class HttpStatusCode extends ExpandableStringEnum<HttpStatusCode> {
 
     /** Static value PartialContent for HttpStatusCode. */
     public static final HttpStatusCode PARTIAL_CONTENT = fromString("PartialContent");
+
+    /** Static value MultiStatus for HttpStatusCode. */
+    public static final HttpStatusCode MULTI_STATUS = fromString("MultiStatus");
+
+    /** Static value AlreadyReported for HttpStatusCode. */
+    public static final HttpStatusCode ALREADY_REPORTED = fromString("AlreadyReported");
+
+    /** Static value IMUsed for HttpStatusCode. */
+    public static final HttpStatusCode IMUSED = fromString("IMUsed");
 
     /** Static value MultipleChoices for HttpStatusCode. */
     public static final HttpStatusCode MULTIPLE_CHOICES = fromString("MultipleChoices");
@@ -75,6 +90,9 @@ public final class HttpStatusCode extends ExpandableStringEnum<HttpStatusCode> {
 
     /** Static value RedirectKeepVerb for HttpStatusCode. */
     public static final HttpStatusCode REDIRECT_KEEP_VERB = fromString("RedirectKeepVerb");
+
+    /** Static value PermanentRedirect for HttpStatusCode. */
+    public static final HttpStatusCode PERMANENT_REDIRECT = fromString("PermanentRedirect");
 
     /** Static value BadRequest for HttpStatusCode. */
     public static final HttpStatusCode BAD_REQUEST = fromString("BadRequest");
@@ -130,8 +148,32 @@ public final class HttpStatusCode extends ExpandableStringEnum<HttpStatusCode> {
     /** Static value ExpectationFailed for HttpStatusCode. */
     public static final HttpStatusCode EXPECTATION_FAILED = fromString("ExpectationFailed");
 
+    /** Static value MisdirectedRequest for HttpStatusCode. */
+    public static final HttpStatusCode MISDIRECTED_REQUEST = fromString("MisdirectedRequest");
+
+    /** Static value UnprocessableEntity for HttpStatusCode. */
+    public static final HttpStatusCode UNPROCESSABLE_ENTITY = fromString("UnprocessableEntity");
+
+    /** Static value Locked for HttpStatusCode. */
+    public static final HttpStatusCode LOCKED = fromString("Locked");
+
+    /** Static value FailedDependency for HttpStatusCode. */
+    public static final HttpStatusCode FAILED_DEPENDENCY = fromString("FailedDependency");
+
     /** Static value UpgradeRequired for HttpStatusCode. */
     public static final HttpStatusCode UPGRADE_REQUIRED = fromString("UpgradeRequired");
+
+    /** Static value PreconditionRequired for HttpStatusCode. */
+    public static final HttpStatusCode PRECONDITION_REQUIRED = fromString("PreconditionRequired");
+
+    /** Static value TooManyRequests for HttpStatusCode. */
+    public static final HttpStatusCode TOO_MANY_REQUESTS = fromString("TooManyRequests");
+
+    /** Static value RequestHeaderFieldsTooLarge for HttpStatusCode. */
+    public static final HttpStatusCode REQUEST_HEADER_FIELDS_TOO_LARGE = fromString("RequestHeaderFieldsTooLarge");
+
+    /** Static value UnavailableForLegalReasons for HttpStatusCode. */
+    public static final HttpStatusCode UNAVAILABLE_FOR_LEGAL_REASONS = fromString("UnavailableForLegalReasons");
 
     /** Static value InternalServerError for HttpStatusCode. */
     public static final HttpStatusCode INTERNAL_SERVER_ERROR = fromString("InternalServerError");
@@ -151,6 +193,21 @@ public final class HttpStatusCode extends ExpandableStringEnum<HttpStatusCode> {
     /** Static value HttpVersionNotSupported for HttpStatusCode. */
     public static final HttpStatusCode HTTP_VERSION_NOT_SUPPORTED = fromString("HttpVersionNotSupported");
 
+    /** Static value VariantAlsoNegotiates for HttpStatusCode. */
+    public static final HttpStatusCode VARIANT_ALSO_NEGOTIATES = fromString("VariantAlsoNegotiates");
+
+    /** Static value InsufficientStorage for HttpStatusCode. */
+    public static final HttpStatusCode INSUFFICIENT_STORAGE = fromString("InsufficientStorage");
+
+    /** Static value LoopDetected for HttpStatusCode. */
+    public static final HttpStatusCode LOOP_DETECTED = fromString("LoopDetected");
+
+    /** Static value NotExtended for HttpStatusCode. */
+    public static final HttpStatusCode NOT_EXTENDED = fromString("NotExtended");
+
+    /** Static value NetworkAuthenticationRequired for HttpStatusCode. */
+    public static final HttpStatusCode NETWORK_AUTHENTICATION_REQUIRED = fromString("NetworkAuthenticationRequired");
+
     /**
      * Creates or finds a HttpStatusCode from its string representation.
      *
@@ -162,7 +219,11 @@ public final class HttpStatusCode extends ExpandableStringEnum<HttpStatusCode> {
         return fromString(name, HttpStatusCode.class);
     }
 
-    /** @return known HttpStatusCode values. */
+    /**
+     * Gets known HttpStatusCode values.
+     *
+     * @return known HttpStatusCode values.
+     */
     public static Collection<HttpStatusCode> values() {
         return values(HttpStatusCode.class);
     }

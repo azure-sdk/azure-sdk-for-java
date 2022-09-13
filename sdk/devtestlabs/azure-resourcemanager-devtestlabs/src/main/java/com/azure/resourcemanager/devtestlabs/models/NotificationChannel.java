@@ -6,6 +6,7 @@ package com.azure.resourcemanager.devtestlabs.models;
 
 import com.azure.core.http.rest.Response;
 import com.azure.core.management.Region;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.devtestlabs.fluent.models.NotificationChannelInner;
 import java.time.OffsetDateTime;
@@ -48,6 +49,13 @@ public interface NotificationChannel {
      * @return the tags value.
      */
     Map<String, String> tags();
+
+    /**
+     * Gets the systemData property: The system metadata relating to this resource.
+     *
+     * @return the systemData value.
+     */
+    SystemData systemData();
 
     /**
      * Gets the webhookUrl property: The webhook URL to send notifications to.
@@ -120,6 +128,13 @@ public interface NotificationChannel {
      * @return the name of the resource region.
      */
     String regionName();
+
+    /**
+     * Gets the name of the resource group.
+     *
+     * @return the name of the resource group.
+     */
+    String resourceGroupName();
 
     /**
      * Gets the inner com.azure.resourcemanager.devtestlabs.fluent.models.NotificationChannelInner object.
@@ -330,7 +345,7 @@ public interface NotificationChannel {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
+     * @return the {@link Response}.
      */
     Response<Void> notifyWithResponse(NotifyParameters notifyParameters, Context context);
 }

@@ -5,9 +5,11 @@
 package com.azure.resourcemanager.devtestlabs.models;
 
 import com.azure.core.management.Region;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.devtestlabs.fluent.models.ScheduleInner;
 import java.time.OffsetDateTime;
+import java.util.List;
 import java.util.Map;
 
 /** An immutable client-side representation of Schedule. */
@@ -48,6 +50,13 @@ public interface Schedule {
     Map<String, String> tags();
 
     /**
+     * Gets the systemData property: The system metadata relating to this resource.
+     *
+     * @return the systemData value.
+     */
+    SystemData systemData();
+
+    /**
      * Gets the status property: The status of the schedule (i.e. Enabled, Disabled).
      *
      * @return the status value.
@@ -62,42 +71,11 @@ public interface Schedule {
     String taskType();
 
     /**
-     * Gets the weeklyRecurrence property: If the schedule will occur only some days of the week, specify the weekly
-     * recurrence.
-     *
-     * @return the weeklyRecurrence value.
-     */
-    WeekDetails weeklyRecurrence();
-
-    /**
-     * Gets the dailyRecurrence property: If the schedule will occur once each day of the week, specify the daily
-     * recurrence.
-     *
-     * @return the dailyRecurrence value.
-     */
-    DayDetails dailyRecurrence();
-
-    /**
-     * Gets the hourlyRecurrence property: If the schedule will occur multiple times a day, specify the hourly
-     * recurrence.
-     *
-     * @return the hourlyRecurrence value.
-     */
-    HourDetails hourlyRecurrence();
-
-    /**
      * Gets the timeZoneId property: The time zone ID (e.g. Pacific Standard time).
      *
      * @return the timeZoneId value.
      */
     String timeZoneId();
-
-    /**
-     * Gets the notificationSettings property: Notification settings.
-     *
-     * @return the notificationSettings value.
-     */
-    NotificationSettings notificationSettings();
 
     /**
      * Gets the createdDate property: The creation date of the schedule.
@@ -128,6 +106,73 @@ public interface Schedule {
     String uniqueIdentifier();
 
     /**
+     * Gets the weekdays property: The days of the week for which the schedule is set (e.g. Sunday, Monday, Tuesday,
+     * etc.).
+     *
+     * @return the weekdays value.
+     */
+    List<String> weekdays();
+
+    /**
+     * Gets the time property: The time of the day the schedule will occur.
+     *
+     * @return the time value.
+     */
+    String time();
+
+    /**
+     * Gets the timeDailyRecurrenceTime property: The time of day the schedule will occur.
+     *
+     * @return the timeDailyRecurrenceTime value.
+     */
+    String timeDailyRecurrenceTime();
+
+    /**
+     * Gets the minute property: Minutes of the hour the schedule will run.
+     *
+     * @return the minute value.
+     */
+    Integer minute();
+
+    /**
+     * Gets the statusNotificationSettingsStatus property: If notifications are enabled for this schedule (i.e. Enabled,
+     * Disabled).
+     *
+     * @return the statusNotificationSettingsStatus value.
+     */
+    EnableStatus statusNotificationSettingsStatus();
+
+    /**
+     * Gets the timeInMinutes property: Time in minutes before event at which notification will be sent.
+     *
+     * @return the timeInMinutes value.
+     */
+    Integer timeInMinutes();
+
+    /**
+     * Gets the webhookUrl property: The webhook URL to which the notification will be sent.
+     *
+     * @return the webhookUrl value.
+     */
+    String webhookUrl();
+
+    /**
+     * Gets the emailRecipient property: The email recipient to send notifications to (can be a list of semi-colon
+     * separated email addresses).
+     *
+     * @return the emailRecipient value.
+     */
+    String emailRecipient();
+
+    /**
+     * Gets the notificationLocale property: The locale to use when sending a notification (fallback for unsupported
+     * languages is EN).
+     *
+     * @return the notificationLocale value.
+     */
+    String notificationLocale();
+
+    /**
      * Gets the region of the resource.
      *
      * @return the region of the resource.
@@ -140,6 +185,13 @@ public interface Schedule {
      * @return the name of the resource region.
      */
     String regionName();
+
+    /**
+     * Gets the name of the resource group.
+     *
+     * @return the name of the resource group.
+     */
+    String resourceGroupName();
 
     /**
      * Gets the inner com.azure.resourcemanager.devtestlabs.fluent.models.ScheduleInner object.
@@ -196,12 +248,17 @@ public interface Schedule {
             extends DefinitionStages.WithTags,
                 DefinitionStages.WithStatus,
                 DefinitionStages.WithTaskType,
-                DefinitionStages.WithWeeklyRecurrence,
-                DefinitionStages.WithDailyRecurrence,
-                DefinitionStages.WithHourlyRecurrence,
                 DefinitionStages.WithTimeZoneId,
-                DefinitionStages.WithNotificationSettings,
-                DefinitionStages.WithTargetResourceId {
+                DefinitionStages.WithTargetResourceId,
+                DefinitionStages.WithWeekdays,
+                DefinitionStages.WithTime,
+                DefinitionStages.WithTimeDailyRecurrenceTime,
+                DefinitionStages.WithMinute,
+                DefinitionStages.WithStatusNotificationSettingsStatus,
+                DefinitionStages.WithTimeInMinutes,
+                DefinitionStages.WithWebhookUrl,
+                DefinitionStages.WithEmailRecipient,
+                DefinitionStages.WithNotificationLocale {
             /**
              * Executes the create request.
              *
@@ -248,41 +305,6 @@ public interface Schedule {
              */
             WithCreate withTaskType(String taskType);
         }
-        /** The stage of the Schedule definition allowing to specify weeklyRecurrence. */
-        interface WithWeeklyRecurrence {
-            /**
-             * Specifies the weeklyRecurrence property: If the schedule will occur only some days of the week, specify
-             * the weekly recurrence..
-             *
-             * @param weeklyRecurrence If the schedule will occur only some days of the week, specify the weekly
-             *     recurrence.
-             * @return the next definition stage.
-             */
-            WithCreate withWeeklyRecurrence(WeekDetails weeklyRecurrence);
-        }
-        /** The stage of the Schedule definition allowing to specify dailyRecurrence. */
-        interface WithDailyRecurrence {
-            /**
-             * Specifies the dailyRecurrence property: If the schedule will occur once each day of the week, specify the
-             * daily recurrence..
-             *
-             * @param dailyRecurrence If the schedule will occur once each day of the week, specify the daily
-             *     recurrence.
-             * @return the next definition stage.
-             */
-            WithCreate withDailyRecurrence(DayDetails dailyRecurrence);
-        }
-        /** The stage of the Schedule definition allowing to specify hourlyRecurrence. */
-        interface WithHourlyRecurrence {
-            /**
-             * Specifies the hourlyRecurrence property: If the schedule will occur multiple times a day, specify the
-             * hourly recurrence..
-             *
-             * @param hourlyRecurrence If the schedule will occur multiple times a day, specify the hourly recurrence.
-             * @return the next definition stage.
-             */
-            WithCreate withHourlyRecurrence(HourDetails hourlyRecurrence);
-        }
         /** The stage of the Schedule definition allowing to specify timeZoneId. */
         interface WithTimeZoneId {
             /**
@@ -293,16 +315,6 @@ public interface Schedule {
              */
             WithCreate withTimeZoneId(String timeZoneId);
         }
-        /** The stage of the Schedule definition allowing to specify notificationSettings. */
-        interface WithNotificationSettings {
-            /**
-             * Specifies the notificationSettings property: Notification settings..
-             *
-             * @param notificationSettings Notification settings.
-             * @return the next definition stage.
-             */
-            WithCreate withNotificationSettings(NotificationSettings notificationSettings);
-        }
         /** The stage of the Schedule definition allowing to specify targetResourceId. */
         interface WithTargetResourceId {
             /**
@@ -312,6 +324,103 @@ public interface Schedule {
              * @return the next definition stage.
              */
             WithCreate withTargetResourceId(String targetResourceId);
+        }
+        /** The stage of the Schedule definition allowing to specify weekdays. */
+        interface WithWeekdays {
+            /**
+             * Specifies the weekdays property: The days of the week for which the schedule is set (e.g. Sunday, Monday,
+             * Tuesday, etc.)..
+             *
+             * @param weekdays The days of the week for which the schedule is set (e.g. Sunday, Monday, Tuesday, etc.).
+             * @return the next definition stage.
+             */
+            WithCreate withWeekdays(List<String> weekdays);
+        }
+        /** The stage of the Schedule definition allowing to specify time. */
+        interface WithTime {
+            /**
+             * Specifies the time property: The time of the day the schedule will occur..
+             *
+             * @param time The time of the day the schedule will occur.
+             * @return the next definition stage.
+             */
+            WithCreate withTime(String time);
+        }
+        /** The stage of the Schedule definition allowing to specify timeDailyRecurrenceTime. */
+        interface WithTimeDailyRecurrenceTime {
+            /**
+             * Specifies the timeDailyRecurrenceTime property: The time of day the schedule will occur..
+             *
+             * @param timeDailyRecurrenceTime The time of day the schedule will occur.
+             * @return the next definition stage.
+             */
+            WithCreate withTimeDailyRecurrenceTime(String timeDailyRecurrenceTime);
+        }
+        /** The stage of the Schedule definition allowing to specify minute. */
+        interface WithMinute {
+            /**
+             * Specifies the minute property: Minutes of the hour the schedule will run..
+             *
+             * @param minute Minutes of the hour the schedule will run.
+             * @return the next definition stage.
+             */
+            WithCreate withMinute(Integer minute);
+        }
+        /** The stage of the Schedule definition allowing to specify statusNotificationSettingsStatus. */
+        interface WithStatusNotificationSettingsStatus {
+            /**
+             * Specifies the statusNotificationSettingsStatus property: If notifications are enabled for this schedule
+             * (i.e. Enabled, Disabled)..
+             *
+             * @param statusNotificationSettingsStatus If notifications are enabled for this schedule (i.e. Enabled,
+             *     Disabled).
+             * @return the next definition stage.
+             */
+            WithCreate withStatusNotificationSettingsStatus(EnableStatus statusNotificationSettingsStatus);
+        }
+        /** The stage of the Schedule definition allowing to specify timeInMinutes. */
+        interface WithTimeInMinutes {
+            /**
+             * Specifies the timeInMinutes property: Time in minutes before event at which notification will be sent..
+             *
+             * @param timeInMinutes Time in minutes before event at which notification will be sent.
+             * @return the next definition stage.
+             */
+            WithCreate withTimeInMinutes(Integer timeInMinutes);
+        }
+        /** The stage of the Schedule definition allowing to specify webhookUrl. */
+        interface WithWebhookUrl {
+            /**
+             * Specifies the webhookUrl property: The webhook URL to which the notification will be sent..
+             *
+             * @param webhookUrl The webhook URL to which the notification will be sent.
+             * @return the next definition stage.
+             */
+            WithCreate withWebhookUrl(String webhookUrl);
+        }
+        /** The stage of the Schedule definition allowing to specify emailRecipient. */
+        interface WithEmailRecipient {
+            /**
+             * Specifies the emailRecipient property: The email recipient to send notifications to (can be a list of
+             * semi-colon separated email addresses)..
+             *
+             * @param emailRecipient The email recipient to send notifications to (can be a list of semi-colon separated
+             *     email addresses).
+             * @return the next definition stage.
+             */
+            WithCreate withEmailRecipient(String emailRecipient);
+        }
+        /** The stage of the Schedule definition allowing to specify notificationLocale. */
+        interface WithNotificationLocale {
+            /**
+             * Specifies the notificationLocale property: The locale to use when sending a notification (fallback for
+             * unsupported languages is EN)..
+             *
+             * @param notificationLocale The locale to use when sending a notification (fallback for unsupported
+             *     languages is EN).
+             * @return the next definition stage.
+             */
+            WithCreate withNotificationLocale(String notificationLocale);
         }
     }
     /**

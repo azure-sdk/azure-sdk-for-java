@@ -6,6 +6,7 @@ package com.azure.resourcemanager.devtestlabs.implementation;
 
 import com.azure.core.annotation.BodyParam;
 import com.azure.core.annotation.ExpectedResponses;
+import com.azure.core.annotation.Get;
 import com.azure.core.annotation.HeaderParam;
 import com.azure.core.annotation.Headers;
 import com.azure.core.annotation.Host;
@@ -17,21 +18,24 @@ import com.azure.core.annotation.ReturnType;
 import com.azure.core.annotation.ServiceInterface;
 import com.azure.core.annotation.ServiceMethod;
 import com.azure.core.annotation.UnexpectedResponseExceptionType;
+import com.azure.core.http.rest.PagedFlux;
+import com.azure.core.http.rest.PagedIterable;
+import com.azure.core.http.rest.PagedResponse;
+import com.azure.core.http.rest.PagedResponseBase;
 import com.azure.core.http.rest.Response;
 import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.devtestlabs.fluent.PolicySetsClient;
 import com.azure.resourcemanager.devtestlabs.fluent.models.EvaluatePoliciesResponseInner;
+import com.azure.resourcemanager.devtestlabs.fluent.models.PolicySetInner;
 import com.azure.resourcemanager.devtestlabs.models.EvaluatePoliciesRequest;
+import com.azure.resourcemanager.devtestlabs.models.PolicySetList;
 import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in PolicySetsClient. */
 public final class PolicySetsClientImpl implements PolicySetsClient {
-    private final ClientLogger logger = new ClientLogger(PolicySetsClientImpl.class);
-
     /** The proxy service used to perform REST calls. */
     private final PolicySetsService service;
 
@@ -57,6 +61,24 @@ public final class PolicySetsClientImpl implements PolicySetsClient {
     @ServiceInterface(name = "DevTestLabsClientPol")
     private interface PolicySetsService {
         @Headers({"Content-Type: application/json"})
+        @Get(
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevTestLab/labs"
+                + "/{labName}/policysets")
+        @ExpectedResponses({200})
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<PolicySetList>> list(
+            @HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName,
+            @PathParam("labName") String labName,
+            @QueryParam("$filter") String filter,
+            @QueryParam("$top") Integer top,
+            @QueryParam("$orderby") String orderby,
+            @QueryParam("api-version") String apiVersion,
+            @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({"Content-Type: application/json"})
         @Post(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevTestLab/labs"
                 + "/{labName}/policysets/{name}/evaluatePolicies")
@@ -72,6 +94,243 @@ public final class PolicySetsClientImpl implements PolicySetsClient {
             @BodyParam("application/json") EvaluatePoliciesRequest evaluatePoliciesRequest,
             @HeaderParam("Accept") String accept,
             Context context);
+
+        @Headers({"Content-Type: application/json"})
+        @Get("{nextLink}")
+        @ExpectedResponses({200})
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<PolicySetList>> listNext(
+            @PathParam(value = "nextLink", encoded = true) String nextLink,
+            @HostParam("$host") String endpoint,
+            @HeaderParam("Accept") String accept,
+            Context context);
+    }
+
+    /**
+     * List policy sets in a given lab.
+     *
+     * @param resourceGroupName The name of the resource group.
+     * @param labName The name of the lab.
+     * @param filter The filter to apply to the operation. Example: '$filter=contains(name,'myName')'.
+     * @param top The maximum number of resources to return from the operation. Example: '$top=10'.
+     * @param orderby The ordering expression for the results, using OData notation. Example: '$orderby=name desc'.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return contains a list of policySets and their properties along with {@link PagedResponse} on successful
+     *     completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<PolicySetInner>> listSinglePageAsync(
+        String resourceGroupName, String labName, String filter, Integer top, String orderby) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (labName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter labName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(
+                context ->
+                    service
+                        .list(
+                            this.client.getEndpoint(),
+                            this.client.getSubscriptionId(),
+                            resourceGroupName,
+                            labName,
+                            filter,
+                            top,
+                            orderby,
+                            this.client.getApiVersion(),
+                            accept,
+                            context))
+            .<PagedResponse<PolicySetInner>>map(
+                res ->
+                    new PagedResponseBase<>(
+                        res.getRequest(),
+                        res.getStatusCode(),
+                        res.getHeaders(),
+                        res.getValue().value(),
+                        res.getValue().nextLink(),
+                        null))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * List policy sets in a given lab.
+     *
+     * @param resourceGroupName The name of the resource group.
+     * @param labName The name of the lab.
+     * @param filter The filter to apply to the operation. Example: '$filter=contains(name,'myName')'.
+     * @param top The maximum number of resources to return from the operation. Example: '$top=10'.
+     * @param orderby The ordering expression for the results, using OData notation. Example: '$orderby=name desc'.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return contains a list of policySets and their properties along with {@link PagedResponse} on successful
+     *     completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<PolicySetInner>> listSinglePageAsync(
+        String resourceGroupName, String labName, String filter, Integer top, String orderby, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (labName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter labName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service
+            .list(
+                this.client.getEndpoint(),
+                this.client.getSubscriptionId(),
+                resourceGroupName,
+                labName,
+                filter,
+                top,
+                orderby,
+                this.client.getApiVersion(),
+                accept,
+                context)
+            .map(
+                res ->
+                    new PagedResponseBase<>(
+                        res.getRequest(),
+                        res.getStatusCode(),
+                        res.getHeaders(),
+                        res.getValue().value(),
+                        res.getValue().nextLink(),
+                        null));
+    }
+
+    /**
+     * List policy sets in a given lab.
+     *
+     * @param resourceGroupName The name of the resource group.
+     * @param labName The name of the lab.
+     * @param filter The filter to apply to the operation. Example: '$filter=contains(name,'myName')'.
+     * @param top The maximum number of resources to return from the operation. Example: '$top=10'.
+     * @param orderby The ordering expression for the results, using OData notation. Example: '$orderby=name desc'.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return contains a list of policySets and their properties as paginated response with {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    private PagedFlux<PolicySetInner> listAsync(
+        String resourceGroupName, String labName, String filter, Integer top, String orderby) {
+        return new PagedFlux<>(
+            () -> listSinglePageAsync(resourceGroupName, labName, filter, top, orderby),
+            nextLink -> listNextSinglePageAsync(nextLink));
+    }
+
+    /**
+     * List policy sets in a given lab.
+     *
+     * @param resourceGroupName The name of the resource group.
+     * @param labName The name of the lab.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return contains a list of policySets and their properties as paginated response with {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    private PagedFlux<PolicySetInner> listAsync(String resourceGroupName, String labName) {
+        final String filter = null;
+        final Integer top = null;
+        final String orderby = null;
+        return new PagedFlux<>(
+            () -> listSinglePageAsync(resourceGroupName, labName, filter, top, orderby),
+            nextLink -> listNextSinglePageAsync(nextLink));
+    }
+
+    /**
+     * List policy sets in a given lab.
+     *
+     * @param resourceGroupName The name of the resource group.
+     * @param labName The name of the lab.
+     * @param filter The filter to apply to the operation. Example: '$filter=contains(name,'myName')'.
+     * @param top The maximum number of resources to return from the operation. Example: '$top=10'.
+     * @param orderby The ordering expression for the results, using OData notation. Example: '$orderby=name desc'.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return contains a list of policySets and their properties as paginated response with {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    private PagedFlux<PolicySetInner> listAsync(
+        String resourceGroupName, String labName, String filter, Integer top, String orderby, Context context) {
+        return new PagedFlux<>(
+            () -> listSinglePageAsync(resourceGroupName, labName, filter, top, orderby, context),
+            nextLink -> listNextSinglePageAsync(nextLink, context));
+    }
+
+    /**
+     * List policy sets in a given lab.
+     *
+     * @param resourceGroupName The name of the resource group.
+     * @param labName The name of the lab.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return contains a list of policySets and their properties as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedIterable<PolicySetInner> list(String resourceGroupName, String labName) {
+        final String filter = null;
+        final Integer top = null;
+        final String orderby = null;
+        return new PagedIterable<>(listAsync(resourceGroupName, labName, filter, top, orderby));
+    }
+
+    /**
+     * List policy sets in a given lab.
+     *
+     * @param resourceGroupName The name of the resource group.
+     * @param labName The name of the lab.
+     * @param filter The filter to apply to the operation. Example: '$filter=contains(name,'myName')'.
+     * @param top The maximum number of resources to return from the operation. Example: '$top=10'.
+     * @param orderby The ordering expression for the results, using OData notation. Example: '$orderby=name desc'.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return contains a list of policySets and their properties as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedIterable<PolicySetInner> list(
+        String resourceGroupName, String labName, String filter, Integer top, String orderby, Context context) {
+        return new PagedIterable<>(listAsync(resourceGroupName, labName, filter, top, orderby, context));
     }
 
     /**
@@ -84,7 +343,8 @@ public final class PolicySetsClientImpl implements PolicySetsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response body for evaluating a policy set.
+     * @return response body for evaluating a policy set along with {@link Response} on successful completion of {@link
+     *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<EvaluatePoliciesResponseInner>> evaluatePoliciesWithResponseAsync(
@@ -147,7 +407,8 @@ public final class PolicySetsClientImpl implements PolicySetsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response body for evaluating a policy set.
+     * @return response body for evaluating a policy set along with {@link Response} on successful completion of {@link
+     *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<EvaluatePoliciesResponseInner>> evaluatePoliciesWithResponseAsync(
@@ -210,20 +471,13 @@ public final class PolicySetsClientImpl implements PolicySetsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response body for evaluating a policy set.
+     * @return response body for evaluating a policy set on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<EvaluatePoliciesResponseInner> evaluatePoliciesAsync(
         String resourceGroupName, String labName, String name, EvaluatePoliciesRequest evaluatePoliciesRequest) {
         return evaluatePoliciesWithResponseAsync(resourceGroupName, labName, name, evaluatePoliciesRequest)
-            .flatMap(
-                (Response<EvaluatePoliciesResponseInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -255,7 +509,7 @@ public final class PolicySetsClientImpl implements PolicySetsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response body for evaluating a policy set.
+     * @return response body for evaluating a policy set along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<EvaluatePoliciesResponseInner> evaluatePoliciesWithResponse(
@@ -266,5 +520,80 @@ public final class PolicySetsClientImpl implements PolicySetsClient {
         Context context) {
         return evaluatePoliciesWithResponseAsync(resourceGroupName, labName, name, evaluatePoliciesRequest, context)
             .block();
+    }
+
+    /**
+     * Get the next page of items.
+     *
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return contains a list of policySets and their properties along with {@link PagedResponse} on successful
+     *     completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<PolicySetInner>> listNextSinglePageAsync(String nextLink) {
+        if (nextLink == null) {
+            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+        }
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(context -> service.listNext(nextLink, this.client.getEndpoint(), accept, context))
+            .<PagedResponse<PolicySetInner>>map(
+                res ->
+                    new PagedResponseBase<>(
+                        res.getRequest(),
+                        res.getStatusCode(),
+                        res.getHeaders(),
+                        res.getValue().value(),
+                        res.getValue().nextLink(),
+                        null))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Get the next page of items.
+     *
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return contains a list of policySets and their properties along with {@link PagedResponse} on successful
+     *     completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<PolicySetInner>> listNextSinglePageAsync(String nextLink, Context context) {
+        if (nextLink == null) {
+            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+        }
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service
+            .listNext(nextLink, this.client.getEndpoint(), accept, context)
+            .map(
+                res ->
+                    new PagedResponseBase<>(
+                        res.getRequest(),
+                        res.getStatusCode(),
+                        res.getHeaders(),
+                        res.getValue().value(),
+                        res.getValue().nextLink(),
+                        null));
     }
 }

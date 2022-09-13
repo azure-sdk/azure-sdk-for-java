@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for VirtualMachineCreationSource. */
+/** Tells source of creation of lab virtual machine. Output property only. */
 public final class VirtualMachineCreationSource extends ExpandableStringEnum<VirtualMachineCreationSource> {
     /** Static value FromCustomImage for VirtualMachineCreationSource. */
     public static final VirtualMachineCreationSource FROM_CUSTOM_IMAGE = fromString("FromCustomImage");
@@ -30,7 +30,11 @@ public final class VirtualMachineCreationSource extends ExpandableStringEnum<Vir
         return fromString(name, VirtualMachineCreationSource.class);
     }
 
-    /** @return known VirtualMachineCreationSource values. */
+    /**
+     * Gets known VirtualMachineCreationSource values.
+     *
+     * @return known VirtualMachineCreationSource values.
+     */
     public static Collection<VirtualMachineCreationSource> values() {
         return values(VirtualMachineCreationSource.class);
     }

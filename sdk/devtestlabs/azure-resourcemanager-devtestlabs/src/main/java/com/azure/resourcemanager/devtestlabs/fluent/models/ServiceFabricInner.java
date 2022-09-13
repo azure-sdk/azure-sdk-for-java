@@ -5,117 +5,45 @@
 package com.azure.resourcemanager.devtestlabs.fluent.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.annotation.JsonFlatten;
 import com.azure.core.management.Resource;
-import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.azure.core.management.SystemData;
+import com.azure.resourcemanager.devtestlabs.models.EnableStatus;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.time.OffsetDateTime;
+import java.util.List;
 import java.util.Map;
 
 /** A Service Fabric. */
-@JsonFlatten
 @Fluent
-public class ServiceFabricInner extends Resource {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(ServiceFabricInner.class);
+public final class ServiceFabricInner extends Resource {
+    /*
+     * The properties of the resource.
+     */
+    @JsonProperty(value = "properties")
+    private ServiceFabricPropertiesInner innerProperties;
 
     /*
-     * The backing service fabric resource's id
+     * The system metadata relating to this resource
      */
-    @JsonProperty(value = "properties.externalServiceFabricId")
-    private String externalServiceFabricId;
-
-    /*
-     * The resource id of the environment under which the service fabric
-     * resource is present
-     */
-    @JsonProperty(value = "properties.environmentId")
-    private String environmentId;
-
-    /*
-     * The applicable schedule for the virtual machine.
-     */
-    @JsonProperty(value = "properties.applicableSchedule", access = JsonProperty.Access.WRITE_ONLY)
-    private ApplicableScheduleInner applicableSchedule;
-
-    /*
-     * The provisioning status of the resource.
-     */
-    @JsonProperty(value = "properties.provisioningState", access = JsonProperty.Access.WRITE_ONLY)
-    private String provisioningState;
-
-    /*
-     * The unique immutable identifier of a resource (Guid).
-     */
-    @JsonProperty(value = "properties.uniqueIdentifier", access = JsonProperty.Access.WRITE_ONLY)
-    private String uniqueIdentifier;
+    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
+    private SystemData systemData;
 
     /**
-     * Get the externalServiceFabricId property: The backing service fabric resource's id.
+     * Get the innerProperties property: The properties of the resource.
      *
-     * @return the externalServiceFabricId value.
+     * @return the innerProperties value.
      */
-    public String externalServiceFabricId() {
-        return this.externalServiceFabricId;
+    private ServiceFabricPropertiesInner innerProperties() {
+        return this.innerProperties;
     }
 
     /**
-     * Set the externalServiceFabricId property: The backing service fabric resource's id.
+     * Get the systemData property: The system metadata relating to this resource.
      *
-     * @param externalServiceFabricId the externalServiceFabricId value to set.
-     * @return the ServiceFabricInner object itself.
+     * @return the systemData value.
      */
-    public ServiceFabricInner withExternalServiceFabricId(String externalServiceFabricId) {
-        this.externalServiceFabricId = externalServiceFabricId;
-        return this;
-    }
-
-    /**
-     * Get the environmentId property: The resource id of the environment under which the service fabric resource is
-     * present.
-     *
-     * @return the environmentId value.
-     */
-    public String environmentId() {
-        return this.environmentId;
-    }
-
-    /**
-     * Set the environmentId property: The resource id of the environment under which the service fabric resource is
-     * present.
-     *
-     * @param environmentId the environmentId value to set.
-     * @return the ServiceFabricInner object itself.
-     */
-    public ServiceFabricInner withEnvironmentId(String environmentId) {
-        this.environmentId = environmentId;
-        return this;
-    }
-
-    /**
-     * Get the applicableSchedule property: The applicable schedule for the virtual machine.
-     *
-     * @return the applicableSchedule value.
-     */
-    public ApplicableScheduleInner applicableSchedule() {
-        return this.applicableSchedule;
-    }
-
-    /**
-     * Get the provisioningState property: The provisioning status of the resource.
-     *
-     * @return the provisioningState value.
-     */
-    public String provisioningState() {
-        return this.provisioningState;
-    }
-
-    /**
-     * Get the uniqueIdentifier property: The unique immutable identifier of a resource (Guid).
-     *
-     * @return the uniqueIdentifier value.
-     */
-    public String uniqueIdentifier() {
-        return this.uniqueIdentifier;
+    public SystemData systemData() {
+        return this.systemData;
     }
 
     /** {@inheritDoc} */
@@ -133,13 +61,510 @@ public class ServiceFabricInner extends Resource {
     }
 
     /**
+     * Get the externalServiceFabricId property: The backing service fabric resource's id.
+     *
+     * @return the externalServiceFabricId value.
+     */
+    public String externalServiceFabricId() {
+        return this.innerProperties() == null ? null : this.innerProperties().externalServiceFabricId();
+    }
+
+    /**
+     * Set the externalServiceFabricId property: The backing service fabric resource's id.
+     *
+     * @param externalServiceFabricId the externalServiceFabricId value to set.
+     * @return the ServiceFabricInner object itself.
+     */
+    public ServiceFabricInner withExternalServiceFabricId(String externalServiceFabricId) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ServiceFabricPropertiesInner();
+        }
+        this.innerProperties().withExternalServiceFabricId(externalServiceFabricId);
+        return this;
+    }
+
+    /**
+     * Get the environmentId property: The resource id of the environment under which the service fabric resource is
+     * present.
+     *
+     * @return the environmentId value.
+     */
+    public String environmentId() {
+        return this.innerProperties() == null ? null : this.innerProperties().environmentId();
+    }
+
+    /**
+     * Set the environmentId property: The resource id of the environment under which the service fabric resource is
+     * present.
+     *
+     * @param environmentId the environmentId value to set.
+     * @return the ServiceFabricInner object itself.
+     */
+    public ServiceFabricInner withEnvironmentId(String environmentId) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ServiceFabricPropertiesInner();
+        }
+        this.innerProperties().withEnvironmentId(environmentId);
+        return this;
+    }
+
+    /**
+     * Get the provisioningState property: The provisioning status of the resource.
+     *
+     * @return the provisioningState value.
+     */
+    public String provisioningState() {
+        return this.innerProperties() == null ? null : this.innerProperties().provisioningState();
+    }
+
+    /**
+     * Get the uniqueIdentifier property: The unique immutable identifier of a resource (Guid).
+     *
+     * @return the uniqueIdentifier value.
+     */
+    public String uniqueIdentifier() {
+        return this.innerProperties() == null ? null : this.innerProperties().uniqueIdentifier();
+    }
+
+    /**
+     * Get the systemData property: The system metadata relating to this resource.
+     *
+     * @return the systemData value.
+     */
+    public SystemData systemDataPropertiesSystemData() {
+        return this.innerProperties() == null ? null : this.innerProperties().systemData();
+    }
+
+    /**
+     * Get the status property: The status of the schedule (i.e. Enabled, Disabled).
+     *
+     * @return the status value.
+     */
+    public EnableStatus status() {
+        return this.innerProperties() == null ? null : this.innerProperties().status();
+    }
+
+    /**
+     * Get the taskType property: The task type of the schedule (e.g. LabVmsShutdownTask, LabVmAutoStart).
+     *
+     * @return the taskType value.
+     */
+    public String taskType() {
+        return this.innerProperties() == null ? null : this.innerProperties().taskType();
+    }
+
+    /**
+     * Get the timeZoneId property: The time zone ID (e.g. Pacific Standard time).
+     *
+     * @return the timeZoneId value.
+     */
+    public String timeZoneId() {
+        return this.innerProperties() == null ? null : this.innerProperties().timeZoneId();
+    }
+
+    /**
+     * Get the createdDate property: The creation date of the schedule.
+     *
+     * @return the createdDate value.
+     */
+    public OffsetDateTime createdDate() {
+        return this.innerProperties() == null ? null : this.innerProperties().createdDate();
+    }
+
+    /**
+     * Get the targetResourceId property: The resource ID to which the schedule belongs.
+     *
+     * @return the targetResourceId value.
+     */
+    public String targetResourceId() {
+        return this.innerProperties() == null ? null : this.innerProperties().targetResourceId();
+    }
+
+    /**
+     * Get the provisioningStateApplicableScheduleProvisioningState property: The provisioning status of the resource.
+     *
+     * @return the provisioningStateApplicableScheduleProvisioningState value.
+     */
+    public String provisioningStateApplicableScheduleProvisioningState() {
+        return this.innerProperties() == null
+            ? null
+            : this.innerProperties().provisioningStateApplicableScheduleProvisioningState();
+    }
+
+    /**
+     * Get the uniqueIdentifierApplicableScheduleUniqueIdentifier property: The unique immutable identifier of a
+     * resource (Guid).
+     *
+     * @return the uniqueIdentifierApplicableScheduleUniqueIdentifier value.
+     */
+    public String uniqueIdentifierApplicableScheduleUniqueIdentifier() {
+        return this.innerProperties() == null
+            ? null
+            : this.innerProperties().uniqueIdentifierApplicableScheduleUniqueIdentifier();
+    }
+
+    /**
+     * Get the weekdays property: The days of the week for which the schedule is set (e.g. Sunday, Monday, Tuesday,
+     * etc.).
+     *
+     * @return the weekdays value.
+     */
+    public List<String> weekdays() {
+        return this.innerProperties() == null ? null : this.innerProperties().weekdays();
+    }
+
+    /**
+     * Get the time property: The time of the day the schedule will occur.
+     *
+     * @return the time value.
+     */
+    public String time() {
+        return this.innerProperties() == null ? null : this.innerProperties().time();
+    }
+
+    /**
+     * Get the timeDailyRecurrenceTime property: The time of day the schedule will occur.
+     *
+     * @return the timeDailyRecurrenceTime value.
+     */
+    public String timeDailyRecurrenceTime() {
+        return this.innerProperties() == null ? null : this.innerProperties().timeDailyRecurrenceTime();
+    }
+
+    /**
+     * Get the minute property: Minutes of the hour the schedule will run.
+     *
+     * @return the minute value.
+     */
+    public Integer minute() {
+        return this.innerProperties() == null ? null : this.innerProperties().minute();
+    }
+
+    /**
+     * Get the statusNotificationSettingsStatus property: If notifications are enabled for this schedule (i.e. Enabled,
+     * Disabled).
+     *
+     * @return the statusNotificationSettingsStatus value.
+     */
+    public EnableStatus statusNotificationSettingsStatus() {
+        return this.innerProperties() == null ? null : this.innerProperties().statusNotificationSettingsStatus();
+    }
+
+    /**
+     * Get the timeInMinutes property: Time in minutes before event at which notification will be sent.
+     *
+     * @return the timeInMinutes value.
+     */
+    public Integer timeInMinutes() {
+        return this.innerProperties() == null ? null : this.innerProperties().timeInMinutes();
+    }
+
+    /**
+     * Get the webhookUrl property: The webhook URL to which the notification will be sent.
+     *
+     * @return the webhookUrl value.
+     */
+    public String webhookUrl() {
+        return this.innerProperties() == null ? null : this.innerProperties().webhookUrl();
+    }
+
+    /**
+     * Get the emailRecipient property: The email recipient to send notifications to (can be a list of semi-colon
+     * separated email addresses).
+     *
+     * @return the emailRecipient value.
+     */
+    public String emailRecipient() {
+        return this.innerProperties() == null ? null : this.innerProperties().emailRecipient();
+    }
+
+    /**
+     * Get the notificationLocale property: The locale to use when sending a notification (fallback for unsupported
+     * languages is EN).
+     *
+     * @return the notificationLocale value.
+     */
+    public String notificationLocale() {
+        return this.innerProperties() == null ? null : this.innerProperties().notificationLocale();
+    }
+
+    /**
+     * Get the idPropertiesId property: Fully qualified resource ID for the resource. Ex -
+     * /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+     *
+     * @return the idPropertiesId value.
+     */
+    public String idPropertiesId() {
+        return this.innerProperties() == null ? null : this.innerProperties().idPropertiesId();
+    }
+
+    /**
+     * Get the namePropertiesName property: The name of the resource.
+     *
+     * @return the namePropertiesName value.
+     */
+    public String namePropertiesName() {
+        return this.innerProperties() == null ? null : this.innerProperties().namePropertiesName();
+    }
+
+    /**
+     * Get the typePropertiesType property: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
+     * "Microsoft.Storage/storageAccounts".
+     *
+     * @return the typePropertiesType value.
+     */
+    public String typePropertiesType() {
+        return this.innerProperties() == null ? null : this.innerProperties().typePropertiesType();
+    }
+
+    /**
+     * Get the tagsPropertiesTags property: Resource tags.
+     *
+     * @return the tagsPropertiesTags value.
+     */
+    public Map<String, String> tagsPropertiesTags() {
+        return this.innerProperties() == null ? null : this.innerProperties().tagsPropertiesTags();
+    }
+
+    /**
+     * Get the locationPropertiesLocation property: The geo-location where the resource lives.
+     *
+     * @return the locationPropertiesLocation value.
+     */
+    public String locationPropertiesLocation() {
+        return this.innerProperties() == null ? null : this.innerProperties().locationPropertiesLocation();
+    }
+
+    /**
+     * Get the systemDataLabVmsStartupSystemData property: The system metadata relating to this resource.
+     *
+     * @return the systemDataLabVmsStartupSystemData value.
+     */
+    public SystemData systemDataLabVmsStartupSystemData() {
+        return this.innerProperties() == null ? null : this.innerProperties().systemDataLabVmsStartupSystemData();
+    }
+
+    /**
+     * Get the statusLabVmsStartupStatus property: The status of the schedule (i.e. Enabled, Disabled).
+     *
+     * @return the statusLabVmsStartupStatus value.
+     */
+    public EnableStatus statusLabVmsStartupStatus() {
+        return this.innerProperties() == null ? null : this.innerProperties().statusLabVmsStartupStatus();
+    }
+
+    /**
+     * Get the taskTypeLabVmsStartupTaskType property: The task type of the schedule (e.g. LabVmsShutdownTask,
+     * LabVmAutoStart).
+     *
+     * @return the taskTypeLabVmsStartupTaskType value.
+     */
+    public String taskTypeLabVmsStartupTaskType() {
+        return this.innerProperties() == null ? null : this.innerProperties().taskTypeLabVmsStartupTaskType();
+    }
+
+    /**
+     * Get the timeZoneIdLabVmsStartupTimeZoneId property: The time zone ID (e.g. Pacific Standard time).
+     *
+     * @return the timeZoneIdLabVmsStartupTimeZoneId value.
+     */
+    public String timeZoneIdLabVmsStartupTimeZoneId() {
+        return this.innerProperties() == null ? null : this.innerProperties().timeZoneIdLabVmsStartupTimeZoneId();
+    }
+
+    /**
+     * Get the createdDateLabVmsStartupCreatedDate property: The creation date of the schedule.
+     *
+     * @return the createdDateLabVmsStartupCreatedDate value.
+     */
+    public OffsetDateTime createdDateLabVmsStartupCreatedDate() {
+        return this.innerProperties() == null ? null : this.innerProperties().createdDateLabVmsStartupCreatedDate();
+    }
+
+    /**
+     * Get the targetResourceIdLabVmsStartupTargetResourceId property: The resource ID to which the schedule belongs.
+     *
+     * @return the targetResourceIdLabVmsStartupTargetResourceId value.
+     */
+    public String targetResourceIdLabVmsStartupTargetResourceId() {
+        return this.innerProperties() == null
+            ? null
+            : this.innerProperties().targetResourceIdLabVmsStartupTargetResourceId();
+    }
+
+    /**
+     * Get the provisioningStateLabVmsStartupProvisioningState property: The provisioning status of the resource.
+     *
+     * @return the provisioningStateLabVmsStartupProvisioningState value.
+     */
+    public String provisioningStateLabVmsStartupProvisioningState() {
+        return this.innerProperties() == null
+            ? null
+            : this.innerProperties().provisioningStateLabVmsStartupProvisioningState();
+    }
+
+    /**
+     * Get the uniqueIdentifierLabVmsStartupUniqueIdentifier property: The unique immutable identifier of a resource
+     * (Guid).
+     *
+     * @return the uniqueIdentifierLabVmsStartupUniqueIdentifier value.
+     */
+    public String uniqueIdentifierLabVmsStartupUniqueIdentifier() {
+        return this.innerProperties() == null
+            ? null
+            : this.innerProperties().uniqueIdentifierLabVmsStartupUniqueIdentifier();
+    }
+
+    /**
+     * Get the weekdaysLabVmsStartupWeekdays property: The days of the week for which the schedule is set (e.g. Sunday,
+     * Monday, Tuesday, etc.).
+     *
+     * @return the weekdaysLabVmsStartupWeekdays value.
+     */
+    public List<String> weekdaysLabVmsStartupWeekdays() {
+        return this.innerProperties() == null ? null : this.innerProperties().weekdaysLabVmsStartupWeekdays();
+    }
+
+    /**
+     * Get the timeLabVmsStartupTime property: The time of the day the schedule will occur.
+     *
+     * @return the timeLabVmsStartupTime value.
+     */
+    public String timeLabVmsStartupTime() {
+        return this.innerProperties() == null ? null : this.innerProperties().timeLabVmsStartupTime();
+    }
+
+    /**
+     * Get the timeDailyRecurrenceTimeLabVmsStartupTimeDailyRecurrenceTime property: The time of day the schedule will
+     * occur.
+     *
+     * @return the timeDailyRecurrenceTimeLabVmsStartupTimeDailyRecurrenceTime value.
+     */
+    public String timeDailyRecurrenceTimeLabVmsStartupTimeDailyRecurrenceTime() {
+        return this.innerProperties() == null
+            ? null
+            : this.innerProperties().timeDailyRecurrenceTimeLabVmsStartupTimeDailyRecurrenceTime();
+    }
+
+    /**
+     * Get the minuteLabVmsStartupMinute property: Minutes of the hour the schedule will run.
+     *
+     * @return the minuteLabVmsStartupMinute value.
+     */
+    public Integer minuteLabVmsStartupMinute() {
+        return this.innerProperties() == null ? null : this.innerProperties().minuteLabVmsStartupMinute();
+    }
+
+    /**
+     * Get the statusNotificationSettingsStatusLabVmsStartupStatusNotificationSettingsStatus property: If notifications
+     * are enabled for this schedule (i.e. Enabled, Disabled).
+     *
+     * @return the statusNotificationSettingsStatusLabVmsStartupStatusNotificationSettingsStatus value.
+     */
+    public EnableStatus statusNotificationSettingsStatusLabVmsStartupStatusNotificationSettingsStatus() {
+        return this.innerProperties() == null
+            ? null
+            : this.innerProperties().statusNotificationSettingsStatusLabVmsStartupStatusNotificationSettingsStatus();
+    }
+
+    /**
+     * Get the timeInMinutesLabVmsStartupTimeInMinutes property: Time in minutes before event at which notification will
+     * be sent.
+     *
+     * @return the timeInMinutesLabVmsStartupTimeInMinutes value.
+     */
+    public Integer timeInMinutesLabVmsStartupTimeInMinutes() {
+        return this.innerProperties() == null ? null : this.innerProperties().timeInMinutesLabVmsStartupTimeInMinutes();
+    }
+
+    /**
+     * Get the webhookUrlLabVmsStartupWebhookUrl property: The webhook URL to which the notification will be sent.
+     *
+     * @return the webhookUrlLabVmsStartupWebhookUrl value.
+     */
+    public String webhookUrlLabVmsStartupWebhookUrl() {
+        return this.innerProperties() == null ? null : this.innerProperties().webhookUrlLabVmsStartupWebhookUrl();
+    }
+
+    /**
+     * Get the emailRecipientLabVmsStartupEmailRecipient property: The email recipient to send notifications to (can be
+     * a list of semi-colon separated email addresses).
+     *
+     * @return the emailRecipientLabVmsStartupEmailRecipient value.
+     */
+    public String emailRecipientLabVmsStartupEmailRecipient() {
+        return this.innerProperties() == null
+            ? null
+            : this.innerProperties().emailRecipientLabVmsStartupEmailRecipient();
+    }
+
+    /**
+     * Get the notificationLocaleLabVmsStartupNotificationLocale property: The locale to use when sending a notification
+     * (fallback for unsupported languages is EN).
+     *
+     * @return the notificationLocaleLabVmsStartupNotificationLocale value.
+     */
+    public String notificationLocaleLabVmsStartupNotificationLocale() {
+        return this.innerProperties() == null
+            ? null
+            : this.innerProperties().notificationLocaleLabVmsStartupNotificationLocale();
+    }
+
+    /**
+     * Get the idLabVmsStartupId property: Fully qualified resource ID for the resource. Ex -
+     * /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+     *
+     * @return the idLabVmsStartupId value.
+     */
+    public String idLabVmsStartupId() {
+        return this.innerProperties() == null ? null : this.innerProperties().idLabVmsStartupId();
+    }
+
+    /**
+     * Get the nameLabVmsStartupName property: The name of the resource.
+     *
+     * @return the nameLabVmsStartupName value.
+     */
+    public String nameLabVmsStartupName() {
+        return this.innerProperties() == null ? null : this.innerProperties().nameLabVmsStartupName();
+    }
+
+    /**
+     * Get the typeLabVmsStartupType property: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
+     * "Microsoft.Storage/storageAccounts".
+     *
+     * @return the typeLabVmsStartupType value.
+     */
+    public String typeLabVmsStartupType() {
+        return this.innerProperties() == null ? null : this.innerProperties().typeLabVmsStartupType();
+    }
+
+    /**
+     * Get the tagsLabVmsStartupTags property: Resource tags.
+     *
+     * @return the tagsLabVmsStartupTags value.
+     */
+    public Map<String, String> tagsLabVmsStartupTags() {
+        return this.innerProperties() == null ? null : this.innerProperties().tagsLabVmsStartupTags();
+    }
+
+    /**
+     * Get the locationLabVmsStartupLocation property: The geo-location where the resource lives.
+     *
+     * @return the locationLabVmsStartupLocation value.
+     */
+    public String locationLabVmsStartupLocation() {
+        return this.innerProperties() == null ? null : this.innerProperties().locationLabVmsStartupLocation();
+    }
+
+    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (applicableSchedule() != null) {
-            applicableSchedule().validate();
+        if (innerProperties() != null) {
+            innerProperties().validate();
         }
     }
 }

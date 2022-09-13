@@ -5,285 +5,45 @@
 package com.azure.resourcemanager.devtestlabs.fluent.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.annotation.JsonFlatten;
 import com.azure.core.management.Resource;
-import com.azure.core.util.logging.ClientLogger;
-import com.azure.resourcemanager.devtestlabs.models.DayDetails;
+import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.devtestlabs.models.EnableStatus;
-import com.azure.resourcemanager.devtestlabs.models.HourDetails;
-import com.azure.resourcemanager.devtestlabs.models.NotificationSettings;
-import com.azure.resourcemanager.devtestlabs.models.WeekDetails;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
+import java.util.List;
 import java.util.Map;
 
 /** A schedule. */
-@JsonFlatten
 @Fluent
-public class ScheduleInner extends Resource {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(ScheduleInner.class);
+public final class ScheduleInner extends Resource {
+    /*
+     * The properties of the resource.
+     */
+    @JsonProperty(value = "properties")
+    private ScheduleProperties innerProperties;
 
     /*
-     * The status of the schedule (i.e. Enabled, Disabled)
+     * The system metadata relating to this resource
      */
-    @JsonProperty(value = "properties.status")
-    private EnableStatus status;
-
-    /*
-     * The task type of the schedule (e.g. LabVmsShutdownTask, LabVmAutoStart).
-     */
-    @JsonProperty(value = "properties.taskType")
-    private String taskType;
-
-    /*
-     * If the schedule will occur only some days of the week, specify the
-     * weekly recurrence.
-     */
-    @JsonProperty(value = "properties.weeklyRecurrence")
-    private WeekDetails weeklyRecurrence;
-
-    /*
-     * If the schedule will occur once each day of the week, specify the daily
-     * recurrence.
-     */
-    @JsonProperty(value = "properties.dailyRecurrence")
-    private DayDetails dailyRecurrence;
-
-    /*
-     * If the schedule will occur multiple times a day, specify the hourly
-     * recurrence.
-     */
-    @JsonProperty(value = "properties.hourlyRecurrence")
-    private HourDetails hourlyRecurrence;
-
-    /*
-     * The time zone ID (e.g. Pacific Standard time).
-     */
-    @JsonProperty(value = "properties.timeZoneId")
-    private String timeZoneId;
-
-    /*
-     * Notification settings.
-     */
-    @JsonProperty(value = "properties.notificationSettings")
-    private NotificationSettings notificationSettings;
-
-    /*
-     * The creation date of the schedule.
-     */
-    @JsonProperty(value = "properties.createdDate", access = JsonProperty.Access.WRITE_ONLY)
-    private OffsetDateTime createdDate;
-
-    /*
-     * The resource ID to which the schedule belongs
-     */
-    @JsonProperty(value = "properties.targetResourceId")
-    private String targetResourceId;
-
-    /*
-     * The provisioning status of the resource.
-     */
-    @JsonProperty(value = "properties.provisioningState", access = JsonProperty.Access.WRITE_ONLY)
-    private String provisioningState;
-
-    /*
-     * The unique immutable identifier of a resource (Guid).
-     */
-    @JsonProperty(value = "properties.uniqueIdentifier", access = JsonProperty.Access.WRITE_ONLY)
-    private String uniqueIdentifier;
+    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
+    private SystemData systemData;
 
     /**
-     * Get the status property: The status of the schedule (i.e. Enabled, Disabled).
+     * Get the innerProperties property: The properties of the resource.
      *
-     * @return the status value.
+     * @return the innerProperties value.
      */
-    public EnableStatus status() {
-        return this.status;
+    private ScheduleProperties innerProperties() {
+        return this.innerProperties;
     }
 
     /**
-     * Set the status property: The status of the schedule (i.e. Enabled, Disabled).
+     * Get the systemData property: The system metadata relating to this resource.
      *
-     * @param status the status value to set.
-     * @return the ScheduleInner object itself.
+     * @return the systemData value.
      */
-    public ScheduleInner withStatus(EnableStatus status) {
-        this.status = status;
-        return this;
-    }
-
-    /**
-     * Get the taskType property: The task type of the schedule (e.g. LabVmsShutdownTask, LabVmAutoStart).
-     *
-     * @return the taskType value.
-     */
-    public String taskType() {
-        return this.taskType;
-    }
-
-    /**
-     * Set the taskType property: The task type of the schedule (e.g. LabVmsShutdownTask, LabVmAutoStart).
-     *
-     * @param taskType the taskType value to set.
-     * @return the ScheduleInner object itself.
-     */
-    public ScheduleInner withTaskType(String taskType) {
-        this.taskType = taskType;
-        return this;
-    }
-
-    /**
-     * Get the weeklyRecurrence property: If the schedule will occur only some days of the week, specify the weekly
-     * recurrence.
-     *
-     * @return the weeklyRecurrence value.
-     */
-    public WeekDetails weeklyRecurrence() {
-        return this.weeklyRecurrence;
-    }
-
-    /**
-     * Set the weeklyRecurrence property: If the schedule will occur only some days of the week, specify the weekly
-     * recurrence.
-     *
-     * @param weeklyRecurrence the weeklyRecurrence value to set.
-     * @return the ScheduleInner object itself.
-     */
-    public ScheduleInner withWeeklyRecurrence(WeekDetails weeklyRecurrence) {
-        this.weeklyRecurrence = weeklyRecurrence;
-        return this;
-    }
-
-    /**
-     * Get the dailyRecurrence property: If the schedule will occur once each day of the week, specify the daily
-     * recurrence.
-     *
-     * @return the dailyRecurrence value.
-     */
-    public DayDetails dailyRecurrence() {
-        return this.dailyRecurrence;
-    }
-
-    /**
-     * Set the dailyRecurrence property: If the schedule will occur once each day of the week, specify the daily
-     * recurrence.
-     *
-     * @param dailyRecurrence the dailyRecurrence value to set.
-     * @return the ScheduleInner object itself.
-     */
-    public ScheduleInner withDailyRecurrence(DayDetails dailyRecurrence) {
-        this.dailyRecurrence = dailyRecurrence;
-        return this;
-    }
-
-    /**
-     * Get the hourlyRecurrence property: If the schedule will occur multiple times a day, specify the hourly
-     * recurrence.
-     *
-     * @return the hourlyRecurrence value.
-     */
-    public HourDetails hourlyRecurrence() {
-        return this.hourlyRecurrence;
-    }
-
-    /**
-     * Set the hourlyRecurrence property: If the schedule will occur multiple times a day, specify the hourly
-     * recurrence.
-     *
-     * @param hourlyRecurrence the hourlyRecurrence value to set.
-     * @return the ScheduleInner object itself.
-     */
-    public ScheduleInner withHourlyRecurrence(HourDetails hourlyRecurrence) {
-        this.hourlyRecurrence = hourlyRecurrence;
-        return this;
-    }
-
-    /**
-     * Get the timeZoneId property: The time zone ID (e.g. Pacific Standard time).
-     *
-     * @return the timeZoneId value.
-     */
-    public String timeZoneId() {
-        return this.timeZoneId;
-    }
-
-    /**
-     * Set the timeZoneId property: The time zone ID (e.g. Pacific Standard time).
-     *
-     * @param timeZoneId the timeZoneId value to set.
-     * @return the ScheduleInner object itself.
-     */
-    public ScheduleInner withTimeZoneId(String timeZoneId) {
-        this.timeZoneId = timeZoneId;
-        return this;
-    }
-
-    /**
-     * Get the notificationSettings property: Notification settings.
-     *
-     * @return the notificationSettings value.
-     */
-    public NotificationSettings notificationSettings() {
-        return this.notificationSettings;
-    }
-
-    /**
-     * Set the notificationSettings property: Notification settings.
-     *
-     * @param notificationSettings the notificationSettings value to set.
-     * @return the ScheduleInner object itself.
-     */
-    public ScheduleInner withNotificationSettings(NotificationSettings notificationSettings) {
-        this.notificationSettings = notificationSettings;
-        return this;
-    }
-
-    /**
-     * Get the createdDate property: The creation date of the schedule.
-     *
-     * @return the createdDate value.
-     */
-    public OffsetDateTime createdDate() {
-        return this.createdDate;
-    }
-
-    /**
-     * Get the targetResourceId property: The resource ID to which the schedule belongs.
-     *
-     * @return the targetResourceId value.
-     */
-    public String targetResourceId() {
-        return this.targetResourceId;
-    }
-
-    /**
-     * Set the targetResourceId property: The resource ID to which the schedule belongs.
-     *
-     * @param targetResourceId the targetResourceId value to set.
-     * @return the ScheduleInner object itself.
-     */
-    public ScheduleInner withTargetResourceId(String targetResourceId) {
-        this.targetResourceId = targetResourceId;
-        return this;
-    }
-
-    /**
-     * Get the provisioningState property: The provisioning status of the resource.
-     *
-     * @return the provisioningState value.
-     */
-    public String provisioningState() {
-        return this.provisioningState;
-    }
-
-    /**
-     * Get the uniqueIdentifier property: The unique immutable identifier of a resource (Guid).
-     *
-     * @return the uniqueIdentifier value.
-     */
-    public String uniqueIdentifier() {
-        return this.uniqueIdentifier;
+    public SystemData systemData() {
+        return this.systemData;
     }
 
     /** {@inheritDoc} */
@@ -301,22 +61,347 @@ public class ScheduleInner extends Resource {
     }
 
     /**
+     * Get the status property: The status of the schedule (i.e. Enabled, Disabled).
+     *
+     * @return the status value.
+     */
+    public EnableStatus status() {
+        return this.innerProperties() == null ? null : this.innerProperties().status();
+    }
+
+    /**
+     * Set the status property: The status of the schedule (i.e. Enabled, Disabled).
+     *
+     * @param status the status value to set.
+     * @return the ScheduleInner object itself.
+     */
+    public ScheduleInner withStatus(EnableStatus status) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ScheduleProperties();
+        }
+        this.innerProperties().withStatus(status);
+        return this;
+    }
+
+    /**
+     * Get the taskType property: The task type of the schedule (e.g. LabVmsShutdownTask, LabVmAutoStart).
+     *
+     * @return the taskType value.
+     */
+    public String taskType() {
+        return this.innerProperties() == null ? null : this.innerProperties().taskType();
+    }
+
+    /**
+     * Set the taskType property: The task type of the schedule (e.g. LabVmsShutdownTask, LabVmAutoStart).
+     *
+     * @param taskType the taskType value to set.
+     * @return the ScheduleInner object itself.
+     */
+    public ScheduleInner withTaskType(String taskType) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ScheduleProperties();
+        }
+        this.innerProperties().withTaskType(taskType);
+        return this;
+    }
+
+    /**
+     * Get the timeZoneId property: The time zone ID (e.g. Pacific Standard time).
+     *
+     * @return the timeZoneId value.
+     */
+    public String timeZoneId() {
+        return this.innerProperties() == null ? null : this.innerProperties().timeZoneId();
+    }
+
+    /**
+     * Set the timeZoneId property: The time zone ID (e.g. Pacific Standard time).
+     *
+     * @param timeZoneId the timeZoneId value to set.
+     * @return the ScheduleInner object itself.
+     */
+    public ScheduleInner withTimeZoneId(String timeZoneId) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ScheduleProperties();
+        }
+        this.innerProperties().withTimeZoneId(timeZoneId);
+        return this;
+    }
+
+    /**
+     * Get the createdDate property: The creation date of the schedule.
+     *
+     * @return the createdDate value.
+     */
+    public OffsetDateTime createdDate() {
+        return this.innerProperties() == null ? null : this.innerProperties().createdDate();
+    }
+
+    /**
+     * Get the targetResourceId property: The resource ID to which the schedule belongs.
+     *
+     * @return the targetResourceId value.
+     */
+    public String targetResourceId() {
+        return this.innerProperties() == null ? null : this.innerProperties().targetResourceId();
+    }
+
+    /**
+     * Set the targetResourceId property: The resource ID to which the schedule belongs.
+     *
+     * @param targetResourceId the targetResourceId value to set.
+     * @return the ScheduleInner object itself.
+     */
+    public ScheduleInner withTargetResourceId(String targetResourceId) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ScheduleProperties();
+        }
+        this.innerProperties().withTargetResourceId(targetResourceId);
+        return this;
+    }
+
+    /**
+     * Get the provisioningState property: The provisioning status of the resource.
+     *
+     * @return the provisioningState value.
+     */
+    public String provisioningState() {
+        return this.innerProperties() == null ? null : this.innerProperties().provisioningState();
+    }
+
+    /**
+     * Get the uniqueIdentifier property: The unique immutable identifier of a resource (Guid).
+     *
+     * @return the uniqueIdentifier value.
+     */
+    public String uniqueIdentifier() {
+        return this.innerProperties() == null ? null : this.innerProperties().uniqueIdentifier();
+    }
+
+    /**
+     * Get the weekdays property: The days of the week for which the schedule is set (e.g. Sunday, Monday, Tuesday,
+     * etc.).
+     *
+     * @return the weekdays value.
+     */
+    public List<String> weekdays() {
+        return this.innerProperties() == null ? null : this.innerProperties().weekdays();
+    }
+
+    /**
+     * Set the weekdays property: The days of the week for which the schedule is set (e.g. Sunday, Monday, Tuesday,
+     * etc.).
+     *
+     * @param weekdays the weekdays value to set.
+     * @return the ScheduleInner object itself.
+     */
+    public ScheduleInner withWeekdays(List<String> weekdays) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ScheduleProperties();
+        }
+        this.innerProperties().withWeekdays(weekdays);
+        return this;
+    }
+
+    /**
+     * Get the time property: The time of the day the schedule will occur.
+     *
+     * @return the time value.
+     */
+    public String time() {
+        return this.innerProperties() == null ? null : this.innerProperties().time();
+    }
+
+    /**
+     * Set the time property: The time of the day the schedule will occur.
+     *
+     * @param time the time value to set.
+     * @return the ScheduleInner object itself.
+     */
+    public ScheduleInner withTime(String time) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ScheduleProperties();
+        }
+        this.innerProperties().withTime(time);
+        return this;
+    }
+
+    /**
+     * Get the timeDailyRecurrenceTime property: The time of day the schedule will occur.
+     *
+     * @return the timeDailyRecurrenceTime value.
+     */
+    public String timeDailyRecurrenceTime() {
+        return this.innerProperties() == null ? null : this.innerProperties().timeDailyRecurrenceTime();
+    }
+
+    /**
+     * Set the timeDailyRecurrenceTime property: The time of day the schedule will occur.
+     *
+     * @param timeDailyRecurrenceTime the timeDailyRecurrenceTime value to set.
+     * @return the ScheduleInner object itself.
+     */
+    public ScheduleInner withTimeDailyRecurrenceTime(String timeDailyRecurrenceTime) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ScheduleProperties();
+        }
+        this.innerProperties().withTimeDailyRecurrenceTime(timeDailyRecurrenceTime);
+        return this;
+    }
+
+    /**
+     * Get the minute property: Minutes of the hour the schedule will run.
+     *
+     * @return the minute value.
+     */
+    public Integer minute() {
+        return this.innerProperties() == null ? null : this.innerProperties().minute();
+    }
+
+    /**
+     * Set the minute property: Minutes of the hour the schedule will run.
+     *
+     * @param minute the minute value to set.
+     * @return the ScheduleInner object itself.
+     */
+    public ScheduleInner withMinute(Integer minute) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ScheduleProperties();
+        }
+        this.innerProperties().withMinute(minute);
+        return this;
+    }
+
+    /**
+     * Get the statusNotificationSettingsStatus property: If notifications are enabled for this schedule (i.e. Enabled,
+     * Disabled).
+     *
+     * @return the statusNotificationSettingsStatus value.
+     */
+    public EnableStatus statusNotificationSettingsStatus() {
+        return this.innerProperties() == null ? null : this.innerProperties().statusNotificationSettingsStatus();
+    }
+
+    /**
+     * Set the statusNotificationSettingsStatus property: If notifications are enabled for this schedule (i.e. Enabled,
+     * Disabled).
+     *
+     * @param statusNotificationSettingsStatus the statusNotificationSettingsStatus value to set.
+     * @return the ScheduleInner object itself.
+     */
+    public ScheduleInner withStatusNotificationSettingsStatus(EnableStatus statusNotificationSettingsStatus) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ScheduleProperties();
+        }
+        this.innerProperties().withStatusNotificationSettingsStatus(statusNotificationSettingsStatus);
+        return this;
+    }
+
+    /**
+     * Get the timeInMinutes property: Time in minutes before event at which notification will be sent.
+     *
+     * @return the timeInMinutes value.
+     */
+    public Integer timeInMinutes() {
+        return this.innerProperties() == null ? null : this.innerProperties().timeInMinutes();
+    }
+
+    /**
+     * Set the timeInMinutes property: Time in minutes before event at which notification will be sent.
+     *
+     * @param timeInMinutes the timeInMinutes value to set.
+     * @return the ScheduleInner object itself.
+     */
+    public ScheduleInner withTimeInMinutes(Integer timeInMinutes) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ScheduleProperties();
+        }
+        this.innerProperties().withTimeInMinutes(timeInMinutes);
+        return this;
+    }
+
+    /**
+     * Get the webhookUrl property: The webhook URL to which the notification will be sent.
+     *
+     * @return the webhookUrl value.
+     */
+    public String webhookUrl() {
+        return this.innerProperties() == null ? null : this.innerProperties().webhookUrl();
+    }
+
+    /**
+     * Set the webhookUrl property: The webhook URL to which the notification will be sent.
+     *
+     * @param webhookUrl the webhookUrl value to set.
+     * @return the ScheduleInner object itself.
+     */
+    public ScheduleInner withWebhookUrl(String webhookUrl) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ScheduleProperties();
+        }
+        this.innerProperties().withWebhookUrl(webhookUrl);
+        return this;
+    }
+
+    /**
+     * Get the emailRecipient property: The email recipient to send notifications to (can be a list of semi-colon
+     * separated email addresses).
+     *
+     * @return the emailRecipient value.
+     */
+    public String emailRecipient() {
+        return this.innerProperties() == null ? null : this.innerProperties().emailRecipient();
+    }
+
+    /**
+     * Set the emailRecipient property: The email recipient to send notifications to (can be a list of semi-colon
+     * separated email addresses).
+     *
+     * @param emailRecipient the emailRecipient value to set.
+     * @return the ScheduleInner object itself.
+     */
+    public ScheduleInner withEmailRecipient(String emailRecipient) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ScheduleProperties();
+        }
+        this.innerProperties().withEmailRecipient(emailRecipient);
+        return this;
+    }
+
+    /**
+     * Get the notificationLocale property: The locale to use when sending a notification (fallback for unsupported
+     * languages is EN).
+     *
+     * @return the notificationLocale value.
+     */
+    public String notificationLocale() {
+        return this.innerProperties() == null ? null : this.innerProperties().notificationLocale();
+    }
+
+    /**
+     * Set the notificationLocale property: The locale to use when sending a notification (fallback for unsupported
+     * languages is EN).
+     *
+     * @param notificationLocale the notificationLocale value to set.
+     * @return the ScheduleInner object itself.
+     */
+    public ScheduleInner withNotificationLocale(String notificationLocale) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ScheduleProperties();
+        }
+        this.innerProperties().withNotificationLocale(notificationLocale);
+        return this;
+    }
+
+    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (weeklyRecurrence() != null) {
-            weeklyRecurrence().validate();
-        }
-        if (dailyRecurrence() != null) {
-            dailyRecurrence().validate();
-        }
-        if (hourlyRecurrence() != null) {
-            hourlyRecurrence().validate();
-        }
-        if (notificationSettings() != null) {
-            notificationSettings().validate();
+        if (innerProperties() != null) {
+            innerProperties().validate();
         }
     }
 }

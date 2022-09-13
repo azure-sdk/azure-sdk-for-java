@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.devtestlabs.implementation;
 
 import com.azure.core.management.Region;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.devtestlabs.fluent.models.SecretInner;
 import com.azure.resourcemanager.devtestlabs.models.Secret;
@@ -42,6 +43,10 @@ public final class SecretImpl implements Secret, Secret.Definition, Secret.Updat
         }
     }
 
+    public SystemData systemData() {
+        return this.innerModel().systemData();
+    }
+
     public String value() {
         return this.innerModel().value();
     }
@@ -60,6 +65,10 @@ public final class SecretImpl implements Secret, Secret.Definition, Secret.Updat
 
     public String regionName() {
         return this.location();
+    }
+
+    public String resourceGroupName() {
+        return resourceGroupName;
     }
 
     public SecretInner innerModel() {

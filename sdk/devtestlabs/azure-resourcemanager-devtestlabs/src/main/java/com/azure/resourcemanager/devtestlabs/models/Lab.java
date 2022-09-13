@@ -7,8 +7,10 @@ package com.azure.resourcemanager.devtestlabs.models;
 import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.http.rest.Response;
 import com.azure.core.management.Region;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.devtestlabs.fluent.models.LabInner;
+import com.azure.resourcemanager.devtestlabs.fluent.models.LabVirtualMachineCreationParameterInner;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
@@ -49,6 +51,13 @@ public interface Lab {
      * @return the tags value.
      */
     Map<String, String> tags();
+
+    /**
+     * Gets the systemData property: The system metadata relating to this resource.
+     *
+     * @return the systemData value.
+     */
+    SystemData systemData();
 
     /**
      * Gets the defaultStorageAccount property: The lab's default storage account.
@@ -134,22 +143,9 @@ public interface Lab {
     EnvironmentPermission environmentPermission();
 
     /**
-     * Gets the announcement property: The properties of any lab announcement associated with this lab.
-     *
-     * @return the announcement value.
-     */
-    LabAnnouncementProperties announcement();
-
-    /**
-     * Gets the support property: The properties of any lab support message associated with this lab.
-     *
-     * @return the support value.
-     */
-    LabSupportProperties support();
-
-    /**
-     * Gets the vmCreationResourceGroup property: The resource group in which all new lab virtual machines will be
-     * created. To let DevTest Labs manage resource group creation, set this value to null.
+     * Gets the vmCreationResourceGroup property: The resource group ID in which all new lab virtual machines will be
+     * created. Ex: /subscriptions/subId/resourceGroups/rgName To let DevTest Labs manage resource group creation, set
+     * this value to null.
      *
      * @return the vmCreationResourceGroup value.
      */
@@ -185,6 +181,42 @@ public interface Lab {
     Map<String, String> extendedProperties();
 
     /**
+     * Gets the browserConnect property: Is browser connect enabled for the lab.
+     *
+     * @return the browserConnect value.
+     */
+    EnableStatus browserConnect();
+
+    /**
+     * Gets the disableAutoUpgradeCseMinorVersion property: Is auto upgrade of CSE disabled for the lab?.
+     *
+     * @return the disableAutoUpgradeCseMinorVersion value.
+     */
+    Boolean disableAutoUpgradeCseMinorVersion();
+
+    /**
+     * Gets the managementIdentities property: List of identities which can be used for management of resources.
+     *
+     * @return the managementIdentities value.
+     */
+    Map<String, Object> managementIdentities();
+
+    /**
+     * Gets the isolateLabResources property: Indicates whether to create Lab resources (e.g. Storage accounts and Key
+     * Vaults) in network isolation.
+     *
+     * @return the isolateLabResources value.
+     */
+    EnableStatus isolateLabResources();
+
+    /**
+     * Gets the defaultSecretName property: Default secret for creating virtual machines.
+     *
+     * @return the defaultSecretName value.
+     */
+    String defaultSecretName();
+
+    /**
      * Gets the provisioningState property: The provisioning status of the resource.
      *
      * @return the provisioningState value.
@@ -199,6 +231,123 @@ public interface Lab {
     String uniqueIdentifier();
 
     /**
+     * Gets the title property: The plain text title for the lab announcement.
+     *
+     * @return the title value.
+     */
+    String title();
+
+    /**
+     * Gets the markdown property: The markdown text (if any) that this lab displays in the UI. If left empty/null,
+     * nothing will be shown.
+     *
+     * @return the markdown value.
+     */
+    String markdown();
+
+    /**
+     * Gets the enabled property: Is the lab announcement active/enabled at this time?.
+     *
+     * @return the enabled value.
+     */
+    EnableStatus enabled();
+
+    /**
+     * Gets the expirationDate property: The time at which the announcement expires (null for never).
+     *
+     * @return the expirationDate value.
+     */
+    OffsetDateTime expirationDate();
+
+    /**
+     * Gets the expired property: Has this announcement expired?.
+     *
+     * @return the expired value.
+     */
+    Boolean expired();
+
+    /**
+     * Gets the provisioningStateAnnouncementProvisioningState property: The provisioning status of the resource.
+     *
+     * @return the provisioningStateAnnouncementProvisioningState value.
+     */
+    String provisioningStateAnnouncementProvisioningState();
+
+    /**
+     * Gets the uniqueIdentifierAnnouncementUniqueIdentifier property: The unique immutable identifier of a resource
+     * (Guid).
+     *
+     * @return the uniqueIdentifierAnnouncementUniqueIdentifier value.
+     */
+    String uniqueIdentifierAnnouncementUniqueIdentifier();
+
+    /**
+     * Gets the enabledSupportEnabled property: Is the lab support banner active/enabled at this time?.
+     *
+     * @return the enabledSupportEnabled value.
+     */
+    EnableStatus enabledSupportEnabled();
+
+    /**
+     * Gets the markdownSupportMarkdown property: The markdown text (if any) that this lab displays in the UI. If left
+     * empty/null, nothing will be shown.
+     *
+     * @return the markdownSupportMarkdown value.
+     */
+    String markdownSupportMarkdown();
+
+    /**
+     * Gets the diskEncryptionSetId property: Gets or sets resourceId of the disk encryption set to use for enabling
+     * encryption at rest.
+     *
+     * @return the diskEncryptionSetId value.
+     */
+    String diskEncryptionSetId();
+
+    /**
+     * Gets the typePropertiesType property: Gets or sets the type of key used to encrypt the data of the disk. Possible
+     * values include: 'EncryptionAtRestWithPlatformKey', 'EncryptionAtRestWithCustomerKey'.
+     *
+     * @return the typePropertiesType value.
+     */
+    EncryptionType typePropertiesType();
+
+    /**
+     * Gets the typeIdentityType property: Type of identity (SystemAssigned, UserAssigned, None).
+     *
+     * @return the typeIdentityType value.
+     */
+    ManagedIdentityType typeIdentityType();
+
+    /**
+     * Gets the principalId property: The principal id of resource identity.
+     *
+     * @return the principalId value.
+     */
+    String principalId();
+
+    /**
+     * Gets the tenantId property: The tenant identifier of resource.
+     *
+     * @return the tenantId value.
+     */
+    String tenantId();
+
+    /**
+     * Gets the clientSecretUrl property: The client secret URL of the identity.
+     *
+     * @return the clientSecretUrl value.
+     */
+    String clientSecretUrl();
+
+    /**
+     * Gets the userAssignedIdentities property: If Type is 'UserAssigned': List of user assigned identities.
+     *
+     * @return the userAssignedIdentities value.
+     */
+    Map<String, Object> userAssignedIdentities();
+
+    /**
      * Gets the region of the resource.
      *
      * @return the region of the resource.
@@ -211,6 +360,13 @@ public interface Lab {
      * @return the name of the resource region.
      */
     String regionName();
+
+    /**
+     * Gets the name of the resource group.
+     *
+     * @return the name of the resource group.
+     */
+    String resourceGroupName();
 
     /**
      * Gets the inner com.azure.resourcemanager.devtestlabs.fluent.models.LabInner object.
@@ -270,9 +426,26 @@ public interface Lab {
                 DefinitionStages.WithMandatoryArtifactsResourceIdsWindows,
                 DefinitionStages.WithPremiumDataDisks,
                 DefinitionStages.WithEnvironmentPermission,
-                DefinitionStages.WithAnnouncement,
-                DefinitionStages.WithSupport,
-                DefinitionStages.WithExtendedProperties {
+                DefinitionStages.WithExtendedProperties,
+                DefinitionStages.WithBrowserConnect,
+                DefinitionStages.WithDisableAutoUpgradeCseMinorVersion,
+                DefinitionStages.WithManagementIdentities,
+                DefinitionStages.WithIsolateLabResources,
+                DefinitionStages.WithDefaultSecretName,
+                DefinitionStages.WithTitle,
+                DefinitionStages.WithMarkdown,
+                DefinitionStages.WithEnabled,
+                DefinitionStages.WithExpirationDate,
+                DefinitionStages.WithExpired,
+                DefinitionStages.WithEnabledSupportEnabled,
+                DefinitionStages.WithMarkdownSupportMarkdown,
+                DefinitionStages.WithDiskEncryptionSetId,
+                DefinitionStages.WithTypePropertiesType,
+                DefinitionStages.WithTypeIdentityType,
+                DefinitionStages.WithPrincipalId,
+                DefinitionStages.WithTenantId,
+                DefinitionStages.WithClientSecretUrl,
+                DefinitionStages.WithUserAssignedIdentities {
             /**
              * Executes the create request.
              *
@@ -361,26 +534,6 @@ public interface Lab {
              */
             WithCreate withEnvironmentPermission(EnvironmentPermission environmentPermission);
         }
-        /** The stage of the Lab definition allowing to specify announcement. */
-        interface WithAnnouncement {
-            /**
-             * Specifies the announcement property: The properties of any lab announcement associated with this lab.
-             *
-             * @param announcement The properties of any lab announcement associated with this lab.
-             * @return the next definition stage.
-             */
-            WithCreate withAnnouncement(LabAnnouncementProperties announcement);
-        }
-        /** The stage of the Lab definition allowing to specify support. */
-        interface WithSupport {
-            /**
-             * Specifies the support property: The properties of any lab support message associated with this lab.
-             *
-             * @param support The properties of any lab support message associated with this lab.
-             * @return the next definition stage.
-             */
-            WithCreate withSupport(LabSupportProperties support);
-        }
         /** The stage of the Lab definition allowing to specify extendedProperties. */
         interface WithExtendedProperties {
             /**
@@ -390,6 +543,208 @@ public interface Lab {
              * @return the next definition stage.
              */
             WithCreate withExtendedProperties(Map<String, String> extendedProperties);
+        }
+        /** The stage of the Lab definition allowing to specify browserConnect. */
+        interface WithBrowserConnect {
+            /**
+             * Specifies the browserConnect property: Is browser connect enabled for the lab.
+             *
+             * @param browserConnect Is browser connect enabled for the lab.
+             * @return the next definition stage.
+             */
+            WithCreate withBrowserConnect(EnableStatus browserConnect);
+        }
+        /** The stage of the Lab definition allowing to specify disableAutoUpgradeCseMinorVersion. */
+        interface WithDisableAutoUpgradeCseMinorVersion {
+            /**
+             * Specifies the disableAutoUpgradeCseMinorVersion property: Is auto upgrade of CSE disabled for the lab?.
+             *
+             * @param disableAutoUpgradeCseMinorVersion Is auto upgrade of CSE disabled for the lab?.
+             * @return the next definition stage.
+             */
+            WithCreate withDisableAutoUpgradeCseMinorVersion(Boolean disableAutoUpgradeCseMinorVersion);
+        }
+        /** The stage of the Lab definition allowing to specify managementIdentities. */
+        interface WithManagementIdentities {
+            /**
+             * Specifies the managementIdentities property: List of identities which can be used for management of
+             * resources..
+             *
+             * @param managementIdentities List of identities which can be used for management of resources.
+             * @return the next definition stage.
+             */
+            WithCreate withManagementIdentities(Map<String, Object> managementIdentities);
+        }
+        /** The stage of the Lab definition allowing to specify isolateLabResources. */
+        interface WithIsolateLabResources {
+            /**
+             * Specifies the isolateLabResources property: Indicates whether to create Lab resources (e.g. Storage
+             * accounts and Key Vaults) in network isolation..
+             *
+             * @param isolateLabResources Indicates whether to create Lab resources (e.g. Storage accounts and Key
+             *     Vaults) in network isolation.
+             * @return the next definition stage.
+             */
+            WithCreate withIsolateLabResources(EnableStatus isolateLabResources);
+        }
+        /** The stage of the Lab definition allowing to specify defaultSecretName. */
+        interface WithDefaultSecretName {
+            /**
+             * Specifies the defaultSecretName property: Default secret for creating virtual machines..
+             *
+             * @param defaultSecretName Default secret for creating virtual machines.
+             * @return the next definition stage.
+             */
+            WithCreate withDefaultSecretName(String defaultSecretName);
+        }
+        /** The stage of the Lab definition allowing to specify title. */
+        interface WithTitle {
+            /**
+             * Specifies the title property: The plain text title for the lab announcement.
+             *
+             * @param title The plain text title for the lab announcement.
+             * @return the next definition stage.
+             */
+            WithCreate withTitle(String title);
+        }
+        /** The stage of the Lab definition allowing to specify markdown. */
+        interface WithMarkdown {
+            /**
+             * Specifies the markdown property: The markdown text (if any) that this lab displays in the UI. If left
+             * empty/null, nothing will be shown..
+             *
+             * @param markdown The markdown text (if any) that this lab displays in the UI. If left empty/null, nothing
+             *     will be shown.
+             * @return the next definition stage.
+             */
+            WithCreate withMarkdown(String markdown);
+        }
+        /** The stage of the Lab definition allowing to specify enabled. */
+        interface WithEnabled {
+            /**
+             * Specifies the enabled property: Is the lab announcement active/enabled at this time?.
+             *
+             * @param enabled Is the lab announcement active/enabled at this time?.
+             * @return the next definition stage.
+             */
+            WithCreate withEnabled(EnableStatus enabled);
+        }
+        /** The stage of the Lab definition allowing to specify expirationDate. */
+        interface WithExpirationDate {
+            /**
+             * Specifies the expirationDate property: The time at which the announcement expires (null for never).
+             *
+             * @param expirationDate The time at which the announcement expires (null for never).
+             * @return the next definition stage.
+             */
+            WithCreate withExpirationDate(OffsetDateTime expirationDate);
+        }
+        /** The stage of the Lab definition allowing to specify expired. */
+        interface WithExpired {
+            /**
+             * Specifies the expired property: Has this announcement expired?.
+             *
+             * @param expired Has this announcement expired?.
+             * @return the next definition stage.
+             */
+            WithCreate withExpired(Boolean expired);
+        }
+        /** The stage of the Lab definition allowing to specify enabledSupportEnabled. */
+        interface WithEnabledSupportEnabled {
+            /**
+             * Specifies the enabledSupportEnabled property: Is the lab support banner active/enabled at this time?.
+             *
+             * @param enabledSupportEnabled Is the lab support banner active/enabled at this time?.
+             * @return the next definition stage.
+             */
+            WithCreate withEnabledSupportEnabled(EnableStatus enabledSupportEnabled);
+        }
+        /** The stage of the Lab definition allowing to specify markdownSupportMarkdown. */
+        interface WithMarkdownSupportMarkdown {
+            /**
+             * Specifies the markdownSupportMarkdown property: The markdown text (if any) that this lab displays in the
+             * UI. If left empty/null, nothing will be shown..
+             *
+             * @param markdownSupportMarkdown The markdown text (if any) that this lab displays in the UI. If left
+             *     empty/null, nothing will be shown.
+             * @return the next definition stage.
+             */
+            WithCreate withMarkdownSupportMarkdown(String markdownSupportMarkdown);
+        }
+        /** The stage of the Lab definition allowing to specify diskEncryptionSetId. */
+        interface WithDiskEncryptionSetId {
+            /**
+             * Specifies the diskEncryptionSetId property: Gets or sets resourceId of the disk encryption set to use for
+             * enabling encryption at rest..
+             *
+             * @param diskEncryptionSetId Gets or sets resourceId of the disk encryption set to use for enabling
+             *     encryption at rest.
+             * @return the next definition stage.
+             */
+            WithCreate withDiskEncryptionSetId(String diskEncryptionSetId);
+        }
+        /** The stage of the Lab definition allowing to specify typePropertiesType. */
+        interface WithTypePropertiesType {
+            /**
+             * Specifies the typePropertiesType property: Gets or sets the type of key used to encrypt the data of the
+             * disk. Possible values include: 'EncryptionAtRestWithPlatformKey', 'EncryptionAtRestWithCustomerKey'.
+             *
+             * @param typePropertiesType Gets or sets the type of key used to encrypt the data of the disk. Possible
+             *     values include: 'EncryptionAtRestWithPlatformKey', 'EncryptionAtRestWithCustomerKey'.
+             * @return the next definition stage.
+             */
+            WithCreate withTypePropertiesType(EncryptionType typePropertiesType);
+        }
+        /** The stage of the Lab definition allowing to specify typeIdentityType. */
+        interface WithTypeIdentityType {
+            /**
+             * Specifies the typeIdentityType property: Type of identity (SystemAssigned, UserAssigned, None).
+             *
+             * @param typeIdentityType Type of identity (SystemAssigned, UserAssigned, None).
+             * @return the next definition stage.
+             */
+            WithCreate withTypeIdentityType(ManagedIdentityType typeIdentityType);
+        }
+        /** The stage of the Lab definition allowing to specify principalId. */
+        interface WithPrincipalId {
+            /**
+             * Specifies the principalId property: The principal id of resource identity..
+             *
+             * @param principalId The principal id of resource identity.
+             * @return the next definition stage.
+             */
+            WithCreate withPrincipalId(String principalId);
+        }
+        /** The stage of the Lab definition allowing to specify tenantId. */
+        interface WithTenantId {
+            /**
+             * Specifies the tenantId property: The tenant identifier of resource..
+             *
+             * @param tenantId The tenant identifier of resource.
+             * @return the next definition stage.
+             */
+            WithCreate withTenantId(String tenantId);
+        }
+        /** The stage of the Lab definition allowing to specify clientSecretUrl. */
+        interface WithClientSecretUrl {
+            /**
+             * Specifies the clientSecretUrl property: The client secret URL of the identity..
+             *
+             * @param clientSecretUrl The client secret URL of the identity.
+             * @return the next definition stage.
+             */
+            WithCreate withClientSecretUrl(String clientSecretUrl);
+        }
+        /** The stage of the Lab definition allowing to specify userAssignedIdentities. */
+        interface WithUserAssignedIdentities {
+            /**
+             * Specifies the userAssignedIdentities property: If Type is 'UserAssigned': List of user assigned
+             * identities..
+             *
+             * @param userAssignedIdentities If Type is 'UserAssigned': List of user assigned identities.
+             * @return the next definition stage.
+             */
+            WithCreate withUserAssignedIdentities(Map<String, Object> userAssignedIdentities);
         }
     }
     /**
@@ -470,7 +825,7 @@ public interface Lab {
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
-    void createEnvironment(LabVirtualMachineCreationParameter labVirtualMachineCreationParameter);
+    void createEnvironment(LabVirtualMachineCreationParameterInner labVirtualMachineCreationParameter);
 
     /**
      * Create virtual machines in a lab. This operation can take a while to complete.
@@ -481,7 +836,26 @@ public interface Lab {
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
-    void createEnvironment(LabVirtualMachineCreationParameter labVirtualMachineCreationParameter, Context context);
+    void createEnvironment(LabVirtualMachineCreationParameterInner labVirtualMachineCreationParameter, Context context);
+
+    /**
+     * Ensure the current user has a valid profile in the lab.
+     *
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void ensureCurrentUserProfile();
+
+    /**
+     * Ensure the current user has a valid profile in the lab.
+     *
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response}.
+     */
+    Response<Void> ensureCurrentUserProfileWithResponse(Context context);
 
     /**
      * Exports the lab resource usage into a storage account This operation can take a while to complete.
@@ -523,7 +897,7 @@ public interface Lab {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response body for generating an upload URI.
+     * @return response body for generating an upload URI along with {@link Response}.
      */
     Response<GenerateUploadUriResponse> generateUploadUriWithResponse(
         GenerateUploadUriParameter generateUploadUriParameter, Context context);
@@ -556,7 +930,7 @@ public interface Lab {
      *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation.
+     * @return contains a list of Lab Vhd and their properties as paginated response with {@link PagedIterable}.
      */
     PagedIterable<LabVhd> listVhds();
 
@@ -567,7 +941,7 @@ public interface Lab {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation.
+     * @return contains a list of Lab Vhd and their properties as paginated response with {@link PagedIterable}.
      */
     PagedIterable<LabVhd> listVhds(Context context);
 }

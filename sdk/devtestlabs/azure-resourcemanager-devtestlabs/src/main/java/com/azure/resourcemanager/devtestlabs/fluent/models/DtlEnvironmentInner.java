@@ -5,134 +5,45 @@
 package com.azure.resourcemanager.devtestlabs.fluent.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.annotation.JsonFlatten;
 import com.azure.core.management.Resource;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.logging.ClientLogger;
-import com.azure.resourcemanager.devtestlabs.models.EnvironmentDeploymentProperties;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.azure.resourcemanager.devtestlabs.models.ArmTemplateParameterProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.List;
 import java.util.Map;
 
 /** An environment, which is essentially an ARM template deployment. */
-@JsonFlatten
 @Fluent
-public class DtlEnvironmentInner extends Resource {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(DtlEnvironmentInner.class);
+public final class DtlEnvironmentInner extends Resource {
+    /*
+     * The properties of the resource.
+     */
+    @JsonProperty(value = "properties", required = true)
+    private EnvironmentProperties innerProperties = new EnvironmentProperties();
 
     /*
-     * The deployment properties of the environment.
+     * The system metadata relating to this resource
      */
-    @JsonProperty(value = "properties.deploymentProperties")
-    private EnvironmentDeploymentProperties deploymentProperties;
-
-    /*
-     * The display name of the Azure Resource Manager template that produced
-     * the environment.
-     */
-    @JsonProperty(value = "properties.armTemplateDisplayName")
-    private String armTemplateDisplayName;
-
-    /*
-     * The identifier of the resource group containing the environment's
-     * resources.
-     */
-    @JsonProperty(value = "properties.resourceGroupId", access = JsonProperty.Access.WRITE_ONLY)
-    private String resourceGroupId;
-
-    /*
-     * The creator of the environment.
-     */
-    @JsonProperty(value = "properties.createdByUser", access = JsonProperty.Access.WRITE_ONLY)
-    private String createdByUser;
-
-    /*
-     * The provisioning status of the resource.
-     */
-    @JsonProperty(value = "properties.provisioningState", access = JsonProperty.Access.WRITE_ONLY)
-    private String provisioningState;
-
-    /*
-     * The unique immutable identifier of a resource (Guid).
-     */
-    @JsonProperty(value = "properties.uniqueIdentifier", access = JsonProperty.Access.WRITE_ONLY)
-    private String uniqueIdentifier;
+    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
+    private SystemData systemData;
 
     /**
-     * Get the deploymentProperties property: The deployment properties of the environment.
+     * Get the innerProperties property: The properties of the resource.
      *
-     * @return the deploymentProperties value.
+     * @return the innerProperties value.
      */
-    public EnvironmentDeploymentProperties deploymentProperties() {
-        return this.deploymentProperties;
+    private EnvironmentProperties innerProperties() {
+        return this.innerProperties;
     }
 
     /**
-     * Set the deploymentProperties property: The deployment properties of the environment.
+     * Get the systemData property: The system metadata relating to this resource.
      *
-     * @param deploymentProperties the deploymentProperties value to set.
-     * @return the DtlEnvironmentInner object itself.
+     * @return the systemData value.
      */
-    public DtlEnvironmentInner withDeploymentProperties(EnvironmentDeploymentProperties deploymentProperties) {
-        this.deploymentProperties = deploymentProperties;
-        return this;
-    }
-
-    /**
-     * Get the armTemplateDisplayName property: The display name of the Azure Resource Manager template that produced
-     * the environment.
-     *
-     * @return the armTemplateDisplayName value.
-     */
-    public String armTemplateDisplayName() {
-        return this.armTemplateDisplayName;
-    }
-
-    /**
-     * Set the armTemplateDisplayName property: The display name of the Azure Resource Manager template that produced
-     * the environment.
-     *
-     * @param armTemplateDisplayName the armTemplateDisplayName value to set.
-     * @return the DtlEnvironmentInner object itself.
-     */
-    public DtlEnvironmentInner withArmTemplateDisplayName(String armTemplateDisplayName) {
-        this.armTemplateDisplayName = armTemplateDisplayName;
-        return this;
-    }
-
-    /**
-     * Get the resourceGroupId property: The identifier of the resource group containing the environment's resources.
-     *
-     * @return the resourceGroupId value.
-     */
-    public String resourceGroupId() {
-        return this.resourceGroupId;
-    }
-
-    /**
-     * Get the createdByUser property: The creator of the environment.
-     *
-     * @return the createdByUser value.
-     */
-    public String createdByUser() {
-        return this.createdByUser;
-    }
-
-    /**
-     * Get the provisioningState property: The provisioning status of the resource.
-     *
-     * @return the provisioningState value.
-     */
-    public String provisioningState() {
-        return this.provisioningState;
-    }
-
-    /**
-     * Get the uniqueIdentifier property: The unique immutable identifier of a resource (Guid).
-     *
-     * @return the uniqueIdentifier value.
-     */
-    public String uniqueIdentifier() {
-        return this.uniqueIdentifier;
+    public SystemData systemData() {
+        return this.systemData;
     }
 
     /** {@inheritDoc} */
@@ -150,13 +61,127 @@ public class DtlEnvironmentInner extends Resource {
     }
 
     /**
+     * Get the armTemplateDisplayName property: The display name of the Azure Resource Manager template that produced
+     * the environment.
+     *
+     * @return the armTemplateDisplayName value.
+     */
+    public String armTemplateDisplayName() {
+        return this.innerProperties() == null ? null : this.innerProperties().armTemplateDisplayName();
+    }
+
+    /**
+     * Set the armTemplateDisplayName property: The display name of the Azure Resource Manager template that produced
+     * the environment.
+     *
+     * @param armTemplateDisplayName the armTemplateDisplayName value to set.
+     * @return the DtlEnvironmentInner object itself.
+     */
+    public DtlEnvironmentInner withArmTemplateDisplayName(String armTemplateDisplayName) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new EnvironmentProperties();
+        }
+        this.innerProperties().withArmTemplateDisplayName(armTemplateDisplayName);
+        return this;
+    }
+
+    /**
+     * Get the resourceGroupId property: The identifier of the resource group containing the environment's resources.
+     *
+     * @return the resourceGroupId value.
+     */
+    public String resourceGroupId() {
+        return this.innerProperties() == null ? null : this.innerProperties().resourceGroupId();
+    }
+
+    /**
+     * Get the createdByUser property: The creator of the environment.
+     *
+     * @return the createdByUser value.
+     */
+    public String createdByUser() {
+        return this.innerProperties() == null ? null : this.innerProperties().createdByUser();
+    }
+
+    /**
+     * Get the provisioningState property: The provisioning status of the resource.
+     *
+     * @return the provisioningState value.
+     */
+    public String provisioningState() {
+        return this.innerProperties() == null ? null : this.innerProperties().provisioningState();
+    }
+
+    /**
+     * Get the uniqueIdentifier property: The unique immutable identifier of a resource (Guid).
+     *
+     * @return the uniqueIdentifier value.
+     */
+    public String uniqueIdentifier() {
+        return this.innerProperties() == null ? null : this.innerProperties().uniqueIdentifier();
+    }
+
+    /**
+     * Get the armTemplateId property: The Azure Resource Manager template's identifier.
+     *
+     * @return the armTemplateId value.
+     */
+    public String armTemplateId() {
+        return this.innerProperties() == null ? null : this.innerProperties().armTemplateId();
+    }
+
+    /**
+     * Set the armTemplateId property: The Azure Resource Manager template's identifier.
+     *
+     * @param armTemplateId the armTemplateId value to set.
+     * @return the DtlEnvironmentInner object itself.
+     */
+    public DtlEnvironmentInner withArmTemplateId(String armTemplateId) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new EnvironmentProperties();
+        }
+        this.innerProperties().withArmTemplateId(armTemplateId);
+        return this;
+    }
+
+    /**
+     * Get the parameters property: The parameters of the Azure Resource Manager template.
+     *
+     * @return the parameters value.
+     */
+    public List<ArmTemplateParameterProperties> parameters() {
+        return this.innerProperties() == null ? null : this.innerProperties().parameters();
+    }
+
+    /**
+     * Set the parameters property: The parameters of the Azure Resource Manager template.
+     *
+     * @param parameters the parameters value to set.
+     * @return the DtlEnvironmentInner object itself.
+     */
+    public DtlEnvironmentInner withParameters(List<ArmTemplateParameterProperties> parameters) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new EnvironmentProperties();
+        }
+        this.innerProperties().withParameters(parameters);
+        return this;
+    }
+
+    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (deploymentProperties() != null) {
-            deploymentProperties().validate();
+        if (innerProperties() == null) {
+            throw LOGGER
+                .logExceptionAsError(
+                    new IllegalArgumentException(
+                        "Missing required property innerProperties in model DtlEnvironmentInner"));
+        } else {
+            innerProperties().validate();
         }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(DtlEnvironmentInner.class);
 }

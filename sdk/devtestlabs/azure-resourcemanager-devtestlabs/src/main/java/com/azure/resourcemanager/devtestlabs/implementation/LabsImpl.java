@@ -13,18 +13,17 @@ import com.azure.resourcemanager.devtestlabs.fluent.LabsClient;
 import com.azure.resourcemanager.devtestlabs.fluent.models.GenerateUploadUriResponseInner;
 import com.azure.resourcemanager.devtestlabs.fluent.models.LabInner;
 import com.azure.resourcemanager.devtestlabs.fluent.models.LabVhdInner;
+import com.azure.resourcemanager.devtestlabs.fluent.models.LabVirtualMachineCreationParameterInner;
 import com.azure.resourcemanager.devtestlabs.models.ExportResourceUsageParameters;
 import com.azure.resourcemanager.devtestlabs.models.GenerateUploadUriParameter;
 import com.azure.resourcemanager.devtestlabs.models.GenerateUploadUriResponse;
 import com.azure.resourcemanager.devtestlabs.models.ImportLabVirtualMachineRequest;
 import com.azure.resourcemanager.devtestlabs.models.Lab;
 import com.azure.resourcemanager.devtestlabs.models.LabVhd;
-import com.azure.resourcemanager.devtestlabs.models.LabVirtualMachineCreationParameter;
 import com.azure.resourcemanager.devtestlabs.models.Labs;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public final class LabsImpl implements Labs {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(LabsImpl.class);
+    private static final ClientLogger LOGGER = new ClientLogger(LabsImpl.class);
 
     private final LabsClient innerClient;
 
@@ -98,16 +97,26 @@ public final class LabsImpl implements Labs {
     }
 
     public void createEnvironment(
-        String resourceGroupName, String name, LabVirtualMachineCreationParameter labVirtualMachineCreationParameter) {
+        String resourceGroupName,
+        String name,
+        LabVirtualMachineCreationParameterInner labVirtualMachineCreationParameter) {
         this.serviceClient().createEnvironment(resourceGroupName, name, labVirtualMachineCreationParameter);
     }
 
     public void createEnvironment(
         String resourceGroupName,
         String name,
-        LabVirtualMachineCreationParameter labVirtualMachineCreationParameter,
+        LabVirtualMachineCreationParameterInner labVirtualMachineCreationParameter,
         Context context) {
         this.serviceClient().createEnvironment(resourceGroupName, name, labVirtualMachineCreationParameter, context);
+    }
+
+    public void ensureCurrentUserProfile(String resourceGroupName, String name) {
+        this.serviceClient().ensureCurrentUserProfile(resourceGroupName, name);
+    }
+
+    public Response<Void> ensureCurrentUserProfileWithResponse(String resourceGroupName, String name, Context context) {
+        return this.serviceClient().ensureCurrentUserProfileWithResponse(resourceGroupName, name, context);
     }
 
     public void exportResourceUsage(
@@ -177,7 +186,7 @@ public final class LabsImpl implements Labs {
     public Lab getById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -185,7 +194,7 @@ public final class LabsImpl implements Labs {
         }
         String name = Utils.getValueFromIdByName(id, "labs");
         if (name == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'labs'.", id)));
@@ -197,7 +206,7 @@ public final class LabsImpl implements Labs {
     public Response<Lab> getByIdWithResponse(String id, String expand, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -205,7 +214,7 @@ public final class LabsImpl implements Labs {
         }
         String name = Utils.getValueFromIdByName(id, "labs");
         if (name == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'labs'.", id)));
@@ -216,7 +225,7 @@ public final class LabsImpl implements Labs {
     public void deleteById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -224,7 +233,7 @@ public final class LabsImpl implements Labs {
         }
         String name = Utils.getValueFromIdByName(id, "labs");
         if (name == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'labs'.", id)));
@@ -235,7 +244,7 @@ public final class LabsImpl implements Labs {
     public void deleteByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -243,7 +252,7 @@ public final class LabsImpl implements Labs {
         }
         String name = Utils.getValueFromIdByName(id, "labs");
         if (name == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'labs'.", id)));
