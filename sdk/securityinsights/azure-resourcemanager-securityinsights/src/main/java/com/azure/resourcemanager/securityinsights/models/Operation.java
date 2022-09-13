@@ -4,42 +4,73 @@
 
 package com.azure.resourcemanager.securityinsights.models;
 
-import com.azure.resourcemanager.securityinsights.fluent.models.OperationInner;
+import com.azure.core.annotation.Fluent;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.List;
 
-/** An immutable client-side representation of Operation. */
-public interface Operation {
-    /**
-     * Gets the display property: Properties of the operation.
-     *
-     * @return the display value.
+/** Represents the operation to be applied to all items captured by this bulk action. */
+@Fluent
+public final class Operation {
+    /*
+     * Describes which type of operation we are applying to items captured by this bulk action.
      */
-    OperationDisplay display();
+    @JsonProperty(value = "type")
+    private OperationType type;
 
-    /**
-     * Gets the name property: Name of the operation.
-     *
-     * @return the name value.
+    /*
+     * List of operation steps to be applied.
      */
-    String name();
-
-    /**
-     * Gets the origin property: The origin of the operation.
-     *
-     * @return the origin value.
-     */
-    String origin();
+    @JsonProperty(value = "steps")
+    private List<OperationStep> steps;
 
     /**
-     * Gets the isDataAction property: Indicates whether the operation is a data action.
+     * Get the type property: Describes which type of operation we are applying to items captured by this bulk action.
      *
-     * @return the isDataAction value.
+     * @return the type value.
      */
-    Boolean isDataAction();
+    public OperationType type() {
+        return this.type;
+    }
 
     /**
-     * Gets the inner com.azure.resourcemanager.securityinsights.fluent.models.OperationInner object.
+     * Set the type property: Describes which type of operation we are applying to items captured by this bulk action.
      *
-     * @return the inner object.
+     * @param type the type value to set.
+     * @return the Operation object itself.
      */
-    OperationInner innerModel();
+    public Operation withType(OperationType type) {
+        this.type = type;
+        return this;
+    }
+
+    /**
+     * Get the steps property: List of operation steps to be applied.
+     *
+     * @return the steps value.
+     */
+    public List<OperationStep> steps() {
+        return this.steps;
+    }
+
+    /**
+     * Set the steps property: List of operation steps to be applied.
+     *
+     * @param steps the steps value to set.
+     * @return the Operation object itself.
+     */
+    public Operation withSteps(List<OperationStep> steps) {
+        this.steps = steps;
+        return this;
+    }
+
+    /**
+     * Validates the instance.
+     *
+     * @throws IllegalArgumentException thrown if the instance is not valid.
+     */
+    public void validate() {
+        if (steps() != null) {
+            steps().forEach(e -> e.validate());
+        }
+    }
 }
