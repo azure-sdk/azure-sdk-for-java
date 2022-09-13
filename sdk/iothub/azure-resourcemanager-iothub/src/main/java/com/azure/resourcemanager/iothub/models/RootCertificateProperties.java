@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.iothub.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.DateTimeRfc1123;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
@@ -21,7 +22,7 @@ public final class RootCertificateProperties {
      * the last update time to root certificate flag.
      */
     @JsonProperty(value = "lastUpdatedTimeUtc", access = JsonProperty.Access.WRITE_ONLY)
-    private OffsetDateTime lastUpdatedTimeUtc;
+    private DateTimeRfc1123 lastUpdatedTimeUtc;
 
     /**
      * Get the enableRootCertificateV2 property: This property when set to true, hub will use G2 cert; while it's set to
@@ -51,7 +52,10 @@ public final class RootCertificateProperties {
      * @return the lastUpdatedTimeUtc value.
      */
     public OffsetDateTime lastUpdatedTimeUtc() {
-        return this.lastUpdatedTimeUtc;
+        if (this.lastUpdatedTimeUtc == null) {
+            return null;
+        }
+        return this.lastUpdatedTimeUtc.getDateTime();
     }
 
     /**
