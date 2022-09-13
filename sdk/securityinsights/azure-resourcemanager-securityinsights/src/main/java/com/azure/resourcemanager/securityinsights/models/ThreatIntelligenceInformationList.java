@@ -4,71 +4,30 @@
 
 package com.azure.resourcemanager.securityinsights.models;
 
-import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
-import com.azure.resourcemanager.securityinsights.fluent.models.ThreatIntelligenceInformationInner;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.azure.resourcemanager.securityinsights.fluent.models.ThreatIntelligenceInformationListInner;
 import java.util.List;
 
-/** List of all the threat intelligence information objects. */
-@Fluent
-public final class ThreatIntelligenceInformationList {
-    /*
-     * URL to fetch the next set of information objects.
-     */
-    @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
-    private String nextLink;
-
-    /*
-     * Array of threat intelligence information objects.
-     */
-    @JsonProperty(value = "value", required = true)
-    private List<ThreatIntelligenceInformationInner> value;
-
+/** An immutable client-side representation of ThreatIntelligenceInformationList. */
+public interface ThreatIntelligenceInformationList {
     /**
-     * Get the nextLink property: URL to fetch the next set of information objects.
+     * Gets the nextLink property: URL to fetch the next set of information objects.
      *
      * @return the nextLink value.
      */
-    public String nextLink() {
-        return this.nextLink;
-    }
+    String nextLink();
 
     /**
-     * Get the value property: Array of threat intelligence information objects.
+     * Gets the value property: Array of threat intelligence information objects.
      *
      * @return the value value.
      */
-    public List<ThreatIntelligenceInformationInner> value() {
-        return this.value;
-    }
+    List<ThreatIntelligenceInformation> value();
 
     /**
-     * Set the value property: Array of threat intelligence information objects.
+     * Gets the inner com.azure.resourcemanager.securityinsights.fluent.models.ThreatIntelligenceInformationListInner
+     * object.
      *
-     * @param value the value value to set.
-     * @return the ThreatIntelligenceInformationList object itself.
+     * @return the inner object.
      */
-    public ThreatIntelligenceInformationList withValue(List<ThreatIntelligenceInformationInner> value) {
-        this.value = value;
-        return this;
-    }
-
-    /**
-     * Validates the instance.
-     *
-     * @throws IllegalArgumentException thrown if the instance is not valid.
-     */
-    public void validate() {
-        if (value() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property value in model ThreatIntelligenceInformationList"));
-        } else {
-            value().forEach(e -> e.validate());
-        }
-    }
-
-    private static final ClientLogger LOGGER = new ClientLogger(ThreatIntelligenceInformationList.class);
+    ThreatIntelligenceInformationListInner innerModel();
 }

@@ -10,12 +10,18 @@ import com.azure.core.http.rest.SimpleResponse;
 import com.azure.core.util.Context;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.securityinsights.fluent.ThreatIntelligenceIndicatorsClient;
+import com.azure.resourcemanager.securityinsights.fluent.models.ThreatIntelligenceInformationCountInner;
 import com.azure.resourcemanager.securityinsights.fluent.models.ThreatIntelligenceInformationInner;
+import com.azure.resourcemanager.securityinsights.fluent.models.ThreatIntelligenceInformationListInner;
 import com.azure.resourcemanager.securityinsights.models.ThreatIntelligenceAppendTags;
+import com.azure.resourcemanager.securityinsights.models.ThreatIntelligenceCountByCondition;
 import com.azure.resourcemanager.securityinsights.models.ThreatIntelligenceFilteringCriteria;
 import com.azure.resourcemanager.securityinsights.models.ThreatIntelligenceIndicatorModel;
 import com.azure.resourcemanager.securityinsights.models.ThreatIntelligenceIndicators;
 import com.azure.resourcemanager.securityinsights.models.ThreatIntelligenceInformation;
+import com.azure.resourcemanager.securityinsights.models.ThreatIntelligenceInformationCount;
+import com.azure.resourcemanager.securityinsights.models.ThreatIntelligenceInformationList;
+import com.azure.resourcemanager.securityinsights.models.ThreatIntelligenceQueryByCondition;
 
 public final class ThreatIntelligenceIndicatorsImpl implements ThreatIntelligenceIndicators {
     private static final ClientLogger LOGGER = new ClientLogger(ThreatIntelligenceIndicatorsImpl.class);
@@ -201,6 +207,68 @@ public final class ThreatIntelligenceIndicatorsImpl implements ThreatIntelligenc
                 inner.getStatusCode(),
                 inner.getHeaders(),
                 new ThreatIntelligenceInformationImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public ThreatIntelligenceInformationList queryFromCondition(
+        String resourceGroupName, String workspaceName, ThreatIntelligenceQueryByCondition filterCriteria) {
+        ThreatIntelligenceInformationListInner inner =
+            this.serviceClient().queryFromCondition(resourceGroupName, workspaceName, filterCriteria);
+        if (inner != null) {
+            return new ThreatIntelligenceInformationListImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
+    public Response<ThreatIntelligenceInformationList> queryFromConditionWithResponse(
+        String resourceGroupName,
+        String workspaceName,
+        ThreatIntelligenceQueryByCondition filterCriteria,
+        Context context) {
+        Response<ThreatIntelligenceInformationListInner> inner =
+            this
+                .serviceClient()
+                .queryFromConditionWithResponse(resourceGroupName, workspaceName, filterCriteria, context);
+        if (inner != null) {
+            return new SimpleResponse<>(
+                inner.getRequest(),
+                inner.getStatusCode(),
+                inner.getHeaders(),
+                new ThreatIntelligenceInformationListImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public ThreatIntelligenceInformationCount countFromCondition(
+        String resourceGroupName, String workspaceName, ThreatIntelligenceCountByCondition filterCriteria) {
+        ThreatIntelligenceInformationCountInner inner =
+            this.serviceClient().countFromCondition(resourceGroupName, workspaceName, filterCriteria);
+        if (inner != null) {
+            return new ThreatIntelligenceInformationCountImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
+    public Response<ThreatIntelligenceInformationCount> countFromConditionWithResponse(
+        String resourceGroupName,
+        String workspaceName,
+        ThreatIntelligenceCountByCondition filterCriteria,
+        Context context) {
+        Response<ThreatIntelligenceInformationCountInner> inner =
+            this
+                .serviceClient()
+                .countFromConditionWithResponse(resourceGroupName, workspaceName, filterCriteria, context);
+        if (inner != null) {
+            return new SimpleResponse<>(
+                inner.getRequest(),
+                inner.getStatusCode(),
+                inner.getHeaders(),
+                new ThreatIntelligenceInformationCountImpl(inner.getValue(), this.manager()));
         } else {
             return null;
         }

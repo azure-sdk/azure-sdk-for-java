@@ -242,4 +242,68 @@ public interface ThreatIntelligenceIndicators {
         String name,
         ThreatIntelligenceIndicatorModel threatIntelligenceReplaceTags,
         Context context);
+
+    /**
+     * Query Indicators from condition.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param filterCriteria Filtering criteria for querying threat intelligence indicators by condition.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of all the threat intelligence information objects.
+     */
+    ThreatIntelligenceInformationList queryFromCondition(
+        String resourceGroupName, String workspaceName, ThreatIntelligenceQueryByCondition filterCriteria);
+
+    /**
+     * Query Indicators from condition.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param filterCriteria Filtering criteria for querying threat intelligence indicators by condition.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of all the threat intelligence information objects along with {@link Response}.
+     */
+    Response<ThreatIntelligenceInformationList> queryFromConditionWithResponse(
+        String resourceGroupName,
+        String workspaceName,
+        ThreatIntelligenceQueryByCondition filterCriteria,
+        Context context);
+
+    /**
+     * Count Indicators from condition.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param filterCriteria Filtering criteria for counting threat intelligence indicators by condition.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return count of threat intelligence information objects which match query.
+     */
+    ThreatIntelligenceInformationCount countFromCondition(
+        String resourceGroupName, String workspaceName, ThreatIntelligenceCountByCondition filterCriteria);
+
+    /**
+     * Count Indicators from condition.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param filterCriteria Filtering criteria for counting threat intelligence indicators by condition.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return count of threat intelligence information objects which match query along with {@link Response}.
+     */
+    Response<ThreatIntelligenceInformationCount> countFromConditionWithResponse(
+        String resourceGroupName,
+        String workspaceName,
+        ThreatIntelligenceCountByCondition filterCriteria,
+        Context context);
 }

@@ -27,7 +27,7 @@ import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
 import com.azure.resourcemanager.securityinsights.fluent.ThreatIntelligenceIndicatorsOperationsClient;
 import com.azure.resourcemanager.securityinsights.fluent.models.ThreatIntelligenceInformationInner;
-import com.azure.resourcemanager.securityinsights.models.ThreatIntelligenceInformationList;
+import com.azure.resourcemanager.securityinsights.fluent.models.ThreatIntelligenceInformationListInner;
 import reactor.core.publisher.Mono;
 
 /**
@@ -70,7 +70,7 @@ public final class ThreatIntelligenceIndicatorsOperationsClientImpl
                 + "/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/threatIntelligence/main/indicators")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<ThreatIntelligenceInformationList>> list(
+        Mono<Response<ThreatIntelligenceInformationListInner>> list(
             @HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion,
             @PathParam("subscriptionId") String subscriptionId,
@@ -87,7 +87,7 @@ public final class ThreatIntelligenceIndicatorsOperationsClientImpl
         @Get("{nextLink}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<ThreatIntelligenceInformationList>> listNext(
+        Mono<Response<ThreatIntelligenceInformationListInner>> listNext(
             @PathParam(value = "nextLink", encoded = true) String nextLink,
             @HostParam("$host") String endpoint,
             @HeaderParam("Accept") String accept,
@@ -362,7 +362,8 @@ public final class ThreatIntelligenceIndicatorsOperationsClientImpl
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -398,7 +399,8 @@ public final class ThreatIntelligenceIndicatorsOperationsClientImpl
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.

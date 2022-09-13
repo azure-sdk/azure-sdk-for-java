@@ -30,11 +30,14 @@ import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
 import com.azure.resourcemanager.securityinsights.fluent.ThreatIntelligenceIndicatorsClient;
+import com.azure.resourcemanager.securityinsights.fluent.models.ThreatIntelligenceInformationCountInner;
 import com.azure.resourcemanager.securityinsights.fluent.models.ThreatIntelligenceInformationInner;
+import com.azure.resourcemanager.securityinsights.fluent.models.ThreatIntelligenceInformationListInner;
 import com.azure.resourcemanager.securityinsights.models.ThreatIntelligenceAppendTags;
+import com.azure.resourcemanager.securityinsights.models.ThreatIntelligenceCountByCondition;
 import com.azure.resourcemanager.securityinsights.models.ThreatIntelligenceFilteringCriteria;
 import com.azure.resourcemanager.securityinsights.models.ThreatIntelligenceIndicatorModel;
-import com.azure.resourcemanager.securityinsights.models.ThreatIntelligenceInformationList;
+import com.azure.resourcemanager.securityinsights.models.ThreatIntelligenceQueryByCondition;
 import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in ThreatIntelligenceIndicatorsClient. */
@@ -141,7 +144,7 @@ public final class ThreatIntelligenceIndicatorsClientImpl implements ThreatIntel
                 + "/queryIndicators")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<ThreatIntelligenceInformationList>> queryIndicators(
+        Mono<Response<ThreatIntelligenceInformationListInner>> queryIndicators(
             @HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion,
             @PathParam("subscriptionId") String subscriptionId,
@@ -188,10 +191,42 @@ public final class ThreatIntelligenceIndicatorsClientImpl implements ThreatIntel
             Context context);
 
         @Headers({"Content-Type: application/json"})
+        @Post(
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights"
+                + "/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/queryThreatIntelligenceIndicators")
+        @ExpectedResponses({200})
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<ThreatIntelligenceInformationListInner>> queryFromCondition(
+            @HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion,
+            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName,
+            @PathParam("workspaceName") String workspaceName,
+            @BodyParam("application/json") ThreatIntelligenceQueryByCondition filterCriteria,
+            @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({"Content-Type: application/json"})
+        @Post(
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights"
+                + "/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/countThreatIntelligenceIndicators")
+        @ExpectedResponses({200})
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<ThreatIntelligenceInformationCountInner>> countFromCondition(
+            @HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion,
+            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName,
+            @PathParam("workspaceName") String workspaceName,
+            @BodyParam("application/json") ThreatIntelligenceCountByCondition filterCriteria,
+            @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({"Content-Type: application/json"})
         @Get("{nextLink}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<ThreatIntelligenceInformationList>> queryIndicatorsNext(
+        Mono<Response<ThreatIntelligenceInformationListInner>> queryIndicatorsNext(
             @PathParam(value = "nextLink", encoded = true) String nextLink,
             @HostParam("$host") String endpoint,
             @HeaderParam("Accept") String accept,
@@ -1511,9 +1546,349 @@ public final class ThreatIntelligenceIndicatorsClientImpl implements ThreatIntel
     }
 
     /**
+     * Query Indicators from condition.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param filterCriteria Filtering criteria for querying threat intelligence indicators by condition.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of all the threat intelligence information objects along with {@link Response} on successful
+     *     completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<ThreatIntelligenceInformationListInner>> queryFromConditionWithResponseAsync(
+        String resourceGroupName, String workspaceName, ThreatIntelligenceQueryByCondition filterCriteria) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (workspaceName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
+        }
+        if (filterCriteria == null) {
+            return Mono.error(new IllegalArgumentException("Parameter filterCriteria is required and cannot be null."));
+        } else {
+            filterCriteria.validate();
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(
+                context ->
+                    service
+                        .queryFromCondition(
+                            this.client.getEndpoint(),
+                            this.client.getApiVersion(),
+                            this.client.getSubscriptionId(),
+                            resourceGroupName,
+                            workspaceName,
+                            filterCriteria,
+                            accept,
+                            context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Query Indicators from condition.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param filterCriteria Filtering criteria for querying threat intelligence indicators by condition.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of all the threat intelligence information objects along with {@link Response} on successful
+     *     completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<ThreatIntelligenceInformationListInner>> queryFromConditionWithResponseAsync(
+        String resourceGroupName,
+        String workspaceName,
+        ThreatIntelligenceQueryByCondition filterCriteria,
+        Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (workspaceName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
+        }
+        if (filterCriteria == null) {
+            return Mono.error(new IllegalArgumentException("Parameter filterCriteria is required and cannot be null."));
+        } else {
+            filterCriteria.validate();
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service
+            .queryFromCondition(
+                this.client.getEndpoint(),
+                this.client.getApiVersion(),
+                this.client.getSubscriptionId(),
+                resourceGroupName,
+                workspaceName,
+                filterCriteria,
+                accept,
+                context);
+    }
+
+    /**
+     * Query Indicators from condition.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param filterCriteria Filtering criteria for querying threat intelligence indicators by condition.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of all the threat intelligence information objects on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<ThreatIntelligenceInformationListInner> queryFromConditionAsync(
+        String resourceGroupName, String workspaceName, ThreatIntelligenceQueryByCondition filterCriteria) {
+        return queryFromConditionWithResponseAsync(resourceGroupName, workspaceName, filterCriteria)
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
+    }
+
+    /**
+     * Query Indicators from condition.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param filterCriteria Filtering criteria for querying threat intelligence indicators by condition.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of all the threat intelligence information objects.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public ThreatIntelligenceInformationListInner queryFromCondition(
+        String resourceGroupName, String workspaceName, ThreatIntelligenceQueryByCondition filterCriteria) {
+        return queryFromConditionAsync(resourceGroupName, workspaceName, filterCriteria).block();
+    }
+
+    /**
+     * Query Indicators from condition.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param filterCriteria Filtering criteria for querying threat intelligence indicators by condition.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of all the threat intelligence information objects along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<ThreatIntelligenceInformationListInner> queryFromConditionWithResponse(
+        String resourceGroupName,
+        String workspaceName,
+        ThreatIntelligenceQueryByCondition filterCriteria,
+        Context context) {
+        return queryFromConditionWithResponseAsync(resourceGroupName, workspaceName, filterCriteria, context).block();
+    }
+
+    /**
+     * Count Indicators from condition.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param filterCriteria Filtering criteria for counting threat intelligence indicators by condition.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return count of threat intelligence information objects which match query along with {@link Response} on
+     *     successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<ThreatIntelligenceInformationCountInner>> countFromConditionWithResponseAsync(
+        String resourceGroupName, String workspaceName, ThreatIntelligenceCountByCondition filterCriteria) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (workspaceName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
+        }
+        if (filterCriteria == null) {
+            return Mono.error(new IllegalArgumentException("Parameter filterCriteria is required and cannot be null."));
+        } else {
+            filterCriteria.validate();
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(
+                context ->
+                    service
+                        .countFromCondition(
+                            this.client.getEndpoint(),
+                            this.client.getApiVersion(),
+                            this.client.getSubscriptionId(),
+                            resourceGroupName,
+                            workspaceName,
+                            filterCriteria,
+                            accept,
+                            context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Count Indicators from condition.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param filterCriteria Filtering criteria for counting threat intelligence indicators by condition.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return count of threat intelligence information objects which match query along with {@link Response} on
+     *     successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<ThreatIntelligenceInformationCountInner>> countFromConditionWithResponseAsync(
+        String resourceGroupName,
+        String workspaceName,
+        ThreatIntelligenceCountByCondition filterCriteria,
+        Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (workspaceName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
+        }
+        if (filterCriteria == null) {
+            return Mono.error(new IllegalArgumentException("Parameter filterCriteria is required and cannot be null."));
+        } else {
+            filterCriteria.validate();
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service
+            .countFromCondition(
+                this.client.getEndpoint(),
+                this.client.getApiVersion(),
+                this.client.getSubscriptionId(),
+                resourceGroupName,
+                workspaceName,
+                filterCriteria,
+                accept,
+                context);
+    }
+
+    /**
+     * Count Indicators from condition.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param filterCriteria Filtering criteria for counting threat intelligence indicators by condition.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return count of threat intelligence information objects which match query on successful completion of {@link
+     *     Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<ThreatIntelligenceInformationCountInner> countFromConditionAsync(
+        String resourceGroupName, String workspaceName, ThreatIntelligenceCountByCondition filterCriteria) {
+        return countFromConditionWithResponseAsync(resourceGroupName, workspaceName, filterCriteria)
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
+    }
+
+    /**
+     * Count Indicators from condition.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param filterCriteria Filtering criteria for counting threat intelligence indicators by condition.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return count of threat intelligence information objects which match query.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public ThreatIntelligenceInformationCountInner countFromCondition(
+        String resourceGroupName, String workspaceName, ThreatIntelligenceCountByCondition filterCriteria) {
+        return countFromConditionAsync(resourceGroupName, workspaceName, filterCriteria).block();
+    }
+
+    /**
+     * Count Indicators from condition.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param filterCriteria Filtering criteria for counting threat intelligence indicators by condition.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return count of threat intelligence information objects which match query along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<ThreatIntelligenceInformationCountInner> countFromConditionWithResponse(
+        String resourceGroupName,
+        String workspaceName,
+        ThreatIntelligenceCountByCondition filterCriteria,
+        Context context) {
+        return countFromConditionWithResponseAsync(resourceGroupName, workspaceName, filterCriteria, context).block();
+    }
+
+    /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1550,7 +1925,8 @@ public final class ThreatIntelligenceIndicatorsClientImpl implements ThreatIntel
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
