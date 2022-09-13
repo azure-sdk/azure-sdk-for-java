@@ -37,6 +37,11 @@ import com.azure.resourcemanager.applicationinsights.fluent.FavoritesClient;
 import com.azure.resourcemanager.applicationinsights.fluent.LiveTokensClient;
 import com.azure.resourcemanager.applicationinsights.fluent.MyWorkbooksClient;
 import com.azure.resourcemanager.applicationinsights.fluent.OperationsClient;
+import com.azure.resourcemanager.applicationinsights.fluent.PrivateEndpointConnectionsClient;
+import com.azure.resourcemanager.applicationinsights.fluent.PrivateLinkResourcesClient;
+import com.azure.resourcemanager.applicationinsights.fluent.PrivateLinkScopeOperationStatusClient;
+import com.azure.resourcemanager.applicationinsights.fluent.PrivateLinkScopedResourcesClient;
+import com.azure.resourcemanager.applicationinsights.fluent.PrivateLinkScopesClient;
 import com.azure.resourcemanager.applicationinsights.fluent.ProactiveDetectionConfigurationsClient;
 import com.azure.resourcemanager.applicationinsights.fluent.WebTestLocationsClient;
 import com.azure.resourcemanager.applicationinsights.fluent.WebTestsClient;
@@ -115,16 +120,16 @@ public final class ApplicationInsightsManagementClientImpl implements Applicatio
         return this.defaultPollInterval;
     }
 
-    /** The OperationsClient object to access its operations. */
-    private final OperationsClient operations;
+    /** The ComponentsClient object to access its operations. */
+    private final ComponentsClient components;
 
     /**
-     * Gets the OperationsClient object to access its operations.
+     * Gets the ComponentsClient object to access its operations.
      *
-     * @return the OperationsClient object.
+     * @return the ComponentsClient object.
      */
-    public OperationsClient getOperations() {
-        return this.operations;
+    public ComponentsClient getComponents() {
+        return this.components;
     }
 
     /** The AnnotationsClient object to access its operations. */
@@ -283,6 +288,18 @@ public final class ApplicationInsightsManagementClientImpl implements Applicatio
         return this.analyticsItems;
     }
 
+    /** The OperationsClient object to access its operations. */
+    private final OperationsClient operations;
+
+    /**
+     * Gets the OperationsClient object to access its operations.
+     *
+     * @return the OperationsClient object.
+     */
+    public OperationsClient getOperations() {
+        return this.operations;
+    }
+
     /** The WorkbookTemplatesClient object to access its operations. */
     private final WorkbookTemplatesClient workbookTemplates;
 
@@ -319,16 +336,16 @@ public final class ApplicationInsightsManagementClientImpl implements Applicatio
         return this.workbooks;
     }
 
-    /** The ComponentsClient object to access its operations. */
-    private final ComponentsClient components;
+    /** The LiveTokensClient object to access its operations. */
+    private final LiveTokensClient liveTokens;
 
     /**
-     * Gets the ComponentsClient object to access its operations.
+     * Gets the LiveTokensClient object to access its operations.
      *
-     * @return the ComponentsClient object.
+     * @return the LiveTokensClient object.
      */
-    public ComponentsClient getComponents() {
-        return this.components;
+    public LiveTokensClient getLiveTokens() {
+        return this.liveTokens;
     }
 
     /** The ComponentLinkedStorageAccountsOperationsClient object to access its operations. */
@@ -343,16 +360,64 @@ public final class ApplicationInsightsManagementClientImpl implements Applicatio
         return this.componentLinkedStorageAccountsOperations;
     }
 
-    /** The LiveTokensClient object to access its operations. */
-    private final LiveTokensClient liveTokens;
+    /** The PrivateLinkScopesClient object to access its operations. */
+    private final PrivateLinkScopesClient privateLinkScopes;
 
     /**
-     * Gets the LiveTokensClient object to access its operations.
+     * Gets the PrivateLinkScopesClient object to access its operations.
      *
-     * @return the LiveTokensClient object.
+     * @return the PrivateLinkScopesClient object.
      */
-    public LiveTokensClient getLiveTokens() {
-        return this.liveTokens;
+    public PrivateLinkScopesClient getPrivateLinkScopes() {
+        return this.privateLinkScopes;
+    }
+
+    /** The PrivateLinkScopeOperationStatusClient object to access its operations. */
+    private final PrivateLinkScopeOperationStatusClient privateLinkScopeOperationStatus;
+
+    /**
+     * Gets the PrivateLinkScopeOperationStatusClient object to access its operations.
+     *
+     * @return the PrivateLinkScopeOperationStatusClient object.
+     */
+    public PrivateLinkScopeOperationStatusClient getPrivateLinkScopeOperationStatus() {
+        return this.privateLinkScopeOperationStatus;
+    }
+
+    /** The PrivateLinkResourcesClient object to access its operations. */
+    private final PrivateLinkResourcesClient privateLinkResources;
+
+    /**
+     * Gets the PrivateLinkResourcesClient object to access its operations.
+     *
+     * @return the PrivateLinkResourcesClient object.
+     */
+    public PrivateLinkResourcesClient getPrivateLinkResources() {
+        return this.privateLinkResources;
+    }
+
+    /** The PrivateEndpointConnectionsClient object to access its operations. */
+    private final PrivateEndpointConnectionsClient privateEndpointConnections;
+
+    /**
+     * Gets the PrivateEndpointConnectionsClient object to access its operations.
+     *
+     * @return the PrivateEndpointConnectionsClient object.
+     */
+    public PrivateEndpointConnectionsClient getPrivateEndpointConnections() {
+        return this.privateEndpointConnections;
+    }
+
+    /** The PrivateLinkScopedResourcesClient object to access its operations. */
+    private final PrivateLinkScopedResourcesClient privateLinkScopedResources;
+
+    /**
+     * Gets the PrivateLinkScopedResourcesClient object to access its operations.
+     *
+     * @return the PrivateLinkScopedResourcesClient object.
+     */
+    public PrivateLinkScopedResourcesClient getPrivateLinkScopedResources() {
+        return this.privateLinkScopedResources;
     }
 
     /**
@@ -377,7 +442,7 @@ public final class ApplicationInsightsManagementClientImpl implements Applicatio
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.operations = new OperationsClientImpl(this);
+        this.components = new ComponentsClientImpl(this);
         this.annotations = new AnnotationsClientImpl(this);
         this.apiKeys = new ApiKeysClientImpl(this);
         this.exportConfigurations = new ExportConfigurationsClientImpl(this);
@@ -391,12 +456,17 @@ public final class ApplicationInsightsManagementClientImpl implements Applicatio
         this.webTestLocations = new WebTestLocationsClientImpl(this);
         this.webTests = new WebTestsClientImpl(this);
         this.analyticsItems = new AnalyticsItemsClientImpl(this);
+        this.operations = new OperationsClientImpl(this);
         this.workbookTemplates = new WorkbookTemplatesClientImpl(this);
         this.myWorkbooks = new MyWorkbooksClientImpl(this);
         this.workbooks = new WorkbooksClientImpl(this);
-        this.components = new ComponentsClientImpl(this);
-        this.componentLinkedStorageAccountsOperations = new ComponentLinkedStorageAccountsOperationsClientImpl(this);
         this.liveTokens = new LiveTokensClientImpl(this);
+        this.componentLinkedStorageAccountsOperations = new ComponentLinkedStorageAccountsOperationsClientImpl(this);
+        this.privateLinkScopes = new PrivateLinkScopesClientImpl(this);
+        this.privateLinkScopeOperationStatus = new PrivateLinkScopeOperationStatusClientImpl(this);
+        this.privateLinkResources = new PrivateLinkResourcesClientImpl(this);
+        this.privateEndpointConnections = new PrivateEndpointConnectionsClientImpl(this);
+        this.privateLinkScopedResources = new PrivateLinkScopedResourcesClientImpl(this);
     }
 
     /**
