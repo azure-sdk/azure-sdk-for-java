@@ -6,7 +6,6 @@ package com.azure.resourcemanager.devtestlabs.implementation;
 
 import com.azure.resourcemanager.devtestlabs.fluent.models.OperationResultInner;
 import com.azure.resourcemanager.devtestlabs.models.HttpStatusCode;
-import com.azure.resourcemanager.devtestlabs.models.OperationError;
 import com.azure.resourcemanager.devtestlabs.models.OperationResult;
 
 public final class OperationResultImpl implements OperationResult {
@@ -28,8 +27,12 @@ public final class OperationResultImpl implements OperationResult {
         return this.innerModel().statusCode();
     }
 
-    public OperationError error() {
-        return this.innerModel().error();
+    public String code() {
+        return this.innerModel().code();
+    }
+
+    public String message() {
+        return this.innerModel().message();
     }
 
     public OperationResultInner innerModel() {

@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.devtestlabs.models;
 
+import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.devtestlabs.fluent.models.ArtifactInner;
 import java.time.OffsetDateTime;
 import java.util.Map;
@@ -44,6 +45,13 @@ public interface Artifact {
      * @return the tags value.
      */
     Map<String, String> tags();
+
+    /**
+     * Gets the systemData property: The system metadata relating to this resource.
+     *
+     * @return the systemData value.
+     */
+    SystemData systemData();
 
     /**
      * Gets the title property: The artifact's title.

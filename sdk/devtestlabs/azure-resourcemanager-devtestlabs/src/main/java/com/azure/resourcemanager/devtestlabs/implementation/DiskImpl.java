@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.devtestlabs.implementation;
 
 import com.azure.core.management.Region;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.devtestlabs.fluent.models.DiskInner;
 import com.azure.resourcemanager.devtestlabs.models.AttachDiskProperties;
@@ -44,6 +45,10 @@ public final class DiskImpl implements Disk, Disk.Definition, Disk.Update {
         } else {
             return Collections.emptyMap();
         }
+    }
+
+    public SystemData systemData() {
+        return this.innerModel().systemData();
     }
 
     public StorageType diskType() {
@@ -96,6 +101,10 @@ public final class DiskImpl implements Disk, Disk.Definition, Disk.Update {
 
     public String regionName() {
         return this.location();
+    }
+
+    public String resourceGroupName() {
+        return resourceGroupName;
     }
 
     public DiskInner innerModel() {

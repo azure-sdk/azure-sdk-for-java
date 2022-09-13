@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.devtestlabs.implementation;
 
 import com.azure.core.management.Region;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.devtestlabs.fluent.models.PolicyInner;
 import com.azure.resourcemanager.devtestlabs.models.Policy;
@@ -44,6 +45,10 @@ public final class PolicyImpl implements Policy, Policy.Definition, Policy.Updat
         } else {
             return Collections.emptyMap();
         }
+    }
+
+    public SystemData systemData() {
+        return this.innerModel().systemData();
     }
 
     public String description() {
@@ -88,6 +93,10 @@ public final class PolicyImpl implements Policy, Policy.Definition, Policy.Updat
 
     public String regionName() {
         return this.location();
+    }
+
+    public String resourceGroupName() {
+        return resourceGroupName;
     }
 
     public PolicyInner innerModel() {

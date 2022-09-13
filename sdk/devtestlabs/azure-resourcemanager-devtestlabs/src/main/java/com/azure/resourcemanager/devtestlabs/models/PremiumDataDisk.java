@@ -8,7 +8,10 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for PremiumDataDisk. */
+/**
+ * The setting to enable usage of premium data disks. When its value is 'Enabled', creation of standard or premium data
+ * disks is allowed. When its value is 'Disabled', only creation of standard data disks is allowed.
+ */
 public final class PremiumDataDisk extends ExpandableStringEnum<PremiumDataDisk> {
     /** Static value Disabled for PremiumDataDisk. */
     public static final PremiumDataDisk DISABLED = fromString("Disabled");
@@ -27,7 +30,11 @@ public final class PremiumDataDisk extends ExpandableStringEnum<PremiumDataDisk>
         return fromString(name, PremiumDataDisk.class);
     }
 
-    /** @return known PremiumDataDisk values. */
+    /**
+     * Gets known PremiumDataDisk values.
+     *
+     * @return known PremiumDataDisk values.
+     */
     public static Collection<PremiumDataDisk> values() {
         return values(PremiumDataDisk.class);
     }

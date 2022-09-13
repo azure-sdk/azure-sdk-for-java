@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.devtestlabs.implementation;
 
 import com.azure.core.management.Region;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.devtestlabs.fluent.models.ArtifactSourceInner;
 import com.azure.resourcemanager.devtestlabs.models.ArtifactSource;
@@ -43,6 +44,10 @@ public final class ArtifactSourceImpl implements ArtifactSource, ArtifactSource.
         } else {
             return Collections.emptyMap();
         }
+    }
+
+    public SystemData systemData() {
+        return this.innerModel().systemData();
     }
 
     public String displayName() {
@@ -95,6 +100,10 @@ public final class ArtifactSourceImpl implements ArtifactSource, ArtifactSource.
 
     public String regionName() {
         return this.location();
+    }
+
+    public String resourceGroupName() {
+        return resourceGroupName;
     }
 
     public ArtifactSourceInner innerModel() {

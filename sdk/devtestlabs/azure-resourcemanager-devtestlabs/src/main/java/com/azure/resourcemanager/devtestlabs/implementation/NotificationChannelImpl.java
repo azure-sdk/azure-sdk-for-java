@@ -6,6 +6,7 @@ package com.azure.resourcemanager.devtestlabs.implementation;
 
 import com.azure.core.http.rest.Response;
 import com.azure.core.management.Region;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.devtestlabs.fluent.models.NotificationChannelInner;
 import com.azure.resourcemanager.devtestlabs.models.Event;
@@ -46,6 +47,10 @@ public final class NotificationChannelImpl
         } else {
             return Collections.emptyMap();
         }
+    }
+
+    public SystemData systemData() {
+        return this.innerModel().systemData();
     }
 
     public String webhookUrl() {
@@ -91,6 +96,10 @@ public final class NotificationChannelImpl
 
     public String regionName() {
         return this.location();
+    }
+
+    public String resourceGroupName() {
+        return resourceGroupName;
     }
 
     public NotificationChannelInner innerModel() {

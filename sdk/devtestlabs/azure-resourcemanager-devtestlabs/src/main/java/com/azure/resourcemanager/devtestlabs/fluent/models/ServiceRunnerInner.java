@@ -6,41 +6,57 @@ package com.azure.resourcemanager.devtestlabs.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.Resource;
-import com.azure.core.util.logging.ClientLogger;
-import com.azure.resourcemanager.devtestlabs.models.IdentityProperties;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.azure.core.management.SystemData;
+import com.azure.resourcemanager.devtestlabs.models.ManagedIdentityType;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
 /** A container for a managed identity to execute DevTest lab services. */
 @Fluent
 public final class ServiceRunnerInner extends Resource {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(ServiceRunnerInner.class);
+    /*
+     * The properties of the resource.
+     */
+    @JsonProperty(value = "properties")
+    private ServiceRunnerProperties innerProperties;
 
     /*
      * The identity of the resource.
      */
     @JsonProperty(value = "identity")
-    private IdentityProperties identity;
+    private IdentityProperties innerIdentity;
+
+    /*
+     * The system metadata relating to this resource
+     */
+    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
+    private SystemData systemData;
 
     /**
-     * Get the identity property: The identity of the resource.
+     * Get the innerProperties property: The properties of the resource.
      *
-     * @return the identity value.
+     * @return the innerProperties value.
      */
-    public IdentityProperties identity() {
-        return this.identity;
+    private ServiceRunnerProperties innerProperties() {
+        return this.innerProperties;
     }
 
     /**
-     * Set the identity property: The identity of the resource.
+     * Get the innerIdentity property: The identity of the resource.
      *
-     * @param identity the identity value to set.
-     * @return the ServiceRunnerInner object itself.
+     * @return the innerIdentity value.
      */
-    public ServiceRunnerInner withIdentity(IdentityProperties identity) {
-        this.identity = identity;
-        return this;
+    private IdentityProperties innerIdentity() {
+        return this.innerIdentity;
+    }
+
+    /**
+     * Get the systemData property: The system metadata relating to this resource.
+     *
+     * @return the systemData value.
+     */
+    public SystemData systemData() {
+        return this.systemData;
     }
 
     /** {@inheritDoc} */
@@ -58,13 +74,174 @@ public final class ServiceRunnerInner extends Resource {
     }
 
     /**
+     * Get the identityUsageType property: The purpose of bringing the identity to the lab. Ex: To use during
+     * Environment creation or to deploy on the VMs.
+     *
+     * @return the identityUsageType value.
+     */
+    public String identityUsageType() {
+        return this.innerProperties() == null ? null : this.innerProperties().identityUsageType();
+    }
+
+    /**
+     * Set the identityUsageType property: The purpose of bringing the identity to the lab. Ex: To use during
+     * Environment creation or to deploy on the VMs.
+     *
+     * @param identityUsageType the identityUsageType value to set.
+     * @return the ServiceRunnerInner object itself.
+     */
+    public ServiceRunnerInner withIdentityUsageType(String identityUsageType) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ServiceRunnerProperties();
+        }
+        this.innerProperties().withIdentityUsageType(identityUsageType);
+        return this;
+    }
+
+    /**
+     * Get the provisioningState property: The provisioning status of the resource.
+     *
+     * @return the provisioningState value.
+     */
+    public String provisioningState() {
+        return this.innerProperties() == null ? null : this.innerProperties().provisioningState();
+    }
+
+    /**
+     * Get the uniqueIdentifier property: The unique immutable identifier of a resource (Guid).
+     *
+     * @return the uniqueIdentifier value.
+     */
+    public String uniqueIdentifier() {
+        return this.innerProperties() == null ? null : this.innerProperties().uniqueIdentifier();
+    }
+
+    /**
+     * Get the type property: Type of identity (SystemAssigned, UserAssigned, None).
+     *
+     * @return the type value.
+     */
+    public ManagedIdentityType typeIdentityType() {
+        return this.innerIdentity() == null ? null : this.innerIdentity().type();
+    }
+
+    /**
+     * Set the type property: Type of identity (SystemAssigned, UserAssigned, None).
+     *
+     * @param type the type value to set.
+     * @return the ServiceRunnerInner object itself.
+     */
+    public ServiceRunnerInner withTypeIdentityType(ManagedIdentityType type) {
+        if (this.innerIdentity() == null) {
+            this.innerIdentity = new IdentityProperties();
+        }
+        this.innerIdentity().withType(type);
+        return this;
+    }
+
+    /**
+     * Get the principalId property: The principal id of resource identity.
+     *
+     * @return the principalId value.
+     */
+    public String principalId() {
+        return this.innerIdentity() == null ? null : this.innerIdentity().principalId();
+    }
+
+    /**
+     * Set the principalId property: The principal id of resource identity.
+     *
+     * @param principalId the principalId value to set.
+     * @return the ServiceRunnerInner object itself.
+     */
+    public ServiceRunnerInner withPrincipalId(String principalId) {
+        if (this.innerIdentity() == null) {
+            this.innerIdentity = new IdentityProperties();
+        }
+        this.innerIdentity().withPrincipalId(principalId);
+        return this;
+    }
+
+    /**
+     * Get the tenantId property: The tenant identifier of resource.
+     *
+     * @return the tenantId value.
+     */
+    public String tenantId() {
+        return this.innerIdentity() == null ? null : this.innerIdentity().tenantId();
+    }
+
+    /**
+     * Set the tenantId property: The tenant identifier of resource.
+     *
+     * @param tenantId the tenantId value to set.
+     * @return the ServiceRunnerInner object itself.
+     */
+    public ServiceRunnerInner withTenantId(String tenantId) {
+        if (this.innerIdentity() == null) {
+            this.innerIdentity = new IdentityProperties();
+        }
+        this.innerIdentity().withTenantId(tenantId);
+        return this;
+    }
+
+    /**
+     * Get the clientSecretUrl property: The client secret URL of the identity.
+     *
+     * @return the clientSecretUrl value.
+     */
+    public String clientSecretUrl() {
+        return this.innerIdentity() == null ? null : this.innerIdentity().clientSecretUrl();
+    }
+
+    /**
+     * Set the clientSecretUrl property: The client secret URL of the identity.
+     *
+     * @param clientSecretUrl the clientSecretUrl value to set.
+     * @return the ServiceRunnerInner object itself.
+     */
+    public ServiceRunnerInner withClientSecretUrl(String clientSecretUrl) {
+        if (this.innerIdentity() == null) {
+            this.innerIdentity = new IdentityProperties();
+        }
+        this.innerIdentity().withClientSecretUrl(clientSecretUrl);
+        return this;
+    }
+
+    /**
+     * Get the userAssignedIdentities property: If Type is 'UserAssigned': List of user assigned identities.
+     *
+     * @return the userAssignedIdentities value.
+     */
+    public Map<String, Object> userAssignedIdentities() {
+        return this.innerIdentity() == null ? null : this.innerIdentity().userAssignedIdentities();
+    }
+
+    /**
+     * Set the userAssignedIdentities property: If Type is 'UserAssigned': List of user assigned identities.
+     *
+     * @param userAssignedIdentities the userAssignedIdentities value to set.
+     * @return the ServiceRunnerInner object itself.
+     */
+    public ServiceRunnerInner withUserAssignedIdentities(Map<String, Object> userAssignedIdentities) {
+        if (this.innerIdentity() == null) {
+            this.innerIdentity = new IdentityProperties();
+        }
+        this.innerIdentity().withUserAssignedIdentities(userAssignedIdentities);
+        return this;
+    }
+
+    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (identity() != null) {
-            identity().validate();
+        if (innerProperties() != null) {
+            innerProperties().validate();
+        }
+        if (innerIdentity() != null) {
+            innerIdentity().validate();
         }
     }
 }

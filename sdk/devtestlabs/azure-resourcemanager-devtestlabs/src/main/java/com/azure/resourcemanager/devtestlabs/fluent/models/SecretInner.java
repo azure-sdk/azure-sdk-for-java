@@ -5,73 +5,42 @@
 package com.azure.resourcemanager.devtestlabs.fluent.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.annotation.JsonFlatten;
 import com.azure.core.management.Resource;
-import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.azure.core.management.SystemData;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
 /** A secret. */
-@JsonFlatten
 @Fluent
-public class SecretInner extends Resource {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(SecretInner.class);
+public final class SecretInner extends Resource {
+    /*
+     * The properties of the resource.
+     */
+    @JsonProperty(value = "properties")
+    private SecretProperties innerProperties;
 
     /*
-     * The value of the secret for secret creation.
+     * The system metadata relating to this resource
      */
-    @JsonProperty(value = "properties.value")
-    private String value;
-
-    /*
-     * The provisioning status of the resource.
-     */
-    @JsonProperty(value = "properties.provisioningState", access = JsonProperty.Access.WRITE_ONLY)
-    private String provisioningState;
-
-    /*
-     * The unique immutable identifier of a resource (Guid).
-     */
-    @JsonProperty(value = "properties.uniqueIdentifier", access = JsonProperty.Access.WRITE_ONLY)
-    private String uniqueIdentifier;
+    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
+    private SystemData systemData;
 
     /**
-     * Get the value property: The value of the secret for secret creation.
+     * Get the innerProperties property: The properties of the resource.
      *
-     * @return the value value.
+     * @return the innerProperties value.
      */
-    public String value() {
-        return this.value;
+    private SecretProperties innerProperties() {
+        return this.innerProperties;
     }
 
     /**
-     * Set the value property: The value of the secret for secret creation.
+     * Get the systemData property: The system metadata relating to this resource.
      *
-     * @param value the value value to set.
-     * @return the SecretInner object itself.
+     * @return the systemData value.
      */
-    public SecretInner withValue(String value) {
-        this.value = value;
-        return this;
-    }
-
-    /**
-     * Get the provisioningState property: The provisioning status of the resource.
-     *
-     * @return the provisioningState value.
-     */
-    public String provisioningState() {
-        return this.provisioningState;
-    }
-
-    /**
-     * Get the uniqueIdentifier property: The unique immutable identifier of a resource (Guid).
-     *
-     * @return the uniqueIdentifier value.
-     */
-    public String uniqueIdentifier() {
-        return this.uniqueIdentifier;
+    public SystemData systemData() {
+        return this.systemData;
     }
 
     /** {@inheritDoc} */
@@ -89,10 +58,54 @@ public class SecretInner extends Resource {
     }
 
     /**
+     * Get the value property: The value of the secret for secret creation.
+     *
+     * @return the value value.
+     */
+    public String value() {
+        return this.innerProperties() == null ? null : this.innerProperties().value();
+    }
+
+    /**
+     * Set the value property: The value of the secret for secret creation.
+     *
+     * @param value the value value to set.
+     * @return the SecretInner object itself.
+     */
+    public SecretInner withValue(String value) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new SecretProperties();
+        }
+        this.innerProperties().withValue(value);
+        return this;
+    }
+
+    /**
+     * Get the provisioningState property: The provisioning status of the resource.
+     *
+     * @return the provisioningState value.
+     */
+    public String provisioningState() {
+        return this.innerProperties() == null ? null : this.innerProperties().provisioningState();
+    }
+
+    /**
+     * Get the uniqueIdentifier property: The unique immutable identifier of a resource (Guid).
+     *
+     * @return the uniqueIdentifier value.
+     */
+    public String uniqueIdentifier() {
+        return this.innerProperties() == null ? null : this.innerProperties().uniqueIdentifier();
+    }
+
+    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+        if (innerProperties() != null) {
+            innerProperties().validate();
+        }
     }
 }

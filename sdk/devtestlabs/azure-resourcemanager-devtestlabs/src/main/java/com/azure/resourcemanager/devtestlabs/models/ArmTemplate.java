@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.devtestlabs.models;
 
+import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.devtestlabs.fluent.models.ArmTemplateInner;
 import java.time.OffsetDateTime;
 import java.util.List;
@@ -45,6 +46,13 @@ public interface ArmTemplate {
      * @return the tags value.
      */
     Map<String, String> tags();
+
+    /**
+     * Gets the systemData property: The system metadata relating to this resource.
+     *
+     * @return the systemData value.
+     */
+    SystemData systemData();
 
     /**
      * Gets the displayName property: The display name of the ARM template.

@@ -5,17 +5,12 @@
 package com.azure.resourcemanager.devtestlabs.fluent.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.devtestlabs.models.HttpStatusCode;
-import com.azure.resourcemanager.devtestlabs.models.OperationError;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** An Operation Result. */
 @Fluent
 public final class OperationResultInner {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(OperationResultInner.class);
-
     /*
      * The operation status.
      */
@@ -32,7 +27,7 @@ public final class OperationResultInner {
      * Error details for the operation in case of a failure.
      */
     @JsonProperty(value = "error")
-    private OperationError error;
+    private OperationError innerError;
 
     /**
      * Get the status property: The operation status.
@@ -75,22 +70,57 @@ public final class OperationResultInner {
     }
 
     /**
-     * Get the error property: Error details for the operation in case of a failure.
+     * Get the innerError property: Error details for the operation in case of a failure.
      *
-     * @return the error value.
+     * @return the innerError value.
      */
-    public OperationError error() {
-        return this.error;
+    private OperationError innerError() {
+        return this.innerError;
     }
 
     /**
-     * Set the error property: Error details for the operation in case of a failure.
+     * Get the code property: The error code of the operation error.
      *
-     * @param error the error value to set.
+     * @return the code value.
+     */
+    public String code() {
+        return this.innerError() == null ? null : this.innerError().code();
+    }
+
+    /**
+     * Set the code property: The error code of the operation error.
+     *
+     * @param code the code value to set.
      * @return the OperationResultInner object itself.
      */
-    public OperationResultInner withError(OperationError error) {
-        this.error = error;
+    public OperationResultInner withCode(String code) {
+        if (this.innerError() == null) {
+            this.innerError = new OperationError();
+        }
+        this.innerError().withCode(code);
+        return this;
+    }
+
+    /**
+     * Get the message property: The error message of the operation error.
+     *
+     * @return the message value.
+     */
+    public String message() {
+        return this.innerError() == null ? null : this.innerError().message();
+    }
+
+    /**
+     * Set the message property: The error message of the operation error.
+     *
+     * @param message the message value to set.
+     * @return the OperationResultInner object itself.
+     */
+    public OperationResultInner withMessage(String message) {
+        if (this.innerError() == null) {
+            this.innerError = new OperationError();
+        }
+        this.innerError().withMessage(message);
         return this;
     }
 
@@ -100,8 +130,8 @@ public final class OperationResultInner {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (error() != null) {
-            error().validate();
+        if (innerError() != null) {
+            innerError().validate();
         }
     }
 }

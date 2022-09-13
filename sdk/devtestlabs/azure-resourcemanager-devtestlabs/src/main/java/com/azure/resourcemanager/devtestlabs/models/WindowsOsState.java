@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for WindowsOsState. */
+/** The state of the Windows OS (i.e. NonSysprepped, SysprepRequested, SysprepApplied). */
 public final class WindowsOsState extends ExpandableStringEnum<WindowsOsState> {
     /** Static value NonSysprepped for WindowsOsState. */
     public static final WindowsOsState NON_SYSPREPPED = fromString("NonSysprepped");
@@ -30,7 +30,11 @@ public final class WindowsOsState extends ExpandableStringEnum<WindowsOsState> {
         return fromString(name, WindowsOsState.class);
     }
 
-    /** @return known WindowsOsState values. */
+    /**
+     * Gets known WindowsOsState values.
+     *
+     * @return known WindowsOsState values.
+     */
     public static Collection<WindowsOsState> values() {
         return values(WindowsOsState.class);
     }
