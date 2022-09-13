@@ -16,13 +16,19 @@
 ### LoadTests_CreateOrUpdate
 
 ```java
+import com.azure.resourcemanager.loadtestservice.models.EncryptionProperties;
+import com.azure.resourcemanager.loadtestservice.models.EncryptionPropertiesIdentity;
+import com.azure.resourcemanager.loadtestservice.models.ManagedServiceIdentity;
+import com.azure.resourcemanager.loadtestservice.models.ManagedServiceIdentityType;
+import com.azure.resourcemanager.loadtestservice.models.Type;
+import com.azure.resourcemanager.loadtestservice.models.UserAssignedIdentity;
 import java.util.HashMap;
 import java.util.Map;
 
 /** Samples for LoadTests CreateOrUpdate. */
 public final class LoadTestsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/loadtestservice/resource-manager/Microsoft.LoadTestService/preview/2021-12-01-preview/examples/LoadTests_CreateOrUpdate.json
+     * x-ms-original-file: specification/loadtestservice/resource-manager/Microsoft.LoadTestService/preview/2022-04-15-preview/examples/LoadTests_CreateOrUpdate.json
      */
     /**
      * Sample code: LoadTests_CreateOrUpdate.
@@ -36,7 +42,22 @@ public final class LoadTestsCreateOrUpdateSamples {
             .withRegion("westus")
             .withExistingResourceGroup("dummyrg")
             .withTags(mapOf("Team", "Dev Exp"))
+            .withIdentity(
+                new ManagedServiceIdentity()
+                    .withType(ManagedServiceIdentityType.SYSTEM_ASSIGNED_USER_ASSIGNED)
+                    .withUserAssignedIdentities(
+                        mapOf(
+                            "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/dummyrg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id1",
+                            new UserAssignedIdentity())))
             .withDescription("This is new load test resource")
+            .withEncryption(
+                new EncryptionProperties()
+                    .withIdentity(
+                        new EncryptionPropertiesIdentity()
+                            .withType(Type.USER_ASSIGNED)
+                            .withResourceId(
+                                "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/dummyrg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id1"))
+                    .withKeyUrl("https://dummy.vault.azure.net/keys/dummykey1"))
             .create();
     }
 
@@ -61,7 +82,7 @@ import com.azure.core.util.Context;
 /** Samples for LoadTests Delete. */
 public final class LoadTestsDeleteSamples {
     /*
-     * x-ms-original-file: specification/loadtestservice/resource-manager/Microsoft.LoadTestService/preview/2021-12-01-preview/examples/LoadTests_Delete.json
+     * x-ms-original-file: specification/loadtestservice/resource-manager/Microsoft.LoadTestService/preview/2022-04-15-preview/examples/LoadTests_Delete.json
      */
     /**
      * Sample code: LoadTests_Delete.
@@ -82,7 +103,7 @@ import com.azure.core.util.Context;
 /** Samples for LoadTests GetByResourceGroup. */
 public final class LoadTestsGetByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/loadtestservice/resource-manager/Microsoft.LoadTestService/preview/2021-12-01-preview/examples/LoadTests_Get.json
+     * x-ms-original-file: specification/loadtestservice/resource-manager/Microsoft.LoadTestService/preview/2022-04-15-preview/examples/LoadTests_Get.json
      */
     /**
      * Sample code: LoadTests_Get.
@@ -103,7 +124,7 @@ import com.azure.core.util.Context;
 /** Samples for LoadTests List. */
 public final class LoadTestsListSamples {
     /*
-     * x-ms-original-file: specification/loadtestservice/resource-manager/Microsoft.LoadTestService/preview/2021-12-01-preview/examples/LoadTests_ListBySubscription.json
+     * x-ms-original-file: specification/loadtestservice/resource-manager/Microsoft.LoadTestService/preview/2022-04-15-preview/examples/LoadTests_ListBySubscription.json
      */
     /**
      * Sample code: LoadTests_ListBySubscription.
@@ -124,7 +145,7 @@ import com.azure.core.util.Context;
 /** Samples for LoadTests ListByResourceGroup. */
 public final class LoadTestsListByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/loadtestservice/resource-manager/Microsoft.LoadTestService/preview/2021-12-01-preview/examples/LoadTests_ListByResourceGroup.json
+     * x-ms-original-file: specification/loadtestservice/resource-manager/Microsoft.LoadTestService/preview/2022-04-15-preview/examples/LoadTests_ListByResourceGroup.json
      */
     /**
      * Sample code: LoadTests_ListByResourceGroup.
@@ -143,14 +164,21 @@ public final class LoadTestsListByResourceGroupSamples {
 import com.azure.core.management.serializer.SerializerFactory;
 import com.azure.core.util.Context;
 import com.azure.core.util.serializer.SerializerEncoding;
+import com.azure.resourcemanager.loadtestservice.models.EncryptionProperties;
+import com.azure.resourcemanager.loadtestservice.models.EncryptionPropertiesIdentity;
 import com.azure.resourcemanager.loadtestservice.models.LoadTestResource;
-import com.azure.resourcemanager.loadtestservice.models.LoadTestResourcePatchRequestBodyProperties;
+import com.azure.resourcemanager.loadtestservice.models.ManagedServiceIdentity;
+import com.azure.resourcemanager.loadtestservice.models.ManagedServiceIdentityType;
+import com.azure.resourcemanager.loadtestservice.models.Type;
+import com.azure.resourcemanager.loadtestservice.models.UserAssignedIdentity;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 /** Samples for LoadTests Update. */
 public final class LoadTestsUpdateSamples {
     /*
-     * x-ms-original-file: specification/loadtestservice/resource-manager/Microsoft.LoadTestService/preview/2021-12-01-preview/examples/LoadTests_Update.json
+     * x-ms-original-file: specification/loadtestservice/resource-manager/Microsoft.LoadTestService/preview/2022-04-15-preview/examples/LoadTests_Update.json
      */
     /**
      * Sample code: LoadTests_Update.
@@ -167,9 +195,30 @@ public final class LoadTestsUpdateSamples {
                 SerializerFactory
                     .createDefaultManagementSerializerAdapter()
                     .deserialize("{\"Division\":\"LT\",\"Team\":\"Dev Exp\"}", Object.class, SerializerEncoding.JSON))
-            .withProperties(
-                new LoadTestResourcePatchRequestBodyProperties().withDescription("This is new load test resource"))
+            .withIdentity(
+                new ManagedServiceIdentity()
+                    .withType(ManagedServiceIdentityType.SYSTEM_ASSIGNED_USER_ASSIGNED)
+                    .withUserAssignedIdentities(
+                        mapOf(
+                            "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/dummyrg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/id1",
+                            new UserAssignedIdentity())))
+            .withDescription("This is new load test resource")
+            .withEncryption(
+                new EncryptionProperties()
+                    .withIdentity(new EncryptionPropertiesIdentity().withType(Type.SYSTEM_ASSIGNED))
+                    .withKeyUrl("https://dummy.vault.azure.net/keys/dummykey1"))
             .apply();
+    }
+
+    @SuppressWarnings("unchecked")
+    private static <T> Map<String, T> mapOf(Object... inputs) {
+        Map<String, T> map = new HashMap<>();
+        for (int i = 0; i < inputs.length; i += 2) {
+            String key = (String) inputs[i];
+            T value = (T) inputs[i + 1];
+            map.put(key, value);
+        }
+        return map;
     }
 }
 ```
@@ -182,7 +231,7 @@ import com.azure.core.util.Context;
 /** Samples for Operations List. */
 public final class OperationsListSamples {
     /*
-     * x-ms-original-file: specification/loadtestservice/resource-manager/Microsoft.LoadTestService/preview/2021-12-01-preview/examples/Operations_List.json
+     * x-ms-original-file: specification/loadtestservice/resource-manager/Microsoft.LoadTestService/preview/2022-04-15-preview/examples/Operations_List.json
      */
     /**
      * Sample code: Operations_List.
