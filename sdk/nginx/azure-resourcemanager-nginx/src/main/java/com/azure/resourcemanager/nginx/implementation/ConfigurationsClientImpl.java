@@ -91,6 +91,7 @@ public final class ConfigurationsClientImpl implements ConfigurationsClient {
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("deploymentName") String deploymentName,
             @PathParam("configurationName") String configurationName,
+            @QueryParam("api-version") String apiVersion,
             @HeaderParam("Accept") String accept,
             Context context);
 
@@ -106,6 +107,7 @@ public final class ConfigurationsClientImpl implements ConfigurationsClient {
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("deploymentName") String deploymentName,
             @PathParam("configurationName") String configurationName,
+            @QueryParam("api-version") String apiVersion,
             @BodyParam("application/json") NginxConfigurationInner body,
             @HeaderParam("Accept") String accept,
             Context context);
@@ -122,6 +124,7 @@ public final class ConfigurationsClientImpl implements ConfigurationsClient {
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("deploymentName") String deploymentName,
             @PathParam("configurationName") String configurationName,
+            @QueryParam("api-version") String apiVersion,
             @HeaderParam("Accept") String accept,
             Context context);
 
@@ -366,6 +369,7 @@ public final class ConfigurationsClientImpl implements ConfigurationsClient {
                             resourceGroupName,
                             deploymentName,
                             configurationName,
+                            this.client.getApiVersion(),
                             accept,
                             context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -420,6 +424,7 @@ public final class ConfigurationsClientImpl implements ConfigurationsClient {
                 resourceGroupName,
                 deploymentName,
                 configurationName,
+                this.client.getApiVersion(),
                 accept,
                 context);
     }
@@ -532,6 +537,7 @@ public final class ConfigurationsClientImpl implements ConfigurationsClient {
                             resourceGroupName,
                             deploymentName,
                             configurationName,
+                            this.client.getApiVersion(),
                             body,
                             accept,
                             context))
@@ -594,6 +600,7 @@ public final class ConfigurationsClientImpl implements ConfigurationsClient {
                 resourceGroupName,
                 deploymentName,
                 configurationName,
+                this.client.getApiVersion(),
                 body,
                 accept,
                 context);
@@ -884,6 +891,7 @@ public final class ConfigurationsClientImpl implements ConfigurationsClient {
                             resourceGroupName,
                             deploymentName,
                             configurationName,
+                            this.client.getApiVersion(),
                             accept,
                             context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -937,6 +945,7 @@ public final class ConfigurationsClientImpl implements ConfigurationsClient {
                 resourceGroupName,
                 deploymentName,
                 configurationName,
+                this.client.getApiVersion(),
                 accept,
                 context);
     }

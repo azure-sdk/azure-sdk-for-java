@@ -15,6 +15,7 @@ import com.azure.core.annotation.HostParam;
 import com.azure.core.annotation.Patch;
 import com.azure.core.annotation.PathParam;
 import com.azure.core.annotation.Put;
+import com.azure.core.annotation.QueryParam;
 import com.azure.core.annotation.ReturnType;
 import com.azure.core.annotation.ServiceInterface;
 import com.azure.core.annotation.ServiceMethod;
@@ -76,6 +77,7 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("deploymentName") String deploymentName,
+            @QueryParam("api-version") String apiVersion,
             @HeaderParam("Accept") String accept,
             Context context);
 
@@ -90,6 +92,7 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("deploymentName") String deploymentName,
+            @QueryParam("api-version") String apiVersion,
             @BodyParam("application/json") NginxDeploymentInner body,
             @HeaderParam("Accept") String accept,
             Context context);
@@ -105,6 +108,7 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("deploymentName") String deploymentName,
+            @QueryParam("api-version") String apiVersion,
             @BodyParam("application/json") NginxDeploymentUpdateParameters body,
             @HeaderParam("Accept") String accept,
             Context context);
@@ -120,6 +124,7 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("deploymentName") String deploymentName,
+            @QueryParam("api-version") String apiVersion,
             @HeaderParam("Accept") String accept,
             Context context);
 
@@ -130,6 +135,7 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
         Mono<Response<NginxDeploymentListResponse>> list(
             @HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
+            @QueryParam("api-version") String apiVersion,
             @HeaderParam("Accept") String accept,
             Context context);
 
@@ -143,6 +149,7 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
             @HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
+            @QueryParam("api-version") String apiVersion,
             @HeaderParam("Accept") String accept,
             Context context);
 
@@ -209,6 +216,7 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
                             this.client.getSubscriptionId(),
                             resourceGroupName,
                             deploymentName,
+                            this.client.getApiVersion(),
                             accept,
                             context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -255,6 +263,7 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
                 this.client.getSubscriptionId(),
                 resourceGroupName,
                 deploymentName,
+                this.client.getApiVersion(),
                 accept,
                 context);
     }
@@ -353,6 +362,7 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
                             this.client.getSubscriptionId(),
                             resourceGroupName,
                             deploymentName,
+                            this.client.getApiVersion(),
                             body,
                             accept,
                             context))
@@ -404,6 +414,7 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
                 this.client.getSubscriptionId(),
                 resourceGroupName,
                 deploymentName,
+                this.client.getApiVersion(),
                 body,
                 accept,
                 context);
@@ -646,6 +657,7 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
                             this.client.getSubscriptionId(),
                             resourceGroupName,
                             deploymentName,
+                            this.client.getApiVersion(),
                             body,
                             accept,
                             context))
@@ -697,6 +709,7 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
                 this.client.getSubscriptionId(),
                 resourceGroupName,
                 deploymentName,
+                this.client.getApiVersion(),
                 body,
                 accept,
                 context);
@@ -935,6 +948,7 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
                             this.client.getSubscriptionId(),
                             resourceGroupName,
                             deploymentName,
+                            this.client.getApiVersion(),
                             accept,
                             context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -981,6 +995,7 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
                 this.client.getSubscriptionId(),
                 resourceGroupName,
                 deploymentName,
+                this.client.getApiVersion(),
                 accept,
                 context);
     }
@@ -1145,7 +1160,14 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
         final String accept = "application/json";
         return FluxUtil
             .withContext(
-                context -> service.list(this.client.getEndpoint(), this.client.getSubscriptionId(), accept, context))
+                context ->
+                    service
+                        .list(
+                            this.client.getEndpoint(),
+                            this.client.getSubscriptionId(),
+                            this.client.getApiVersion(),
+                            accept,
+                            context))
             .<PagedResponse<NginxDeploymentInner>>map(
                 res ->
                     new PagedResponseBase<>(
@@ -1184,7 +1206,12 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .list(this.client.getEndpoint(), this.client.getSubscriptionId(), accept, context)
+            .list(
+                this.client.getEndpoint(),
+                this.client.getSubscriptionId(),
+                this.client.getApiVersion(),
+                accept,
+                context)
             .map(
                 res ->
                     new PagedResponseBase<>(
@@ -1285,6 +1312,7 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
                             this.client.getEndpoint(),
                             this.client.getSubscriptionId(),
                             resourceGroupName,
+                            this.client.getApiVersion(),
                             accept,
                             context))
             .<PagedResponse<NginxDeploymentInner>>map(
@@ -1332,7 +1360,12 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
         context = this.client.mergeContext(context);
         return service
             .listByResourceGroup(
-                this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName, accept, context)
+                this.client.getEndpoint(),
+                this.client.getSubscriptionId(),
+                resourceGroupName,
+                this.client.getApiVersion(),
+                accept,
+                context)
             .map(
                 res ->
                     new PagedResponseBase<>(

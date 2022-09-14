@@ -76,6 +76,7 @@ public final class CertificatesClientImpl implements CertificatesClient {
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("deploymentName") String deploymentName,
             @PathParam("certificateName") String certificateName,
+            @QueryParam("api-version") String apiVersion,
             @HeaderParam("Accept") String accept,
             Context context);
 
@@ -91,6 +92,7 @@ public final class CertificatesClientImpl implements CertificatesClient {
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("deploymentName") String deploymentName,
             @PathParam("certificateName") String certificateName,
+            @QueryParam("api-version") String apiVersion,
             @BodyParam("application/json") NginxCertificateInner body,
             @HeaderParam("Accept") String accept,
             Context context);
@@ -107,6 +109,7 @@ public final class CertificatesClientImpl implements CertificatesClient {
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("deploymentName") String deploymentName,
             @PathParam("certificateName") String certificateName,
+            @QueryParam("api-version") String apiVersion,
             @HeaderParam("Accept") String accept,
             Context context);
 
@@ -185,6 +188,7 @@ public final class CertificatesClientImpl implements CertificatesClient {
                             resourceGroupName,
                             deploymentName,
                             certificateName,
+                            this.client.getApiVersion(),
                             accept,
                             context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -238,6 +242,7 @@ public final class CertificatesClientImpl implements CertificatesClient {
                 resourceGroupName,
                 deploymentName,
                 certificateName,
+                this.client.getApiVersion(),
                 accept,
                 context);
     }
@@ -346,6 +351,7 @@ public final class CertificatesClientImpl implements CertificatesClient {
                             resourceGroupName,
                             deploymentName,
                             certificateName,
+                            this.client.getApiVersion(),
                             body,
                             accept,
                             context))
@@ -407,6 +413,7 @@ public final class CertificatesClientImpl implements CertificatesClient {
                 resourceGroupName,
                 deploymentName,
                 certificateName,
+                this.client.getApiVersion(),
                 body,
                 accept,
                 context);
@@ -680,6 +687,7 @@ public final class CertificatesClientImpl implements CertificatesClient {
                             resourceGroupName,
                             deploymentName,
                             certificateName,
+                            this.client.getApiVersion(),
                             accept,
                             context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -732,6 +740,7 @@ public final class CertificatesClientImpl implements CertificatesClient {
                 resourceGroupName,
                 deploymentName,
                 certificateName,
+                this.client.getApiVersion(),
                 accept,
                 context);
     }
