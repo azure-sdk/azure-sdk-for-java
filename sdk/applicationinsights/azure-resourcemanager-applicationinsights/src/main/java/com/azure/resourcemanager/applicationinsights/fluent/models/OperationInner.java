@@ -8,7 +8,7 @@ import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.applicationinsights.models.OperationDisplay;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** CDN REST API operation. */
+/** Azure Workbooks REST API operation. */
 @Fluent
 public final class OperationInner {
     /*

@@ -18,8 +18,7 @@ public final class WorkbookPropertiesUpdateParameters {
     private String displayName;
 
     /*
-     * Configuration of this particular workbook. Configuration data is a
-     * string containing valid JSON
+     * Configuration of this particular workbook. Configuration data is a string containing valid JSON
      */
     @JsonProperty(value = "serializedData")
     private String serializedData;
@@ -31,8 +30,7 @@ public final class WorkbookPropertiesUpdateParameters {
     private String category;
 
     /*
-     * A list of 0 or more tags that are associated with this workbook
-     * definition
+     * A list of 0 or more tags that are associated with this workbook definition
      */
     @JsonProperty(value = "tags")
     private List<String> tags;
