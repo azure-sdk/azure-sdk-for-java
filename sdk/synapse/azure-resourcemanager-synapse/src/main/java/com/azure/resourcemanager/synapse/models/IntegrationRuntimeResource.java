@@ -39,11 +39,18 @@ public interface IntegrationRuntimeResource {
     String etag();
 
     /**
-     * Gets the properties property: Integration runtime properties.
+     * Gets the description property: Integration runtime description.
      *
-     * @return the properties value.
+     * @return the description value.
      */
-    IntegrationRuntime properties();
+    String description();
+
+    /**
+     * Gets the name of the resource group.
+     *
+     * @return the name of the resource group.
+     */
+    String resourceGroupName();
 
     /**
      * Gets the inner com.azure.resourcemanager.synapse.fluent.models.IntegrationRuntimeResourceInner object.
@@ -54,10 +61,7 @@ public interface IntegrationRuntimeResource {
 
     /** The entirety of the IntegrationRuntimeResource definition. */
     interface Definition
-        extends DefinitionStages.Blank,
-            DefinitionStages.WithParentResource,
-            DefinitionStages.WithProperties,
-            DefinitionStages.WithCreate {
+        extends DefinitionStages.Blank, DefinitionStages.WithParentResource, DefinitionStages.WithCreate {
     }
     /** The IntegrationRuntimeResource definition stages. */
     interface DefinitionStages {
@@ -73,23 +77,13 @@ public interface IntegrationRuntimeResource {
              * @param workspaceName The name of the workspace.
              * @return the next definition stage.
              */
-            WithProperties withExistingWorkspace(String resourceGroupName, String workspaceName);
-        }
-        /** The stage of the IntegrationRuntimeResource definition allowing to specify properties. */
-        interface WithProperties {
-            /**
-             * Specifies the properties property: Integration runtime properties..
-             *
-             * @param properties Integration runtime properties.
-             * @return the next definition stage.
-             */
-            WithCreate withProperties(IntegrationRuntime properties);
+            WithCreate withExistingWorkspace(String resourceGroupName, String workspaceName);
         }
         /**
          * The stage of the IntegrationRuntimeResource definition which contains all the minimum required properties for
          * the resource to be created, but also allows for any other optional properties to be specified.
          */
-        interface WithCreate extends DefinitionStages.WithIfMatch {
+        interface WithCreate extends DefinitionStages.WithDescription, DefinitionStages.WithIfMatch {
             /**
              * Executes the create request.
              *
@@ -104,6 +98,16 @@ public interface IntegrationRuntimeResource {
              * @return the created resource.
              */
             IntegrationRuntimeResource create(Context context);
+        }
+        /** The stage of the IntegrationRuntimeResource definition allowing to specify description. */
+        interface WithDescription {
+            /**
+             * Specifies the description property: Integration runtime description..
+             *
+             * @param description Integration runtime description.
+             * @return the next definition stage.
+             */
+            WithCreate withDescription(String description);
         }
         /** The stage of the IntegrationRuntimeResource definition allowing to specify ifMatch. */
         interface WithIfMatch {
@@ -185,7 +189,9 @@ public interface IntegrationRuntimeResource {
     IntegrationRuntimeResource refresh(Context context);
 
     /**
-     * Upgrade an integration runtime.
+     * Upgrade integration runtime
+     *
+     * <p>Upgrade an integration runtime.
      *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -193,7 +199,9 @@ public interface IntegrationRuntimeResource {
     void upgrade();
 
     /**
-     * Upgrade an integration runtime.
+     * Upgrade integration runtime
+     *
+     * <p>Upgrade an integration runtime.
      *
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -204,7 +212,9 @@ public interface IntegrationRuntimeResource {
     Response<Void> upgradeWithResponse(Context context);
 
     /**
-     * Start an integration runtime.
+     * Start integration runtime
+     *
+     * <p>Start an integration runtime.
      *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -213,7 +223,9 @@ public interface IntegrationRuntimeResource {
     IntegrationRuntimeStatusResponse start();
 
     /**
-     * Start an integration runtime.
+     * Start integration runtime
+     *
+     * <p>Start an integration runtime.
      *
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -224,7 +236,9 @@ public interface IntegrationRuntimeResource {
     IntegrationRuntimeStatusResponse start(Context context);
 
     /**
-     * Stop an integration runtime.
+     * Stop integration runtime
+     *
+     * <p>Stop an integration runtime.
      *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -232,7 +246,9 @@ public interface IntegrationRuntimeResource {
     void stop();
 
     /**
-     * Stop an integration runtime.
+     * Stop integration runtime
+     *
+     * <p>Stop an integration runtime.
      *
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.

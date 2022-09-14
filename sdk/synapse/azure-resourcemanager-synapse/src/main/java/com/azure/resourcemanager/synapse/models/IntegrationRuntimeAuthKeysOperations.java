@@ -10,7 +10,9 @@ import com.azure.core.util.Context;
 /** Resource collection API of IntegrationRuntimeAuthKeysOperations. */
 public interface IntegrationRuntimeAuthKeysOperations {
     /**
-     * Regenerate the authentication key for an integration runtime.
+     * Regenerate integration runtime authentication key
+     *
+     * <p>Regenerate the authentication key for an integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -28,7 +30,9 @@ public interface IntegrationRuntimeAuthKeysOperations {
         IntegrationRuntimeRegenerateKeyParameters regenerateKeyParameters);
 
     /**
-     * Regenerate the authentication key for an integration runtime.
+     * Regenerate integration runtime authentication key
+     *
+     * <p>Regenerate the authentication key for an integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -48,7 +52,9 @@ public interface IntegrationRuntimeAuthKeysOperations {
         Context context);
 
     /**
-     * List authentication keys in an integration runtime.
+     * List integration runtime authentication keys
+     *
+     * <p>List authentication keys in an integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -61,7 +67,9 @@ public interface IntegrationRuntimeAuthKeysOperations {
     IntegrationRuntimeAuthKeys list(String resourceGroupName, String workspaceName, String integrationRuntimeName);
 
     /**
-     * List authentication keys in an integration runtime.
+     * List integration runtime authentication keys
+     *
+     * <p>List authentication keys in an integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.

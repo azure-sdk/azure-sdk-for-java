@@ -6,6 +6,7 @@ package com.azure.resourcemanager.synapse.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.azure.resourcemanager.synapse.fluent.models.IntegrationRuntime;
 import com.azure.resourcemanager.synapse.fluent.models.ManagedIntegrationRuntimeManagedVirtualNetworkReference;
 import com.azure.resourcemanager.synapse.fluent.models.ManagedIntegrationRuntimeTypeProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -18,8 +19,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @Fluent
 public final class ManagedIntegrationRuntime extends IntegrationRuntime {
     /*
-     * Integration runtime state, only valid for managed dedicated integration
-     * runtime.
+     * Integration runtime state, only valid for managed dedicated integration runtime.
      */
     @JsonProperty(value = "state", access = JsonProperty.Access.WRITE_ONLY)
     private IntegrationRuntimeState state;

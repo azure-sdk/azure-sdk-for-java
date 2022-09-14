@@ -6,7 +6,7 @@ package com.azure.resourcemanager.synapse.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
-import com.azure.resourcemanager.synapse.models.IntegrationRuntimeStatus;
+import com.azure.resourcemanager.synapse.models.IntegrationRuntimeState;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Integration runtime status response. */
@@ -22,7 +22,7 @@ public final class IntegrationRuntimeStatusResponseInner {
      * Integration runtime properties.
      */
     @JsonProperty(value = "properties", required = true)
-    private IntegrationRuntimeStatus properties;
+    private IntegrationRuntimeStatus innerProperties = new IntegrationRuntimeStatus();
 
     /**
      * Get the name property: The integration runtime name.
@@ -34,23 +34,30 @@ public final class IntegrationRuntimeStatusResponseInner {
     }
 
     /**
-     * Get the properties property: Integration runtime properties.
+     * Get the innerProperties property: Integration runtime properties.
      *
-     * @return the properties value.
+     * @return the innerProperties value.
      */
-    public IntegrationRuntimeStatus properties() {
-        return this.properties;
+    private IntegrationRuntimeStatus innerProperties() {
+        return this.innerProperties;
     }
 
     /**
-     * Set the properties property: Integration runtime properties.
+     * Get the dataFactoryName property: The workspace name which the integration runtime belong to.
      *
-     * @param properties the properties value to set.
-     * @return the IntegrationRuntimeStatusResponseInner object itself.
+     * @return the dataFactoryName value.
      */
-    public IntegrationRuntimeStatusResponseInner withProperties(IntegrationRuntimeStatus properties) {
-        this.properties = properties;
-        return this;
+    public String dataFactoryName() {
+        return this.innerProperties() == null ? null : this.innerProperties().dataFactoryName();
+    }
+
+    /**
+     * Get the state property: The state of integration runtime.
+     *
+     * @return the state value.
+     */
+    public IntegrationRuntimeState state() {
+        return this.innerProperties() == null ? null : this.innerProperties().state();
     }
 
     /**
@@ -59,13 +66,13 @@ public final class IntegrationRuntimeStatusResponseInner {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (properties() == null) {
+        if (innerProperties() == null) {
             throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
-                        "Missing required property properties in model IntegrationRuntimeStatusResponseInner"));
+                        "Missing required property innerProperties in model IntegrationRuntimeStatusResponseInner"));
         } else {
-            properties().validate();
+            innerProperties().validate();
         }
     }
 

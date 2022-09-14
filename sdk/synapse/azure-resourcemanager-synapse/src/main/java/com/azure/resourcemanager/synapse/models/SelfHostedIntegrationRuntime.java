@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.synapse.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.resourcemanager.synapse.fluent.models.IntegrationRuntime;
 import com.azure.resourcemanager.synapse.fluent.models.SelfHostedIntegrationRuntimeTypeProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
@@ -16,8 +17,8 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @Fluent
 public final class SelfHostedIntegrationRuntime extends IntegrationRuntime {
     /*
-     * When this property is not null, means this is a linked integration
-     * runtime. The property is used to access original integration runtime.
+     * When this property is not null, means this is a linked integration runtime. The property is used to access
+     * original integration runtime.
      */
     @JsonProperty(value = "typeProperties")
     private SelfHostedIntegrationRuntimeTypeProperties innerTypeProperties;

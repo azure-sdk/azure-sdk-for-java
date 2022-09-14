@@ -7,7 +7,6 @@ package com.azure.resourcemanager.synapse.implementation;
 import com.azure.core.http.rest.Response;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.synapse.fluent.models.IntegrationRuntimeResourceInner;
-import com.azure.resourcemanager.synapse.models.IntegrationRuntime;
 import com.azure.resourcemanager.synapse.models.IntegrationRuntimeAutoUpdate;
 import com.azure.resourcemanager.synapse.models.IntegrationRuntimeResource;
 import com.azure.resourcemanager.synapse.models.IntegrationRuntimeStatusResponse;
@@ -35,8 +34,12 @@ public final class IntegrationRuntimeResourceImpl
         return this.innerModel().etag();
     }
 
-    public IntegrationRuntime properties() {
-        return this.innerModel().properties();
+    public String description() {
+        return this.innerModel().description();
+    }
+
+    public String resourceGroupName() {
+        return resourceGroupName;
     }
 
     public IntegrationRuntimeResourceInner innerModel() {
@@ -219,8 +222,8 @@ public final class IntegrationRuntimeResourceImpl
             .disableInteractiveQuery(resourceGroupName, workspaceName, integrationRuntimeName, context);
     }
 
-    public IntegrationRuntimeResourceImpl withProperties(IntegrationRuntime properties) {
-        this.innerModel().withProperties(properties);
+    public IntegrationRuntimeResourceImpl withDescription(String description) {
+        this.innerModel().withDescription(description);
         return this;
     }
 

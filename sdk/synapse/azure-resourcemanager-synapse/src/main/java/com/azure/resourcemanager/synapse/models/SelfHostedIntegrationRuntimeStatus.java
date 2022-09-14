@@ -6,6 +6,7 @@ package com.azure.resourcemanager.synapse.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
+import com.azure.resourcemanager.synapse.fluent.models.IntegrationRuntimeStatus;
 import com.azure.resourcemanager.synapse.fluent.models.SelfHostedIntegrationRuntimeNodeInner;
 import com.azure.resourcemanager.synapse.fluent.models.SelfHostedIntegrationRuntimeStatusTypeProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;

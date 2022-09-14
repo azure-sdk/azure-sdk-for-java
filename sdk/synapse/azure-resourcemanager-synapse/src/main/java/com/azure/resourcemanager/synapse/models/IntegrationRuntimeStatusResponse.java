@@ -16,11 +16,18 @@ public interface IntegrationRuntimeStatusResponse {
     String name();
 
     /**
-     * Gets the properties property: Integration runtime properties.
+     * Gets the dataFactoryName property: The workspace name which the integration runtime belong to.
      *
-     * @return the properties value.
+     * @return the dataFactoryName value.
      */
-    IntegrationRuntimeStatus properties();
+    String dataFactoryName();
+
+    /**
+     * Gets the state property: The state of integration runtime.
+     *
+     * @return the state value.
+     */
+    IntegrationRuntimeState state();
 
     /**
      * Gets the inner com.azure.resourcemanager.synapse.fluent.models.IntegrationRuntimeStatusResponseInner object.
