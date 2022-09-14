@@ -5,19 +5,14 @@
 package com.azure.resourcemanager.databox.fluent.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.databox.models.OperationDisplay;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Operation entity. */
 @Fluent
 public final class OperationInner {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(OperationInner.class);
-
     /*
-     * Name of the operation. Format:
-     * {resourceProviderNamespace}/{resourceType}/{read|write|delete|action}
+     * Name of the operation. Format: {resourceProviderNamespace}/{resourceType}/{read|write|delete|action}
      */
     @JsonProperty(value = "name", access = JsonProperty.Access.WRITE_ONLY)
     private String name;
