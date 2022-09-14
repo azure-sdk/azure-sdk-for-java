@@ -10,7 +10,9 @@ import com.azure.core.util.Context;
 /** Resource collection API of SqlPoolOperationResults. */
 public interface SqlPoolOperationResults {
     /**
-     * Get the status of a SQL pool operation.
+     * Get SQL pool operation status
+     *
+     * <p>Get the status of a SQL pool operation.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -25,7 +27,9 @@ public interface SqlPoolOperationResults {
         String resourceGroupName, String workspaceName, String sqlPoolName, String operationId);
 
     /**
-     * Get the status of a SQL pool operation.
+     * Get SQL pool operation status
+     *
+     * <p>Get the status of a SQL pool operation.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.

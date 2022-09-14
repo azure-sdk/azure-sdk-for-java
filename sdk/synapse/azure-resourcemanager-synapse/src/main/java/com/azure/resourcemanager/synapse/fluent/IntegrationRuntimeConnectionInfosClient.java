@@ -15,7 +15,9 @@ import com.azure.resourcemanager.synapse.fluent.models.IntegrationRuntimeConnect
  */
 public interface IntegrationRuntimeConnectionInfosClient {
     /**
-     * Get connection info for an integration runtime.
+     * Get integration runtime connection info
+     *
+     * <p>Get connection info for an integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -30,7 +32,9 @@ public interface IntegrationRuntimeConnectionInfosClient {
         String resourceGroupName, String workspaceName, String integrationRuntimeName);
 
     /**
-     * Get connection info for an integration runtime.
+     * Get integration runtime connection info
+     *
+     * <p>Get connection info for an integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.

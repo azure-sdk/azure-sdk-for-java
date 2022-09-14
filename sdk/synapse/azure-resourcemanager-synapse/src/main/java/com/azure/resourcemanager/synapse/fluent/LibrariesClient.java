@@ -13,7 +13,9 @@ import com.azure.resourcemanager.synapse.fluent.models.LibraryResourceInner;
 /** An instance of this class provides access to all the operations defined in LibrariesClient. */
 public interface LibrariesClient {
     /**
-     * Get library by name in a workspace.
+     * Get library by name.
+     *
+     * <p>Get library by name in a workspace.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param libraryName Library name.
@@ -27,7 +29,9 @@ public interface LibrariesClient {
     LibraryResourceInner get(String resourceGroupName, String libraryName, String workspaceName);
 
     /**
-     * Get library by name in a workspace.
+     * Get library by name.
+     *
+     * <p>Get library by name in a workspace.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param libraryName Library name.
