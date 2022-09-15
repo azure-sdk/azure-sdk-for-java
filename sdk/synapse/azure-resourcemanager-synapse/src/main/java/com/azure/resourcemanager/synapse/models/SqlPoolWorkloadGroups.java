@@ -11,7 +11,9 @@ import com.azure.core.util.Context;
 /** Resource collection API of SqlPoolWorkloadGroups. */
 public interface SqlPoolWorkloadGroups {
     /**
-     * Get a Sql pool's workload group.
+     * Sql pool's workload group
+     *
+     * <p>Get a Sql pool's workload group.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -25,7 +27,9 @@ public interface SqlPoolWorkloadGroups {
     WorkloadGroup get(String resourceGroupName, String workspaceName, String sqlPoolName, String workloadGroupName);
 
     /**
-     * Get a Sql pool's workload group.
+     * Sql pool's workload group
+     *
+     * <p>Get a Sql pool's workload group.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -41,7 +45,9 @@ public interface SqlPoolWorkloadGroups {
         String resourceGroupName, String workspaceName, String sqlPoolName, String workloadGroupName, Context context);
 
     /**
-     * Remove Sql pool's workload group.
+     * Remove workload group
+     *
+     * <p>Remove Sql pool's workload group.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -54,7 +60,9 @@ public interface SqlPoolWorkloadGroups {
     void delete(String resourceGroupName, String workspaceName, String sqlPoolName, String workloadGroupName);
 
     /**
-     * Remove Sql pool's workload group.
+     * Remove workload group
+     *
+     * <p>Remove Sql pool's workload group.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -69,7 +77,9 @@ public interface SqlPoolWorkloadGroups {
         String resourceGroupName, String workspaceName, String sqlPoolName, String workloadGroupName, Context context);
 
     /**
-     * Get list of Sql pool's workload groups.
+     * Sql pool's workload groups
+     *
+     * <p>Get list of Sql pool's workload groups.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -82,7 +92,9 @@ public interface SqlPoolWorkloadGroups {
     PagedIterable<WorkloadGroup> list(String resourceGroupName, String workspaceName, String sqlPoolName);
 
     /**
-     * Get list of Sql pool's workload groups.
+     * Sql pool's workload groups
+     *
+     * <p>Get list of Sql pool's workload groups.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -97,7 +109,9 @@ public interface SqlPoolWorkloadGroups {
         String resourceGroupName, String workspaceName, String sqlPoolName, Context context);
 
     /**
-     * Get a Sql pool's workload group.
+     * Sql pool's workload group
+     *
+     * <p>Get a Sql pool's workload group.
      *
      * @param id the resource ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -108,7 +122,9 @@ public interface SqlPoolWorkloadGroups {
     WorkloadGroup getById(String id);
 
     /**
-     * Get a Sql pool's workload group.
+     * Sql pool's workload group
+     *
+     * <p>Get a Sql pool's workload group.
      *
      * @param id the resource ID.
      * @param context The context to associate with this operation.
@@ -120,7 +136,9 @@ public interface SqlPoolWorkloadGroups {
     Response<WorkloadGroup> getByIdWithResponse(String id, Context context);
 
     /**
-     * Remove Sql pool's workload group.
+     * Remove workload group
+     *
+     * <p>Remove Sql pool's workload group.
      *
      * @param id the resource ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -130,7 +148,9 @@ public interface SqlPoolWorkloadGroups {
     void deleteById(String id);
 
     /**
-     * Remove Sql pool's workload group.
+     * Remove workload group
+     *
+     * <p>Remove Sql pool's workload group.
      *
      * @param id the resource ID.
      * @param context The context to associate with this operation.
