@@ -16,7 +16,9 @@ import com.azure.resourcemanager.synapse.fluent.models.PrivateLinkResourceInner;
  */
 public interface PrivateLinkHubPrivateLinkResourcesClient {
     /**
-     * Get all private link resources for a private link hub.
+     * Private Link Resources
+     *
+     * <p>Get all private link resources for a private link hub.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateLinkHubName The name of the private link hub.
@@ -29,7 +31,9 @@ public interface PrivateLinkHubPrivateLinkResourcesClient {
     PagedIterable<PrivateLinkResourceInner> list(String resourceGroupName, String privateLinkHubName);
 
     /**
-     * Get all private link resources for a private link hub.
+     * Private Link Resources
+     *
+     * <p>Get all private link resources for a private link hub.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateLinkHubName The name of the private link hub.
@@ -43,7 +47,9 @@ public interface PrivateLinkHubPrivateLinkResourcesClient {
     PagedIterable<PrivateLinkResourceInner> list(String resourceGroupName, String privateLinkHubName, Context context);
 
     /**
-     * Get private link resource in private link hub.
+     * Get Private Link Hub Private Link Resource
+     *
+     * <p>Get private link resource in private link hub.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateLinkHubName The name of the private link hub.
@@ -57,7 +63,9 @@ public interface PrivateLinkHubPrivateLinkResourcesClient {
     PrivateLinkResourceInner get(String resourceGroupName, String privateLinkHubName, String privateLinkResourceName);
 
     /**
-     * Get private link resource in private link hub.
+     * Get Private Link Hub Private Link Resource
+     *
+     * <p>Get private link resource in private link hub.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param privateLinkHubName The name of the private link hub.

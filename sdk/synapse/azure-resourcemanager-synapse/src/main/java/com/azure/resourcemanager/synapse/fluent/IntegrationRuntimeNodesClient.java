@@ -14,7 +14,9 @@ import com.azure.resourcemanager.synapse.models.UpdateIntegrationRuntimeNodeRequ
 /** An instance of this class provides access to all the operations defined in IntegrationRuntimeNodesClient. */
 public interface IntegrationRuntimeNodesClient {
     /**
-     * Get an integration runtime node.
+     * Get integration runtime node
+     *
+     * <p>Get an integration runtime node.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -30,7 +32,9 @@ public interface IntegrationRuntimeNodesClient {
         String resourceGroupName, String workspaceName, String integrationRuntimeName, String nodeName);
 
     /**
-     * Get an integration runtime node.
+     * Get integration runtime node
+     *
+     * <p>Get an integration runtime node.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -51,7 +55,9 @@ public interface IntegrationRuntimeNodesClient {
         Context context);
 
     /**
-     * Create an integration runtime node.
+     * Create integration runtime node
+     *
+     * <p>Create an integration runtime node.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -72,7 +78,9 @@ public interface IntegrationRuntimeNodesClient {
         UpdateIntegrationRuntimeNodeRequest updateIntegrationRuntimeNodeRequest);
 
     /**
-     * Create an integration runtime node.
+     * Create integration runtime node
+     *
+     * <p>Create an integration runtime node.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -95,7 +103,9 @@ public interface IntegrationRuntimeNodesClient {
         Context context);
 
     /**
-     * Delete an integration runtime node.
+     * Delete integration runtime node
+     *
+     * <p>Delete an integration runtime node.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -109,7 +119,9 @@ public interface IntegrationRuntimeNodesClient {
     void delete(String resourceGroupName, String workspaceName, String integrationRuntimeName, String nodeName);
 
     /**
-     * Delete an integration runtime node.
+     * Delete integration runtime node
+     *
+     * <p>Delete an integration runtime node.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
