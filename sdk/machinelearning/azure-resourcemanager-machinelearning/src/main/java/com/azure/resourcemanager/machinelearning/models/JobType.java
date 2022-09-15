@@ -8,11 +8,8 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for JobType. */
+/** Enum to determine the type of job. */
 public final class JobType extends ExpandableStringEnum<JobType> {
-    /** Static value AutoML for JobType. */
-    public static final JobType AUTO_ML = fromString("AutoML");
-
     /** Static value Command for JobType. */
     public static final JobType COMMAND = fromString("Command");
 
