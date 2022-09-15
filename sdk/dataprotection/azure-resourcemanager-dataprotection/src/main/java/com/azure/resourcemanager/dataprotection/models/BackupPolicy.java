@@ -6,22 +6,22 @@ package com.azure.resourcemanager.dataprotection.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.List;
 
-/** BackupPolicy Rule based backup policy. */
+/**
+ * BackupPolicy
+ *
+ * <p>Rule based backup policy.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "objectType")
 @JsonTypeName("BackupPolicy")
 @Fluent
 public final class BackupPolicy extends BaseBackupPolicy {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(BackupPolicy.class);
-
     /*
-     * Policy rule dictionary that contains rules for each backuptype i.e
-     * Full/Incremental/Logs etc
+     * Policy rule dictionary that contains rules for each backuptype i.e Full/Incremental/Logs etc
      */
     @JsonProperty(value = "policyRules", required = true)
     private List<BasePolicyRule> policyRules;
@@ -64,11 +64,13 @@ public final class BackupPolicy extends BaseBackupPolicy {
     public void validate() {
         super.validate();
         if (policyRules() == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property policyRules in model BackupPolicy"));
         } else {
             policyRules().forEach(e -> e.validate());
         }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(BackupPolicy.class);
 }
