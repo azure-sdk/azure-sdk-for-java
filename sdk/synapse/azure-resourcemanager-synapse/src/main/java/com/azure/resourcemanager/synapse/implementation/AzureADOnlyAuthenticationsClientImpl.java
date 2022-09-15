@@ -126,7 +126,9 @@ public final class AzureADOnlyAuthenticationsClientImpl implements AzureADOnlyAu
     }
 
     /**
-     * Gets a Azure Active Directory only authentication property.
+     * Get Azure Active Directory only authentication property
+     *
+     * <p>Gets a Azure Active Directory only authentication property.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -184,7 +186,9 @@ public final class AzureADOnlyAuthenticationsClientImpl implements AzureADOnlyAu
     }
 
     /**
-     * Gets a Azure Active Directory only authentication property.
+     * Get Azure Active Directory only authentication property
+     *
+     * <p>Gets a Azure Active Directory only authentication property.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -243,7 +247,9 @@ public final class AzureADOnlyAuthenticationsClientImpl implements AzureADOnlyAu
     }
 
     /**
-     * Gets a Azure Active Directory only authentication property.
+     * Get Azure Active Directory only authentication property
+     *
+     * <p>Gets a Azure Active Directory only authentication property.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -257,18 +263,13 @@ public final class AzureADOnlyAuthenticationsClientImpl implements AzureADOnlyAu
     private Mono<AzureADOnlyAuthenticationInner> getAsync(
         String resourceGroupName, String workspaceName, AzureADOnlyAuthenticationName azureADOnlyAuthenticationName) {
         return getWithResponseAsync(resourceGroupName, workspaceName, azureADOnlyAuthenticationName)
-            .flatMap(
-                (Response<AzureADOnlyAuthenticationInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
-     * Gets a Azure Active Directory only authentication property.
+     * Get Azure Active Directory only authentication property
+     *
+     * <p>Gets a Azure Active Directory only authentication property.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -285,7 +286,9 @@ public final class AzureADOnlyAuthenticationsClientImpl implements AzureADOnlyAu
     }
 
     /**
-     * Gets a Azure Active Directory only authentication property.
+     * Get Azure Active Directory only authentication property
+     *
+     * <p>Gets a Azure Active Directory only authentication property.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -306,7 +309,9 @@ public final class AzureADOnlyAuthenticationsClientImpl implements AzureADOnlyAu
     }
 
     /**
-     * Create or Update a Azure Active Directory only authentication property for the workspaces.
+     * Create or Update Azure Active Directory only authentication property
+     *
+     * <p>Create or Update a Azure Active Directory only authentication property for the workspaces.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -377,7 +382,9 @@ public final class AzureADOnlyAuthenticationsClientImpl implements AzureADOnlyAu
     }
 
     /**
-     * Create or Update a Azure Active Directory only authentication property for the workspaces.
+     * Create or Update Azure Active Directory only authentication property
+     *
+     * <p>Create or Update a Azure Active Directory only authentication property for the workspaces.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -447,7 +454,9 @@ public final class AzureADOnlyAuthenticationsClientImpl implements AzureADOnlyAu
     }
 
     /**
-     * Create or Update a Azure Active Directory only authentication property for the workspaces.
+     * Create or Update Azure Active Directory only authentication property
+     *
+     * <p>Create or Update a Azure Active Directory only authentication property for the workspaces.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -478,7 +487,9 @@ public final class AzureADOnlyAuthenticationsClientImpl implements AzureADOnlyAu
     }
 
     /**
-     * Create or Update a Azure Active Directory only authentication property for the workspaces.
+     * Create or Update Azure Active Directory only authentication property
+     *
+     * <p>Create or Update a Azure Active Directory only authentication property for the workspaces.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -516,7 +527,9 @@ public final class AzureADOnlyAuthenticationsClientImpl implements AzureADOnlyAu
     }
 
     /**
-     * Create or Update a Azure Active Directory only authentication property for the workspaces.
+     * Create or Update Azure Active Directory only authentication property
+     *
+     * <p>Create or Update a Azure Active Directory only authentication property for the workspaces.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -539,7 +552,9 @@ public final class AzureADOnlyAuthenticationsClientImpl implements AzureADOnlyAu
     }
 
     /**
-     * Create or Update a Azure Active Directory only authentication property for the workspaces.
+     * Create or Update Azure Active Directory only authentication property
+     *
+     * <p>Create or Update a Azure Active Directory only authentication property for the workspaces.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -564,7 +579,9 @@ public final class AzureADOnlyAuthenticationsClientImpl implements AzureADOnlyAu
     }
 
     /**
-     * Create or Update a Azure Active Directory only authentication property for the workspaces.
+     * Create or Update Azure Active Directory only authentication property
+     *
+     * <p>Create or Update a Azure Active Directory only authentication property for the workspaces.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -588,7 +605,9 @@ public final class AzureADOnlyAuthenticationsClientImpl implements AzureADOnlyAu
     }
 
     /**
-     * Create or Update a Azure Active Directory only authentication property for the workspaces.
+     * Create or Update Azure Active Directory only authentication property
+     *
+     * <p>Create or Update a Azure Active Directory only authentication property for the workspaces.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -614,7 +633,9 @@ public final class AzureADOnlyAuthenticationsClientImpl implements AzureADOnlyAu
     }
 
     /**
-     * Create or Update a Azure Active Directory only authentication property for the workspaces.
+     * Create or Update Azure Active Directory only authentication property
+     *
+     * <p>Create or Update a Azure Active Directory only authentication property for the workspaces.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -637,7 +658,9 @@ public final class AzureADOnlyAuthenticationsClientImpl implements AzureADOnlyAu
     }
 
     /**
-     * Create or Update a Azure Active Directory only authentication property for the workspaces.
+     * Create or Update Azure Active Directory only authentication property
+     *
+     * <p>Create or Update a Azure Active Directory only authentication property for the workspaces.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -662,7 +685,9 @@ public final class AzureADOnlyAuthenticationsClientImpl implements AzureADOnlyAu
     }
 
     /**
-     * Gets a list of Azure Active Directory only authentication property for a workspace.
+     * Gets a list of Azure Active Directory only authentication property
+     *
+     * <p>Gets a list of Azure Active Directory only authentication property for a workspace.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -721,7 +746,9 @@ public final class AzureADOnlyAuthenticationsClientImpl implements AzureADOnlyAu
     }
 
     /**
-     * Gets a list of Azure Active Directory only authentication property for a workspace.
+     * Gets a list of Azure Active Directory only authentication property
+     *
+     * <p>Gets a list of Azure Active Directory only authentication property for a workspace.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -778,7 +805,9 @@ public final class AzureADOnlyAuthenticationsClientImpl implements AzureADOnlyAu
     }
 
     /**
-     * Gets a list of Azure Active Directory only authentication property for a workspace.
+     * Gets a list of Azure Active Directory only authentication property
+     *
+     * <p>Gets a list of Azure Active Directory only authentication property for a workspace.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -795,7 +824,9 @@ public final class AzureADOnlyAuthenticationsClientImpl implements AzureADOnlyAu
     }
 
     /**
-     * Gets a list of Azure Active Directory only authentication property for a workspace.
+     * Gets a list of Azure Active Directory only authentication property
+     *
+     * <p>Gets a list of Azure Active Directory only authentication property for a workspace.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -815,7 +846,9 @@ public final class AzureADOnlyAuthenticationsClientImpl implements AzureADOnlyAu
     }
 
     /**
-     * Gets a list of Azure Active Directory only authentication property for a workspace.
+     * Gets a list of Azure Active Directory only authentication property
+     *
+     * <p>Gets a list of Azure Active Directory only authentication property for a workspace.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -831,7 +864,9 @@ public final class AzureADOnlyAuthenticationsClientImpl implements AzureADOnlyAu
     }
 
     /**
-     * Gets a list of Azure Active Directory only authentication property for a workspace.
+     * Gets a list of Azure Active Directory only authentication property
+     *
+     * <p>Gets a list of Azure Active Directory only authentication property for a workspace.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -851,7 +886,8 @@ public final class AzureADOnlyAuthenticationsClientImpl implements AzureADOnlyAu
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -887,7 +923,8 @@ public final class AzureADOnlyAuthenticationsClientImpl implements AzureADOnlyAu
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.

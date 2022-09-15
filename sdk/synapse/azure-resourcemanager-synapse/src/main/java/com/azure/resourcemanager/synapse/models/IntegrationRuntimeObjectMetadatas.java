@@ -10,7 +10,9 @@ import com.azure.core.util.Context;
 /** Resource collection API of IntegrationRuntimeObjectMetadatas. */
 public interface IntegrationRuntimeObjectMetadatas {
     /**
-     * Get object metadata from an integration runtime.
+     * Get integration runtime object metadata
+     *
+     * <p>Get object metadata from an integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -23,7 +25,9 @@ public interface IntegrationRuntimeObjectMetadatas {
     SsisObjectMetadataListResponse list(String resourceGroupName, String workspaceName, String integrationRuntimeName);
 
     /**
-     * Get object metadata from an integration runtime.
+     * Get integration runtime object metadata
+     *
+     * <p>Get object metadata from an integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -43,7 +47,9 @@ public interface IntegrationRuntimeObjectMetadatas {
         Context context);
 
     /**
-     * Refresh the object metadata in an integration runtime.
+     * Refresh integration runtime object metadata
+     *
+     * <p>Refresh the object metadata in an integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -57,7 +63,9 @@ public interface IntegrationRuntimeObjectMetadatas {
         String resourceGroupName, String workspaceName, String integrationRuntimeName);
 
     /**
-     * Refresh the object metadata in an integration runtime.
+     * Refresh integration runtime object metadata
+     *
+     * <p>Refresh the object metadata in an integration runtime.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
