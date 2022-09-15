@@ -21,7 +21,7 @@ public final class DedicatedHsmOperationInner {
      * Gets or sets a value indicating whether it is a data plane action
      */
     @JsonProperty(value = "isDataAction", access = JsonProperty.Access.WRITE_ONLY)
-    private String isDataAction;
+    private Boolean isDataAction;
 
     /*
      * The display string.
@@ -54,7 +54,7 @@ public final class DedicatedHsmOperationInner {
      *
      * @return the isDataAction value.
      */
-    public String isDataAction() {
+    public Boolean isDataAction() {
         return this.isDataAction;
     }
 

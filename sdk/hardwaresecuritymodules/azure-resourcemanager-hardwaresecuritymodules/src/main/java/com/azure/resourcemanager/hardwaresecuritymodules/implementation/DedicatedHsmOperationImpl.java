@@ -24,7 +24,7 @@ public final class DedicatedHsmOperationImpl implements DedicatedHsmOperation {
         return this.innerModel().name();
     }
 
-    public String isDataAction() {
+    public Boolean isDataAction() {
         return this.innerModel().isDataAction();
     }
 
