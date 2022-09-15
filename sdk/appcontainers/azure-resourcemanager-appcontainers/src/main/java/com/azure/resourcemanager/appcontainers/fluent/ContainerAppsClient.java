@@ -11,6 +11,7 @@ import com.azure.core.http.rest.Response;
 import com.azure.core.management.polling.PollResult;
 import com.azure.core.util.Context;
 import com.azure.core.util.polling.SyncPoller;
+import com.azure.resourcemanager.appcontainers.fluent.models.ContainerAppAuthTokenInner;
 import com.azure.resourcemanager.appcontainers.fluent.models.ContainerAppInner;
 import com.azure.resourcemanager.appcontainers.fluent.models.CustomHostnameAnalysisResultInner;
 import com.azure.resourcemanager.appcontainers.fluent.models.SecretsCollectionInner;
@@ -219,7 +220,9 @@ public interface ContainerAppsClient {
     void delete(String resourceGroupName, String containerAppName, Context context);
 
     /**
-     * Patches a Container App using JSON Merge Patch.
+     * Update properties of a Container App
+     *
+     * <p>Patches a Container App using JSON Merge Patch.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param containerAppName Name of the Container App.
@@ -235,7 +238,9 @@ public interface ContainerAppsClient {
         String resourceGroupName, String containerAppName, ContainerAppInner containerAppEnvelope);
 
     /**
-     * Patches a Container App using JSON Merge Patch.
+     * Update properties of a Container App
+     *
+     * <p>Patches a Container App using JSON Merge Patch.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param containerAppName Name of the Container App.
@@ -252,7 +257,9 @@ public interface ContainerAppsClient {
         String resourceGroupName, String containerAppName, ContainerAppInner containerAppEnvelope, Context context);
 
     /**
-     * Patches a Container App using JSON Merge Patch.
+     * Update properties of a Container App
+     *
+     * <p>Patches a Container App using JSON Merge Patch.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param containerAppName Name of the Container App.
@@ -266,7 +273,9 @@ public interface ContainerAppsClient {
     void update(String resourceGroupName, String containerAppName, ContainerAppInner containerAppEnvelope);
 
     /**
-     * Patches a Container App using JSON Merge Patch.
+     * Update properties of a Container App
+     *
+     * <p>Patches a Container App using JSON Merge Patch.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param containerAppName Name of the Container App.
@@ -340,5 +349,33 @@ public interface ContainerAppsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<SecretsCollectionInner> listSecretsWithResponse(
+        String resourceGroupName, String containerAppName, Context context);
+
+    /**
+     * Get auth token for a container app.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param containerAppName Name of the Container App.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return auth token for a container app.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    ContainerAppAuthTokenInner getAuthToken(String resourceGroupName, String containerAppName);
+
+    /**
+     * Get auth token for a container app.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param containerAppName Name of the Container App.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return auth token for a container app along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    Response<ContainerAppAuthTokenInner> getAuthTokenWithResponse(
         String resourceGroupName, String containerAppName, Context context);
 }
