@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for SkuNameEnum. */
+/** The name of the Service Tier. */
 public final class SkuNameEnum extends ExpandableStringEnum<SkuNameEnum> {
     /** Static value Free for SkuNameEnum. */
     public static final SkuNameEnum FREE = fromString("Free");

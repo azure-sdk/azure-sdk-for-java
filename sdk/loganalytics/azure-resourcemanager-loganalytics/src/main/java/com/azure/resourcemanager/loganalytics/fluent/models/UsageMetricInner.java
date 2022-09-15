@@ -43,8 +43,7 @@ public final class UsageMetricInner {
     private OffsetDateTime nextResetTime;
 
     /*
-     * The quota period that determines the length of time between value
-     * resets.
+     * The quota period that determines the length of time between value resets.
      */
     @JsonProperty(value = "quotaPeriod")
     private String quotaPeriod;

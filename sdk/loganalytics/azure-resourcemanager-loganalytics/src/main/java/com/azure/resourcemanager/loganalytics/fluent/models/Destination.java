@@ -13,8 +13,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Fluent
 public final class Destination {
     /*
-     * The destination resource ID. This can be copied from the Properties
-     * entry of the destination resource in Azure.
+     * The destination resource ID. This can be copied from the Properties entry of the destination resource in Azure.
      */
     @JsonProperty(value = "resourceId", required = true)
     private String resourceId;

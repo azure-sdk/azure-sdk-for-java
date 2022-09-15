@@ -119,6 +119,33 @@ public interface Tables {
         String resourceGroupName, String workspaceName, String tableName, Context context);
 
     /**
+     * Cancel a log analytics workspace search results table query run.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param tableName The name of the table.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void cancelSearch(String resourceGroupName, String workspaceName, String tableName);
+
+    /**
+     * Cancel a log analytics workspace search results table query run.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param tableName The name of the table.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response}.
+     */
+    Response<Void> cancelSearchWithResponse(
+        String resourceGroupName, String workspaceName, String tableName, Context context);
+
+    /**
      * Gets a Log Analytics workspace table.
      *
      * @param id the resource ID.
