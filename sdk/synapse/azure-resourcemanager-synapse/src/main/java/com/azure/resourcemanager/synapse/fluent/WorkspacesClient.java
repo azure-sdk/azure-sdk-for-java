@@ -199,10 +199,10 @@ public interface WorkspacesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of any object.
+     * @return the {@link SyncPoller} for polling of a workspace.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<Object>, Object> beginDelete(String resourceGroupName, String workspaceName);
+    SyncPoller<PollResult<WorkspaceInner>, WorkspaceInner> beginDelete(String resourceGroupName, String workspaceName);
 
     /**
      * Deletes a workspace.
@@ -213,10 +213,11 @@ public interface WorkspacesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of any object.
+     * @return the {@link SyncPoller} for polling of a workspace.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<Object>, Object> beginDelete(String resourceGroupName, String workspaceName, Context context);
+    SyncPoller<PollResult<WorkspaceInner>, WorkspaceInner> beginDelete(
+        String resourceGroupName, String workspaceName, Context context);
 
     /**
      * Deletes a workspace.
@@ -226,10 +227,10 @@ public interface WorkspacesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return any object.
+     * @return a workspace.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Object delete(String resourceGroupName, String workspaceName);
+    WorkspaceInner delete(String resourceGroupName, String workspaceName);
 
     /**
      * Deletes a workspace.
@@ -240,10 +241,10 @@ public interface WorkspacesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return any object.
+     * @return a workspace.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Object delete(String resourceGroupName, String workspaceName, Context context);
+    WorkspaceInner delete(String resourceGroupName, String workspaceName, Context context);
 
     /**
      * Returns a list of workspaces in a subscription.

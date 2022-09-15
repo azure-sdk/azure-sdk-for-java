@@ -160,7 +160,9 @@ public final class BigDataPoolsClientImpl implements BigDataPoolsClient {
     }
 
     /**
-     * Get a Big Data pool.
+     * Get Big Data pool
+     *
+     * <p>Get a Big Data pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -215,7 +217,9 @@ public final class BigDataPoolsClientImpl implements BigDataPoolsClient {
     }
 
     /**
-     * Get a Big Data pool.
+     * Get Big Data pool
+     *
+     * <p>Get a Big Data pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -268,7 +272,9 @@ public final class BigDataPoolsClientImpl implements BigDataPoolsClient {
     }
 
     /**
-     * Get a Big Data pool.
+     * Get Big Data pool
+     *
+     * <p>Get a Big Data pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -282,18 +288,13 @@ public final class BigDataPoolsClientImpl implements BigDataPoolsClient {
     private Mono<BigDataPoolResourceInfoInner> getAsync(
         String resourceGroupName, String workspaceName, String bigDataPoolName) {
         return getWithResponseAsync(resourceGroupName, workspaceName, bigDataPoolName)
-            .flatMap(
-                (Response<BigDataPoolResourceInfoInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
-     * Get a Big Data pool.
+     * Get Big Data pool
+     *
+     * <p>Get a Big Data pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -309,7 +310,9 @@ public final class BigDataPoolsClientImpl implements BigDataPoolsClient {
     }
 
     /**
-     * Get a Big Data pool.
+     * Get Big Data pool
+     *
+     * <p>Get a Big Data pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -327,7 +330,9 @@ public final class BigDataPoolsClientImpl implements BigDataPoolsClient {
     }
 
     /**
-     * Patch a Big Data pool.
+     * Update a Big Data pool.
+     *
+     * <p>Patch a Big Data pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -393,7 +398,9 @@ public final class BigDataPoolsClientImpl implements BigDataPoolsClient {
     }
 
     /**
-     * Patch a Big Data pool.
+     * Update a Big Data pool.
+     *
+     * <p>Patch a Big Data pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -458,7 +465,9 @@ public final class BigDataPoolsClientImpl implements BigDataPoolsClient {
     }
 
     /**
-     * Patch a Big Data pool.
+     * Update a Big Data pool.
+     *
+     * <p>Patch a Big Data pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -476,18 +485,13 @@ public final class BigDataPoolsClientImpl implements BigDataPoolsClient {
         String bigDataPoolName,
         BigDataPoolPatchInfo bigDataPoolPatchInfo) {
         return updateWithResponseAsync(resourceGroupName, workspaceName, bigDataPoolName, bigDataPoolPatchInfo)
-            .flatMap(
-                (Response<BigDataPoolResourceInfoInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
-     * Patch a Big Data pool.
+     * Update a Big Data pool.
+     *
+     * <p>Patch a Big Data pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -508,7 +512,9 @@ public final class BigDataPoolsClientImpl implements BigDataPoolsClient {
     }
 
     /**
-     * Patch a Big Data pool.
+     * Update a Big Data pool.
+     *
+     * <p>Patch a Big Data pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -532,7 +538,9 @@ public final class BigDataPoolsClientImpl implements BigDataPoolsClient {
     }
 
     /**
-     * Create a new Big Data pool.
+     * Create a Big Data pool.
+     *
+     * <p>Create a new Big Data pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -601,7 +609,9 @@ public final class BigDataPoolsClientImpl implements BigDataPoolsClient {
     }
 
     /**
-     * Create a new Big Data pool.
+     * Create a Big Data pool.
+     *
+     * <p>Create a new Big Data pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -669,7 +679,9 @@ public final class BigDataPoolsClientImpl implements BigDataPoolsClient {
     }
 
     /**
-     * Create a new Big Data pool.
+     * Create a Big Data pool.
+     *
+     * <p>Create a new Big Data pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -701,7 +713,9 @@ public final class BigDataPoolsClientImpl implements BigDataPoolsClient {
     }
 
     /**
-     * Create a new Big Data pool.
+     * Create a Big Data pool.
+     *
+     * <p>Create a new Big Data pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -737,7 +751,9 @@ public final class BigDataPoolsClientImpl implements BigDataPoolsClient {
     }
 
     /**
-     * Create a new Big Data pool.
+     * Create a Big Data pool.
+     *
+     * <p>Create a new Big Data pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -761,7 +777,9 @@ public final class BigDataPoolsClientImpl implements BigDataPoolsClient {
     }
 
     /**
-     * Create a new Big Data pool.
+     * Create a Big Data pool.
+     *
+     * <p>Create a new Big Data pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -788,7 +806,9 @@ public final class BigDataPoolsClientImpl implements BigDataPoolsClient {
     }
 
     /**
-     * Create a new Big Data pool.
+     * Create a Big Data pool.
+     *
+     * <p>Create a new Big Data pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -813,7 +833,9 @@ public final class BigDataPoolsClientImpl implements BigDataPoolsClient {
     }
 
     /**
-     * Create a new Big Data pool.
+     * Create a Big Data pool.
+     *
+     * <p>Create a new Big Data pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -837,7 +859,9 @@ public final class BigDataPoolsClientImpl implements BigDataPoolsClient {
     }
 
     /**
-     * Create a new Big Data pool.
+     * Create a Big Data pool.
+     *
+     * <p>Create a new Big Data pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -865,7 +889,9 @@ public final class BigDataPoolsClientImpl implements BigDataPoolsClient {
     }
 
     /**
-     * Create a new Big Data pool.
+     * Create a Big Data pool.
+     *
+     * <p>Create a new Big Data pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -888,7 +914,9 @@ public final class BigDataPoolsClientImpl implements BigDataPoolsClient {
     }
 
     /**
-     * Create a new Big Data pool.
+     * Create a Big Data pool.
+     *
+     * <p>Create a new Big Data pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -910,7 +938,9 @@ public final class BigDataPoolsClientImpl implements BigDataPoolsClient {
     }
 
     /**
-     * Create a new Big Data pool.
+     * Create a Big Data pool.
+     *
+     * <p>Create a new Big Data pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -936,7 +966,9 @@ public final class BigDataPoolsClientImpl implements BigDataPoolsClient {
     }
 
     /**
-     * Delete a Big Data pool from the workspace.
+     * Delete a Big Data pool.
+     *
+     * <p>Delete a Big Data pool from the workspace.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -991,7 +1023,9 @@ public final class BigDataPoolsClientImpl implements BigDataPoolsClient {
     }
 
     /**
-     * Delete a Big Data pool from the workspace.
+     * Delete a Big Data pool.
+     *
+     * <p>Delete a Big Data pool from the workspace.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -1044,7 +1078,9 @@ public final class BigDataPoolsClientImpl implements BigDataPoolsClient {
     }
 
     /**
-     * Delete a Big Data pool from the workspace.
+     * Delete a Big Data pool.
+     *
+     * <p>Delete a Big Data pool from the workspace.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -1066,7 +1102,9 @@ public final class BigDataPoolsClientImpl implements BigDataPoolsClient {
     }
 
     /**
-     * Delete a Big Data pool from the workspace.
+     * Delete a Big Data pool.
+     *
+     * <p>Delete a Big Data pool from the workspace.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -1089,7 +1127,9 @@ public final class BigDataPoolsClientImpl implements BigDataPoolsClient {
     }
 
     /**
-     * Delete a Big Data pool from the workspace.
+     * Delete a Big Data pool.
+     *
+     * <p>Delete a Big Data pool from the workspace.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -1106,7 +1146,9 @@ public final class BigDataPoolsClientImpl implements BigDataPoolsClient {
     }
 
     /**
-     * Delete a Big Data pool from the workspace.
+     * Delete a Big Data pool.
+     *
+     * <p>Delete a Big Data pool from the workspace.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -1124,7 +1166,9 @@ public final class BigDataPoolsClientImpl implements BigDataPoolsClient {
     }
 
     /**
-     * Delete a Big Data pool from the workspace.
+     * Delete a Big Data pool.
+     *
+     * <p>Delete a Big Data pool from the workspace.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -1142,7 +1186,9 @@ public final class BigDataPoolsClientImpl implements BigDataPoolsClient {
     }
 
     /**
-     * Delete a Big Data pool from the workspace.
+     * Delete a Big Data pool.
+     *
+     * <p>Delete a Big Data pool from the workspace.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -1162,7 +1208,9 @@ public final class BigDataPoolsClientImpl implements BigDataPoolsClient {
     }
 
     /**
-     * Delete a Big Data pool from the workspace.
+     * Delete a Big Data pool.
+     *
+     * <p>Delete a Big Data pool from the workspace.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -1178,7 +1226,9 @@ public final class BigDataPoolsClientImpl implements BigDataPoolsClient {
     }
 
     /**
-     * Delete a Big Data pool from the workspace.
+     * Delete a Big Data pool.
+     *
+     * <p>Delete a Big Data pool from the workspace.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -1195,7 +1245,9 @@ public final class BigDataPoolsClientImpl implements BigDataPoolsClient {
     }
 
     /**
-     * List Big Data pools in a workspace.
+     * List the Big Data pools in a workspace.
+     *
+     * <p>List Big Data pools in a workspace.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -1253,7 +1305,9 @@ public final class BigDataPoolsClientImpl implements BigDataPoolsClient {
     }
 
     /**
-     * List Big Data pools in a workspace.
+     * List the Big Data pools in a workspace.
+     *
+     * <p>List Big Data pools in a workspace.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -1309,7 +1363,9 @@ public final class BigDataPoolsClientImpl implements BigDataPoolsClient {
     }
 
     /**
-     * List Big Data pools in a workspace.
+     * List the Big Data pools in a workspace.
+     *
+     * <p>List Big Data pools in a workspace.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -1327,7 +1383,9 @@ public final class BigDataPoolsClientImpl implements BigDataPoolsClient {
     }
 
     /**
-     * List Big Data pools in a workspace.
+     * List the Big Data pools in a workspace.
+     *
+     * <p>List Big Data pools in a workspace.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -1346,7 +1404,9 @@ public final class BigDataPoolsClientImpl implements BigDataPoolsClient {
     }
 
     /**
-     * List Big Data pools in a workspace.
+     * List the Big Data pools in a workspace.
+     *
+     * <p>List Big Data pools in a workspace.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -1361,7 +1421,9 @@ public final class BigDataPoolsClientImpl implements BigDataPoolsClient {
     }
 
     /**
-     * List Big Data pools in a workspace.
+     * List the Big Data pools in a workspace.
+     *
+     * <p>List Big Data pools in a workspace.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -1380,7 +1442,8 @@ public final class BigDataPoolsClientImpl implements BigDataPoolsClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1415,7 +1478,8 @@ public final class BigDataPoolsClientImpl implements BigDataPoolsClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
