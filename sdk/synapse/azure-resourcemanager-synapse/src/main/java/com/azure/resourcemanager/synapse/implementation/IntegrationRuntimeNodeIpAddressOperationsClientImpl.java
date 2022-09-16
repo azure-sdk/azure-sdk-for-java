@@ -78,7 +78,9 @@ public final class IntegrationRuntimeNodeIpAddressOperationsClientImpl
     }
 
     /**
-     * Get the IP address of an integration runtime node.
+     * Get integration runtime node IP address
+     *
+     * <p>Get the IP address of an integration runtime node.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -140,7 +142,9 @@ public final class IntegrationRuntimeNodeIpAddressOperationsClientImpl
     }
 
     /**
-     * Get the IP address of an integration runtime node.
+     * Get integration runtime node IP address
+     *
+     * <p>Get the IP address of an integration runtime node.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -204,7 +208,9 @@ public final class IntegrationRuntimeNodeIpAddressOperationsClientImpl
     }
 
     /**
-     * Get the IP address of an integration runtime node.
+     * Get integration runtime node IP address
+     *
+     * <p>Get the IP address of an integration runtime node.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -219,18 +225,13 @@ public final class IntegrationRuntimeNodeIpAddressOperationsClientImpl
     private Mono<IntegrationRuntimeNodeIpAddressInner> getAsync(
         String resourceGroupName, String workspaceName, String integrationRuntimeName, String nodeName) {
         return getWithResponseAsync(resourceGroupName, workspaceName, integrationRuntimeName, nodeName)
-            .flatMap(
-                (Response<IntegrationRuntimeNodeIpAddressInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
-     * Get the IP address of an integration runtime node.
+     * Get integration runtime node IP address
+     *
+     * <p>Get the IP address of an integration runtime node.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -248,7 +249,9 @@ public final class IntegrationRuntimeNodeIpAddressOperationsClientImpl
     }
 
     /**
-     * Get the IP address of an integration runtime node.
+     * Get integration runtime node IP address
+     *
+     * <p>Get the IP address of an integration runtime node.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.

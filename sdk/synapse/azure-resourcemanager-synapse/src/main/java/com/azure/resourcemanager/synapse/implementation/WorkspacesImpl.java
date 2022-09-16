@@ -61,12 +61,22 @@ public final class WorkspacesImpl implements Workspaces {
         }
     }
 
-    public Object deleteByResourceGroup(String resourceGroupName, String workspaceName) {
-        return this.serviceClient().delete(resourceGroupName, workspaceName);
+    public Workspace deleteByResourceGroup(String resourceGroupName, String workspaceName) {
+        WorkspaceInner inner = this.serviceClient().delete(resourceGroupName, workspaceName);
+        if (inner != null) {
+            return new WorkspaceImpl(inner, this.manager());
+        } else {
+            return null;
+        }
     }
 
-    public Object delete(String resourceGroupName, String workspaceName, Context context) {
-        return this.serviceClient().delete(resourceGroupName, workspaceName, context);
+    public Workspace delete(String resourceGroupName, String workspaceName, Context context) {
+        WorkspaceInner inner = this.serviceClient().delete(resourceGroupName, workspaceName, context);
+        if (inner != null) {
+            return new WorkspaceImpl(inner, this.manager());
+        } else {
+            return null;
+        }
     }
 
     public PagedIterable<Workspace> list() {
@@ -117,7 +127,7 @@ public final class WorkspacesImpl implements Workspaces {
         return this.getByResourceGroupWithResponse(resourceGroupName, workspaceName, context);
     }
 
-    public Object deleteById(String id) {
+    public Workspace deleteById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
             throw LOGGER
@@ -136,7 +146,7 @@ public final class WorkspacesImpl implements Workspaces {
         return this.delete(resourceGroupName, workspaceName, Context.NONE);
     }
 
-    public Object deleteByIdWithResponse(String id, Context context) {
+    public Workspace deleteByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
             throw LOGGER
