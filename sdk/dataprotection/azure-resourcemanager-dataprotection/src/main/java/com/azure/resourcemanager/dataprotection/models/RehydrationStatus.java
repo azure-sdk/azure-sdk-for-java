@@ -36,7 +36,11 @@ public final class RehydrationStatus extends ExpandableStringEnum<RehydrationSta
         return fromString(name, RehydrationStatus.class);
     }
 
-    /** @return known RehydrationStatus values. */
+    /**
+     * Gets known RehydrationStatus values.
+     *
+     * @return known RehydrationStatus values.
+     */
     public static Collection<RehydrationStatus> values() {
         return values(RehydrationStatus.class);
     }

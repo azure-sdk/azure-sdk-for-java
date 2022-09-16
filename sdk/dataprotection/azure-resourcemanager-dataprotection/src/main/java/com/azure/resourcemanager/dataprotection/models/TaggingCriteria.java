@@ -6,18 +6,18 @@ package com.azure.resourcemanager.dataprotection.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** TaggingCriteria Tagging criteria. */
+/**
+ * TaggingCriteria
+ *
+ * <p>Tagging criteria.
+ */
 @Fluent
 public final class TaggingCriteria {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(TaggingCriteria.class);
-
     /*
-     * Criteria which decides whether the tag can be applied to a triggered
-     * backup.
+     * Criteria which decides whether the tag can be applied to a triggered backup.
      */
     @JsonProperty(value = "criteria")
     private List<BackupCriteria> criteria;
@@ -35,7 +35,9 @@ public final class TaggingCriteria {
     private long taggingPriority;
 
     /*
-     * RetentionTag Retention tag information
+     * RetentionTag
+     *
+     * Retention tag information
      */
     @JsonProperty(value = "tagInfo", required = true)
     private RetentionTag tagInfo;
@@ -101,7 +103,9 @@ public final class TaggingCriteria {
     }
 
     /**
-     * Get the tagInfo property: RetentionTag Retention tag information.
+     * Get the tagInfo property: RetentionTag
+     *
+     * <p>Retention tag information.
      *
      * @return the tagInfo value.
      */
@@ -110,7 +114,9 @@ public final class TaggingCriteria {
     }
 
     /**
-     * Set the tagInfo property: RetentionTag Retention tag information.
+     * Set the tagInfo property: RetentionTag
+     *
+     * <p>Retention tag information.
      *
      * @param tagInfo the tagInfo value to set.
      * @return the TaggingCriteria object itself.
@@ -130,11 +136,13 @@ public final class TaggingCriteria {
             criteria().forEach(e -> e.validate());
         }
         if (tagInfo() == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property tagInfo in model TaggingCriteria"));
         } else {
             tagInfo().validate();
         }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(TaggingCriteria.class);
 }
