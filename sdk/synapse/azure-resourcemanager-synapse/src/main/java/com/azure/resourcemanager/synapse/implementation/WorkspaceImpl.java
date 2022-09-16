@@ -177,6 +177,10 @@ public final class WorkspaceImpl implements Workspace, Workspace.Definition, Wor
         return this.location();
     }
 
+    public String resourceGroupName() {
+        return resourceGroupName;
+    }
+
     public WorkspaceInner innerModel() {
         return this.innerObject;
     }
@@ -327,11 +331,6 @@ public final class WorkspaceImpl implements Workspace, Workspace.Definition, Wor
 
     public WorkspaceImpl withVirtualNetworkProfile(VirtualNetworkProfile virtualNetworkProfile) {
         this.innerModel().withVirtualNetworkProfile(virtualNetworkProfile);
-        return this;
-    }
-
-    public WorkspaceImpl withConnectivityEndpoints(Map<String, String> connectivityEndpoints) {
-        this.innerModel().withConnectivityEndpoints(connectivityEndpoints);
         return this;
     }
 

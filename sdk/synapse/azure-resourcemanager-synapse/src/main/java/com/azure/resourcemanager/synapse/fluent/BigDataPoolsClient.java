@@ -17,7 +17,9 @@ import com.azure.resourcemanager.synapse.models.BigDataPoolPatchInfo;
 /** An instance of this class provides access to all the operations defined in BigDataPoolsClient. */
 public interface BigDataPoolsClient {
     /**
-     * Get a Big Data pool.
+     * Get Big Data pool
+     *
+     * <p>Get a Big Data pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -31,7 +33,9 @@ public interface BigDataPoolsClient {
     BigDataPoolResourceInfoInner get(String resourceGroupName, String workspaceName, String bigDataPoolName);
 
     /**
-     * Get a Big Data pool.
+     * Get Big Data pool
+     *
+     * <p>Get a Big Data pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -47,7 +51,9 @@ public interface BigDataPoolsClient {
         String resourceGroupName, String workspaceName, String bigDataPoolName, Context context);
 
     /**
-     * Patch a Big Data pool.
+     * Update a Big Data pool.
+     *
+     * <p>Patch a Big Data pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -66,7 +72,9 @@ public interface BigDataPoolsClient {
         BigDataPoolPatchInfo bigDataPoolPatchInfo);
 
     /**
-     * Patch a Big Data pool.
+     * Update a Big Data pool.
+     *
+     * <p>Patch a Big Data pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -87,7 +95,9 @@ public interface BigDataPoolsClient {
         Context context);
 
     /**
-     * Create a new Big Data pool.
+     * Create a Big Data pool.
+     *
+     * <p>Create a new Big Data pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -108,7 +118,9 @@ public interface BigDataPoolsClient {
         Boolean force);
 
     /**
-     * Create a new Big Data pool.
+     * Create a Big Data pool.
+     *
+     * <p>Create a new Big Data pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -131,7 +143,9 @@ public interface BigDataPoolsClient {
         Context context);
 
     /**
-     * Create a new Big Data pool.
+     * Create a Big Data pool.
+     *
+     * <p>Create a new Big Data pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -152,7 +166,9 @@ public interface BigDataPoolsClient {
         Boolean force);
 
     /**
-     * Create a new Big Data pool.
+     * Create a Big Data pool.
+     *
+     * <p>Create a new Big Data pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -171,7 +187,9 @@ public interface BigDataPoolsClient {
         BigDataPoolResourceInfoInner bigDataPoolInfo);
 
     /**
-     * Create a new Big Data pool.
+     * Create a Big Data pool.
+     *
+     * <p>Create a new Big Data pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -194,7 +212,9 @@ public interface BigDataPoolsClient {
         Context context);
 
     /**
-     * Delete a Big Data pool from the workspace.
+     * Delete a Big Data pool.
+     *
+     * <p>Delete a Big Data pool from the workspace.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -209,7 +229,9 @@ public interface BigDataPoolsClient {
         String resourceGroupName, String workspaceName, String bigDataPoolName);
 
     /**
-     * Delete a Big Data pool from the workspace.
+     * Delete a Big Data pool.
+     *
+     * <p>Delete a Big Data pool from the workspace.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -225,7 +247,9 @@ public interface BigDataPoolsClient {
         String resourceGroupName, String workspaceName, String bigDataPoolName, Context context);
 
     /**
-     * Delete a Big Data pool from the workspace.
+     * Delete a Big Data pool.
+     *
+     * <p>Delete a Big Data pool from the workspace.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -239,7 +263,9 @@ public interface BigDataPoolsClient {
     Object delete(String resourceGroupName, String workspaceName, String bigDataPoolName);
 
     /**
-     * Delete a Big Data pool from the workspace.
+     * Delete a Big Data pool.
+     *
+     * <p>Delete a Big Data pool from the workspace.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -254,7 +280,9 @@ public interface BigDataPoolsClient {
     Object delete(String resourceGroupName, String workspaceName, String bigDataPoolName, Context context);
 
     /**
-     * List Big Data pools in a workspace.
+     * List the Big Data pools in a workspace.
+     *
+     * <p>List Big Data pools in a workspace.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -267,7 +295,9 @@ public interface BigDataPoolsClient {
     PagedIterable<BigDataPoolResourceInfoInner> listByWorkspace(String resourceGroupName, String workspaceName);
 
     /**
-     * List Big Data pools in a workspace.
+     * List the Big Data pools in a workspace.
+     *
+     * <p>List Big Data pools in a workspace.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.

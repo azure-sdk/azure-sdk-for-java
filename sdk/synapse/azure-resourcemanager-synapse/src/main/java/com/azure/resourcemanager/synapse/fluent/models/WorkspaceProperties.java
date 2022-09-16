@@ -35,11 +35,9 @@ public final class WorkspaceProperties {
     private String sqlAdministratorLoginPassword;
 
     /*
-     * Workspace managed resource group. The resource group name uniquely
-     * identifies the resource group within the user subscriptionId. The
-     * resource group name must be no longer than 90 characters long, and must
-     * be alphanumeric characters (Char.IsLetterOrDigit()) and '-', '_', '(',
-     * ')' and'.'. Note that the name cannot end with '.'
+     * Workspace managed resource group. The resource group name uniquely identifies the resource group within the user
+     * subscriptionId. The resource group name must be no longer than 90 characters long, and must be alphanumeric
+     * characters (Char.IsLetterOrDigit()) and '-', '_', '(', ')' and'.'. Note that the name cannot end with '.'
      */
     @JsonProperty(value = "managedResourceGroupName")
     private String managedResourceGroupName;
@@ -65,13 +63,13 @@ public final class WorkspaceProperties {
     /*
      * Connectivity endpoints
      */
-    @JsonProperty(value = "connectivityEndpoints")
+    @JsonProperty(value = "connectivityEndpoints", access = JsonProperty.Access.WRITE_ONLY)
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, String> connectivityEndpoints;
 
     /*
-     * Setting this to 'default' will ensure that all compute for this
-     * workspace is in a virtual network managed on behalf of the user.
+     * Setting this to 'default' will ensure that all compute for this workspace is in a virtual network managed on
+     * behalf of the user.
      */
     @JsonProperty(value = "managedVirtualNetwork")
     private String managedVirtualNetwork;
@@ -278,17 +276,6 @@ public final class WorkspaceProperties {
      */
     public Map<String, String> connectivityEndpoints() {
         return this.connectivityEndpoints;
-    }
-
-    /**
-     * Set the connectivityEndpoints property: Connectivity endpoints.
-     *
-     * @param connectivityEndpoints the connectivityEndpoints value to set.
-     * @return the WorkspaceProperties object itself.
-     */
-    public WorkspaceProperties withConnectivityEndpoints(Map<String, String> connectivityEndpoints) {
-        this.connectivityEndpoints = connectivityEndpoints;
-        return this;
     }
 
     /**

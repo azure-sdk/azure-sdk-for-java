@@ -16,7 +16,9 @@ import com.azure.resourcemanager.synapse.models.SensitivityLabelUpdateList;
 /** An instance of this class provides access to all the operations defined in SqlPoolSensitivityLabelsClient. */
 public interface SqlPoolSensitivityLabelsClient {
     /**
-     * Gets SQL pool sensitivity labels.
+     * Gets SQL pool sensitivity labels
+     *
+     * <p>Gets SQL pool sensitivity labels.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -31,7 +33,9 @@ public interface SqlPoolSensitivityLabelsClient {
         String resourceGroupName, String workspaceName, String sqlPoolName);
 
     /**
-     * Gets SQL pool sensitivity labels.
+     * Gets SQL pool sensitivity labels
+     *
+     * <p>Gets SQL pool sensitivity labels.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -84,7 +88,9 @@ public interface SqlPoolSensitivityLabelsClient {
         Context context);
 
     /**
-     * Gets sensitivity labels of a given SQL pool.
+     * Gets sensitivity labels of a given SQL pool
+     *
+     * <p>Gets sensitivity labels of a given SQL pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -99,7 +105,9 @@ public interface SqlPoolSensitivityLabelsClient {
         String resourceGroupName, String workspaceName, String sqlPoolName);
 
     /**
-     * Gets sensitivity labels of a given SQL pool.
+     * Gets sensitivity labels of a given SQL pool
+     *
+     * <p>Gets sensitivity labels of a given SQL pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.

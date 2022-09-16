@@ -77,7 +77,9 @@ public final class SqlPoolDataWarehouseUserActivitiesClientImpl implements SqlPo
     }
 
     /**
-     * Gets the user activities of a SQL pool which includes running and suspended queries.
+     * Get SQL pool user activities
+     *
+     * <p>Gets the user activities of a SQL pool which includes running and suspended queries.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -143,7 +145,9 @@ public final class SqlPoolDataWarehouseUserActivitiesClientImpl implements SqlPo
     }
 
     /**
-     * Gets the user activities of a SQL pool which includes running and suspended queries.
+     * Get SQL pool user activities
+     *
+     * <p>Gets the user activities of a SQL pool which includes running and suspended queries.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -208,7 +212,9 @@ public final class SqlPoolDataWarehouseUserActivitiesClientImpl implements SqlPo
     }
 
     /**
-     * Gets the user activities of a SQL pool which includes running and suspended queries.
+     * Get SQL pool user activities
+     *
+     * <p>Gets the user activities of a SQL pool which includes running and suspended queries.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -227,18 +233,13 @@ public final class SqlPoolDataWarehouseUserActivitiesClientImpl implements SqlPo
         String sqlPoolName,
         DataWarehouseUserActivityName dataWarehouseUserActivityName) {
         return getWithResponseAsync(resourceGroupName, workspaceName, sqlPoolName, dataWarehouseUserActivityName)
-            .flatMap(
-                (Response<DataWarehouseUserActivitiesInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
-     * Gets the user activities of a SQL pool which includes running and suspended queries.
+     * Get SQL pool user activities
+     *
+     * <p>Gets the user activities of a SQL pool which includes running and suspended queries.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -259,7 +260,9 @@ public final class SqlPoolDataWarehouseUserActivitiesClientImpl implements SqlPo
     }
 
     /**
-     * Gets the user activities of a SQL pool which includes running and suspended queries.
+     * Get SQL pool user activities
+     *
+     * <p>Gets the user activities of a SQL pool which includes running and suspended queries.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.

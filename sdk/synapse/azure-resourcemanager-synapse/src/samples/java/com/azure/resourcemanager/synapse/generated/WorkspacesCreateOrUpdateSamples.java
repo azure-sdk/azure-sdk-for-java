@@ -85,9 +85,7 @@ public final class WorkspacesCreateOrUpdateSamples {
                     .withPurviewResourceId(
                         "/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/resourceGroup1/providers/Microsoft.ProjectPurview/accounts/accountname1"))
             .withPublicNetworkAccess(WorkspacePublicNetworkAccess.ENABLED)
-            .withCspWorkspaceAdminProperties(
-                new CspWorkspaceAdminProperties()
-                    .withInitialWorkspaceAdminObjectId("6c20646f-8050-49ec-b3b1-80a0e58e454d"))
+            .withCspWorkspaceAdminProperties(new CspWorkspaceAdminProperties())
             .create();
     }
 

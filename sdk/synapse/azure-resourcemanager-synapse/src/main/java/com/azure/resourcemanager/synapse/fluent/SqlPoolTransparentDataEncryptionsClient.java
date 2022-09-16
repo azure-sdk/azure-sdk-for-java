@@ -17,7 +17,9 @@ import com.azure.resourcemanager.synapse.models.TransparentDataEncryptionName;
  */
 public interface SqlPoolTransparentDataEncryptionsClient {
     /**
-     * Get a SQL pool's transparent data encryption configuration.
+     * Get a SQL pool's transparent data encryption configuration
+     *
+     * <p>Get a SQL pool's transparent data encryption configuration.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -36,7 +38,9 @@ public interface SqlPoolTransparentDataEncryptionsClient {
         TransparentDataEncryptionName transparentDataEncryptionName);
 
     /**
-     * Get a SQL pool's transparent data encryption configuration.
+     * Get a SQL pool's transparent data encryption configuration
+     *
+     * <p>Get a SQL pool's transparent data encryption configuration.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -57,7 +61,9 @@ public interface SqlPoolTransparentDataEncryptionsClient {
         Context context);
 
     /**
-     * Creates or updates a Sql pool's transparent data encryption configuration.
+     * Creates or updates a Sql pool's transparent data encryption configuration
+     *
+     * <p>Creates or updates a Sql pool's transparent data encryption configuration.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -78,7 +84,9 @@ public interface SqlPoolTransparentDataEncryptionsClient {
         TransparentDataEncryptionInner parameters);
 
     /**
-     * Creates or updates a Sql pool's transparent data encryption configuration.
+     * Creates or updates a Sql pool's transparent data encryption configuration
+     *
+     * <p>Creates or updates a Sql pool's transparent data encryption configuration.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -101,7 +109,9 @@ public interface SqlPoolTransparentDataEncryptionsClient {
         Context context);
 
     /**
-     * Get list of SQL pool's transparent data encryption configurations.
+     * SQL pool's transparent data encryption configurations
+     *
+     * <p>Get list of SQL pool's transparent data encryption configurations.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -117,7 +127,9 @@ public interface SqlPoolTransparentDataEncryptionsClient {
         String resourceGroupName, String workspaceName, String sqlPoolName);
 
     /**
-     * Get list of SQL pool's transparent data encryption configurations.
+     * SQL pool's transparent data encryption configurations
+     *
+     * <p>Get list of SQL pool's transparent data encryption configurations.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.

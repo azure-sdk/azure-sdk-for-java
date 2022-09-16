@@ -4,16 +4,16 @@
 
 package com.azure.resourcemanager.synapse.models;
 
-import com.azure.core.annotation.Fluent;
+import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Initial workspace AAD admin properties for a CSP subscription. */
-@Fluent
+@Immutable
 public final class CspWorkspaceAdminProperties {
     /*
      * AAD object ID of initial workspace admin
      */
-    @JsonProperty(value = "initialWorkspaceAdminObjectId")
+    @JsonProperty(value = "initialWorkspaceAdminObjectId", access = JsonProperty.Access.WRITE_ONLY)
     private String initialWorkspaceAdminObjectId;
 
     /**
@@ -23,17 +23,6 @@ public final class CspWorkspaceAdminProperties {
      */
     public String initialWorkspaceAdminObjectId() {
         return this.initialWorkspaceAdminObjectId;
-    }
-
-    /**
-     * Set the initialWorkspaceAdminObjectId property: AAD object ID of initial workspace admin.
-     *
-     * @param initialWorkspaceAdminObjectId the initialWorkspaceAdminObjectId value to set.
-     * @return the CspWorkspaceAdminProperties object itself.
-     */
-    public CspWorkspaceAdminProperties withInitialWorkspaceAdminObjectId(String initialWorkspaceAdminObjectId) {
-        this.initialWorkspaceAdminObjectId = initialWorkspaceAdminObjectId;
-        return this;
     }
 
     /**
