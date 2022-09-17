@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for UpgradeMode. */
+/** The upgrade mode of the cluster when new Service Fabric runtime version is available. */
 public final class UpgradeMode extends ExpandableStringEnum<UpgradeMode> {
     /** Static value Automatic for UpgradeMode. */
     public static final UpgradeMode AUTOMATIC = fromString("Automatic");
@@ -27,7 +27,11 @@ public final class UpgradeMode extends ExpandableStringEnum<UpgradeMode> {
         return fromString(name, UpgradeMode.class);
     }
 
-    /** @return known UpgradeMode values. */
+    /**
+     * Gets known UpgradeMode values.
+     *
+     * @return known UpgradeMode values.
+     */
     public static Collection<UpgradeMode> values() {
         return values(UpgradeMode.class);
     }
