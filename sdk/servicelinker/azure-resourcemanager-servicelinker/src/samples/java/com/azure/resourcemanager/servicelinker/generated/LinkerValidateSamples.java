@@ -9,14 +9,14 @@ import com.azure.core.util.Context;
 /** Samples for Linker Validate. */
 public final class LinkerValidateSamples {
     /*
-     * x-ms-original-file: specification/servicelinker/resource-manager/Microsoft.ServiceLinker/stable/2022-05-01/examples/ValidateLinkSuccess.json
+     * x-ms-original-file: specification/servicelinker/resource-manager/Microsoft.ServiceLinker/preview/2022-01-01-preview/examples/ValidateLinkSuccess.json
      */
     /**
      * Sample code: ValidateLinkSuccess.
      *
-     * @param manager Entry point to ServiceLinkerManager.
+     * @param manager Entry point to ServicelinkerManager.
      */
-    public static void validateLinkSuccess(com.azure.resourcemanager.servicelinker.ServiceLinkerManager manager) {
+    public static void validateLinkSuccess(com.azure.resourcemanager.servicelinker.ServicelinkerManager manager) {
         manager
             .linkers()
             .validate(
