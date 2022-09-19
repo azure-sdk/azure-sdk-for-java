@@ -68,7 +68,9 @@ public interface DaprComponents {
         String resourceGroupName, String environmentName, String componentName, Context context);
 
     /**
-     * Delete a Dapr Component from a Managed Environment.
+     * Delete a Dapr Component.
+     *
+     * <p>Delete a Dapr Component from a Managed Environment.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param environmentName Name of the Managed Environment.
@@ -81,7 +83,9 @@ public interface DaprComponents {
     void delete(String resourceGroupName, String environmentName, String componentName);
 
     /**
-     * Delete a Dapr Component from a Managed Environment.
+     * Delete a Dapr Component.
+     *
+     * <p>Delete a Dapr Component from a Managed Environment.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param environmentName Name of the Managed Environment.
@@ -152,7 +156,9 @@ public interface DaprComponents {
     Response<DaprComponent> getByIdWithResponse(String id, Context context);
 
     /**
-     * Delete a Dapr Component from a Managed Environment.
+     * Delete a Dapr Component.
+     *
+     * <p>Delete a Dapr Component from a Managed Environment.
      *
      * @param id the resource ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -163,7 +169,9 @@ public interface DaprComponents {
     void deleteById(String id);
 
     /**
-     * Delete a Dapr Component from a Managed Environment.
+     * Delete a Dapr Component.
+     *
+     * <p>Delete a Dapr Component from a Managed Environment.
      *
      * @param id the resource ID.
      * @param context The context to associate with this operation.
