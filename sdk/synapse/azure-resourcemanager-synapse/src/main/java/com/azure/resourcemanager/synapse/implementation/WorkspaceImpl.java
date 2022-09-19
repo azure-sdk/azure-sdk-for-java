@@ -177,6 +177,10 @@ public final class WorkspaceImpl implements Workspace, Workspace.Definition, Wor
         return this.location();
     }
 
+    public String resourceGroupName() {
+        return resourceGroupName;
+    }
+
     public WorkspaceInner innerModel() {
         return this.innerObject;
     }

@@ -70,7 +70,9 @@ public final class SqlPoolOperationResultsClientImpl implements SqlPoolOperation
     }
 
     /**
-     * Get the status of a SQL pool operation.
+     * Get SQL pool operation status
+     *
+     * <p>Get the status of a SQL pool operation.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -129,7 +131,9 @@ public final class SqlPoolOperationResultsClientImpl implements SqlPoolOperation
     }
 
     /**
-     * Get the status of a SQL pool operation.
+     * Get SQL pool operation status
+     *
+     * <p>Get the status of a SQL pool operation.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -186,7 +190,9 @@ public final class SqlPoolOperationResultsClientImpl implements SqlPoolOperation
     }
 
     /**
-     * Get the status of a SQL pool operation.
+     * Get SQL pool operation status
+     *
+     * <p>Get the status of a SQL pool operation.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -201,18 +207,13 @@ public final class SqlPoolOperationResultsClientImpl implements SqlPoolOperation
     private Mono<Object> getLocationHeaderResultAsync(
         String resourceGroupName, String workspaceName, String sqlPoolName, String operationId) {
         return getLocationHeaderResultWithResponseAsync(resourceGroupName, workspaceName, sqlPoolName, operationId)
-            .flatMap(
-                (Response<Object> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
-     * Get the status of a SQL pool operation.
+     * Get SQL pool operation status
+     *
+     * <p>Get the status of a SQL pool operation.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -230,7 +231,9 @@ public final class SqlPoolOperationResultsClientImpl implements SqlPoolOperation
     }
 
     /**
-     * Get the status of a SQL pool operation.
+     * Get SQL pool operation status
+     *
+     * <p>Get the status of a SQL pool operation.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.

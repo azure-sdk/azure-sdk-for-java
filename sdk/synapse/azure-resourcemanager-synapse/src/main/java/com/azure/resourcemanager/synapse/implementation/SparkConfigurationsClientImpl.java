@@ -69,7 +69,9 @@ public final class SparkConfigurationsClientImpl implements SparkConfigurationsC
     }
 
     /**
-     * Get SparkConfiguration by name in a workspace.
+     * Get SparkConfiguration by name.
+     *
+     * <p>Get SparkConfiguration by name in a workspace.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param sparkConfigurationName SparkConfiguration name.
@@ -126,7 +128,9 @@ public final class SparkConfigurationsClientImpl implements SparkConfigurationsC
     }
 
     /**
-     * Get SparkConfiguration by name in a workspace.
+     * Get SparkConfiguration by name.
+     *
+     * <p>Get SparkConfiguration by name in a workspace.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param sparkConfigurationName SparkConfiguration name.
@@ -181,7 +185,9 @@ public final class SparkConfigurationsClientImpl implements SparkConfigurationsC
     }
 
     /**
-     * Get SparkConfiguration by name in a workspace.
+     * Get SparkConfiguration by name.
+     *
+     * <p>Get SparkConfiguration by name in a workspace.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param sparkConfigurationName SparkConfiguration name.
@@ -195,18 +201,13 @@ public final class SparkConfigurationsClientImpl implements SparkConfigurationsC
     private Mono<SparkConfigurationResourceInner> getAsync(
         String resourceGroupName, String sparkConfigurationName, String workspaceName) {
         return getWithResponseAsync(resourceGroupName, sparkConfigurationName, workspaceName)
-            .flatMap(
-                (Response<SparkConfigurationResourceInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
-     * Get SparkConfiguration by name in a workspace.
+     * Get SparkConfiguration by name.
+     *
+     * <p>Get SparkConfiguration by name in a workspace.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param sparkConfigurationName SparkConfiguration name.
@@ -223,7 +224,9 @@ public final class SparkConfigurationsClientImpl implements SparkConfigurationsC
     }
 
     /**
-     * Get SparkConfiguration by name in a workspace.
+     * Get SparkConfiguration by name.
+     *
+     * <p>Get SparkConfiguration by name in a workspace.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param sparkConfigurationName SparkConfiguration name.

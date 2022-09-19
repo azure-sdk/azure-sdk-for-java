@@ -101,9 +101,8 @@ public final class SqlPoolTransparentDataEncryptionsImpl implements SqlPoolTrans
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'sqlPools'.", id)));
         }
-        TransparentDataEncryptionName transparentDataEncryptionName =
-            TransparentDataEncryptionName.fromString(Utils.getValueFromIdByName(id, "transparentDataEncryption"));
-        if (transparentDataEncryptionName == null) {
+        String transparentDataEncryptionNameLocal = Utils.getValueFromIdByName(id, "transparentDataEncryption");
+        if (transparentDataEncryptionNameLocal == null) {
             throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
@@ -112,6 +111,8 @@ public final class SqlPoolTransparentDataEncryptionsImpl implements SqlPoolTrans
                                 "The resource ID '%s' is not valid. Missing path segment 'transparentDataEncryption'.",
                                 id)));
         }
+        TransparentDataEncryptionName transparentDataEncryptionName =
+            TransparentDataEncryptionName.fromString(transparentDataEncryptionNameLocal);
         return this
             .getWithResponse(resourceGroupName, workspaceName, sqlPoolName, transparentDataEncryptionName, Context.NONE)
             .getValue();
@@ -140,9 +141,8 @@ public final class SqlPoolTransparentDataEncryptionsImpl implements SqlPoolTrans
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'sqlPools'.", id)));
         }
-        TransparentDataEncryptionName transparentDataEncryptionName =
-            TransparentDataEncryptionName.fromString(Utils.getValueFromIdByName(id, "transparentDataEncryption"));
-        if (transparentDataEncryptionName == null) {
+        String transparentDataEncryptionNameLocal = Utils.getValueFromIdByName(id, "transparentDataEncryption");
+        if (transparentDataEncryptionNameLocal == null) {
             throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
@@ -151,6 +151,8 @@ public final class SqlPoolTransparentDataEncryptionsImpl implements SqlPoolTrans
                                 "The resource ID '%s' is not valid. Missing path segment 'transparentDataEncryption'.",
                                 id)));
         }
+        TransparentDataEncryptionName transparentDataEncryptionName =
+            TransparentDataEncryptionName.fromString(transparentDataEncryptionNameLocal);
         return this
             .getWithResponse(resourceGroupName, workspaceName, sqlPoolName, transparentDataEncryptionName, context);
     }

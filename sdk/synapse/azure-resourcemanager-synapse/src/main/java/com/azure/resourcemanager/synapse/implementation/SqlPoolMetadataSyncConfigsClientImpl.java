@@ -75,7 +75,7 @@ public final class SqlPoolMetadataSyncConfigsClientImpl implements SqlPoolMetada
         @Put(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces"
                 + "/{workspaceName}/sqlPools/{sqlPoolName}/metadataSync/config")
-        @ExpectedResponses({200, 404})
+        @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<MetadataSyncConfigInner>> create(
             @HostParam("$host") String endpoint,
@@ -90,7 +90,9 @@ public final class SqlPoolMetadataSyncConfigsClientImpl implements SqlPoolMetada
     }
 
     /**
-     * Get the metadata sync configuration for a SQL pool.
+     * Get SQL pool metadata sync config
+     *
+     * <p>Get the metadata sync configuration for a SQL pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -145,7 +147,9 @@ public final class SqlPoolMetadataSyncConfigsClientImpl implements SqlPoolMetada
     }
 
     /**
-     * Get the metadata sync configuration for a SQL pool.
+     * Get SQL pool metadata sync config
+     *
+     * <p>Get the metadata sync configuration for a SQL pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -198,7 +202,9 @@ public final class SqlPoolMetadataSyncConfigsClientImpl implements SqlPoolMetada
     }
 
     /**
-     * Get the metadata sync configuration for a SQL pool.
+     * Get SQL pool metadata sync config
+     *
+     * <p>Get the metadata sync configuration for a SQL pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -211,18 +217,13 @@ public final class SqlPoolMetadataSyncConfigsClientImpl implements SqlPoolMetada
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<MetadataSyncConfigInner> getAsync(String resourceGroupName, String workspaceName, String sqlPoolName) {
         return getWithResponseAsync(resourceGroupName, workspaceName, sqlPoolName)
-            .flatMap(
-                (Response<MetadataSyncConfigInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
-     * Get the metadata sync configuration for a SQL pool.
+     * Get SQL pool metadata sync config
+     *
+     * <p>Get the metadata sync configuration for a SQL pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -238,7 +239,9 @@ public final class SqlPoolMetadataSyncConfigsClientImpl implements SqlPoolMetada
     }
 
     /**
-     * Get the metadata sync configuration for a SQL pool.
+     * Get SQL pool metadata sync config
+     *
+     * <p>Get the metadata sync configuration for a SQL pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -256,7 +259,9 @@ public final class SqlPoolMetadataSyncConfigsClientImpl implements SqlPoolMetada
     }
 
     /**
-     * Set the metadata sync configuration for a SQL pool.
+     * Set SQL pool metadata sync config
+     *
+     * <p>Set the metadata sync configuration for a SQL pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -323,7 +328,9 @@ public final class SqlPoolMetadataSyncConfigsClientImpl implements SqlPoolMetada
     }
 
     /**
-     * Set the metadata sync configuration for a SQL pool.
+     * Set SQL pool metadata sync config
+     *
+     * <p>Set the metadata sync configuration for a SQL pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -389,7 +396,9 @@ public final class SqlPoolMetadataSyncConfigsClientImpl implements SqlPoolMetada
     }
 
     /**
-     * Set the metadata sync configuration for a SQL pool.
+     * Set SQL pool metadata sync config
+     *
+     * <p>Set the metadata sync configuration for a SQL pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -407,18 +416,13 @@ public final class SqlPoolMetadataSyncConfigsClientImpl implements SqlPoolMetada
         String sqlPoolName,
         MetadataSyncConfigInner metadataSyncConfiguration) {
         return createWithResponseAsync(resourceGroupName, workspaceName, sqlPoolName, metadataSyncConfiguration)
-            .flatMap(
-                (Response<MetadataSyncConfigInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
-     * Set the metadata sync configuration for a SQL pool.
+     * Set SQL pool metadata sync config
+     *
+     * <p>Set the metadata sync configuration for a SQL pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -439,7 +443,9 @@ public final class SqlPoolMetadataSyncConfigsClientImpl implements SqlPoolMetada
     }
 
     /**
-     * Set the metadata sync configuration for a SQL pool.
+     * Set SQL pool metadata sync config
+     *
+     * <p>Set the metadata sync configuration for a SQL pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.

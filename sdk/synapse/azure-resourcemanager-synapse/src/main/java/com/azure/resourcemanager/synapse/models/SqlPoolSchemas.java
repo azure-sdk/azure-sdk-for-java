@@ -11,7 +11,9 @@ import com.azure.core.util.Context;
 /** Resource collection API of SqlPoolSchemas. */
 public interface SqlPoolSchemas {
     /**
-     * Gets schemas of a given SQL pool.
+     * Gets schemas of a given SQL pool
+     *
+     * <p>Gets schemas of a given SQL pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -24,7 +26,9 @@ public interface SqlPoolSchemas {
     PagedIterable<SqlPoolSchema> list(String resourceGroupName, String workspaceName, String sqlPoolName);
 
     /**
-     * Gets schemas of a given SQL pool.
+     * Gets schemas of a given SQL pool
+     *
+     * <p>Gets schemas of a given SQL pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
