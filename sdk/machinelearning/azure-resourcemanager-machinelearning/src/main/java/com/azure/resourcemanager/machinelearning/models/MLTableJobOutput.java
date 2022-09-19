@@ -11,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /** The MLTableJobOutput model. */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "jobOutputType")
-@JsonTypeName("MLTable")
+@JsonTypeName("mltable")
 @Fluent
 public final class MLTableJobOutput extends JobOutput {
     /*
