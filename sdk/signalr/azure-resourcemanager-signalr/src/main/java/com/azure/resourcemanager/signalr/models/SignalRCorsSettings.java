@@ -12,9 +12,8 @@ import java.util.List;
 @Fluent
 public final class SignalRCorsSettings {
     /*
-     * Gets or sets the list of origins that should be allowed to make
-     * cross-origin calls (for example: http://example.com:12345). Use "*" to
-     * allow all. If omitted, allow all by default.
+     * Gets or sets the list of origins that should be allowed to make cross-origin calls (for example:
+     * http://example.com:12345). Use "*" to allow all. If omitted, allow all by default.
      */
     @JsonProperty(value = "allowedOrigins")
     private List<String> allowedOrigins;

@@ -162,13 +162,6 @@ public interface SignalRResource {
     List<SignalRFeature> features();
 
     /**
-     * Gets the liveTraceConfiguration property: Live trace configuration of a Microsoft.SignalRService resource.
-     *
-     * @return the liveTraceConfiguration value.
-     */
-    LiveTraceConfiguration liveTraceConfiguration();
-
-    /**
      * Gets the resourceLogConfiguration property: Resource log configuration of a Microsoft.SignalRService resource.
      *
      * @return the resourceLogConfiguration value.
@@ -236,6 +229,13 @@ public interface SignalRResource {
     String regionName();
 
     /**
+     * Gets the name of the resource group.
+     *
+     * @return the name of the resource group.
+     */
+    String resourceGroupName();
+
+    /**
      * Gets the inner com.azure.resourcemanager.signalr.fluent.models.SignalRResourceInner object.
      *
      * @return the inner object.
@@ -294,7 +294,6 @@ public interface SignalRResource {
                 DefinitionStages.WithIdentity,
                 DefinitionStages.WithTls,
                 DefinitionStages.WithFeatures,
-                DefinitionStages.WithLiveTraceConfiguration,
                 DefinitionStages.WithResourceLogConfiguration,
                 DefinitionStages.WithCors,
                 DefinitionStages.WithUpstream,
@@ -385,17 +384,6 @@ public interface SignalRResource {
              * @return the next definition stage.
              */
             WithCreate withFeatures(List<SignalRFeature> features);
-        }
-        /** The stage of the SignalRResource definition allowing to specify liveTraceConfiguration. */
-        interface WithLiveTraceConfiguration {
-            /**
-             * Specifies the liveTraceConfiguration property: Live trace configuration of a Microsoft.SignalRService
-             * resource..
-             *
-             * @param liveTraceConfiguration Live trace configuration of a Microsoft.SignalRService resource.
-             * @return the next definition stage.
-             */
-            WithCreate withLiveTraceConfiguration(LiveTraceConfiguration liveTraceConfiguration);
         }
         /** The stage of the SignalRResource definition allowing to specify resourceLogConfiguration. */
         interface WithResourceLogConfiguration {
@@ -491,7 +479,6 @@ public interface SignalRResource {
             UpdateStages.WithIdentity,
             UpdateStages.WithTls,
             UpdateStages.WithFeatures,
-            UpdateStages.WithLiveTraceConfiguration,
             UpdateStages.WithResourceLogConfiguration,
             UpdateStages.WithCors,
             UpdateStages.WithUpstream,
@@ -574,17 +561,6 @@ public interface SignalRResource {
              * @return the next definition stage.
              */
             Update withFeatures(List<SignalRFeature> features);
-        }
-        /** The stage of the SignalRResource update allowing to specify liveTraceConfiguration. */
-        interface WithLiveTraceConfiguration {
-            /**
-             * Specifies the liveTraceConfiguration property: Live trace configuration of a Microsoft.SignalRService
-             * resource..
-             *
-             * @param liveTraceConfiguration Live trace configuration of a Microsoft.SignalRService resource.
-             * @return the next definition stage.
-             */
-            Update withLiveTraceConfiguration(LiveTraceConfiguration liveTraceConfiguration);
         }
         /** The stage of the SignalRResource update allowing to specify resourceLogConfiguration. */
         interface WithResourceLogConfiguration {
