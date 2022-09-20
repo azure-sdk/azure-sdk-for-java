@@ -10,6 +10,7 @@ import com.azure.core.management.Region;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.machinelearning.fluent.models.ComputeResourceInner;
+import java.util.List;
 import java.util.Map;
 
 /** An immutable client-side representation of ComputeResource. */
@@ -262,6 +263,28 @@ public interface ComputeResource {
     ComputeResource refresh(Context context);
 
     /**
+     * Updates the custom services list. The list of custom services provided shall be overwritten.
+     *
+     * @param customServices New list of Custom Services.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void updateCustomServices(List<CustomService> customServices);
+
+    /**
+     * Updates the custom services list. The list of custom services provided shall be overwritten.
+     *
+     * @param customServices New list of Custom Services.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response}.
+     */
+    Response<Void> updateCustomServicesWithResponse(List<CustomService> customServices, Context context);
+
+    /**
      * Get the details (e.g IP address, port etc) of all the compute nodes in the compute.
      *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -357,4 +380,26 @@ public interface ComputeResource {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
     void restart(Context context);
+
+    /**
+     * Updates the idle shutdown setting of a compute instance.
+     *
+     * @param parameters The object for updating idle shutdown setting of specified ComputeInstance.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void updateIdleShutdownSetting(IdleShutdownSetting parameters);
+
+    /**
+     * Updates the idle shutdown setting of a compute instance.
+     *
+     * @param parameters The object for updating idle shutdown setting of specified ComputeInstance.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response}.
+     */
+    Response<Void> updateIdleShutdownSettingWithResponse(IdleShutdownSetting parameters, Context context);
 }

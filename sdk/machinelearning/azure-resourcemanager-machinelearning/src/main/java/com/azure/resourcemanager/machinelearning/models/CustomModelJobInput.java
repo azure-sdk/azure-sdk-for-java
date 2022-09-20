@@ -12,7 +12,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /** The CustomModelJobInput model. */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "jobInputType")
-@JsonTypeName("CustomModel")
+@JsonTypeName("custom_model")
 @Fluent
 public final class CustomModelJobInput extends JobInput {
     /*
