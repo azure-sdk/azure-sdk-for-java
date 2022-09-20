@@ -23,8 +23,7 @@ public final class OpenIdConnectRegistration {
     private OpenIdConnectClientCredential clientCredential;
 
     /*
-     * The configuration settings of the endpoints used for the custom Open ID
-     * Connect provider.
+     * The configuration settings of the endpoints used for the custom Open ID Connect provider.
      */
     @JsonProperty(value = "openIdConnectConfiguration")
     private OpenIdConnectConfig openIdConnectConfiguration;
