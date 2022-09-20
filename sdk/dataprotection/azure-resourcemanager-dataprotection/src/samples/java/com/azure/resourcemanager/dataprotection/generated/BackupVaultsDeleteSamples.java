@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for BackupVaults Delete. */
 public final class BackupVaultsDeleteSamples {
     /*
-     * x-ms-original-file: specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2021-07-01/examples/VaultCRUD/DeleteBackupVault.json
+     * x-ms-original-file: specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2022-08-31/examples/VaultCRUD/DeleteBackupVault.json
      */
     /**
      * Sample code: Delete BackupVault.
