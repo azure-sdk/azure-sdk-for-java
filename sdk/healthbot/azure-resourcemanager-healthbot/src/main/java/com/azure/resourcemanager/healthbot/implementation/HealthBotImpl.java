@@ -10,6 +10,7 @@ import com.azure.resourcemanager.healthbot.fluent.models.HealthBotInner;
 import com.azure.resourcemanager.healthbot.models.HealthBot;
 import com.azure.resourcemanager.healthbot.models.HealthBotProperties;
 import com.azure.resourcemanager.healthbot.models.HealthBotUpdateParameters;
+import com.azure.resourcemanager.healthbot.models.Identity;
 import com.azure.resourcemanager.healthbot.models.Sku;
 import java.util.Collections;
 import java.util.Map;
@@ -46,6 +47,10 @@ public final class HealthBotImpl implements HealthBot, HealthBot.Definition, Hea
 
     public Sku sku() {
         return this.innerModel().sku();
+    }
+
+    public Identity identity() {
+        return this.innerModel().identity();
     }
 
     public HealthBotProperties properties() {
@@ -182,6 +187,16 @@ public final class HealthBotImpl implements HealthBot, HealthBot.Definition, Hea
             return this;
         } else {
             this.updateParameters.withTags(tags);
+            return this;
+        }
+    }
+
+    public HealthBotImpl withIdentity(Identity identity) {
+        if (isInCreateMode()) {
+            this.innerModel().withIdentity(identity);
+            return this;
+        } else {
+            this.updateParameters.withIdentity(identity);
             return this;
         }
     }

@@ -9,7 +9,7 @@ import com.azure.resourcemanager.healthbot.fluent.models.HealthBotInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The list of Healthbot operation response. */
+/** The list of Azure Health Bot operation response. */
 @Immutable
 public final class BotResponseList {
     /*
@@ -19,7 +19,7 @@ public final class BotResponseList {
     private String nextLink;
 
     /*
-     * Gets the list of Healthbot results and their properties.
+     * Gets the list of Azure Health Bot results and their properties.
      */
     @JsonProperty(value = "value", access = JsonProperty.Access.WRITE_ONLY)
     private List<HealthBotInner> value;
@@ -34,7 +34,7 @@ public final class BotResponseList {
     }
 
     /**
-     * Get the value property: Gets the list of Healthbot results and their properties.
+     * Get the value property: Gets the list of Azure Health Bot results and their properties.
      *
      * @return the value value.
      */
