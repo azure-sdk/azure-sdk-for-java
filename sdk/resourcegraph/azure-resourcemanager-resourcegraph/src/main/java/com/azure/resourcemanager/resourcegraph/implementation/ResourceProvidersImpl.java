@@ -13,6 +13,7 @@ import com.azure.resourcemanager.resourcegraph.fluent.models.QueryResponseInner;
 import com.azure.resourcemanager.resourcegraph.models.QueryRequest;
 import com.azure.resourcemanager.resourcegraph.models.QueryResponse;
 import com.azure.resourcemanager.resourcegraph.models.ResourceProviders;
+import com.azure.resourcemanager.resourcegraph.models.ResourcesHistoryRequest;
 
 public final class ResourceProvidersImpl implements ResourceProviders {
     private static final ClientLogger LOGGER = new ClientLogger(ResourceProvidersImpl.class);
@@ -48,6 +49,14 @@ public final class ResourceProvidersImpl implements ResourceProviders {
         } else {
             return null;
         }
+    }
+
+    public Object resourcesHistory(ResourcesHistoryRequest request) {
+        return this.serviceClient().resourcesHistory(request);
+    }
+
+    public Response<Object> resourcesHistoryWithResponse(ResourcesHistoryRequest request, Context context) {
+        return this.serviceClient().resourcesHistoryWithResponse(request, context);
     }
 
     private ResourceProvidersClient serviceClient() {

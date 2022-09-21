@@ -31,4 +31,27 @@ public interface ResourceProviders {
      * @return query result along with {@link Response}.
      */
     Response<QueryResponse> resourcesWithResponse(QueryRequest query, Context context);
+
+    /**
+     * List all snapshots of a resource for a given time interval.
+     *
+     * @param request Request specifying the query and its options.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return any object.
+     */
+    Object resourcesHistory(ResourcesHistoryRequest request);
+
+    /**
+     * List all snapshots of a resource for a given time interval.
+     *
+     * @param request Request specifying the query and its options.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return any object along with {@link Response}.
+     */
+    Response<Object> resourcesHistoryWithResponse(ResourcesHistoryRequest request, Context context);
 }
