@@ -18,8 +18,7 @@ public final class WorkspaceSku {
     private WorkspaceSkuNameEnum name;
 
     /*
-     * The capacity reservation level in GB for this workspace, when
-     * CapacityReservation sku is selected.
+     * The capacity reservation level in GB for this workspace, when CapacityReservation sku is selected.
      */
     @JsonProperty(value = "capacityReservationLevel")
     private CapacityReservationLevel capacityReservationLevel;

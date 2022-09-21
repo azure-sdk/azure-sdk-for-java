@@ -19,8 +19,7 @@ public final class WorkspacePurgeBody {
     private String table;
 
     /*
-     * The set of columns and filters (queries) to run over them to purge the
-     * resulting data.
+     * The set of columns and filters (queries) to run over them to purge the resulting data.
      */
     @JsonProperty(value = "filters", required = true)
     private List<WorkspacePurgeBodyFilters> filters;

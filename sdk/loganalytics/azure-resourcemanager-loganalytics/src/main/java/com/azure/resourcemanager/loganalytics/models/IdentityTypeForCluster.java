@@ -7,43 +7,37 @@ package com.azure.resourcemanager.loganalytics.models;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-/** Linked storage accounts type. */
-public enum DataSourceType {
-    /** Enum value CustomLogs. */
-    CUSTOM_LOGS("CustomLogs"),
+/** Type of managed service identity. */
+public enum IdentityTypeForCluster {
+    /** Enum value SystemAssigned. */
+    SYSTEM_ASSIGNED("SystemAssigned"),
 
-    /** Enum value AzureWatson. */
-    AZURE_WATSON("AzureWatson"),
+    /** Enum value UserAssigned. */
+    USER_ASSIGNED("UserAssigned"),
 
-    /** Enum value Query. */
-    QUERY("Query"),
+    /** Enum value None. */
+    NONE("None");
 
-    /** Enum value Ingestion. */
-    INGESTION("Ingestion"),
-
-    /** Enum value Alerts. */
-    ALERTS("Alerts");
-
-    /** The actual serialized value for a DataSourceType instance. */
+    /** The actual serialized value for a IdentityTypeForCluster instance. */
     private final String value;
 
-    DataSourceType(String value) {
+    IdentityTypeForCluster(String value) {
         this.value = value;
     }
 
     /**
-     * Parses a serialized value to a DataSourceType instance.
+     * Parses a serialized value to a IdentityTypeForCluster instance.
      *
      * @param value the serialized value to parse.
-     * @return the parsed DataSourceType object, or null if unable to parse.
+     * @return the parsed IdentityTypeForCluster object, or null if unable to parse.
      */
     @JsonCreator
-    public static DataSourceType fromString(String value) {
+    public static IdentityTypeForCluster fromString(String value) {
         if (value == null) {
             return null;
         }
-        DataSourceType[] items = DataSourceType.values();
-        for (DataSourceType item : items) {
+        IdentityTypeForCluster[] items = IdentityTypeForCluster.values();
+        for (IdentityTypeForCluster item : items) {
             if (item.toString().equalsIgnoreCase(value)) {
                 return item;
             }

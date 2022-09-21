@@ -48,6 +48,34 @@ public final class QueryPacksImpl implements QueryPacks {
         return Utils.mapPage(inner, inner1 -> new LogAnalyticsQueryPackImpl(inner1, this.manager()));
     }
 
+    public LogAnalyticsQueryPack createOrUpdateWithoutName(
+        String resourceGroupName, LogAnalyticsQueryPackInner logAnalyticsQueryPackPayload) {
+        LogAnalyticsQueryPackInner inner =
+            this.serviceClient().createOrUpdateWithoutName(resourceGroupName, logAnalyticsQueryPackPayload);
+        if (inner != null) {
+            return new LogAnalyticsQueryPackImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
+    public Response<LogAnalyticsQueryPack> createOrUpdateWithoutNameWithResponse(
+        String resourceGroupName, LogAnalyticsQueryPackInner logAnalyticsQueryPackPayload, Context context) {
+        Response<LogAnalyticsQueryPackInner> inner =
+            this
+                .serviceClient()
+                .createOrUpdateWithoutNameWithResponse(resourceGroupName, logAnalyticsQueryPackPayload, context);
+        if (inner != null) {
+            return new SimpleResponse<>(
+                inner.getRequest(),
+                inner.getStatusCode(),
+                inner.getHeaders(),
+                new LogAnalyticsQueryPackImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
     public void deleteByResourceGroup(String resourceGroupName, String queryPackName) {
         this.serviceClient().delete(resourceGroupName, queryPackName);
     }

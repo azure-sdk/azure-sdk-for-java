@@ -10,7 +10,7 @@ import com.azure.resourcemanager.loganalytics.models.Cluster;
 import com.azure.resourcemanager.loganalytics.models.ClusterSku;
 import com.azure.resourcemanager.loganalytics.models.ClusterSkuNameEnum;
 import com.azure.resourcemanager.loganalytics.models.Identity;
-import com.azure.resourcemanager.loganalytics.models.IdentityType;
+import com.azure.resourcemanager.loganalytics.models.IdentityTypeForCluster;
 import com.azure.resourcemanager.loganalytics.models.KeyVaultProperties;
 import com.azure.resourcemanager.loganalytics.models.UserIdentityProperties;
 import java.util.HashMap;
@@ -37,7 +37,7 @@ public final class ClustersUpdateSamples {
             .withTags(mapOf("tag1", "val1"))
             .withIdentity(
                 new Identity()
-                    .withType(IdentityType.USER_ASSIGNED)
+                    .withType(IdentityTypeForCluster.USER_ASSIGNED)
                     .withUserAssignedIdentities(
                         mapOf(
                             "/subscriptions/00000000-0000-0000-0000-00000000000/resourcegroups/oiautorest6685/providers/Microsoft.ManagedIdentity/userAssignedIdentities/myidentity",

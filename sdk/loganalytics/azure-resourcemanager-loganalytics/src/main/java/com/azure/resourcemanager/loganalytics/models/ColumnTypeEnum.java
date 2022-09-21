@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for ColumnTypeEnum. */
+/** Column data type. */
 public final class ColumnTypeEnum extends ExpandableStringEnum<ColumnTypeEnum> {
     /** Static value string for ColumnTypeEnum. */
     public static final ColumnTypeEnum STRING = fromString("string");

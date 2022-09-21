@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.loganalytics.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.http.HttpHeaders;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** The WorkspacePurgesPurgeHeaders model. */
@@ -15,6 +16,16 @@ public final class WorkspacePurgesPurgeHeaders {
      */
     @JsonProperty(value = "x-ms-status-location")
     private String xMsStatusLocation;
+
+    // HttpHeaders containing the raw property values.
+    /**
+     * Creates an instance of WorkspacePurgesPurgeHeaders class.
+     *
+     * @param rawHeaders The raw HttpHeaders that will be used to create the property values.
+     */
+    public WorkspacePurgesPurgeHeaders(HttpHeaders rawHeaders) {
+        this.xMsStatusLocation = rawHeaders.getValue("x-ms-status-location");
+    }
 
     /**
      * Get the xMsStatusLocation property: The x-ms-status-location property.

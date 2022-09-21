@@ -30,10 +30,9 @@ public final class LogAnalyticsQueryPackProperties {
     private OffsetDateTime timeModified;
 
     /*
-     * Current state of this QueryPack: whether or not is has been provisioned
-     * within the resource group it is defined. Users cannot change this value
-     * but are able to read from it. Values will include Succeeded, Deploying,
-     * Canceled, and Failed.
+     * Current state of this QueryPack: whether or not is has been provisioned within the resource group it is defined.
+     * Users cannot change this value but are able to read from it. Values will include Succeeded, Deploying, Canceled,
+     * and Failed.
      */
     @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
     private String provisioningState;

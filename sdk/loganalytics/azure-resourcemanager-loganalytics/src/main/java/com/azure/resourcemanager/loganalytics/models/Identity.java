@@ -29,11 +29,11 @@ public class Identity {
      * Type of managed service identity.
      */
     @JsonProperty(value = "type", required = true)
-    private IdentityType type;
+    private IdentityTypeForCluster type;
 
     /*
-     * The list of user identities associated with the resource. The user
-     * identity dictionary key references will be ARM resource ids in the form:
+     * The list of user identities associated with the resource. The user identity dictionary key references will be
+     * ARM resource ids in the form:
      * '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}'.
      */
     @JsonProperty(value = "userAssignedIdentities")
@@ -63,7 +63,7 @@ public class Identity {
      *
      * @return the type value.
      */
-    public IdentityType type() {
+    public IdentityTypeForCluster type() {
         return this.type;
     }
 
@@ -73,7 +73,7 @@ public class Identity {
      * @param type the type value to set.
      * @return the Identity object itself.
      */
-    public Identity withType(IdentityType type) {
+    public Identity withType(IdentityTypeForCluster type) {
         this.type = type;
         return this;
     }

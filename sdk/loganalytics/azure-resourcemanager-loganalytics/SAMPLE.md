@@ -81,6 +81,7 @@
 ## QueryPacks
 
 - [CreateOrUpdate](#querypacks_createorupdate)
+- [CreateOrUpdateWithoutName](#querypacks_createorupdatewithoutname)
 - [Delete](#querypacks_delete)
 - [GetByResourceGroup](#querypacks_getbyresourcegroup)
 - [List](#querypacks_list)
@@ -296,7 +297,7 @@ import com.azure.resourcemanager.loganalytics.models.Cluster;
 import com.azure.resourcemanager.loganalytics.models.ClusterSku;
 import com.azure.resourcemanager.loganalytics.models.ClusterSkuNameEnum;
 import com.azure.resourcemanager.loganalytics.models.Identity;
-import com.azure.resourcemanager.loganalytics.models.IdentityType;
+import com.azure.resourcemanager.loganalytics.models.IdentityTypeForCluster;
 import com.azure.resourcemanager.loganalytics.models.KeyVaultProperties;
 import com.azure.resourcemanager.loganalytics.models.UserIdentityProperties;
 import java.util.HashMap;
@@ -323,7 +324,7 @@ public final class ClustersUpdateSamples {
             .withTags(mapOf("tag1", "val1"))
             .withIdentity(
                 new Identity()
-                    .withType(IdentityType.USER_ASSIGNED)
+                    .withType(IdentityTypeForCluster.USER_ASSIGNED)
                     .withUserAssignedIdentities(
                         mapOf(
                             "/subscriptions/00000000-0000-0000-0000-00000000000/resourcegroups/oiautorest6685/providers/Microsoft.ManagedIdentity/userAssignedIdentities/myidentity",
@@ -1223,6 +1224,61 @@ public final class QueryPacksCreateOrUpdateSamples {
 }
 ```
 
+### QueryPacks_CreateOrUpdateWithoutName
+
+```java
+import com.azure.core.util.Context;
+import com.azure.resourcemanager.loganalytics.fluent.models.LogAnalyticsQueryPackInner;
+import java.util.HashMap;
+import java.util.Map;
+
+/** Samples for QueryPacks CreateOrUpdateWithoutName. */
+public final class QueryPacksCreateOrUpdateWithoutNameSamples {
+    /*
+     * x-ms-original-file: specification/operationalinsights/resource-manager/Microsoft.OperationalInsights/stable/2019-09-01/examples/QueryPacksCreateNoName.json
+     */
+    /**
+     * Sample code: QueryPackCreateNoName.
+     *
+     * @param manager Entry point to LogAnalyticsManager.
+     */
+    public static void queryPackCreateNoName(com.azure.resourcemanager.loganalytics.LogAnalyticsManager manager) {
+        manager
+            .queryPacks()
+            .createOrUpdateWithoutNameWithResponse(
+                "my-resource-group", new LogAnalyticsQueryPackInner().withLocation("South Central US"), Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file: specification/operationalinsights/resource-manager/Microsoft.OperationalInsights/stable/2019-09-01/examples/QueryPackUpdateNoName.json
+     */
+    /**
+     * Sample code: QueryPackUpdateNoName.
+     *
+     * @param manager Entry point to LogAnalyticsManager.
+     */
+    public static void queryPackUpdateNoName(com.azure.resourcemanager.loganalytics.LogAnalyticsManager manager) {
+        manager
+            .queryPacks()
+            .createOrUpdateWithoutNameWithResponse(
+                "my-resource-group",
+                new LogAnalyticsQueryPackInner().withLocation("South Central US").withTags(mapOf("Tag1", "Value1")),
+                Context.NONE);
+    }
+
+    @SuppressWarnings("unchecked")
+    private static <T> Map<String, T> mapOf(Object... inputs) {
+        Map<String, T> map = new HashMap<>();
+        for (int i = 0; i < inputs.length; i += 2) {
+            String key = (String) inputs[i];
+            T value = (T) inputs[i + 1];
+            map.put(key, value);
+        }
+        return map;
+    }
+}
+```
+
 ### QueryPacks_Delete
 
 ```java
@@ -2032,7 +2088,7 @@ public final class WorkspacesUpdateSamples {
             .update()
             .withSku(new WorkspaceSku().withName(WorkspaceSkuNameEnum.PER_GB2018))
             .withRetentionInDays(30)
-            .withWorkspaceCapping(new WorkspaceCapping().withDailyQuotaGb(-1.0))
+            .withWorkspaceCapping(new WorkspaceCapping().withDailyQuotaGb(-1.0D))
             .apply();
     }
 }
