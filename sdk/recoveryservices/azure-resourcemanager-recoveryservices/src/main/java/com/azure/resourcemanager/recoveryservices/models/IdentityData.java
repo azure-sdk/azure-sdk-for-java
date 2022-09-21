@@ -26,17 +26,15 @@ public final class IdentityData {
     private String tenantId;
 
     /*
-     * The type of managed identity used. The type 'SystemAssigned,
-     * UserAssigned' includes both an implicitly created identity and a set of
-     * user-assigned identities. The type 'None' will remove any identities.
+     * The type of managed identity used. The type 'SystemAssigned, UserAssigned' includes both an implicitly created
+     * identity and a set of user-assigned identities. The type 'None' will remove any identities.
      */
     @JsonProperty(value = "type", required = true)
     private ResourceIdentityType type;
 
     /*
-     * The list of user-assigned identities associated with the resource. The
-     * user-assigned identity dictionary keys will be ARM resource ids in the
-     * form:
+     * The list of user-assigned identities associated with the resource. The user-assigned identity dictionary keys
+     * will be ARM resource ids in the form:
      * '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}'.
      */
     @JsonProperty(value = "userAssignedIdentities")

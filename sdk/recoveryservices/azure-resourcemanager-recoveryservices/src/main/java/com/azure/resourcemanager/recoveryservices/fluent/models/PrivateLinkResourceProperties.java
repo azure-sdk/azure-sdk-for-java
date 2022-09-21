@@ -12,8 +12,7 @@ import java.util.List;
 @Immutable
 public final class PrivateLinkResourceProperties {
     /*
-     * e.g. f9ad6492-33d4-4690-9999-6bfd52a0d081 (Backup) or
-     * f9ad6492-33d4-4690-9999-6bfd52a0d082 (SiteRecovery)
+     * e.g. f9ad6492-33d4-4690-9999-6bfd52a0d081 (Backup) or f9ad6492-33d4-4690-9999-6bfd52a0d082 (SiteRecovery)
      */
     @JsonProperty(value = "groupId", access = JsonProperty.Access.WRITE_ONLY)
     private String groupId;
