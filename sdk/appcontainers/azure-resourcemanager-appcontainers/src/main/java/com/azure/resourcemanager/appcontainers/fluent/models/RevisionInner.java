@@ -23,8 +23,7 @@ public final class RevisionInner extends ProxyResource {
     private RevisionProperties innerProperties;
 
     /*
-     * Azure Resource Manager metadata containing createdBy and modifiedBy
-     * information.
+     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
      */
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
@@ -54,6 +53,16 @@ public final class RevisionInner extends ProxyResource {
      */
     public OffsetDateTime createdTime() {
         return this.innerProperties() == null ? null : this.innerProperties().createdTime();
+    }
+
+    /**
+     * Get the lastActiveTime property: Timestamp describing when the revision was last active. Only meaningful when
+     * revision is inactive.
+     *
+     * @return the lastActiveTime value.
+     */
+    public OffsetDateTime lastActiveTime() {
+        return this.innerProperties() == null ? null : this.innerProperties().lastActiveTime();
     }
 
     /**
