@@ -16,16 +16,10 @@ import java.util.List;
 @Fluent
 public final class Classification extends AutoMLVertical {
     /*
-     * Allowed models for classification task.
+     * Positive label for binary metrics calculation.
      */
-    @JsonProperty(value = "allowedModels")
-    private List<ClassificationModels> allowedModels;
-
-    /*
-     * Blocked models for classification task.
-     */
-    @JsonProperty(value = "blockedModels")
-    private List<ClassificationModels> blockedModels;
+    @JsonProperty(value = "positiveLabel")
+    private String positiveLabel;
 
     /*
      * Primary metric for the task.
@@ -34,10 +28,16 @@ public final class Classification extends AutoMLVertical {
     private ClassificationPrimaryMetrics primaryMetric;
 
     /*
-     * Data inputs for AutoMLJob.
+     * Inputs for training phase for an AutoML Job.
      */
-    @JsonProperty(value = "dataSettings")
-    private TableVerticalDataSettings dataSettings;
+    @JsonProperty(value = "trainingSettings")
+    private ClassificationTrainingSettings trainingSettings;
+
+    /*
+     * Columns to use for CVSplit data.
+     */
+    @JsonProperty(value = "cvSplitColumnNames")
+    private List<String> cvSplitColumnNames;
 
     /*
      * Featurization inputs needed for AutoML job.
@@ -46,54 +46,88 @@ public final class Classification extends AutoMLVertical {
     private TableVerticalFeaturizationSettings featurizationSettings;
 
     /*
+     * Model/training parameters that will remain constant throughout training.
+     */
+    @JsonProperty(value = "fixedParameters")
+    private TableFixedParameters fixedParameters;
+
+    /*
      * Execution constraints for AutoMLJob.
      */
     @JsonProperty(value = "limitSettings")
     private TableVerticalLimitSettings limitSettings;
 
     /*
-     * Inputs for training phase for an AutoML Job.
+     * Number of cross validation folds to be applied on training dataset
+     * when validation dataset is not provided.
      */
-    @JsonProperty(value = "trainingSettings")
-    private TrainingSettings trainingSettings;
+    @JsonProperty(value = "nCrossValidations")
+    private NCrossValidations nCrossValidations;
+
+    /*
+     * Search space for sampling different combinations of models and their hyperparameters.
+     */
+    @JsonProperty(value = "searchSpace")
+    private List<TableParameterSubspace> searchSpace;
+
+    /*
+     * Settings for model sweeping and hyperparameter tuning.
+     */
+    @JsonProperty(value = "sweepSettings")
+    private TableSweepSettings sweepSettings;
+
+    /*
+     * Test data input.
+     */
+    @JsonProperty(value = "testData")
+    private MLTableJobInput testData;
+
+    /*
+     * The fraction of test dataset that needs to be set aside for validation purpose.
+     * Values between (0.0 , 1.0)
+     * Applied when validation dataset is not provided.
+     */
+    @JsonProperty(value = "testDataSize")
+    private Double testDataSize;
+
+    /*
+     * Validation data inputs.
+     */
+    @JsonProperty(value = "validationData")
+    private MLTableJobInput validationData;
+
+    /*
+     * The fraction of training dataset that needs to be set aside for validation purpose.
+     * Values between (0.0 , 1.0)
+     * Applied when validation dataset is not provided.
+     */
+    @JsonProperty(value = "validationDataSize")
+    private Double validationDataSize;
+
+    /*
+     * The name of the sample weight column. Automated ML supports a weighted column as an input, causing rows in the
+     * data to be weighted up or down.
+     */
+    @JsonProperty(value = "weightColumnName")
+    private String weightColumnName;
 
     /**
-     * Get the allowedModels property: Allowed models for classification task.
+     * Get the positiveLabel property: Positive label for binary metrics calculation.
      *
-     * @return the allowedModels value.
+     * @return the positiveLabel value.
      */
-    public List<ClassificationModels> allowedModels() {
-        return this.allowedModels;
+    public String positiveLabel() {
+        return this.positiveLabel;
     }
 
     /**
-     * Set the allowedModels property: Allowed models for classification task.
+     * Set the positiveLabel property: Positive label for binary metrics calculation.
      *
-     * @param allowedModels the allowedModels value to set.
+     * @param positiveLabel the positiveLabel value to set.
      * @return the Classification object itself.
      */
-    public Classification withAllowedModels(List<ClassificationModels> allowedModels) {
-        this.allowedModels = allowedModels;
-        return this;
-    }
-
-    /**
-     * Get the blockedModels property: Blocked models for classification task.
-     *
-     * @return the blockedModels value.
-     */
-    public List<ClassificationModels> blockedModels() {
-        return this.blockedModels;
-    }
-
-    /**
-     * Set the blockedModels property: Blocked models for classification task.
-     *
-     * @param blockedModels the blockedModels value to set.
-     * @return the Classification object itself.
-     */
-    public Classification withBlockedModels(List<ClassificationModels> blockedModels) {
-        this.blockedModels = blockedModels;
+    public Classification withPositiveLabel(String positiveLabel) {
+        this.positiveLabel = positiveLabel;
         return this;
     }
 
@@ -118,22 +152,42 @@ public final class Classification extends AutoMLVertical {
     }
 
     /**
-     * Get the dataSettings property: Data inputs for AutoMLJob.
+     * Get the trainingSettings property: Inputs for training phase for an AutoML Job.
      *
-     * @return the dataSettings value.
+     * @return the trainingSettings value.
      */
-    public TableVerticalDataSettings dataSettings() {
-        return this.dataSettings;
+    public ClassificationTrainingSettings trainingSettings() {
+        return this.trainingSettings;
     }
 
     /**
-     * Set the dataSettings property: Data inputs for AutoMLJob.
+     * Set the trainingSettings property: Inputs for training phase for an AutoML Job.
      *
-     * @param dataSettings the dataSettings value to set.
+     * @param trainingSettings the trainingSettings value to set.
      * @return the Classification object itself.
      */
-    public Classification withDataSettings(TableVerticalDataSettings dataSettings) {
-        this.dataSettings = dataSettings;
+    public Classification withTrainingSettings(ClassificationTrainingSettings trainingSettings) {
+        this.trainingSettings = trainingSettings;
+        return this;
+    }
+
+    /**
+     * Get the cvSplitColumnNames property: Columns to use for CVSplit data.
+     *
+     * @return the cvSplitColumnNames value.
+     */
+    public List<String> cvSplitColumnNames() {
+        return this.cvSplitColumnNames;
+    }
+
+    /**
+     * Set the cvSplitColumnNames property: Columns to use for CVSplit data.
+     *
+     * @param cvSplitColumnNames the cvSplitColumnNames value to set.
+     * @return the Classification object itself.
+     */
+    public Classification withCvSplitColumnNames(List<String> cvSplitColumnNames) {
+        this.cvSplitColumnNames = cvSplitColumnNames;
         return this;
     }
 
@@ -158,6 +212,26 @@ public final class Classification extends AutoMLVertical {
     }
 
     /**
+     * Get the fixedParameters property: Model/training parameters that will remain constant throughout training.
+     *
+     * @return the fixedParameters value.
+     */
+    public TableFixedParameters fixedParameters() {
+        return this.fixedParameters;
+    }
+
+    /**
+     * Set the fixedParameters property: Model/training parameters that will remain constant throughout training.
+     *
+     * @param fixedParameters the fixedParameters value to set.
+     * @return the Classification object itself.
+     */
+    public Classification withFixedParameters(TableFixedParameters fixedParameters) {
+        this.fixedParameters = fixedParameters;
+        return this;
+    }
+
+    /**
      * Get the limitSettings property: Execution constraints for AutoMLJob.
      *
      * @return the limitSettings value.
@@ -178,22 +252,172 @@ public final class Classification extends AutoMLVertical {
     }
 
     /**
-     * Get the trainingSettings property: Inputs for training phase for an AutoML Job.
+     * Get the nCrossValidations property: Number of cross validation folds to be applied on training dataset when
+     * validation dataset is not provided.
      *
-     * @return the trainingSettings value.
+     * @return the nCrossValidations value.
      */
-    public TrainingSettings trainingSettings() {
-        return this.trainingSettings;
+    public NCrossValidations nCrossValidations() {
+        return this.nCrossValidations;
     }
 
     /**
-     * Set the trainingSettings property: Inputs for training phase for an AutoML Job.
+     * Set the nCrossValidations property: Number of cross validation folds to be applied on training dataset when
+     * validation dataset is not provided.
      *
-     * @param trainingSettings the trainingSettings value to set.
+     * @param nCrossValidations the nCrossValidations value to set.
      * @return the Classification object itself.
      */
-    public Classification withTrainingSettings(TrainingSettings trainingSettings) {
-        this.trainingSettings = trainingSettings;
+    public Classification withNCrossValidations(NCrossValidations nCrossValidations) {
+        this.nCrossValidations = nCrossValidations;
+        return this;
+    }
+
+    /**
+     * Get the searchSpace property: Search space for sampling different combinations of models and their
+     * hyperparameters.
+     *
+     * @return the searchSpace value.
+     */
+    public List<TableParameterSubspace> searchSpace() {
+        return this.searchSpace;
+    }
+
+    /**
+     * Set the searchSpace property: Search space for sampling different combinations of models and their
+     * hyperparameters.
+     *
+     * @param searchSpace the searchSpace value to set.
+     * @return the Classification object itself.
+     */
+    public Classification withSearchSpace(List<TableParameterSubspace> searchSpace) {
+        this.searchSpace = searchSpace;
+        return this;
+    }
+
+    /**
+     * Get the sweepSettings property: Settings for model sweeping and hyperparameter tuning.
+     *
+     * @return the sweepSettings value.
+     */
+    public TableSweepSettings sweepSettings() {
+        return this.sweepSettings;
+    }
+
+    /**
+     * Set the sweepSettings property: Settings for model sweeping and hyperparameter tuning.
+     *
+     * @param sweepSettings the sweepSettings value to set.
+     * @return the Classification object itself.
+     */
+    public Classification withSweepSettings(TableSweepSettings sweepSettings) {
+        this.sweepSettings = sweepSettings;
+        return this;
+    }
+
+    /**
+     * Get the testData property: Test data input.
+     *
+     * @return the testData value.
+     */
+    public MLTableJobInput testData() {
+        return this.testData;
+    }
+
+    /**
+     * Set the testData property: Test data input.
+     *
+     * @param testData the testData value to set.
+     * @return the Classification object itself.
+     */
+    public Classification withTestData(MLTableJobInput testData) {
+        this.testData = testData;
+        return this;
+    }
+
+    /**
+     * Get the testDataSize property: The fraction of test dataset that needs to be set aside for validation purpose.
+     * Values between (0.0 , 1.0) Applied when validation dataset is not provided.
+     *
+     * @return the testDataSize value.
+     */
+    public Double testDataSize() {
+        return this.testDataSize;
+    }
+
+    /**
+     * Set the testDataSize property: The fraction of test dataset that needs to be set aside for validation purpose.
+     * Values between (0.0 , 1.0) Applied when validation dataset is not provided.
+     *
+     * @param testDataSize the testDataSize value to set.
+     * @return the Classification object itself.
+     */
+    public Classification withTestDataSize(Double testDataSize) {
+        this.testDataSize = testDataSize;
+        return this;
+    }
+
+    /**
+     * Get the validationData property: Validation data inputs.
+     *
+     * @return the validationData value.
+     */
+    public MLTableJobInput validationData() {
+        return this.validationData;
+    }
+
+    /**
+     * Set the validationData property: Validation data inputs.
+     *
+     * @param validationData the validationData value to set.
+     * @return the Classification object itself.
+     */
+    public Classification withValidationData(MLTableJobInput validationData) {
+        this.validationData = validationData;
+        return this;
+    }
+
+    /**
+     * Get the validationDataSize property: The fraction of training dataset that needs to be set aside for validation
+     * purpose. Values between (0.0 , 1.0) Applied when validation dataset is not provided.
+     *
+     * @return the validationDataSize value.
+     */
+    public Double validationDataSize() {
+        return this.validationDataSize;
+    }
+
+    /**
+     * Set the validationDataSize property: The fraction of training dataset that needs to be set aside for validation
+     * purpose. Values between (0.0 , 1.0) Applied when validation dataset is not provided.
+     *
+     * @param validationDataSize the validationDataSize value to set.
+     * @return the Classification object itself.
+     */
+    public Classification withValidationDataSize(Double validationDataSize) {
+        this.validationDataSize = validationDataSize;
+        return this;
+    }
+
+    /**
+     * Get the weightColumnName property: The name of the sample weight column. Automated ML supports a weighted column
+     * as an input, causing rows in the data to be weighted up or down.
+     *
+     * @return the weightColumnName value.
+     */
+    public String weightColumnName() {
+        return this.weightColumnName;
+    }
+
+    /**
+     * Set the weightColumnName property: The name of the sample weight column. Automated ML supports a weighted column
+     * as an input, causing rows in the data to be weighted up or down.
+     *
+     * @param weightColumnName the weightColumnName value to set.
+     * @return the Classification object itself.
+     */
+    public Classification withWeightColumnName(String weightColumnName) {
+        this.weightColumnName = weightColumnName;
         return this;
     }
 
@@ -201,6 +425,20 @@ public final class Classification extends AutoMLVertical {
     @Override
     public Classification withLogVerbosity(LogVerbosity logVerbosity) {
         super.withLogVerbosity(logVerbosity);
+        return this;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public Classification withTargetColumnName(String targetColumnName) {
+        super.withTargetColumnName(targetColumnName);
+        return this;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public Classification withTrainingData(MLTableJobInput trainingData) {
+        super.withTrainingData(trainingData);
         return this;
     }
 
@@ -212,17 +450,32 @@ public final class Classification extends AutoMLVertical {
     @Override
     public void validate() {
         super.validate();
-        if (dataSettings() != null) {
-            dataSettings().validate();
+        if (trainingSettings() != null) {
+            trainingSettings().validate();
         }
         if (featurizationSettings() != null) {
             featurizationSettings().validate();
         }
+        if (fixedParameters() != null) {
+            fixedParameters().validate();
+        }
         if (limitSettings() != null) {
             limitSettings().validate();
         }
-        if (trainingSettings() != null) {
-            trainingSettings().validate();
+        if (nCrossValidations() != null) {
+            nCrossValidations().validate();
+        }
+        if (searchSpace() != null) {
+            searchSpace().forEach(e -> e.validate());
+        }
+        if (sweepSettings() != null) {
+            sweepSettings().validate();
+        }
+        if (testData() != null) {
+            testData().validate();
+        }
+        if (validationData() != null) {
+            validationData().validate();
         }
     }
 }

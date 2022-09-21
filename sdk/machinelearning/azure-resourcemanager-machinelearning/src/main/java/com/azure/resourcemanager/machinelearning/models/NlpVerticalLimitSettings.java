@@ -18,6 +18,12 @@ public final class NlpVerticalLimitSettings {
     private Integer maxConcurrentTrials;
 
     /*
+     * Maximum nodes to leverage for training in any single trial. Controls multi-node distributed training.
+     */
+    @JsonProperty(value = "maxNodes")
+    private Integer maxNodes;
+
+    /*
      * Number of AutoML iterations.
      */
     @JsonProperty(value = "maxTrials")
@@ -28,6 +34,12 @@ public final class NlpVerticalLimitSettings {
      */
     @JsonProperty(value = "timeout")
     private Duration timeout;
+
+    /*
+     * Timeout for individual HD trials.
+     */
+    @JsonProperty(value = "trialTimeout")
+    private Duration trialTimeout;
 
     /**
      * Get the maxConcurrentTrials property: Maximum Concurrent AutoML iterations.
@@ -46,6 +58,28 @@ public final class NlpVerticalLimitSettings {
      */
     public NlpVerticalLimitSettings withMaxConcurrentTrials(Integer maxConcurrentTrials) {
         this.maxConcurrentTrials = maxConcurrentTrials;
+        return this;
+    }
+
+    /**
+     * Get the maxNodes property: Maximum nodes to leverage for training in any single trial. Controls multi-node
+     * distributed training.
+     *
+     * @return the maxNodes value.
+     */
+    public Integer maxNodes() {
+        return this.maxNodes;
+    }
+
+    /**
+     * Set the maxNodes property: Maximum nodes to leverage for training in any single trial. Controls multi-node
+     * distributed training.
+     *
+     * @param maxNodes the maxNodes value to set.
+     * @return the NlpVerticalLimitSettings object itself.
+     */
+    public NlpVerticalLimitSettings withMaxNodes(Integer maxNodes) {
+        this.maxNodes = maxNodes;
         return this;
     }
 
@@ -86,6 +120,26 @@ public final class NlpVerticalLimitSettings {
      */
     public NlpVerticalLimitSettings withTimeout(Duration timeout) {
         this.timeout = timeout;
+        return this;
+    }
+
+    /**
+     * Get the trialTimeout property: Timeout for individual HD trials.
+     *
+     * @return the trialTimeout value.
+     */
+    public Duration trialTimeout() {
+        return this.trialTimeout;
+    }
+
+    /**
+     * Set the trialTimeout property: Timeout for individual HD trials.
+     *
+     * @param trialTimeout the trialTimeout value to set.
+     * @return the NlpVerticalLimitSettings object itself.
+     */
+    public NlpVerticalLimitSettings withTrialTimeout(Duration trialTimeout) {
+        this.trialTimeout = trialTimeout;
         return this;
     }
 

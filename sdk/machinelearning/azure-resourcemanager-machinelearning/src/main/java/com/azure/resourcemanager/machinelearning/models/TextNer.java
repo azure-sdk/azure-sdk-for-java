@@ -8,6 +8,7 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
+import java.util.List;
 
 /** Text-NER task in AutoML NLP vertical. NER - Named Entity Recognition. NLP - Natural Language Processing. */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "taskType")
@@ -16,17 +17,10 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 public final class TextNer extends AutoMLVertical {
     /*
      * Primary metric for Text-NER task.
-     * Only 'Accuracy' is supported for Text-NER, so user need not set this
-     * explicitly.
+     * Only 'Accuracy' is supported for Text-NER, so user need not set this explicitly.
      */
     @JsonProperty(value = "primaryMetric", access = JsonProperty.Access.WRITE_ONLY)
     private ClassificationPrimaryMetrics primaryMetric;
-
-    /*
-     * Data inputs for AutoMLJob.
-     */
-    @JsonProperty(value = "dataSettings")
-    private NlpVerticalDataSettings dataSettings;
 
     /*
      * Featurization inputs needed for AutoML job.
@@ -35,10 +29,34 @@ public final class TextNer extends AutoMLVertical {
     private NlpVerticalFeaturizationSettings featurizationSettings;
 
     /*
+     * Model/training parameters that will remain constant throughout training.
+     */
+    @JsonProperty(value = "fixedParameters")
+    private NlpFixedParameters fixedParameters;
+
+    /*
      * Execution constraints for AutoMLJob.
      */
     @JsonProperty(value = "limitSettings")
     private NlpVerticalLimitSettings limitSettings;
+
+    /*
+     * Search space for sampling different combinations of models and their hyperparameters.
+     */
+    @JsonProperty(value = "searchSpace")
+    private List<NlpParameterSubspace> searchSpace;
+
+    /*
+     * Settings for model sweeping and hyperparameter tuning.
+     */
+    @JsonProperty(value = "sweepSettings")
+    private NlpSweepSettings sweepSettings;
+
+    /*
+     * Validation data inputs.
+     */
+    @JsonProperty(value = "validationData")
+    private MLTableJobInput validationData;
 
     /**
      * Get the primaryMetric property: Primary metric for Text-NER task. Only 'Accuracy' is supported for Text-NER, so
@@ -48,26 +66,6 @@ public final class TextNer extends AutoMLVertical {
      */
     public ClassificationPrimaryMetrics primaryMetric() {
         return this.primaryMetric;
-    }
-
-    /**
-     * Get the dataSettings property: Data inputs for AutoMLJob.
-     *
-     * @return the dataSettings value.
-     */
-    public NlpVerticalDataSettings dataSettings() {
-        return this.dataSettings;
-    }
-
-    /**
-     * Set the dataSettings property: Data inputs for AutoMLJob.
-     *
-     * @param dataSettings the dataSettings value to set.
-     * @return the TextNer object itself.
-     */
-    public TextNer withDataSettings(NlpVerticalDataSettings dataSettings) {
-        this.dataSettings = dataSettings;
-        return this;
     }
 
     /**
@@ -91,6 +89,26 @@ public final class TextNer extends AutoMLVertical {
     }
 
     /**
+     * Get the fixedParameters property: Model/training parameters that will remain constant throughout training.
+     *
+     * @return the fixedParameters value.
+     */
+    public NlpFixedParameters fixedParameters() {
+        return this.fixedParameters;
+    }
+
+    /**
+     * Set the fixedParameters property: Model/training parameters that will remain constant throughout training.
+     *
+     * @param fixedParameters the fixedParameters value to set.
+     * @return the TextNer object itself.
+     */
+    public TextNer withFixedParameters(NlpFixedParameters fixedParameters) {
+        this.fixedParameters = fixedParameters;
+        return this;
+    }
+
+    /**
      * Get the limitSettings property: Execution constraints for AutoMLJob.
      *
      * @return the limitSettings value.
@@ -110,10 +128,86 @@ public final class TextNer extends AutoMLVertical {
         return this;
     }
 
+    /**
+     * Get the searchSpace property: Search space for sampling different combinations of models and their
+     * hyperparameters.
+     *
+     * @return the searchSpace value.
+     */
+    public List<NlpParameterSubspace> searchSpace() {
+        return this.searchSpace;
+    }
+
+    /**
+     * Set the searchSpace property: Search space for sampling different combinations of models and their
+     * hyperparameters.
+     *
+     * @param searchSpace the searchSpace value to set.
+     * @return the TextNer object itself.
+     */
+    public TextNer withSearchSpace(List<NlpParameterSubspace> searchSpace) {
+        this.searchSpace = searchSpace;
+        return this;
+    }
+
+    /**
+     * Get the sweepSettings property: Settings for model sweeping and hyperparameter tuning.
+     *
+     * @return the sweepSettings value.
+     */
+    public NlpSweepSettings sweepSettings() {
+        return this.sweepSettings;
+    }
+
+    /**
+     * Set the sweepSettings property: Settings for model sweeping and hyperparameter tuning.
+     *
+     * @param sweepSettings the sweepSettings value to set.
+     * @return the TextNer object itself.
+     */
+    public TextNer withSweepSettings(NlpSweepSettings sweepSettings) {
+        this.sweepSettings = sweepSettings;
+        return this;
+    }
+
+    /**
+     * Get the validationData property: Validation data inputs.
+     *
+     * @return the validationData value.
+     */
+    public MLTableJobInput validationData() {
+        return this.validationData;
+    }
+
+    /**
+     * Set the validationData property: Validation data inputs.
+     *
+     * @param validationData the validationData value to set.
+     * @return the TextNer object itself.
+     */
+    public TextNer withValidationData(MLTableJobInput validationData) {
+        this.validationData = validationData;
+        return this;
+    }
+
     /** {@inheritDoc} */
     @Override
     public TextNer withLogVerbosity(LogVerbosity logVerbosity) {
         super.withLogVerbosity(logVerbosity);
+        return this;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public TextNer withTargetColumnName(String targetColumnName) {
+        super.withTargetColumnName(targetColumnName);
+        return this;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public TextNer withTrainingData(MLTableJobInput trainingData) {
+        super.withTrainingData(trainingData);
         return this;
     }
 
@@ -125,14 +219,23 @@ public final class TextNer extends AutoMLVertical {
     @Override
     public void validate() {
         super.validate();
-        if (dataSettings() != null) {
-            dataSettings().validate();
-        }
         if (featurizationSettings() != null) {
             featurizationSettings().validate();
         }
+        if (fixedParameters() != null) {
+            fixedParameters().validate();
+        }
         if (limitSettings() != null) {
             limitSettings().validate();
+        }
+        if (searchSpace() != null) {
+            searchSpace().forEach(e -> e.validate());
+        }
+        if (sweepSettings() != null) {
+            sweepSettings().validate();
+        }
+        if (validationData() != null) {
+            validationData().validate();
         }
     }
 }

@@ -17,23 +17,22 @@ public final class AksNetworkingConfiguration {
     private String subnetId;
 
     /*
-     * A CIDR notation IP range from which to assign service cluster IPs. It
-     * must not overlap with any Subnet IP ranges.
+     * A CIDR notation IP range from which to assign service cluster IPs. It must not overlap with any Subnet IP
+     * ranges.
      */
     @JsonProperty(value = "serviceCidr")
     private String serviceCidr;
 
     /*
-     * An IP address assigned to the Kubernetes DNS service. It must be within
-     * the Kubernetes service address range specified in serviceCidr.
+     * An IP address assigned to the Kubernetes DNS service. It must be within the Kubernetes service address range
+     * specified in serviceCidr.
      */
     @JsonProperty(value = "dnsServiceIP")
     private String dnsServiceIp;
 
     /*
-     * A CIDR notation IP range assigned to the Docker bridge network. It must
-     * not overlap with any Subnet IP ranges or the Kubernetes service address
-     * range.
+     * A CIDR notation IP range assigned to the Docker bridge network. It must not overlap with any Subnet IP ranges or
+     * the Kubernetes service address range.
      */
     @JsonProperty(value = "dockerBridgeCidr")
     private String dockerBridgeCidr;

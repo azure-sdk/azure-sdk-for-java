@@ -10,8 +10,8 @@ import com.azure.core.http.rest.SimpleResponse;
 import com.azure.core.util.Context;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.machinelearning.fluent.ComponentVersionsClient;
-import com.azure.resourcemanager.machinelearning.fluent.models.ComponentVersionDataInner;
-import com.azure.resourcemanager.machinelearning.models.ComponentVersionData;
+import com.azure.resourcemanager.machinelearning.fluent.models.ComponentVersionInner;
+import com.azure.resourcemanager.machinelearning.models.ComponentVersion;
 import com.azure.resourcemanager.machinelearning.models.ComponentVersions;
 import com.azure.resourcemanager.machinelearning.models.ListViewType;
 
@@ -29,13 +29,12 @@ public final class ComponentVersionsImpl implements ComponentVersions {
         this.serviceManager = serviceManager;
     }
 
-    public PagedIterable<ComponentVersionData> list(String resourceGroupName, String workspaceName, String name) {
-        PagedIterable<ComponentVersionDataInner> inner =
-            this.serviceClient().list(resourceGroupName, workspaceName, name);
-        return Utils.mapPage(inner, inner1 -> new ComponentVersionDataImpl(inner1, this.manager()));
+    public PagedIterable<ComponentVersion> list(String resourceGroupName, String workspaceName, String name) {
+        PagedIterable<ComponentVersionInner> inner = this.serviceClient().list(resourceGroupName, workspaceName, name);
+        return Utils.mapPage(inner, inner1 -> new ComponentVersionImpl(inner1, this.manager()));
     }
 
-    public PagedIterable<ComponentVersionData> list(
+    public PagedIterable<ComponentVersion> list(
         String resourceGroupName,
         String workspaceName,
         String name,
@@ -44,11 +43,11 @@ public final class ComponentVersionsImpl implements ComponentVersions {
         String skip,
         ListViewType listViewType,
         Context context) {
-        PagedIterable<ComponentVersionDataInner> inner =
+        PagedIterable<ComponentVersionInner> inner =
             this
                 .serviceClient()
                 .list(resourceGroupName, workspaceName, name, orderBy, top, skip, listViewType, context);
-        return Utils.mapPage(inner, inner1 -> new ComponentVersionDataImpl(inner1, this.manager()));
+        return Utils.mapPage(inner, inner1 -> new ComponentVersionImpl(inner1, this.manager()));
     }
 
     public void delete(String resourceGroupName, String workspaceName, String name, String version) {
@@ -60,160 +59,61 @@ public final class ComponentVersionsImpl implements ComponentVersions {
         return this.serviceClient().deleteWithResponse(resourceGroupName, workspaceName, name, version, context);
     }
 
-    public ComponentVersionData get(String resourceGroupName, String workspaceName, String name, String version) {
-        ComponentVersionDataInner inner = this.serviceClient().get(resourceGroupName, workspaceName, name, version);
+    public ComponentVersion get(String resourceGroupName, String workspaceName, String name, String version) {
+        ComponentVersionInner inner = this.serviceClient().get(resourceGroupName, workspaceName, name, version);
         if (inner != null) {
-            return new ComponentVersionDataImpl(inner, this.manager());
+            return new ComponentVersionImpl(inner, this.manager());
         } else {
             return null;
         }
     }
 
-    public Response<ComponentVersionData> getWithResponse(
+    public Response<ComponentVersion> getWithResponse(
         String resourceGroupName, String workspaceName, String name, String version, Context context) {
-        Response<ComponentVersionDataInner> inner =
+        Response<ComponentVersionInner> inner =
             this.serviceClient().getWithResponse(resourceGroupName, workspaceName, name, version, context);
         if (inner != null) {
             return new SimpleResponse<>(
                 inner.getRequest(),
                 inner.getStatusCode(),
                 inner.getHeaders(),
-                new ComponentVersionDataImpl(inner.getValue(), this.manager()));
+                new ComponentVersionImpl(inner.getValue(), this.manager()));
         } else {
             return null;
         }
     }
 
-    public ComponentVersionData getById(String id) {
-        String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
-        if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+    public ComponentVersion createOrUpdate(
+        String resourceGroupName, String workspaceName, String name, String version, ComponentVersionInner body) {
+        ComponentVersionInner inner =
+            this.serviceClient().createOrUpdate(resourceGroupName, workspaceName, name, version, body);
+        if (inner != null) {
+            return new ComponentVersionImpl(inner, this.manager());
+        } else {
+            return null;
         }
-        String workspaceName = Utils.getValueFromIdByName(id, "workspaces");
-        if (workspaceName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'workspaces'.", id)));
-        }
-        String name = Utils.getValueFromIdByName(id, "components");
-        if (name == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'components'.", id)));
-        }
-        String version = Utils.getValueFromIdByName(id, "versions");
-        if (version == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'versions'.", id)));
-        }
-        return this.getWithResponse(resourceGroupName, workspaceName, name, version, Context.NONE).getValue();
     }
 
-    public Response<ComponentVersionData> getByIdWithResponse(String id, Context context) {
-        String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
-        if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+    public Response<ComponentVersion> createOrUpdateWithResponse(
+        String resourceGroupName,
+        String workspaceName,
+        String name,
+        String version,
+        ComponentVersionInner body,
+        Context context) {
+        Response<ComponentVersionInner> inner =
+            this
+                .serviceClient()
+                .createOrUpdateWithResponse(resourceGroupName, workspaceName, name, version, body, context);
+        if (inner != null) {
+            return new SimpleResponse<>(
+                inner.getRequest(),
+                inner.getStatusCode(),
+                inner.getHeaders(),
+                new ComponentVersionImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
         }
-        String workspaceName = Utils.getValueFromIdByName(id, "workspaces");
-        if (workspaceName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'workspaces'.", id)));
-        }
-        String name = Utils.getValueFromIdByName(id, "components");
-        if (name == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'components'.", id)));
-        }
-        String version = Utils.getValueFromIdByName(id, "versions");
-        if (version == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'versions'.", id)));
-        }
-        return this.getWithResponse(resourceGroupName, workspaceName, name, version, context);
-    }
-
-    public void deleteById(String id) {
-        String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
-        if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
-        }
-        String workspaceName = Utils.getValueFromIdByName(id, "workspaces");
-        if (workspaceName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'workspaces'.", id)));
-        }
-        String name = Utils.getValueFromIdByName(id, "components");
-        if (name == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'components'.", id)));
-        }
-        String version = Utils.getValueFromIdByName(id, "versions");
-        if (version == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'versions'.", id)));
-        }
-        this.deleteWithResponse(resourceGroupName, workspaceName, name, version, Context.NONE);
-    }
-
-    public Response<Void> deleteByIdWithResponse(String id, Context context) {
-        String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
-        if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
-        }
-        String workspaceName = Utils.getValueFromIdByName(id, "workspaces");
-        if (workspaceName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'workspaces'.", id)));
-        }
-        String name = Utils.getValueFromIdByName(id, "components");
-        if (name == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'components'.", id)));
-        }
-        String version = Utils.getValueFromIdByName(id, "versions");
-        if (version == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'versions'.", id)));
-        }
-        return this.deleteWithResponse(resourceGroupName, workspaceName, name, version, context);
     }
 
     private ComponentVersionsClient serviceClient() {
@@ -222,9 +122,5 @@ public final class ComponentVersionsImpl implements ComponentVersions {
 
     private com.azure.resourcemanager.machinelearning.MachineLearningManager manager() {
         return this.serviceManager;
-    }
-
-    public ComponentVersionDataImpl define(String name) {
-        return new ComponentVersionDataImpl(name, this.manager());
     }
 }

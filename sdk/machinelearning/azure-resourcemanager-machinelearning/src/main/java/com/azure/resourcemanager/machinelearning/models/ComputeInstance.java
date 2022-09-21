@@ -54,13 +54,6 @@ public final class ComputeInstance extends Compute {
         return this;
     }
 
-    /** {@inheritDoc} */
-    @Override
-    public ComputeInstance withDisableLocalAuth(Boolean disableLocalAuth) {
-        super.withDisableLocalAuth(disableLocalAuth);
-        return this;
-    }
-
     /**
      * Validates the instance.
      *

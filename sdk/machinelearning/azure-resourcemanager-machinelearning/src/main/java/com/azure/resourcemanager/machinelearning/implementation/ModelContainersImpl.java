@@ -10,9 +10,9 @@ import com.azure.core.http.rest.SimpleResponse;
 import com.azure.core.util.Context;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.machinelearning.fluent.ModelContainersClient;
-import com.azure.resourcemanager.machinelearning.fluent.models.ModelContainerDataInner;
+import com.azure.resourcemanager.machinelearning.fluent.models.ModelContainerInner;
 import com.azure.resourcemanager.machinelearning.models.ListViewType;
-import com.azure.resourcemanager.machinelearning.models.ModelContainerData;
+import com.azure.resourcemanager.machinelearning.models.ModelContainer;
 import com.azure.resourcemanager.machinelearning.models.ModelContainers;
 
 public final class ModelContainersImpl implements ModelContainers {
@@ -29,21 +29,21 @@ public final class ModelContainersImpl implements ModelContainers {
         this.serviceManager = serviceManager;
     }
 
-    public PagedIterable<ModelContainerData> list(String resourceGroupName, String workspaceName) {
-        PagedIterable<ModelContainerDataInner> inner = this.serviceClient().list(resourceGroupName, workspaceName);
-        return Utils.mapPage(inner, inner1 -> new ModelContainerDataImpl(inner1, this.manager()));
+    public PagedIterable<ModelContainer> list(String resourceGroupName, String workspaceName) {
+        PagedIterable<ModelContainerInner> inner = this.serviceClient().list(resourceGroupName, workspaceName);
+        return Utils.mapPage(inner, inner1 -> new ModelContainerImpl(inner1, this.manager()));
     }
 
-    public PagedIterable<ModelContainerData> list(
+    public PagedIterable<ModelContainer> list(
         String resourceGroupName,
         String workspaceName,
         String skip,
         Integer count,
         ListViewType listViewType,
         Context context) {
-        PagedIterable<ModelContainerDataInner> inner =
+        PagedIterable<ModelContainerInner> inner =
             this.serviceClient().list(resourceGroupName, workspaceName, skip, count, listViewType, context);
-        return Utils.mapPage(inner, inner1 -> new ModelContainerDataImpl(inner1, this.manager()));
+        return Utils.mapPage(inner, inner1 -> new ModelContainerImpl(inner1, this.manager()));
     }
 
     public void delete(String resourceGroupName, String workspaceName, String name) {
@@ -55,132 +55,53 @@ public final class ModelContainersImpl implements ModelContainers {
         return this.serviceClient().deleteWithResponse(resourceGroupName, workspaceName, name, context);
     }
 
-    public ModelContainerData get(String resourceGroupName, String workspaceName, String name) {
-        ModelContainerDataInner inner = this.serviceClient().get(resourceGroupName, workspaceName, name);
+    public ModelContainer get(String resourceGroupName, String workspaceName, String name) {
+        ModelContainerInner inner = this.serviceClient().get(resourceGroupName, workspaceName, name);
         if (inner != null) {
-            return new ModelContainerDataImpl(inner, this.manager());
+            return new ModelContainerImpl(inner, this.manager());
         } else {
             return null;
         }
     }
 
-    public Response<ModelContainerData> getWithResponse(
+    public Response<ModelContainer> getWithResponse(
         String resourceGroupName, String workspaceName, String name, Context context) {
-        Response<ModelContainerDataInner> inner =
+        Response<ModelContainerInner> inner =
             this.serviceClient().getWithResponse(resourceGroupName, workspaceName, name, context);
         if (inner != null) {
             return new SimpleResponse<>(
                 inner.getRequest(),
                 inner.getStatusCode(),
                 inner.getHeaders(),
-                new ModelContainerDataImpl(inner.getValue(), this.manager()));
+                new ModelContainerImpl(inner.getValue(), this.manager()));
         } else {
             return null;
         }
     }
 
-    public ModelContainerData getById(String id) {
-        String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
-        if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+    public ModelContainer createOrUpdate(
+        String resourceGroupName, String workspaceName, String name, ModelContainerInner body) {
+        ModelContainerInner inner = this.serviceClient().createOrUpdate(resourceGroupName, workspaceName, name, body);
+        if (inner != null) {
+            return new ModelContainerImpl(inner, this.manager());
+        } else {
+            return null;
         }
-        String workspaceName = Utils.getValueFromIdByName(id, "workspaces");
-        if (workspaceName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'workspaces'.", id)));
-        }
-        String name = Utils.getValueFromIdByName(id, "models");
-        if (name == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'models'.", id)));
-        }
-        return this.getWithResponse(resourceGroupName, workspaceName, name, Context.NONE).getValue();
     }
 
-    public Response<ModelContainerData> getByIdWithResponse(String id, Context context) {
-        String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
-        if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+    public Response<ModelContainer> createOrUpdateWithResponse(
+        String resourceGroupName, String workspaceName, String name, ModelContainerInner body, Context context) {
+        Response<ModelContainerInner> inner =
+            this.serviceClient().createOrUpdateWithResponse(resourceGroupName, workspaceName, name, body, context);
+        if (inner != null) {
+            return new SimpleResponse<>(
+                inner.getRequest(),
+                inner.getStatusCode(),
+                inner.getHeaders(),
+                new ModelContainerImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
         }
-        String workspaceName = Utils.getValueFromIdByName(id, "workspaces");
-        if (workspaceName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'workspaces'.", id)));
-        }
-        String name = Utils.getValueFromIdByName(id, "models");
-        if (name == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'models'.", id)));
-        }
-        return this.getWithResponse(resourceGroupName, workspaceName, name, context);
-    }
-
-    public void deleteById(String id) {
-        String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
-        if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
-        }
-        String workspaceName = Utils.getValueFromIdByName(id, "workspaces");
-        if (workspaceName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'workspaces'.", id)));
-        }
-        String name = Utils.getValueFromIdByName(id, "models");
-        if (name == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'models'.", id)));
-        }
-        this.deleteWithResponse(resourceGroupName, workspaceName, name, Context.NONE);
-    }
-
-    public Response<Void> deleteByIdWithResponse(String id, Context context) {
-        String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
-        if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
-        }
-        String workspaceName = Utils.getValueFromIdByName(id, "workspaces");
-        if (workspaceName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'workspaces'.", id)));
-        }
-        String name = Utils.getValueFromIdByName(id, "models");
-        if (name == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'models'.", id)));
-        }
-        return this.deleteWithResponse(resourceGroupName, workspaceName, name, context);
     }
 
     private ModelContainersClient serviceClient() {
@@ -189,9 +110,5 @@ public final class ModelContainersImpl implements ModelContainers {
 
     private com.azure.resourcemanager.machinelearning.MachineLearningManager manager() {
         return this.serviceManager;
-    }
-
-    public ModelContainerDataImpl define(String name) {
-        return new ModelContainerDataImpl(name, this.manager());
     }
 }

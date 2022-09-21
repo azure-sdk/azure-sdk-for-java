@@ -34,8 +34,8 @@ public final class KerberosKeytabCredentials extends DatastoreCredentials {
     private String kerberosPrincipal;
 
     /*
-     * [Required] Domain over which a Kerberos authentication server has the
-     * authority to authenticate a user, host or service.
+     * [Required] Domain over which a Kerberos authentication server has the authority to authenticate a user, host or
+     * service.
      */
     @JsonProperty(value = "kerberosRealm", required = true)
     private String kerberosRealm;
