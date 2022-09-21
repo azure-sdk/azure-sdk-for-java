@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for WorkflowStatus. */
+/** The workflow status. */
 public final class WorkflowStatus extends ExpandableStringEnum<WorkflowStatus> {
     /** Static value NotSpecified for WorkflowStatus. */
     public static final WorkflowStatus NOT_SPECIFIED = fromString("NotSpecified");
@@ -60,7 +60,11 @@ public final class WorkflowStatus extends ExpandableStringEnum<WorkflowStatus> {
         return fromString(name, WorkflowStatus.class);
     }
 
-    /** @return known WorkflowStatus values. */
+    /**
+     * Gets known WorkflowStatus values.
+     *
+     * @return known WorkflowStatus values.
+     */
     public static Collection<WorkflowStatus> values() {
         return values(WorkflowStatus.class);
     }
