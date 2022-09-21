@@ -15,10 +15,9 @@ import com.azure.resourcemanager.policyinsights.fluent.models.SlimPolicyMetadata
 import com.azure.resourcemanager.policyinsights.models.PolicyMetadata;
 import com.azure.resourcemanager.policyinsights.models.PolicyMetadatas;
 import com.azure.resourcemanager.policyinsights.models.SlimPolicyMetadata;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public final class PolicyMetadatasImpl implements PolicyMetadatas {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(PolicyMetadatasImpl.class);
+    private static final ClientLogger LOGGER = new ClientLogger(PolicyMetadatasImpl.class);
 
     private final PolicyMetadatasClient innerClient;
 

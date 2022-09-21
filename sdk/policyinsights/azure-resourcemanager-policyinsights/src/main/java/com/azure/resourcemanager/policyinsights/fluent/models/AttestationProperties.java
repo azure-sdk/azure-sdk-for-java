@@ -8,7 +8,6 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.policyinsights.models.AttestationEvidence;
 import com.azure.resourcemanager.policyinsights.models.ComplianceState;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 import java.util.List;
@@ -16,21 +15,16 @@ import java.util.List;
 /** The properties of an attestation resource. */
 @Fluent
 public final class AttestationProperties {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(AttestationProperties.class);
-
     /*
-     * The resource ID of the policy assignment that the attestation is setting
-     * the state for.
+     * The resource ID of the policy assignment that the attestation is setting the state for.
      */
     @JsonProperty(value = "policyAssignmentId", required = true)
     private String policyAssignmentId;
 
     /*
-     * The policy definition reference ID from a policy set definition that the
-     * attestation is setting the state for. If the policy assignment assigns a
-     * policy set definition the attestation can choose a definition within the
-     * set definition with this property or omit this and set the state for the
-     * entire set definition.
+     * The policy definition reference ID from a policy set definition that the attestation is setting the state for.
+     * If the policy assignment assigns a policy set definition the attestation can choose a definition within the set
+     * definition with this property or omit this and set the state for the entire set definition.
      */
     @JsonProperty(value = "policyDefinitionReferenceId")
     private String policyDefinitionReferenceId;
@@ -48,8 +42,8 @@ public final class AttestationProperties {
     private OffsetDateTime expiresOn;
 
     /*
-     * The person responsible for setting the state of the resource. This value
-     * is typically an Azure Active Directory object ID.
+     * The person responsible for setting the state of the resource. This value is typically an Azure Active Directory
+     * object ID.
      */
     @JsonProperty(value = "owner")
     private String owner;
@@ -253,7 +247,7 @@ public final class AttestationProperties {
      */
     public void validate() {
         if (policyAssignmentId() == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property policyAssignmentId in model AttestationProperties"));
@@ -262,4 +256,6 @@ public final class AttestationProperties {
             evidence().forEach(e -> e.validate());
         }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(AttestationProperties.class);
 }

@@ -110,6 +110,13 @@ public interface Attestation {
     OffsetDateTime lastComplianceStateChangeAt();
 
     /**
+     * Gets the name of the resource group.
+     *
+     * @return the name of the resource group.
+     */
+    String resourceGroupName();
+
+    /**
      * Gets the inner com.azure.resourcemanager.policyinsights.fluent.models.AttestationInner object.
      *
      * @return the inner object.
