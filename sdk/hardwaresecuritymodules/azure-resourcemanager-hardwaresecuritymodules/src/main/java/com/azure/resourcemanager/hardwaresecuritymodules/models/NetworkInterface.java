@@ -11,8 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Fluent
 public final class NetworkInterface {
     /*
-     * The ARM resource id in the form of
-     * /subscriptions/{SubscriptionId}/resourceGroups/{ResourceGroupName}/...
+     * The ARM resource id in the form of /subscriptions/{SubscriptionId}/resourceGroups/{ResourceGroupName}/...
      */
     @JsonProperty(value = "id", access = JsonProperty.Access.WRITE_ONLY)
     private String id;

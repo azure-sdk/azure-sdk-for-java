@@ -289,7 +289,10 @@ public interface DedicatedHsmsClient {
 
     /**
      * Gets a list of egress endpoints (network endpoints of all outbound dependencies) in the specified dedicated hsm
-     * resource. The operation returns properties of each egress endpoint.
+     * resource.
+     *
+     * <p>Gets a list of egress endpoints (network endpoints of all outbound dependencies) in the specified dedicated
+     * hsm resource. The operation returns properties of each egress endpoint.
      *
      * @param resourceGroupName The name of the Resource Group to which the dedicated hsm belongs.
      * @param name The name of the dedicated HSM.
@@ -306,7 +309,10 @@ public interface DedicatedHsmsClient {
 
     /**
      * Gets a list of egress endpoints (network endpoints of all outbound dependencies) in the specified dedicated hsm
-     * resource. The operation returns properties of each egress endpoint.
+     * resource.
+     *
+     * <p>Gets a list of egress endpoints (network endpoints of all outbound dependencies) in the specified dedicated
+     * hsm resource. The operation returns properties of each egress endpoint.
      *
      * @param resourceGroupName The name of the Resource Group to which the dedicated hsm belongs.
      * @param name The name of the dedicated HSM.
