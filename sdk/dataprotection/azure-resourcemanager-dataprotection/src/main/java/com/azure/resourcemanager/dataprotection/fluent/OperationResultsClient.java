@@ -13,7 +13,9 @@ import com.azure.resourcemanager.dataprotection.models.OperationResultsGetRespon
 /** An instance of this class provides access to all the operations defined in OperationResultsClient. */
 public interface OperationResultsClient {
     /**
-     * Gets the operation result for a resource.
+     * Gets the operation status for a resource.
+     *
+     * <p>Gets the operation result for a resource.
      *
      * @param operationId The operationId parameter.
      * @param location The location parameter.
@@ -26,7 +28,9 @@ public interface OperationResultsClient {
     OperationJobExtendedInfoInner get(String operationId, String location);
 
     /**
-     * Gets the operation result for a resource.
+     * Gets the operation status for a resource.
+     *
+     * <p>Gets the operation result for a resource.
      *
      * @param operationId The operationId parameter.
      * @param location The location parameter.
