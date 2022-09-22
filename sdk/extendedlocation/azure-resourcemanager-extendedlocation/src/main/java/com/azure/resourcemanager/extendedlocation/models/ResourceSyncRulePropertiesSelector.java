@@ -22,19 +22,17 @@ import java.util.Map;
 @Fluent
 public final class ResourceSyncRulePropertiesSelector {
     /*
-     * MatchExpressions is a list of resource selector requirements. Valid
-     * operators include In, NotIn, Exists, and DoesNotExist. The values set
-     * must be non-empty in the case of In and NotIn. The values set must be
-     * empty in the case of Exists and DoesNotExist.
+     * MatchExpressions is a list of resource selector requirements. Valid operators include In, NotIn, Exists, and
+     * DoesNotExist. The values set must be non-empty in the case of In and NotIn. The values set must be empty in the
+     * case of Exists and DoesNotExist.
      */
     @JsonProperty(value = "matchExpressions")
     private List<MatchExpressionsProperties> matchExpressions;
 
     /*
-     * MatchLabels is a map of {key,value} pairs. A single {key,value} in the
-     * matchLabels map is equivalent to an element of matchExpressions, whose
-     * key field is 'key', the operator is 'In', and the values array contains
-     * only 'value'.
+     * MatchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels map is equivalent to an
+     * element of matchExpressions, whose key field is 'key', the operator is 'In', and the values array contains only
+     * 'value'.
      */
     @JsonProperty(value = "matchLabels")
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)

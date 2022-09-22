@@ -18,8 +18,8 @@ public final class MatchExpressionsProperties {
     private String key;
 
     /*
-     * The Operator field represents a key's relationship to a set of values.
-     * Valid operators are In, NotIn, Exists and DoesNotExist.
+     * The Operator field represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and
+     * DoesNotExist.
      */
     @JsonProperty(value = "operator")
     private String operator;
