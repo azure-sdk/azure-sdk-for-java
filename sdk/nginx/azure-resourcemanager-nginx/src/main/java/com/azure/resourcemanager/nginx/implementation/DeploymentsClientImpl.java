@@ -15,6 +15,7 @@ import com.azure.core.annotation.HostParam;
 import com.azure.core.annotation.Patch;
 import com.azure.core.annotation.PathParam;
 import com.azure.core.annotation.Put;
+import com.azure.core.annotation.QueryParam;
 import com.azure.core.annotation.ReturnType;
 import com.azure.core.annotation.ServiceInterface;
 import com.azure.core.annotation.ServiceMethod;
@@ -76,6 +77,7 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("deploymentName") String deploymentName,
+            @QueryParam("api-version") String apiVersion,
             @HeaderParam("Accept") String accept,
             Context context);
 
@@ -85,11 +87,12 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
                 + "/nginxDeployments/{deploymentName}")
         @ExpectedResponses({200, 201})
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Flux<ByteBuffer>>> create(
+        Mono<Response<Flux<ByteBuffer>>> createOrUpdate(
             @HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("deploymentName") String deploymentName,
+            @QueryParam("api-version") String apiVersion,
             @BodyParam("application/json") NginxDeploymentInner body,
             @HeaderParam("Accept") String accept,
             Context context);
@@ -105,6 +108,7 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("deploymentName") String deploymentName,
+            @QueryParam("api-version") String apiVersion,
             @BodyParam("application/json") NginxDeploymentUpdateParameters body,
             @HeaderParam("Accept") String accept,
             Context context);
@@ -120,6 +124,7 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("deploymentName") String deploymentName,
+            @QueryParam("api-version") String apiVersion,
             @HeaderParam("Accept") String accept,
             Context context);
 
@@ -130,6 +135,7 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
         Mono<Response<NginxDeploymentListResponse>> list(
             @HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
+            @QueryParam("api-version") String apiVersion,
             @HeaderParam("Accept") String accept,
             Context context);
 
@@ -143,6 +149,7 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
             @HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
+            @QueryParam("api-version") String apiVersion,
             @HeaderParam("Accept") String accept,
             Context context);
 
@@ -209,6 +216,7 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
                             this.client.getSubscriptionId(),
                             resourceGroupName,
                             deploymentName,
+                            this.client.getApiVersion(),
                             accept,
                             context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -255,6 +263,7 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
                 this.client.getSubscriptionId(),
                 resourceGroupName,
                 deploymentName,
+                this.client.getApiVersion(),
                 accept,
                 context);
     }
@@ -319,7 +328,7 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
      * @return the response body along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> createWithResponseAsync(
+    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(
         String resourceGroupName, String deploymentName, NginxDeploymentInner body) {
         if (this.client.getEndpoint() == null) {
             return Mono
@@ -348,11 +357,12 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
             .withContext(
                 context ->
                     service
-                        .create(
+                        .createOrUpdate(
                             this.client.getEndpoint(),
                             this.client.getSubscriptionId(),
                             resourceGroupName,
                             deploymentName,
+                            this.client.getApiVersion(),
                             body,
                             accept,
                             context))
@@ -372,7 +382,7 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
      * @return the response body along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> createWithResponseAsync(
+    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(
         String resourceGroupName, String deploymentName, NginxDeploymentInner body, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono
@@ -399,11 +409,12 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .create(
+            .createOrUpdate(
                 this.client.getEndpoint(),
                 this.client.getSubscriptionId(),
                 resourceGroupName,
                 deploymentName,
+                this.client.getApiVersion(),
                 body,
                 accept,
                 context);
@@ -421,9 +432,10 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
      * @return the {@link PollerFlux} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<NginxDeploymentInner>, NginxDeploymentInner> beginCreateAsync(
+    private PollerFlux<PollResult<NginxDeploymentInner>, NginxDeploymentInner> beginCreateOrUpdateAsync(
         String resourceGroupName, String deploymentName, NginxDeploymentInner body) {
-        Mono<Response<Flux<ByteBuffer>>> mono = createWithResponseAsync(resourceGroupName, deploymentName, body);
+        Mono<Response<Flux<ByteBuffer>>> mono =
+            createOrUpdateWithResponseAsync(resourceGroupName, deploymentName, body);
         return this
             .client
             .<NginxDeploymentInner, NginxDeploymentInner>getLroResult(
@@ -447,11 +459,11 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
      * @return the {@link PollerFlux} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<NginxDeploymentInner>, NginxDeploymentInner> beginCreateAsync(
+    private PollerFlux<PollResult<NginxDeploymentInner>, NginxDeploymentInner> beginCreateOrUpdateAsync(
         String resourceGroupName, String deploymentName, NginxDeploymentInner body, Context context) {
         context = this.client.mergeContext(context);
         Mono<Response<Flux<ByteBuffer>>> mono =
-            createWithResponseAsync(resourceGroupName, deploymentName, body, context);
+            createOrUpdateWithResponseAsync(resourceGroupName, deploymentName, body, context);
         return this
             .client
             .<NginxDeploymentInner, NginxDeploymentInner>getLroResult(
@@ -470,9 +482,9 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<NginxDeploymentInner>, NginxDeploymentInner> beginCreate(
+    public SyncPoller<PollResult<NginxDeploymentInner>, NginxDeploymentInner> beginCreateOrUpdate(
         String resourceGroupName, String deploymentName, NginxDeploymentInner body) {
-        return beginCreateAsync(resourceGroupName, deploymentName, body).getSyncPoller();
+        return beginCreateOrUpdateAsync(resourceGroupName, deploymentName, body).getSyncPoller();
     }
 
     /**
@@ -488,9 +500,9 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<NginxDeploymentInner>, NginxDeploymentInner> beginCreate(
+    public SyncPoller<PollResult<NginxDeploymentInner>, NginxDeploymentInner> beginCreateOrUpdate(
         String resourceGroupName, String deploymentName, NginxDeploymentInner body, Context context) {
-        return beginCreateAsync(resourceGroupName, deploymentName, body, context).getSyncPoller();
+        return beginCreateOrUpdateAsync(resourceGroupName, deploymentName, body, context).getSyncPoller();
     }
 
     /**
@@ -505,9 +517,9 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
      * @return the response body on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<NginxDeploymentInner> createAsync(
+    private Mono<NginxDeploymentInner> createOrUpdateAsync(
         String resourceGroupName, String deploymentName, NginxDeploymentInner body) {
-        return beginCreateAsync(resourceGroupName, deploymentName, body)
+        return beginCreateOrUpdateAsync(resourceGroupName, deploymentName, body)
             .last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
@@ -523,9 +535,9 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
      * @return the response body on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<NginxDeploymentInner> createAsync(String resourceGroupName, String deploymentName) {
+    private Mono<NginxDeploymentInner> createOrUpdateAsync(String resourceGroupName, String deploymentName) {
         final NginxDeploymentInner body = null;
-        return beginCreateAsync(resourceGroupName, deploymentName, body)
+        return beginCreateOrUpdateAsync(resourceGroupName, deploymentName, body)
             .last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
@@ -543,9 +555,9 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
      * @return the response body on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<NginxDeploymentInner> createAsync(
+    private Mono<NginxDeploymentInner> createOrUpdateAsync(
         String resourceGroupName, String deploymentName, NginxDeploymentInner body, Context context) {
-        return beginCreateAsync(resourceGroupName, deploymentName, body, context)
+        return beginCreateOrUpdateAsync(resourceGroupName, deploymentName, body, context)
             .last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
@@ -562,8 +574,9 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
      * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public NginxDeploymentInner create(String resourceGroupName, String deploymentName, NginxDeploymentInner body) {
-        return createAsync(resourceGroupName, deploymentName, body).block();
+    public NginxDeploymentInner createOrUpdate(
+        String resourceGroupName, String deploymentName, NginxDeploymentInner body) {
+        return createOrUpdateAsync(resourceGroupName, deploymentName, body).block();
     }
 
     /**
@@ -577,9 +590,9 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
      * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public NginxDeploymentInner create(String resourceGroupName, String deploymentName) {
+    public NginxDeploymentInner createOrUpdate(String resourceGroupName, String deploymentName) {
         final NginxDeploymentInner body = null;
-        return createAsync(resourceGroupName, deploymentName, body).block();
+        return createOrUpdateAsync(resourceGroupName, deploymentName, body).block();
     }
 
     /**
@@ -595,9 +608,9 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
      * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public NginxDeploymentInner create(
+    public NginxDeploymentInner createOrUpdate(
         String resourceGroupName, String deploymentName, NginxDeploymentInner body, Context context) {
-        return createAsync(resourceGroupName, deploymentName, body, context).block();
+        return createOrUpdateAsync(resourceGroupName, deploymentName, body, context).block();
     }
 
     /**
@@ -646,6 +659,7 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
                             this.client.getSubscriptionId(),
                             resourceGroupName,
                             deploymentName,
+                            this.client.getApiVersion(),
                             body,
                             accept,
                             context))
@@ -697,6 +711,7 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
                 this.client.getSubscriptionId(),
                 resourceGroupName,
                 deploymentName,
+                this.client.getApiVersion(),
                 body,
                 accept,
                 context);
@@ -935,6 +950,7 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
                             this.client.getSubscriptionId(),
                             resourceGroupName,
                             deploymentName,
+                            this.client.getApiVersion(),
                             accept,
                             context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -981,6 +997,7 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
                 this.client.getSubscriptionId(),
                 resourceGroupName,
                 deploymentName,
+                this.client.getApiVersion(),
                 accept,
                 context);
     }
@@ -1145,7 +1162,14 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
         final String accept = "application/json";
         return FluxUtil
             .withContext(
-                context -> service.list(this.client.getEndpoint(), this.client.getSubscriptionId(), accept, context))
+                context ->
+                    service
+                        .list(
+                            this.client.getEndpoint(),
+                            this.client.getSubscriptionId(),
+                            this.client.getApiVersion(),
+                            accept,
+                            context))
             .<PagedResponse<NginxDeploymentInner>>map(
                 res ->
                     new PagedResponseBase<>(
@@ -1184,7 +1208,12 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .list(this.client.getEndpoint(), this.client.getSubscriptionId(), accept, context)
+            .list(
+                this.client.getEndpoint(),
+                this.client.getSubscriptionId(),
+                this.client.getApiVersion(),
+                accept,
+                context)
             .map(
                 res ->
                     new PagedResponseBase<>(
@@ -1285,6 +1314,7 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
                             this.client.getEndpoint(),
                             this.client.getSubscriptionId(),
                             resourceGroupName,
+                            this.client.getApiVersion(),
                             accept,
                             context))
             .<PagedResponse<NginxDeploymentInner>>map(
@@ -1332,7 +1362,12 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
         context = this.client.mergeContext(context);
         return service
             .listByResourceGroup(
-                this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName, accept, context)
+                this.client.getEndpoint(),
+                this.client.getSubscriptionId(),
+                resourceGroupName,
+                this.client.getApiVersion(),
+                accept,
+                context)
             .map(
                 res ->
                     new PagedResponseBase<>(

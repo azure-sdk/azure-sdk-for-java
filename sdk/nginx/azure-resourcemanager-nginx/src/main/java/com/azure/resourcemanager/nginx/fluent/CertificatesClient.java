@@ -58,7 +58,7 @@ public interface CertificatesClient {
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<NginxCertificateInner>, NginxCertificateInner> beginCreate(
+    SyncPoller<PollResult<NginxCertificateInner>, NginxCertificateInner> beginCreateOrUpdate(
         String resourceGroupName, String deploymentName, String certificateName, NginxCertificateInner body);
 
     /**
@@ -75,7 +75,7 @@ public interface CertificatesClient {
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<NginxCertificateInner>, NginxCertificateInner> beginCreate(
+    SyncPoller<PollResult<NginxCertificateInner>, NginxCertificateInner> beginCreateOrUpdate(
         String resourceGroupName,
         String deploymentName,
         String certificateName,
@@ -95,7 +95,7 @@ public interface CertificatesClient {
      * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    NginxCertificateInner create(
+    NginxCertificateInner createOrUpdate(
         String resourceGroupName, String deploymentName, String certificateName, NginxCertificateInner body);
 
     /**
@@ -110,7 +110,7 @@ public interface CertificatesClient {
      * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    NginxCertificateInner create(String resourceGroupName, String deploymentName, String certificateName);
+    NginxCertificateInner createOrUpdate(String resourceGroupName, String deploymentName, String certificateName);
 
     /**
      * Create or update the Nginx certificates for given Nginx deployment.
@@ -126,7 +126,7 @@ public interface CertificatesClient {
      * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    NginxCertificateInner create(
+    NginxCertificateInner createOrUpdate(
         String resourceGroupName,
         String deploymentName,
         String certificateName,

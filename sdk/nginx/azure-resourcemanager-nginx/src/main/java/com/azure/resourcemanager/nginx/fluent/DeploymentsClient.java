@@ -56,7 +56,7 @@ public interface DeploymentsClient {
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<NginxDeploymentInner>, NginxDeploymentInner> beginCreate(
+    SyncPoller<PollResult<NginxDeploymentInner>, NginxDeploymentInner> beginCreateOrUpdate(
         String resourceGroupName, String deploymentName, NginxDeploymentInner body);
 
     /**
@@ -72,7 +72,7 @@ public interface DeploymentsClient {
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<NginxDeploymentInner>, NginxDeploymentInner> beginCreate(
+    SyncPoller<PollResult<NginxDeploymentInner>, NginxDeploymentInner> beginCreateOrUpdate(
         String resourceGroupName, String deploymentName, NginxDeploymentInner body, Context context);
 
     /**
@@ -87,7 +87,7 @@ public interface DeploymentsClient {
      * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    NginxDeploymentInner create(String resourceGroupName, String deploymentName, NginxDeploymentInner body);
+    NginxDeploymentInner createOrUpdate(String resourceGroupName, String deploymentName, NginxDeploymentInner body);
 
     /**
      * Create or update the Nginx deployment.
@@ -100,7 +100,7 @@ public interface DeploymentsClient {
      * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    NginxDeploymentInner create(String resourceGroupName, String deploymentName);
+    NginxDeploymentInner createOrUpdate(String resourceGroupName, String deploymentName);
 
     /**
      * Create or update the Nginx deployment.
@@ -115,7 +115,7 @@ public interface DeploymentsClient {
      * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    NginxDeploymentInner create(
+    NginxDeploymentInner createOrUpdate(
         String resourceGroupName, String deploymentName, NginxDeploymentInner body, Context context);
 
     /**
