@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for StatusAnnotation. */
+/** The status annotation. */
 public final class StatusAnnotation extends ExpandableStringEnum<StatusAnnotation> {
     /** Static value NotSpecified for StatusAnnotation. */
     public static final StatusAnnotation NOT_SPECIFIED = fromString("NotSpecified");
@@ -30,7 +30,11 @@ public final class StatusAnnotation extends ExpandableStringEnum<StatusAnnotatio
         return fromString(name, StatusAnnotation.class);
     }
 
-    /** @return known StatusAnnotation values. */
+    /**
+     * Gets known StatusAnnotation values.
+     *
+     * @return known StatusAnnotation values.
+     */
     public static Collection<StatusAnnotation> values() {
         return values(StatusAnnotation.class);
     }

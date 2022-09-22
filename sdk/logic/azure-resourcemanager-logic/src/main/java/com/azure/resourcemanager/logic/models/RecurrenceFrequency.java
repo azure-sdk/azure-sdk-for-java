@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for RecurrenceFrequency. */
+/** The recurrence frequency. */
 public final class RecurrenceFrequency extends ExpandableStringEnum<RecurrenceFrequency> {
     /** Static value NotSpecified for RecurrenceFrequency. */
     public static final RecurrenceFrequency NOT_SPECIFIED = fromString("NotSpecified");
@@ -45,7 +45,11 @@ public final class RecurrenceFrequency extends ExpandableStringEnum<RecurrenceFr
         return fromString(name, RecurrenceFrequency.class);
     }
 
-    /** @return known RecurrenceFrequency values. */
+    /**
+     * Gets known RecurrenceFrequency values.
+     *
+     * @return known RecurrenceFrequency values.
+     */
     public static Collection<RecurrenceFrequency> values() {
         return values(RecurrenceFrequency.class);
     }
