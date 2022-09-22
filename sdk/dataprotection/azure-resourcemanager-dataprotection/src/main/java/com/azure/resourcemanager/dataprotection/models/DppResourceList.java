@@ -5,18 +5,17 @@
 package com.azure.resourcemanager.dataprotection.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** List Resource ListResource. */
+/**
+ * List Resource
+ *
+ * <p>ListResource.
+ */
 @Fluent
 public class DppResourceList {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(DppResourceList.class);
-
     /*
-     * The uri to fetch the next page of resources. Call ListNext() fetches
-     * next page of resources.
+     * The uri to fetch the next page of resources. Call ListNext() fetches next page of resources.
      */
     @JsonProperty(value = "nextLink")
     private String nextLink;
