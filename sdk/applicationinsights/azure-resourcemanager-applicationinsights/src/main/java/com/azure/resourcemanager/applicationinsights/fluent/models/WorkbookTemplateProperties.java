@@ -17,8 +17,7 @@ import java.util.Map;
 @Fluent
 public final class WorkbookTemplateProperties {
     /*
-     * Priority of the template. Determines which template to open when a
-     * workbook gallery is opened in viewer mode.
+     * Priority of the template. Determines which template to open when a workbook gallery is opened in viewer mode.
      */
     @JsonProperty(value = "priority")
     private Integer priority;
@@ -42,8 +41,7 @@ public final class WorkbookTemplateProperties {
     private List<WorkbookTemplateGallery> galleries;
 
     /*
-     * Key value pair of localized gallery. Each key is the locale code of
-     * languages supported by the Azure portal.
+     * Key value pair of localized gallery. Each key is the locale code of languages supported by the Azure portal.
      */
     @JsonProperty(value = "localized")
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
