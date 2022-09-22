@@ -14,7 +14,9 @@ import com.azure.resourcemanager.appcontainers.models.CheckNameAvailabilityReque
 /** An instance of this class provides access to all the operations defined in NamespacesClient. */
 public interface NamespacesClient {
     /**
-     * Checks if resource name is available.
+     * Checks the resource name availability.
+     *
+     * <p>Checks if resource name is available.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param environmentName Name of the Managed Environment.
@@ -30,7 +32,9 @@ public interface NamespacesClient {
         String resourceGroupName, String environmentName, CheckNameAvailabilityRequest checkNameAvailabilityRequest);
 
     /**
-     * Checks if resource name is available.
+     * Checks the resource name availability.
+     *
+     * <p>Checks if resource name is available.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param environmentName Name of the Managed Environment.
