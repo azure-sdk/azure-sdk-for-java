@@ -5,15 +5,11 @@
 package com.azure.resourcemanager.hdinsight.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** The object that represents the operation. */
 @Fluent
 public final class OperationDisplay {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(OperationDisplay.class);
-
     /*
      * The service provider: Microsoft.HDInsight
      */
@@ -21,8 +17,7 @@ public final class OperationDisplay {
     private String provider;
 
     /*
-     * The resource on which the operation is performed: Cluster, Applications,
-     * etc.
+     * The resource on which the operation is performed: Cluster, Applications, etc.
      */
     @JsonProperty(value = "resource")
     private String resource;
