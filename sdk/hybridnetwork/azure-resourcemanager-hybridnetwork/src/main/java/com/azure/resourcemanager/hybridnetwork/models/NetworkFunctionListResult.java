@@ -5,20 +5,15 @@
 package com.azure.resourcemanager.hybridnetwork.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.hybridnetwork.fluent.models.NetworkFunctionInner;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** Response for network function API service call. */
 @Fluent
 public final class NetworkFunctionListResult {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(NetworkFunctionListResult.class);
-
     /*
-     * A list of network function resources in a subscription or resource
-     * group.
+     * A list of network function resources in a subscription or resource group.
      */
     @JsonProperty(value = "value")
     private List<NetworkFunctionInner> value;
