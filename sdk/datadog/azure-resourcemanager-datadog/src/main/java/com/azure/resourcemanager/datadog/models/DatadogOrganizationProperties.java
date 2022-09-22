@@ -5,25 +5,21 @@
 package com.azure.resourcemanager.datadog.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Datadog organization properties. */
 @Fluent
 public final class DatadogOrganizationProperties {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(DatadogOrganizationProperties.class);
-
     /*
      * Name of the Datadog organization.
      */
-    @JsonProperty(value = "name", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "name")
     private String name;
 
     /*
      * Id of the Datadog organization.
      */
-    @JsonProperty(value = "id", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "id")
     private String id;
 
     /*
@@ -33,8 +29,7 @@ public final class DatadogOrganizationProperties {
     private String linkingAuthCode;
 
     /*
-     * The client_id from an existing in exchange for an auth token to link
-     * organization.
+     * The client_id from an existing in exchange for an auth token to link organization.
      */
     @JsonProperty(value = "linkingClientId")
     private String linkingClientId;
@@ -73,12 +68,34 @@ public final class DatadogOrganizationProperties {
     }
 
     /**
+     * Set the name property: Name of the Datadog organization.
+     *
+     * @param name the name value to set.
+     * @return the DatadogOrganizationProperties object itself.
+     */
+    public DatadogOrganizationProperties withName(String name) {
+        this.name = name;
+        return this;
+    }
+
+    /**
      * Get the id property: Id of the Datadog organization.
      *
      * @return the id value.
      */
     public String id() {
         return this.id;
+    }
+
+    /**
+     * Set the id property: Id of the Datadog organization.
+     *
+     * @param id the id value to set.
+     * @return the DatadogOrganizationProperties object itself.
+     */
+    public DatadogOrganizationProperties withId(String id) {
+        this.id = id;
+        return this;
     }
 
     /**
