@@ -14,7 +14,9 @@ import java.util.List;
 /** An instance of this class provides access to all the operations defined in ServicesClient. */
 public interface ServicesClient {
     /**
-     * Synchronously creates a new service or updates an existing service.
+     * Creates or updates a service in the service topology.
+     *
+     * <p>Synchronously creates a new service or updates an existing service.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param serviceTopologyName The name of the service topology .
@@ -30,7 +32,9 @@ public interface ServicesClient {
         String resourceGroupName, String serviceTopologyName, String serviceName, ServiceResourceInner serviceInfo);
 
     /**
-     * Synchronously creates a new service or updates an existing service.
+     * Creates or updates a service in the service topology.
+     *
+     * <p>Synchronously creates a new service or updates an existing service.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param serviceTopologyName The name of the service topology .
@@ -40,7 +44,7 @@ public interface ServicesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the resource representation of a service in a service topology.
+     * @return the resource representation of a service in a service topology along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<ServiceResourceInner> createOrUpdateWithResponse(
@@ -74,7 +78,7 @@ public interface ServicesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the service.
+     * @return the service along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<ServiceResourceInner> getWithResponse(
@@ -103,7 +107,7 @@ public interface ServicesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
+     * @return the {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<Void> deleteWithResponse(
@@ -131,7 +135,7 @@ public interface ServicesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of services.
+     * @return the list of services along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<List<ServiceResourceInner>> listWithResponse(

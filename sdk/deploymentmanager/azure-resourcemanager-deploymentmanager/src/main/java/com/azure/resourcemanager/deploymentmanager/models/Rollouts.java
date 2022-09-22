@@ -33,13 +33,15 @@ public interface Rollouts {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return detailed information of a rollout.
+     * @return detailed information of a rollout along with {@link Response}.
      */
     Response<Rollout> getByResourceGroupWithResponse(
         String resourceGroupName, String rolloutName, Integer retryAttempt, Context context);
 
     /**
-     * Only rollouts in terminal state can be deleted.
+     * Deletes a rollout resource.
+     *
+     * <p>Only rollouts in terminal state can be deleted.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param rolloutName The rollout name.
@@ -50,7 +52,9 @@ public interface Rollouts {
     void deleteByResourceGroup(String resourceGroupName, String rolloutName);
 
     /**
-     * Only rollouts in terminal state can be deleted.
+     * Deletes a rollout resource.
+     *
+     * <p>Only rollouts in terminal state can be deleted.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param rolloutName The rollout name.
@@ -58,12 +62,14 @@ public interface Rollouts {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
+     * @return the {@link Response}.
      */
     Response<Void> deleteWithResponse(String resourceGroupName, String rolloutName, Context context);
 
     /**
-     * Only running rollouts can be canceled.
+     * Stops a running rollout.
+     *
+     * <p>Only running rollouts can be canceled.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param rolloutName The rollout name.
@@ -75,7 +81,9 @@ public interface Rollouts {
     Rollout cancel(String resourceGroupName, String rolloutName);
 
     /**
-     * Only running rollouts can be canceled.
+     * Stops a running rollout.
+     *
+     * <p>Only running rollouts can be canceled.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param rolloutName The rollout name.
@@ -83,12 +91,14 @@ public interface Rollouts {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return defines the rollout.
+     * @return defines the rollout along with {@link Response}.
      */
     Response<Rollout> cancelWithResponse(String resourceGroupName, String rolloutName, Context context);
 
     /**
-     * Only failed rollouts can be restarted.
+     * Restarts a failed rollout and optionally skips all succeeded steps.
+     *
+     * <p>Only failed rollouts can be restarted.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param rolloutName The rollout name.
@@ -100,7 +110,9 @@ public interface Rollouts {
     Rollout restart(String resourceGroupName, String rolloutName);
 
     /**
-     * Only failed rollouts can be restarted.
+     * Restarts a failed rollout and optionally skips all succeeded steps.
+     *
+     * <p>Only failed rollouts can be restarted.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param rolloutName The rollout name.
@@ -111,7 +123,7 @@ public interface Rollouts {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return defines the rollout.
+     * @return defines the rollout along with {@link Response}.
      */
     Response<Rollout> restartWithResponse(
         String resourceGroupName, String rolloutName, Boolean skipSucceeded, Context context);
@@ -135,12 +147,14 @@ public interface Rollouts {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of rollouts.
+     * @return the list of rollouts along with {@link Response}.
      */
     Response<List<Rollout>> listWithResponse(String resourceGroupName, Context context);
 
     /**
-     * Only rollouts in terminal state can be deleted.
+     * Deletes a rollout resource.
+     *
+     * <p>Only rollouts in terminal state can be deleted.
      *
      * @param id the resource ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -150,14 +164,16 @@ public interface Rollouts {
     void deleteById(String id);
 
     /**
-     * Only rollouts in terminal state can be deleted.
+     * Deletes a rollout resource.
+     *
+     * <p>Only rollouts in terminal state can be deleted.
      *
      * @param id the resource ID.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
+     * @return the {@link Response}.
      */
     Response<Void> deleteByIdWithResponse(String id, Context context);
 

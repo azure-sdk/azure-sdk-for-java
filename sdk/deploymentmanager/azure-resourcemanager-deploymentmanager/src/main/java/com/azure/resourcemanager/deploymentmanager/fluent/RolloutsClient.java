@@ -17,7 +17,9 @@ import java.util.List;
 /** An instance of this class provides access to all the operations defined in RolloutsClient. */
 public interface RolloutsClient {
     /**
-     * This is an asynchronous operation and can be polled to completion using the location header returned by this
+     * Creates or updates a rollout.
+     *
+     * <p>This is an asynchronous operation and can be polled to completion using the location header returned by this
      * operation.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -26,14 +28,16 @@ public interface RolloutsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return defines the PUT rollout request body.
+     * @return the {@link SyncPoller} for polling of defines the PUT rollout request body.
      */
-    @ServiceMethod(returns = ReturnType.SINGLE)
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<RolloutRequestInner>, RolloutRequestInner> beginCreateOrUpdate(
         String resourceGroupName, String rolloutName, RolloutRequestInner rolloutRequest);
 
     /**
-     * This is an asynchronous operation and can be polled to completion using the location header returned by this
+     * Creates or updates a rollout.
+     *
+     * <p>This is an asynchronous operation and can be polled to completion using the location header returned by this
      * operation.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -43,14 +47,16 @@ public interface RolloutsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return defines the PUT rollout request body.
+     * @return the {@link SyncPoller} for polling of defines the PUT rollout request body.
      */
-    @ServiceMethod(returns = ReturnType.SINGLE)
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<RolloutRequestInner>, RolloutRequestInner> beginCreateOrUpdate(
         String resourceGroupName, String rolloutName, RolloutRequestInner rolloutRequest, Context context);
 
     /**
-     * This is an asynchronous operation and can be polled to completion using the location header returned by this
+     * Creates or updates a rollout.
+     *
+     * <p>This is an asynchronous operation and can be polled to completion using the location header returned by this
      * operation.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -66,7 +72,9 @@ public interface RolloutsClient {
         String resourceGroupName, String rolloutName, RolloutRequestInner rolloutRequest);
 
     /**
-     * This is an asynchronous operation and can be polled to completion using the location header returned by this
+     * Creates or updates a rollout.
+     *
+     * <p>This is an asynchronous operation and can be polled to completion using the location header returned by this
      * operation.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -80,7 +88,9 @@ public interface RolloutsClient {
     RolloutRequestInner createOrUpdate(String resourceGroupName, String rolloutName);
 
     /**
-     * This is an asynchronous operation and can be polled to completion using the location header returned by this
+     * Creates or updates a rollout.
+     *
+     * <p>This is an asynchronous operation and can be polled to completion using the location header returned by this
      * operation.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -120,14 +130,16 @@ public interface RolloutsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return detailed information of a rollout.
+     * @return detailed information of a rollout along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<RolloutInner> getByResourceGroupWithResponse(
         String resourceGroupName, String rolloutName, Integer retryAttempt, Context context);
 
     /**
-     * Only rollouts in terminal state can be deleted.
+     * Deletes a rollout resource.
+     *
+     * <p>Only rollouts in terminal state can be deleted.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param rolloutName The rollout name.
@@ -139,7 +151,9 @@ public interface RolloutsClient {
     void delete(String resourceGroupName, String rolloutName);
 
     /**
-     * Only rollouts in terminal state can be deleted.
+     * Deletes a rollout resource.
+     *
+     * <p>Only rollouts in terminal state can be deleted.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param rolloutName The rollout name.
@@ -147,13 +161,15 @@ public interface RolloutsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
+     * @return the {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<Void> deleteWithResponse(String resourceGroupName, String rolloutName, Context context);
 
     /**
-     * Only running rollouts can be canceled.
+     * Stops a running rollout.
+     *
+     * <p>Only running rollouts can be canceled.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param rolloutName The rollout name.
@@ -166,7 +182,9 @@ public interface RolloutsClient {
     RolloutInner cancel(String resourceGroupName, String rolloutName);
 
     /**
-     * Only running rollouts can be canceled.
+     * Stops a running rollout.
+     *
+     * <p>Only running rollouts can be canceled.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param rolloutName The rollout name.
@@ -174,13 +192,15 @@ public interface RolloutsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return defines the rollout.
+     * @return defines the rollout along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<RolloutInner> cancelWithResponse(String resourceGroupName, String rolloutName, Context context);
 
     /**
-     * Only failed rollouts can be restarted.
+     * Restarts a failed rollout and optionally skips all succeeded steps.
+     *
+     * <p>Only failed rollouts can be restarted.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param rolloutName The rollout name.
@@ -193,7 +213,9 @@ public interface RolloutsClient {
     RolloutInner restart(String resourceGroupName, String rolloutName);
 
     /**
-     * Only failed rollouts can be restarted.
+     * Restarts a failed rollout and optionally skips all succeeded steps.
+     *
+     * <p>Only failed rollouts can be restarted.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param rolloutName The rollout name.
@@ -204,7 +226,7 @@ public interface RolloutsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return defines the rollout.
+     * @return defines the rollout along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<RolloutInner> restartWithResponse(
@@ -230,7 +252,7 @@ public interface RolloutsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of rollouts.
+     * @return the list of rollouts along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<List<RolloutInner>> listWithResponse(String resourceGroupName, Context context);
