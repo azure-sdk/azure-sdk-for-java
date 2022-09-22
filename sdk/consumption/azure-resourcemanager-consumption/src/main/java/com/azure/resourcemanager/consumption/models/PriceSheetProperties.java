@@ -5,8 +5,6 @@
 package com.azure.resourcemanager.consumption.models;
 
 import com.azure.core.annotation.Immutable;
-import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.math.BigDecimal;
 import java.util.UUID;
@@ -14,8 +12,6 @@ import java.util.UUID;
 /** The properties of the price sheet. */
 @Immutable
 public final class PriceSheetProperties {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(PriceSheetProperties.class);
-
     /*
      * The id of the billing period resource that the usage belongs to.
      */
@@ -29,8 +25,7 @@ public final class PriceSheetProperties {
     private UUID meterId;
 
     /*
-     * The details about the meter. By default this is not populated, unless
-     * it's specified in $expand.
+     * The details about the meter. By default this is not populated, unless it's specified in $expand.
      */
     @JsonProperty(value = "meterDetails", access = JsonProperty.Access.WRITE_ONLY)
     private MeterDetails meterDetails;

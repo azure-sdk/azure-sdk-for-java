@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for ChargeSummaryKind. */
+/** Specifies the kind of charge summary. */
 public final class ChargeSummaryKind extends ExpandableStringEnum<ChargeSummaryKind> {
     /** Static value legacy for ChargeSummaryKind. */
     public static final ChargeSummaryKind LEGACY = fromString("legacy");
@@ -27,7 +27,11 @@ public final class ChargeSummaryKind extends ExpandableStringEnum<ChargeSummaryK
         return fromString(name, ChargeSummaryKind.class);
     }
 
-    /** @return known ChargeSummaryKind values. */
+    /**
+     * Gets known ChargeSummaryKind values.
+     *
+     * @return known ChargeSummaryKind values.
+     */
     public static Collection<ChargeSummaryKind> values() {
         return values(ChargeSummaryKind.class);
     }
