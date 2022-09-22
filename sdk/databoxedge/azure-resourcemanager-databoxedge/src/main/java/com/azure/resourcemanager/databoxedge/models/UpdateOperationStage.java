@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for UpdateOperationStage. */
+/** Current stage of the update operation. */
 public final class UpdateOperationStage extends ExpandableStringEnum<UpdateOperationStage> {
     /** Static value Unknown for UpdateOperationStage. */
     public static final UpdateOperationStage UNKNOWN = fromString("Unknown");
@@ -72,7 +72,11 @@ public final class UpdateOperationStage extends ExpandableStringEnum<UpdateOpera
         return fromString(name, UpdateOperationStage.class);
     }
 
-    /** @return known UpdateOperationStage values. */
+    /**
+     * Gets known UpdateOperationStage values.
+     *
+     * @return known UpdateOperationStage values.
+     */
     public static Collection<UpdateOperationStage> values() {
         return values(UpdateOperationStage.class);
     }
