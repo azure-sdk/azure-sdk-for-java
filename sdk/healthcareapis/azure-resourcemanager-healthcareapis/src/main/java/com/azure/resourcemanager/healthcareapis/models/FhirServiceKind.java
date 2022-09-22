@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for FhirServiceKind. */
+/** The kind of the service. */
 public final class FhirServiceKind extends ExpandableStringEnum<FhirServiceKind> {
     /** Static value fhir-Stu3 for FhirServiceKind. */
     public static final FhirServiceKind FHIR_STU3 = fromString("fhir-Stu3");
@@ -27,7 +27,11 @@ public final class FhirServiceKind extends ExpandableStringEnum<FhirServiceKind>
         return fromString(name, FhirServiceKind.class);
     }
 
-    /** @return known FhirServiceKind values. */
+    /**
+     * Gets known FhirServiceKind values.
+     *
+     * @return known FhirServiceKind values.
+     */
     public static Collection<FhirServiceKind> values() {
         return values(FhirServiceKind.class);
     }

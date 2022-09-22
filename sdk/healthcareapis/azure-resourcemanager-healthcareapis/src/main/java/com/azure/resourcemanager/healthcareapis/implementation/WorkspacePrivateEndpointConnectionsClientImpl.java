@@ -440,14 +440,7 @@ public final class WorkspacePrivateEndpointConnectionsClientImpl implements Work
     private Mono<PrivateEndpointConnectionDescriptionInner> getAsync(
         String resourceGroupName, String workspaceName, String privateEndpointConnectionName) {
         return getWithResponseAsync(resourceGroupName, workspaceName, privateEndpointConnectionName)
-            .flatMap(
-                (Response<PrivateEndpointConnectionDescriptionInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**

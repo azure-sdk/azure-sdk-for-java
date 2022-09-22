@@ -48,25 +48,28 @@ public final class ServicesProperties {
     private ServiceExportConfigurationInfo exportConfiguration;
 
     /*
-     * The list of private endpoint connections that are set up for this
-     * resource.
+     * The list of private endpoint connections that are set up for this resource.
      */
     @JsonProperty(value = "privateEndpointConnections")
     private List<PrivateEndpointConnection> privateEndpointConnections;
 
     /*
-     * Control permission for data plane traffic coming from public networks
-     * while private endpoint is enabled.
+     * Control permission for data plane traffic coming from public networks while private endpoint is enabled.
      */
     @JsonProperty(value = "publicNetworkAccess")
     private PublicNetworkAccess publicNetworkAccess;
 
     /*
-     * The azure container registry settings used for convert data operation of
-     * the service instance.
+     * The azure container registry settings used for convert data operation of the service instance.
      */
     @JsonProperty(value = "acrConfiguration")
     private ServiceAcrConfigurationInfo acrConfiguration;
+
+    /*
+     * The settings for the import operation of the service instance.
+     */
+    @JsonProperty(value = "importConfiguration")
+    private ServiceImportConfigurationInfo importConfiguration;
 
     /**
      * Get the provisioningState property: The provisioning state.
@@ -246,6 +249,26 @@ public final class ServicesProperties {
     }
 
     /**
+     * Get the importConfiguration property: The settings for the import operation of the service instance.
+     *
+     * @return the importConfiguration value.
+     */
+    public ServiceImportConfigurationInfo importConfiguration() {
+        return this.importConfiguration;
+    }
+
+    /**
+     * Set the importConfiguration property: The settings for the import operation of the service instance.
+     *
+     * @param importConfiguration the importConfiguration value to set.
+     * @return the ServicesProperties object itself.
+     */
+    public ServicesProperties withImportConfiguration(ServiceImportConfigurationInfo importConfiguration) {
+        this.importConfiguration = importConfiguration;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -271,6 +294,9 @@ public final class ServicesProperties {
         }
         if (acrConfiguration() != null) {
             acrConfiguration().validate();
+        }
+        if (importConfiguration() != null) {
+            importConfiguration().validate();
         }
     }
 }

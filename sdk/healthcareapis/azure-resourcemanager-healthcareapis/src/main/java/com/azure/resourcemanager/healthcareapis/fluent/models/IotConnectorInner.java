@@ -30,8 +30,7 @@ public final class IotConnectorInner extends TaggedResource {
     private SystemData systemData;
 
     /*
-     * Setting indicating whether the service has a managed identity associated
-     * with it.
+     * Setting indicating whether the service has a managed identity associated with it.
      */
     @JsonProperty(value = "identity")
     private ServiceManagedIdentityIdentity identity;

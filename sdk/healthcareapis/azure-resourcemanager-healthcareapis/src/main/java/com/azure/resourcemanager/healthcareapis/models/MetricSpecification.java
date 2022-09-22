@@ -36,15 +36,13 @@ public final class MetricSpecification {
     private String unit;
 
     /*
-     * Name of the metric category that the metric belongs to. A metric can
-     * only belong to a single category.
+     * Name of the metric category that the metric belongs to. A metric can only belong to a single category.
      */
     @JsonProperty(value = "category")
     private String category;
 
     /*
-     * Only provide one value for this field. Valid values: Average, Minimum,
-     * Maximum, Total, Count.
+     * Only provide one value for this field. Valid values: Average, Minimum, Maximum, Total, Count.
      */
     @JsonProperty(value = "aggregationType")
     private String aggregationType;
@@ -62,11 +60,16 @@ public final class MetricSpecification {
     private List<String> supportedTimeGrainTypes;
 
     /*
-     * Optional. If set to true, then zero will be returned for time duration
-     * where no metric is emitted/published.
+     * Optional. If set to true, then zero will be returned for time duration where no metric is emitted/published.
      */
     @JsonProperty(value = "fillGapWithZero")
     private Boolean fillGapWithZero;
+
+    /*
+     * Pattern for the filter of the metric.
+     */
+    @JsonProperty(value = "metricFilterPattern")
+    private String metricFilterPattern;
 
     /*
      * Dimensions of the metric
@@ -75,10 +78,34 @@ public final class MetricSpecification {
     private List<MetricDimension> dimensions;
 
     /*
-     * Name of the MDM namespace. Optional.
+     * Whether the metric is internal.
+     */
+    @JsonProperty(value = "isInternal")
+    private Boolean isInternal;
+
+    /*
+     * The source MDM account.
+     */
+    @JsonProperty(value = "sourceMdmAccount")
+    private String sourceMdmAccount;
+
+    /*
+     * The source MDM namespace.
      */
     @JsonProperty(value = "sourceMdmNamespace")
     private String sourceMdmNamespace;
+
+    /*
+     * Whether regional MDM account enabled.
+     */
+    @JsonProperty(value = "enableRegionalMdmAccount")
+    private Boolean enableRegionalMdmAccount;
+
+    /*
+     * The resource Id dimension name override.
+     */
+    @JsonProperty(value = "resourceIdDimensionNameOverride")
+    private String resourceIdDimensionNameOverride;
 
     /**
      * Get the name property: Name of the metric.
@@ -267,6 +294,26 @@ public final class MetricSpecification {
     }
 
     /**
+     * Get the metricFilterPattern property: Pattern for the filter of the metric.
+     *
+     * @return the metricFilterPattern value.
+     */
+    public String metricFilterPattern() {
+        return this.metricFilterPattern;
+    }
+
+    /**
+     * Set the metricFilterPattern property: Pattern for the filter of the metric.
+     *
+     * @param metricFilterPattern the metricFilterPattern value to set.
+     * @return the MetricSpecification object itself.
+     */
+    public MetricSpecification withMetricFilterPattern(String metricFilterPattern) {
+        this.metricFilterPattern = metricFilterPattern;
+        return this;
+    }
+
+    /**
      * Get the dimensions property: Dimensions of the metric.
      *
      * @return the dimensions value.
@@ -287,7 +334,47 @@ public final class MetricSpecification {
     }
 
     /**
-     * Get the sourceMdmNamespace property: Name of the MDM namespace. Optional.
+     * Get the isInternal property: Whether the metric is internal.
+     *
+     * @return the isInternal value.
+     */
+    public Boolean isInternal() {
+        return this.isInternal;
+    }
+
+    /**
+     * Set the isInternal property: Whether the metric is internal.
+     *
+     * @param isInternal the isInternal value to set.
+     * @return the MetricSpecification object itself.
+     */
+    public MetricSpecification withIsInternal(Boolean isInternal) {
+        this.isInternal = isInternal;
+        return this;
+    }
+
+    /**
+     * Get the sourceMdmAccount property: The source MDM account.
+     *
+     * @return the sourceMdmAccount value.
+     */
+    public String sourceMdmAccount() {
+        return this.sourceMdmAccount;
+    }
+
+    /**
+     * Set the sourceMdmAccount property: The source MDM account.
+     *
+     * @param sourceMdmAccount the sourceMdmAccount value to set.
+     * @return the MetricSpecification object itself.
+     */
+    public MetricSpecification withSourceMdmAccount(String sourceMdmAccount) {
+        this.sourceMdmAccount = sourceMdmAccount;
+        return this;
+    }
+
+    /**
+     * Get the sourceMdmNamespace property: The source MDM namespace.
      *
      * @return the sourceMdmNamespace value.
      */
@@ -296,13 +383,53 @@ public final class MetricSpecification {
     }
 
     /**
-     * Set the sourceMdmNamespace property: Name of the MDM namespace. Optional.
+     * Set the sourceMdmNamespace property: The source MDM namespace.
      *
      * @param sourceMdmNamespace the sourceMdmNamespace value to set.
      * @return the MetricSpecification object itself.
      */
     public MetricSpecification withSourceMdmNamespace(String sourceMdmNamespace) {
         this.sourceMdmNamespace = sourceMdmNamespace;
+        return this;
+    }
+
+    /**
+     * Get the enableRegionalMdmAccount property: Whether regional MDM account enabled.
+     *
+     * @return the enableRegionalMdmAccount value.
+     */
+    public Boolean enableRegionalMdmAccount() {
+        return this.enableRegionalMdmAccount;
+    }
+
+    /**
+     * Set the enableRegionalMdmAccount property: Whether regional MDM account enabled.
+     *
+     * @param enableRegionalMdmAccount the enableRegionalMdmAccount value to set.
+     * @return the MetricSpecification object itself.
+     */
+    public MetricSpecification withEnableRegionalMdmAccount(Boolean enableRegionalMdmAccount) {
+        this.enableRegionalMdmAccount = enableRegionalMdmAccount;
+        return this;
+    }
+
+    /**
+     * Get the resourceIdDimensionNameOverride property: The resource Id dimension name override.
+     *
+     * @return the resourceIdDimensionNameOverride value.
+     */
+    public String resourceIdDimensionNameOverride() {
+        return this.resourceIdDimensionNameOverride;
+    }
+
+    /**
+     * Set the resourceIdDimensionNameOverride property: The resource Id dimension name override.
+     *
+     * @param resourceIdDimensionNameOverride the resourceIdDimensionNameOverride value to set.
+     * @return the MetricSpecification object itself.
+     */
+    public MetricSpecification withResourceIdDimensionNameOverride(String resourceIdDimensionNameOverride) {
+        this.resourceIdDimensionNameOverride = resourceIdDimensionNameOverride;
         return this;
     }
 

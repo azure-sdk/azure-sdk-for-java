@@ -12,8 +12,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Fluent
 public class ResourceCore extends ProxyResource {
     /*
-     * An etag associated with the resource, used for optimistic concurrency
-     * when editing it.
+     * An etag associated with the resource, used for optimistic concurrency when editing it.
      */
     @JsonProperty(value = "etag")
     private String etag;
