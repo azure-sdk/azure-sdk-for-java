@@ -17,8 +17,7 @@ public final class PrivateEndpointConnection {
     private ProvisioningState provisioningState;
 
     /*
-     * The Private Endpoint network resource that is linked to the Private
-     * Endpoint connection.
+     * The Private Endpoint network resource that is linked to the Private Endpoint connection.
      */
     @JsonProperty(value = "privateEndpoint", access = JsonProperty.Access.WRITE_ONLY)
     private PrivateEndpoint privateEndpoint;

@@ -25,8 +25,7 @@ public final class ClientDiscoveryValueForSingleApiInner {
     private ClientDiscoveryDisplay display;
 
     /*
-     * The intended executor of the operation;governs the display of the
-     * operation in the RBAC UX and the audit logs UX
+     * The intended executor of the operation;governs the display of the operation in the RBAC UX and the audit logs UX
      */
     @JsonProperty(value = "origin")
     private String origin;
