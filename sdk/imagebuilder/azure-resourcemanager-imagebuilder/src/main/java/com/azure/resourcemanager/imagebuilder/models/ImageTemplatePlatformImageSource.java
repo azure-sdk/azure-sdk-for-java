@@ -40,18 +40,16 @@ public final class ImageTemplatePlatformImageSource extends ImageTemplateSource 
 
     /*
      * Image version from the [Azure Gallery
-     * Images](https://docs.microsoft.com/en-us/rest/api/compute/virtualmachineimages).
-     * If 'latest' is specified here, the version is evaluated when the image
-     * build takes place, not when the template is submitted.
+     * Images](https://docs.microsoft.com/en-us/rest/api/compute/virtualmachineimages). If 'latest' is specified here,
+     * the version is evaluated when the image build takes place, not when the template is submitted.
      */
     @JsonProperty(value = "version")
     private String version;
 
     /*
      * Image version from the [Azure Gallery
-     * Images](https://docs.microsoft.com/en-us/rest/api/compute/virtualmachineimages).
-     * This readonly field differs from 'version', only if the value specified
-     * in 'version' field is 'latest'.
+     * Images](https://docs.microsoft.com/en-us/rest/api/compute/virtualmachineimages). This readonly field differs
+     * from 'version', only if the value specified in 'version' field is 'latest'.
      */
     @JsonProperty(value = "exactVersion", access = JsonProperty.Access.WRITE_ONLY)
     private String exactVersion;

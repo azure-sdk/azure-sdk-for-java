@@ -30,15 +30,14 @@ public final class ImageTemplateSharedImageDistributor extends ImageTemplateDist
     private List<String> replicationRegions;
 
     /*
-     * Flag that indicates whether created image version should be excluded
-     * from latest. Omit to use the default (false).
+     * Flag that indicates whether created image version should be excluded from latest. Omit to use the default
+     * (false).
      */
     @JsonProperty(value = "excludeFromLatest")
     private Boolean excludeFromLatest;
 
     /*
-     * Storage account type to be used to store the shared image. Omit to use
-     * the default (Standard_LRS).
+     * Storage account type to be used to store the shared image. Omit to use the default (Standard_LRS).
      */
     @JsonProperty(value = "storageAccountType")
     private SharedImageStorageAccountType storageAccountType;
