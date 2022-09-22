@@ -17,8 +17,7 @@ public final class VolumeMount {
     private String volumeName;
 
     /*
-     * Path within the container at which the volume should be mounted.Must not
-     * contain ':'.
+     * Path within the container at which the volume should be mounted.Must not contain ':'.
      */
     @JsonProperty(value = "mountPath")
     private String mountPath;
