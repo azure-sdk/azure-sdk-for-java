@@ -325,14 +325,7 @@ public final class ApplicationPackagesClientImpl implements ApplicationPackagesC
         String versionName,
         ActivateApplicationPackageParameters parameters) {
         return activateWithResponseAsync(resourceGroupName, accountName, applicationName, versionName, parameters)
-            .flatMap(
-                (Response<ApplicationPackageInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -553,14 +546,7 @@ public final class ApplicationPackagesClientImpl implements ApplicationPackagesC
         String versionName,
         ApplicationPackageInner parameters) {
         return createWithResponseAsync(resourceGroupName, accountName, applicationName, versionName, parameters)
-            .flatMap(
-                (Response<ApplicationPackageInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -583,14 +569,7 @@ public final class ApplicationPackagesClientImpl implements ApplicationPackagesC
         String resourceGroupName, String accountName, String applicationName, String versionName) {
         final ApplicationPackageInner parameters = null;
         return createWithResponseAsync(resourceGroupName, accountName, applicationName, versionName, parameters)
-            .flatMap(
-                (Response<ApplicationPackageInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -776,7 +755,7 @@ public final class ApplicationPackagesClientImpl implements ApplicationPackagesC
     private Mono<Void> deleteAsync(
         String resourceGroupName, String accountName, String applicationName, String versionName) {
         return deleteWithResponseAsync(resourceGroupName, accountName, applicationName, versionName)
-            .flatMap((Response<Void> res) -> Mono.empty());
+            .flatMap(ignored -> Mono.empty());
     }
 
     /**
@@ -948,14 +927,7 @@ public final class ApplicationPackagesClientImpl implements ApplicationPackagesC
     private Mono<ApplicationPackageInner> getAsync(
         String resourceGroupName, String accountName, String applicationName, String versionName) {
         return getWithResponseAsync(resourceGroupName, accountName, applicationName, versionName)
-            .flatMap(
-                (Response<ApplicationPackageInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -1226,7 +1198,8 @@ public final class ApplicationPackagesClientImpl implements ApplicationPackagesC
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1262,7 +1235,8 @@ public final class ApplicationPackagesClientImpl implements ApplicationPackagesC
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.

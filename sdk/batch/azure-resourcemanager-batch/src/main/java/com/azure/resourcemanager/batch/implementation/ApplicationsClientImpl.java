@@ -291,14 +291,7 @@ public final class ApplicationsClientImpl implements ApplicationsClient {
     private Mono<ApplicationInner> createAsync(
         String resourceGroupName, String accountName, String applicationName, ApplicationInner parameters) {
         return createWithResponseAsync(resourceGroupName, accountName, applicationName, parameters)
-            .flatMap(
-                (Response<ApplicationInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -316,14 +309,7 @@ public final class ApplicationsClientImpl implements ApplicationsClient {
     private Mono<ApplicationInner> createAsync(String resourceGroupName, String accountName, String applicationName) {
         final ApplicationInner parameters = null;
         return createWithResponseAsync(resourceGroupName, accountName, applicationName, parameters)
-            .flatMap(
-                (Response<ApplicationInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -486,7 +472,7 @@ public final class ApplicationsClientImpl implements ApplicationsClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> deleteAsync(String resourceGroupName, String accountName, String applicationName) {
         return deleteWithResponseAsync(resourceGroupName, accountName, applicationName)
-            .flatMap((Response<Void> res) -> Mono.empty());
+            .flatMap(ignored -> Mono.empty());
     }
 
     /**
@@ -644,14 +630,7 @@ public final class ApplicationsClientImpl implements ApplicationsClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ApplicationInner> getAsync(String resourceGroupName, String accountName, String applicationName) {
         return getWithResponseAsync(resourceGroupName, accountName, applicationName)
-            .flatMap(
-                (Response<ApplicationInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -830,14 +809,7 @@ public final class ApplicationsClientImpl implements ApplicationsClient {
     private Mono<ApplicationInner> updateAsync(
         String resourceGroupName, String accountName, String applicationName, ApplicationInner parameters) {
         return updateWithResponseAsync(resourceGroupName, accountName, applicationName, parameters)
-            .flatMap(
-                (Response<ApplicationInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -1092,7 +1064,8 @@ public final class ApplicationsClientImpl implements ApplicationsClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1128,7 +1101,8 @@ public final class ApplicationsClientImpl implements ApplicationsClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.

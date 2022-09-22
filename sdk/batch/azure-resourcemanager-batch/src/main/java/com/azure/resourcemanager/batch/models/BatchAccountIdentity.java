@@ -17,15 +17,14 @@ import java.util.Map;
 @Fluent
 public class BatchAccountIdentity {
     /*
-     * The principal id of the Batch account. This property will only be
-     * provided for a system assigned identity.
+     * The principal id of the Batch account. This property will only be provided for a system assigned identity.
      */
     @JsonProperty(value = "principalId", access = JsonProperty.Access.WRITE_ONLY)
     private String principalId;
 
     /*
-     * The tenant id associated with the Batch account. This property will only
-     * be provided for a system assigned identity.
+     * The tenant id associated with the Batch account. This property will only be provided for a system assigned
+     * identity.
      */
     @JsonProperty(value = "tenantId", access = JsonProperty.Access.WRITE_ONLY)
     private String tenantId;
