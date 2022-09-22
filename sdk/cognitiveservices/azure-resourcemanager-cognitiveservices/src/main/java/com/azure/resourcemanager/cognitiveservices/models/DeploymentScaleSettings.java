@@ -23,8 +23,8 @@ public final class DeploymentScaleSettings {
     private Integer capacity;
 
     /*
-     * Deployment active capacity. This value might be different from
-     * `capacity` if customer recently updated `capacity`.
+     * Deployment active capacity. This value might be different from `capacity` if customer recently updated
+     * `capacity`.
      */
     @JsonProperty(value = "activeCapacity", access = JsonProperty.Access.WRITE_ONLY)
     private Integer activeCapacity;
