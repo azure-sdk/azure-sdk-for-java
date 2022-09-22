@@ -36,7 +36,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-/** Entry point to ServiceLinkerManager. Microsoft.ServiceLinker provider. */
+/** Entry point to ServiceLinkerManager. Microsoft.ServiceLinker provider test. */
 public final class ServiceLinkerManager {
     private Linkers linkers;
 
@@ -206,7 +206,7 @@ public final class ServiceLinkerManager {
                 .append("-")
                 .append("com.azure.resourcemanager.servicelinker")
                 .append("/")
-                .append("1.0.0-beta.2");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder
                     .append(" (")
