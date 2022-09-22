@@ -31,9 +31,8 @@ public class Identity {
     private String principalId;
 
     /*
-     * The list of user assigned identities associated with the resource. The
-     * user identity dictionary key references will be ARM resource ids in the
-     * form:
+     * The list of user assigned identities associated with the resource. The user identity dictionary key references
+     * will be ARM resource ids in the form:
      * '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}
      */
     @JsonProperty(value = "userAssignedIdentities")
