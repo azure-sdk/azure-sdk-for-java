@@ -21,10 +21,9 @@ import com.azure.resourcemanager.azurestack.models.Product;
 import com.azure.resourcemanager.azurestack.models.ProductList;
 import com.azure.resourcemanager.azurestack.models.ProductLog;
 import com.azure.resourcemanager.azurestack.models.Products;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public final class ProductsImpl implements Products {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(ProductsImpl.class);
+    private static final ClientLogger LOGGER = new ClientLogger(ProductsImpl.class);
 
     private final ProductsClient innerClient;
 
@@ -89,6 +88,36 @@ public final class ProductsImpl implements Products {
                 inner.getStatusCode(),
                 inner.getHeaders(),
                 new ExtendedProductImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public ProductList listProducts(String resourceGroup, String registrationName, String productName) {
+        ProductListInner inner = this.serviceClient().listProducts(resourceGroup, registrationName, productName);
+        if (inner != null) {
+            return new ProductListImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
+    public Response<ProductList> listProductsWithResponse(
+        String resourceGroup,
+        String registrationName,
+        String productName,
+        DeviceConfiguration deviceConfiguration,
+        Context context) {
+        Response<ProductListInner> inner =
+            this
+                .serviceClient()
+                .listProductsWithResponse(resourceGroup, registrationName, productName, deviceConfiguration, context);
+        if (inner != null) {
+            return new SimpleResponse<>(
+                inner.getRequest(),
+                inner.getStatusCode(),
+                inner.getHeaders(),
+                new ProductListImpl(inner.getValue(), this.manager()));
         } else {
             return null;
         }

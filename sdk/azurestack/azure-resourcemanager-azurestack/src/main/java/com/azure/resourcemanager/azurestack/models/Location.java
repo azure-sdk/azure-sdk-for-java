@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for Location. */
+/** Location of the resource. */
 public final class Location extends ExpandableStringEnum<Location> {
     /** Static value global for Location. */
     public static final Location GLOBAL = fromString("global");
@@ -24,7 +24,11 @@ public final class Location extends ExpandableStringEnum<Location> {
         return fromString(name, Location.class);
     }
 
-    /** @return known Location values. */
+    /**
+     * Gets known Location values.
+     *
+     * @return known Location values.
+     */
     public static Collection<Location> values() {
         return values(Location.class);
     }
