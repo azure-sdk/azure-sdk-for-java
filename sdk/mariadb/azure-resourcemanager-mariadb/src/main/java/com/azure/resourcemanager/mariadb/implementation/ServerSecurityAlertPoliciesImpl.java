@@ -14,10 +14,9 @@ import com.azure.resourcemanager.mariadb.fluent.models.ServerSecurityAlertPolicy
 import com.azure.resourcemanager.mariadb.models.SecurityAlertPolicyName;
 import com.azure.resourcemanager.mariadb.models.ServerSecurityAlertPolicies;
 import com.azure.resourcemanager.mariadb.models.ServerSecurityAlertPolicy;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public final class ServerSecurityAlertPoliciesImpl implements ServerSecurityAlertPolicies {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(ServerSecurityAlertPoliciesImpl.class);
+    private static final ClientLogger LOGGER = new ClientLogger(ServerSecurityAlertPoliciesImpl.class);
 
     private final ServerSecurityAlertPoliciesClient innerClient;
 
@@ -72,7 +71,7 @@ public final class ServerSecurityAlertPoliciesImpl implements ServerSecurityAler
     public ServerSecurityAlertPolicy getById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -80,15 +79,14 @@ public final class ServerSecurityAlertPoliciesImpl implements ServerSecurityAler
         }
         String serverName = Utils.getValueFromIdByName(id, "servers");
         if (serverName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'servers'.", id)));
         }
-        SecurityAlertPolicyName securityAlertPolicyName =
-            SecurityAlertPolicyName.fromString(Utils.getValueFromIdByName(id, "securityAlertPolicies"));
-        if (securityAlertPolicyName == null) {
-            throw logger
+        String securityAlertPolicyNameLocal = Utils.getValueFromIdByName(id, "securityAlertPolicies");
+        if (securityAlertPolicyNameLocal == null) {
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -96,13 +94,15 @@ public final class ServerSecurityAlertPoliciesImpl implements ServerSecurityAler
                                 "The resource ID '%s' is not valid. Missing path segment 'securityAlertPolicies'.",
                                 id)));
         }
+        SecurityAlertPolicyName securityAlertPolicyName =
+            SecurityAlertPolicyName.fromString(securityAlertPolicyNameLocal);
         return this.getWithResponse(resourceGroupName, serverName, securityAlertPolicyName, Context.NONE).getValue();
     }
 
     public Response<ServerSecurityAlertPolicy> getByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -110,15 +110,14 @@ public final class ServerSecurityAlertPoliciesImpl implements ServerSecurityAler
         }
         String serverName = Utils.getValueFromIdByName(id, "servers");
         if (serverName == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'servers'.", id)));
         }
-        SecurityAlertPolicyName securityAlertPolicyName =
-            SecurityAlertPolicyName.fromString(Utils.getValueFromIdByName(id, "securityAlertPolicies"));
-        if (securityAlertPolicyName == null) {
-            throw logger
+        String securityAlertPolicyNameLocal = Utils.getValueFromIdByName(id, "securityAlertPolicies");
+        if (securityAlertPolicyNameLocal == null) {
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         String
@@ -126,6 +125,8 @@ public final class ServerSecurityAlertPoliciesImpl implements ServerSecurityAler
                                 "The resource ID '%s' is not valid. Missing path segment 'securityAlertPolicies'.",
                                 id)));
         }
+        SecurityAlertPolicyName securityAlertPolicyName =
+            SecurityAlertPolicyName.fromString(securityAlertPolicyNameLocal);
         return this.getWithResponse(resourceGroupName, serverName, securityAlertPolicyName, context);
     }
 
