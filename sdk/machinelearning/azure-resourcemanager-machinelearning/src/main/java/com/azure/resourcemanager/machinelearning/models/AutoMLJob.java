@@ -19,12 +19,11 @@ import java.util.Map;
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "jobType")
 @JsonTypeName("AutoML")
 @Fluent
-public final class AutoMLJob extends JobBaseDetails {
+public final class AutoMLJob extends JobBaseProperties {
     /*
      * The ARM resource ID of the Environment specification for the job.
-     * This is optional value to provide, if not provided, AutoML will default
-     * this to Production AutoML curated environment version when running the
-     * job.
+     * This is optional value to provide, if not provided, AutoML will default this to Production AutoML curated
+     * environment version when running the job.
      */
     @JsonProperty(value = "environmentId")
     private String environmentId;
@@ -47,7 +46,7 @@ public final class AutoMLJob extends JobBaseDetails {
      * Compute Resource configuration for the job.
      */
     @JsonProperty(value = "resources")
-    private ResourceConfiguration resources;
+    private JobResourceConfiguration resources;
 
     /*
      * [Required] This represents scenario which can be one of Tables/NLP/Image
@@ -124,7 +123,7 @@ public final class AutoMLJob extends JobBaseDetails {
      *
      * @return the resources value.
      */
-    public ResourceConfiguration resources() {
+    public JobResourceConfiguration resources() {
         return this.resources;
     }
 
@@ -134,7 +133,7 @@ public final class AutoMLJob extends JobBaseDetails {
      * @param resources the resources value to set.
      * @return the AutoMLJob object itself.
      */
-    public AutoMLJob withResources(ResourceConfiguration resources) {
+    public AutoMLJob withResources(JobResourceConfiguration resources) {
         this.resources = resources;
         return this;
     }
@@ -156,6 +155,13 @@ public final class AutoMLJob extends JobBaseDetails {
      */
     public AutoMLJob withTaskDetails(AutoMLVertical taskDetails) {
         this.taskDetails = taskDetails;
+        return this;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public AutoMLJob withComponentId(String componentId) {
+        super.withComponentId(componentId);
         return this;
     }
 
@@ -191,13 +197,6 @@ public final class AutoMLJob extends JobBaseDetails {
     @Override
     public AutoMLJob withIsArchived(Boolean isArchived) {
         super.withIsArchived(isArchived);
-        return this;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public AutoMLJob withSchedule(ScheduleBase schedule) {
-        super.withSchedule(schedule);
         return this;
     }
 
