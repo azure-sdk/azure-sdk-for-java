@@ -18,7 +18,9 @@ import com.azure.resourcemanager.eventgrid.models.ChannelUpdateParameters;
 /** An instance of this class provides access to all the operations defined in ChannelsClient. */
 public interface ChannelsClient {
     /**
-     * Get properties of a channel.
+     * Get a channel.
+     *
+     * <p>Get properties of a channel.
      *
      * @param resourceGroupName The name of the resource group within the partners subscription.
      * @param partnerNamespaceName Name of the partner namespace.
@@ -32,7 +34,9 @@ public interface ChannelsClient {
     ChannelInner get(String resourceGroupName, String partnerNamespaceName, String channelName);
 
     /**
-     * Get properties of a channel.
+     * Get a channel.
+     *
+     * <p>Get properties of a channel.
      *
      * @param resourceGroupName The name of the resource group within the partners subscription.
      * @param partnerNamespaceName Name of the partner namespace.
@@ -48,7 +52,9 @@ public interface ChannelsClient {
         String resourceGroupName, String partnerNamespaceName, String channelName, Context context);
 
     /**
-     * Synchronously creates or updates a new channel with the specified parameters.
+     * Create or update a channel.
+     *
+     * <p>Synchronously creates or updates a new channel with the specified parameters.
      *
      * @param resourceGroupName The name of the resource group within the partners subscription.
      * @param partnerNamespaceName Name of the partner namespace.
@@ -64,7 +70,9 @@ public interface ChannelsClient {
         String resourceGroupName, String partnerNamespaceName, String channelName, ChannelInner channelInfo);
 
     /**
-     * Synchronously creates or updates a new channel with the specified parameters.
+     * Create or update a channel.
+     *
+     * <p>Synchronously creates or updates a new channel with the specified parameters.
      *
      * @param resourceGroupName The name of the resource group within the partners subscription.
      * @param partnerNamespaceName Name of the partner namespace.
@@ -85,7 +93,9 @@ public interface ChannelsClient {
         Context context);
 
     /**
-     * Delete an existing channel.
+     * Delete a channel.
+     *
+     * <p>Delete an existing channel.
      *
      * @param resourceGroupName The name of the resource group within the partners subscription.
      * @param partnerNamespaceName Name of the partner namespace.
@@ -100,7 +110,9 @@ public interface ChannelsClient {
         String resourceGroupName, String partnerNamespaceName, String channelName);
 
     /**
-     * Delete an existing channel.
+     * Delete a channel.
+     *
+     * <p>Delete an existing channel.
      *
      * @param resourceGroupName The name of the resource group within the partners subscription.
      * @param partnerNamespaceName Name of the partner namespace.
@@ -116,7 +128,9 @@ public interface ChannelsClient {
         String resourceGroupName, String partnerNamespaceName, String channelName, Context context);
 
     /**
-     * Delete an existing channel.
+     * Delete a channel.
+     *
+     * <p>Delete an existing channel.
      *
      * @param resourceGroupName The name of the resource group within the partners subscription.
      * @param partnerNamespaceName Name of the partner namespace.
@@ -129,7 +143,9 @@ public interface ChannelsClient {
     void delete(String resourceGroupName, String partnerNamespaceName, String channelName);
 
     /**
-     * Delete an existing channel.
+     * Delete a channel.
+     *
+     * <p>Delete an existing channel.
      *
      * @param resourceGroupName The name of the resource group within the partners subscription.
      * @param partnerNamespaceName Name of the partner namespace.
@@ -143,7 +159,9 @@ public interface ChannelsClient {
     void delete(String resourceGroupName, String partnerNamespaceName, String channelName, Context context);
 
     /**
-     * Synchronously updates a channel with the specified parameters.
+     * Update a Channel.
+     *
+     * <p>Synchronously updates a channel with the specified parameters.
      *
      * @param resourceGroupName The name of the resource group within the partners subscription.
      * @param partnerNamespaceName Name of the partner namespace.
@@ -161,7 +179,9 @@ public interface ChannelsClient {
         ChannelUpdateParameters channelUpdateParameters);
 
     /**
-     * Synchronously updates a channel with the specified parameters.
+     * Update a Channel.
+     *
+     * <p>Synchronously updates a channel with the specified parameters.
      *
      * @param resourceGroupName The name of the resource group within the partners subscription.
      * @param partnerNamespaceName Name of the partner namespace.
@@ -182,7 +202,9 @@ public interface ChannelsClient {
         Context context);
 
     /**
-     * List all the channels in a partner namespace.
+     * List channels.
+     *
+     * <p>List all the channels in a partner namespace.
      *
      * @param resourceGroupName The name of the resource group within the partners subscription.
      * @param partnerNamespaceName Name of the partner namespace.
@@ -195,7 +217,9 @@ public interface ChannelsClient {
     PagedIterable<ChannelInner> listByPartnerNamespace(String resourceGroupName, String partnerNamespaceName);
 
     /**
-     * List all the channels in a partner namespace.
+     * List channels.
+     *
+     * <p>List all the channels in a partner namespace.
      *
      * @param resourceGroupName The name of the resource group within the partners subscription.
      * @param partnerNamespaceName Name of the partner namespace.
@@ -218,7 +242,9 @@ public interface ChannelsClient {
         String resourceGroupName, String partnerNamespaceName, String filter, Integer top, Context context);
 
     /**
-     * Get the full endpoint URL of a partner destination channel.
+     * Get full URL of partner destination channel.
+     *
+     * <p>Get the full endpoint URL of a partner destination channel.
      *
      * @param resourceGroupName The name of the resource group within the partners subscription.
      * @param partnerNamespaceName Name of the partner namespace.
@@ -232,7 +258,9 @@ public interface ChannelsClient {
     EventSubscriptionFullUrlInner getFullUrl(String resourceGroupName, String partnerNamespaceName, String channelName);
 
     /**
-     * Get the full endpoint URL of a partner destination channel.
+     * Get full URL of partner destination channel.
+     *
+     * <p>Get the full endpoint URL of a partner destination channel.
      *
      * @param resourceGroupName The name of the resource group within the partners subscription.
      * @param partnerNamespaceName Name of the partner namespace.

@@ -12,7 +12,9 @@ import com.azure.resourcemanager.eventgrid.fluent.models.EventSubscriptionInner;
 /** Resource collection API of DomainEventSubscriptions. */
 public interface DomainEventSubscriptions {
     /**
-     * Get all delivery attributes for an event subscription for domain.
+     * Get delivery attributes for an event subscription for domain.
+     *
+     * <p>Get all delivery attributes for an event subscription for domain.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param domainName Name of the domain topic.
@@ -26,7 +28,9 @@ public interface DomainEventSubscriptions {
         String resourceGroupName, String domainName, String eventSubscriptionName);
 
     /**
-     * Get all delivery attributes for an event subscription for domain.
+     * Get delivery attributes for an event subscription for domain.
+     *
+     * <p>Get all delivery attributes for an event subscription for domain.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param domainName Name of the domain topic.
@@ -41,7 +45,9 @@ public interface DomainEventSubscriptions {
         String resourceGroupName, String domainName, String eventSubscriptionName, Context context);
 
     /**
-     * Get properties of an event subscription of a domain.
+     * Get an event subscription of a domain.
+     *
+     * <p>Get properties of an event subscription of a domain.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param domainName Name of the partner topic.
@@ -55,7 +61,9 @@ public interface DomainEventSubscriptions {
     EventSubscription get(String resourceGroupName, String domainName, String eventSubscriptionName);
 
     /**
-     * Get properties of an event subscription of a domain.
+     * Get an event subscription of a domain.
+     *
+     * <p>Get properties of an event subscription of a domain.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param domainName Name of the partner topic.
@@ -71,7 +79,9 @@ public interface DomainEventSubscriptions {
         String resourceGroupName, String domainName, String eventSubscriptionName, Context context);
 
     /**
-     * Asynchronously creates a new event subscription or updates an existing event subscription.
+     * Create or update an event subscription to a domain.
+     *
+     * <p>Asynchronously creates a new event subscription or updates an existing event subscription.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param domainName Name of the domain topic.
@@ -90,7 +100,9 @@ public interface DomainEventSubscriptions {
         EventSubscriptionInner eventSubscriptionInfo);
 
     /**
-     * Asynchronously creates a new event subscription or updates an existing event subscription.
+     * Create or update an event subscription to a domain.
+     *
+     * <p>Asynchronously creates a new event subscription or updates an existing event subscription.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param domainName Name of the domain topic.
@@ -111,7 +123,9 @@ public interface DomainEventSubscriptions {
         Context context);
 
     /**
-     * Delete an existing event subscription for a domain.
+     * Delete an event subscription for a domain.
+     *
+     * <p>Delete an existing event subscription for a domain.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param domainName Name of the domain.
@@ -124,7 +138,9 @@ public interface DomainEventSubscriptions {
     void delete(String resourceGroupName, String domainName, String eventSubscriptionName);
 
     /**
-     * Delete an existing event subscription for a domain.
+     * Delete an event subscription for a domain.
+     *
+     * <p>Delete an existing event subscription for a domain.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param domainName Name of the domain.
@@ -138,7 +154,9 @@ public interface DomainEventSubscriptions {
     void delete(String resourceGroupName, String domainName, String eventSubscriptionName, Context context);
 
     /**
-     * Update an existing event subscription for a topic.
+     * Update an event subscription for a domain.
+     *
+     * <p>Update an existing event subscription for a topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param domainName Name of the domain.
@@ -156,7 +174,9 @@ public interface DomainEventSubscriptions {
         EventSubscriptionUpdateParameters eventSubscriptionUpdateParameters);
 
     /**
-     * Update an existing event subscription for a topic.
+     * Update an event subscription for a domain.
+     *
+     * <p>Update an existing event subscription for a topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param domainName Name of the domain.
@@ -176,7 +196,9 @@ public interface DomainEventSubscriptions {
         Context context);
 
     /**
-     * Get the full endpoint URL for an event subscription for domain.
+     * Get full URL of an event subscription for domain.
+     *
+     * <p>Get the full endpoint URL for an event subscription for domain.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param domainName Name of the domain topic.
@@ -189,7 +211,9 @@ public interface DomainEventSubscriptions {
     EventSubscriptionFullUrl getFullUrl(String resourceGroupName, String domainName, String eventSubscriptionName);
 
     /**
-     * Get the full endpoint URL for an event subscription for domain.
+     * Get full URL of an event subscription for domain.
+     *
+     * <p>Get the full endpoint URL for an event subscription for domain.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param domainName Name of the domain topic.
@@ -204,7 +228,9 @@ public interface DomainEventSubscriptions {
         String resourceGroupName, String domainName, String eventSubscriptionName, Context context);
 
     /**
-     * List all event subscriptions that have been created for a specific topic.
+     * List all event subscriptions for a specific domain.
+     *
+     * <p>List all event subscriptions that have been created for a specific topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param domainName Name of the domain.
@@ -216,7 +242,9 @@ public interface DomainEventSubscriptions {
     PagedIterable<EventSubscription> list(String resourceGroupName, String domainName);
 
     /**
-     * List all event subscriptions that have been created for a specific topic.
+     * List all event subscriptions for a specific domain.
+     *
+     * <p>List all event subscriptions that have been created for a specific topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param domainName Name of the domain.

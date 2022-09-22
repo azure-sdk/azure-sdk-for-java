@@ -36,17 +36,14 @@ public final class TopicProperties {
     private String endpoint;
 
     /*
-     * This determines the format that Event Grid should expect for incoming
-     * events published to the topic.
+     * This determines the format that Event Grid should expect for incoming events published to the topic.
      */
     @JsonProperty(value = "inputSchema")
     private InputSchema inputSchema;
 
     /*
-     * This enables publishing using custom event schemas. An
-     * InputSchemaMapping can be specified to map various properties of a
-     * source schema to various required properties of the EventGridEvent
-     * schema.
+     * This enables publishing using custom event schemas. An InputSchemaMapping can be specified to map various
+     * properties of a source schema to various required properties of the EventGridEvent schema.
      */
     @JsonProperty(value = "inputSchemaMapping")
     private InputSchemaMapping inputSchemaMapping;
@@ -58,26 +55,23 @@ public final class TopicProperties {
     private String metricResourceId;
 
     /*
-     * This determines if traffic is allowed over public network. By default it
-     * is enabled.
+     * This determines if traffic is allowed over public network. By default it is enabled.
      * You can further restrict to specific IPs by configuring <seealso
-     * cref="P:Microsoft.Azure.Events.ResourceProvider.Common.Contracts.TopicProperties.InboundIpRules"
-     * />
+     * cref="P:Microsoft.Azure.Events.ResourceProvider.Common.Contracts.TopicProperties.InboundIpRules" />
      */
     @JsonProperty(value = "publicNetworkAccess")
     private PublicNetworkAccess publicNetworkAccess;
 
     /*
-     * This can be used to restrict traffic from specific IPs instead of all
-     * IPs. Note: These are considered only if PublicNetworkAccess is enabled.
+     * This can be used to restrict traffic from specific IPs instead of all IPs. Note: These are considered only if
+     * PublicNetworkAccess is enabled.
      */
     @JsonProperty(value = "inboundIpRules")
     private List<InboundIpRule> inboundIpRules;
 
     /*
-     * This boolean is used to enable or disable local auth. Default value is
-     * false. When the property is set to true, only AAD token will be used to
-     * authenticate if user is allowed to publish to the topic.
+     * This boolean is used to enable or disable local auth. Default value is false. When the property is set to true,
+     * only AAD token will be used to authenticate if user is allowed to publish to the topic.
      */
     @JsonProperty(value = "disableLocalAuth")
     private Boolean disableLocalAuth;

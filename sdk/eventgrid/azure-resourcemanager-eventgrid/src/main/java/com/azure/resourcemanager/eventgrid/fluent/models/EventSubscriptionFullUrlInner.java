@@ -11,8 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Fluent
 public final class EventSubscriptionFullUrlInner {
     /*
-     * The URL that represents the endpoint of the destination of an event
-     * subscription.
+     * The URL that represents the endpoint of the destination of an event subscription.
      */
     @JsonProperty(value = "endpointUrl")
     private String endpointUrl;

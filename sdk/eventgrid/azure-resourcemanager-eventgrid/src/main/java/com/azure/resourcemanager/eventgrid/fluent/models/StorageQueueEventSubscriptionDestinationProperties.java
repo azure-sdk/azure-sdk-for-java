@@ -11,15 +11,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Fluent
 public final class StorageQueueEventSubscriptionDestinationProperties {
     /*
-     * The Azure Resource ID of the storage account that contains the queue
-     * that is the destination of an event subscription.
+     * The Azure Resource ID of the storage account that contains the queue that is the destination of an event
+     * subscription.
      */
     @JsonProperty(value = "resourceId")
     private String resourceId;
 
     /*
-     * The name of the Storage queue under a storage account that is the
-     * destination of an event subscription.
+     * The name of the Storage queue under a storage account that is the destination of an event subscription.
      */
     @JsonProperty(value = "queueName")
     private String queueName;

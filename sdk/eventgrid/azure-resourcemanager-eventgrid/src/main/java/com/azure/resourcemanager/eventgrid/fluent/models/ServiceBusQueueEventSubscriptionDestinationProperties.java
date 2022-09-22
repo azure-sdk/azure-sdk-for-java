@@ -13,8 +13,7 @@ import java.util.List;
 @Fluent
 public final class ServiceBusQueueEventSubscriptionDestinationProperties {
     /*
-     * The Azure Resource Id that represents the endpoint of the Service Bus
-     * destination of an event subscription.
+     * The Azure Resource Id that represents the endpoint of the Service Bus destination of an event subscription.
      */
     @JsonProperty(value = "resourceId")
     private String resourceId;

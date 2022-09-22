@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for PartnerTopicProvisioningState. */
+/** Provisioning state of the partner topic. */
 public final class PartnerTopicProvisioningState extends ExpandableStringEnum<PartnerTopicProvisioningState> {
     /** Static value Creating for PartnerTopicProvisioningState. */
     public static final PartnerTopicProvisioningState CREATING = fromString("Creating");

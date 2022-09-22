@@ -17,7 +17,9 @@ import com.azure.resourcemanager.eventgrid.models.PartnerTopicUpdateParameters;
 /** An instance of this class provides access to all the operations defined in PartnerTopicsClient. */
 public interface PartnerTopicsClient {
     /**
-     * Get properties of a partner topic.
+     * Get a partner topic.
+     *
+     * <p>Get properties of a partner topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerTopicName Name of the partner topic.
@@ -30,7 +32,9 @@ public interface PartnerTopicsClient {
     PartnerTopicInner getByResourceGroup(String resourceGroupName, String partnerTopicName);
 
     /**
-     * Get properties of a partner topic.
+     * Get a partner topic.
+     *
+     * <p>Get properties of a partner topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerTopicName Name of the partner topic.
@@ -45,7 +49,9 @@ public interface PartnerTopicsClient {
         String resourceGroupName, String partnerTopicName, Context context);
 
     /**
-     * Asynchronously creates a new partner topic with the specified parameters.
+     * Create a partner topic.
+     *
+     * <p>Asynchronously creates a new partner topic with the specified parameters.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerTopicName Name of the partner topic.
@@ -60,7 +66,9 @@ public interface PartnerTopicsClient {
         String resourceGroupName, String partnerTopicName, PartnerTopicInner partnerTopicInfo);
 
     /**
-     * Asynchronously creates a new partner topic with the specified parameters.
+     * Create a partner topic.
+     *
+     * <p>Asynchronously creates a new partner topic with the specified parameters.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerTopicName Name of the partner topic.
@@ -76,7 +84,9 @@ public interface PartnerTopicsClient {
         String resourceGroupName, String partnerTopicName, PartnerTopicInner partnerTopicInfo, Context context);
 
     /**
-     * Delete existing partner topic.
+     * Delete a partner topic.
+     *
+     * <p>Delete existing partner topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerTopicName Name of the partner topic.
@@ -89,7 +99,9 @@ public interface PartnerTopicsClient {
     SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String partnerTopicName);
 
     /**
-     * Delete existing partner topic.
+     * Delete a partner topic.
+     *
+     * <p>Delete existing partner topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerTopicName Name of the partner topic.
@@ -103,7 +115,9 @@ public interface PartnerTopicsClient {
     SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String partnerTopicName, Context context);
 
     /**
-     * Delete existing partner topic.
+     * Delete a partner topic.
+     *
+     * <p>Delete existing partner topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerTopicName Name of the partner topic.
@@ -115,7 +129,9 @@ public interface PartnerTopicsClient {
     void delete(String resourceGroupName, String partnerTopicName);
 
     /**
-     * Delete existing partner topic.
+     * Delete a partner topic.
+     *
+     * <p>Delete existing partner topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerTopicName Name of the partner topic.
@@ -128,7 +144,9 @@ public interface PartnerTopicsClient {
     void delete(String resourceGroupName, String partnerTopicName, Context context);
 
     /**
-     * Asynchronously updates a partner topic with the specified parameters.
+     * Update a partner topic.
+     *
+     * <p>Asynchronously updates a partner topic with the specified parameters.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerTopicName Name of the partner topic.
@@ -143,7 +161,9 @@ public interface PartnerTopicsClient {
         String resourceGroupName, String partnerTopicName, PartnerTopicUpdateParameters partnerTopicUpdateParameters);
 
     /**
-     * Asynchronously updates a partner topic with the specified parameters.
+     * Update a partner topic.
+     *
+     * <p>Asynchronously updates a partner topic with the specified parameters.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerTopicName Name of the partner topic.
@@ -162,7 +182,9 @@ public interface PartnerTopicsClient {
         Context context);
 
     /**
-     * List all the partner topics under an Azure subscription.
+     * List partner topics under an Azure subscription.
+     *
+     * <p>List all the partner topics under an Azure subscription.
      *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -172,7 +194,9 @@ public interface PartnerTopicsClient {
     PagedIterable<PartnerTopicInner> list();
 
     /**
-     * List all the partner topics under an Azure subscription.
+     * List partner topics under an Azure subscription.
+     *
+     * <p>List all the partner topics under an Azure subscription.
      *
      * @param filter The query used to filter the search results using OData syntax. Filtering is permitted on the
      *     'name' property only and with limited number of OData operations. These operations are: the 'contains'
@@ -192,7 +216,9 @@ public interface PartnerTopicsClient {
     PagedIterable<PartnerTopicInner> list(String filter, Integer top, Context context);
 
     /**
-     * List all the partner topics under a resource group.
+     * List partner topics under a resource group.
+     *
+     * <p>List all the partner topics under a resource group.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -204,7 +230,9 @@ public interface PartnerTopicsClient {
     PagedIterable<PartnerTopicInner> listByResourceGroup(String resourceGroupName);
 
     /**
-     * List all the partner topics under a resource group.
+     * List partner topics under a resource group.
+     *
+     * <p>List all the partner topics under a resource group.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param filter The query used to filter the search results using OData syntax. Filtering is permitted on the
@@ -226,7 +254,9 @@ public interface PartnerTopicsClient {
         String resourceGroupName, String filter, Integer top, Context context);
 
     /**
-     * Activate a newly created partner topic.
+     * Activate a partner topic.
+     *
+     * <p>Activate a newly created partner topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerTopicName Name of the partner topic.
@@ -239,7 +269,9 @@ public interface PartnerTopicsClient {
     PartnerTopicInner activate(String resourceGroupName, String partnerTopicName);
 
     /**
-     * Activate a newly created partner topic.
+     * Activate a partner topic.
+     *
+     * <p>Activate a newly created partner topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerTopicName Name of the partner topic.
@@ -254,7 +286,9 @@ public interface PartnerTopicsClient {
         String resourceGroupName, String partnerTopicName, Context context);
 
     /**
-     * Deactivate specific partner topic.
+     * Deactivate a partner topic.
+     *
+     * <p>Deactivate specific partner topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerTopicName Name of the partner topic.
@@ -267,7 +301,9 @@ public interface PartnerTopicsClient {
     PartnerTopicInner deactivate(String resourceGroupName, String partnerTopicName);
 
     /**
-     * Deactivate specific partner topic.
+     * Deactivate a partner topic.
+     *
+     * <p>Deactivate specific partner topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerTopicName Name of the partner topic.

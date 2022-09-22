@@ -16,23 +16,20 @@ import java.time.OffsetDateTime;
 @Fluent
 public final class ChannelProperties {
     /*
-     * The type of the event channel which represents the direction flow of
-     * events.
+     * The type of the event channel which represents the direction flow of events.
      */
     @JsonProperty(value = "channelType")
     private ChannelType channelType;
 
     /*
-     * This property should be populated when channelType is PartnerTopic and
-     * represents information about the partner topic resource corresponding to
-     * the channel.
+     * This property should be populated when channelType is PartnerTopic and represents information about the partner
+     * topic resource corresponding to the channel.
      */
     @JsonProperty(value = "partnerTopicInfo")
     private PartnerTopicInfo partnerTopicInfo;
 
     /*
-     * Context or helpful message that can be used during the approval process
-     * by the subscriber.
+     * Context or helpful message that can be used during the approval process by the subscriber.
      */
     @JsonProperty(value = "messageForActivation")
     private String messageForActivation;
@@ -50,8 +47,7 @@ public final class ChannelProperties {
     private ReadinessState readinessState;
 
     /*
-     * Expiration time of the channel. If this timer expires while the
-     * corresponding partner topic is never activated,
+     * Expiration time of the channel. If this timer expires while the corresponding partner topic is never activated,
      * the channel and corresponding partner topic are deleted.
      */
     @JsonProperty(value = "expirationTimeIfNotActivatedUtc")

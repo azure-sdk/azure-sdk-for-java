@@ -19,7 +19,9 @@ import com.azure.resourcemanager.eventgrid.models.EventSubscriptionUpdateParamet
 /** An instance of this class provides access to all the operations defined in TopicEventSubscriptionsClient. */
 public interface TopicEventSubscriptionsClient {
     /**
-     * Get all delivery attributes for an event subscription for topic.
+     * Get delivery attributes for an event subscription for topic.
+     *
+     * <p>Get all delivery attributes for an event subscription for topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param topicName Name of the domain topic.
@@ -34,7 +36,9 @@ public interface TopicEventSubscriptionsClient {
         String resourceGroupName, String topicName, String eventSubscriptionName);
 
     /**
-     * Get all delivery attributes for an event subscription for topic.
+     * Get delivery attributes for an event subscription for topic.
+     *
+     * <p>Get all delivery attributes for an event subscription for topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param topicName Name of the domain topic.
@@ -50,7 +54,9 @@ public interface TopicEventSubscriptionsClient {
         String resourceGroupName, String topicName, String eventSubscriptionName, Context context);
 
     /**
-     * Get properties of an event subscription of a topic.
+     * Get an event subscription of a topic.
+     *
+     * <p>Get properties of an event subscription of a topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param topicName Name of the partner topic.
@@ -65,7 +71,9 @@ public interface TopicEventSubscriptionsClient {
     EventSubscriptionInner get(String resourceGroupName, String topicName, String eventSubscriptionName);
 
     /**
-     * Get properties of an event subscription of a topic.
+     * Get an event subscription of a topic.
+     *
+     * <p>Get properties of an event subscription of a topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param topicName Name of the partner topic.
@@ -82,7 +90,9 @@ public interface TopicEventSubscriptionsClient {
         String resourceGroupName, String topicName, String eventSubscriptionName, Context context);
 
     /**
-     * Asynchronously creates a new event subscription or updates an existing event subscription.
+     * Create or update an event subscription to a topic.
+     *
+     * <p>Asynchronously creates a new event subscription or updates an existing event subscription.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param topicName Name of the domain topic.
@@ -102,7 +112,9 @@ public interface TopicEventSubscriptionsClient {
         EventSubscriptionInner eventSubscriptionInfo);
 
     /**
-     * Asynchronously creates a new event subscription or updates an existing event subscription.
+     * Create or update an event subscription to a topic.
+     *
+     * <p>Asynchronously creates a new event subscription or updates an existing event subscription.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param topicName Name of the domain topic.
@@ -124,7 +136,9 @@ public interface TopicEventSubscriptionsClient {
         Context context);
 
     /**
-     * Asynchronously creates a new event subscription or updates an existing event subscription.
+     * Create or update an event subscription to a topic.
+     *
+     * <p>Asynchronously creates a new event subscription or updates an existing event subscription.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param topicName Name of the domain topic.
@@ -144,7 +158,9 @@ public interface TopicEventSubscriptionsClient {
         EventSubscriptionInner eventSubscriptionInfo);
 
     /**
-     * Asynchronously creates a new event subscription or updates an existing event subscription.
+     * Create or update an event subscription to a topic.
+     *
+     * <p>Asynchronously creates a new event subscription or updates an existing event subscription.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param topicName Name of the domain topic.
@@ -166,7 +182,9 @@ public interface TopicEventSubscriptionsClient {
         Context context);
 
     /**
-     * Delete an existing event subscription for a topic.
+     * Delete an event subscription for a topic.
+     *
+     * <p>Delete an existing event subscription for a topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param topicName Name of the topic.
@@ -182,7 +200,9 @@ public interface TopicEventSubscriptionsClient {
         String resourceGroupName, String topicName, String eventSubscriptionName);
 
     /**
-     * Delete an existing event subscription for a topic.
+     * Delete an event subscription for a topic.
+     *
+     * <p>Delete an existing event subscription for a topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param topicName Name of the topic.
@@ -199,7 +219,9 @@ public interface TopicEventSubscriptionsClient {
         String resourceGroupName, String topicName, String eventSubscriptionName, Context context);
 
     /**
-     * Delete an existing event subscription for a topic.
+     * Delete an event subscription for a topic.
+     *
+     * <p>Delete an existing event subscription for a topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param topicName Name of the topic.
@@ -213,7 +235,9 @@ public interface TopicEventSubscriptionsClient {
     void delete(String resourceGroupName, String topicName, String eventSubscriptionName);
 
     /**
-     * Delete an existing event subscription for a topic.
+     * Delete an event subscription for a topic.
+     *
+     * <p>Delete an existing event subscription for a topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param topicName Name of the topic.
@@ -228,7 +252,9 @@ public interface TopicEventSubscriptionsClient {
     void delete(String resourceGroupName, String topicName, String eventSubscriptionName, Context context);
 
     /**
-     * Update an existing event subscription for a topic.
+     * Update an event subscription for a topic.
+     *
+     * <p>Update an existing event subscription for a topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param topicName Name of the domain.
@@ -247,7 +273,9 @@ public interface TopicEventSubscriptionsClient {
         EventSubscriptionUpdateParameters eventSubscriptionUpdateParameters);
 
     /**
-     * Update an existing event subscription for a topic.
+     * Update an event subscription for a topic.
+     *
+     * <p>Update an existing event subscription for a topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param topicName Name of the domain.
@@ -268,7 +296,9 @@ public interface TopicEventSubscriptionsClient {
         Context context);
 
     /**
-     * Update an existing event subscription for a topic.
+     * Update an event subscription for a topic.
+     *
+     * <p>Update an existing event subscription for a topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param topicName Name of the domain.
@@ -287,7 +317,9 @@ public interface TopicEventSubscriptionsClient {
         EventSubscriptionUpdateParameters eventSubscriptionUpdateParameters);
 
     /**
-     * Update an existing event subscription for a topic.
+     * Update an event subscription for a topic.
+     *
+     * <p>Update an existing event subscription for a topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param topicName Name of the domain.
@@ -308,7 +340,9 @@ public interface TopicEventSubscriptionsClient {
         Context context);
 
     /**
-     * Get the full endpoint URL for an event subscription for topic.
+     * Get full URL of an event subscription for topic.
+     *
+     * <p>Get the full endpoint URL for an event subscription for topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param topicName Name of the domain topic.
@@ -322,7 +356,9 @@ public interface TopicEventSubscriptionsClient {
     EventSubscriptionFullUrlInner getFullUrl(String resourceGroupName, String topicName, String eventSubscriptionName);
 
     /**
-     * Get the full endpoint URL for an event subscription for topic.
+     * Get full URL of an event subscription for topic.
+     *
+     * <p>Get the full endpoint URL for an event subscription for topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param topicName Name of the domain topic.
@@ -338,7 +374,9 @@ public interface TopicEventSubscriptionsClient {
         String resourceGroupName, String topicName, String eventSubscriptionName, Context context);
 
     /**
-     * List all event subscriptions that have been created for a specific topic.
+     * List all event subscriptions for a specific topic.
+     *
+     * <p>List all event subscriptions that have been created for a specific topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param topicName Name of the topic.
@@ -351,7 +389,9 @@ public interface TopicEventSubscriptionsClient {
     PagedIterable<EventSubscriptionInner> list(String resourceGroupName, String topicName);
 
     /**
-     * List all event subscriptions that have been created for a specific topic.
+     * List all event subscriptions for a specific topic.
+     *
+     * <p>List all event subscriptions that have been created for a specific topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param topicName Name of the topic.

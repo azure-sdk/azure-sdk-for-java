@@ -13,8 +13,7 @@ import java.util.List;
 @Fluent
 public final class EventHubEventSubscriptionDestinationProperties {
     /*
-     * The Azure Resource Id that represents the endpoint of an Event Hub
-     * destination of an event subscription.
+     * The Azure Resource Id that represents the endpoint of an Event Hub destination of an event subscription.
      */
     @JsonProperty(value = "resourceId")
     private String resourceId;

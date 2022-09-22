@@ -199,7 +199,9 @@ public final class PartnerTopicEventSubscriptionsClientImpl implements PartnerTo
     }
 
     /**
-     * Get properties of an event subscription of a partner topic.
+     * Get an event subscription of a partner topic.
+     *
+     * <p>Get properties of an event subscription of a partner topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerTopicName Name of the partner topic.
@@ -256,7 +258,9 @@ public final class PartnerTopicEventSubscriptionsClientImpl implements PartnerTo
     }
 
     /**
-     * Get properties of an event subscription of a partner topic.
+     * Get an event subscription of a partner topic.
+     *
+     * <p>Get properties of an event subscription of a partner topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerTopicName Name of the partner topic.
@@ -311,7 +315,9 @@ public final class PartnerTopicEventSubscriptionsClientImpl implements PartnerTo
     }
 
     /**
-     * Get properties of an event subscription of a partner topic.
+     * Get an event subscription of a partner topic.
+     *
+     * <p>Get properties of an event subscription of a partner topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerTopicName Name of the partner topic.
@@ -330,7 +336,9 @@ public final class PartnerTopicEventSubscriptionsClientImpl implements PartnerTo
     }
 
     /**
-     * Get properties of an event subscription of a partner topic.
+     * Get an event subscription of a partner topic.
+     *
+     * <p>Get properties of an event subscription of a partner topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerTopicName Name of the partner topic.
@@ -347,7 +355,9 @@ public final class PartnerTopicEventSubscriptionsClientImpl implements PartnerTo
     }
 
     /**
-     * Get properties of an event subscription of a partner topic.
+     * Get an event subscription of a partner topic.
+     *
+     * <p>Get properties of an event subscription of a partner topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerTopicName Name of the partner topic.
@@ -366,7 +376,9 @@ public final class PartnerTopicEventSubscriptionsClientImpl implements PartnerTo
     }
 
     /**
-     * Asynchronously creates or updates an event subscription of a partner topic with the specified parameters.
+     * Create or update an event subscription of a partner topic.
+     *
+     * <p>Asynchronously creates or updates an event subscription of a partner topic with the specified parameters.
      * Existing event subscriptions will be updated with this API.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
@@ -434,7 +446,9 @@ public final class PartnerTopicEventSubscriptionsClientImpl implements PartnerTo
     }
 
     /**
-     * Asynchronously creates or updates an event subscription of a partner topic with the specified parameters.
+     * Create or update an event subscription of a partner topic.
+     *
+     * <p>Asynchronously creates or updates an event subscription of a partner topic with the specified parameters.
      * Existing event subscriptions will be updated with this API.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
@@ -501,7 +515,9 @@ public final class PartnerTopicEventSubscriptionsClientImpl implements PartnerTo
     }
 
     /**
-     * Asynchronously creates or updates an event subscription of a partner topic with the specified parameters.
+     * Create or update an event subscription of a partner topic.
+     *
+     * <p>Asynchronously creates or updates an event subscription of a partner topic with the specified parameters.
      * Existing event subscriptions will be updated with this API.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
@@ -534,7 +550,9 @@ public final class PartnerTopicEventSubscriptionsClientImpl implements PartnerTo
     }
 
     /**
-     * Asynchronously creates or updates an event subscription of a partner topic with the specified parameters.
+     * Create or update an event subscription of a partner topic.
+     *
+     * <p>Asynchronously creates or updates an event subscription of a partner topic with the specified parameters.
      * Existing event subscriptions will be updated with this API.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
@@ -570,7 +588,9 @@ public final class PartnerTopicEventSubscriptionsClientImpl implements PartnerTo
     }
 
     /**
-     * Asynchronously creates or updates an event subscription of a partner topic with the specified parameters.
+     * Create or update an event subscription of a partner topic.
+     *
+     * <p>Asynchronously creates or updates an event subscription of a partner topic with the specified parameters.
      * Existing event subscriptions will be updated with this API.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
@@ -595,7 +615,9 @@ public final class PartnerTopicEventSubscriptionsClientImpl implements PartnerTo
     }
 
     /**
-     * Asynchronously creates or updates an event subscription of a partner topic with the specified parameters.
+     * Create or update an event subscription of a partner topic.
+     *
+     * <p>Asynchronously creates or updates an event subscription of a partner topic with the specified parameters.
      * Existing event subscriptions will be updated with this API.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
@@ -622,7 +644,9 @@ public final class PartnerTopicEventSubscriptionsClientImpl implements PartnerTo
     }
 
     /**
-     * Asynchronously creates or updates an event subscription of a partner topic with the specified parameters.
+     * Create or update an event subscription of a partner topic.
+     *
+     * <p>Asynchronously creates or updates an event subscription of a partner topic with the specified parameters.
      * Existing event subscriptions will be updated with this API.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
@@ -648,7 +672,9 @@ public final class PartnerTopicEventSubscriptionsClientImpl implements PartnerTo
     }
 
     /**
-     * Asynchronously creates or updates an event subscription of a partner topic with the specified parameters.
+     * Create or update an event subscription of a partner topic.
+     *
+     * <p>Asynchronously creates or updates an event subscription of a partner topic with the specified parameters.
      * Existing event subscriptions will be updated with this API.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
@@ -676,7 +702,9 @@ public final class PartnerTopicEventSubscriptionsClientImpl implements PartnerTo
     }
 
     /**
-     * Asynchronously creates or updates an event subscription of a partner topic with the specified parameters.
+     * Create or update an event subscription of a partner topic.
+     *
+     * <p>Asynchronously creates or updates an event subscription of a partner topic with the specified parameters.
      * Existing event subscriptions will be updated with this API.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
@@ -700,7 +728,9 @@ public final class PartnerTopicEventSubscriptionsClientImpl implements PartnerTo
     }
 
     /**
-     * Asynchronously creates or updates an event subscription of a partner topic with the specified parameters.
+     * Create or update an event subscription of a partner topic.
+     *
+     * <p>Asynchronously creates or updates an event subscription of a partner topic with the specified parameters.
      * Existing event subscriptions will be updated with this API.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
@@ -727,7 +757,9 @@ public final class PartnerTopicEventSubscriptionsClientImpl implements PartnerTo
     }
 
     /**
-     * Delete an existing event subscription of a partner topic.
+     * Delete an event subscription of a partner topic.
+     *
+     * <p>Delete an existing event subscription of a partner topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerTopicName Name of the partner topic.
@@ -781,7 +813,9 @@ public final class PartnerTopicEventSubscriptionsClientImpl implements PartnerTo
     }
 
     /**
-     * Delete an existing event subscription of a partner topic.
+     * Delete an event subscription of a partner topic.
+     *
+     * <p>Delete an existing event subscription of a partner topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerTopicName Name of the partner topic.
@@ -833,7 +867,9 @@ public final class PartnerTopicEventSubscriptionsClientImpl implements PartnerTo
     }
 
     /**
-     * Delete an existing event subscription of a partner topic.
+     * Delete an event subscription of a partner topic.
+     *
+     * <p>Delete an existing event subscription of a partner topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerTopicName Name of the partner topic.
@@ -856,7 +892,9 @@ public final class PartnerTopicEventSubscriptionsClientImpl implements PartnerTo
     }
 
     /**
-     * Delete an existing event subscription of a partner topic.
+     * Delete an event subscription of a partner topic.
+     *
+     * <p>Delete an existing event subscription of a partner topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerTopicName Name of the partner topic.
@@ -880,7 +918,9 @@ public final class PartnerTopicEventSubscriptionsClientImpl implements PartnerTo
     }
 
     /**
-     * Delete an existing event subscription of a partner topic.
+     * Delete an event subscription of a partner topic.
+     *
+     * <p>Delete an existing event subscription of a partner topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerTopicName Name of the partner topic.
@@ -898,7 +938,9 @@ public final class PartnerTopicEventSubscriptionsClientImpl implements PartnerTo
     }
 
     /**
-     * Delete an existing event subscription of a partner topic.
+     * Delete an event subscription of a partner topic.
+     *
+     * <p>Delete an existing event subscription of a partner topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerTopicName Name of the partner topic.
@@ -917,7 +959,9 @@ public final class PartnerTopicEventSubscriptionsClientImpl implements PartnerTo
     }
 
     /**
-     * Delete an existing event subscription of a partner topic.
+     * Delete an event subscription of a partner topic.
+     *
+     * <p>Delete an existing event subscription of a partner topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerTopicName Name of the partner topic.
@@ -936,7 +980,9 @@ public final class PartnerTopicEventSubscriptionsClientImpl implements PartnerTo
     }
 
     /**
-     * Delete an existing event subscription of a partner topic.
+     * Delete an event subscription of a partner topic.
+     *
+     * <p>Delete an existing event subscription of a partner topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerTopicName Name of the partner topic.
@@ -957,7 +1003,9 @@ public final class PartnerTopicEventSubscriptionsClientImpl implements PartnerTo
     }
 
     /**
-     * Delete an existing event subscription of a partner topic.
+     * Delete an event subscription of a partner topic.
+     *
+     * <p>Delete an existing event subscription of a partner topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerTopicName Name of the partner topic.
@@ -973,7 +1021,9 @@ public final class PartnerTopicEventSubscriptionsClientImpl implements PartnerTo
     }
 
     /**
-     * Delete an existing event subscription of a partner topic.
+     * Delete an event subscription of a partner topic.
+     *
+     * <p>Delete an existing event subscription of a partner topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerTopicName Name of the partner topic.
@@ -991,7 +1041,9 @@ public final class PartnerTopicEventSubscriptionsClientImpl implements PartnerTo
     }
 
     /**
-     * Update an existing event subscription of a partner topic.
+     * Update event subscription of a partner topic.
+     *
+     * <p>Update an existing event subscription of a partner topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerTopicName Name of the partner topic.
@@ -1060,7 +1112,9 @@ public final class PartnerTopicEventSubscriptionsClientImpl implements PartnerTo
     }
 
     /**
-     * Update an existing event subscription of a partner topic.
+     * Update event subscription of a partner topic.
+     *
+     * <p>Update an existing event subscription of a partner topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerTopicName Name of the partner topic.
@@ -1128,7 +1182,9 @@ public final class PartnerTopicEventSubscriptionsClientImpl implements PartnerTo
     }
 
     /**
-     * Update an existing event subscription of a partner topic.
+     * Update event subscription of a partner topic.
+     *
+     * <p>Update an existing event subscription of a partner topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerTopicName Name of the partner topic.
@@ -1160,7 +1216,9 @@ public final class PartnerTopicEventSubscriptionsClientImpl implements PartnerTo
     }
 
     /**
-     * Update an existing event subscription of a partner topic.
+     * Update event subscription of a partner topic.
+     *
+     * <p>Update an existing event subscription of a partner topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerTopicName Name of the partner topic.
@@ -1195,7 +1253,9 @@ public final class PartnerTopicEventSubscriptionsClientImpl implements PartnerTo
     }
 
     /**
-     * Update an existing event subscription of a partner topic.
+     * Update event subscription of a partner topic.
+     *
+     * <p>Update an existing event subscription of a partner topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerTopicName Name of the partner topic.
@@ -1219,7 +1279,9 @@ public final class PartnerTopicEventSubscriptionsClientImpl implements PartnerTo
     }
 
     /**
-     * Update an existing event subscription of a partner topic.
+     * Update event subscription of a partner topic.
+     *
+     * <p>Update an existing event subscription of a partner topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerTopicName Name of the partner topic.
@@ -1245,7 +1307,9 @@ public final class PartnerTopicEventSubscriptionsClientImpl implements PartnerTo
     }
 
     /**
-     * Update an existing event subscription of a partner topic.
+     * Update event subscription of a partner topic.
+     *
+     * <p>Update an existing event subscription of a partner topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerTopicName Name of the partner topic.
@@ -1270,7 +1334,9 @@ public final class PartnerTopicEventSubscriptionsClientImpl implements PartnerTo
     }
 
     /**
-     * Update an existing event subscription of a partner topic.
+     * Update event subscription of a partner topic.
+     *
+     * <p>Update an existing event subscription of a partner topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerTopicName Name of the partner topic.
@@ -1297,7 +1363,9 @@ public final class PartnerTopicEventSubscriptionsClientImpl implements PartnerTo
     }
 
     /**
-     * Update an existing event subscription of a partner topic.
+     * Update event subscription of a partner topic.
+     *
+     * <p>Update an existing event subscription of a partner topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerTopicName Name of the partner topic.
@@ -1321,7 +1389,9 @@ public final class PartnerTopicEventSubscriptionsClientImpl implements PartnerTo
     }
 
     /**
-     * Update an existing event subscription of a partner topic.
+     * Update event subscription of a partner topic.
+     *
+     * <p>Update an existing event subscription of a partner topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerTopicName Name of the partner topic.
@@ -1347,7 +1417,9 @@ public final class PartnerTopicEventSubscriptionsClientImpl implements PartnerTo
     }
 
     /**
-     * Get the full endpoint URL for an event subscription of a partner topic.
+     * Get full URL of an event subscription of a partner topic.
+     *
+     * <p>Get the full endpoint URL for an event subscription of a partner topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerTopicName Name of the partner topic.
@@ -1404,7 +1476,9 @@ public final class PartnerTopicEventSubscriptionsClientImpl implements PartnerTo
     }
 
     /**
-     * Get the full endpoint URL for an event subscription of a partner topic.
+     * Get full URL of an event subscription of a partner topic.
+     *
+     * <p>Get the full endpoint URL for an event subscription of a partner topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerTopicName Name of the partner topic.
@@ -1459,7 +1533,9 @@ public final class PartnerTopicEventSubscriptionsClientImpl implements PartnerTo
     }
 
     /**
-     * Get the full endpoint URL for an event subscription of a partner topic.
+     * Get full URL of an event subscription of a partner topic.
+     *
+     * <p>Get the full endpoint URL for an event subscription of a partner topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerTopicName Name of the partner topic.
@@ -1479,7 +1555,9 @@ public final class PartnerTopicEventSubscriptionsClientImpl implements PartnerTo
     }
 
     /**
-     * Get the full endpoint URL for an event subscription of a partner topic.
+     * Get full URL of an event subscription of a partner topic.
+     *
+     * <p>Get the full endpoint URL for an event subscription of a partner topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerTopicName Name of the partner topic.
@@ -1497,7 +1575,9 @@ public final class PartnerTopicEventSubscriptionsClientImpl implements PartnerTo
     }
 
     /**
-     * Get the full endpoint URL for an event subscription of a partner topic.
+     * Get full URL of an event subscription of a partner topic.
+     *
+     * <p>Get the full endpoint URL for an event subscription of a partner topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerTopicName Name of the partner topic.
@@ -1516,7 +1596,9 @@ public final class PartnerTopicEventSubscriptionsClientImpl implements PartnerTo
     }
 
     /**
-     * List event subscriptions that belong to a specific partner topic.
+     * List event subscriptions of a partner topic.
+     *
+     * <p>List event subscriptions that belong to a specific partner topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerTopicName Name of the partner topic.
@@ -1585,7 +1667,9 @@ public final class PartnerTopicEventSubscriptionsClientImpl implements PartnerTo
     }
 
     /**
-     * List event subscriptions that belong to a specific partner topic.
+     * List event subscriptions of a partner topic.
+     *
+     * <p>List event subscriptions that belong to a specific partner topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerTopicName Name of the partner topic.
@@ -1652,7 +1736,9 @@ public final class PartnerTopicEventSubscriptionsClientImpl implements PartnerTo
     }
 
     /**
-     * List event subscriptions that belong to a specific partner topic.
+     * List event subscriptions of a partner topic.
+     *
+     * <p>List event subscriptions that belong to a specific partner topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerTopicName Name of the partner topic.
@@ -1678,7 +1764,9 @@ public final class PartnerTopicEventSubscriptionsClientImpl implements PartnerTo
     }
 
     /**
-     * List event subscriptions that belong to a specific partner topic.
+     * List event subscriptions of a partner topic.
+     *
+     * <p>List event subscriptions that belong to a specific partner topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerTopicName Name of the partner topic.
@@ -1698,7 +1786,9 @@ public final class PartnerTopicEventSubscriptionsClientImpl implements PartnerTo
     }
 
     /**
-     * List event subscriptions that belong to a specific partner topic.
+     * List event subscriptions of a partner topic.
+     *
+     * <p>List event subscriptions that belong to a specific partner topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerTopicName Name of the partner topic.
@@ -1725,7 +1815,9 @@ public final class PartnerTopicEventSubscriptionsClientImpl implements PartnerTo
     }
 
     /**
-     * List event subscriptions that belong to a specific partner topic.
+     * List event subscriptions of a partner topic.
+     *
+     * <p>List event subscriptions that belong to a specific partner topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerTopicName Name of the partner topic.
@@ -1742,7 +1834,9 @@ public final class PartnerTopicEventSubscriptionsClientImpl implements PartnerTo
     }
 
     /**
-     * List event subscriptions that belong to a specific partner topic.
+     * List event subscriptions of a partner topic.
+     *
+     * <p>List event subscriptions that belong to a specific partner topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerTopicName Name of the partner topic.
@@ -1767,7 +1861,9 @@ public final class PartnerTopicEventSubscriptionsClientImpl implements PartnerTo
     }
 
     /**
-     * Get all delivery attributes for an event subscription of a partner topic.
+     * Get delivery attributes for an event subscription of a partner topic.
+     *
+     * <p>Get all delivery attributes for an event subscription of a partner topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerTopicName Name of the partner topic.
@@ -1824,7 +1920,9 @@ public final class PartnerTopicEventSubscriptionsClientImpl implements PartnerTo
     }
 
     /**
-     * Get all delivery attributes for an event subscription of a partner topic.
+     * Get delivery attributes for an event subscription of a partner topic.
+     *
+     * <p>Get all delivery attributes for an event subscription of a partner topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerTopicName Name of the partner topic.
@@ -1879,7 +1977,9 @@ public final class PartnerTopicEventSubscriptionsClientImpl implements PartnerTo
     }
 
     /**
-     * Get all delivery attributes for an event subscription of a partner topic.
+     * Get delivery attributes for an event subscription of a partner topic.
+     *
+     * <p>Get all delivery attributes for an event subscription of a partner topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerTopicName Name of the partner topic.
@@ -1899,7 +1999,9 @@ public final class PartnerTopicEventSubscriptionsClientImpl implements PartnerTo
     }
 
     /**
-     * Get all delivery attributes for an event subscription of a partner topic.
+     * Get delivery attributes for an event subscription of a partner topic.
+     *
+     * <p>Get all delivery attributes for an event subscription of a partner topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerTopicName Name of the partner topic.
@@ -1917,7 +2019,9 @@ public final class PartnerTopicEventSubscriptionsClientImpl implements PartnerTo
     }
 
     /**
-     * Get all delivery attributes for an event subscription of a partner topic.
+     * Get delivery attributes for an event subscription of a partner topic.
+     *
+     * <p>Get all delivery attributes for an event subscription of a partner topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerTopicName Name of the partner topic.
@@ -1940,7 +2044,8 @@ public final class PartnerTopicEventSubscriptionsClientImpl implements PartnerTo
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1977,7 +2082,8 @@ public final class PartnerTopicEventSubscriptionsClientImpl implements PartnerTo
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.

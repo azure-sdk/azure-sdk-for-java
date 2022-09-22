@@ -30,8 +30,7 @@ public final class OperationInner {
     private String origin;
 
     /*
-     * This Boolean is used to determine if the operation is a data plane
-     * action or not.
+     * This Boolean is used to determine if the operation is a data plane action or not.
      */
     @JsonProperty(value = "isDataAction")
     private Boolean isDataAction;

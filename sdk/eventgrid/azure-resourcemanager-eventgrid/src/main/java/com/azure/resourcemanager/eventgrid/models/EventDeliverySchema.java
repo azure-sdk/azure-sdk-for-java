@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for EventDeliverySchema. */
+/** The event delivery schema for the event subscription. */
 public final class EventDeliverySchema extends ExpandableStringEnum<EventDeliverySchema> {
     /** Static value EventGridSchema for EventDeliverySchema. */
     public static final EventDeliverySchema EVENT_GRID_SCHEMA = fromString("EventGridSchema");

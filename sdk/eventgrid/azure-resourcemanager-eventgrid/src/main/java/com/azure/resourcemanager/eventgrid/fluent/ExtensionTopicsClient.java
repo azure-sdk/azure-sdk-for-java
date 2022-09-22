@@ -13,7 +13,9 @@ import com.azure.resourcemanager.eventgrid.fluent.models.ExtensionTopicInner;
 /** An instance of this class provides access to all the operations defined in ExtensionTopicsClient. */
 public interface ExtensionTopicsClient {
     /**
-     * Get the properties of an extension topic.
+     * Get properties of an extension topic.
+     *
+     * <p>Get the properties of an extension topic.
      *
      * @param scope The identifier of the resource to which extension topic is queried. The scope can be a subscription,
      *     or a resource group, or a top level resource belonging to a resource provider namespace. For example, use
@@ -30,7 +32,9 @@ public interface ExtensionTopicsClient {
     ExtensionTopicInner get(String scope);
 
     /**
-     * Get the properties of an extension topic.
+     * Get properties of an extension topic.
+     *
+     * <p>Get the properties of an extension topic.
      *
      * @param scope The identifier of the resource to which extension topic is queried. The scope can be a subscription,
      *     or a resource group, or a top level resource belonging to a resource provider namespace. For example, use

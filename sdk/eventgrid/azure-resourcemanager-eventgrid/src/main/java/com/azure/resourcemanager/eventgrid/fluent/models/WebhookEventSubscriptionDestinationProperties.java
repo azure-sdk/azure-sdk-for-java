@@ -13,15 +13,13 @@ import java.util.List;
 @Fluent
 public final class WebhookEventSubscriptionDestinationProperties {
     /*
-     * The URL that represents the endpoint of the destination of an event
-     * subscription.
+     * The URL that represents the endpoint of the destination of an event subscription.
      */
     @JsonProperty(value = "endpointUrl")
     private String endpointUrl;
 
     /*
-     * The base URL that represents the endpoint of the destination of an event
-     * subscription.
+     * The base URL that represents the endpoint of the destination of an event subscription.
      */
     @JsonProperty(value = "endpointBaseUrl", access = JsonProperty.Access.WRITE_ONLY)
     private String endpointBaseUrl;
@@ -39,15 +37,15 @@ public final class WebhookEventSubscriptionDestinationProperties {
     private Integer preferredBatchSizeInKilobytes;
 
     /*
-     * The Azure Active Directory Tenant ID to get the access token that will
-     * be included as the bearer token in delivery requests.
+     * The Azure Active Directory Tenant ID to get the access token that will be included as the bearer token in
+     * delivery requests.
      */
     @JsonProperty(value = "azureActiveDirectoryTenantId")
     private String azureActiveDirectoryTenantId;
 
     /*
-     * The Azure Active Directory Application ID or URI to get the access token
-     * that will be included as the bearer token in delivery requests.
+     * The Azure Active Directory Application ID or URI to get the access token that will be included as the bearer
+     * token in delivery requests.
      */
     @JsonProperty(value = "azureActiveDirectoryApplicationIdOrUri")
     private String azureActiveDirectoryApplicationIdOrUri;

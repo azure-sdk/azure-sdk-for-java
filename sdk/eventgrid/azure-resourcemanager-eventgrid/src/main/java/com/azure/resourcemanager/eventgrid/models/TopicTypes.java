@@ -11,7 +11,9 @@ import com.azure.core.util.Context;
 /** Resource collection API of TopicTypes. */
 public interface TopicTypes {
     /**
-     * List all registered topic types.
+     * List topic types.
+     *
+     * <p>List all registered topic types.
      *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -20,7 +22,9 @@ public interface TopicTypes {
     PagedIterable<TopicTypeInfo> list();
 
     /**
-     * List all registered topic types.
+     * List topic types.
+     *
+     * <p>List all registered topic types.
      *
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -31,7 +35,9 @@ public interface TopicTypes {
     PagedIterable<TopicTypeInfo> list(Context context);
 
     /**
-     * Get information about a topic type.
+     * Get a topic type.
+     *
+     * <p>Get information about a topic type.
      *
      * @param topicTypeName Name of the topic type.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -42,7 +48,9 @@ public interface TopicTypes {
     TopicTypeInfo get(String topicTypeName);
 
     /**
-     * Get information about a topic type.
+     * Get a topic type.
+     *
+     * <p>Get information about a topic type.
      *
      * @param topicTypeName Name of the topic type.
      * @param context The context to associate with this operation.
@@ -54,7 +62,9 @@ public interface TopicTypes {
     Response<TopicTypeInfo> getWithResponse(String topicTypeName, Context context);
 
     /**
-     * List event types for a topic type.
+     * List event types.
+     *
+     * <p>List event types for a topic type.
      *
      * @param topicTypeName Name of the topic type.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -65,7 +75,9 @@ public interface TopicTypes {
     PagedIterable<EventType> listEventTypes(String topicTypeName);
 
     /**
-     * List event types for a topic type.
+     * List event types.
+     *
+     * <p>List event types for a topic type.
      *
      * @param topicTypeName Name of the topic type.
      * @param context The context to associate with this operation.

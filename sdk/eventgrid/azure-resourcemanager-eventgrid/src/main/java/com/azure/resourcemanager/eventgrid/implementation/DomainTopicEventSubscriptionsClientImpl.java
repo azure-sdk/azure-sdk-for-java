@@ -206,7 +206,9 @@ public final class DomainTopicEventSubscriptionsClientImpl implements DomainTopi
     }
 
     /**
-     * Get properties of a nested event subscription for a domain topic.
+     * Get a nested event subscription for domain topic.
+     *
+     * <p>Get properties of a nested event subscription for a domain topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param domainName Name of the top level domain.
@@ -266,7 +268,9 @@ public final class DomainTopicEventSubscriptionsClientImpl implements DomainTopi
     }
 
     /**
-     * Get properties of a nested event subscription for a domain topic.
+     * Get a nested event subscription for domain topic.
+     *
+     * <p>Get properties of a nested event subscription for a domain topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param domainName Name of the top level domain.
@@ -324,7 +328,9 @@ public final class DomainTopicEventSubscriptionsClientImpl implements DomainTopi
     }
 
     /**
-     * Get properties of a nested event subscription for a domain topic.
+     * Get a nested event subscription for domain topic.
+     *
+     * <p>Get properties of a nested event subscription for a domain topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param domainName Name of the top level domain.
@@ -343,7 +349,9 @@ public final class DomainTopicEventSubscriptionsClientImpl implements DomainTopi
     }
 
     /**
-     * Get properties of a nested event subscription for a domain topic.
+     * Get a nested event subscription for domain topic.
+     *
+     * <p>Get properties of a nested event subscription for a domain topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param domainName Name of the top level domain.
@@ -361,7 +369,9 @@ public final class DomainTopicEventSubscriptionsClientImpl implements DomainTopi
     }
 
     /**
-     * Get properties of a nested event subscription for a domain topic.
+     * Get a nested event subscription for domain topic.
+     *
+     * <p>Get properties of a nested event subscription for a domain topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param domainName Name of the top level domain.
@@ -380,7 +390,9 @@ public final class DomainTopicEventSubscriptionsClientImpl implements DomainTopi
     }
 
     /**
-     * Asynchronously creates a new event subscription or updates an existing event subscription.
+     * Create or update a nested event subscription to a domain topic.
+     *
+     * <p>Asynchronously creates a new event subscription or updates an existing event subscription.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param domainName Name of the top level domain.
@@ -452,7 +464,9 @@ public final class DomainTopicEventSubscriptionsClientImpl implements DomainTopi
     }
 
     /**
-     * Asynchronously creates a new event subscription or updates an existing event subscription.
+     * Create or update a nested event subscription to a domain topic.
+     *
+     * <p>Asynchronously creates a new event subscription or updates an existing event subscription.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param domainName Name of the top level domain.
@@ -523,7 +537,9 @@ public final class DomainTopicEventSubscriptionsClientImpl implements DomainTopi
     }
 
     /**
-     * Asynchronously creates a new event subscription or updates an existing event subscription.
+     * Create or update a nested event subscription to a domain topic.
+     *
+     * <p>Asynchronously creates a new event subscription or updates an existing event subscription.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param domainName Name of the top level domain.
@@ -557,7 +573,9 @@ public final class DomainTopicEventSubscriptionsClientImpl implements DomainTopi
     }
 
     /**
-     * Asynchronously creates a new event subscription or updates an existing event subscription.
+     * Create or update a nested event subscription to a domain topic.
+     *
+     * <p>Asynchronously creates a new event subscription or updates an existing event subscription.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param domainName Name of the top level domain.
@@ -594,7 +612,9 @@ public final class DomainTopicEventSubscriptionsClientImpl implements DomainTopi
     }
 
     /**
-     * Asynchronously creates a new event subscription or updates an existing event subscription.
+     * Create or update a nested event subscription to a domain topic.
+     *
+     * <p>Asynchronously creates a new event subscription or updates an existing event subscription.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param domainName Name of the top level domain.
@@ -620,7 +640,9 @@ public final class DomainTopicEventSubscriptionsClientImpl implements DomainTopi
     }
 
     /**
-     * Asynchronously creates a new event subscription or updates an existing event subscription.
+     * Create or update a nested event subscription to a domain topic.
+     *
+     * <p>Asynchronously creates a new event subscription or updates an existing event subscription.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param domainName Name of the top level domain.
@@ -648,7 +670,9 @@ public final class DomainTopicEventSubscriptionsClientImpl implements DomainTopi
     }
 
     /**
-     * Asynchronously creates a new event subscription or updates an existing event subscription.
+     * Create or update a nested event subscription to a domain topic.
+     *
+     * <p>Asynchronously creates a new event subscription or updates an existing event subscription.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param domainName Name of the top level domain.
@@ -675,7 +699,9 @@ public final class DomainTopicEventSubscriptionsClientImpl implements DomainTopi
     }
 
     /**
-     * Asynchronously creates a new event subscription or updates an existing event subscription.
+     * Create or update a nested event subscription to a domain topic.
+     *
+     * <p>Asynchronously creates a new event subscription or updates an existing event subscription.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param domainName Name of the top level domain.
@@ -704,7 +730,9 @@ public final class DomainTopicEventSubscriptionsClientImpl implements DomainTopi
     }
 
     /**
-     * Asynchronously creates a new event subscription or updates an existing event subscription.
+     * Create or update a nested event subscription to a domain topic.
+     *
+     * <p>Asynchronously creates a new event subscription or updates an existing event subscription.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param domainName Name of the top level domain.
@@ -730,7 +758,9 @@ public final class DomainTopicEventSubscriptionsClientImpl implements DomainTopi
     }
 
     /**
-     * Asynchronously creates a new event subscription or updates an existing event subscription.
+     * Create or update a nested event subscription to a domain topic.
+     *
+     * <p>Asynchronously creates a new event subscription or updates an existing event subscription.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param domainName Name of the top level domain.
@@ -758,7 +788,9 @@ public final class DomainTopicEventSubscriptionsClientImpl implements DomainTopi
     }
 
     /**
-     * Delete a nested existing event subscription for a domain topic.
+     * Delete a nested event subscription for a domain topic.
+     *
+     * <p>Delete a nested existing event subscription for a domain topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param domainName Name of the top level domain.
@@ -816,7 +848,9 @@ public final class DomainTopicEventSubscriptionsClientImpl implements DomainTopi
     }
 
     /**
-     * Delete a nested existing event subscription for a domain topic.
+     * Delete a nested event subscription for a domain topic.
+     *
+     * <p>Delete a nested existing event subscription for a domain topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param domainName Name of the top level domain.
@@ -872,7 +906,9 @@ public final class DomainTopicEventSubscriptionsClientImpl implements DomainTopi
     }
 
     /**
-     * Delete a nested existing event subscription for a domain topic.
+     * Delete a nested event subscription for a domain topic.
+     *
+     * <p>Delete a nested existing event subscription for a domain topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param domainName Name of the top level domain.
@@ -896,7 +932,9 @@ public final class DomainTopicEventSubscriptionsClientImpl implements DomainTopi
     }
 
     /**
-     * Delete a nested existing event subscription for a domain topic.
+     * Delete a nested event subscription for a domain topic.
+     *
+     * <p>Delete a nested existing event subscription for a domain topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param domainName Name of the top level domain.
@@ -921,7 +959,9 @@ public final class DomainTopicEventSubscriptionsClientImpl implements DomainTopi
     }
 
     /**
-     * Delete a nested existing event subscription for a domain topic.
+     * Delete a nested event subscription for a domain topic.
+     *
+     * <p>Delete a nested existing event subscription for a domain topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param domainName Name of the top level domain.
@@ -940,7 +980,9 @@ public final class DomainTopicEventSubscriptionsClientImpl implements DomainTopi
     }
 
     /**
-     * Delete a nested existing event subscription for a domain topic.
+     * Delete a nested event subscription for a domain topic.
+     *
+     * <p>Delete a nested existing event subscription for a domain topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param domainName Name of the top level domain.
@@ -961,7 +1003,9 @@ public final class DomainTopicEventSubscriptionsClientImpl implements DomainTopi
     }
 
     /**
-     * Delete a nested existing event subscription for a domain topic.
+     * Delete a nested event subscription for a domain topic.
+     *
+     * <p>Delete a nested existing event subscription for a domain topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param domainName Name of the top level domain.
@@ -982,7 +1026,9 @@ public final class DomainTopicEventSubscriptionsClientImpl implements DomainTopi
     }
 
     /**
-     * Delete a nested existing event subscription for a domain topic.
+     * Delete a nested event subscription for a domain topic.
+     *
+     * <p>Delete a nested existing event subscription for a domain topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param domainName Name of the top level domain.
@@ -1004,7 +1050,9 @@ public final class DomainTopicEventSubscriptionsClientImpl implements DomainTopi
     }
 
     /**
-     * Delete a nested existing event subscription for a domain topic.
+     * Delete a nested event subscription for a domain topic.
+     *
+     * <p>Delete a nested existing event subscription for a domain topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param domainName Name of the top level domain.
@@ -1021,7 +1069,9 @@ public final class DomainTopicEventSubscriptionsClientImpl implements DomainTopi
     }
 
     /**
-     * Delete a nested existing event subscription for a domain topic.
+     * Delete a nested event subscription for a domain topic.
+     *
+     * <p>Delete a nested existing event subscription for a domain topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param domainName Name of the top level domain.
@@ -1040,7 +1090,9 @@ public final class DomainTopicEventSubscriptionsClientImpl implements DomainTopi
     }
 
     /**
-     * Update an existing event subscription for a domain topic.
+     * Update a nested event subscription for a domain topic.
+     *
+     * <p>Update an existing event subscription for a domain topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param domainName Name of the domain.
@@ -1113,7 +1165,9 @@ public final class DomainTopicEventSubscriptionsClientImpl implements DomainTopi
     }
 
     /**
-     * Update an existing event subscription for a domain topic.
+     * Update a nested event subscription for a domain topic.
+     *
+     * <p>Update an existing event subscription for a domain topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param domainName Name of the domain.
@@ -1185,7 +1239,9 @@ public final class DomainTopicEventSubscriptionsClientImpl implements DomainTopi
     }
 
     /**
-     * Update an existing event subscription for a domain topic.
+     * Update a nested event subscription for a domain topic.
+     *
+     * <p>Update an existing event subscription for a domain topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param domainName Name of the domain.
@@ -1218,7 +1274,9 @@ public final class DomainTopicEventSubscriptionsClientImpl implements DomainTopi
     }
 
     /**
-     * Update an existing event subscription for a domain topic.
+     * Update a nested event subscription for a domain topic.
+     *
+     * <p>Update an existing event subscription for a domain topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param domainName Name of the domain.
@@ -1259,7 +1317,9 @@ public final class DomainTopicEventSubscriptionsClientImpl implements DomainTopi
     }
 
     /**
-     * Update an existing event subscription for a domain topic.
+     * Update a nested event subscription for a domain topic.
+     *
+     * <p>Update an existing event subscription for a domain topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param domainName Name of the domain.
@@ -1284,7 +1344,9 @@ public final class DomainTopicEventSubscriptionsClientImpl implements DomainTopi
     }
 
     /**
-     * Update an existing event subscription for a domain topic.
+     * Update a nested event subscription for a domain topic.
+     *
+     * <p>Update an existing event subscription for a domain topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param domainName Name of the domain.
@@ -1316,7 +1378,9 @@ public final class DomainTopicEventSubscriptionsClientImpl implements DomainTopi
     }
 
     /**
-     * Update an existing event subscription for a domain topic.
+     * Update a nested event subscription for a domain topic.
+     *
+     * <p>Update an existing event subscription for a domain topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param domainName Name of the domain.
@@ -1342,7 +1406,9 @@ public final class DomainTopicEventSubscriptionsClientImpl implements DomainTopi
     }
 
     /**
-     * Update an existing event subscription for a domain topic.
+     * Update a nested event subscription for a domain topic.
+     *
+     * <p>Update an existing event subscription for a domain topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param domainName Name of the domain.
@@ -1375,7 +1441,9 @@ public final class DomainTopicEventSubscriptionsClientImpl implements DomainTopi
     }
 
     /**
-     * Update an existing event subscription for a domain topic.
+     * Update a nested event subscription for a domain topic.
+     *
+     * <p>Update an existing event subscription for a domain topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param domainName Name of the domain.
@@ -1400,7 +1468,9 @@ public final class DomainTopicEventSubscriptionsClientImpl implements DomainTopi
     }
 
     /**
-     * Update an existing event subscription for a domain topic.
+     * Update a nested event subscription for a domain topic.
+     *
+     * <p>Update an existing event subscription for a domain topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param domainName Name of the domain.
@@ -1432,7 +1502,9 @@ public final class DomainTopicEventSubscriptionsClientImpl implements DomainTopi
     }
 
     /**
-     * Get the full endpoint URL for a nested event subscription for domain topic.
+     * Get full URL of a nested event subscription for domain topic.
+     *
+     * <p>Get the full endpoint URL for a nested event subscription for domain topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param domainName Name of the top level domain.
@@ -1492,7 +1564,9 @@ public final class DomainTopicEventSubscriptionsClientImpl implements DomainTopi
     }
 
     /**
-     * Get the full endpoint URL for a nested event subscription for domain topic.
+     * Get full URL of a nested event subscription for domain topic.
+     *
+     * <p>Get the full endpoint URL for a nested event subscription for domain topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param domainName Name of the top level domain.
@@ -1550,7 +1624,9 @@ public final class DomainTopicEventSubscriptionsClientImpl implements DomainTopi
     }
 
     /**
-     * Get the full endpoint URL for a nested event subscription for domain topic.
+     * Get full URL of a nested event subscription for domain topic.
+     *
+     * <p>Get the full endpoint URL for a nested event subscription for domain topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param domainName Name of the top level domain.
@@ -1570,7 +1646,9 @@ public final class DomainTopicEventSubscriptionsClientImpl implements DomainTopi
     }
 
     /**
-     * Get the full endpoint URL for a nested event subscription for domain topic.
+     * Get full URL of a nested event subscription for domain topic.
+     *
+     * <p>Get the full endpoint URL for a nested event subscription for domain topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param domainName Name of the top level domain.
@@ -1588,7 +1666,9 @@ public final class DomainTopicEventSubscriptionsClientImpl implements DomainTopi
     }
 
     /**
-     * Get the full endpoint URL for a nested event subscription for domain topic.
+     * Get full URL of a nested event subscription for domain topic.
+     *
+     * <p>Get the full endpoint URL for a nested event subscription for domain topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param domainName Name of the top level domain.
@@ -1608,7 +1688,9 @@ public final class DomainTopicEventSubscriptionsClientImpl implements DomainTopi
     }
 
     /**
-     * List all event subscriptions that have been created for a specific domain topic.
+     * List all nested event subscriptions for a specific domain topic.
+     *
+     * <p>List all event subscriptions that have been created for a specific domain topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param domainName Name of the top level domain.
@@ -1681,7 +1763,9 @@ public final class DomainTopicEventSubscriptionsClientImpl implements DomainTopi
     }
 
     /**
-     * List all event subscriptions that have been created for a specific domain topic.
+     * List all nested event subscriptions for a specific domain topic.
+     *
+     * <p>List all event subscriptions that have been created for a specific domain topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param domainName Name of the top level domain.
@@ -1752,7 +1836,9 @@ public final class DomainTopicEventSubscriptionsClientImpl implements DomainTopi
     }
 
     /**
-     * List all event subscriptions that have been created for a specific domain topic.
+     * List all nested event subscriptions for a specific domain topic.
+     *
+     * <p>List all event subscriptions that have been created for a specific domain topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param domainName Name of the top level domain.
@@ -1779,7 +1865,9 @@ public final class DomainTopicEventSubscriptionsClientImpl implements DomainTopi
     }
 
     /**
-     * List all event subscriptions that have been created for a specific domain topic.
+     * List all nested event subscriptions for a specific domain topic.
+     *
+     * <p>List all event subscriptions that have been created for a specific domain topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param domainName Name of the top level domain.
@@ -1799,7 +1887,9 @@ public final class DomainTopicEventSubscriptionsClientImpl implements DomainTopi
     }
 
     /**
-     * List all event subscriptions that have been created for a specific domain topic.
+     * List all nested event subscriptions for a specific domain topic.
+     *
+     * <p>List all event subscriptions that have been created for a specific domain topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param domainName Name of the top level domain.
@@ -1827,7 +1917,9 @@ public final class DomainTopicEventSubscriptionsClientImpl implements DomainTopi
     }
 
     /**
-     * List all event subscriptions that have been created for a specific domain topic.
+     * List all nested event subscriptions for a specific domain topic.
+     *
+     * <p>List all event subscriptions that have been created for a specific domain topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param domainName Name of the top level domain.
@@ -1845,7 +1937,9 @@ public final class DomainTopicEventSubscriptionsClientImpl implements DomainTopi
     }
 
     /**
-     * List all event subscriptions that have been created for a specific domain topic.
+     * List all nested event subscriptions for a specific domain topic.
+     *
+     * <p>List all event subscriptions that have been created for a specific domain topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param domainName Name of the top level domain.
@@ -1871,7 +1965,9 @@ public final class DomainTopicEventSubscriptionsClientImpl implements DomainTopi
     }
 
     /**
-     * Get all delivery attributes for an event subscription for domain topic.
+     * Get delivery attributes for an event subscription for domain topic.
+     *
+     * <p>Get all delivery attributes for an event subscription for domain topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param domainName Name of the top level domain.
@@ -1931,7 +2027,9 @@ public final class DomainTopicEventSubscriptionsClientImpl implements DomainTopi
     }
 
     /**
-     * Get all delivery attributes for an event subscription for domain topic.
+     * Get delivery attributes for an event subscription for domain topic.
+     *
+     * <p>Get all delivery attributes for an event subscription for domain topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param domainName Name of the top level domain.
@@ -1989,7 +2087,9 @@ public final class DomainTopicEventSubscriptionsClientImpl implements DomainTopi
     }
 
     /**
-     * Get all delivery attributes for an event subscription for domain topic.
+     * Get delivery attributes for an event subscription for domain topic.
+     *
+     * <p>Get all delivery attributes for an event subscription for domain topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param domainName Name of the top level domain.
@@ -2009,7 +2109,9 @@ public final class DomainTopicEventSubscriptionsClientImpl implements DomainTopi
     }
 
     /**
-     * Get all delivery attributes for an event subscription for domain topic.
+     * Get delivery attributes for an event subscription for domain topic.
+     *
+     * <p>Get all delivery attributes for an event subscription for domain topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param domainName Name of the top level domain.
@@ -2027,7 +2129,9 @@ public final class DomainTopicEventSubscriptionsClientImpl implements DomainTopi
     }
 
     /**
-     * Get all delivery attributes for an event subscription for domain topic.
+     * Get delivery attributes for an event subscription for domain topic.
+     *
+     * <p>Get all delivery attributes for an event subscription for domain topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param domainName Name of the top level domain.
@@ -2050,7 +2154,8 @@ public final class DomainTopicEventSubscriptionsClientImpl implements DomainTopi
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -2086,7 +2191,8 @@ public final class DomainTopicEventSubscriptionsClientImpl implements DomainTopi
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.

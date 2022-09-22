@@ -14,7 +14,9 @@ import com.azure.resourcemanager.eventgrid.fluent.models.PrivateLinkResourceInne
 /** An instance of this class provides access to all the operations defined in PrivateLinkResourcesClient. */
 public interface PrivateLinkResourcesClient {
     /**
-     * Get properties of a private link resource.
+     * Get a private link resource.
+     *
+     * <p>Get properties of a private link resource.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param parentType The type of the parent resource. This can be either \'topics\', \'domains\', or
@@ -32,7 +34,9 @@ public interface PrivateLinkResourcesClient {
         String resourceGroupName, String parentType, String parentName, String privateLinkResourceName);
 
     /**
-     * Get properties of a private link resource.
+     * Get a private link resource.
+     *
+     * <p>Get properties of a private link resource.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param parentType The type of the parent resource. This can be either \'topics\', \'domains\', or
@@ -55,7 +59,9 @@ public interface PrivateLinkResourcesClient {
         Context context);
 
     /**
-     * List all the private link resources under a topic, domain, or partner namespace.
+     * List private link resources under specific topic, domain, or partner namespace.
+     *
+     * <p>List all the private link resources under a topic, domain, or partner namespace.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param parentType The type of the parent resource. This can be either \'topics\', \'domains\', or
@@ -72,7 +78,9 @@ public interface PrivateLinkResourcesClient {
         String resourceGroupName, String parentType, String parentName);
 
     /**
-     * List all the private link resources under a topic, domain, or partner namespace.
+     * List private link resources under specific topic, domain, or partner namespace.
+     *
+     * <p>List all the private link resources under a topic, domain, or partner namespace.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param parentType The type of the parent resource. This can be either \'topics\', \'domains\', or

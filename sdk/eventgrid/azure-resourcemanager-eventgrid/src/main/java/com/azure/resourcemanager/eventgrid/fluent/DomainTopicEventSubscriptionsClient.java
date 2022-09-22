@@ -19,7 +19,9 @@ import com.azure.resourcemanager.eventgrid.models.EventSubscriptionUpdateParamet
 /** An instance of this class provides access to all the operations defined in DomainTopicEventSubscriptionsClient. */
 public interface DomainTopicEventSubscriptionsClient {
     /**
-     * Get properties of a nested event subscription for a domain topic.
+     * Get a nested event subscription for domain topic.
+     *
+     * <p>Get properties of a nested event subscription for a domain topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param domainName Name of the top level domain.
@@ -35,7 +37,9 @@ public interface DomainTopicEventSubscriptionsClient {
         String resourceGroupName, String domainName, String topicName, String eventSubscriptionName);
 
     /**
-     * Get properties of a nested event subscription for a domain topic.
+     * Get a nested event subscription for domain topic.
+     *
+     * <p>Get properties of a nested event subscription for a domain topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param domainName Name of the top level domain.
@@ -52,7 +56,9 @@ public interface DomainTopicEventSubscriptionsClient {
         String resourceGroupName, String domainName, String topicName, String eventSubscriptionName, Context context);
 
     /**
-     * Asynchronously creates a new event subscription or updates an existing event subscription.
+     * Create or update a nested event subscription to a domain topic.
+     *
+     * <p>Asynchronously creates a new event subscription or updates an existing event subscription.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param domainName Name of the top level domain.
@@ -74,7 +80,9 @@ public interface DomainTopicEventSubscriptionsClient {
         EventSubscriptionInner eventSubscriptionInfo);
 
     /**
-     * Asynchronously creates a new event subscription or updates an existing event subscription.
+     * Create or update a nested event subscription to a domain topic.
+     *
+     * <p>Asynchronously creates a new event subscription or updates an existing event subscription.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param domainName Name of the top level domain.
@@ -98,7 +106,9 @@ public interface DomainTopicEventSubscriptionsClient {
         Context context);
 
     /**
-     * Asynchronously creates a new event subscription or updates an existing event subscription.
+     * Create or update a nested event subscription to a domain topic.
+     *
+     * <p>Asynchronously creates a new event subscription or updates an existing event subscription.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param domainName Name of the top level domain.
@@ -120,7 +130,9 @@ public interface DomainTopicEventSubscriptionsClient {
         EventSubscriptionInner eventSubscriptionInfo);
 
     /**
-     * Asynchronously creates a new event subscription or updates an existing event subscription.
+     * Create or update a nested event subscription to a domain topic.
+     *
+     * <p>Asynchronously creates a new event subscription or updates an existing event subscription.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param domainName Name of the top level domain.
@@ -144,7 +156,9 @@ public interface DomainTopicEventSubscriptionsClient {
         Context context);
 
     /**
-     * Delete a nested existing event subscription for a domain topic.
+     * Delete a nested event subscription for a domain topic.
+     *
+     * <p>Delete a nested existing event subscription for a domain topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param domainName Name of the top level domain.
@@ -161,7 +175,9 @@ public interface DomainTopicEventSubscriptionsClient {
         String resourceGroupName, String domainName, String topicName, String eventSubscriptionName);
 
     /**
-     * Delete a nested existing event subscription for a domain topic.
+     * Delete a nested event subscription for a domain topic.
+     *
+     * <p>Delete a nested existing event subscription for a domain topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param domainName Name of the top level domain.
@@ -179,7 +195,9 @@ public interface DomainTopicEventSubscriptionsClient {
         String resourceGroupName, String domainName, String topicName, String eventSubscriptionName, Context context);
 
     /**
-     * Delete a nested existing event subscription for a domain topic.
+     * Delete a nested event subscription for a domain topic.
+     *
+     * <p>Delete a nested existing event subscription for a domain topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param domainName Name of the top level domain.
@@ -194,7 +212,9 @@ public interface DomainTopicEventSubscriptionsClient {
     void delete(String resourceGroupName, String domainName, String topicName, String eventSubscriptionName);
 
     /**
-     * Delete a nested existing event subscription for a domain topic.
+     * Delete a nested event subscription for a domain topic.
+     *
+     * <p>Delete a nested existing event subscription for a domain topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param domainName Name of the top level domain.
@@ -211,7 +231,9 @@ public interface DomainTopicEventSubscriptionsClient {
         String resourceGroupName, String domainName, String topicName, String eventSubscriptionName, Context context);
 
     /**
-     * Update an existing event subscription for a domain topic.
+     * Update a nested event subscription for a domain topic.
+     *
+     * <p>Update an existing event subscription for a domain topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param domainName Name of the domain.
@@ -232,7 +254,9 @@ public interface DomainTopicEventSubscriptionsClient {
         EventSubscriptionUpdateParameters eventSubscriptionUpdateParameters);
 
     /**
-     * Update an existing event subscription for a domain topic.
+     * Update a nested event subscription for a domain topic.
+     *
+     * <p>Update an existing event subscription for a domain topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param domainName Name of the domain.
@@ -255,7 +279,9 @@ public interface DomainTopicEventSubscriptionsClient {
         Context context);
 
     /**
-     * Update an existing event subscription for a domain topic.
+     * Update a nested event subscription for a domain topic.
+     *
+     * <p>Update an existing event subscription for a domain topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param domainName Name of the domain.
@@ -276,7 +302,9 @@ public interface DomainTopicEventSubscriptionsClient {
         EventSubscriptionUpdateParameters eventSubscriptionUpdateParameters);
 
     /**
-     * Update an existing event subscription for a domain topic.
+     * Update a nested event subscription for a domain topic.
+     *
+     * <p>Update an existing event subscription for a domain topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param domainName Name of the domain.
@@ -299,7 +327,9 @@ public interface DomainTopicEventSubscriptionsClient {
         Context context);
 
     /**
-     * Get the full endpoint URL for a nested event subscription for domain topic.
+     * Get full URL of a nested event subscription for domain topic.
+     *
+     * <p>Get the full endpoint URL for a nested event subscription for domain topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param domainName Name of the top level domain.
@@ -315,7 +345,9 @@ public interface DomainTopicEventSubscriptionsClient {
         String resourceGroupName, String domainName, String topicName, String eventSubscriptionName);
 
     /**
-     * Get the full endpoint URL for a nested event subscription for domain topic.
+     * Get full URL of a nested event subscription for domain topic.
+     *
+     * <p>Get the full endpoint URL for a nested event subscription for domain topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param domainName Name of the top level domain.
@@ -332,7 +364,9 @@ public interface DomainTopicEventSubscriptionsClient {
         String resourceGroupName, String domainName, String topicName, String eventSubscriptionName, Context context);
 
     /**
-     * List all event subscriptions that have been created for a specific domain topic.
+     * List all nested event subscriptions for a specific domain topic.
+     *
+     * <p>List all event subscriptions that have been created for a specific domain topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param domainName Name of the top level domain.
@@ -346,7 +380,9 @@ public interface DomainTopicEventSubscriptionsClient {
     PagedIterable<EventSubscriptionInner> list(String resourceGroupName, String domainName, String topicName);
 
     /**
-     * List all event subscriptions that have been created for a specific domain topic.
+     * List all nested event subscriptions for a specific domain topic.
+     *
+     * <p>List all event subscriptions that have been created for a specific domain topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param domainName Name of the top level domain.
@@ -370,7 +406,9 @@ public interface DomainTopicEventSubscriptionsClient {
         String resourceGroupName, String domainName, String topicName, String filter, Integer top, Context context);
 
     /**
-     * Get all delivery attributes for an event subscription for domain topic.
+     * Get delivery attributes for an event subscription for domain topic.
+     *
+     * <p>Get all delivery attributes for an event subscription for domain topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param domainName Name of the top level domain.
@@ -386,7 +424,9 @@ public interface DomainTopicEventSubscriptionsClient {
         String resourceGroupName, String domainName, String topicName, String eventSubscriptionName);
 
     /**
-     * Get all delivery attributes for an event subscription for domain topic.
+     * Get delivery attributes for an event subscription for domain topic.
+     *
+     * <p>Get all delivery attributes for an event subscription for domain topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param domainName Name of the top level domain.

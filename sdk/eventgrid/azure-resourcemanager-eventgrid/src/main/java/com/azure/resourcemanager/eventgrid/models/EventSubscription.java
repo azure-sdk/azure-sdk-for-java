@@ -467,7 +467,9 @@ public interface EventSubscription {
     EventSubscription refresh(Context context);
 
     /**
-     * Get all delivery attributes for an event subscription for topic.
+     * Get delivery attributes for an event subscription for topic.
+     *
+     * <p>Get all delivery attributes for an event subscription for topic.
      *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -476,7 +478,9 @@ public interface EventSubscription {
     DeliveryAttributeListResult getDeliveryAttributes();
 
     /**
-     * Get all delivery attributes for an event subscription for topic.
+     * Get delivery attributes for an event subscription for topic.
+     *
+     * <p>Get all delivery attributes for an event subscription for topic.
      *
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -487,7 +491,9 @@ public interface EventSubscription {
     Response<DeliveryAttributeListResult> getDeliveryAttributesWithResponse(Context context);
 
     /**
-     * Get the full endpoint URL for an event subscription for topic.
+     * Get full URL of an event subscription for topic.
+     *
+     * <p>Get the full endpoint URL for an event subscription for topic.
      *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -496,7 +502,9 @@ public interface EventSubscription {
     EventSubscriptionFullUrl getFullUrl();
 
     /**
-     * Get the full endpoint URL for an event subscription for topic.
+     * Get full URL of an event subscription for topic.
+     *
+     * <p>Get the full endpoint URL for an event subscription for topic.
      *
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.

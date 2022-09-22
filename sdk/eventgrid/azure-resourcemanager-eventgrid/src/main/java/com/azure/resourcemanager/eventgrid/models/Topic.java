@@ -458,7 +458,9 @@ public interface Topic {
     Topic refresh(Context context);
 
     /**
-     * List the two keys used to publish to a topic.
+     * List keys for a topic.
+     *
+     * <p>List the two keys used to publish to a topic.
      *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -467,7 +469,9 @@ public interface Topic {
     TopicSharedAccessKeys listSharedAccessKeys();
 
     /**
-     * List the two keys used to publish to a topic.
+     * List keys for a topic.
+     *
+     * <p>List the two keys used to publish to a topic.
      *
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -478,7 +482,9 @@ public interface Topic {
     Response<TopicSharedAccessKeys> listSharedAccessKeysWithResponse(Context context);
 
     /**
-     * Regenerate a shared access key for a topic.
+     * Regenerate key for a topic.
+     *
+     * <p>Regenerate a shared access key for a topic.
      *
      * @param regenerateKeyRequest Request body to regenerate key.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -489,7 +495,9 @@ public interface Topic {
     TopicSharedAccessKeys regenerateKey(TopicRegenerateKeyRequest regenerateKeyRequest);
 
     /**
-     * Regenerate a shared access key for a topic.
+     * Regenerate key for a topic.
+     *
+     * <p>Regenerate a shared access key for a topic.
      *
      * @param regenerateKeyRequest Request body to regenerate key.
      * @param context The context to associate with this operation.
