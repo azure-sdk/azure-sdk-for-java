@@ -11,7 +11,9 @@ import com.azure.core.util.Context;
 /** Resource collection API of SqlPoolSensitivityLabels. */
 public interface SqlPoolSensitivityLabels {
     /**
-     * Gets SQL pool sensitivity labels.
+     * Gets SQL pool sensitivity labels
+     *
+     * <p>Gets SQL pool sensitivity labels.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -24,7 +26,9 @@ public interface SqlPoolSensitivityLabels {
     PagedIterable<SensitivityLabel> listCurrent(String resourceGroupName, String workspaceName, String sqlPoolName);
 
     /**
-     * Gets SQL pool sensitivity labels.
+     * Gets SQL pool sensitivity labels
+     *
+     * <p>Gets SQL pool sensitivity labels.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -74,7 +78,9 @@ public interface SqlPoolSensitivityLabels {
         Context context);
 
     /**
-     * Gets sensitivity labels of a given SQL pool.
+     * Gets sensitivity labels of a given SQL pool
+     *
+     * <p>Gets sensitivity labels of a given SQL pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -87,7 +93,9 @@ public interface SqlPoolSensitivityLabels {
     PagedIterable<SensitivityLabel> listRecommended(String resourceGroupName, String workspaceName, String sqlPoolName);
 
     /**
-     * Gets sensitivity labels of a given SQL pool.
+     * Gets sensitivity labels of a given SQL pool
+     *
+     * <p>Gets sensitivity labels of a given SQL pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.

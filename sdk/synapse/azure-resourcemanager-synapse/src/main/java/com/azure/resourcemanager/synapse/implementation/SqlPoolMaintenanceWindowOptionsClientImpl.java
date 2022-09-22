@@ -74,7 +74,9 @@ public final class SqlPoolMaintenanceWindowOptionsClientImpl implements SqlPoolM
     }
 
     /**
-     * Get list of SQL pool's available maintenance windows.
+     * SQL pool's available maintenance windows.
+     *
+     * <p>Get list of SQL pool's available maintenance windows.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -137,7 +139,9 @@ public final class SqlPoolMaintenanceWindowOptionsClientImpl implements SqlPoolM
     }
 
     /**
-     * Get list of SQL pool's available maintenance windows.
+     * SQL pool's available maintenance windows.
+     *
+     * <p>Get list of SQL pool's available maintenance windows.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -202,7 +206,9 @@ public final class SqlPoolMaintenanceWindowOptionsClientImpl implements SqlPoolM
     }
 
     /**
-     * Get list of SQL pool's available maintenance windows.
+     * SQL pool's available maintenance windows.
+     *
+     * <p>Get list of SQL pool's available maintenance windows.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -217,18 +223,13 @@ public final class SqlPoolMaintenanceWindowOptionsClientImpl implements SqlPoolM
     private Mono<MaintenanceWindowOptionsInner> getAsync(
         String resourceGroupName, String workspaceName, String sqlPoolName, String maintenanceWindowOptionsName) {
         return getWithResponseAsync(resourceGroupName, workspaceName, sqlPoolName, maintenanceWindowOptionsName)
-            .flatMap(
-                (Response<MaintenanceWindowOptionsInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
-     * Get list of SQL pool's available maintenance windows.
+     * SQL pool's available maintenance windows.
+     *
+     * <p>Get list of SQL pool's available maintenance windows.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -246,7 +247,9 @@ public final class SqlPoolMaintenanceWindowOptionsClientImpl implements SqlPoolM
     }
 
     /**
-     * Get list of SQL pool's available maintenance windows.
+     * SQL pool's available maintenance windows.
+     *
+     * <p>Get list of SQL pool's available maintenance windows.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.

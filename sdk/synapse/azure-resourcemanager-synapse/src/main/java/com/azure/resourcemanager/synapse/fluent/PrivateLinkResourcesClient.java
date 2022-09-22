@@ -14,7 +14,9 @@ import com.azure.resourcemanager.synapse.fluent.models.PrivateLinkResourceInner;
 /** An instance of this class provides access to all the operations defined in PrivateLinkResourcesClient. */
 public interface PrivateLinkResourcesClient {
     /**
-     * Get all private link resources for a workspaces.
+     * Private Link Resources
+     *
+     * <p>Get all private link resources for a workspaces.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -27,7 +29,9 @@ public interface PrivateLinkResourcesClient {
     PagedIterable<PrivateLinkResourceInner> list(String resourceGroupName, String workspaceName);
 
     /**
-     * Get all private link resources for a workspaces.
+     * Private Link Resources
+     *
+     * <p>Get all private link resources for a workspaces.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -41,7 +45,9 @@ public interface PrivateLinkResourcesClient {
     PagedIterable<PrivateLinkResourceInner> list(String resourceGroupName, String workspaceName, Context context);
 
     /**
-     * Get private link resource in workspace.
+     * Get Private Link Resource
+     *
+     * <p>Get private link resource in workspace.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -55,7 +61,9 @@ public interface PrivateLinkResourcesClient {
     PrivateLinkResourceInner get(String resourceGroupName, String workspaceName, String privateLinkResourceName);
 
     /**
-     * Get private link resource in workspace.
+     * Get Private Link Resource
+     *
+     * <p>Get private link resource in workspace.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.

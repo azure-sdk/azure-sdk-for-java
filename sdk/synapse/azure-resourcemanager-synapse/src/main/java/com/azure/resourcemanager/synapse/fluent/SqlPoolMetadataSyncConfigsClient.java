@@ -13,7 +13,9 @@ import com.azure.resourcemanager.synapse.fluent.models.MetadataSyncConfigInner;
 /** An instance of this class provides access to all the operations defined in SqlPoolMetadataSyncConfigsClient. */
 public interface SqlPoolMetadataSyncConfigsClient {
     /**
-     * Get the metadata sync configuration for a SQL pool.
+     * Get SQL pool metadata sync config
+     *
+     * <p>Get the metadata sync configuration for a SQL pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -27,7 +29,9 @@ public interface SqlPoolMetadataSyncConfigsClient {
     MetadataSyncConfigInner get(String resourceGroupName, String workspaceName, String sqlPoolName);
 
     /**
-     * Get the metadata sync configuration for a SQL pool.
+     * Get SQL pool metadata sync config
+     *
+     * <p>Get the metadata sync configuration for a SQL pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -43,7 +47,9 @@ public interface SqlPoolMetadataSyncConfigsClient {
         String resourceGroupName, String workspaceName, String sqlPoolName, Context context);
 
     /**
-     * Set the metadata sync configuration for a SQL pool.
+     * Set SQL pool metadata sync config
+     *
+     * <p>Set the metadata sync configuration for a SQL pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -62,7 +68,9 @@ public interface SqlPoolMetadataSyncConfigsClient {
         MetadataSyncConfigInner metadataSyncConfiguration);
 
     /**
-     * Set the metadata sync configuration for a SQL pool.
+     * Set SQL pool metadata sync config
+     *
+     * <p>Set the metadata sync configuration for a SQL pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.

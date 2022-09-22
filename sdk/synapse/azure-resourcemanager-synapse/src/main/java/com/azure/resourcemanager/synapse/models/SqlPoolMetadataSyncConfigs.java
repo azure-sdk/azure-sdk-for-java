@@ -11,7 +11,9 @@ import com.azure.resourcemanager.synapse.fluent.models.MetadataSyncConfigInner;
 /** Resource collection API of SqlPoolMetadataSyncConfigs. */
 public interface SqlPoolMetadataSyncConfigs {
     /**
-     * Get the metadata sync configuration for a SQL pool.
+     * Get SQL pool metadata sync config
+     *
+     * <p>Get the metadata sync configuration for a SQL pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -24,7 +26,9 @@ public interface SqlPoolMetadataSyncConfigs {
     MetadataSyncConfig get(String resourceGroupName, String workspaceName, String sqlPoolName);
 
     /**
-     * Get the metadata sync configuration for a SQL pool.
+     * Get SQL pool metadata sync config
+     *
+     * <p>Get the metadata sync configuration for a SQL pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -39,7 +43,9 @@ public interface SqlPoolMetadataSyncConfigs {
         String resourceGroupName, String workspaceName, String sqlPoolName, Context context);
 
     /**
-     * Set the metadata sync configuration for a SQL pool.
+     * Set SQL pool metadata sync config
+     *
+     * <p>Set the metadata sync configuration for a SQL pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -57,7 +63,9 @@ public interface SqlPoolMetadataSyncConfigs {
         MetadataSyncConfigInner metadataSyncConfiguration);
 
     /**
-     * Set the metadata sync configuration for a SQL pool.
+     * Set SQL pool metadata sync config
+     *
+     * <p>Set the metadata sync configuration for a SQL pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
