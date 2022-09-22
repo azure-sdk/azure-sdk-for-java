@@ -13,7 +13,7 @@
   <packaging>jar</packaging>
 
   <name>Microsoft Azure SDK for Healthbot Management</name>
-  <description>This package contains Microsoft Azure SDK for Healthbot Management SDK. For documentation on how to use this package, please see https://aka.ms/azsdk/java/mgmt. Microsoft Healthcare Bot is a cloud platform that empowers developers in Healthcare organizations to build and deploy their compliant, AI-powered virtual health assistants and health bots, that help them improve processes and reduce costs. Package tag package-2020-12-08.</description>
+  <description>This package contains Microsoft Azure SDK for Healthbot Management SDK. For documentation on how to use this package, please see https://aka.ms/azsdk/java/mgmt. Azure Health Bot is a cloud platform that empowers developers in Healthcare organizations to build and deploy their compliant, AI-powered virtual health assistants and health bots, that help them improve processes and reduce costs. Package tag package-2022-08-08.</description>
   <url>https://github.com/Azure/azure-sdk-for-java</url>
 
   <licenses>

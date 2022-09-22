@@ -12,66 +12,68 @@ import com.azure.core.management.polling.PollResult;
 import com.azure.core.util.Context;
 import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.healthbot.fluent.models.HealthBotInner;
+import com.azure.resourcemanager.healthbot.fluent.models.HealthBotKeyInner;
+import com.azure.resourcemanager.healthbot.fluent.models.HealthBotKeysResponseInner;
 import com.azure.resourcemanager.healthbot.models.HealthBotUpdateParameters;
 
 /** An instance of this class provides access to all the operations defined in BotsClient. */
 public interface BotsClient {
     /**
-     * Create a new HealthBot.
+     * Create a new Azure Health Bot.
      *
      * @param resourceGroupName The name of the Bot resource group in the user subscription.
      * @param botName The name of the Bot resource.
-     * @param parameters The parameters to provide for the created bot.
+     * @param parameters The parameters to provide for the created Azure Health Bot.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of healthBot resource definition.
+     * @return the {@link SyncPoller} for polling of azure Health Bot resource definition.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<HealthBotInner>, HealthBotInner> beginCreate(
         String resourceGroupName, String botName, HealthBotInner parameters);
 
     /**
-     * Create a new HealthBot.
+     * Create a new Azure Health Bot.
      *
      * @param resourceGroupName The name of the Bot resource group in the user subscription.
      * @param botName The name of the Bot resource.
-     * @param parameters The parameters to provide for the created bot.
+     * @param parameters The parameters to provide for the created Azure Health Bot.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of healthBot resource definition.
+     * @return the {@link SyncPoller} for polling of azure Health Bot resource definition.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<HealthBotInner>, HealthBotInner> beginCreate(
         String resourceGroupName, String botName, HealthBotInner parameters, Context context);
 
     /**
-     * Create a new HealthBot.
+     * Create a new Azure Health Bot.
      *
      * @param resourceGroupName The name of the Bot resource group in the user subscription.
      * @param botName The name of the Bot resource.
-     * @param parameters The parameters to provide for the created bot.
+     * @param parameters The parameters to provide for the created Azure Health Bot.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return healthBot resource definition.
+     * @return azure Health Bot resource definition.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     HealthBotInner create(String resourceGroupName, String botName, HealthBotInner parameters);
 
     /**
-     * Create a new HealthBot.
+     * Create a new Azure Health Bot.
      *
      * @param resourceGroupName The name of the Bot resource group in the user subscription.
      * @param botName The name of the Bot resource.
-     * @param parameters The parameters to provide for the created bot.
+     * @param parameters The parameters to provide for the created Azure Health Bot.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return healthBot resource definition.
+     * @return azure Health Bot resource definition.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     HealthBotInner create(String resourceGroupName, String botName, HealthBotInner parameters, Context context);
@@ -108,11 +110,11 @@ public interface BotsClient {
      *
      * @param resourceGroupName The name of the Bot resource group in the user subscription.
      * @param botName The name of the Bot resource.
-     * @param parameters The parameters to provide for the required bot.
+     * @param parameters The parameters to provide for the required Azure Health Bot.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return healthBot resource definition.
+     * @return azure Health Bot resource definition.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     HealthBotInner update(String resourceGroupName, String botName, HealthBotUpdateParameters parameters);
@@ -122,12 +124,12 @@ public interface BotsClient {
      *
      * @param resourceGroupName The name of the Bot resource group in the user subscription.
      * @param botName The name of the Bot resource.
-     * @param parameters The parameters to provide for the required bot.
+     * @param parameters The parameters to provide for the required Azure Health Bot.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return healthBot resource definition along with {@link Response}.
+     * @return azure Health Bot resource definition along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<HealthBotInner> updateWithResponse(
@@ -186,13 +188,69 @@ public interface BotsClient {
     void delete(String resourceGroupName, String botName, Context context);
 
     /**
+     * List all secrets of a HealthBot.
+     *
+     * @param resourceGroupName The name of the Bot resource group in the user subscription.
+     * @param botName The name of the Bot resource.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return health Bot Keys Response.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    HealthBotKeysResponseInner listSecrets(String resourceGroupName, String botName);
+
+    /**
+     * List all secrets of a HealthBot.
+     *
+     * @param resourceGroupName The name of the Bot resource group in the user subscription.
+     * @param botName The name of the Bot resource.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return health Bot Keys Response along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    Response<HealthBotKeysResponseInner> listSecretsWithResponse(
+        String resourceGroupName, String botName, Context context);
+
+    /**
+     * Regenerate the API JWT Secret of a HealthBot.
+     *
+     * @param resourceGroupName The name of the Bot resource group in the user subscription.
+     * @param botName The name of the Bot resource.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return an entry of HealthBotKeysResponse.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    HealthBotKeyInner regenerateApiJwtSecret(String resourceGroupName, String botName);
+
+    /**
+     * Regenerate the API JWT Secret of a HealthBot.
+     *
+     * @param resourceGroupName The name of the Bot resource group in the user subscription.
+     * @param botName The name of the Bot resource.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return an entry of HealthBotKeysResponse along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    Response<HealthBotKeyInner> regenerateApiJwtSecretWithResponse(
+        String resourceGroupName, String botName, Context context);
+
+    /**
      * Returns all the resources of a particular type belonging to a resource group.
      *
      * @param resourceGroupName The name of the Bot resource group in the user subscription.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of Healthbot operation response as paginated response with {@link PagedIterable}.
+     * @return the list of Azure Health Bot operation response as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<HealthBotInner> listByResourceGroup(String resourceGroupName);
@@ -205,7 +263,7 @@ public interface BotsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of Healthbot operation response as paginated response with {@link PagedIterable}.
+     * @return the list of Azure Health Bot operation response as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<HealthBotInner> listByResourceGroup(String resourceGroupName, Context context);
@@ -215,7 +273,7 @@ public interface BotsClient {
      *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of Healthbot operation response as paginated response with {@link PagedIterable}.
+     * @return the list of Azure Health Bot operation response as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<HealthBotInner> list();
@@ -227,7 +285,7 @@ public interface BotsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of Healthbot operation response as paginated response with {@link PagedIterable}.
+     * @return the list of Azure Health Bot operation response as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<HealthBotInner> list(Context context);

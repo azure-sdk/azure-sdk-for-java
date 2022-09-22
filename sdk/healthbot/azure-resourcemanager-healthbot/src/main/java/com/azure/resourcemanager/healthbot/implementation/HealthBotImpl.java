@@ -4,12 +4,16 @@
 
 package com.azure.resourcemanager.healthbot.implementation;
 
+import com.azure.core.http.rest.Response;
 import com.azure.core.management.Region;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.healthbot.fluent.models.HealthBotInner;
 import com.azure.resourcemanager.healthbot.models.HealthBot;
+import com.azure.resourcemanager.healthbot.models.HealthBotKey;
+import com.azure.resourcemanager.healthbot.models.HealthBotKeysResponse;
 import com.azure.resourcemanager.healthbot.models.HealthBotProperties;
 import com.azure.resourcemanager.healthbot.models.HealthBotUpdateParameters;
+import com.azure.resourcemanager.healthbot.models.Identity;
 import com.azure.resourcemanager.healthbot.models.Sku;
 import java.util.Collections;
 import java.util.Map;
@@ -46,6 +50,10 @@ public final class HealthBotImpl implements HealthBot, HealthBot.Definition, Hea
 
     public Sku sku() {
         return this.innerModel().sku();
+    }
+
+    public Identity identity() {
+        return this.innerModel().identity();
     }
 
     public HealthBotProperties properties() {
@@ -156,6 +164,22 @@ public final class HealthBotImpl implements HealthBot, HealthBot.Definition, Hea
         return this;
     }
 
+    public HealthBotKeysResponse listSecrets() {
+        return serviceManager.bots().listSecrets(resourceGroupName, botName);
+    }
+
+    public Response<HealthBotKeysResponse> listSecretsWithResponse(Context context) {
+        return serviceManager.bots().listSecretsWithResponse(resourceGroupName, botName, context);
+    }
+
+    public HealthBotKey regenerateApiJwtSecret() {
+        return serviceManager.bots().regenerateApiJwtSecret(resourceGroupName, botName);
+    }
+
+    public Response<HealthBotKey> regenerateApiJwtSecretWithResponse(Context context) {
+        return serviceManager.bots().regenerateApiJwtSecretWithResponse(resourceGroupName, botName, context);
+    }
+
     public HealthBotImpl withRegion(Region location) {
         this.innerModel().withLocation(location.toString());
         return this;
@@ -186,9 +210,24 @@ public final class HealthBotImpl implements HealthBot, HealthBot.Definition, Hea
         }
     }
 
+    public HealthBotImpl withIdentity(Identity identity) {
+        if (isInCreateMode()) {
+            this.innerModel().withIdentity(identity);
+            return this;
+        } else {
+            this.updateParameters.withIdentity(identity);
+            return this;
+        }
+    }
+
     public HealthBotImpl withProperties(HealthBotProperties properties) {
-        this.innerModel().withProperties(properties);
-        return this;
+        if (isInCreateMode()) {
+            this.innerModel().withProperties(properties);
+            return this;
+        } else {
+            this.updateParameters.withProperties(properties);
+            return this;
+        }
     }
 
     private boolean isInCreateMode() {
