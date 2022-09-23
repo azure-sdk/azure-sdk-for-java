@@ -10,8 +10,10 @@ import com.azure.core.util.Context;
 import com.azure.resourcemanager.appcontainers.fluent.models.ContainerAppInner;
 import com.azure.resourcemanager.appcontainers.models.Configuration;
 import com.azure.resourcemanager.appcontainers.models.ContainerApp;
+import com.azure.resourcemanager.appcontainers.models.ContainerAppAuthToken;
 import com.azure.resourcemanager.appcontainers.models.ContainerAppProvisioningState;
 import com.azure.resourcemanager.appcontainers.models.CustomHostnameAnalysisResult;
+import com.azure.resourcemanager.appcontainers.models.ExtendedLocation;
 import com.azure.resourcemanager.appcontainers.models.ManagedServiceIdentity;
 import com.azure.resourcemanager.appcontainers.models.SecretsCollection;
 import com.azure.resourcemanager.appcontainers.models.Template;
@@ -49,6 +51,10 @@ public final class ContainerAppImpl implements ContainerApp, ContainerApp.Defini
         }
     }
 
+    public ExtendedLocation extendedLocation() {
+        return this.innerModel().extendedLocation();
+    }
+
     public ManagedServiceIdentity identity() {
         return this.innerModel().identity();
     }
@@ -59,6 +65,14 @@ public final class ContainerAppImpl implements ContainerApp, ContainerApp.Defini
 
     public String managedEnvironmentId() {
         return this.innerModel().managedEnvironmentId();
+    }
+
+    public String environmentId() {
+        return this.innerModel().environmentId();
+    }
+
+    public String workloadProfileType() {
+        return this.innerModel().workloadProfileType();
     }
 
     public String latestRevisionName() {
@@ -88,6 +102,10 @@ public final class ContainerAppImpl implements ContainerApp, ContainerApp.Defini
         } else {
             return Collections.emptyList();
         }
+    }
+
+    public String eventStreamEndpoint() {
+        return this.innerModel().eventStreamEndpoint();
     }
 
     public Region region() {
@@ -212,6 +230,14 @@ public final class ContainerAppImpl implements ContainerApp, ContainerApp.Defini
         return serviceManager.containerApps().listSecretsWithResponse(resourceGroupName, containerAppName, context);
     }
 
+    public ContainerAppAuthToken getAuthToken() {
+        return serviceManager.containerApps().getAuthToken(resourceGroupName, containerAppName);
+    }
+
+    public Response<ContainerAppAuthToken> getAuthTokenWithResponse(Context context) {
+        return serviceManager.containerApps().getAuthTokenWithResponse(resourceGroupName, containerAppName, context);
+    }
+
     public ContainerAppImpl withRegion(Region location) {
         this.innerModel().withLocation(location.toString());
         return this;
@@ -227,6 +253,11 @@ public final class ContainerAppImpl implements ContainerApp, ContainerApp.Defini
         return this;
     }
 
+    public ContainerAppImpl withExtendedLocation(ExtendedLocation extendedLocation) {
+        this.innerModel().withExtendedLocation(extendedLocation);
+        return this;
+    }
+
     public ContainerAppImpl withIdentity(ManagedServiceIdentity identity) {
         this.innerModel().withIdentity(identity);
         return this;
@@ -234,6 +265,16 @@ public final class ContainerAppImpl implements ContainerApp, ContainerApp.Defini
 
     public ContainerAppImpl withManagedEnvironmentId(String managedEnvironmentId) {
         this.innerModel().withManagedEnvironmentId(managedEnvironmentId);
+        return this;
+    }
+
+    public ContainerAppImpl withEnvironmentId(String environmentId) {
+        this.innerModel().withEnvironmentId(environmentId);
+        return this;
+    }
+
+    public ContainerAppImpl withWorkloadProfileType(String workloadProfileType) {
+        this.innerModel().withWorkloadProfileType(workloadProfileType);
         return this;
     }
 

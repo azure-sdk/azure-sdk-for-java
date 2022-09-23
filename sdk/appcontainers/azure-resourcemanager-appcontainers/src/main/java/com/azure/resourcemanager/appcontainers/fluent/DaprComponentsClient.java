@@ -76,7 +76,9 @@ public interface DaprComponentsClient {
         String resourceGroupName, String environmentName, String componentName, Context context);
 
     /**
-     * Creates or updates a Dapr Component in a Managed Environment.
+     * Creates or updates a Dapr Component.
+     *
+     * <p>Creates or updates a Dapr Component in a Managed Environment.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param environmentName Name of the Managed Environment.
@@ -96,7 +98,9 @@ public interface DaprComponentsClient {
         DaprComponentInner daprComponentEnvelope);
 
     /**
-     * Creates or updates a Dapr Component in a Managed Environment.
+     * Creates or updates a Dapr Component.
+     *
+     * <p>Creates or updates a Dapr Component in a Managed Environment.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param environmentName Name of the Managed Environment.
@@ -118,7 +122,9 @@ public interface DaprComponentsClient {
         Context context);
 
     /**
-     * Delete a Dapr Component from a Managed Environment.
+     * Delete a Dapr Component.
+     *
+     * <p>Delete a Dapr Component from a Managed Environment.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param environmentName Name of the Managed Environment.
@@ -132,7 +138,9 @@ public interface DaprComponentsClient {
     void delete(String resourceGroupName, String environmentName, String componentName);
 
     /**
-     * Delete a Dapr Component from a Managed Environment.
+     * Delete a Dapr Component.
+     *
+     * <p>Delete a Dapr Component from a Managed Environment.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param environmentName Name of the Managed Environment.
@@ -158,7 +166,7 @@ public interface DaprComponentsClient {
      * @throws com.azure.resourcemanager.appcontainers.models.DefaultErrorResponseErrorException thrown if the request
      *     is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return dapr component Secrets Collection ARM resource.
+     * @return dapr component Secrets Collection for ListSecrets Action.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     DaprSecretsCollectionInner listSecrets(String resourceGroupName, String environmentName, String componentName);
@@ -174,7 +182,7 @@ public interface DaprComponentsClient {
      * @throws com.azure.resourcemanager.appcontainers.models.DefaultErrorResponseErrorException thrown if the request
      *     is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return dapr component Secrets Collection ARM resource along with {@link Response}.
+     * @return dapr component Secrets Collection for ListSecrets Action along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<DaprSecretsCollectionInner> listSecretsWithResponse(

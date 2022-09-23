@@ -10,7 +10,7 @@ import com.azure.resourcemanager.appcontainers.models.Secret;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Dapr component Secrets Collection ARM resource. */
+/** Dapr component Secrets Collection for ListSecrets Action. */
 @Fluent
 public final class DaprSecretsCollectionInner {
     /*
