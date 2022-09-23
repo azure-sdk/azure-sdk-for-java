@@ -8,11 +8,18 @@
 - [GetByResourceGroup](#loadtests_getbyresourcegroup)
 - [List](#loadtests_list)
 - [ListByResourceGroup](#loadtests_listbyresourcegroup)
+- [ListOutboundNetworkDependenciesEndpoints](#loadtests_listoutboundnetworkdependenciesendpoints)
 - [Update](#loadtests_update)
 
 ## Operations
 
 - [List](#operations_list)
+
+## Quotas
+
+- [CheckAvailability](#quotas_checkavailability)
+- [Get](#quotas_get)
+- [List](#quotas_list)
 ### LoadTests_CreateOrUpdate
 
 ```java
@@ -22,7 +29,7 @@ import java.util.Map;
 /** Samples for LoadTests CreateOrUpdate. */
 public final class LoadTestsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/loadtestservice/resource-manager/Microsoft.LoadTestService/preview/2021-12-01-preview/examples/LoadTests_CreateOrUpdate.json
+     * x-ms-original-file: specification/loadtestservice/resource-manager/Microsoft.LoadTestService/stable/2022-12-01/examples/LoadTests_CreateOrUpdate.json
      */
     /**
      * Sample code: LoadTests_CreateOrUpdate.
@@ -61,7 +68,7 @@ import com.azure.core.util.Context;
 /** Samples for LoadTests Delete. */
 public final class LoadTestsDeleteSamples {
     /*
-     * x-ms-original-file: specification/loadtestservice/resource-manager/Microsoft.LoadTestService/preview/2021-12-01-preview/examples/LoadTests_Delete.json
+     * x-ms-original-file: specification/loadtestservice/resource-manager/Microsoft.LoadTestService/stable/2022-12-01/examples/LoadTests_Delete.json
      */
     /**
      * Sample code: LoadTests_Delete.
@@ -82,7 +89,7 @@ import com.azure.core.util.Context;
 /** Samples for LoadTests GetByResourceGroup. */
 public final class LoadTestsGetByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/loadtestservice/resource-manager/Microsoft.LoadTestService/preview/2021-12-01-preview/examples/LoadTests_Get.json
+     * x-ms-original-file: specification/loadtestservice/resource-manager/Microsoft.LoadTestService/stable/2022-12-01/examples/LoadTests_Get.json
      */
     /**
      * Sample code: LoadTests_Get.
@@ -103,7 +110,7 @@ import com.azure.core.util.Context;
 /** Samples for LoadTests List. */
 public final class LoadTestsListSamples {
     /*
-     * x-ms-original-file: specification/loadtestservice/resource-manager/Microsoft.LoadTestService/preview/2021-12-01-preview/examples/LoadTests_ListBySubscription.json
+     * x-ms-original-file: specification/loadtestservice/resource-manager/Microsoft.LoadTestService/stable/2022-12-01/examples/LoadTests_ListBySubscription.json
      */
     /**
      * Sample code: LoadTests_ListBySubscription.
@@ -124,7 +131,7 @@ import com.azure.core.util.Context;
 /** Samples for LoadTests ListByResourceGroup. */
 public final class LoadTestsListByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/loadtestservice/resource-manager/Microsoft.LoadTestService/preview/2021-12-01-preview/examples/LoadTests_ListByResourceGroup.json
+     * x-ms-original-file: specification/loadtestservice/resource-manager/Microsoft.LoadTestService/stable/2022-12-01/examples/LoadTests_ListByResourceGroup.json
      */
     /**
      * Sample code: LoadTests_ListByResourceGroup.
@@ -137,6 +144,31 @@ public final class LoadTestsListByResourceGroupSamples {
 }
 ```
 
+### LoadTests_ListOutboundNetworkDependenciesEndpoints
+
+```java
+import com.azure.core.util.Context;
+
+/** Samples for LoadTests ListOutboundNetworkDependenciesEndpoints. */
+public final class LoadTestsListOutboundNetworkDependenciesEndpointsSamples {
+    /*
+     * x-ms-original-file: specification/loadtestservice/resource-manager/Microsoft.LoadTestService/stable/2022-12-01/examples/LoadTests_ListOutboundNetworkDependenciesEndpoints.json
+     */
+    /**
+     * Sample code: ListOutboundNetworkDependencies.
+     *
+     * @param manager Entry point to LoadTestManager.
+     */
+    public static void listOutboundNetworkDependencies(
+        com.azure.resourcemanager.loadtestservice.LoadTestManager manager) {
+        manager
+            .loadTests()
+            .listOutboundNetworkDependenciesEndpoints(
+                "default-azureloadtest-japaneast", "sampleloadtest", Context.NONE);
+    }
+}
+```
+
 ### LoadTests_Update
 
 ```java
@@ -144,13 +176,12 @@ import com.azure.core.management.serializer.SerializerFactory;
 import com.azure.core.util.Context;
 import com.azure.core.util.serializer.SerializerEncoding;
 import com.azure.resourcemanager.loadtestservice.models.LoadTestResource;
-import com.azure.resourcemanager.loadtestservice.models.LoadTestResourcePatchRequestBodyProperties;
 import java.io.IOException;
 
 /** Samples for LoadTests Update. */
 public final class LoadTestsUpdateSamples {
     /*
-     * x-ms-original-file: specification/loadtestservice/resource-manager/Microsoft.LoadTestService/preview/2021-12-01-preview/examples/LoadTests_Update.json
+     * x-ms-original-file: specification/loadtestservice/resource-manager/Microsoft.LoadTestService/stable/2022-12-01/examples/LoadTests_Update.json
      */
     /**
      * Sample code: LoadTests_Update.
@@ -167,8 +198,7 @@ public final class LoadTestsUpdateSamples {
                 SerializerFactory
                     .createDefaultManagementSerializerAdapter()
                     .deserialize("{\"Division\":\"LT\",\"Team\":\"Dev Exp\"}", Object.class, SerializerEncoding.JSON))
-            .withProperties(
-                new LoadTestResourcePatchRequestBodyProperties().withDescription("This is new load test resource"))
+            .withDescription("This is new load test resource")
             .apply();
     }
 }
@@ -182,7 +212,7 @@ import com.azure.core.util.Context;
 /** Samples for Operations List. */
 public final class OperationsListSamples {
     /*
-     * x-ms-original-file: specification/loadtestservice/resource-manager/Microsoft.LoadTestService/preview/2021-12-01-preview/examples/Operations_List.json
+     * x-ms-original-file: specification/loadtestservice/resource-manager/Microsoft.LoadTestService/stable/2022-12-01/examples/Operations_List.json
      */
     /**
      * Sample code: Operations_List.
@@ -191,6 +221,84 @@ public final class OperationsListSamples {
      */
     public static void operationsList(com.azure.resourcemanager.loadtestservice.LoadTestManager manager) {
         manager.operations().list(Context.NONE);
+    }
+}
+```
+
+### Quotas_CheckAvailability
+
+```java
+import com.azure.core.util.Context;
+import com.azure.resourcemanager.loadtestservice.models.QuotaBucketRequest;
+import com.azure.resourcemanager.loadtestservice.models.QuotaBucketRequestPropertiesDimensions;
+
+/** Samples for Quotas CheckAvailability. */
+public final class QuotasCheckAvailabilitySamples {
+    /*
+     * x-ms-original-file: specification/loadtestservice/resource-manager/Microsoft.LoadTestService/stable/2022-12-01/examples/Quotas_CheckAvailability.json
+     */
+    /**
+     * Sample code: Quotas_CheckAvailability.
+     *
+     * @param manager Entry point to LoadTestManager.
+     */
+    public static void quotasCheckAvailability(com.azure.resourcemanager.loadtestservice.LoadTestManager manager) {
+        manager
+            .quotas()
+            .checkAvailabilityWithResponse(
+                "westus",
+                "testQuotaBucket",
+                new QuotaBucketRequest()
+                    .withCurrentUsage(20)
+                    .withCurrentQuota(40)
+                    .withNewQuota(50)
+                    .withDimensions(
+                        new QuotaBucketRequestPropertiesDimensions()
+                            .withSubscriptionId("testsubscriptionId")
+                            .withLocation("westus")),
+                Context.NONE);
+    }
+}
+```
+
+### Quotas_Get
+
+```java
+import com.azure.core.util.Context;
+
+/** Samples for Quotas Get. */
+public final class QuotasGetSamples {
+    /*
+     * x-ms-original-file: specification/loadtestservice/resource-manager/Microsoft.LoadTestService/stable/2022-12-01/examples/Quotas_Get.json
+     */
+    /**
+     * Sample code: Quotas_Get.
+     *
+     * @param manager Entry point to LoadTestManager.
+     */
+    public static void quotasGet(com.azure.resourcemanager.loadtestservice.LoadTestManager manager) {
+        manager.quotas().getWithResponse("westus", "testQuotaBucket", Context.NONE);
+    }
+}
+```
+
+### Quotas_List
+
+```java
+import com.azure.core.util.Context;
+
+/** Samples for Quotas List. */
+public final class QuotasListSamples {
+    /*
+     * x-ms-original-file: specification/loadtestservice/resource-manager/Microsoft.LoadTestService/stable/2022-12-01/examples/Quotas_List.json
+     */
+    /**
+     * Sample code: Quotas_List.
+     *
+     * @param manager Entry point to LoadTestManager.
+     */
+    public static void quotasList(com.azure.resourcemanager.loadtestservice.LoadTestManager manager) {
+        manager.quotas().list("westus", Context.NONE);
     }
 }
 ```

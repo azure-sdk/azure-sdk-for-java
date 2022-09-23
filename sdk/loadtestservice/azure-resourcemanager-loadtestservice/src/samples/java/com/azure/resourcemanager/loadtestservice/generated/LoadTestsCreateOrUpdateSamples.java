@@ -10,7 +10,7 @@ import java.util.Map;
 /** Samples for LoadTests CreateOrUpdate. */
 public final class LoadTestsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/loadtestservice/resource-manager/Microsoft.LoadTestService/preview/2021-12-01-preview/examples/LoadTests_CreateOrUpdate.json
+     * x-ms-original-file: specification/loadtestservice/resource-manager/Microsoft.LoadTestService/stable/2022-12-01/examples/LoadTests_CreateOrUpdate.json
      */
     /**
      * Sample code: LoadTests_CreateOrUpdate.
