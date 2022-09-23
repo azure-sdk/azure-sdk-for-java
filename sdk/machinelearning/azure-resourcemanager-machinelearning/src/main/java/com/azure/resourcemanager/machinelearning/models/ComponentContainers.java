@@ -7,6 +7,7 @@ package com.azure.resourcemanager.machinelearning.models;
 import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.http.rest.Response;
 import com.azure.core.util.Context;
+import com.azure.resourcemanager.machinelearning.fluent.models.ComponentContainerInner;
 
 /** Resource collection API of ComponentContainers. */
 public interface ComponentContainers {
@@ -20,7 +21,7 @@ public interface ComponentContainers {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a paginated list of ComponentContainer entities as paginated response with {@link PagedIterable}.
      */
-    PagedIterable<ComponentContainerData> list(String resourceGroupName, String workspaceName);
+    PagedIterable<ComponentContainer> list(String resourceGroupName, String workspaceName);
 
     /**
      * List component containers.
@@ -35,7 +36,7 @@ public interface ComponentContainers {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a paginated list of ComponentContainer entities as paginated response with {@link PagedIterable}.
      */
-    PagedIterable<ComponentContainerData> list(
+    PagedIterable<ComponentContainer> list(
         String resourceGroupName, String workspaceName, String skip, ListViewType listViewType, Context context);
 
     /**
@@ -75,7 +76,7 @@ public interface ComponentContainers {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return container.
      */
-    ComponentContainerData get(String resourceGroupName, String workspaceName, String name);
+    ComponentContainer get(String resourceGroupName, String workspaceName, String name);
 
     /**
      * Get container.
@@ -89,59 +90,37 @@ public interface ComponentContainers {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return container along with {@link Response}.
      */
-    Response<ComponentContainerData> getWithResponse(
+    Response<ComponentContainer> getWithResponse(
         String resourceGroupName, String workspaceName, String name, Context context);
 
     /**
-     * Get container.
+     * Create or update container.
      *
-     * @param id the resource ID.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param name Container name.
+     * @param body Container entity to create or update.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return container along with {@link Response}.
+     * @return azure Resource Manager resource envelope.
      */
-    ComponentContainerData getById(String id);
+    ComponentContainer createOrUpdate(
+        String resourceGroupName, String workspaceName, String name, ComponentContainerInner body);
 
     /**
-     * Get container.
+     * Create or update container.
      *
-     * @param id the resource ID.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param name Container name.
+     * @param body Container entity to create or update.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return container along with {@link Response}.
+     * @return azure Resource Manager resource envelope along with {@link Response}.
      */
-    Response<ComponentContainerData> getByIdWithResponse(String id, Context context);
-
-    /**
-     * Delete container.
-     *
-     * @param id the resource ID.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    void deleteById(String id);
-
-    /**
-     * Delete container.
-     *
-     * @param id the resource ID.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
-     */
-    Response<Void> deleteByIdWithResponse(String id, Context context);
-
-    /**
-     * Begins definition for a new ComponentContainerData resource.
-     *
-     * @param name resource name.
-     * @return the first stage of the new ComponentContainerData definition.
-     */
-    ComponentContainerData.DefinitionStages.Blank define(String name);
+    Response<ComponentContainer> createOrUpdateWithResponse(
+        String resourceGroupName, String workspaceName, String name, ComponentContainerInner body, Context context);
 }

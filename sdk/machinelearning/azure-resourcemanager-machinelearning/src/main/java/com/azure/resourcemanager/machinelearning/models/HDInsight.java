@@ -54,13 +54,6 @@ public final class HDInsight extends Compute {
         return this;
     }
 
-    /** {@inheritDoc} */
-    @Override
-    public HDInsight withDisableLocalAuth(Boolean disableLocalAuth) {
-        super.withDisableLocalAuth(disableLocalAuth);
-        return this;
-    }
-
     /**
      * Validates the instance.
      *
