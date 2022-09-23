@@ -492,7 +492,9 @@ public final class DaprComponentsClientImpl implements DaprComponentsClient {
     }
 
     /**
-     * Creates or updates a Dapr Component in a Managed Environment.
+     * Creates or updates a Dapr Component.
+     *
+     * <p>Creates or updates a Dapr Component in a Managed Environment.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param environmentName Name of the Managed Environment.
@@ -557,7 +559,9 @@ public final class DaprComponentsClientImpl implements DaprComponentsClient {
     }
 
     /**
-     * Creates or updates a Dapr Component in a Managed Environment.
+     * Creates or updates a Dapr Component.
+     *
+     * <p>Creates or updates a Dapr Component in a Managed Environment.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param environmentName Name of the Managed Environment.
@@ -621,7 +625,9 @@ public final class DaprComponentsClientImpl implements DaprComponentsClient {
     }
 
     /**
-     * Creates or updates a Dapr Component in a Managed Environment.
+     * Creates or updates a Dapr Component.
+     *
+     * <p>Creates or updates a Dapr Component in a Managed Environment.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param environmentName Name of the Managed Environment.
@@ -643,7 +649,9 @@ public final class DaprComponentsClientImpl implements DaprComponentsClient {
     }
 
     /**
-     * Creates or updates a Dapr Component in a Managed Environment.
+     * Creates or updates a Dapr Component.
+     *
+     * <p>Creates or updates a Dapr Component in a Managed Environment.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param environmentName Name of the Managed Environment.
@@ -664,7 +672,9 @@ public final class DaprComponentsClientImpl implements DaprComponentsClient {
     }
 
     /**
-     * Creates or updates a Dapr Component in a Managed Environment.
+     * Creates or updates a Dapr Component.
+     *
+     * <p>Creates or updates a Dapr Component in a Managed Environment.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param environmentName Name of the Managed Environment.
@@ -689,7 +699,9 @@ public final class DaprComponentsClientImpl implements DaprComponentsClient {
     }
 
     /**
-     * Delete a Dapr Component from a Managed Environment.
+     * Delete a Dapr Component.
+     *
+     * <p>Delete a Dapr Component from a Managed Environment.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param environmentName Name of the Managed Environment.
@@ -743,7 +755,9 @@ public final class DaprComponentsClientImpl implements DaprComponentsClient {
     }
 
     /**
-     * Delete a Dapr Component from a Managed Environment.
+     * Delete a Dapr Component.
+     *
+     * <p>Delete a Dapr Component from a Managed Environment.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param environmentName Name of the Managed Environment.
@@ -795,7 +809,9 @@ public final class DaprComponentsClientImpl implements DaprComponentsClient {
     }
 
     /**
-     * Delete a Dapr Component from a Managed Environment.
+     * Delete a Dapr Component.
+     *
+     * <p>Delete a Dapr Component from a Managed Environment.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param environmentName Name of the Managed Environment.
@@ -812,7 +828,9 @@ public final class DaprComponentsClientImpl implements DaprComponentsClient {
     }
 
     /**
-     * Delete a Dapr Component from a Managed Environment.
+     * Delete a Dapr Component.
+     *
+     * <p>Delete a Dapr Component from a Managed Environment.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param environmentName Name of the Managed Environment.
@@ -827,7 +845,9 @@ public final class DaprComponentsClientImpl implements DaprComponentsClient {
     }
 
     /**
-     * Delete a Dapr Component from a Managed Environment.
+     * Delete a Dapr Component.
+     *
+     * <p>Delete a Dapr Component from a Managed Environment.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param environmentName Name of the Managed Environment.
@@ -1008,7 +1028,8 @@ public final class DaprComponentsClientImpl implements DaprComponentsClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1043,7 +1064,8 @@ public final class DaprComponentsClientImpl implements DaprComponentsClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
