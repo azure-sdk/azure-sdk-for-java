@@ -54,13 +54,6 @@ public final class DataLakeAnalytics extends Compute {
         return this;
     }
 
-    /** {@inheritDoc} */
-    @Override
-    public DataLakeAnalytics withDisableLocalAuth(Boolean disableLocalAuth) {
-        super.withDisableLocalAuth(disableLocalAuth);
-        return this;
-    }
-
     /**
      * Validates the instance.
      *

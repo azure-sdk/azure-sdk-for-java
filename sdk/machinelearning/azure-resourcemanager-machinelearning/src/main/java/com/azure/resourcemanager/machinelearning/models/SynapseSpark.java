@@ -54,13 +54,6 @@ public final class SynapseSpark extends Compute {
         return this;
     }
 
-    /** {@inheritDoc} */
-    @Override
-    public SynapseSpark withDisableLocalAuth(Boolean disableLocalAuth) {
-        super.withDisableLocalAuth(disableLocalAuth);
-        return this;
-    }
-
     /**
      * Validates the instance.
      *
