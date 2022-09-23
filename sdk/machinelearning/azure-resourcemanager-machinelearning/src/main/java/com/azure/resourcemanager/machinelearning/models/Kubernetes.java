@@ -54,13 +54,6 @@ public final class Kubernetes extends Compute {
         return this;
     }
 
-    /** {@inheritDoc} */
-    @Override
-    public Kubernetes withDisableLocalAuth(Boolean disableLocalAuth) {
-        super.withDisableLocalAuth(disableLocalAuth);
-        return this;
-    }
-
     /**
      * Validates the instance.
      *

@@ -191,6 +191,10 @@ public final class WorkspaceImpl implements Workspace, Workspace.Definition, Wor
         return this.innerModel().mlFlowTrackingUri();
     }
 
+    public Boolean v1LegacyMode() {
+        return this.innerModel().v1LegacyMode();
+    }
+
     public Region region() {
         return Region.fromName(this.regionName());
     }
@@ -515,6 +519,11 @@ public final class WorkspaceImpl implements Workspace, Workspace.Definition, Wor
             this.updateParameters.withPrimaryUserAssignedIdentity(primaryUserAssignedIdentity);
             return this;
         }
+    }
+
+    public WorkspaceImpl withV1LegacyMode(Boolean v1LegacyMode) {
+        this.innerModel().withV1LegacyMode(v1LegacyMode);
+        return this;
     }
 
     private boolean isInCreateMode() {

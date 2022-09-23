@@ -11,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /** The CustomModelJobOutput model. */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "jobOutputType")
-@JsonTypeName("CustomModel")
+@JsonTypeName("custom_model")
 @Fluent
 public final class CustomModelJobOutput extends JobOutput {
     /*
