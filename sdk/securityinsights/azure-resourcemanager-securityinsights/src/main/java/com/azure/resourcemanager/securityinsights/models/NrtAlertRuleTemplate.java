@@ -175,6 +175,52 @@ public final class NrtAlertRuleTemplate extends AlertRuleTemplateInner {
     }
 
     /**
+     * Get the eventGroupingSettings property: The event grouping settings.
+     *
+     * @return the eventGroupingSettings value.
+     */
+    public EventGroupingSettings eventGroupingSettings() {
+        return this.innerProperties() == null ? null : this.innerProperties().eventGroupingSettings();
+    }
+
+    /**
+     * Set the eventGroupingSettings property: The event grouping settings.
+     *
+     * @param eventGroupingSettings the eventGroupingSettings value to set.
+     * @return the NrtAlertRuleTemplate object itself.
+     */
+    public NrtAlertRuleTemplate withEventGroupingSettings(EventGroupingSettings eventGroupingSettings) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new NrtAlertRuleTemplateProperties();
+        }
+        this.innerProperties().withEventGroupingSettings(eventGroupingSettings);
+        return this;
+    }
+
+    /**
+     * Get the sentinelEntitiesMappings property: Array of the sentinel entity mappings of the alert rule.
+     *
+     * @return the sentinelEntitiesMappings value.
+     */
+    public List<SentinelEntityMapping> sentinelEntitiesMappings() {
+        return this.innerProperties() == null ? null : this.innerProperties().sentinelEntitiesMappings();
+    }
+
+    /**
+     * Set the sentinelEntitiesMappings property: Array of the sentinel entity mappings of the alert rule.
+     *
+     * @param sentinelEntitiesMappings the sentinelEntitiesMappings value to set.
+     * @return the NrtAlertRuleTemplate object itself.
+     */
+    public NrtAlertRuleTemplate withSentinelEntitiesMappings(List<SentinelEntityMapping> sentinelEntitiesMappings) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new NrtAlertRuleTemplateProperties();
+        }
+        this.innerProperties().withSentinelEntitiesMappings(sentinelEntitiesMappings);
+        return this;
+    }
+
+    /**
      * Get the tactics property: The tactics of the alert rule.
      *
      * @return the tactics value.

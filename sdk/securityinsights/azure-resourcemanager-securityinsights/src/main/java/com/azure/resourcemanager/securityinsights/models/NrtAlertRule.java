@@ -405,6 +405,52 @@ public final class NrtAlertRule extends AlertRuleInner {
     }
 
     /**
+     * Get the eventGroupingSettings property: The event grouping settings.
+     *
+     * @return the eventGroupingSettings value.
+     */
+    public EventGroupingSettings eventGroupingSettings() {
+        return this.innerProperties() == null ? null : this.innerProperties().eventGroupingSettings();
+    }
+
+    /**
+     * Set the eventGroupingSettings property: The event grouping settings.
+     *
+     * @param eventGroupingSettings the eventGroupingSettings value to set.
+     * @return the NrtAlertRule object itself.
+     */
+    public NrtAlertRule withEventGroupingSettings(EventGroupingSettings eventGroupingSettings) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new NrtAlertRuleProperties();
+        }
+        this.innerProperties().withEventGroupingSettings(eventGroupingSettings);
+        return this;
+    }
+
+    /**
+     * Get the sentinelEntitiesMappings property: Array of the sentinel entity mappings of the alert rule.
+     *
+     * @return the sentinelEntitiesMappings value.
+     */
+    public List<SentinelEntityMapping> sentinelEntitiesMappings() {
+        return this.innerProperties() == null ? null : this.innerProperties().sentinelEntitiesMappings();
+    }
+
+    /**
+     * Set the sentinelEntitiesMappings property: Array of the sentinel entity mappings of the alert rule.
+     *
+     * @param sentinelEntitiesMappings the sentinelEntitiesMappings value to set.
+     * @return the NrtAlertRule object itself.
+     */
+    public NrtAlertRule withSentinelEntitiesMappings(List<SentinelEntityMapping> sentinelEntitiesMappings) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new NrtAlertRuleProperties();
+        }
+        this.innerProperties().withSentinelEntitiesMappings(sentinelEntitiesMappings);
+        return this;
+    }
+
+    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
