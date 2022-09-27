@@ -11,8 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Fluent
 public final class HttpSettingsRoutes {
     /*
-     * The prefix that should precede all the authentication/authorization
-     * paths.
+     * The prefix that should precede all the authentication/authorization paths.
      */
     @JsonProperty(value = "apiPrefix")
     private String apiPrefix;
