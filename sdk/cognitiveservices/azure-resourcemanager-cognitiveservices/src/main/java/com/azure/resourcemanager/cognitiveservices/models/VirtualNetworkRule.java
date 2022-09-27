@@ -25,7 +25,7 @@ public final class VirtualNetworkRule {
     private String state;
 
     /*
-     * Ignore missing vnet service endpoint or not.
+     * Ignore missing vnet services endpoint or not.
      */
     @JsonProperty(value = "ignoreMissingVnetServiceEndpoint")
     private Boolean ignoreMissingVnetServiceEndpoint;
@@ -73,7 +73,7 @@ public final class VirtualNetworkRule {
     }
 
     /**
-     * Get the ignoreMissingVnetServiceEndpoint property: Ignore missing vnet service endpoint or not.
+     * Get the ignoreMissingVnetServiceEndpoint property: Ignore missing vnet services endpoint or not.
      *
      * @return the ignoreMissingVnetServiceEndpoint value.
      */
@@ -82,7 +82,7 @@ public final class VirtualNetworkRule {
     }
 
     /**
-     * Set the ignoreMissingVnetServiceEndpoint property: Ignore missing vnet service endpoint or not.
+     * Set the ignoreMissingVnetServiceEndpoint property: Ignore missing vnet services endpoint or not.
      *
      * @param ignoreMissingVnetServiceEndpoint the ignoreMissingVnetServiceEndpoint value to set.
      * @return the VirtualNetworkRule object itself.

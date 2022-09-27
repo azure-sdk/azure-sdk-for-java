@@ -28,6 +28,12 @@ public class DeploymentModel {
     @JsonProperty(value = "version")
     private String version;
 
+    /*
+     * The call rate limit Cognitive Services account.
+     */
+    @JsonProperty(value = "callRateLimit", access = JsonProperty.Access.WRITE_ONLY)
+    private CallRateLimit callRateLimit;
+
     /**
      * Get the format property: Deployment model format.
      *
@@ -89,10 +95,22 @@ public class DeploymentModel {
     }
 
     /**
+     * Get the callRateLimit property: The call rate limit Cognitive Services account.
+     *
+     * @return the callRateLimit value.
+     */
+    public CallRateLimit callRateLimit() {
+        return this.callRateLimit;
+    }
+
+    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+        if (callRateLimit() != null) {
+            callRateLimit().validate();
+        }
     }
 }

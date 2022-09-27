@@ -18,8 +18,8 @@ public final class ResourceSkuRestrictions {
     private ResourceSkuRestrictionsType type;
 
     /*
-     * The value of restrictions. If the restriction type is set to location.
-     * This would be different locations where the SKU is restricted.
+     * The value of restrictions. If the restriction type is set to location. This would be different locations where
+     * the SKU is restricted.
      */
     @JsonProperty(value = "values")
     private List<String> values;
