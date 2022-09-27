@@ -5,11 +5,9 @@
 package com.azure.resourcemanager.datafactory.models;
 
 import com.azure.core.annotation.Fluent;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
-import java.util.Map;
 
 /** A copy activity SQL server sink. */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
@@ -38,8 +36,7 @@ public final class SqlServerSink extends CopySink {
      * SQL stored procedure parameters.
      */
     @JsonProperty(value = "storedProcedureParameters")
-    @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
-    private Map<String, StoredProcedureParameter> storedProcedureParameters;
+    private Object storedProcedureParameters;
 
     /*
      * The stored procedure parameter name of the table type. Type: string (or Expression with resultType string).
@@ -140,7 +137,7 @@ public final class SqlServerSink extends CopySink {
      *
      * @return the storedProcedureParameters value.
      */
-    public Map<String, StoredProcedureParameter> storedProcedureParameters() {
+    public Object storedProcedureParameters() {
         return this.storedProcedureParameters;
     }
 
@@ -150,8 +147,7 @@ public final class SqlServerSink extends CopySink {
      * @param storedProcedureParameters the storedProcedureParameters value to set.
      * @return the SqlServerSink object itself.
      */
-    public SqlServerSink withStoredProcedureParameters(
-        Map<String, StoredProcedureParameter> storedProcedureParameters) {
+    public SqlServerSink withStoredProcedureParameters(Object storedProcedureParameters) {
         this.storedProcedureParameters = storedProcedureParameters;
         return this;
     }
@@ -314,16 +310,6 @@ public final class SqlServerSink extends CopySink {
     @Override
     public void validate() {
         super.validate();
-        if (storedProcedureParameters() != null) {
-            storedProcedureParameters()
-                .values()
-                .forEach(
-                    e -> {
-                        if (e != null) {
-                            e.validate();
-                        }
-                    });
-        }
         if (upsertSettings() != null) {
             upsertSettings().validate();
         }
