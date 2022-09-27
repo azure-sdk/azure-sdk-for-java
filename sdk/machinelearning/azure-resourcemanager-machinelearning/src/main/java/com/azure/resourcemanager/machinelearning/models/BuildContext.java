@@ -12,12 +12,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Fluent
 public final class BuildContext {
     /*
-     * [Required] URI of the Docker build context used to build the image.
-     * Supports blob URIs on environment creation and may return blob or Git
-     * URIs.
-     * <seealso
-     * href="https://docs.docker.com/engine/reference/commandline/build/#extended-description"
-     * />
+     * [Required] URI of the Docker build context used to build the image. Supports blob URIs on environment creation
+     * and may return blob or Git URIs.
+     * <seealso href="https://docs.docker.com/engine/reference/commandline/build/#extended-description" />
      */
     @JsonProperty(value = "contextUri", required = true)
     private String contextUri;

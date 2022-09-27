@@ -18,8 +18,7 @@ public final class ImageSweepSettings {
     private EarlyTerminationPolicy earlyTermination;
 
     /*
-     * [Required] Limit settings for model sweeping and hyperparameter
-     * sweeping.
+     * [Required] Limit settings for model sweeping and hyperparameter sweeping.
      */
     @JsonProperty(value = "limits", required = true)
     private ImageSweepLimitSettings limits;
