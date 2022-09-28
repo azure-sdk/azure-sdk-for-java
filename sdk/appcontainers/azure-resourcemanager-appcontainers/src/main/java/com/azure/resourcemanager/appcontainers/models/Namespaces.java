@@ -10,7 +10,9 @@ import com.azure.core.util.Context;
 /** Resource collection API of Namespaces. */
 public interface Namespaces {
     /**
-     * Checks if resource name is available.
+     * Checks the resource name availability.
+     *
+     * <p>Checks if resource name is available.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param environmentName Name of the Managed Environment.
@@ -25,7 +27,9 @@ public interface Namespaces {
         String resourceGroupName, String environmentName, CheckNameAvailabilityRequest checkNameAvailabilityRequest);
 
     /**
-     * Checks if resource name is available.
+     * Checks the resource name availability.
+     *
+     * <p>Checks if resource name is available.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param environmentName Name of the Managed Environment.
