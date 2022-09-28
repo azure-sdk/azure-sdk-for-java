@@ -25,8 +25,7 @@ import java.time.OffsetDateTime;
 @Fluent
 public class AzureWorkloadContainer extends ProtectionContainer {
     /*
-     * ARM ID of the virtual machine represented by this Azure Workload
-     * Container
+     * ARM ID of the virtual machine represented by this Azure Workload Container
      */
     @JsonProperty(value = "sourceResourceId")
     private String sourceResourceId;

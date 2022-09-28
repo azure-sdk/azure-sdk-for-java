@@ -42,8 +42,7 @@ public final class AzureStorageJob extends Job {
     private String storageAccountName;
 
     /*
-     * Specifies whether the Storage account is a Classic or an Azure Resource
-     * Manager Storage account.
+     * Specifies whether the Storage account is a Classic or an Azure Resource Manager Storage account.
      */
     @JsonProperty(value = "storageAccountVersion")
     private String storageAccountVersion;

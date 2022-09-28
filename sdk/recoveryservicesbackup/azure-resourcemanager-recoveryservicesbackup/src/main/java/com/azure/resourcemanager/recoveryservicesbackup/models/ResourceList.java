@@ -11,8 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Fluent
 public class ResourceList {
     /*
-     * The uri to fetch the next page of resources. Call ListNext() fetches
-     * next page of resources.
+     * The uri to fetch the next page of resources. Call ListNext() fetches next page of resources.
      */
     @JsonProperty(value = "nextLink")
     private String nextLink;

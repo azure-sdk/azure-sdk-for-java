@@ -32,8 +32,7 @@ public class IaaSvmProtectableItem extends WorkloadProtectableItem {
     private String virtualMachineId;
 
     /*
-     * Specifies whether the container represents a Classic or an Azure
-     * Resource Manager VM.
+     * Specifies whether the container represents a Classic or an Azure Resource Manager VM.
      */
     @JsonProperty(value = "virtualMachineVersion")
     private String virtualMachineVersion;
