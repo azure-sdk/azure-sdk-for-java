@@ -5,17 +5,12 @@
 package com.azure.resourcemanager.consumption.models;
 
 import com.azure.core.annotation.Immutable;
-import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** Details of the resource. */
 @Immutable
 public final class ReservationRecommendationDetailsResourceProperties {
-    @JsonIgnore
-    private final ClientLogger logger = new ClientLogger(ReservationRecommendationDetailsResourceProperties.class);
-
     /*
      * List of subscriptions for which the reservation is applied.
      */
@@ -51,6 +46,10 @@ public final class ReservationRecommendationDetailsResourceProperties {
      */
     @JsonProperty(value = "resourceType", access = JsonProperty.Access.WRITE_ONLY)
     private String resourceType;
+
+    /** Creates an instance of ReservationRecommendationDetailsResourceProperties class. */
+    public ReservationRecommendationDetailsResourceProperties() {
+    }
 
     /**
      * Get the appliedScopes property: List of subscriptions for which the reservation is applied.

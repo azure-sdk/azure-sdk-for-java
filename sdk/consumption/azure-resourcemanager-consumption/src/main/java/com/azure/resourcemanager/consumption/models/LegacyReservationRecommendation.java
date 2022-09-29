@@ -4,11 +4,10 @@
 
 package com.azure.resourcemanager.consumption.models;
 
-import com.azure.core.annotation.Fluent;
+import com.azure.core.annotation.Immutable;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.consumption.fluent.models.LegacyReservationRecommendationProperties;
 import com.azure.resourcemanager.consumption.fluent.models.ReservationRecommendationInner;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
@@ -20,15 +19,17 @@ import java.util.UUID;
 /** Legacy reservation recommendation. */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "kind")
 @JsonTypeName("legacy")
-@Fluent
+@Immutable
 public final class LegacyReservationRecommendation extends ReservationRecommendationInner {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(LegacyReservationRecommendation.class);
-
     /*
      * Properties for legacy reservation recommendation
      */
     @JsonProperty(value = "properties", required = true)
     private LegacyReservationRecommendationProperties innerProperties = new LegacyReservationRecommendationProperties();
+
+    /** Creates an instance of LegacyReservationRecommendation class. */
+    public LegacyReservationRecommendation() {
+    }
 
     /**
      * Get the innerProperties property: Properties for legacy reservation recommendation.
@@ -174,7 +175,7 @@ public final class LegacyReservationRecommendation extends ReservationRecommenda
     public void validate() {
         super.validate();
         if (innerProperties() == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property innerProperties in model LegacyReservationRecommendation"));
@@ -182,4 +183,6 @@ public final class LegacyReservationRecommendation extends ReservationRecommenda
             innerProperties().validate();
         }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(LegacyReservationRecommendation.class);
 }
