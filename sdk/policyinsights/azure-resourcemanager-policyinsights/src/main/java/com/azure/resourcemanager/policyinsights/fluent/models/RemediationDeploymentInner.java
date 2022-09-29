@@ -6,16 +6,12 @@ package com.azure.resourcemanager.policyinsights.fluent.models;
 
 import com.azure.core.annotation.Immutable;
 import com.azure.core.management.exception.ManagementError;
-import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
 /** Details of a single deployment created by the remediation. */
 @Immutable
 public final class RemediationDeploymentInner {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(RemediationDeploymentInner.class);
-
     /*
      * Resource ID of the resource that is being remediated by the deployment.
      */
