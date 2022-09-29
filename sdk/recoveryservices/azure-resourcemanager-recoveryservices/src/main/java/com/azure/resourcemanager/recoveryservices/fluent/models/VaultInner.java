@@ -5,9 +5,9 @@
 package com.azure.resourcemanager.recoveryservices.fluent.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.management.Resource;
 import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.recoveryservices.models.IdentityData;
+import com.azure.resourcemanager.recoveryservices.models.RecoveryServicesTrackedResource;
 import com.azure.resourcemanager.recoveryservices.models.Sku;
 import com.azure.resourcemanager.recoveryservices.models.VaultProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -15,7 +15,7 @@ import java.util.Map;
 
 /** Resource information, as returned by the resource provider. */
 @Fluent
-public final class VaultInner extends Resource {
+public final class VaultInner extends RecoveryServicesTrackedResource {
     /*
      * Identity for the resource.
      */
@@ -39,6 +39,10 @@ public final class VaultInner extends Resource {
      */
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
+
+    /** Creates an instance of VaultInner class. */
+    public VaultInner() {
+    }
 
     /**
      * Get the identity property: Identity for the resource.
@@ -123,12 +127,21 @@ public final class VaultInner extends Resource {
         return this;
     }
 
+    /** {@inheritDoc} */
+    @Override
+    public VaultInner withEtag(String etag) {
+        super.withEtag(etag);
+        return this;
+    }
+
     /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
+    @Override
     public void validate() {
+        super.validate();
         if (identity() != null) {
             identity().validate();
         }

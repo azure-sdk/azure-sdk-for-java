@@ -33,6 +33,10 @@ public final class VaultImpl implements Vault, Vault.Definition, Vault.Update {
         return this.innerModel().type();
     }
 
+    public String etag() {
+        return this.innerModel().etag();
+    }
+
     public String location() {
         return this.innerModel().location();
     }
@@ -182,6 +186,16 @@ public final class VaultImpl implements Vault, Vault.Definition, Vault.Update {
         }
     }
 
+    public VaultImpl withEtag(String etag) {
+        if (isInCreateMode()) {
+            this.innerModel().withEtag(etag);
+            return this;
+        } else {
+            this.updateVault.withEtag(etag);
+            return this;
+        }
+    }
+
     public VaultImpl withIdentity(IdentityData identity) {
         if (isInCreateMode()) {
             this.innerModel().withIdentity(identity);
@@ -210,11 +224,6 @@ public final class VaultImpl implements Vault, Vault.Definition, Vault.Update {
             this.updateVault.withSku(sku);
             return this;
         }
-    }
-
-    public VaultImpl withEtag(String etag) {
-        this.updateVault.withEtag(etag);
-        return this;
     }
 
     private boolean isInCreateMode() {

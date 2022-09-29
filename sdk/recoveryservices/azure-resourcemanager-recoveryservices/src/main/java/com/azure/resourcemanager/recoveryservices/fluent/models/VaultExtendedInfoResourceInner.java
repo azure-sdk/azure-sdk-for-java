@@ -5,23 +5,21 @@
 package com.azure.resourcemanager.recoveryservices.fluent.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.management.ProxyResource;
+import com.azure.resourcemanager.recoveryservices.models.RecoveryServicesResource;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Vault extended information. */
 @Fluent
-public final class VaultExtendedInfoResourceInner extends ProxyResource {
+public final class VaultExtendedInfoResourceInner extends RecoveryServicesResource {
     /*
      * Vault extended information.
      */
     @JsonProperty(value = "properties")
     private VaultExtendedInfo innerProperties;
 
-    /*
-     * Optional ETag.
-     */
-    @JsonProperty(value = "etag")
-    private String etag;
+    /** Creates an instance of VaultExtendedInfoResourceInner class. */
+    public VaultExtendedInfoResourceInner() {
+    }
 
     /**
      * Get the innerProperties property: Vault extended information.
@@ -32,23 +30,10 @@ public final class VaultExtendedInfoResourceInner extends ProxyResource {
         return this.innerProperties;
     }
 
-    /**
-     * Get the etag property: Optional ETag.
-     *
-     * @return the etag value.
-     */
-    public String etag() {
-        return this.etag;
-    }
-
-    /**
-     * Set the etag property: Optional ETag.
-     *
-     * @param etag the etag value to set.
-     * @return the VaultExtendedInfoResourceInner object itself.
-     */
+    /** {@inheritDoc} */
+    @Override
     public VaultExtendedInfoResourceInner withEtag(String etag) {
-        this.etag = etag;
+        super.withEtag(etag);
         return this;
     }
 
@@ -149,7 +134,9 @@ public final class VaultExtendedInfoResourceInner extends ProxyResource {
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
+    @Override
     public void validate() {
+        super.validate();
         if (innerProperties() != null) {
             innerProperties().validate();
         }

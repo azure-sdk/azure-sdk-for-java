@@ -12,6 +12,7 @@ import com.azure.resourcemanager.recoveryservices.models.CmkKeyVaultProperties;
 import com.azure.resourcemanager.recoveryservices.models.IdentityData;
 import com.azure.resourcemanager.recoveryservices.models.InfrastructureEncryptionState;
 import com.azure.resourcemanager.recoveryservices.models.MonitoringSettings;
+import com.azure.resourcemanager.recoveryservices.models.PublicNetworkAccess;
 import com.azure.resourcemanager.recoveryservices.models.ResourceIdentityType;
 import com.azure.resourcemanager.recoveryservices.models.Sku;
 import com.azure.resourcemanager.recoveryservices.models.SkuName;
@@ -24,7 +25,7 @@ import java.util.Map;
 /** Samples for Vaults CreateOrUpdate. */
 public final class VaultsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/recoveryservices/resource-manager/Microsoft.RecoveryServices/stable/2022-04-01/examples/PUTVault_WithCMK.json
+     * x-ms-original-file: specification/recoveryservices/resource-manager/Microsoft.RecoveryServices/preview/2022-09-01-preview/examples/PUTVault_WithCMK.json
      */
     /**
      * Sample code: Create or Update Vault with CustomerManagedKeys.
@@ -57,13 +58,14 @@ public final class VaultsCreateOrUpdateSamples {
                                 new CmkKekIdentity()
                                     .withUserAssignedIdentity(
                                         "/subscriptions/85bf5e8c-3084-4f42-add2-746ebb7e97b2/resourcegroups/defaultrg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/examplemsi"))
-                            .withInfrastructureEncryption(InfrastructureEncryptionState.ENABLED)))
+                            .withInfrastructureEncryption(InfrastructureEncryptionState.ENABLED))
+                    .withPublicNetworkAccess(PublicNetworkAccess.ENABLED))
             .withSku(new Sku().withName(SkuName.STANDARD))
             .create();
     }
 
     /*
-     * x-ms-original-file: specification/recoveryservices/resource-manager/Microsoft.RecoveryServices/stable/2022-04-01/examples/PUTVault.json
+     * x-ms-original-file: specification/recoveryservices/resource-manager/Microsoft.RecoveryServices/preview/2022-09-01-preview/examples/PUTVault.json
      */
     /**
      * Sample code: Create or Update Recovery Services vault.
@@ -78,13 +80,13 @@ public final class VaultsCreateOrUpdateSamples {
             .withRegion("West US")
             .withExistingResourceGroup("Default-RecoveryServices-ResourceGroup")
             .withIdentity(new IdentityData().withType(ResourceIdentityType.SYSTEM_ASSIGNED))
-            .withProperties(new VaultProperties())
+            .withProperties(new VaultProperties().withPublicNetworkAccess(PublicNetworkAccess.ENABLED))
             .withSku(new Sku().withName(SkuName.STANDARD))
             .create();
     }
 
     /*
-     * x-ms-original-file: specification/recoveryservices/resource-manager/Microsoft.RecoveryServices/stable/2022-04-01/examples/PUTVault_WithUserAssignedIdentity.json
+     * x-ms-original-file: specification/recoveryservices/resource-manager/Microsoft.RecoveryServices/preview/2022-09-01-preview/examples/PUTVault_WithUserAssignedIdentity.json
      */
     /**
      * Sample code: Create or Update Vault with User Assigned Identity.
@@ -105,13 +107,13 @@ public final class VaultsCreateOrUpdateSamples {
                         mapOf(
                             "/subscriptions/85bf5e8c-3084-4f42-add2-746ebb7e97b2/resourcegroups/defaultrg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/examplemsi",
                             new UserIdentity())))
-            .withProperties(new VaultProperties())
+            .withProperties(new VaultProperties().withPublicNetworkAccess(PublicNetworkAccess.ENABLED))
             .withSku(new Sku().withName(SkuName.STANDARD))
             .create();
     }
 
     /*
-     * x-ms-original-file: specification/recoveryservices/resource-manager/Microsoft.RecoveryServices/stable/2022-04-01/examples/PUTVault_WithMonitoringSettings.json
+     * x-ms-original-file: specification/recoveryservices/resource-manager/Microsoft.RecoveryServices/preview/2022-09-01-preview/examples/PUTVault_WithMonitoringSettings.json
      */
     /**
      * Sample code: Create or Update Vault With Monitoring Setting.
@@ -128,6 +130,7 @@ public final class VaultsCreateOrUpdateSamples {
             .withIdentity(new IdentityData().withType(ResourceIdentityType.SYSTEM_ASSIGNED))
             .withProperties(
                 new VaultProperties()
+                    .withPublicNetworkAccess(PublicNetworkAccess.ENABLED)
                     .withMonitoringSettings(
                         new MonitoringSettings()
                             .withAzureMonitorAlertSettings(

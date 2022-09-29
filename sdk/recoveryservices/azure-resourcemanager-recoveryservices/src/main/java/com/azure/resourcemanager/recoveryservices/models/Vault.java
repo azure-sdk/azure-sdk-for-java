@@ -34,7 +34,14 @@ public interface Vault {
     String type();
 
     /**
-     * Gets the location property: The geo-location where the resource lives.
+     * Gets the etag property: Optional ETag.
+     *
+     * @return the etag value.
+     */
+    String etag();
+
+    /**
+     * Gets the location property: Resource location.
      *
      * @return the location value.
      */
@@ -120,7 +127,7 @@ public interface Vault {
             /**
              * Specifies the region for the resource.
              *
-             * @param location The geo-location where the resource lives.
+             * @param location Resource location.
              * @return the next definition stage.
              */
             WithResourceGroup withRegion(Region location);
@@ -128,7 +135,7 @@ public interface Vault {
             /**
              * Specifies the region for the resource.
              *
-             * @param location The geo-location where the resource lives.
+             * @param location Resource location.
              * @return the next definition stage.
              */
             WithResourceGroup withRegion(String location);
@@ -138,7 +145,7 @@ public interface Vault {
             /**
              * Specifies resourceGroupName.
              *
-             * @param resourceGroupName The name of the resource group where the recovery services vault is present.
+             * @param resourceGroupName The name of the resource group. The name is case insensitive.
              * @return the next definition stage.
              */
             WithCreate withExistingResourceGroup(String resourceGroupName);
@@ -149,6 +156,7 @@ public interface Vault {
          */
         interface WithCreate
             extends DefinitionStages.WithTags,
+                DefinitionStages.WithEtag,
                 DefinitionStages.WithIdentity,
                 DefinitionStages.WithProperties,
                 DefinitionStages.WithSku {
@@ -176,6 +184,16 @@ public interface Vault {
              * @return the next definition stage.
              */
             WithCreate withTags(Map<String, String> tags);
+        }
+        /** The stage of the Vault definition allowing to specify etag. */
+        interface WithEtag {
+            /**
+             * Specifies the etag property: Optional ETag..
+             *
+             * @param etag Optional ETag.
+             * @return the next definition stage.
+             */
+            WithCreate withEtag(String etag);
         }
         /** The stage of the Vault definition allowing to specify identity. */
         interface WithIdentity {

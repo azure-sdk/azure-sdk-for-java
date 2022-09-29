@@ -5,14 +5,13 @@
 package com.azure.resourcemanager.recoveryservices.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.management.ProxyResource;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
 /** Tracked resource with location. */
 @Fluent
-public class PatchTrackedResource extends ProxyResource {
+public class PatchTrackedResource extends RecoveryServicesResource {
     /*
      * Resource location.
      */
@@ -26,11 +25,9 @@ public class PatchTrackedResource extends ProxyResource {
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, String> tags;
 
-    /*
-     * Optional ETag.
-     */
-    @JsonProperty(value = "etag")
-    private String etag;
+    /** Creates an instance of PatchTrackedResource class. */
+    public PatchTrackedResource() {
+    }
 
     /**
      * Get the location property: Resource location.
@@ -72,23 +69,10 @@ public class PatchTrackedResource extends ProxyResource {
         return this;
     }
 
-    /**
-     * Get the etag property: Optional ETag.
-     *
-     * @return the etag value.
-     */
-    public String etag() {
-        return this.etag;
-    }
-
-    /**
-     * Set the etag property: Optional ETag.
-     *
-     * @param etag the etag value to set.
-     * @return the PatchTrackedResource object itself.
-     */
+    /** {@inheritDoc} */
+    @Override
     public PatchTrackedResource withEtag(String etag) {
-        this.etag = etag;
+        super.withEtag(etag);
         return this;
     }
 
@@ -97,6 +81,8 @@ public class PatchTrackedResource extends ProxyResource {
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
+    @Override
     public void validate() {
+        super.validate();
     }
 }
