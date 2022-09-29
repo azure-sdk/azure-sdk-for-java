@@ -217,30 +217,7 @@ public final class WorkspaceSqlAadAdminsClientImpl implements WorkspaceSqlAadAdm
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<WorkspaceAadAdminInfoInner> getAsync(String resourceGroupName, String workspaceName) {
-        return getWithResponseAsync(resourceGroupName, workspaceName)
-            .flatMap(
-                (Response<WorkspaceAadAdminInfoInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
-    }
-
-    /**
-     * Gets a workspace SQL active directory admin.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a workspace SQL active directory admin.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public WorkspaceAadAdminInfoInner get(String resourceGroupName, String workspaceName) {
-        return getAsync(resourceGroupName, workspaceName).block();
+        return getWithResponseAsync(resourceGroupName, workspaceName).flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -258,6 +235,21 @@ public final class WorkspaceSqlAadAdminsClientImpl implements WorkspaceSqlAadAdm
     public Response<WorkspaceAadAdminInfoInner> getWithResponse(
         String resourceGroupName, String workspaceName, Context context) {
         return getWithResponseAsync(resourceGroupName, workspaceName, context).block();
+    }
+
+    /**
+     * Gets a workspace SQL active directory admin.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a workspace SQL active directory admin.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public WorkspaceAadAdminInfoInner get(String resourceGroupName, String workspaceName) {
+        return getWithResponse(resourceGroupName, workspaceName, Context.NONE).getValue();
     }
 
     /**

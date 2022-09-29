@@ -22,6 +22,7 @@ import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
 import com.azure.resourcemanager.synapse.fluent.SqlPoolOperationResultsClient;
+import com.azure.resourcemanager.synapse.fluent.models.SqlPoolInner;
 import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in SqlPoolOperationResultsClient. */
@@ -57,7 +58,7 @@ public final class SqlPoolOperationResultsClientImpl implements SqlPoolOperation
                 + "/{workspaceName}/sqlPools/{sqlPoolName}/operationResults/{operationId}")
         @ExpectedResponses({200, 202})
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Object>> getLocationHeaderResult(
+        Mono<Response<SqlPoolInner>> getLocationHeaderResult(
             @HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion,
             @PathParam("subscriptionId") String subscriptionId,
@@ -70,7 +71,9 @@ public final class SqlPoolOperationResultsClientImpl implements SqlPoolOperation
     }
 
     /**
-     * Get the status of a SQL pool operation.
+     * Get SQL pool operation status
+     *
+     * <p>Get the status of a SQL pool operation.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -82,7 +85,7 @@ public final class SqlPoolOperationResultsClientImpl implements SqlPoolOperation
      * @return the status of a SQL pool operation along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Object>> getLocationHeaderResultWithResponseAsync(
+    private Mono<Response<SqlPoolInner>> getLocationHeaderResultWithResponseAsync(
         String resourceGroupName, String workspaceName, String sqlPoolName, String operationId) {
         if (this.client.getEndpoint() == null) {
             return Mono
@@ -129,7 +132,9 @@ public final class SqlPoolOperationResultsClientImpl implements SqlPoolOperation
     }
 
     /**
-     * Get the status of a SQL pool operation.
+     * Get SQL pool operation status
+     *
+     * <p>Get the status of a SQL pool operation.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -142,7 +147,7 @@ public final class SqlPoolOperationResultsClientImpl implements SqlPoolOperation
      * @return the status of a SQL pool operation along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Object>> getLocationHeaderResultWithResponseAsync(
+    private Mono<Response<SqlPoolInner>> getLocationHeaderResultWithResponseAsync(
         String resourceGroupName, String workspaceName, String sqlPoolName, String operationId, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono
@@ -186,7 +191,9 @@ public final class SqlPoolOperationResultsClientImpl implements SqlPoolOperation
     }
 
     /**
-     * Get the status of a SQL pool operation.
+     * Get SQL pool operation status
+     *
+     * <p>Get the status of a SQL pool operation.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -198,39 +205,16 @@ public final class SqlPoolOperationResultsClientImpl implements SqlPoolOperation
      * @return the status of a SQL pool operation on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Object> getLocationHeaderResultAsync(
+    private Mono<SqlPoolInner> getLocationHeaderResultAsync(
         String resourceGroupName, String workspaceName, String sqlPoolName, String operationId) {
         return getLocationHeaderResultWithResponseAsync(resourceGroupName, workspaceName, sqlPoolName, operationId)
-            .flatMap(
-                (Response<Object> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
-     * Get the status of a SQL pool operation.
+     * Get SQL pool operation status
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param sqlPoolName SQL pool name.
-     * @param operationId Operation ID.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the status of a SQL pool operation.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Object getLocationHeaderResult(
-        String resourceGroupName, String workspaceName, String sqlPoolName, String operationId) {
-        return getLocationHeaderResultAsync(resourceGroupName, workspaceName, sqlPoolName, operationId).block();
-    }
-
-    /**
-     * Get the status of a SQL pool operation.
+     * <p>Get the status of a SQL pool operation.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -243,10 +227,32 @@ public final class SqlPoolOperationResultsClientImpl implements SqlPoolOperation
      * @return the status of a SQL pool operation along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<Object> getLocationHeaderResultWithResponse(
+    public Response<SqlPoolInner> getLocationHeaderResultWithResponse(
         String resourceGroupName, String workspaceName, String sqlPoolName, String operationId, Context context) {
         return getLocationHeaderResultWithResponseAsync(
                 resourceGroupName, workspaceName, sqlPoolName, operationId, context)
             .block();
+    }
+
+    /**
+     * Get SQL pool operation status
+     *
+     * <p>Get the status of a SQL pool operation.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param sqlPoolName SQL pool name.
+     * @param operationId Operation ID.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the status of a SQL pool operation.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public SqlPoolInner getLocationHeaderResult(
+        String resourceGroupName, String workspaceName, String sqlPoolName, String operationId) {
+        return getLocationHeaderResultWithResponse(
+                resourceGroupName, workspaceName, sqlPoolName, operationId, Context.NONE)
+            .getValue();
     }
 }
