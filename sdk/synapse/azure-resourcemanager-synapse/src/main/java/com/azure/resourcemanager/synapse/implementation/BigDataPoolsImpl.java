@@ -27,16 +27,6 @@ public final class BigDataPoolsImpl implements BigDataPools {
         this.serviceManager = serviceManager;
     }
 
-    public BigDataPoolResourceInfo get(String resourceGroupName, String workspaceName, String bigDataPoolName) {
-        BigDataPoolResourceInfoInner inner =
-            this.serviceClient().get(resourceGroupName, workspaceName, bigDataPoolName);
-        if (inner != null) {
-            return new BigDataPoolResourceInfoImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
     public Response<BigDataPoolResourceInfo> getWithResponse(
         String resourceGroupName, String workspaceName, String bigDataPoolName, Context context) {
         Response<BigDataPoolResourceInfoInner> inner =
@@ -47,6 +37,16 @@ public final class BigDataPoolsImpl implements BigDataPools {
                 inner.getStatusCode(),
                 inner.getHeaders(),
                 new BigDataPoolResourceInfoImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public BigDataPoolResourceInfo get(String resourceGroupName, String workspaceName, String bigDataPoolName) {
+        BigDataPoolResourceInfoInner inner =
+            this.serviceClient().get(resourceGroupName, workspaceName, bigDataPoolName);
+        if (inner != null) {
+            return new BigDataPoolResourceInfoImpl(inner, this.manager());
         } else {
             return null;
         }

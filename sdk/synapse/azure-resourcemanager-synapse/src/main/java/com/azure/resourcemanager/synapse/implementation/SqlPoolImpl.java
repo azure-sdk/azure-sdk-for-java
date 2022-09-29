@@ -104,6 +104,10 @@ public final class SqlPoolImpl implements SqlPool, SqlPool.Definition, SqlPool.U
         return this.location();
     }
 
+    public String resourceGroupName() {
+        return resourceGroupName;
+    }
+
     public SqlPoolInner innerModel() {
         return this.innerObject;
     }
@@ -219,14 +223,14 @@ public final class SqlPoolImpl implements SqlPool, SqlPool.Definition, SqlPool.U
         return serviceManager.sqlPools().resume(resourceGroupName, workspaceName, sqlPoolName, context);
     }
 
-    public void rename(ResourceMoveDefinition parameters) {
-        serviceManager.sqlPools().rename(resourceGroupName, workspaceName, sqlPoolName, parameters);
-    }
-
     public Response<Void> renameWithResponse(ResourceMoveDefinition parameters, Context context) {
         return serviceManager
             .sqlPools()
             .renameWithResponse(resourceGroupName, workspaceName, sqlPoolName, parameters, context);
+    }
+
+    public void rename(ResourceMoveDefinition parameters) {
+        serviceManager.sqlPools().rename(resourceGroupName, workspaceName, sqlPoolName, parameters);
     }
 
     public SqlPoolImpl withRegion(Region location) {

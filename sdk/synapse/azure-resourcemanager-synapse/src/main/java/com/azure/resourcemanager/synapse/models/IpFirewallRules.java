@@ -68,19 +68,6 @@ public interface IpFirewallRules {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param ruleName The IP firewall rule name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a firewall rule.
-     */
-    IpFirewallRuleInfo get(String resourceGroupName, String workspaceName, String ruleName);
-
-    /**
-     * Get a firewall rule.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param ruleName The IP firewall rule name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -89,6 +76,19 @@ public interface IpFirewallRules {
      */
     Response<IpFirewallRuleInfo> getWithResponse(
         String resourceGroupName, String workspaceName, String ruleName, Context context);
+
+    /**
+     * Get a firewall rule.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param ruleName The IP firewall rule name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a firewall rule.
+     */
+    IpFirewallRuleInfo get(String resourceGroupName, String workspaceName, String ruleName);
 
     /**
      * Replaces firewall rules.

@@ -11,20 +11,9 @@ import com.azure.core.util.Context;
 /** Resource collection API of SqlPools. */
 public interface SqlPools {
     /**
-     * Get SQL pool properties.
+     * Get SQL pool
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param sqlPoolName SQL pool name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return sQL pool properties.
-     */
-    SqlPool get(String resourceGroupName, String workspaceName, String sqlPoolName);
-
-    /**
-     * Get SQL pool properties.
+     * <p>Get SQL pool properties.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -39,7 +28,24 @@ public interface SqlPools {
         String resourceGroupName, String workspaceName, String sqlPoolName, Context context);
 
     /**
-     * Delete a SQL pool.
+     * Get SQL pool
+     *
+     * <p>Get SQL pool properties.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param sqlPoolName SQL pool name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return sQL pool properties.
+     */
+    SqlPool get(String resourceGroupName, String workspaceName, String sqlPoolName);
+
+    /**
+     * Delete SQL pool
+     *
+     * <p>Delete a SQL pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -52,7 +58,9 @@ public interface SqlPools {
     Object delete(String resourceGroupName, String workspaceName, String sqlPoolName);
 
     /**
-     * Delete a SQL pool.
+     * Delete SQL pool
+     *
+     * <p>Delete a SQL pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -66,7 +74,9 @@ public interface SqlPools {
     Object delete(String resourceGroupName, String workspaceName, String sqlPoolName, Context context);
 
     /**
-     * List all SQL pools.
+     * List SQL pools
+     *
+     * <p>List all SQL pools.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -78,7 +88,9 @@ public interface SqlPools {
     PagedIterable<SqlPool> listByWorkspace(String resourceGroupName, String workspaceName);
 
     /**
-     * List all SQL pools.
+     * List SQL pools
+     *
+     * <p>List all SQL pools.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -91,7 +103,9 @@ public interface SqlPools {
     PagedIterable<SqlPool> listByWorkspace(String resourceGroupName, String workspaceName, Context context);
 
     /**
-     * Pause a SQL pool.
+     * Pause SQL pool
+     *
+     * <p>Pause a SQL pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -104,7 +118,9 @@ public interface SqlPools {
     Object pause(String resourceGroupName, String workspaceName, String sqlPoolName);
 
     /**
-     * Pause a SQL pool.
+     * Pause SQL pool
+     *
+     * <p>Pause a SQL pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -118,7 +134,9 @@ public interface SqlPools {
     Object pause(String resourceGroupName, String workspaceName, String sqlPoolName, Context context);
 
     /**
-     * Resume a SQL pool.
+     * Resume SQL pool
+     *
+     * <p>Resume a SQL pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -131,7 +149,9 @@ public interface SqlPools {
     Object resume(String resourceGroupName, String workspaceName, String sqlPoolName);
 
     /**
-     * Resume a SQL pool.
+     * Resume SQL pool
+     *
+     * <p>Resume a SQL pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -145,20 +165,9 @@ public interface SqlPools {
     Object resume(String resourceGroupName, String workspaceName, String sqlPoolName, Context context);
 
     /**
-     * Rename a SQL pool.
+     * Rename a SQL pool
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param sqlPoolName SQL pool name.
-     * @param parameters The resource move definition for renaming this Sql pool.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    void rename(String resourceGroupName, String workspaceName, String sqlPoolName, ResourceMoveDefinition parameters);
-
-    /**
-     * Rename a SQL pool.
+     * <p>Rename a SQL pool.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -178,7 +187,24 @@ public interface SqlPools {
         Context context);
 
     /**
-     * Get SQL pool properties.
+     * Rename a SQL pool
+     *
+     * <p>Rename a SQL pool.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param sqlPoolName SQL pool name.
+     * @param parameters The resource move definition for renaming this Sql pool.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void rename(String resourceGroupName, String workspaceName, String sqlPoolName, ResourceMoveDefinition parameters);
+
+    /**
+     * Get SQL pool
+     *
+     * <p>Get SQL pool properties.
      *
      * @param id the resource ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -189,7 +215,9 @@ public interface SqlPools {
     SqlPool getById(String id);
 
     /**
-     * Get SQL pool properties.
+     * Get SQL pool
+     *
+     * <p>Get SQL pool properties.
      *
      * @param id the resource ID.
      * @param context The context to associate with this operation.
@@ -201,7 +229,9 @@ public interface SqlPools {
     Response<SqlPool> getByIdWithResponse(String id, Context context);
 
     /**
-     * Delete a SQL pool.
+     * Delete SQL pool
+     *
+     * <p>Delete a SQL pool.
      *
      * @param id the resource ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -212,7 +242,9 @@ public interface SqlPools {
     Object deleteById(String id);
 
     /**
-     * Delete a SQL pool.
+     * Delete SQL pool
+     *
+     * <p>Delete a SQL pool.
      *
      * @param id the resource ID.
      * @param context The context to associate with this operation.

@@ -27,15 +27,6 @@ public final class SqlPoolsImpl implements SqlPools {
         this.serviceManager = serviceManager;
     }
 
-    public SqlPool get(String resourceGroupName, String workspaceName, String sqlPoolName) {
-        SqlPoolInner inner = this.serviceClient().get(resourceGroupName, workspaceName, sqlPoolName);
-        if (inner != null) {
-            return new SqlPoolImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
     public Response<SqlPool> getWithResponse(
         String resourceGroupName, String workspaceName, String sqlPoolName, Context context) {
         Response<SqlPoolInner> inner =
@@ -46,6 +37,15 @@ public final class SqlPoolsImpl implements SqlPools {
                 inner.getStatusCode(),
                 inner.getHeaders(),
                 new SqlPoolImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public SqlPool get(String resourceGroupName, String workspaceName, String sqlPoolName) {
+        SqlPoolInner inner = this.serviceClient().get(resourceGroupName, workspaceName, sqlPoolName);
+        if (inner != null) {
+            return new SqlPoolImpl(inner, this.manager());
         } else {
             return null;
         }
@@ -86,11 +86,6 @@ public final class SqlPoolsImpl implements SqlPools {
         return this.serviceClient().resume(resourceGroupName, workspaceName, sqlPoolName, context);
     }
 
-    public void rename(
-        String resourceGroupName, String workspaceName, String sqlPoolName, ResourceMoveDefinition parameters) {
-        this.serviceClient().rename(resourceGroupName, workspaceName, sqlPoolName, parameters);
-    }
-
     public Response<Void> renameWithResponse(
         String resourceGroupName,
         String workspaceName,
@@ -100,6 +95,11 @@ public final class SqlPoolsImpl implements SqlPools {
         return this
             .serviceClient()
             .renameWithResponse(resourceGroupName, workspaceName, sqlPoolName, parameters, context);
+    }
+
+    public void rename(
+        String resourceGroupName, String workspaceName, String sqlPoolName, ResourceMoveDefinition parameters) {
+        this.serviceClient().rename(resourceGroupName, workspaceName, sqlPoolName, parameters);
     }
 
     public SqlPool getById(String id) {

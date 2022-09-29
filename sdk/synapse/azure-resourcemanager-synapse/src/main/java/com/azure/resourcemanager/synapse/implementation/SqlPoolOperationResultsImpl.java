@@ -23,16 +23,16 @@ public final class SqlPoolOperationResultsImpl implements SqlPoolOperationResult
         this.serviceManager = serviceManager;
     }
 
-    public Object getLocationHeaderResult(
-        String resourceGroupName, String workspaceName, String sqlPoolName, String operationId) {
-        return this.serviceClient().getLocationHeaderResult(resourceGroupName, workspaceName, sqlPoolName, operationId);
-    }
-
     public Response<Object> getLocationHeaderResultWithResponse(
         String resourceGroupName, String workspaceName, String sqlPoolName, String operationId, Context context) {
         return this
             .serviceClient()
             .getLocationHeaderResultWithResponse(resourceGroupName, workspaceName, sqlPoolName, operationId, context);
+    }
+
+    public Object getLocationHeaderResult(
+        String resourceGroupName, String workspaceName, String sqlPoolName, String operationId) {
+        return this.serviceClient().getLocationHeaderResult(resourceGroupName, workspaceName, sqlPoolName, operationId);
     }
 
     private SqlPoolOperationResultsClient serviceClient() {
