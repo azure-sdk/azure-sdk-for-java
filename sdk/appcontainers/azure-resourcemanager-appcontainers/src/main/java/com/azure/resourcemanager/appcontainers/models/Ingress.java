@@ -30,6 +30,12 @@ public final class Ingress {
     private Integer targetPort;
 
     /*
+     * Exposed Port in containers for TCP traffic from ingress
+     */
+    @JsonProperty(value = "exposedPort")
+    private Integer exposedPort;
+
+    /*
      * Ingress transport protocol
      */
     @JsonProperty(value = "transport")
@@ -48,11 +54,31 @@ public final class Ingress {
     private List<CustomDomain> customDomains;
 
     /*
-     * Bool indicating if HTTP connections to is allowed. If set to false HTTP
-     * connections are automatically redirected to HTTPS connections
+     * Bool indicating if HTTP connections to is allowed. If set to false HTTP connections are automatically redirected
+     * to HTTPS connections
      */
     @JsonProperty(value = "allowInsecure")
     private Boolean allowInsecure;
+
+    /*
+     * Rules to restrict incoming IP address.
+     */
+    @JsonProperty(value = "ipSecurityRestrictions")
+    private List<IpSecurityRestrictionRule> ipSecurityRestrictions;
+
+    /*
+     * Client certificate mode for mTLS authentication. Ignore indicates server drops client certificate on forwarding.
+     * Accept indicates server forwards client certificate but does not require a client certificate. Require indicates
+     * server requires a client certificate.
+     */
+    @JsonProperty(value = "clientCertificateMode")
+    private IngressClientCertificateMode clientCertificateMode;
+
+    /*
+     * CORS policy for container app
+     */
+    @JsonProperty(value = "corsPolicy")
+    private CorsPolicy corsPolicy;
 
     /**
      * Get the fqdn property: Hostname.
@@ -100,6 +126,26 @@ public final class Ingress {
      */
     public Ingress withTargetPort(Integer targetPort) {
         this.targetPort = targetPort;
+        return this;
+    }
+
+    /**
+     * Get the exposedPort property: Exposed Port in containers for TCP traffic from ingress.
+     *
+     * @return the exposedPort value.
+     */
+    public Integer exposedPort() {
+        return this.exposedPort;
+    }
+
+    /**
+     * Set the exposedPort property: Exposed Port in containers for TCP traffic from ingress.
+     *
+     * @param exposedPort the exposedPort value to set.
+     * @return the Ingress object itself.
+     */
+    public Ingress withExposedPort(Integer exposedPort) {
+        this.exposedPort = exposedPort;
         return this;
     }
 
@@ -186,6 +232,70 @@ public final class Ingress {
     }
 
     /**
+     * Get the ipSecurityRestrictions property: Rules to restrict incoming IP address.
+     *
+     * @return the ipSecurityRestrictions value.
+     */
+    public List<IpSecurityRestrictionRule> ipSecurityRestrictions() {
+        return this.ipSecurityRestrictions;
+    }
+
+    /**
+     * Set the ipSecurityRestrictions property: Rules to restrict incoming IP address.
+     *
+     * @param ipSecurityRestrictions the ipSecurityRestrictions value to set.
+     * @return the Ingress object itself.
+     */
+    public Ingress withIpSecurityRestrictions(List<IpSecurityRestrictionRule> ipSecurityRestrictions) {
+        this.ipSecurityRestrictions = ipSecurityRestrictions;
+        return this;
+    }
+
+    /**
+     * Get the clientCertificateMode property: Client certificate mode for mTLS authentication. Ignore indicates server
+     * drops client certificate on forwarding. Accept indicates server forwards client certificate but does not require
+     * a client certificate. Require indicates server requires a client certificate.
+     *
+     * @return the clientCertificateMode value.
+     */
+    public IngressClientCertificateMode clientCertificateMode() {
+        return this.clientCertificateMode;
+    }
+
+    /**
+     * Set the clientCertificateMode property: Client certificate mode for mTLS authentication. Ignore indicates server
+     * drops client certificate on forwarding. Accept indicates server forwards client certificate but does not require
+     * a client certificate. Require indicates server requires a client certificate.
+     *
+     * @param clientCertificateMode the clientCertificateMode value to set.
+     * @return the Ingress object itself.
+     */
+    public Ingress withClientCertificateMode(IngressClientCertificateMode clientCertificateMode) {
+        this.clientCertificateMode = clientCertificateMode;
+        return this;
+    }
+
+    /**
+     * Get the corsPolicy property: CORS policy for container app.
+     *
+     * @return the corsPolicy value.
+     */
+    public CorsPolicy corsPolicy() {
+        return this.corsPolicy;
+    }
+
+    /**
+     * Set the corsPolicy property: CORS policy for container app.
+     *
+     * @param corsPolicy the corsPolicy value to set.
+     * @return the Ingress object itself.
+     */
+    public Ingress withCorsPolicy(CorsPolicy corsPolicy) {
+        this.corsPolicy = corsPolicy;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -196,6 +306,12 @@ public final class Ingress {
         }
         if (customDomains() != null) {
             customDomains().forEach(e -> e.validate());
+        }
+        if (ipSecurityRestrictions() != null) {
+            ipSecurityRestrictions().forEach(e -> e.validate());
+        }
+        if (corsPolicy() != null) {
+            corsPolicy().validate();
         }
     }
 }
