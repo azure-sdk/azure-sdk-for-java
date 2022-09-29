@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for ProvisioningState. */
+/** Provisioning state of the BackupVault resource. */
 public final class ProvisioningState extends ExpandableStringEnum<ProvisioningState> {
     /** Static value Failed for ProvisioningState. */
     public static final ProvisioningState FAILED = fromString("Failed");
@@ -36,7 +36,11 @@ public final class ProvisioningState extends ExpandableStringEnum<ProvisioningSt
         return fromString(name, ProvisioningState.class);
     }
 
-    /** @return known ProvisioningState values. */
+    /**
+     * Gets known ProvisioningState values.
+     *
+     * @return known ProvisioningState values.
+     */
     public static Collection<ProvisioningState> values() {
         return values(ProvisioningState.class);
     }
