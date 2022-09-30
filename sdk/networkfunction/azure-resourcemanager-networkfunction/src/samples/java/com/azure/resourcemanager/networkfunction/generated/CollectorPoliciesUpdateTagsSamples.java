@@ -4,28 +4,26 @@
 
 package com.azure.resourcemanager.networkfunction.generated;
 
+import com.azure.core.util.Context;
+import com.azure.resourcemanager.networkfunction.models.CollectorPolicy;
 import java.util.HashMap;
 import java.util.Map;
 
-/** Samples for AzureTrafficCollectors CreateOrUpdate. */
-public final class AzureTrafficCollectorsCreateOrUpdateSamples {
+/** Samples for CollectorPolicies UpdateTags. */
+public final class CollectorPoliciesUpdateTagsSamples {
     /*
-     * x-ms-original-file: specification/networkfunction/resource-manager/Microsoft.NetworkFunction/stable/2022-11-01/examples/AzureTrafficCollectorCreate.json
+     * x-ms-original-file: specification/networkfunction/resource-manager/Microsoft.NetworkFunction/stable/2022-11-01/examples/CollectorPolicyUpdateTags.json
      */
     /**
-     * Sample code: Create a traffic collector.
+     * Sample code: Update Collector Policy tags.
      *
      * @param manager Entry point to AzureTrafficCollectorManager.
      */
-    public static void createATrafficCollector(
+    public static void updateCollectorPolicyTags(
         com.azure.resourcemanager.networkfunction.AzureTrafficCollectorManager manager) {
-        manager
-            .azureTrafficCollectors()
-            .define("atc")
-            .withRegion("West US")
-            .withExistingResourceGroup("rg1")
-            .withTags(mapOf("key1", "value1"))
-            .create();
+        CollectorPolicy resource =
+            manager.collectorPolicies().getWithResponse("rg1", "atc", "cp1", Context.NONE).getValue();
+        resource.update().withTags(mapOf("key1", "value1", "key2", "value2")).apply();
     }
 
     @SuppressWarnings("unchecked")
