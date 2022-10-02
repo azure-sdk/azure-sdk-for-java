@@ -5,11 +5,12 @@
 package com.azure.resourcemanager.appcontainers.generated;
 
 import com.azure.resourcemanager.appcontainers.models.CertificateProperties;
+import com.azure.resourcemanager.appcontainers.models.ManagedCertificateDomainControlValidation;
 
 /** Samples for Certificates CreateOrUpdate. */
 public final class CertificatesCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2022-03-01/examples/Certificate_CreateOrUpdate.json
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2022-06-01-preview/examples/Certificate_CreateOrUpdate.json
      */
     /**
      * Sample code: Create or Update Certificate.
@@ -27,6 +28,28 @@ public final class CertificatesCreateOrUpdateSamples {
                 new CertificateProperties()
                     .withPassword("private key password")
                     .withValue("PFX-or-PEM-blob".getBytes()))
+            .create();
+    }
+
+    /*
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2022-06-01-preview/examples/ManagedCertificate_CreateOrUpdate.json
+     */
+    /**
+     * Sample code: Create or Update Managed Certificate.
+     *
+     * @param manager Entry point to ContainerAppsApiManager.
+     */
+    public static void createOrUpdateManagedCertificate(
+        com.azure.resourcemanager.appcontainers.ContainerAppsApiManager manager) {
+        manager
+            .certificates()
+            .define("certificate-firendly-name")
+            .withRegion("East US")
+            .withExistingManagedEnvironment("examplerg", "testcontainerenv")
+            .withProperties(
+                new CertificateProperties()
+                    .withSubjectName("my-subject-name.company.country.net")
+                    .withDomainControlValidation(ManagedCertificateDomainControlValidation.CNAME))
             .create();
     }
 }

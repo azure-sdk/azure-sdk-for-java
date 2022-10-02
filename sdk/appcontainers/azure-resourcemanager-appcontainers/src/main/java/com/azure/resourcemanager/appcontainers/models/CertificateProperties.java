@@ -8,6 +8,7 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.CoreUtils;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
+import java.util.List;
 
 /** Certificate resource specific properties. */
 @Fluent
@@ -27,8 +28,14 @@ public final class CertificateProperties {
     /*
      * Subject name of the certificate.
      */
-    @JsonProperty(value = "subjectName", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "subjectName")
     private String subjectName;
+
+    /*
+     * Subject alternative names the certificate applies to.
+     */
+    @JsonProperty(value = "subjectAlternativeNames", access = JsonProperty.Access.WRITE_ONLY)
+    private List<String> subjectAlternativeNames;
 
     /*
      * PFX or PEM blob
@@ -72,6 +79,28 @@ public final class CertificateProperties {
     @JsonProperty(value = "publicKeyHash", access = JsonProperty.Access.WRITE_ONLY)
     private String publicKeyHash;
 
+    /*
+     * Any error occurred during the certificate provision.
+     */
+    @JsonProperty(value = "error", access = JsonProperty.Access.WRITE_ONLY)
+    private String error;
+
+    /*
+     * Selected type of domain control validation for managed certificates.
+     */
+    @JsonProperty(value = "domainControlValidation")
+    private ManagedCertificateDomainControlValidation domainControlValidation;
+
+    /*
+     * A TXT token used for DNS TXT domain control validation when issuing this type of managed certificates.
+     */
+    @JsonProperty(value = "validationToken", access = JsonProperty.Access.WRITE_ONLY)
+    private String validationToken;
+
+    /** Creates an instance of CertificateProperties class. */
+    public CertificateProperties() {
+    }
+
     /**
      * Get the provisioningState property: Provisioning state of the certificate.
      *
@@ -108,6 +137,26 @@ public final class CertificateProperties {
      */
     public String subjectName() {
         return this.subjectName;
+    }
+
+    /**
+     * Set the subjectName property: Subject name of the certificate.
+     *
+     * @param subjectName the subjectName value to set.
+     * @return the CertificateProperties object itself.
+     */
+    public CertificateProperties withSubjectName(String subjectName) {
+        this.subjectName = subjectName;
+        return this;
+    }
+
+    /**
+     * Get the subjectAlternativeNames property: Subject alternative names the certificate applies to.
+     *
+     * @return the subjectAlternativeNames value.
+     */
+    public List<String> subjectAlternativeNames() {
+        return this.subjectAlternativeNames;
     }
 
     /**
@@ -182,6 +231,46 @@ public final class CertificateProperties {
      */
     public String publicKeyHash() {
         return this.publicKeyHash;
+    }
+
+    /**
+     * Get the error property: Any error occurred during the certificate provision.
+     *
+     * @return the error value.
+     */
+    public String error() {
+        return this.error;
+    }
+
+    /**
+     * Get the domainControlValidation property: Selected type of domain control validation for managed certificates.
+     *
+     * @return the domainControlValidation value.
+     */
+    public ManagedCertificateDomainControlValidation domainControlValidation() {
+        return this.domainControlValidation;
+    }
+
+    /**
+     * Set the domainControlValidation property: Selected type of domain control validation for managed certificates.
+     *
+     * @param domainControlValidation the domainControlValidation value to set.
+     * @return the CertificateProperties object itself.
+     */
+    public CertificateProperties withDomainControlValidation(
+        ManagedCertificateDomainControlValidation domainControlValidation) {
+        this.domainControlValidation = domainControlValidation;
+        return this;
+    }
+
+    /**
+     * Get the validationToken property: A TXT token used for DNS TXT domain control validation when issuing this type
+     * of managed certificates.
+     *
+     * @return the validationToken value.
+     */
+    public String validationToken() {
+        return this.validationToken;
     }
 
     /**

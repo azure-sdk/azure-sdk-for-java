@@ -9,7 +9,21 @@ import com.azure.core.util.Context;
 /** Samples for Certificates Get. */
 public final class CertificatesGetSamples {
     /*
-     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2022-03-01/examples/Certificate_Get.json
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2022-06-01-preview/examples/ManagedCertificate_Get.json
+     */
+    /**
+     * Sample code: Get Managed Certificate.
+     *
+     * @param manager Entry point to ContainerAppsApiManager.
+     */
+    public static void getManagedCertificate(com.azure.resourcemanager.appcontainers.ContainerAppsApiManager manager) {
+        manager
+            .certificates()
+            .getWithResponse("examplerg", "testcontainerenv", "certificate-firendly-name", Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2022-06-01-preview/examples/Certificate_Get.json
      */
     /**
      * Sample code: Get Certificate.
