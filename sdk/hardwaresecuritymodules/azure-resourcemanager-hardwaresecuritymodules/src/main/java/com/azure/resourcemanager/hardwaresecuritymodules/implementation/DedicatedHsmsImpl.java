@@ -38,15 +38,6 @@ public final class DedicatedHsmsImpl implements DedicatedHsms {
         this.serviceClient().delete(resourceGroupName, name, context);
     }
 
-    public DedicatedHsm getByResourceGroup(String resourceGroupName, String name) {
-        DedicatedHsmInner inner = this.serviceClient().getByResourceGroup(resourceGroupName, name);
-        if (inner != null) {
-            return new DedicatedHsmImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
     public Response<DedicatedHsm> getByResourceGroupWithResponse(
         String resourceGroupName, String name, Context context) {
         Response<DedicatedHsmInner> inner =
@@ -57,6 +48,15 @@ public final class DedicatedHsmsImpl implements DedicatedHsms {
                 inner.getStatusCode(),
                 inner.getHeaders(),
                 new DedicatedHsmImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public DedicatedHsm getByResourceGroup(String resourceGroupName, String name) {
+        DedicatedHsmInner inner = this.serviceClient().getByResourceGroup(resourceGroupName, name);
+        if (inner != null) {
+            return new DedicatedHsmImpl(inner, this.manager());
         } else {
             return null;
         }
