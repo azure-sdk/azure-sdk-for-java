@@ -10,8 +10,8 @@ import com.azure.core.http.rest.SimpleResponse;
 import com.azure.core.util.Context;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.machinelearning.fluent.EnvironmentVersionsClient;
-import com.azure.resourcemanager.machinelearning.fluent.models.EnvironmentVersionDataInner;
-import com.azure.resourcemanager.machinelearning.models.EnvironmentVersionData;
+import com.azure.resourcemanager.machinelearning.fluent.models.EnvironmentVersionInner;
+import com.azure.resourcemanager.machinelearning.models.EnvironmentVersion;
 import com.azure.resourcemanager.machinelearning.models.EnvironmentVersions;
 import com.azure.resourcemanager.machinelearning.models.ListViewType;
 
@@ -29,13 +29,13 @@ public final class EnvironmentVersionsImpl implements EnvironmentVersions {
         this.serviceManager = serviceManager;
     }
 
-    public PagedIterable<EnvironmentVersionData> list(String resourceGroupName, String workspaceName, String name) {
-        PagedIterable<EnvironmentVersionDataInner> inner =
+    public PagedIterable<EnvironmentVersion> list(String resourceGroupName, String workspaceName, String name) {
+        PagedIterable<EnvironmentVersionInner> inner =
             this.serviceClient().list(resourceGroupName, workspaceName, name);
-        return Utils.mapPage(inner, inner1 -> new EnvironmentVersionDataImpl(inner1, this.manager()));
+        return Utils.mapPage(inner, inner1 -> new EnvironmentVersionImpl(inner1, this.manager()));
     }
 
-    public PagedIterable<EnvironmentVersionData> list(
+    public PagedIterable<EnvironmentVersion> list(
         String resourceGroupName,
         String workspaceName,
         String name,
@@ -44,15 +44,11 @@ public final class EnvironmentVersionsImpl implements EnvironmentVersions {
         String skip,
         ListViewType listViewType,
         Context context) {
-        PagedIterable<EnvironmentVersionDataInner> inner =
+        PagedIterable<EnvironmentVersionInner> inner =
             this
                 .serviceClient()
                 .list(resourceGroupName, workspaceName, name, orderBy, top, skip, listViewType, context);
-        return Utils.mapPage(inner, inner1 -> new EnvironmentVersionDataImpl(inner1, this.manager()));
-    }
-
-    public void delete(String resourceGroupName, String workspaceName, String name, String version) {
-        this.serviceClient().delete(resourceGroupName, workspaceName, name, version);
+        return Utils.mapPage(inner, inner1 -> new EnvironmentVersionImpl(inner1, this.manager()));
     }
 
     public Response<Void> deleteWithResponse(
@@ -60,160 +56,65 @@ public final class EnvironmentVersionsImpl implements EnvironmentVersions {
         return this.serviceClient().deleteWithResponse(resourceGroupName, workspaceName, name, version, context);
     }
 
-    public EnvironmentVersionData get(String resourceGroupName, String workspaceName, String name, String version) {
-        EnvironmentVersionDataInner inner = this.serviceClient().get(resourceGroupName, workspaceName, name, version);
-        if (inner != null) {
-            return new EnvironmentVersionDataImpl(inner, this.manager());
-        } else {
-            return null;
-        }
+    public void delete(String resourceGroupName, String workspaceName, String name, String version) {
+        this.serviceClient().delete(resourceGroupName, workspaceName, name, version);
     }
 
-    public Response<EnvironmentVersionData> getWithResponse(
+    public Response<EnvironmentVersion> getWithResponse(
         String resourceGroupName, String workspaceName, String name, String version, Context context) {
-        Response<EnvironmentVersionDataInner> inner =
+        Response<EnvironmentVersionInner> inner =
             this.serviceClient().getWithResponse(resourceGroupName, workspaceName, name, version, context);
         if (inner != null) {
             return new SimpleResponse<>(
                 inner.getRequest(),
                 inner.getStatusCode(),
                 inner.getHeaders(),
-                new EnvironmentVersionDataImpl(inner.getValue(), this.manager()));
+                new EnvironmentVersionImpl(inner.getValue(), this.manager()));
         } else {
             return null;
         }
     }
 
-    public EnvironmentVersionData getById(String id) {
-        String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
-        if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+    public EnvironmentVersion get(String resourceGroupName, String workspaceName, String name, String version) {
+        EnvironmentVersionInner inner = this.serviceClient().get(resourceGroupName, workspaceName, name, version);
+        if (inner != null) {
+            return new EnvironmentVersionImpl(inner, this.manager());
+        } else {
+            return null;
         }
-        String workspaceName = Utils.getValueFromIdByName(id, "workspaces");
-        if (workspaceName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'workspaces'.", id)));
-        }
-        String name = Utils.getValueFromIdByName(id, "environments");
-        if (name == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'environments'.", id)));
-        }
-        String version = Utils.getValueFromIdByName(id, "versions");
-        if (version == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'versions'.", id)));
-        }
-        return this.getWithResponse(resourceGroupName, workspaceName, name, version, Context.NONE).getValue();
     }
 
-    public Response<EnvironmentVersionData> getByIdWithResponse(String id, Context context) {
-        String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
-        if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+    public Response<EnvironmentVersion> createOrUpdateWithResponse(
+        String resourceGroupName,
+        String workspaceName,
+        String name,
+        String version,
+        EnvironmentVersionInner body,
+        Context context) {
+        Response<EnvironmentVersionInner> inner =
+            this
+                .serviceClient()
+                .createOrUpdateWithResponse(resourceGroupName, workspaceName, name, version, body, context);
+        if (inner != null) {
+            return new SimpleResponse<>(
+                inner.getRequest(),
+                inner.getStatusCode(),
+                inner.getHeaders(),
+                new EnvironmentVersionImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
         }
-        String workspaceName = Utils.getValueFromIdByName(id, "workspaces");
-        if (workspaceName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'workspaces'.", id)));
-        }
-        String name = Utils.getValueFromIdByName(id, "environments");
-        if (name == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'environments'.", id)));
-        }
-        String version = Utils.getValueFromIdByName(id, "versions");
-        if (version == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'versions'.", id)));
-        }
-        return this.getWithResponse(resourceGroupName, workspaceName, name, version, context);
     }
 
-    public void deleteById(String id) {
-        String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
-        if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+    public EnvironmentVersion createOrUpdate(
+        String resourceGroupName, String workspaceName, String name, String version, EnvironmentVersionInner body) {
+        EnvironmentVersionInner inner =
+            this.serviceClient().createOrUpdate(resourceGroupName, workspaceName, name, version, body);
+        if (inner != null) {
+            return new EnvironmentVersionImpl(inner, this.manager());
+        } else {
+            return null;
         }
-        String workspaceName = Utils.getValueFromIdByName(id, "workspaces");
-        if (workspaceName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'workspaces'.", id)));
-        }
-        String name = Utils.getValueFromIdByName(id, "environments");
-        if (name == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'environments'.", id)));
-        }
-        String version = Utils.getValueFromIdByName(id, "versions");
-        if (version == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'versions'.", id)));
-        }
-        this.deleteWithResponse(resourceGroupName, workspaceName, name, version, Context.NONE);
-    }
-
-    public Response<Void> deleteByIdWithResponse(String id, Context context) {
-        String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
-        if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
-        }
-        String workspaceName = Utils.getValueFromIdByName(id, "workspaces");
-        if (workspaceName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'workspaces'.", id)));
-        }
-        String name = Utils.getValueFromIdByName(id, "environments");
-        if (name == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'environments'.", id)));
-        }
-        String version = Utils.getValueFromIdByName(id, "versions");
-        if (version == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'versions'.", id)));
-        }
-        return this.deleteWithResponse(resourceGroupName, workspaceName, name, version, context);
     }
 
     private EnvironmentVersionsClient serviceClient() {
@@ -222,9 +123,5 @@ public final class EnvironmentVersionsImpl implements EnvironmentVersions {
 
     private com.azure.resourcemanager.machinelearning.MachineLearningManager manager() {
         return this.serviceManager;
-    }
-
-    public EnvironmentVersionDataImpl define(String name) {
-        return new EnvironmentVersionDataImpl(name, this.manager());
     }
 }
