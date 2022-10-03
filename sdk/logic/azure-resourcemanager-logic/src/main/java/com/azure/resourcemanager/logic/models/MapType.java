@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for MapType. */
+/** The map type. */
 public final class MapType extends ExpandableStringEnum<MapType> {
     /** Static value NotSpecified for MapType. */
     public static final MapType NOT_SPECIFIED = fromString("NotSpecified");
@@ -36,7 +36,11 @@ public final class MapType extends ExpandableStringEnum<MapType> {
         return fromString(name, MapType.class);
     }
 
-    /** @return known MapType values. */
+    /**
+     * Gets known MapType values.
+     *
+     * @return known MapType values.
+     */
     public static Collection<MapType> values() {
         return values(MapType.class);
     }

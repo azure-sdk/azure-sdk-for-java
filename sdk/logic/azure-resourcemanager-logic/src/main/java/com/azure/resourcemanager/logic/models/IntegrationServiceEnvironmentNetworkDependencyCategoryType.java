@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for IntegrationServiceEnvironmentNetworkDependencyCategoryType. */
+/** The integration service environment network dependency category type. */
 public final class IntegrationServiceEnvironmentNetworkDependencyCategoryType
     extends ExpandableStringEnum<IntegrationServiceEnvironmentNetworkDependencyCategoryType> {
     /** Static value NotSpecified for IntegrationServiceEnvironmentNetworkDependencyCategoryType. */
@@ -72,7 +72,11 @@ public final class IntegrationServiceEnvironmentNetworkDependencyCategoryType
         return fromString(name, IntegrationServiceEnvironmentNetworkDependencyCategoryType.class);
     }
 
-    /** @return known IntegrationServiceEnvironmentNetworkDependencyCategoryType values. */
+    /**
+     * Gets known IntegrationServiceEnvironmentNetworkDependencyCategoryType values.
+     *
+     * @return known IntegrationServiceEnvironmentNetworkDependencyCategoryType values.
+     */
     public static Collection<IntegrationServiceEnvironmentNetworkDependencyCategoryType> values() {
         return values(IntegrationServiceEnvironmentNetworkDependencyCategoryType.class);
     }

@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for X12TimeFormat. */
+/** The x12 time format. */
 public final class X12TimeFormat extends ExpandableStringEnum<X12TimeFormat> {
     /** Static value NotSpecified for X12TimeFormat. */
     public static final X12TimeFormat NOT_SPECIFIED = fromString("NotSpecified");
@@ -36,7 +36,11 @@ public final class X12TimeFormat extends ExpandableStringEnum<X12TimeFormat> {
         return fromString(name, X12TimeFormat.class);
     }
 
-    /** @return known X12TimeFormat values. */
+    /**
+     * Gets known X12TimeFormat values.
+     *
+     * @return known X12TimeFormat values.
+     */
     public static Collection<X12TimeFormat> values() {
         return values(X12TimeFormat.class);
     }

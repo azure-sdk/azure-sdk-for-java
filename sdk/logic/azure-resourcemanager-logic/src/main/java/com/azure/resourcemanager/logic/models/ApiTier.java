@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for ApiTier. */
+/** The Api tier. */
 public final class ApiTier extends ExpandableStringEnum<ApiTier> {
     /** Static value NotSpecified for ApiTier. */
     public static final ApiTier NOT_SPECIFIED = fromString("NotSpecified");
@@ -33,7 +33,11 @@ public final class ApiTier extends ExpandableStringEnum<ApiTier> {
         return fromString(name, ApiTier.class);
     }
 
-    /** @return known ApiTier values. */
+    /**
+     * Gets known ApiTier values.
+     *
+     * @return known ApiTier values.
+     */
     public static Collection<ApiTier> values() {
         return values(ApiTier.class);
     }
