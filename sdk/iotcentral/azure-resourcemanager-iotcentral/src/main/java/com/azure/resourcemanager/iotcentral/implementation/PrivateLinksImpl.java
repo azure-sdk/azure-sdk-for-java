@@ -27,15 +27,6 @@ public final class PrivateLinksImpl implements PrivateLinks {
         this.serviceManager = serviceManager;
     }
 
-    public PrivateLinkResource get(String resourceGroupName, String resourceName, String groupId) {
-        PrivateLinkResourceInner inner = this.serviceClient().get(resourceGroupName, resourceName, groupId);
-        if (inner != null) {
-            return new PrivateLinkResourceImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
     public Response<PrivateLinkResource> getWithResponse(
         String resourceGroupName, String resourceName, String groupId, Context context) {
         Response<PrivateLinkResourceInner> inner =
@@ -46,6 +37,15 @@ public final class PrivateLinksImpl implements PrivateLinks {
                 inner.getStatusCode(),
                 inner.getHeaders(),
                 new PrivateLinkResourceImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public PrivateLinkResource get(String resourceGroupName, String resourceName, String groupId) {
+        PrivateLinkResourceInner inner = this.serviceClient().get(resourceGroupName, resourceName, groupId);
+        if (inner != null) {
+            return new PrivateLinkResourceImpl(inner, this.manager());
         } else {
             return null;
         }

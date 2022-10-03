@@ -19,20 +19,6 @@ public interface PrivateLinksClient {
      * @param resourceGroupName The name of the resource group that contains the IoT Central application.
      * @param resourceName The ARM resource name of the IoT Central application.
      * @param groupId The private link resource name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a private link resource of a IoT Central Application.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    PrivateLinkResourceInner get(String resourceGroupName, String resourceName, String groupId);
-
-    /**
-     * Get a private link resource of a IoT Central Application.
-     *
-     * @param resourceGroupName The name of the resource group that contains the IoT Central application.
-     * @param resourceName The ARM resource name of the IoT Central application.
-     * @param groupId The private link resource name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -42,6 +28,20 @@ public interface PrivateLinksClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<PrivateLinkResourceInner> getWithResponse(
         String resourceGroupName, String resourceName, String groupId, Context context);
+
+    /**
+     * Get a private link resource of a IoT Central Application.
+     *
+     * @param resourceGroupName The name of the resource group that contains the IoT Central application.
+     * @param resourceName The ARM resource name of the IoT Central application.
+     * @param groupId The private link resource name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a private link resource of a IoT Central Application.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    PrivateLinkResourceInner get(String resourceGroupName, String resourceName, String groupId);
 
     /**
      * Get all private link resources of a IoT Central Application.

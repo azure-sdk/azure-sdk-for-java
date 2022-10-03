@@ -331,29 +331,7 @@ public final class AppsClientImpl implements AppsClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<AppInner> getByResourceGroupAsync(String resourceGroupName, String resourceName) {
         return getByResourceGroupWithResponseAsync(resourceGroupName, resourceName)
-            .flatMap(
-                (Response<AppInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
-    }
-
-    /**
-     * Get the metadata of an IoT Central application.
-     *
-     * @param resourceGroupName The name of the resource group that contains the IoT Central application.
-     * @param resourceName The ARM resource name of the IoT Central application.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the metadata of an IoT Central application.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public AppInner getByResourceGroup(String resourceGroupName, String resourceName) {
-        return getByResourceGroupAsync(resourceGroupName, resourceName).block();
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -371,6 +349,21 @@ public final class AppsClientImpl implements AppsClient {
     public Response<AppInner> getByResourceGroupWithResponse(
         String resourceGroupName, String resourceName, Context context) {
         return getByResourceGroupWithResponseAsync(resourceGroupName, resourceName, context).block();
+    }
+
+    /**
+     * Get the metadata of an IoT Central application.
+     *
+     * @param resourceGroupName The name of the resource group that contains the IoT Central application.
+     * @param resourceName The ARM resource name of the IoT Central application.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the metadata of an IoT Central application.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public AppInner getByResourceGroup(String resourceGroupName, String resourceName) {
+        return getByResourceGroupWithResponse(resourceGroupName, resourceName, Context.NONE).getValue();
     }
 
     /**
@@ -1547,30 +1540,7 @@ public final class AppsClientImpl implements AppsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<AppAvailabilityInfoInner> checkNameAvailabilityAsync(OperationInputs operationInputs) {
-        return checkNameAvailabilityWithResponseAsync(operationInputs)
-            .flatMap(
-                (Response<AppAvailabilityInfoInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
-    }
-
-    /**
-     * Check if an IoT Central application name is available.
-     *
-     * @param operationInputs Set the name parameter in the OperationInputs structure to the name of the IoT Central
-     *     application to check.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the properties indicating whether a given IoT Central application name or subdomain is available.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public AppAvailabilityInfoInner checkNameAvailability(OperationInputs operationInputs) {
-        return checkNameAvailabilityAsync(operationInputs).block();
+        return checkNameAvailabilityWithResponseAsync(operationInputs).flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -1589,6 +1559,21 @@ public final class AppsClientImpl implements AppsClient {
     public Response<AppAvailabilityInfoInner> checkNameAvailabilityWithResponse(
         OperationInputs operationInputs, Context context) {
         return checkNameAvailabilityWithResponseAsync(operationInputs, context).block();
+    }
+
+    /**
+     * Check if an IoT Central application name is available.
+     *
+     * @param operationInputs Set the name parameter in the OperationInputs structure to the name of the IoT Central
+     *     application to check.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the properties indicating whether a given IoT Central application name or subdomain is available.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public AppAvailabilityInfoInner checkNameAvailability(OperationInputs operationInputs) {
+        return checkNameAvailabilityWithResponse(operationInputs, Context.NONE).getValue();
     }
 
     /**
@@ -1697,29 +1682,7 @@ public final class AppsClientImpl implements AppsClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<AppAvailabilityInfoInner> checkSubdomainAvailabilityAsync(OperationInputs operationInputs) {
         return checkSubdomainAvailabilityWithResponseAsync(operationInputs)
-            .flatMap(
-                (Response<AppAvailabilityInfoInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
-    }
-
-    /**
-     * Check if an IoT Central application subdomain is available.
-     *
-     * @param operationInputs Set the name parameter in the OperationInputs structure to the subdomain of the IoT
-     *     Central application to check.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the properties indicating whether a given IoT Central application name or subdomain is available.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public AppAvailabilityInfoInner checkSubdomainAvailability(OperationInputs operationInputs) {
-        return checkSubdomainAvailabilityAsync(operationInputs).block();
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -1738,6 +1701,21 @@ public final class AppsClientImpl implements AppsClient {
     public Response<AppAvailabilityInfoInner> checkSubdomainAvailabilityWithResponse(
         OperationInputs operationInputs, Context context) {
         return checkSubdomainAvailabilityWithResponseAsync(operationInputs, context).block();
+    }
+
+    /**
+     * Check if an IoT Central application subdomain is available.
+     *
+     * @param operationInputs Set the name parameter in the OperationInputs structure to the subdomain of the IoT
+     *     Central application to check.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the properties indicating whether a given IoT Central application name or subdomain is available.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public AppAvailabilityInfoInner checkSubdomainAvailability(OperationInputs operationInputs) {
+        return checkSubdomainAvailabilityWithResponse(operationInputs, Context.NONE).getValue();
     }
 
     /**
@@ -1887,7 +1865,8 @@ public final class AppsClientImpl implements AppsClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1924,7 +1903,8 @@ public final class AppsClientImpl implements AppsClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1961,7 +1941,8 @@ public final class AppsClientImpl implements AppsClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1998,7 +1979,8 @@ public final class AppsClientImpl implements AppsClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -2035,7 +2017,8 @@ public final class AppsClientImpl implements AppsClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -2071,7 +2054,8 @@ public final class AppsClientImpl implements AppsClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.

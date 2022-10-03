@@ -17,6 +17,10 @@ public final class AppSkuInfo {
     @JsonProperty(value = "name", required = true)
     private AppSku name;
 
+    /** Creates an instance of AppSkuInfo class. */
+    public AppSkuInfo() {
+    }
+
     /**
      * Get the name property: The name of the SKU.
      *
