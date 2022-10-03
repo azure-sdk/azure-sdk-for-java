@@ -17,19 +17,6 @@ public interface VaultExtendedInfoesClient {
      *
      * @param resourceGroupName The name of the resource group where the recovery services vault is present.
      * @param vaultName The name of the recovery services vault.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the vault extended info.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    VaultExtendedInfoResourceInner get(String resourceGroupName, String vaultName);
-
-    /**
-     * Get the vault extended info.
-     *
-     * @param resourceGroupName The name of the resource group where the recovery services vault is present.
-     * @param vaultName The name of the recovery services vault.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -41,19 +28,17 @@ public interface VaultExtendedInfoesClient {
         String resourceGroupName, String vaultName, Context context);
 
     /**
-     * Create vault extended info.
+     * Get the vault extended info.
      *
      * @param resourceGroupName The name of the resource group where the recovery services vault is present.
      * @param vaultName The name of the recovery services vault.
-     * @param resourceExtendedInfoDetails Details of ResourceExtendedInfo.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return vault extended information.
+     * @return the vault extended info.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    VaultExtendedInfoResourceInner createOrUpdate(
-        String resourceGroupName, String vaultName, VaultExtendedInfoResourceInner resourceExtendedInfoDetails);
+    VaultExtendedInfoResourceInner get(String resourceGroupName, String vaultName);
 
     /**
      * Create vault extended info.
@@ -75,7 +60,7 @@ public interface VaultExtendedInfoesClient {
         Context context);
 
     /**
-     * Update vault extended info.
+     * Create vault extended info.
      *
      * @param resourceGroupName The name of the resource group where the recovery services vault is present.
      * @param vaultName The name of the recovery services vault.
@@ -86,7 +71,7 @@ public interface VaultExtendedInfoesClient {
      * @return vault extended information.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    VaultExtendedInfoResourceInner update(
+    VaultExtendedInfoResourceInner createOrUpdate(
         String resourceGroupName, String vaultName, VaultExtendedInfoResourceInner resourceExtendedInfoDetails);
 
     /**
@@ -107,4 +92,19 @@ public interface VaultExtendedInfoesClient {
         String vaultName,
         VaultExtendedInfoResourceInner resourceExtendedInfoDetails,
         Context context);
+
+    /**
+     * Update vault extended info.
+     *
+     * @param resourceGroupName The name of the resource group where the recovery services vault is present.
+     * @param vaultName The name of the recovery services vault.
+     * @param resourceExtendedInfoDetails Details of ResourceExtendedInfo.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return vault extended information.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    VaultExtendedInfoResourceInner update(
+        String resourceGroupName, String vaultName, VaultExtendedInfoResourceInner resourceExtendedInfoDetails);
 }

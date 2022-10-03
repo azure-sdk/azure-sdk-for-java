@@ -15,19 +15,6 @@ public interface ResourceProviders {
      * @param resourceGroupName The name of the resource group where the recovery services vault is present.
      * @param vaultName The name of the recovery services vault.
      * @param operationId The operationId parameter.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the operation status for a resource.
-     */
-    OperationResource getOperationStatus(String resourceGroupName, String vaultName, String operationId);
-
-    /**
-     * Gets the operation status for a resource.
-     *
-     * @param resourceGroupName The name of the resource group where the recovery services vault is present.
-     * @param vaultName The name of the recovery services vault.
-     * @param operationId The operationId parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -38,7 +25,7 @@ public interface ResourceProviders {
         String resourceGroupName, String vaultName, String operationId, Context context);
 
     /**
-     * Gets the operation result for a resource.
+     * Gets the operation status for a resource.
      *
      * @param resourceGroupName The name of the resource group where the recovery services vault is present.
      * @param vaultName The name of the recovery services vault.
@@ -46,9 +33,9 @@ public interface ResourceProviders {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the operation result for a resource.
+     * @return the operation status for a resource.
      */
-    Vault getOperationResult(String resourceGroupName, String vaultName, String operationId);
+    OperationResource getOperationStatus(String resourceGroupName, String vaultName, String operationId);
 
     /**
      * Gets the operation result for a resource.
@@ -64,4 +51,17 @@ public interface ResourceProviders {
      */
     Response<Vault> getOperationResultWithResponse(
         String resourceGroupName, String vaultName, String operationId, Context context);
+
+    /**
+     * Gets the operation result for a resource.
+     *
+     * @param resourceGroupName The name of the resource group where the recovery services vault is present.
+     * @param vaultName The name of the recovery services vault.
+     * @param operationId The operationId parameter.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the operation result for a resource.
+     */
+    Vault getOperationResult(String resourceGroupName, String vaultName, String operationId);
 }

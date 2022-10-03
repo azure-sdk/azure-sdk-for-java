@@ -68,19 +68,6 @@ public interface VaultsClient {
      *
      * @param resourceGroupName The name of the resource group where the recovery services vault is present.
      * @param vaultName The name of the recovery services vault.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the Vault details.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    VaultInner getByResourceGroup(String resourceGroupName, String vaultName);
-
-    /**
-     * Get the Vault details.
-     *
-     * @param resourceGroupName The name of the resource group where the recovery services vault is present.
-     * @param vaultName The name of the recovery services vault.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -89,6 +76,19 @@ public interface VaultsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<VaultInner> getByResourceGroupWithResponse(String resourceGroupName, String vaultName, Context context);
+
+    /**
+     * Get the Vault details.
+     *
+     * @param resourceGroupName The name of the resource group where the recovery services vault is present.
+     * @param vaultName The name of the recovery services vault.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the Vault details.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    VaultInner getByResourceGroup(String resourceGroupName, String vaultName);
 
     /**
      * Creates or updates a Recovery Services vault.
@@ -155,18 +155,6 @@ public interface VaultsClient {
      *
      * @param resourceGroupName The name of the resource group where the recovery services vault is present.
      * @param vaultName The name of the recovery services vault.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    void delete(String resourceGroupName, String vaultName);
-
-    /**
-     * Deletes a vault.
-     *
-     * @param resourceGroupName The name of the resource group where the recovery services vault is present.
-     * @param vaultName The name of the recovery services vault.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -175,6 +163,18 @@ public interface VaultsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<Void> deleteWithResponse(String resourceGroupName, String vaultName, Context context);
+
+    /**
+     * Deletes a vault.
+     *
+     * @param resourceGroupName The name of the resource group where the recovery services vault is present.
+     * @param vaultName The name of the recovery services vault.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    void delete(String resourceGroupName, String vaultName);
 
     /**
      * Updates the vault.

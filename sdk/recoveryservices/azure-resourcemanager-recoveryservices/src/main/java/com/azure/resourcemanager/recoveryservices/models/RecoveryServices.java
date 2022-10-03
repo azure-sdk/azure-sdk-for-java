@@ -17,13 +17,14 @@ public interface RecoveryServices {
      * @param resourceGroupName The name of the resource group where the recovery services vault is present.
      * @param location Location of the resource.
      * @param input Contains information about Resource type and Resource name.
+     * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for check name availability API.
+     * @return response for check name availability API along with {@link Response}.
      */
-    CheckNameAvailabilityResult checkNameAvailability(
-        String resourceGroupName, String location, CheckNameAvailabilityParameters input);
+    Response<CheckNameAvailabilityResult> checkNameAvailabilityWithResponse(
+        String resourceGroupName, String location, CheckNameAvailabilityParameters input, Context context);
 
     /**
      * API to check for resource name availability. A name is available if no other resource exists that has the same
@@ -33,12 +34,11 @@ public interface RecoveryServices {
      * @param resourceGroupName The name of the resource group where the recovery services vault is present.
      * @param location Location of the resource.
      * @param input Contains information about Resource type and Resource name.
-     * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for check name availability API along with {@link Response}.
+     * @return response for check name availability API.
      */
-    Response<CheckNameAvailabilityResult> checkNameAvailabilityWithResponse(
-        String resourceGroupName, String location, CheckNameAvailabilityParameters input, Context context);
+    CheckNameAvailabilityResult checkNameAvailability(
+        String resourceGroupName, String location, CheckNameAvailabilityParameters input);
 }
