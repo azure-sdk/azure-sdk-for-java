@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for ApplicationType. */
+/** Type of application being monitored. */
 public final class ApplicationType extends ExpandableStringEnum<ApplicationType> {
     /** Static value web for ApplicationType. */
     public static final ApplicationType WEB = fromString("web");

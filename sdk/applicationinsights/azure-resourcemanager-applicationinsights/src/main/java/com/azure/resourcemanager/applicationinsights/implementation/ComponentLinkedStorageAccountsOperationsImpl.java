@@ -28,16 +28,6 @@ public final class ComponentLinkedStorageAccountsOperationsImpl implements Compo
         this.serviceManager = serviceManager;
     }
 
-    public ComponentLinkedStorageAccounts get(String resourceGroupName, String resourceName, StorageType storageType) {
-        ComponentLinkedStorageAccountsInner inner =
-            this.serviceClient().get(resourceGroupName, resourceName, storageType);
-        if (inner != null) {
-            return new ComponentLinkedStorageAccountsImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
     public Response<ComponentLinkedStorageAccounts> getWithResponse(
         String resourceGroupName, String resourceName, StorageType storageType, Context context) {
         Response<ComponentLinkedStorageAccountsInner> inner =
@@ -53,13 +43,23 @@ public final class ComponentLinkedStorageAccountsOperationsImpl implements Compo
         }
     }
 
-    public void delete(String resourceGroupName, String resourceName, StorageType storageType) {
-        this.serviceClient().delete(resourceGroupName, resourceName, storageType);
+    public ComponentLinkedStorageAccounts get(String resourceGroupName, String resourceName, StorageType storageType) {
+        ComponentLinkedStorageAccountsInner inner =
+            this.serviceClient().get(resourceGroupName, resourceName, storageType);
+        if (inner != null) {
+            return new ComponentLinkedStorageAccountsImpl(inner, this.manager());
+        } else {
+            return null;
+        }
     }
 
     public Response<Void> deleteWithResponse(
         String resourceGroupName, String resourceName, StorageType storageType, Context context) {
         return this.serviceClient().deleteWithResponse(resourceGroupName, resourceName, storageType, context);
+    }
+
+    public void delete(String resourceGroupName, String resourceName, StorageType storageType) {
+        this.serviceClient().delete(resourceGroupName, resourceName, storageType);
     }
 
     public ComponentLinkedStorageAccounts getById(String id) {
@@ -78,8 +78,8 @@ public final class ComponentLinkedStorageAccountsOperationsImpl implements Compo
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'components'.", id)));
         }
-        StorageType storageType = StorageType.fromString(Utils.getValueFromIdByName(id, "linkedStorageAccounts"));
-        if (storageType == null) {
+        String storageTypeLocal = Utils.getValueFromIdByName(id, "linkedStorageAccounts");
+        if (storageTypeLocal == null) {
             throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
@@ -88,6 +88,7 @@ public final class ComponentLinkedStorageAccountsOperationsImpl implements Compo
                                 "The resource ID '%s' is not valid. Missing path segment 'linkedStorageAccounts'.",
                                 id)));
         }
+        StorageType storageType = StorageType.fromString(storageTypeLocal);
         return this.getWithResponse(resourceGroupName, resourceName, storageType, Context.NONE).getValue();
     }
 
@@ -107,8 +108,8 @@ public final class ComponentLinkedStorageAccountsOperationsImpl implements Compo
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'components'.", id)));
         }
-        StorageType storageType = StorageType.fromString(Utils.getValueFromIdByName(id, "linkedStorageAccounts"));
-        if (storageType == null) {
+        String storageTypeLocal = Utils.getValueFromIdByName(id, "linkedStorageAccounts");
+        if (storageTypeLocal == null) {
             throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
@@ -117,6 +118,7 @@ public final class ComponentLinkedStorageAccountsOperationsImpl implements Compo
                                 "The resource ID '%s' is not valid. Missing path segment 'linkedStorageAccounts'.",
                                 id)));
         }
+        StorageType storageType = StorageType.fromString(storageTypeLocal);
         return this.getWithResponse(resourceGroupName, resourceName, storageType, context);
     }
 
@@ -136,8 +138,8 @@ public final class ComponentLinkedStorageAccountsOperationsImpl implements Compo
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'components'.", id)));
         }
-        StorageType storageType = StorageType.fromString(Utils.getValueFromIdByName(id, "linkedStorageAccounts"));
-        if (storageType == null) {
+        String storageTypeLocal = Utils.getValueFromIdByName(id, "linkedStorageAccounts");
+        if (storageTypeLocal == null) {
             throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
@@ -146,6 +148,7 @@ public final class ComponentLinkedStorageAccountsOperationsImpl implements Compo
                                 "The resource ID '%s' is not valid. Missing path segment 'linkedStorageAccounts'.",
                                 id)));
         }
+        StorageType storageType = StorageType.fromString(storageTypeLocal);
         this.deleteWithResponse(resourceGroupName, resourceName, storageType, Context.NONE);
     }
 
@@ -165,8 +168,8 @@ public final class ComponentLinkedStorageAccountsOperationsImpl implements Compo
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'components'.", id)));
         }
-        StorageType storageType = StorageType.fromString(Utils.getValueFromIdByName(id, "linkedStorageAccounts"));
-        if (storageType == null) {
+        String storageTypeLocal = Utils.getValueFromIdByName(id, "linkedStorageAccounts");
+        if (storageTypeLocal == null) {
             throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
@@ -175,6 +178,7 @@ public final class ComponentLinkedStorageAccountsOperationsImpl implements Compo
                                 "The resource ID '%s' is not valid. Missing path segment 'linkedStorageAccounts'.",
                                 id)));
         }
+        StorageType storageType = StorageType.fromString(storageTypeLocal);
         return this.deleteWithResponse(resourceGroupName, resourceName, storageType, context);
     }
 
