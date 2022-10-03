@@ -58,6 +58,10 @@ public final class MabFileFolderProtectedItem extends ProtectedItem {
     @JsonProperty(value = "extendedInfo")
     private MabFileFolderProtectedItemExtendedInfo extendedInfo;
 
+    /** Creates an instance of MabFileFolderProtectedItem class. */
+    public MabFileFolderProtectedItem() {
+    }
+
     /**
      * Get the friendlyName property: Friendly name of this backup item.
      *
@@ -195,20 +199,6 @@ public final class MabFileFolderProtectedItem extends ProtectedItem {
      */
     public MabFileFolderProtectedItem withExtendedInfo(MabFileFolderProtectedItemExtendedInfo extendedInfo) {
         this.extendedInfo = extendedInfo;
-        return this;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public MabFileFolderProtectedItem withBackupManagementType(BackupManagementType backupManagementType) {
-        super.withBackupManagementType(backupManagementType);
-        return this;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public MabFileFolderProtectedItem withWorkloadType(DataSourceType workloadType) {
-        super.withWorkloadType(workloadType);
         return this;
     }
 
