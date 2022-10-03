@@ -19,6 +19,10 @@ public final class DaprSecretsCollectionInner {
     @JsonProperty(value = "value", required = true)
     private List<Secret> value;
 
+    /** Creates an instance of DaprSecretsCollectionInner class. */
+    public DaprSecretsCollectionInner() {
+    }
+
     /**
      * Get the value property: Collection of secrets used by a Dapr component.
      *
