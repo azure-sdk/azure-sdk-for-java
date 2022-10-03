@@ -285,7 +285,7 @@ public final class AgriFoodManager {
     }
 
     /**
-     * Gets the resource collection API of Extensions.
+     * Gets the resource collection API of Extensions. It manages Extension.
      *
      * @return Resource collection API of Extensions.
      */

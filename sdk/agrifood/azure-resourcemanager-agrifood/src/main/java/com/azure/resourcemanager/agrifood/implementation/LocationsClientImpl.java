@@ -170,20 +170,6 @@ public final class LocationsClientImpl implements LocationsClient {
      * Checks the name availability of the resource with requested resource name.
      *
      * @param body NameAvailabilityRequest object.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the check availability result.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public CheckNameAvailabilityResponseInner checkNameAvailability(CheckNameAvailabilityRequest body) {
-        return checkNameAvailabilityAsync(body).block();
-    }
-
-    /**
-     * Checks the name availability of the resource with requested resource name.
-     *
-     * @param body NameAvailabilityRequest object.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -194,5 +180,19 @@ public final class LocationsClientImpl implements LocationsClient {
     public Response<CheckNameAvailabilityResponseInner> checkNameAvailabilityWithResponse(
         CheckNameAvailabilityRequest body, Context context) {
         return checkNameAvailabilityWithResponseAsync(body, context).block();
+    }
+
+    /**
+     * Checks the name availability of the resource with requested resource name.
+     *
+     * @param body NameAvailabilityRequest object.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the check availability result.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public CheckNameAvailabilityResponseInner checkNameAvailability(CheckNameAvailabilityRequest body) {
+        return checkNameAvailabilityWithResponse(body, Context.NONE).getValue();
     }
 }

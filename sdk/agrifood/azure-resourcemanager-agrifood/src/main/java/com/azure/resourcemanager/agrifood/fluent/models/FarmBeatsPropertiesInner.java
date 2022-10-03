@@ -43,6 +43,10 @@ public final class FarmBeatsPropertiesInner {
     @JsonProperty(value = "privateEndpointConnections", access = JsonProperty.Access.WRITE_ONLY)
     private PrivateEndpointConnectionInner privateEndpointConnections;
 
+    /** Creates an instance of FarmBeatsPropertiesInner class. */
+    public FarmBeatsPropertiesInner() {
+    }
+
     /**
      * Get the instanceUri property: Uri of the FarmBeats instance.
      *

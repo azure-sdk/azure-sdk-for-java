@@ -4,7 +4,7 @@
 
 package com.azure.resourcemanager.agrifood.fluent.models;
 
-import com.azure.core.annotation.Fluent;
+import com.azure.core.annotation.Immutable;
 import com.azure.core.management.ProxyResource;
 import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.agrifood.models.DetailedInformation;
@@ -12,7 +12,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** FarmBeats extension resource. */
-@Fluent
+@Immutable
 public final class FarmBeatsExtensionInner extends ProxyResource {
     /*
      * FarmBeatsExtension properties.
@@ -25,6 +25,10 @@ public final class FarmBeatsExtensionInner extends ProxyResource {
      */
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
+
+    /** Creates an instance of FarmBeatsExtensionInner class. */
+    public FarmBeatsExtensionInner() {
+    }
 
     /**
      * Get the innerProperties property: FarmBeatsExtension properties.
