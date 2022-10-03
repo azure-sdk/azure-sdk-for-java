@@ -60,6 +60,10 @@ public final class OperationStatusInner {
     @JsonProperty(value = "error")
     private OperationStatusError error;
 
+    /** Creates an instance of OperationStatusInner class. */
+    public OperationStatusInner() {
+    }
+
     /**
      * Get the id property: Fully qualified ID for the operation status.
      *
