@@ -6,30 +6,49 @@ package com.azure.resourcemanager.healthbot.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.Resource;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.healthbot.models.HealthBotProperties;
+import com.azure.resourcemanager.healthbot.models.Identity;
 import com.azure.resourcemanager.healthbot.models.Sku;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
-/** HealthBot resource definition. */
+/** Azure Health Bot resource definition. */
 @Fluent
 public final class HealthBotInner extends Resource {
     /*
-     * SKU of the HealthBot.
+     * SKU of the Azure Health Bot.
      */
     @JsonProperty(value = "sku", required = true)
     private Sku sku;
 
     /*
-     * HealthBotProperties The set of properties specific to Healthbot
-     * resource.
+     * The identity of the Azure Health Bot.
+     */
+    @JsonProperty(value = "identity")
+    private Identity identity;
+
+    /*
+     * HealthBotProperties
+     *
+     * The set of properties specific to Azure Health Bot resource.
      */
     @JsonProperty(value = "properties")
     private HealthBotProperties properties;
 
+    /*
+     * Metadata pertaining to creation and last modification of the resource
+     */
+    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
+    private SystemData systemData;
+
+    /** Creates an instance of HealthBotInner class. */
+    public HealthBotInner() {
+    }
+
     /**
-     * Get the sku property: SKU of the HealthBot.
+     * Get the sku property: SKU of the Azure Health Bot.
      *
      * @return the sku value.
      */
@@ -38,7 +57,7 @@ public final class HealthBotInner extends Resource {
     }
 
     /**
-     * Set the sku property: SKU of the HealthBot.
+     * Set the sku property: SKU of the Azure Health Bot.
      *
      * @param sku the sku value to set.
      * @return the HealthBotInner object itself.
@@ -49,7 +68,29 @@ public final class HealthBotInner extends Resource {
     }
 
     /**
-     * Get the properties property: HealthBotProperties The set of properties specific to Healthbot resource.
+     * Get the identity property: The identity of the Azure Health Bot.
+     *
+     * @return the identity value.
+     */
+    public Identity identity() {
+        return this.identity;
+    }
+
+    /**
+     * Set the identity property: The identity of the Azure Health Bot.
+     *
+     * @param identity the identity value to set.
+     * @return the HealthBotInner object itself.
+     */
+    public HealthBotInner withIdentity(Identity identity) {
+        this.identity = identity;
+        return this;
+    }
+
+    /**
+     * Get the properties property: HealthBotProperties
+     *
+     * <p>The set of properties specific to Azure Health Bot resource.
      *
      * @return the properties value.
      */
@@ -58,7 +99,9 @@ public final class HealthBotInner extends Resource {
     }
 
     /**
-     * Set the properties property: HealthBotProperties The set of properties specific to Healthbot resource.
+     * Set the properties property: HealthBotProperties
+     *
+     * <p>The set of properties specific to Azure Health Bot resource.
      *
      * @param properties the properties value to set.
      * @return the HealthBotInner object itself.
@@ -66,6 +109,15 @@ public final class HealthBotInner extends Resource {
     public HealthBotInner withProperties(HealthBotProperties properties) {
         this.properties = properties;
         return this;
+    }
+
+    /**
+     * Get the systemData property: Metadata pertaining to creation and last modification of the resource.
+     *
+     * @return the systemData value.
+     */
+    public SystemData systemData() {
+        return this.systemData;
     }
 
     /** {@inheritDoc} */
@@ -94,6 +146,9 @@ public final class HealthBotInner extends Resource {
                     new IllegalArgumentException("Missing required property sku in model HealthBotInner"));
         } else {
             sku().validate();
+        }
+        if (identity() != null) {
+            identity().validate();
         }
         if (properties() != null) {
             properties().validate();
