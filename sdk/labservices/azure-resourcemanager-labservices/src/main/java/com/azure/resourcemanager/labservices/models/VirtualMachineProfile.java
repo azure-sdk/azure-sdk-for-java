@@ -66,6 +66,10 @@ public final class VirtualMachineProfile {
     @JsonProperty(value = "nonAdminUser")
     private Credentials nonAdminUser;
 
+    /** Creates an instance of VirtualMachineProfile class. */
+    public VirtualMachineProfile() {
+    }
+
     /**
      * Get the createOption property: Indicates what lab virtual machines are created from.
      *

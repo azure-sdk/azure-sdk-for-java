@@ -58,6 +58,10 @@ public final class UserProperties extends UserUpdateProperties {
     @JsonProperty(value = "totalUsage", access = JsonProperty.Access.WRITE_ONLY)
     private Duration totalUsage;
 
+    /** Creates an instance of UserProperties class. */
+    public UserProperties() {
+    }
+
     /**
      * Get the provisioningState property: Current provisioning state of the user resource.
      *

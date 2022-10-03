@@ -76,6 +76,10 @@ public final class LabServicesSkuInner {
     @JsonProperty(value = "restrictions", access = JsonProperty.Access.WRITE_ONLY)
     private List<LabServicesSkuRestrictions> restrictions;
 
+    /** Creates an instance of LabServicesSkuInner class. */
+    public LabServicesSkuInner() {
+    }
+
     /**
      * Get the resourceType property: The lab services resource type.
      *

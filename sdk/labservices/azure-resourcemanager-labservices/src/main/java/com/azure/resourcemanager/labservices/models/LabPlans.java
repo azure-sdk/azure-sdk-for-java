@@ -70,12 +70,13 @@ public interface LabPlans {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labPlanName The name of the lab plan that uniquely identifies it within containing resource group. Used in
      *     resource URIs and in UI.
+     * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return lab Plans act as a permission container for creating labs via labs.azure.com.
+     * @return lab Plans act as a permission container for creating labs via labs.azure.com along with {@link Response}.
      */
-    LabPlan getByResourceGroup(String resourceGroupName, String labPlanName);
+    Response<LabPlan> getByResourceGroupWithResponse(String resourceGroupName, String labPlanName, Context context);
 
     /**
      * Retrieves a Lab Plan resource.
@@ -85,13 +86,12 @@ public interface LabPlans {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labPlanName The name of the lab plan that uniquely identifies it within containing resource group. Used in
      *     resource URIs and in UI.
-     * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return lab Plans act as a permission container for creating labs via labs.azure.com along with {@link Response}.
+     * @return lab Plans act as a permission container for creating labs via labs.azure.com.
      */
-    Response<LabPlan> getByResourceGroupWithResponse(String resourceGroupName, String labPlanName, Context context);
+    LabPlan getByResourceGroup(String resourceGroupName, String labPlanName);
 
     /**
      * Deletes a Lab Plan resource.
