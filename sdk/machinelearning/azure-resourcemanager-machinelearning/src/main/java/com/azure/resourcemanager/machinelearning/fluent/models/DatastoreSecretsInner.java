@@ -32,6 +32,10 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 })
 @Immutable
 public class DatastoreSecretsInner {
+    /** Creates an instance of DatastoreSecretsInner class. */
+    public DatastoreSecretsInner() {
+    }
+
     /**
      * Validates the instance.
      *

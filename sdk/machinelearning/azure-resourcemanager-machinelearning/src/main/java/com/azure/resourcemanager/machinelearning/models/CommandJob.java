@@ -16,7 +16,13 @@ import java.util.Map;
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "jobType")
 @JsonTypeName("Command")
 @Fluent
-public final class CommandJob extends JobBaseDetails {
+public final class CommandJob extends JobBaseProperties {
+    /*
+     * Distribution configuration of the job. If set, this should be one of Mpi, Tensorflow, PyTorch, or null.
+     */
+    @JsonProperty(value = "autologgerSettings")
+    private AutologgerSettings autologgerSettings;
+
     /*
      * ARM resource ID of the code asset.
      */
@@ -24,22 +30,19 @@ public final class CommandJob extends JobBaseDetails {
     private String codeId;
 
     /*
-     * [Required] The command to execute on startup of the job. eg. "python
-     * train.py"
+     * [Required] The command to execute on startup of the job. eg. "python train.py"
      */
     @JsonProperty(value = "command", required = true)
     private String command;
 
     /*
-     * Distribution configuration of the job. If set, this should be one of
-     * Mpi, Tensorflow, PyTorch, or null.
+     * Distribution configuration of the job. If set, this should be one of Mpi, Tensorflow, PyTorch, or null.
      */
     @JsonProperty(value = "distribution")
     private DistributionConfiguration distribution;
 
     /*
-     * [Required] The ARM resource ID of the Environment specification for the
-     * job.
+     * [Required] The ARM resource ID of the Environment specification for the job.
      */
     @JsonProperty(value = "environmentId", required = true)
     private String environmentId;
@@ -81,7 +84,33 @@ public final class CommandJob extends JobBaseDetails {
      * Compute Resource configuration for the job.
      */
     @JsonProperty(value = "resources")
-    private ResourceConfiguration resources;
+    private JobResourceConfiguration resources;
+
+    /** Creates an instance of CommandJob class. */
+    public CommandJob() {
+    }
+
+    /**
+     * Get the autologgerSettings property: Distribution configuration of the job. If set, this should be one of Mpi,
+     * Tensorflow, PyTorch, or null.
+     *
+     * @return the autologgerSettings value.
+     */
+    public AutologgerSettings autologgerSettings() {
+        return this.autologgerSettings;
+    }
+
+    /**
+     * Set the autologgerSettings property: Distribution configuration of the job. If set, this should be one of Mpi,
+     * Tensorflow, PyTorch, or null.
+     *
+     * @param autologgerSettings the autologgerSettings value to set.
+     * @return the CommandJob object itself.
+     */
+    public CommandJob withAutologgerSettings(AutologgerSettings autologgerSettings) {
+        this.autologgerSettings = autologgerSettings;
+        return this;
+    }
 
     /**
      * Get the codeId property: ARM resource ID of the code asset.
@@ -259,7 +288,7 @@ public final class CommandJob extends JobBaseDetails {
      *
      * @return the resources value.
      */
-    public ResourceConfiguration resources() {
+    public JobResourceConfiguration resources() {
         return this.resources;
     }
 
@@ -269,8 +298,15 @@ public final class CommandJob extends JobBaseDetails {
      * @param resources the resources value to set.
      * @return the CommandJob object itself.
      */
-    public CommandJob withResources(ResourceConfiguration resources) {
+    public CommandJob withResources(JobResourceConfiguration resources) {
         this.resources = resources;
+        return this;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public CommandJob withComponentId(String componentId) {
+        super.withComponentId(componentId);
         return this;
     }
 
@@ -311,13 +347,6 @@ public final class CommandJob extends JobBaseDetails {
 
     /** {@inheritDoc} */
     @Override
-    public CommandJob withSchedule(ScheduleBase schedule) {
-        super.withSchedule(schedule);
-        return this;
-    }
-
-    /** {@inheritDoc} */
-    @Override
     public CommandJob withServices(Map<String, JobService> services) {
         super.withServices(services);
         return this;
@@ -352,6 +381,9 @@ public final class CommandJob extends JobBaseDetails {
     @Override
     public void validate() {
         super.validate();
+        if (autologgerSettings() != null) {
+            autologgerSettings().validate();
+        }
         if (command() == null) {
             throw LOGGER
                 .logExceptionAsError(

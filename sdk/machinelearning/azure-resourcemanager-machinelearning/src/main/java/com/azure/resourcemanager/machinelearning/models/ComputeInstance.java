@@ -20,6 +20,10 @@ public final class ComputeInstance extends Compute {
     @JsonProperty(value = "properties")
     private ComputeInstanceProperties properties;
 
+    /** Creates an instance of ComputeInstance class. */
+    public ComputeInstance() {
+    }
+
     /**
      * Get the properties property: Properties of ComputeInstance.
      *
@@ -51,13 +55,6 @@ public final class ComputeInstance extends Compute {
     @Override
     public ComputeInstance withResourceId(String resourceId) {
         super.withResourceId(resourceId);
-        return this;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public ComputeInstance withDisableLocalAuth(Boolean disableLocalAuth) {
-        super.withDisableLocalAuth(disableLocalAuth);
         return this;
     }
 
