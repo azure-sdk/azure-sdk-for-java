@@ -287,22 +287,6 @@ public final class ExtensionsClientImpl implements ExtensionsClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param farmBeatsResourceName FarmBeats resource name.
      * @param extensionId Id of extension resource.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return extension resource.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public ExtensionInner create(String resourceGroupName, String farmBeatsResourceName, String extensionId) {
-        return createAsync(resourceGroupName, farmBeatsResourceName, extensionId).block();
-    }
-
-    /**
-     * Install extension.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param farmBeatsResourceName FarmBeats resource name.
-     * @param extensionId Id of extension resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -313,6 +297,22 @@ public final class ExtensionsClientImpl implements ExtensionsClient {
     public Response<ExtensionInner> createWithResponse(
         String resourceGroupName, String farmBeatsResourceName, String extensionId, Context context) {
         return createWithResponseAsync(resourceGroupName, farmBeatsResourceName, extensionId, context).block();
+    }
+
+    /**
+     * Install extension.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param farmBeatsResourceName FarmBeats resource name.
+     * @param extensionId Id of extension resource.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return extension resource.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public ExtensionInner create(String resourceGroupName, String farmBeatsResourceName, String extensionId) {
+        return createWithResponse(resourceGroupName, farmBeatsResourceName, extensionId, Context.NONE).getValue();
     }
 
     /**
@@ -446,22 +446,6 @@ public final class ExtensionsClientImpl implements ExtensionsClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param farmBeatsResourceName FarmBeats resource name.
      * @param extensionId Id of extension resource.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return installed extension details by extension id.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public ExtensionInner get(String resourceGroupName, String farmBeatsResourceName, String extensionId) {
-        return getAsync(resourceGroupName, farmBeatsResourceName, extensionId).block();
-    }
-
-    /**
-     * Get installed extension details by extension id.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param farmBeatsResourceName FarmBeats resource name.
-     * @param extensionId Id of extension resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -472,6 +456,22 @@ public final class ExtensionsClientImpl implements ExtensionsClient {
     public Response<ExtensionInner> getWithResponse(
         String resourceGroupName, String farmBeatsResourceName, String extensionId, Context context) {
         return getWithResponseAsync(resourceGroupName, farmBeatsResourceName, extensionId, context).block();
+    }
+
+    /**
+     * Get installed extension details by extension id.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param farmBeatsResourceName FarmBeats resource name.
+     * @param extensionId Id of extension resource.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return installed extension details by extension id.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public ExtensionInner get(String resourceGroupName, String farmBeatsResourceName, String extensionId) {
+        return getWithResponse(resourceGroupName, farmBeatsResourceName, extensionId, Context.NONE).getValue();
     }
 
     /**
@@ -604,22 +604,6 @@ public final class ExtensionsClientImpl implements ExtensionsClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param farmBeatsResourceName FarmBeats resource name.
      * @param extensionId Id of extension resource.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return extension resource.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public ExtensionInner update(String resourceGroupName, String farmBeatsResourceName, String extensionId) {
-        return updateAsync(resourceGroupName, farmBeatsResourceName, extensionId).block();
-    }
-
-    /**
-     * Upgrade to latest extension.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param farmBeatsResourceName FarmBeats resource name.
-     * @param extensionId Id of extension resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -630,6 +614,22 @@ public final class ExtensionsClientImpl implements ExtensionsClient {
     public Response<ExtensionInner> updateWithResponse(
         String resourceGroupName, String farmBeatsResourceName, String extensionId, Context context) {
         return updateWithResponseAsync(resourceGroupName, farmBeatsResourceName, extensionId, context).block();
+    }
+
+    /**
+     * Upgrade to latest extension.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param farmBeatsResourceName FarmBeats resource name.
+     * @param extensionId Id of extension resource.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return extension resource.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public ExtensionInner update(String resourceGroupName, String farmBeatsResourceName, String extensionId) {
+        return updateWithResponse(resourceGroupName, farmBeatsResourceName, extensionId, Context.NONE).getValue();
     }
 
     /**
@@ -761,21 +761,6 @@ public final class ExtensionsClientImpl implements ExtensionsClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param farmBeatsResourceName FarmBeats resource name.
      * @param extensionId Id of extension resource.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public void delete(String resourceGroupName, String farmBeatsResourceName, String extensionId) {
-        deleteAsync(resourceGroupName, farmBeatsResourceName, extensionId).block();
-    }
-
-    /**
-     * Uninstall extension.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param farmBeatsResourceName FarmBeats resource name.
-     * @param extensionId Id of extension resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -786,6 +771,21 @@ public final class ExtensionsClientImpl implements ExtensionsClient {
     public Response<Void> deleteWithResponse(
         String resourceGroupName, String farmBeatsResourceName, String extensionId, Context context) {
         return deleteWithResponseAsync(resourceGroupName, farmBeatsResourceName, extensionId, context).block();
+    }
+
+    /**
+     * Uninstall extension.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param farmBeatsResourceName FarmBeats resource name.
+     * @param extensionId Id of extension resource.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public void delete(String resourceGroupName, String farmBeatsResourceName, String extensionId) {
+        deleteWithResponse(resourceGroupName, farmBeatsResourceName, extensionId, Context.NONE);
     }
 
     /**

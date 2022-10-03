@@ -448,20 +448,6 @@ public final class FarmBeatsExtensionsClientImpl implements FarmBeatsExtensionsC
      * Get farmBeats extension.
      *
      * @param farmBeatsExtensionId farmBeatsExtensionId to be queried.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return farmBeats extension.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public FarmBeatsExtensionInner get(String farmBeatsExtensionId) {
-        return getAsync(farmBeatsExtensionId).block();
-    }
-
-    /**
-     * Get farmBeats extension.
-     *
-     * @param farmBeatsExtensionId farmBeatsExtensionId to be queried.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -471,6 +457,20 @@ public final class FarmBeatsExtensionsClientImpl implements FarmBeatsExtensionsC
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<FarmBeatsExtensionInner> getWithResponse(String farmBeatsExtensionId, Context context) {
         return getWithResponseAsync(farmBeatsExtensionId, context).block();
+    }
+
+    /**
+     * Get farmBeats extension.
+     *
+     * @param farmBeatsExtensionId farmBeatsExtensionId to be queried.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return farmBeats extension.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public FarmBeatsExtensionInner get(String farmBeatsExtensionId) {
+        return getWithResponse(farmBeatsExtensionId, Context.NONE).getValue();
     }
 
     /**

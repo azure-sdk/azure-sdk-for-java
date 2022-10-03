@@ -17,6 +17,8 @@ public final class FarmBeatsModelsDeleteSamples {
      * @param manager Entry point to AgriFoodManager.
      */
     public static void farmBeatsModelsDelete(com.azure.resourcemanager.agrifood.AgriFoodManager manager) {
-        manager.farmBeatsModels().deleteWithResponse("examples-rg", "examples-farmBeatsResourceName", Context.NONE);
+        manager
+            .farmBeatsModels()
+            .deleteByResourceGroupWithResponse("examples-rg", "examples-farmBeatsResourceName", Context.NONE);
     }
 }

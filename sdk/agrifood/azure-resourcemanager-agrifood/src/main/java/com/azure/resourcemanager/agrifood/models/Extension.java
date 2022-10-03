@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.agrifood.models;
 
+import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.agrifood.fluent.models.ExtensionInner;
 
 /** An immutable client-side representation of Extension. */
@@ -35,6 +36,13 @@ public interface Extension {
      * @return the etag value.
      */
     String etag();
+
+    /**
+     * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     *
+     * @return the systemData value.
+     */
+    SystemData systemData();
 
     /**
      * Gets the extensionId property: Extension Id.
