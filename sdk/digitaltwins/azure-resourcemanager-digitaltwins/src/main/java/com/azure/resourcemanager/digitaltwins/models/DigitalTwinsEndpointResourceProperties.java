@@ -38,18 +38,15 @@ public class DigitalTwinsEndpointResourceProperties {
     private OffsetDateTime createdTime;
 
     /*
-     * Specifies the authentication type being used for connecting to the
-     * endpoint. Defaults to 'KeyBased'. If 'KeyBased' is selected, a
-     * connection string must be specified (at least the primary connection
-     * string). If 'IdentityBased' is select, the endpointUri and entityPath
-     * properties must be specified.
+     * Specifies the authentication type being used for connecting to the endpoint. Defaults to 'KeyBased'. If
+     * 'KeyBased' is selected, a connection string must be specified (at least the primary connection string). If
+     * 'IdentityBased' is select, the endpointUri and entityPath properties must be specified.
      */
     @JsonProperty(value = "authenticationType")
     private AuthenticationType authenticationType;
 
     /*
-     * Dead letter storage secret for key-based authentication. Will be
-     * obfuscated during read.
+     * Dead letter storage secret for key-based authentication. Will be obfuscated during read.
      */
     @JsonProperty(value = "deadLetterSecret")
     private String deadLetterSecret;
@@ -59,6 +56,10 @@ public class DigitalTwinsEndpointResourceProperties {
      */
     @JsonProperty(value = "deadLetterUri")
     private String deadLetterUri;
+
+    /** Creates an instance of DigitalTwinsEndpointResourceProperties class. */
+    public DigitalTwinsEndpointResourceProperties() {
+    }
 
     /**
      * Get the provisioningState property: The provisioning state.

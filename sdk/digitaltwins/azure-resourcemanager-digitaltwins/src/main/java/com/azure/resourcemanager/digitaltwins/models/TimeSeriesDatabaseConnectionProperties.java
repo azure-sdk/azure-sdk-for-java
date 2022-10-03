@@ -26,6 +26,10 @@ public class TimeSeriesDatabaseConnectionProperties {
     @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
     private TimeSeriesDatabaseConnectionState provisioningState;
 
+    /** Creates an instance of TimeSeriesDatabaseConnectionProperties class. */
+    public TimeSeriesDatabaseConnectionProperties() {
+    }
+
     /**
      * Get the provisioningState property: The provisioning state.
      *
