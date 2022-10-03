@@ -17,6 +17,10 @@ public final class NetworkProfileUpdate {
     @JsonProperty(value = "networkInterfaces")
     private List<NetworkInterfaceUpdate> networkInterfaces;
 
+    /** Creates an instance of NetworkProfileUpdate class. */
+    public NetworkProfileUpdate() {
+    }
+
     /**
      * Get the networkInterfaces property: Gets or sets the list of network interfaces associated with the virtual
      * machine.

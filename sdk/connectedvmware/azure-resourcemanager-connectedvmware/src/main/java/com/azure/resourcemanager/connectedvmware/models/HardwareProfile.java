@@ -46,6 +46,10 @@ public final class HardwareProfile {
     @JsonProperty(value = "memoryHotAddEnabled", access = JsonProperty.Access.WRITE_ONLY)
     private Boolean memoryHotAddEnabled;
 
+    /** Creates an instance of HardwareProfile class. */
+    public HardwareProfile() {
+    }
+
     /**
      * Get the memorySizeMB property: Gets or sets memory size in MBs for the vm.
      *

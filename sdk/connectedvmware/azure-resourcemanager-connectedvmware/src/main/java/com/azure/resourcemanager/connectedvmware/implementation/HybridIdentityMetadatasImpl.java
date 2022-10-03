@@ -28,16 +28,6 @@ public final class HybridIdentityMetadatasImpl implements HybridIdentityMetadata
         this.serviceManager = serviceManager;
     }
 
-    public HybridIdentityMetadata get(String resourceGroupName, String virtualMachineName, String metadataName) {
-        HybridIdentityMetadataInner inner =
-            this.serviceClient().get(resourceGroupName, virtualMachineName, metadataName);
-        if (inner != null) {
-            return new HybridIdentityMetadataImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
     public Response<HybridIdentityMetadata> getWithResponse(
         String resourceGroupName, String virtualMachineName, String metadataName, Context context) {
         Response<HybridIdentityMetadataInner> inner =
@@ -53,13 +43,23 @@ public final class HybridIdentityMetadatasImpl implements HybridIdentityMetadata
         }
     }
 
-    public void delete(String resourceGroupName, String virtualMachineName, String metadataName) {
-        this.serviceClient().delete(resourceGroupName, virtualMachineName, metadataName);
+    public HybridIdentityMetadata get(String resourceGroupName, String virtualMachineName, String metadataName) {
+        HybridIdentityMetadataInner inner =
+            this.serviceClient().get(resourceGroupName, virtualMachineName, metadataName);
+        if (inner != null) {
+            return new HybridIdentityMetadataImpl(inner, this.manager());
+        } else {
+            return null;
+        }
     }
 
     public Response<Void> deleteWithResponse(
         String resourceGroupName, String virtualMachineName, String metadataName, Context context) {
         return this.serviceClient().deleteWithResponse(resourceGroupName, virtualMachineName, metadataName, context);
+    }
+
+    public void delete(String resourceGroupName, String virtualMachineName, String metadataName) {
+        this.serviceClient().delete(resourceGroupName, virtualMachineName, metadataName);
     }
 
     public PagedIterable<HybridIdentityMetadata> listByVm(String resourceGroupName, String virtualMachineName) {

@@ -296,6 +296,35 @@ public final class GuestAgentsClientImpl implements GuestAgentsClient {
      * @param resourceGroupName The Resource Group Name.
      * @param virtualMachineName Name of the vm.
      * @param name Name of the guestAgents.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of defines the GuestAgent.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<GuestAgentInner>, GuestAgentInner> beginCreateAsync(
+        String resourceGroupName, String virtualMachineName, String name) {
+        final GuestAgentInner body = null;
+        Mono<Response<Flux<ByteBuffer>>> mono =
+            createWithResponseAsync(resourceGroupName, virtualMachineName, name, body);
+        return this
+            .client
+            .<GuestAgentInner, GuestAgentInner>getLroResult(
+                mono,
+                this.client.getHttpPipeline(),
+                GuestAgentInner.class,
+                GuestAgentInner.class,
+                this.client.getContext());
+    }
+
+    /**
+     * Implements GuestAgent PUT method.
+     *
+     * <p>Create Or Update GuestAgent.
+     *
+     * @param resourceGroupName The Resource Group Name.
+     * @param virtualMachineName Name of the vm.
+     * @param name Name of the guestAgents.
      * @param body Request payload.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -323,7 +352,6 @@ public final class GuestAgentsClientImpl implements GuestAgentsClient {
      * @param resourceGroupName The Resource Group Name.
      * @param virtualMachineName Name of the vm.
      * @param name Name of the guestAgents.
-     * @param body Request payload.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -331,7 +359,8 @@ public final class GuestAgentsClientImpl implements GuestAgentsClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<GuestAgentInner>, GuestAgentInner> beginCreate(
-        String resourceGroupName, String virtualMachineName, String name, GuestAgentInner body) {
+        String resourceGroupName, String virtualMachineName, String name) {
+        final GuestAgentInner body = null;
         return beginCreateAsync(resourceGroupName, virtualMachineName, name, body).getSyncPoller();
     }
 
@@ -420,26 +449,6 @@ public final class GuestAgentsClientImpl implements GuestAgentsClient {
         return beginCreateAsync(resourceGroupName, virtualMachineName, name, body, context)
             .last()
             .flatMap(this.client::getLroFinalResultOrError);
-    }
-
-    /**
-     * Implements GuestAgent PUT method.
-     *
-     * <p>Create Or Update GuestAgent.
-     *
-     * @param resourceGroupName The Resource Group Name.
-     * @param virtualMachineName Name of the vm.
-     * @param name Name of the guestAgents.
-     * @param body Request payload.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return defines the GuestAgent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public GuestAgentInner create(
-        String resourceGroupName, String virtualMachineName, String name, GuestAgentInner body) {
-        return createAsync(resourceGroupName, virtualMachineName, name, body).block();
     }
 
     /**
@@ -619,24 +628,6 @@ public final class GuestAgentsClientImpl implements GuestAgentsClient {
      * @param resourceGroupName The Resource Group Name.
      * @param virtualMachineName Name of the vm.
      * @param name Name of the GuestAgent.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return defines the GuestAgent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public GuestAgentInner get(String resourceGroupName, String virtualMachineName, String name) {
-        return getAsync(resourceGroupName, virtualMachineName, name).block();
-    }
-
-    /**
-     * Gets GuestAgent.
-     *
-     * <p>Implements GuestAgent GET method.
-     *
-     * @param resourceGroupName The Resource Group Name.
-     * @param virtualMachineName Name of the vm.
-     * @param name Name of the GuestAgent.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -647,6 +638,24 @@ public final class GuestAgentsClientImpl implements GuestAgentsClient {
     public Response<GuestAgentInner> getWithResponse(
         String resourceGroupName, String virtualMachineName, String name, Context context) {
         return getWithResponseAsync(resourceGroupName, virtualMachineName, name, context).block();
+    }
+
+    /**
+     * Gets GuestAgent.
+     *
+     * <p>Implements GuestAgent GET method.
+     *
+     * @param resourceGroupName The Resource Group Name.
+     * @param virtualMachineName Name of the vm.
+     * @param name Name of the GuestAgent.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return defines the GuestAgent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public GuestAgentInner get(String resourceGroupName, String virtualMachineName, String name) {
+        return getWithResponse(resourceGroupName, virtualMachineName, name, Context.NONE).getValue();
     }
 
     /**
@@ -1119,7 +1128,8 @@ public final class GuestAgentsClientImpl implements GuestAgentsClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1154,7 +1164,8 @@ public final class GuestAgentsClientImpl implements GuestAgentsClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.

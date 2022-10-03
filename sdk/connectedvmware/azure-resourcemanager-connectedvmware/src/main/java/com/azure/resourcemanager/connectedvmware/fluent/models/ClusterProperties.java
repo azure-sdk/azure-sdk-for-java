@@ -72,6 +72,10 @@ public final class ClusterProperties {
     @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
     private String provisioningState;
 
+    /** Creates an instance of ClusterProperties class. */
+    public ClusterProperties() {
+    }
+
     /**
      * Get the uuid property: Gets or sets a unique identifier for this resource.
      *

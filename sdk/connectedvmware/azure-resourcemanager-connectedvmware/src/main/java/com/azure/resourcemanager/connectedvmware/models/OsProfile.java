@@ -82,6 +82,10 @@ public final class OsProfile {
     @JsonProperty(value = "linuxConfiguration")
     private OsProfileLinuxConfiguration linuxConfiguration;
 
+    /** Creates an instance of OsProfile class. */
+    public OsProfile() {
+    }
+
     /**
      * Get the computerName property: Gets or sets computer name.
      *

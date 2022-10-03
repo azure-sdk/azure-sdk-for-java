@@ -78,15 +78,6 @@ public final class VirtualMachinesImpl implements VirtualMachines {
         }
     }
 
-    public VirtualMachine getByResourceGroup(String resourceGroupName, String virtualMachineName) {
-        VirtualMachineInner inner = this.serviceClient().getByResourceGroup(resourceGroupName, virtualMachineName);
-        if (inner != null) {
-            return new VirtualMachineImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
     public Response<VirtualMachine> getByResourceGroupWithResponse(
         String resourceGroupName, String virtualMachineName, Context context) {
         Response<VirtualMachineInner> inner =
@@ -102,8 +93,13 @@ public final class VirtualMachinesImpl implements VirtualMachines {
         }
     }
 
-    public void delete(String resourceGroupName, String virtualMachineName, Boolean force, Boolean retain) {
-        this.serviceClient().delete(resourceGroupName, virtualMachineName, force, retain);
+    public VirtualMachine getByResourceGroup(String resourceGroupName, String virtualMachineName) {
+        VirtualMachineInner inner = this.serviceClient().getByResourceGroup(resourceGroupName, virtualMachineName);
+        if (inner != null) {
+            return new VirtualMachineImpl(inner, this.manager());
+        } else {
+            return null;
+        }
     }
 
     public void delete(String resourceGroupName, String virtualMachineName) {
@@ -113,10 +109,6 @@ public final class VirtualMachinesImpl implements VirtualMachines {
     public void delete(
         String resourceGroupName, String virtualMachineName, Boolean force, Boolean retain, Context context) {
         this.serviceClient().delete(resourceGroupName, virtualMachineName, force, retain, context);
-    }
-
-    public void stop(String resourceGroupName, String virtualMachineName, StopVirtualMachineOptions body) {
-        this.serviceClient().stop(resourceGroupName, virtualMachineName, body);
     }
 
     public void stop(String resourceGroupName, String virtualMachineName) {

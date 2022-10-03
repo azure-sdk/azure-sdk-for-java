@@ -59,6 +59,10 @@ public class InventoryItemProperties {
     @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
     private String provisioningState;
 
+    /** Creates an instance of InventoryItemProperties class. */
+    public InventoryItemProperties() {
+    }
+
     /**
      * Get the managedResourceId property: Gets or sets the tracked resource id corresponding to the inventory resource.
      *

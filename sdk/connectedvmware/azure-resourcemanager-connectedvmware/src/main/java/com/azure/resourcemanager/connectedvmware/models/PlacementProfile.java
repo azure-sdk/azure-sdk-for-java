@@ -34,6 +34,10 @@ public final class PlacementProfile {
     @JsonProperty(value = "datastoreId")
     private String datastoreId;
 
+    /** Creates an instance of PlacementProfile class. */
+    public PlacementProfile() {
+    }
+
     /**
      * Get the resourcePoolId property: Gets or sets the ARM Id of the resourcePool resource on which this virtual
      * machine will deploy.

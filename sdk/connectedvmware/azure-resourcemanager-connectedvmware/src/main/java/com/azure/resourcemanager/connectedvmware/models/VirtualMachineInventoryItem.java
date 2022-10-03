@@ -88,6 +88,10 @@ public final class VirtualMachineInventoryItem extends InventoryItemProperties {
     @JsonProperty(value = "toolsVersion", access = JsonProperty.Access.WRITE_ONLY)
     private String toolsVersion;
 
+    /** Creates an instance of VirtualMachineInventoryItem class. */
+    public VirtualMachineInventoryItem() {
+    }
+
     /**
      * Get the osType property: Gets or sets the type of the os.
      *

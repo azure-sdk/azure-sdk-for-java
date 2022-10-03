@@ -22,6 +22,10 @@ public final class OsProfileUpdate {
     @JsonProperty(value = "linuxConfiguration")
     private OsProfileUpdateLinuxConfiguration linuxConfiguration;
 
+    /** Creates an instance of OsProfileUpdate class. */
+    public OsProfileUpdate() {
+    }
+
     /**
      * Get the windowsConfiguration property: Specifies the windows configuration for update management.
      *

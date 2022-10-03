@@ -38,6 +38,10 @@ public final class VirtualMachineUpdateProperties {
     @JsonProperty(value = "networkProfile")
     private NetworkProfileUpdate networkProfile;
 
+    /** Creates an instance of VirtualMachineUpdateProperties class. */
+    public VirtualMachineUpdateProperties() {
+    }
+
     /**
      * Get the hardwareProfile property: Defines the resource properties.
      *

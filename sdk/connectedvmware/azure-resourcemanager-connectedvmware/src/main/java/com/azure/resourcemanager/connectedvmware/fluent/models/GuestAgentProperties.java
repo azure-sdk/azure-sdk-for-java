@@ -63,6 +63,10 @@ public final class GuestAgentProperties {
     @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
     private String provisioningState;
 
+    /** Creates an instance of GuestAgentProperties class. */
+    public GuestAgentProperties() {
+    }
+
     /**
      * Get the uuid property: Gets or sets a unique identifier for this resource.
      *

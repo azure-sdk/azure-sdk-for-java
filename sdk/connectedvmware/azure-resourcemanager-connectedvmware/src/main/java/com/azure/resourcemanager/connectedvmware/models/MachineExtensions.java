@@ -41,19 +41,6 @@ public interface MachineExtensions {
      * @param resourceGroupName The Resource Group Name.
      * @param name The name of the machine containing the extension.
      * @param extensionName The name of the machine extension.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return describes a Machine Extension.
-     */
-    MachineExtension get(String resourceGroupName, String name, String extensionName);
-
-    /**
-     * The operation to get the extension.
-     *
-     * @param resourceGroupName The Resource Group Name.
-     * @param name The name of the machine containing the extension.
-     * @param extensionName The name of the machine extension.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -62,6 +49,19 @@ public interface MachineExtensions {
      */
     Response<MachineExtension> getWithResponse(
         String resourceGroupName, String name, String extensionName, Context context);
+
+    /**
+     * The operation to get the extension.
+     *
+     * @param resourceGroupName The Resource Group Name.
+     * @param name The name of the machine containing the extension.
+     * @param extensionName The name of the machine extension.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return describes a Machine Extension.
+     */
+    MachineExtension get(String resourceGroupName, String name, String extensionName);
 
     /**
      * The operation to get all extensions of a non-Azure machine.

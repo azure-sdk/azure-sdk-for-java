@@ -33,6 +33,10 @@ public final class InventoryItemInner extends ProxyResource {
     @JsonProperty(value = "kind")
     private String kind;
 
+    /** Creates an instance of InventoryItemInner class. */
+    public InventoryItemInner() {
+    }
+
     /**
      * Get the innerProperties property: Resource properties.
      *
