@@ -22,6 +22,10 @@ public final class TagRuleUpdate {
     @JsonProperty(value = "metricRules")
     private MetricRules metricRules;
 
+    /** Creates an instance of TagRuleUpdate class. */
+    public TagRuleUpdate() {
+    }
+
     /**
      * Get the logRules property: Set of rules for sending logs for the Monitor resource.
      *

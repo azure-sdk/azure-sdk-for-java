@@ -397,15 +397,6 @@ public interface MonitorResource {
     /**
      * Gets the user account credentials for a Monitor.
      *
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the user account credentials for a Monitor.
-     */
-    AccountInfoSecure getAccountCredentials();
-
-    /**
-     * Gets the user account credentials for a Monitor.
-     *
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -413,6 +404,15 @@ public interface MonitorResource {
      * @return the user account credentials for a Monitor along with {@link Response}.
      */
     Response<AccountInfoSecure> getAccountCredentialsWithResponse(Context context);
+
+    /**
+     * Gets the user account credentials for a Monitor.
+     *
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the user account credentials for a Monitor.
+     */
+    AccountInfoSecure getAccountCredentials();
 
     /**
      * List the resources currently being monitored by the Dynatrace monitor resource.
@@ -439,15 +439,6 @@ public interface MonitorResource {
     /**
      * Returns the payload that needs to be passed in the request body for installing Dynatrace agent on a VM.
      *
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response of payload to be passed while installing VM agent.
-     */
-    VMExtensionPayload getVMHostPayload();
-
-    /**
-     * Returns the payload that needs to be passed in the request body for installing Dynatrace agent on a VM.
-     *
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -455,6 +446,15 @@ public interface MonitorResource {
      * @return response of payload to be passed while installing VM agent along with {@link Response}.
      */
     Response<VMExtensionPayload> getVMHostPayloadWithResponse(Context context);
+
+    /**
+     * Returns the payload that needs to be passed in the request body for installing Dynatrace agent on a VM.
+     *
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return response of payload to be passed while installing VM agent.
+     */
+    VMExtensionPayload getVMHostPayload();
 
     /**
      * List the compute resources currently being monitored by the Dynatrace resource.
@@ -501,15 +501,6 @@ public interface MonitorResource {
     /**
      * Gets the SSO configuration details from the partner.
      *
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the SSO configuration details from the partner.
-     */
-    SsoDetailsResponse getSsoDetails();
-
-    /**
-     * Gets the SSO configuration details from the partner.
-     *
      * @param request The details of the get sso details request.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -518,6 +509,15 @@ public interface MonitorResource {
      * @return the SSO configuration details from the partner along with {@link Response}.
      */
     Response<SsoDetailsResponse> getSsoDetailsWithResponse(SsoDetailsRequest request, Context context);
+
+    /**
+     * Gets the SSO configuration details from the partner.
+     *
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the SSO configuration details from the partner.
+     */
+    SsoDetailsResponse getSsoDetails();
 
     /**
      * Gets all the Dynatrace environments that a user can link a azure resource to.

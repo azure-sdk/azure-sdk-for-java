@@ -585,23 +585,6 @@ public final class SingleSignOnsClientImpl implements SingleSignOnsClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param monitorName Monitor resource name.
      * @param configurationName Single Sign On Configuration Name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a DynatraceSingleSignOnResource.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public DynatraceSingleSignOnResourceInner get(
-        String resourceGroupName, String monitorName, String configurationName) {
-        return getAsync(resourceGroupName, monitorName, configurationName).block();
-    }
-
-    /**
-     * Get a DynatraceSingleSignOnResource.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param monitorName Monitor resource name.
-     * @param configurationName Single Sign On Configuration Name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -612,6 +595,23 @@ public final class SingleSignOnsClientImpl implements SingleSignOnsClient {
     public Response<DynatraceSingleSignOnResourceInner> getWithResponse(
         String resourceGroupName, String monitorName, String configurationName, Context context) {
         return getWithResponseAsync(resourceGroupName, monitorName, configurationName, context).block();
+    }
+
+    /**
+     * Get a DynatraceSingleSignOnResource.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param monitorName Monitor resource name.
+     * @param configurationName Single Sign On Configuration Name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a DynatraceSingleSignOnResource.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public DynatraceSingleSignOnResourceInner get(
+        String resourceGroupName, String monitorName, String configurationName) {
+        return getWithResponse(resourceGroupName, monitorName, configurationName, Context.NONE).getValue();
     }
 
     /**
