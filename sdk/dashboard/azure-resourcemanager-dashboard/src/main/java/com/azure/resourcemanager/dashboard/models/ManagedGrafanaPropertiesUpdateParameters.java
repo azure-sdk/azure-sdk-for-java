@@ -41,6 +41,10 @@ public final class ManagedGrafanaPropertiesUpdateParameters {
     @JsonProperty(value = "grafanaIntegrations")
     private GrafanaIntegrations grafanaIntegrations;
 
+    /** Creates an instance of ManagedGrafanaPropertiesUpdateParameters class. */
+    public ManagedGrafanaPropertiesUpdateParameters() {
+    }
+
     /**
      * Get the zoneRedundancy property: The zone redundancy setting of the Grafana instance.
      *

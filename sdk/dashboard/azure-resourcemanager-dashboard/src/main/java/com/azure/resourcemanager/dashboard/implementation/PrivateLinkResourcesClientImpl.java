@@ -415,23 +415,6 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The workspace name of Azure Managed Grafana.
      * @param privateLinkResourceName The privateLinkResourceName parameter.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return specific private link resource information for this grafana resource.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public PrivateLinkResourceInner get(
-        String resourceGroupName, String workspaceName, String privateLinkResourceName) {
-        return getAsync(resourceGroupName, workspaceName, privateLinkResourceName).block();
-    }
-
-    /**
-     * Get specific private link resource information for this grafana resource.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The workspace name of Azure Managed Grafana.
-     * @param privateLinkResourceName The privateLinkResourceName parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -442,6 +425,23 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
     public Response<PrivateLinkResourceInner> getWithResponse(
         String resourceGroupName, String workspaceName, String privateLinkResourceName, Context context) {
         return getWithResponseAsync(resourceGroupName, workspaceName, privateLinkResourceName, context).block();
+    }
+
+    /**
+     * Get specific private link resource information for this grafana resource.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The workspace name of Azure Managed Grafana.
+     * @param privateLinkResourceName The privateLinkResourceName parameter.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return specific private link resource information for this grafana resource.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public PrivateLinkResourceInner get(
+        String resourceGroupName, String workspaceName, String privateLinkResourceName) {
+        return getWithResponse(resourceGroupName, workspaceName, privateLinkResourceName, Context.NONE).getValue();
     }
 
     /**
