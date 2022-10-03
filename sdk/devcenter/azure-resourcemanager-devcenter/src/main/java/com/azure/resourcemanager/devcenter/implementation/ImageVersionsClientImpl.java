@@ -36,25 +36,25 @@ public final class ImageVersionsClientImpl implements ImageVersionsClient {
     private final ImageVersionsService service;
 
     /** The service client containing this operation class. */
-    private final DevCenterClientImpl client;
+    private final DevCenterManagementClientImpl client;
 
     /**
      * Initializes an instance of ImageVersionsClientImpl.
      *
      * @param client the instance of the service client containing this operation class.
      */
-    ImageVersionsClientImpl(DevCenterClientImpl client) {
+    ImageVersionsClientImpl(DevCenterManagementClientImpl client) {
         this.service =
             RestProxy.create(ImageVersionsService.class, client.getHttpPipeline(), client.getSerializerAdapter());
         this.client = client;
     }
 
     /**
-     * The interface defining all the services for DevCenterClientImageVersions to be used by the proxy service to
-     * perform REST calls.
+     * The interface defining all the services for DevCenterManagementClientImageVersions to be used by the proxy
+     * service to perform REST calls.
      */
     @Host("{$host}")
-    @ServiceInterface(name = "DevCenterClientImage")
+    @ServiceInterface(name = "DevCenterManagementC")
     private interface ImageVersionsService {
         @Headers({"Content-Type: application/json"})
         @Get(
@@ -471,25 +471,6 @@ public final class ImageVersionsClientImpl implements ImageVersionsClient {
      * @param galleryName The name of the gallery.
      * @param imageName The name of the image.
      * @param versionName The version of the image.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an image version.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public ImageVersionInner get(
-        String resourceGroupName, String devCenterName, String galleryName, String imageName, String versionName) {
-        return getAsync(resourceGroupName, devCenterName, galleryName, imageName, versionName).block();
-    }
-
-    /**
-     * Gets an image version.
-     *
-     * @param resourceGroupName Name of the resource group within the Azure subscription.
-     * @param devCenterName The name of the devcenter.
-     * @param galleryName The name of the gallery.
-     * @param imageName The name of the image.
-     * @param versionName The version of the image.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -509,9 +490,30 @@ public final class ImageVersionsClientImpl implements ImageVersionsClient {
     }
 
     /**
+     * Gets an image version.
+     *
+     * @param resourceGroupName Name of the resource group within the Azure subscription.
+     * @param devCenterName The name of the devcenter.
+     * @param galleryName The name of the gallery.
+     * @param imageName The name of the image.
+     * @param versionName The version of the image.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return an image version.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public ImageVersionInner get(
+        String resourceGroupName, String devCenterName, String galleryName, String imageName, String versionName) {
+        return getWithResponse(resourceGroupName, devCenterName, galleryName, imageName, versionName, Context.NONE)
+            .getValue();
+    }
+
+    /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -547,7 +549,8 @@ public final class ImageVersionsClientImpl implements ImageVersionsClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.

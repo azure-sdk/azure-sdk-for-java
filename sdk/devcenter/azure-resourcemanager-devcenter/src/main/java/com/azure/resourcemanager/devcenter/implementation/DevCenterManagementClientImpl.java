@@ -25,7 +25,7 @@ import com.azure.core.util.serializer.SerializerEncoding;
 import com.azure.resourcemanager.devcenter.fluent.AttachedNetworksClient;
 import com.azure.resourcemanager.devcenter.fluent.CatalogsClient;
 import com.azure.resourcemanager.devcenter.fluent.DevBoxDefinitionsClient;
-import com.azure.resourcemanager.devcenter.fluent.DevCenterClient;
+import com.azure.resourcemanager.devcenter.fluent.DevCenterManagementClient;
 import com.azure.resourcemanager.devcenter.fluent.DevCentersClient;
 import com.azure.resourcemanager.devcenter.fluent.EnvironmentTypesClient;
 import com.azure.resourcemanager.devcenter.fluent.GalleriesClient;
@@ -35,6 +35,7 @@ import com.azure.resourcemanager.devcenter.fluent.NetworkConnectionsClient;
 import com.azure.resourcemanager.devcenter.fluent.OperationStatusesClient;
 import com.azure.resourcemanager.devcenter.fluent.OperationsClient;
 import com.azure.resourcemanager.devcenter.fluent.PoolsClient;
+import com.azure.resourcemanager.devcenter.fluent.ProjectAllowedEnvironmentTypesClient;
 import com.azure.resourcemanager.devcenter.fluent.ProjectEnvironmentTypesClient;
 import com.azure.resourcemanager.devcenter.fluent.ProjectsClient;
 import com.azure.resourcemanager.devcenter.fluent.SchedulesClient;
@@ -49,9 +50,9 @@ import java.time.Duration;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-/** Initializes a new instance of the DevCenterClientImpl type. */
-@ServiceClient(builder = DevCenterClientBuilder.class)
-public final class DevCenterClientImpl implements DevCenterClient {
+/** Initializes a new instance of the DevCenterManagementClientImpl type. */
+@ServiceClient(builder = DevCenterManagementClientBuilder.class)
+public final class DevCenterManagementClientImpl implements DevCenterManagementClient {
     /**
      * Unique identifier of the Azure subscription. This is a GUID-formatted string (e.g.
      * 00000000-0000-0000-0000-000000000000).
@@ -224,6 +225,18 @@ public final class DevCenterClientImpl implements DevCenterClient {
         return this.environmentTypes;
     }
 
+    /** The ProjectAllowedEnvironmentTypesClient object to access its operations. */
+    private final ProjectAllowedEnvironmentTypesClient projectAllowedEnvironmentTypes;
+
+    /**
+     * Gets the ProjectAllowedEnvironmentTypesClient object to access its operations.
+     *
+     * @return the ProjectAllowedEnvironmentTypesClient object.
+     */
+    public ProjectAllowedEnvironmentTypesClient getProjectAllowedEnvironmentTypes() {
+        return this.projectAllowedEnvironmentTypes;
+    }
+
     /** The ProjectEnvironmentTypesClient object to access its operations. */
     private final ProjectEnvironmentTypesClient projectEnvironmentTypes;
 
@@ -333,7 +346,7 @@ public final class DevCenterClientImpl implements DevCenterClient {
     }
 
     /**
-     * Initializes an instance of DevCenterClient client.
+     * Initializes an instance of DevCenterManagementClient client.
      *
      * @param httpPipeline The HTTP pipeline to send requests through.
      * @param serializerAdapter The serializer to serialize an object into a string.
@@ -343,7 +356,7 @@ public final class DevCenterClientImpl implements DevCenterClient {
      *     00000000-0000-0000-0000-000000000000).
      * @param endpoint server parameter.
      */
-    DevCenterClientImpl(
+    DevCenterManagementClientImpl(
         HttpPipeline httpPipeline,
         SerializerAdapter serializerAdapter,
         Duration defaultPollInterval,
@@ -355,7 +368,7 @@ public final class DevCenterClientImpl implements DevCenterClient {
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2022-08-01-preview";
+        this.apiVersion = "2022-10-12-preview";
         this.devCenters = new DevCentersClientImpl(this);
         this.projects = new ProjectsClientImpl(this);
         this.attachedNetworks = new AttachedNetworksClientImpl(this);
@@ -364,6 +377,7 @@ public final class DevCenterClientImpl implements DevCenterClient {
         this.imageVersions = new ImageVersionsClientImpl(this);
         this.catalogs = new CatalogsClientImpl(this);
         this.environmentTypes = new EnvironmentTypesClientImpl(this);
+        this.projectAllowedEnvironmentTypes = new ProjectAllowedEnvironmentTypesClientImpl(this);
         this.projectEnvironmentTypes = new ProjectEnvironmentTypesClientImpl(this);
         this.devBoxDefinitions = new DevBoxDefinitionsClientImpl(this);
         this.operations = new OperationsClientImpl(this);
@@ -515,5 +529,5 @@ public final class DevCenterClientImpl implements DevCenterClient {
         }
     }
 
-    private static final ClientLogger LOGGER = new ClientLogger(DevCenterClientImpl.class);
+    private static final ClientLogger LOGGER = new ClientLogger(DevCenterManagementClientImpl.class);
 }

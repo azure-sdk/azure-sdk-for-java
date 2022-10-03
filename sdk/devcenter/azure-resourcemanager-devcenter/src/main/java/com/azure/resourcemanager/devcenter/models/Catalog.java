@@ -48,6 +48,13 @@ public interface Catalog {
     String provisioningState();
 
     /**
+     * Gets the syncState property: The synchronization state of the catalog.
+     *
+     * @return the syncState value.
+     */
+    CatalogSyncState syncState();
+
+    /**
      * Gets the lastSyncTime property: When the catalog was last synced.
      *
      * @return the lastSyncTime value.
