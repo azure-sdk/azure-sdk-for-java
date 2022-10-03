@@ -25,6 +25,10 @@ public final class AzureSynapseArtifactsLinkedServiceTypeProperties {
     @JsonProperty(value = "authentication")
     private Object authentication;
 
+    /** Creates an instance of AzureSynapseArtifactsLinkedServiceTypeProperties class. */
+    public AzureSynapseArtifactsLinkedServiceTypeProperties() {
+    }
+
     /**
      * Get the endpoint property: https://&lt;workspacename&gt;.dev.azuresynapse.net, Azure Synapse Analytics workspace
      * URL. Type: string (or Expression with resultType string).
