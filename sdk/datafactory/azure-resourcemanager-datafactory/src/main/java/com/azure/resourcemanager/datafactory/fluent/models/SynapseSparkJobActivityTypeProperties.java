@@ -83,6 +83,10 @@ public final class SynapseSparkJobActivityTypeProperties {
     @JsonProperty(value = "numExecutors")
     private Integer numExecutors;
 
+    /** Creates an instance of SynapseSparkJobActivityTypeProperties class. */
+    public SynapseSparkJobActivityTypeProperties() {
+    }
+
     /**
      * Get the sparkJob property: Synapse spark job reference.
      *

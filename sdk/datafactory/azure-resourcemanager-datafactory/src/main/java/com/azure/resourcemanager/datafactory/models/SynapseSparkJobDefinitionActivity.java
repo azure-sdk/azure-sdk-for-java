@@ -23,6 +23,10 @@ public final class SynapseSparkJobDefinitionActivity extends ExecutionActivity {
     @JsonProperty(value = "typeProperties", required = true)
     private SynapseSparkJobActivityTypeProperties innerTypeProperties = new SynapseSparkJobActivityTypeProperties();
 
+    /** Creates an instance of SynapseSparkJobDefinitionActivity class. */
+    public SynapseSparkJobDefinitionActivity() {
+    }
+
     /**
      * Get the innerTypeProperties property: Execute spark job activity properties.
      *
