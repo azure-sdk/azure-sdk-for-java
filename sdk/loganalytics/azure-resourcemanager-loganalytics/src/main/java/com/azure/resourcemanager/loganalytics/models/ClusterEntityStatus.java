@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for ClusterEntityStatus. */
+/** The provisioning state of the cluster. */
 public final class ClusterEntityStatus extends ExpandableStringEnum<ClusterEntityStatus> {
     /** Static value Creating for ClusterEntityStatus. */
     public static final ClusterEntityStatus CREATING = fromString("Creating");

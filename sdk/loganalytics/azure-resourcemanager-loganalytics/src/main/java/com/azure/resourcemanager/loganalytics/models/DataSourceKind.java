@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for DataSourceKind. */
+/** The kind of the DataSource. */
 public final class DataSourceKind extends ExpandableStringEnum<DataSourceKind> {
     /** Static value WindowsEvent for DataSourceKind. */
     public static final DataSourceKind WINDOWS_EVENT = fromString("WindowsEvent");

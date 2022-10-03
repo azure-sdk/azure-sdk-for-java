@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for IdentityType. */
+/** The type of identity that creates/modifies resources. */
 public final class IdentityType extends ExpandableStringEnum<IdentityType> {
     /** Static value user for IdentityType. */
     public static final IdentityType USER = fromString("user");

@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for LinkedServiceEntityStatus. */
+/** The provisioning state of the linked service. */
 public final class LinkedServiceEntityStatus extends ExpandableStringEnum<LinkedServiceEntityStatus> {
     /** Static value Succeeded for LinkedServiceEntityStatus. */
     public static final LinkedServiceEntityStatus SUCCEEDED = fromString("Succeeded");
