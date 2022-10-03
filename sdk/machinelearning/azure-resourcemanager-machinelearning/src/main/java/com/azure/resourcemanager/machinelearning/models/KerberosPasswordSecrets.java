@@ -21,6 +21,10 @@ public final class KerberosPasswordSecrets extends DatastoreSecretsInner {
     @JsonProperty(value = "kerberosPassword")
     private String kerberosPassword;
 
+    /** Creates an instance of KerberosPasswordSecrets class. */
+    public KerberosPasswordSecrets() {
+    }
+
     /**
      * Get the kerberosPassword property: Kerberos password secret.
      *

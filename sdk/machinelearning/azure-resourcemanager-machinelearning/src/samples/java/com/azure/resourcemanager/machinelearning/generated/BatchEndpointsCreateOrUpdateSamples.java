@@ -5,7 +5,7 @@
 package com.azure.resourcemanager.machinelearning.generated;
 
 import com.azure.resourcemanager.machinelearning.models.BatchEndpointDefaults;
-import com.azure.resourcemanager.machinelearning.models.BatchEndpointDetails;
+import com.azure.resourcemanager.machinelearning.models.BatchEndpointProperties;
 import com.azure.resourcemanager.machinelearning.models.EndpointAuthMode;
 import com.azure.resourcemanager.machinelearning.models.ManagedServiceIdentity;
 import com.azure.resourcemanager.machinelearning.models.ManagedServiceIdentityType;
@@ -18,14 +18,14 @@ import java.util.Map;
 /** Samples for BatchEndpoints CreateOrUpdate. */
 public final class BatchEndpointsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-02-01-preview/examples/BatchEndpoint/createOrUpdate.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-10-01-preview/examples/Workspace/BatchEndpoint/createOrUpdate.json
      */
     /**
-     * Sample code: CreateOrUpdate Batch Endpoint.
+     * Sample code: CreateOrUpdate Workspace Batch Endpoint.
      *
      * @param manager Entry point to MachineLearningManager.
      */
-    public static void createOrUpdateBatchEndpoint(
+    public static void createOrUpdateWorkspaceBatchEndpoint(
         com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
         manager
             .batchEndpoints()
@@ -33,7 +33,7 @@ public final class BatchEndpointsCreateOrUpdateSamples {
             .withRegion("string")
             .withExistingWorkspace("test-rg", "my-aml-workspace")
             .withProperties(
-                new BatchEndpointDetails()
+                new BatchEndpointProperties()
                     .withAuthMode(EndpointAuthMode.AMLTOKEN)
                     .withDescription("string")
                     .withProperties(mapOf("string", "string"))

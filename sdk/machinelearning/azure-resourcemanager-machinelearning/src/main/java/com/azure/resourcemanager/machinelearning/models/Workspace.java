@@ -135,7 +135,7 @@ public interface Workspace {
      *
      * @return the provisioningState value.
      */
-    ProvisioningState provisioningState();
+    WorkspaceProvisioningState provisioningState();
 
     /**
      * Gets the encryption property: The encryption settings of Azure ML workspace.
@@ -249,6 +249,28 @@ public interface Workspace {
     String mlFlowTrackingUri();
 
     /**
+     * Gets the v1LegacyMode property: Enabling v1_legacy_mode may prevent you from using features provided by the v2
+     * API.
+     *
+     * @return the v1LegacyMode value.
+     */
+    Boolean v1LegacyMode();
+
+    /**
+     * Gets the softDeletedAt property: The timestamp when the workspace was soft deleted.
+     *
+     * @return the softDeletedAt value.
+     */
+    String softDeletedAt();
+
+    /**
+     * Gets the scheduledPurgeDate property: The timestamp when the soft deleted workspace is going to be purged.
+     *
+     * @return the scheduledPurgeDate value.
+     */
+    String scheduledPurgeDate();
+
+    /**
      * Gets the region of the resource.
      *
      * @return the region of the resource.
@@ -318,7 +340,8 @@ public interface Workspace {
                 DefinitionStages.WithPublicNetworkAccess,
                 DefinitionStages.WithSharedPrivateLinkResources,
                 DefinitionStages.WithServiceManagedResourcesSettings,
-                DefinitionStages.WithPrimaryUserAssignedIdentity {
+                DefinitionStages.WithPrimaryUserAssignedIdentity,
+                DefinitionStages.WithV1LegacyMode {
             /**
              * Executes the create request.
              *
@@ -548,6 +571,17 @@ public interface Workspace {
              */
             WithCreate withPrimaryUserAssignedIdentity(String primaryUserAssignedIdentity);
         }
+        /** The stage of the Workspace definition allowing to specify v1LegacyMode. */
+        interface WithV1LegacyMode {
+            /**
+             * Specifies the v1LegacyMode property: Enabling v1_legacy_mode may prevent you from using features provided
+             * by the v2 API..
+             *
+             * @param v1LegacyMode Enabling v1_legacy_mode may prevent you from using features provided by the v2 API.
+             * @return the next definition stage.
+             */
+            WithCreate withV1LegacyMode(Boolean v1LegacyMode);
+        }
     }
     /**
      * Begins update for the Workspace resource.
@@ -568,7 +602,8 @@ public interface Workspace {
             UpdateStages.WithPrimaryUserAssignedIdentity,
             UpdateStages.WithPublicNetworkAccess,
             UpdateStages.WithApplicationInsights,
-            UpdateStages.WithContainerRegistry {
+            UpdateStages.WithContainerRegistry,
+            UpdateStages.WithEncryption {
         /**
          * Executes the update request.
          *
@@ -700,6 +735,16 @@ public interface Workspace {
              */
             Update withContainerRegistry(String containerRegistry);
         }
+        /** The stage of the Workspace update allowing to specify encryption. */
+        interface WithEncryption {
+            /**
+             * Specifies the encryption property: The encryption settings of the workspace..
+             *
+             * @param encryption The encryption settings of the workspace.
+             * @return the next definition stage.
+             */
+            Update withEncryption(EncryptionUpdateProperties encryption);
+        }
     }
     /**
      * Refreshes the resource to sync with Azure.
@@ -715,17 +760,6 @@ public interface Workspace {
      * @return the refreshed resource.
      */
     Workspace refresh(Context context);
-
-    /**
-     * Diagnose workspace setup issue.
-     *
-     * @param parameters The parameter of diagnosing workspace health.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
-     */
-    DiagnoseResponseResult diagnose(DiagnoseWorkspaceParameters parameters);
 
     /**
      * Diagnose workspace setup issue.
@@ -752,16 +786,6 @@ public interface Workspace {
      * Lists all the keys associated with this workspace. This includes keys for the storage account, app insights and
      * password for container registry.
      *
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
-     */
-    ListWorkspaceKeysResult listKeys();
-
-    /**
-     * Lists all the keys associated with this workspace. This includes keys for the storage account, app insights and
-     * password for container registry.
-     *
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -769,6 +793,16 @@ public interface Workspace {
      * @return the response body along with {@link Response}.
      */
     Response<ListWorkspaceKeysResult> listKeysWithResponse(Context context);
+
+    /**
+     * Lists all the keys associated with this workspace. This includes keys for the storage account, app insights and
+     * password for container registry.
+     *
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response.
+     */
+    ListWorkspaceKeysResult listKeys();
 
     /**
      * Resync all the keys associated with this workspace. This includes keys for the storage account, app insights and
@@ -793,15 +827,6 @@ public interface Workspace {
     /**
      * return notebook access token and refresh token.
      *
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
-     */
-    NotebookAccessTokenResult listNotebookAccessToken();
-
-    /**
-     * return notebook access token and refresh token.
-     *
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -809,6 +834,15 @@ public interface Workspace {
      * @return the response body along with {@link Response}.
      */
     Response<NotebookAccessTokenResult> listNotebookAccessTokenWithResponse(Context context);
+
+    /**
+     * return notebook access token and refresh token.
+     *
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response.
+     */
+    NotebookAccessTokenResult listNotebookAccessToken();
 
     /**
      * Prepare a notebook.
@@ -833,15 +867,6 @@ public interface Workspace {
     /**
      * List storage account keys of a workspace.
      *
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
-     */
-    ListStorageAccountKeysResult listStorageAccountKeys();
-
-    /**
-     * List storage account keys of a workspace.
-     *
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -851,13 +876,13 @@ public interface Workspace {
     Response<ListStorageAccountKeysResult> listStorageAccountKeysWithResponse(Context context);
 
     /**
-     * List keys of a notebook.
+     * List storage account keys of a workspace.
      *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response.
      */
-    ListNotebookKeysResult listNotebookKeys();
+    ListStorageAccountKeysResult listStorageAccountKeys();
 
     /**
      * List keys of a notebook.
@@ -869,4 +894,13 @@ public interface Workspace {
      * @return the response body along with {@link Response}.
      */
     Response<ListNotebookKeysResult> listNotebookKeysWithResponse(Context context);
+
+    /**
+     * List keys of a notebook.
+     *
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response.
+     */
+    ListNotebookKeysResult listNotebookKeys();
 }
