@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for Jobs List. */
 public final class JobsListSamples {
     /*
-     * x-ms-original-file: specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2021-07-01/examples/JobCRUD/ListJobs.json
+     * x-ms-original-file: specification/dataprotection/resource-manager/Microsoft.DataProtection/preview/2022-09-01-preview/examples/JobCRUD/ListJobs.json
      */
     /**
      * Sample code: Get Jobs.

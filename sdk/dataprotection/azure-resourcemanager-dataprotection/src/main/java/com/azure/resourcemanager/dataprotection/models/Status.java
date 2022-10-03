@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for Status. */
+/** Specifies the protection status of the resource. */
 public final class Status extends ExpandableStringEnum<Status> {
     /** Static value ConfiguringProtection for Status. */
     public static final Status CONFIGURING_PROTECTION = fromString("ConfiguringProtection");
@@ -39,7 +39,11 @@ public final class Status extends ExpandableStringEnum<Status> {
         return fromString(name, Status.class);
     }
 
-    /** @return known Status values. */
+    /**
+     * Gets known Status values.
+     *
+     * @return known Status values.
+     */
     public static Collection<Status> values() {
         return values(Status.class);
     }
