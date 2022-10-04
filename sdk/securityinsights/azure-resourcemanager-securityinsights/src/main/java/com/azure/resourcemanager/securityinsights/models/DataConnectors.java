@@ -42,19 +42,6 @@ public interface DataConnectors {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param dataConnectorId Connector ID.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a data connector.
-     */
-    DataConnector get(String resourceGroupName, String workspaceName, String dataConnectorId);
-
-    /**
-     * Gets a data connector.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param dataConnectorId Connector ID.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -65,19 +52,17 @@ public interface DataConnectors {
         String resourceGroupName, String workspaceName, String dataConnectorId, Context context);
 
     /**
-     * Creates or updates the data connector.
+     * Gets a data connector.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param dataConnectorId Connector ID.
-     * @param dataConnector The data connector.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return data connector.
+     * @return a data connector.
      */
-    DataConnector createOrUpdate(
-        String resourceGroupName, String workspaceName, String dataConnectorId, DataConnectorInner dataConnector);
+    DataConnector get(String resourceGroupName, String workspaceName, String dataConnectorId);
 
     /**
      * Creates or updates the data connector.
@@ -100,16 +85,19 @@ public interface DataConnectors {
         Context context);
 
     /**
-     * Delete the data connector.
+     * Creates or updates the data connector.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param dataConnectorId Connector ID.
+     * @param dataConnector The data connector.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return data connector.
      */
-    void delete(String resourceGroupName, String workspaceName, String dataConnectorId);
+    DataConnector createOrUpdate(
+        String resourceGroupName, String workspaceName, String dataConnectorId, DataConnectorInner dataConnector);
 
     /**
      * Delete the data connector.
@@ -127,41 +115,7 @@ public interface DataConnectors {
         String resourceGroupName, String workspaceName, String dataConnectorId, Context context);
 
     /**
-     * Connects a data connector.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param dataConnectorId Connector ID.
-     * @param connectBody The data connector.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    void connect(
-        String resourceGroupName, String workspaceName, String dataConnectorId, DataConnectorConnectBody connectBody);
-
-    /**
-     * Connects a data connector.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param dataConnectorId Connector ID.
-     * @param connectBody The data connector.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
-     */
-    Response<Void> connectWithResponse(
-        String resourceGroupName,
-        String workspaceName,
-        String dataConnectorId,
-        DataConnectorConnectBody connectBody,
-        Context context);
-
-    /**
-     * Disconnect a data connector.
+     * Delete the data connector.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -170,20 +124,5 @@ public interface DataConnectors {
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
-    void disconnect(String resourceGroupName, String workspaceName, String dataConnectorId);
-
-    /**
-     * Disconnect a data connector.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param dataConnectorId Connector ID.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
-     */
-    Response<Void> disconnectWithResponse(
-        String resourceGroupName, String workspaceName, String dataConnectorId, Context context);
+    void delete(String resourceGroupName, String workspaceName, String dataConnectorId);
 }

@@ -13,7 +13,6 @@ import com.azure.resourcemanager.securityinsights.fluent.WatchlistsClient;
 import com.azure.resourcemanager.securityinsights.fluent.models.WatchlistInner;
 import com.azure.resourcemanager.securityinsights.models.Watchlist;
 import com.azure.resourcemanager.securityinsights.models.Watchlists;
-import com.azure.resourcemanager.securityinsights.models.WatchlistsDeleteResponse;
 
 public final class WatchlistsImpl implements Watchlists {
     private static final ClientLogger LOGGER = new ClientLogger(WatchlistsImpl.class);
@@ -41,15 +40,6 @@ public final class WatchlistsImpl implements Watchlists {
         return Utils.mapPage(inner, inner1 -> new WatchlistImpl(inner1, this.manager()));
     }
 
-    public Watchlist get(String resourceGroupName, String workspaceName, String watchlistAlias) {
-        WatchlistInner inner = this.serviceClient().get(resourceGroupName, workspaceName, watchlistAlias);
-        if (inner != null) {
-            return new WatchlistImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
     public Response<Watchlist> getWithResponse(
         String resourceGroupName, String workspaceName, String watchlistAlias, Context context) {
         Response<WatchlistInner> inner =
@@ -65,13 +55,22 @@ public final class WatchlistsImpl implements Watchlists {
         }
     }
 
-    public void delete(String resourceGroupName, String workspaceName, String watchlistAlias) {
-        this.serviceClient().delete(resourceGroupName, workspaceName, watchlistAlias);
+    public Watchlist get(String resourceGroupName, String workspaceName, String watchlistAlias) {
+        WatchlistInner inner = this.serviceClient().get(resourceGroupName, workspaceName, watchlistAlias);
+        if (inner != null) {
+            return new WatchlistImpl(inner, this.manager());
+        } else {
+            return null;
+        }
     }
 
-    public WatchlistsDeleteResponse deleteWithResponse(
+    public Response<Void> deleteWithResponse(
         String resourceGroupName, String workspaceName, String watchlistAlias, Context context) {
         return this.serviceClient().deleteWithResponse(resourceGroupName, workspaceName, watchlistAlias, context);
+    }
+
+    public void delete(String resourceGroupName, String workspaceName, String watchlistAlias) {
+        this.serviceClient().delete(resourceGroupName, workspaceName, watchlistAlias);
     }
 
     public Watchlist getById(String id) {
@@ -152,7 +151,7 @@ public final class WatchlistsImpl implements Watchlists {
         this.deleteWithResponse(resourceGroupName, workspaceName, watchlistAlias, Context.NONE);
     }
 
-    public WatchlistsDeleteResponse deleteByIdWithResponse(String id, Context context) {
+    public Response<Void> deleteByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
             throw LOGGER

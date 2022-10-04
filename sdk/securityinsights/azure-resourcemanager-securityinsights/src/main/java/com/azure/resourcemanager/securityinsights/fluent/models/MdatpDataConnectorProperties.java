@@ -6,17 +6,46 @@ package com.azure.resourcemanager.securityinsights.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.securityinsights.models.AlertsDataTypeOfDataConnector;
-import com.azure.resourcemanager.securityinsights.models.DataConnectorTenantId;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** MDATP (Microsoft Defender Advanced Threat Protection) data connector properties. */
 @Fluent
-public final class MdatpDataConnectorProperties extends DataConnectorTenantId {
+public final class MdatpDataConnectorProperties {
+    /*
+     * The tenant id to connect to, and get the data from.
+     */
+    @JsonProperty(value = "tenantId")
+    private String tenantId;
+
     /*
      * The available data types for the connector.
      */
     @JsonProperty(value = "dataTypes")
     private AlertsDataTypeOfDataConnector dataTypes;
+
+    /** Creates an instance of MdatpDataConnectorProperties class. */
+    public MdatpDataConnectorProperties() {
+    }
+
+    /**
+     * Get the tenantId property: The tenant id to connect to, and get the data from.
+     *
+     * @return the tenantId value.
+     */
+    public String tenantId() {
+        return this.tenantId;
+    }
+
+    /**
+     * Set the tenantId property: The tenant id to connect to, and get the data from.
+     *
+     * @param tenantId the tenantId value to set.
+     * @return the MdatpDataConnectorProperties object itself.
+     */
+    public MdatpDataConnectorProperties withTenantId(String tenantId) {
+        this.tenantId = tenantId;
+        return this;
+    }
 
     /**
      * Get the dataTypes property: The available data types for the connector.
@@ -38,21 +67,12 @@ public final class MdatpDataConnectorProperties extends DataConnectorTenantId {
         return this;
     }
 
-    /** {@inheritDoc} */
-    @Override
-    public MdatpDataConnectorProperties withTenantId(String tenantId) {
-        super.withTenantId(tenantId);
-        return this;
-    }
-
     /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
-    @Override
     public void validate() {
-        super.validate();
         if (dataTypes() != null) {
             dataTypes().validate();
         }

@@ -34,6 +34,10 @@ public final class AlertDetailsOverride {
     @JsonProperty(value = "alertSeverityColumnName")
     private String alertSeverityColumnName;
 
+    /** Creates an instance of AlertDetailsOverride class. */
+    public AlertDetailsOverride() {
+    }
+
     /**
      * Get the alertDisplayNameFormat property: the format containing columns name(s) to override the alert name.
      *
