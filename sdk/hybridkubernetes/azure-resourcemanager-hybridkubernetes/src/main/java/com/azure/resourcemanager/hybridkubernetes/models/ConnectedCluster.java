@@ -114,6 +114,13 @@ public interface ConnectedCluster {
     String distribution();
 
     /**
+     * Gets the distributionVersion property: The Kubernetes distribution version on this connected cluster.
+     *
+     * @return the distributionVersion value.
+     */
+    String distributionVersion();
+
+    /**
      * Gets the infrastructure property: The infrastructure on which the Kubernetes cluster represented by this
      * connected cluster is running on.
      *
@@ -151,6 +158,36 @@ public interface ConnectedCluster {
     ConnectivityStatus connectivityStatus();
 
     /**
+     * Gets the privateLinkState property: Property which describes the state of private link on a connected cluster
+     * resource.
+     *
+     * @return the privateLinkState value.
+     */
+    PrivateLinkState privateLinkState();
+
+    /**
+     * Gets the privateLinkScopeResourceId property: The resource id of the private link scope this connected cluster is
+     * assigned to, if any.
+     *
+     * @return the privateLinkScopeResourceId value.
+     */
+    String privateLinkScopeResourceId();
+
+    /**
+     * Gets the azureHybridBenefit property: Indicates whether Azure Hybrid Benefit is opted in.
+     *
+     * @return the azureHybridBenefit value.
+     */
+    AzureHybridBenefit azureHybridBenefit();
+
+    /**
+     * Gets the miscellaneousProperties property: More properties related to the Connected Cluster.
+     *
+     * @return the miscellaneousProperties value.
+     */
+    Map<String, String> miscellaneousProperties();
+
+    /**
      * Gets the region of the resource.
      *
      * @return the region of the resource.
@@ -163,6 +200,13 @@ public interface ConnectedCluster {
      * @return the name of the resource region.
      */
     String regionName();
+
+    /**
+     * Gets the name of the resource group.
+     *
+     * @return the name of the resource group.
+     */
+    String resourceGroupName();
 
     /**
      * Gets the inner com.azure.resourcemanager.hybridkubernetes.fluent.models.ConnectedClusterInner object.
@@ -243,7 +287,11 @@ public interface ConnectedCluster {
             extends DefinitionStages.WithTags,
                 DefinitionStages.WithProvisioningState,
                 DefinitionStages.WithDistribution,
-                DefinitionStages.WithInfrastructure {
+                DefinitionStages.WithDistributionVersion,
+                DefinitionStages.WithInfrastructure,
+                DefinitionStages.WithPrivateLinkState,
+                DefinitionStages.WithPrivateLinkScopeResourceId,
+                DefinitionStages.WithAzureHybridBenefit {
             /**
              * Executes the create request.
              *
@@ -289,6 +337,17 @@ public interface ConnectedCluster {
              */
             WithCreate withDistribution(String distribution);
         }
+        /** The stage of the ConnectedCluster definition allowing to specify distributionVersion. */
+        interface WithDistributionVersion {
+            /**
+             * Specifies the distributionVersion property: The Kubernetes distribution version on this connected
+             * cluster..
+             *
+             * @param distributionVersion The Kubernetes distribution version on this connected cluster.
+             * @return the next definition stage.
+             */
+            WithCreate withDistributionVersion(String distributionVersion);
+        }
         /** The stage of the ConnectedCluster definition allowing to specify infrastructure. */
         interface WithInfrastructure {
             /**
@@ -301,6 +360,40 @@ public interface ConnectedCluster {
              */
             WithCreate withInfrastructure(String infrastructure);
         }
+        /** The stage of the ConnectedCluster definition allowing to specify privateLinkState. */
+        interface WithPrivateLinkState {
+            /**
+             * Specifies the privateLinkState property: Property which describes the state of private link on a
+             * connected cluster resource..
+             *
+             * @param privateLinkState Property which describes the state of private link on a connected cluster
+             *     resource.
+             * @return the next definition stage.
+             */
+            WithCreate withPrivateLinkState(PrivateLinkState privateLinkState);
+        }
+        /** The stage of the ConnectedCluster definition allowing to specify privateLinkScopeResourceId. */
+        interface WithPrivateLinkScopeResourceId {
+            /**
+             * Specifies the privateLinkScopeResourceId property: The resource id of the private link scope this
+             * connected cluster is assigned to, if any..
+             *
+             * @param privateLinkScopeResourceId The resource id of the private link scope this connected cluster is
+             *     assigned to, if any.
+             * @return the next definition stage.
+             */
+            WithCreate withPrivateLinkScopeResourceId(String privateLinkScopeResourceId);
+        }
+        /** The stage of the ConnectedCluster definition allowing to specify azureHybridBenefit. */
+        interface WithAzureHybridBenefit {
+            /**
+             * Specifies the azureHybridBenefit property: Indicates whether Azure Hybrid Benefit is opted in.
+             *
+             * @param azureHybridBenefit Indicates whether Azure Hybrid Benefit is opted in.
+             * @return the next definition stage.
+             */
+            WithCreate withAzureHybridBenefit(AzureHybridBenefit azureHybridBenefit);
+        }
     }
     /**
      * Begins update for the ConnectedCluster resource.
@@ -310,7 +403,11 @@ public interface ConnectedCluster {
     ConnectedCluster.Update update();
 
     /** The template for ConnectedCluster update. */
-    interface Update extends UpdateStages.WithTags, UpdateStages.WithProperties {
+    interface Update
+        extends UpdateStages.WithTags,
+            UpdateStages.WithDistribution,
+            UpdateStages.WithDistributionVersion,
+            UpdateStages.WithAzureHybridBenefit {
         /**
          * Executes the update request.
          *
@@ -338,17 +435,36 @@ public interface ConnectedCluster {
              */
             Update withTags(Map<String, String> tags);
         }
-        /** The stage of the ConnectedCluster update allowing to specify properties. */
-        interface WithProperties {
+        /** The stage of the ConnectedCluster update allowing to specify distribution. */
+        interface WithDistribution {
             /**
-             * Specifies the properties property: Describes the connected cluster resource properties that can be
-             * updated during PATCH operation..
+             * Specifies the distribution property: Represents the distribution of the connected cluster.
              *
-             * @param properties Describes the connected cluster resource properties that can be updated during PATCH
-             *     operation.
+             * @param distribution Represents the distribution of the connected cluster.
              * @return the next definition stage.
              */
-            Update withProperties(Object properties);
+            Update withDistribution(String distribution);
+        }
+        /** The stage of the ConnectedCluster update allowing to specify distributionVersion. */
+        interface WithDistributionVersion {
+            /**
+             * Specifies the distributionVersion property: Represents the Kubernetes distribution version on this
+             * connected cluster..
+             *
+             * @param distributionVersion Represents the Kubernetes distribution version on this connected cluster.
+             * @return the next definition stage.
+             */
+            Update withDistributionVersion(String distributionVersion);
+        }
+        /** The stage of the ConnectedCluster update allowing to specify azureHybridBenefit. */
+        interface WithAzureHybridBenefit {
+            /**
+             * Specifies the azureHybridBenefit property: Indicates whether Azure Hybrid Benefit is opted in.
+             *
+             * @param azureHybridBenefit Indicates whether Azure Hybrid Benefit is opted in.
+             * @return the next definition stage.
+             */
+            Update withAzureHybridBenefit(AzureHybridBenefit azureHybridBenefit);
         }
     }
     /**
@@ -367,7 +483,25 @@ public interface ConnectedCluster {
     ConnectedCluster refresh(Context context);
 
     /**
-     * Gets cluster user credentials of the connected cluster with a specified resource group and name.
+     * Gets cluster user credentials of a connected cluster
+     *
+     * <p>Gets cluster user credentials of the connected cluster with a specified resource group and name.
+     *
+     * @param properties ListClusterUserCredential properties.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return cluster user credentials of the connected cluster with a specified resource group and name along with
+     *     {@link Response}.
+     */
+    Response<CredentialResults> listClusterUserCredentialWithResponse(
+        ListClusterUserCredentialProperties properties, Context context);
+
+    /**
+     * Gets cluster user credentials of a connected cluster
+     *
+     * <p>Gets cluster user credentials of the connected cluster with a specified resource group and name.
      *
      * @param properties ListClusterUserCredential properties.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -376,17 +510,4 @@ public interface ConnectedCluster {
      * @return cluster user credentials of the connected cluster with a specified resource group and name.
      */
     CredentialResults listClusterUserCredential(ListClusterUserCredentialProperties properties);
-
-    /**
-     * Gets cluster user credentials of the connected cluster with a specified resource group and name.
-     *
-     * @param properties ListClusterUserCredential properties.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return cluster user credentials of the connected cluster with a specified resource group and name.
-     */
-    Response<CredentialResults> listClusterUserCredentialWithResponse(
-        ListClusterUserCredentialProperties properties, Context context);
 }

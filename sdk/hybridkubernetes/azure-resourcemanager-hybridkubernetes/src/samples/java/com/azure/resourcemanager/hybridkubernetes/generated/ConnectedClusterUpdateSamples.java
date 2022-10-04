@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.hybridkubernetes.generated;
 
 import com.azure.core.util.Context;
+import com.azure.resourcemanager.hybridkubernetes.models.AzureHybridBenefit;
 import com.azure.resourcemanager.hybridkubernetes.models.ConnectedCluster;
 import java.util.HashMap;
 import java.util.Map;
@@ -12,7 +13,7 @@ import java.util.Map;
 /** Samples for ConnectedCluster Update. */
 public final class ConnectedClusterUpdateSamples {
     /*
-     * x-ms-original-file: specification/hybridkubernetes/resource-manager/Microsoft.Kubernetes/stable/2021-10-01/examples/UpdateClusterExample.json
+     * x-ms-original-file: specification/hybridkubernetes/resource-manager/Microsoft.Kubernetes/preview/2022-10-01-preview/examples/UpdateClusterExample.json
      */
     /**
      * Sample code: UpdateClusterExample.
@@ -26,7 +27,13 @@ public final class ConnectedClusterUpdateSamples {
                 .connectedClusters()
                 .getByResourceGroupWithResponse("k8sc-rg", "testCluster", Context.NONE)
                 .getValue();
-        resource.update().withTags(mapOf("tag1", "value1", "tag2", "value2")).apply();
+        resource
+            .update()
+            .withTags(mapOf("tag1", "value1", "tag2", "value2"))
+            .withDistribution("AKS")
+            .withDistributionVersion("1.0")
+            .withAzureHybridBenefit(AzureHybridBenefit.NOT_APPLICABLE)
+            .apply();
     }
 
     @SuppressWarnings("unchecked")

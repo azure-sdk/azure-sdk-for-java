@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for ConnectedCluster List. */
 public final class ConnectedClusterListSamples {
     /*
-     * x-ms-original-file: specification/hybridkubernetes/resource-manager/Microsoft.Kubernetes/stable/2021-10-01/examples/GetClustersBySubscriptionExample.json
+     * x-ms-original-file: specification/hybridkubernetes/resource-manager/Microsoft.Kubernetes/preview/2022-10-01-preview/examples/GetClustersBySubscriptionExample.json
      */
     /**
      * Sample code: GetClustersExample.

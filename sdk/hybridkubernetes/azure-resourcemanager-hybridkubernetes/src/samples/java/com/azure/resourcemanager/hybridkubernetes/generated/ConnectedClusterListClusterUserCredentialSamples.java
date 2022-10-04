@@ -11,7 +11,7 @@ import com.azure.resourcemanager.hybridkubernetes.models.ListClusterUserCredenti
 /** Samples for ConnectedCluster ListClusterUserCredential. */
 public final class ConnectedClusterListClusterUserCredentialSamples {
     /*
-     * x-ms-original-file: specification/hybridkubernetes/resource-manager/Microsoft.Kubernetes/stable/2021-10-01/examples/ConnectedClustersListClusterCredentialResultCSPAAD.json
+     * x-ms-original-file: specification/hybridkubernetes/resource-manager/Microsoft.Kubernetes/preview/2022-10-01-preview/examples/ConnectedClustersListClusterCredentialResultCSPAAD.json
      */
     /**
      * Sample code: ListClusterUserCredentialExample.
@@ -32,7 +32,7 @@ public final class ConnectedClusterListClusterUserCredentialSamples {
     }
 
     /*
-     * x-ms-original-file: specification/hybridkubernetes/resource-manager/Microsoft.Kubernetes/stable/2021-10-01/examples/ConnectedClustersListClusterCredentialResultHPAAD.json
+     * x-ms-original-file: specification/hybridkubernetes/resource-manager/Microsoft.Kubernetes/preview/2022-10-01-preview/examples/ConnectedClustersListClusterCredentialResultHPAAD.json
      */
     /**
      * Sample code: ListClusterUserCredentialCSPExample.
@@ -53,7 +53,7 @@ public final class ConnectedClusterListClusterUserCredentialSamples {
     }
 
     /*
-     * x-ms-original-file: specification/hybridkubernetes/resource-manager/Microsoft.Kubernetes/stable/2021-10-01/examples/ConnectedClustersListClusterCredentialResultCSPToken.json
+     * x-ms-original-file: specification/hybridkubernetes/resource-manager/Microsoft.Kubernetes/preview/2022-10-01-preview/examples/ConnectedClustersListClusterCredentialResultCSPToken.json
      */
     /**
      * Sample code: ListClusterUserCredentialNonAadExample.
@@ -74,7 +74,7 @@ public final class ConnectedClusterListClusterUserCredentialSamples {
     }
 
     /*
-     * x-ms-original-file: specification/hybridkubernetes/resource-manager/Microsoft.Kubernetes/stable/2021-10-01/examples/ConnectedClustersListClusterCredentialResultHPToken.json
+     * x-ms-original-file: specification/hybridkubernetes/resource-manager/Microsoft.Kubernetes/preview/2022-10-01-preview/examples/ConnectedClustersListClusterCredentialResultHPToken.json
      */
     /**
      * Sample code: ListClusterUserCredentialNonAadCSPExample.

@@ -9,12 +9,14 @@ import com.azure.core.management.Region;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.hybridkubernetes.fluent.models.ConnectedClusterInner;
+import com.azure.resourcemanager.hybridkubernetes.models.AzureHybridBenefit;
 import com.azure.resourcemanager.hybridkubernetes.models.ConnectedCluster;
 import com.azure.resourcemanager.hybridkubernetes.models.ConnectedClusterIdentity;
 import com.azure.resourcemanager.hybridkubernetes.models.ConnectedClusterPatch;
 import com.azure.resourcemanager.hybridkubernetes.models.ConnectivityStatus;
 import com.azure.resourcemanager.hybridkubernetes.models.CredentialResults;
 import com.azure.resourcemanager.hybridkubernetes.models.ListClusterUserCredentialProperties;
+import com.azure.resourcemanager.hybridkubernetes.models.PrivateLinkState;
 import com.azure.resourcemanager.hybridkubernetes.models.ProvisioningState;
 import java.time.OffsetDateTime;
 import java.util.Collections;
@@ -87,6 +89,10 @@ public final class ConnectedClusterImpl
         return this.innerModel().distribution();
     }
 
+    public String distributionVersion() {
+        return this.innerModel().distributionVersion();
+    }
+
     public String infrastructure() {
         return this.innerModel().infrastructure();
     }
@@ -107,12 +113,37 @@ public final class ConnectedClusterImpl
         return this.innerModel().connectivityStatus();
     }
 
+    public PrivateLinkState privateLinkState() {
+        return this.innerModel().privateLinkState();
+    }
+
+    public String privateLinkScopeResourceId() {
+        return this.innerModel().privateLinkScopeResourceId();
+    }
+
+    public AzureHybridBenefit azureHybridBenefit() {
+        return this.innerModel().azureHybridBenefit();
+    }
+
+    public Map<String, String> miscellaneousProperties() {
+        Map<String, String> inner = this.innerModel().miscellaneousProperties();
+        if (inner != null) {
+            return Collections.unmodifiableMap(inner);
+        } else {
+            return Collections.emptyMap();
+        }
+    }
+
     public Region region() {
         return Region.fromName(this.regionName());
     }
 
     public String regionName() {
         return this.location();
+    }
+
+    public String resourceGroupName() {
+        return resourceGroupName;
     }
 
     public ConnectedClusterInner innerModel() {
@@ -213,15 +244,15 @@ public final class ConnectedClusterImpl
         return this;
     }
 
-    public CredentialResults listClusterUserCredential(ListClusterUserCredentialProperties properties) {
-        return serviceManager.connectedClusters().listClusterUserCredential(resourceGroupName, clusterName, properties);
-    }
-
     public Response<CredentialResults> listClusterUserCredentialWithResponse(
         ListClusterUserCredentialProperties properties, Context context) {
         return serviceManager
             .connectedClusters()
             .listClusterUserCredentialWithResponse(resourceGroupName, clusterName, properties, context);
+    }
+
+    public CredentialResults listClusterUserCredential(ListClusterUserCredentialProperties properties) {
+        return serviceManager.connectedClusters().listClusterUserCredential(resourceGroupName, clusterName, properties);
     }
 
     public ConnectedClusterImpl withRegion(Region location) {
@@ -260,8 +291,23 @@ public final class ConnectedClusterImpl
     }
 
     public ConnectedClusterImpl withDistribution(String distribution) {
-        this.innerModel().withDistribution(distribution);
-        return this;
+        if (isInCreateMode()) {
+            this.innerModel().withDistribution(distribution);
+            return this;
+        } else {
+            this.updateConnectedClusterPatch.withDistribution(distribution);
+            return this;
+        }
+    }
+
+    public ConnectedClusterImpl withDistributionVersion(String distributionVersion) {
+        if (isInCreateMode()) {
+            this.innerModel().withDistributionVersion(distributionVersion);
+            return this;
+        } else {
+            this.updateConnectedClusterPatch.withDistributionVersion(distributionVersion);
+            return this;
+        }
     }
 
     public ConnectedClusterImpl withInfrastructure(String infrastructure) {
@@ -269,9 +315,24 @@ public final class ConnectedClusterImpl
         return this;
     }
 
-    public ConnectedClusterImpl withProperties(Object properties) {
-        this.updateConnectedClusterPatch.withProperties(properties);
+    public ConnectedClusterImpl withPrivateLinkState(PrivateLinkState privateLinkState) {
+        this.innerModel().withPrivateLinkState(privateLinkState);
         return this;
+    }
+
+    public ConnectedClusterImpl withPrivateLinkScopeResourceId(String privateLinkScopeResourceId) {
+        this.innerModel().withPrivateLinkScopeResourceId(privateLinkScopeResourceId);
+        return this;
+    }
+
+    public ConnectedClusterImpl withAzureHybridBenefit(AzureHybridBenefit azureHybridBenefit) {
+        if (isInCreateMode()) {
+            this.innerModel().withAzureHybridBenefit(azureHybridBenefit);
+            return this;
+        } else {
+            this.updateConnectedClusterPatch.withAzureHybridBenefit(azureHybridBenefit);
+            return this;
+        }
     }
 
     private boolean isInCreateMode() {

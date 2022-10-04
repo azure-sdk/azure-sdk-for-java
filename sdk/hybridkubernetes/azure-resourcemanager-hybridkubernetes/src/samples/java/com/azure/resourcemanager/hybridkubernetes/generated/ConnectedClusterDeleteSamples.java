@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for ConnectedCluster Delete. */
 public final class ConnectedClusterDeleteSamples {
     /*
-     * x-ms-original-file: specification/hybridkubernetes/resource-manager/Microsoft.Kubernetes/stable/2021-10-01/examples/DeleteClusterExample.json
+     * x-ms-original-file: specification/hybridkubernetes/resource-manager/Microsoft.Kubernetes/preview/2022-10-01-preview/examples/DeleteClusterExample.json
      */
     /**
      * Sample code: DeleteClusterExample.

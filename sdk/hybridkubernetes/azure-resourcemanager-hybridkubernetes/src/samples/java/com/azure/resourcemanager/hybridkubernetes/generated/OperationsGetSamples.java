@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for Operations Get. */
 public final class OperationsGetSamples {
     /*
-     * x-ms-original-file: specification/hybridkubernetes/resource-manager/Microsoft.Kubernetes/stable/2021-10-01/examples/ListConnectedClusterOperationsExample.json
+     * x-ms-original-file: specification/hybridkubernetes/resource-manager/Microsoft.Kubernetes/preview/2022-10-01-preview/examples/ListConnectedClusterOperationsExample.json
      */
     /**
      * Sample code: ListConnectedClusterOperationsExample.
