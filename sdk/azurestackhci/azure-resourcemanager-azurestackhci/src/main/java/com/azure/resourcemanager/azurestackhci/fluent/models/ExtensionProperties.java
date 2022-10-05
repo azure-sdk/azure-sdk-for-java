@@ -38,6 +38,10 @@ public final class ExtensionProperties {
     @JsonProperty(value = "perNodeExtensionDetails", access = JsonProperty.Access.WRITE_ONLY)
     private List<PerNodeExtensionState> perNodeExtensionDetails;
 
+    /** Creates an instance of ExtensionProperties class. */
+    public ExtensionProperties() {
+    }
+
     /**
      * Get the provisioningState property: Provisioning state of the Extension proxy resource.
      *
