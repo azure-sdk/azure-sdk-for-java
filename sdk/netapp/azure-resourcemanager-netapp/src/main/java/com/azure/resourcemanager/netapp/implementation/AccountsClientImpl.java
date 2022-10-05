@@ -640,23 +640,6 @@ public final class AccountsClientImpl implements AccountsClient {
      *
      * @param resourceGroupName The name of the resource group.
      * @param accountName The name of the NetApp account.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the NetApp account.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public NetAppAccountInner getByResourceGroup(String resourceGroupName, String accountName) {
-        return getByResourceGroupAsync(resourceGroupName, accountName).block();
-    }
-
-    /**
-     * Describe a NetApp Account
-     *
-     * <p>Get the NetApp account.
-     *
-     * @param resourceGroupName The name of the resource group.
-     * @param accountName The name of the NetApp account.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -667,6 +650,23 @@ public final class AccountsClientImpl implements AccountsClient {
     public Response<NetAppAccountInner> getByResourceGroupWithResponse(
         String resourceGroupName, String accountName, Context context) {
         return getByResourceGroupWithResponseAsync(resourceGroupName, accountName, context).block();
+    }
+
+    /**
+     * Describe a NetApp Account
+     *
+     * <p>Get the NetApp account.
+     *
+     * @param resourceGroupName The name of the resource group.
+     * @param accountName The name of the NetApp account.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the NetApp account.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public NetAppAccountInner getByResourceGroup(String resourceGroupName, String accountName) {
+        return getByResourceGroupWithResponse(resourceGroupName, accountName, Context.NONE).getValue();
     }
 
     /**

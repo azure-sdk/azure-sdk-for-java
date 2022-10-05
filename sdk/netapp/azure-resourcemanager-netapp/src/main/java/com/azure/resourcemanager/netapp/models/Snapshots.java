@@ -54,23 +54,6 @@ public interface Snapshots {
      * @param poolName The name of the capacity pool.
      * @param volumeName The name of the volume.
      * @param snapshotName The name of the snapshot.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return details of the specified snapshot.
-     */
-    Snapshot get(String resourceGroupName, String accountName, String poolName, String volumeName, String snapshotName);
-
-    /**
-     * Describe a snapshot
-     *
-     * <p>Get details of the specified snapshot.
-     *
-     * @param resourceGroupName The name of the resource group.
-     * @param accountName The name of the NetApp account.
-     * @param poolName The name of the capacity pool.
-     * @param volumeName The name of the volume.
-     * @param snapshotName The name of the snapshot.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -84,6 +67,23 @@ public interface Snapshots {
         String volumeName,
         String snapshotName,
         Context context);
+
+    /**
+     * Describe a snapshot
+     *
+     * <p>Get details of the specified snapshot.
+     *
+     * @param resourceGroupName The name of the resource group.
+     * @param accountName The name of the NetApp account.
+     * @param poolName The name of the capacity pool.
+     * @param volumeName The name of the volume.
+     * @param snapshotName The name of the snapshot.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return details of the specified snapshot.
+     */
+    Snapshot get(String resourceGroupName, String accountName, String poolName, String volumeName, String snapshotName);
 
     /**
      * Update a snapshot
