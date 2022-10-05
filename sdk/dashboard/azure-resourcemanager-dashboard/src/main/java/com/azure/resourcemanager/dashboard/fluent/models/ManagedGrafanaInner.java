@@ -40,6 +40,10 @@ public final class ManagedGrafanaInner extends Resource {
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
+    /** Creates an instance of ManagedGrafanaInner class. */
+    public ManagedGrafanaInner() {
+    }
+
     /**
      * Get the sku property: The Sku of the grafana resource.
      *
