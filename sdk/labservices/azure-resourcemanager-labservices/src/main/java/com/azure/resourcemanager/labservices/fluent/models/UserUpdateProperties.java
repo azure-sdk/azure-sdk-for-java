@@ -17,6 +17,10 @@ public class UserUpdateProperties {
     @JsonProperty(value = "additionalUsageQuota")
     private Duration additionalUsageQuota;
 
+    /** Creates an instance of UserUpdateProperties class. */
+    public UserUpdateProperties() {
+    }
+
     /**
      * Get the additionalUsageQuota property: The amount of usage quota time the user gets in addition to the lab usage
      * quota.

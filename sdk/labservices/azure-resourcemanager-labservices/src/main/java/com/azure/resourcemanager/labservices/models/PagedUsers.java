@@ -24,6 +24,10 @@ public final class PagedUsers {
     @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
     private String nextLink;
 
+    /** Creates an instance of PagedUsers class. */
+    public PagedUsers() {
+    }
+
     /**
      * Get the value property: The array page of user results.
      *

@@ -172,22 +172,6 @@ public final class OperationResultsClientImpl implements OperationResultsClient 
      * <p>Returns an azure operation result.
      *
      * @param operationResultId The operation result ID / name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a long running operation result.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public OperationResultInner get(String operationResultId) {
-        return getAsync(operationResultId).block();
-    }
-
-    /**
-     * Get an azure operation result.
-     *
-     * <p>Returns an azure operation result.
-     *
-     * @param operationResultId The operation result ID / name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -197,5 +181,21 @@ public final class OperationResultsClientImpl implements OperationResultsClient 
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<OperationResultInner> getWithResponse(String operationResultId, Context context) {
         return getWithResponseAsync(operationResultId, context).block();
+    }
+
+    /**
+     * Get an azure operation result.
+     *
+     * <p>Returns an azure operation result.
+     *
+     * @param operationResultId The operation result ID / name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a long running operation result.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public OperationResultInner get(String operationResultId) {
+        return getWithResponse(operationResultId, Context.NONE).getValue();
     }
 }

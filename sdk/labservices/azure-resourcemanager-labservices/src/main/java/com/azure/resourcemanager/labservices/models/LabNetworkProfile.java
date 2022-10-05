@@ -28,6 +28,10 @@ public final class LabNetworkProfile {
     @JsonProperty(value = "publicIpId")
     private String publicIpId;
 
+    /** Creates an instance of LabNetworkProfile class. */
+    public LabNetworkProfile() {
+    }
+
     /**
      * Get the subnetId property: The external subnet resource id.
      *

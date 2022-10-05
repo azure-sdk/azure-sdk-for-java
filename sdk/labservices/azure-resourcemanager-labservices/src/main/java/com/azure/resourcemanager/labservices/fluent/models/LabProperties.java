@@ -37,6 +37,10 @@ public final class LabProperties extends LabUpdateProperties {
     @JsonProperty(value = "state", access = JsonProperty.Access.WRITE_ONLY)
     private LabState state;
 
+    /** Creates an instance of LabProperties class. */
+    public LabProperties() {
+    }
+
     /**
      * Get the provisioningState property: Current provisioning state of the lab.
      *

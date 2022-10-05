@@ -44,6 +44,10 @@ public final class VirtualMachineProperties {
     @JsonProperty(value = "vmType", access = JsonProperty.Access.WRITE_ONLY)
     private VirtualMachineType vmType;
 
+    /** Creates an instance of VirtualMachineProperties class. */
+    public VirtualMachineProperties() {
+    }
+
     /**
      * Get the provisioningState property: Current provisioning state of the virtual machine.
      *

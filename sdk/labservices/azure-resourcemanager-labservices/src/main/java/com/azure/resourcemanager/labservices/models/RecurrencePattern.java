@@ -38,6 +38,10 @@ public final class RecurrencePattern {
     @JsonProperty(value = "expirationDate", required = true)
     private OffsetDateTime expirationDate;
 
+    /** Creates an instance of RecurrencePattern class. */
+    public RecurrencePattern() {
+    }
+
     /**
      * Get the frequency property: The frequency of the recurrence.
      *
