@@ -159,6 +159,10 @@ public final class VirtualMachineProperties {
     @JsonProperty(value = "vmId", access = JsonProperty.Access.WRITE_ONLY)
     private String vmId;
 
+    /** Creates an instance of VirtualMachineProperties class. */
+    public VirtualMachineProperties() {
+    }
+
     /**
      * Get the resourcePoolId property: Gets or sets the ARM Id of the resourcePool resource on which this virtual
      * machine will deploy.

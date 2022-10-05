@@ -266,27 +266,6 @@ public final class InventoryItemsClientImpl implements InventoryItemsClient {
      * @param resourceGroupName The Resource Group Name.
      * @param vcenterName Name of the vCenter.
      * @param inventoryItemName Name of the inventoryItem.
-     * @param body Request payload.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return defines the inventory item on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<InventoryItemInner> createAsync(
-        String resourceGroupName, String vcenterName, String inventoryItemName, InventoryItemInner body) {
-        return createWithResponseAsync(resourceGroupName, vcenterName, inventoryItemName, body)
-            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
-    }
-
-    /**
-     * Implements InventoryItem PUT method.
-     *
-     * <p>Create Or Update InventoryItem.
-     *
-     * @param resourceGroupName The Resource Group Name.
-     * @param vcenterName Name of the vCenter.
-     * @param inventoryItemName Name of the inventoryItem.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -298,25 +277,6 @@ public final class InventoryItemsClientImpl implements InventoryItemsClient {
         final InventoryItemInner body = null;
         return createWithResponseAsync(resourceGroupName, vcenterName, inventoryItemName, body)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
-    }
-
-    /**
-     * Implements InventoryItem PUT method.
-     *
-     * <p>Create Or Update InventoryItem.
-     *
-     * @param resourceGroupName The Resource Group Name.
-     * @param vcenterName Name of the vCenter.
-     * @param inventoryItemName Name of the inventoryItem.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return defines the inventory item.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public InventoryItemInner create(String resourceGroupName, String vcenterName, String inventoryItemName) {
-        final InventoryItemInner body = null;
-        return createAsync(resourceGroupName, vcenterName, inventoryItemName, body).block();
     }
 
     /**
@@ -342,6 +302,25 @@ public final class InventoryItemsClientImpl implements InventoryItemsClient {
         InventoryItemInner body,
         Context context) {
         return createWithResponseAsync(resourceGroupName, vcenterName, inventoryItemName, body, context).block();
+    }
+
+    /**
+     * Implements InventoryItem PUT method.
+     *
+     * <p>Create Or Update InventoryItem.
+     *
+     * @param resourceGroupName The Resource Group Name.
+     * @param vcenterName Name of the vCenter.
+     * @param inventoryItemName Name of the inventoryItem.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return defines the inventory item.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public InventoryItemInner create(String resourceGroupName, String vcenterName, String inventoryItemName) {
+        final InventoryItemInner body = null;
+        return createWithResponse(resourceGroupName, vcenterName, inventoryItemName, body, Context.NONE).getValue();
     }
 
     /**
@@ -481,24 +460,6 @@ public final class InventoryItemsClientImpl implements InventoryItemsClient {
      * @param resourceGroupName The Resource Group Name.
      * @param vcenterName Name of the vCenter.
      * @param inventoryItemName Name of the inventoryItem.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return defines the inventory item.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public InventoryItemInner get(String resourceGroupName, String vcenterName, String inventoryItemName) {
-        return getAsync(resourceGroupName, vcenterName, inventoryItemName).block();
-    }
-
-    /**
-     * Gets InventoryItem.
-     *
-     * <p>Implements InventoryItem GET method.
-     *
-     * @param resourceGroupName The Resource Group Name.
-     * @param vcenterName Name of the vCenter.
-     * @param inventoryItemName Name of the inventoryItem.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -509,6 +470,24 @@ public final class InventoryItemsClientImpl implements InventoryItemsClient {
     public Response<InventoryItemInner> getWithResponse(
         String resourceGroupName, String vcenterName, String inventoryItemName, Context context) {
         return getWithResponseAsync(resourceGroupName, vcenterName, inventoryItemName, context).block();
+    }
+
+    /**
+     * Gets InventoryItem.
+     *
+     * <p>Implements InventoryItem GET method.
+     *
+     * @param resourceGroupName The Resource Group Name.
+     * @param vcenterName Name of the vCenter.
+     * @param inventoryItemName Name of the inventoryItem.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return defines the inventory item.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public InventoryItemInner get(String resourceGroupName, String vcenterName, String inventoryItemName) {
+        return getWithResponse(resourceGroupName, vcenterName, inventoryItemName, Context.NONE).getValue();
     }
 
     /**
@@ -648,23 +627,6 @@ public final class InventoryItemsClientImpl implements InventoryItemsClient {
      * @param resourceGroupName The Resource Group Name.
      * @param vcenterName Name of the vCenter.
      * @param inventoryItemName Name of the inventoryItem.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public void delete(String resourceGroupName, String vcenterName, String inventoryItemName) {
-        deleteAsync(resourceGroupName, vcenterName, inventoryItemName).block();
-    }
-
-    /**
-     * Deletes an inventoryItem.
-     *
-     * <p>Implements inventoryItem DELETE method.
-     *
-     * @param resourceGroupName The Resource Group Name.
-     * @param vcenterName Name of the vCenter.
-     * @param inventoryItemName Name of the inventoryItem.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -675,6 +637,23 @@ public final class InventoryItemsClientImpl implements InventoryItemsClient {
     public Response<Void> deleteWithResponse(
         String resourceGroupName, String vcenterName, String inventoryItemName, Context context) {
         return deleteWithResponseAsync(resourceGroupName, vcenterName, inventoryItemName, context).block();
+    }
+
+    /**
+     * Deletes an inventoryItem.
+     *
+     * <p>Implements inventoryItem DELETE method.
+     *
+     * @param resourceGroupName The Resource Group Name.
+     * @param vcenterName Name of the vCenter.
+     * @param inventoryItemName Name of the inventoryItem.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public void delete(String resourceGroupName, String vcenterName, String inventoryItemName) {
+        deleteWithResponse(resourceGroupName, vcenterName, inventoryItemName, Context.NONE);
     }
 
     /**
@@ -872,7 +851,8 @@ public final class InventoryItemsClientImpl implements InventoryItemsClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -907,7 +887,8 @@ public final class InventoryItemsClientImpl implements InventoryItemsClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.

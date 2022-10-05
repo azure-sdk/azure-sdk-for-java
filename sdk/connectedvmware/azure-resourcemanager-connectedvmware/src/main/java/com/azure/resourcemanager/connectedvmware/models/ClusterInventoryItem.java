@@ -14,6 +14,10 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @JsonTypeName("Cluster")
 @Fluent
 public final class ClusterInventoryItem extends InventoryItemProperties {
+    /** Creates an instance of ClusterInventoryItem class. */
+    public ClusterInventoryItem() {
+    }
+
     /** {@inheritDoc} */
     @Override
     public ClusterInventoryItem withManagedResourceId(String managedResourceId) {

@@ -940,6 +940,33 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
      *
      * @param resourceGroupName The Resource Group Name.
      * @param virtualMachineName Name of the virtual machine resource.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of define the virtualMachine.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<VirtualMachineInner>, VirtualMachineInner> beginCreateAsync(
+        String resourceGroupName, String virtualMachineName) {
+        final VirtualMachineInner body = null;
+        Mono<Response<Flux<ByteBuffer>>> mono = createWithResponseAsync(resourceGroupName, virtualMachineName, body);
+        return this
+            .client
+            .<VirtualMachineInner, VirtualMachineInner>getLroResult(
+                mono,
+                this.client.getHttpPipeline(),
+                VirtualMachineInner.class,
+                VirtualMachineInner.class,
+                this.client.getContext());
+    }
+
+    /**
+     * Implements virtual machine PUT method.
+     *
+     * <p>Create Or Update virtual machine.
+     *
+     * @param resourceGroupName The Resource Group Name.
+     * @param virtualMachineName Name of the virtual machine resource.
      * @param body Request payload.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -966,7 +993,6 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
      *
      * @param resourceGroupName The Resource Group Name.
      * @param virtualMachineName Name of the virtual machine resource.
-     * @param body Request payload.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -974,7 +1000,8 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<VirtualMachineInner>, VirtualMachineInner> beginCreate(
-        String resourceGroupName, String virtualMachineName, VirtualMachineInner body) {
+        String resourceGroupName, String virtualMachineName) {
+        final VirtualMachineInner body = null;
         return beginCreateAsync(resourceGroupName, virtualMachineName, body).getSyncPoller();
     }
 
@@ -1059,24 +1086,6 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
         return beginCreateAsync(resourceGroupName, virtualMachineName, body, context)
             .last()
             .flatMap(this.client::getLroFinalResultOrError);
-    }
-
-    /**
-     * Implements virtual machine PUT method.
-     *
-     * <p>Create Or Update virtual machine.
-     *
-     * @param resourceGroupName The Resource Group Name.
-     * @param virtualMachineName Name of the virtual machine resource.
-     * @param body Request payload.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return define the virtualMachine.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public VirtualMachineInner create(String resourceGroupName, String virtualMachineName, VirtualMachineInner body) {
-        return createAsync(resourceGroupName, virtualMachineName, body).block();
     }
 
     /**
@@ -1242,23 +1251,6 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
      *
      * @param resourceGroupName The Resource Group Name.
      * @param virtualMachineName Name of the virtual machine resource.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return define the virtualMachine.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public VirtualMachineInner getByResourceGroup(String resourceGroupName, String virtualMachineName) {
-        return getByResourceGroupAsync(resourceGroupName, virtualMachineName).block();
-    }
-
-    /**
-     * Gets a virtual machine.
-     *
-     * <p>Implements virtual machine GET method.
-     *
-     * @param resourceGroupName The Resource Group Name.
-     * @param virtualMachineName Name of the virtual machine resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1269,6 +1261,23 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     public Response<VirtualMachineInner> getByResourceGroupWithResponse(
         String resourceGroupName, String virtualMachineName, Context context) {
         return getByResourceGroupWithResponseAsync(resourceGroupName, virtualMachineName, context).block();
+    }
+
+    /**
+     * Gets a virtual machine.
+     *
+     * <p>Implements virtual machine GET method.
+     *
+     * @param resourceGroupName The Resource Group Name.
+     * @param virtualMachineName Name of the virtual machine resource.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return define the virtualMachine.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public VirtualMachineInner getByResourceGroup(String resourceGroupName, String virtualMachineName) {
+        return getByResourceGroupWithResponse(resourceGroupName, virtualMachineName, Context.NONE).getValue();
     }
 
     /**
@@ -1415,6 +1424,33 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
      *
      * @param resourceGroupName The Resource Group Name.
      * @param virtualMachineName Name of the virtual machine resource.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of define the virtualMachine.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<VirtualMachineInner>, VirtualMachineInner> beginUpdateAsync(
+        String resourceGroupName, String virtualMachineName) {
+        final VirtualMachineUpdate body = null;
+        Mono<Response<Flux<ByteBuffer>>> mono = updateWithResponseAsync(resourceGroupName, virtualMachineName, body);
+        return this
+            .client
+            .<VirtualMachineInner, VirtualMachineInner>getLroResult(
+                mono,
+                this.client.getHttpPipeline(),
+                VirtualMachineInner.class,
+                VirtualMachineInner.class,
+                this.client.getContext());
+    }
+
+    /**
+     * Updates a virtual machine.
+     *
+     * <p>API to update certain properties of the virtual machine resource.
+     *
+     * @param resourceGroupName The Resource Group Name.
+     * @param virtualMachineName Name of the virtual machine resource.
      * @param body Resource properties to update.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1441,7 +1477,6 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
      *
      * @param resourceGroupName The Resource Group Name.
      * @param virtualMachineName Name of the virtual machine resource.
-     * @param body Resource properties to update.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1449,7 +1484,8 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<VirtualMachineInner>, VirtualMachineInner> beginUpdate(
-        String resourceGroupName, String virtualMachineName, VirtualMachineUpdate body) {
+        String resourceGroupName, String virtualMachineName) {
+        final VirtualMachineUpdate body = null;
         return beginUpdateAsync(resourceGroupName, virtualMachineName, body).getSyncPoller();
     }
 
@@ -1534,24 +1570,6 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
         return beginUpdateAsync(resourceGroupName, virtualMachineName, body, context)
             .last()
             .flatMap(this.client::getLroFinalResultOrError);
-    }
-
-    /**
-     * Updates a virtual machine.
-     *
-     * <p>API to update certain properties of the virtual machine resource.
-     *
-     * @param resourceGroupName The Resource Group Name.
-     * @param virtualMachineName Name of the virtual machine resource.
-     * @param body Resource properties to update.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return define the virtualMachine.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public VirtualMachineInner update(String resourceGroupName, String virtualMachineName, VirtualMachineUpdate body) {
-        return updateAsync(resourceGroupName, virtualMachineName, body).block();
     }
 
     /**
@@ -1732,6 +1750,30 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
      *
      * @param resourceGroupName The Resource Group Name.
      * @param virtualMachineName Name of the virtual machine resource.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(String resourceGroupName, String virtualMachineName) {
+        final Boolean force = null;
+        final Boolean retain = null;
+        Mono<Response<Flux<ByteBuffer>>> mono =
+            deleteWithResponseAsync(resourceGroupName, virtualMachineName, force, retain);
+        return this
+            .client
+            .<Void, Void>getLroResult(
+                mono, this.client.getHttpPipeline(), Void.class, Void.class, this.client.getContext());
+    }
+
+    /**
+     * Deletes an virtual machine.
+     *
+     * <p>Implements virtual machine DELETE method.
+     *
+     * @param resourceGroupName The Resource Group Name.
+     * @param virtualMachineName Name of the virtual machine resource.
      * @param force Whether force delete was specified.
      * @param retain Whether to just disable the VM from azure and retain the VM in the VMM.
      * @param context The context to associate with this operation.
@@ -1758,16 +1800,15 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
      *
      * @param resourceGroupName The Resource Group Name.
      * @param virtualMachineName Name of the virtual machine resource.
-     * @param force Whether force delete was specified.
-     * @param retain Whether to just disable the VM from azure and retain the VM in the VMM.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<Void>, Void> beginDelete(
-        String resourceGroupName, String virtualMachineName, Boolean force, Boolean retain) {
+    public SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String virtualMachineName) {
+        final Boolean force = null;
+        final Boolean retain = null;
         return beginDeleteAsync(resourceGroupName, virtualMachineName, force, retain).getSyncPoller();
     }
 
@@ -1855,24 +1896,6 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
         return beginDeleteAsync(resourceGroupName, virtualMachineName, force, retain, context)
             .last()
             .flatMap(this.client::getLroFinalResultOrError);
-    }
-
-    /**
-     * Deletes an virtual machine.
-     *
-     * <p>Implements virtual machine DELETE method.
-     *
-     * @param resourceGroupName The Resource Group Name.
-     * @param virtualMachineName Name of the virtual machine resource.
-     * @param force Whether force delete was specified.
-     * @param retain Whether to just disable the VM from azure and retain the VM in the VMM.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public void delete(String resourceGroupName, String virtualMachineName, Boolean force, Boolean retain) {
-        deleteAsync(resourceGroupName, virtualMachineName, force, retain).block();
     }
 
     /**
@@ -2053,6 +2076,28 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
      *
      * @param resourceGroupName The Resource Group Name.
      * @param virtualMachineName Name of the virtual machine resource.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<Void>, Void> beginStopAsync(String resourceGroupName, String virtualMachineName) {
+        final StopVirtualMachineOptions body = null;
+        Mono<Response<Flux<ByteBuffer>>> mono = stopWithResponseAsync(resourceGroupName, virtualMachineName, body);
+        return this
+            .client
+            .<Void, Void>getLroResult(
+                mono, this.client.getHttpPipeline(), Void.class, Void.class, this.client.getContext());
+    }
+
+    /**
+     * Implements the operation to stop a virtual machine.
+     *
+     * <p>Stop virtual machine.
+     *
+     * @param resourceGroupName The Resource Group Name.
+     * @param virtualMachineName Name of the virtual machine resource.
      * @param body Virtualmachine stop action payload.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -2078,15 +2123,14 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
      *
      * @param resourceGroupName The Resource Group Name.
      * @param virtualMachineName Name of the virtual machine resource.
-     * @param body Virtualmachine stop action payload.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<Void>, Void> beginStop(
-        String resourceGroupName, String virtualMachineName, StopVirtualMachineOptions body) {
+    public SyncPoller<PollResult<Void>, Void> beginStop(String resourceGroupName, String virtualMachineName) {
+        final StopVirtualMachineOptions body = null;
         return beginStopAsync(resourceGroupName, virtualMachineName, body).getSyncPoller();
     }
 
@@ -2170,23 +2214,6 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
         return beginStopAsync(resourceGroupName, virtualMachineName, body, context)
             .last()
             .flatMap(this.client::getLroFinalResultOrError);
-    }
-
-    /**
-     * Implements the operation to stop a virtual machine.
-     *
-     * <p>Stop virtual machine.
-     *
-     * @param resourceGroupName The Resource Group Name.
-     * @param virtualMachineName Name of the virtual machine resource.
-     * @param body Virtualmachine stop action payload.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public void stop(String resourceGroupName, String virtualMachineName, StopVirtualMachineOptions body) {
-        stopAsync(resourceGroupName, virtualMachineName, body).block();
     }
 
     /**
@@ -3060,7 +3087,8 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -3095,7 +3123,8 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -3131,7 +3160,8 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -3167,7 +3197,8 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.

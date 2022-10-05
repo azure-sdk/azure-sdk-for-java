@@ -21,6 +21,10 @@ public final class ResourcePoolInventoryItem extends InventoryItemProperties {
     @JsonProperty(value = "parent")
     private InventoryItemDetails parent;
 
+    /** Creates an instance of ResourcePoolInventoryItem class. */
+    public ResourcePoolInventoryItem() {
+    }
+
     /**
      * Get the parent property: Parent resourcePool inventory resource details.
      *

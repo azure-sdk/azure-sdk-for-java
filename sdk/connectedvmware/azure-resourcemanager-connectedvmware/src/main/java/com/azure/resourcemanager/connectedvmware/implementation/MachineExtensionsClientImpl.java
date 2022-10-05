@@ -1151,22 +1151,6 @@ public final class MachineExtensionsClientImpl implements MachineExtensionsClien
      * @param resourceGroupName The Resource Group Name.
      * @param name The name of the machine containing the extension.
      * @param extensionName The name of the machine extension.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return describes a Machine Extension.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public MachineExtensionInner get(String resourceGroupName, String name, String extensionName) {
-        return getAsync(resourceGroupName, name, extensionName).block();
-    }
-
-    /**
-     * The operation to get the extension.
-     *
-     * @param resourceGroupName The Resource Group Name.
-     * @param name The name of the machine containing the extension.
-     * @param extensionName The name of the machine extension.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1177,6 +1161,22 @@ public final class MachineExtensionsClientImpl implements MachineExtensionsClien
     public Response<MachineExtensionInner> getWithResponse(
         String resourceGroupName, String name, String extensionName, Context context) {
         return getWithResponseAsync(resourceGroupName, name, extensionName, context).block();
+    }
+
+    /**
+     * The operation to get the extension.
+     *
+     * @param resourceGroupName The Resource Group Name.
+     * @param name The name of the machine containing the extension.
+     * @param extensionName The name of the machine extension.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return describes a Machine Extension.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public MachineExtensionInner get(String resourceGroupName, String name, String extensionName) {
+        return getWithResponse(resourceGroupName, name, extensionName, Context.NONE).getValue();
     }
 
     /**
@@ -1388,7 +1388,8 @@ public final class MachineExtensionsClientImpl implements MachineExtensionsClien
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1424,7 +1425,8 @@ public final class MachineExtensionsClientImpl implements MachineExtensionsClien
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.

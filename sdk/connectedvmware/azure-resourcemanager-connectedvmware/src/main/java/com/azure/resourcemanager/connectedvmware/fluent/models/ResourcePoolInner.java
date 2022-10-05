@@ -43,6 +43,10 @@ public final class ResourcePoolInner extends Resource {
     @JsonProperty(value = "kind")
     private String kind;
 
+    /** Creates an instance of ResourcePoolInner class. */
+    public ResourcePoolInner() {
+    }
+
     /**
      * Get the innerProperties property: Resource properties.
      *

@@ -42,6 +42,10 @@ public final class GuestAgentProfile {
     @JsonProperty(value = "errorDetails", access = JsonProperty.Access.WRITE_ONLY)
     private List<ErrorDetail> errorDetails;
 
+    /** Creates an instance of GuestAgentProfile class. */
+    public GuestAgentProfile() {
+    }
+
     /**
      * Get the vmUuid property: Specifies the VM's unique SMBIOS ID.
      *

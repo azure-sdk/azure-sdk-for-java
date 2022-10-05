@@ -44,6 +44,10 @@ public final class VCenterInner extends Resource {
     @JsonProperty(value = "kind")
     private String kind;
 
+    /** Creates an instance of VCenterInner class. */
+    public VCenterInner() {
+    }
+
     /**
      * Get the innerProperties property: Resource properties.
      *

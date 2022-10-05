@@ -21,6 +21,10 @@ public final class HostInventoryItem extends InventoryItemProperties {
     @JsonProperty(value = "parent")
     private InventoryItemDetails parent;
 
+    /** Creates an instance of HostInventoryItem class. */
+    public HostInventoryItem() {
+    }
+
     /**
      * Get the parent property: Parent host inventory resource details.
      *

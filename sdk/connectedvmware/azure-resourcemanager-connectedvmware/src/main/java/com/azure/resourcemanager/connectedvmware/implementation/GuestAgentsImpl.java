@@ -28,15 +28,6 @@ public final class GuestAgentsImpl implements GuestAgents {
         this.serviceManager = serviceManager;
     }
 
-    public GuestAgent get(String resourceGroupName, String virtualMachineName, String name) {
-        GuestAgentInner inner = this.serviceClient().get(resourceGroupName, virtualMachineName, name);
-        if (inner != null) {
-            return new GuestAgentImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
     public Response<GuestAgent> getWithResponse(
         String resourceGroupName, String virtualMachineName, String name, Context context) {
         Response<GuestAgentInner> inner =
@@ -47,6 +38,15 @@ public final class GuestAgentsImpl implements GuestAgents {
                 inner.getStatusCode(),
                 inner.getHeaders(),
                 new GuestAgentImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public GuestAgent get(String resourceGroupName, String virtualMachineName, String name) {
+        GuestAgentInner inner = this.serviceClient().get(resourceGroupName, virtualMachineName, name);
+        if (inner != null) {
+            return new GuestAgentImpl(inner, this.manager());
         } else {
             return null;
         }

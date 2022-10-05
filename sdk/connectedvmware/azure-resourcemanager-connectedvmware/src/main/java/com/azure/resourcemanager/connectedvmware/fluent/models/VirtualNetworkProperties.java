@@ -60,6 +60,10 @@ public final class VirtualNetworkProperties {
     @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
     private String provisioningState;
 
+    /** Creates an instance of VirtualNetworkProperties class. */
+    public VirtualNetworkProperties() {
+    }
+
     /**
      * Get the uuid property: Gets or sets a unique identifier for this resource.
      *

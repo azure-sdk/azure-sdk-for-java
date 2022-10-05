@@ -328,6 +328,34 @@ public final class VirtualMachineTemplatesClientImpl implements VirtualMachineTe
      *
      * @param resourceGroupName The Resource Group Name.
      * @param virtualMachineTemplateName Name of the virtual machine template resource.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of define the virtualMachineTemplate.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<VirtualMachineTemplateInner>, VirtualMachineTemplateInner> beginCreateAsync(
+        String resourceGroupName, String virtualMachineTemplateName) {
+        final VirtualMachineTemplateInner body = null;
+        Mono<Response<Flux<ByteBuffer>>> mono =
+            createWithResponseAsync(resourceGroupName, virtualMachineTemplateName, body);
+        return this
+            .client
+            .<VirtualMachineTemplateInner, VirtualMachineTemplateInner>getLroResult(
+                mono,
+                this.client.getHttpPipeline(),
+                VirtualMachineTemplateInner.class,
+                VirtualMachineTemplateInner.class,
+                this.client.getContext());
+    }
+
+    /**
+     * Implements virtual machine template PUT method.
+     *
+     * <p>Create Or Update virtual machine template.
+     *
+     * @param resourceGroupName The Resource Group Name.
+     * @param virtualMachineTemplateName Name of the virtual machine template resource.
      * @param body Request payload.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -361,7 +389,6 @@ public final class VirtualMachineTemplatesClientImpl implements VirtualMachineTe
      *
      * @param resourceGroupName The Resource Group Name.
      * @param virtualMachineTemplateName Name of the virtual machine template resource.
-     * @param body Request payload.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -369,7 +396,8 @@ public final class VirtualMachineTemplatesClientImpl implements VirtualMachineTe
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<VirtualMachineTemplateInner>, VirtualMachineTemplateInner> beginCreate(
-        String resourceGroupName, String virtualMachineTemplateName, VirtualMachineTemplateInner body) {
+        String resourceGroupName, String virtualMachineTemplateName) {
+        final VirtualMachineTemplateInner body = null;
         return beginCreateAsync(resourceGroupName, virtualMachineTemplateName, body).getSyncPoller();
     }
 
@@ -460,25 +488,6 @@ public final class VirtualMachineTemplatesClientImpl implements VirtualMachineTe
         return beginCreateAsync(resourceGroupName, virtualMachineTemplateName, body, context)
             .last()
             .flatMap(this.client::getLroFinalResultOrError);
-    }
-
-    /**
-     * Implements virtual machine template PUT method.
-     *
-     * <p>Create Or Update virtual machine template.
-     *
-     * @param resourceGroupName The Resource Group Name.
-     * @param virtualMachineTemplateName Name of the virtual machine template resource.
-     * @param body Request payload.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return define the virtualMachineTemplate.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public VirtualMachineTemplateInner create(
-        String resourceGroupName, String virtualMachineTemplateName, VirtualMachineTemplateInner body) {
-        return createAsync(resourceGroupName, virtualMachineTemplateName, body).block();
     }
 
     /**
@@ -652,23 +661,6 @@ public final class VirtualMachineTemplatesClientImpl implements VirtualMachineTe
      *
      * @param resourceGroupName The Resource Group Name.
      * @param virtualMachineTemplateName Name of the virtual machine template resource.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return define the virtualMachineTemplate.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public VirtualMachineTemplateInner getByResourceGroup(String resourceGroupName, String virtualMachineTemplateName) {
-        return getByResourceGroupAsync(resourceGroupName, virtualMachineTemplateName).block();
-    }
-
-    /**
-     * Gets a virtual machine template.
-     *
-     * <p>Implements virtual machine template GET method.
-     *
-     * @param resourceGroupName The Resource Group Name.
-     * @param virtualMachineTemplateName Name of the virtual machine template resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -679,6 +671,23 @@ public final class VirtualMachineTemplatesClientImpl implements VirtualMachineTe
     public Response<VirtualMachineTemplateInner> getByResourceGroupWithResponse(
         String resourceGroupName, String virtualMachineTemplateName, Context context) {
         return getByResourceGroupWithResponseAsync(resourceGroupName, virtualMachineTemplateName, context).block();
+    }
+
+    /**
+     * Gets a virtual machine template.
+     *
+     * <p>Implements virtual machine template GET method.
+     *
+     * @param resourceGroupName The Resource Group Name.
+     * @param virtualMachineTemplateName Name of the virtual machine template resource.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return define the virtualMachineTemplate.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public VirtualMachineTemplateInner getByResourceGroup(String resourceGroupName, String virtualMachineTemplateName) {
+        return getByResourceGroupWithResponse(resourceGroupName, virtualMachineTemplateName, Context.NONE).getValue();
     }
 
     /**
@@ -802,26 +811,6 @@ public final class VirtualMachineTemplatesClientImpl implements VirtualMachineTe
      *
      * @param resourceGroupName The Resource Group Name.
      * @param virtualMachineTemplateName Name of the virtual machine template resource.
-     * @param body Resource properties to update.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return define the virtualMachineTemplate on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<VirtualMachineTemplateInner> updateAsync(
-        String resourceGroupName, String virtualMachineTemplateName, ResourcePatch body) {
-        return updateWithResponseAsync(resourceGroupName, virtualMachineTemplateName, body)
-            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
-    }
-
-    /**
-     * Updates a virtual machine template.
-     *
-     * <p>API to update certain properties of the virtual machine template resource.
-     *
-     * @param resourceGroupName The Resource Group Name.
-     * @param virtualMachineTemplateName Name of the virtual machine template resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -832,24 +821,6 @@ public final class VirtualMachineTemplatesClientImpl implements VirtualMachineTe
         final ResourcePatch body = null;
         return updateWithResponseAsync(resourceGroupName, virtualMachineTemplateName, body)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
-    }
-
-    /**
-     * Updates a virtual machine template.
-     *
-     * <p>API to update certain properties of the virtual machine template resource.
-     *
-     * @param resourceGroupName The Resource Group Name.
-     * @param virtualMachineTemplateName Name of the virtual machine template resource.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return define the virtualMachineTemplate.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public VirtualMachineTemplateInner update(String resourceGroupName, String virtualMachineTemplateName) {
-        final ResourcePatch body = null;
-        return updateAsync(resourceGroupName, virtualMachineTemplateName, body).block();
     }
 
     /**
@@ -870,6 +841,24 @@ public final class VirtualMachineTemplatesClientImpl implements VirtualMachineTe
     public Response<VirtualMachineTemplateInner> updateWithResponse(
         String resourceGroupName, String virtualMachineTemplateName, ResourcePatch body, Context context) {
         return updateWithResponseAsync(resourceGroupName, virtualMachineTemplateName, body, context).block();
+    }
+
+    /**
+     * Updates a virtual machine template.
+     *
+     * <p>API to update certain properties of the virtual machine template resource.
+     *
+     * @param resourceGroupName The Resource Group Name.
+     * @param virtualMachineTemplateName Name of the virtual machine template resource.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return define the virtualMachineTemplate.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public VirtualMachineTemplateInner update(String resourceGroupName, String virtualMachineTemplateName) {
+        final ResourcePatch body = null;
+        return updateWithResponse(resourceGroupName, virtualMachineTemplateName, body, Context.NONE).getValue();
     }
 
     /**
@@ -1011,6 +1000,30 @@ public final class VirtualMachineTemplatesClientImpl implements VirtualMachineTe
      *
      * @param resourceGroupName The Resource Group Name.
      * @param virtualMachineTemplateName Name of the virtual machine template resource.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(
+        String resourceGroupName, String virtualMachineTemplateName) {
+        final Boolean force = null;
+        Mono<Response<Flux<ByteBuffer>>> mono =
+            deleteWithResponseAsync(resourceGroupName, virtualMachineTemplateName, force);
+        return this
+            .client
+            .<Void, Void>getLroResult(
+                mono, this.client.getHttpPipeline(), Void.class, Void.class, this.client.getContext());
+    }
+
+    /**
+     * Deletes an virtual machine template.
+     *
+     * <p>Implements virtual machine template DELETE method.
+     *
+     * @param resourceGroupName The Resource Group Name.
+     * @param virtualMachineTemplateName Name of the virtual machine template resource.
      * @param force Whether force delete was specified.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1036,15 +1049,14 @@ public final class VirtualMachineTemplatesClientImpl implements VirtualMachineTe
      *
      * @param resourceGroupName The Resource Group Name.
      * @param virtualMachineTemplateName Name of the virtual machine template resource.
-     * @param force Whether force delete was specified.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<Void>, Void> beginDelete(
-        String resourceGroupName, String virtualMachineTemplateName, Boolean force) {
+    public SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String virtualMachineTemplateName) {
+        final Boolean force = null;
         return beginDeleteAsync(resourceGroupName, virtualMachineTemplateName, force).getSyncPoller();
     }
 
@@ -1128,23 +1140,6 @@ public final class VirtualMachineTemplatesClientImpl implements VirtualMachineTe
         return beginDeleteAsync(resourceGroupName, virtualMachineTemplateName, force, context)
             .last()
             .flatMap(this.client::getLroFinalResultOrError);
-    }
-
-    /**
-     * Deletes an virtual machine template.
-     *
-     * <p>Implements virtual machine template DELETE method.
-     *
-     * @param resourceGroupName The Resource Group Name.
-     * @param virtualMachineTemplateName Name of the virtual machine template resource.
-     * @param force Whether force delete was specified.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public void delete(String resourceGroupName, String virtualMachineTemplateName, Boolean force) {
-        deleteAsync(resourceGroupName, virtualMachineTemplateName, force).block();
     }
 
     /**
@@ -1517,7 +1512,8 @@ public final class VirtualMachineTemplatesClientImpl implements VirtualMachineTe
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1553,7 +1549,8 @@ public final class VirtualMachineTemplatesClientImpl implements VirtualMachineTe
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1590,7 +1587,8 @@ public final class VirtualMachineTemplatesClientImpl implements VirtualMachineTe
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1627,7 +1625,8 @@ public final class VirtualMachineTemplatesClientImpl implements VirtualMachineTe
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.

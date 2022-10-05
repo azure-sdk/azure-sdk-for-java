@@ -25,6 +25,10 @@ public final class MachineExtensionsListResult {
     @JsonProperty(value = "nextLink")
     private String nextLink;
 
+    /** Creates an instance of MachineExtensionsListResult class. */
+    public MachineExtensionsListResult() {
+    }
+
     /**
      * Get the value property: The list of extensions.
      *

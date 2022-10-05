@@ -32,6 +32,10 @@ public final class VirtualMachineUpdate {
     @JsonProperty(value = "identity")
     private Identity identity;
 
+    /** Creates an instance of VirtualMachineUpdate class. */
+    public VirtualMachineUpdate() {
+    }
+
     /**
      * Get the innerProperties property: Resource properties.
      *

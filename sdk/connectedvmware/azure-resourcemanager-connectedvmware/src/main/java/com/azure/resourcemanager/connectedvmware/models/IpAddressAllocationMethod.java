@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for IpAddressAllocationMethod. */
+/** IP address allocation method. */
 public final class IpAddressAllocationMethod extends ExpandableStringEnum<IpAddressAllocationMethod> {
     /** Static value unset for IpAddressAllocationMethod. */
     public static final IpAddressAllocationMethod UNSET = fromString("unset");

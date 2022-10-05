@@ -44,6 +44,10 @@ public final class DatastoreInner extends Resource {
     @JsonProperty(value = "kind")
     private String kind;
 
+    /** Creates an instance of DatastoreInner class. */
+    public DatastoreInner() {
+    }
+
     /**
      * Get the innerProperties property: Resource properties.
      *

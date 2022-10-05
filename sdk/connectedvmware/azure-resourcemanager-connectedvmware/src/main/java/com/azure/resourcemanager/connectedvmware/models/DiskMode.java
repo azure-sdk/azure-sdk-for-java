@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for DiskMode. */
+/** Defines the different types of disk modes. */
 public final class DiskMode extends ExpandableStringEnum<DiskMode> {
     /** Static value persistent for DiskMode. */
     public static final DiskMode PERSISTENT = fromString("persistent");

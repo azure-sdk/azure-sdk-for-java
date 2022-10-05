@@ -18,12 +18,14 @@ public interface GuestAgents {
      * @param resourceGroupName The Resource Group Name.
      * @param virtualMachineName Name of the vm.
      * @param name Name of the GuestAgent.
+     * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return defines the GuestAgent.
+     * @return defines the GuestAgent along with {@link Response}.
      */
-    GuestAgent get(String resourceGroupName, String virtualMachineName, String name);
+    Response<GuestAgent> getWithResponse(
+        String resourceGroupName, String virtualMachineName, String name, Context context);
 
     /**
      * Gets GuestAgent.
@@ -33,14 +35,12 @@ public interface GuestAgents {
      * @param resourceGroupName The Resource Group Name.
      * @param virtualMachineName Name of the vm.
      * @param name Name of the GuestAgent.
-     * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return defines the GuestAgent along with {@link Response}.
+     * @return defines the GuestAgent.
      */
-    Response<GuestAgent> getWithResponse(
-        String resourceGroupName, String virtualMachineName, String name, Context context);
+    GuestAgent get(String resourceGroupName, String virtualMachineName, String name);
 
     /**
      * Deletes an GuestAgent.

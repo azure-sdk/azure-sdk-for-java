@@ -61,6 +61,10 @@ public final class DatastoreProperties {
     @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
     private ProvisioningState provisioningState;
 
+    /** Creates an instance of DatastoreProperties class. */
+    public DatastoreProperties() {
+    }
+
     /**
      * Get the uuid property: Gets or sets a unique identifier for this resource.
      *

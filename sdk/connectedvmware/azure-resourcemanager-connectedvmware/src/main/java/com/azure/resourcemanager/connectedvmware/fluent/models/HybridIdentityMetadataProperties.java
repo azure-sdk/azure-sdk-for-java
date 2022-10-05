@@ -35,6 +35,10 @@ public final class HybridIdentityMetadataProperties {
     @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
     private String provisioningState;
 
+    /** Creates an instance of HybridIdentityMetadataProperties class. */
+    public HybridIdentityMetadataProperties() {
+    }
+
     /**
      * Get the vmId property: Gets or sets the Vm Id.
      *

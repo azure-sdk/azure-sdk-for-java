@@ -227,20 +227,6 @@ public interface MachineExtensionsClient {
      * @param resourceGroupName The Resource Group Name.
      * @param name The name of the machine containing the extension.
      * @param extensionName The name of the machine extension.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return describes a Machine Extension.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    MachineExtensionInner get(String resourceGroupName, String name, String extensionName);
-
-    /**
-     * The operation to get the extension.
-     *
-     * @param resourceGroupName The Resource Group Name.
-     * @param name The name of the machine containing the extension.
-     * @param extensionName The name of the machine extension.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -250,6 +236,20 @@ public interface MachineExtensionsClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<MachineExtensionInner> getWithResponse(
         String resourceGroupName, String name, String extensionName, Context context);
+
+    /**
+     * The operation to get the extension.
+     *
+     * @param resourceGroupName The Resource Group Name.
+     * @param name The name of the machine containing the extension.
+     * @param extensionName The name of the machine extension.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return describes a Machine Extension.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    MachineExtensionInner get(String resourceGroupName, String name, String extensionName);
 
     /**
      * The operation to get all extensions of a non-Azure machine.

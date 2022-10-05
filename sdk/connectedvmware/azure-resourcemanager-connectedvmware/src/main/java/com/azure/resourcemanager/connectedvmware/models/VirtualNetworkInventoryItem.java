@@ -14,6 +14,10 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @JsonTypeName("VirtualNetwork")
 @Fluent
 public final class VirtualNetworkInventoryItem extends InventoryItemProperties {
+    /** Creates an instance of VirtualNetworkInventoryItem class. */
+    public VirtualNetworkInventoryItem() {
+    }
+
     /** {@inheritDoc} */
     @Override
     public VirtualNetworkInventoryItem withManagedResourceId(String managedResourceId) {

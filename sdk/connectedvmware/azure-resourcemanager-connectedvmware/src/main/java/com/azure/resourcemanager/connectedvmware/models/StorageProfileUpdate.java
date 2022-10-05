@@ -17,6 +17,10 @@ public final class StorageProfileUpdate {
     @JsonProperty(value = "disks")
     private List<VirtualDiskUpdate> disks;
 
+    /** Creates an instance of StorageProfileUpdate class. */
+    public StorageProfileUpdate() {
+    }
+
     /**
      * Get the disks property: Gets or sets the list of virtual disks associated with the virtual machine.
      *

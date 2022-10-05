@@ -43,6 +43,10 @@ public final class HostModelInner extends Resource {
     @JsonProperty(value = "kind")
     private String kind;
 
+    /** Creates an instance of HostModelInner class. */
+    public HostModelInner() {
+    }
+
     /**
      * Get the innerProperties property: Resource properties.
      *

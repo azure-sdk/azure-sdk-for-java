@@ -21,22 +21,6 @@ public interface HybridIdentityMetadatasClient {
      * @param resourceGroupName The Resource Group Name.
      * @param virtualMachineName Name of the vm.
      * @param metadataName Name of the hybridIdentityMetadata.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return defines the HybridIdentityMetadata.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    HybridIdentityMetadataInner create(String resourceGroupName, String virtualMachineName, String metadataName);
-
-    /**
-     * Implements HybridIdentityMetadata PUT method.
-     *
-     * <p>Create Or Update HybridIdentityMetadata.
-     *
-     * @param resourceGroupName The Resource Group Name.
-     * @param virtualMachineName Name of the vm.
-     * @param metadataName Name of the hybridIdentityMetadata.
      * @param body Request payload.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -53,20 +37,20 @@ public interface HybridIdentityMetadatasClient {
         Context context);
 
     /**
-     * Gets HybridIdentityMetadata.
+     * Implements HybridIdentityMetadata PUT method.
      *
-     * <p>Implements HybridIdentityMetadata GET method.
+     * <p>Create Or Update HybridIdentityMetadata.
      *
      * @param resourceGroupName The Resource Group Name.
      * @param virtualMachineName Name of the vm.
-     * @param metadataName Name of the HybridIdentityMetadata.
+     * @param metadataName Name of the hybridIdentityMetadata.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return defines the HybridIdentityMetadata.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    HybridIdentityMetadataInner get(String resourceGroupName, String virtualMachineName, String metadataName);
+    HybridIdentityMetadataInner create(String resourceGroupName, String virtualMachineName, String metadataName);
 
     /**
      * Gets HybridIdentityMetadata.
@@ -87,9 +71,9 @@ public interface HybridIdentityMetadatasClient {
         String resourceGroupName, String virtualMachineName, String metadataName, Context context);
 
     /**
-     * Deletes an HybridIdentityMetadata.
+     * Gets HybridIdentityMetadata.
      *
-     * <p>Implements HybridIdentityMetadata DELETE method.
+     * <p>Implements HybridIdentityMetadata GET method.
      *
      * @param resourceGroupName The Resource Group Name.
      * @param virtualMachineName Name of the vm.
@@ -97,9 +81,10 @@ public interface HybridIdentityMetadatasClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return defines the HybridIdentityMetadata.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    void delete(String resourceGroupName, String virtualMachineName, String metadataName);
+    HybridIdentityMetadataInner get(String resourceGroupName, String virtualMachineName, String metadataName);
 
     /**
      * Deletes an HybridIdentityMetadata.
@@ -118,6 +103,21 @@ public interface HybridIdentityMetadatasClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<Void> deleteWithResponse(
         String resourceGroupName, String virtualMachineName, String metadataName, Context context);
+
+    /**
+     * Deletes an HybridIdentityMetadata.
+     *
+     * <p>Implements HybridIdentityMetadata DELETE method.
+     *
+     * @param resourceGroupName The Resource Group Name.
+     * @param virtualMachineName Name of the vm.
+     * @param metadataName Name of the HybridIdentityMetadata.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    void delete(String resourceGroupName, String virtualMachineName, String metadataName);
 
     /**
      * Implements GET HybridIdentityMetadata in a vm.

@@ -52,6 +52,10 @@ public final class VirtualMachineTemplateInventoryItem extends InventoryItemProp
     @JsonProperty(value = "folderPath")
     private String folderPath;
 
+    /** Creates an instance of VirtualMachineTemplateInventoryItem class. */
+    public VirtualMachineTemplateInventoryItem() {
+    }
+
     /**
      * Get the memorySizeMB property: Gets or sets memory size in MBs for the template.
      *

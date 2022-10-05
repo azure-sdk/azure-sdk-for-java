@@ -36,15 +36,6 @@ public final class MachineExtensionsImpl implements MachineExtensions {
         this.serviceClient().delete(resourceGroupName, name, extensionName, context);
     }
 
-    public MachineExtension get(String resourceGroupName, String name, String extensionName) {
-        MachineExtensionInner inner = this.serviceClient().get(resourceGroupName, name, extensionName);
-        if (inner != null) {
-            return new MachineExtensionImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
     public Response<MachineExtension> getWithResponse(
         String resourceGroupName, String name, String extensionName, Context context) {
         Response<MachineExtensionInner> inner =
@@ -55,6 +46,15 @@ public final class MachineExtensionsImpl implements MachineExtensions {
                 inner.getStatusCode(),
                 inner.getHeaders(),
                 new MachineExtensionImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public MachineExtension get(String resourceGroupName, String name, String extensionName) {
+        MachineExtensionInner inner = this.serviceClient().get(resourceGroupName, name, extensionName);
+        if (inner != null) {
+            return new MachineExtensionImpl(inner, this.manager());
         } else {
             return null;
         }

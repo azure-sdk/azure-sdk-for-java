@@ -23,7 +23,6 @@ public interface GuestAgentsClient {
      * @param resourceGroupName The Resource Group Name.
      * @param virtualMachineName Name of the vm.
      * @param name Name of the guestAgents.
-     * @param body Request payload.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -31,7 +30,7 @@ public interface GuestAgentsClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<GuestAgentInner>, GuestAgentInner> beginCreate(
-        String resourceGroupName, String virtualMachineName, String name, GuestAgentInner body);
+        String resourceGroupName, String virtualMachineName, String name);
 
     /**
      * Implements GuestAgent PUT method.
@@ -51,23 +50,6 @@ public interface GuestAgentsClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<GuestAgentInner>, GuestAgentInner> beginCreate(
         String resourceGroupName, String virtualMachineName, String name, GuestAgentInner body, Context context);
-
-    /**
-     * Implements GuestAgent PUT method.
-     *
-     * <p>Create Or Update GuestAgent.
-     *
-     * @param resourceGroupName The Resource Group Name.
-     * @param virtualMachineName Name of the vm.
-     * @param name Name of the guestAgents.
-     * @param body Request payload.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return defines the GuestAgent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    GuestAgentInner create(String resourceGroupName, String virtualMachineName, String name, GuestAgentInner body);
 
     /**
      * Implements GuestAgent PUT method.
@@ -112,22 +94,6 @@ public interface GuestAgentsClient {
      * @param resourceGroupName The Resource Group Name.
      * @param virtualMachineName Name of the vm.
      * @param name Name of the GuestAgent.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return defines the GuestAgent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    GuestAgentInner get(String resourceGroupName, String virtualMachineName, String name);
-
-    /**
-     * Gets GuestAgent.
-     *
-     * <p>Implements GuestAgent GET method.
-     *
-     * @param resourceGroupName The Resource Group Name.
-     * @param virtualMachineName Name of the vm.
-     * @param name Name of the GuestAgent.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -137,6 +103,22 @@ public interface GuestAgentsClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<GuestAgentInner> getWithResponse(
         String resourceGroupName, String virtualMachineName, String name, Context context);
+
+    /**
+     * Gets GuestAgent.
+     *
+     * <p>Implements GuestAgent GET method.
+     *
+     * @param resourceGroupName The Resource Group Name.
+     * @param virtualMachineName Name of the vm.
+     * @param name Name of the GuestAgent.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return defines the GuestAgent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    GuestAgentInner get(String resourceGroupName, String virtualMachineName, String name);
 
     /**
      * Deletes an GuestAgent.

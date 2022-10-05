@@ -279,10 +279,6 @@ public final class VirtualMachineImpl implements VirtualMachine, VirtualMachine.
         return this;
     }
 
-    public void stop(StopVirtualMachineOptions body) {
-        serviceManager.virtualMachines().stop(resourceGroupName, virtualMachineName, body);
-    }
-
     public void stop() {
         serviceManager.virtualMachines().stop(resourceGroupName, virtualMachineName);
     }

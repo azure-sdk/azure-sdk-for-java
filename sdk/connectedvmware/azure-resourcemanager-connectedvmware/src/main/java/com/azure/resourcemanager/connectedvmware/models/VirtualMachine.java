@@ -649,18 +649,6 @@ public interface VirtualMachine {
      *
      * <p>Stop virtual machine.
      *
-     * @param body Virtualmachine stop action payload.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    void stop(StopVirtualMachineOptions body);
-
-    /**
-     * Implements the operation to stop a virtual machine.
-     *
-     * <p>Stop virtual machine.
-     *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */

@@ -27,6 +27,10 @@ public final class DatastoreInventoryItem extends InventoryItemProperties {
     @JsonProperty(value = "freeSpaceGB")
     private Long freeSpaceGB;
 
+    /** Creates an instance of DatastoreInventoryItem class. */
+    public DatastoreInventoryItem() {
+    }
+
     /**
      * Get the capacityGB property: Gets or sets Maximum capacity of this datastore, in GBs.
      *
