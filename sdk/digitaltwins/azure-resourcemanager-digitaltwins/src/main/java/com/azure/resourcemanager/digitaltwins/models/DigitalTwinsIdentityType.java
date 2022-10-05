@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for DigitalTwinsIdentityType. */
+/** The type of Managed Identity used by the DigitalTwinsInstance. Only SystemAssigned is supported. */
 public final class DigitalTwinsIdentityType extends ExpandableStringEnum<DigitalTwinsIdentityType> {
     /** Static value None for DigitalTwinsIdentityType. */
     public static final DigitalTwinsIdentityType NONE = fromString("None");
