@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for IngestionMode. */
+/** Indicates the flow of the ingestion. */
 public final class IngestionMode extends ExpandableStringEnum<IngestionMode> {
     /** Static value ApplicationInsights for IngestionMode. */
     public static final IngestionMode APPLICATION_INSIGHTS = fromString("ApplicationInsights");
