@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for ClientPermissionType. */
+/** Type of access to be allowed for the client. */
 public final class ClientPermissionType extends ExpandableStringEnum<ClientPermissionType> {
     /** Static value NoAccess for ClientPermissionType. */
     public static final ClientPermissionType NO_ACCESS = fromString("NoAccess");
@@ -30,7 +30,11 @@ public final class ClientPermissionType extends ExpandableStringEnum<ClientPermi
         return fromString(name, ClientPermissionType.class);
     }
 
-    /** @return known ClientPermissionType values. */
+    /**
+     * Gets known ClientPermissionType values.
+     *
+     * @return known ClientPermissionType values.
+     */
     public static Collection<ClientPermissionType> values() {
         return values(ClientPermissionType.class);
     }

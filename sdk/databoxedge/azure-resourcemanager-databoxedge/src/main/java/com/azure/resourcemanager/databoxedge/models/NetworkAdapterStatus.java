@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for NetworkAdapterStatus. */
+/** Value indicating whether this adapter is valid. */
 public final class NetworkAdapterStatus extends ExpandableStringEnum<NetworkAdapterStatus> {
     /** Static value Inactive for NetworkAdapterStatus. */
     public static final NetworkAdapterStatus INACTIVE = fromString("Inactive");
@@ -27,7 +27,11 @@ public final class NetworkAdapterStatus extends ExpandableStringEnum<NetworkAdap
         return fromString(name, NetworkAdapterStatus.class);
     }
 
-    /** @return known NetworkAdapterStatus values. */
+    /**
+     * Gets known NetworkAdapterStatus values.
+     *
+     * @return known NetworkAdapterStatus values.
+     */
     public static Collection<NetworkAdapterStatus> values() {
         return values(NetworkAdapterStatus.class);
     }
