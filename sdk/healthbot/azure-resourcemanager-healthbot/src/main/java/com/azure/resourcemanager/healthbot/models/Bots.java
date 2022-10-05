@@ -15,18 +15,6 @@ public interface Bots {
      *
      * @param resourceGroupName The name of the Bot resource group in the user subscription.
      * @param botName The name of the Bot resource.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a HealthBot.
-     */
-    HealthBot getByResourceGroup(String resourceGroupName, String botName);
-
-    /**
-     * Get a HealthBot.
-     *
-     * @param resourceGroupName The name of the Bot resource group in the user subscription.
-     * @param botName The name of the Bot resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -34,6 +22,18 @@ public interface Bots {
      * @return a HealthBot along with {@link Response}.
      */
     Response<HealthBot> getByResourceGroupWithResponse(String resourceGroupName, String botName, Context context);
+
+    /**
+     * Get a HealthBot.
+     *
+     * @param resourceGroupName The name of the Bot resource group in the user subscription.
+     * @param botName The name of the Bot resource.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a HealthBot.
+     */
+    HealthBot getByResourceGroup(String resourceGroupName, String botName);
 
     /**
      * Delete a HealthBot.
@@ -59,13 +59,64 @@ public interface Bots {
     void delete(String resourceGroupName, String botName, Context context);
 
     /**
+     * List all secrets of a HealthBot.
+     *
+     * @param resourceGroupName The name of the Bot resource group in the user subscription.
+     * @param botName The name of the Bot resource.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return health Bot Keys Response along with {@link Response}.
+     */
+    Response<HealthBotKeysResponse> listSecretsWithResponse(String resourceGroupName, String botName, Context context);
+
+    /**
+     * List all secrets of a HealthBot.
+     *
+     * @param resourceGroupName The name of the Bot resource group in the user subscription.
+     * @param botName The name of the Bot resource.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return health Bot Keys Response.
+     */
+    HealthBotKeysResponse listSecrets(String resourceGroupName, String botName);
+
+    /**
+     * Regenerate the API JWT Secret of a HealthBot.
+     *
+     * @param resourceGroupName The name of the Bot resource group in the user subscription.
+     * @param botName The name of the Bot resource.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return an entry of HealthBotKeysResponse along with {@link Response}.
+     */
+    Response<HealthBotKey> regenerateApiJwtSecretWithResponse(
+        String resourceGroupName, String botName, Context context);
+
+    /**
+     * Regenerate the API JWT Secret of a HealthBot.
+     *
+     * @param resourceGroupName The name of the Bot resource group in the user subscription.
+     * @param botName The name of the Bot resource.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return an entry of HealthBotKeysResponse.
+     */
+    HealthBotKey regenerateApiJwtSecret(String resourceGroupName, String botName);
+
+    /**
      * Returns all the resources of a particular type belonging to a resource group.
      *
      * @param resourceGroupName The name of the Bot resource group in the user subscription.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of Healthbot operation response as paginated response with {@link PagedIterable}.
+     * @return the list of Azure Health Bot operation response as paginated response with {@link PagedIterable}.
      */
     PagedIterable<HealthBot> listByResourceGroup(String resourceGroupName);
 
@@ -77,7 +128,7 @@ public interface Bots {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of Healthbot operation response as paginated response with {@link PagedIterable}.
+     * @return the list of Azure Health Bot operation response as paginated response with {@link PagedIterable}.
      */
     PagedIterable<HealthBot> listByResourceGroup(String resourceGroupName, Context context);
 
@@ -86,7 +137,7 @@ public interface Bots {
      *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of Healthbot operation response as paginated response with {@link PagedIterable}.
+     * @return the list of Azure Health Bot operation response as paginated response with {@link PagedIterable}.
      */
     PagedIterable<HealthBot> list();
 
@@ -97,7 +148,7 @@ public interface Bots {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of Healthbot operation response as paginated response with {@link PagedIterable}.
+     * @return the list of Azure Health Bot operation response as paginated response with {@link PagedIterable}.
      */
     PagedIterable<HealthBot> list(Context context);
 
