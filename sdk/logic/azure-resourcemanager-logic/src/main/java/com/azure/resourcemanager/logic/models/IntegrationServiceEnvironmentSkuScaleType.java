@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for IntegrationServiceEnvironmentSkuScaleType. */
+/** The integration service environment sku scale type. */
 public final class IntegrationServiceEnvironmentSkuScaleType
     extends ExpandableStringEnum<IntegrationServiceEnvironmentSkuScaleType> {
     /** Static value Manual for IntegrationServiceEnvironmentSkuScaleType. */
@@ -31,7 +31,11 @@ public final class IntegrationServiceEnvironmentSkuScaleType
         return fromString(name, IntegrationServiceEnvironmentSkuScaleType.class);
     }
 
-    /** @return known IntegrationServiceEnvironmentSkuScaleType values. */
+    /**
+     * Gets known IntegrationServiceEnvironmentSkuScaleType values.
+     *
+     * @return known IntegrationServiceEnvironmentSkuScaleType values.
+     */
     public static Collection<IntegrationServiceEnvironmentSkuScaleType> values() {
         return values(IntegrationServiceEnvironmentSkuScaleType.class);
     }

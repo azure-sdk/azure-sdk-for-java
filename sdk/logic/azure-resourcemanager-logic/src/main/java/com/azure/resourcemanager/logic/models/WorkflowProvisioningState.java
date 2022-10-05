@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for WorkflowProvisioningState. */
+/** The workflow provisioning state. */
 public final class WorkflowProvisioningState extends ExpandableStringEnum<WorkflowProvisioningState> {
     /** Static value NotSpecified for WorkflowProvisioningState. */
     public static final WorkflowProvisioningState NOT_SPECIFIED = fromString("NotSpecified");
@@ -87,7 +87,11 @@ public final class WorkflowProvisioningState extends ExpandableStringEnum<Workfl
         return fromString(name, WorkflowProvisioningState.class);
     }
 
-    /** @return known WorkflowProvisioningState values. */
+    /**
+     * Gets known WorkflowProvisioningState values.
+     *
+     * @return known WorkflowProvisioningState values.
+     */
     public static Collection<WorkflowProvisioningState> values() {
         return values(WorkflowProvisioningState.class);
     }

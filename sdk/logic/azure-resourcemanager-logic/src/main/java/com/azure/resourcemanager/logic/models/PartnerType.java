@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for PartnerType. */
+/** The partner type. */
 public final class PartnerType extends ExpandableStringEnum<PartnerType> {
     /** Static value NotSpecified for PartnerType. */
     public static final PartnerType NOT_SPECIFIED = fromString("NotSpecified");
@@ -27,7 +27,11 @@ public final class PartnerType extends ExpandableStringEnum<PartnerType> {
         return fromString(name, PartnerType.class);
     }
 
-    /** @return known PartnerType values. */
+    /**
+     * Gets known PartnerType values.
+     *
+     * @return known PartnerType values.
+     */
     public static Collection<PartnerType> values() {
         return values(PartnerType.class);
     }
