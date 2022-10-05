@@ -40,6 +40,10 @@ public final class AppPatch {
     @JsonProperty(value = "identity")
     private SystemAssignedServiceIdentity identity;
 
+    /** Creates an instance of AppPatch class. */
+    public AppPatch() {
+    }
+
     /**
      * Get the tags property: Instance tags.
      *

@@ -32,15 +32,6 @@ public final class AppsImpl implements Apps {
         this.serviceManager = serviceManager;
     }
 
-    public App getByResourceGroup(String resourceGroupName, String resourceName) {
-        AppInner inner = this.serviceClient().getByResourceGroup(resourceGroupName, resourceName);
-        if (inner != null) {
-            return new AppImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
     public Response<App> getByResourceGroupWithResponse(
         String resourceGroupName, String resourceName, Context context) {
         Response<AppInner> inner =
@@ -51,6 +42,15 @@ public final class AppsImpl implements Apps {
                 inner.getStatusCode(),
                 inner.getHeaders(),
                 new AppImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public App getByResourceGroup(String resourceGroupName, String resourceName) {
+        AppInner inner = this.serviceClient().getByResourceGroup(resourceGroupName, resourceName);
+        if (inner != null) {
+            return new AppImpl(inner, this.manager());
         } else {
             return null;
         }
@@ -92,15 +92,6 @@ public final class AppsImpl implements Apps {
         return Utils.mapPage(inner, inner1 -> new AppImpl(inner1, this.manager()));
     }
 
-    public AppAvailabilityInfo checkNameAvailability(OperationInputs operationInputs) {
-        AppAvailabilityInfoInner inner = this.serviceClient().checkNameAvailability(operationInputs);
-        if (inner != null) {
-            return new AppAvailabilityInfoImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
     public Response<AppAvailabilityInfo> checkNameAvailabilityWithResponse(
         OperationInputs operationInputs, Context context) {
         Response<AppAvailabilityInfoInner> inner =
@@ -116,8 +107,8 @@ public final class AppsImpl implements Apps {
         }
     }
 
-    public AppAvailabilityInfo checkSubdomainAvailability(OperationInputs operationInputs) {
-        AppAvailabilityInfoInner inner = this.serviceClient().checkSubdomainAvailability(operationInputs);
+    public AppAvailabilityInfo checkNameAvailability(OperationInputs operationInputs) {
+        AppAvailabilityInfoInner inner = this.serviceClient().checkNameAvailability(operationInputs);
         if (inner != null) {
             return new AppAvailabilityInfoImpl(inner, this.manager());
         } else {
@@ -135,6 +126,15 @@ public final class AppsImpl implements Apps {
                 inner.getStatusCode(),
                 inner.getHeaders(),
                 new AppAvailabilityInfoImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public AppAvailabilityInfo checkSubdomainAvailability(OperationInputs operationInputs) {
+        AppAvailabilityInfoInner inner = this.serviceClient().checkSubdomainAvailability(operationInputs);
+        if (inner != null) {
+            return new AppAvailabilityInfoImpl(inner, this.manager());
         } else {
             return null;
         }

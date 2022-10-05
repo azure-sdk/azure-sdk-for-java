@@ -24,6 +24,10 @@ public final class AppTemplatesResult {
     @JsonProperty(value = "value", access = JsonProperty.Access.WRITE_ONLY)
     private List<AppTemplateInner> value;
 
+    /** Creates an instance of AppTemplatesResult class. */
+    public AppTemplatesResult() {
+    }
+
     /**
      * Get the nextLink property: The link used to get the next page of IoT Central application templates.
      *

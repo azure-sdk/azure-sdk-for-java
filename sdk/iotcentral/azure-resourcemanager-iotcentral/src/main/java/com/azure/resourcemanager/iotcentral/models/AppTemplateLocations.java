@@ -22,6 +22,10 @@ public final class AppTemplateLocations {
     @JsonProperty(value = "displayName", access = JsonProperty.Access.WRITE_ONLY)
     private String displayName;
 
+    /** Creates an instance of AppTemplateLocations class. */
+    public AppTemplateLocations() {
+    }
+
     /**
      * Get the id property: The ID of the location.
      *

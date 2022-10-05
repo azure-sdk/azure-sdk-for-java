@@ -208,30 +208,7 @@ public final class PrivateLinksClientImpl implements PrivateLinksClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PrivateLinkResourceInner> getAsync(String resourceGroupName, String resourceName, String groupId) {
         return getWithResponseAsync(resourceGroupName, resourceName, groupId)
-            .flatMap(
-                (Response<PrivateLinkResourceInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
-    }
-
-    /**
-     * Get a private link resource of a IoT Central Application.
-     *
-     * @param resourceGroupName The name of the resource group that contains the IoT Central application.
-     * @param resourceName The ARM resource name of the IoT Central application.
-     * @param groupId The private link resource name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a private link resource of a IoT Central Application.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public PrivateLinkResourceInner get(String resourceGroupName, String resourceName, String groupId) {
-        return getAsync(resourceGroupName, resourceName, groupId).block();
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -250,6 +227,22 @@ public final class PrivateLinksClientImpl implements PrivateLinksClient {
     public Response<PrivateLinkResourceInner> getWithResponse(
         String resourceGroupName, String resourceName, String groupId, Context context) {
         return getWithResponseAsync(resourceGroupName, resourceName, groupId, context).block();
+    }
+
+    /**
+     * Get a private link resource of a IoT Central Application.
+     *
+     * @param resourceGroupName The name of the resource group that contains the IoT Central application.
+     * @param resourceName The ARM resource name of the IoT Central application.
+     * @param groupId The private link resource name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a private link resource of a IoT Central Application.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public PrivateLinkResourceInner get(String resourceGroupName, String resourceName, String groupId) {
+        return getWithResponse(resourceGroupName, resourceName, groupId, Context.NONE).getValue();
     }
 
     /**

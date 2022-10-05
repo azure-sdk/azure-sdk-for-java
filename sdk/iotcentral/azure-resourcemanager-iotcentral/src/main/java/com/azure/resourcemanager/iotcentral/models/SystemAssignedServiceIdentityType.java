@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for SystemAssignedServiceIdentityType. */
+/** Type of managed service identity (either system assigned, or none). */
 public final class SystemAssignedServiceIdentityType extends ExpandableStringEnum<SystemAssignedServiceIdentityType> {
     /** Static value None for SystemAssignedServiceIdentityType. */
     public static final SystemAssignedServiceIdentityType NONE = fromString("None");
@@ -27,7 +27,11 @@ public final class SystemAssignedServiceIdentityType extends ExpandableStringEnu
         return fromString(name, SystemAssignedServiceIdentityType.class);
     }
 
-    /** @return known SystemAssignedServiceIdentityType values. */
+    /**
+     * Gets known SystemAssignedServiceIdentityType values.
+     *
+     * @return known SystemAssignedServiceIdentityType values.
+     */
     public static Collection<SystemAssignedServiceIdentityType> values() {
         return values(SystemAssignedServiceIdentityType.class);
     }
