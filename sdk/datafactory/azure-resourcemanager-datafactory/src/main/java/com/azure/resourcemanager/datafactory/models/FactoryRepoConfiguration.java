@@ -54,6 +54,10 @@ public class FactoryRepoConfiguration {
     @JsonProperty(value = "lastCommitId")
     private String lastCommitId;
 
+    /** Creates an instance of FactoryRepoConfiguration class. */
+    public FactoryRepoConfiguration() {
+    }
+
     /**
      * Get the accountName property: Account name.
      *

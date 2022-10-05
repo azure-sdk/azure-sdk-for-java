@@ -25,6 +25,10 @@ public final class AzureSynapseArtifactsLinkedService extends LinkedService {
     private AzureSynapseArtifactsLinkedServiceTypeProperties innerTypeProperties =
         new AzureSynapseArtifactsLinkedServiceTypeProperties();
 
+    /** Creates an instance of AzureSynapseArtifactsLinkedService class. */
+    public AzureSynapseArtifactsLinkedService() {
+    }
+
     /**
      * Get the innerTypeProperties property: Azure Synapse Analytics (Artifacts) linked service properties.
      *
