@@ -496,23 +496,6 @@ public final class ScriptsClientImpl implements ScriptsClient {
      * @param clusterName The name of the Kusto cluster.
      * @param databaseName The name of the database in the Kusto cluster.
      * @param scriptName The name of the Kusto database script.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a Kusto cluster database script.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public ScriptInner get(String resourceGroupName, String clusterName, String databaseName, String scriptName) {
-        return getAsync(resourceGroupName, clusterName, databaseName, scriptName).block();
-    }
-
-    /**
-     * Gets a Kusto cluster database script.
-     *
-     * @param resourceGroupName The name of the resource group containing the Kusto cluster.
-     * @param clusterName The name of the Kusto cluster.
-     * @param databaseName The name of the database in the Kusto cluster.
-     * @param scriptName The name of the Kusto database script.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -523,6 +506,23 @@ public final class ScriptsClientImpl implements ScriptsClient {
     public Response<ScriptInner> getWithResponse(
         String resourceGroupName, String clusterName, String databaseName, String scriptName, Context context) {
         return getWithResponseAsync(resourceGroupName, clusterName, databaseName, scriptName, context).block();
+    }
+
+    /**
+     * Gets a Kusto cluster database script.
+     *
+     * @param resourceGroupName The name of the resource group containing the Kusto cluster.
+     * @param clusterName The name of the Kusto cluster.
+     * @param databaseName The name of the database in the Kusto cluster.
+     * @param scriptName The name of the Kusto database script.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a Kusto cluster database script.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public ScriptInner get(String resourceGroupName, String clusterName, String databaseName, String scriptName) {
+        return getWithResponse(resourceGroupName, clusterName, databaseName, scriptName, Context.NONE).getValue();
     }
 
     /**
@@ -1605,24 +1605,6 @@ public final class ScriptsClientImpl implements ScriptsClient {
      * @param clusterName The name of the Kusto cluster.
      * @param databaseName The name of the database in the Kusto cluster.
      * @param scriptName The name of the script.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the result returned from a check name availability request.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public CheckNameResultInner checkNameAvailability(
-        String resourceGroupName, String clusterName, String databaseName, ScriptCheckNameRequest scriptName) {
-        return checkNameAvailabilityAsync(resourceGroupName, clusterName, databaseName, scriptName).block();
-    }
-
-    /**
-     * Checks that the script name is valid and is not already in use.
-     *
-     * @param resourceGroupName The name of the resource group containing the Kusto cluster.
-     * @param clusterName The name of the Kusto cluster.
-     * @param databaseName The name of the database in the Kusto cluster.
-     * @param scriptName The name of the script.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1638,5 +1620,24 @@ public final class ScriptsClientImpl implements ScriptsClient {
         Context context) {
         return checkNameAvailabilityWithResponseAsync(resourceGroupName, clusterName, databaseName, scriptName, context)
             .block();
+    }
+
+    /**
+     * Checks that the script name is valid and is not already in use.
+     *
+     * @param resourceGroupName The name of the resource group containing the Kusto cluster.
+     * @param clusterName The name of the Kusto cluster.
+     * @param databaseName The name of the database in the Kusto cluster.
+     * @param scriptName The name of the script.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the result returned from a check name availability request.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public CheckNameResultInner checkNameAvailability(
+        String resourceGroupName, String clusterName, String databaseName, ScriptCheckNameRequest scriptName) {
+        return checkNameAvailabilityWithResponse(resourceGroupName, clusterName, databaseName, scriptName, Context.NONE)
+            .getValue();
     }
 }
