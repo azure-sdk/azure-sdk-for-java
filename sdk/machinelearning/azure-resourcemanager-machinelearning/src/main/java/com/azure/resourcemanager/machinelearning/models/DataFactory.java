@@ -13,6 +13,10 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @JsonTypeName("DataFactory")
 @Fluent
 public final class DataFactory extends Compute {
+    /** Creates an instance of DataFactory class. */
+    public DataFactory() {
+    }
+
     /** {@inheritDoc} */
     @Override
     public DataFactory withDescription(String description) {
@@ -24,13 +28,6 @@ public final class DataFactory extends Compute {
     @Override
     public DataFactory withResourceId(String resourceId) {
         super.withResourceId(resourceId);
-        return this;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public DataFactory withDisableLocalAuth(Boolean disableLocalAuth) {
-        super.withDisableLocalAuth(disableLocalAuth);
         return this;
     }
 

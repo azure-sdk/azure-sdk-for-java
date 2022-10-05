@@ -20,6 +20,10 @@ public final class AmlCompute extends Compute {
     @JsonProperty(value = "properties")
     private AmlComputeProperties properties;
 
+    /** Creates an instance of AmlCompute class. */
+    public AmlCompute() {
+    }
+
     /**
      * Get the properties property: Properties of AmlCompute.
      *
@@ -51,13 +55,6 @@ public final class AmlCompute extends Compute {
     @Override
     public AmlCompute withResourceId(String resourceId) {
         super.withResourceId(resourceId);
-        return this;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public AmlCompute withDisableLocalAuth(Boolean disableLocalAuth) {
-        super.withDisableLocalAuth(disableLocalAuth);
         return this;
     }
 
