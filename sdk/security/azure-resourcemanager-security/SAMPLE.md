@@ -396,7 +396,7 @@ public final class AdaptiveApplicationControlsDeleteSamples {
      */
     public static void deleteAnApplicationControlMachineGroup(
         com.azure.resourcemanager.security.SecurityManager manager) {
-        manager.adaptiveApplicationControls().deleteWithResponse("centralus", "GROUP1", Context.NONE);
+        manager.adaptiveApplicationControls().deleteByResourceGroupWithResponse("centralus", "GROUP1", Context.NONE);
     }
 }
 ```
@@ -1485,7 +1485,7 @@ public final class AssessmentsDeleteSamples {
         com.azure.resourcemanager.security.SecurityManager manager) {
         manager
             .assessments()
-            .deleteWithResponse(
+            .deleteByResourceGroupWithResponse(
                 "subscriptions/20ff7fc3-e762-44dd-bd96-b71116dcdc23/resourceGroups/myRg/providers/Microsoft.Compute/virtualMachineScaleSets/vmss2",
                 "8bb8be0a-6010-4789-812f-e4d661c4ed0e",
                 Context.NONE);
@@ -1985,7 +1985,7 @@ public final class AutomationsDeleteSamples {
      * @param manager Entry point to SecurityManager.
      */
     public static void deleteASecurityAutomation(com.azure.resourcemanager.security.SecurityManager manager) {
-        manager.automations().deleteWithResponse("myRg", "myAutomationName", Context.NONE);
+        manager.automations().deleteByResourceGroupWithResponse("myRg", "myAutomationName", Context.NONE);
     }
 }
 ```
@@ -2486,7 +2486,7 @@ public final class CustomAssessmentAutomationsDeleteSamples {
     public static void deleteACustomAssessmentAutomation(com.azure.resourcemanager.security.SecurityManager manager) {
         manager
             .customAssessmentAutomations()
-            .deleteWithResponse("TestResourceGroup", "MyCustomAssessmentAutomation", Context.NONE);
+            .deleteByResourceGroupWithResponse("TestResourceGroup", "MyCustomAssessmentAutomation", Context.NONE);
     }
 }
 ```
@@ -2600,7 +2600,8 @@ public final class CustomEntityStoreAssignmentsDeleteSamples {
     public static void deleteACustomEntityStoreAssignment(com.azure.resourcemanager.security.SecurityManager manager) {
         manager
             .customEntityStoreAssignments()
-            .deleteWithResponse("TestResourceGroup", "33e7cc6e-a139-4723-a0e5-76993aee0771", Context.NONE);
+            .deleteByResourceGroupWithResponse(
+                "TestResourceGroup", "33e7cc6e-a139-4723-a0e5-76993aee0771", Context.NONE);
     }
 }
 ```
@@ -2728,7 +2729,7 @@ public final class DeviceSecurityGroupsDeleteSamples {
         com.azure.resourcemanager.security.SecurityManager manager) {
         manager
             .deviceSecurityGroups()
-            .deleteWithResponse(
+            .deleteByResourceGroupWithResponse(
                 "subscriptions/20ff7fc3-e762-44dd-bd96-b71116dcdc23/resourceGroups/SampleRG/providers/Microsoft.Devices/iotHubs/sampleiothub",
                 "samplesecuritygroup",
                 Context.NONE);
@@ -3587,7 +3588,7 @@ public final class IotSecuritySolutionDeleteSamples {
      * @param manager Entry point to SecurityManager.
      */
     public static void deleteAnIoTSecuritySolution(com.azure.resourcemanager.security.SecurityManager manager) {
-        manager.iotSecuritySolutions().deleteWithResponse("MyGroup", "default", Context.NONE);
+        manager.iotSecuritySolutions().deleteByResourceGroupWithResponse("MyGroup", "default", Context.NONE);
     }
 }
 ```
@@ -4948,7 +4949,7 @@ public final class SecurityConnectorsDeleteSamples {
      * @param manager Entry point to SecurityManager.
      */
     public static void deleteASecurityConnector(com.azure.resourcemanager.security.SecurityManager manager) {
-        manager.securityConnectors().deleteWithResponse("myRg", "mySecurityConnectorName", Context.NONE);
+        manager.securityConnectors().deleteByResourceGroupWithResponse("myRg", "mySecurityConnectorName", Context.NONE);
     }
 }
 ```
