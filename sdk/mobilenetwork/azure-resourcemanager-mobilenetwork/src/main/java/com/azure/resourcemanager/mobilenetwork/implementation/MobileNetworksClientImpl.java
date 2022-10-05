@@ -542,21 +542,6 @@ public final class MobileNetworksClientImpl implements MobileNetworksClient {
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param mobileNetworkName The name of the mobile network.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return information about the specified mobile network.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public MobileNetworkInner getByResourceGroup(String resourceGroupName, String mobileNetworkName) {
-        return getByResourceGroupAsync(resourceGroupName, mobileNetworkName).block();
-    }
-
-    /**
-     * Gets information about the specified mobile network.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param mobileNetworkName The name of the mobile network.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -567,6 +552,21 @@ public final class MobileNetworksClientImpl implements MobileNetworksClient {
     public Response<MobileNetworkInner> getByResourceGroupWithResponse(
         String resourceGroupName, String mobileNetworkName, Context context) {
         return getByResourceGroupWithResponseAsync(resourceGroupName, mobileNetworkName, context).block();
+    }
+
+    /**
+     * Gets information about the specified mobile network.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param mobileNetworkName The name of the mobile network.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return information about the specified mobile network.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public MobileNetworkInner getByResourceGroup(String resourceGroupName, String mobileNetworkName) {
+        return getByResourceGroupWithResponse(resourceGroupName, mobileNetworkName, Context.NONE).getValue();
     }
 
     /**
@@ -972,22 +972,6 @@ public final class MobileNetworksClientImpl implements MobileNetworksClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param mobileNetworkName The name of the mobile network.
      * @param parameters Parameters supplied to update mobile network tags.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return mobile network resource.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public MobileNetworkInner updateTags(String resourceGroupName, String mobileNetworkName, TagsObject parameters) {
-        return updateTagsAsync(resourceGroupName, mobileNetworkName, parameters).block();
-    }
-
-    /**
-     * Updates mobile network tags.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param mobileNetworkName The name of the mobile network.
-     * @param parameters Parameters supplied to update mobile network tags.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -998,6 +982,22 @@ public final class MobileNetworksClientImpl implements MobileNetworksClient {
     public Response<MobileNetworkInner> updateTagsWithResponse(
         String resourceGroupName, String mobileNetworkName, TagsObject parameters, Context context) {
         return updateTagsWithResponseAsync(resourceGroupName, mobileNetworkName, parameters, context).block();
+    }
+
+    /**
+     * Updates mobile network tags.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param mobileNetworkName The name of the mobile network.
+     * @param parameters Parameters supplied to update mobile network tags.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return mobile network resource.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public MobileNetworkInner updateTags(String resourceGroupName, String mobileNetworkName, TagsObject parameters) {
+        return updateTagsWithResponse(resourceGroupName, mobileNetworkName, parameters, Context.NONE).getValue();
     }
 
     /**
@@ -1556,7 +1556,8 @@ public final class MobileNetworksClientImpl implements MobileNetworksClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1593,7 +1594,8 @@ public final class MobileNetworksClientImpl implements MobileNetworksClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1631,7 +1633,8 @@ public final class MobileNetworksClientImpl implements MobileNetworksClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1668,7 +1671,8 @@ public final class MobileNetworksClientImpl implements MobileNetworksClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.

@@ -516,22 +516,6 @@ public final class SimsClientImpl implements SimsClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param simGroupName The name of the SIM Group.
      * @param simName The name of the SIM.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return information about the specified SIM.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public SimInner get(String resourceGroupName, String simGroupName, String simName) {
-        return getAsync(resourceGroupName, simGroupName, simName).block();
-    }
-
-    /**
-     * Gets information about the specified SIM.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param simGroupName The name of the SIM Group.
-     * @param simName The name of the SIM.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -542,6 +526,22 @@ public final class SimsClientImpl implements SimsClient {
     public Response<SimInner> getWithResponse(
         String resourceGroupName, String simGroupName, String simName, Context context) {
         return getWithResponseAsync(resourceGroupName, simGroupName, simName, context).block();
+    }
+
+    /**
+     * Gets information about the specified SIM.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param simGroupName The name of the SIM Group.
+     * @param simName The name of the SIM.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return information about the specified SIM.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public SimInner get(String resourceGroupName, String simGroupName, String simName) {
+        return getWithResponse(resourceGroupName, simGroupName, simName, Context.NONE).getValue();
     }
 
     /**
@@ -1004,7 +1004,8 @@ public final class SimsClientImpl implements SimsClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1040,7 +1041,8 @@ public final class SimsClientImpl implements SimsClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.

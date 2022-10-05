@@ -35,15 +35,6 @@ public final class SimsImpl implements Sims {
         this.serviceClient().delete(resourceGroupName, simGroupName, simName, context);
     }
 
-    public Sim get(String resourceGroupName, String simGroupName, String simName) {
-        SimInner inner = this.serviceClient().get(resourceGroupName, simGroupName, simName);
-        if (inner != null) {
-            return new SimImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
     public Response<Sim> getWithResponse(
         String resourceGroupName, String simGroupName, String simName, Context context) {
         Response<SimInner> inner =
@@ -54,6 +45,15 @@ public final class SimsImpl implements Sims {
                 inner.getStatusCode(),
                 inner.getHeaders(),
                 new SimImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public Sim get(String resourceGroupName, String simGroupName, String simName) {
+        SimInner inner = this.serviceClient().get(resourceGroupName, simGroupName, simName);
+        if (inner != null) {
+            return new SimImpl(inner, this.manager());
         } else {
             return null;
         }

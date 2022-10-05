@@ -569,23 +569,6 @@ public final class PacketCoreDataPlanesClientImpl implements PacketCoreDataPlane
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param packetCoreControlPlaneName The name of the packet core control plane.
      * @param packetCoreDataPlaneName The name of the packet core data plane.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return information about the specified packet core data plane.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public PacketCoreDataPlaneInner get(
-        String resourceGroupName, String packetCoreControlPlaneName, String packetCoreDataPlaneName) {
-        return getAsync(resourceGroupName, packetCoreControlPlaneName, packetCoreDataPlaneName).block();
-    }
-
-    /**
-     * Gets information about the specified packet core data plane.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param packetCoreControlPlaneName The name of the packet core control plane.
-     * @param packetCoreDataPlaneName The name of the packet core data plane.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -597,6 +580,24 @@ public final class PacketCoreDataPlanesClientImpl implements PacketCoreDataPlane
         String resourceGroupName, String packetCoreControlPlaneName, String packetCoreDataPlaneName, Context context) {
         return getWithResponseAsync(resourceGroupName, packetCoreControlPlaneName, packetCoreDataPlaneName, context)
             .block();
+    }
+
+    /**
+     * Gets information about the specified packet core data plane.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param packetCoreControlPlaneName The name of the packet core control plane.
+     * @param packetCoreDataPlaneName The name of the packet core data plane.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return information about the specified packet core data plane.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public PacketCoreDataPlaneInner get(
+        String resourceGroupName, String packetCoreControlPlaneName, String packetCoreDataPlaneName) {
+        return getWithResponse(resourceGroupName, packetCoreControlPlaneName, packetCoreDataPlaneName, Context.NONE)
+            .getValue();
     }
 
     /**
@@ -1109,28 +1110,6 @@ public final class PacketCoreDataPlanesClientImpl implements PacketCoreDataPlane
      * @param packetCoreControlPlaneName The name of the packet core control plane.
      * @param packetCoreDataPlaneName The name of the packet core data plane.
      * @param parameters Parameters supplied to update packet core data plane tags.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return packet core data plane resource.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public PacketCoreDataPlaneInner updateTags(
-        String resourceGroupName,
-        String packetCoreControlPlaneName,
-        String packetCoreDataPlaneName,
-        TagsObject parameters) {
-        return updateTagsAsync(resourceGroupName, packetCoreControlPlaneName, packetCoreDataPlaneName, parameters)
-            .block();
-    }
-
-    /**
-     * Updates packet core data planes tags.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param packetCoreControlPlaneName The name of the packet core control plane.
-     * @param packetCoreDataPlaneName The name of the packet core data plane.
-     * @param parameters Parameters supplied to update packet core data plane tags.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1147,6 +1126,29 @@ public final class PacketCoreDataPlanesClientImpl implements PacketCoreDataPlane
         return updateTagsWithResponseAsync(
                 resourceGroupName, packetCoreControlPlaneName, packetCoreDataPlaneName, parameters, context)
             .block();
+    }
+
+    /**
+     * Updates packet core data planes tags.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param packetCoreControlPlaneName The name of the packet core control plane.
+     * @param packetCoreDataPlaneName The name of the packet core data plane.
+     * @param parameters Parameters supplied to update packet core data plane tags.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return packet core data plane resource.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public PacketCoreDataPlaneInner updateTags(
+        String resourceGroupName,
+        String packetCoreControlPlaneName,
+        String packetCoreDataPlaneName,
+        TagsObject parameters) {
+        return updateTagsWithResponse(
+                resourceGroupName, packetCoreControlPlaneName, packetCoreDataPlaneName, parameters, Context.NONE)
+            .getValue();
     }
 
     /**
@@ -1343,7 +1345,8 @@ public final class PacketCoreDataPlanesClientImpl implements PacketCoreDataPlane
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1382,7 +1385,8 @@ public final class PacketCoreDataPlanesClientImpl implements PacketCoreDataPlane
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.

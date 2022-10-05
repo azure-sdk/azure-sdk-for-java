@@ -23,11 +23,14 @@ public final class SiteInner extends Resource {
     private SitePropertiesFormat innerProperties;
 
     /*
-     * Azure Resource Manager metadata containing createdBy and modifiedBy
-     * information.
+     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
      */
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
+
+    /** Creates an instance of SiteInner class. */
+    public SiteInner() {
+    }
 
     /**
      * Get the innerProperties property: Site properties.

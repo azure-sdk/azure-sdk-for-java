@@ -557,23 +557,6 @@ public final class ServicesClientImpl implements ServicesClient {
      * @param mobileNetworkName The name of the mobile network.
      * @param serviceName The name of the service. You must not use any of the following reserved strings - `default`,
      *     `requested` or `service`.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return information about the specified service.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public ServiceInner get(String resourceGroupName, String mobileNetworkName, String serviceName) {
-        return getAsync(resourceGroupName, mobileNetworkName, serviceName).block();
-    }
-
-    /**
-     * Gets information about the specified service.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param mobileNetworkName The name of the mobile network.
-     * @param serviceName The name of the service. You must not use any of the following reserved strings - `default`,
-     *     `requested` or `service`.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -584,6 +567,23 @@ public final class ServicesClientImpl implements ServicesClient {
     public Response<ServiceInner> getWithResponse(
         String resourceGroupName, String mobileNetworkName, String serviceName, Context context) {
         return getWithResponseAsync(resourceGroupName, mobileNetworkName, serviceName, context).block();
+    }
+
+    /**
+     * Gets information about the specified service.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param mobileNetworkName The name of the mobile network.
+     * @param serviceName The name of the service. You must not use any of the following reserved strings - `default`,
+     *     `requested` or `service`.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return information about the specified service.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public ServiceInner get(String resourceGroupName, String mobileNetworkName, String serviceName) {
+        return getWithResponse(resourceGroupName, mobileNetworkName, serviceName, Context.NONE).getValue();
     }
 
     /**
@@ -1054,25 +1054,6 @@ public final class ServicesClientImpl implements ServicesClient {
      * @param serviceName The name of the service. You must not use any of the following reserved strings - `default`,
      *     `requested` or `service`.
      * @param parameters Parameters supplied to update service tags.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return service resource.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public ServiceInner updateTags(
-        String resourceGroupName, String mobileNetworkName, String serviceName, TagsObject parameters) {
-        return updateTagsAsync(resourceGroupName, mobileNetworkName, serviceName, parameters).block();
-    }
-
-    /**
-     * Updates service tags.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param mobileNetworkName The name of the mobile network.
-     * @param serviceName The name of the service. You must not use any of the following reserved strings - `default`,
-     *     `requested` or `service`.
-     * @param parameters Parameters supplied to update service tags.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1088,6 +1069,26 @@ public final class ServicesClientImpl implements ServicesClient {
         Context context) {
         return updateTagsWithResponseAsync(resourceGroupName, mobileNetworkName, serviceName, parameters, context)
             .block();
+    }
+
+    /**
+     * Updates service tags.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param mobileNetworkName The name of the mobile network.
+     * @param serviceName The name of the service. You must not use any of the following reserved strings - `default`,
+     *     `requested` or `service`.
+     * @param parameters Parameters supplied to update service tags.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return service resource.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public ServiceInner updateTags(
+        String resourceGroupName, String mobileNetworkName, String serviceName, TagsObject parameters) {
+        return updateTagsWithResponse(resourceGroupName, mobileNetworkName, serviceName, parameters, Context.NONE)
+            .getValue();
     }
 
     /**
@@ -1277,7 +1278,8 @@ public final class ServicesClientImpl implements ServicesClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1314,7 +1316,8 @@ public final class ServicesClientImpl implements ServicesClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.

@@ -14,8 +14,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Fluent
 public final class PacketCoreControlPlaneVersionPropertiesFormat {
     /*
-     * The provisioning state of the packet core control plane version
-     * resource.
+     * The provisioning state of the packet core control plane version resource.
      */
     @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
     private ProvisioningState provisioningState;
@@ -27,11 +26,14 @@ public final class PacketCoreControlPlaneVersionPropertiesFormat {
     private VersionState versionState;
 
     /*
-     * Indicates whether this is the recommended version to use for new packet
-     * core control plane deployments.
+     * Indicates whether this is the recommended version to use for new packet core control plane deployments.
      */
     @JsonProperty(value = "recommendedVersion")
     private RecommendedVersion recommendedVersion;
+
+    /** Creates an instance of PacketCoreControlPlaneVersionPropertiesFormat class. */
+    public PacketCoreControlPlaneVersionPropertiesFormat() {
+    }
 
     /**
      * Get the provisioningState property: The provisioning state of the packet core control plane version resource.

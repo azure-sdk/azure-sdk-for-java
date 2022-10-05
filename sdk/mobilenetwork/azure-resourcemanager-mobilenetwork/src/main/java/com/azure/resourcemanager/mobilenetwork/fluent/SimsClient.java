@@ -78,20 +78,6 @@ public interface SimsClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param simGroupName The name of the SIM Group.
      * @param simName The name of the SIM.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return information about the specified SIM.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    SimInner get(String resourceGroupName, String simGroupName, String simName);
-
-    /**
-     * Gets information about the specified SIM.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param simGroupName The name of the SIM Group.
-     * @param simName The name of the SIM.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -100,6 +86,20 @@ public interface SimsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<SimInner> getWithResponse(String resourceGroupName, String simGroupName, String simName, Context context);
+
+    /**
+     * Gets information about the specified SIM.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param simGroupName The name of the SIM Group.
+     * @param simName The name of the SIM.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return information about the specified SIM.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    SimInner get(String resourceGroupName, String simGroupName, String simName);
 
     /**
      * Creates or updates a SIM.
