@@ -12,6 +12,7 @@ import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.appcontainers.fluent.CertificatesClient;
 import com.azure.resourcemanager.appcontainers.fluent.models.CertificateInner;
 import com.azure.resourcemanager.appcontainers.models.Certificate;
+import com.azure.resourcemanager.appcontainers.models.CertificatePatch;
 import com.azure.resourcemanager.appcontainers.models.Certificates;
 
 public final class CertificatesImpl implements Certificates {
@@ -38,15 +39,6 @@ public final class CertificatesImpl implements Certificates {
         return Utils.mapPage(inner, inner1 -> new CertificateImpl(inner1, this.manager()));
     }
 
-    public Certificate get(String resourceGroupName, String environmentName, String certificateName) {
-        CertificateInner inner = this.serviceClient().get(resourceGroupName, environmentName, certificateName);
-        if (inner != null) {
-            return new CertificateImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
     public Response<Certificate> getWithResponse(
         String resourceGroupName, String environmentName, String certificateName, Context context) {
         Response<CertificateInner> inner =
@@ -62,8 +54,45 @@ public final class CertificatesImpl implements Certificates {
         }
     }
 
-    public void delete(String resourceGroupName, String environmentName, String certificateName) {
-        this.serviceClient().delete(resourceGroupName, environmentName, certificateName);
+    public Certificate get(String resourceGroupName, String environmentName, String certificateName) {
+        CertificateInner inner = this.serviceClient().get(resourceGroupName, environmentName, certificateName);
+        if (inner != null) {
+            return new CertificateImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
+    public Response<Certificate> createOrUpdateWithResponse(
+        String resourceGroupName,
+        String environmentName,
+        String certificateName,
+        CertificateInner certificateEnvelope,
+        Context context) {
+        Response<CertificateInner> inner =
+            this
+                .serviceClient()
+                .createOrUpdateWithResponse(
+                    resourceGroupName, environmentName, certificateName, certificateEnvelope, context);
+        if (inner != null) {
+            return new SimpleResponse<>(
+                inner.getRequest(),
+                inner.getStatusCode(),
+                inner.getHeaders(),
+                new CertificateImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public Certificate createOrUpdate(String resourceGroupName, String environmentName, String certificateName) {
+        CertificateInner inner =
+            this.serviceClient().createOrUpdate(resourceGroupName, environmentName, certificateName);
+        if (inner != null) {
+            return new CertificateImpl(inner, this.manager());
+        } else {
+            return null;
+        }
     }
 
     public Response<Void> deleteWithResponse(
@@ -71,116 +100,43 @@ public final class CertificatesImpl implements Certificates {
         return this.serviceClient().deleteWithResponse(resourceGroupName, environmentName, certificateName, context);
     }
 
-    public Certificate getById(String id) {
-        String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
-        if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
-        }
-        String environmentName = Utils.getValueFromIdByName(id, "managedEnvironments");
-        if (environmentName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format(
-                                "The resource ID '%s' is not valid. Missing path segment 'managedEnvironments'.", id)));
-        }
-        String certificateName = Utils.getValueFromIdByName(id, "certificates");
-        if (certificateName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'certificates'.", id)));
-        }
-        return this.getWithResponse(resourceGroupName, environmentName, certificateName, Context.NONE).getValue();
+    public void delete(String resourceGroupName, String environmentName, String certificateName) {
+        this.serviceClient().delete(resourceGroupName, environmentName, certificateName);
     }
 
-    public Response<Certificate> getByIdWithResponse(String id, Context context) {
-        String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
-        if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+    public Response<Certificate> updateWithResponse(
+        String resourceGroupName,
+        String environmentName,
+        String certificateName,
+        CertificatePatch certificateEnvelope,
+        Context context) {
+        Response<CertificateInner> inner =
+            this
+                .serviceClient()
+                .updateWithResponse(resourceGroupName, environmentName, certificateName, certificateEnvelope, context);
+        if (inner != null) {
+            return new SimpleResponse<>(
+                inner.getRequest(),
+                inner.getStatusCode(),
+                inner.getHeaders(),
+                new CertificateImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
         }
-        String environmentName = Utils.getValueFromIdByName(id, "managedEnvironments");
-        if (environmentName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format(
-                                "The resource ID '%s' is not valid. Missing path segment 'managedEnvironments'.", id)));
-        }
-        String certificateName = Utils.getValueFromIdByName(id, "certificates");
-        if (certificateName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'certificates'.", id)));
-        }
-        return this.getWithResponse(resourceGroupName, environmentName, certificateName, context);
     }
 
-    public void deleteById(String id) {
-        String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
-        if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+    public Certificate update(
+        String resourceGroupName,
+        String environmentName,
+        String certificateName,
+        CertificatePatch certificateEnvelope) {
+        CertificateInner inner =
+            this.serviceClient().update(resourceGroupName, environmentName, certificateName, certificateEnvelope);
+        if (inner != null) {
+            return new CertificateImpl(inner, this.manager());
+        } else {
+            return null;
         }
-        String environmentName = Utils.getValueFromIdByName(id, "managedEnvironments");
-        if (environmentName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format(
-                                "The resource ID '%s' is not valid. Missing path segment 'managedEnvironments'.", id)));
-        }
-        String certificateName = Utils.getValueFromIdByName(id, "certificates");
-        if (certificateName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'certificates'.", id)));
-        }
-        this.deleteWithResponse(resourceGroupName, environmentName, certificateName, Context.NONE);
-    }
-
-    public Response<Void> deleteByIdWithResponse(String id, Context context) {
-        String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
-        if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
-        }
-        String environmentName = Utils.getValueFromIdByName(id, "managedEnvironments");
-        if (environmentName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format(
-                                "The resource ID '%s' is not valid. Missing path segment 'managedEnvironments'.", id)));
-        }
-        String certificateName = Utils.getValueFromIdByName(id, "certificates");
-        if (certificateName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'certificates'.", id)));
-        }
-        return this.deleteWithResponse(resourceGroupName, environmentName, certificateName, context);
     }
 
     private CertificatesClient serviceClient() {
@@ -189,9 +145,5 @@ public final class CertificatesImpl implements Certificates {
 
     private com.azure.resourcemanager.appcontainers.ContainerAppsApiManager manager() {
         return this.serviceManager;
-    }
-
-    public CertificateImpl define(String name) {
-        return new CertificateImpl(name, this.manager());
     }
 }

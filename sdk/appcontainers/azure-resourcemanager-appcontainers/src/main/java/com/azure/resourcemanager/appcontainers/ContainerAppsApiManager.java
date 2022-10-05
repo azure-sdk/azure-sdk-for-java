@@ -24,26 +24,44 @@ import com.azure.core.management.profile.AzureProfile;
 import com.azure.core.util.Configuration;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.appcontainers.fluent.ContainerAppsApiClient;
+import com.azure.resourcemanager.appcontainers.implementation.AvailableWorkloadProfilesImpl;
+import com.azure.resourcemanager.appcontainers.implementation.BillingMetersImpl;
 import com.azure.resourcemanager.appcontainers.implementation.CertificatesImpl;
+import com.azure.resourcemanager.appcontainers.implementation.ConnectedEnvironmentsCertificatesImpl;
+import com.azure.resourcemanager.appcontainers.implementation.ConnectedEnvironmentsDaprComponentsImpl;
+import com.azure.resourcemanager.appcontainers.implementation.ConnectedEnvironmentsImpl;
+import com.azure.resourcemanager.appcontainers.implementation.ConnectedEnvironmentsStoragesImpl;
 import com.azure.resourcemanager.appcontainers.implementation.ContainerAppsApiClientBuilder;
 import com.azure.resourcemanager.appcontainers.implementation.ContainerAppsAuthConfigsImpl;
+import com.azure.resourcemanager.appcontainers.implementation.ContainerAppsDiagnosticsImpl;
 import com.azure.resourcemanager.appcontainers.implementation.ContainerAppsImpl;
 import com.azure.resourcemanager.appcontainers.implementation.ContainerAppsRevisionReplicasImpl;
 import com.azure.resourcemanager.appcontainers.implementation.ContainerAppsRevisionsImpl;
 import com.azure.resourcemanager.appcontainers.implementation.ContainerAppsSourceControlsImpl;
 import com.azure.resourcemanager.appcontainers.implementation.DaprComponentsImpl;
+import com.azure.resourcemanager.appcontainers.implementation.ManagedEnvironmentDiagnosticsImpl;
+import com.azure.resourcemanager.appcontainers.implementation.ManagedEnvironmentsDiagnosticsImpl;
 import com.azure.resourcemanager.appcontainers.implementation.ManagedEnvironmentsImpl;
 import com.azure.resourcemanager.appcontainers.implementation.ManagedEnvironmentsStoragesImpl;
 import com.azure.resourcemanager.appcontainers.implementation.NamespacesImpl;
 import com.azure.resourcemanager.appcontainers.implementation.OperationsImpl;
+import com.azure.resourcemanager.appcontainers.models.AvailableWorkloadProfiles;
+import com.azure.resourcemanager.appcontainers.models.BillingMeters;
 import com.azure.resourcemanager.appcontainers.models.Certificates;
+import com.azure.resourcemanager.appcontainers.models.ConnectedEnvironments;
+import com.azure.resourcemanager.appcontainers.models.ConnectedEnvironmentsCertificates;
+import com.azure.resourcemanager.appcontainers.models.ConnectedEnvironmentsDaprComponents;
+import com.azure.resourcemanager.appcontainers.models.ConnectedEnvironmentsStorages;
 import com.azure.resourcemanager.appcontainers.models.ContainerApps;
 import com.azure.resourcemanager.appcontainers.models.ContainerAppsAuthConfigs;
+import com.azure.resourcemanager.appcontainers.models.ContainerAppsDiagnostics;
 import com.azure.resourcemanager.appcontainers.models.ContainerAppsRevisionReplicas;
 import com.azure.resourcemanager.appcontainers.models.ContainerAppsRevisions;
 import com.azure.resourcemanager.appcontainers.models.ContainerAppsSourceControls;
 import com.azure.resourcemanager.appcontainers.models.DaprComponents;
+import com.azure.resourcemanager.appcontainers.models.ManagedEnvironmentDiagnostics;
 import com.azure.resourcemanager.appcontainers.models.ManagedEnvironments;
+import com.azure.resourcemanager.appcontainers.models.ManagedEnvironmentsDiagnostics;
 import com.azure.resourcemanager.appcontainers.models.ManagedEnvironmentsStorages;
 import com.azure.resourcemanager.appcontainers.models.Namespaces;
 import com.azure.resourcemanager.appcontainers.models.Operations;
@@ -58,13 +76,29 @@ import java.util.stream.Collectors;
 public final class ContainerAppsApiManager {
     private ContainerAppsAuthConfigs containerAppsAuthConfigs;
 
+    private AvailableWorkloadProfiles availableWorkloadProfiles;
+
+    private BillingMeters billingMeters;
+
+    private ConnectedEnvironments connectedEnvironments;
+
+    private ConnectedEnvironmentsCertificates connectedEnvironmentsCertificates;
+
+    private ConnectedEnvironmentsDaprComponents connectedEnvironmentsDaprComponents;
+
+    private ConnectedEnvironmentsStorages connectedEnvironmentsStorages;
+
     private ContainerApps containerApps;
 
     private ContainerAppsRevisions containerAppsRevisions;
 
     private ContainerAppsRevisionReplicas containerAppsRevisionReplicas;
 
-    private DaprComponents daprComponents;
+    private ContainerAppsDiagnostics containerAppsDiagnostics;
+
+    private ManagedEnvironmentDiagnostics managedEnvironmentDiagnostics;
+
+    private ManagedEnvironmentsDiagnostics managedEnvironmentsDiagnostics;
 
     private Operations operations;
 
@@ -73,6 +107,8 @@ public final class ContainerAppsApiManager {
     private Certificates certificates;
 
     private Namespaces namespaces;
+
+    private DaprComponents daprComponents;
 
     private ManagedEnvironmentsStorages managedEnvironmentsStorages;
 
@@ -243,7 +279,7 @@ public final class ContainerAppsApiManager {
                 .append("-")
                 .append("com.azure.resourcemanager.appcontainers")
                 .append("/")
-                .append("1.0.0-beta.3");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder
                     .append(" (")
@@ -314,6 +350,83 @@ public final class ContainerAppsApiManager {
     }
 
     /**
+     * Gets the resource collection API of AvailableWorkloadProfiles.
+     *
+     * @return Resource collection API of AvailableWorkloadProfiles.
+     */
+    public AvailableWorkloadProfiles availableWorkloadProfiles() {
+        if (this.availableWorkloadProfiles == null) {
+            this.availableWorkloadProfiles =
+                new AvailableWorkloadProfilesImpl(clientObject.getAvailableWorkloadProfiles(), this);
+        }
+        return availableWorkloadProfiles;
+    }
+
+    /**
+     * Gets the resource collection API of BillingMeters.
+     *
+     * @return Resource collection API of BillingMeters.
+     */
+    public BillingMeters billingMeters() {
+        if (this.billingMeters == null) {
+            this.billingMeters = new BillingMetersImpl(clientObject.getBillingMeters(), this);
+        }
+        return billingMeters;
+    }
+
+    /**
+     * Gets the resource collection API of ConnectedEnvironments. It manages ConnectedEnvironment.
+     *
+     * @return Resource collection API of ConnectedEnvironments.
+     */
+    public ConnectedEnvironments connectedEnvironments() {
+        if (this.connectedEnvironments == null) {
+            this.connectedEnvironments = new ConnectedEnvironmentsImpl(clientObject.getConnectedEnvironments(), this);
+        }
+        return connectedEnvironments;
+    }
+
+    /**
+     * Gets the resource collection API of ConnectedEnvironmentsCertificates. It manages Certificate.
+     *
+     * @return Resource collection API of ConnectedEnvironmentsCertificates.
+     */
+    public ConnectedEnvironmentsCertificates connectedEnvironmentsCertificates() {
+        if (this.connectedEnvironmentsCertificates == null) {
+            this.connectedEnvironmentsCertificates =
+                new ConnectedEnvironmentsCertificatesImpl(clientObject.getConnectedEnvironmentsCertificates(), this);
+        }
+        return connectedEnvironmentsCertificates;
+    }
+
+    /**
+     * Gets the resource collection API of ConnectedEnvironmentsDaprComponents. It manages DaprComponent.
+     *
+     * @return Resource collection API of ConnectedEnvironmentsDaprComponents.
+     */
+    public ConnectedEnvironmentsDaprComponents connectedEnvironmentsDaprComponents() {
+        if (this.connectedEnvironmentsDaprComponents == null) {
+            this.connectedEnvironmentsDaprComponents =
+                new ConnectedEnvironmentsDaprComponentsImpl(
+                    clientObject.getConnectedEnvironmentsDaprComponents(), this);
+        }
+        return connectedEnvironmentsDaprComponents;
+    }
+
+    /**
+     * Gets the resource collection API of ConnectedEnvironmentsStorages. It manages ConnectedEnvironmentStorage.
+     *
+     * @return Resource collection API of ConnectedEnvironmentsStorages.
+     */
+    public ConnectedEnvironmentsStorages connectedEnvironmentsStorages() {
+        if (this.connectedEnvironmentsStorages == null) {
+            this.connectedEnvironmentsStorages =
+                new ConnectedEnvironmentsStoragesImpl(clientObject.getConnectedEnvironmentsStorages(), this);
+        }
+        return connectedEnvironmentsStorages;
+    }
+
+    /**
      * Gets the resource collection API of ContainerApps. It manages ContainerApp.
      *
      * @return Resource collection API of ContainerApps.
@@ -352,15 +465,42 @@ public final class ContainerAppsApiManager {
     }
 
     /**
-     * Gets the resource collection API of DaprComponents. It manages DaprComponent.
+     * Gets the resource collection API of ContainerAppsDiagnostics.
      *
-     * @return Resource collection API of DaprComponents.
+     * @return Resource collection API of ContainerAppsDiagnostics.
      */
-    public DaprComponents daprComponents() {
-        if (this.daprComponents == null) {
-            this.daprComponents = new DaprComponentsImpl(clientObject.getDaprComponents(), this);
+    public ContainerAppsDiagnostics containerAppsDiagnostics() {
+        if (this.containerAppsDiagnostics == null) {
+            this.containerAppsDiagnostics =
+                new ContainerAppsDiagnosticsImpl(clientObject.getContainerAppsDiagnostics(), this);
         }
-        return daprComponents;
+        return containerAppsDiagnostics;
+    }
+
+    /**
+     * Gets the resource collection API of ManagedEnvironmentDiagnostics.
+     *
+     * @return Resource collection API of ManagedEnvironmentDiagnostics.
+     */
+    public ManagedEnvironmentDiagnostics managedEnvironmentDiagnostics() {
+        if (this.managedEnvironmentDiagnostics == null) {
+            this.managedEnvironmentDiagnostics =
+                new ManagedEnvironmentDiagnosticsImpl(clientObject.getManagedEnvironmentDiagnostics(), this);
+        }
+        return managedEnvironmentDiagnostics;
+    }
+
+    /**
+     * Gets the resource collection API of ManagedEnvironmentsDiagnostics.
+     *
+     * @return Resource collection API of ManagedEnvironmentsDiagnostics.
+     */
+    public ManagedEnvironmentsDiagnostics managedEnvironmentsDiagnostics() {
+        if (this.managedEnvironmentsDiagnostics == null) {
+            this.managedEnvironmentsDiagnostics =
+                new ManagedEnvironmentsDiagnosticsImpl(clientObject.getManagedEnvironmentsDiagnostics(), this);
+        }
+        return managedEnvironmentsDiagnostics;
     }
 
     /**
@@ -388,7 +528,7 @@ public final class ContainerAppsApiManager {
     }
 
     /**
-     * Gets the resource collection API of Certificates. It manages Certificate.
+     * Gets the resource collection API of Certificates.
      *
      * @return Resource collection API of Certificates.
      */
@@ -409,6 +549,18 @@ public final class ContainerAppsApiManager {
             this.namespaces = new NamespacesImpl(clientObject.getNamespaces(), this);
         }
         return namespaces;
+    }
+
+    /**
+     * Gets the resource collection API of DaprComponents.
+     *
+     * @return Resource collection API of DaprComponents.
+     */
+    public DaprComponents daprComponents() {
+        if (this.daprComponents == null) {
+            this.daprComponents = new DaprComponentsImpl(clientObject.getDaprComponents(), this);
+        }
+        return daprComponents;
     }
 
     /**
