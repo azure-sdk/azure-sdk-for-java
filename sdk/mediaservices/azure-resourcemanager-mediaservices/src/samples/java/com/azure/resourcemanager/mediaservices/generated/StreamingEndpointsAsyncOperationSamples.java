@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for StreamingEndpoints AsyncOperation. */
 public final class StreamingEndpointsAsyncOperationSamples {
     /*
-     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/stable/2022-08-01/examples/async-operation-result.json
+     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/Streaming/stable/2022-08-01/examples/async-operation-result.json
      */
     /**
      * Sample code: Get the streaming endpoint operation status.
