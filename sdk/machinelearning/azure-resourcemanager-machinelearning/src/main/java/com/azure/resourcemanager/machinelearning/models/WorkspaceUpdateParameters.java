@@ -38,6 +38,10 @@ public final class WorkspaceUpdateParameters {
     @JsonProperty(value = "properties")
     private WorkspacePropertiesUpdateParameters innerProperties;
 
+    /** Creates an instance of WorkspaceUpdateParameters class. */
+    public WorkspaceUpdateParameters() {
+    }
+
     /**
      * Get the tags property: The resource tags for the machine learning workspace.
      *
@@ -291,6 +295,29 @@ public final class WorkspaceUpdateParameters {
             this.innerProperties = new WorkspacePropertiesUpdateParameters();
         }
         this.innerProperties().withContainerRegistry(containerRegistry);
+        return this;
+    }
+
+    /**
+     * Get the encryption property: The encryption settings of the workspace.
+     *
+     * @return the encryption value.
+     */
+    public EncryptionUpdateProperties encryption() {
+        return this.innerProperties() == null ? null : this.innerProperties().encryption();
+    }
+
+    /**
+     * Set the encryption property: The encryption settings of the workspace.
+     *
+     * @param encryption the encryption value to set.
+     * @return the WorkspaceUpdateParameters object itself.
+     */
+    public WorkspaceUpdateParameters withEncryption(EncryptionUpdateProperties encryption) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new WorkspacePropertiesUpdateParameters();
+        }
+        this.innerProperties().withEncryption(encryption);
         return this;
     }
 

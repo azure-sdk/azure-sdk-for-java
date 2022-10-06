@@ -27,6 +27,10 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 })
 @Immutable
 public class DatastoreCredentials {
+    /** Creates an instance of DatastoreCredentials class. */
+    public DatastoreCredentials() {
+    }
+
     /**
      * Validates the instance.
      *

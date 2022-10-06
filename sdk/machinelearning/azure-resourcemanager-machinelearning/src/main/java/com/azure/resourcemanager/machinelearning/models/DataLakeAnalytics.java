@@ -20,6 +20,10 @@ public final class DataLakeAnalytics extends Compute {
     @JsonProperty(value = "properties")
     private DataLakeAnalyticsSchemaProperties properties;
 
+    /** Creates an instance of DataLakeAnalytics class. */
+    public DataLakeAnalytics() {
+    }
+
     /**
      * Get the properties property: The properties property.
      *
@@ -51,13 +55,6 @@ public final class DataLakeAnalytics extends Compute {
     @Override
     public DataLakeAnalytics withResourceId(String resourceId) {
         super.withResourceId(resourceId);
-        return this;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public DataLakeAnalytics withDisableLocalAuth(Boolean disableLocalAuth) {
-        super.withDisableLocalAuth(disableLocalAuth);
         return this;
     }
 

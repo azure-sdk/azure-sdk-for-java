@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for DatastoreType. */
+/** Enum to determine the datastore contents type. */
 public final class DatastoreType extends ExpandableStringEnum<DatastoreType> {
     /** Static value AzureBlob for DatastoreType. */
     public static final DatastoreType AZURE_BLOB = fromString("AzureBlob");
