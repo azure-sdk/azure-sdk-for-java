@@ -99,6 +99,13 @@ public interface Database {
     DatabasePropertiesGeoReplication geoReplication();
 
     /**
+     * Gets the name of the resource group.
+     *
+     * @return the name of the resource group.
+     */
+    String resourceGroupName();
+
+    /**
      * Gets the inner com.azure.resourcemanager.redisenterprise.fluent.models.DatabaseInner object.
      *
      * @return the inner object.
@@ -308,15 +315,6 @@ public interface Database {
     /**
      * Retrieves the access keys for the RedisEnterprise database.
      *
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return access keys.
-     */
-    AccessKeys listKeys();
-
-    /**
-     * Retrieves the access keys for the RedisEnterprise database.
-     *
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -324,6 +322,15 @@ public interface Database {
      * @return access keys along with {@link Response}.
      */
     Response<AccessKeys> listKeysWithResponse(Context context);
+
+    /**
+     * Retrieves the access keys for the RedisEnterprise database.
+     *
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return access keys.
+     */
+    AccessKeys listKeys();
 
     /**
      * Regenerates the RedisEnterprise database's access keys.

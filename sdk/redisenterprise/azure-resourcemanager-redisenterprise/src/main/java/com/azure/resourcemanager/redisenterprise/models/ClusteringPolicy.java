@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for ClusteringPolicy. */
+/** Clustering policy - default is OSSCluster. Specified at create time. */
 public final class ClusteringPolicy extends ExpandableStringEnum<ClusteringPolicy> {
     /** Static value EnterpriseCluster for ClusteringPolicy. */
     public static final ClusteringPolicy ENTERPRISE_CLUSTER = fromString("EnterpriseCluster");
@@ -27,7 +27,11 @@ public final class ClusteringPolicy extends ExpandableStringEnum<ClusteringPolic
         return fromString(name, ClusteringPolicy.class);
     }
 
-    /** @return known ClusteringPolicy values. */
+    /**
+     * Gets known ClusteringPolicy values.
+     *
+     * @return known ClusteringPolicy values.
+     */
     public static Collection<ClusteringPolicy> values() {
         return values(ClusteringPolicy.class);
     }
