@@ -5,11 +5,9 @@
 package com.azure.resourcemanager.billing.fluent.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.billing.models.AcceptanceMode;
 import com.azure.resourcemanager.billing.models.Category;
 import com.azure.resourcemanager.billing.models.Participants;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 import java.util.List;
@@ -17,8 +15,6 @@ import java.util.List;
 /** The properties of an agreement. */
 @Fluent
 public final class AgreementProperties {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(AgreementProperties.class);
-
     /*
      * The URL to download the agreement.
      */
@@ -50,8 +46,7 @@ public final class AgreementProperties {
     private OffsetDateTime expirationDate;
 
     /*
-     * The list of participants that participates in acceptance of an
-     * agreement.
+     * The list of participants that participates in acceptance of an agreement.
      */
     @JsonProperty(value = "participants")
     private List<Participants> participants;
@@ -61,6 +56,10 @@ public final class AgreementProperties {
      */
     @JsonProperty(value = "status", access = JsonProperty.Access.WRITE_ONLY)
     private String status;
+
+    /** Creates an instance of AgreementProperties class. */
+    public AgreementProperties() {
+    }
 
     /**
      * Get the agreementLink property: The URL to download the agreement.
