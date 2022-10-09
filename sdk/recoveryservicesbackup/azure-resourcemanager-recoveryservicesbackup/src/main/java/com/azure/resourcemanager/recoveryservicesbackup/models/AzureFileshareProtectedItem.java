@@ -61,6 +61,10 @@ public final class AzureFileshareProtectedItem extends ProtectedItem {
     @JsonProperty(value = "extendedInfo")
     private AzureFileshareProtectedItemExtendedInfo extendedInfo;
 
+    /** Creates an instance of AzureFileshareProtectedItem class. */
+    public AzureFileshareProtectedItem() {
+    }
+
     /**
      * Get the friendlyName property: Friendly name of the fileshare represented by this backup item.
      *
@@ -198,20 +202,6 @@ public final class AzureFileshareProtectedItem extends ProtectedItem {
      */
     public AzureFileshareProtectedItem withExtendedInfo(AzureFileshareProtectedItemExtendedInfo extendedInfo) {
         this.extendedInfo = extendedInfo;
-        return this;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public AzureFileshareProtectedItem withBackupManagementType(BackupManagementType backupManagementType) {
-        super.withBackupManagementType(backupManagementType);
-        return this;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public AzureFileshareProtectedItem withWorkloadType(DataSourceType workloadType) {
-        super.withWorkloadType(workloadType);
         return this;
     }
 
