@@ -11,7 +11,6 @@ import com.azure.resourcemanager.securityinsights.models.AlertRuleTemplateWithMi
 import com.azure.resourcemanager.securityinsights.models.AlertSeverity;
 import com.azure.resourcemanager.securityinsights.models.AttackTactic;
 import com.azure.resourcemanager.securityinsights.models.EntityMapping;
-import com.azure.resourcemanager.securityinsights.models.EventGroupingSettings;
 import com.azure.resourcemanager.securityinsights.models.TemplateStatus;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -58,11 +57,9 @@ public final class NrtAlertRuleTemplateProperties extends AlertRuleTemplateWithM
     @JsonProperty(value = "alertDetailsOverride")
     private AlertDetailsOverride alertDetailsOverride;
 
-    /*
-     * The event grouping settings.
-     */
-    @JsonProperty(value = "eventGroupingSettings")
-    private EventGroupingSettings eventGroupingSettings;
+    /** Creates an instance of NrtAlertRuleTemplateProperties class. */
+    public NrtAlertRuleTemplateProperties() {
+    }
 
     /**
      * Get the query property: The query that creates alerts for this rule.
@@ -186,26 +183,6 @@ public final class NrtAlertRuleTemplateProperties extends AlertRuleTemplateWithM
         return this;
     }
 
-    /**
-     * Get the eventGroupingSettings property: The event grouping settings.
-     *
-     * @return the eventGroupingSettings value.
-     */
-    public EventGroupingSettings eventGroupingSettings() {
-        return this.eventGroupingSettings;
-    }
-
-    /**
-     * Set the eventGroupingSettings property: The event grouping settings.
-     *
-     * @param eventGroupingSettings the eventGroupingSettings value to set.
-     * @return the NrtAlertRuleTemplateProperties object itself.
-     */
-    public NrtAlertRuleTemplateProperties withEventGroupingSettings(EventGroupingSettings eventGroupingSettings) {
-        this.eventGroupingSettings = eventGroupingSettings;
-        return this;
-    }
-
     /** {@inheritDoc} */
     @Override
     public NrtAlertRuleTemplateProperties withTactics(List<AttackTactic> tactics) {
@@ -270,9 +247,6 @@ public final class NrtAlertRuleTemplateProperties extends AlertRuleTemplateWithM
         }
         if (alertDetailsOverride() != null) {
             alertDetailsOverride().validate();
-        }
-        if (eventGroupingSettings() != null) {
-            eventGroupingSettings().validate();
         }
     }
 }

@@ -4,7 +4,7 @@
 
 package com.azure.resourcemanager.securityinsights.models;
 
-import com.azure.core.annotation.Fluent;
+import com.azure.core.annotation.Immutable;
 import com.azure.resourcemanager.securityinsights.fluent.models.EntityInner;
 import com.azure.resourcemanager.securityinsights.fluent.models.SecurityGroupEntityProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -16,13 +16,17 @@ import java.util.UUID;
 /** Represents a security group entity. */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "kind")
 @JsonTypeName("SecurityGroup")
-@Fluent
+@Immutable
 public final class SecurityGroupEntity extends EntityInner {
     /*
      * SecurityGroup entity properties
      */
     @JsonProperty(value = "properties")
     private SecurityGroupEntityProperties innerProperties;
+
+    /** Creates an instance of SecurityGroupEntity class. */
+    public SecurityGroupEntity() {
+    }
 
     /**
      * Get the innerProperties property: SecurityGroup entity properties.

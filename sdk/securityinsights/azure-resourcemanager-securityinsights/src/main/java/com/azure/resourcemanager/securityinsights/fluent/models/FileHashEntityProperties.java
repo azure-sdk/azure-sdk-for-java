@@ -24,6 +24,10 @@ public final class FileHashEntityProperties extends EntityCommonProperties {
     @JsonProperty(value = "hashValue", access = JsonProperty.Access.WRITE_ONLY)
     private String hashValue;
 
+    /** Creates an instance of FileHashEntityProperties class. */
+    public FileHashEntityProperties() {
+    }
+
     /**
      * Get the algorithm property: The hash algorithm type.
      *

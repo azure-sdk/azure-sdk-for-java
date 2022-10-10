@@ -16,6 +16,10 @@ public final class EventGroupingSettings {
     @JsonProperty(value = "aggregationKind")
     private EventGroupingAggregationKind aggregationKind;
 
+    /** Creates an instance of EventGroupingSettings class. */
+    public EventGroupingSettings() {
+    }
+
     /**
      * Get the aggregationKind property: The event grouping aggregation kinds.
      *

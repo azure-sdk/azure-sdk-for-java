@@ -182,21 +182,6 @@ public final class DomainWhoisClientImpl implements DomainWhoisClient {
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param domain Domain name to be enriched.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return whois information for a single domain name.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public EnrichmentDomainWhoisInner get(String resourceGroupName, String domain) {
-        return getAsync(resourceGroupName, domain).block();
-    }
-
-    /**
-     * Get whois information for a single domain name.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param domain Domain name to be enriched.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -207,5 +192,20 @@ public final class DomainWhoisClientImpl implements DomainWhoisClient {
     public Response<EnrichmentDomainWhoisInner> getWithResponse(
         String resourceGroupName, String domain, Context context) {
         return getWithResponseAsync(resourceGroupName, domain, context).block();
+    }
+
+    /**
+     * Get whois information for a single domain name.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param domain Domain name to be enriched.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return whois information for a single domain name.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public EnrichmentDomainWhoisInner get(String resourceGroupName, String domain) {
+        return getWithResponse(resourceGroupName, domain, Context.NONE).getValue();
     }
 }

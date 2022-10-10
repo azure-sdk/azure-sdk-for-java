@@ -144,6 +144,10 @@ public final class ScheduledAlertRuleTemplateProperties {
     @JsonProperty(value = "alertDetailsOverride")
     private AlertDetailsOverride alertDetailsOverride;
 
+    /** Creates an instance of ScheduledAlertRuleTemplateProperties class. */
+    public ScheduledAlertRuleTemplateProperties() {
+    }
+
     /**
      * Get the alertRulesCreatedByTemplateCount property: the number of alert rules that were created by this template.
      *

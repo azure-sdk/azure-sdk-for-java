@@ -73,9 +73,6 @@ public final class EntityType extends ExpandableStringEnum<EntityType> {
     /** Static value SubmissionMail for EntityType. */
     public static final EntityType SUBMISSION_MAIL = fromString("SubmissionMail");
 
-    /** Static value Nic for EntityType. */
-    public static final EntityType NIC = fromString("Nic");
-
     /**
      * Creates or finds a EntityType from its string representation.
      *

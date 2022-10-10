@@ -18,6 +18,10 @@ public final class IoTDataConnectorProperties extends DataConnectorWithAlertsPro
     @JsonProperty(value = "subscriptionId")
     private String subscriptionId;
 
+    /** Creates an instance of IoTDataConnectorProperties class. */
+    public IoTDataConnectorProperties() {
+    }
+
     /**
      * Get the subscriptionId property: The subscription id to connect to, and get the data from.
      *

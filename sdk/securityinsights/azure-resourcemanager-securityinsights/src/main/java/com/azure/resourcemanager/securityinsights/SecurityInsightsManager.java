@@ -40,7 +40,8 @@ import com.azure.resourcemanager.securityinsights.implementation.EntitiesRelatio
 import com.azure.resourcemanager.securityinsights.implementation.EntityQueriesImpl;
 import com.azure.resourcemanager.securityinsights.implementation.EntityQueryTemplatesImpl;
 import com.azure.resourcemanager.securityinsights.implementation.EntityRelationsImpl;
-import com.azure.resourcemanager.securityinsights.implementation.FileImportsImpl;
+import com.azure.resourcemanager.securityinsights.implementation.GetRecommendationsImpl;
+import com.azure.resourcemanager.securityinsights.implementation.GetsImpl;
 import com.azure.resourcemanager.securityinsights.implementation.IncidentCommentsImpl;
 import com.azure.resourcemanager.securityinsights.implementation.IncidentRelationsImpl;
 import com.azure.resourcemanager.securityinsights.implementation.IncidentsImpl;
@@ -57,6 +58,7 @@ import com.azure.resourcemanager.securityinsights.implementation.SourceControlsO
 import com.azure.resourcemanager.securityinsights.implementation.ThreatIntelligenceIndicatorMetricsImpl;
 import com.azure.resourcemanager.securityinsights.implementation.ThreatIntelligenceIndicatorsImpl;
 import com.azure.resourcemanager.securityinsights.implementation.ThreatIntelligenceIndicatorsOperationsImpl;
+import com.azure.resourcemanager.securityinsights.implementation.UpdatesImpl;
 import com.azure.resourcemanager.securityinsights.implementation.WatchlistItemsImpl;
 import com.azure.resourcemanager.securityinsights.implementation.WatchlistsImpl;
 import com.azure.resourcemanager.securityinsights.models.Actions;
@@ -75,7 +77,8 @@ import com.azure.resourcemanager.securityinsights.models.EntitiesRelations;
 import com.azure.resourcemanager.securityinsights.models.EntityQueries;
 import com.azure.resourcemanager.securityinsights.models.EntityQueryTemplates;
 import com.azure.resourcemanager.securityinsights.models.EntityRelations;
-import com.azure.resourcemanager.securityinsights.models.FileImports;
+import com.azure.resourcemanager.securityinsights.models.GetRecommendations;
+import com.azure.resourcemanager.securityinsights.models.Gets;
 import com.azure.resourcemanager.securityinsights.models.IncidentComments;
 import com.azure.resourcemanager.securityinsights.models.IncidentRelations;
 import com.azure.resourcemanager.securityinsights.models.Incidents;
@@ -91,6 +94,7 @@ import com.azure.resourcemanager.securityinsights.models.SourceControlsOperation
 import com.azure.resourcemanager.securityinsights.models.ThreatIntelligenceIndicatorMetrics;
 import com.azure.resourcemanager.securityinsights.models.ThreatIntelligenceIndicators;
 import com.azure.resourcemanager.securityinsights.models.ThreatIntelligenceIndicatorsOperations;
+import com.azure.resourcemanager.securityinsights.models.Updates;
 import com.azure.resourcemanager.securityinsights.models.WatchlistItems;
 import com.azure.resourcemanager.securityinsights.models.Watchlists;
 import java.time.Duration;
@@ -137,8 +141,6 @@ public final class SecurityInsightsManager {
 
     private EntityQueryTemplates entityQueryTemplates;
 
-    private FileImports fileImports;
-
     private IncidentComments incidentComments;
 
     private IncidentRelations incidentRelations;
@@ -148,6 +150,12 @@ public final class SecurityInsightsManager {
     private OfficeConsents officeConsents;
 
     private SentinelOnboardingStates sentinelOnboardingStates;
+
+    private GetRecommendations getRecommendations;
+
+    private Gets gets;
+
+    private Updates updates;
 
     private SecurityMLAnalyticsSettings securityMLAnalyticsSettings;
 
@@ -338,7 +346,7 @@ public final class SecurityInsightsManager {
                 .append("-")
                 .append("com.azure.resourcemanager.securityinsights")
                 .append("/")
-                .append("1.0.0-beta.4");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder
                     .append(" (")
@@ -588,18 +596,6 @@ public final class SecurityInsightsManager {
     }
 
     /**
-     * Gets the resource collection API of FileImports. It manages FileImport.
-     *
-     * @return Resource collection API of FileImports.
-     */
-    public FileImports fileImports() {
-        if (this.fileImports == null) {
-            this.fileImports = new FileImportsImpl(clientObject.getFileImports(), this);
-        }
-        return fileImports;
-    }
-
-    /**
      * Gets the resource collection API of IncidentComments. It manages IncidentComment.
      *
      * @return Resource collection API of IncidentComments.
@@ -658,6 +654,42 @@ public final class SecurityInsightsManager {
                 new SentinelOnboardingStatesImpl(clientObject.getSentinelOnboardingStates(), this);
         }
         return sentinelOnboardingStates;
+    }
+
+    /**
+     * Gets the resource collection API of GetRecommendations.
+     *
+     * @return Resource collection API of GetRecommendations.
+     */
+    public GetRecommendations getRecommendations() {
+        if (this.getRecommendations == null) {
+            this.getRecommendations = new GetRecommendationsImpl(clientObject.getGetRecommendations(), this);
+        }
+        return getRecommendations;
+    }
+
+    /**
+     * Gets the resource collection API of Gets.
+     *
+     * @return Resource collection API of Gets.
+     */
+    public Gets gets() {
+        if (this.gets == null) {
+            this.gets = new GetsImpl(clientObject.getGets(), this);
+        }
+        return gets;
+    }
+
+    /**
+     * Gets the resource collection API of Updates.
+     *
+     * @return Resource collection API of Updates.
+     */
+    public Updates updates() {
+        if (this.updates == null) {
+            this.updates = new UpdatesImpl(clientObject.getUpdates(), this);
+        }
+        return updates;
     }
 
     /**

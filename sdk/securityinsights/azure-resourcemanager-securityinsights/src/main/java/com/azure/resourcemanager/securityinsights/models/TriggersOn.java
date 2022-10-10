@@ -13,9 +13,6 @@ public final class TriggersOn extends ExpandableStringEnum<TriggersOn> {
     /** Static value Incidents for TriggersOn. */
     public static final TriggersOn INCIDENTS = fromString("Incidents");
 
-    /** Static value Alerts for TriggersOn. */
-    public static final TriggersOn ALERTS = fromString("Alerts");
-
     /**
      * Creates or finds a TriggersOn from its string representation.
      *

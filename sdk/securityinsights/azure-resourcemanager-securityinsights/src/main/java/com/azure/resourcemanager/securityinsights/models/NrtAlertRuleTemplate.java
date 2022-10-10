@@ -25,6 +25,10 @@ public final class NrtAlertRuleTemplate extends AlertRuleTemplateInner {
     @JsonProperty(value = "properties")
     private NrtAlertRuleTemplateProperties innerProperties;
 
+    /** Creates an instance of NrtAlertRuleTemplate class. */
+    public NrtAlertRuleTemplate() {
+    }
+
     /**
      * Get the innerProperties property: NRT alert rule template properties.
      *
@@ -171,29 +175,6 @@ public final class NrtAlertRuleTemplate extends AlertRuleTemplateInner {
             this.innerProperties = new NrtAlertRuleTemplateProperties();
         }
         this.innerProperties().withAlertDetailsOverride(alertDetailsOverride);
-        return this;
-    }
-
-    /**
-     * Get the eventGroupingSettings property: The event grouping settings.
-     *
-     * @return the eventGroupingSettings value.
-     */
-    public EventGroupingSettings eventGroupingSettings() {
-        return this.innerProperties() == null ? null : this.innerProperties().eventGroupingSettings();
-    }
-
-    /**
-     * Set the eventGroupingSettings property: The event grouping settings.
-     *
-     * @param eventGroupingSettings the eventGroupingSettings value to set.
-     * @return the NrtAlertRuleTemplate object itself.
-     */
-    public NrtAlertRuleTemplate withEventGroupingSettings(EventGroupingSettings eventGroupingSettings) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new NrtAlertRuleTemplateProperties();
-        }
-        this.innerProperties().withEventGroupingSettings(eventGroupingSettings);
         return this;
     }
 

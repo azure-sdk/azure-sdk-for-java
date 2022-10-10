@@ -38,7 +38,8 @@ import com.azure.resourcemanager.securityinsights.fluent.EntitiesRelationsClient
 import com.azure.resourcemanager.securityinsights.fluent.EntityQueriesClient;
 import com.azure.resourcemanager.securityinsights.fluent.EntityQueryTemplatesClient;
 import com.azure.resourcemanager.securityinsights.fluent.EntityRelationsClient;
-import com.azure.resourcemanager.securityinsights.fluent.FileImportsClient;
+import com.azure.resourcemanager.securityinsights.fluent.GetRecommendationsClient;
+import com.azure.resourcemanager.securityinsights.fluent.GetsClient;
 import com.azure.resourcemanager.securityinsights.fluent.IncidentCommentsClient;
 import com.azure.resourcemanager.securityinsights.fluent.IncidentRelationsClient;
 import com.azure.resourcemanager.securityinsights.fluent.IncidentsClient;
@@ -55,6 +56,7 @@ import com.azure.resourcemanager.securityinsights.fluent.SourceControlsOperation
 import com.azure.resourcemanager.securityinsights.fluent.ThreatIntelligenceIndicatorMetricsClient;
 import com.azure.resourcemanager.securityinsights.fluent.ThreatIntelligenceIndicatorsClient;
 import com.azure.resourcemanager.securityinsights.fluent.ThreatIntelligenceIndicatorsOperationsClient;
+import com.azure.resourcemanager.securityinsights.fluent.UpdatesClient;
 import com.azure.resourcemanager.securityinsights.fluent.WatchlistItemsClient;
 import com.azure.resourcemanager.securityinsights.fluent.WatchlistsClient;
 import java.io.IOException;
@@ -333,18 +335,6 @@ public final class SecurityInsightsImpl implements SecurityInsights {
         return this.entityQueryTemplates;
     }
 
-    /** The FileImportsClient object to access its operations. */
-    private final FileImportsClient fileImports;
-
-    /**
-     * Gets the FileImportsClient object to access its operations.
-     *
-     * @return the FileImportsClient object.
-     */
-    public FileImportsClient getFileImports() {
-        return this.fileImports;
-    }
-
     /** The IncidentCommentsClient object to access its operations. */
     private final IncidentCommentsClient incidentComments;
 
@@ -403,6 +393,42 @@ public final class SecurityInsightsImpl implements SecurityInsights {
      */
     public SentinelOnboardingStatesClient getSentinelOnboardingStates() {
         return this.sentinelOnboardingStates;
+    }
+
+    /** The GetRecommendationsClient object to access its operations. */
+    private final GetRecommendationsClient getRecommendations;
+
+    /**
+     * Gets the GetRecommendationsClient object to access its operations.
+     *
+     * @return the GetRecommendationsClient object.
+     */
+    public GetRecommendationsClient getGetRecommendations() {
+        return this.getRecommendations;
+    }
+
+    /** The GetsClient object to access its operations. */
+    private final GetsClient gets;
+
+    /**
+     * Gets the GetsClient object to access its operations.
+     *
+     * @return the GetsClient object.
+     */
+    public GetsClient getGets() {
+        return this.gets;
+    }
+
+    /** The UpdatesClient object to access its operations. */
+    private final UpdatesClient updates;
+
+    /**
+     * Gets the UpdatesClient object to access its operations.
+     *
+     * @return the UpdatesClient object.
+     */
+    public UpdatesClient getUpdates() {
+        return this.updates;
     }
 
     /** The SecurityMLAnalyticsSettingsClient object to access its operations. */
@@ -571,7 +597,7 @@ public final class SecurityInsightsImpl implements SecurityInsights {
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2022-09-01-preview";
+        this.apiVersion = "2022-11-01-preview";
         this.alertRules = new AlertRulesClientImpl(this);
         this.actions = new ActionsClientImpl(this);
         this.alertRuleTemplates = new AlertRuleTemplatesClientImpl(this);
@@ -588,12 +614,14 @@ public final class SecurityInsightsImpl implements SecurityInsights {
         this.entityRelations = new EntityRelationsClientImpl(this);
         this.entityQueries = new EntityQueriesClientImpl(this);
         this.entityQueryTemplates = new EntityQueryTemplatesClientImpl(this);
-        this.fileImports = new FileImportsClientImpl(this);
         this.incidentComments = new IncidentCommentsClientImpl(this);
         this.incidentRelations = new IncidentRelationsClientImpl(this);
         this.metadatas = new MetadatasClientImpl(this);
         this.officeConsents = new OfficeConsentsClientImpl(this);
         this.sentinelOnboardingStates = new SentinelOnboardingStatesClientImpl(this);
+        this.getRecommendations = new GetRecommendationsClientImpl(this);
+        this.gets = new GetsClientImpl(this);
+        this.updates = new UpdatesClientImpl(this);
         this.securityMLAnalyticsSettings = new SecurityMLAnalyticsSettingsClientImpl(this);
         this.productSettings = new ProductSettingsClientImpl(this);
         this.sourceControls = new SourceControlsClientImpl(this);

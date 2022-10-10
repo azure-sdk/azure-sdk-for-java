@@ -146,6 +146,10 @@ public final class WatchlistProperties {
     @JsonProperty(value = "uploadStatus")
     private String uploadStatus;
 
+    /** Creates an instance of WatchlistProperties class. */
+    public WatchlistProperties() {
+    }
+
     /**
      * Get the watchlistId property: The id (a Guid) of the watchlist.
      *

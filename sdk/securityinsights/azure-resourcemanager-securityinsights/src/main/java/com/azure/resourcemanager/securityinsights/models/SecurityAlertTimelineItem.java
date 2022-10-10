@@ -70,6 +70,10 @@ public final class SecurityAlertTimelineItem extends EntityTimelineItem {
     @JsonProperty(value = "alertType", required = true)
     private String alertType;
 
+    /** Creates an instance of SecurityAlertTimelineItem class. */
+    public SecurityAlertTimelineItem() {
+    }
+
     /**
      * Get the azureResourceId property: The alert azure resource id.
      *

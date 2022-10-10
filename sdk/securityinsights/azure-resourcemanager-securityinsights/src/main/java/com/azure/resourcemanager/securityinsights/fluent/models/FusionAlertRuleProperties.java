@@ -77,6 +77,10 @@ public final class FusionAlertRuleProperties {
     @JsonProperty(value = "techniques", access = JsonProperty.Access.WRITE_ONLY)
     private List<String> techniques;
 
+    /** Creates an instance of FusionAlertRuleProperties class. */
+    public FusionAlertRuleProperties() {
+    }
+
     /**
      * Get the alertRuleTemplateName property: The Name of the alert rule template used to create this rule.
      *

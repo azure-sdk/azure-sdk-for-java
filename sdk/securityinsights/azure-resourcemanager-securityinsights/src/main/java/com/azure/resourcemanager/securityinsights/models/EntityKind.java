@@ -73,9 +73,6 @@ public final class EntityKind extends ExpandableStringEnum<EntityKind> {
     /** Static value SubmissionMail for EntityKind. */
     public static final EntityKind SUBMISSION_MAIL = fromString("SubmissionMail");
 
-    /** Static value Nic for EntityKind. */
-    public static final EntityKind NIC = fromString("Nic");
-
     /**
      * Creates or finds a EntityKind from its string representation.
      *

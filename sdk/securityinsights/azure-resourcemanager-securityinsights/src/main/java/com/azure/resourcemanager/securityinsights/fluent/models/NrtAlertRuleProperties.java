@@ -10,7 +10,6 @@ import com.azure.resourcemanager.securityinsights.models.AlertDetailsOverride;
 import com.azure.resourcemanager.securityinsights.models.AlertSeverity;
 import com.azure.resourcemanager.securityinsights.models.AttackTactic;
 import com.azure.resourcemanager.securityinsights.models.EntityMapping;
-import com.azure.resourcemanager.securityinsights.models.EventGroupingSettings;
 import com.azure.resourcemanager.securityinsights.models.IncidentConfiguration;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -120,11 +119,9 @@ public final class NrtAlertRuleProperties {
     @JsonProperty(value = "alertDetailsOverride")
     private AlertDetailsOverride alertDetailsOverride;
 
-    /*
-     * The event grouping settings.
-     */
-    @JsonProperty(value = "eventGroupingSettings")
-    private EventGroupingSettings eventGroupingSettings;
+    /** Creates an instance of NrtAlertRuleProperties class. */
+    public NrtAlertRuleProperties() {
+    }
 
     /**
      * Get the alertRuleTemplateName property: The Name of the alert rule template used to create this rule.
@@ -444,26 +441,6 @@ public final class NrtAlertRuleProperties {
     }
 
     /**
-     * Get the eventGroupingSettings property: The event grouping settings.
-     *
-     * @return the eventGroupingSettings value.
-     */
-    public EventGroupingSettings eventGroupingSettings() {
-        return this.eventGroupingSettings;
-    }
-
-    /**
-     * Set the eventGroupingSettings property: The event grouping settings.
-     *
-     * @param eventGroupingSettings the eventGroupingSettings value to set.
-     * @return the NrtAlertRuleProperties object itself.
-     */
-    public NrtAlertRuleProperties withEventGroupingSettings(EventGroupingSettings eventGroupingSettings) {
-        this.eventGroupingSettings = eventGroupingSettings;
-        return this;
-    }
-
-    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -499,9 +476,6 @@ public final class NrtAlertRuleProperties {
         }
         if (alertDetailsOverride() != null) {
             alertDetailsOverride().validate();
-        }
-        if (eventGroupingSettings() != null) {
-            eventGroupingSettings().validate();
         }
     }
 

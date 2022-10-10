@@ -43,6 +43,10 @@ public class AlertRuleTemplateInner extends ProxyResource {
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
+    /** Creates an instance of AlertRuleTemplateInner class. */
+    public AlertRuleTemplateInner() {
+    }
+
     /**
      * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
      *
