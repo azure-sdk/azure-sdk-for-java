@@ -7,7 +7,6 @@ package com.azure.resourcemanager.signalr.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.Resource;
 import com.azure.core.management.SystemData;
-import com.azure.resourcemanager.signalr.models.LiveTraceConfiguration;
 import com.azure.resourcemanager.signalr.models.ManagedIdentity;
 import com.azure.resourcemanager.signalr.models.ProvisioningState;
 import com.azure.resourcemanager.signalr.models.ResourceLogConfiguration;
@@ -54,6 +53,10 @@ public final class SignalRResourceInner extends Resource {
      */
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
+
+    /** Creates an instance of SignalRResourceInner class. */
+    public SignalRResourceInner() {
+    }
 
     /**
      * Get the sku property: The billing information of the resource.
@@ -283,29 +286,6 @@ public final class SignalRResourceInner extends Resource {
             this.innerProperties = new SignalRProperties();
         }
         this.innerProperties().withFeatures(features);
-        return this;
-    }
-
-    /**
-     * Get the liveTraceConfiguration property: Live trace configuration of a Microsoft.SignalRService resource.
-     *
-     * @return the liveTraceConfiguration value.
-     */
-    public LiveTraceConfiguration liveTraceConfiguration() {
-        return this.innerProperties() == null ? null : this.innerProperties().liveTraceConfiguration();
-    }
-
-    /**
-     * Set the liveTraceConfiguration property: Live trace configuration of a Microsoft.SignalRService resource.
-     *
-     * @param liveTraceConfiguration the liveTraceConfiguration value to set.
-     * @return the SignalRResourceInner object itself.
-     */
-    public SignalRResourceInner withLiveTraceConfiguration(LiveTraceConfiguration liveTraceConfiguration) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new SignalRProperties();
-        }
-        this.innerProperties().withLiveTraceConfiguration(liveTraceConfiguration);
         return this;
     }
 

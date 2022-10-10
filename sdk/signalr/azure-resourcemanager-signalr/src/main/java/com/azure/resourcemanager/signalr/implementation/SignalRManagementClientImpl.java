@@ -15,6 +15,7 @@ import com.azure.core.management.exception.ManagementException;
 import com.azure.core.management.polling.PollResult;
 import com.azure.core.management.polling.PollerFactory;
 import com.azure.core.util.Context;
+import com.azure.core.util.CoreUtils;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.core.util.polling.AsyncPollResponse;
 import com.azure.core.util.polling.LongRunningOperationStatus;
@@ -22,8 +23,6 @@ import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.serializer.SerializerAdapter;
 import com.azure.core.util.serializer.SerializerEncoding;
 import com.azure.resourcemanager.signalr.fluent.OperationsClient;
-import com.azure.resourcemanager.signalr.fluent.SignalRCustomCertificatesClient;
-import com.azure.resourcemanager.signalr.fluent.SignalRCustomDomainsClient;
 import com.azure.resourcemanager.signalr.fluent.SignalRManagementClient;
 import com.azure.resourcemanager.signalr.fluent.SignalRPrivateEndpointConnectionsClient;
 import com.azure.resourcemanager.signalr.fluent.SignalRPrivateLinkResourcesClient;
@@ -36,7 +35,6 @@ import java.nio.ByteBuffer;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.time.Duration;
-import java.util.Map;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
@@ -155,30 +153,6 @@ public final class SignalRManagementClientImpl implements SignalRManagementClien
         return this.usages;
     }
 
-    /** The SignalRCustomCertificatesClient object to access its operations. */
-    private final SignalRCustomCertificatesClient signalRCustomCertificates;
-
-    /**
-     * Gets the SignalRCustomCertificatesClient object to access its operations.
-     *
-     * @return the SignalRCustomCertificatesClient object.
-     */
-    public SignalRCustomCertificatesClient getSignalRCustomCertificates() {
-        return this.signalRCustomCertificates;
-    }
-
-    /** The SignalRCustomDomainsClient object to access its operations. */
-    private final SignalRCustomDomainsClient signalRCustomDomains;
-
-    /**
-     * Gets the SignalRCustomDomainsClient object to access its operations.
-     *
-     * @return the SignalRCustomDomainsClient object.
-     */
-    public SignalRCustomDomainsClient getSignalRCustomDomains() {
-        return this.signalRCustomDomains;
-    }
-
     /** The SignalRPrivateEndpointConnectionsClient object to access its operations. */
     private final SignalRPrivateEndpointConnectionsClient signalRPrivateEndpointConnections;
 
@@ -238,12 +212,10 @@ public final class SignalRManagementClientImpl implements SignalRManagementClien
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2022-02-01";
+        this.apiVersion = "2021-10-01";
         this.operations = new OperationsClientImpl(this);
         this.signalRs = new SignalRsClientImpl(this);
         this.usages = new UsagesClientImpl(this);
-        this.signalRCustomCertificates = new SignalRCustomCertificatesClientImpl(this);
-        this.signalRCustomDomains = new SignalRCustomDomainsClientImpl(this);
         this.signalRPrivateEndpointConnections = new SignalRPrivateEndpointConnectionsClientImpl(this);
         this.signalRPrivateLinkResources = new SignalRPrivateLinkResourcesClientImpl(this);
         this.signalRSharedPrivateLinkResources = new SignalRSharedPrivateLinkResourcesClientImpl(this);
@@ -265,10 +237,7 @@ public final class SignalRManagementClientImpl implements SignalRManagementClien
      * @return the merged context.
      */
     public Context mergeContext(Context context) {
-        for (Map.Entry<Object, Object> entry : this.getContext().getValues().entrySet()) {
-            context = context.addData(entry.getKey(), entry.getValue());
-        }
-        return context;
+        return CoreUtils.mergeContexts(this.getContext(), context);
     }
 
     /**

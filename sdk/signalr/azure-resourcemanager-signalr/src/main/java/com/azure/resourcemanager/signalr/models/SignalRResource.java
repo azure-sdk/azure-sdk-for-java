@@ -162,13 +162,6 @@ public interface SignalRResource {
     List<SignalRFeature> features();
 
     /**
-     * Gets the liveTraceConfiguration property: Live trace configuration of a Microsoft.SignalRService resource.
-     *
-     * @return the liveTraceConfiguration value.
-     */
-    LiveTraceConfiguration liveTraceConfiguration();
-
-    /**
      * Gets the resourceLogConfiguration property: Resource log configuration of a Microsoft.SignalRService resource.
      *
      * @return the resourceLogConfiguration value.
@@ -236,6 +229,13 @@ public interface SignalRResource {
     String regionName();
 
     /**
+     * Gets the name of the resource group.
+     *
+     * @return the name of the resource group.
+     */
+    String resourceGroupName();
+
+    /**
      * Gets the inner com.azure.resourcemanager.signalr.fluent.models.SignalRResourceInner object.
      *
      * @return the inner object.
@@ -294,7 +294,6 @@ public interface SignalRResource {
                 DefinitionStages.WithIdentity,
                 DefinitionStages.WithTls,
                 DefinitionStages.WithFeatures,
-                DefinitionStages.WithLiveTraceConfiguration,
                 DefinitionStages.WithResourceLogConfiguration,
                 DefinitionStages.WithCors,
                 DefinitionStages.WithUpstream,
@@ -385,17 +384,6 @@ public interface SignalRResource {
              * @return the next definition stage.
              */
             WithCreate withFeatures(List<SignalRFeature> features);
-        }
-        /** The stage of the SignalRResource definition allowing to specify liveTraceConfiguration. */
-        interface WithLiveTraceConfiguration {
-            /**
-             * Specifies the liveTraceConfiguration property: Live trace configuration of a Microsoft.SignalRService
-             * resource..
-             *
-             * @param liveTraceConfiguration Live trace configuration of a Microsoft.SignalRService resource.
-             * @return the next definition stage.
-             */
-            WithCreate withLiveTraceConfiguration(LiveTraceConfiguration liveTraceConfiguration);
         }
         /** The stage of the SignalRResource definition allowing to specify resourceLogConfiguration. */
         interface WithResourceLogConfiguration {
@@ -491,7 +479,6 @@ public interface SignalRResource {
             UpdateStages.WithIdentity,
             UpdateStages.WithTls,
             UpdateStages.WithFeatures,
-            UpdateStages.WithLiveTraceConfiguration,
             UpdateStages.WithResourceLogConfiguration,
             UpdateStages.WithCors,
             UpdateStages.WithUpstream,
@@ -574,17 +561,6 @@ public interface SignalRResource {
              * @return the next definition stage.
              */
             Update withFeatures(List<SignalRFeature> features);
-        }
-        /** The stage of the SignalRResource update allowing to specify liveTraceConfiguration. */
-        interface WithLiveTraceConfiguration {
-            /**
-             * Specifies the liveTraceConfiguration property: Live trace configuration of a Microsoft.SignalRService
-             * resource..
-             *
-             * @param liveTraceConfiguration Live trace configuration of a Microsoft.SignalRService resource.
-             * @return the next definition stage.
-             */
-            Update withLiveTraceConfiguration(LiveTraceConfiguration liveTraceConfiguration);
         }
         /** The stage of the SignalRResource update allowing to specify resourceLogConfiguration. */
         interface WithResourceLogConfiguration {
@@ -684,15 +660,6 @@ public interface SignalRResource {
     /**
      * Get the access keys of the resource.
      *
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the access keys of the resource.
-     */
-    SignalRKeys listKeys();
-
-    /**
-     * Get the access keys of the resource.
-     *
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -700,6 +667,15 @@ public interface SignalRResource {
      * @return the access keys of the resource along with {@link Response}.
      */
     Response<SignalRKeys> listKeysWithResponse(Context context);
+
+    /**
+     * Get the access keys of the resource.
+     *
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the access keys of the resource.
+     */
+    SignalRKeys listKeys();
 
     /**
      * Regenerate the access key for the resource. PrimaryKey and SecondaryKey cannot be regenerated at the same time.

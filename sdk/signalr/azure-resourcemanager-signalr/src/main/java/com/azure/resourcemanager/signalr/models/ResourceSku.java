@@ -49,6 +49,10 @@ public final class ResourceSku {
     @JsonProperty(value = "capacity")
     private Integer capacity;
 
+    /** Creates an instance of ResourceSku class. */
+    public ResourceSku() {
+    }
+
     /**
      * Get the name property: The name of the SKU. Required.
      *

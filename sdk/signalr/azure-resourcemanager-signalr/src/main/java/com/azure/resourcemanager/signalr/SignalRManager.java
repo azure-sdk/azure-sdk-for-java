@@ -25,8 +25,6 @@ import com.azure.core.util.Configuration;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.signalr.fluent.SignalRManagementClient;
 import com.azure.resourcemanager.signalr.implementation.OperationsImpl;
-import com.azure.resourcemanager.signalr.implementation.SignalRCustomCertificatesImpl;
-import com.azure.resourcemanager.signalr.implementation.SignalRCustomDomainsImpl;
 import com.azure.resourcemanager.signalr.implementation.SignalRManagementClientBuilder;
 import com.azure.resourcemanager.signalr.implementation.SignalRPrivateEndpointConnectionsImpl;
 import com.azure.resourcemanager.signalr.implementation.SignalRPrivateLinkResourcesImpl;
@@ -34,8 +32,6 @@ import com.azure.resourcemanager.signalr.implementation.SignalRSharedPrivateLink
 import com.azure.resourcemanager.signalr.implementation.SignalRsImpl;
 import com.azure.resourcemanager.signalr.implementation.UsagesImpl;
 import com.azure.resourcemanager.signalr.models.Operations;
-import com.azure.resourcemanager.signalr.models.SignalRCustomCertificates;
-import com.azure.resourcemanager.signalr.models.SignalRCustomDomains;
 import com.azure.resourcemanager.signalr.models.SignalRPrivateEndpointConnections;
 import com.azure.resourcemanager.signalr.models.SignalRPrivateLinkResources;
 import com.azure.resourcemanager.signalr.models.SignalRSharedPrivateLinkResources;
@@ -48,17 +44,13 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-/** Entry point to SignalRManager. REST API for Azure SignalR Service. */
+/** Entry point to SignalRManager. REST API for Azure SignalR Service dake update. */
 public final class SignalRManager {
     private Operations operations;
 
     private SignalRs signalRs;
 
     private Usages usages;
-
-    private SignalRCustomCertificates signalRCustomCertificates;
-
-    private SignalRCustomDomains signalRCustomDomains;
 
     private SignalRPrivateEndpointConnections signalRPrivateEndpointConnections;
 
@@ -231,7 +223,7 @@ public final class SignalRManager {
                 .append("-")
                 .append("com.azure.resourcemanager.signalr")
                 .append("/")
-                .append("1.0.0-beta.4");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder
                     .append(" (")
@@ -288,7 +280,11 @@ public final class SignalRManager {
         }
     }
 
-    /** @return Resource collection API of Operations. */
+    /**
+     * Gets the resource collection API of Operations.
+     *
+     * @return Resource collection API of Operations.
+     */
     public Operations operations() {
         if (this.operations == null) {
             this.operations = new OperationsImpl(clientObject.getOperations(), this);
@@ -296,7 +292,11 @@ public final class SignalRManager {
         return operations;
     }
 
-    /** @return Resource collection API of SignalRs. */
+    /**
+     * Gets the resource collection API of SignalRs. It manages SignalRResource.
+     *
+     * @return Resource collection API of SignalRs.
+     */
     public SignalRs signalRs() {
         if (this.signalRs == null) {
             this.signalRs = new SignalRsImpl(clientObject.getSignalRs(), this);
@@ -304,7 +304,11 @@ public final class SignalRManager {
         return signalRs;
     }
 
-    /** @return Resource collection API of Usages. */
+    /**
+     * Gets the resource collection API of Usages.
+     *
+     * @return Resource collection API of Usages.
+     */
     public Usages usages() {
         if (this.usages == null) {
             this.usages = new UsagesImpl(clientObject.getUsages(), this);
@@ -312,24 +316,11 @@ public final class SignalRManager {
         return usages;
     }
 
-    /** @return Resource collection API of SignalRCustomCertificates. */
-    public SignalRCustomCertificates signalRCustomCertificates() {
-        if (this.signalRCustomCertificates == null) {
-            this.signalRCustomCertificates =
-                new SignalRCustomCertificatesImpl(clientObject.getSignalRCustomCertificates(), this);
-        }
-        return signalRCustomCertificates;
-    }
-
-    /** @return Resource collection API of SignalRCustomDomains. */
-    public SignalRCustomDomains signalRCustomDomains() {
-        if (this.signalRCustomDomains == null) {
-            this.signalRCustomDomains = new SignalRCustomDomainsImpl(clientObject.getSignalRCustomDomains(), this);
-        }
-        return signalRCustomDomains;
-    }
-
-    /** @return Resource collection API of SignalRPrivateEndpointConnections. */
+    /**
+     * Gets the resource collection API of SignalRPrivateEndpointConnections.
+     *
+     * @return Resource collection API of SignalRPrivateEndpointConnections.
+     */
     public SignalRPrivateEndpointConnections signalRPrivateEndpointConnections() {
         if (this.signalRPrivateEndpointConnections == null) {
             this.signalRPrivateEndpointConnections =
@@ -338,7 +329,11 @@ public final class SignalRManager {
         return signalRPrivateEndpointConnections;
     }
 
-    /** @return Resource collection API of SignalRPrivateLinkResources. */
+    /**
+     * Gets the resource collection API of SignalRPrivateLinkResources.
+     *
+     * @return Resource collection API of SignalRPrivateLinkResources.
+     */
     public SignalRPrivateLinkResources signalRPrivateLinkResources() {
         if (this.signalRPrivateLinkResources == null) {
             this.signalRPrivateLinkResources =
@@ -347,7 +342,11 @@ public final class SignalRManager {
         return signalRPrivateLinkResources;
     }
 
-    /** @return Resource collection API of SignalRSharedPrivateLinkResources. */
+    /**
+     * Gets the resource collection API of SignalRSharedPrivateLinkResources. It manages SharedPrivateLinkResource.
+     *
+     * @return Resource collection API of SignalRSharedPrivateLinkResources.
+     */
     public SignalRSharedPrivateLinkResources signalRSharedPrivateLinkResources() {
         if (this.signalRSharedPrivateLinkResources == null) {
             this.signalRSharedPrivateLinkResources =
