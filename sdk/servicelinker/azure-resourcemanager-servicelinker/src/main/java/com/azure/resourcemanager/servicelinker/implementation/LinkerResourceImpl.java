@@ -16,12 +16,12 @@ import com.azure.resourcemanager.servicelinker.models.SecretStore;
 import com.azure.resourcemanager.servicelinker.models.SourceConfigurationResult;
 import com.azure.resourcemanager.servicelinker.models.TargetServiceBase;
 import com.azure.resourcemanager.servicelinker.models.VNetSolution;
-import com.azure.resourcemanager.servicelinker.models.ValidateOperationResult;
+import com.azure.resourcemanager.servicelinker.models.ValidateResult;
 
 public final class LinkerResourceImpl implements LinkerResource, LinkerResource.Definition, LinkerResource.Update {
     private LinkerResourceInner innerObject;
 
-    private final com.azure.resourcemanager.servicelinker.ServiceLinkerManager serviceManager;
+    private final com.azure.resourcemanager.servicelinker.ServicelinkerManager serviceManager;
 
     public String id() {
         return this.innerModel().id();
@@ -71,7 +71,7 @@ public final class LinkerResourceImpl implements LinkerResource, LinkerResource.
         return this.innerObject;
     }
 
-    private com.azure.resourcemanager.servicelinker.ServiceLinkerManager manager() {
+    private com.azure.resourcemanager.servicelinker.ServicelinkerManager manager() {
         return this.serviceManager;
     }
 
@@ -104,7 +104,7 @@ public final class LinkerResourceImpl implements LinkerResource, LinkerResource.
         return this;
     }
 
-    LinkerResourceImpl(String name, com.azure.resourcemanager.servicelinker.ServiceLinkerManager serviceManager) {
+    LinkerResourceImpl(String name, com.azure.resourcemanager.servicelinker.ServicelinkerManager serviceManager) {
         this.innerObject = new LinkerResourceInner();
         this.serviceManager = serviceManager;
         this.linkerName = name;
@@ -128,7 +128,7 @@ public final class LinkerResourceImpl implements LinkerResource, LinkerResource.
     }
 
     LinkerResourceImpl(
-        LinkerResourceInner innerObject, com.azure.resourcemanager.servicelinker.ServiceLinkerManager serviceManager) {
+        LinkerResourceInner innerObject, com.azure.resourcemanager.servicelinker.ServicelinkerManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
         this.resourceUri =
@@ -161,20 +161,20 @@ public final class LinkerResourceImpl implements LinkerResource, LinkerResource.
         return this;
     }
 
-    public ValidateOperationResult validate() {
+    public ValidateResult validate() {
         return serviceManager.linkers().validate(resourceUri, linkerName);
     }
 
-    public ValidateOperationResult validate(Context context) {
+    public ValidateResult validate(Context context) {
         return serviceManager.linkers().validate(resourceUri, linkerName, context);
-    }
-
-    public SourceConfigurationResult listConfigurations() {
-        return serviceManager.linkers().listConfigurations(resourceUri, linkerName);
     }
 
     public Response<SourceConfigurationResult> listConfigurationsWithResponse(Context context) {
         return serviceManager.linkers().listConfigurationsWithResponse(resourceUri, linkerName, context);
+    }
+
+    public SourceConfigurationResult listConfigurations() {
+        return serviceManager.linkers().listConfigurations(resourceUri, linkerName);
     }
 
     public LinkerResourceImpl withTargetService(TargetServiceBase targetService) {
