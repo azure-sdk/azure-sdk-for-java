@@ -11,7 +11,9 @@ import com.azure.core.util.Context;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.education.fluent.GrantsClient;
 import com.azure.resourcemanager.education.fluent.models.GrantDetailsInner;
+import com.azure.resourcemanager.education.fluent.models.GrantDetailsV2Inner;
 import com.azure.resourcemanager.education.models.GrantDetails;
+import com.azure.resourcemanager.education.models.GrantDetailsV2;
 import com.azure.resourcemanager.education.models.Grants;
 
 public final class GrantsImpl implements Grants {
@@ -48,15 +50,6 @@ public final class GrantsImpl implements Grants {
         return Utils.mapPage(inner, inner1 -> new GrantDetailsImpl(inner1, this.manager()));
     }
 
-    public GrantDetails get(String billingAccountName, String billingProfileName) {
-        GrantDetailsInner inner = this.serviceClient().get(billingAccountName, billingProfileName);
-        if (inner != null) {
-            return new GrantDetailsImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
     public Response<GrantDetails> getWithResponse(
         String billingAccountName, String billingProfileName, Boolean includeAllocatedBudget, Context context) {
         Response<GrantDetailsInner> inner =
@@ -69,6 +62,63 @@ public final class GrantsImpl implements Grants {
                 inner.getStatusCode(),
                 inner.getHeaders(),
                 new GrantDetailsImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public GrantDetails get(String billingAccountName, String billingProfileName) {
+        GrantDetailsInner inner = this.serviceClient().get(billingAccountName, billingProfileName);
+        if (inner != null) {
+            return new GrantDetailsImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
+    public PagedIterable<GrantDetailsV2> listAllV2() {
+        PagedIterable<GrantDetailsV2Inner> inner = this.serviceClient().listAllV2();
+        return Utils.mapPage(inner, inner1 -> new GrantDetailsV2Impl(inner1, this.manager()));
+    }
+
+    public PagedIterable<GrantDetailsV2> listAllV2(Boolean includeAllocatedBudget, Context context) {
+        PagedIterable<GrantDetailsV2Inner> inner = this.serviceClient().listAllV2(includeAllocatedBudget, context);
+        return Utils.mapPage(inner, inner1 -> new GrantDetailsV2Impl(inner1, this.manager()));
+    }
+
+    public PagedIterable<GrantDetailsV2> listV2(String billingAccountName, String billingProfileName) {
+        PagedIterable<GrantDetailsV2Inner> inner = this.serviceClient().listV2(billingAccountName, billingProfileName);
+        return Utils.mapPage(inner, inner1 -> new GrantDetailsV2Impl(inner1, this.manager()));
+    }
+
+    public PagedIterable<GrantDetailsV2> listV2(
+        String billingAccountName, String billingProfileName, Boolean includeAllocatedBudget, Context context) {
+        PagedIterable<GrantDetailsV2Inner> inner =
+            this.serviceClient().listV2(billingAccountName, billingProfileName, includeAllocatedBudget, context);
+        return Utils.mapPage(inner, inner1 -> new GrantDetailsV2Impl(inner1, this.manager()));
+    }
+
+    public Response<GrantDetailsV2> getV2WithResponse(
+        String billingAccountName, String billingProfileName, Boolean includeAllocatedBudget, Context context) {
+        Response<GrantDetailsV2Inner> inner =
+            this
+                .serviceClient()
+                .getV2WithResponse(billingAccountName, billingProfileName, includeAllocatedBudget, context);
+        if (inner != null) {
+            return new SimpleResponse<>(
+                inner.getRequest(),
+                inner.getStatusCode(),
+                inner.getHeaders(),
+                new GrantDetailsV2Impl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public GrantDetailsV2 getV2(String billingAccountName, String billingProfileName) {
+        GrantDetailsV2Inner inner = this.serviceClient().getV2(billingAccountName, billingProfileName);
+        if (inner != null) {
+            return new GrantDetailsV2Impl(inner, this.manager());
         } else {
             return null;
         }

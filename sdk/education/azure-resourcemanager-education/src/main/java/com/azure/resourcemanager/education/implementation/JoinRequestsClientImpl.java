@@ -168,6 +168,7 @@ public final class JoinRequestsClientImpl implements JoinRequestsClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter invoiceSectionName is required and cannot be null."));
         }
+        final String apiVersion = "2021-12-01-preview";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -179,7 +180,7 @@ public final class JoinRequestsClientImpl implements JoinRequestsClient {
                             billingProfileName,
                             invoiceSectionName,
                             includeDenied,
-                            this.client.getApiVersion(),
+                            apiVersion,
                             accept,
                             context))
             .<PagedResponse<JoinRequestDetailsInner>>map(
@@ -232,6 +233,7 @@ public final class JoinRequestsClientImpl implements JoinRequestsClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter invoiceSectionName is required and cannot be null."));
         }
+        final String apiVersion = "2021-12-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
@@ -241,7 +243,7 @@ public final class JoinRequestsClientImpl implements JoinRequestsClient {
                 billingProfileName,
                 invoiceSectionName,
                 includeDenied,
-                this.client.getApiVersion(),
+                apiVersion,
                 accept,
                 context)
             .map(
@@ -401,6 +403,7 @@ public final class JoinRequestsClientImpl implements JoinRequestsClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter joinRequestName is required and cannot be null."));
         }
+        final String apiVersion = "2021-12-01-preview";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -412,7 +415,7 @@ public final class JoinRequestsClientImpl implements JoinRequestsClient {
                             billingProfileName,
                             invoiceSectionName,
                             joinRequestName,
-                            this.client.getApiVersion(),
+                            apiVersion,
                             accept,
                             context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -460,6 +463,7 @@ public final class JoinRequestsClientImpl implements JoinRequestsClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter joinRequestName is required and cannot be null."));
         }
+        final String apiVersion = "2021-12-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
@@ -469,7 +473,7 @@ public final class JoinRequestsClientImpl implements JoinRequestsClient {
                 billingProfileName,
                 invoiceSectionName,
                 joinRequestName,
-                this.client.getApiVersion(),
+                apiVersion,
                 accept,
                 context);
     }
@@ -500,24 +504,6 @@ public final class JoinRequestsClientImpl implements JoinRequestsClient {
      * @param billingProfileName Billing profile name.
      * @param invoiceSectionName Invoice section name.
      * @param joinRequestName Join name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return student join requests.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public JoinRequestDetailsInner get(
-        String billingAccountName, String billingProfileName, String invoiceSectionName, String joinRequestName) {
-        return getAsync(billingAccountName, billingProfileName, invoiceSectionName, joinRequestName).block();
-    }
-
-    /**
-     * get student join requests.
-     *
-     * @param billingAccountName Billing account name.
-     * @param billingProfileName Billing profile name.
-     * @param invoiceSectionName Invoice section name.
-     * @param joinRequestName Join name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -534,6 +520,26 @@ public final class JoinRequestsClientImpl implements JoinRequestsClient {
         return getWithResponseAsync(
                 billingAccountName, billingProfileName, invoiceSectionName, joinRequestName, context)
             .block();
+    }
+
+    /**
+     * get student join requests.
+     *
+     * @param billingAccountName Billing account name.
+     * @param billingProfileName Billing profile name.
+     * @param invoiceSectionName Invoice section name.
+     * @param joinRequestName Join name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return student join requests.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public JoinRequestDetailsInner get(
+        String billingAccountName, String billingProfileName, String invoiceSectionName, String joinRequestName) {
+        return getWithResponse(
+                billingAccountName, billingProfileName, invoiceSectionName, joinRequestName, Context.NONE)
+            .getValue();
     }
 
     /**
@@ -573,6 +579,7 @@ public final class JoinRequestsClientImpl implements JoinRequestsClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter joinRequestName is required and cannot be null."));
         }
+        final String apiVersion = "2021-12-01-preview";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -584,7 +591,7 @@ public final class JoinRequestsClientImpl implements JoinRequestsClient {
                             billingProfileName,
                             invoiceSectionName,
                             joinRequestName,
-                            this.client.getApiVersion(),
+                            apiVersion,
                             accept,
                             context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -632,6 +639,7 @@ public final class JoinRequestsClientImpl implements JoinRequestsClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter joinRequestName is required and cannot be null."));
         }
+        final String apiVersion = "2021-12-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
@@ -641,7 +649,7 @@ public final class JoinRequestsClientImpl implements JoinRequestsClient {
                 billingProfileName,
                 invoiceSectionName,
                 joinRequestName,
-                this.client.getApiVersion(),
+                apiVersion,
                 accept,
                 context);
     }
@@ -672,23 +680,6 @@ public final class JoinRequestsClientImpl implements JoinRequestsClient {
      * @param billingProfileName Billing profile name.
      * @param invoiceSectionName Invoice section name.
      * @param joinRequestName Join name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public void approve(
-        String billingAccountName, String billingProfileName, String invoiceSectionName, String joinRequestName) {
-        approveAsync(billingAccountName, billingProfileName, invoiceSectionName, joinRequestName).block();
-    }
-
-    /**
-     * Approve student joining the redeemable lab.
-     *
-     * @param billingAccountName Billing account name.
-     * @param billingProfileName Billing profile name.
-     * @param invoiceSectionName Invoice section name.
-     * @param joinRequestName Join name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -705,6 +696,23 @@ public final class JoinRequestsClientImpl implements JoinRequestsClient {
         return approveWithResponseAsync(
                 billingAccountName, billingProfileName, invoiceSectionName, joinRequestName, context)
             .block();
+    }
+
+    /**
+     * Approve student joining the redeemable lab.
+     *
+     * @param billingAccountName Billing account name.
+     * @param billingProfileName Billing profile name.
+     * @param invoiceSectionName Invoice section name.
+     * @param joinRequestName Join name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public void approve(
+        String billingAccountName, String billingProfileName, String invoiceSectionName, String joinRequestName) {
+        approveWithResponse(billingAccountName, billingProfileName, invoiceSectionName, joinRequestName, Context.NONE);
     }
 
     /**
@@ -744,6 +752,7 @@ public final class JoinRequestsClientImpl implements JoinRequestsClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter joinRequestName is required and cannot be null."));
         }
+        final String apiVersion = "2021-12-01-preview";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -755,7 +764,7 @@ public final class JoinRequestsClientImpl implements JoinRequestsClient {
                             billingProfileName,
                             invoiceSectionName,
                             joinRequestName,
-                            this.client.getApiVersion(),
+                            apiVersion,
                             accept,
                             context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -803,6 +812,7 @@ public final class JoinRequestsClientImpl implements JoinRequestsClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter joinRequestName is required and cannot be null."));
         }
+        final String apiVersion = "2021-12-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
@@ -812,7 +822,7 @@ public final class JoinRequestsClientImpl implements JoinRequestsClient {
                 billingProfileName,
                 invoiceSectionName,
                 joinRequestName,
-                this.client.getApiVersion(),
+                apiVersion,
                 accept,
                 context);
     }
@@ -843,23 +853,6 @@ public final class JoinRequestsClientImpl implements JoinRequestsClient {
      * @param billingProfileName Billing profile name.
      * @param invoiceSectionName Invoice section name.
      * @param joinRequestName Join name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public void deny(
-        String billingAccountName, String billingProfileName, String invoiceSectionName, String joinRequestName) {
-        denyAsync(billingAccountName, billingProfileName, invoiceSectionName, joinRequestName).block();
-    }
-
-    /**
-     * Deny student joining the redeemable lab.
-     *
-     * @param billingAccountName Billing account name.
-     * @param billingProfileName Billing profile name.
-     * @param invoiceSectionName Invoice section name.
-     * @param joinRequestName Join name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -879,9 +872,27 @@ public final class JoinRequestsClientImpl implements JoinRequestsClient {
     }
 
     /**
+     * Deny student joining the redeemable lab.
+     *
+     * @param billingAccountName Billing account name.
+     * @param billingProfileName Billing profile name.
+     * @param invoiceSectionName Invoice section name.
+     * @param joinRequestName Join name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public void deny(
+        String billingAccountName, String billingProfileName, String invoiceSectionName, String joinRequestName) {
+        denyWithResponse(billingAccountName, billingProfileName, invoiceSectionName, joinRequestName, Context.NONE);
+    }
+
+    /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -916,7 +927,8 @@ public final class JoinRequestsClientImpl implements JoinRequestsClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.

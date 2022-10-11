@@ -27,7 +27,9 @@ import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
 import com.azure.resourcemanager.education.fluent.GrantsClient;
 import com.azure.resourcemanager.education.fluent.models.GrantDetailsInner;
+import com.azure.resourcemanager.education.fluent.models.GrantDetailsV2Inner;
 import com.azure.resourcemanager.education.models.GrantListResponse;
+import com.azure.resourcemanager.education.models.GrantListResponseV2;
 import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in GrantsClient. */
@@ -97,6 +99,47 @@ public final class GrantsClientImpl implements GrantsClient {
             Context context);
 
         @Headers({"Content-Type: application/json"})
+        @Get("/providers/Microsoft.Education/grants")
+        @ExpectedResponses({200})
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<GrantListResponseV2>> listAllV2(
+            @HostParam("$host") String endpoint,
+            @QueryParam("includeAllocatedBudget") Boolean includeAllocatedBudget,
+            @QueryParam("api-version") String apiVersion,
+            @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({"Content-Type: application/json"})
+        @Get(
+            "/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingProfiles/{billingProfileName}"
+                + "/providers/Microsoft.Education/grants")
+        @ExpectedResponses({200})
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<GrantListResponseV2>> listV2(
+            @HostParam("$host") String endpoint,
+            @PathParam("billingAccountName") String billingAccountName,
+            @PathParam("billingProfileName") String billingProfileName,
+            @QueryParam("includeAllocatedBudget") Boolean includeAllocatedBudget,
+            @QueryParam("api-version") String apiVersion,
+            @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({"Content-Type: application/json"})
+        @Get(
+            "/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingProfiles/{billingProfileName}"
+                + "/providers/Microsoft.Education/grants/default")
+        @ExpectedResponses({200})
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<GrantDetailsV2Inner>> getV2(
+            @HostParam("$host") String endpoint,
+            @PathParam("billingAccountName") String billingAccountName,
+            @PathParam("billingProfileName") String billingProfileName,
+            @QueryParam("includeAllocatedBudget") Boolean includeAllocatedBudget,
+            @QueryParam("api-version") String apiVersion,
+            @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({"Content-Type: application/json"})
         @Get("{nextLink}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
@@ -111,6 +154,26 @@ public final class GrantsClientImpl implements GrantsClient {
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<GrantListResponse>> listNext(
+            @PathParam(value = "nextLink", encoded = true) String nextLink,
+            @HostParam("$host") String endpoint,
+            @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({"Content-Type: application/json"})
+        @Get("{nextLink}")
+        @ExpectedResponses({200})
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<GrantListResponseV2>> listAllV2Next(
+            @PathParam(value = "nextLink", encoded = true) String nextLink,
+            @HostParam("$host") String endpoint,
+            @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({"Content-Type: application/json"})
+        @Get("{nextLink}")
+        @ExpectedResponses({200})
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<GrantListResponseV2>> listV2Next(
             @PathParam(value = "nextLink", encoded = true) String nextLink,
             @HostParam("$host") String endpoint,
             @HeaderParam("Accept") String accept,
@@ -135,17 +198,12 @@ public final class GrantsClientImpl implements GrantsClient {
                     new IllegalArgumentException(
                         "Parameter this.client.getEndpoint() is required and cannot be null."));
         }
+        final String apiVersion = "2021-12-01-preview";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
                 context ->
-                    service
-                        .listAll(
-                            this.client.getEndpoint(),
-                            includeAllocatedBudget,
-                            this.client.getApiVersion(),
-                            accept,
-                            context))
+                    service.listAll(this.client.getEndpoint(), includeAllocatedBudget, apiVersion, accept, context))
             .<PagedResponse<GrantDetailsInner>>map(
                 res ->
                     new PagedResponseBase<>(
@@ -178,10 +236,11 @@ public final class GrantsClientImpl implements GrantsClient {
                     new IllegalArgumentException(
                         "Parameter this.client.getEndpoint() is required and cannot be null."));
         }
+        final String apiVersion = "2021-12-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .listAll(this.client.getEndpoint(), includeAllocatedBudget, this.client.getApiVersion(), accept, context)
+            .listAll(this.client.getEndpoint(), includeAllocatedBudget, apiVersion, accept, context)
             .map(
                 res ->
                     new PagedResponseBase<>(
@@ -296,6 +355,7 @@ public final class GrantsClientImpl implements GrantsClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter billingProfileName is required and cannot be null."));
         }
+        final String apiVersion = "2021-12-01-preview";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -306,7 +366,7 @@ public final class GrantsClientImpl implements GrantsClient {
                             billingAccountName,
                             billingProfileName,
                             includeAllocatedBudget,
-                            this.client.getApiVersion(),
+                            apiVersion,
                             accept,
                             context))
             .<PagedResponse<GrantDetailsInner>>map(
@@ -351,6 +411,7 @@ public final class GrantsClientImpl implements GrantsClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter billingProfileName is required and cannot be null."));
         }
+        final String apiVersion = "2021-12-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
@@ -359,7 +420,7 @@ public final class GrantsClientImpl implements GrantsClient {
                 billingAccountName,
                 billingProfileName,
                 includeAllocatedBudget,
-                this.client.getApiVersion(),
+                apiVersion,
                 accept,
                 context)
             .map(
@@ -498,6 +559,7 @@ public final class GrantsClientImpl implements GrantsClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter billingProfileName is required and cannot be null."));
         }
+        final String apiVersion = "2021-12-01-preview";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -508,7 +570,7 @@ public final class GrantsClientImpl implements GrantsClient {
                             billingAccountName,
                             billingProfileName,
                             includeAllocatedBudget,
-                            this.client.getApiVersion(),
+                            apiVersion,
                             accept,
                             context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -544,6 +606,7 @@ public final class GrantsClientImpl implements GrantsClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter billingProfileName is required and cannot be null."));
         }
+        final String apiVersion = "2021-12-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
@@ -552,28 +615,9 @@ public final class GrantsClientImpl implements GrantsClient {
                 billingAccountName,
                 billingProfileName,
                 includeAllocatedBudget,
-                this.client.getApiVersion(),
+                apiVersion,
                 accept,
                 context);
-    }
-
-    /**
-     * Get details for a specific grant linked to the provided billing account and billing profile.
-     *
-     * @param billingAccountName Billing account name.
-     * @param billingProfileName Billing profile name.
-     * @param includeAllocatedBudget May be used to include information about budget that has been allocated.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return details for a specific grant linked to the provided billing account and billing profile on successful
-     *     completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<GrantDetailsInner> getAsync(
-        String billingAccountName, String billingProfileName, Boolean includeAllocatedBudget) {
-        return getWithResponseAsync(billingAccountName, billingProfileName, includeAllocatedBudget)
-            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -599,6 +643,25 @@ public final class GrantsClientImpl implements GrantsClient {
      *
      * @param billingAccountName Billing account name.
      * @param billingProfileName Billing profile name.
+     * @param includeAllocatedBudget May be used to include information about budget that has been allocated.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return details for a specific grant linked to the provided billing account and billing profile along with {@link
+     *     Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<GrantDetailsInner> getWithResponse(
+        String billingAccountName, String billingProfileName, Boolean includeAllocatedBudget, Context context) {
+        return getWithResponseAsync(billingAccountName, billingProfileName, includeAllocatedBudget, context).block();
+    }
+
+    /**
+     * Get details for a specific grant linked to the provided billing account and billing profile.
+     *
+     * @param billingAccountName Billing account name.
+     * @param billingProfileName Billing profile name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -607,7 +670,466 @@ public final class GrantsClientImpl implements GrantsClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public GrantDetailsInner get(String billingAccountName, String billingProfileName) {
         final Boolean includeAllocatedBudget = null;
-        return getAsync(billingAccountName, billingProfileName, includeAllocatedBudget).block();
+        return getWithResponse(billingAccountName, billingProfileName, includeAllocatedBudget, Context.NONE).getValue();
+    }
+
+    /**
+     * Get a list of grants that Microsoft has provided.
+     *
+     * @param includeAllocatedBudget May be used to include information about budget that has been allocated.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a list of grants that Microsoft has provided along with {@link PagedResponse} on successful completion of
+     *     {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<GrantDetailsV2Inner>> listAllV2SinglePageAsync(Boolean includeAllocatedBudget) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        final String apiVersion = "2022-10-01-preview";
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(
+                context ->
+                    service.listAllV2(this.client.getEndpoint(), includeAllocatedBudget, apiVersion, accept, context))
+            .<PagedResponse<GrantDetailsV2Inner>>map(
+                res ->
+                    new PagedResponseBase<>(
+                        res.getRequest(),
+                        res.getStatusCode(),
+                        res.getHeaders(),
+                        res.getValue().value(),
+                        res.getValue().nextLink(),
+                        null))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Get a list of grants that Microsoft has provided.
+     *
+     * @param includeAllocatedBudget May be used to include information about budget that has been allocated.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a list of grants that Microsoft has provided along with {@link PagedResponse} on successful completion of
+     *     {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<GrantDetailsV2Inner>> listAllV2SinglePageAsync(
+        Boolean includeAllocatedBudget, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        final String apiVersion = "2022-10-01-preview";
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service
+            .listAllV2(this.client.getEndpoint(), includeAllocatedBudget, apiVersion, accept, context)
+            .map(
+                res ->
+                    new PagedResponseBase<>(
+                        res.getRequest(),
+                        res.getStatusCode(),
+                        res.getHeaders(),
+                        res.getValue().value(),
+                        res.getValue().nextLink(),
+                        null));
+    }
+
+    /**
+     * Get a list of grants that Microsoft has provided.
+     *
+     * @param includeAllocatedBudget May be used to include information about budget that has been allocated.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a list of grants that Microsoft has provided as paginated response with {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    private PagedFlux<GrantDetailsV2Inner> listAllV2Async(Boolean includeAllocatedBudget) {
+        return new PagedFlux<>(
+            () -> listAllV2SinglePageAsync(includeAllocatedBudget), nextLink -> listAllV2NextSinglePageAsync(nextLink));
+    }
+
+    /**
+     * Get a list of grants that Microsoft has provided.
+     *
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a list of grants that Microsoft has provided as paginated response with {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    private PagedFlux<GrantDetailsV2Inner> listAllV2Async() {
+        final Boolean includeAllocatedBudget = null;
+        return new PagedFlux<>(
+            () -> listAllV2SinglePageAsync(includeAllocatedBudget), nextLink -> listAllV2NextSinglePageAsync(nextLink));
+    }
+
+    /**
+     * Get a list of grants that Microsoft has provided.
+     *
+     * @param includeAllocatedBudget May be used to include information about budget that has been allocated.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a list of grants that Microsoft has provided as paginated response with {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    private PagedFlux<GrantDetailsV2Inner> listAllV2Async(Boolean includeAllocatedBudget, Context context) {
+        return new PagedFlux<>(
+            () -> listAllV2SinglePageAsync(includeAllocatedBudget, context),
+            nextLink -> listAllV2NextSinglePageAsync(nextLink, context));
+    }
+
+    /**
+     * Get a list of grants that Microsoft has provided.
+     *
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a list of grants that Microsoft has provided as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedIterable<GrantDetailsV2Inner> listAllV2() {
+        final Boolean includeAllocatedBudget = null;
+        return new PagedIterable<>(listAllV2Async(includeAllocatedBudget));
+    }
+
+    /**
+     * Get a list of grants that Microsoft has provided.
+     *
+     * @param includeAllocatedBudget May be used to include information about budget that has been allocated.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a list of grants that Microsoft has provided as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedIterable<GrantDetailsV2Inner> listAllV2(Boolean includeAllocatedBudget, Context context) {
+        return new PagedIterable<>(listAllV2Async(includeAllocatedBudget, context));
+    }
+
+    /**
+     * Get details for a specific grant linked to the provided billing account and billing profile.
+     *
+     * @param billingAccountName Billing account name.
+     * @param billingProfileName Billing profile name.
+     * @param includeAllocatedBudget May be used to include information about budget that has been allocated.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return details for a specific grant linked to the provided billing account and billing profile along with {@link
+     *     PagedResponse} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<GrantDetailsV2Inner>> listV2SinglePageAsync(
+        String billingAccountName, String billingProfileName, Boolean includeAllocatedBudget) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (billingAccountName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
+        }
+        if (billingProfileName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter billingProfileName is required and cannot be null."));
+        }
+        final String apiVersion = "2022-10-01-preview";
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(
+                context ->
+                    service
+                        .listV2(
+                            this.client.getEndpoint(),
+                            billingAccountName,
+                            billingProfileName,
+                            includeAllocatedBudget,
+                            apiVersion,
+                            accept,
+                            context))
+            .<PagedResponse<GrantDetailsV2Inner>>map(
+                res ->
+                    new PagedResponseBase<>(
+                        res.getRequest(),
+                        res.getStatusCode(),
+                        res.getHeaders(),
+                        res.getValue().value(),
+                        res.getValue().nextLink(),
+                        null))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Get details for a specific grant linked to the provided billing account and billing profile.
+     *
+     * @param billingAccountName Billing account name.
+     * @param billingProfileName Billing profile name.
+     * @param includeAllocatedBudget May be used to include information about budget that has been allocated.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return details for a specific grant linked to the provided billing account and billing profile along with {@link
+     *     PagedResponse} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<GrantDetailsV2Inner>> listV2SinglePageAsync(
+        String billingAccountName, String billingProfileName, Boolean includeAllocatedBudget, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (billingAccountName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
+        }
+        if (billingProfileName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter billingProfileName is required and cannot be null."));
+        }
+        final String apiVersion = "2022-10-01-preview";
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service
+            .listV2(
+                this.client.getEndpoint(),
+                billingAccountName,
+                billingProfileName,
+                includeAllocatedBudget,
+                apiVersion,
+                accept,
+                context)
+            .map(
+                res ->
+                    new PagedResponseBase<>(
+                        res.getRequest(),
+                        res.getStatusCode(),
+                        res.getHeaders(),
+                        res.getValue().value(),
+                        res.getValue().nextLink(),
+                        null));
+    }
+
+    /**
+     * Get details for a specific grant linked to the provided billing account and billing profile.
+     *
+     * @param billingAccountName Billing account name.
+     * @param billingProfileName Billing profile name.
+     * @param includeAllocatedBudget May be used to include information about budget that has been allocated.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return details for a specific grant linked to the provided billing account and billing profile as paginated
+     *     response with {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    private PagedFlux<GrantDetailsV2Inner> listV2Async(
+        String billingAccountName, String billingProfileName, Boolean includeAllocatedBudget) {
+        return new PagedFlux<>(
+            () -> listV2SinglePageAsync(billingAccountName, billingProfileName, includeAllocatedBudget),
+            nextLink -> listV2NextSinglePageAsync(nextLink));
+    }
+
+    /**
+     * Get details for a specific grant linked to the provided billing account and billing profile.
+     *
+     * @param billingAccountName Billing account name.
+     * @param billingProfileName Billing profile name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return details for a specific grant linked to the provided billing account and billing profile as paginated
+     *     response with {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    private PagedFlux<GrantDetailsV2Inner> listV2Async(String billingAccountName, String billingProfileName) {
+        final Boolean includeAllocatedBudget = null;
+        return new PagedFlux<>(
+            () -> listV2SinglePageAsync(billingAccountName, billingProfileName, includeAllocatedBudget),
+            nextLink -> listV2NextSinglePageAsync(nextLink));
+    }
+
+    /**
+     * Get details for a specific grant linked to the provided billing account and billing profile.
+     *
+     * @param billingAccountName Billing account name.
+     * @param billingProfileName Billing profile name.
+     * @param includeAllocatedBudget May be used to include information about budget that has been allocated.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return details for a specific grant linked to the provided billing account and billing profile as paginated
+     *     response with {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    private PagedFlux<GrantDetailsV2Inner> listV2Async(
+        String billingAccountName, String billingProfileName, Boolean includeAllocatedBudget, Context context) {
+        return new PagedFlux<>(
+            () -> listV2SinglePageAsync(billingAccountName, billingProfileName, includeAllocatedBudget, context),
+            nextLink -> listV2NextSinglePageAsync(nextLink, context));
+    }
+
+    /**
+     * Get details for a specific grant linked to the provided billing account and billing profile.
+     *
+     * @param billingAccountName Billing account name.
+     * @param billingProfileName Billing profile name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return details for a specific grant linked to the provided billing account and billing profile as paginated
+     *     response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedIterable<GrantDetailsV2Inner> listV2(String billingAccountName, String billingProfileName) {
+        final Boolean includeAllocatedBudget = null;
+        return new PagedIterable<>(listV2Async(billingAccountName, billingProfileName, includeAllocatedBudget));
+    }
+
+    /**
+     * Get details for a specific grant linked to the provided billing account and billing profile.
+     *
+     * @param billingAccountName Billing account name.
+     * @param billingProfileName Billing profile name.
+     * @param includeAllocatedBudget May be used to include information about budget that has been allocated.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return details for a specific grant linked to the provided billing account and billing profile as paginated
+     *     response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedIterable<GrantDetailsV2Inner> listV2(
+        String billingAccountName, String billingProfileName, Boolean includeAllocatedBudget, Context context) {
+        return new PagedIterable<>(
+            listV2Async(billingAccountName, billingProfileName, includeAllocatedBudget, context));
+    }
+
+    /**
+     * Get details for a specific grant linked to the provided billing account and billing profile.
+     *
+     * @param billingAccountName Billing account name.
+     * @param billingProfileName Billing profile name.
+     * @param includeAllocatedBudget May be used to include information about budget that has been allocated.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return details for a specific grant linked to the provided billing account and billing profile along with {@link
+     *     Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<GrantDetailsV2Inner>> getV2WithResponseAsync(
+        String billingAccountName, String billingProfileName, Boolean includeAllocatedBudget) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (billingAccountName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
+        }
+        if (billingProfileName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter billingProfileName is required and cannot be null."));
+        }
+        final String apiVersion = "2022-10-01-preview";
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(
+                context ->
+                    service
+                        .getV2(
+                            this.client.getEndpoint(),
+                            billingAccountName,
+                            billingProfileName,
+                            includeAllocatedBudget,
+                            apiVersion,
+                            accept,
+                            context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Get details for a specific grant linked to the provided billing account and billing profile.
+     *
+     * @param billingAccountName Billing account name.
+     * @param billingProfileName Billing profile name.
+     * @param includeAllocatedBudget May be used to include information about budget that has been allocated.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return details for a specific grant linked to the provided billing account and billing profile along with {@link
+     *     Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<GrantDetailsV2Inner>> getV2WithResponseAsync(
+        String billingAccountName, String billingProfileName, Boolean includeAllocatedBudget, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (billingAccountName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter billingAccountName is required and cannot be null."));
+        }
+        if (billingProfileName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter billingProfileName is required and cannot be null."));
+        }
+        final String apiVersion = "2022-10-01-preview";
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service
+            .getV2(
+                this.client.getEndpoint(),
+                billingAccountName,
+                billingProfileName,
+                includeAllocatedBudget,
+                apiVersion,
+                accept,
+                context);
+    }
+
+    /**
+     * Get details for a specific grant linked to the provided billing account and billing profile.
+     *
+     * @param billingAccountName Billing account name.
+     * @param billingProfileName Billing profile name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return details for a specific grant linked to the provided billing account and billing profile on successful
+     *     completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<GrantDetailsV2Inner> getV2Async(String billingAccountName, String billingProfileName) {
+        final Boolean includeAllocatedBudget = null;
+        return getV2WithResponseAsync(billingAccountName, billingProfileName, includeAllocatedBudget)
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -624,15 +1146,33 @@ public final class GrantsClientImpl implements GrantsClient {
      *     Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<GrantDetailsInner> getWithResponse(
+    public Response<GrantDetailsV2Inner> getV2WithResponse(
         String billingAccountName, String billingProfileName, Boolean includeAllocatedBudget, Context context) {
-        return getWithResponseAsync(billingAccountName, billingProfileName, includeAllocatedBudget, context).block();
+        return getV2WithResponseAsync(billingAccountName, billingProfileName, includeAllocatedBudget, context).block();
+    }
+
+    /**
+     * Get details for a specific grant linked to the provided billing account and billing profile.
+     *
+     * @param billingAccountName Billing account name.
+     * @param billingProfileName Billing profile name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return details for a specific grant linked to the provided billing account and billing profile.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public GrantDetailsV2Inner getV2(String billingAccountName, String billingProfileName) {
+        final Boolean includeAllocatedBudget = null;
+        return getV2WithResponse(billingAccountName, billingProfileName, includeAllocatedBudget, Context.NONE)
+            .getValue();
     }
 
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -667,7 +1207,8 @@ public final class GrantsClientImpl implements GrantsClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -703,7 +1244,8 @@ public final class GrantsClientImpl implements GrantsClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -738,7 +1280,8 @@ public final class GrantsClientImpl implements GrantsClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -760,6 +1303,152 @@ public final class GrantsClientImpl implements GrantsClient {
         context = this.client.mergeContext(context);
         return service
             .listNext(nextLink, this.client.getEndpoint(), accept, context)
+            .map(
+                res ->
+                    new PagedResponseBase<>(
+                        res.getRequest(),
+                        res.getStatusCode(),
+                        res.getHeaders(),
+                        res.getValue().value(),
+                        res.getValue().nextLink(),
+                        null));
+    }
+
+    /**
+     * Get the next page of items.
+     *
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of Grants info along with {@link PagedResponse} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<GrantDetailsV2Inner>> listAllV2NextSinglePageAsync(String nextLink) {
+        if (nextLink == null) {
+            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+        }
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(context -> service.listAllV2Next(nextLink, this.client.getEndpoint(), accept, context))
+            .<PagedResponse<GrantDetailsV2Inner>>map(
+                res ->
+                    new PagedResponseBase<>(
+                        res.getRequest(),
+                        res.getStatusCode(),
+                        res.getHeaders(),
+                        res.getValue().value(),
+                        res.getValue().nextLink(),
+                        null))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Get the next page of items.
+     *
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of Grants info along with {@link PagedResponse} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<GrantDetailsV2Inner>> listAllV2NextSinglePageAsync(String nextLink, Context context) {
+        if (nextLink == null) {
+            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+        }
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service
+            .listAllV2Next(nextLink, this.client.getEndpoint(), accept, context)
+            .map(
+                res ->
+                    new PagedResponseBase<>(
+                        res.getRequest(),
+                        res.getStatusCode(),
+                        res.getHeaders(),
+                        res.getValue().value(),
+                        res.getValue().nextLink(),
+                        null));
+    }
+
+    /**
+     * Get the next page of items.
+     *
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of Grants info along with {@link PagedResponse} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<GrantDetailsV2Inner>> listV2NextSinglePageAsync(String nextLink) {
+        if (nextLink == null) {
+            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+        }
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(context -> service.listV2Next(nextLink, this.client.getEndpoint(), accept, context))
+            .<PagedResponse<GrantDetailsV2Inner>>map(
+                res ->
+                    new PagedResponseBase<>(
+                        res.getRequest(),
+                        res.getStatusCode(),
+                        res.getHeaders(),
+                        res.getValue().value(),
+                        res.getValue().nextLink(),
+                        null))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Get the next page of items.
+     *
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of Grants info along with {@link PagedResponse} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<GrantDetailsV2Inner>> listV2NextSinglePageAsync(String nextLink, Context context) {
+        if (nextLink == null) {
+            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+        }
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service
+            .listV2Next(nextLink, this.client.getEndpoint(), accept, context)
             .map(
                 res ->
                     new PagedResponseBase<>(

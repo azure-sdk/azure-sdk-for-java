@@ -23,9 +23,11 @@ import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.serializer.SerializerAdapter;
 import com.azure.core.util.serializer.SerializerEncoding;
 import com.azure.resourcemanager.education.fluent.EducationManagementClient;
+import com.azure.resourcemanager.education.fluent.GrantOperationsClient;
 import com.azure.resourcemanager.education.fluent.GrantsClient;
 import com.azure.resourcemanager.education.fluent.JoinRequestsClient;
 import com.azure.resourcemanager.education.fluent.LabsClient;
+import com.azure.resourcemanager.education.fluent.OperationOperationsClient;
 import com.azure.resourcemanager.education.fluent.OperationsClient;
 import com.azure.resourcemanager.education.fluent.ResourceProvidersClient;
 import com.azure.resourcemanager.education.fluent.StudentLabsClient;
@@ -52,18 +54,6 @@ public final class EducationManagementClientImpl implements EducationManagementC
      */
     public String getEndpoint() {
         return this.endpoint;
-    }
-
-    /** Api Version. */
-    private final String apiVersion;
-
-    /**
-     * Gets Api Version.
-     *
-     * @return the apiVersion value.
-     */
-    public String getApiVersion() {
-        return this.apiVersion;
     }
 
     /** The HTTP pipeline to send requests through. */
@@ -186,6 +176,30 @@ public final class EducationManagementClientImpl implements EducationManagementC
         return this.studentLabs;
     }
 
+    /** The OperationOperationsClient object to access its operations. */
+    private final OperationOperationsClient operationOperations;
+
+    /**
+     * Gets the OperationOperationsClient object to access its operations.
+     *
+     * @return the OperationOperationsClient object.
+     */
+    public OperationOperationsClient getOperationOperations() {
+        return this.operationOperations;
+    }
+
+    /** The GrantOperationsClient object to access its operations. */
+    private final GrantOperationsClient grantOperations;
+
+    /**
+     * Gets the GrantOperationsClient object to access its operations.
+     *
+     * @return the GrantOperationsClient object.
+     */
+    public GrantOperationsClient getGrantOperations() {
+        return this.grantOperations;
+    }
+
     /**
      * Initializes an instance of EducationManagementClient client.
      *
@@ -205,7 +219,6 @@ public final class EducationManagementClientImpl implements EducationManagementC
         this.serializerAdapter = serializerAdapter;
         this.defaultPollInterval = defaultPollInterval;
         this.endpoint = endpoint;
-        this.apiVersion = "2021-12-01-preview";
         this.operations = new OperationsClientImpl(this);
         this.grants = new GrantsClientImpl(this);
         this.labs = new LabsClientImpl(this);
@@ -213,6 +226,8 @@ public final class EducationManagementClientImpl implements EducationManagementC
         this.resourceProviders = new ResourceProvidersClientImpl(this);
         this.students = new StudentsClientImpl(this);
         this.studentLabs = new StudentLabsClientImpl(this);
+        this.operationOperations = new OperationOperationsClientImpl(this);
+        this.grantOperations = new GrantOperationsClientImpl(this);
     }
 
     /**

@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for JoinRequests Deny. */
 public final class JoinRequestsDenySamples {
     /*
-     * x-ms-original-file: specification/education/resource-manager/Microsoft.Education/preview/2021-12-01-preview/examples/JoinRequestApproveAndDeny.json
+     * x-ms-original-file: specification/education/resource-manager/Microsoft.Education/preview/2021-12-01-preview/examples/JoinRequestDeny.json
      */
     /**
      * Sample code: JoinRequestDeny.

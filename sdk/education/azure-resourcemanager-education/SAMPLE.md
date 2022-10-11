@@ -1,11 +1,18 @@
 # Code snippets and samples
 
 
+## GrantOperation
+
+- [Renewal](#grantoperation_renewal)
+
 ## Grants
 
 - [Get](#grants_get)
+- [GetV2](#grants_getv2)
 - [List](#grants_list)
 - [ListAll](#grants_listall)
+- [ListAllV2](#grants_listallv2)
+- [ListV2](#grants_listv2)
 
 ## JoinRequests
 
@@ -22,6 +29,10 @@
 - [Get](#labs_get)
 - [List](#labs_list)
 - [ListAll](#labs_listall)
+
+## OperationOperation
+
+- [Status](#operationoperation_status)
 
 ## Operations
 
@@ -42,6 +53,27 @@
 - [Delete](#students_delete)
 - [Get](#students_get)
 - [List](#students_list)
+### GrantOperation_Renewal
+
+```java
+import com.azure.core.util.Context;
+
+/** Samples for GrantOperation Renewal. */
+public final class GrantOperationRenewalSamples {
+    /*
+     * x-ms-original-file: specification/education/resource-manager/Microsoft.Education/preview/2022-10-01-preview/examples/GrantRenew.json
+     */
+    /**
+     * Sample code: GrantRenew.
+     *
+     * @param manager Entry point to EducationManager.
+     */
+    public static void grantRenew(com.azure.resourcemanager.education.EducationManager manager) {
+        manager.grantOperations().renewalWithResponse("{billingAccountName}", "{billingProfileName}", Context.NONE);
+    }
+}
+```
+
 ### Grants_Get
 
 ```java
@@ -71,6 +103,39 @@ public final class GrantsGetSamples {
      */
     public static void grantIncludeAllocatedBudget(com.azure.resourcemanager.education.EducationManager manager) {
         manager.grants().getWithResponse("{billingAccountName}", "{billingProfileName}", false, Context.NONE);
+    }
+}
+```
+
+### Grants_GetV2
+
+```java
+import com.azure.core.util.Context;
+
+/** Samples for Grants GetV2. */
+public final class GrantsGetV2Samples {
+    /*
+     * x-ms-original-file: specification/education/resource-manager/Microsoft.Education/preview/2022-10-01-preview/examples/Grant.json
+     */
+    /**
+     * Sample code: Grant.
+     *
+     * @param manager Entry point to EducationManager.
+     */
+    public static void grant(com.azure.resourcemanager.education.EducationManager manager) {
+        manager.grants().getV2WithResponse("{billingAccountName}", "{billingProfileName}", false, Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file: specification/education/resource-manager/Microsoft.Education/preview/2022-10-01-preview/examples/GrantIncludeAllocatedBudget.json
+     */
+    /**
+     * Sample code: GrantIncludeAllocatedBudget.
+     *
+     * @param manager Entry point to EducationManager.
+     */
+    public static void grantIncludeAllocatedBudget(com.azure.resourcemanager.education.EducationManager manager) {
+        manager.grants().getV2WithResponse("{billingAccountName}", "{billingProfileName}", false, Context.NONE);
     }
 }
 ```
@@ -141,6 +206,72 @@ public final class GrantsListAllSamples {
 }
 ```
 
+### Grants_ListAllV2
+
+```java
+import com.azure.core.util.Context;
+
+/** Samples for Grants ListAllV2. */
+public final class GrantsListAllV2Samples {
+    /*
+     * x-ms-original-file: specification/education/resource-manager/Microsoft.Education/preview/2022-10-01-preview/examples/GrantListIncludeAllocatedBudget.json
+     */
+    /**
+     * Sample code: GrantListIncludeAllocatedBudget.
+     *
+     * @param manager Entry point to EducationManager.
+     */
+    public static void grantListIncludeAllocatedBudget(com.azure.resourcemanager.education.EducationManager manager) {
+        manager.grants().listAllV2(true, Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file: specification/education/resource-manager/Microsoft.Education/preview/2022-10-01-preview/examples/GrantList.json
+     */
+    /**
+     * Sample code: GrantList.
+     *
+     * @param manager Entry point to EducationManager.
+     */
+    public static void grantList(com.azure.resourcemanager.education.EducationManager manager) {
+        manager.grants().listAllV2(false, Context.NONE);
+    }
+}
+```
+
+### Grants_ListV2
+
+```java
+import com.azure.core.util.Context;
+
+/** Samples for Grants ListV2. */
+public final class GrantsListV2Samples {
+    /*
+     * x-ms-original-file: specification/education/resource-manager/Microsoft.Education/preview/2022-10-01-preview/examples/GrantDefaultListIncludeAllocatedBudget.json
+     */
+    /**
+     * Sample code: GrantListIncludeAllocatedBudget.
+     *
+     * @param manager Entry point to EducationManager.
+     */
+    public static void grantListIncludeAllocatedBudget(com.azure.resourcemanager.education.EducationManager manager) {
+        manager.grants().listV2("{billingAccountName}", "{billingProfileName}", false, Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file: specification/education/resource-manager/Microsoft.Education/preview/2022-10-01-preview/examples/GrantDefaultList.json
+     */
+    /**
+     * Sample code: GrantList.
+     *
+     * @param manager Entry point to EducationManager.
+     */
+    public static void grantList(com.azure.resourcemanager.education.EducationManager manager) {
+        manager.grants().listV2("{billingAccountName}", "{billingProfileName}", false, Context.NONE);
+    }
+}
+```
+
 ### JoinRequests_Approve
 
 ```java
@@ -149,7 +280,7 @@ import com.azure.core.util.Context;
 /** Samples for JoinRequests Approve. */
 public final class JoinRequestsApproveSamples {
     /*
-     * x-ms-original-file: specification/education/resource-manager/Microsoft.Education/preview/2021-12-01-preview/examples/JoinRequestApproveAndDeny.json
+     * x-ms-original-file: specification/education/resource-manager/Microsoft.Education/preview/2021-12-01-preview/examples/JoinRequestApprove.json
      */
     /**
      * Sample code: JoinRequestApprove.
@@ -177,7 +308,7 @@ import com.azure.core.util.Context;
 /** Samples for JoinRequests Deny. */
 public final class JoinRequestsDenySamples {
     /*
-     * x-ms-original-file: specification/education/resource-manager/Microsoft.Education/preview/2021-12-01-preview/examples/JoinRequestApproveAndDeny.json
+     * x-ms-original-file: specification/education/resource-manager/Microsoft.Education/preview/2021-12-01-preview/examples/JoinRequestDeny.json
      */
     /**
      * Sample code: JoinRequestDeny.
@@ -275,7 +406,7 @@ public final class LabsCreateOrUpdateSamples {
                 "{invoiceSectionName}",
                 new LabDetailsInner()
                     .withDisplayName("example lab")
-                    .withBudgetPerStudent(new Amount().withCurrency("USD").withValue(100.0f))
+                    .withBudgetPerStudent(new Amount().withCurrency("USD").withValue(100.0F))
                     .withDescription("example lab description")
                     .withExpirationDate(OffsetDateTime.parse("2021-12-09T22:11:29.422Z")),
                 Context.NONE);
@@ -329,7 +460,7 @@ public final class LabsGenerateInviteCodeSamples {
                 "{billingAccountName}",
                 "{billingProfileName}",
                 "{invoiceSectionName}",
-                new InviteCodeGenerateRequest().withMaxStudentCount(10.0f),
+                new InviteCodeGenerateRequest().withMaxStudentCount(10.0F),
                 null,
                 Context.NONE);
     }
@@ -438,6 +569,27 @@ public final class LabsListAllSamples {
      */
     public static void labListIncludeBudget(com.azure.resourcemanager.education.EducationManager manager) {
         manager.labs().listAll("{billingAccountName}", "{billingProfileName}", true, null, Context.NONE);
+    }
+}
+```
+
+### OperationOperation_Status
+
+```java
+import com.azure.core.util.Context;
+
+/** Samples for OperationOperation Status. */
+public final class OperationOperationStatusSamples {
+    /*
+     * x-ms-original-file: specification/education/resource-manager/Microsoft.Education/preview/2022-10-01-preview/examples/OperationStatus.json
+     */
+    /**
+     * Sample code: OperationStatus.
+     *
+     * @param manager Entry point to EducationManager.
+     */
+    public static void operationStatus(com.azure.resourcemanager.education.EducationManager manager) {
+        manager.operationOperations().statusWithResponse("{operationId}", Context.NONE);
     }
 }
 ```
@@ -563,7 +715,7 @@ public final class StudentsCreateOrUpdateSamples {
                     .withLastName("user")
                     .withEmail("test@contoso.com")
                     .withRole(StudentRole.STUDENT)
-                    .withBudget(new Amount().withCurrency("USD").withValue(100.0f))
+                    .withBudget(new Amount().withCurrency("USD").withValue(100.0F))
                     .withExpirationDate(OffsetDateTime.parse("2021-11-09T22:13:21.795Z")),
                 Context.NONE);
     }

@@ -77,10 +77,10 @@ public final class OperationsClientImpl implements OperationsClient {
                     new IllegalArgumentException(
                         "Parameter this.client.getEndpoint() is required and cannot be null."));
         }
+        final String apiVersion = "2021-12-01-preview";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context -> service.list(this.client.getEndpoint(), this.client.getApiVersion(), accept, context))
+            .withContext(context -> service.list(this.client.getEndpoint(), apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -102,9 +102,10 @@ public final class OperationsClientImpl implements OperationsClient {
                     new IllegalArgumentException(
                         "Parameter this.client.getEndpoint() is required and cannot be null."));
         }
+        final String apiVersion = "2021-12-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.list(this.client.getEndpoint(), this.client.getApiVersion(), accept, context);
+        return service.list(this.client.getEndpoint(), apiVersion, accept, context);
     }
 
     /**
@@ -123,18 +124,6 @@ public final class OperationsClientImpl implements OperationsClient {
     /**
      * Lists all of the available Microsoft.Education API operations.
      *
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of REST API operations supported by an Azure Resource Provider.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public OperationListResultInner list() {
-        return listAsync().block();
-    }
-
-    /**
-     * Lists all of the available Microsoft.Education API operations.
-     *
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -144,5 +133,17 @@ public final class OperationsClientImpl implements OperationsClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<OperationListResultInner> listWithResponse(Context context) {
         return listWithResponseAsync(context).block();
+    }
+
+    /**
+     * Lists all of the available Microsoft.Education API operations.
+     *
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a list of REST API operations supported by an Azure Resource Provider.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public OperationListResultInner list() {
+        return listWithResponse(Context.NONE).getValue();
     }
 }

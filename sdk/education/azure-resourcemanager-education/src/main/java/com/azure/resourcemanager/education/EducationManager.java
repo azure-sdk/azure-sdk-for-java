@@ -25,16 +25,20 @@ import com.azure.core.util.Configuration;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.education.fluent.EducationManagementClient;
 import com.azure.resourcemanager.education.implementation.EducationManagementClientBuilder;
+import com.azure.resourcemanager.education.implementation.GrantOperationsImpl;
 import com.azure.resourcemanager.education.implementation.GrantsImpl;
 import com.azure.resourcemanager.education.implementation.JoinRequestsImpl;
 import com.azure.resourcemanager.education.implementation.LabsImpl;
+import com.azure.resourcemanager.education.implementation.OperationOperationsImpl;
 import com.azure.resourcemanager.education.implementation.OperationsImpl;
 import com.azure.resourcemanager.education.implementation.ResourceProvidersImpl;
 import com.azure.resourcemanager.education.implementation.StudentLabsImpl;
 import com.azure.resourcemanager.education.implementation.StudentsImpl;
+import com.azure.resourcemanager.education.models.GrantOperations;
 import com.azure.resourcemanager.education.models.Grants;
 import com.azure.resourcemanager.education.models.JoinRequests;
 import com.azure.resourcemanager.education.models.Labs;
+import com.azure.resourcemanager.education.models.OperationOperations;
 import com.azure.resourcemanager.education.models.Operations;
 import com.azure.resourcemanager.education.models.ResourceProviders;
 import com.azure.resourcemanager.education.models.StudentLabs;
@@ -61,6 +65,10 @@ public final class EducationManager {
     private Students students;
 
     private StudentLabs studentLabs;
+
+    private OperationOperations operationOperations;
+
+    private GrantOperations grantOperations;
 
     private final EducationManagementClient clientObject;
 
@@ -226,7 +234,7 @@ public final class EducationManager {
                 .append("-")
                 .append("com.azure.resourcemanager.education")
                 .append("/")
-                .append("1.0.0-beta.2");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder
                     .append(" (")
@@ -365,6 +373,30 @@ public final class EducationManager {
             this.studentLabs = new StudentLabsImpl(clientObject.getStudentLabs(), this);
         }
         return studentLabs;
+    }
+
+    /**
+     * Gets the resource collection API of OperationOperations.
+     *
+     * @return Resource collection API of OperationOperations.
+     */
+    public OperationOperations operationOperations() {
+        if (this.operationOperations == null) {
+            this.operationOperations = new OperationOperationsImpl(clientObject.getOperationOperations(), this);
+        }
+        return operationOperations;
+    }
+
+    /**
+     * Gets the resource collection API of GrantOperations.
+     *
+     * @return Resource collection API of GrantOperations.
+     */
+    public GrantOperations grantOperations() {
+        if (this.grantOperations == null) {
+            this.grantOperations = new GrantOperationsImpl(clientObject.getGrantOperations(), this);
+        }
+        return grantOperations;
     }
 
     /**

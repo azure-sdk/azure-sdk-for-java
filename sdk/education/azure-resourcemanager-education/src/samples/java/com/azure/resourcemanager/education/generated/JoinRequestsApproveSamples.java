@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for JoinRequests Approve. */
 public final class JoinRequestsApproveSamples {
     /*
-     * x-ms-original-file: specification/education/resource-manager/Microsoft.Education/preview/2021-12-01-preview/examples/JoinRequestApproveAndDeny.json
+     * x-ms-original-file: specification/education/resource-manager/Microsoft.Education/preview/2021-12-01-preview/examples/JoinRequestApprove.json
      */
     /**
      * Sample code: JoinRequestApprove.

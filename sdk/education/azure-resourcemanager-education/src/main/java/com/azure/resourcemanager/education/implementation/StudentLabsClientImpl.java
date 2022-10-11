@@ -104,10 +104,10 @@ public final class StudentLabsClientImpl implements StudentLabsClient {
                     new IllegalArgumentException(
                         "Parameter this.client.getEndpoint() is required and cannot be null."));
         }
+        final String apiVersion = "2021-12-01-preview";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context -> service.listAll(this.client.getEndpoint(), this.client.getApiVersion(), accept, context))
+            .withContext(context -> service.listAll(this.client.getEndpoint(), apiVersion, accept, context))
             .<PagedResponse<StudentLabDetailsInner>>map(
                 res ->
                     new PagedResponseBase<>(
@@ -138,10 +138,11 @@ public final class StudentLabsClientImpl implements StudentLabsClient {
                     new IllegalArgumentException(
                         "Parameter this.client.getEndpoint() is required and cannot be null."));
         }
+        final String apiVersion = "2021-12-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .listAll(this.client.getEndpoint(), this.client.getApiVersion(), accept, context)
+            .listAll(this.client.getEndpoint(), apiVersion, accept, context)
             .map(
                 res ->
                     new PagedResponseBase<>(
@@ -229,12 +230,10 @@ public final class StudentLabsClientImpl implements StudentLabsClient {
         if (studentLabName == null) {
             return Mono.error(new IllegalArgumentException("Parameter studentLabName is required and cannot be null."));
         }
+        final String apiVersion = "2021-12-01-preview";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .get(this.client.getEndpoint(), studentLabName, this.client.getApiVersion(), accept, context))
+            .withContext(context -> service.get(this.client.getEndpoint(), studentLabName, apiVersion, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -260,9 +259,10 @@ public final class StudentLabsClientImpl implements StudentLabsClient {
         if (studentLabName == null) {
             return Mono.error(new IllegalArgumentException("Parameter studentLabName is required and cannot be null."));
         }
+        final String apiVersion = "2021-12-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.get(this.client.getEndpoint(), studentLabName, this.client.getApiVersion(), accept, context);
+        return service.get(this.client.getEndpoint(), studentLabName, apiVersion, accept, context);
     }
 
     /**
@@ -283,20 +283,6 @@ public final class StudentLabsClientImpl implements StudentLabsClient {
      * Get the details for a specified lab associated with the student lab.
      *
      * @param studentLabName Student lab name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the details for a specified lab associated with the student lab.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public StudentLabDetailsInner get(String studentLabName) {
-        return getAsync(studentLabName).block();
-    }
-
-    /**
-     * Get the details for a specified lab associated with the student lab.
-     *
-     * @param studentLabName Student lab name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -309,9 +295,24 @@ public final class StudentLabsClientImpl implements StudentLabsClient {
     }
 
     /**
+     * Get the details for a specified lab associated with the student lab.
+     *
+     * @param studentLabName Student lab name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the details for a specified lab associated with the student lab.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public StudentLabDetailsInner get(String studentLabName) {
+        return getWithResponse(studentLabName, Context.NONE).getValue();
+    }
+
+    /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -346,7 +347,8 @@ public final class StudentLabsClientImpl implements StudentLabsClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.

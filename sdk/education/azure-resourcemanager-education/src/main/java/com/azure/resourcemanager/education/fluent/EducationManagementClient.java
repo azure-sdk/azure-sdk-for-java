@@ -17,13 +17,6 @@ public interface EducationManagementClient {
     String getEndpoint();
 
     /**
-     * Gets Api Version.
-     *
-     * @return the apiVersion value.
-     */
-    String getApiVersion();
-
-    /**
      * Gets The HTTP pipeline to send requests through.
      *
      * @return the httpPipeline value.
@@ -85,4 +78,18 @@ public interface EducationManagementClient {
      * @return the StudentLabsClient object.
      */
     StudentLabsClient getStudentLabs();
+
+    /**
+     * Gets the OperationOperationsClient object to access its operations.
+     *
+     * @return the OperationOperationsClient object.
+     */
+    OperationOperationsClient getOperationOperations();
+
+    /**
+     * Gets the GrantOperationsClient object to access its operations.
+     *
+     * @return the GrantOperationsClient object.
+     */
+    GrantOperationsClient getGrantOperations();
 }
