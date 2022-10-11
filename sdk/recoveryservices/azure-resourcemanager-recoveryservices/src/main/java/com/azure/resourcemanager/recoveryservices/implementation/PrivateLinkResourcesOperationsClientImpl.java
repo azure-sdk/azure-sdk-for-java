@@ -417,22 +417,6 @@ public final class PrivateLinkResourcesOperationsClientImpl implements PrivateLi
      * @param resourceGroupName The name of the resource group where the recovery services vault is present.
      * @param vaultName The name of the recovery services vault.
      * @param privateLinkResourceName The privateLinkResourceName parameter.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return information of the private link resource.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public PrivateLinkResourceInner get(String resourceGroupName, String vaultName, String privateLinkResourceName) {
-        return getAsync(resourceGroupName, vaultName, privateLinkResourceName).block();
-    }
-
-    /**
-     * Returns a specified private link resource that need to be created for Backup and SiteRecovery.
-     *
-     * @param resourceGroupName The name of the resource group where the recovery services vault is present.
-     * @param vaultName The name of the recovery services vault.
-     * @param privateLinkResourceName The privateLinkResourceName parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -446,9 +430,26 @@ public final class PrivateLinkResourcesOperationsClientImpl implements PrivateLi
     }
 
     /**
+     * Returns a specified private link resource that need to be created for Backup and SiteRecovery.
+     *
+     * @param resourceGroupName The name of the resource group where the recovery services vault is present.
+     * @param vaultName The name of the recovery services vault.
+     * @param privateLinkResourceName The privateLinkResourceName parameter.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return information of the private link resource.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public PrivateLinkResourceInner get(String resourceGroupName, String vaultName, String privateLinkResourceName) {
+        return getWithResponse(resourceGroupName, vaultName, privateLinkResourceName, Context.NONE).getValue();
+    }
+
+    /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -484,7 +485,8 @@ public final class PrivateLinkResourcesOperationsClientImpl implements PrivateLi
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
