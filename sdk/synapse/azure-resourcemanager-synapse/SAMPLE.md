@@ -146,6 +146,10 @@
 - [Get](#kustopoolprincipalassignments_get)
 - [List](#kustopoolprincipalassignments_list)
 
+## KustoPoolPrivateLinkResourcesOperation
+
+- [List](#kustopoolprivatelinkresourcesoperation_list)
+
 ## KustoPools
 
 - [AddLanguageExtensions](#kustopools_addlanguageextensions)
@@ -205,10 +209,10 @@
 - [ListByResourceGroup](#privatelinkhubs_listbyresourcegroup)
 - [Update](#privatelinkhubs_update)
 
-## PrivateLinkResources
+## PrivateLinkResourcesOperation
 
-- [Get](#privatelinkresources_get)
-- [List](#privatelinkresources_list)
+- [Get](#privatelinkresourcesoperation_get)
+- [List](#privatelinkresourcesoperation_list)
 
 ## RestorableDroppedSqlPools
 
@@ -546,6 +550,7 @@ public final class BigDataPoolsCreateOrUpdateSamples {
             .withTags(mapOf("key", "value"))
             .withAutoScale(new AutoScaleProperties().withMinNodeCount(3).withEnabled(true).withMaxNodeCount(50))
             .withAutoPause(new AutoPauseProperties().withDelayInMinutes(15).withEnabled(true))
+            .withIsAutotuneEnabled(false)
             .withSparkEventsFolder("/events")
             .withNodeCount(4)
             .withLibraryRequirements(new LibraryRequirements().withContent("").withFilename("requirements.txt"))
@@ -1317,8 +1322,6 @@ public final class IntegrationRuntimeStatusOperationGetSamples {
 ### IntegrationRuntimes_Create
 
 ```java
-import com.azure.resourcemanager.synapse.models.SelfHostedIntegrationRuntime;
-
 /** Samples for IntegrationRuntimes Create. */
 public final class IntegrationRuntimesCreateSamples {
     /*
@@ -1334,7 +1337,7 @@ public final class IntegrationRuntimesCreateSamples {
             .integrationRuntimes()
             .define("exampleIntegrationRuntime")
             .withExistingWorkspace("exampleResourceGroup", "exampleWorkspace")
-            .withProperties(new SelfHostedIntegrationRuntime().withDescription("A selfhosted integration runtime"))
+            .withDescription("A selfhosted integration runtime")
             .create();
     }
 }
@@ -2628,6 +2631,29 @@ public final class KustoPoolPrincipalAssignmentsListSamples {
 }
 ```
 
+### KustoPoolPrivateLinkResourcesOperation_List
+
+```java
+import com.azure.core.util.Context;
+
+/** Samples for KustoPoolPrivateLinkResourcesOperation List. */
+public final class KustoPoolPrivateLinkResourcesOperationListSamples {
+    /*
+     * x-ms-original-file: specification/synapse/resource-manager/Microsoft.Synapse/preview/2021-06-01-preview/examples/KustoPoolPrivateLinkResourcesList.json
+     */
+    /**
+     * Sample code: KustoPoolPrivateLinkResourcesList.
+     *
+     * @param manager Entry point to SynapseManager.
+     */
+    public static void kustoPoolPrivateLinkResourcesList(com.azure.resourcemanager.synapse.SynapseManager manager) {
+        manager
+            .kustoPoolPrivateLinkResourcesOperations()
+            .list("DP-900", "synapse-ws-ebi-data", "dataexplorerpool900", Context.NONE);
+    }
+}
+```
+
 ### KustoPools_AddLanguageExtensions
 
 ```java
@@ -3531,13 +3557,13 @@ public final class PrivateLinkHubsUpdateSamples {
 }
 ```
 
-### PrivateLinkResources_Get
+### PrivateLinkResourcesOperation_Get
 
 ```java
 import com.azure.core.util.Context;
 
-/** Samples for PrivateLinkResources Get. */
-public final class PrivateLinkResourcesGetSamples {
+/** Samples for PrivateLinkResourcesOperation Get. */
+public final class PrivateLinkResourcesOperationGetSamples {
     /*
      * x-ms-original-file: specification/synapse/resource-manager/Microsoft.Synapse/stable/2021-06-01/examples/GetPrivateLinkResource.json
      */
@@ -3547,18 +3573,20 @@ public final class PrivateLinkResourcesGetSamples {
      * @param manager Entry point to SynapseManager.
      */
     public static void getPrivateLinkResourcesForWorkspace(com.azure.resourcemanager.synapse.SynapseManager manager) {
-        manager.privateLinkResources().getWithResponse("ExampleResourceGroup", "ExampleWorkspace", "sql", Context.NONE);
+        manager
+            .privateLinkResourcesOperations()
+            .getWithResponse("ExampleResourceGroup", "ExampleWorkspace", "sql", Context.NONE);
     }
 }
 ```
 
-### PrivateLinkResources_List
+### PrivateLinkResourcesOperation_List
 
 ```java
 import com.azure.core.util.Context;
 
-/** Samples for PrivateLinkResources List. */
-public final class PrivateLinkResourcesListSamples {
+/** Samples for PrivateLinkResourcesOperation List. */
+public final class PrivateLinkResourcesOperationListSamples {
     /*
      * x-ms-original-file: specification/synapse/resource-manager/Microsoft.Synapse/stable/2021-06-01/examples/ListPrivateLinkResources.json
      */
@@ -3568,7 +3596,7 @@ public final class PrivateLinkResourcesListSamples {
      * @param manager Entry point to SynapseManager.
      */
     public static void getPrivateLinkResourcesForWorkspace(com.azure.resourcemanager.synapse.SynapseManager manager) {
-        manager.privateLinkResources().list("ExampleResourceGroup", "ExampleWorkspace", Context.NONE);
+        manager.privateLinkResourcesOperations().list("ExampleResourceGroup", "ExampleWorkspace", Context.NONE);
     }
 }
 ```
@@ -4088,7 +4116,7 @@ public final class SqlPoolOperationResultsGetLocationHeaderResultSamples {
         com.azure.resourcemanager.synapse.SynapseManager manager) {
         manager
             .sqlPoolOperationResults()
-            .getLocationHeaderResultWithResponse(
+            .getLocationHeaderResult(
                 "ExampleResourceGroup",
                 "ExampleWorkspace",
                 "ExampleSqlPool",
@@ -4364,7 +4392,6 @@ import com.azure.core.util.Context;
 import com.azure.resourcemanager.synapse.models.SecurityAlertPolicyName;
 import com.azure.resourcemanager.synapse.models.SecurityAlertPolicyState;
 import com.azure.resourcemanager.synapse.models.SqlPoolSecurityAlertPolicy;
-import java.util.Arrays;
 
 /** Samples for SqlPoolSecurityAlertPolicies CreateOrUpdate. */
 public final class SqlPoolSecurityAlertPoliciesCreateOrUpdateSamples {
@@ -4387,8 +4414,6 @@ public final class SqlPoolSecurityAlertPoliciesCreateOrUpdateSamples {
         resource
             .update()
             .withState(SecurityAlertPolicyState.ENABLED)
-            .withDisabledAlerts(Arrays.asList("Sql_Injection", "Usage_Anomaly"))
-            .withEmailAddresses(Arrays.asList("test@microsoft.com", "user@microsoft.com"))
             .withEmailAccountAdmins(true)
             .withStorageEndpoint("https://mystorage.blob.core.windows.net")
             .withStorageAccountAccessKey(
@@ -5420,7 +5445,7 @@ public final class SqlPoolWorkloadGroupCreateOrUpdateSamples {
             .withMinResourcePercent(0)
             .withMaxResourcePercent(100)
             .withMinResourcePercentPerRequest(3.0)
-            .withMaxResourcePercentPerRequest(3.0)
+            .withMaxResourcePercentPerRequest(3.0D)
             .withImportance("normal")
             .withQueryExecutionTimeout(0)
             .create();
@@ -5701,7 +5726,6 @@ public final class SqlPoolsResumeSamples {
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.synapse.models.Sku;
 import com.azure.resourcemanager.synapse.models.SqlPool;
-import java.time.OffsetDateTime;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -5721,14 +5745,7 @@ public final class SqlPoolsUpdateSamples {
                 .sqlPools()
                 .getWithResponse("ExampleResourceGroup", "ExampleWorkspace", "ExampleSqlPool", Context.NONE)
                 .getValue();
-        resource
-            .update()
-            .withTags(mapOf())
-            .withSku(new Sku().withTier("").withName(""))
-            .withMaxSizeBytes(0L)
-            .withCollation("")
-            .withRestorePointInTime(OffsetDateTime.parse("1970-01-01T00:00:00.000Z"))
-            .apply();
+        resource.update().withTags(mapOf()).withSku(new Sku().withTier("").withName("")).withMaxSizeBytes(0L).apply();
     }
 
     @SuppressWarnings("unchecked")
@@ -5824,8 +5841,8 @@ public final class WorkspaceAadAdminsGetSamples {
 ```java
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.synapse.fluent.models.ManagedIdentitySqlControlSettingsModelInner;
+import com.azure.resourcemanager.synapse.models.DesiredState;
 import com.azure.resourcemanager.synapse.models.ManagedIdentitySqlControlSettingsModelPropertiesGrantSqlControlToManagedIdentity;
-import com.azure.resourcemanager.synapse.models.ManagedIdentitySqlControlSettingsModelPropertiesGrantSqlControlToManagedIdentityDesiredState;
 
 /** Samples for WorkspaceManagedIdentitySqlControlSettings CreateOrUpdate. */
 public final class WorkspaceManagedIdentitySqlControlSettingsCreateOrUpdateSamples {
@@ -5847,9 +5864,7 @@ public final class WorkspaceManagedIdentitySqlControlSettingsCreateOrUpdateSampl
                 new ManagedIdentitySqlControlSettingsModelInner()
                     .withGrantSqlControlToManagedIdentity(
                         new ManagedIdentitySqlControlSettingsModelPropertiesGrantSqlControlToManagedIdentity()
-                            .withDesiredState(
-                                ManagedIdentitySqlControlSettingsModelPropertiesGrantSqlControlToManagedIdentityDesiredState
-                                    .ENABLED)),
+                            .withDesiredState(DesiredState.ENABLED)),
                 Context.NONE);
     }
 }
@@ -6361,7 +6376,6 @@ import com.azure.core.util.Context;
 import com.azure.resourcemanager.synapse.models.SecurityAlertPolicyNameAutoGenerated;
 import com.azure.resourcemanager.synapse.models.SecurityAlertPolicyState;
 import com.azure.resourcemanager.synapse.models.ServerSecurityAlertPolicy;
-import java.util.Arrays;
 
 /** Samples for WorkspaceManagedSqlServerSecurityAlertPolicy CreateOrUpdate. */
 public final class WorkspaceManagedSqlServerSecurityAlertPolicyCreateOrUpdateSamples {
@@ -6384,13 +6398,9 @@ public final class WorkspaceManagedSqlServerSecurityAlertPolicyCreateOrUpdateSam
         resource
             .update()
             .withState(SecurityAlertPolicyState.ENABLED)
-            .withDisabledAlerts(Arrays.asList("Access_Anomaly", "Usage_Anomaly"))
-            .withEmailAddresses(Arrays.asList("testSecurityAlert@microsoft.com"))
-            .withEmailAccountAdmins(true)
             .withStorageEndpoint("https://mystorage.blob.core.windows.net")
             .withStorageAccountAccessKey(
                 "sdlfkjabc+sdlfkjsdlkfsjdfLDKFTERLKFDFKLjsdfksjdflsdkfD2342309432849328476458/3RSD==")
-            .withRetentionDays(5)
             .apply();
     }
 
@@ -6413,7 +6423,6 @@ public final class WorkspaceManagedSqlServerSecurityAlertPolicyCreateOrUpdateSam
         resource
             .update()
             .withState(SecurityAlertPolicyState.DISABLED)
-            .withEmailAccountAdmins(true)
             .withStorageEndpoint("https://mystorage.blob.core.windows.net")
             .withStorageAccountAccessKey(
                 "sdlfkjabc+sdlfkjsdlkfsjdfLDKFTERLKFDFKLjsdfksjdflsdkfD2342309432849328476458/3RSD==")

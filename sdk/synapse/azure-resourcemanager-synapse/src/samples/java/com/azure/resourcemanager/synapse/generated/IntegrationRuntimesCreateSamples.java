@@ -4,8 +4,6 @@
 
 package com.azure.resourcemanager.synapse.generated;
 
-import com.azure.resourcemanager.synapse.models.SelfHostedIntegrationRuntime;
-
 /** Samples for IntegrationRuntimes Create. */
 public final class IntegrationRuntimesCreateSamples {
     /*
@@ -21,7 +19,7 @@ public final class IntegrationRuntimesCreateSamples {
             .integrationRuntimes()
             .define("exampleIntegrationRuntime")
             .withExistingWorkspace("exampleResourceGroup", "exampleWorkspace")
-            .withProperties(new SelfHostedIntegrationRuntime().withDescription("A selfhosted integration runtime"))
+            .withDescription("A selfhosted integration runtime")
             .create();
     }
 }

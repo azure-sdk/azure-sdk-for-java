@@ -7,7 +7,6 @@ package com.azure.resourcemanager.synapse.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.synapse.models.EntityResource;
-import com.azure.resourcemanager.synapse.models.IntegrationRuntime;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Integration runtime resource type. */
@@ -17,25 +16,41 @@ public final class IntegrationRuntimeResourceInner extends EntityResource {
      * Integration runtime properties.
      */
     @JsonProperty(value = "properties", required = true)
-    private IntegrationRuntime properties;
+    private IntegrationRuntime innerProperties = new IntegrationRuntime();
 
-    /**
-     * Get the properties property: Integration runtime properties.
-     *
-     * @return the properties value.
-     */
-    public IntegrationRuntime properties() {
-        return this.properties;
+    /** Creates an instance of IntegrationRuntimeResourceInner class. */
+    public IntegrationRuntimeResourceInner() {
     }
 
     /**
-     * Set the properties property: Integration runtime properties.
+     * Get the innerProperties property: Integration runtime properties.
      *
-     * @param properties the properties value to set.
+     * @return the innerProperties value.
+     */
+    private IntegrationRuntime innerProperties() {
+        return this.innerProperties;
+    }
+
+    /**
+     * Get the description property: Integration runtime description.
+     *
+     * @return the description value.
+     */
+    public String description() {
+        return this.innerProperties() == null ? null : this.innerProperties().description();
+    }
+
+    /**
+     * Set the description property: Integration runtime description.
+     *
+     * @param description the description value to set.
      * @return the IntegrationRuntimeResourceInner object itself.
      */
-    public IntegrationRuntimeResourceInner withProperties(IntegrationRuntime properties) {
-        this.properties = properties;
+    public IntegrationRuntimeResourceInner withDescription(String description) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new IntegrationRuntime();
+        }
+        this.innerProperties().withDescription(description);
         return this;
     }
 
@@ -47,13 +62,13 @@ public final class IntegrationRuntimeResourceInner extends EntityResource {
     @Override
     public void validate() {
         super.validate();
-        if (properties() == null) {
+        if (innerProperties() == null) {
             throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
-                        "Missing required property properties in model IntegrationRuntimeResourceInner"));
+                        "Missing required property innerProperties in model IntegrationRuntimeResourceInner"));
         } else {
-            properties().validate();
+            innerProperties().validate();
         }
     }
 

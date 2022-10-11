@@ -5,7 +5,7 @@
 package com.azure.resourcemanager.synapse.implementation;
 
 import com.azure.resourcemanager.synapse.fluent.models.IntegrationRuntimeStatusResponseInner;
-import com.azure.resourcemanager.synapse.models.IntegrationRuntimeStatus;
+import com.azure.resourcemanager.synapse.models.IntegrationRuntimeState;
 import com.azure.resourcemanager.synapse.models.IntegrationRuntimeStatusResponse;
 
 public final class IntegrationRuntimeStatusResponseImpl implements IntegrationRuntimeStatusResponse {
@@ -24,8 +24,12 @@ public final class IntegrationRuntimeStatusResponseImpl implements IntegrationRu
         return this.innerModel().name();
     }
 
-    public IntegrationRuntimeStatus properties() {
-        return this.innerModel().properties();
+    public String dataFactoryName() {
+        return this.innerModel().dataFactoryName();
+    }
+
+    public IntegrationRuntimeState state() {
+        return this.innerModel().state();
     }
 
     public IntegrationRuntimeStatusResponseInner innerModel() {
