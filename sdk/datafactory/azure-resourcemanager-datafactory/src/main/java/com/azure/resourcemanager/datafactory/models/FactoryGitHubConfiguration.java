@@ -32,6 +32,10 @@ public final class FactoryGitHubConfiguration extends FactoryRepoConfiguration {
     @JsonProperty(value = "clientSecret")
     private GitHubClientSecret clientSecret;
 
+    /** Creates an instance of FactoryGitHubConfiguration class. */
+    public FactoryGitHubConfiguration() {
+    }
+
     /**
      * Get the hostname property: GitHub Enterprise host name. For example: `https://github.mydomain.com`.
      *
