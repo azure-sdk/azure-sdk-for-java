@@ -7,7 +7,6 @@ package com.azure.resourcemanager.appcontainers.models;
 import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.http.rest.Response;
 import com.azure.core.util.Context;
-import com.azure.resourcemanager.appcontainers.fluent.models.ContainerAppInner;
 
 /** Resource collection API of ContainerApps. */
 public interface ContainerApps {
@@ -63,18 +62,6 @@ public interface ContainerApps {
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param containerAppName Name of the Container App.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the properties of a Container App.
-     */
-    ContainerApp getByResourceGroup(String resourceGroupName, String containerAppName);
-
-    /**
-     * Get the properties of a Container App.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param containerAppName Name of the Container App.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -83,6 +70,18 @@ public interface ContainerApps {
      */
     Response<ContainerApp> getByResourceGroupWithResponse(
         String resourceGroupName, String containerAppName, Context context);
+
+    /**
+     * Get the properties of a Container App.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param containerAppName Name of the Container App.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the properties of a Container App.
+     */
+    ContainerApp getByResourceGroup(String resourceGroupName, String containerAppName);
 
     /**
      * Delete a Container App.
@@ -110,47 +109,6 @@ public interface ContainerApps {
     void delete(String resourceGroupName, String containerAppName, Context context);
 
     /**
-     * Patches a Container App using JSON Merge Patch.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param containerAppName Name of the Container App.
-     * @param containerAppEnvelope Properties of a Container App that need to be updated.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.resourcemanager.appcontainers.models.DefaultErrorResponseErrorException thrown if the request
-     *     is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    void update(String resourceGroupName, String containerAppName, ContainerAppInner containerAppEnvelope);
-
-    /**
-     * Patches a Container App using JSON Merge Patch.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param containerAppName Name of the Container App.
-     * @param containerAppEnvelope Properties of a Container App that need to be updated.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.resourcemanager.appcontainers.models.DefaultErrorResponseErrorException thrown if the request
-     *     is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    void update(
-        String resourceGroupName, String containerAppName, ContainerAppInner containerAppEnvelope, Context context);
-
-    /**
-     * Analyzes a custom hostname for a Container App.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param containerAppName Name of the Container App.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.resourcemanager.appcontainers.models.DefaultErrorResponseErrorException thrown if the request
-     *     is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return custom domain analysis.
-     */
-    CustomHostnameAnalysisResult listCustomHostnameAnalysis(String resourceGroupName, String containerAppName);
-
-    /**
      * Analyzes a custom hostname for a Container App.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -167,7 +125,7 @@ public interface ContainerApps {
         String resourceGroupName, String containerAppName, String customHostname, Context context);
 
     /**
-     * List secrets for a container app.
+     * Analyzes a custom hostname for a Container App.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param containerAppName Name of the Container App.
@@ -175,9 +133,9 @@ public interface ContainerApps {
      * @throws com.azure.resourcemanager.appcontainers.models.DefaultErrorResponseErrorException thrown if the request
      *     is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return container App Secrets Collection ARM resource.
+     * @return custom domain analysis.
      */
-    SecretsCollection listSecrets(String resourceGroupName, String containerAppName);
+    CustomHostnameAnalysisResult listCustomHostnameAnalysis(String resourceGroupName, String containerAppName);
 
     /**
      * List secrets for a container app.
@@ -193,6 +151,45 @@ public interface ContainerApps {
      */
     Response<SecretsCollection> listSecretsWithResponse(
         String resourceGroupName, String containerAppName, Context context);
+
+    /**
+     * List secrets for a container app.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param containerAppName Name of the Container App.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.resourcemanager.appcontainers.models.DefaultErrorResponseErrorException thrown if the request
+     *     is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return container App Secrets Collection ARM resource.
+     */
+    SecretsCollection listSecrets(String resourceGroupName, String containerAppName);
+
+    /**
+     * Get auth token for a container app.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param containerAppName Name of the Container App.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return auth token for a container app along with {@link Response}.
+     */
+    Response<ContainerAppAuthToken> getAuthTokenWithResponse(
+        String resourceGroupName, String containerAppName, Context context);
+
+    /**
+     * Get auth token for a container app.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param containerAppName Name of the Container App.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return auth token for a container app.
+     */
+    ContainerAppAuthToken getAuthToken(String resourceGroupName, String containerAppName);
 
     /**
      * Get the properties of a Container App.
