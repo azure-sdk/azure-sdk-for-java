@@ -12,7 +12,7 @@ import java.util.Arrays;
 /** Samples for WcfRelays CreateOrUpdateAuthorizationRule. */
 public final class WcfRelaysCreateOrUpdateAuthorizationRuleSamples {
     /*
-     * x-ms-original-file: specification/relay/resource-manager/Microsoft.Relay/stable/2017-04-01/examples/Relay/RelayAuthorizationRuleCreate.json
+     * x-ms-original-file: specification/relay/resource-manager/Microsoft.Relay/stable/2021-11-01/examples/Relay/RelayAuthorizationRuleCreate.json
      */
     /**
      * Sample code: RelayAuthorizationRuleCreate.

@@ -7,7 +7,7 @@ package com.azure.resourcemanager.relay.models;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-/** Defines values for Relaytype. */
+/** WCF relay type. */
 public enum Relaytype {
     /** Enum value NetTcp. */
     NET_TCP("NetTcp"),
@@ -30,6 +30,9 @@ public enum Relaytype {
      */
     @JsonCreator
     public static Relaytype fromString(String value) {
+        if (value == null) {
+            return null;
+        }
         Relaytype[] items = Relaytype.values();
         for (Relaytype item : items) {
             if (item.toString().equalsIgnoreCase(value)) {
@@ -39,6 +42,7 @@ public enum Relaytype {
         return null;
     }
 
+    /** {@inheritDoc} */
     @JsonValue
     @Override
     public String toString() {

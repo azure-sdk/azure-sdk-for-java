@@ -20,6 +20,10 @@ public class ResourceNamespacePatch extends ProxyResource {
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, String> tags;
 
+    /** Creates an instance of ResourceNamespacePatch class. */
+    public ResourceNamespacePatch() {
+    }
+
     /**
      * Get the tags property: Resource tags.
      *

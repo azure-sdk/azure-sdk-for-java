@@ -31,8 +31,7 @@ public final class WcfRelayProperties {
     private OffsetDateTime updatedAt;
 
     /*
-     * The number of listeners for this relay. Note that min :1 and max:25 are
-     * supported.
+     * The number of listeners for this relay. Note that min :1 and max:25 are supported.
      */
     @JsonProperty(value = "listenerCount", access = JsonProperty.Access.WRITE_ONLY)
     private Integer listenerCount;
@@ -44,27 +43,28 @@ public final class WcfRelayProperties {
     private Relaytype relayType;
 
     /*
-     * Returns true if client authorization is needed for this relay;
-     * otherwise, false.
+     * Returns true if client authorization is needed for this relay; otherwise, false.
      */
     @JsonProperty(value = "requiresClientAuthorization")
     private Boolean requiresClientAuthorization;
 
     /*
-     * Returns true if transport security is needed for this relay; otherwise,
-     * false.
+     * Returns true if transport security is needed for this relay; otherwise, false.
      */
     @JsonProperty(value = "requiresTransportSecurity")
     private Boolean requiresTransportSecurity;
 
     /*
-     * The usermetadata is a placeholder to store user-defined string data for
-     * the WCF Relay endpoint. For example, it can be used to store descriptive
-     * data, such as list of teams and their contact information. Also,
-     * user-defined configuration settings can be stored.
+     * The usermetadata is a placeholder to store user-defined string data for the WCF Relay endpoint. For example, it
+     * can be used to store descriptive data, such as list of teams and their contact information. Also, user-defined
+     * configuration settings can be stored.
      */
     @JsonProperty(value = "userMetadata")
     private String userMetadata;
+
+    /** Creates an instance of WcfRelayProperties class. */
+    public WcfRelayProperties() {
+    }
 
     /**
      * Get the isDynamic property: Returns true if the relay is dynamic; otherwise, false.

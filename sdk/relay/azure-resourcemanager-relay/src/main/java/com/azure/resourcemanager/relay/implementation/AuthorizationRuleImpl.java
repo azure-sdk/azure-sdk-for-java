@@ -5,6 +5,8 @@
 package com.azure.resourcemanager.relay.implementation;
 
 import com.azure.core.http.rest.Response;
+import com.azure.core.management.Region;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.relay.fluent.models.AuthorizationRuleInner;
 import com.azure.resourcemanager.relay.models.AccessKeys;
@@ -32,6 +34,14 @@ public final class AuthorizationRuleImpl
         return this.innerModel().type();
     }
 
+    public SystemData systemData() {
+        return this.innerModel().systemData();
+    }
+
+    public String location() {
+        return this.innerModel().location();
+    }
+
     public List<AccessRights> rights() {
         List<AccessRights> inner = this.innerModel().rights();
         if (inner != null) {
@@ -39,6 +49,14 @@ public final class AuthorizationRuleImpl
         } else {
             return Collections.emptyList();
         }
+    }
+
+    public Region region() {
+        return Region.fromName(this.regionName());
+    }
+
+    public String regionName() {
+        return this.location();
     }
 
     public String resourceGroupName() {
@@ -148,26 +166,26 @@ public final class AuthorizationRuleImpl
         return this;
     }
 
-    public AccessKeys listKeys() {
-        return serviceManager.namespaces().listKeys(resourceGroupName, namespaceName, authorizationRuleName);
-    }
-
     public Response<AccessKeys> listKeysWithResponse(Context context) {
         return serviceManager
             .namespaces()
             .listKeysWithResponse(resourceGroupName, namespaceName, authorizationRuleName, context);
     }
 
-    public AccessKeys regenerateKeys(RegenerateAccessKeyParameters parameters) {
-        return serviceManager
-            .namespaces()
-            .regenerateKeys(resourceGroupName, namespaceName, authorizationRuleName, parameters);
+    public AccessKeys listKeys() {
+        return serviceManager.namespaces().listKeys(resourceGroupName, namespaceName, authorizationRuleName);
     }
 
     public Response<AccessKeys> regenerateKeysWithResponse(RegenerateAccessKeyParameters parameters, Context context) {
         return serviceManager
             .namespaces()
             .regenerateKeysWithResponse(resourceGroupName, namespaceName, authorizationRuleName, parameters, context);
+    }
+
+    public AccessKeys regenerateKeys(RegenerateAccessKeyParameters parameters) {
+        return serviceManager
+            .namespaces()
+            .regenerateKeys(resourceGroupName, namespaceName, authorizationRuleName, parameters);
     }
 
     public AuthorizationRuleImpl withRights(List<AccessRights> rights) {

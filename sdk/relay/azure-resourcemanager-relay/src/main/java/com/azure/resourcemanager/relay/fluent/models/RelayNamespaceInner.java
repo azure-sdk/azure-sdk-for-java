@@ -6,10 +6,12 @@ package com.azure.resourcemanager.relay.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.Resource;
-import com.azure.resourcemanager.relay.models.ProvisioningStateEnum;
+import com.azure.core.management.SystemData;
+import com.azure.resourcemanager.relay.models.PublicNetworkAccess;
 import com.azure.resourcemanager.relay.models.Sku;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
+import java.util.List;
 import java.util.Map;
 
 /** Description of a namespace resource. */
@@ -22,10 +24,20 @@ public final class RelayNamespaceInner extends Resource {
     private Sku sku;
 
     /*
+     * The system meta data relating to this resource.
+     */
+    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
+    private SystemData systemData;
+
+    /*
      * Description of Relay namespace
      */
     @JsonProperty(value = "properties")
     private RelayNamespaceProperties innerProperties;
+
+    /** Creates an instance of RelayNamespaceInner class. */
+    public RelayNamespaceInner() {
+    }
 
     /**
      * Get the sku property: SKU of the namespace.
@@ -45,6 +57,15 @@ public final class RelayNamespaceInner extends Resource {
     public RelayNamespaceInner withSku(Sku sku) {
         this.sku = sku;
         return this;
+    }
+
+    /**
+     * Get the systemData property: The system meta data relating to this resource.
+     *
+     * @return the systemData value.
+     */
+    public SystemData systemData() {
+        return this.systemData;
     }
 
     /**
@@ -71,12 +92,21 @@ public final class RelayNamespaceInner extends Resource {
     }
 
     /**
-     * Get the provisioningState property: The provisioningState property.
+     * Get the provisioningState property: Provisioning state of the Namespace.
      *
      * @return the provisioningState value.
      */
-    public ProvisioningStateEnum provisioningState() {
+    public String provisioningState() {
         return this.innerProperties() == null ? null : this.innerProperties().provisioningState();
+    }
+
+    /**
+     * Get the status property: Status of the Namespace.
+     *
+     * @return the status value.
+     */
+    public String status() {
+        return this.innerProperties() == null ? null : this.innerProperties().status();
     }
 
     /**
@@ -113,6 +143,55 @@ public final class RelayNamespaceInner extends Resource {
      */
     public String metricId() {
         return this.innerProperties() == null ? null : this.innerProperties().metricId();
+    }
+
+    /**
+     * Get the privateEndpointConnections property: List of private endpoint connections.
+     *
+     * @return the privateEndpointConnections value.
+     */
+    public List<PrivateEndpointConnectionInner> privateEndpointConnections() {
+        return this.innerProperties() == null ? null : this.innerProperties().privateEndpointConnections();
+    }
+
+    /**
+     * Set the privateEndpointConnections property: List of private endpoint connections.
+     *
+     * @param privateEndpointConnections the privateEndpointConnections value to set.
+     * @return the RelayNamespaceInner object itself.
+     */
+    public RelayNamespaceInner withPrivateEndpointConnections(
+        List<PrivateEndpointConnectionInner> privateEndpointConnections) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new RelayNamespaceProperties();
+        }
+        this.innerProperties().withPrivateEndpointConnections(privateEndpointConnections);
+        return this;
+    }
+
+    /**
+     * Get the publicNetworkAccess property: This determines if traffic is allowed over public network. By default it is
+     * enabled.
+     *
+     * @return the publicNetworkAccess value.
+     */
+    public PublicNetworkAccess publicNetworkAccess() {
+        return this.innerProperties() == null ? null : this.innerProperties().publicNetworkAccess();
+    }
+
+    /**
+     * Set the publicNetworkAccess property: This determines if traffic is allowed over public network. By default it is
+     * enabled.
+     *
+     * @param publicNetworkAccess the publicNetworkAccess value to set.
+     * @return the RelayNamespaceInner object itself.
+     */
+    public RelayNamespaceInner withPublicNetworkAccess(PublicNetworkAccess publicNetworkAccess) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new RelayNamespaceProperties();
+        }
+        this.innerProperties().withPublicNetworkAccess(publicNetworkAccess);
+        return this;
     }
 
     /**

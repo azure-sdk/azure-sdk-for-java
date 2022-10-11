@@ -13,12 +13,14 @@ import com.azure.resourcemanager.relay.fluent.NamespacesClient;
 import com.azure.resourcemanager.relay.fluent.models.AccessKeysInner;
 import com.azure.resourcemanager.relay.fluent.models.AuthorizationRuleInner;
 import com.azure.resourcemanager.relay.fluent.models.CheckNameAvailabilityResultInner;
+import com.azure.resourcemanager.relay.fluent.models.NetworkRuleSetInner;
 import com.azure.resourcemanager.relay.fluent.models.RelayNamespaceInner;
 import com.azure.resourcemanager.relay.models.AccessKeys;
 import com.azure.resourcemanager.relay.models.AuthorizationRule;
 import com.azure.resourcemanager.relay.models.CheckNameAvailability;
 import com.azure.resourcemanager.relay.models.CheckNameAvailabilityResult;
 import com.azure.resourcemanager.relay.models.Namespaces;
+import com.azure.resourcemanager.relay.models.NetworkRuleSet;
 import com.azure.resourcemanager.relay.models.RegenerateAccessKeyParameters;
 import com.azure.resourcemanager.relay.models.RelayNamespace;
 
@@ -34,10 +36,113 @@ public final class NamespacesImpl implements Namespaces {
         this.serviceManager = serviceManager;
     }
 
-    public CheckNameAvailabilityResult checkNameAvailability(CheckNameAvailability parameters) {
-        CheckNameAvailabilityResultInner inner = this.serviceClient().checkNameAvailability(parameters);
+    public PagedIterable<AuthorizationRule> listAuthorizationRules(String resourceGroupName, String namespaceName) {
+        PagedIterable<AuthorizationRuleInner> inner =
+            this.serviceClient().listAuthorizationRules(resourceGroupName, namespaceName);
+        return Utils.mapPage(inner, inner1 -> new AuthorizationRuleImpl(inner1, this.manager()));
+    }
+
+    public PagedIterable<AuthorizationRule> listAuthorizationRules(
+        String resourceGroupName, String namespaceName, Context context) {
+        PagedIterable<AuthorizationRuleInner> inner =
+            this.serviceClient().listAuthorizationRules(resourceGroupName, namespaceName, context);
+        return Utils.mapPage(inner, inner1 -> new AuthorizationRuleImpl(inner1, this.manager()));
+    }
+
+    public Response<Void> deleteAuthorizationRuleWithResponse(
+        String resourceGroupName, String namespaceName, String authorizationRuleName, Context context) {
+        return this
+            .serviceClient()
+            .deleteAuthorizationRuleWithResponse(resourceGroupName, namespaceName, authorizationRuleName, context);
+    }
+
+    public void deleteAuthorizationRule(String resourceGroupName, String namespaceName, String authorizationRuleName) {
+        this.serviceClient().deleteAuthorizationRule(resourceGroupName, namespaceName, authorizationRuleName);
+    }
+
+    public Response<AuthorizationRule> getAuthorizationRuleWithResponse(
+        String resourceGroupName, String namespaceName, String authorizationRuleName, Context context) {
+        Response<AuthorizationRuleInner> inner =
+            this
+                .serviceClient()
+                .getAuthorizationRuleWithResponse(resourceGroupName, namespaceName, authorizationRuleName, context);
         if (inner != null) {
-            return new CheckNameAvailabilityResultImpl(inner, this.manager());
+            return new SimpleResponse<>(
+                inner.getRequest(),
+                inner.getStatusCode(),
+                inner.getHeaders(),
+                new AuthorizationRuleImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public AuthorizationRule getAuthorizationRule(
+        String resourceGroupName, String namespaceName, String authorizationRuleName) {
+        AuthorizationRuleInner inner =
+            this.serviceClient().getAuthorizationRule(resourceGroupName, namespaceName, authorizationRuleName);
+        if (inner != null) {
+            return new AuthorizationRuleImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
+    public Response<AccessKeys> listKeysWithResponse(
+        String resourceGroupName, String namespaceName, String authorizationRuleName, Context context) {
+        Response<AccessKeysInner> inner =
+            this.serviceClient().listKeysWithResponse(resourceGroupName, namespaceName, authorizationRuleName, context);
+        if (inner != null) {
+            return new SimpleResponse<>(
+                inner.getRequest(),
+                inner.getStatusCode(),
+                inner.getHeaders(),
+                new AccessKeysImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public AccessKeys listKeys(String resourceGroupName, String namespaceName, String authorizationRuleName) {
+        AccessKeysInner inner = this.serviceClient().listKeys(resourceGroupName, namespaceName, authorizationRuleName);
+        if (inner != null) {
+            return new AccessKeysImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
+    public Response<AccessKeys> regenerateKeysWithResponse(
+        String resourceGroupName,
+        String namespaceName,
+        String authorizationRuleName,
+        RegenerateAccessKeyParameters parameters,
+        Context context) {
+        Response<AccessKeysInner> inner =
+            this
+                .serviceClient()
+                .regenerateKeysWithResponse(
+                    resourceGroupName, namespaceName, authorizationRuleName, parameters, context);
+        if (inner != null) {
+            return new SimpleResponse<>(
+                inner.getRequest(),
+                inner.getStatusCode(),
+                inner.getHeaders(),
+                new AccessKeysImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public AccessKeys regenerateKeys(
+        String resourceGroupName,
+        String namespaceName,
+        String authorizationRuleName,
+        RegenerateAccessKeyParameters parameters) {
+        AccessKeysInner inner =
+            this.serviceClient().regenerateKeys(resourceGroupName, namespaceName, authorizationRuleName, parameters);
+        if (inner != null) {
+            return new AccessKeysImpl(inner, this.manager());
         } else {
             return null;
         }
@@ -53,6 +158,15 @@ public final class NamespacesImpl implements Namespaces {
                 inner.getStatusCode(),
                 inner.getHeaders(),
                 new CheckNameAvailabilityResultImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public CheckNameAvailabilityResult checkNameAvailability(CheckNameAvailability parameters) {
+        CheckNameAvailabilityResultInner inner = this.serviceClient().checkNameAvailability(parameters);
+        if (inner != null) {
+            return new CheckNameAvailabilityResultImpl(inner, this.manager());
         } else {
             return null;
         }
@@ -86,15 +200,6 @@ public final class NamespacesImpl implements Namespaces {
         this.serviceClient().delete(resourceGroupName, namespaceName, context);
     }
 
-    public RelayNamespace getByResourceGroup(String resourceGroupName, String namespaceName) {
-        RelayNamespaceInner inner = this.serviceClient().getByResourceGroup(resourceGroupName, namespaceName);
-        if (inner != null) {
-            return new RelayNamespaceImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
     public Response<RelayNamespace> getByResourceGroupWithResponse(
         String resourceGroupName, String namespaceName, Context context) {
         Response<RelayNamespaceInner> inner =
@@ -110,113 +215,62 @@ public final class NamespacesImpl implements Namespaces {
         }
     }
 
-    public PagedIterable<AuthorizationRule> listAuthorizationRules(String resourceGroupName, String namespaceName) {
-        PagedIterable<AuthorizationRuleInner> inner =
-            this.serviceClient().listAuthorizationRules(resourceGroupName, namespaceName);
-        return Utils.mapPage(inner, inner1 -> new AuthorizationRuleImpl(inner1, this.manager()));
+    public RelayNamespace getByResourceGroup(String resourceGroupName, String namespaceName) {
+        RelayNamespaceInner inner = this.serviceClient().getByResourceGroup(resourceGroupName, namespaceName);
+        if (inner != null) {
+            return new RelayNamespaceImpl(inner, this.manager());
+        } else {
+            return null;
+        }
     }
 
-    public PagedIterable<AuthorizationRule> listAuthorizationRules(
+    public Response<NetworkRuleSet> createOrUpdateNetworkRuleSetWithResponse(
+        String resourceGroupName, String namespaceName, NetworkRuleSetInner parameters, Context context) {
+        Response<NetworkRuleSetInner> inner =
+            this
+                .serviceClient()
+                .createOrUpdateNetworkRuleSetWithResponse(resourceGroupName, namespaceName, parameters, context);
+        if (inner != null) {
+            return new SimpleResponse<>(
+                inner.getRequest(),
+                inner.getStatusCode(),
+                inner.getHeaders(),
+                new NetworkRuleSetImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public NetworkRuleSet createOrUpdateNetworkRuleSet(
+        String resourceGroupName, String namespaceName, NetworkRuleSetInner parameters) {
+        NetworkRuleSetInner inner =
+            this.serviceClient().createOrUpdateNetworkRuleSet(resourceGroupName, namespaceName, parameters);
+        if (inner != null) {
+            return new NetworkRuleSetImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
+    public Response<NetworkRuleSet> getNetworkRuleSetWithResponse(
         String resourceGroupName, String namespaceName, Context context) {
-        PagedIterable<AuthorizationRuleInner> inner =
-            this.serviceClient().listAuthorizationRules(resourceGroupName, namespaceName, context);
-        return Utils.mapPage(inner, inner1 -> new AuthorizationRuleImpl(inner1, this.manager()));
-    }
-
-    public void deleteAuthorizationRule(String resourceGroupName, String namespaceName, String authorizationRuleName) {
-        this.serviceClient().deleteAuthorizationRule(resourceGroupName, namespaceName, authorizationRuleName);
-    }
-
-    public Response<Void> deleteAuthorizationRuleWithResponse(
-        String resourceGroupName, String namespaceName, String authorizationRuleName, Context context) {
-        return this
-            .serviceClient()
-            .deleteAuthorizationRuleWithResponse(resourceGroupName, namespaceName, authorizationRuleName, context);
-    }
-
-    public AuthorizationRule getAuthorizationRule(
-        String resourceGroupName, String namespaceName, String authorizationRuleName) {
-        AuthorizationRuleInner inner =
-            this.serviceClient().getAuthorizationRule(resourceGroupName, namespaceName, authorizationRuleName);
-        if (inner != null) {
-            return new AuthorizationRuleImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
-    public Response<AuthorizationRule> getAuthorizationRuleWithResponse(
-        String resourceGroupName, String namespaceName, String authorizationRuleName, Context context) {
-        Response<AuthorizationRuleInner> inner =
-            this
-                .serviceClient()
-                .getAuthorizationRuleWithResponse(resourceGroupName, namespaceName, authorizationRuleName, context);
+        Response<NetworkRuleSetInner> inner =
+            this.serviceClient().getNetworkRuleSetWithResponse(resourceGroupName, namespaceName, context);
         if (inner != null) {
             return new SimpleResponse<>(
                 inner.getRequest(),
                 inner.getStatusCode(),
                 inner.getHeaders(),
-                new AuthorizationRuleImpl(inner.getValue(), this.manager()));
+                new NetworkRuleSetImpl(inner.getValue(), this.manager()));
         } else {
             return null;
         }
     }
 
-    public AccessKeys listKeys(String resourceGroupName, String namespaceName, String authorizationRuleName) {
-        AccessKeysInner inner = this.serviceClient().listKeys(resourceGroupName, namespaceName, authorizationRuleName);
+    public NetworkRuleSet getNetworkRuleSet(String resourceGroupName, String namespaceName) {
+        NetworkRuleSetInner inner = this.serviceClient().getNetworkRuleSet(resourceGroupName, namespaceName);
         if (inner != null) {
-            return new AccessKeysImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
-    public Response<AccessKeys> listKeysWithResponse(
-        String resourceGroupName, String namespaceName, String authorizationRuleName, Context context) {
-        Response<AccessKeysInner> inner =
-            this.serviceClient().listKeysWithResponse(resourceGroupName, namespaceName, authorizationRuleName, context);
-        if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
-                new AccessKeysImpl(inner.getValue(), this.manager()));
-        } else {
-            return null;
-        }
-    }
-
-    public AccessKeys regenerateKeys(
-        String resourceGroupName,
-        String namespaceName,
-        String authorizationRuleName,
-        RegenerateAccessKeyParameters parameters) {
-        AccessKeysInner inner =
-            this.serviceClient().regenerateKeys(resourceGroupName, namespaceName, authorizationRuleName, parameters);
-        if (inner != null) {
-            return new AccessKeysImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
-    public Response<AccessKeys> regenerateKeysWithResponse(
-        String resourceGroupName,
-        String namespaceName,
-        String authorizationRuleName,
-        RegenerateAccessKeyParameters parameters,
-        Context context) {
-        Response<AccessKeysInner> inner =
-            this
-                .serviceClient()
-                .regenerateKeysWithResponse(
-                    resourceGroupName, namespaceName, authorizationRuleName, parameters, context);
-        if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
-                new AccessKeysImpl(inner.getValue(), this.manager()));
+            return new NetworkRuleSetImpl(inner, this.manager());
         } else {
             return null;
         }

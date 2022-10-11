@@ -9,14 +9,14 @@ import com.azure.core.util.Context;
 /** Samples for HybridConnections DeleteAuthorizationRule. */
 public final class HybridConnectionsDeleteAuthorizationRuleSamples {
     /*
-     * x-ms-original-file: specification/relay/resource-manager/Microsoft.Relay/stable/2017-04-01/examples/HybridConnection/RelayHybridConnectionAutorizationRuleDelete.json
+     * x-ms-original-file: specification/relay/resource-manager/Microsoft.Relay/stable/2021-11-01/examples/HybridConnection/RelayHybridConnectionAuthorizationRuleDelete.json
      */
     /**
-     * Sample code: RelayHybridConnectionAutorizationRuleDelete.
+     * Sample code: RelayHybridConnectionAuthorizationRuleDelete.
      *
      * @param manager Entry point to RelayManager.
      */
-    public static void relayHybridConnectionAutorizationRuleDelete(
+    public static void relayHybridConnectionAuthorizationRuleDelete(
         com.azure.resourcemanager.relay.RelayManager manager) {
         manager
             .hybridConnections()

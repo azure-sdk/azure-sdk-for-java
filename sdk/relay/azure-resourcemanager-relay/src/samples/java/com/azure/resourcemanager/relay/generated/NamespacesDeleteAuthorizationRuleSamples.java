@@ -9,14 +9,14 @@ import com.azure.core.util.Context;
 /** Samples for Namespaces DeleteAuthorizationRule. */
 public final class NamespacesDeleteAuthorizationRuleSamples {
     /*
-     * x-ms-original-file: specification/relay/resource-manager/Microsoft.Relay/stable/2017-04-01/examples/NameSpaces/RelayNameSpaceAutorizationRuleDelete.json
+     * x-ms-original-file: specification/relay/resource-manager/Microsoft.Relay/stable/2021-11-01/examples/NameSpaces/RelayNameSpaceAuthorizationRuleDelete.json
      */
     /**
-     * Sample code: RelayNameSpaceAutorizationRuleDelete.
+     * Sample code: RelayNameSpaceAuthorizationRuleDelete.
      *
      * @param manager Entry point to RelayManager.
      */
-    public static void relayNameSpaceAutorizationRuleDelete(com.azure.resourcemanager.relay.RelayManager manager) {
+    public static void relayNameSpaceAuthorizationRuleDelete(com.azure.resourcemanager.relay.RelayManager manager) {
         manager
             .namespaces()
             .deleteAuthorizationRuleWithResponse(
