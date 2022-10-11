@@ -20,6 +20,10 @@ public final class Aks extends Compute {
     @JsonProperty(value = "properties")
     private AksSchemaProperties properties;
 
+    /** Creates an instance of Aks class. */
+    public Aks() {
+    }
+
     /**
      * Get the properties property: AKS properties.
      *
@@ -51,13 +55,6 @@ public final class Aks extends Compute {
     @Override
     public Aks withResourceId(String resourceId) {
         super.withResourceId(resourceId);
-        return this;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Aks withDisableLocalAuth(Boolean disableLocalAuth) {
-        super.withDisableLocalAuth(disableLocalAuth);
         return this;
     }
 

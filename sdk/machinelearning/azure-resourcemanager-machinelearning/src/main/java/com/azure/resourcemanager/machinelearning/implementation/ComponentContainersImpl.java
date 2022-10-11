@@ -10,8 +10,8 @@ import com.azure.core.http.rest.SimpleResponse;
 import com.azure.core.util.Context;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.machinelearning.fluent.ComponentContainersClient;
-import com.azure.resourcemanager.machinelearning.fluent.models.ComponentContainerDataInner;
-import com.azure.resourcemanager.machinelearning.models.ComponentContainerData;
+import com.azure.resourcemanager.machinelearning.fluent.models.ComponentContainerInner;
+import com.azure.resourcemanager.machinelearning.models.ComponentContainer;
 import com.azure.resourcemanager.machinelearning.models.ComponentContainers;
 import com.azure.resourcemanager.machinelearning.models.ListViewType;
 
@@ -29,20 +29,16 @@ public final class ComponentContainersImpl implements ComponentContainers {
         this.serviceManager = serviceManager;
     }
 
-    public PagedIterable<ComponentContainerData> list(String resourceGroupName, String workspaceName) {
-        PagedIterable<ComponentContainerDataInner> inner = this.serviceClient().list(resourceGroupName, workspaceName);
-        return Utils.mapPage(inner, inner1 -> new ComponentContainerDataImpl(inner1, this.manager()));
+    public PagedIterable<ComponentContainer> list(String resourceGroupName, String workspaceName) {
+        PagedIterable<ComponentContainerInner> inner = this.serviceClient().list(resourceGroupName, workspaceName);
+        return Utils.mapPage(inner, inner1 -> new ComponentContainerImpl(inner1, this.manager()));
     }
 
-    public PagedIterable<ComponentContainerData> list(
+    public PagedIterable<ComponentContainer> list(
         String resourceGroupName, String workspaceName, String skip, ListViewType listViewType, Context context) {
-        PagedIterable<ComponentContainerDataInner> inner =
+        PagedIterable<ComponentContainerInner> inner =
             this.serviceClient().list(resourceGroupName, workspaceName, skip, listViewType, context);
-        return Utils.mapPage(inner, inner1 -> new ComponentContainerDataImpl(inner1, this.manager()));
-    }
-
-    public void delete(String resourceGroupName, String workspaceName, String name) {
-        this.serviceClient().delete(resourceGroupName, workspaceName, name);
+        return Utils.mapPage(inner, inner1 -> new ComponentContainerImpl(inner1, this.manager()));
     }
 
     public Response<Void> deleteWithResponse(
@@ -50,132 +46,58 @@ public final class ComponentContainersImpl implements ComponentContainers {
         return this.serviceClient().deleteWithResponse(resourceGroupName, workspaceName, name, context);
     }
 
-    public ComponentContainerData get(String resourceGroupName, String workspaceName, String name) {
-        ComponentContainerDataInner inner = this.serviceClient().get(resourceGroupName, workspaceName, name);
-        if (inner != null) {
-            return new ComponentContainerDataImpl(inner, this.manager());
-        } else {
-            return null;
-        }
+    public void delete(String resourceGroupName, String workspaceName, String name) {
+        this.serviceClient().delete(resourceGroupName, workspaceName, name);
     }
 
-    public Response<ComponentContainerData> getWithResponse(
+    public Response<ComponentContainer> getWithResponse(
         String resourceGroupName, String workspaceName, String name, Context context) {
-        Response<ComponentContainerDataInner> inner =
+        Response<ComponentContainerInner> inner =
             this.serviceClient().getWithResponse(resourceGroupName, workspaceName, name, context);
         if (inner != null) {
             return new SimpleResponse<>(
                 inner.getRequest(),
                 inner.getStatusCode(),
                 inner.getHeaders(),
-                new ComponentContainerDataImpl(inner.getValue(), this.manager()));
+                new ComponentContainerImpl(inner.getValue(), this.manager()));
         } else {
             return null;
         }
     }
 
-    public ComponentContainerData getById(String id) {
-        String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
-        if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+    public ComponentContainer get(String resourceGroupName, String workspaceName, String name) {
+        ComponentContainerInner inner = this.serviceClient().get(resourceGroupName, workspaceName, name);
+        if (inner != null) {
+            return new ComponentContainerImpl(inner, this.manager());
+        } else {
+            return null;
         }
-        String workspaceName = Utils.getValueFromIdByName(id, "workspaces");
-        if (workspaceName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'workspaces'.", id)));
-        }
-        String name = Utils.getValueFromIdByName(id, "components");
-        if (name == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'components'.", id)));
-        }
-        return this.getWithResponse(resourceGroupName, workspaceName, name, Context.NONE).getValue();
     }
 
-    public Response<ComponentContainerData> getByIdWithResponse(String id, Context context) {
-        String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
-        if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+    public Response<ComponentContainer> createOrUpdateWithResponse(
+        String resourceGroupName, String workspaceName, String name, ComponentContainerInner body, Context context) {
+        Response<ComponentContainerInner> inner =
+            this.serviceClient().createOrUpdateWithResponse(resourceGroupName, workspaceName, name, body, context);
+        if (inner != null) {
+            return new SimpleResponse<>(
+                inner.getRequest(),
+                inner.getStatusCode(),
+                inner.getHeaders(),
+                new ComponentContainerImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
         }
-        String workspaceName = Utils.getValueFromIdByName(id, "workspaces");
-        if (workspaceName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'workspaces'.", id)));
-        }
-        String name = Utils.getValueFromIdByName(id, "components");
-        if (name == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'components'.", id)));
-        }
-        return this.getWithResponse(resourceGroupName, workspaceName, name, context);
     }
 
-    public void deleteById(String id) {
-        String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
-        if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+    public ComponentContainer createOrUpdate(
+        String resourceGroupName, String workspaceName, String name, ComponentContainerInner body) {
+        ComponentContainerInner inner =
+            this.serviceClient().createOrUpdate(resourceGroupName, workspaceName, name, body);
+        if (inner != null) {
+            return new ComponentContainerImpl(inner, this.manager());
+        } else {
+            return null;
         }
-        String workspaceName = Utils.getValueFromIdByName(id, "workspaces");
-        if (workspaceName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'workspaces'.", id)));
-        }
-        String name = Utils.getValueFromIdByName(id, "components");
-        if (name == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'components'.", id)));
-        }
-        this.deleteWithResponse(resourceGroupName, workspaceName, name, Context.NONE);
-    }
-
-    public Response<Void> deleteByIdWithResponse(String id, Context context) {
-        String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
-        if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
-        }
-        String workspaceName = Utils.getValueFromIdByName(id, "workspaces");
-        if (workspaceName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'workspaces'.", id)));
-        }
-        String name = Utils.getValueFromIdByName(id, "components");
-        if (name == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'components'.", id)));
-        }
-        return this.deleteWithResponse(resourceGroupName, workspaceName, name, context);
     }
 
     private ComponentContainersClient serviceClient() {
@@ -184,9 +106,5 @@ public final class ComponentContainersImpl implements ComponentContainers {
 
     private com.azure.resourcemanager.machinelearning.MachineLearningManager manager() {
         return this.serviceManager;
-    }
-
-    public ComponentContainerDataImpl define(String name) {
-        return new ComponentContainerDataImpl(name, this.manager());
     }
 }

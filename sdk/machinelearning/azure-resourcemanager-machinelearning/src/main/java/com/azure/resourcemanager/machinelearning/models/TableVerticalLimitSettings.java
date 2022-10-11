@@ -12,8 +12,8 @@ import java.time.Duration;
 @Fluent
 public final class TableVerticalLimitSettings {
     /*
-     * Enable early termination, determines whether or not if AutoMLJob will
-     * terminate early if there is no score improvement in last 20 iterations.
+     * Enable early termination, determines whether or not if AutoMLJob will terminate early if there is no score
+     * improvement in last 20 iterations.
      */
     @JsonProperty(value = "enableEarlyTermination")
     private Boolean enableEarlyTermination;
@@ -43,6 +43,18 @@ public final class TableVerticalLimitSettings {
     private Integer maxTrials;
 
     /*
+     * Number of concurrent sweeping runs that user wants to trigger.
+     */
+    @JsonProperty(value = "sweepConcurrentTrials")
+    private Integer sweepConcurrentTrials;
+
+    /*
+     * Number of sweeping runs that user wants to trigger.
+     */
+    @JsonProperty(value = "sweepTrials")
+    private Integer sweepTrials;
+
+    /*
      * AutoML job timeout.
      */
     @JsonProperty(value = "timeout")
@@ -53,6 +65,10 @@ public final class TableVerticalLimitSettings {
      */
     @JsonProperty(value = "trialTimeout")
     private Duration trialTimeout;
+
+    /** Creates an instance of TableVerticalLimitSettings class. */
+    public TableVerticalLimitSettings() {
+    }
 
     /**
      * Get the enableEarlyTermination property: Enable early termination, determines whether or not if AutoMLJob will
@@ -153,6 +169,46 @@ public final class TableVerticalLimitSettings {
      */
     public TableVerticalLimitSettings withMaxTrials(Integer maxTrials) {
         this.maxTrials = maxTrials;
+        return this;
+    }
+
+    /**
+     * Get the sweepConcurrentTrials property: Number of concurrent sweeping runs that user wants to trigger.
+     *
+     * @return the sweepConcurrentTrials value.
+     */
+    public Integer sweepConcurrentTrials() {
+        return this.sweepConcurrentTrials;
+    }
+
+    /**
+     * Set the sweepConcurrentTrials property: Number of concurrent sweeping runs that user wants to trigger.
+     *
+     * @param sweepConcurrentTrials the sweepConcurrentTrials value to set.
+     * @return the TableVerticalLimitSettings object itself.
+     */
+    public TableVerticalLimitSettings withSweepConcurrentTrials(Integer sweepConcurrentTrials) {
+        this.sweepConcurrentTrials = sweepConcurrentTrials;
+        return this;
+    }
+
+    /**
+     * Get the sweepTrials property: Number of sweeping runs that user wants to trigger.
+     *
+     * @return the sweepTrials value.
+     */
+    public Integer sweepTrials() {
+        return this.sweepTrials;
+    }
+
+    /**
+     * Set the sweepTrials property: Number of sweeping runs that user wants to trigger.
+     *
+     * @param sweepTrials the sweepTrials value to set.
+     * @return the TableVerticalLimitSettings object itself.
+     */
+    public TableVerticalLimitSettings withSweepTrials(Integer sweepTrials) {
+        this.sweepTrials = sweepTrials;
         return this;
     }
 
