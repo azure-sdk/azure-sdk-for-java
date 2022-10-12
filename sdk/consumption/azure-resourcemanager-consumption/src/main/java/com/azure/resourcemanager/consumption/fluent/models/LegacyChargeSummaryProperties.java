@@ -5,16 +5,12 @@
 package com.azure.resourcemanager.consumption.fluent.models;
 
 import com.azure.core.annotation.Immutable;
-import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.math.BigDecimal;
 
 /** The properties of legacy charge summary. */
 @Immutable
 public final class LegacyChargeSummaryProperties {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(LegacyChargeSummaryProperties.class);
-
     /*
      * The id of the billing period resource that the charge belongs to.
      */
@@ -56,6 +52,10 @@ public final class LegacyChargeSummaryProperties {
      */
     @JsonProperty(value = "currency", access = JsonProperty.Access.WRITE_ONLY)
     private String currency;
+
+    /** Creates an instance of LegacyChargeSummaryProperties class. */
+    public LegacyChargeSummaryProperties() {
+    }
 
     /**
      * Get the billingPeriodId property: The id of the billing period resource that the charge belongs to.

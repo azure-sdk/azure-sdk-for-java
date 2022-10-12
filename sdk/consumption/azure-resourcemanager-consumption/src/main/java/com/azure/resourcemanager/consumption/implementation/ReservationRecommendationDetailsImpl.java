@@ -13,11 +13,11 @@ import com.azure.resourcemanager.consumption.fluent.models.ReservationRecommenda
 import com.azure.resourcemanager.consumption.models.LookBackPeriod;
 import com.azure.resourcemanager.consumption.models.ReservationRecommendationDetails;
 import com.azure.resourcemanager.consumption.models.ReservationRecommendationDetailsModel;
+import com.azure.resourcemanager.consumption.models.Scope;
 import com.azure.resourcemanager.consumption.models.Term;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public final class ReservationRecommendationDetailsImpl implements ReservationRecommendationDetails {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(ReservationRecommendationDetailsImpl.class);
+    private static final ClientLogger LOGGER = new ClientLogger(ReservationRecommendationDetailsImpl.class);
 
     private final ReservationRecommendationDetailsClient innerClient;
 
@@ -30,27 +30,33 @@ public final class ReservationRecommendationDetailsImpl implements ReservationRe
         this.serviceManager = serviceManager;
     }
 
-    public ReservationRecommendationDetailsModel get(
-        String scope, String region, Term term, LookBackPeriod lookBackPeriod, String product) {
-        ReservationRecommendationDetailsModelInner inner =
-            this.serviceClient().get(scope, region, term, lookBackPeriod, product);
-        if (inner != null) {
-            return new ReservationRecommendationDetailsModelImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
     public Response<ReservationRecommendationDetailsModel> getWithResponse(
-        String scope, String region, Term term, LookBackPeriod lookBackPeriod, String product, Context context) {
+        String resourceScope,
+        Scope scope,
+        String region,
+        Term term,
+        LookBackPeriod lookBackPeriod,
+        String product,
+        Context context) {
         Response<ReservationRecommendationDetailsModelInner> inner =
-            this.serviceClient().getWithResponse(scope, region, term, lookBackPeriod, product, context);
+            this.serviceClient().getWithResponse(resourceScope, scope, region, term, lookBackPeriod, product, context);
         if (inner != null) {
             return new SimpleResponse<>(
                 inner.getRequest(),
                 inner.getStatusCode(),
                 inner.getHeaders(),
                 new ReservationRecommendationDetailsModelImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public ReservationRecommendationDetailsModel get(
+        String resourceScope, Scope scope, String region, Term term, LookBackPeriod lookBackPeriod, String product) {
+        ReservationRecommendationDetailsModelInner inner =
+            this.serviceClient().get(resourceScope, scope, region, term, lookBackPeriod, product);
+        if (inner != null) {
+            return new ReservationRecommendationDetailsModelImpl(inner, this.manager());
         } else {
             return null;
         }

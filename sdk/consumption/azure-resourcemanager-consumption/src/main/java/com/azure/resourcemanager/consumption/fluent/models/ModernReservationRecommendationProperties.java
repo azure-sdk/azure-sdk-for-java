@@ -5,10 +5,8 @@
 package com.azure.resourcemanager.consumption.fluent.models;
 
 import com.azure.core.annotation.Immutable;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.consumption.models.Amount;
 import com.azure.resourcemanager.consumption.models.SkuProperty;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
@@ -18,8 +16,6 @@ import java.util.UUID;
 /** The properties of the reservation recommendation. */
 @Immutable
 public final class ModernReservationRecommendationProperties {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(ModernReservationRecommendationProperties.class);
-
     /*
      * Resource Location.
      */
@@ -115,6 +111,10 @@ public final class ModernReservationRecommendationProperties {
      */
     @JsonProperty(value = "skuName", access = JsonProperty.Access.WRITE_ONLY)
     private String skuName;
+
+    /** Creates an instance of ModernReservationRecommendationProperties class. */
+    public ModernReservationRecommendationProperties() {
+    }
 
     /**
      * Get the location property: Resource Location.

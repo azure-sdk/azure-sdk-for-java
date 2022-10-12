@@ -5,17 +5,11 @@
 package com.azure.resourcemanager.consumption.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Details of estimated savings. */
 @Fluent
 public final class ReservationRecommendationDetailsCalculatedSavingsProperties {
-    @JsonIgnore
-    private final ClientLogger logger =
-        new ClientLogger(ReservationRecommendationDetailsCalculatedSavingsProperties.class);
-
     /*
      * The cost without reservation.
      */
@@ -47,8 +41,7 @@ public final class ReservationRecommendationDetailsCalculatedSavingsProperties {
     private Float totalReservationCost;
 
     /*
-     * The number of reserved units used to calculate savings. Always 1 for
-     * virtual machines.
+     * The number of reserved units used to calculate savings. Always 1 for virtual machines.
      */
     @JsonProperty(value = "reservedUnitCount")
     private Float reservedUnitCount;
@@ -58,6 +51,10 @@ public final class ReservationRecommendationDetailsCalculatedSavingsProperties {
      */
     @JsonProperty(value = "savings", access = JsonProperty.Access.WRITE_ONLY)
     private Float savings;
+
+    /** Creates an instance of ReservationRecommendationDetailsCalculatedSavingsProperties class. */
+    public ReservationRecommendationDetailsCalculatedSavingsProperties() {
+    }
 
     /**
      * Get the onDemandCost property: The cost without reservation.
