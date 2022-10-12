@@ -52,6 +52,48 @@ public interface ContainerAppsApiClient {
     ContainerAppsAuthConfigsClient getContainerAppsAuthConfigs();
 
     /**
+     * Gets the AvailableWorkloadProfilesClient object to access its operations.
+     *
+     * @return the AvailableWorkloadProfilesClient object.
+     */
+    AvailableWorkloadProfilesClient getAvailableWorkloadProfiles();
+
+    /**
+     * Gets the BillingMetersClient object to access its operations.
+     *
+     * @return the BillingMetersClient object.
+     */
+    BillingMetersClient getBillingMeters();
+
+    /**
+     * Gets the ConnectedEnvironmentsClient object to access its operations.
+     *
+     * @return the ConnectedEnvironmentsClient object.
+     */
+    ConnectedEnvironmentsClient getConnectedEnvironments();
+
+    /**
+     * Gets the ConnectedEnvironmentsCertificatesClient object to access its operations.
+     *
+     * @return the ConnectedEnvironmentsCertificatesClient object.
+     */
+    ConnectedEnvironmentsCertificatesClient getConnectedEnvironmentsCertificates();
+
+    /**
+     * Gets the ConnectedEnvironmentsDaprComponentsClient object to access its operations.
+     *
+     * @return the ConnectedEnvironmentsDaprComponentsClient object.
+     */
+    ConnectedEnvironmentsDaprComponentsClient getConnectedEnvironmentsDaprComponents();
+
+    /**
+     * Gets the ConnectedEnvironmentsStoragesClient object to access its operations.
+     *
+     * @return the ConnectedEnvironmentsStoragesClient object.
+     */
+    ConnectedEnvironmentsStoragesClient getConnectedEnvironmentsStorages();
+
+    /**
      * Gets the ContainerAppsClient object to access its operations.
      *
      * @return the ContainerAppsClient object.
@@ -73,11 +115,25 @@ public interface ContainerAppsApiClient {
     ContainerAppsRevisionReplicasClient getContainerAppsRevisionReplicas();
 
     /**
-     * Gets the DaprComponentsClient object to access its operations.
+     * Gets the ContainerAppsDiagnosticsClient object to access its operations.
      *
-     * @return the DaprComponentsClient object.
+     * @return the ContainerAppsDiagnosticsClient object.
      */
-    DaprComponentsClient getDaprComponents();
+    ContainerAppsDiagnosticsClient getContainerAppsDiagnostics();
+
+    /**
+     * Gets the ManagedEnvironmentDiagnosticsClient object to access its operations.
+     *
+     * @return the ManagedEnvironmentDiagnosticsClient object.
+     */
+    ManagedEnvironmentDiagnosticsClient getManagedEnvironmentDiagnostics();
+
+    /**
+     * Gets the ManagedEnvironmentsDiagnosticsClient object to access its operations.
+     *
+     * @return the ManagedEnvironmentsDiagnosticsClient object.
+     */
+    ManagedEnvironmentsDiagnosticsClient getManagedEnvironmentsDiagnostics();
 
     /**
      * Gets the OperationsClient object to access its operations.
@@ -106,6 +162,13 @@ public interface ContainerAppsApiClient {
      * @return the NamespacesClient object.
      */
     NamespacesClient getNamespaces();
+
+    /**
+     * Gets the DaprComponentsClient object to access its operations.
+     *
+     * @return the DaprComponentsClient object.
+     */
+    DaprComponentsClient getDaprComponents();
 
     /**
      * Gets the ManagedEnvironmentsStoragesClient object to access its operations.
