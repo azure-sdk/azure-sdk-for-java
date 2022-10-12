@@ -31,14 +31,14 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
     private final PrivateLinkResourcesService service;
 
     /** The service client containing this operation class. */
-    private final AzureMachineLearningWorkspacesImpl client;
+    private final AzureMachineLearningServicesImpl client;
 
     /**
      * Initializes an instance of PrivateLinkResourcesClientImpl.
      *
      * @param client the instance of the service client containing this operation class.
      */
-    PrivateLinkResourcesClientImpl(AzureMachineLearningWorkspacesImpl client) {
+    PrivateLinkResourcesClientImpl(AzureMachineLearningServicesImpl client) {
         this.service =
             RestProxy
                 .create(PrivateLinkResourcesService.class, client.getHttpPipeline(), client.getSerializerAdapter());
@@ -46,7 +46,7 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
     }
 
     /**
-     * The interface defining all the services for AzureMachineLearningWorkspacesPrivateLinkResources to be used by the
+     * The interface defining all the services for AzureMachineLearningServicesPrivateLinkResources to be used by the
      * proxy service to perform REST calls.
      */
     @Host("{$host}")
@@ -185,21 +185,6 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName Name of Azure Machine Learning workspace.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the private link resources that need to be created for a workspace.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public PrivateLinkResourceListResultInner list(String resourceGroupName, String workspaceName) {
-        return listAsync(resourceGroupName, workspaceName).block();
-    }
-
-    /**
-     * Gets the private link resources that need to be created for a workspace.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName Name of Azure Machine Learning workspace.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -210,5 +195,20 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
     public Response<PrivateLinkResourceListResultInner> listWithResponse(
         String resourceGroupName, String workspaceName, Context context) {
         return listWithResponseAsync(resourceGroupName, workspaceName, context).block();
+    }
+
+    /**
+     * Gets the private link resources that need to be created for a workspace.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the private link resources that need to be created for a workspace.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public PrivateLinkResourceListResultInner list(String resourceGroupName, String workspaceName) {
+        return listWithResponse(resourceGroupName, workspaceName, Context.NONE).getValue();
     }
 }

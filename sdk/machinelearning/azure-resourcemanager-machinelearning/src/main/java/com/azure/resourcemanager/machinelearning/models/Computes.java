@@ -7,6 +7,7 @@ package com.azure.resourcemanager.machinelearning.models;
 import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.http.rest.Response;
 import com.azure.core.util.Context;
+import java.util.List;
 
 /** Resource collection API of Computes. */
 public interface Computes {
@@ -43,20 +44,6 @@ public interface Computes {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName Name of Azure Machine Learning workspace.
      * @param computeName Name of the Azure Machine Learning compute.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return compute definition by its name.
-     */
-    ComputeResource get(String resourceGroupName, String workspaceName, String computeName);
-
-    /**
-     * Gets compute definition by its name. Any secrets (storage keys, service credentials, etc) are not returned - use
-     * 'keys' nested resource to get them.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName Name of Azure Machine Learning workspace.
-     * @param computeName Name of the Azure Machine Learning compute.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -65,6 +52,20 @@ public interface Computes {
      */
     Response<ComputeResource> getWithResponse(
         String resourceGroupName, String workspaceName, String computeName, Context context);
+
+    /**
+     * Gets compute definition by its name. Any secrets (storage keys, service credentials, etc) are not returned - use
+     * 'keys' nested resource to get them.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param computeName Name of the Azure Machine Learning compute.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return compute definition by its name.
+     */
+    ComputeResource get(String resourceGroupName, String workspaceName, String computeName);
 
     /**
      * Deletes specified Machine Learning compute.
@@ -105,6 +106,40 @@ public interface Computes {
         Context context);
 
     /**
+     * Updates the custom services list. The list of custom services provided shall be overwritten.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param computeName Name of the Azure Machine Learning compute.
+     * @param customServices New list of Custom Services.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response}.
+     */
+    Response<Void> updateCustomServicesWithResponse(
+        String resourceGroupName,
+        String workspaceName,
+        String computeName,
+        List<CustomService> customServices,
+        Context context);
+
+    /**
+     * Updates the custom services list. The list of custom services provided shall be overwritten.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param computeName Name of the Azure Machine Learning compute.
+     * @param customServices New list of Custom Services.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void updateCustomServices(
+        String resourceGroupName, String workspaceName, String computeName, List<CustomService> customServices);
+
+    /**
      * Get the details (e.g IP address, port etc) of all the compute nodes in the compute.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -141,19 +176,6 @@ public interface Computes {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName Name of Azure Machine Learning workspace.
      * @param computeName Name of the Azure Machine Learning compute.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return secrets related to Machine Learning compute (storage keys, service credentials, etc).
-     */
-    ComputeSecrets listKeys(String resourceGroupName, String workspaceName, String computeName);
-
-    /**
-     * Gets secrets related to Machine Learning compute (storage keys, service credentials, etc).
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName Name of Azure Machine Learning workspace.
-     * @param computeName Name of the Azure Machine Learning compute.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -163,6 +185,19 @@ public interface Computes {
      */
     Response<ComputeSecrets> listKeysWithResponse(
         String resourceGroupName, String workspaceName, String computeName, Context context);
+
+    /**
+     * Gets secrets related to Machine Learning compute (storage keys, service credentials, etc).
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param computeName Name of the Azure Machine Learning compute.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return secrets related to Machine Learning compute (storage keys, service credentials, etc).
+     */
+    ComputeSecrets listKeys(String resourceGroupName, String workspaceName, String computeName);
 
     /**
      * Posts a start action to a compute instance.
@@ -238,6 +273,40 @@ public interface Computes {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
     void restart(String resourceGroupName, String workspaceName, String computeName, Context context);
+
+    /**
+     * Updates the idle shutdown setting of a compute instance.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param computeName Name of the Azure Machine Learning compute.
+     * @param parameters The object for updating idle shutdown setting of specified ComputeInstance.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response}.
+     */
+    Response<Void> updateIdleShutdownSettingWithResponse(
+        String resourceGroupName,
+        String workspaceName,
+        String computeName,
+        IdleShutdownSetting parameters,
+        Context context);
+
+    /**
+     * Updates the idle shutdown setting of a compute instance.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param computeName Name of the Azure Machine Learning compute.
+     * @param parameters The object for updating idle shutdown setting of specified ComputeInstance.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void updateIdleShutdownSetting(
+        String resourceGroupName, String workspaceName, String computeName, IdleShutdownSetting parameters);
 
     /**
      * Gets compute definition by its name. Any secrets (storage keys, service credentials, etc) are not returned - use

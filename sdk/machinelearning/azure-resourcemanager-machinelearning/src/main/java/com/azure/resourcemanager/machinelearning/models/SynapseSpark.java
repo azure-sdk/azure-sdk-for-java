@@ -20,6 +20,10 @@ public final class SynapseSpark extends Compute {
     @JsonProperty(value = "properties")
     private SynapseSparkProperties properties;
 
+    /** Creates an instance of SynapseSpark class. */
+    public SynapseSpark() {
+    }
+
     /**
      * Get the properties property: The properties property.
      *
@@ -51,13 +55,6 @@ public final class SynapseSpark extends Compute {
     @Override
     public SynapseSpark withResourceId(String resourceId) {
         super.withResourceId(resourceId);
-        return this;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public SynapseSpark withDisableLocalAuth(Boolean disableLocalAuth) {
-        super.withDisableLocalAuth(disableLocalAuth);
         return this;
     }
 

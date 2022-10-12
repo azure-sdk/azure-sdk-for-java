@@ -34,6 +34,10 @@ public final class ScriptReference {
     @JsonProperty(value = "timeout")
     private String timeout;
 
+    /** Creates an instance of ScriptReference class. */
+    public ScriptReference() {
+    }
+
     /**
      * Get the scriptSource property: The storage source of the script: inline, workspace.
      *

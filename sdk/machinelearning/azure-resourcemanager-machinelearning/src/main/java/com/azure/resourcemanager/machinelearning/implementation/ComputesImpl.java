@@ -16,7 +16,10 @@ import com.azure.resourcemanager.machinelearning.models.AmlComputeNodeInformatio
 import com.azure.resourcemanager.machinelearning.models.ComputeResource;
 import com.azure.resourcemanager.machinelearning.models.ComputeSecrets;
 import com.azure.resourcemanager.machinelearning.models.Computes;
+import com.azure.resourcemanager.machinelearning.models.CustomService;
+import com.azure.resourcemanager.machinelearning.models.IdleShutdownSetting;
 import com.azure.resourcemanager.machinelearning.models.UnderlyingResourceAction;
+import java.util.List;
 
 public final class ComputesImpl implements Computes {
     private static final ClientLogger LOGGER = new ClientLogger(ComputesImpl.class);
@@ -43,15 +46,6 @@ public final class ComputesImpl implements Computes {
         return Utils.mapPage(inner, inner1 -> new ComputeResourceImpl(inner1, this.manager()));
     }
 
-    public ComputeResource get(String resourceGroupName, String workspaceName, String computeName) {
-        ComputeResourceInner inner = this.serviceClient().get(resourceGroupName, workspaceName, computeName);
-        if (inner != null) {
-            return new ComputeResourceImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
     public Response<ComputeResource> getWithResponse(
         String resourceGroupName, String workspaceName, String computeName, Context context) {
         Response<ComputeResourceInner> inner =
@@ -62,6 +56,15 @@ public final class ComputesImpl implements Computes {
                 inner.getStatusCode(),
                 inner.getHeaders(),
                 new ComputeResourceImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public ComputeResource get(String resourceGroupName, String workspaceName, String computeName) {
+        ComputeResourceInner inner = this.serviceClient().get(resourceGroupName, workspaceName, computeName);
+        if (inner != null) {
+            return new ComputeResourceImpl(inner, this.manager());
         } else {
             return null;
         }
@@ -84,6 +87,22 @@ public final class ComputesImpl implements Computes {
         this.serviceClient().delete(resourceGroupName, workspaceName, computeName, underlyingResourceAction, context);
     }
 
+    public Response<Void> updateCustomServicesWithResponse(
+        String resourceGroupName,
+        String workspaceName,
+        String computeName,
+        List<CustomService> customServices,
+        Context context) {
+        return this
+            .serviceClient()
+            .updateCustomServicesWithResponse(resourceGroupName, workspaceName, computeName, customServices, context);
+    }
+
+    public void updateCustomServices(
+        String resourceGroupName, String workspaceName, String computeName, List<CustomService> customServices) {
+        this.serviceClient().updateCustomServices(resourceGroupName, workspaceName, computeName, customServices);
+    }
+
     public PagedIterable<AmlComputeNodeInformation> listNodes(
         String resourceGroupName, String workspaceName, String computeName) {
         return this.serviceClient().listNodes(resourceGroupName, workspaceName, computeName);
@@ -92,15 +111,6 @@ public final class ComputesImpl implements Computes {
     public PagedIterable<AmlComputeNodeInformation> listNodes(
         String resourceGroupName, String workspaceName, String computeName, Context context) {
         return this.serviceClient().listNodes(resourceGroupName, workspaceName, computeName, context);
-    }
-
-    public ComputeSecrets listKeys(String resourceGroupName, String workspaceName, String computeName) {
-        ComputeSecretsInner inner = this.serviceClient().listKeys(resourceGroupName, workspaceName, computeName);
-        if (inner != null) {
-            return new ComputeSecretsImpl(inner, this.manager());
-        } else {
-            return null;
-        }
     }
 
     public Response<ComputeSecrets> listKeysWithResponse(
@@ -113,6 +123,15 @@ public final class ComputesImpl implements Computes {
                 inner.getStatusCode(),
                 inner.getHeaders(),
                 new ComputeSecretsImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public ComputeSecrets listKeys(String resourceGroupName, String workspaceName, String computeName) {
+        ComputeSecretsInner inner = this.serviceClient().listKeys(resourceGroupName, workspaceName, computeName);
+        if (inner != null) {
+            return new ComputeSecretsImpl(inner, this.manager());
         } else {
             return null;
         }
@@ -140,6 +159,22 @@ public final class ComputesImpl implements Computes {
 
     public void restart(String resourceGroupName, String workspaceName, String computeName, Context context) {
         this.serviceClient().restart(resourceGroupName, workspaceName, computeName, context);
+    }
+
+    public Response<Void> updateIdleShutdownSettingWithResponse(
+        String resourceGroupName,
+        String workspaceName,
+        String computeName,
+        IdleShutdownSetting parameters,
+        Context context) {
+        return this
+            .serviceClient()
+            .updateIdleShutdownSettingWithResponse(resourceGroupName, workspaceName, computeName, parameters, context);
+    }
+
+    public void updateIdleShutdownSetting(
+        String resourceGroupName, String workspaceName, String computeName, IdleShutdownSetting parameters) {
+        this.serviceClient().updateIdleShutdownSetting(resourceGroupName, workspaceName, computeName, parameters);
     }
 
     public ComputeResource getById(String id) {
