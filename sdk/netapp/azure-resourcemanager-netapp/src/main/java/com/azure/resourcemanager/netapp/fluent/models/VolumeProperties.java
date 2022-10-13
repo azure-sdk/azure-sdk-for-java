@@ -357,6 +357,10 @@ public final class VolumeProperties {
     @JsonProperty(value = "enableSubvolumes")
     private EnableSubvolumes enableSubvolumes;
 
+    /** Creates an instance of VolumeProperties class. */
+    public VolumeProperties() {
+    }
+
     /**
      * Get the fileSystemId property: FileSystem ID
      *

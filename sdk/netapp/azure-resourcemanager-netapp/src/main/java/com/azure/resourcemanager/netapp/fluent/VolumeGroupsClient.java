@@ -55,22 +55,6 @@ public interface VolumeGroupsClient {
      * @param resourceGroupName The name of the resource group.
      * @param accountName The name of the NetApp account.
      * @param volumeGroupName The name of the volumeGroup.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return details of the specified volume group.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    VolumeGroupDetailsInner get(String resourceGroupName, String accountName, String volumeGroupName);
-
-    /**
-     * Describe a Volume Group
-     *
-     * <p>Get details of the specified volume group.
-     *
-     * @param resourceGroupName The name of the resource group.
-     * @param accountName The name of the NetApp account.
-     * @param volumeGroupName The name of the volumeGroup.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -80,6 +64,22 @@ public interface VolumeGroupsClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<VolumeGroupDetailsInner> getWithResponse(
         String resourceGroupName, String accountName, String volumeGroupName, Context context);
+
+    /**
+     * Describe a Volume Group
+     *
+     * <p>Get details of the specified volume group.
+     *
+     * @param resourceGroupName The name of the resource group.
+     * @param accountName The name of the NetApp account.
+     * @param volumeGroupName The name of the volumeGroup.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return details of the specified volume group.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    VolumeGroupDetailsInner get(String resourceGroupName, String accountName, String volumeGroupName);
 
     /**
      * Create the specified volume group and volumes. Creating volume group will create all the volumes specified in

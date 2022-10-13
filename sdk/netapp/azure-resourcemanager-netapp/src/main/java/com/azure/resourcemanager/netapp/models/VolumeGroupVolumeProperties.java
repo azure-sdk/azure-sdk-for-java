@@ -36,6 +36,10 @@ public final class VolumeGroupVolumeProperties extends ProxyResource {
     @JsonProperty(value = "properties", required = true)
     private VolumeProperties innerProperties = new VolumeProperties();
 
+    /** Creates an instance of VolumeGroupVolumeProperties class. */
+    public VolumeGroupVolumeProperties() {
+    }
+
     /**
      * Get the name property: Resource name.
      *

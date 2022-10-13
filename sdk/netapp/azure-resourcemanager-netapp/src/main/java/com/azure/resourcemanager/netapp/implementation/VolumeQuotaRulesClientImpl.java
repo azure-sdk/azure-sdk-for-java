@@ -537,27 +537,6 @@ public final class VolumeQuotaRulesClientImpl implements VolumeQuotaRulesClient 
      * @param poolName The name of the capacity pool.
      * @param volumeName The name of the volume.
      * @param volumeQuotaRuleName The name of volume quota rule.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return details of the specified quota rule.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public VolumeQuotaRuleInner get(
-        String resourceGroupName, String accountName, String poolName, String volumeName, String volumeQuotaRuleName) {
-        return getAsync(resourceGroupName, accountName, poolName, volumeName, volumeQuotaRuleName).block();
-    }
-
-    /**
-     * Describe a quota rule
-     *
-     * <p>Get details of the specified quota rule.
-     *
-     * @param resourceGroupName The name of the resource group.
-     * @param accountName The name of the NetApp account.
-     * @param poolName The name of the capacity pool.
-     * @param volumeName The name of the volume.
-     * @param volumeQuotaRuleName The name of volume quota rule.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -574,6 +553,28 @@ public final class VolumeQuotaRulesClientImpl implements VolumeQuotaRulesClient 
         Context context) {
         return getWithResponseAsync(resourceGroupName, accountName, poolName, volumeName, volumeQuotaRuleName, context)
             .block();
+    }
+
+    /**
+     * Describe a quota rule
+     *
+     * <p>Get details of the specified quota rule.
+     *
+     * @param resourceGroupName The name of the resource group.
+     * @param accountName The name of the NetApp account.
+     * @param poolName The name of the capacity pool.
+     * @param volumeName The name of the volume.
+     * @param volumeQuotaRuleName The name of volume quota rule.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return details of the specified quota rule.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public VolumeQuotaRuleInner get(
+        String resourceGroupName, String accountName, String poolName, String volumeName, String volumeQuotaRuleName) {
+        return getWithResponse(resourceGroupName, accountName, poolName, volumeName, volumeQuotaRuleName, Context.NONE)
+            .getValue();
     }
 
     /**
