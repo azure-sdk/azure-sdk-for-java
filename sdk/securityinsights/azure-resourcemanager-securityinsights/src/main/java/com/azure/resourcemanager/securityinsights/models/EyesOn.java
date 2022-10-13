@@ -22,6 +22,10 @@ public final class EyesOn extends SettingsInner {
     @JsonProperty(value = "properties")
     private EyesOnSettingsProperties innerProperties;
 
+    /** Creates an instance of EyesOn class. */
+    public EyesOn() {
+    }
+
     /**
      * Get the innerProperties property: EyesOn properties.
      *

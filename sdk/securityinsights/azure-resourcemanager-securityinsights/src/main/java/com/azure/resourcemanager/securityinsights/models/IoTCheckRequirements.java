@@ -21,6 +21,10 @@ public final class IoTCheckRequirements extends DataConnectorsCheckRequirements 
     @JsonProperty(value = "properties")
     private IoTCheckRequirementsProperties innerProperties;
 
+    /** Creates an instance of IoTCheckRequirements class. */
+    public IoTCheckRequirements() {
+    }
+
     /**
      * Get the innerProperties property: IoT requirements check properties.
      *

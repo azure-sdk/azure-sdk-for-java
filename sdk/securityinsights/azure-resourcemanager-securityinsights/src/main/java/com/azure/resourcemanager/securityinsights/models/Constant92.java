@@ -7,31 +7,31 @@ package com.azure.resourcemanager.securityinsights.models;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-/** Defines values for Constant88. */
-public enum Constant88 {
+/** Defines values for Constant92. */
+public enum Constant92 {
     /** Enum value Activity. */
     ACTIVITY("Activity");
 
-    /** The actual serialized value for a Constant88 instance. */
+    /** The actual serialized value for a Constant92 instance. */
     private final String value;
 
-    Constant88(String value) {
+    Constant92(String value) {
         this.value = value;
     }
 
     /**
-     * Parses a serialized value to a Constant88 instance.
+     * Parses a serialized value to a Constant92 instance.
      *
      * @param value the serialized value to parse.
-     * @return the parsed Constant88 object, or null if unable to parse.
+     * @return the parsed Constant92 object, or null if unable to parse.
      */
     @JsonCreator
-    public static Constant88 fromString(String value) {
+    public static Constant92 fromString(String value) {
         if (value == null) {
             return null;
         }
-        Constant88[] items = Constant88.values();
-        for (Constant88 item : items) {
+        Constant92[] items = Constant92.values();
+        for (Constant92 item : items) {
             if (item.toString().equalsIgnoreCase(value)) {
                 return item;
             }

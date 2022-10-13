@@ -20,6 +20,10 @@ public final class BooleanConditionProperties extends AutomationRuleCondition {
     @JsonProperty(value = "conditionProperties")
     private AutomationRuleBooleanCondition conditionProperties;
 
+    /** Creates an instance of BooleanConditionProperties class. */
+    public BooleanConditionProperties() {
+    }
+
     /**
      * Get the conditionProperties property: The conditionProperties property.
      *

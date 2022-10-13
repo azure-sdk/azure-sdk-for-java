@@ -35,6 +35,10 @@ public final class EnrichmentDomainWhoisDetails {
     @JsonProperty(value = "statuses")
     private List<String> statuses;
 
+    /** Creates an instance of EnrichmentDomainWhoisDetails class. */
+    public EnrichmentDomainWhoisDetails() {
+    }
+
     /**
      * Get the registrar property: The registrar associated with this domain.
      *

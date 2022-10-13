@@ -4,7 +4,7 @@
 
 package com.azure.resourcemanager.securityinsights.models;
 
-import com.azure.core.annotation.Fluent;
+import com.azure.core.annotation.Immutable;
 import com.azure.resourcemanager.securityinsights.fluent.models.OfficeIrmCheckRequirementsProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
@@ -13,13 +13,17 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 /** Represents OfficeIRM (Microsoft Insider Risk Management) requirements check request. */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "kind")
 @JsonTypeName("OfficeIRM")
-@Fluent
+@Immutable
 public final class OfficeIrmCheckRequirements extends DataConnectorsCheckRequirements {
     /*
      * OfficeIRM (Microsoft Insider Risk Management) requirements check properties.
      */
     @JsonProperty(value = "properties")
     private OfficeIrmCheckRequirementsProperties innerProperties;
+
+    /** Creates an instance of OfficeIrmCheckRequirements class. */
+    public OfficeIrmCheckRequirements() {
+    }
 
     /**
      * Get the innerProperties property: OfficeIRM (Microsoft Insider Risk Management) requirements check properties.

@@ -28,15 +28,6 @@ public final class AutomationRulesImpl implements AutomationRules {
         this.serviceManager = serviceManager;
     }
 
-    public AutomationRule get(String resourceGroupName, String workspaceName, String automationRuleId) {
-        AutomationRuleInner inner = this.serviceClient().get(resourceGroupName, workspaceName, automationRuleId);
-        if (inner != null) {
-            return new AutomationRuleImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
     public Response<AutomationRule> getWithResponse(
         String resourceGroupName, String workspaceName, String automationRuleId, Context context) {
         Response<AutomationRuleInner> inner =
@@ -52,13 +43,22 @@ public final class AutomationRulesImpl implements AutomationRules {
         }
     }
 
-    public Object delete(String resourceGroupName, String workspaceName, String automationRuleId) {
-        return this.serviceClient().delete(resourceGroupName, workspaceName, automationRuleId);
+    public AutomationRule get(String resourceGroupName, String workspaceName, String automationRuleId) {
+        AutomationRuleInner inner = this.serviceClient().get(resourceGroupName, workspaceName, automationRuleId);
+        if (inner != null) {
+            return new AutomationRuleImpl(inner, this.manager());
+        } else {
+            return null;
+        }
     }
 
     public Response<Object> deleteWithResponse(
         String resourceGroupName, String workspaceName, String automationRuleId, Context context) {
         return this.serviceClient().deleteWithResponse(resourceGroupName, workspaceName, automationRuleId, context);
+    }
+
+    public Object delete(String resourceGroupName, String workspaceName, String automationRuleId) {
+        return this.serviceClient().delete(resourceGroupName, workspaceName, automationRuleId);
     }
 
     public PagedIterable<AutomationRule> list(String resourceGroupName, String workspaceName) {

@@ -281,4 +281,11 @@ public interface SecurityInsights {
      * @return the OperationsClient object.
      */
     OperationsClient getOperations();
+
+    /**
+     * Gets the SummariesClient object to access its operations.
+     *
+     * @return the SummariesClient object.
+     */
+    SummariesClient getSummaries();
 }

@@ -23,6 +23,10 @@ public final class TimelineAggregation {
     @JsonProperty(value = "kind", required = true)
     private EntityTimelineKind kind;
 
+    /** Creates an instance of TimelineAggregation class. */
+    public TimelineAggregation() {
+    }
+
     /**
      * Get the count property: the total items found for a kind.
      *

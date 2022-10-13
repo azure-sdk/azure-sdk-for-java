@@ -52,6 +52,7 @@ import com.azure.resourcemanager.securityinsights.fluent.SecurityMLAnalyticsSett
 import com.azure.resourcemanager.securityinsights.fluent.SentinelOnboardingStatesClient;
 import com.azure.resourcemanager.securityinsights.fluent.SourceControlsClient;
 import com.azure.resourcemanager.securityinsights.fluent.SourceControlsOperationsClient;
+import com.azure.resourcemanager.securityinsights.fluent.SummariesClient;
 import com.azure.resourcemanager.securityinsights.fluent.ThreatIntelligenceIndicatorMetricsClient;
 import com.azure.resourcemanager.securityinsights.fluent.ThreatIntelligenceIndicatorsClient;
 import com.azure.resourcemanager.securityinsights.fluent.ThreatIntelligenceIndicatorsOperationsClient;
@@ -549,6 +550,18 @@ public final class SecurityInsightsImpl implements SecurityInsights {
         return this.operations;
     }
 
+    /** The SummariesClient object to access its operations. */
+    private final SummariesClient summaries;
+
+    /**
+     * Gets the SummariesClient object to access its operations.
+     *
+     * @return the SummariesClient object.
+     */
+    public SummariesClient getSummaries() {
+        return this.summaries;
+    }
+
     /**
      * Initializes an instance of SecurityInsights client.
      *
@@ -571,7 +584,7 @@ public final class SecurityInsightsImpl implements SecurityInsights {
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2022-09-01-preview";
+        this.apiVersion = "2022-11-01-preview";
         this.alertRules = new AlertRulesClientImpl(this);
         this.actions = new ActionsClientImpl(this);
         this.alertRuleTemplates = new AlertRuleTemplatesClientImpl(this);
@@ -606,6 +619,7 @@ public final class SecurityInsightsImpl implements SecurityInsights {
         this.dataConnectors = new DataConnectorsClientImpl(this);
         this.dataConnectorsCheckRequirementsOperations = new DataConnectorsCheckRequirementsOperationsClientImpl(this);
         this.operations = new OperationsClientImpl(this);
+        this.summaries = new SummariesClientImpl(this);
     }
 
     /**
