@@ -18,11 +18,16 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @Fluent
 public final class ManagedIntegrationRuntime extends IntegrationRuntime {
     /*
-     * Integration runtime state, only valid for managed dedicated integration
-     * runtime.
+     * Integration runtime state, only valid for managed dedicated integration runtime.
      */
     @JsonProperty(value = "state", access = JsonProperty.Access.WRITE_ONLY)
     private IntegrationRuntimeState state;
+
+    /*
+     * Integration runtime state, only valid for managed dedicated integration runtime.
+     */
+    @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
+    private IntegrationRuntimeState provisioningState;
 
     /*
      * Managed integration runtime properties.
@@ -36,6 +41,10 @@ public final class ManagedIntegrationRuntime extends IntegrationRuntime {
     @JsonProperty(value = "managedVirtualNetwork")
     private ManagedIntegrationRuntimeManagedVirtualNetworkReference innerManagedVirtualNetwork;
 
+    /** Creates an instance of ManagedIntegrationRuntime class. */
+    public ManagedIntegrationRuntime() {
+    }
+
     /**
      * Get the state property: Integration runtime state, only valid for managed dedicated integration runtime.
      *
@@ -43,6 +52,16 @@ public final class ManagedIntegrationRuntime extends IntegrationRuntime {
      */
     public IntegrationRuntimeState state() {
         return this.state;
+    }
+
+    /**
+     * Get the provisioningState property: Integration runtime state, only valid for managed dedicated integration
+     * runtime.
+     *
+     * @return the provisioningState value.
+     */
+    public IntegrationRuntimeState provisioningState() {
+        return this.provisioningState;
     }
 
     /**
