@@ -23,6 +23,10 @@ public final class MLBehaviorAnalyticsAlertRuleTemplateProperties extends AlertR
     @JsonProperty(value = "severity", required = true)
     private AlertSeverity severity;
 
+    /** Creates an instance of MLBehaviorAnalyticsAlertRuleTemplateProperties class. */
+    public MLBehaviorAnalyticsAlertRuleTemplateProperties() {
+    }
+
     /**
      * Get the severity property: The severity for alerts created by this alert rule.
      *

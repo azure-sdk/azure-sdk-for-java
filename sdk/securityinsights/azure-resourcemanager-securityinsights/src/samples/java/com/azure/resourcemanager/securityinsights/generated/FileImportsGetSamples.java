@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for FileImports Get. */
 public final class FileImportsGetSamples {
     /*
-     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/fileImports/GetFileImportById.json
+     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-11-01-preview/examples/fileImports/GetFileImportById.json
      */
     /**
      * Sample code: Get a file import.

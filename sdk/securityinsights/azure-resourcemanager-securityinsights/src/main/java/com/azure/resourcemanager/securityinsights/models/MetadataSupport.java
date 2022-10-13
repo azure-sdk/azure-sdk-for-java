@@ -35,6 +35,10 @@ public final class MetadataSupport {
     @JsonProperty(value = "link")
     private String link;
 
+    /** Creates an instance of MetadataSupport class. */
+    public MetadataSupport() {
+    }
+
     /**
      * Get the tier property: Type of support for content item.
      *
