@@ -236,6 +236,13 @@ public interface SignalRResource {
     String regionName();
 
     /**
+     * Gets the name of the resource group.
+     *
+     * @return the name of the resource group.
+     */
+    String resourceGroupName();
+
+    /**
      * Gets the inner com.azure.resourcemanager.signalr.fluent.models.SignalRResourceInner object.
      *
      * @return the inner object.
@@ -684,15 +691,6 @@ public interface SignalRResource {
     /**
      * Get the access keys of the resource.
      *
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the access keys of the resource.
-     */
-    SignalRKeys listKeys();
-
-    /**
-     * Get the access keys of the resource.
-     *
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -700,6 +698,15 @@ public interface SignalRResource {
      * @return the access keys of the resource along with {@link Response}.
      */
     Response<SignalRKeys> listKeysWithResponse(Context context);
+
+    /**
+     * Get the access keys of the resource.
+     *
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the access keys of the resource.
+     */
+    SignalRKeys listKeys();
 
     /**
      * Regenerate the access key for the resource. PrimaryKey and SecondaryKey cannot be regenerated at the same time.

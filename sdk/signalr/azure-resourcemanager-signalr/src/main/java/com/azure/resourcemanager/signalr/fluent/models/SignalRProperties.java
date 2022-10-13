@@ -38,22 +38,19 @@ public final class SignalRProperties {
     private String hostname;
 
     /*
-     * The publicly accessible port of the resource which is designed for
-     * browser/client side usage.
+     * The publicly accessible port of the resource which is designed for browser/client side usage.
      */
     @JsonProperty(value = "publicPort", access = JsonProperty.Access.WRITE_ONLY)
     private Integer publicPort;
 
     /*
-     * The publicly accessible port of the resource which is designed for
-     * customer server side usage.
+     * The publicly accessible port of the resource which is designed for customer server side usage.
      */
     @JsonProperty(value = "serverPort", access = JsonProperty.Access.WRITE_ONLY)
     private Integer serverPort;
 
     /*
-     * Version of the resource. Probably you need the same or higher version of
-     * client SDKs.
+     * Version of the resource. Probably you need the same or higher version of client SDKs.
      */
     @JsonProperty(value = "version", access = JsonProperty.Access.WRITE_ONLY)
     private String version;
@@ -85,13 +82,10 @@ public final class SignalRProperties {
     /*
      * List of the featureFlags.
      *
-     * FeatureFlags that are not included in the parameters for the update
-     * operation will not be modified.
+     * FeatureFlags that are not included in the parameters for the update operation will not be modified.
      * And the response will only include featureFlags that are explicitly set.
-     * When a featureFlag is not explicitly set, its globally default value
-     * will be used
-     * But keep in mind, the default value doesn't mean "false". It varies in
-     * terms of different FeatureFlags.
+     * When a featureFlag is not explicitly set, its globally default value will be used
+     * But keep in mind, the default value doesn't mean "false". It varies in terms of different FeatureFlags.
      */
     @JsonProperty(value = "features")
     private List<SignalRFeature> features;
@@ -129,8 +123,7 @@ public final class SignalRProperties {
     /*
      * Enable or disable public network access. Default to "Enabled".
      * When it's Enabled, network ACLs still apply.
-     * When it's Disabled, public network access is always disabled no matter
-     * what you set in network ACLs.
+     * When it's Disabled, public network access is always disabled no matter what you set in network ACLs.
      */
     @JsonProperty(value = "publicNetworkAccess")
     private String publicNetworkAccess;
@@ -150,6 +143,10 @@ public final class SignalRProperties {
      */
     @JsonProperty(value = "disableAadAuth")
     private Boolean disableAadAuth;
+
+    /** Creates an instance of SignalRProperties class. */
+    public SignalRProperties() {
+    }
 
     /**
      * Get the provisioningState property: Provisioning state of the resource.

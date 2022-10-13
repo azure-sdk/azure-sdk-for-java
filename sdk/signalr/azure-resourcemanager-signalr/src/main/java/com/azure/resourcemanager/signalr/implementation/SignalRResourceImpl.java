@@ -187,6 +187,10 @@ public final class SignalRResourceImpl implements SignalRResource, SignalRResour
         return this.location();
     }
 
+    public String resourceGroupName() {
+        return resourceGroupName;
+    }
+
     public SignalRResourceInner innerModel() {
         return this.innerObject;
     }
@@ -278,12 +282,12 @@ public final class SignalRResourceImpl implements SignalRResource, SignalRResour
         return this;
     }
 
-    public SignalRKeys listKeys() {
-        return serviceManager.signalRs().listKeys(resourceGroupName, resourceName);
-    }
-
     public Response<SignalRKeys> listKeysWithResponse(Context context) {
         return serviceManager.signalRs().listKeysWithResponse(resourceGroupName, resourceName, context);
+    }
+
+    public SignalRKeys listKeys() {
+        return serviceManager.signalRs().listKeys(resourceGroupName, resourceName);
     }
 
     public SignalRKeys regenerateKey(RegenerateKeyParameters parameters) {
