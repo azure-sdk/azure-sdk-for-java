@@ -41,15 +41,6 @@ public final class KeyValuesImpl implements KeyValues {
         return Utils.mapPage(inner, inner1 -> new KeyValueImpl(inner1, this.manager()));
     }
 
-    public KeyValue get(String resourceGroupName, String configStoreName, String keyValueName) {
-        KeyValueInner inner = this.serviceClient().get(resourceGroupName, configStoreName, keyValueName);
-        if (inner != null) {
-            return new KeyValueImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
     public Response<KeyValue> getWithResponse(
         String resourceGroupName, String configStoreName, String keyValueName, Context context) {
         Response<KeyValueInner> inner =
@@ -60,6 +51,15 @@ public final class KeyValuesImpl implements KeyValues {
                 inner.getStatusCode(),
                 inner.getHeaders(),
                 new KeyValueImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public KeyValue get(String resourceGroupName, String configStoreName, String keyValueName) {
+        KeyValueInner inner = this.serviceClient().get(resourceGroupName, configStoreName, keyValueName);
+        if (inner != null) {
+            return new KeyValueImpl(inner, this.manager());
         } else {
             return null;
         }
