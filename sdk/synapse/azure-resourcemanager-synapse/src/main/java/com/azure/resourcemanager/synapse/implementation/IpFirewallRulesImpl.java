@@ -51,15 +51,6 @@ public final class IpFirewallRulesImpl implements IpFirewallRules {
         return this.serviceClient().delete(resourceGroupName, workspaceName, ruleName, context);
     }
 
-    public IpFirewallRuleInfo get(String resourceGroupName, String workspaceName, String ruleName) {
-        IpFirewallRuleInfoInner inner = this.serviceClient().get(resourceGroupName, workspaceName, ruleName);
-        if (inner != null) {
-            return new IpFirewallRuleInfoImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
     public Response<IpFirewallRuleInfo> getWithResponse(
         String resourceGroupName, String workspaceName, String ruleName, Context context) {
         Response<IpFirewallRuleInfoInner> inner =
@@ -70,6 +61,15 @@ public final class IpFirewallRulesImpl implements IpFirewallRules {
                 inner.getStatusCode(),
                 inner.getHeaders(),
                 new IpFirewallRuleInfoImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public IpFirewallRuleInfo get(String resourceGroupName, String workspaceName, String ruleName) {
+        IpFirewallRuleInfoInner inner = this.serviceClient().get(resourceGroupName, workspaceName, ruleName);
+        if (inner != null) {
+            return new IpFirewallRuleInfoImpl(inner, this.manager());
         } else {
             return null;
         }
