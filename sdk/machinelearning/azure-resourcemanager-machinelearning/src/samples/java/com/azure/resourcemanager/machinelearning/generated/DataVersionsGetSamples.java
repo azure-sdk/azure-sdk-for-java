@@ -9,14 +9,15 @@ import com.azure.core.util.Context;
 /** Samples for DataVersions Get. */
 public final class DataVersionsGetSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-02-01-preview/examples/DataVersionBase/get.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-10-01-preview/examples/Workspace/DataVersionBase/get.json
      */
     /**
-     * Sample code: Get Data Version Base.
+     * Sample code: Get Workspace Data Version Base.
      *
      * @param manager Entry point to MachineLearningManager.
      */
-    public static void getDataVersionBase(com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
+    public static void getWorkspaceDataVersionBase(
+        com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
         manager.dataVersions().getWithResponse("test-rg", "my-aml-workspace", "string", "string", Context.NONE);
     }
 }

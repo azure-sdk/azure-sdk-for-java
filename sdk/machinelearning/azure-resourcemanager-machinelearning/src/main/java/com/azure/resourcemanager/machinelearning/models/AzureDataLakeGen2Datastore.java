@@ -15,7 +15,7 @@ import java.util.Map;
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "datastoreType")
 @JsonTypeName("AzureDataLakeGen2")
 @Fluent
-public final class AzureDataLakeGen2Datastore extends DatastoreDetails {
+public final class AzureDataLakeGen2Datastore extends DatastoreProperties {
     /*
      * [Required] Storage account name.
      */
@@ -41,11 +41,26 @@ public final class AzureDataLakeGen2Datastore extends DatastoreDetails {
     private String protocol;
 
     /*
-     * Indicates which identity to use to authenticate service data access to
-     * customer's storage.
+     * Indicates which identity to use to authenticate service data access to customer's storage.
      */
     @JsonProperty(value = "serviceDataAccessAuthIdentity")
     private ServiceDataAccessAuthIdentity serviceDataAccessAuthIdentity;
+
+    /*
+     * Azure Resource Group name
+     */
+    @JsonProperty(value = "resourceGroup")
+    private String resourceGroup;
+
+    /*
+     * Azure Subscription Id
+     */
+    @JsonProperty(value = "subscriptionId")
+    private String subscriptionId;
+
+    /** Creates an instance of AzureDataLakeGen2Datastore class. */
+    public AzureDataLakeGen2Datastore() {
+    }
 
     /**
      * Get the accountName property: [Required] Storage account name.
@@ -147,6 +162,46 @@ public final class AzureDataLakeGen2Datastore extends DatastoreDetails {
     public AzureDataLakeGen2Datastore withServiceDataAccessAuthIdentity(
         ServiceDataAccessAuthIdentity serviceDataAccessAuthIdentity) {
         this.serviceDataAccessAuthIdentity = serviceDataAccessAuthIdentity;
+        return this;
+    }
+
+    /**
+     * Get the resourceGroup property: Azure Resource Group name.
+     *
+     * @return the resourceGroup value.
+     */
+    public String resourceGroup() {
+        return this.resourceGroup;
+    }
+
+    /**
+     * Set the resourceGroup property: Azure Resource Group name.
+     *
+     * @param resourceGroup the resourceGroup value to set.
+     * @return the AzureDataLakeGen2Datastore object itself.
+     */
+    public AzureDataLakeGen2Datastore withResourceGroup(String resourceGroup) {
+        this.resourceGroup = resourceGroup;
+        return this;
+    }
+
+    /**
+     * Get the subscriptionId property: Azure Subscription Id.
+     *
+     * @return the subscriptionId value.
+     */
+    public String subscriptionId() {
+        return this.subscriptionId;
+    }
+
+    /**
+     * Set the subscriptionId property: Azure Subscription Id.
+     *
+     * @param subscriptionId the subscriptionId value to set.
+     * @return the AzureDataLakeGen2Datastore object itself.
+     */
+    public AzureDataLakeGen2Datastore withSubscriptionId(String subscriptionId) {
+        this.subscriptionId = subscriptionId;
         return this;
     }
 

@@ -21,6 +21,10 @@ public final class KerberosKeytabSecrets extends DatastoreSecretsInner {
     @JsonProperty(value = "kerberosKeytab")
     private String kerberosKeytab;
 
+    /** Creates an instance of KerberosKeytabSecrets class. */
+    public KerberosKeytabSecrets() {
+    }
+
     /**
      * Get the kerberosKeytab property: Kerberos keytab secret.
      *
