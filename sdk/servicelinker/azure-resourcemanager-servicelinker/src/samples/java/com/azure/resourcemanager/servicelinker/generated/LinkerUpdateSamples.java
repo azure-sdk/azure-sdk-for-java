@@ -12,7 +12,7 @@ import com.azure.resourcemanager.servicelinker.models.ServicePrincipalSecretAuth
 /** Samples for Linker Update. */
 public final class LinkerUpdateSamples {
     /*
-     * x-ms-original-file: specification/servicelinker/resource-manager/Microsoft.ServiceLinker/stable/2022-05-01/examples/PatchLink.json
+     * x-ms-original-file: specification/servicelinker/resource-manager/Microsoft.ServiceLinker/preview/2022-04-12/examples/PatchLink.json
      */
     /**
      * Sample code: PatchLink.
