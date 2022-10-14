@@ -100,11 +100,25 @@ public interface ContainerApp {
     String workloadProfileType();
 
     /**
+     * Gets the appState property: Current state of the app. Controls if the app is enabled or disabled.
+     *
+     * @return the appState value.
+     */
+    AppState appState();
+
+    /**
      * Gets the latestRevisionName property: Name of the latest revision of the Container App.
      *
      * @return the latestRevisionName value.
      */
     String latestRevisionName();
+
+    /**
+     * Gets the latestReadyRevisionName property: Name of the latest ready revision of the Container App.
+     *
+     * @return the latestReadyRevisionName value.
+     */
+    String latestReadyRevisionName();
 
     /**
      * Gets the latestRevisionFqdn property: Fully Qualified Domain Name of the latest revision of the Container App.
@@ -227,6 +241,7 @@ public interface ContainerApp {
                 DefinitionStages.WithManagedEnvironmentId,
                 DefinitionStages.WithEnvironmentId,
                 DefinitionStages.WithWorkloadProfileType,
+                DefinitionStages.WithAppState,
                 DefinitionStages.WithConfiguration,
                 DefinitionStages.WithTemplate {
             /**
@@ -306,6 +321,16 @@ public interface ContainerApp {
              */
             WithCreate withWorkloadProfileType(String workloadProfileType);
         }
+        /** The stage of the ContainerApp definition allowing to specify appState. */
+        interface WithAppState {
+            /**
+             * Specifies the appState property: Current state of the app. Controls if the app is enabled or disabled..
+             *
+             * @param appState Current state of the app. Controls if the app is enabled or disabled.
+             * @return the next definition stage.
+             */
+            WithCreate withAppState(AppState appState);
+        }
         /** The stage of the ContainerApp definition allowing to specify configuration. */
         interface WithConfiguration {
             /**
@@ -340,6 +365,7 @@ public interface ContainerApp {
             UpdateStages.WithExtendedLocation,
             UpdateStages.WithIdentity,
             UpdateStages.WithWorkloadProfileType,
+            UpdateStages.WithAppState,
             UpdateStages.WithConfiguration,
             UpdateStages.WithTemplate {
         /**
@@ -400,6 +426,16 @@ public interface ContainerApp {
              * @return the next definition stage.
              */
             Update withWorkloadProfileType(String workloadProfileType);
+        }
+        /** The stage of the ContainerApp update allowing to specify appState. */
+        interface WithAppState {
+            /**
+             * Specifies the appState property: Current state of the app. Controls if the app is enabled or disabled..
+             *
+             * @param appState Current state of the app. Controls if the app is enabled or disabled.
+             * @return the next definition stage.
+             */
+            Update withAppState(AppState appState);
         }
         /** The stage of the ContainerApp update allowing to specify configuration. */
         interface WithConfiguration {

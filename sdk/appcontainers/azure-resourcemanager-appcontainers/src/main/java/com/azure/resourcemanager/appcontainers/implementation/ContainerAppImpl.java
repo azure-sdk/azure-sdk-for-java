@@ -9,6 +9,7 @@ import com.azure.core.management.Region;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.appcontainers.fluent.models.ContainerAppInner;
+import com.azure.resourcemanager.appcontainers.models.AppState;
 import com.azure.resourcemanager.appcontainers.models.Configuration;
 import com.azure.resourcemanager.appcontainers.models.ContainerApp;
 import com.azure.resourcemanager.appcontainers.models.ContainerAppAuthToken;
@@ -80,8 +81,16 @@ public final class ContainerAppImpl implements ContainerApp, ContainerApp.Defini
         return this.innerModel().workloadProfileType();
     }
 
+    public AppState appState() {
+        return this.innerModel().appState();
+    }
+
     public String latestRevisionName() {
         return this.innerModel().latestRevisionName();
+    }
+
+    public String latestReadyRevisionName() {
+        return this.innerModel().latestReadyRevisionName();
     }
 
     public String latestRevisionFqdn() {
@@ -280,6 +289,11 @@ public final class ContainerAppImpl implements ContainerApp, ContainerApp.Defini
 
     public ContainerAppImpl withWorkloadProfileType(String workloadProfileType) {
         this.innerModel().withWorkloadProfileType(workloadProfileType);
+        return this;
+    }
+
+    public ContainerAppImpl withAppState(AppState appState) {
+        this.innerModel().withAppState(appState);
         return this;
     }
 

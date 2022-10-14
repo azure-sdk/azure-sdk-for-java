@@ -8,6 +8,7 @@ import com.azure.core.util.Context;
 import com.azure.resourcemanager.appcontainers.fluent.models.ContainerAppInner;
 import com.azure.resourcemanager.appcontainers.models.Action;
 import com.azure.resourcemanager.appcontainers.models.AppProtocol;
+import com.azure.resourcemanager.appcontainers.models.AppState;
 import com.azure.resourcemanager.appcontainers.models.BindingType;
 import com.azure.resourcemanager.appcontainers.models.Configuration;
 import com.azure.resourcemanager.appcontainers.models.Container;
@@ -34,7 +35,7 @@ import java.util.Map;
 /** Samples for ContainerApps Update. */
 public final class ContainerAppsUpdateSamples {
     /*
-     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2022-06-01-preview/examples/ContainerApps_Patch.json
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2022-10-01/examples/ContainerApps_Patch.json
      */
     /**
      * Sample code: Patch Container App.
@@ -50,6 +51,7 @@ public final class ContainerAppsUpdateSamples {
                 new ContainerAppInner()
                     .withLocation("East US")
                     .withTags(mapOf("tag1", "value1", "tag2", "value2"))
+                    .withAppState(AppState.ENABLED)
                     .withConfiguration(
                         new Configuration()
                             .withIngress(

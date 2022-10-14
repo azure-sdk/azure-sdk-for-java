@@ -7,6 +7,7 @@ package com.azure.resourcemanager.appcontainers.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.Resource;
 import com.azure.core.management.SystemData;
+import com.azure.resourcemanager.appcontainers.models.AppState;
 import com.azure.resourcemanager.appcontainers.models.Configuration;
 import com.azure.resourcemanager.appcontainers.models.ContainerAppProvisioningState;
 import com.azure.resourcemanager.appcontainers.models.ExtendedLocation;
@@ -201,12 +202,44 @@ public final class ContainerAppInner extends Resource {
     }
 
     /**
+     * Get the appState property: Current state of the app. Controls if the app is enabled or disabled.
+     *
+     * @return the appState value.
+     */
+    public AppState appState() {
+        return this.innerProperties() == null ? null : this.innerProperties().appState();
+    }
+
+    /**
+     * Set the appState property: Current state of the app. Controls if the app is enabled or disabled.
+     *
+     * @param appState the appState value to set.
+     * @return the ContainerAppInner object itself.
+     */
+    public ContainerAppInner withAppState(AppState appState) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ContainerAppProperties();
+        }
+        this.innerProperties().withAppState(appState);
+        return this;
+    }
+
+    /**
      * Get the latestRevisionName property: Name of the latest revision of the Container App.
      *
      * @return the latestRevisionName value.
      */
     public String latestRevisionName() {
         return this.innerProperties() == null ? null : this.innerProperties().latestRevisionName();
+    }
+
+    /**
+     * Get the latestReadyRevisionName property: Name of the latest ready revision of the Container App.
+     *
+     * @return the latestReadyRevisionName value.
+     */
+    public String latestReadyRevisionName() {
+        return this.innerProperties() == null ? null : this.innerProperties().latestReadyRevisionName();
     }
 
     /**

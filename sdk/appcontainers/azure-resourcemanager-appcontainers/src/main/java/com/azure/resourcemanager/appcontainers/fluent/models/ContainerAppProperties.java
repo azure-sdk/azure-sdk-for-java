@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.appcontainers.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.resourcemanager.appcontainers.models.AppState;
 import com.azure.resourcemanager.appcontainers.models.Configuration;
 import com.azure.resourcemanager.appcontainers.models.ContainerAppProvisioningState;
 import com.azure.resourcemanager.appcontainers.models.Template;
@@ -39,10 +40,22 @@ public final class ContainerAppProperties {
     private String workloadProfileType;
 
     /*
+     * Current state of the app. Controls if the app is enabled or disabled.
+     */
+    @JsonProperty(value = "appState")
+    private AppState appState;
+
+    /*
      * Name of the latest revision of the Container App.
      */
     @JsonProperty(value = "latestRevisionName", access = JsonProperty.Access.WRITE_ONLY)
     private String latestRevisionName;
+
+    /*
+     * Name of the latest ready revision of the Container App.
+     */
+    @JsonProperty(value = "latestReadyRevisionName", access = JsonProperty.Access.WRITE_ONLY)
+    private String latestReadyRevisionName;
 
     /*
      * Fully Qualified Domain Name of the latest revision of the Container App.
@@ -71,7 +84,7 @@ public final class ContainerAppProperties {
     /*
      * Outbound IP Addresses for container app.
      */
-    @JsonProperty(value = "outboundIpAddresses", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "outboundIPAddresses", access = JsonProperty.Access.WRITE_ONLY)
     private List<String> outboundIpAddresses;
 
     /*
@@ -154,12 +167,41 @@ public final class ContainerAppProperties {
     }
 
     /**
+     * Get the appState property: Current state of the app. Controls if the app is enabled or disabled.
+     *
+     * @return the appState value.
+     */
+    public AppState appState() {
+        return this.appState;
+    }
+
+    /**
+     * Set the appState property: Current state of the app. Controls if the app is enabled or disabled.
+     *
+     * @param appState the appState value to set.
+     * @return the ContainerAppProperties object itself.
+     */
+    public ContainerAppProperties withAppState(AppState appState) {
+        this.appState = appState;
+        return this;
+    }
+
+    /**
      * Get the latestRevisionName property: Name of the latest revision of the Container App.
      *
      * @return the latestRevisionName value.
      */
     public String latestRevisionName() {
         return this.latestRevisionName;
+    }
+
+    /**
+     * Get the latestReadyRevisionName property: Name of the latest ready revision of the Container App.
+     *
+     * @return the latestReadyRevisionName value.
+     */
+    public String latestReadyRevisionName() {
+        return this.latestReadyRevisionName;
     }
 
     /**
