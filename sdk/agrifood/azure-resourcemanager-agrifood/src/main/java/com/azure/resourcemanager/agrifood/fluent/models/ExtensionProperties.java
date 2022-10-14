@@ -40,6 +40,10 @@ public final class ExtensionProperties {
     @JsonProperty(value = "extensionApiDocsLink", access = JsonProperty.Access.WRITE_ONLY)
     private String extensionApiDocsLink;
 
+    /** Creates an instance of ExtensionProperties class. */
+    public ExtensionProperties() {
+    }
+
     /**
      * Get the extensionId property: Extension Id.
      *

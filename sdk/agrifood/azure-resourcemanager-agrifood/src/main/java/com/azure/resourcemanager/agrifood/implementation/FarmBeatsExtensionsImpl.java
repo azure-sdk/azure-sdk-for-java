@@ -53,15 +53,6 @@ public final class FarmBeatsExtensionsImpl implements FarmBeatsExtensions {
         return Utils.mapPage(inner, inner1 -> new FarmBeatsExtensionImpl(inner1, this.manager()));
     }
 
-    public FarmBeatsExtension get(String farmBeatsExtensionId) {
-        FarmBeatsExtensionInner inner = this.serviceClient().get(farmBeatsExtensionId);
-        if (inner != null) {
-            return new FarmBeatsExtensionImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
     public Response<FarmBeatsExtension> getWithResponse(String farmBeatsExtensionId, Context context) {
         Response<FarmBeatsExtensionInner> inner = this.serviceClient().getWithResponse(farmBeatsExtensionId, context);
         if (inner != null) {
@@ -70,6 +61,15 @@ public final class FarmBeatsExtensionsImpl implements FarmBeatsExtensions {
                 inner.getStatusCode(),
                 inner.getHeaders(),
                 new FarmBeatsExtensionImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public FarmBeatsExtension get(String farmBeatsExtensionId) {
+        FarmBeatsExtensionInner inner = this.serviceClient().get(farmBeatsExtensionId);
+        if (inner != null) {
+            return new FarmBeatsExtensionImpl(inner, this.manager());
         } else {
             return null;
         }
