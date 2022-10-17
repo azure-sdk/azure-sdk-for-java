@@ -9,20 +9,21 @@ import com.azure.core.http.rest.Response;
 import com.azure.core.http.rest.SimpleResponse;
 import com.azure.core.util.Context;
 import com.azure.core.util.logging.ClientLogger;
-import com.azure.resourcemanager.synapse.fluent.PrivateLinkResourcesClient;
+import com.azure.resourcemanager.synapse.fluent.PrivateLinkResourcesOperationsClient;
 import com.azure.resourcemanager.synapse.fluent.models.PrivateLinkResourceInner;
 import com.azure.resourcemanager.synapse.models.PrivateLinkResource;
-import com.azure.resourcemanager.synapse.models.PrivateLinkResources;
+import com.azure.resourcemanager.synapse.models.PrivateLinkResourcesOperations;
 
-public final class PrivateLinkResourcesImpl implements PrivateLinkResources {
-    private static final ClientLogger LOGGER = new ClientLogger(PrivateLinkResourcesImpl.class);
+public final class PrivateLinkResourcesOperationsImpl implements PrivateLinkResourcesOperations {
+    private static final ClientLogger LOGGER = new ClientLogger(PrivateLinkResourcesOperationsImpl.class);
 
-    private final PrivateLinkResourcesClient innerClient;
+    private final PrivateLinkResourcesOperationsClient innerClient;
 
     private final com.azure.resourcemanager.synapse.SynapseManager serviceManager;
 
-    public PrivateLinkResourcesImpl(
-        PrivateLinkResourcesClient innerClient, com.azure.resourcemanager.synapse.SynapseManager serviceManager) {
+    public PrivateLinkResourcesOperationsImpl(
+        PrivateLinkResourcesOperationsClient innerClient,
+        com.azure.resourcemanager.synapse.SynapseManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
     }
@@ -36,16 +37,6 @@ public final class PrivateLinkResourcesImpl implements PrivateLinkResources {
         PagedIterable<PrivateLinkResourceInner> inner =
             this.serviceClient().list(resourceGroupName, workspaceName, context);
         return Utils.mapPage(inner, inner1 -> new PrivateLinkResourceImpl(inner1, this.manager()));
-    }
-
-    public PrivateLinkResource get(String resourceGroupName, String workspaceName, String privateLinkResourceName) {
-        PrivateLinkResourceInner inner =
-            this.serviceClient().get(resourceGroupName, workspaceName, privateLinkResourceName);
-        if (inner != null) {
-            return new PrivateLinkResourceImpl(inner, this.manager());
-        } else {
-            return null;
-        }
     }
 
     public Response<PrivateLinkResource> getWithResponse(
@@ -63,7 +54,17 @@ public final class PrivateLinkResourcesImpl implements PrivateLinkResources {
         }
     }
 
-    private PrivateLinkResourcesClient serviceClient() {
+    public PrivateLinkResource get(String resourceGroupName, String workspaceName, String privateLinkResourceName) {
+        PrivateLinkResourceInner inner =
+            this.serviceClient().get(resourceGroupName, workspaceName, privateLinkResourceName);
+        if (inner != null) {
+            return new PrivateLinkResourceImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
+    private PrivateLinkResourcesOperationsClient serviceClient() {
         return this.innerClient;
     }
 
