@@ -86,7 +86,9 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
     }
 
     /**
-     * Get list of group IDs for video analyzer account.
+     * Get list of group IDs.
+     *
+     * <p>Get list of group IDs for video analyzer account.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Video Analyzer account name.
@@ -135,7 +137,9 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
     }
 
     /**
-     * Get list of group IDs for video analyzer account.
+     * Get list of group IDs.
+     *
+     * <p>Get list of group IDs for video analyzer account.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Video Analyzer account name.
@@ -182,7 +186,9 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
     }
 
     /**
-     * Get list of group IDs for video analyzer account.
+     * Get list of group IDs.
+     *
+     * <p>Get list of group IDs for video analyzer account.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Video Analyzer account name.
@@ -197,22 +203,9 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
     }
 
     /**
-     * Get list of group IDs for video analyzer account.
+     * Get list of group IDs.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param accountName The Video Analyzer account name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of group IDs for video analyzer account.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public PrivateLinkResourceListResultInner list(String resourceGroupName, String accountName) {
-        return listAsync(resourceGroupName, accountName).block();
-    }
-
-    /**
-     * Get list of group IDs for video analyzer account.
+     * <p>Get list of group IDs for video analyzer account.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Video Analyzer account name.
@@ -229,7 +222,26 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
     }
 
     /**
-     * Get group ID for video analyzer account.
+     * Get list of group IDs.
+     *
+     * <p>Get list of group IDs for video analyzer account.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param accountName The Video Analyzer account name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of group IDs for video analyzer account.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public PrivateLinkResourceListResultInner list(String resourceGroupName, String accountName) {
+        return listWithResponse(resourceGroupName, accountName, Context.NONE).getValue();
+    }
+
+    /**
+     * Get group ID.
+     *
+     * <p>Get group ID for video analyzer account.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Video Analyzer account name.
@@ -282,7 +294,9 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
     }
 
     /**
-     * Get group ID for video analyzer account.
+     * Get group ID.
+     *
+     * <p>Get group ID for video analyzer account.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Video Analyzer account name.
@@ -333,7 +347,9 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
     }
 
     /**
-     * Get group ID for video analyzer account.
+     * Get group ID.
+     *
+     * <p>Get group ID for video analyzer account.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Video Analyzer account name.
@@ -350,23 +366,9 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
     }
 
     /**
-     * Get group ID for video analyzer account.
+     * Get group ID.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param accountName The Video Analyzer account name.
-     * @param name Name of the private link resource (Group ID).
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return group ID for video analyzer account.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public PrivateLinkResourceInner get(String resourceGroupName, String accountName, String name) {
-        return getAsync(resourceGroupName, accountName, name).block();
-    }
-
-    /**
-     * Get group ID for video analyzer account.
+     * <p>Get group ID for video analyzer account.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Video Analyzer account name.
@@ -381,5 +383,23 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
     public Response<PrivateLinkResourceInner> getWithResponse(
         String resourceGroupName, String accountName, String name, Context context) {
         return getWithResponseAsync(resourceGroupName, accountName, name, context).block();
+    }
+
+    /**
+     * Get group ID.
+     *
+     * <p>Get group ID for video analyzer account.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param accountName The Video Analyzer account name.
+     * @param name Name of the private link resource (Group ID).
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return group ID for video analyzer account.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public PrivateLinkResourceInner get(String resourceGroupName, String accountName, String name) {
+        return getWithResponse(resourceGroupName, accountName, name, Context.NONE).getValue();
     }
 }

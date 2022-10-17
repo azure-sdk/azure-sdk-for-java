@@ -29,6 +29,10 @@ public final class PipelineJobOperationStatusInner {
     @JsonProperty(value = "error", access = JsonProperty.Access.WRITE_ONLY)
     private ManagementError error;
 
+    /** Creates an instance of PipelineJobOperationStatusInner class. */
+    public PipelineJobOperationStatusInner() {
+    }
+
     /**
      * Get the name property: The name of the pipeline job operation.
      *

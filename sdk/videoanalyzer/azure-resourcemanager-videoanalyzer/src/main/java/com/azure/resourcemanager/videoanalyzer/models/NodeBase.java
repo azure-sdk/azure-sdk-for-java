@@ -31,6 +31,10 @@ public class NodeBase {
     @JsonProperty(value = "name", required = true)
     private String name;
 
+    /** Creates an instance of NodeBase class. */
+    public NodeBase() {
+    }
+
     /**
      * Get the name property: Node name. Must be unique within the topology.
      *

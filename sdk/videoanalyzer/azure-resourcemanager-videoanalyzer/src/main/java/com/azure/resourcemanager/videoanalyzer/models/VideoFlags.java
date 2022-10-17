@@ -14,29 +14,29 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Fluent
 public final class VideoFlags {
     /*
-     * Value indicating whether or not the video can be streamed. Only
-     * "archive" type videos can be streamed.
+     * Value indicating whether or not the video can be streamed. Only "archive" type videos can be streamed.
      */
     @JsonProperty(value = "canStream", required = true)
     private boolean canStream;
 
     /*
-     * Value indicating whether or not there has ever been data recorded or
-     * uploaded into the video. Newly created videos have this value set to
-     * false.
+     * Value indicating whether or not there has ever been data recorded or uploaded into the video. Newly created
+     * videos have this value set to false.
      */
     @JsonProperty(value = "hasData", required = true)
     private boolean hasData;
 
     /*
-     * Value indicating whether or not the video is currently being referenced
-     * be an active pipeline. The fact that is being referenced, doesn't
-     * necessarily indicate that data is being received. For example, video
-     * recording may be gated on events or camera may not be accessible at the
-     * time.
+     * Value indicating whether or not the video is currently being referenced be an active pipeline. The fact that is
+     * being referenced, doesn't necessarily indicate that data is being received. For example, video recording may be
+     * gated on events or camera may not be accessible at the time.
      */
     @JsonProperty(value = "isInUse", required = true)
     private boolean isInUse;
+
+    /** Creates an instance of VideoFlags class. */
+    public VideoFlags() {
+    }
 
     /**
      * Get the canStream property: Value indicating whether or not the video can be streamed. Only "archive" type videos

@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for PipelineJobState. */
+/** Current state of the pipeline (read-only). */
 public final class PipelineJobState extends ExpandableStringEnum<PipelineJobState> {
     /** Static value Processing for PipelineJobState. */
     public static final PipelineJobState PROCESSING = fromString("Processing");

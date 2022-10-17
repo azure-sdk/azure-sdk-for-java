@@ -26,6 +26,10 @@ public final class ParameterDefinition {
     @JsonProperty(value = "value")
     private String value;
 
+    /** Creates an instance of ParameterDefinition class. */
+    public ParameterDefinition() {
+    }
+
     /**
      * Get the name property: Name of the parameter declared in the pipeline topology.
      *

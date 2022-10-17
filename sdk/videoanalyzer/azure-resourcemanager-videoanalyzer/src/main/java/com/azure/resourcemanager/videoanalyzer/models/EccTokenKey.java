@@ -33,6 +33,10 @@ public final class EccTokenKey extends TokenKey {
     @JsonProperty(value = "y", required = true)
     private String y;
 
+    /** Creates an instance of EccTokenKey class. */
+    public EccTokenKey() {
+    }
+
     /**
      * Get the alg property: Elliptical curve algorithm to be used: ES256, ES384 or ES512.
      *

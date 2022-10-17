@@ -42,15 +42,6 @@ public final class EdgeModulesImpl implements EdgeModules {
         return Utils.mapPage(inner, inner1 -> new EdgeModuleEntityImpl(inner1, this.manager()));
     }
 
-    public EdgeModuleEntity get(String resourceGroupName, String accountName, String edgeModuleName) {
-        EdgeModuleEntityInner inner = this.serviceClient().get(resourceGroupName, accountName, edgeModuleName);
-        if (inner != null) {
-            return new EdgeModuleEntityImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
     public Response<EdgeModuleEntity> getWithResponse(
         String resourceGroupName, String accountName, String edgeModuleName, Context context) {
         Response<EdgeModuleEntityInner> inner =
@@ -66,8 +57,13 @@ public final class EdgeModulesImpl implements EdgeModules {
         }
     }
 
-    public void delete(String resourceGroupName, String accountName, String edgeModuleName) {
-        this.serviceClient().delete(resourceGroupName, accountName, edgeModuleName);
+    public EdgeModuleEntity get(String resourceGroupName, String accountName, String edgeModuleName) {
+        EdgeModuleEntityInner inner = this.serviceClient().get(resourceGroupName, accountName, edgeModuleName);
+        if (inner != null) {
+            return new EdgeModuleEntityImpl(inner, this.manager());
+        } else {
+            return null;
+        }
     }
 
     public Response<Void> deleteWithResponse(
@@ -75,15 +71,8 @@ public final class EdgeModulesImpl implements EdgeModules {
         return this.serviceClient().deleteWithResponse(resourceGroupName, accountName, edgeModuleName, context);
     }
 
-    public EdgeModuleProvisioningToken listProvisioningToken(
-        String resourceGroupName, String accountName, String edgeModuleName, ListProvisioningTokenInput parameters) {
-        EdgeModuleProvisioningTokenInner inner =
-            this.serviceClient().listProvisioningToken(resourceGroupName, accountName, edgeModuleName, parameters);
-        if (inner != null) {
-            return new EdgeModuleProvisioningTokenImpl(inner, this.manager());
-        } else {
-            return null;
-        }
+    public void delete(String resourceGroupName, String accountName, String edgeModuleName) {
+        this.serviceClient().delete(resourceGroupName, accountName, edgeModuleName);
     }
 
     public Response<EdgeModuleProvisioningToken> listProvisioningTokenWithResponse(
@@ -102,6 +91,17 @@ public final class EdgeModulesImpl implements EdgeModules {
                 inner.getStatusCode(),
                 inner.getHeaders(),
                 new EdgeModuleProvisioningTokenImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public EdgeModuleProvisioningToken listProvisioningToken(
+        String resourceGroupName, String accountName, String edgeModuleName, ListProvisioningTokenInput parameters) {
+        EdgeModuleProvisioningTokenInner inner =
+            this.serviceClient().listProvisioningToken(resourceGroupName, accountName, edgeModuleName, parameters);
+        if (inner != null) {
+            return new EdgeModuleProvisioningTokenImpl(inner, this.manager());
         } else {
             return null;
         }

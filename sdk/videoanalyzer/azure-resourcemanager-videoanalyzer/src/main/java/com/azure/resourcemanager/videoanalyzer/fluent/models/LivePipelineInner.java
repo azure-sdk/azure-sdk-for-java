@@ -25,11 +25,14 @@ public final class LivePipelineInner extends ProxyResource {
     private LivePipelineProperties innerProperties;
 
     /*
-     * Azure Resource Manager metadata containing createdBy and modifiedBy
-     * information.
+     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
      */
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
+
+    /** Creates an instance of LivePipelineInner class. */
+    public LivePipelineInner() {
+    }
 
     /**
      * Get the innerProperties property: The resource properties.

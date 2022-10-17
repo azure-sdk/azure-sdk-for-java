@@ -11,16 +11,17 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Fluent
 public final class VideoArchival {
     /*
-     * Video retention period indicates the maximum age of the video archive
-     * segments which are intended to be kept in storage. It must be provided
-     * in the ISO8601 duration format in the granularity of days, up to a
-     * maximum of 10 years. For example, if this is set to P30D (30 days),
-     * content older than 30 days will be periodically deleted. This value can
-     * be updated at any time and the new desired retention period will be
-     * effective within 24 hours.
+     * Video retention period indicates the maximum age of the video archive segments which are intended to be kept in
+     * storage. It must be provided in the ISO8601 duration format in the granularity of days, up to a maximum of 10
+     * years. For example, if this is set to P30D (30 days), content older than 30 days will be periodically deleted.
+     * This value can be updated at any time and the new desired retention period will be effective within 24 hours.
      */
     @JsonProperty(value = "retentionPeriod")
     private String retentionPeriod;
+
+    /** Creates an instance of VideoArchival class. */
+    public VideoArchival() {
+    }
 
     /**
      * Get the retentionPeriod property: Video retention period indicates the maximum age of the video archive segments

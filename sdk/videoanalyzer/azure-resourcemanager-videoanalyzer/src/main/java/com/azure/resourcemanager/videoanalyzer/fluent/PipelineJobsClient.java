@@ -17,7 +17,9 @@ import com.azure.resourcemanager.videoanalyzer.models.PipelineJobUpdate;
 /** An instance of this class provides access to all the operations defined in PipelineJobsClient. */
 public interface PipelineJobsClient {
     /**
-     * Retrieves a list of all live pipelines that have been created, along with their JSON representations.
+     * Retrieves a list of pipeline jobs.
+     *
+     * <p>Retrieves a list of all live pipelines that have been created, along with their JSON representations.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Azure Video Analyzer account name.
@@ -30,7 +32,9 @@ public interface PipelineJobsClient {
     PagedIterable<PipelineJobInner> list(String resourceGroupName, String accountName);
 
     /**
-     * Retrieves a list of all live pipelines that have been created, along with their JSON representations.
+     * Retrieves a list of pipeline jobs.
+     *
+     * <p>Retrieves a list of all live pipelines that have been created, along with their JSON representations.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Azure Video Analyzer account name.
@@ -48,24 +52,10 @@ public interface PipelineJobsClient {
         String resourceGroupName, String accountName, String filter, Integer top, Context context);
 
     /**
-     * Retrieves a specific pipeline job by name. If a pipeline job with that name has been previously created, the call
-     * will return the JSON representation of that instance.
+     * Gets a specific pipeline job by name.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param accountName The Azure Video Analyzer account name.
-     * @param pipelineJobName The pipeline job name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return pipeline job represents a unique instance of a batch topology, used for offline processing of selected
-     *     portions of archived content.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    PipelineJobInner get(String resourceGroupName, String accountName, String pipelineJobName);
-
-    /**
-     * Retrieves a specific pipeline job by name. If a pipeline job with that name has been previously created, the call
-     * will return the JSON representation of that instance.
+     * <p>Retrieves a specific pipeline job by name. If a pipeline job with that name has been previously created, the
+     * call will return the JSON representation of that instance.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Azure Video Analyzer account name.
@@ -82,12 +72,14 @@ public interface PipelineJobsClient {
         String resourceGroupName, String accountName, String pipelineJobName, Context context);
 
     /**
-     * Creates a new pipeline job or updates an existing one, with the given name.
+     * Gets a specific pipeline job by name.
+     *
+     * <p>Retrieves a specific pipeline job by name. If a pipeline job with that name has been previously created, the
+     * call will return the JSON representation of that instance.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Azure Video Analyzer account name.
      * @param pipelineJobName The pipeline job name.
-     * @param parameters The request parameters.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -95,11 +87,12 @@ public interface PipelineJobsClient {
      *     portions of archived content.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    PipelineJobInner createOrUpdate(
-        String resourceGroupName, String accountName, String pipelineJobName, PipelineJobInner parameters);
+    PipelineJobInner get(String resourceGroupName, String accountName, String pipelineJobName);
 
     /**
-     * Creates a new pipeline job or updates an existing one, with the given name.
+     * Creates or updates a pipeline job.
+     *
+     * <p>Creates a new pipeline job or updates an existing one, with the given name.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Azure Video Analyzer account name.
@@ -121,20 +114,28 @@ public interface PipelineJobsClient {
         Context context);
 
     /**
-     * Deletes a pipeline job with the given name.
+     * Creates or updates a pipeline job.
+     *
+     * <p>Creates a new pipeline job or updates an existing one, with the given name.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Azure Video Analyzer account name.
      * @param pipelineJobName The pipeline job name.
+     * @param parameters The request parameters.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return pipeline job represents a unique instance of a batch topology, used for offline processing of selected
+     *     portions of archived content.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    void delete(String resourceGroupName, String accountName, String pipelineJobName);
+    PipelineJobInner createOrUpdate(
+        String resourceGroupName, String accountName, String pipelineJobName, PipelineJobInner parameters);
 
     /**
-     * Deletes a pipeline job with the given name.
+     * Deletes a pipeline job.
+     *
+     * <p>Deletes a pipeline job with the given name.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Azure Video Analyzer account name.
@@ -150,24 +151,24 @@ public interface PipelineJobsClient {
         String resourceGroupName, String accountName, String pipelineJobName, Context context);
 
     /**
-     * Updates an existing pipeline job with the given name. Properties that can be updated include: description.
+     * Deletes a pipeline job.
+     *
+     * <p>Deletes a pipeline job with the given name.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Azure Video Analyzer account name.
      * @param pipelineJobName The pipeline job name.
-     * @param parameters The request parameters.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return pipeline job represents a unique instance of a batch topology, used for offline processing of selected
-     *     portions of archived content.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    PipelineJobInner update(
-        String resourceGroupName, String accountName, String pipelineJobName, PipelineJobUpdate parameters);
+    void delete(String resourceGroupName, String accountName, String pipelineJobName);
 
     /**
-     * Updates an existing pipeline job with the given name. Properties that can be updated include: description.
+     * Updates an existing pipeline job.
+     *
+     * <p>Updates an existing pipeline job with the given name. Properties that can be updated include: description.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Azure Video Analyzer account name.
@@ -189,7 +190,28 @@ public interface PipelineJobsClient {
         Context context);
 
     /**
-     * Cancels a pipeline job with the given name.
+     * Updates an existing pipeline job.
+     *
+     * <p>Updates an existing pipeline job with the given name. Properties that can be updated include: description.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param accountName The Azure Video Analyzer account name.
+     * @param pipelineJobName The pipeline job name.
+     * @param parameters The request parameters.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return pipeline job represents a unique instance of a batch topology, used for offline processing of selected
+     *     portions of archived content.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    PipelineJobInner update(
+        String resourceGroupName, String accountName, String pipelineJobName, PipelineJobUpdate parameters);
+
+    /**
+     * Cancels a pipeline job.
+     *
+     * <p>Cancels a pipeline job with the given name.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Azure Video Analyzer account name.
@@ -204,7 +226,9 @@ public interface PipelineJobsClient {
         String resourceGroupName, String accountName, String pipelineJobName);
 
     /**
-     * Cancels a pipeline job with the given name.
+     * Cancels a pipeline job.
+     *
+     * <p>Cancels a pipeline job with the given name.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Azure Video Analyzer account name.
@@ -220,7 +244,9 @@ public interface PipelineJobsClient {
         String resourceGroupName, String accountName, String pipelineJobName, Context context);
 
     /**
-     * Cancels a pipeline job with the given name.
+     * Cancels a pipeline job.
+     *
+     * <p>Cancels a pipeline job with the given name.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Azure Video Analyzer account name.
@@ -233,7 +259,9 @@ public interface PipelineJobsClient {
     void cancel(String resourceGroupName, String accountName, String pipelineJobName);
 
     /**
-     * Cancels a pipeline job with the given name.
+     * Cancels a pipeline job.
+     *
+     * <p>Cancels a pipeline job with the given name.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Azure Video Analyzer account name.

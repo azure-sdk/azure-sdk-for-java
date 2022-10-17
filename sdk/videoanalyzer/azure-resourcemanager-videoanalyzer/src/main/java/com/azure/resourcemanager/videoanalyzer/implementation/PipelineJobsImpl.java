@@ -39,15 +39,6 @@ public final class PipelineJobsImpl implements PipelineJobs {
         return Utils.mapPage(inner, inner1 -> new PipelineJobImpl(inner1, this.manager()));
     }
 
-    public PipelineJob get(String resourceGroupName, String accountName, String pipelineJobName) {
-        PipelineJobInner inner = this.serviceClient().get(resourceGroupName, accountName, pipelineJobName);
-        if (inner != null) {
-            return new PipelineJobImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
     public Response<PipelineJob> getWithResponse(
         String resourceGroupName, String accountName, String pipelineJobName, Context context) {
         Response<PipelineJobInner> inner =
@@ -63,13 +54,22 @@ public final class PipelineJobsImpl implements PipelineJobs {
         }
     }
 
-    public void delete(String resourceGroupName, String accountName, String pipelineJobName) {
-        this.serviceClient().delete(resourceGroupName, accountName, pipelineJobName);
+    public PipelineJob get(String resourceGroupName, String accountName, String pipelineJobName) {
+        PipelineJobInner inner = this.serviceClient().get(resourceGroupName, accountName, pipelineJobName);
+        if (inner != null) {
+            return new PipelineJobImpl(inner, this.manager());
+        } else {
+            return null;
+        }
     }
 
     public Response<Void> deleteWithResponse(
         String resourceGroupName, String accountName, String pipelineJobName, Context context) {
         return this.serviceClient().deleteWithResponse(resourceGroupName, accountName, pipelineJobName, context);
+    }
+
+    public void delete(String resourceGroupName, String accountName, String pipelineJobName) {
+        this.serviceClient().delete(resourceGroupName, accountName, pipelineJobName);
     }
 
     public void cancel(String resourceGroupName, String accountName, String pipelineJobName) {

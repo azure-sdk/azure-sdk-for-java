@@ -11,7 +11,9 @@ import com.azure.core.util.Context;
 /** Resource collection API of LivePipelines. */
 public interface LivePipelines {
     /**
-     * Retrieves a list of live pipelines that have been created, along with their JSON representations.
+     * Retrieves a list of live pipelines.
+     *
+     * <p>Retrieves a list of live pipelines that have been created, along with their JSON representations.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Azure Video Analyzer account name.
@@ -23,7 +25,9 @@ public interface LivePipelines {
     PagedIterable<LivePipeline> list(String resourceGroupName, String accountName);
 
     /**
-     * Retrieves a list of live pipelines that have been created, along with their JSON representations.
+     * Retrieves a list of live pipelines.
+     *
+     * <p>Retrieves a list of live pipelines that have been created, along with their JSON representations.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Azure Video Analyzer account name.
@@ -40,22 +44,9 @@ public interface LivePipelines {
         String resourceGroupName, String accountName, String filter, Integer top, Context context);
 
     /**
-     * Retrieves a specific live pipeline by name. If a live pipeline with that name has been previously created, the
-     * call will return the JSON representation of that instance.
+     * Retrieves a specific live pipeline by name.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param accountName The Azure Video Analyzer account name.
-     * @param livePipelineName Live pipeline unique identifier.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return live pipeline represents a unique instance of a live topology, used for real-time ingestion, archiving
-     *     and publishing of content for a unique RTSP camera.
-     */
-    LivePipeline get(String resourceGroupName, String accountName, String livePipelineName);
-
-    /**
-     * Retrieves a specific live pipeline by name. If a live pipeline with that name has been previously created, the
+     * <p>Retrieves a specific live pipeline by name. If a live pipeline with that name has been previously created, the
      * call will return the JSON representation of that instance.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -72,7 +63,10 @@ public interface LivePipelines {
         String resourceGroupName, String accountName, String livePipelineName, Context context);
 
     /**
-     * Deletes a live pipeline with the given name.
+     * Retrieves a specific live pipeline by name.
+     *
+     * <p>Retrieves a specific live pipeline by name. If a live pipeline with that name has been previously created, the
+     * call will return the JSON representation of that instance.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Azure Video Analyzer account name.
@@ -80,11 +74,15 @@ public interface LivePipelines {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return live pipeline represents a unique instance of a live topology, used for real-time ingestion, archiving
+     *     and publishing of content for a unique RTSP camera.
      */
-    void delete(String resourceGroupName, String accountName, String livePipelineName);
+    LivePipeline get(String resourceGroupName, String accountName, String livePipelineName);
 
     /**
-     * Deletes a live pipeline with the given name.
+     * Deletes a live pipeline.
+     *
+     * <p>Deletes a live pipeline with the given name.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Azure Video Analyzer account name.
@@ -99,7 +97,23 @@ public interface LivePipelines {
         String resourceGroupName, String accountName, String livePipelineName, Context context);
 
     /**
-     * Activates a live pipeline with the given name.
+     * Deletes a live pipeline.
+     *
+     * <p>Deletes a live pipeline with the given name.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param accountName The Azure Video Analyzer account name.
+     * @param livePipelineName Live pipeline unique identifier.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void delete(String resourceGroupName, String accountName, String livePipelineName);
+
+    /**
+     * Activates a live pipeline.
+     *
+     * <p>Activates a live pipeline with the given name.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Azure Video Analyzer account name.
@@ -111,7 +125,9 @@ public interface LivePipelines {
     void activate(String resourceGroupName, String accountName, String livePipelineName);
 
     /**
-     * Activates a live pipeline with the given name.
+     * Activates a live pipeline.
+     *
+     * <p>Activates a live pipeline with the given name.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Azure Video Analyzer account name.
@@ -124,7 +140,9 @@ public interface LivePipelines {
     void activate(String resourceGroupName, String accountName, String livePipelineName, Context context);
 
     /**
-     * Deactivates a live pipeline with the given name.
+     * Deactivates a live pipeline.
+     *
+     * <p>Deactivates a live pipeline with the given name.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Azure Video Analyzer account name.
@@ -136,7 +154,9 @@ public interface LivePipelines {
     void deactivate(String resourceGroupName, String accountName, String livePipelineName);
 
     /**
-     * Deactivates a live pipeline with the given name.
+     * Deactivates a live pipeline.
+     *
+     * <p>Deactivates a live pipeline with the given name.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Azure Video Analyzer account name.
@@ -149,7 +169,9 @@ public interface LivePipelines {
     void deactivate(String resourceGroupName, String accountName, String livePipelineName, Context context);
 
     /**
-     * Retrieves a specific live pipeline by name. If a live pipeline with that name has been previously created, the
+     * Retrieves a specific live pipeline by name.
+     *
+     * <p>Retrieves a specific live pipeline by name. If a live pipeline with that name has been previously created, the
      * call will return the JSON representation of that instance.
      *
      * @param id the resource ID.
@@ -162,7 +184,9 @@ public interface LivePipelines {
     LivePipeline getById(String id);
 
     /**
-     * Retrieves a specific live pipeline by name. If a live pipeline with that name has been previously created, the
+     * Retrieves a specific live pipeline by name.
+     *
+     * <p>Retrieves a specific live pipeline by name. If a live pipeline with that name has been previously created, the
      * call will return the JSON representation of that instance.
      *
      * @param id the resource ID.
@@ -176,7 +200,9 @@ public interface LivePipelines {
     Response<LivePipeline> getByIdWithResponse(String id, Context context);
 
     /**
-     * Deletes a live pipeline with the given name.
+     * Deletes a live pipeline.
+     *
+     * <p>Deletes a live pipeline with the given name.
      *
      * @param id the resource ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -186,7 +212,9 @@ public interface LivePipelines {
     void deleteById(String id);
 
     /**
-     * Deletes a live pipeline with the given name.
+     * Deletes a live pipeline.
+     *
+     * <p>Deletes a live pipeline with the given name.
      *
      * @param id the resource ID.
      * @param context The context to associate with this operation.

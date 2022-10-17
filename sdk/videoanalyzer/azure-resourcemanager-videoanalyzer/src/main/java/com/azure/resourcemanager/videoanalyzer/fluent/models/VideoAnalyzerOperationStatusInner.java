@@ -48,6 +48,10 @@ public final class VideoAnalyzerOperationStatusInner {
     @JsonProperty(value = "error")
     private ManagementError error;
 
+    /** Creates an instance of VideoAnalyzerOperationStatusInner class. */
+    public VideoAnalyzerOperationStatusInner() {
+    }
+
     /**
      * Get the name property: Operation identifier.
      *

@@ -12,11 +12,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Fluent
 public class ResourceIdentity {
     /*
-     * The user assigned managed identity's resource identifier to use when
-     * accessing a resource.
+     * The user assigned managed identity's resource identifier to use when accessing a resource.
      */
     @JsonProperty(value = "userAssignedIdentity", required = true)
     private String userAssignedIdentity;
+
+    /** Creates an instance of ResourceIdentity class. */
+    public ResourceIdentity() {
+    }
 
     /**
      * Get the userAssignedIdentity property: The user assigned managed identity's resource identifier to use when

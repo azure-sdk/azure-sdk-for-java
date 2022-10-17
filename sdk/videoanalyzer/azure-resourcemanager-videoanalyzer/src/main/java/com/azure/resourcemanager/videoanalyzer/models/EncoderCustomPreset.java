@@ -26,6 +26,10 @@ public final class EncoderCustomPreset extends EncoderPresetBase {
     @JsonProperty(value = "videoEncoder")
     private VideoEncoderBase videoEncoder;
 
+    /** Creates an instance of EncoderCustomPreset class. */
+    public EncoderCustomPreset() {
+    }
+
     /**
      * Get the audioEncoder property: Describes a custom preset for encoding audio.
      *

@@ -12,19 +12,21 @@ import java.time.OffsetDateTime;
 @Immutable
 public final class VideoContentTokenInner {
     /*
-     * The content token expiration date in ISO8601 format (eg.
-     * 2021-01-01T00:00:00Z).
+     * The content token expiration date in ISO8601 format (eg. 2021-01-01T00:00:00Z).
      */
     @JsonProperty(value = "expirationDate", access = JsonProperty.Access.WRITE_ONLY)
     private OffsetDateTime expirationDate;
 
     /*
-     * The content token value to be added to the video content URL as the
-     * value for the "token" query string parameter. The token is specific to a
-     * single video.
+     * The content token value to be added to the video content URL as the value for the "token" query string
+     * parameter. The token is specific to a single video.
      */
     @JsonProperty(value = "token", access = JsonProperty.Access.WRITE_ONLY)
     private String token;
+
+    /** Creates an instance of VideoContentTokenInner class. */
+    public VideoContentTokenInner() {
+    }
 
     /**
      * Get the expirationDate property: The content token expiration date in ISO8601 format (eg. 2021-01-01T00:00:00Z).

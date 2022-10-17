@@ -39,15 +39,6 @@ public final class AccessPoliciesImpl implements AccessPolicies {
         return Utils.mapPage(inner, inner1 -> new AccessPolicyEntityImpl(inner1, this.manager()));
     }
 
-    public AccessPolicyEntity get(String resourceGroupName, String accountName, String accessPolicyName) {
-        AccessPolicyEntityInner inner = this.serviceClient().get(resourceGroupName, accountName, accessPolicyName);
-        if (inner != null) {
-            return new AccessPolicyEntityImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
     public Response<AccessPolicyEntity> getWithResponse(
         String resourceGroupName, String accountName, String accessPolicyName, Context context) {
         Response<AccessPolicyEntityInner> inner =
@@ -63,13 +54,22 @@ public final class AccessPoliciesImpl implements AccessPolicies {
         }
     }
 
-    public void delete(String resourceGroupName, String accountName, String accessPolicyName) {
-        this.serviceClient().delete(resourceGroupName, accountName, accessPolicyName);
+    public AccessPolicyEntity get(String resourceGroupName, String accountName, String accessPolicyName) {
+        AccessPolicyEntityInner inner = this.serviceClient().get(resourceGroupName, accountName, accessPolicyName);
+        if (inner != null) {
+            return new AccessPolicyEntityImpl(inner, this.manager());
+        } else {
+            return null;
+        }
     }
 
     public Response<Void> deleteWithResponse(
         String resourceGroupName, String accountName, String accessPolicyName, Context context) {
         return this.serviceClient().deleteWithResponse(resourceGroupName, accountName, accessPolicyName, context);
+    }
+
+    public void delete(String resourceGroupName, String accountName, String accessPolicyName) {
+        this.serviceClient().delete(resourceGroupName, accountName, accessPolicyName);
     }
 
     public AccessPolicyEntity getById(String id) {

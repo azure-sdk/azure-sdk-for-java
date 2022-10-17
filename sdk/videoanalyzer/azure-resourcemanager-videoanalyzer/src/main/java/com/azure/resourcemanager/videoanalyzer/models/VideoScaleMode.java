@@ -8,7 +8,11 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for VideoScaleMode. */
+/**
+ * Describes the video scaling mode to be applied. Default mode is 'Pad'. If the mode is 'Pad' or 'Stretch' then both
+ * width and height must be specified. Else if the mode is 'PreserveAspectRatio' then only one of width or height need
+ * be provided.
+ */
 public final class VideoScaleMode extends ExpandableStringEnum<VideoScaleMode> {
     /** Static value Pad for VideoScaleMode. */
     public static final VideoScaleMode PAD = fromString("Pad");

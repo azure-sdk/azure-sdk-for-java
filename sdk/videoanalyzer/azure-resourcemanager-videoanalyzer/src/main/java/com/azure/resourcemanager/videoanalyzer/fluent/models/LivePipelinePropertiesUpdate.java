@@ -14,9 +14,8 @@ import java.util.List;
 @Fluent
 public final class LivePipelinePropertiesUpdate {
     /*
-     * The reference to an existing pipeline topology defined for real-time
-     * content processing. When activated, this live pipeline will process
-     * content according to the pipeline topology definition.
+     * The reference to an existing pipeline topology defined for real-time content processing. When activated, this
+     * live pipeline will process content according to the pipeline topology definition.
      */
     @JsonProperty(value = "topologyName")
     private String topologyName;
@@ -28,13 +27,11 @@ public final class LivePipelinePropertiesUpdate {
     private String description;
 
     /*
-     * Maximum bitrate capacity in Kbps reserved for the live pipeline. The
-     * allowed range is from 500 to 3000 Kbps in increments of 100 Kbps. If the
-     * RTSP camera exceeds this capacity, then the service will disconnect
-     * temporarily from the camera. It will retry to re-establish connection
-     * (with exponential backoff), checking to see if the camera bitrate is now
-     * below the reserved capacity. Doing so will ensure that one 'noisy
-     * neighbor' does not affect other live pipelines in your account.
+     * Maximum bitrate capacity in Kbps reserved for the live pipeline. The allowed range is from 500 to 3000 Kbps in
+     * increments of 100 Kbps. If the RTSP camera exceeds this capacity, then the service will disconnect temporarily
+     * from the camera. It will retry to re-establish connection (with exponential backoff), checking to see if the
+     * camera bitrate is now below the reserved capacity. Doing so will ensure that one 'noisy neighbor' does not
+     * affect other live pipelines in your account.
      */
     @JsonProperty(value = "bitrateKbps")
     private Integer bitrateKbps;
@@ -46,15 +43,17 @@ public final class LivePipelinePropertiesUpdate {
     private LivePipelineState state;
 
     /*
-     * List of the instance level parameter values for the user-defined
-     * topology parameters. A pipeline can only define or override parameters
-     * values for parameters which have been declared in the referenced
-     * topology. Topology parameters without a default value must be defined.
-     * Topology parameters with a default value can be optionally be
-     * overridden.
+     * List of the instance level parameter values for the user-defined topology parameters. A pipeline can only define
+     * or override parameters values for parameters which have been declared in the referenced topology. Topology
+     * parameters without a default value must be defined. Topology parameters with a default value can be optionally
+     * be overridden.
      */
     @JsonProperty(value = "parameters")
     private List<ParameterDefinition> parameters;
+
+    /** Creates an instance of LivePipelinePropertiesUpdate class. */
+    public LivePipelinePropertiesUpdate() {
+    }
 
     /**
      * Get the topologyName property: The reference to an existing pipeline topology defined for real-time content

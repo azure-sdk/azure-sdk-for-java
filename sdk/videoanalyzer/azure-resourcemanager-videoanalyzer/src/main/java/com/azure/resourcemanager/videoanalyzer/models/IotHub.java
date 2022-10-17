@@ -29,6 +29,10 @@ public final class IotHub {
     @JsonProperty(value = "status", access = JsonProperty.Access.WRITE_ONLY)
     private String status;
 
+    /** Creates an instance of IotHub class. */
+    public IotHub() {
+    }
+
     /**
      * Get the id property: The IoT Hub resource identifier.
      *

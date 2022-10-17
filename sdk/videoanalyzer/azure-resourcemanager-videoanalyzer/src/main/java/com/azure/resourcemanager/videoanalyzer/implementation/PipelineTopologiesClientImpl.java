@@ -156,7 +156,9 @@ public final class PipelineTopologiesClientImpl implements PipelineTopologiesCli
     }
 
     /**
-     * Retrieves a list of pipeline topologies that have been added to the account, if any, along with their JSON
+     * Retrieves a list of pipeline topologies.
+     *
+     * <p>Retrieves a list of pipeline topologies that have been added to the account, if any, along with their JSON
      * representation.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -220,7 +222,9 @@ public final class PipelineTopologiesClientImpl implements PipelineTopologiesCli
     }
 
     /**
-     * Retrieves a list of pipeline topologies that have been added to the account, if any, along with their JSON
+     * Retrieves a list of pipeline topologies.
+     *
+     * <p>Retrieves a list of pipeline topologies that have been added to the account, if any, along with their JSON
      * representation.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -282,7 +286,9 @@ public final class PipelineTopologiesClientImpl implements PipelineTopologiesCli
     }
 
     /**
-     * Retrieves a list of pipeline topologies that have been added to the account, if any, along with their JSON
+     * Retrieves a list of pipeline topologies.
+     *
+     * <p>Retrieves a list of pipeline topologies that have been added to the account, if any, along with their JSON
      * representation.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -304,7 +310,9 @@ public final class PipelineTopologiesClientImpl implements PipelineTopologiesCli
     }
 
     /**
-     * Retrieves a list of pipeline topologies that have been added to the account, if any, along with their JSON
+     * Retrieves a list of pipeline topologies.
+     *
+     * <p>Retrieves a list of pipeline topologies that have been added to the account, if any, along with their JSON
      * representation.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -324,7 +332,9 @@ public final class PipelineTopologiesClientImpl implements PipelineTopologiesCli
     }
 
     /**
-     * Retrieves a list of pipeline topologies that have been added to the account, if any, along with their JSON
+     * Retrieves a list of pipeline topologies.
+     *
+     * <p>Retrieves a list of pipeline topologies that have been added to the account, if any, along with their JSON
      * representation.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -347,7 +357,9 @@ public final class PipelineTopologiesClientImpl implements PipelineTopologiesCli
     }
 
     /**
-     * Retrieves a list of pipeline topologies that have been added to the account, if any, along with their JSON
+     * Retrieves a list of pipeline topologies.
+     *
+     * <p>Retrieves a list of pipeline topologies that have been added to the account, if any, along with their JSON
      * representation.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -365,7 +377,9 @@ public final class PipelineTopologiesClientImpl implements PipelineTopologiesCli
     }
 
     /**
-     * Retrieves a list of pipeline topologies that have been added to the account, if any, along with their JSON
+     * Retrieves a list of pipeline topologies.
+     *
+     * <p>Retrieves a list of pipeline topologies that have been added to the account, if any, along with their JSON
      * representation.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -386,7 +400,9 @@ public final class PipelineTopologiesClientImpl implements PipelineTopologiesCli
     }
 
     /**
-     * Retrieves a specific pipeline topology by name. If a topology with that name has been previously created, the
+     * Retrieves a specific pipeline topology by name.
+     *
+     * <p>Retrieves a specific pipeline topology by name. If a topology with that name has been previously created, the
      * call will return the JSON representation of that topology.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -442,7 +458,9 @@ public final class PipelineTopologiesClientImpl implements PipelineTopologiesCli
     }
 
     /**
-     * Retrieves a specific pipeline topology by name. If a topology with that name has been previously created, the
+     * Retrieves a specific pipeline topology by name.
+     *
+     * <p>Retrieves a specific pipeline topology by name. If a topology with that name has been previously created, the
      * call will return the JSON representation of that topology.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -496,7 +514,9 @@ public final class PipelineTopologiesClientImpl implements PipelineTopologiesCli
     }
 
     /**
-     * Retrieves a specific pipeline topology by name. If a topology with that name has been previously created, the
+     * Retrieves a specific pipeline topology by name.
+     *
+     * <p>Retrieves a specific pipeline topology by name. If a topology with that name has been previously created, the
      * call will return the JSON representation of that topology.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -516,25 +536,9 @@ public final class PipelineTopologiesClientImpl implements PipelineTopologiesCli
     }
 
     /**
-     * Retrieves a specific pipeline topology by name. If a topology with that name has been previously created, the
-     * call will return the JSON representation of that topology.
+     * Retrieves a specific pipeline topology by name.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param accountName The Azure Video Analyzer account name.
-     * @param pipelineTopologyName Pipeline topology unique identifier.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return pipeline topology describes the processing steps to be applied when processing content for a particular
-     *     outcome.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public PipelineTopologyInner get(String resourceGroupName, String accountName, String pipelineTopologyName) {
-        return getAsync(resourceGroupName, accountName, pipelineTopologyName).block();
-    }
-
-    /**
-     * Retrieves a specific pipeline topology by name. If a topology with that name has been previously created, the
+     * <p>Retrieves a specific pipeline topology by name. If a topology with that name has been previously created, the
      * call will return the JSON representation of that topology.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -554,7 +558,29 @@ public final class PipelineTopologiesClientImpl implements PipelineTopologiesCli
     }
 
     /**
-     * Creates a new pipeline topology or updates an existing one, with the given name. A pipeline topology describes
+     * Retrieves a specific pipeline topology by name.
+     *
+     * <p>Retrieves a specific pipeline topology by name. If a topology with that name has been previously created, the
+     * call will return the JSON representation of that topology.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param accountName The Azure Video Analyzer account name.
+     * @param pipelineTopologyName Pipeline topology unique identifier.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return pipeline topology describes the processing steps to be applied when processing content for a particular
+     *     outcome.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public PipelineTopologyInner get(String resourceGroupName, String accountName, String pipelineTopologyName) {
+        return getWithResponse(resourceGroupName, accountName, pipelineTopologyName, Context.NONE).getValue();
+    }
+
+    /**
+     * Creates or updates a pipeline topology.
+     *
+     * <p>Creates a new pipeline topology or updates an existing one, with the given name. A pipeline topology describes
      * the processing steps to be applied when processing content for a particular outcome. The topology should be
      * defined according to the scenario to be achieved and can be reused across many pipeline instances which share the
      * same processing characteristics.
@@ -619,7 +645,9 @@ public final class PipelineTopologiesClientImpl implements PipelineTopologiesCli
     }
 
     /**
-     * Creates a new pipeline topology or updates an existing one, with the given name. A pipeline topology describes
+     * Creates or updates a pipeline topology.
+     *
+     * <p>Creates a new pipeline topology or updates an existing one, with the given name. A pipeline topology describes
      * the processing steps to be applied when processing content for a particular outcome. The topology should be
      * defined according to the scenario to be achieved and can be reused across many pipeline instances which share the
      * same processing characteristics.
@@ -686,7 +714,9 @@ public final class PipelineTopologiesClientImpl implements PipelineTopologiesCli
     }
 
     /**
-     * Creates a new pipeline topology or updates an existing one, with the given name. A pipeline topology describes
+     * Creates or updates a pipeline topology.
+     *
+     * <p>Creates a new pipeline topology or updates an existing one, with the given name. A pipeline topology describes
      * the processing steps to be applied when processing content for a particular outcome. The topology should be
      * defined according to the scenario to be achieved and can be reused across many pipeline instances which share the
      * same processing characteristics.
@@ -709,29 +739,9 @@ public final class PipelineTopologiesClientImpl implements PipelineTopologiesCli
     }
 
     /**
-     * Creates a new pipeline topology or updates an existing one, with the given name. A pipeline topology describes
-     * the processing steps to be applied when processing content for a particular outcome. The topology should be
-     * defined according to the scenario to be achieved and can be reused across many pipeline instances which share the
-     * same processing characteristics.
+     * Creates or updates a pipeline topology.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param accountName The Azure Video Analyzer account name.
-     * @param pipelineTopologyName Pipeline topology unique identifier.
-     * @param parameters The request parameters.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return pipeline topology describes the processing steps to be applied when processing content for a particular
-     *     outcome.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public PipelineTopologyInner createOrUpdate(
-        String resourceGroupName, String accountName, String pipelineTopologyName, PipelineTopologyInner parameters) {
-        return createOrUpdateAsync(resourceGroupName, accountName, pipelineTopologyName, parameters).block();
-    }
-
-    /**
-     * Creates a new pipeline topology or updates an existing one, with the given name. A pipeline topology describes
+     * <p>Creates a new pipeline topology or updates an existing one, with the given name. A pipeline topology describes
      * the processing steps to be applied when processing content for a particular outcome. The topology should be
      * defined according to the scenario to be achieved and can be reused across many pipeline instances which share the
      * same processing characteristics.
@@ -760,8 +770,36 @@ public final class PipelineTopologiesClientImpl implements PipelineTopologiesCli
     }
 
     /**
-     * Deletes a pipeline topology with the given name. This method should be called after all instances of the topology
-     * have been stopped and deleted.
+     * Creates or updates a pipeline topology.
+     *
+     * <p>Creates a new pipeline topology or updates an existing one, with the given name. A pipeline topology describes
+     * the processing steps to be applied when processing content for a particular outcome. The topology should be
+     * defined according to the scenario to be achieved and can be reused across many pipeline instances which share the
+     * same processing characteristics.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param accountName The Azure Video Analyzer account name.
+     * @param pipelineTopologyName Pipeline topology unique identifier.
+     * @param parameters The request parameters.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return pipeline topology describes the processing steps to be applied when processing content for a particular
+     *     outcome.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public PipelineTopologyInner createOrUpdate(
+        String resourceGroupName, String accountName, String pipelineTopologyName, PipelineTopologyInner parameters) {
+        return createOrUpdateWithResponse(
+                resourceGroupName, accountName, pipelineTopologyName, parameters, Context.NONE)
+            .getValue();
+    }
+
+    /**
+     * Deletes a pipeline topology.
+     *
+     * <p>Deletes a pipeline topology with the given name. This method should be called after all instances of the
+     * topology have been stopped and deleted.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Azure Video Analyzer account name.
@@ -815,8 +853,10 @@ public final class PipelineTopologiesClientImpl implements PipelineTopologiesCli
     }
 
     /**
-     * Deletes a pipeline topology with the given name. This method should be called after all instances of the topology
-     * have been stopped and deleted.
+     * Deletes a pipeline topology.
+     *
+     * <p>Deletes a pipeline topology with the given name. This method should be called after all instances of the
+     * topology have been stopped and deleted.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Azure Video Analyzer account name.
@@ -868,8 +908,10 @@ public final class PipelineTopologiesClientImpl implements PipelineTopologiesCli
     }
 
     /**
-     * Deletes a pipeline topology with the given name. This method should be called after all instances of the topology
-     * have been stopped and deleted.
+     * Deletes a pipeline topology.
+     *
+     * <p>Deletes a pipeline topology with the given name. This method should be called after all instances of the
+     * topology have been stopped and deleted.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Azure Video Analyzer account name.
@@ -886,24 +928,10 @@ public final class PipelineTopologiesClientImpl implements PipelineTopologiesCli
     }
 
     /**
-     * Deletes a pipeline topology with the given name. This method should be called after all instances of the topology
-     * have been stopped and deleted.
+     * Deletes a pipeline topology.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param accountName The Azure Video Analyzer account name.
-     * @param pipelineTopologyName Pipeline topology unique identifier.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public void delete(String resourceGroupName, String accountName, String pipelineTopologyName) {
-        deleteAsync(resourceGroupName, accountName, pipelineTopologyName).block();
-    }
-
-    /**
-     * Deletes a pipeline topology with the given name. This method should be called after all instances of the topology
-     * have been stopped and deleted.
+     * <p>Deletes a pipeline topology with the given name. This method should be called after all instances of the
+     * topology have been stopped and deleted.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Azure Video Analyzer account name.
@@ -921,9 +949,29 @@ public final class PipelineTopologiesClientImpl implements PipelineTopologiesCli
     }
 
     /**
-     * Updates an existing pipeline topology with the given name. If the associated live pipelines or pipeline jobs are
-     * in active or processing state, respectively, then only the description can be updated. Else, the properties that
-     * can be updated include: description, parameter declarations, sources, processors, and sinks.
+     * Deletes a pipeline topology.
+     *
+     * <p>Deletes a pipeline topology with the given name. This method should be called after all instances of the
+     * topology have been stopped and deleted.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param accountName The Azure Video Analyzer account name.
+     * @param pipelineTopologyName Pipeline topology unique identifier.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public void delete(String resourceGroupName, String accountName, String pipelineTopologyName) {
+        deleteWithResponse(resourceGroupName, accountName, pipelineTopologyName, Context.NONE);
+    }
+
+    /**
+     * Updates an existing pipeline topology.
+     *
+     * <p>Updates an existing pipeline topology with the given name. If the associated live pipelines or pipeline jobs
+     * are in active or processing state, respectively, then only the description can be updated. Else, the properties
+     * that can be updated include: description, parameter declarations, sources, processors, and sinks.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Azure Video Analyzer account name.
@@ -985,9 +1033,11 @@ public final class PipelineTopologiesClientImpl implements PipelineTopologiesCli
     }
 
     /**
-     * Updates an existing pipeline topology with the given name. If the associated live pipelines or pipeline jobs are
-     * in active or processing state, respectively, then only the description can be updated. Else, the properties that
-     * can be updated include: description, parameter declarations, sources, processors, and sinks.
+     * Updates an existing pipeline topology.
+     *
+     * <p>Updates an existing pipeline topology with the given name. If the associated live pipelines or pipeline jobs
+     * are in active or processing state, respectively, then only the description can be updated. Else, the properties
+     * that can be updated include: description, parameter declarations, sources, processors, and sinks.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Azure Video Analyzer account name.
@@ -1051,9 +1101,11 @@ public final class PipelineTopologiesClientImpl implements PipelineTopologiesCli
     }
 
     /**
-     * Updates an existing pipeline topology with the given name. If the associated live pipelines or pipeline jobs are
-     * in active or processing state, respectively, then only the description can be updated. Else, the properties that
-     * can be updated include: description, parameter declarations, sources, processors, and sinks.
+     * Updates an existing pipeline topology.
+     *
+     * <p>Updates an existing pipeline topology with the given name. If the associated live pipelines or pipeline jobs
+     * are in active or processing state, respectively, then only the description can be updated. Else, the properties
+     * that can be updated include: description, parameter declarations, sources, processors, and sinks.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Azure Video Analyzer account name.
@@ -1073,30 +1125,11 @@ public final class PipelineTopologiesClientImpl implements PipelineTopologiesCli
     }
 
     /**
-     * Updates an existing pipeline topology with the given name. If the associated live pipelines or pipeline jobs are
-     * in active or processing state, respectively, then only the description can be updated. Else, the properties that
-     * can be updated include: description, parameter declarations, sources, processors, and sinks.
+     * Updates an existing pipeline topology.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param accountName The Azure Video Analyzer account name.
-     * @param pipelineTopologyName Pipeline topology unique identifier.
-     * @param parameters The request parameters.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return pipeline topology describes the processing steps to be applied when processing content for a particular
-     *     outcome.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public PipelineTopologyInner update(
-        String resourceGroupName, String accountName, String pipelineTopologyName, PipelineTopologyUpdate parameters) {
-        return updateAsync(resourceGroupName, accountName, pipelineTopologyName, parameters).block();
-    }
-
-    /**
-     * Updates an existing pipeline topology with the given name. If the associated live pipelines or pipeline jobs are
-     * in active or processing state, respectively, then only the description can be updated. Else, the properties that
-     * can be updated include: description, parameter declarations, sources, processors, and sinks.
+     * <p>Updates an existing pipeline topology with the given name. If the associated live pipelines or pipeline jobs
+     * are in active or processing state, respectively, then only the description can be updated. Else, the properties
+     * that can be updated include: description, parameter declarations, sources, processors, and sinks.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Azure Video Analyzer account name.
@@ -1121,9 +1154,34 @@ public final class PipelineTopologiesClientImpl implements PipelineTopologiesCli
     }
 
     /**
+     * Updates an existing pipeline topology.
+     *
+     * <p>Updates an existing pipeline topology with the given name. If the associated live pipelines or pipeline jobs
+     * are in active or processing state, respectively, then only the description can be updated. Else, the properties
+     * that can be updated include: description, parameter declarations, sources, processors, and sinks.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param accountName The Azure Video Analyzer account name.
+     * @param pipelineTopologyName Pipeline topology unique identifier.
+     * @param parameters The request parameters.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return pipeline topology describes the processing steps to be applied when processing content for a particular
+     *     outcome.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public PipelineTopologyInner update(
+        String resourceGroupName, String accountName, String pipelineTopologyName, PipelineTopologyUpdate parameters) {
+        return updateWithResponse(resourceGroupName, accountName, pipelineTopologyName, parameters, Context.NONE)
+            .getValue();
+    }
+
+    /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1159,7 +1217,8 @@ public final class PipelineTopologiesClientImpl implements PipelineTopologiesCli
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.

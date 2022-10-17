@@ -154,7 +154,9 @@ public final class AccessPoliciesClientImpl implements AccessPoliciesClient {
     }
 
     /**
-     * Retrieves all existing access policy resources, along with their JSON representations.
+     * List all existing access policy resources.
+     *
+     * <p>Retrieves all existing access policy resources, along with their JSON representations.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Azure Video Analyzer account name.
@@ -215,7 +217,9 @@ public final class AccessPoliciesClientImpl implements AccessPoliciesClient {
     }
 
     /**
-     * Retrieves all existing access policy resources, along with their JSON representations.
+     * List all existing access policy resources.
+     *
+     * <p>Retrieves all existing access policy resources, along with their JSON representations.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Azure Video Analyzer account name.
@@ -274,7 +278,9 @@ public final class AccessPoliciesClientImpl implements AccessPoliciesClient {
     }
 
     /**
-     * Retrieves all existing access policy resources, along with their JSON representations.
+     * List all existing access policy resources.
+     *
+     * <p>Retrieves all existing access policy resources, along with their JSON representations.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Azure Video Analyzer account name.
@@ -293,7 +299,9 @@ public final class AccessPoliciesClientImpl implements AccessPoliciesClient {
     }
 
     /**
-     * Retrieves all existing access policy resources, along with their JSON representations.
+     * List all existing access policy resources.
+     *
+     * <p>Retrieves all existing access policy resources, along with their JSON representations.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Azure Video Analyzer account name.
@@ -311,7 +319,9 @@ public final class AccessPoliciesClientImpl implements AccessPoliciesClient {
     }
 
     /**
-     * Retrieves all existing access policy resources, along with their JSON representations.
+     * List all existing access policy resources.
+     *
+     * <p>Retrieves all existing access policy resources, along with their JSON representations.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Azure Video Analyzer account name.
@@ -332,7 +342,9 @@ public final class AccessPoliciesClientImpl implements AccessPoliciesClient {
     }
 
     /**
-     * Retrieves all existing access policy resources, along with their JSON representations.
+     * List all existing access policy resources.
+     *
+     * <p>Retrieves all existing access policy resources, along with their JSON representations.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Azure Video Analyzer account name.
@@ -348,7 +360,9 @@ public final class AccessPoliciesClientImpl implements AccessPoliciesClient {
     }
 
     /**
-     * Retrieves all existing access policy resources, along with their JSON representations.
+     * List all existing access policy resources.
+     *
+     * <p>Retrieves all existing access policy resources, along with their JSON representations.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Azure Video Analyzer account name.
@@ -367,7 +381,9 @@ public final class AccessPoliciesClientImpl implements AccessPoliciesClient {
     }
 
     /**
-     * Retrieves an existing access policy resource with the given name.
+     * Retrieves an existing access policy resource.
+     *
+     * <p>Retrieves an existing access policy resource with the given name.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Azure Video Analyzer account name.
@@ -422,7 +438,9 @@ public final class AccessPoliciesClientImpl implements AccessPoliciesClient {
     }
 
     /**
-     * Retrieves an existing access policy resource with the given name.
+     * Retrieves an existing access policy resource.
+     *
+     * <p>Retrieves an existing access policy resource with the given name.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Azure Video Analyzer account name.
@@ -475,7 +493,9 @@ public final class AccessPoliciesClientImpl implements AccessPoliciesClient {
     }
 
     /**
-     * Retrieves an existing access policy resource with the given name.
+     * Retrieves an existing access policy resource.
+     *
+     * <p>Retrieves an existing access policy resource with the given name.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Azure Video Analyzer account name.
@@ -494,23 +514,9 @@ public final class AccessPoliciesClientImpl implements AccessPoliciesClient {
     }
 
     /**
-     * Retrieves an existing access policy resource with the given name.
+     * Retrieves an existing access policy resource.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param accountName The Azure Video Analyzer account name.
-     * @param accessPolicyName The Access Policy name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return access policies help define the authentication rules, and control access to specific video resources.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public AccessPolicyEntityInner get(String resourceGroupName, String accountName, String accessPolicyName) {
-        return getAsync(resourceGroupName, accountName, accessPolicyName).block();
-    }
-
-    /**
-     * Retrieves an existing access policy resource with the given name.
+     * <p>Retrieves an existing access policy resource with the given name.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Azure Video Analyzer account name.
@@ -529,7 +535,27 @@ public final class AccessPoliciesClientImpl implements AccessPoliciesClient {
     }
 
     /**
-     * Creates a new access policy resource or updates an existing one with the given name.
+     * Retrieves an existing access policy resource.
+     *
+     * <p>Retrieves an existing access policy resource with the given name.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param accountName The Azure Video Analyzer account name.
+     * @param accessPolicyName The Access Policy name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return access policies help define the authentication rules, and control access to specific video resources.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public AccessPolicyEntityInner get(String resourceGroupName, String accountName, String accessPolicyName) {
+        return getWithResponse(resourceGroupName, accountName, accessPolicyName, Context.NONE).getValue();
+    }
+
+    /**
+     * Creates a new access policy resource or updates an existing one.
+     *
+     * <p>Creates a new access policy resource or updates an existing one with the given name.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Azure Video Analyzer account name.
@@ -591,7 +617,9 @@ public final class AccessPoliciesClientImpl implements AccessPoliciesClient {
     }
 
     /**
-     * Creates a new access policy resource or updates an existing one with the given name.
+     * Creates a new access policy resource or updates an existing one.
+     *
+     * <p>Creates a new access policy resource or updates an existing one with the given name.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Azure Video Analyzer account name.
@@ -655,7 +683,9 @@ public final class AccessPoliciesClientImpl implements AccessPoliciesClient {
     }
 
     /**
-     * Creates a new access policy resource or updates an existing one with the given name.
+     * Creates a new access policy resource or updates an existing one.
+     *
+     * <p>Creates a new access policy resource or updates an existing one with the given name.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Azure Video Analyzer account name.
@@ -675,25 +705,9 @@ public final class AccessPoliciesClientImpl implements AccessPoliciesClient {
     }
 
     /**
-     * Creates a new access policy resource or updates an existing one with the given name.
+     * Creates a new access policy resource or updates an existing one.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param accountName The Azure Video Analyzer account name.
-     * @param accessPolicyName The Access Policy name.
-     * @param parameters The request parameters.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return access policies help define the authentication rules, and control access to specific video resources.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public AccessPolicyEntityInner createOrUpdate(
-        String resourceGroupName, String accountName, String accessPolicyName, AccessPolicyEntityInner parameters) {
-        return createOrUpdateAsync(resourceGroupName, accountName, accessPolicyName, parameters).block();
-    }
-
-    /**
-     * Creates a new access policy resource or updates an existing one with the given name.
+     * <p>Creates a new access policy resource or updates an existing one with the given name.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Azure Video Analyzer account name.
@@ -718,7 +732,30 @@ public final class AccessPoliciesClientImpl implements AccessPoliciesClient {
     }
 
     /**
-     * Deletes an existing access policy resource with the given name.
+     * Creates a new access policy resource or updates an existing one.
+     *
+     * <p>Creates a new access policy resource or updates an existing one with the given name.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param accountName The Azure Video Analyzer account name.
+     * @param accessPolicyName The Access Policy name.
+     * @param parameters The request parameters.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return access policies help define the authentication rules, and control access to specific video resources.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public AccessPolicyEntityInner createOrUpdate(
+        String resourceGroupName, String accountName, String accessPolicyName, AccessPolicyEntityInner parameters) {
+        return createOrUpdateWithResponse(resourceGroupName, accountName, accessPolicyName, parameters, Context.NONE)
+            .getValue();
+    }
+
+    /**
+     * Deletes an existing access policy resource.
+     *
+     * <p>Deletes an existing access policy resource with the given name.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Azure Video Analyzer account name.
@@ -772,7 +809,9 @@ public final class AccessPoliciesClientImpl implements AccessPoliciesClient {
     }
 
     /**
-     * Deletes an existing access policy resource with the given name.
+     * Deletes an existing access policy resource.
+     *
+     * <p>Deletes an existing access policy resource with the given name.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Azure Video Analyzer account name.
@@ -824,7 +863,9 @@ public final class AccessPoliciesClientImpl implements AccessPoliciesClient {
     }
 
     /**
-     * Deletes an existing access policy resource with the given name.
+     * Deletes an existing access policy resource.
+     *
+     * <p>Deletes an existing access policy resource with the given name.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Azure Video Analyzer account name.
@@ -841,22 +882,9 @@ public final class AccessPoliciesClientImpl implements AccessPoliciesClient {
     }
 
     /**
-     * Deletes an existing access policy resource with the given name.
+     * Deletes an existing access policy resource.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param accountName The Azure Video Analyzer account name.
-     * @param accessPolicyName The Access Policy name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public void delete(String resourceGroupName, String accountName, String accessPolicyName) {
-        deleteAsync(resourceGroupName, accountName, accessPolicyName).block();
-    }
-
-    /**
-     * Deletes an existing access policy resource with the given name.
+     * <p>Deletes an existing access policy resource with the given name.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Azure Video Analyzer account name.
@@ -874,7 +902,26 @@ public final class AccessPoliciesClientImpl implements AccessPoliciesClient {
     }
 
     /**
-     * Updates individual properties of an existing access policy resource with the given name.
+     * Deletes an existing access policy resource.
+     *
+     * <p>Deletes an existing access policy resource with the given name.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param accountName The Azure Video Analyzer account name.
+     * @param accessPolicyName The Access Policy name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public void delete(String resourceGroupName, String accountName, String accessPolicyName) {
+        deleteWithResponse(resourceGroupName, accountName, accessPolicyName, Context.NONE);
+    }
+
+    /**
+     * Updates individual properties of an existing access policy resource.
+     *
+     * <p>Updates individual properties of an existing access policy resource with the given name.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Azure Video Analyzer account name.
@@ -936,7 +983,9 @@ public final class AccessPoliciesClientImpl implements AccessPoliciesClient {
     }
 
     /**
-     * Updates individual properties of an existing access policy resource with the given name.
+     * Updates individual properties of an existing access policy resource.
+     *
+     * <p>Updates individual properties of an existing access policy resource with the given name.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Azure Video Analyzer account name.
@@ -1000,7 +1049,9 @@ public final class AccessPoliciesClientImpl implements AccessPoliciesClient {
     }
 
     /**
-     * Updates individual properties of an existing access policy resource with the given name.
+     * Updates individual properties of an existing access policy resource.
+     *
+     * <p>Updates individual properties of an existing access policy resource with the given name.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Azure Video Analyzer account name.
@@ -1020,25 +1071,9 @@ public final class AccessPoliciesClientImpl implements AccessPoliciesClient {
     }
 
     /**
-     * Updates individual properties of an existing access policy resource with the given name.
+     * Updates individual properties of an existing access policy resource.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param accountName The Azure Video Analyzer account name.
-     * @param accessPolicyName The Access Policy name.
-     * @param parameters The request parameters.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return access policies help define the authentication rules, and control access to specific video resources.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public AccessPolicyEntityInner update(
-        String resourceGroupName, String accountName, String accessPolicyName, AccessPolicyEntityInner parameters) {
-        return updateAsync(resourceGroupName, accountName, accessPolicyName, parameters).block();
-    }
-
-    /**
-     * Updates individual properties of an existing access policy resource with the given name.
+     * <p>Updates individual properties of an existing access policy resource with the given name.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Azure Video Analyzer account name.
@@ -1062,9 +1097,31 @@ public final class AccessPoliciesClientImpl implements AccessPoliciesClient {
     }
 
     /**
+     * Updates individual properties of an existing access policy resource.
+     *
+     * <p>Updates individual properties of an existing access policy resource with the given name.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param accountName The Azure Video Analyzer account name.
+     * @param accessPolicyName The Access Policy name.
+     * @param parameters The request parameters.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return access policies help define the authentication rules, and control access to specific video resources.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public AccessPolicyEntityInner update(
+        String resourceGroupName, String accountName, String accessPolicyName, AccessPolicyEntityInner parameters) {
+        return updateWithResponse(resourceGroupName, accountName, accessPolicyName, parameters, Context.NONE)
+            .getValue();
+    }
+
+    /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1100,7 +1157,8 @@ public final class AccessPoliciesClientImpl implements AccessPoliciesClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.

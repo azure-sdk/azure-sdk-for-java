@@ -16,33 +16,34 @@ import java.util.List;
 @Fluent
 public final class JwtAuthentication extends AuthenticationBase {
     /*
-     * List of expected token issuers. Token issuer is valid if it matches at
-     * least one of the given values.
+     * List of expected token issuers. Token issuer is valid if it matches at least one of the given values.
      */
     @JsonProperty(value = "issuers")
     private List<String> issuers;
 
     /*
-     * List of expected token audiences. Token audience is valid if it matches
-     * at least one of the given values.
+     * List of expected token audiences. Token audience is valid if it matches at least one of the given values.
      */
     @JsonProperty(value = "audiences")
     private List<String> audiences;
 
     /*
-     * List of additional token claims to be validated. Token must contains all
-     * claims and respective values for it to be valid.
+     * List of additional token claims to be validated. Token must contains all claims and respective values for it to
+     * be valid.
      */
     @JsonProperty(value = "claims")
     private List<TokenClaim> claims;
 
     /*
-     * List of keys which can be used to validate access tokens. Having
-     * multiple keys allow for seamless key rotation of the token signing key.
-     * Token signature must match exactly one key.
+     * List of keys which can be used to validate access tokens. Having multiple keys allow for seamless key rotation
+     * of the token signing key. Token signature must match exactly one key.
      */
     @JsonProperty(value = "keys")
     private List<TokenKey> keys;
+
+    /** Creates an instance of JwtAuthentication class. */
+    public JwtAuthentication() {
+    }
 
     /**
      * Get the issuers property: List of expected token issuers. Token issuer is valid if it matches at least one of the

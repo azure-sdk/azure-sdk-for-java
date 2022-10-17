@@ -20,11 +20,14 @@ import java.util.List;
 @Fluent
 public final class EncoderProcessor extends ProcessorNodeBase {
     /*
-     * The encoder preset, which defines the recipe or instructions on how the
-     * input content should be processed.
+     * The encoder preset, which defines the recipe or instructions on how the input content should be processed.
      */
     @JsonProperty(value = "preset", required = true)
     private EncoderPresetBase preset;
+
+    /** Creates an instance of EncoderProcessor class. */
+    public EncoderProcessor() {
+    }
 
     /**
      * Get the preset property: The encoder preset, which defines the recipe or instructions on how the input content

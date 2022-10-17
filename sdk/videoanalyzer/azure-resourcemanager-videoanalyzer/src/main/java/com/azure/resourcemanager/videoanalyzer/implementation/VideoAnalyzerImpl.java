@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.videoanalyzer.implementation;
 
 import com.azure.core.management.Region;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.videoanalyzer.fluent.models.PrivateEndpointConnectionInner;
 import com.azure.resourcemanager.videoanalyzer.fluent.models.VideoAnalyzerInner;
@@ -56,6 +57,10 @@ public final class VideoAnalyzerImpl implements VideoAnalyzer, VideoAnalyzer.Def
 
     public VideoAnalyzerIdentity identity() {
         return this.innerModel().identity();
+    }
+
+    public SystemData systemData() {
+        return this.innerModel().systemData();
     }
 
     public List<StorageAccount> storageAccounts() {

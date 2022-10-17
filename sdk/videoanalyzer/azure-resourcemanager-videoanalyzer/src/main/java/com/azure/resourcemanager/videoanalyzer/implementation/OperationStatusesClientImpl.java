@@ -70,7 +70,9 @@ public final class OperationStatusesClientImpl implements OperationStatusesClien
     }
 
     /**
-     * Get private endpoint connection operation status.
+     * Get operation status.
+     *
+     * <p>Get private endpoint connection operation status.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Video Analyzer account name.
@@ -129,7 +131,9 @@ public final class OperationStatusesClientImpl implements OperationStatusesClien
     }
 
     /**
-     * Get private endpoint connection operation status.
+     * Get operation status.
+     *
+     * <p>Get private endpoint connection operation status.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Video Analyzer account name.
@@ -186,7 +190,9 @@ public final class OperationStatusesClientImpl implements OperationStatusesClien
     }
 
     /**
-     * Get private endpoint connection operation status.
+     * Get operation status.
+     *
+     * <p>Get private endpoint connection operation status.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Video Analyzer account name.
@@ -205,25 +211,9 @@ public final class OperationStatusesClientImpl implements OperationStatusesClien
     }
 
     /**
-     * Get private endpoint connection operation status.
+     * Get operation status.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param accountName The Video Analyzer account name.
-     * @param name Private endpoint connection name.
-     * @param operationId Operation Id.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return private endpoint connection operation status.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public VideoAnalyzerPrivateEndpointConnectionOperationStatusInner get(
-        String resourceGroupName, String accountName, String name, String operationId) {
-        return getAsync(resourceGroupName, accountName, name, operationId).block();
-    }
-
-    /**
-     * Get private endpoint connection operation status.
+     * <p>Get private endpoint connection operation status.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Video Analyzer account name.
@@ -239,5 +229,25 @@ public final class OperationStatusesClientImpl implements OperationStatusesClien
     public Response<VideoAnalyzerPrivateEndpointConnectionOperationStatusInner> getWithResponse(
         String resourceGroupName, String accountName, String name, String operationId, Context context) {
         return getWithResponseAsync(resourceGroupName, accountName, name, operationId, context).block();
+    }
+
+    /**
+     * Get operation status.
+     *
+     * <p>Get private endpoint connection operation status.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param accountName The Video Analyzer account name.
+     * @param name Private endpoint connection name.
+     * @param operationId Operation Id.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return private endpoint connection operation status.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public VideoAnalyzerPrivateEndpointConnectionOperationStatusInner get(
+        String resourceGroupName, String accountName, String name, String operationId) {
+        return getWithResponse(resourceGroupName, accountName, name, operationId, Context.NONE).getValue();
     }
 }

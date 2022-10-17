@@ -25,11 +25,14 @@ public final class VideoSource extends SourceNodeBase {
     private String videoName;
 
     /*
-     * Describes a sequence of datetime ranges. The video source only picks up
-     * recorded media within these ranges.
+     * Describes a sequence of datetime ranges. The video source only picks up recorded media within these ranges.
      */
     @JsonProperty(value = "timeSequences", required = true)
     private TimeSequenceBase timeSequences;
+
+    /** Creates an instance of VideoSource class. */
+    public VideoSource() {
+    }
 
     /**
      * Get the videoName property: Name of the Video Analyzer video resource to be used as the source.

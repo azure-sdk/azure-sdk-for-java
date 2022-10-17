@@ -13,20 +13,9 @@ import com.azure.resourcemanager.videoanalyzer.fluent.models.VideoAnalyzerInner;
 /** An instance of this class provides access to all the operations defined in VideoAnalyzerOperationResultsClient. */
 public interface VideoAnalyzerOperationResultsClient {
     /**
-     * Get video analyzer operation result.
+     * Get operation result.
      *
-     * @param locationName Location name.
-     * @param operationId Operation Id.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return video analyzer operation result.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    VideoAnalyzerInner get(String locationName, String operationId);
-
-    /**
-     * Get video analyzer operation result.
+     * <p>Get video analyzer operation result.
      *
      * @param locationName Location name.
      * @param operationId Operation Id.
@@ -38,4 +27,19 @@ public interface VideoAnalyzerOperationResultsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<VideoAnalyzerInner> getWithResponse(String locationName, String operationId, Context context);
+
+    /**
+     * Get operation result.
+     *
+     * <p>Get video analyzer operation result.
+     *
+     * @param locationName Location name.
+     * @param operationId Operation Id.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return video analyzer operation result.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    VideoAnalyzerInner get(String locationName, String operationId);
 }

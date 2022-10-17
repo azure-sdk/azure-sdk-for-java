@@ -18,19 +18,21 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @Fluent
 public final class TlsEndpoint extends EndpointBase {
     /*
-     * List of trusted certificate authorities when authenticating a TLS
-     * connection. A null list designates that Azure Video Analyzer's list of
-     * trusted authorities should be used.
+     * List of trusted certificate authorities when authenticating a TLS connection. A null list designates that Azure
+     * Video Analyzer's list of trusted authorities should be used.
      */
     @JsonProperty(value = "trustedCertificates")
     private CertificateSource trustedCertificates;
 
     /*
-     * Validation options to use when authenticating a TLS connection. By
-     * default, strict validation is used.
+     * Validation options to use when authenticating a TLS connection. By default, strict validation is used.
      */
     @JsonProperty(value = "validationOptions")
     private TlsValidationOptions validationOptions;
+
+    /** Creates an instance of TlsEndpoint class. */
+    public TlsEndpoint() {
+    }
 
     /**
      * Get the trustedCertificates property: List of trusted certificate authorities when authenticating a TLS

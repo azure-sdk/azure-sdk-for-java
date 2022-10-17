@@ -25,11 +25,14 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @Fluent
 public class TokenKey {
     /*
-     * JWT token key id. Validation keys are looked up based on the key id
-     * present on the JWT token header.
+     * JWT token key id. Validation keys are looked up based on the key id present on the JWT token header.
      */
     @JsonProperty(value = "kid", required = true)
     private String kid;
+
+    /** Creates an instance of TokenKey class. */
+    public TokenKey() {
+    }
 
     /**
      * Get the kid property: JWT token key id. Validation keys are looked up based on the key id present on the JWT

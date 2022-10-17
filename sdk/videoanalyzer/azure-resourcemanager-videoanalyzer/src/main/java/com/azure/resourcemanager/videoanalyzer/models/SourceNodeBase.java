@@ -22,6 +22,10 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 })
 @Fluent
 public class SourceNodeBase extends NodeBase {
+    /** Creates an instance of SourceNodeBase class. */
+    public SourceNodeBase() {
+    }
+
     /** {@inheritDoc} */
     @Override
     public SourceNodeBase withName(String name) {

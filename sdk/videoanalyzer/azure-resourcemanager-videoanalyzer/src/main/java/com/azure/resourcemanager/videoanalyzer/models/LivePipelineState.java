@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for LivePipelineState. */
+/** Current state of the pipeline (read-only). */
 public final class LivePipelineState extends ExpandableStringEnum<LivePipelineState> {
     /** Static value Inactive for LivePipelineState. */
     public static final LivePipelineState INACTIVE = fromString("Inactive");

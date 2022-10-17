@@ -74,7 +74,9 @@ public final class LivePipelineOperationStatusesClientImpl implements LivePipeli
     }
 
     /**
-     * Get the operation status of a live pipeline.
+     * Get the operation status
+     *
+     * <p>Get the operation status of a live pipeline.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Azure Video Analyzer account name.
@@ -134,7 +136,9 @@ public final class LivePipelineOperationStatusesClientImpl implements LivePipeli
     }
 
     /**
-     * Get the operation status of a live pipeline.
+     * Get the operation status
+     *
+     * <p>Get the operation status of a live pipeline.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Azure Video Analyzer account name.
@@ -192,7 +196,9 @@ public final class LivePipelineOperationStatusesClientImpl implements LivePipeli
     }
 
     /**
-     * Get the operation status of a live pipeline.
+     * Get the operation status
+     *
+     * <p>Get the operation status of a live pipeline.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Azure Video Analyzer account name.
@@ -211,25 +217,9 @@ public final class LivePipelineOperationStatusesClientImpl implements LivePipeli
     }
 
     /**
-     * Get the operation status of a live pipeline.
+     * Get the operation status
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param accountName The Azure Video Analyzer account name.
-     * @param livePipelineName Live pipeline unique identifier.
-     * @param operationId The operation ID.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the operation status of a live pipeline.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public LivePipelineOperationStatusInner get(
-        String resourceGroupName, String accountName, String livePipelineName, String operationId) {
-        return getAsync(resourceGroupName, accountName, livePipelineName, operationId).block();
-    }
-
-    /**
-     * Get the operation status of a live pipeline.
+     * <p>Get the operation status of a live pipeline.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Azure Video Analyzer account name.
@@ -245,5 +235,25 @@ public final class LivePipelineOperationStatusesClientImpl implements LivePipeli
     public Response<LivePipelineOperationStatusInner> getWithResponse(
         String resourceGroupName, String accountName, String livePipelineName, String operationId, Context context) {
         return getWithResponseAsync(resourceGroupName, accountName, livePipelineName, operationId, context).block();
+    }
+
+    /**
+     * Get the operation status
+     *
+     * <p>Get the operation status of a live pipeline.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param accountName The Azure Video Analyzer account name.
+     * @param livePipelineName Live pipeline unique identifier.
+     * @param operationId The operation ID.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the operation status of a live pipeline.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public LivePipelineOperationStatusInner get(
+        String resourceGroupName, String accountName, String livePipelineName, String operationId) {
+        return getWithResponse(resourceGroupName, accountName, livePipelineName, operationId, Context.NONE).getValue();
     }
 }

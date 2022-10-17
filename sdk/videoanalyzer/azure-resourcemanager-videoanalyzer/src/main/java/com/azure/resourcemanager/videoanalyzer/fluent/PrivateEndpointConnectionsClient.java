@@ -15,20 +15,9 @@ import com.azure.resourcemanager.videoanalyzer.models.PrivateEndpointConnections
 /** An instance of this class provides access to all the operations defined in PrivateEndpointConnectionsClient. */
 public interface PrivateEndpointConnectionsClient {
     /**
-     * Get all private endpoint connections under video analyzer account.
+     * Get all private endpoint connections.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param accountName The Video Analyzer account name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all private endpoint connections under video analyzer account.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    PrivateEndpointConnectionListResultInner list(String resourceGroupName, String accountName);
-
-    /**
-     * Get all private endpoint connections under video analyzer account.
+     * <p>Get all private endpoint connections under video analyzer account.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Video Analyzer account name.
@@ -43,21 +32,24 @@ public interface PrivateEndpointConnectionsClient {
         String resourceGroupName, String accountName, Context context);
 
     /**
-     * Get private endpoint connection under video analyzer account.
+     * Get all private endpoint connections.
+     *
+     * <p>Get all private endpoint connections under video analyzer account.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Video Analyzer account name.
-     * @param name Private endpoint connection name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return private endpoint connection under video analyzer account.
+     * @return all private endpoint connections under video analyzer account.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    PrivateEndpointConnectionInner get(String resourceGroupName, String accountName, String name);
+    PrivateEndpointConnectionListResultInner list(String resourceGroupName, String accountName);
 
     /**
-     * Get private endpoint connection under video analyzer account.
+     * Get private endpoint connection.
+     *
+     * <p>Get private endpoint connection under video analyzer account.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Video Analyzer account name.
@@ -73,23 +65,25 @@ public interface PrivateEndpointConnectionsClient {
         String resourceGroupName, String accountName, String name, Context context);
 
     /**
-     * Update private endpoint connection state under video analyzer account.
+     * Get private endpoint connection.
+     *
+     * <p>Get private endpoint connection under video analyzer account.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Video Analyzer account name.
      * @param name Private endpoint connection name.
-     * @param parameters The request parameters.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the Private Endpoint Connection resource.
+     * @return private endpoint connection under video analyzer account.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    PrivateEndpointConnectionInner createOrUpdate(
-        String resourceGroupName, String accountName, String name, PrivateEndpointConnectionInner parameters);
+    PrivateEndpointConnectionInner get(String resourceGroupName, String accountName, String name);
 
     /**
-     * Update private endpoint connection state under video analyzer account.
+     * Update private endpoint connection.
+     *
+     * <p>Update private endpoint connection state under video analyzer account.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Video Analyzer account name.
@@ -110,20 +104,27 @@ public interface PrivateEndpointConnectionsClient {
         Context context);
 
     /**
-     * Delete private endpoint connection under video analyzer account.
+     * Update private endpoint connection.
+     *
+     * <p>Update private endpoint connection state under video analyzer account.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Video Analyzer account name.
      * @param name Private endpoint connection name.
+     * @param parameters The request parameters.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the Private Endpoint Connection resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    void delete(String resourceGroupName, String accountName, String name);
+    PrivateEndpointConnectionInner createOrUpdate(
+        String resourceGroupName, String accountName, String name, PrivateEndpointConnectionInner parameters);
 
     /**
-     * Delete private endpoint connection under video analyzer account.
+     * Delete private endpoint connection.
+     *
+     * <p>Delete private endpoint connection under video analyzer account.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Video Analyzer account name.
@@ -136,4 +137,19 @@ public interface PrivateEndpointConnectionsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<Void> deleteWithResponse(String resourceGroupName, String accountName, String name, Context context);
+
+    /**
+     * Delete private endpoint connection.
+     *
+     * <p>Delete private endpoint connection under video analyzer account.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param accountName The Video Analyzer account name.
+     * @param name Private endpoint connection name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    void delete(String resourceGroupName, String accountName, String name);
 }

@@ -27,17 +27,6 @@ public final class PipelineJobOperationStatusesImpl implements PipelineJobOperat
         this.serviceManager = serviceManager;
     }
 
-    public PipelineJobOperationStatus get(
-        String resourceGroupName, String accountName, String pipelineJobName, String operationId) {
-        PipelineJobOperationStatusInner inner =
-            this.serviceClient().get(resourceGroupName, accountName, pipelineJobName, operationId);
-        if (inner != null) {
-            return new PipelineJobOperationStatusImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
     public Response<PipelineJobOperationStatus> getWithResponse(
         String resourceGroupName, String accountName, String pipelineJobName, String operationId, Context context) {
         Response<PipelineJobOperationStatusInner> inner =
@@ -48,6 +37,17 @@ public final class PipelineJobOperationStatusesImpl implements PipelineJobOperat
                 inner.getStatusCode(),
                 inner.getHeaders(),
                 new PipelineJobOperationStatusImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public PipelineJobOperationStatus get(
+        String resourceGroupName, String accountName, String pipelineJobName, String operationId) {
+        PipelineJobOperationStatusInner inner =
+            this.serviceClient().get(resourceGroupName, accountName, pipelineJobName, operationId);
+        if (inner != null) {
+            return new PipelineJobOperationStatusImpl(inner, this.manager());
         } else {
             return null;
         }

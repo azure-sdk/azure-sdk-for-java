@@ -22,11 +22,14 @@ public final class SecureIotDeviceRemoteTunnel extends TunnelBase {
     private String iotHubName;
 
     /*
-     * The IoT device id to use when establishing the remote tunnel. This
-     * string is case-sensitive.
+     * The IoT device id to use when establishing the remote tunnel. This string is case-sensitive.
      */
     @JsonProperty(value = "deviceId", required = true)
     private String deviceId;
+
+    /** Creates an instance of SecureIotDeviceRemoteTunnel class. */
+    public SecureIotDeviceRemoteTunnel() {
+    }
 
     /**
      * Get the iotHubName property: Name of the IoT Hub.

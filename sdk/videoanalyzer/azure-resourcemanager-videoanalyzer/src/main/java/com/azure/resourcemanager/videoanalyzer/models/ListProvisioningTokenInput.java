@@ -13,12 +13,15 @@ import java.time.OffsetDateTime;
 @Fluent
 public final class ListProvisioningTokenInput {
     /*
-     * The desired expiration date of the registration token. The Azure Video
-     * Analyzer IoT edge module must be initialized and connected to the
-     * Internet prior to the token expiration date.
+     * The desired expiration date of the registration token. The Azure Video Analyzer IoT edge module must be
+     * initialized and connected to the Internet prior to the token expiration date.
      */
     @JsonProperty(value = "expirationDate", required = true)
     private OffsetDateTime expirationDate;
+
+    /** Creates an instance of ListProvisioningTokenInput class. */
+    public ListProvisioningTokenInput() {
+    }
 
     /**
      * Get the expirationDate property: The desired expiration date of the registration token. The Azure Video Analyzer

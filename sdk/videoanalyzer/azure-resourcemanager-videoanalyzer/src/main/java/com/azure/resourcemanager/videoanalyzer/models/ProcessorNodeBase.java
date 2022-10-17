@@ -23,11 +23,14 @@ import java.util.List;
 @Fluent
 public class ProcessorNodeBase extends NodeBase {
     /*
-     * An array of upstream node references within the topology to be used as
-     * inputs for this node.
+     * An array of upstream node references within the topology to be used as inputs for this node.
      */
     @JsonProperty(value = "inputs", required = true)
     private List<NodeInput> inputs;
+
+    /** Creates an instance of ProcessorNodeBase class. */
+    public ProcessorNodeBase() {
+    }
 
     /**
      * Get the inputs property: An array of upstream node references within the topology to be used as inputs for this

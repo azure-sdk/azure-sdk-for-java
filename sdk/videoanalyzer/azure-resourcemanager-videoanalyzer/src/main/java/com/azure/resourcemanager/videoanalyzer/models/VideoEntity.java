@@ -283,18 +283,10 @@ public interface VideoEntity {
     VideoEntity refresh(Context context);
 
     /**
-     * Generates a streaming token which can be used for accessing content from video content URLs, for a video resource
-     * with the given name.
+     * Generates a streaming token which can be used for accessing content from video content URLs.
      *
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return "Video content token grants access to the video content URLs.".
-     */
-    VideoContentToken listContentToken();
-
-    /**
-     * Generates a streaming token which can be used for accessing content from video content URLs, for a video resource
-     * with the given name.
+     * <p>Generates a streaming token which can be used for accessing content from video content URLs, for a video
+     * resource with the given name.
      *
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -303,4 +295,16 @@ public interface VideoEntity {
      * @return "Video content token grants access to the video content URLs." along with {@link Response}.
      */
     Response<VideoContentToken> listContentTokenWithResponse(Context context);
+
+    /**
+     * Generates a streaming token which can be used for accessing content from video content URLs.
+     *
+     * <p>Generates a streaming token which can be used for accessing content from video content URLs, for a video
+     * resource with the given name.
+     *
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return "Video content token grants access to the video content URLs.".
+     */
+    VideoContentToken listContentToken();
 }

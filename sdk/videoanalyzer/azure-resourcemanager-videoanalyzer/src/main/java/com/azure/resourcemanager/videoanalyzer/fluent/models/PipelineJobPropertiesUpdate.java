@@ -16,9 +16,8 @@ import java.util.List;
 @Fluent
 public final class PipelineJobPropertiesUpdate {
     /*
-     * Reference to an existing pipeline topology. When activated, this
-     * pipeline job will process content according to the pipeline topology
-     * definition.
+     * Reference to an existing pipeline topology. When activated, this pipeline job will process content according to
+     * the pipeline topology definition.
      */
     @JsonProperty(value = "topologyName")
     private String topologyName;
@@ -36,8 +35,7 @@ public final class PipelineJobPropertiesUpdate {
     private PipelineJobState state;
 
     /*
-     * The date-time by when this pipeline job will be automatically deleted
-     * from your account.
+     * The date-time by when this pipeline job will be automatically deleted from your account.
      */
     @JsonProperty(value = "expiration", access = JsonProperty.Access.WRITE_ONLY)
     private OffsetDateTime expiration;
@@ -49,15 +47,17 @@ public final class PipelineJobPropertiesUpdate {
     private PipelineJobError error;
 
     /*
-     * List of the instance level parameter values for the user-defined
-     * topology parameters. A pipeline can only define or override parameters
-     * values for parameters which have been declared in the referenced
-     * topology. Topology parameters without a default value must be defined.
-     * Topology parameters with a default value can be optionally be
-     * overridden.
+     * List of the instance level parameter values for the user-defined topology parameters. A pipeline can only define
+     * or override parameters values for parameters which have been declared in the referenced topology. Topology
+     * parameters without a default value must be defined. Topology parameters with a default value can be optionally
+     * be overridden.
      */
     @JsonProperty(value = "parameters")
     private List<ParameterDefinition> parameters;
+
+    /** Creates an instance of PipelineJobPropertiesUpdate class. */
+    public PipelineJobPropertiesUpdate() {
+    }
 
     /**
      * Get the topologyName property: Reference to an existing pipeline topology. When activated, this pipeline job will

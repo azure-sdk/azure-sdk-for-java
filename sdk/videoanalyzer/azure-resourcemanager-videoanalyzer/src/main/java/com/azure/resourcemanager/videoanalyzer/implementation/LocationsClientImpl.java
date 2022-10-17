@@ -69,7 +69,9 @@ public final class LocationsClientImpl implements LocationsClient {
     }
 
     /**
-     * Checks whether the Video Analyzer resource name is available.
+     * Check Name Availability
+     *
+     * <p>Checks whether the Video Analyzer resource name is available.
      *
      * @param locationName Location Name.
      * @param parameters The request parameters.
@@ -118,7 +120,9 @@ public final class LocationsClientImpl implements LocationsClient {
     }
 
     /**
-     * Checks whether the Video Analyzer resource name is available.
+     * Check Name Availability
+     *
+     * <p>Checks whether the Video Analyzer resource name is available.
      *
      * @param locationName Location Name.
      * @param parameters The request parameters.
@@ -165,7 +169,9 @@ public final class LocationsClientImpl implements LocationsClient {
     }
 
     /**
-     * Checks whether the Video Analyzer resource name is available.
+     * Check Name Availability
+     *
+     * <p>Checks whether the Video Analyzer resource name is available.
      *
      * @param locationName Location Name.
      * @param parameters The request parameters.
@@ -182,23 +188,9 @@ public final class LocationsClientImpl implements LocationsClient {
     }
 
     /**
-     * Checks whether the Video Analyzer resource name is available.
+     * Check Name Availability
      *
-     * @param locationName Location Name.
-     * @param parameters The request parameters.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the check availability result.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public CheckNameAvailabilityResponseInner checkNameAvailability(
-        String locationName, CheckNameAvailabilityRequest parameters) {
-        return checkNameAvailabilityAsync(locationName, parameters).block();
-    }
-
-    /**
-     * Checks whether the Video Analyzer resource name is available.
+     * <p>Checks whether the Video Analyzer resource name is available.
      *
      * @param locationName Location Name.
      * @param parameters The request parameters.
@@ -212,5 +204,23 @@ public final class LocationsClientImpl implements LocationsClient {
     public Response<CheckNameAvailabilityResponseInner> checkNameAvailabilityWithResponse(
         String locationName, CheckNameAvailabilityRequest parameters, Context context) {
         return checkNameAvailabilityWithResponseAsync(locationName, parameters, context).block();
+    }
+
+    /**
+     * Check Name Availability
+     *
+     * <p>Checks whether the Video Analyzer resource name is available.
+     *
+     * @param locationName Location Name.
+     * @param parameters The request parameters.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the check availability result.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public CheckNameAvailabilityResponseInner checkNameAvailability(
+        String locationName, CheckNameAvailabilityRequest parameters) {
+        return checkNameAvailabilityWithResponse(locationName, parameters, Context.NONE).getValue();
     }
 }

@@ -23,6 +23,10 @@ public final class Endpoint {
     @JsonProperty(value = "type", required = true)
     private VideoAnalyzerEndpointType type;
 
+    /** Creates an instance of Endpoint class. */
+    public Endpoint() {
+    }
+
     /**
      * Get the endpointUrl property: The URL of the endpoint.
      *

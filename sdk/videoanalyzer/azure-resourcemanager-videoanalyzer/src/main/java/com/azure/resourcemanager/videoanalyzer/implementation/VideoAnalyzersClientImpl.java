@@ -151,7 +151,9 @@ public final class VideoAnalyzersClientImpl implements VideoAnalyzersClient {
     }
 
     /**
-     * Lists the Video Analyzer accounts in the specified resource group.
+     * List Video Analyzer accounts
+     *
+     * <p>Lists the Video Analyzer accounts in the specified resource group.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -193,7 +195,9 @@ public final class VideoAnalyzersClientImpl implements VideoAnalyzersClient {
     }
 
     /**
-     * Lists the Video Analyzer accounts in the specified resource group.
+     * List Video Analyzer accounts
+     *
+     * <p>Lists the Video Analyzer accounts in the specified resource group.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param context The context to associate with this operation.
@@ -234,7 +238,9 @@ public final class VideoAnalyzersClientImpl implements VideoAnalyzersClient {
     }
 
     /**
-     * Lists the Video Analyzer accounts in the specified resource group.
+     * List Video Analyzer accounts
+     *
+     * <p>Lists the Video Analyzer accounts in the specified resource group.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -248,21 +254,9 @@ public final class VideoAnalyzersClientImpl implements VideoAnalyzersClient {
     }
 
     /**
-     * Lists the Video Analyzer accounts in the specified resource group.
+     * List Video Analyzer accounts
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a collection of VideoAnalyzer items.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public VideoAnalyzerCollectionInner list(String resourceGroupName) {
-        return listAsync(resourceGroupName).block();
-    }
-
-    /**
-     * Lists the Video Analyzer accounts in the specified resource group.
+     * <p>Lists the Video Analyzer accounts in the specified resource group.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param context The context to associate with this operation.
@@ -277,7 +271,25 @@ public final class VideoAnalyzersClientImpl implements VideoAnalyzersClient {
     }
 
     /**
-     * Get the details of the specified Video Analyzer account.
+     * List Video Analyzer accounts
+     *
+     * <p>Lists the Video Analyzer accounts in the specified resource group.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a collection of VideoAnalyzer items.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public VideoAnalyzerCollectionInner list(String resourceGroupName) {
+        return listWithResponse(resourceGroupName, Context.NONE).getValue();
+    }
+
+    /**
+     * Get a Video Analyzer account
+     *
+     * <p>Get the details of the specified Video Analyzer account.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Video Analyzer account name.
@@ -326,7 +338,9 @@ public final class VideoAnalyzersClientImpl implements VideoAnalyzersClient {
     }
 
     /**
-     * Get the details of the specified Video Analyzer account.
+     * Get a Video Analyzer account
+     *
+     * <p>Get the details of the specified Video Analyzer account.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Video Analyzer account name.
@@ -373,7 +387,9 @@ public final class VideoAnalyzersClientImpl implements VideoAnalyzersClient {
     }
 
     /**
-     * Get the details of the specified Video Analyzer account.
+     * Get a Video Analyzer account
+     *
+     * <p>Get the details of the specified Video Analyzer account.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Video Analyzer account name.
@@ -389,22 +405,9 @@ public final class VideoAnalyzersClientImpl implements VideoAnalyzersClient {
     }
 
     /**
-     * Get the details of the specified Video Analyzer account.
+     * Get a Video Analyzer account
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param accountName The Video Analyzer account name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the details of the specified Video Analyzer account.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public VideoAnalyzerInner getByResourceGroup(String resourceGroupName, String accountName) {
-        return getByResourceGroupAsync(resourceGroupName, accountName).block();
-    }
-
-    /**
-     * Get the details of the specified Video Analyzer account.
+     * <p>Get the details of the specified Video Analyzer account.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Video Analyzer account name.
@@ -421,7 +424,26 @@ public final class VideoAnalyzersClientImpl implements VideoAnalyzersClient {
     }
 
     /**
-     * Create or update an instance of a Video Analyzer account.
+     * Get a Video Analyzer account
+     *
+     * <p>Get the details of the specified Video Analyzer account.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param accountName The Video Analyzer account name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the details of the specified Video Analyzer account.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public VideoAnalyzerInner getByResourceGroup(String resourceGroupName, String accountName) {
+        return getByResourceGroupWithResponse(resourceGroupName, accountName, Context.NONE).getValue();
+    }
+
+    /**
+     * Create or update a Video Analyzer account
+     *
+     * <p>Create or update an instance of a Video Analyzer account.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Video Analyzer account name.
@@ -476,7 +498,9 @@ public final class VideoAnalyzersClientImpl implements VideoAnalyzersClient {
     }
 
     /**
-     * Create or update an instance of a Video Analyzer account.
+     * Create or update a Video Analyzer account
+     *
+     * <p>Create or update an instance of a Video Analyzer account.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Video Analyzer account name.
@@ -529,7 +553,9 @@ public final class VideoAnalyzersClientImpl implements VideoAnalyzersClient {
     }
 
     /**
-     * Create or update an instance of a Video Analyzer account.
+     * Create or update a Video Analyzer account
+     *
+     * <p>Create or update an instance of a Video Analyzer account.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Video Analyzer account name.
@@ -555,7 +581,9 @@ public final class VideoAnalyzersClientImpl implements VideoAnalyzersClient {
     }
 
     /**
-     * Create or update an instance of a Video Analyzer account.
+     * Create or update a Video Analyzer account
+     *
+     * <p>Create or update an instance of a Video Analyzer account.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Video Analyzer account name.
@@ -579,7 +607,9 @@ public final class VideoAnalyzersClientImpl implements VideoAnalyzersClient {
     }
 
     /**
-     * Create or update an instance of a Video Analyzer account.
+     * Create or update a Video Analyzer account
+     *
+     * <p>Create or update an instance of a Video Analyzer account.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Video Analyzer account name.
@@ -596,7 +626,9 @@ public final class VideoAnalyzersClientImpl implements VideoAnalyzersClient {
     }
 
     /**
-     * Create or update an instance of a Video Analyzer account.
+     * Create or update a Video Analyzer account
+     *
+     * <p>Create or update an instance of a Video Analyzer account.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Video Analyzer account name.
@@ -614,7 +646,9 @@ public final class VideoAnalyzersClientImpl implements VideoAnalyzersClient {
     }
 
     /**
-     * Create or update an instance of a Video Analyzer account.
+     * Create or update a Video Analyzer account
+     *
+     * <p>Create or update an instance of a Video Analyzer account.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Video Analyzer account name.
@@ -633,7 +667,9 @@ public final class VideoAnalyzersClientImpl implements VideoAnalyzersClient {
     }
 
     /**
-     * Create or update an instance of a Video Analyzer account.
+     * Create or update a Video Analyzer account
+     *
+     * <p>Create or update an instance of a Video Analyzer account.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Video Analyzer account name.
@@ -653,7 +689,9 @@ public final class VideoAnalyzersClientImpl implements VideoAnalyzersClient {
     }
 
     /**
-     * Create or update an instance of a Video Analyzer account.
+     * Create or update a Video Analyzer account
+     *
+     * <p>Create or update an instance of a Video Analyzer account.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Video Analyzer account name.
@@ -670,7 +708,9 @@ public final class VideoAnalyzersClientImpl implements VideoAnalyzersClient {
     }
 
     /**
-     * Create or update an instance of a Video Analyzer account.
+     * Create or update a Video Analyzer account
+     *
+     * <p>Create or update an instance of a Video Analyzer account.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Video Analyzer account name.
@@ -688,7 +728,9 @@ public final class VideoAnalyzersClientImpl implements VideoAnalyzersClient {
     }
 
     /**
-     * Delete the specified Video Analyzer account.
+     * Delete a Video Analyzer account.
+     *
+     * <p>Delete the specified Video Analyzer account.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Video Analyzer account name.
@@ -735,7 +777,9 @@ public final class VideoAnalyzersClientImpl implements VideoAnalyzersClient {
     }
 
     /**
-     * Delete the specified Video Analyzer account.
+     * Delete a Video Analyzer account.
+     *
+     * <p>Delete the specified Video Analyzer account.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Video Analyzer account name.
@@ -781,7 +825,9 @@ public final class VideoAnalyzersClientImpl implements VideoAnalyzersClient {
     }
 
     /**
-     * Delete the specified Video Analyzer account.
+     * Delete a Video Analyzer account.
+     *
+     * <p>Delete the specified Video Analyzer account.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Video Analyzer account name.
@@ -796,21 +842,9 @@ public final class VideoAnalyzersClientImpl implements VideoAnalyzersClient {
     }
 
     /**
-     * Delete the specified Video Analyzer account.
+     * Delete a Video Analyzer account.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param accountName The Video Analyzer account name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public void delete(String resourceGroupName, String accountName) {
-        deleteAsync(resourceGroupName, accountName).block();
-    }
-
-    /**
-     * Delete the specified Video Analyzer account.
+     * <p>Delete the specified Video Analyzer account.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Video Analyzer account name.
@@ -826,7 +860,25 @@ public final class VideoAnalyzersClientImpl implements VideoAnalyzersClient {
     }
 
     /**
-     * Updates an existing instance of Video Analyzer account.
+     * Delete a Video Analyzer account.
+     *
+     * <p>Delete the specified Video Analyzer account.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param accountName The Video Analyzer account name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public void delete(String resourceGroupName, String accountName) {
+        deleteWithResponse(resourceGroupName, accountName, Context.NONE);
+    }
+
+    /**
+     * Update a Video Analyzer account
+     *
+     * <p>Updates an existing instance of Video Analyzer account.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Video Analyzer account name.
@@ -881,7 +933,9 @@ public final class VideoAnalyzersClientImpl implements VideoAnalyzersClient {
     }
 
     /**
-     * Updates an existing instance of Video Analyzer account.
+     * Update a Video Analyzer account
+     *
+     * <p>Updates an existing instance of Video Analyzer account.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Video Analyzer account name.
@@ -934,7 +988,9 @@ public final class VideoAnalyzersClientImpl implements VideoAnalyzersClient {
     }
 
     /**
-     * Updates an existing instance of Video Analyzer account.
+     * Update a Video Analyzer account
+     *
+     * <p>Updates an existing instance of Video Analyzer account.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Video Analyzer account name.
@@ -959,7 +1015,9 @@ public final class VideoAnalyzersClientImpl implements VideoAnalyzersClient {
     }
 
     /**
-     * Updates an existing instance of Video Analyzer account.
+     * Update a Video Analyzer account
+     *
+     * <p>Updates an existing instance of Video Analyzer account.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Video Analyzer account name.
@@ -983,7 +1041,9 @@ public final class VideoAnalyzersClientImpl implements VideoAnalyzersClient {
     }
 
     /**
-     * Updates an existing instance of Video Analyzer account.
+     * Update a Video Analyzer account
+     *
+     * <p>Updates an existing instance of Video Analyzer account.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Video Analyzer account name.
@@ -1000,7 +1060,9 @@ public final class VideoAnalyzersClientImpl implements VideoAnalyzersClient {
     }
 
     /**
-     * Updates an existing instance of Video Analyzer account.
+     * Update a Video Analyzer account
+     *
+     * <p>Updates an existing instance of Video Analyzer account.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Video Analyzer account name.
@@ -1018,7 +1080,9 @@ public final class VideoAnalyzersClientImpl implements VideoAnalyzersClient {
     }
 
     /**
-     * Updates an existing instance of Video Analyzer account.
+     * Update a Video Analyzer account
+     *
+     * <p>Updates an existing instance of Video Analyzer account.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Video Analyzer account name.
@@ -1037,7 +1101,9 @@ public final class VideoAnalyzersClientImpl implements VideoAnalyzersClient {
     }
 
     /**
-     * Updates an existing instance of Video Analyzer account.
+     * Update a Video Analyzer account
+     *
+     * <p>Updates an existing instance of Video Analyzer account.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Video Analyzer account name.
@@ -1057,7 +1123,9 @@ public final class VideoAnalyzersClientImpl implements VideoAnalyzersClient {
     }
 
     /**
-     * Updates an existing instance of Video Analyzer account.
+     * Update a Video Analyzer account
+     *
+     * <p>Updates an existing instance of Video Analyzer account.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Video Analyzer account name.
@@ -1073,7 +1141,9 @@ public final class VideoAnalyzersClientImpl implements VideoAnalyzersClient {
     }
 
     /**
-     * Updates an existing instance of Video Analyzer account.
+     * Update a Video Analyzer account
+     *
+     * <p>Updates an existing instance of Video Analyzer account.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Video Analyzer account name.
@@ -1091,7 +1161,9 @@ public final class VideoAnalyzersClientImpl implements VideoAnalyzersClient {
     }
 
     /**
-     * List all Video Analyzer accounts in the specified subscription.
+     * List Video Analyzer accounts
+     *
+     * <p>List all Video Analyzer accounts in the specified subscription.
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1126,7 +1198,9 @@ public final class VideoAnalyzersClientImpl implements VideoAnalyzersClient {
     }
 
     /**
-     * List all Video Analyzer accounts in the specified subscription.
+     * List Video Analyzer accounts
+     *
+     * <p>List all Video Analyzer accounts in the specified subscription.
      *
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1160,7 +1234,9 @@ public final class VideoAnalyzersClientImpl implements VideoAnalyzersClient {
     }
 
     /**
-     * List all Video Analyzer accounts in the specified subscription.
+     * List Video Analyzer accounts
+     *
+     * <p>List all Video Analyzer accounts in the specified subscription.
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1172,19 +1248,9 @@ public final class VideoAnalyzersClientImpl implements VideoAnalyzersClient {
     }
 
     /**
-     * List all Video Analyzer accounts in the specified subscription.
+     * List Video Analyzer accounts
      *
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a collection of VideoAnalyzer items.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public VideoAnalyzerCollectionInner listBySubscription() {
-        return listBySubscriptionAsync().block();
-    }
-
-    /**
-     * List all Video Analyzer accounts in the specified subscription.
+     * <p>List all Video Analyzer accounts in the specified subscription.
      *
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1195,5 +1261,19 @@ public final class VideoAnalyzersClientImpl implements VideoAnalyzersClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<VideoAnalyzerCollectionInner> listBySubscriptionWithResponse(Context context) {
         return listBySubscriptionWithResponseAsync(context).block();
+    }
+
+    /**
+     * List Video Analyzer accounts
+     *
+     * <p>List all Video Analyzer accounts in the specified subscription.
+     *
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a collection of VideoAnalyzer items.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public VideoAnalyzerCollectionInner listBySubscription() {
+        return listBySubscriptionWithResponse(Context.NONE).getValue();
     }
 }

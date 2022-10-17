@@ -307,7 +307,9 @@ public interface LivePipeline {
     LivePipeline refresh(Context context);
 
     /**
-     * Activates a live pipeline with the given name.
+     * Activates a live pipeline.
+     *
+     * <p>Activates a live pipeline with the given name.
      *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -315,7 +317,9 @@ public interface LivePipeline {
     void activate();
 
     /**
-     * Activates a live pipeline with the given name.
+     * Activates a live pipeline.
+     *
+     * <p>Activates a live pipeline with the given name.
      *
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -325,7 +329,9 @@ public interface LivePipeline {
     void activate(Context context);
 
     /**
-     * Deactivates a live pipeline with the given name.
+     * Deactivates a live pipeline.
+     *
+     * <p>Deactivates a live pipeline with the given name.
      *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -333,7 +339,9 @@ public interface LivePipeline {
     void deactivate();
 
     /**
-     * Deactivates a live pipeline with the given name.
+     * Deactivates a live pipeline.
+     *
+     * <p>Deactivates a live pipeline with the given name.
      *
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.

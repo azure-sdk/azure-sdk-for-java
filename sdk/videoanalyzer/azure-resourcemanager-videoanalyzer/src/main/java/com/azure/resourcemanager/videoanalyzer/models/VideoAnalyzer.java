@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.videoanalyzer.models;
 
 import com.azure.core.management.Region;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.videoanalyzer.fluent.models.VideoAnalyzerInner;
 import java.util.List;
@@ -53,6 +54,13 @@ public interface VideoAnalyzer {
      * @return the identity value.
      */
     VideoAnalyzerIdentity identity();
+
+    /**
+     * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     *
+     * @return the systemData value.
+     */
+    SystemData systemData();
 
     /**
      * Gets the storageAccounts property: The storage accounts for this resource.

@@ -62,7 +62,9 @@ public final class OperationsClientImpl implements OperationsClient {
     }
 
     /**
-     * Lists all the Media operations.
+     * List Operations
+     *
+     * <p>Lists all the Media operations.
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -84,7 +86,9 @@ public final class OperationsClientImpl implements OperationsClient {
     }
 
     /**
-     * Lists all the Media operations.
+     * List Operations
+     *
+     * <p>Lists all the Media operations.
      *
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -106,7 +110,9 @@ public final class OperationsClientImpl implements OperationsClient {
     }
 
     /**
-     * Lists all the Media operations.
+     * List Operations
+     *
+     * <p>Lists all the Media operations.
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -118,19 +124,9 @@ public final class OperationsClientImpl implements OperationsClient {
     }
 
     /**
-     * Lists all the Media operations.
+     * List Operations
      *
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a collection of Operation items.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public OperationCollectionInner list() {
-        return listAsync().block();
-    }
-
-    /**
-     * Lists all the Media operations.
+     * <p>Lists all the Media operations.
      *
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -141,5 +137,19 @@ public final class OperationsClientImpl implements OperationsClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<OperationCollectionInner> listWithResponse(Context context) {
         return listWithResponseAsync(context).block();
+    }
+
+    /**
+     * List Operations
+     *
+     * <p>Lists all the Media operations.
+     *
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a collection of Operation items.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public OperationCollectionInner list() {
+        return listWithResponse(Context.NONE).getValue();
     }
 }

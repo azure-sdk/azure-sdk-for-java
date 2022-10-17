@@ -24,6 +24,10 @@ public final class AccessPolicyProperties {
     @JsonProperty(value = "authentication")
     private AuthenticationBase authentication;
 
+    /** Creates an instance of AccessPolicyProperties class. */
+    public AccessPolicyProperties() {
+    }
+
     /**
      * Get the role property: Defines the access level granted by this policy.
      *

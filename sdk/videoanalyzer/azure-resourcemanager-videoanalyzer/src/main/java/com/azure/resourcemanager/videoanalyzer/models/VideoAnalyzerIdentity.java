@@ -26,6 +26,10 @@ public class VideoAnalyzerIdentity {
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, UserAssignedManagedIdentity> userAssignedIdentities;
 
+    /** Creates an instance of VideoAnalyzerIdentity class. */
+    public VideoAnalyzerIdentity() {
+    }
+
     /**
      * Get the type property: The identity type.
      *

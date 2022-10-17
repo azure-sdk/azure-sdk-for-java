@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for AccessPolicyRsaAlgo. */
+/** RSA algorithm to be used: RS256, RS384 or RS512. */
 public final class AccessPolicyRsaAlgo extends ExpandableStringEnum<AccessPolicyRsaAlgo> {
     /** Static value RS256 for AccessPolicyRsaAlgo. */
     public static final AccessPolicyRsaAlgo RS256 = fromString("RS256");

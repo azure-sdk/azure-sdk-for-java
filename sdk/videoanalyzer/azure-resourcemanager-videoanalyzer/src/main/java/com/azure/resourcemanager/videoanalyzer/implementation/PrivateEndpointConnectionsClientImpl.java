@@ -124,7 +124,9 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
     }
 
     /**
-     * Get all private endpoint connections under video analyzer account.
+     * Get all private endpoint connections.
+     *
+     * <p>Get all private endpoint connections under video analyzer account.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Video Analyzer account name.
@@ -173,7 +175,9 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
     }
 
     /**
-     * Get all private endpoint connections under video analyzer account.
+     * Get all private endpoint connections.
+     *
+     * <p>Get all private endpoint connections under video analyzer account.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Video Analyzer account name.
@@ -220,7 +224,9 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
     }
 
     /**
-     * Get all private endpoint connections under video analyzer account.
+     * Get all private endpoint connections.
+     *
+     * <p>Get all private endpoint connections under video analyzer account.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Video Analyzer account name.
@@ -235,22 +241,9 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
     }
 
     /**
-     * Get all private endpoint connections under video analyzer account.
+     * Get all private endpoint connections.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param accountName The Video Analyzer account name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all private endpoint connections under video analyzer account.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public PrivateEndpointConnectionListResultInner list(String resourceGroupName, String accountName) {
-        return listAsync(resourceGroupName, accountName).block();
-    }
-
-    /**
-     * Get all private endpoint connections under video analyzer account.
+     * <p>Get all private endpoint connections under video analyzer account.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Video Analyzer account name.
@@ -267,7 +260,26 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
     }
 
     /**
-     * Get private endpoint connection under video analyzer account.
+     * Get all private endpoint connections.
+     *
+     * <p>Get all private endpoint connections under video analyzer account.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param accountName The Video Analyzer account name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return all private endpoint connections under video analyzer account.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public PrivateEndpointConnectionListResultInner list(String resourceGroupName, String accountName) {
+        return listWithResponse(resourceGroupName, accountName, Context.NONE).getValue();
+    }
+
+    /**
+     * Get private endpoint connection.
+     *
+     * <p>Get private endpoint connection under video analyzer account.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Video Analyzer account name.
@@ -321,7 +333,9 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
     }
 
     /**
-     * Get private endpoint connection under video analyzer account.
+     * Get private endpoint connection.
+     *
+     * <p>Get private endpoint connection under video analyzer account.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Video Analyzer account name.
@@ -373,7 +387,9 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
     }
 
     /**
-     * Get private endpoint connection under video analyzer account.
+     * Get private endpoint connection.
+     *
+     * <p>Get private endpoint connection under video analyzer account.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Video Analyzer account name.
@@ -390,23 +406,9 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
     }
 
     /**
-     * Get private endpoint connection under video analyzer account.
+     * Get private endpoint connection.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param accountName The Video Analyzer account name.
-     * @param name Private endpoint connection name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return private endpoint connection under video analyzer account.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public PrivateEndpointConnectionInner get(String resourceGroupName, String accountName, String name) {
-        return getAsync(resourceGroupName, accountName, name).block();
-    }
-
-    /**
-     * Get private endpoint connection under video analyzer account.
+     * <p>Get private endpoint connection under video analyzer account.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Video Analyzer account name.
@@ -424,7 +426,27 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
     }
 
     /**
-     * Update private endpoint connection state under video analyzer account.
+     * Get private endpoint connection.
+     *
+     * <p>Get private endpoint connection under video analyzer account.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param accountName The Video Analyzer account name.
+     * @param name Private endpoint connection name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return private endpoint connection under video analyzer account.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public PrivateEndpointConnectionInner get(String resourceGroupName, String accountName, String name) {
+        return getWithResponse(resourceGroupName, accountName, name, Context.NONE).getValue();
+    }
+
+    /**
+     * Update private endpoint connection.
+     *
+     * <p>Update private endpoint connection state under video analyzer account.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Video Analyzer account name.
@@ -484,7 +506,9 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
     }
 
     /**
-     * Update private endpoint connection state under video analyzer account.
+     * Update private endpoint connection.
+     *
+     * <p>Update private endpoint connection state under video analyzer account.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Video Analyzer account name.
@@ -546,7 +570,9 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
     }
 
     /**
-     * Update private endpoint connection state under video analyzer account.
+     * Update private endpoint connection.
+     *
+     * <p>Update private endpoint connection state under video analyzer account.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Video Analyzer account name.
@@ -565,25 +591,9 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
     }
 
     /**
-     * Update private endpoint connection state under video analyzer account.
+     * Update private endpoint connection.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param accountName The Video Analyzer account name.
-     * @param name Private endpoint connection name.
-     * @param parameters The request parameters.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the Private Endpoint Connection resource.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public PrivateEndpointConnectionInner createOrUpdate(
-        String resourceGroupName, String accountName, String name, PrivateEndpointConnectionInner parameters) {
-        return createOrUpdateAsync(resourceGroupName, accountName, name, parameters).block();
-    }
-
-    /**
-     * Update private endpoint connection state under video analyzer account.
+     * <p>Update private endpoint connection state under video analyzer account.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Video Analyzer account name.
@@ -606,7 +616,29 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
     }
 
     /**
-     * Delete private endpoint connection under video analyzer account.
+     * Update private endpoint connection.
+     *
+     * <p>Update private endpoint connection state under video analyzer account.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param accountName The Video Analyzer account name.
+     * @param name Private endpoint connection name.
+     * @param parameters The request parameters.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the Private Endpoint Connection resource.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public PrivateEndpointConnectionInner createOrUpdate(
+        String resourceGroupName, String accountName, String name, PrivateEndpointConnectionInner parameters) {
+        return createOrUpdateWithResponse(resourceGroupName, accountName, name, parameters, Context.NONE).getValue();
+    }
+
+    /**
+     * Delete private endpoint connection.
+     *
+     * <p>Delete private endpoint connection under video analyzer account.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Video Analyzer account name.
@@ -658,7 +690,9 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
     }
 
     /**
-     * Delete private endpoint connection under video analyzer account.
+     * Delete private endpoint connection.
+     *
+     * <p>Delete private endpoint connection under video analyzer account.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Video Analyzer account name.
@@ -709,7 +743,9 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
     }
 
     /**
-     * Delete private endpoint connection under video analyzer account.
+     * Delete private endpoint connection.
+     *
+     * <p>Delete private endpoint connection under video analyzer account.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Video Analyzer account name.
@@ -725,22 +761,9 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
     }
 
     /**
-     * Delete private endpoint connection under video analyzer account.
+     * Delete private endpoint connection.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param accountName The Video Analyzer account name.
-     * @param name Private endpoint connection name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public void delete(String resourceGroupName, String accountName, String name) {
-        deleteAsync(resourceGroupName, accountName, name).block();
-    }
-
-    /**
-     * Delete private endpoint connection under video analyzer account.
+     * <p>Delete private endpoint connection under video analyzer account.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Video Analyzer account name.
@@ -755,5 +778,22 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
     public Response<Void> deleteWithResponse(
         String resourceGroupName, String accountName, String name, Context context) {
         return deleteWithResponseAsync(resourceGroupName, accountName, name, context).block();
+    }
+
+    /**
+     * Delete private endpoint connection.
+     *
+     * <p>Delete private endpoint connection under video analyzer account.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param accountName The Video Analyzer account name.
+     * @param name Private endpoint connection name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public void delete(String resourceGroupName, String accountName, String name) {
+        deleteWithResponse(resourceGroupName, accountName, name, Context.NONE);
     }
 }

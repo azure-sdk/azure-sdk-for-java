@@ -34,6 +34,10 @@ public final class VideoAnalyzerUpdate {
     @JsonProperty(value = "identity")
     private VideoAnalyzerIdentity identity;
 
+    /** Creates an instance of VideoAnalyzerUpdate class. */
+    public VideoAnalyzerUpdate() {
+    }
+
     /**
      * Get the tags property: Resource tags.
      *

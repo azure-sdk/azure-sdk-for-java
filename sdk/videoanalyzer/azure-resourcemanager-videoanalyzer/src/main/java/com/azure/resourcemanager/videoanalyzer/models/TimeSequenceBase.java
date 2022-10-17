@@ -23,6 +23,10 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 })
 @Immutable
 public class TimeSequenceBase {
+    /** Creates an instance of TimeSequenceBase class. */
+    public TimeSequenceBase() {
+    }
+
     /**
      * Validates the instance.
      *

@@ -23,6 +23,10 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 })
 @Immutable
 public class TunnelBase {
+    /** Creates an instance of TunnelBase class. */
+    public TunnelBase() {
+    }
+
     /**
      * Validates the instance.
      *

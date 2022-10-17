@@ -14,20 +14,9 @@ import com.azure.resourcemanager.videoanalyzer.fluent.models.PrivateLinkResource
 /** An instance of this class provides access to all the operations defined in PrivateLinkResourcesClient. */
 public interface PrivateLinkResourcesClient {
     /**
-     * Get list of group IDs for video analyzer account.
+     * Get list of group IDs.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param accountName The Video Analyzer account name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of group IDs for video analyzer account.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    PrivateLinkResourceListResultInner list(String resourceGroupName, String accountName);
-
-    /**
-     * Get list of group IDs for video analyzer account.
+     * <p>Get list of group IDs for video analyzer account.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Video Analyzer account name.
@@ -42,21 +31,24 @@ public interface PrivateLinkResourcesClient {
         String resourceGroupName, String accountName, Context context);
 
     /**
-     * Get group ID for video analyzer account.
+     * Get list of group IDs.
+     *
+     * <p>Get list of group IDs for video analyzer account.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Video Analyzer account name.
-     * @param name Name of the private link resource (Group ID).
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return group ID for video analyzer account.
+     * @return list of group IDs for video analyzer account.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    PrivateLinkResourceInner get(String resourceGroupName, String accountName, String name);
+    PrivateLinkResourceListResultInner list(String resourceGroupName, String accountName);
 
     /**
-     * Get group ID for video analyzer account.
+     * Get group ID.
+     *
+     * <p>Get group ID for video analyzer account.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Video Analyzer account name.
@@ -70,4 +62,20 @@ public interface PrivateLinkResourcesClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<PrivateLinkResourceInner> getWithResponse(
         String resourceGroupName, String accountName, String name, Context context);
+
+    /**
+     * Get group ID.
+     *
+     * <p>Get group ID for video analyzer account.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param accountName The Video Analyzer account name.
+     * @param name Name of the private link resource (Group ID).
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return group ID for video analyzer account.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    PrivateLinkResourceInner get(String resourceGroupName, String accountName, String name);
 }

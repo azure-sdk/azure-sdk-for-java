@@ -11,18 +11,20 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Fluent
 public final class TlsValidationOptions {
     /*
-     * When set to 'true' causes the certificate subject name validation to be
-     * skipped. Default is 'false'.
+     * When set to 'true' causes the certificate subject name validation to be skipped. Default is 'false'.
      */
     @JsonProperty(value = "ignoreHostname")
     private String ignoreHostname;
 
     /*
-     * When set to 'true' causes the certificate chain trust validation to be
-     * skipped. Default is 'false'.
+     * When set to 'true' causes the certificate chain trust validation to be skipped. Default is 'false'.
      */
     @JsonProperty(value = "ignoreSignature")
     private String ignoreSignature;
+
+    /** Creates an instance of TlsValidationOptions class. */
+    public TlsValidationOptions() {
+    }
 
     /**
      * Get the ignoreHostname property: When set to 'true' causes the certificate subject name validation to be skipped.

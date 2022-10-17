@@ -19,19 +19,22 @@ import java.time.OffsetDateTime;
 @Immutable
 public final class EdgeModuleProvisioningTokenInner {
     /*
-     * The expiration date of the registration token. The Azure Video Analyzer
-     * IoT edge module must be initialized and connected to the Internet prior
-     * to the token expiration date.
+     * The expiration date of the registration token. The Azure Video Analyzer IoT edge module must be initialized and
+     * connected to the Internet prior to the token expiration date.
      */
     @JsonProperty(value = "expirationDate", access = JsonProperty.Access.WRITE_ONLY)
     private OffsetDateTime expirationDate;
 
     /*
-     * The token blob to be provided to the Azure Video Analyzer IoT edge
-     * module through the Azure IoT Edge module twin properties.
+     * The token blob to be provided to the Azure Video Analyzer IoT edge module through the Azure IoT Edge module twin
+     * properties.
      */
     @JsonProperty(value = "token", access = JsonProperty.Access.WRITE_ONLY)
     private String token;
+
+    /** Creates an instance of EdgeModuleProvisioningTokenInner class. */
+    public EdgeModuleProvisioningTokenInner() {
+    }
 
     /**
      * Get the expirationDate property: The expiration date of the registration token. The Azure Video Analyzer IoT edge

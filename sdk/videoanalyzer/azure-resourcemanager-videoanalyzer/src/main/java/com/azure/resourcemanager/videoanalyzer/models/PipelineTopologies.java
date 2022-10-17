@@ -11,7 +11,9 @@ import com.azure.core.util.Context;
 /** Resource collection API of PipelineTopologies. */
 public interface PipelineTopologies {
     /**
-     * Retrieves a list of pipeline topologies that have been added to the account, if any, along with their JSON
+     * Retrieves a list of pipeline topologies.
+     *
+     * <p>Retrieves a list of pipeline topologies that have been added to the account, if any, along with their JSON
      * representation.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -24,7 +26,9 @@ public interface PipelineTopologies {
     PagedIterable<PipelineTopology> list(String resourceGroupName, String accountName);
 
     /**
-     * Retrieves a list of pipeline topologies that have been added to the account, if any, along with their JSON
+     * Retrieves a list of pipeline topologies.
+     *
+     * <p>Retrieves a list of pipeline topologies that have been added to the account, if any, along with their JSON
      * representation.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -42,22 +46,9 @@ public interface PipelineTopologies {
         String resourceGroupName, String accountName, String filter, Integer top, Context context);
 
     /**
-     * Retrieves a specific pipeline topology by name. If a topology with that name has been previously created, the
-     * call will return the JSON representation of that topology.
+     * Retrieves a specific pipeline topology by name.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param accountName The Azure Video Analyzer account name.
-     * @param pipelineTopologyName Pipeline topology unique identifier.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return pipeline topology describes the processing steps to be applied when processing content for a particular
-     *     outcome.
-     */
-    PipelineTopology get(String resourceGroupName, String accountName, String pipelineTopologyName);
-
-    /**
-     * Retrieves a specific pipeline topology by name. If a topology with that name has been previously created, the
+     * <p>Retrieves a specific pipeline topology by name. If a topology with that name has been previously created, the
      * call will return the JSON representation of that topology.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -74,8 +65,10 @@ public interface PipelineTopologies {
         String resourceGroupName, String accountName, String pipelineTopologyName, Context context);
 
     /**
-     * Deletes a pipeline topology with the given name. This method should be called after all instances of the topology
-     * have been stopped and deleted.
+     * Retrieves a specific pipeline topology by name.
+     *
+     * <p>Retrieves a specific pipeline topology by name. If a topology with that name has been previously created, the
+     * call will return the JSON representation of that topology.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Azure Video Analyzer account name.
@@ -83,12 +76,16 @@ public interface PipelineTopologies {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return pipeline topology describes the processing steps to be applied when processing content for a particular
+     *     outcome.
      */
-    void delete(String resourceGroupName, String accountName, String pipelineTopologyName);
+    PipelineTopology get(String resourceGroupName, String accountName, String pipelineTopologyName);
 
     /**
-     * Deletes a pipeline topology with the given name. This method should be called after all instances of the topology
-     * have been stopped and deleted.
+     * Deletes a pipeline topology.
+     *
+     * <p>Deletes a pipeline topology with the given name. This method should be called after all instances of the
+     * topology have been stopped and deleted.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Azure Video Analyzer account name.
@@ -103,7 +100,24 @@ public interface PipelineTopologies {
         String resourceGroupName, String accountName, String pipelineTopologyName, Context context);
 
     /**
-     * Retrieves a specific pipeline topology by name. If a topology with that name has been previously created, the
+     * Deletes a pipeline topology.
+     *
+     * <p>Deletes a pipeline topology with the given name. This method should be called after all instances of the
+     * topology have been stopped and deleted.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param accountName The Azure Video Analyzer account name.
+     * @param pipelineTopologyName Pipeline topology unique identifier.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void delete(String resourceGroupName, String accountName, String pipelineTopologyName);
+
+    /**
+     * Retrieves a specific pipeline topology by name.
+     *
+     * <p>Retrieves a specific pipeline topology by name. If a topology with that name has been previously created, the
      * call will return the JSON representation of that topology.
      *
      * @param id the resource ID.
@@ -116,7 +130,9 @@ public interface PipelineTopologies {
     PipelineTopology getById(String id);
 
     /**
-     * Retrieves a specific pipeline topology by name. If a topology with that name has been previously created, the
+     * Retrieves a specific pipeline topology by name.
+     *
+     * <p>Retrieves a specific pipeline topology by name. If a topology with that name has been previously created, the
      * call will return the JSON representation of that topology.
      *
      * @param id the resource ID.
@@ -130,8 +146,10 @@ public interface PipelineTopologies {
     Response<PipelineTopology> getByIdWithResponse(String id, Context context);
 
     /**
-     * Deletes a pipeline topology with the given name. This method should be called after all instances of the topology
-     * have been stopped and deleted.
+     * Deletes a pipeline topology.
+     *
+     * <p>Deletes a pipeline topology with the given name. This method should be called after all instances of the
+     * topology have been stopped and deleted.
      *
      * @param id the resource ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -141,8 +159,10 @@ public interface PipelineTopologies {
     void deleteById(String id);
 
     /**
-     * Deletes a pipeline topology with the given name. This method should be called after all instances of the topology
-     * have been stopped and deleted.
+     * Deletes a pipeline topology.
+     *
+     * <p>Deletes a pipeline topology with the given name. This method should be called after all instances of the
+     * topology have been stopped and deleted.
      *
      * @param id the resource ID.
      * @param context The context to associate with this operation.

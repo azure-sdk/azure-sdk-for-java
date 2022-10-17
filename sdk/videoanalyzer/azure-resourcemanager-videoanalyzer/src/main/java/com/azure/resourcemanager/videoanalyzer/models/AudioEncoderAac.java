@@ -13,6 +13,10 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @JsonTypeName("#Microsoft.VideoAnalyzer.AudioEncoderAac")
 @Fluent
 public final class AudioEncoderAac extends AudioEncoderBase {
+    /** Creates an instance of AudioEncoderAac class. */
+    public AudioEncoderAac() {
+    }
+
     /** {@inheritDoc} */
     @Override
     public AudioEncoderAac withBitrateKbps(String bitrateKbps) {

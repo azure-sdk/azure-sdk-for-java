@@ -22,6 +22,10 @@ public final class PemCertificateList extends CertificateSource {
     @JsonProperty(value = "certificates", required = true)
     private List<String> certificates;
 
+    /** Creates an instance of PemCertificateList class. */
+    public PemCertificateList() {
+    }
+
     /**
      * Get the certificates property: PEM formatted public certificates. One certificate per entry.
      *

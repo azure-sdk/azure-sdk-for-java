@@ -27,17 +27,6 @@ public final class OperationResultsImpl implements OperationResults {
         this.serviceManager = serviceManager;
     }
 
-    public PrivateEndpointConnection get(
-        String resourceGroupName, String accountName, String name, String operationId) {
-        PrivateEndpointConnectionInner inner =
-            this.serviceClient().get(resourceGroupName, accountName, name, operationId);
-        if (inner != null) {
-            return new PrivateEndpointConnectionImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
     public Response<PrivateEndpointConnection> getWithResponse(
         String resourceGroupName, String accountName, String name, String operationId, Context context) {
         Response<PrivateEndpointConnectionInner> inner =
@@ -48,6 +37,17 @@ public final class OperationResultsImpl implements OperationResults {
                 inner.getStatusCode(),
                 inner.getHeaders(),
                 new PrivateEndpointConnectionImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public PrivateEndpointConnection get(
+        String resourceGroupName, String accountName, String name, String operationId) {
+        PrivateEndpointConnectionInner inner =
+            this.serviceClient().get(resourceGroupName, accountName, name, operationId);
+        if (inner != null) {
+            return new PrivateEndpointConnectionImpl(inner, this.manager());
         } else {
             return null;
         }

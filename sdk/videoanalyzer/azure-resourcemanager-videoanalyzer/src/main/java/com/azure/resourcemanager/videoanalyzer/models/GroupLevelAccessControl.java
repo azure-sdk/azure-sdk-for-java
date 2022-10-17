@@ -11,11 +11,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Fluent
 public final class GroupLevelAccessControl {
     /*
-     * Whether or not public network access is allowed for specified resources
-     * under the Video Analyzer account.
+     * Whether or not public network access is allowed for specified resources under the Video Analyzer account.
      */
     @JsonProperty(value = "publicNetworkAccess")
     private PublicNetworkAccess publicNetworkAccess;
+
+    /** Creates an instance of GroupLevelAccessControl class. */
+    public GroupLevelAccessControl() {
+    }
 
     /**
      * Get the publicNetworkAccess property: Whether or not public network access is allowed for specified resources

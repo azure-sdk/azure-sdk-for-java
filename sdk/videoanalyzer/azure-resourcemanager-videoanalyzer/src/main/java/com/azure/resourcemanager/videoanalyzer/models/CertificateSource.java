@@ -21,6 +21,10 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 })
 @Immutable
 public class CertificateSource {
+    /** Creates an instance of CertificateSource class. */
+    public CertificateSource() {
+    }
+
     /**
      * Validates the instance.
      *

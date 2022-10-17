@@ -32,6 +32,10 @@ public final class VideoPreviewImageUrls {
     @JsonProperty(value = "large")
     private String large;
 
+    /** Creates an instance of VideoPreviewImageUrls class. */
+    public VideoPreviewImageUrls() {
+    }
+
     /**
      * Get the small property: Low resolution preview image URL.
      *

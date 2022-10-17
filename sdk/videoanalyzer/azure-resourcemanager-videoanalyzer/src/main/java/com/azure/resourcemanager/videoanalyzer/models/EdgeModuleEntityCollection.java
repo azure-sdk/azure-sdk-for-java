@@ -19,11 +19,15 @@ public final class EdgeModuleEntityCollection {
     private List<EdgeModuleEntityInner> value;
 
     /*
-     * A link to the next page of the collection (when the collection contains
-     * too many results to return in one response).
+     * A link to the next page of the collection (when the collection contains too many results to return in one
+     * response).
      */
     @JsonProperty(value = "@nextLink")
     private String nextLink;
+
+    /** Creates an instance of EdgeModuleEntityCollection class. */
+    public EdgeModuleEntityCollection() {
+    }
 
     /**
      * Get the value property: A collection of EdgeModuleEntity items.

@@ -10,18 +10,9 @@ import com.azure.core.util.Context;
 /** Resource collection API of VideoAnalyzers. */
 public interface VideoAnalyzers {
     /**
-     * Lists the Video Analyzer accounts in the specified resource group.
+     * List Video Analyzer accounts
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a collection of VideoAnalyzer items.
-     */
-    VideoAnalyzerCollection list(String resourceGroupName);
-
-    /**
-     * Lists the Video Analyzer accounts in the specified resource group.
+     * <p>Lists the Video Analyzer accounts in the specified resource group.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param context The context to associate with this operation.
@@ -33,19 +24,22 @@ public interface VideoAnalyzers {
     Response<VideoAnalyzerCollection> listWithResponse(String resourceGroupName, Context context);
 
     /**
-     * Get the details of the specified Video Analyzer account.
+     * List Video Analyzer accounts
+     *
+     * <p>Lists the Video Analyzer accounts in the specified resource group.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param accountName The Video Analyzer account name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the details of the specified Video Analyzer account.
+     * @return a collection of VideoAnalyzer items.
      */
-    VideoAnalyzer getByResourceGroup(String resourceGroupName, String accountName);
+    VideoAnalyzerCollection list(String resourceGroupName);
 
     /**
-     * Get the details of the specified Video Analyzer account.
+     * Get a Video Analyzer account
+     *
+     * <p>Get the details of the specified Video Analyzer account.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Video Analyzer account name.
@@ -59,7 +53,38 @@ public interface VideoAnalyzers {
         String resourceGroupName, String accountName, Context context);
 
     /**
-     * Delete the specified Video Analyzer account.
+     * Get a Video Analyzer account
+     *
+     * <p>Get the details of the specified Video Analyzer account.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param accountName The Video Analyzer account name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the details of the specified Video Analyzer account.
+     */
+    VideoAnalyzer getByResourceGroup(String resourceGroupName, String accountName);
+
+    /**
+     * Delete a Video Analyzer account.
+     *
+     * <p>Delete the specified Video Analyzer account.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param accountName The Video Analyzer account name.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response}.
+     */
+    Response<Void> deleteByResourceGroupWithResponse(String resourceGroupName, String accountName, Context context);
+
+    /**
+     * Delete a Video Analyzer account.
+     *
+     * <p>Delete the specified Video Analyzer account.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Video Analyzer account name.
@@ -70,29 +95,9 @@ public interface VideoAnalyzers {
     void deleteByResourceGroup(String resourceGroupName, String accountName);
 
     /**
-     * Delete the specified Video Analyzer account.
+     * List Video Analyzer accounts
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param accountName The Video Analyzer account name.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
-     */
-    Response<Void> deleteWithResponse(String resourceGroupName, String accountName, Context context);
-
-    /**
-     * List all Video Analyzer accounts in the specified subscription.
-     *
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a collection of VideoAnalyzer items.
-     */
-    VideoAnalyzerCollection listBySubscription();
-
-    /**
-     * List all Video Analyzer accounts in the specified subscription.
+     * <p>List all Video Analyzer accounts in the specified subscription.
      *
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -103,7 +108,20 @@ public interface VideoAnalyzers {
     Response<VideoAnalyzerCollection> listBySubscriptionWithResponse(Context context);
 
     /**
-     * Get the details of the specified Video Analyzer account.
+     * List Video Analyzer accounts
+     *
+     * <p>List all Video Analyzer accounts in the specified subscription.
+     *
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a collection of VideoAnalyzer items.
+     */
+    VideoAnalyzerCollection listBySubscription();
+
+    /**
+     * Get a Video Analyzer account
+     *
+     * <p>Get the details of the specified Video Analyzer account.
      *
      * @param id the resource ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -114,7 +132,9 @@ public interface VideoAnalyzers {
     VideoAnalyzer getById(String id);
 
     /**
-     * Get the details of the specified Video Analyzer account.
+     * Get a Video Analyzer account
+     *
+     * <p>Get the details of the specified Video Analyzer account.
      *
      * @param id the resource ID.
      * @param context The context to associate with this operation.
@@ -126,7 +146,9 @@ public interface VideoAnalyzers {
     Response<VideoAnalyzer> getByIdWithResponse(String id, Context context);
 
     /**
-     * Delete the specified Video Analyzer account.
+     * Delete a Video Analyzer account.
+     *
+     * <p>Delete the specified Video Analyzer account.
      *
      * @param id the resource ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -136,7 +158,9 @@ public interface VideoAnalyzers {
     void deleteById(String id);
 
     /**
-     * Delete the specified Video Analyzer account.
+     * Delete a Video Analyzer account.
+     *
+     * <p>Delete the specified Video Analyzer account.
      *
      * @param id the resource ID.
      * @param context The context to associate with this operation.

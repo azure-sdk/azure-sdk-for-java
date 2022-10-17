@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.videoanalyzer.models;
 
 import com.azure.core.http.rest.Response;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.videoanalyzer.fluent.models.EdgeModuleEntityInner;
 import java.util.UUID;
@@ -31,6 +32,13 @@ public interface EdgeModuleEntity {
      * @return the type value.
      */
     String type();
+
+    /**
+     * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     *
+     * @return the systemData value.
+     */
+    SystemData systemData();
 
     /**
      * Gets the edgeModuleId property: Internal ID generated for the instance of the Video Analyzer edge module.
@@ -137,28 +145,14 @@ public interface EdgeModuleEntity {
     EdgeModuleEntity refresh(Context context);
 
     /**
-     * Creates a new provisioning token. A provisioning token allows for a single instance of Azure Video analyzer IoT
-     * edge module to be initialized and authorized to the cloud account. The provisioning token itself is short lived
-     * and it is only used for the initial handshake between IoT edge module and the cloud. After the initial handshake,
-     * the IoT edge module will agree on a set of authentication keys which will be auto-rotated as long as the module
-     * is able to periodically connect to the cloud. A new provisioning token can be generated for the same IoT edge
-     * module in case the module state lost or reset.
+     * Creates a new provisioning token.
      *
-     * @param parameters The request parameters.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return provisioning token properties.
-     */
-    EdgeModuleProvisioningToken listProvisioningToken(ListProvisioningTokenInput parameters);
-
-    /**
-     * Creates a new provisioning token. A provisioning token allows for a single instance of Azure Video analyzer IoT
-     * edge module to be initialized and authorized to the cloud account. The provisioning token itself is short lived
-     * and it is only used for the initial handshake between IoT edge module and the cloud. After the initial handshake,
-     * the IoT edge module will agree on a set of authentication keys which will be auto-rotated as long as the module
-     * is able to periodically connect to the cloud. A new provisioning token can be generated for the same IoT edge
-     * module in case the module state lost or reset.
+     * <p>Creates a new provisioning token. A provisioning token allows for a single instance of Azure Video analyzer
+     * IoT edge module to be initialized and authorized to the cloud account. The provisioning token itself is short
+     * lived and it is only used for the initial handshake between IoT edge module and the cloud. After the initial
+     * handshake, the IoT edge module will agree on a set of authentication keys which will be auto-rotated as long as
+     * the module is able to periodically connect to the cloud. A new provisioning token can be generated for the same
+     * IoT edge module in case the module state lost or reset.
      *
      * @param parameters The request parameters.
      * @param context The context to associate with this operation.
@@ -169,4 +163,22 @@ public interface EdgeModuleEntity {
      */
     Response<EdgeModuleProvisioningToken> listProvisioningTokenWithResponse(
         ListProvisioningTokenInput parameters, Context context);
+
+    /**
+     * Creates a new provisioning token.
+     *
+     * <p>Creates a new provisioning token. A provisioning token allows for a single instance of Azure Video analyzer
+     * IoT edge module to be initialized and authorized to the cloud account. The provisioning token itself is short
+     * lived and it is only used for the initial handshake between IoT edge module and the cloud. After the initial
+     * handshake, the IoT edge module will agree on a set of authentication keys which will be auto-rotated as long as
+     * the module is able to periodically connect to the cloud. A new provisioning token can be generated for the same
+     * IoT edge module in case the module state lost or reset.
+     *
+     * @param parameters The request parameters.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return provisioning token properties.
+     */
+    EdgeModuleProvisioningToken listProvisioningToken(ListProvisioningTokenInput parameters);
 }

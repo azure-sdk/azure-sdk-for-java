@@ -10,19 +10,9 @@ import com.azure.core.util.Context;
 /** Resource collection API of Locations. */
 public interface Locations {
     /**
-     * Checks whether the Video Analyzer resource name is available.
+     * Check Name Availability
      *
-     * @param locationName Location Name.
-     * @param parameters The request parameters.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the check availability result.
-     */
-    CheckNameAvailabilityResponse checkNameAvailability(String locationName, CheckNameAvailabilityRequest parameters);
-
-    /**
-     * Checks whether the Video Analyzer resource name is available.
+     * <p>Checks whether the Video Analyzer resource name is available.
      *
      * @param locationName Location Name.
      * @param parameters The request parameters.
@@ -34,4 +24,18 @@ public interface Locations {
      */
     Response<CheckNameAvailabilityResponse> checkNameAvailabilityWithResponse(
         String locationName, CheckNameAvailabilityRequest parameters, Context context);
+
+    /**
+     * Check Name Availability
+     *
+     * <p>Checks whether the Video Analyzer resource name is available.
+     *
+     * @param locationName Location Name.
+     * @param parameters The request parameters.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the check availability result.
+     */
+    CheckNameAvailabilityResponse checkNameAvailability(String locationName, CheckNameAvailabilityRequest parameters);
 }

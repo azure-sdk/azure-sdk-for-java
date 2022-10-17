@@ -12,11 +12,14 @@ import java.util.UUID;
 @Immutable
 public final class EdgeModuleProperties {
     /*
-     * Internal ID generated for the instance of the Video Analyzer edge
-     * module.
+     * Internal ID generated for the instance of the Video Analyzer edge module.
      */
     @JsonProperty(value = "edgeModuleId", access = JsonProperty.Access.WRITE_ONLY)
     private UUID edgeModuleId;
+
+    /** Creates an instance of EdgeModuleProperties class. */
+    public EdgeModuleProperties() {
+    }
 
     /**
      * Get the edgeModuleId property: Internal ID generated for the instance of the Video Analyzer edge module.

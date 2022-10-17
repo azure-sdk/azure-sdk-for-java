@@ -11,7 +11,9 @@ import com.azure.core.util.Context;
 /** Resource collection API of Videos. */
 public interface Videos {
     /**
-     * Retrieves a list of video resources that have been created, along with their JSON representations.
+     * Retrieves all existing video resources.
+     *
+     * <p>Retrieves a list of video resources that have been created, along with their JSON representations.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Azure Video Analyzer account name.
@@ -23,7 +25,9 @@ public interface Videos {
     PagedIterable<VideoEntity> list(String resourceGroupName, String accountName);
 
     /**
-     * Retrieves a list of video resources that have been created, along with their JSON representations.
+     * Retrieves all existing video resources.
+     *
+     * <p>Retrieves a list of video resources that have been created, along with their JSON representations.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Azure Video Analyzer account name.
@@ -38,20 +42,9 @@ public interface Videos {
     PagedIterable<VideoEntity> list(String resourceGroupName, String accountName, Integer top, Context context);
 
     /**
-     * Retrieves an existing video resource with the given name.
+     * Retrieves an existing video resource.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param accountName The Azure Video Analyzer account name.
-     * @param videoName The Video name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return represents a video resource within Azure Video Analyzer.
-     */
-    VideoEntity get(String resourceGroupName, String accountName, String videoName);
-
-    /**
-     * Retrieves an existing video resource with the given name.
+     * <p>Retrieves an existing video resource with the given name.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Azure Video Analyzer account name.
@@ -66,7 +59,9 @@ public interface Videos {
         String resourceGroupName, String accountName, String videoName, Context context);
 
     /**
-     * Deletes an existing video resource and its underlying data. This operation is irreversible.
+     * Retrieves an existing video resource.
+     *
+     * <p>Retrieves an existing video resource with the given name.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Azure Video Analyzer account name.
@@ -74,11 +69,14 @@ public interface Videos {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return represents a video resource within Azure Video Analyzer.
      */
-    void delete(String resourceGroupName, String accountName, String videoName);
+    VideoEntity get(String resourceGroupName, String accountName, String videoName);
 
     /**
-     * Deletes an existing video resource and its underlying data. This operation is irreversible.
+     * Deletes an existing video resource and its underlying data.
+     *
+     * <p>Deletes an existing video resource and its underlying data. This operation is irreversible.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Azure Video Analyzer account name.
@@ -92,8 +90,9 @@ public interface Videos {
     Response<Void> deleteWithResponse(String resourceGroupName, String accountName, String videoName, Context context);
 
     /**
-     * Generates a streaming token which can be used for accessing content from video content URLs, for a video resource
-     * with the given name.
+     * Deletes an existing video resource and its underlying data.
+     *
+     * <p>Deletes an existing video resource and its underlying data. This operation is irreversible.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Azure Video Analyzer account name.
@@ -101,13 +100,14 @@ public interface Videos {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return "Video content token grants access to the video content URLs.".
      */
-    VideoContentToken listContentToken(String resourceGroupName, String accountName, String videoName);
+    void delete(String resourceGroupName, String accountName, String videoName);
 
     /**
-     * Generates a streaming token which can be used for accessing content from video content URLs, for a video resource
-     * with the given name.
+     * Generates a streaming token which can be used for accessing content from video content URLs.
+     *
+     * <p>Generates a streaming token which can be used for accessing content from video content URLs, for a video
+     * resource with the given name.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Azure Video Analyzer account name.
@@ -122,7 +122,25 @@ public interface Videos {
         String resourceGroupName, String accountName, String videoName, Context context);
 
     /**
-     * Retrieves an existing video resource with the given name.
+     * Generates a streaming token which can be used for accessing content from video content URLs.
+     *
+     * <p>Generates a streaming token which can be used for accessing content from video content URLs, for a video
+     * resource with the given name.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param accountName The Azure Video Analyzer account name.
+     * @param videoName The Video name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return "Video content token grants access to the video content URLs.".
+     */
+    VideoContentToken listContentToken(String resourceGroupName, String accountName, String videoName);
+
+    /**
+     * Retrieves an existing video resource.
+     *
+     * <p>Retrieves an existing video resource with the given name.
      *
      * @param id the resource ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -133,7 +151,9 @@ public interface Videos {
     VideoEntity getById(String id);
 
     /**
-     * Retrieves an existing video resource with the given name.
+     * Retrieves an existing video resource.
+     *
+     * <p>Retrieves an existing video resource with the given name.
      *
      * @param id the resource ID.
      * @param context The context to associate with this operation.
@@ -145,7 +165,9 @@ public interface Videos {
     Response<VideoEntity> getByIdWithResponse(String id, Context context);
 
     /**
-     * Deletes an existing video resource and its underlying data. This operation is irreversible.
+     * Deletes an existing video resource and its underlying data.
+     *
+     * <p>Deletes an existing video resource and its underlying data. This operation is irreversible.
      *
      * @param id the resource ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -155,7 +177,9 @@ public interface Videos {
     void deleteById(String id);
 
     /**
-     * Deletes an existing video resource and its underlying data. This operation is irreversible.
+     * Deletes an existing video resource and its underlying data.
+     *
+     * <p>Deletes an existing video resource and its underlying data. This operation is irreversible.
      *
      * @param id the resource ID.
      * @param context The context to associate with this operation.

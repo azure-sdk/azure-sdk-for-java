@@ -43,8 +43,7 @@ public final class VideoAnalyzerPropertiesUpdate {
     private List<IotHub> iotHubs;
 
     /*
-     * Whether or not public network access is allowed for resources under the
-     * Video Analyzer account.
+     * Whether or not public network access is allowed for resources under the Video Analyzer account.
      */
     @JsonProperty(value = "publicNetworkAccess")
     private PublicNetworkAccess publicNetworkAccess;
@@ -66,6 +65,10 @@ public final class VideoAnalyzerPropertiesUpdate {
      */
     @JsonProperty(value = "privateEndpointConnections", access = JsonProperty.Access.WRITE_ONLY)
     private List<PrivateEndpointConnectionInner> privateEndpointConnections;
+
+    /** Creates an instance of VideoAnalyzerPropertiesUpdate class. */
+    public VideoAnalyzerPropertiesUpdate() {
+    }
 
     /**
      * Get the storageAccounts property: The storage accounts for this resource.

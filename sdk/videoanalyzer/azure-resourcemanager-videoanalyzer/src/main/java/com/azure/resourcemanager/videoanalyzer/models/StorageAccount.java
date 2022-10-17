@@ -12,16 +12,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Fluent
 public final class StorageAccount {
     /*
-     * The ID of the storage account resource. Video Analyzer relies on tables,
-     * queues, and blobs. The primary storage account must be a Standard
-     * Storage account (either Microsoft.ClassicStorage or Microsoft.Storage).
+     * The ID of the storage account resource. Video Analyzer relies on tables, queues, and blobs. The primary storage
+     * account must be a Standard Storage account (either Microsoft.ClassicStorage or Microsoft.Storage).
      */
     @JsonProperty(value = "id", required = true)
     private String id;
 
     /*
-     * A managed identity that Video Analyzer will use to access the storage
-     * account.
+     * A managed identity that Video Analyzer will use to access the storage account.
      */
     @JsonProperty(value = "identity")
     private ResourceIdentity identity;
@@ -31,6 +29,10 @@ public final class StorageAccount {
      */
     @JsonProperty(value = "status", access = JsonProperty.Access.WRITE_ONLY)
     private String status;
+
+    /** Creates an instance of StorageAccount class. */
+    public StorageAccount() {
+    }
 
     /**
      * Get the id property: The ID of the storage account resource. Video Analyzer relies on tables, queues, and blobs.

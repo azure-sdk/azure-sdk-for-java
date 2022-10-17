@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for VideoAnalyzerEndpointType. */
+/** The type of the endpoint. */
 public final class VideoAnalyzerEndpointType extends ExpandableStringEnum<VideoAnalyzerEndpointType> {
     /** Static value ClientApi for VideoAnalyzerEndpointType. */
     public static final VideoAnalyzerEndpointType CLIENT_API = fromString("ClientApi");

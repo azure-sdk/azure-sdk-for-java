@@ -28,15 +28,6 @@ public final class VideoAnalyzersImpl implements VideoAnalyzers {
         this.serviceManager = serviceManager;
     }
 
-    public VideoAnalyzerCollection list(String resourceGroupName) {
-        VideoAnalyzerCollectionInner inner = this.serviceClient().list(resourceGroupName);
-        if (inner != null) {
-            return new VideoAnalyzerCollectionImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
     public Response<VideoAnalyzerCollection> listWithResponse(String resourceGroupName, Context context) {
         Response<VideoAnalyzerCollectionInner> inner =
             this.serviceClient().listWithResponse(resourceGroupName, context);
@@ -51,10 +42,10 @@ public final class VideoAnalyzersImpl implements VideoAnalyzers {
         }
     }
 
-    public VideoAnalyzer getByResourceGroup(String resourceGroupName, String accountName) {
-        VideoAnalyzerInner inner = this.serviceClient().getByResourceGroup(resourceGroupName, accountName);
+    public VideoAnalyzerCollection list(String resourceGroupName) {
+        VideoAnalyzerCollectionInner inner = this.serviceClient().list(resourceGroupName);
         if (inner != null) {
-            return new VideoAnalyzerImpl(inner, this.manager());
+            return new VideoAnalyzerCollectionImpl(inner, this.manager());
         } else {
             return null;
         }
@@ -75,21 +66,22 @@ public final class VideoAnalyzersImpl implements VideoAnalyzers {
         }
     }
 
-    public void deleteByResourceGroup(String resourceGroupName, String accountName) {
-        this.serviceClient().delete(resourceGroupName, accountName);
-    }
-
-    public Response<Void> deleteWithResponse(String resourceGroupName, String accountName, Context context) {
-        return this.serviceClient().deleteWithResponse(resourceGroupName, accountName, context);
-    }
-
-    public VideoAnalyzerCollection listBySubscription() {
-        VideoAnalyzerCollectionInner inner = this.serviceClient().listBySubscription();
+    public VideoAnalyzer getByResourceGroup(String resourceGroupName, String accountName) {
+        VideoAnalyzerInner inner = this.serviceClient().getByResourceGroup(resourceGroupName, accountName);
         if (inner != null) {
-            return new VideoAnalyzerCollectionImpl(inner, this.manager());
+            return new VideoAnalyzerImpl(inner, this.manager());
         } else {
             return null;
         }
+    }
+
+    public Response<Void> deleteByResourceGroupWithResponse(
+        String resourceGroupName, String accountName, Context context) {
+        return this.serviceClient().deleteWithResponse(resourceGroupName, accountName, context);
+    }
+
+    public void deleteByResourceGroup(String resourceGroupName, String accountName) {
+        this.serviceClient().delete(resourceGroupName, accountName);
     }
 
     public Response<VideoAnalyzerCollection> listBySubscriptionWithResponse(Context context) {
@@ -100,6 +92,15 @@ public final class VideoAnalyzersImpl implements VideoAnalyzers {
                 inner.getStatusCode(),
                 inner.getHeaders(),
                 new VideoAnalyzerCollectionImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public VideoAnalyzerCollection listBySubscription() {
+        VideoAnalyzerCollectionInner inner = this.serviceClient().listBySubscription();
+        if (inner != null) {
+            return new VideoAnalyzerCollectionImpl(inner, this.manager());
         } else {
             return null;
         }
@@ -162,7 +163,7 @@ public final class VideoAnalyzersImpl implements VideoAnalyzers {
                         String
                             .format("The resource ID '%s' is not valid. Missing path segment 'videoAnalyzers'.", id)));
         }
-        this.deleteWithResponse(resourceGroupName, accountName, Context.NONE);
+        this.deleteByResourceGroupWithResponse(resourceGroupName, accountName, Context.NONE);
     }
 
     public Response<Void> deleteByIdWithResponse(String id, Context context) {
@@ -182,7 +183,7 @@ public final class VideoAnalyzersImpl implements VideoAnalyzers {
                         String
                             .format("The resource ID '%s' is not valid. Missing path segment 'videoAnalyzers'.", id)));
         }
-        return this.deleteWithResponse(resourceGroupName, accountName, context);
+        return this.deleteByResourceGroupWithResponse(resourceGroupName, accountName, context);
     }
 
     private VideoAnalyzersClient serviceClient() {

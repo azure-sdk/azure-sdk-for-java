@@ -19,11 +19,14 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @Fluent
 public final class VideoSequenceAbsoluteTimeMarkers extends TimeSequenceBase {
     /*
-     * The sequence of datetime ranges. Example: '[["2021-10-05T03:30:00Z",
-     * "2021-10-05T03:40:00Z"]]'.
+     * The sequence of datetime ranges. Example: '[["2021-10-05T03:30:00Z", "2021-10-05T03:40:00Z"]]'.
      */
     @JsonProperty(value = "ranges", required = true)
     private String ranges;
+
+    /** Creates an instance of VideoSequenceAbsoluteTimeMarkers class. */
+    public VideoSequenceAbsoluteTimeMarkers() {
+    }
 
     /**
      * Get the ranges property: The sequence of datetime ranges. Example: '[["2021-10-05T03:30:00Z",

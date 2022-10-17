@@ -40,15 +40,6 @@ public final class PipelineTopologiesImpl implements PipelineTopologies {
         return Utils.mapPage(inner, inner1 -> new PipelineTopologyImpl(inner1, this.manager()));
     }
 
-    public PipelineTopology get(String resourceGroupName, String accountName, String pipelineTopologyName) {
-        PipelineTopologyInner inner = this.serviceClient().get(resourceGroupName, accountName, pipelineTopologyName);
-        if (inner != null) {
-            return new PipelineTopologyImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
     public Response<PipelineTopology> getWithResponse(
         String resourceGroupName, String accountName, String pipelineTopologyName, Context context) {
         Response<PipelineTopologyInner> inner =
@@ -64,13 +55,22 @@ public final class PipelineTopologiesImpl implements PipelineTopologies {
         }
     }
 
-    public void delete(String resourceGroupName, String accountName, String pipelineTopologyName) {
-        this.serviceClient().delete(resourceGroupName, accountName, pipelineTopologyName);
+    public PipelineTopology get(String resourceGroupName, String accountName, String pipelineTopologyName) {
+        PipelineTopologyInner inner = this.serviceClient().get(resourceGroupName, accountName, pipelineTopologyName);
+        if (inner != null) {
+            return new PipelineTopologyImpl(inner, this.manager());
+        } else {
+            return null;
+        }
     }
 
     public Response<Void> deleteWithResponse(
         String resourceGroupName, String accountName, String pipelineTopologyName, Context context) {
         return this.serviceClient().deleteWithResponse(resourceGroupName, accountName, pipelineTopologyName, context);
+    }
+
+    public void delete(String resourceGroupName, String accountName, String pipelineTopologyName) {
+        this.serviceClient().delete(resourceGroupName, accountName, pipelineTopologyName);
     }
 
     public PipelineTopology getById(String id) {

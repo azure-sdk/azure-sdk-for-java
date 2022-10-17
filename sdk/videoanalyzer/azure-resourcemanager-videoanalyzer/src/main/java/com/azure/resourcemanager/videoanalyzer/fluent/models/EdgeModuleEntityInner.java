@@ -4,19 +4,30 @@
 
 package com.azure.resourcemanager.videoanalyzer.fluent.models;
 
-import com.azure.core.annotation.Fluent;
+import com.azure.core.annotation.Immutable;
 import com.azure.core.management.ProxyResource;
+import com.azure.core.management.SystemData;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.UUID;
 
 /** The representation of an edge module. */
-@Fluent
+@Immutable
 public final class EdgeModuleEntityInner extends ProxyResource {
     /*
      * The resource properties.
      */
     @JsonProperty(value = "properties")
     private EdgeModuleProperties innerProperties;
+
+    /*
+     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     */
+    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
+    private SystemData systemData;
+
+    /** Creates an instance of EdgeModuleEntityInner class. */
+    public EdgeModuleEntityInner() {
+    }
 
     /**
      * Get the innerProperties property: The resource properties.
@@ -25,6 +36,15 @@ public final class EdgeModuleEntityInner extends ProxyResource {
      */
     private EdgeModuleProperties innerProperties() {
         return this.innerProperties;
+    }
+
+    /**
+     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     *
+     * @return the systemData value.
+     */
+    public SystemData systemData() {
+        return this.systemData;
     }
 
     /**

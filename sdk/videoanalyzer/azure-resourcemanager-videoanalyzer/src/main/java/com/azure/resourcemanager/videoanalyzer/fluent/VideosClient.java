@@ -15,7 +15,9 @@ import com.azure.resourcemanager.videoanalyzer.fluent.models.VideoEntityInner;
 /** An instance of this class provides access to all the operations defined in VideosClient. */
 public interface VideosClient {
     /**
-     * Retrieves a list of video resources that have been created, along with their JSON representations.
+     * Retrieves all existing video resources.
+     *
+     * <p>Retrieves a list of video resources that have been created, along with their JSON representations.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Azure Video Analyzer account name.
@@ -28,7 +30,9 @@ public interface VideosClient {
     PagedIterable<VideoEntityInner> list(String resourceGroupName, String accountName);
 
     /**
-     * Retrieves a list of video resources that have been created, along with their JSON representations.
+     * Retrieves all existing video resources.
+     *
+     * <p>Retrieves a list of video resources that have been created, along with their JSON representations.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Azure Video Analyzer account name.
@@ -44,21 +48,9 @@ public interface VideosClient {
     PagedIterable<VideoEntityInner> list(String resourceGroupName, String accountName, Integer top, Context context);
 
     /**
-     * Retrieves an existing video resource with the given name.
+     * Retrieves an existing video resource.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param accountName The Azure Video Analyzer account name.
-     * @param videoName The Video name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return represents a video resource within Azure Video Analyzer.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    VideoEntityInner get(String resourceGroupName, String accountName, String videoName);
-
-    /**
-     * Retrieves an existing video resource with the given name.
+     * <p>Retrieves an existing video resource with the given name.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Azure Video Analyzer account name.
@@ -74,23 +66,25 @@ public interface VideosClient {
         String resourceGroupName, String accountName, String videoName, Context context);
 
     /**
-     * Creates a new video resource or updates an existing video resource with the given name.
+     * Retrieves an existing video resource.
+     *
+     * <p>Retrieves an existing video resource with the given name.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Azure Video Analyzer account name.
      * @param videoName The Video name.
-     * @param parameters The request parameters.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return represents a video resource within Azure Video Analyzer.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    VideoEntityInner createOrUpdate(
-        String resourceGroupName, String accountName, String videoName, VideoEntityInner parameters);
+    VideoEntityInner get(String resourceGroupName, String accountName, String videoName);
 
     /**
-     * Creates a new video resource or updates an existing video resource with the given name.
+     * Creates a new video resource or updates an existing one.
+     *
+     * <p>Creates a new video resource or updates an existing video resource with the given name.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Azure Video Analyzer account name.
@@ -107,20 +101,27 @@ public interface VideosClient {
         String resourceGroupName, String accountName, String videoName, VideoEntityInner parameters, Context context);
 
     /**
-     * Deletes an existing video resource and its underlying data. This operation is irreversible.
+     * Creates a new video resource or updates an existing one.
+     *
+     * <p>Creates a new video resource or updates an existing video resource with the given name.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Azure Video Analyzer account name.
      * @param videoName The Video name.
+     * @param parameters The request parameters.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return represents a video resource within Azure Video Analyzer.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    void delete(String resourceGroupName, String accountName, String videoName);
+    VideoEntityInner createOrUpdate(
+        String resourceGroupName, String accountName, String videoName, VideoEntityInner parameters);
 
     /**
-     * Deletes an existing video resource and its underlying data. This operation is irreversible.
+     * Deletes an existing video resource and its underlying data.
+     *
+     * <p>Deletes an existing video resource and its underlying data. This operation is irreversible.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Azure Video Analyzer account name.
@@ -135,23 +136,24 @@ public interface VideosClient {
     Response<Void> deleteWithResponse(String resourceGroupName, String accountName, String videoName, Context context);
 
     /**
-     * Updates individual properties of an existing video resource with the given name.
+     * Deletes an existing video resource and its underlying data.
+     *
+     * <p>Deletes an existing video resource and its underlying data. This operation is irreversible.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Azure Video Analyzer account name.
      * @param videoName The Video name.
-     * @param parameters The request parameters.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return represents a video resource within Azure Video Analyzer.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    VideoEntityInner update(
-        String resourceGroupName, String accountName, String videoName, VideoEntityInner parameters);
+    void delete(String resourceGroupName, String accountName, String videoName);
 
     /**
-     * Updates individual properties of an existing video resource with the given name.
+     * Updates individual properties of an existing video resource.
+     *
+     * <p>Updates individual properties of an existing video resource with the given name.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Azure Video Analyzer account name.
@@ -168,23 +170,28 @@ public interface VideosClient {
         String resourceGroupName, String accountName, String videoName, VideoEntityInner parameters, Context context);
 
     /**
-     * Generates a streaming token which can be used for accessing content from video content URLs, for a video resource
-     * with the given name.
+     * Updates individual properties of an existing video resource.
+     *
+     * <p>Updates individual properties of an existing video resource with the given name.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Azure Video Analyzer account name.
      * @param videoName The Video name.
+     * @param parameters The request parameters.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return "Video content token grants access to the video content URLs.".
+     * @return represents a video resource within Azure Video Analyzer.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    VideoContentTokenInner listContentToken(String resourceGroupName, String accountName, String videoName);
+    VideoEntityInner update(
+        String resourceGroupName, String accountName, String videoName, VideoEntityInner parameters);
 
     /**
-     * Generates a streaming token which can be used for accessing content from video content URLs, for a video resource
-     * with the given name.
+     * Generates a streaming token which can be used for accessing content from video content URLs.
+     *
+     * <p>Generates a streaming token which can be used for accessing content from video content URLs, for a video
+     * resource with the given name.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Azure Video Analyzer account name.
@@ -198,4 +205,21 @@ public interface VideosClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<VideoContentTokenInner> listContentTokenWithResponse(
         String resourceGroupName, String accountName, String videoName, Context context);
+
+    /**
+     * Generates a streaming token which can be used for accessing content from video content URLs.
+     *
+     * <p>Generates a streaming token which can be used for accessing content from video content URLs, for a video
+     * resource with the given name.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param accountName The Azure Video Analyzer account name.
+     * @param videoName The Video name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return "Video content token grants access to the video content URLs.".
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    VideoContentTokenInner listContentToken(String resourceGroupName, String accountName, String videoName);
 }

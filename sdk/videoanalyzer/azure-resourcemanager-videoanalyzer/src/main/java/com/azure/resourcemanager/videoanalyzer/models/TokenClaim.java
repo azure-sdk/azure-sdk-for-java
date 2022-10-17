@@ -23,6 +23,10 @@ public final class TokenClaim {
     @JsonProperty(value = "value", required = true)
     private String value;
 
+    /** Creates an instance of TokenClaim class. */
+    public TokenClaim() {
+    }
+
     /**
      * Get the name property: Name of the claim which must be present on the token.
      *

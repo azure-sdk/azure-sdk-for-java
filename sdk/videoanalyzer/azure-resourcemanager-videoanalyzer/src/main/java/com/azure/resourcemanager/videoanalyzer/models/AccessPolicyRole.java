@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for AccessPolicyRole. */
+/** Defines the access level granted by this policy. */
 public final class AccessPolicyRole extends ExpandableStringEnum<AccessPolicyRole> {
     /** Static value Reader for AccessPolicyRole. */
     public static final AccessPolicyRole READER = fromString("Reader");

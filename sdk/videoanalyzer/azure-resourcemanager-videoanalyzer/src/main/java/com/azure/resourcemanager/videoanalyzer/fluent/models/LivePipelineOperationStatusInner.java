@@ -29,6 +29,10 @@ public final class LivePipelineOperationStatusInner {
     @JsonProperty(value = "error", access = JsonProperty.Access.WRITE_ONLY)
     private ManagementError error;
 
+    /** Creates an instance of LivePipelineOperationStatusInner class. */
+    public LivePipelineOperationStatusInner() {
+    }
+
     /**
      * Get the name property: The name of the live pipeline operation.
      *

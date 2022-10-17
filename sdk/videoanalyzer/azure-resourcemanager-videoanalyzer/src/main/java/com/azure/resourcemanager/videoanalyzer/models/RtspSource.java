@@ -16,22 +16,23 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @Fluent
 public final class RtspSource extends SourceNodeBase {
     /*
-     * Network transport utilized by the RTSP and RTP exchange: TCP or HTTP.
-     * When using TCP, the RTP packets are interleaved on the TCP RTSP
-     * connection. When using HTTP, the RTSP messages are exchanged through
-     * long lived HTTP connections, and the RTP packages are interleaved in the
-     * HTTP connections alongside the RTSP messages.
+     * Network transport utilized by the RTSP and RTP exchange: TCP or HTTP. When using TCP, the RTP packets are
+     * interleaved on the TCP RTSP connection. When using HTTP, the RTSP messages are exchanged through long lived HTTP
+     * connections, and the RTP packages are interleaved in the HTTP connections alongside the RTSP messages.
      */
     @JsonProperty(value = "transport")
     private RtspTransport transport;
 
     /*
-     * RTSP endpoint information for Video Analyzer to connect to. This
-     * contains the required information for Video Analyzer to connect to RTSP
-     * cameras and/or generic RTSP servers.
+     * RTSP endpoint information for Video Analyzer to connect to. This contains the required information for Video
+     * Analyzer to connect to RTSP cameras and/or generic RTSP servers.
      */
     @JsonProperty(value = "endpoint", required = true)
     private EndpointBase endpoint;
+
+    /** Creates an instance of RtspSource class. */
+    public RtspSource() {
+    }
 
     /**
      * Get the transport property: Network transport utilized by the RTSP and RTP exchange: TCP or HTTP. When using TCP,

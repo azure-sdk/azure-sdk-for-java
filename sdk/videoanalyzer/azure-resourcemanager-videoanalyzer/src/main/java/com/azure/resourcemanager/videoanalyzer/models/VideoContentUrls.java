@@ -11,54 +11,49 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Fluent
 public final class VideoContentUrls {
     /*
-     * Video file download URL. This URL can be used in conjunction with the
-     * video content authorization token to download the video MP4 file. The
-     * resulting MP4 file can be played on any standard media player. It is
-     * available when the video type is 'file' and video file is available for
-     * consumption.
+     * Video file download URL. This URL can be used in conjunction with the video content authorization token to
+     * download the video MP4 file. The resulting MP4 file can be played on any standard media player. It is available
+     * when the video type is 'file' and video file is available for consumption.
      */
     @JsonProperty(value = "downloadUrl")
     private String downloadUrl;
 
     /*
-     * Video archive streaming base URL. The archived content can be
-     * automatically played by the Azure Video Analyzer player widget.
-     * Alternatively, this URL can be used in conjunction with the video
-     * content authorization token on any compatible DASH or HLS players by
-     * appending the following to the base URL:
+     * Video archive streaming base URL. The archived content can be automatically played by the Azure Video Analyzer
+     * player widget. Alternatively, this URL can be used in conjunction with the video content authorization token on
+     * any compatible DASH or HLS players by appending the following to the base URL:
      *
      * - HLSv4:     /manifest(format=m3u8-aapl).m3u8
      * - HLS CMAF:  /manifest(format=m3u8-cmaf)
      * - DASH CMAF: /manifest(format=mpd-time-cmaf)
      *
-     * Moreover, an ongoing video recording can be played in "live mode" with
-     * latencies which are approximately double of the chosen video segment
-     * length. It is available when the video type is 'archive' and video
-     * archiving is enabled.
+     * Moreover, an ongoing video recording can be played in "live mode" with latencies which are approximately double
+     * of the chosen video segment length. It is available when the video type is 'archive' and video archiving is
+     * enabled.
      */
     @JsonProperty(value = "archiveBaseUrl")
     private String archiveBaseUrl;
 
     /*
-     * Video low-latency streaming URL. The live content can be automatically
-     * played by the Azure Video Analyzer player widget. Alternatively, this
-     * URL can be used in conjunction with the video content authorization
-     * token to expose a WebSocket tunneled RTSP stream. It is available when
-     * the video type is 'archive' and a live, low-latency feed is available
-     * from the source.
+     * Video low-latency streaming URL. The live content can be automatically played by the Azure Video Analyzer player
+     * widget. Alternatively, this URL can be used in conjunction with the video content authorization token to expose
+     * a WebSocket tunneled RTSP stream. It is available when the video type is 'archive' and a live, low-latency feed
+     * is available from the source.
      */
     @JsonProperty(value = "rtspTunnelUrl")
     private String rtspTunnelUrl;
 
     /*
-     * Video preview image URLs. These URLs can be used in conjunction with the
-     * video content authorization token to download the most recent still
-     * image from the video archive in different resolutions. They are
-     * available when the video type is 'archive' and preview images are
-     * enabled.
+     * Video preview image URLs. These URLs can be used in conjunction with the video content authorization token to
+     * download the most recent still image from the video archive in different resolutions. They are available when
+     * the video type is 'archive' and preview images are enabled.
      */
     @JsonProperty(value = "previewImageUrls")
     private VideoPreviewImageUrls previewImageUrls;
+
+    /** Creates an instance of VideoContentUrls class. */
+    public VideoContentUrls() {
+    }
 
     /**
      * Get the downloadUrl property: Video file download URL. This URL can be used in conjunction with the video content

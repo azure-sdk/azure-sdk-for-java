@@ -21,6 +21,10 @@ public final class EncoderSystemPreset extends EncoderPresetBase {
     @JsonProperty(value = "name", required = true)
     private EncoderSystemPresetType name;
 
+    /** Creates an instance of EncoderSystemPreset class. */
+    public EncoderSystemPreset() {
+    }
+
     /**
      * Get the name property: Name of the built-in encoding preset.
      *

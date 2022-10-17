@@ -39,15 +39,6 @@ public final class LivePipelinesImpl implements LivePipelines {
         return Utils.mapPage(inner, inner1 -> new LivePipelineImpl(inner1, this.manager()));
     }
 
-    public LivePipeline get(String resourceGroupName, String accountName, String livePipelineName) {
-        LivePipelineInner inner = this.serviceClient().get(resourceGroupName, accountName, livePipelineName);
-        if (inner != null) {
-            return new LivePipelineImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
     public Response<LivePipeline> getWithResponse(
         String resourceGroupName, String accountName, String livePipelineName, Context context) {
         Response<LivePipelineInner> inner =
@@ -63,13 +54,22 @@ public final class LivePipelinesImpl implements LivePipelines {
         }
     }
 
-    public void delete(String resourceGroupName, String accountName, String livePipelineName) {
-        this.serviceClient().delete(resourceGroupName, accountName, livePipelineName);
+    public LivePipeline get(String resourceGroupName, String accountName, String livePipelineName) {
+        LivePipelineInner inner = this.serviceClient().get(resourceGroupName, accountName, livePipelineName);
+        if (inner != null) {
+            return new LivePipelineImpl(inner, this.manager());
+        } else {
+            return null;
+        }
     }
 
     public Response<Void> deleteWithResponse(
         String resourceGroupName, String accountName, String livePipelineName, Context context) {
         return this.serviceClient().deleteWithResponse(resourceGroupName, accountName, livePipelineName, context);
+    }
+
+    public void delete(String resourceGroupName, String accountName, String livePipelineName) {
+        this.serviceClient().delete(resourceGroupName, accountName, livePipelineName);
     }
 
     public void activate(String resourceGroupName, String accountName, String livePipelineName) {

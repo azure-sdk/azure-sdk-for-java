@@ -6,6 +6,7 @@ package com.azure.resourcemanager.videoanalyzer.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.Resource;
+import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.videoanalyzer.models.AccountEncryption;
 import com.azure.resourcemanager.videoanalyzer.models.Endpoint;
 import com.azure.resourcemanager.videoanalyzer.models.IotHub;
@@ -32,6 +33,16 @@ public final class VideoAnalyzerInner extends Resource {
      */
     @JsonProperty(value = "identity")
     private VideoAnalyzerIdentity identity;
+
+    /*
+     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     */
+    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
+    private SystemData systemData;
+
+    /** Creates an instance of VideoAnalyzerInner class. */
+    public VideoAnalyzerInner() {
+    }
 
     /**
      * Get the innerProperties property: The resource properties.
@@ -60,6 +71,15 @@ public final class VideoAnalyzerInner extends Resource {
     public VideoAnalyzerInner withIdentity(VideoAnalyzerIdentity identity) {
         this.identity = identity;
         return this;
+    }
+
+    /**
+     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     *
+     * @return the systemData value.
+     */
+    public SystemData systemData() {
+        return this.systemData;
     }
 
     /** {@inheritDoc} */

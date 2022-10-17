@@ -264,7 +264,9 @@ public interface PipelineJob {
     PipelineJob refresh(Context context);
 
     /**
-     * Cancels a pipeline job with the given name.
+     * Cancels a pipeline job.
+     *
+     * <p>Cancels a pipeline job with the given name.
      *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -272,7 +274,9 @@ public interface PipelineJob {
     void cancel();
 
     /**
-     * Cancels a pipeline job with the given name.
+     * Cancels a pipeline job.
+     *
+     * <p>Cancels a pipeline job with the given name.
      *
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.

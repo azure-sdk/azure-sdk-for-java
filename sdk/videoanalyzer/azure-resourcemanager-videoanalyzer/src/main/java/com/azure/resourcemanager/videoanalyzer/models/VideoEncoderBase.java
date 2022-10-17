@@ -24,27 +24,28 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @Fluent
 public class VideoEncoderBase {
     /*
-     * The maximum bitrate, in kilobits per second or Kbps, at which video
-     * should be encoded. If omitted, encoder sets it automatically to try and
-     * match the quality of the input video.
+     * The maximum bitrate, in kilobits per second or Kbps, at which video should be encoded. If omitted, encoder sets
+     * it automatically to try and match the quality of the input video.
      */
     @JsonProperty(value = "bitrateKbps")
     private String bitrateKbps;
 
     /*
-     * The frame rate (in frames per second) of the encoded video. The value
-     * must be greater than zero, and less than or equal to 300. If omitted,
-     * the encoder uses the average frame rate of the input video.
+     * The frame rate (in frames per second) of the encoded video. The value must be greater than zero, and less than
+     * or equal to 300. If omitted, the encoder uses the average frame rate of the input video.
      */
     @JsonProperty(value = "frameRate")
     private String frameRate;
 
     /*
-     * Describes the resolution of the encoded video. If omitted, the encoder
-     * uses the resolution of the input video.
+     * Describes the resolution of the encoded video. If omitted, the encoder uses the resolution of the input video.
      */
     @JsonProperty(value = "scale")
     private VideoScale scale;
+
+    /** Creates an instance of VideoEncoderBase class. */
+    public VideoEncoderBase() {
+    }
 
     /**
      * Get the bitrateKbps property: The maximum bitrate, in kilobits per second or Kbps, at which video should be

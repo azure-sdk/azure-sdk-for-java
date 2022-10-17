@@ -70,7 +70,9 @@ public final class OperationResultsClientImpl implements OperationResultsClient 
     }
 
     /**
-     * Get private endpoint connection operation result.
+     * Get operation result.
+     *
+     * <p>Get private endpoint connection operation result.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Video Analyzer account name.
@@ -129,7 +131,9 @@ public final class OperationResultsClientImpl implements OperationResultsClient 
     }
 
     /**
-     * Get private endpoint connection operation result.
+     * Get operation result.
+     *
+     * <p>Get private endpoint connection operation result.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Video Analyzer account name.
@@ -186,7 +190,9 @@ public final class OperationResultsClientImpl implements OperationResultsClient 
     }
 
     /**
-     * Get private endpoint connection operation result.
+     * Get operation result.
+     *
+     * <p>Get private endpoint connection operation result.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Video Analyzer account name.
@@ -205,25 +211,9 @@ public final class OperationResultsClientImpl implements OperationResultsClient 
     }
 
     /**
-     * Get private endpoint connection operation result.
+     * Get operation result.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param accountName The Video Analyzer account name.
-     * @param name Private endpoint connection name.
-     * @param operationId Operation Id.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return private endpoint connection operation result.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public PrivateEndpointConnectionInner get(
-        String resourceGroupName, String accountName, String name, String operationId) {
-        return getAsync(resourceGroupName, accountName, name, operationId).block();
-    }
-
-    /**
-     * Get private endpoint connection operation result.
+     * <p>Get private endpoint connection operation result.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Video Analyzer account name.
@@ -239,5 +229,25 @@ public final class OperationResultsClientImpl implements OperationResultsClient 
     public Response<PrivateEndpointConnectionInner> getWithResponse(
         String resourceGroupName, String accountName, String name, String operationId, Context context) {
         return getWithResponseAsync(resourceGroupName, accountName, name, operationId, context).block();
+    }
+
+    /**
+     * Get operation result.
+     *
+     * <p>Get private endpoint connection operation result.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param accountName The Video Analyzer account name.
+     * @param name Private endpoint connection name.
+     * @param operationId Operation Id.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return private endpoint connection operation result.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public PrivateEndpointConnectionInner get(
+        String resourceGroupName, String accountName, String name, String operationId) {
+        return getWithResponse(resourceGroupName, accountName, name, operationId, Context.NONE).getValue();
     }
 }

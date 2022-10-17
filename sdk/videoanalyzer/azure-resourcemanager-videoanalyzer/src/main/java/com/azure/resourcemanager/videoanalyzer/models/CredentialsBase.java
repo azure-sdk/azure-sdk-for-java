@@ -23,6 +23,10 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 })
 @Immutable
 public class CredentialsBase {
+    /** Creates an instance of CredentialsBase class. */
+    public CredentialsBase() {
+    }
+
     /**
      * Validates the instance.
      *

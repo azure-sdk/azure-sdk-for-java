@@ -18,6 +18,6 @@ public final class VideoAnalyzersDeleteSamples {
      */
     public static void deleteAVideoAnalyzerAccount(
         com.azure.resourcemanager.videoanalyzer.VideoAnalyzerManager manager) {
-        manager.videoAnalyzers().deleteWithResponse("contoso", "contosotv", Context.NONE);
+        manager.videoAnalyzers().deleteByResourceGroupWithResponse("contoso", "contosotv", Context.NONE);
     }
 }

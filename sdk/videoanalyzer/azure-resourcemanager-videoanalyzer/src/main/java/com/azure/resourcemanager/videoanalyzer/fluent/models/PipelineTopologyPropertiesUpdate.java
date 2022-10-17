@@ -16,41 +16,42 @@ import java.util.List;
 @Fluent
 public final class PipelineTopologyPropertiesUpdate {
     /*
-     * An optional description of the pipeline topology. It is recommended that
-     * the expected use of the topology to be described here.
+     * An optional description of the pipeline topology. It is recommended that the expected use of the topology to be
+     * described here.
      */
     @JsonProperty(value = "description")
     private String description;
 
     /*
-     * List of the topology parameter declarations. Parameters declared here
-     * can be referenced throughout the topology nodes through the use of
-     * "${PARAMETER_NAME}" string pattern. Parameters can have optional default
-     * values and can later be defined in individual instances of the pipeline.
+     * List of the topology parameter declarations. Parameters declared here can be referenced throughout the topology
+     * nodes through the use of "${PARAMETER_NAME}" string pattern. Parameters can have optional default values and can
+     * later be defined in individual instances of the pipeline.
      */
     @JsonProperty(value = "parameters")
     private List<ParameterDeclaration> parameters;
 
     /*
-     * List of the topology source nodes. Source nodes enable external data to
-     * be ingested by the pipeline.
+     * List of the topology source nodes. Source nodes enable external data to be ingested by the pipeline.
      */
     @JsonProperty(value = "sources")
     private List<SourceNodeBase> sources;
 
     /*
-     * List of the topology processor nodes. Processor nodes enable pipeline
-     * data to be analyzed, processed or transformed.
+     * List of the topology processor nodes. Processor nodes enable pipeline data to be analyzed, processed or
+     * transformed.
      */
     @JsonProperty(value = "processors")
     private List<ProcessorNodeBase> processors;
 
     /*
-     * List of the topology sink nodes. Sink nodes allow pipeline data to be
-     * stored or exported.
+     * List of the topology sink nodes. Sink nodes allow pipeline data to be stored or exported.
      */
     @JsonProperty(value = "sinks")
     private List<SinkNodeBase> sinks;
+
+    /** Creates an instance of PipelineTopologyPropertiesUpdate class. */
+    public PipelineTopologyPropertiesUpdate() {
+    }
 
     /**
      * Get the description property: An optional description of the pipeline topology. It is recommended that the

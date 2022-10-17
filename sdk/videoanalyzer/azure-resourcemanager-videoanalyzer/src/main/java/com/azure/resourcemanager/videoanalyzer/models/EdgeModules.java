@@ -11,7 +11,9 @@ import com.azure.core.util.Context;
 /** Resource collection API of EdgeModules. */
 public interface EdgeModules {
     /**
-     * List all existing edge module resources, along with their JSON representations.
+     * List all existing edge module resources.
+     *
+     * <p>List all existing edge module resources, along with their JSON representations.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Azure Video Analyzer account name.
@@ -23,7 +25,9 @@ public interface EdgeModules {
     PagedIterable<EdgeModuleEntity> list(String resourceGroupName, String accountName);
 
     /**
-     * List all existing edge module resources, along with their JSON representations.
+     * List all existing edge module resources.
+     *
+     * <p>List all existing edge module resources, along with their JSON representations.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Azure Video Analyzer account name.
@@ -38,20 +42,9 @@ public interface EdgeModules {
     PagedIterable<EdgeModuleEntity> list(String resourceGroupName, String accountName, Integer top, Context context);
 
     /**
-     * Retrieves an existing edge module resource with the given name.
+     * Retrieves an existing edge module resource.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param accountName The Azure Video Analyzer account name.
-     * @param edgeModuleName The Edge Module name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the representation of an edge module.
-     */
-    EdgeModuleEntity get(String resourceGroupName, String accountName, String edgeModuleName);
-
-    /**
-     * Retrieves an existing edge module resource with the given name.
+     * <p>Retrieves an existing edge module resource with the given name.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Azure Video Analyzer account name.
@@ -66,9 +59,9 @@ public interface EdgeModules {
         String resourceGroupName, String accountName, String edgeModuleName, Context context);
 
     /**
-     * Deletes an existing edge module resource. Deleting the edge module resource will prevent an Azure Video Analyzer
-     * IoT edge module which was previously initiated with the module provisioning token from communicating with the
-     * cloud.
+     * Retrieves an existing edge module resource.
+     *
+     * <p>Retrieves an existing edge module resource with the given name.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Azure Video Analyzer account name.
@@ -76,13 +69,16 @@ public interface EdgeModules {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the representation of an edge module.
      */
-    void delete(String resourceGroupName, String accountName, String edgeModuleName);
+    EdgeModuleEntity get(String resourceGroupName, String accountName, String edgeModuleName);
 
     /**
-     * Deletes an existing edge module resource. Deleting the edge module resource will prevent an Azure Video Analyzer
-     * IoT edge module which was previously initiated with the module provisioning token from communicating with the
-     * cloud.
+     * Deletes an existing edge module resource.
+     *
+     * <p>Deletes an existing edge module resource. Deleting the edge module resource will prevent an Azure Video
+     * Analyzer IoT edge module which was previously initiated with the module provisioning token from communicating
+     * with the cloud.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Azure Video Analyzer account name.
@@ -97,32 +93,30 @@ public interface EdgeModules {
         String resourceGroupName, String accountName, String edgeModuleName, Context context);
 
     /**
-     * Creates a new provisioning token. A provisioning token allows for a single instance of Azure Video analyzer IoT
-     * edge module to be initialized and authorized to the cloud account. The provisioning token itself is short lived
-     * and it is only used for the initial handshake between IoT edge module and the cloud. After the initial handshake,
-     * the IoT edge module will agree on a set of authentication keys which will be auto-rotated as long as the module
-     * is able to periodically connect to the cloud. A new provisioning token can be generated for the same IoT edge
-     * module in case the module state lost or reset.
+     * Deletes an existing edge module resource.
+     *
+     * <p>Deletes an existing edge module resource. Deleting the edge module resource will prevent an Azure Video
+     * Analyzer IoT edge module which was previously initiated with the module provisioning token from communicating
+     * with the cloud.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Azure Video Analyzer account name.
      * @param edgeModuleName The Edge Module name.
-     * @param parameters The request parameters.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return provisioning token properties.
      */
-    EdgeModuleProvisioningToken listProvisioningToken(
-        String resourceGroupName, String accountName, String edgeModuleName, ListProvisioningTokenInput parameters);
+    void delete(String resourceGroupName, String accountName, String edgeModuleName);
 
     /**
-     * Creates a new provisioning token. A provisioning token allows for a single instance of Azure Video analyzer IoT
-     * edge module to be initialized and authorized to the cloud account. The provisioning token itself is short lived
-     * and it is only used for the initial handshake between IoT edge module and the cloud. After the initial handshake,
-     * the IoT edge module will agree on a set of authentication keys which will be auto-rotated as long as the module
-     * is able to periodically connect to the cloud. A new provisioning token can be generated for the same IoT edge
-     * module in case the module state lost or reset.
+     * Creates a new provisioning token.
+     *
+     * <p>Creates a new provisioning token. A provisioning token allows for a single instance of Azure Video analyzer
+     * IoT edge module to be initialized and authorized to the cloud account. The provisioning token itself is short
+     * lived and it is only used for the initial handshake between IoT edge module and the cloud. After the initial
+     * handshake, the IoT edge module will agree on a set of authentication keys which will be auto-rotated as long as
+     * the module is able to periodically connect to the cloud. A new provisioning token can be generated for the same
+     * IoT edge module in case the module state lost or reset.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Azure Video Analyzer account name.
@@ -142,7 +136,31 @@ public interface EdgeModules {
         Context context);
 
     /**
-     * Retrieves an existing edge module resource with the given name.
+     * Creates a new provisioning token.
+     *
+     * <p>Creates a new provisioning token. A provisioning token allows for a single instance of Azure Video analyzer
+     * IoT edge module to be initialized and authorized to the cloud account. The provisioning token itself is short
+     * lived and it is only used for the initial handshake between IoT edge module and the cloud. After the initial
+     * handshake, the IoT edge module will agree on a set of authentication keys which will be auto-rotated as long as
+     * the module is able to periodically connect to the cloud. A new provisioning token can be generated for the same
+     * IoT edge module in case the module state lost or reset.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param accountName The Azure Video Analyzer account name.
+     * @param edgeModuleName The Edge Module name.
+     * @param parameters The request parameters.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return provisioning token properties.
+     */
+    EdgeModuleProvisioningToken listProvisioningToken(
+        String resourceGroupName, String accountName, String edgeModuleName, ListProvisioningTokenInput parameters);
+
+    /**
+     * Retrieves an existing edge module resource.
+     *
+     * <p>Retrieves an existing edge module resource with the given name.
      *
      * @param id the resource ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -153,7 +171,9 @@ public interface EdgeModules {
     EdgeModuleEntity getById(String id);
 
     /**
-     * Retrieves an existing edge module resource with the given name.
+     * Retrieves an existing edge module resource.
+     *
+     * <p>Retrieves an existing edge module resource with the given name.
      *
      * @param id the resource ID.
      * @param context The context to associate with this operation.
@@ -165,9 +185,11 @@ public interface EdgeModules {
     Response<EdgeModuleEntity> getByIdWithResponse(String id, Context context);
 
     /**
-     * Deletes an existing edge module resource. Deleting the edge module resource will prevent an Azure Video Analyzer
-     * IoT edge module which was previously initiated with the module provisioning token from communicating with the
-     * cloud.
+     * Deletes an existing edge module resource.
+     *
+     * <p>Deletes an existing edge module resource. Deleting the edge module resource will prevent an Azure Video
+     * Analyzer IoT edge module which was previously initiated with the module provisioning token from communicating
+     * with the cloud.
      *
      * @param id the resource ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -177,9 +199,11 @@ public interface EdgeModules {
     void deleteById(String id);
 
     /**
-     * Deletes an existing edge module resource. Deleting the edge module resource will prevent an Azure Video Analyzer
-     * IoT edge module which was previously initiated with the module provisioning token from communicating with the
-     * cloud.
+     * Deletes an existing edge module resource.
+     *
+     * <p>Deletes an existing edge module resource. Deleting the edge module resource will prevent an Azure Video
+     * Analyzer IoT edge module which was previously initiated with the module provisioning token from communicating
+     * with the cloud.
      *
      * @param id the resource ID.
      * @param context The context to associate with this operation.

@@ -17,6 +17,10 @@ public final class VideoAnalyzerCollectionInner {
     @JsonProperty(value = "value")
     private List<VideoAnalyzerInner> value;
 
+    /** Creates an instance of VideoAnalyzerCollectionInner class. */
+    public VideoAnalyzerCollectionInner() {
+    }
+
     /**
      * Get the value property: A collection of VideoAnalyzer items.
      *

@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for AccessPolicyEccAlgo. */
+/** Elliptical curve algorithm to be used: ES256, ES384 or ES512. */
 public final class AccessPolicyEccAlgo extends ExpandableStringEnum<AccessPolicyEccAlgo> {
     /** Static value ES256 for AccessPolicyEccAlgo. */
     public static final AccessPolicyEccAlgo ES256 = fromString("ES256");

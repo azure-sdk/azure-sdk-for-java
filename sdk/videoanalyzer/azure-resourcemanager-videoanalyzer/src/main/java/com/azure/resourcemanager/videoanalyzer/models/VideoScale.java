@@ -23,13 +23,16 @@ public final class VideoScale {
     private String width;
 
     /*
-     * Describes the video scaling mode to be applied. Default mode is 'Pad'.
-     * If the mode is 'Pad' or 'Stretch' then both width and height must be
-     * specified. Else if the mode is 'PreserveAspectRatio' then only one of
-     * width or height need be provided.
+     * Describes the video scaling mode to be applied. Default mode is 'Pad'. If the mode is 'Pad' or 'Stretch' then
+     * both width and height must be specified. Else if the mode is 'PreserveAspectRatio' then only one of width or
+     * height need be provided.
      */
     @JsonProperty(value = "mode")
     private VideoScaleMode mode;
+
+    /** Creates an instance of VideoScale class. */
+    public VideoScale() {
+    }
 
     /**
      * Get the height property: The desired output video height.

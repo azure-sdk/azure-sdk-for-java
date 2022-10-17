@@ -16,29 +16,26 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Fluent
 public final class VideoProperties {
     /*
-     * Optional video title provided by the user. Value can be up to 256
-     * characters long.
+     * Optional video title provided by the user. Value can be up to 256 characters long.
      */
     @JsonProperty(value = "title")
     private String title;
 
     /*
-     * Optional video description provided by the user. Value can be up to 2048
-     * characters long.
+     * Optional video description provided by the user. Value can be up to 2048 characters long.
      */
     @JsonProperty(value = "description")
     private String description;
 
     /*
-     * Video content type. Different content types are suitable for different
-     * applications and scenarios.
+     * Video content type. Different content types are suitable for different applications and scenarios.
      */
     @JsonProperty(value = "type", access = JsonProperty.Access.WRITE_ONLY)
     private VideoType type;
 
     /*
-     * Video flags contain information about the available video actions and
-     * its dynamic properties based on the current video state.
+     * Video flags contain information about the available video actions and its dynamic properties based on the
+     * current video state.
      */
     @JsonProperty(value = "flags", access = JsonProperty.Access.WRITE_ONLY)
     private VideoFlags flags;
@@ -60,6 +57,10 @@ public final class VideoProperties {
      */
     @JsonProperty(value = "archival")
     private VideoArchival archival;
+
+    /** Creates an instance of VideoProperties class. */
+    public VideoProperties() {
+    }
 
     /**
      * Get the title property: Optional video title provided by the user. Value can be up to 256 characters long.

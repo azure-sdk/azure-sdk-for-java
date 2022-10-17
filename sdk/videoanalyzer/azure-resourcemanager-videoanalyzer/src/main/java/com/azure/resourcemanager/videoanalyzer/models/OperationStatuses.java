@@ -10,22 +10,9 @@ import com.azure.core.util.Context;
 /** Resource collection API of OperationStatuses. */
 public interface OperationStatuses {
     /**
-     * Get private endpoint connection operation status.
+     * Get operation status.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param accountName The Video Analyzer account name.
-     * @param name Private endpoint connection name.
-     * @param operationId Operation Id.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return private endpoint connection operation status.
-     */
-    VideoAnalyzerPrivateEndpointConnectionOperationStatus get(
-        String resourceGroupName, String accountName, String name, String operationId);
-
-    /**
-     * Get private endpoint connection operation status.
+     * <p>Get private endpoint connection operation status.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Video Analyzer account name.
@@ -39,4 +26,21 @@ public interface OperationStatuses {
      */
     Response<VideoAnalyzerPrivateEndpointConnectionOperationStatus> getWithResponse(
         String resourceGroupName, String accountName, String name, String operationId, Context context);
+
+    /**
+     * Get operation status.
+     *
+     * <p>Get private endpoint connection operation status.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param accountName The Video Analyzer account name.
+     * @param name Private endpoint connection name.
+     * @param operationId Operation Id.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return private endpoint connection operation status.
+     */
+    VideoAnalyzerPrivateEndpointConnectionOperationStatus get(
+        String resourceGroupName, String accountName, String name, String operationId);
 }

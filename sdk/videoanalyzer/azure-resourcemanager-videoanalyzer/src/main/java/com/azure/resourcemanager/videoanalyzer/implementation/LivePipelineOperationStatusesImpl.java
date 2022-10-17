@@ -27,17 +27,6 @@ public final class LivePipelineOperationStatusesImpl implements LivePipelineOper
         this.serviceManager = serviceManager;
     }
 
-    public LivePipelineOperationStatus get(
-        String resourceGroupName, String accountName, String livePipelineName, String operationId) {
-        LivePipelineOperationStatusInner inner =
-            this.serviceClient().get(resourceGroupName, accountName, livePipelineName, operationId);
-        if (inner != null) {
-            return new LivePipelineOperationStatusImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
     public Response<LivePipelineOperationStatus> getWithResponse(
         String resourceGroupName, String accountName, String livePipelineName, String operationId, Context context) {
         Response<LivePipelineOperationStatusInner> inner =
@@ -50,6 +39,17 @@ public final class LivePipelineOperationStatusesImpl implements LivePipelineOper
                 inner.getStatusCode(),
                 inner.getHeaders(),
                 new LivePipelineOperationStatusImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public LivePipelineOperationStatus get(
+        String resourceGroupName, String accountName, String livePipelineName, String operationId) {
+        LivePipelineOperationStatusInner inner =
+            this.serviceClient().get(resourceGroupName, accountName, livePipelineName, operationId);
+        if (inner != null) {
+            return new LivePipelineOperationStatusImpl(inner, this.manager());
         } else {
             return null;
         }

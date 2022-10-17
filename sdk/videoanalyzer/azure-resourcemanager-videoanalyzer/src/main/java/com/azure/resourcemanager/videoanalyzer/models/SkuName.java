@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for SkuName. */
+/** The SKU name. */
 public final class SkuName extends ExpandableStringEnum<SkuName> {
     /** Static value Live_S1 for SkuName. */
     public static final SkuName LIVE_S1 = fromString("Live_S1");

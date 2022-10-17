@@ -23,11 +23,14 @@ import java.util.List;
 @Fluent
 public class SinkNodeBase extends NodeBase {
     /*
-     * An array of upstream node references within the topology to be used as
-     * inputs for this node.
+     * An array of upstream node references within the topology to be used as inputs for this node.
      */
     @JsonProperty(value = "inputs", required = true)
     private List<NodeInput> inputs;
+
+    /** Creates an instance of SinkNodeBase class. */
+    public SinkNodeBase() {
+    }
 
     /**
      * Get the inputs property: An array of upstream node references within the topology to be used as inputs for this

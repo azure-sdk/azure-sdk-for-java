@@ -10,19 +10,9 @@ import com.azure.core.util.Context;
 /** Resource collection API of PrivateLinkResources. */
 public interface PrivateLinkResources {
     /**
-     * Get list of group IDs for video analyzer account.
+     * Get list of group IDs.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param accountName The Video Analyzer account name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of group IDs for video analyzer account.
-     */
-    PrivateLinkResourceListResult list(String resourceGroupName, String accountName);
-
-    /**
-     * Get list of group IDs for video analyzer account.
+     * <p>Get list of group IDs for video analyzer account.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Video Analyzer account name.
@@ -36,20 +26,23 @@ public interface PrivateLinkResources {
         String resourceGroupName, String accountName, Context context);
 
     /**
-     * Get group ID for video analyzer account.
+     * Get list of group IDs.
+     *
+     * <p>Get list of group IDs for video analyzer account.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Video Analyzer account name.
-     * @param name Name of the private link resource (Group ID).
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return group ID for video analyzer account.
+     * @return list of group IDs for video analyzer account.
      */
-    PrivateLinkResource get(String resourceGroupName, String accountName, String name);
+    PrivateLinkResourceListResult list(String resourceGroupName, String accountName);
 
     /**
-     * Get group ID for video analyzer account.
+     * Get group ID.
+     *
+     * <p>Get group ID for video analyzer account.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Video Analyzer account name.
@@ -62,4 +55,19 @@ public interface PrivateLinkResources {
      */
     Response<PrivateLinkResource> getWithResponse(
         String resourceGroupName, String accountName, String name, Context context);
+
+    /**
+     * Get group ID.
+     *
+     * <p>Get group ID for video analyzer account.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param accountName The Video Analyzer account name.
+     * @param name Name of the private link resource (Group ID).
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return group ID for video analyzer account.
+     */
+    PrivateLinkResource get(String resourceGroupName, String accountName, String name);
 }

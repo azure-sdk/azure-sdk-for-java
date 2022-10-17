@@ -11,7 +11,9 @@ import com.azure.core.util.Context;
 /** Resource collection API of PipelineJobs. */
 public interface PipelineJobs {
     /**
-     * Retrieves a list of all live pipelines that have been created, along with their JSON representations.
+     * Retrieves a list of pipeline jobs.
+     *
+     * <p>Retrieves a list of all live pipelines that have been created, along with their JSON representations.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Azure Video Analyzer account name.
@@ -23,7 +25,9 @@ public interface PipelineJobs {
     PagedIterable<PipelineJob> list(String resourceGroupName, String accountName);
 
     /**
-     * Retrieves a list of all live pipelines that have been created, along with their JSON representations.
+     * Retrieves a list of pipeline jobs.
+     *
+     * <p>Retrieves a list of all live pipelines that have been created, along with their JSON representations.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Azure Video Analyzer account name.
@@ -40,23 +44,10 @@ public interface PipelineJobs {
         String resourceGroupName, String accountName, String filter, Integer top, Context context);
 
     /**
-     * Retrieves a specific pipeline job by name. If a pipeline job with that name has been previously created, the call
-     * will return the JSON representation of that instance.
+     * Gets a specific pipeline job by name.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param accountName The Azure Video Analyzer account name.
-     * @param pipelineJobName The pipeline job name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return pipeline job represents a unique instance of a batch topology, used for offline processing of selected
-     *     portions of archived content.
-     */
-    PipelineJob get(String resourceGroupName, String accountName, String pipelineJobName);
-
-    /**
-     * Retrieves a specific pipeline job by name. If a pipeline job with that name has been previously created, the call
-     * will return the JSON representation of that instance.
+     * <p>Retrieves a specific pipeline job by name. If a pipeline job with that name has been previously created, the
+     * call will return the JSON representation of that instance.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Azure Video Analyzer account name.
@@ -72,7 +63,10 @@ public interface PipelineJobs {
         String resourceGroupName, String accountName, String pipelineJobName, Context context);
 
     /**
-     * Deletes a pipeline job with the given name.
+     * Gets a specific pipeline job by name.
+     *
+     * <p>Retrieves a specific pipeline job by name. If a pipeline job with that name has been previously created, the
+     * call will return the JSON representation of that instance.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Azure Video Analyzer account name.
@@ -80,11 +74,15 @@ public interface PipelineJobs {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return pipeline job represents a unique instance of a batch topology, used for offline processing of selected
+     *     portions of archived content.
      */
-    void delete(String resourceGroupName, String accountName, String pipelineJobName);
+    PipelineJob get(String resourceGroupName, String accountName, String pipelineJobName);
 
     /**
-     * Deletes a pipeline job with the given name.
+     * Deletes a pipeline job.
+     *
+     * <p>Deletes a pipeline job with the given name.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Azure Video Analyzer account name.
@@ -99,7 +97,23 @@ public interface PipelineJobs {
         String resourceGroupName, String accountName, String pipelineJobName, Context context);
 
     /**
-     * Cancels a pipeline job with the given name.
+     * Deletes a pipeline job.
+     *
+     * <p>Deletes a pipeline job with the given name.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param accountName The Azure Video Analyzer account name.
+     * @param pipelineJobName The pipeline job name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void delete(String resourceGroupName, String accountName, String pipelineJobName);
+
+    /**
+     * Cancels a pipeline job.
+     *
+     * <p>Cancels a pipeline job with the given name.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Azure Video Analyzer account name.
@@ -111,7 +125,9 @@ public interface PipelineJobs {
     void cancel(String resourceGroupName, String accountName, String pipelineJobName);
 
     /**
-     * Cancels a pipeline job with the given name.
+     * Cancels a pipeline job.
+     *
+     * <p>Cancels a pipeline job with the given name.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Azure Video Analyzer account name.
@@ -124,8 +140,10 @@ public interface PipelineJobs {
     void cancel(String resourceGroupName, String accountName, String pipelineJobName, Context context);
 
     /**
-     * Retrieves a specific pipeline job by name. If a pipeline job with that name has been previously created, the call
-     * will return the JSON representation of that instance.
+     * Gets a specific pipeline job by name.
+     *
+     * <p>Retrieves a specific pipeline job by name. If a pipeline job with that name has been previously created, the
+     * call will return the JSON representation of that instance.
      *
      * @param id the resource ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -137,8 +155,10 @@ public interface PipelineJobs {
     PipelineJob getById(String id);
 
     /**
-     * Retrieves a specific pipeline job by name. If a pipeline job with that name has been previously created, the call
-     * will return the JSON representation of that instance.
+     * Gets a specific pipeline job by name.
+     *
+     * <p>Retrieves a specific pipeline job by name. If a pipeline job with that name has been previously created, the
+     * call will return the JSON representation of that instance.
      *
      * @param id the resource ID.
      * @param context The context to associate with this operation.
@@ -151,7 +171,9 @@ public interface PipelineJobs {
     Response<PipelineJob> getByIdWithResponse(String id, Context context);
 
     /**
-     * Deletes a pipeline job with the given name.
+     * Deletes a pipeline job.
+     *
+     * <p>Deletes a pipeline job with the given name.
      *
      * @param id the resource ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -161,7 +183,9 @@ public interface PipelineJobs {
     void deleteById(String id);
 
     /**
-     * Deletes a pipeline job with the given name.
+     * Deletes a pipeline job.
+     *
+     * <p>Deletes a pipeline job with the given name.
      *
      * @param id the resource ID.
      * @param context The context to associate with this operation.

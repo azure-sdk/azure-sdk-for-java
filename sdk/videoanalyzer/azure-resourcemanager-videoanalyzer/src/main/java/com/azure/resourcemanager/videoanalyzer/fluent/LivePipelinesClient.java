@@ -17,7 +17,9 @@ import com.azure.resourcemanager.videoanalyzer.models.LivePipelineUpdate;
 /** An instance of this class provides access to all the operations defined in LivePipelinesClient. */
 public interface LivePipelinesClient {
     /**
-     * Retrieves a list of live pipelines that have been created, along with their JSON representations.
+     * Retrieves a list of live pipelines.
+     *
+     * <p>Retrieves a list of live pipelines that have been created, along with their JSON representations.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Azure Video Analyzer account name.
@@ -30,7 +32,9 @@ public interface LivePipelinesClient {
     PagedIterable<LivePipelineInner> list(String resourceGroupName, String accountName);
 
     /**
-     * Retrieves a list of live pipelines that have been created, along with their JSON representations.
+     * Retrieves a list of live pipelines.
+     *
+     * <p>Retrieves a list of live pipelines that have been created, along with their JSON representations.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Azure Video Analyzer account name.
@@ -48,23 +52,9 @@ public interface LivePipelinesClient {
         String resourceGroupName, String accountName, String filter, Integer top, Context context);
 
     /**
-     * Retrieves a specific live pipeline by name. If a live pipeline with that name has been previously created, the
-     * call will return the JSON representation of that instance.
+     * Retrieves a specific live pipeline by name.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param accountName The Azure Video Analyzer account name.
-     * @param livePipelineName Live pipeline unique identifier.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return live pipeline represents a unique instance of a live topology, used for real-time ingestion, archiving
-     *     and publishing of content for a unique RTSP camera.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    LivePipelineInner get(String resourceGroupName, String accountName, String livePipelineName);
-
-    /**
-     * Retrieves a specific live pipeline by name. If a live pipeline with that name has been previously created, the
+     * <p>Retrieves a specific live pipeline by name. If a live pipeline with that name has been previously created, the
      * call will return the JSON representation of that instance.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -82,12 +72,14 @@ public interface LivePipelinesClient {
         String resourceGroupName, String accountName, String livePipelineName, Context context);
 
     /**
-     * Creates a new live pipeline or updates an existing one, with the given name.
+     * Retrieves a specific live pipeline by name.
+     *
+     * <p>Retrieves a specific live pipeline by name. If a live pipeline with that name has been previously created, the
+     * call will return the JSON representation of that instance.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Azure Video Analyzer account name.
      * @param livePipelineName Live pipeline unique identifier.
-     * @param parameters The request parameters.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -95,11 +87,12 @@ public interface LivePipelinesClient {
      *     and publishing of content for a unique RTSP camera.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    LivePipelineInner createOrUpdate(
-        String resourceGroupName, String accountName, String livePipelineName, LivePipelineInner parameters);
+    LivePipelineInner get(String resourceGroupName, String accountName, String livePipelineName);
 
     /**
-     * Creates a new live pipeline or updates an existing one, with the given name.
+     * Creates or updates a live pipeline.
+     *
+     * <p>Creates a new live pipeline or updates an existing one, with the given name.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Azure Video Analyzer account name.
@@ -121,20 +114,28 @@ public interface LivePipelinesClient {
         Context context);
 
     /**
-     * Deletes a live pipeline with the given name.
+     * Creates or updates a live pipeline.
+     *
+     * <p>Creates a new live pipeline or updates an existing one, with the given name.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Azure Video Analyzer account name.
      * @param livePipelineName Live pipeline unique identifier.
+     * @param parameters The request parameters.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return live pipeline represents a unique instance of a live topology, used for real-time ingestion, archiving
+     *     and publishing of content for a unique RTSP camera.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    void delete(String resourceGroupName, String accountName, String livePipelineName);
+    LivePipelineInner createOrUpdate(
+        String resourceGroupName, String accountName, String livePipelineName, LivePipelineInner parameters);
 
     /**
-     * Deletes a live pipeline with the given name.
+     * Deletes a live pipeline.
+     *
+     * <p>Deletes a live pipeline with the given name.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Azure Video Analyzer account name.
@@ -150,25 +151,24 @@ public interface LivePipelinesClient {
         String resourceGroupName, String accountName, String livePipelineName, Context context);
 
     /**
-     * Updates an existing live pipeline with the given name. Properties that can be updated include: description,
-     * bitrateKbps, and parameter definitions. Only the description can be updated while the live pipeline is active.
+     * Deletes a live pipeline.
+     *
+     * <p>Deletes a live pipeline with the given name.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Azure Video Analyzer account name.
      * @param livePipelineName Live pipeline unique identifier.
-     * @param parameters The request parameters.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return live pipeline represents a unique instance of a live topology, used for real-time ingestion, archiving
-     *     and publishing of content for a unique RTSP camera.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    LivePipelineInner update(
-        String resourceGroupName, String accountName, String livePipelineName, LivePipelineUpdate parameters);
+    void delete(String resourceGroupName, String accountName, String livePipelineName);
 
     /**
-     * Updates an existing live pipeline with the given name. Properties that can be updated include: description,
+     * Updates an existing live pipeline.
+     *
+     * <p>Updates an existing live pipeline with the given name. Properties that can be updated include: description,
      * bitrateKbps, and parameter definitions. Only the description can be updated while the live pipeline is active.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -191,7 +191,29 @@ public interface LivePipelinesClient {
         Context context);
 
     /**
-     * Activates a live pipeline with the given name.
+     * Updates an existing live pipeline.
+     *
+     * <p>Updates an existing live pipeline with the given name. Properties that can be updated include: description,
+     * bitrateKbps, and parameter definitions. Only the description can be updated while the live pipeline is active.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param accountName The Azure Video Analyzer account name.
+     * @param livePipelineName Live pipeline unique identifier.
+     * @param parameters The request parameters.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return live pipeline represents a unique instance of a live topology, used for real-time ingestion, archiving
+     *     and publishing of content for a unique RTSP camera.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    LivePipelineInner update(
+        String resourceGroupName, String accountName, String livePipelineName, LivePipelineUpdate parameters);
+
+    /**
+     * Activates a live pipeline.
+     *
+     * <p>Activates a live pipeline with the given name.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Azure Video Analyzer account name.
@@ -206,7 +228,9 @@ public interface LivePipelinesClient {
         String resourceGroupName, String accountName, String livePipelineName);
 
     /**
-     * Activates a live pipeline with the given name.
+     * Activates a live pipeline.
+     *
+     * <p>Activates a live pipeline with the given name.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Azure Video Analyzer account name.
@@ -222,7 +246,9 @@ public interface LivePipelinesClient {
         String resourceGroupName, String accountName, String livePipelineName, Context context);
 
     /**
-     * Activates a live pipeline with the given name.
+     * Activates a live pipeline.
+     *
+     * <p>Activates a live pipeline with the given name.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Azure Video Analyzer account name.
@@ -235,7 +261,9 @@ public interface LivePipelinesClient {
     void activate(String resourceGroupName, String accountName, String livePipelineName);
 
     /**
-     * Activates a live pipeline with the given name.
+     * Activates a live pipeline.
+     *
+     * <p>Activates a live pipeline with the given name.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Azure Video Analyzer account name.
@@ -249,7 +277,9 @@ public interface LivePipelinesClient {
     void activate(String resourceGroupName, String accountName, String livePipelineName, Context context);
 
     /**
-     * Deactivates a live pipeline with the given name.
+     * Deactivates a live pipeline.
+     *
+     * <p>Deactivates a live pipeline with the given name.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Azure Video Analyzer account name.
@@ -264,7 +294,9 @@ public interface LivePipelinesClient {
         String resourceGroupName, String accountName, String livePipelineName);
 
     /**
-     * Deactivates a live pipeline with the given name.
+     * Deactivates a live pipeline.
+     *
+     * <p>Deactivates a live pipeline with the given name.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Azure Video Analyzer account name.
@@ -280,7 +312,9 @@ public interface LivePipelinesClient {
         String resourceGroupName, String accountName, String livePipelineName, Context context);
 
     /**
-     * Deactivates a live pipeline with the given name.
+     * Deactivates a live pipeline.
+     *
+     * <p>Deactivates a live pipeline with the given name.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Azure Video Analyzer account name.
@@ -293,7 +327,9 @@ public interface LivePipelinesClient {
     void deactivate(String resourceGroupName, String accountName, String livePipelineName);
 
     /**
-     * Deactivates a live pipeline with the given name.
+     * Deactivates a live pipeline.
+     *
+     * <p>Deactivates a live pipeline with the given name.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Azure Video Analyzer account name.

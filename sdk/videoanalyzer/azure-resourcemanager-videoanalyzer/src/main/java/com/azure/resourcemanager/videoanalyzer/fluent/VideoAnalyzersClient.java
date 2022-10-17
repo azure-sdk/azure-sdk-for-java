@@ -17,19 +17,9 @@ import com.azure.resourcemanager.videoanalyzer.models.VideoAnalyzerUpdate;
 /** An instance of this class provides access to all the operations defined in VideoAnalyzersClient. */
 public interface VideoAnalyzersClient {
     /**
-     * Lists the Video Analyzer accounts in the specified resource group.
+     * List Video Analyzer accounts
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a collection of VideoAnalyzer items.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    VideoAnalyzerCollectionInner list(String resourceGroupName);
-
-    /**
-     * Lists the Video Analyzer accounts in the specified resource group.
+     * <p>Lists the Video Analyzer accounts in the specified resource group.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param context The context to associate with this operation.
@@ -42,20 +32,23 @@ public interface VideoAnalyzersClient {
     Response<VideoAnalyzerCollectionInner> listWithResponse(String resourceGroupName, Context context);
 
     /**
-     * Get the details of the specified Video Analyzer account.
+     * List Video Analyzer accounts
+     *
+     * <p>Lists the Video Analyzer accounts in the specified resource group.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param accountName The Video Analyzer account name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the details of the specified Video Analyzer account.
+     * @return a collection of VideoAnalyzer items.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    VideoAnalyzerInner getByResourceGroup(String resourceGroupName, String accountName);
+    VideoAnalyzerCollectionInner list(String resourceGroupName);
 
     /**
-     * Get the details of the specified Video Analyzer account.
+     * Get a Video Analyzer account
+     *
+     * <p>Get the details of the specified Video Analyzer account.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Video Analyzer account name.
@@ -70,7 +63,24 @@ public interface VideoAnalyzersClient {
         String resourceGroupName, String accountName, Context context);
 
     /**
-     * Create or update an instance of a Video Analyzer account.
+     * Get a Video Analyzer account
+     *
+     * <p>Get the details of the specified Video Analyzer account.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param accountName The Video Analyzer account name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the details of the specified Video Analyzer account.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    VideoAnalyzerInner getByResourceGroup(String resourceGroupName, String accountName);
+
+    /**
+     * Create or update a Video Analyzer account
+     *
+     * <p>Create or update an instance of a Video Analyzer account.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Video Analyzer account name.
@@ -85,7 +95,9 @@ public interface VideoAnalyzersClient {
         String resourceGroupName, String accountName, VideoAnalyzerInner parameters);
 
     /**
-     * Create or update an instance of a Video Analyzer account.
+     * Create or update a Video Analyzer account
+     *
+     * <p>Create or update an instance of a Video Analyzer account.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Video Analyzer account name.
@@ -101,7 +113,9 @@ public interface VideoAnalyzersClient {
         String resourceGroupName, String accountName, VideoAnalyzerInner parameters, Context context);
 
     /**
-     * Create or update an instance of a Video Analyzer account.
+     * Create or update a Video Analyzer account
+     *
+     * <p>Create or update an instance of a Video Analyzer account.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Video Analyzer account name.
@@ -115,7 +129,9 @@ public interface VideoAnalyzersClient {
     VideoAnalyzerInner createOrUpdate(String resourceGroupName, String accountName, VideoAnalyzerInner parameters);
 
     /**
-     * Create or update an instance of a Video Analyzer account.
+     * Create or update a Video Analyzer account
+     *
+     * <p>Create or update an instance of a Video Analyzer account.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Video Analyzer account name.
@@ -131,19 +147,9 @@ public interface VideoAnalyzersClient {
         String resourceGroupName, String accountName, VideoAnalyzerInner parameters, Context context);
 
     /**
-     * Delete the specified Video Analyzer account.
+     * Delete a Video Analyzer account.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param accountName The Video Analyzer account name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    void delete(String resourceGroupName, String accountName);
-
-    /**
-     * Delete the specified Video Analyzer account.
+     * <p>Delete the specified Video Analyzer account.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Video Analyzer account name.
@@ -157,7 +163,23 @@ public interface VideoAnalyzersClient {
     Response<Void> deleteWithResponse(String resourceGroupName, String accountName, Context context);
 
     /**
-     * Updates an existing instance of Video Analyzer account.
+     * Delete a Video Analyzer account.
+     *
+     * <p>Delete the specified Video Analyzer account.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param accountName The Video Analyzer account name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    void delete(String resourceGroupName, String accountName);
+
+    /**
+     * Update a Video Analyzer account
+     *
+     * <p>Updates an existing instance of Video Analyzer account.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Video Analyzer account name.
@@ -172,7 +194,9 @@ public interface VideoAnalyzersClient {
         String resourceGroupName, String accountName, VideoAnalyzerUpdate parameters);
 
     /**
-     * Updates an existing instance of Video Analyzer account.
+     * Update a Video Analyzer account
+     *
+     * <p>Updates an existing instance of Video Analyzer account.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Video Analyzer account name.
@@ -188,7 +212,9 @@ public interface VideoAnalyzersClient {
         String resourceGroupName, String accountName, VideoAnalyzerUpdate parameters, Context context);
 
     /**
-     * Updates an existing instance of Video Analyzer account.
+     * Update a Video Analyzer account
+     *
+     * <p>Updates an existing instance of Video Analyzer account.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Video Analyzer account name.
@@ -202,7 +228,9 @@ public interface VideoAnalyzersClient {
     VideoAnalyzerInner update(String resourceGroupName, String accountName, VideoAnalyzerUpdate parameters);
 
     /**
-     * Updates an existing instance of Video Analyzer account.
+     * Update a Video Analyzer account
+     *
+     * <p>Updates an existing instance of Video Analyzer account.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Video Analyzer account name.
@@ -218,17 +246,9 @@ public interface VideoAnalyzersClient {
         String resourceGroupName, String accountName, VideoAnalyzerUpdate parameters, Context context);
 
     /**
-     * List all Video Analyzer accounts in the specified subscription.
+     * List Video Analyzer accounts
      *
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a collection of VideoAnalyzer items.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    VideoAnalyzerCollectionInner listBySubscription();
-
-    /**
-     * List all Video Analyzer accounts in the specified subscription.
+     * <p>List all Video Analyzer accounts in the specified subscription.
      *
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -238,4 +258,16 @@ public interface VideoAnalyzersClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<VideoAnalyzerCollectionInner> listBySubscriptionWithResponse(Context context);
+
+    /**
+     * List Video Analyzer accounts
+     *
+     * <p>List all Video Analyzer accounts in the specified subscription.
+     *
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a collection of VideoAnalyzer items.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    VideoAnalyzerCollectionInner listBySubscription();
 }

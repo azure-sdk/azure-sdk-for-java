@@ -28,6 +28,10 @@ public final class NetworkAccessControl {
     @JsonProperty(value = "consumption")
     private GroupLevelAccessControl consumption;
 
+    /** Creates an instance of NetworkAccessControl class. */
+    public NetworkAccessControl() {
+    }
+
     /**
      * Get the integration property: Public network access for integration group.
      *

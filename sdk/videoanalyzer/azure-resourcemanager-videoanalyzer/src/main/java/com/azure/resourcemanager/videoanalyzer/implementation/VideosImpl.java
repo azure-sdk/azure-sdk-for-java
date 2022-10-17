@@ -39,15 +39,6 @@ public final class VideosImpl implements Videos {
         return Utils.mapPage(inner, inner1 -> new VideoEntityImpl(inner1, this.manager()));
     }
 
-    public VideoEntity get(String resourceGroupName, String accountName, String videoName) {
-        VideoEntityInner inner = this.serviceClient().get(resourceGroupName, accountName, videoName);
-        if (inner != null) {
-            return new VideoEntityImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
     public Response<VideoEntity> getWithResponse(
         String resourceGroupName, String accountName, String videoName, Context context) {
         Response<VideoEntityInner> inner =
@@ -63,8 +54,13 @@ public final class VideosImpl implements Videos {
         }
     }
 
-    public void delete(String resourceGroupName, String accountName, String videoName) {
-        this.serviceClient().delete(resourceGroupName, accountName, videoName);
+    public VideoEntity get(String resourceGroupName, String accountName, String videoName) {
+        VideoEntityInner inner = this.serviceClient().get(resourceGroupName, accountName, videoName);
+        if (inner != null) {
+            return new VideoEntityImpl(inner, this.manager());
+        } else {
+            return null;
+        }
     }
 
     public Response<Void> deleteWithResponse(
@@ -72,13 +68,8 @@ public final class VideosImpl implements Videos {
         return this.serviceClient().deleteWithResponse(resourceGroupName, accountName, videoName, context);
     }
 
-    public VideoContentToken listContentToken(String resourceGroupName, String accountName, String videoName) {
-        VideoContentTokenInner inner = this.serviceClient().listContentToken(resourceGroupName, accountName, videoName);
-        if (inner != null) {
-            return new VideoContentTokenImpl(inner, this.manager());
-        } else {
-            return null;
-        }
+    public void delete(String resourceGroupName, String accountName, String videoName) {
+        this.serviceClient().delete(resourceGroupName, accountName, videoName);
     }
 
     public Response<VideoContentToken> listContentTokenWithResponse(
@@ -91,6 +82,15 @@ public final class VideosImpl implements Videos {
                 inner.getStatusCode(),
                 inner.getHeaders(),
                 new VideoContentTokenImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public VideoContentToken listContentToken(String resourceGroupName, String accountName, String videoName) {
+        VideoContentTokenInner inner = this.serviceClient().listContentToken(resourceGroupName, accountName, videoName);
+        if (inner != null) {
+            return new VideoContentTokenImpl(inner, this.manager());
         } else {
             return null;
         }

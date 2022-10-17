@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for EncoderSystemPresetType. */
+/** Name of the built-in encoding preset. */
 public final class EncoderSystemPresetType extends ExpandableStringEnum<EncoderSystemPresetType> {
     /** Static value SingleLayer_540p_H264_AAC for EncoderSystemPresetType. */
     public static final EncoderSystemPresetType SINGLE_LAYER_540P_H264_AAC = fromString("SingleLayer_540p_H264_AAC");

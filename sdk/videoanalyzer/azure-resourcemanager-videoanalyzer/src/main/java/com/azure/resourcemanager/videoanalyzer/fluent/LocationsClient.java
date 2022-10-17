@@ -14,21 +14,9 @@ import com.azure.resourcemanager.videoanalyzer.models.CheckNameAvailabilityReque
 /** An instance of this class provides access to all the operations defined in LocationsClient. */
 public interface LocationsClient {
     /**
-     * Checks whether the Video Analyzer resource name is available.
+     * Check Name Availability
      *
-     * @param locationName Location Name.
-     * @param parameters The request parameters.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the check availability result.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    CheckNameAvailabilityResponseInner checkNameAvailability(
-        String locationName, CheckNameAvailabilityRequest parameters);
-
-    /**
-     * Checks whether the Video Analyzer resource name is available.
+     * <p>Checks whether the Video Analyzer resource name is available.
      *
      * @param locationName Location Name.
      * @param parameters The request parameters.
@@ -41,4 +29,20 @@ public interface LocationsClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<CheckNameAvailabilityResponseInner> checkNameAvailabilityWithResponse(
         String locationName, CheckNameAvailabilityRequest parameters, Context context);
+
+    /**
+     * Check Name Availability
+     *
+     * <p>Checks whether the Video Analyzer resource name is available.
+     *
+     * @param locationName Location Name.
+     * @param parameters The request parameters.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the check availability result.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    CheckNameAvailabilityResponseInner checkNameAvailability(
+        String locationName, CheckNameAvailabilityRequest parameters);
 }

@@ -10,19 +10,9 @@ import com.azure.core.util.Context;
 /** Resource collection API of VideoAnalyzerOperationStatuses. */
 public interface VideoAnalyzerOperationStatuses {
     /**
-     * Get video analyzer operation status.
+     * Get operation status.
      *
-     * @param locationName Location name.
-     * @param operationId Operation Id.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return video analyzer operation status.
-     */
-    VideoAnalyzerOperationStatus get(String locationName, String operationId);
-
-    /**
-     * Get video analyzer operation status.
+     * <p>Get video analyzer operation status.
      *
      * @param locationName Location name.
      * @param operationId Operation Id.
@@ -33,4 +23,18 @@ public interface VideoAnalyzerOperationStatuses {
      * @return video analyzer operation status along with {@link Response}.
      */
     Response<VideoAnalyzerOperationStatus> getWithResponse(String locationName, String operationId, Context context);
+
+    /**
+     * Get operation status.
+     *
+     * <p>Get video analyzer operation status.
+     *
+     * @param locationName Location name.
+     * @param operationId Operation Id.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return video analyzer operation status.
+     */
+    VideoAnalyzerOperationStatus get(String locationName, String operationId);
 }

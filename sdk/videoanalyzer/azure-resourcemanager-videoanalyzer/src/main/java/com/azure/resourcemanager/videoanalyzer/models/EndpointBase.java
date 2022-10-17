@@ -37,12 +37,15 @@ public class EndpointBase {
     private String url;
 
     /*
-     * Describes the tunnel through which Video Analyzer can connect to the
-     * endpoint URL. This is an optional property, typically used when the
-     * endpoint is behind a firewall.
+     * Describes the tunnel through which Video Analyzer can connect to the endpoint URL. This is an optional property,
+     * typically used when the endpoint is behind a firewall.
      */
     @JsonProperty(value = "tunnel")
     private TunnelBase tunnel;
+
+    /** Creates an instance of EndpointBase class. */
+    public EndpointBase() {
+    }
 
     /**
      * Get the credentials property: Credentials to be presented to the endpoint.

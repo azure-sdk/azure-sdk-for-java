@@ -27,17 +27,6 @@ public final class OperationStatusesImpl implements OperationStatuses {
         this.serviceManager = serviceManager;
     }
 
-    public VideoAnalyzerPrivateEndpointConnectionOperationStatus get(
-        String resourceGroupName, String accountName, String name, String operationId) {
-        VideoAnalyzerPrivateEndpointConnectionOperationStatusInner inner =
-            this.serviceClient().get(resourceGroupName, accountName, name, operationId);
-        if (inner != null) {
-            return new VideoAnalyzerPrivateEndpointConnectionOperationStatusImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
     public Response<VideoAnalyzerPrivateEndpointConnectionOperationStatus> getWithResponse(
         String resourceGroupName, String accountName, String name, String operationId, Context context) {
         Response<VideoAnalyzerPrivateEndpointConnectionOperationStatusInner> inner =
@@ -48,6 +37,17 @@ public final class OperationStatusesImpl implements OperationStatuses {
                 inner.getStatusCode(),
                 inner.getHeaders(),
                 new VideoAnalyzerPrivateEndpointConnectionOperationStatusImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public VideoAnalyzerPrivateEndpointConnectionOperationStatus get(
+        String resourceGroupName, String accountName, String name, String operationId) {
+        VideoAnalyzerPrivateEndpointConnectionOperationStatusInner inner =
+            this.serviceClient().get(resourceGroupName, accountName, name, operationId);
+        if (inner != null) {
+            return new VideoAnalyzerPrivateEndpointConnectionOperationStatusImpl(inner, this.manager());
         } else {
             return null;
         }

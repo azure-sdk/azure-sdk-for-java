@@ -27,15 +27,6 @@ public final class VideoAnalyzerOperationResultsImpl implements VideoAnalyzerOpe
         this.serviceManager = serviceManager;
     }
 
-    public VideoAnalyzer get(String locationName, String operationId) {
-        VideoAnalyzerInner inner = this.serviceClient().get(locationName, operationId);
-        if (inner != null) {
-            return new VideoAnalyzerImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
     public Response<VideoAnalyzer> getWithResponse(String locationName, String operationId, Context context) {
         Response<VideoAnalyzerInner> inner = this.serviceClient().getWithResponse(locationName, operationId, context);
         if (inner != null) {
@@ -44,6 +35,15 @@ public final class VideoAnalyzerOperationResultsImpl implements VideoAnalyzerOpe
                 inner.getStatusCode(),
                 inner.getHeaders(),
                 new VideoAnalyzerImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public VideoAnalyzer get(String locationName, String operationId) {
+        VideoAnalyzerInner inner = this.serviceClient().get(locationName, operationId);
+        if (inner != null) {
+            return new VideoAnalyzerImpl(inner, this.manager());
         } else {
             return null;
         }

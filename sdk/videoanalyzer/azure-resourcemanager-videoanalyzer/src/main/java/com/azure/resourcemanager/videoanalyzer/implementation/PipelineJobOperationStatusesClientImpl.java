@@ -72,7 +72,9 @@ public final class PipelineJobOperationStatusesClientImpl implements PipelineJob
     }
 
     /**
-     * Get the operation status of a pipeline job with the given operationId.
+     * Get the operation statuses.
+     *
+     * <p>Get the operation status of a pipeline job with the given operationId.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Azure Video Analyzer account name.
@@ -132,7 +134,9 @@ public final class PipelineJobOperationStatusesClientImpl implements PipelineJob
     }
 
     /**
-     * Get the operation status of a pipeline job with the given operationId.
+     * Get the operation statuses.
+     *
+     * <p>Get the operation status of a pipeline job with the given operationId.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Azure Video Analyzer account name.
@@ -190,7 +194,9 @@ public final class PipelineJobOperationStatusesClientImpl implements PipelineJob
     }
 
     /**
-     * Get the operation status of a pipeline job with the given operationId.
+     * Get the operation statuses.
+     *
+     * <p>Get the operation status of a pipeline job with the given operationId.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Azure Video Analyzer account name.
@@ -210,25 +216,9 @@ public final class PipelineJobOperationStatusesClientImpl implements PipelineJob
     }
 
     /**
-     * Get the operation status of a pipeline job with the given operationId.
+     * Get the operation statuses.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param accountName The Azure Video Analyzer account name.
-     * @param pipelineJobName The pipeline job name.
-     * @param operationId The operation ID.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the operation status of a pipeline job with the given operationId.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public PipelineJobOperationStatusInner get(
-        String resourceGroupName, String accountName, String pipelineJobName, String operationId) {
-        return getAsync(resourceGroupName, accountName, pipelineJobName, operationId).block();
-    }
-
-    /**
-     * Get the operation status of a pipeline job with the given operationId.
+     * <p>Get the operation status of a pipeline job with the given operationId.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Azure Video Analyzer account name.
@@ -244,5 +234,25 @@ public final class PipelineJobOperationStatusesClientImpl implements PipelineJob
     public Response<PipelineJobOperationStatusInner> getWithResponse(
         String resourceGroupName, String accountName, String pipelineJobName, String operationId, Context context) {
         return getWithResponseAsync(resourceGroupName, accountName, pipelineJobName, operationId, context).block();
+    }
+
+    /**
+     * Get the operation statuses.
+     *
+     * <p>Get the operation status of a pipeline job with the given operationId.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param accountName The Azure Video Analyzer account name.
+     * @param pipelineJobName The pipeline job name.
+     * @param operationId The operation ID.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the operation status of a pipeline job with the given operationId.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public PipelineJobOperationStatusInner get(
+        String resourceGroupName, String accountName, String pipelineJobName, String operationId) {
+        return getWithResponse(resourceGroupName, accountName, pipelineJobName, operationId, Context.NONE).getValue();
     }
 }

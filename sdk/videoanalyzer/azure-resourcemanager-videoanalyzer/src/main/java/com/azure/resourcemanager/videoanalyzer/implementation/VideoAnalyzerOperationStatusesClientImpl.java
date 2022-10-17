@@ -72,7 +72,9 @@ public final class VideoAnalyzerOperationStatusesClientImpl implements VideoAnal
     }
 
     /**
-     * Get video analyzer operation status.
+     * Get operation status.
+     *
+     * <p>Get video analyzer operation status.
      *
      * @param locationName Location name.
      * @param operationId Operation Id.
@@ -119,7 +121,9 @@ public final class VideoAnalyzerOperationStatusesClientImpl implements VideoAnal
     }
 
     /**
-     * Get video analyzer operation status.
+     * Get operation status.
+     *
+     * <p>Get video analyzer operation status.
      *
      * @param locationName Location name.
      * @param operationId Operation Id.
@@ -164,7 +168,9 @@ public final class VideoAnalyzerOperationStatusesClientImpl implements VideoAnal
     }
 
     /**
-     * Get video analyzer operation status.
+     * Get operation status.
+     *
+     * <p>Get video analyzer operation status.
      *
      * @param locationName Location name.
      * @param operationId Operation Id.
@@ -179,22 +185,9 @@ public final class VideoAnalyzerOperationStatusesClientImpl implements VideoAnal
     }
 
     /**
-     * Get video analyzer operation status.
+     * Get operation status.
      *
-     * @param locationName Location name.
-     * @param operationId Operation Id.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return video analyzer operation status.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public VideoAnalyzerOperationStatusInner get(String locationName, String operationId) {
-        return getAsync(locationName, operationId).block();
-    }
-
-    /**
-     * Get video analyzer operation status.
+     * <p>Get video analyzer operation status.
      *
      * @param locationName Location name.
      * @param operationId Operation Id.
@@ -208,5 +201,22 @@ public final class VideoAnalyzerOperationStatusesClientImpl implements VideoAnal
     public Response<VideoAnalyzerOperationStatusInner> getWithResponse(
         String locationName, String operationId, Context context) {
         return getWithResponseAsync(locationName, operationId, context).block();
+    }
+
+    /**
+     * Get operation status.
+     *
+     * <p>Get video analyzer operation status.
+     *
+     * @param locationName Location name.
+     * @param operationId Operation Id.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return video analyzer operation status.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public VideoAnalyzerOperationStatusInner get(String locationName, String operationId) {
+        return getWithResponse(locationName, operationId, Context.NONE).getValue();
     }
 }

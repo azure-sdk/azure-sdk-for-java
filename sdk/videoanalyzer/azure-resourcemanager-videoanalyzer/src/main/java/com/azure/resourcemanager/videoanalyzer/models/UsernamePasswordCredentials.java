@@ -22,12 +22,15 @@ public final class UsernamePasswordCredentials extends CredentialsBase {
     private String username;
 
     /*
-     * Password to be presented as part of the credentials. It is recommended
-     * that this value is parameterized as a secret string in order to prevent
-     * this value to be returned as part of the resource on API requests.
+     * Password to be presented as part of the credentials. It is recommended that this value is parameterized as a
+     * secret string in order to prevent this value to be returned as part of the resource on API requests.
      */
     @JsonProperty(value = "password", required = true)
     private String password;
+
+    /** Creates an instance of UsernamePasswordCredentials class. */
+    public UsernamePasswordCredentials() {
+    }
 
     /**
      * Get the username property: Username to be presented as part of the credentials.

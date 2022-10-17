@@ -25,6 +25,10 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 })
 @Immutable
 public class EncoderPresetBase {
+    /** Creates an instance of EncoderPresetBase class. */
+    public EncoderPresetBase() {
+    }
+
     /**
      * Validates the instance.
      *

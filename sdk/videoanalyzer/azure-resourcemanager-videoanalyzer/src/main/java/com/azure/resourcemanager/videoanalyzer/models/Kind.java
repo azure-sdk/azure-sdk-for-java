@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for Kind. */
+/** Topology kind. */
 public final class Kind extends ExpandableStringEnum<Kind> {
     /** Static value Live for Kind. */
     public static final Kind LIVE = fromString("Live");

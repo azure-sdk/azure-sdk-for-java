@@ -11,7 +11,9 @@ import com.azure.core.util.Context;
 /** Resource collection API of AccessPolicies. */
 public interface AccessPolicies {
     /**
-     * Retrieves all existing access policy resources, along with their JSON representations.
+     * List all existing access policy resources.
+     *
+     * <p>Retrieves all existing access policy resources, along with their JSON representations.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Azure Video Analyzer account name.
@@ -23,7 +25,9 @@ public interface AccessPolicies {
     PagedIterable<AccessPolicyEntity> list(String resourceGroupName, String accountName);
 
     /**
-     * Retrieves all existing access policy resources, along with their JSON representations.
+     * List all existing access policy resources.
+     *
+     * <p>Retrieves all existing access policy resources, along with their JSON representations.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Azure Video Analyzer account name.
@@ -38,20 +42,9 @@ public interface AccessPolicies {
     PagedIterable<AccessPolicyEntity> list(String resourceGroupName, String accountName, Integer top, Context context);
 
     /**
-     * Retrieves an existing access policy resource with the given name.
+     * Retrieves an existing access policy resource.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param accountName The Azure Video Analyzer account name.
-     * @param accessPolicyName The Access Policy name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return access policies help define the authentication rules, and control access to specific video resources.
-     */
-    AccessPolicyEntity get(String resourceGroupName, String accountName, String accessPolicyName);
-
-    /**
-     * Retrieves an existing access policy resource with the given name.
+     * <p>Retrieves an existing access policy resource with the given name.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Azure Video Analyzer account name.
@@ -67,7 +60,9 @@ public interface AccessPolicies {
         String resourceGroupName, String accountName, String accessPolicyName, Context context);
 
     /**
-     * Deletes an existing access policy resource with the given name.
+     * Retrieves an existing access policy resource.
+     *
+     * <p>Retrieves an existing access policy resource with the given name.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Azure Video Analyzer account name.
@@ -75,11 +70,14 @@ public interface AccessPolicies {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return access policies help define the authentication rules, and control access to specific video resources.
      */
-    void delete(String resourceGroupName, String accountName, String accessPolicyName);
+    AccessPolicyEntity get(String resourceGroupName, String accountName, String accessPolicyName);
 
     /**
-     * Deletes an existing access policy resource with the given name.
+     * Deletes an existing access policy resource.
+     *
+     * <p>Deletes an existing access policy resource with the given name.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Azure Video Analyzer account name.
@@ -94,7 +92,23 @@ public interface AccessPolicies {
         String resourceGroupName, String accountName, String accessPolicyName, Context context);
 
     /**
-     * Retrieves an existing access policy resource with the given name.
+     * Deletes an existing access policy resource.
+     *
+     * <p>Deletes an existing access policy resource with the given name.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param accountName The Azure Video Analyzer account name.
+     * @param accessPolicyName The Access Policy name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void delete(String resourceGroupName, String accountName, String accessPolicyName);
+
+    /**
+     * Retrieves an existing access policy resource.
+     *
+     * <p>Retrieves an existing access policy resource with the given name.
      *
      * @param id the resource ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -106,7 +120,9 @@ public interface AccessPolicies {
     AccessPolicyEntity getById(String id);
 
     /**
-     * Retrieves an existing access policy resource with the given name.
+     * Retrieves an existing access policy resource.
+     *
+     * <p>Retrieves an existing access policy resource with the given name.
      *
      * @param id the resource ID.
      * @param context The context to associate with this operation.
@@ -119,7 +135,9 @@ public interface AccessPolicies {
     Response<AccessPolicyEntity> getByIdWithResponse(String id, Context context);
 
     /**
-     * Deletes an existing access policy resource with the given name.
+     * Deletes an existing access policy resource.
+     *
+     * <p>Deletes an existing access policy resource with the given name.
      *
      * @param id the resource ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -129,7 +147,9 @@ public interface AccessPolicies {
     void deleteById(String id);
 
     /**
-     * Deletes an existing access policy resource with the given name.
+     * Deletes an existing access policy resource.
+     *
+     * <p>Deletes an existing access policy resource with the given name.
      *
      * @param id the resource ID.
      * @param context The context to associate with this operation.

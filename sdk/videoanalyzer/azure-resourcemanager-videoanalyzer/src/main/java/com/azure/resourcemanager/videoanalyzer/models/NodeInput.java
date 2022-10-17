@@ -12,11 +12,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Fluent
 public final class NodeInput {
     /*
-     * The name of the upstream node in the pipeline which output is used as
-     * input of the current node.
+     * The name of the upstream node in the pipeline which output is used as input of the current node.
      */
     @JsonProperty(value = "nodeName", required = true)
     private String nodeName;
+
+    /** Creates an instance of NodeInput class. */
+    public NodeInput() {
+    }
 
     /**
      * Get the nodeName property: The name of the upstream node in the pipeline which output is used as input of the

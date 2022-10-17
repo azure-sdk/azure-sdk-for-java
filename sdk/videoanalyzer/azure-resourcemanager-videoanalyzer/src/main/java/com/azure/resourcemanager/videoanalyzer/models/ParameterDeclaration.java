@@ -33,11 +33,14 @@ public final class ParameterDeclaration {
     private String description;
 
     /*
-     * The default value for the parameter to be used if the pipeline does not
-     * specify a value.
+     * The default value for the parameter to be used if the pipeline does not specify a value.
      */
     @JsonProperty(value = "default")
     private String defaultProperty;
+
+    /** Creates an instance of ParameterDeclaration class. */
+    public ParameterDeclaration() {
+    }
 
     /**
      * Get the name property: Name of the parameter.

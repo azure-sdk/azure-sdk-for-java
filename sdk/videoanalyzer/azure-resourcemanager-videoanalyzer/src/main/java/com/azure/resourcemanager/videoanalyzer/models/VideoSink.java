@@ -21,27 +21,28 @@ import java.util.List;
 @Fluent
 public final class VideoSink extends SinkNodeBase {
     /*
-     * Name of a new or existing video resource used to capture and publish
-     * content. Note: if downstream of RTSP source, and if disableArchive is
-     * set to true, then no content is archived.
+     * Name of a new or existing video resource used to capture and publish content. Note: if downstream of RTSP
+     * source, and if disableArchive is set to true, then no content is archived.
      */
     @JsonProperty(value = "videoName", required = true)
     private String videoName;
 
     /*
-     * Optional video properties to be used in case a new video resource needs
-     * to be created on the service.
+     * Optional video properties to be used in case a new video resource needs to be created on the service.
      */
     @JsonProperty(value = "videoCreationProperties")
     private VideoCreationProperties videoCreationProperties;
 
     /*
-     * Options to change how the video sink publishes content via the video
-     * resource. This property is only allowed for topologies where "kind" is
-     * set to "live".
+     * Options to change how the video sink publishes content via the video resource. This property is only allowed for
+     * topologies where "kind" is set to "live".
      */
     @JsonProperty(value = "videoPublishingOptions")
     private VideoPublishingOptions videoPublishingOptions;
+
+    /** Creates an instance of VideoSink class. */
+    public VideoSink() {
+    }
 
     /**
      * Get the videoName property: Name of a new or existing video resource used to capture and publish content. Note:

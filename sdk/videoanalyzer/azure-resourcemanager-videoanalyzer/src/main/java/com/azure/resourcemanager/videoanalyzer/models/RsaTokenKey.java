@@ -33,6 +33,10 @@ public final class RsaTokenKey extends TokenKey {
     @JsonProperty(value = "e", required = true)
     private String e;
 
+    /** Creates an instance of RsaTokenKey class. */
+    public RsaTokenKey() {
+    }
+
     /**
      * Get the alg property: RSA algorithm to be used: RS256, RS384 or RS512.
      *

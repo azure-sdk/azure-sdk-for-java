@@ -13,23 +13,9 @@ import com.azure.resourcemanager.videoanalyzer.fluent.models.PipelineJobOperatio
 /** An instance of this class provides access to all the operations defined in PipelineJobOperationStatusesClient. */
 public interface PipelineJobOperationStatusesClient {
     /**
-     * Get the operation status of a pipeline job with the given operationId.
+     * Get the operation statuses.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param accountName The Azure Video Analyzer account name.
-     * @param pipelineJobName The pipeline job name.
-     * @param operationId The operation ID.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the operation status of a pipeline job with the given operationId.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    PipelineJobOperationStatusInner get(
-        String resourceGroupName, String accountName, String pipelineJobName, String operationId);
-
-    /**
-     * Get the operation status of a pipeline job with the given operationId.
+     * <p>Get the operation status of a pipeline job with the given operationId.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The Azure Video Analyzer account name.
@@ -44,4 +30,22 @@ public interface PipelineJobOperationStatusesClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<PipelineJobOperationStatusInner> getWithResponse(
         String resourceGroupName, String accountName, String pipelineJobName, String operationId, Context context);
+
+    /**
+     * Get the operation statuses.
+     *
+     * <p>Get the operation status of a pipeline job with the given operationId.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param accountName The Azure Video Analyzer account name.
+     * @param pipelineJobName The pipeline job name.
+     * @param operationId The operation ID.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the operation status of a pipeline job with the given operationId.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    PipelineJobOperationStatusInner get(
+        String resourceGroupName, String accountName, String pipelineJobName, String operationId);
 }

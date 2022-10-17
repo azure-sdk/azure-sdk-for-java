@@ -168,12 +168,12 @@ public final class VideoEntityImpl implements VideoEntity, VideoEntity.Definitio
         return this;
     }
 
-    public VideoContentToken listContentToken() {
-        return serviceManager.videos().listContentToken(resourceGroupName, accountName, videoName);
-    }
-
     public Response<VideoContentToken> listContentTokenWithResponse(Context context) {
         return serviceManager.videos().listContentTokenWithResponse(resourceGroupName, accountName, videoName, context);
+    }
+
+    public VideoContentToken listContentToken() {
+        return serviceManager.videos().listContentToken(resourceGroupName, accountName, videoName);
     }
 
     public VideoEntityImpl withTitle(String title) {

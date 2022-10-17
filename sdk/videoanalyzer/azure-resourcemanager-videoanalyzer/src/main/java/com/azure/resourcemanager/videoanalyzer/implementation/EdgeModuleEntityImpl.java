@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.videoanalyzer.implementation;
 
 import com.azure.core.http.rest.Response;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.videoanalyzer.fluent.models.EdgeModuleEntityInner;
 import com.azure.resourcemanager.videoanalyzer.models.EdgeModuleEntity;
@@ -28,6 +29,10 @@ public final class EdgeModuleEntityImpl
 
     public String type() {
         return this.innerModel().type();
+    }
+
+    public SystemData systemData() {
+        return this.innerModel().systemData();
     }
 
     public UUID edgeModuleId() {
@@ -140,16 +145,16 @@ public final class EdgeModuleEntityImpl
         return this;
     }
 
-    public EdgeModuleProvisioningToken listProvisioningToken(ListProvisioningTokenInput parameters) {
-        return serviceManager
-            .edgeModules()
-            .listProvisioningToken(resourceGroupName, accountName, edgeModuleName, parameters);
-    }
-
     public Response<EdgeModuleProvisioningToken> listProvisioningTokenWithResponse(
         ListProvisioningTokenInput parameters, Context context) {
         return serviceManager
             .edgeModules()
             .listProvisioningTokenWithResponse(resourceGroupName, accountName, edgeModuleName, parameters, context);
+    }
+
+    public EdgeModuleProvisioningToken listProvisioningToken(ListProvisioningTokenInput parameters) {
+        return serviceManager
+            .edgeModules()
+            .listProvisioningToken(resourceGroupName, accountName, edgeModuleName, parameters);
     }
 }

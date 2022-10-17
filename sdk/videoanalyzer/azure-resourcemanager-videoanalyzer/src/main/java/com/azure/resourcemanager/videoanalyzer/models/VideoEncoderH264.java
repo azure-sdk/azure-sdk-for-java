@@ -13,6 +13,10 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @JsonTypeName("#Microsoft.VideoAnalyzer.VideoEncoderH264")
 @Fluent
 public final class VideoEncoderH264 extends VideoEncoderBase {
+    /** Creates an instance of VideoEncoderH264 class. */
+    public VideoEncoderH264() {
+    }
+
     /** {@inheritDoc} */
     @Override
     public VideoEncoderH264 withBitrateKbps(String bitrateKbps) {

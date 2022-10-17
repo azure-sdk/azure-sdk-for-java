@@ -22,6 +22,10 @@ public final class PipelineJobError {
     @JsonProperty(value = "message")
     private String message;
 
+    /** Creates an instance of PipelineJobError class. */
+    public PipelineJobError() {
+    }
+
     /**
      * Get the code property: The error code.
      *

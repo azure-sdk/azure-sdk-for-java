@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for VideoType. */
+/** Video content type. Different content types are suitable for different applications and scenarios. */
 public final class VideoType extends ExpandableStringEnum<VideoType> {
     /** Static value Archive for VideoType. */
     public static final VideoType ARCHIVE = fromString("Archive");

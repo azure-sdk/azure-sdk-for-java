@@ -8,7 +8,11 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for RtspTransport. */
+/**
+ * Network transport utilized by the RTSP and RTP exchange: TCP or HTTP. When using TCP, the RTP packets are interleaved
+ * on the TCP RTSP connection. When using HTTP, the RTSP messages are exchanged through long lived HTTP connections, and
+ * the RTP packages are interleaved in the HTTP connections alongside the RTSP messages.
+ */
 public final class RtspTransport extends ExpandableStringEnum<RtspTransport> {
     /** Static value Http for RtspTransport. */
     public static final RtspTransport HTTP = fromString("Http");

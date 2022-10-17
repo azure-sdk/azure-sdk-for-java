@@ -19,11 +19,15 @@ public final class LivePipelineCollection {
     private List<LivePipelineInner> value;
 
     /*
-     * A link to the next page of the collection (when the collection contains
-     * too many results to return in one response).
+     * A link to the next page of the collection (when the collection contains too many results to return in one
+     * response).
      */
     @JsonProperty(value = "@nextLink")
     private String nextLink;
+
+    /** Creates an instance of LivePipelineCollection class. */
+    public LivePipelineCollection() {
+    }
 
     /**
      * Get the value property: A collection of LivePipeline items.

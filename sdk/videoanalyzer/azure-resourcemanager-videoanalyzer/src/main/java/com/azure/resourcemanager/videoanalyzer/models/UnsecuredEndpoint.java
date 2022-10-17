@@ -16,6 +16,10 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @JsonTypeName("#Microsoft.VideoAnalyzer.UnsecuredEndpoint")
 @Fluent
 public final class UnsecuredEndpoint extends EndpointBase {
+    /** Creates an instance of UnsecuredEndpoint class. */
+    public UnsecuredEndpoint() {
+    }
+
     /** {@inheritDoc} */
     @Override
     public UnsecuredEndpoint withCredentials(CredentialsBase credentials) {
