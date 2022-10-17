@@ -144,7 +144,9 @@ public final class SqlPoolWorkloadGroupsClientImpl implements SqlPoolWorkloadGro
     }
 
     /**
-     * Get a Sql pool's workload group.
+     * Sql pool's workload group
+     *
+     * <p>Get a Sql pool's workload group.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -204,7 +206,9 @@ public final class SqlPoolWorkloadGroupsClientImpl implements SqlPoolWorkloadGro
     }
 
     /**
-     * Get a Sql pool's workload group.
+     * Sql pool's workload group
+     *
+     * <p>Get a Sql pool's workload group.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -262,7 +266,9 @@ public final class SqlPoolWorkloadGroupsClientImpl implements SqlPoolWorkloadGro
     }
 
     /**
-     * Get a Sql pool's workload group.
+     * Sql pool's workload group
+     *
+     * <p>Get a Sql pool's workload group.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -277,36 +283,13 @@ public final class SqlPoolWorkloadGroupsClientImpl implements SqlPoolWorkloadGro
     private Mono<WorkloadGroupInner> getAsync(
         String resourceGroupName, String workspaceName, String sqlPoolName, String workloadGroupName) {
         return getWithResponseAsync(resourceGroupName, workspaceName, sqlPoolName, workloadGroupName)
-            .flatMap(
-                (Response<WorkloadGroupInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
-     * Get a Sql pool's workload group.
+     * Sql pool's workload group
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param sqlPoolName SQL pool name.
-     * @param workloadGroupName The name of the workload group.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a Sql pool's workload group.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public WorkloadGroupInner get(
-        String resourceGroupName, String workspaceName, String sqlPoolName, String workloadGroupName) {
-        return getAsync(resourceGroupName, workspaceName, sqlPoolName, workloadGroupName).block();
-    }
-
-    /**
-     * Get a Sql pool's workload group.
+     * <p>Get a Sql pool's workload group.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -325,7 +308,30 @@ public final class SqlPoolWorkloadGroupsClientImpl implements SqlPoolWorkloadGro
     }
 
     /**
-     * Create Or Update a Sql pool's workload group.
+     * Sql pool's workload group
+     *
+     * <p>Get a Sql pool's workload group.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param sqlPoolName SQL pool name.
+     * @param workloadGroupName The name of the workload group.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a Sql pool's workload group.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public WorkloadGroupInner get(
+        String resourceGroupName, String workspaceName, String sqlPoolName, String workloadGroupName) {
+        return getWithResponse(resourceGroupName, workspaceName, sqlPoolName, workloadGroupName, Context.NONE)
+            .getValue();
+    }
+
+    /**
+     * Create Or Update workload group
+     *
+     * <p>Create Or Update a Sql pool's workload group.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -397,7 +403,9 @@ public final class SqlPoolWorkloadGroupsClientImpl implements SqlPoolWorkloadGro
     }
 
     /**
-     * Create Or Update a Sql pool's workload group.
+     * Create Or Update workload group
+     *
+     * <p>Create Or Update a Sql pool's workload group.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -468,7 +476,9 @@ public final class SqlPoolWorkloadGroupsClientImpl implements SqlPoolWorkloadGro
     }
 
     /**
-     * Create Or Update a Sql pool's workload group.
+     * Create Or Update workload group
+     *
+     * <p>Create Or Update a Sql pool's workload group.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -501,7 +511,9 @@ public final class SqlPoolWorkloadGroupsClientImpl implements SqlPoolWorkloadGro
     }
 
     /**
-     * Create Or Update a Sql pool's workload group.
+     * Create Or Update workload group
+     *
+     * <p>Create Or Update a Sql pool's workload group.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -533,7 +545,9 @@ public final class SqlPoolWorkloadGroupsClientImpl implements SqlPoolWorkloadGro
     }
 
     /**
-     * Create Or Update a Sql pool's workload group.
+     * Create Or Update workload group
+     *
+     * <p>Create Or Update a Sql pool's workload group.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -557,7 +571,9 @@ public final class SqlPoolWorkloadGroupsClientImpl implements SqlPoolWorkloadGro
     }
 
     /**
-     * Create Or Update a Sql pool's workload group.
+     * Create Or Update workload group
+     *
+     * <p>Create Or Update a Sql pool's workload group.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -584,7 +600,9 @@ public final class SqlPoolWorkloadGroupsClientImpl implements SqlPoolWorkloadGro
     }
 
     /**
-     * Create Or Update a Sql pool's workload group.
+     * Create Or Update workload group
+     *
+     * <p>Create Or Update a Sql pool's workload group.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -609,7 +627,9 @@ public final class SqlPoolWorkloadGroupsClientImpl implements SqlPoolWorkloadGro
     }
 
     /**
-     * Create Or Update a Sql pool's workload group.
+     * Create Or Update workload group
+     *
+     * <p>Create Or Update a Sql pool's workload group.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -637,7 +657,9 @@ public final class SqlPoolWorkloadGroupsClientImpl implements SqlPoolWorkloadGro
     }
 
     /**
-     * Create Or Update a Sql pool's workload group.
+     * Create Or Update workload group
+     *
+     * <p>Create Or Update a Sql pool's workload group.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -661,7 +683,9 @@ public final class SqlPoolWorkloadGroupsClientImpl implements SqlPoolWorkloadGro
     }
 
     /**
-     * Create Or Update a Sql pool's workload group.
+     * Create Or Update workload group
+     *
+     * <p>Create Or Update a Sql pool's workload group.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -688,7 +712,9 @@ public final class SqlPoolWorkloadGroupsClientImpl implements SqlPoolWorkloadGro
     }
 
     /**
-     * Remove Sql pool's workload group.
+     * Remove workload group
+     *
+     * <p>Remove Sql pool's workload group.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -746,7 +772,9 @@ public final class SqlPoolWorkloadGroupsClientImpl implements SqlPoolWorkloadGro
     }
 
     /**
-     * Remove Sql pool's workload group.
+     * Remove workload group
+     *
+     * <p>Remove Sql pool's workload group.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -802,7 +830,9 @@ public final class SqlPoolWorkloadGroupsClientImpl implements SqlPoolWorkloadGro
     }
 
     /**
-     * Remove Sql pool's workload group.
+     * Remove workload group
+     *
+     * <p>Remove Sql pool's workload group.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -825,7 +855,9 @@ public final class SqlPoolWorkloadGroupsClientImpl implements SqlPoolWorkloadGro
     }
 
     /**
-     * Remove Sql pool's workload group.
+     * Remove workload group
+     *
+     * <p>Remove Sql pool's workload group.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -849,7 +881,9 @@ public final class SqlPoolWorkloadGroupsClientImpl implements SqlPoolWorkloadGro
     }
 
     /**
-     * Remove Sql pool's workload group.
+     * Remove workload group
+     *
+     * <p>Remove Sql pool's workload group.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -867,7 +901,9 @@ public final class SqlPoolWorkloadGroupsClientImpl implements SqlPoolWorkloadGro
     }
 
     /**
-     * Remove Sql pool's workload group.
+     * Remove workload group
+     *
+     * <p>Remove Sql pool's workload group.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -887,7 +923,9 @@ public final class SqlPoolWorkloadGroupsClientImpl implements SqlPoolWorkloadGro
     }
 
     /**
-     * Remove Sql pool's workload group.
+     * Remove workload group
+     *
+     * <p>Remove Sql pool's workload group.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -907,7 +945,9 @@ public final class SqlPoolWorkloadGroupsClientImpl implements SqlPoolWorkloadGro
     }
 
     /**
-     * Remove Sql pool's workload group.
+     * Remove workload group
+     *
+     * <p>Remove Sql pool's workload group.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -928,7 +968,9 @@ public final class SqlPoolWorkloadGroupsClientImpl implements SqlPoolWorkloadGro
     }
 
     /**
-     * Remove Sql pool's workload group.
+     * Remove workload group
+     *
+     * <p>Remove Sql pool's workload group.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -944,7 +986,9 @@ public final class SqlPoolWorkloadGroupsClientImpl implements SqlPoolWorkloadGro
     }
 
     /**
-     * Remove Sql pool's workload group.
+     * Remove workload group
+     *
+     * <p>Remove Sql pool's workload group.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -962,7 +1006,9 @@ public final class SqlPoolWorkloadGroupsClientImpl implements SqlPoolWorkloadGro
     }
 
     /**
-     * Get list of Sql pool's workload groups.
+     * Sql pool's workload groups
+     *
+     * <p>Get list of Sql pool's workload groups.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -1026,7 +1072,9 @@ public final class SqlPoolWorkloadGroupsClientImpl implements SqlPoolWorkloadGro
     }
 
     /**
-     * Get list of Sql pool's workload groups.
+     * Sql pool's workload groups
+     *
+     * <p>Get list of Sql pool's workload groups.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -1088,7 +1136,9 @@ public final class SqlPoolWorkloadGroupsClientImpl implements SqlPoolWorkloadGro
     }
 
     /**
-     * Get list of Sql pool's workload groups.
+     * Sql pool's workload groups
+     *
+     * <p>Get list of Sql pool's workload groups.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -1107,7 +1157,9 @@ public final class SqlPoolWorkloadGroupsClientImpl implements SqlPoolWorkloadGro
     }
 
     /**
-     * Get list of Sql pool's workload groups.
+     * Sql pool's workload groups
+     *
+     * <p>Get list of Sql pool's workload groups.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -1127,7 +1179,9 @@ public final class SqlPoolWorkloadGroupsClientImpl implements SqlPoolWorkloadGro
     }
 
     /**
-     * Get list of Sql pool's workload groups.
+     * Sql pool's workload groups
+     *
+     * <p>Get list of Sql pool's workload groups.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -1143,7 +1197,9 @@ public final class SqlPoolWorkloadGroupsClientImpl implements SqlPoolWorkloadGro
     }
 
     /**
-     * Get list of Sql pool's workload groups.
+     * Sql pool's workload groups
+     *
+     * <p>Get list of Sql pool's workload groups.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -1163,7 +1219,8 @@ public final class SqlPoolWorkloadGroupsClientImpl implements SqlPoolWorkloadGro
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1198,7 +1255,8 @@ public final class SqlPoolWorkloadGroupsClientImpl implements SqlPoolWorkloadGro
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
