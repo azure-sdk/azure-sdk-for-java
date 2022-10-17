@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for Jobs CancelJob. */
 public final class JobsCancelJobSamples {
     /*
-     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/stable/2021-11-01/examples/jobs-cancel.json
+     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/Encoding/stable/2021-11-01/examples/jobs-cancel.json
      */
     /**
      * Sample code: Cancel a Job.
