@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for PrimingJobState. */
+/** The state of the priming operation. */
 public final class PrimingJobState extends ExpandableStringEnum<PrimingJobState> {
     /** Static value Queued for PrimingJobState. */
     public static final PrimingJobState QUEUED = fromString("Queued");

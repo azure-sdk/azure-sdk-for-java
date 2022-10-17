@@ -280,20 +280,12 @@ public final class CacheImpl implements Cache, Cache.Definition, Cache.Update {
         serviceManager.caches().stop(resourceGroupName, cacheName, context);
     }
 
-    public void startPrimingJob(PrimingJob primingjob) {
-        serviceManager.caches().startPrimingJob(resourceGroupName, cacheName, primingjob);
-    }
-
     public void startPrimingJob() {
         serviceManager.caches().startPrimingJob(resourceGroupName, cacheName);
     }
 
     public void startPrimingJob(PrimingJob primingjob, Context context) {
         serviceManager.caches().startPrimingJob(resourceGroupName, cacheName, primingjob, context);
-    }
-
-    public void stopPrimingJob(PrimingJobIdParameter primingJobId) {
-        serviceManager.caches().stopPrimingJob(resourceGroupName, cacheName, primingJobId);
     }
 
     public void stopPrimingJob() {
@@ -304,20 +296,12 @@ public final class CacheImpl implements Cache, Cache.Definition, Cache.Update {
         serviceManager.caches().stopPrimingJob(resourceGroupName, cacheName, primingJobId, context);
     }
 
-    public void pausePrimingJob(PrimingJobIdParameter primingJobId) {
-        serviceManager.caches().pausePrimingJob(resourceGroupName, cacheName, primingJobId);
-    }
-
     public void pausePrimingJob() {
         serviceManager.caches().pausePrimingJob(resourceGroupName, cacheName);
     }
 
     public void pausePrimingJob(PrimingJobIdParameter primingJobId, Context context) {
         serviceManager.caches().pausePrimingJob(resourceGroupName, cacheName, primingJobId, context);
-    }
-
-    public void resumePrimingJob(PrimingJobIdParameter primingJobId) {
-        serviceManager.caches().resumePrimingJob(resourceGroupName, cacheName, primingJobId);
     }
 
     public void resumePrimingJob() {

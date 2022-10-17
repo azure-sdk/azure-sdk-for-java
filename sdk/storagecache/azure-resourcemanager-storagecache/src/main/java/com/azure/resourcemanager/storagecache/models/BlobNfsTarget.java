@@ -17,11 +17,14 @@ public final class BlobNfsTarget {
     private String target;
 
     /*
-     * Identifies the StorageCache usage model to be used for this storage
-     * target.
+     * Identifies the StorageCache usage model to be used for this storage target.
      */
     @JsonProperty(value = "usageModel")
     private String usageModel;
+
+    /** Creates an instance of BlobNfsTarget class. */
+    public BlobNfsTarget() {
+    }
 
     /**
      * Get the target property: Resource ID of the storage container.
