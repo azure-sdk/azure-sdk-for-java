@@ -23,6 +23,10 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 })
 @Immutable
 public class TargetServiceBase {
+    /** Creates an instance of TargetServiceBase class. */
+    public TargetServiceBase() {
+    }
+
     /**
      * Validates the instance.
      *
