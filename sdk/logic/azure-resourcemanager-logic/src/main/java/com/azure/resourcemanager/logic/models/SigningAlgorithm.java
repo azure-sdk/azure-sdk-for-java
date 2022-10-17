@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for SigningAlgorithm. */
+/** The signing or hashing algorithm. */
 public final class SigningAlgorithm extends ExpandableStringEnum<SigningAlgorithm> {
     /** Static value NotSpecified for SigningAlgorithm. */
     public static final SigningAlgorithm NOT_SPECIFIED = fromString("NotSpecified");
@@ -39,7 +39,11 @@ public final class SigningAlgorithm extends ExpandableStringEnum<SigningAlgorith
         return fromString(name, SigningAlgorithm.class);
     }
 
-    /** @return known SigningAlgorithm values. */
+    /**
+     * Gets known SigningAlgorithm values.
+     *
+     * @return known SigningAlgorithm values.
+     */
     public static Collection<SigningAlgorithm> values() {
         return values(SigningAlgorithm.class);
     }

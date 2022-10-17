@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for SkuName. */
+/** The sku name. */
 public final class SkuName extends ExpandableStringEnum<SkuName> {
     /** Static value NotSpecified for SkuName. */
     public static final SkuName NOT_SPECIFIED = fromString("NotSpecified");
@@ -39,7 +39,11 @@ public final class SkuName extends ExpandableStringEnum<SkuName> {
         return fromString(name, SkuName.class);
     }
 
-    /** @return known SkuName values. */
+    /**
+     * Gets known SkuName values.
+     *
+     * @return known SkuName values.
+     */
     public static Collection<SkuName> values() {
         return values(SkuName.class);
     }

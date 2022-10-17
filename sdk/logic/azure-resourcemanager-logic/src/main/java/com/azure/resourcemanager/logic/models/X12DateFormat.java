@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for X12DateFormat. */
+/** The x12 date format. */
 public final class X12DateFormat extends ExpandableStringEnum<X12DateFormat> {
     /** Static value NotSpecified for X12DateFormat. */
     public static final X12DateFormat NOT_SPECIFIED = fromString("NotSpecified");
@@ -30,7 +30,11 @@ public final class X12DateFormat extends ExpandableStringEnum<X12DateFormat> {
         return fromString(name, X12DateFormat.class);
     }
 
-    /** @return known X12DateFormat values. */
+    /**
+     * Gets known X12DateFormat values.
+     *
+     * @return known X12DateFormat values.
+     */
     public static Collection<X12DateFormat> values() {
         return values(X12DateFormat.class);
     }
