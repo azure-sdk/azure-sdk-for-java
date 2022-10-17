@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for ClientType. */
+/** The application client type. */
 public final class ClientType extends ExpandableStringEnum<ClientType> {
     /** Static value none for ClientType. */
     public static final ClientType NONE = fromString("none");
