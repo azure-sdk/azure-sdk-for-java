@@ -1313,18 +1313,6 @@ public interface Volume {
      *
      * <p>Break the replication connection on the destination volume.
      *
-     * @param body Optional body to force break the replication.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    void breakReplication(BreakReplicationRequest body);
-
-    /**
-     * Break volume replication
-     *
-     * <p>Break the replication connection on the destination volume.
-     *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
@@ -1511,18 +1499,6 @@ public interface Volume {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
     void poolChange(PoolChangeRequest body, Context context);
-
-    /**
-     * Relocate volume
-     *
-     * <p>Relocates volume to a new stamp.
-     *
-     * @param body Relocate volume request.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    void relocate(RelocateVolumeRequest body);
 
     /**
      * Relocate volume

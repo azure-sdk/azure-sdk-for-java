@@ -25,6 +25,10 @@ public final class SnapshotInner extends ProxyResource {
     @JsonProperty(value = "properties")
     private SnapshotProperties innerProperties;
 
+    /** Creates an instance of SnapshotInner class. */
+    public SnapshotInner() {
+    }
+
     /**
      * Get the location property: Resource location.
      *

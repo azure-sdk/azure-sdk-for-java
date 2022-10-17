@@ -447,24 +447,6 @@ public final class VolumeGroupsClientImpl implements VolumeGroupsClient {
      * @param resourceGroupName The name of the resource group.
      * @param accountName The name of the NetApp account.
      * @param volumeGroupName The name of the volumeGroup.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return details of the specified volume group.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public VolumeGroupDetailsInner get(String resourceGroupName, String accountName, String volumeGroupName) {
-        return getAsync(resourceGroupName, accountName, volumeGroupName).block();
-    }
-
-    /**
-     * Describe a Volume Group
-     *
-     * <p>Get details of the specified volume group.
-     *
-     * @param resourceGroupName The name of the resource group.
-     * @param accountName The name of the NetApp account.
-     * @param volumeGroupName The name of the volumeGroup.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -475,6 +457,24 @@ public final class VolumeGroupsClientImpl implements VolumeGroupsClient {
     public Response<VolumeGroupDetailsInner> getWithResponse(
         String resourceGroupName, String accountName, String volumeGroupName, Context context) {
         return getWithResponseAsync(resourceGroupName, accountName, volumeGroupName, context).block();
+    }
+
+    /**
+     * Describe a Volume Group
+     *
+     * <p>Get details of the specified volume group.
+     *
+     * @param resourceGroupName The name of the resource group.
+     * @param accountName The name of the NetApp account.
+     * @param volumeGroupName The name of the volumeGroup.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return details of the specified volume group.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public VolumeGroupDetailsInner get(String resourceGroupName, String accountName, String volumeGroupName) {
+        return getWithResponse(resourceGroupName, accountName, volumeGroupName, Context.NONE).getValue();
     }
 
     /**

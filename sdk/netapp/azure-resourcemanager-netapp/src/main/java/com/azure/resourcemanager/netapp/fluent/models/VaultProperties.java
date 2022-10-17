@@ -16,6 +16,10 @@ public final class VaultProperties {
     @JsonProperty(value = "vaultName")
     private String vaultName;
 
+    /** Creates an instance of VaultProperties class. */
+    public VaultProperties() {
+    }
+
     /**
      * Get the vaultName property: Vault Name.
      *

@@ -55,24 +55,6 @@ public interface VolumeQuotaRules {
      * @param poolName The name of the capacity pool.
      * @param volumeName The name of the volume.
      * @param volumeQuotaRuleName The name of volume quota rule.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return details of the specified quota rule.
-     */
-    VolumeQuotaRule get(
-        String resourceGroupName, String accountName, String poolName, String volumeName, String volumeQuotaRuleName);
-
-    /**
-     * Describe a quota rule
-     *
-     * <p>Get details of the specified quota rule.
-     *
-     * @param resourceGroupName The name of the resource group.
-     * @param accountName The name of the NetApp account.
-     * @param poolName The name of the capacity pool.
-     * @param volumeName The name of the volume.
-     * @param volumeQuotaRuleName The name of volume quota rule.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -86,6 +68,24 @@ public interface VolumeQuotaRules {
         String volumeName,
         String volumeQuotaRuleName,
         Context context);
+
+    /**
+     * Describe a quota rule
+     *
+     * <p>Get details of the specified quota rule.
+     *
+     * @param resourceGroupName The name of the resource group.
+     * @param accountName The name of the NetApp account.
+     * @param poolName The name of the capacity pool.
+     * @param volumeName The name of the volume.
+     * @param volumeQuotaRuleName The name of volume quota rule.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return details of the specified quota rule.
+     */
+    VolumeQuotaRule get(
+        String resourceGroupName, String accountName, String poolName, String volumeName, String volumeQuotaRuleName);
 
     /**
      * Delete a quota rule
