@@ -45,6 +45,13 @@ public interface AdvisorManagementClient {
     Duration getDefaultPollInterval();
 
     /**
+     * Gets the TwelveRecommendationssMetadatasClient object to access its operations.
+     *
+     * @return the TwelveRecommendationssMetadatasClient object.
+     */
+    TwelveRecommendationssMetadatasClient getTwelveRecommendationssMetadatas();
+
+    /**
      * Gets the RecommendationMetadatasClient object to access its operations.
      *
      * @return the RecommendationMetadatasClient object.
@@ -78,4 +85,11 @@ public interface AdvisorManagementClient {
      * @return the SuppressionsClient object.
      */
     SuppressionsClient getSuppressions();
+
+    /**
+     * Gets the ResourceProvidersClient object to access its operations.
+     *
+     * @return the ResourceProvidersClient object.
+     */
+    ResourceProvidersClient getResourceProviders();
 }
