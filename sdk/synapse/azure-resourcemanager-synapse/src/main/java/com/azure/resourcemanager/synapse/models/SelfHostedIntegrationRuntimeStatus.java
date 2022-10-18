@@ -27,6 +27,10 @@ public final class SelfHostedIntegrationRuntimeStatus extends IntegrationRuntime
     private SelfHostedIntegrationRuntimeStatusTypeProperties innerTypeProperties =
         new SelfHostedIntegrationRuntimeStatusTypeProperties();
 
+    /** Creates an instance of SelfHostedIntegrationRuntimeStatus class. */
+    public SelfHostedIntegrationRuntimeStatus() {
+    }
+
     /**
      * Get the innerTypeProperties property: Self-hosted integration runtime status type properties.
      *
@@ -225,6 +229,20 @@ public final class SelfHostedIntegrationRuntimeStatus extends IntegrationRuntime
     }
 
     /**
+     * Set the autoUpdateEta property: The estimated time when the self-hosted integration runtime will be updated.
+     *
+     * @param autoUpdateEta the autoUpdateEta value to set.
+     * @return the SelfHostedIntegrationRuntimeStatus object itself.
+     */
+    public SelfHostedIntegrationRuntimeStatus withAutoUpdateEta(OffsetDateTime autoUpdateEta) {
+        if (this.innerTypeProperties() == null) {
+            this.innerTypeProperties = new SelfHostedIntegrationRuntimeStatusTypeProperties();
+        }
+        this.innerTypeProperties().withAutoUpdateEta(autoUpdateEta);
+        return this;
+    }
+
+    /**
      * Get the serviceRegion property: The service region of the integration runtime.
      *
      * @return the serviceRegion value.
@@ -268,6 +286,24 @@ public final class SelfHostedIntegrationRuntimeStatus extends IntegrationRuntime
         }
         this.innerTypeProperties().withNewerVersions(newerVersions);
         return this;
+    }
+
+    /**
+     * Get the osType property: OS Type, 1- Windows; 2- Linux.
+     *
+     * @return the osType value.
+     */
+    public Integer osType() {
+        return this.innerTypeProperties() == null ? null : this.innerTypeProperties().osType();
+    }
+
+    /**
+     * Get the targetFramework property: Target framework type, 0 - DotNetFramework ; 1 - DotNetCore.
+     *
+     * @return the targetFramework value.
+     */
+    public Integer targetFramework() {
+        return this.innerTypeProperties() == null ? null : this.innerTypeProperties().targetFramework();
     }
 
     /**

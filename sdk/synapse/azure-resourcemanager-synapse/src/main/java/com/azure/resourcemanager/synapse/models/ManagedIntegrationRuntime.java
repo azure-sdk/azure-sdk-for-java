@@ -18,8 +18,13 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @Fluent
 public final class ManagedIntegrationRuntime extends IntegrationRuntime {
     /*
-     * Integration runtime state, only valid for managed dedicated integration
-     * runtime.
+     * Integration runtime state, only valid for managed dedicated integration runtime.
+     */
+    @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
+    private IntegrationRuntimeState provisioningState;
+
+    /*
+     * Integration runtime state, only valid for managed dedicated integration runtime.
      */
     @JsonProperty(value = "state", access = JsonProperty.Access.WRITE_ONLY)
     private IntegrationRuntimeState state;
@@ -35,6 +40,20 @@ public final class ManagedIntegrationRuntime extends IntegrationRuntime {
      */
     @JsonProperty(value = "managedVirtualNetwork")
     private ManagedIntegrationRuntimeManagedVirtualNetworkReference innerManagedVirtualNetwork;
+
+    /** Creates an instance of ManagedIntegrationRuntime class. */
+    public ManagedIntegrationRuntime() {
+    }
+
+    /**
+     * Get the provisioningState property: Integration runtime state, only valid for managed dedicated integration
+     * runtime.
+     *
+     * @return the provisioningState value.
+     */
+    public IntegrationRuntimeState provisioningState() {
+        return this.provisioningState;
+    }
 
     /**
      * Get the state property: Integration runtime state, only valid for managed dedicated integration runtime.
@@ -169,20 +188,6 @@ public final class ManagedIntegrationRuntime extends IntegrationRuntime {
      */
     public String id() {
         return this.innerManagedVirtualNetwork() == null ? null : this.innerManagedVirtualNetwork().id();
-    }
-
-    /**
-     * Set the id property: The id of the managed virtual network.
-     *
-     * @param id the id value to set.
-     * @return the ManagedIntegrationRuntime object itself.
-     */
-    public ManagedIntegrationRuntime withId(String id) {
-        if (this.innerManagedVirtualNetwork() == null) {
-            this.innerManagedVirtualNetwork = new ManagedIntegrationRuntimeManagedVirtualNetworkReference();
-        }
-        this.innerManagedVirtualNetwork().withId(id);
-        return this;
     }
 
     /**

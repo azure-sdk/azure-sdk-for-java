@@ -25,38 +25,41 @@ import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
-import com.azure.resourcemanager.synapse.fluent.PrivateLinkResourcesClient;
+import com.azure.resourcemanager.synapse.fluent.PrivateLinkResourcesOperationsClient;
 import com.azure.resourcemanager.synapse.fluent.models.PrivateLinkResourceInner;
 import com.azure.resourcemanager.synapse.models.PrivateLinkResourceListResult;
 import reactor.core.publisher.Mono;
 
-/** An instance of this class provides access to all the operations defined in PrivateLinkResourcesClient. */
-public final class PrivateLinkResourcesClientImpl implements PrivateLinkResourcesClient {
+/** An instance of this class provides access to all the operations defined in PrivateLinkResourcesOperationsClient. */
+public final class PrivateLinkResourcesOperationsClientImpl implements PrivateLinkResourcesOperationsClient {
     /** The proxy service used to perform REST calls. */
-    private final PrivateLinkResourcesService service;
+    private final PrivateLinkResourcesOperationsService service;
 
     /** The service client containing this operation class. */
     private final SynapseManagementClientImpl client;
 
     /**
-     * Initializes an instance of PrivateLinkResourcesClientImpl.
+     * Initializes an instance of PrivateLinkResourcesOperationsClientImpl.
      *
      * @param client the instance of the service client containing this operation class.
      */
-    PrivateLinkResourcesClientImpl(SynapseManagementClientImpl client) {
+    PrivateLinkResourcesOperationsClientImpl(SynapseManagementClientImpl client) {
         this.service =
             RestProxy
-                .create(PrivateLinkResourcesService.class, client.getHttpPipeline(), client.getSerializerAdapter());
+                .create(
+                    PrivateLinkResourcesOperationsService.class,
+                    client.getHttpPipeline(),
+                    client.getSerializerAdapter());
         this.client = client;
     }
 
     /**
-     * The interface defining all the services for SynapseManagementClientPrivateLinkResources to be used by the proxy
-     * service to perform REST calls.
+     * The interface defining all the services for SynapseManagementClientPrivateLinkResourcesOperations to be used by
+     * the proxy service to perform REST calls.
      */
     @Host("{$host}")
     @ServiceInterface(name = "SynapseManagementCli")
-    private interface PrivateLinkResourcesService {
+    private interface PrivateLinkResourcesOperationsService {
         @Headers({"Content-Type: application/json"})
         @Get(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces"
@@ -100,7 +103,9 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
     }
 
     /**
-     * Get all private link resources for a workspaces.
+     * Private Link Resources
+     *
+     * <p>Get all private link resources for a workspaces.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -159,7 +164,9 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
     }
 
     /**
-     * Get all private link resources for a workspaces.
+     * Private Link Resources
+     *
+     * <p>Get all private link resources for a workspaces.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -216,7 +223,9 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
     }
 
     /**
-     * Get all private link resources for a workspaces.
+     * Private Link Resources
+     *
+     * <p>Get all private link resources for a workspaces.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -232,7 +241,9 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
     }
 
     /**
-     * Get all private link resources for a workspaces.
+     * Private Link Resources
+     *
+     * <p>Get all private link resources for a workspaces.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -251,7 +262,9 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
     }
 
     /**
-     * Get all private link resources for a workspaces.
+     * Private Link Resources
+     *
+     * <p>Get all private link resources for a workspaces.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -266,7 +279,9 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
     }
 
     /**
-     * Get all private link resources for a workspaces.
+     * Private Link Resources
+     *
+     * <p>Get all private link resources for a workspaces.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -283,7 +298,9 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
     }
 
     /**
-     * Get private link resource in workspace.
+     * Get Private Link Resource
+     *
+     * <p>Get private link resource in workspace.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -339,7 +356,9 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
     }
 
     /**
-     * Get private link resource in workspace.
+     * Get Private Link Resource
+     *
+     * <p>Get private link resource in workspace.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -393,7 +412,9 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
     }
 
     /**
-     * Get private link resource in workspace.
+     * Get Private Link Resource
+     *
+     * <p>Get private link resource in workspace.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -407,35 +428,13 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
     private Mono<PrivateLinkResourceInner> getAsync(
         String resourceGroupName, String workspaceName, String privateLinkResourceName) {
         return getWithResponseAsync(resourceGroupName, workspaceName, privateLinkResourceName)
-            .flatMap(
-                (Response<PrivateLinkResourceInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
-     * Get private link resource in workspace.
+     * Get Private Link Resource
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param privateLinkResourceName The name of the private link resource.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return private link resource in workspace.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public PrivateLinkResourceInner get(
-        String resourceGroupName, String workspaceName, String privateLinkResourceName) {
-        return getAsync(resourceGroupName, workspaceName, privateLinkResourceName).block();
-    }
-
-    /**
-     * Get private link resource in workspace.
+     * <p>Get private link resource in workspace.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -453,9 +452,29 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
     }
 
     /**
+     * Get Private Link Resource
+     *
+     * <p>Get private link resource in workspace.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param privateLinkResourceName The name of the private link resource.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return private link resource in workspace.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public PrivateLinkResourceInner get(
+        String resourceGroupName, String workspaceName, String privateLinkResourceName) {
+        return getWithResponse(resourceGroupName, workspaceName, privateLinkResourceName, Context.NONE).getValue();
+    }
+
+    /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -491,7 +510,8 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.

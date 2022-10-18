@@ -35,6 +35,10 @@ public final class WorkspaceInner extends Resource {
     @JsonProperty(value = "identity")
     private ManagedIdentity identity;
 
+    /** Creates an instance of WorkspaceInner class. */
+    public WorkspaceInner() {
+    }
+
     /**
      * Get the innerProperties property: Workspace resource properties.
      *

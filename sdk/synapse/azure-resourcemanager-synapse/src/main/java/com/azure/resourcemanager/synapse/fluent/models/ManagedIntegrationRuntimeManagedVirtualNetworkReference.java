@@ -25,8 +25,12 @@ public final class ManagedIntegrationRuntimeManagedVirtualNetworkReference {
     /*
      * The id of the managed virtual network.
      */
-    @JsonProperty(value = "id")
+    @JsonProperty(value = "id", access = JsonProperty.Access.WRITE_ONLY)
     private String id;
+
+    /** Creates an instance of ManagedIntegrationRuntimeManagedVirtualNetworkReference class. */
+    public ManagedIntegrationRuntimeManagedVirtualNetworkReference() {
+    }
 
     /**
      * Get the referenceName property: The reference name of the managed virtual network.
@@ -75,17 +79,6 @@ public final class ManagedIntegrationRuntimeManagedVirtualNetworkReference {
      */
     public String id() {
         return this.id;
-    }
-
-    /**
-     * Set the id property: The id of the managed virtual network.
-     *
-     * @param id the id value to set.
-     * @return the ManagedIntegrationRuntimeManagedVirtualNetworkReference object itself.
-     */
-    public ManagedIntegrationRuntimeManagedVirtualNetworkReference withId(String id) {
-        this.id = id;
-        return this;
     }
 
     /**
