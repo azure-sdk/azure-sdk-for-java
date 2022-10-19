@@ -312,23 +312,6 @@ public final class EmailServicesClientImpl implements EmailServicesClient {
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param emailServiceName The name of the EmailService resource.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the EmailService and its properties.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public EmailServiceResourceInner getByResourceGroup(String resourceGroupName, String emailServiceName) {
-        return getByResourceGroupAsync(resourceGroupName, emailServiceName).block();
-    }
-
-    /**
-     * Get
-     *
-     * <p>Get the EmailService and its properties.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param emailServiceName The name of the EmailService resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -339,6 +322,23 @@ public final class EmailServicesClientImpl implements EmailServicesClient {
     public Response<EmailServiceResourceInner> getByResourceGroupWithResponse(
         String resourceGroupName, String emailServiceName, Context context) {
         return getByResourceGroupWithResponseAsync(resourceGroupName, emailServiceName, context).block();
+    }
+
+    /**
+     * Get
+     *
+     * <p>Get the EmailService and its properties.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param emailServiceName The name of the EmailService resource.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the EmailService and its properties.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public EmailServiceResourceInner getByResourceGroup(String resourceGroupName, String emailServiceName) {
+        return getByResourceGroupWithResponse(resourceGroupName, emailServiceName, Context.NONE).getValue();
     }
 
     /**
@@ -1618,20 +1618,6 @@ public final class EmailServicesClientImpl implements EmailServicesClient {
      *
      * <p>Get a list of domains that are fully verified in Exchange Online.
      *
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of domains that are fully verified in Exchange Online.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public List<String> listVerifiedExchangeOnlineDomains() {
-        return listVerifiedExchangeOnlineDomainsAsync().block();
-    }
-
-    /**
-     * List Verified Domains From Exchange Online
-     *
-     * <p>Get a list of domains that are fully verified in Exchange Online.
-     *
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1641,6 +1627,20 @@ public final class EmailServicesClientImpl implements EmailServicesClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<List<String>> listVerifiedExchangeOnlineDomainsWithResponse(Context context) {
         return listVerifiedExchangeOnlineDomainsWithResponseAsync(context).block();
+    }
+
+    /**
+     * List Verified Domains From Exchange Online
+     *
+     * <p>Get a list of domains that are fully verified in Exchange Online.
+     *
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a list of domains that are fully verified in Exchange Online.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public List<String> listVerifiedExchangeOnlineDomains() {
+        return listVerifiedExchangeOnlineDomainsWithResponse(Context.NONE).getValue();
     }
 
     /**

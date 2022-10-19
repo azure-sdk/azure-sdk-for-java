@@ -18,6 +18,10 @@ public final class UpdateDomainRequestParameters extends TaggedResource {
     @JsonProperty(value = "properties")
     private UpdateDomainProperties innerProperties;
 
+    /** Creates an instance of UpdateDomainRequestParameters class. */
+    public UpdateDomainRequestParameters() {
+    }
+
     /**
      * Get the innerProperties property: A class that describes the updatable properties of a Domains resource.
      *
