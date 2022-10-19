@@ -31,25 +31,25 @@ public final class OperationStatusesClientImpl implements OperationStatusesClien
     private final OperationStatusesService service;
 
     /** The service client containing this operation class. */
-    private final DevCenterClientImpl client;
+    private final DevCenterManagementClientImpl client;
 
     /**
      * Initializes an instance of OperationStatusesClientImpl.
      *
      * @param client the instance of the service client containing this operation class.
      */
-    OperationStatusesClientImpl(DevCenterClientImpl client) {
+    OperationStatusesClientImpl(DevCenterManagementClientImpl client) {
         this.service =
             RestProxy.create(OperationStatusesService.class, client.getHttpPipeline(), client.getSerializerAdapter());
         this.client = client;
     }
 
     /**
-     * The interface defining all the services for DevCenterClientOperationStatuses to be used by the proxy service to
-     * perform REST calls.
+     * The interface defining all the services for DevCenterManagementClientOperationStatuses to be used by the proxy
+     * service to perform REST calls.
      */
     @Host("{$host}")
-    @ServiceInterface(name = "DevCenterClientOpera")
+    @ServiceInterface(name = "DevCenterManagementC")
     private interface OperationStatusesService {
         @Headers({"Content-Type: application/json"})
         @Get(
