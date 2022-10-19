@@ -24,12 +24,12 @@ public interface ServicesClient {
      * This method provides the list of available skus for the given subscription, resource group and location.
      *
      * @param resourceGroupName The Resource Group Name.
-     * @param location The location of the resource.
+     * @param location The name of Azure region.
      * @param availableSkuRequest Filters for showing the available skus.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the available skus operation response.
+     * @return the available skus operation response as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<SkuInformationInner> listAvailableSkusByResourceGroup(
@@ -39,13 +39,13 @@ public interface ServicesClient {
      * This method provides the list of available skus for the given subscription, resource group and location.
      *
      * @param resourceGroupName The Resource Group Name.
-     * @param location The location of the resource.
+     * @param location The name of Azure region.
      * @param availableSkuRequest Filters for showing the available skus.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the available skus operation response.
+     * @return the available skus operation response as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<SkuInformationInner> listAvailableSkusByResourceGroup(
@@ -55,7 +55,23 @@ public interface ServicesClient {
      * [DEPRECATED NOTICE: This operation will soon be removed]. This method validates the customer shipping address and
      * provide alternate addresses if any.
      *
-     * @param location The location of the resource.
+     * @param location The name of Azure region.
+     * @param validateAddress Shipping address of the customer.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return output of the address validation api along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    Response<AddressValidationOutputInner> validateAddressWithResponse(
+        String location, ValidateAddress validateAddress, Context context);
+
+    /**
+     * [DEPRECATED NOTICE: This operation will soon be removed]. This method validates the customer shipping address and
+     * provide alternate addresses if any.
+     *
+     * @param location The name of Azure region.
      * @param validateAddress Shipping address of the customer.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -66,26 +82,26 @@ public interface ServicesClient {
     AddressValidationOutputInner validateAddress(String location, ValidateAddress validateAddress);
 
     /**
-     * [DEPRECATED NOTICE: This operation will soon be removed]. This method validates the customer shipping address and
-     * provide alternate addresses if any.
+     * This method does all necessary pre-job creation validation under resource group.
      *
-     * @param location The location of the resource.
-     * @param validateAddress Shipping address of the customer.
+     * @param resourceGroupName The Resource Group Name.
+     * @param location The name of Azure region.
+     * @param validationRequest Inputs of the customer.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return output of the address validation api.
+     * @return response of pre job creation validations along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<AddressValidationOutputInner> validateAddressWithResponse(
-        String location, ValidateAddress validateAddress, Context context);
+    Response<ValidationResponseInner> validateInputsByResourceGroupWithResponse(
+        String resourceGroupName, String location, ValidationRequest validationRequest, Context context);
 
     /**
      * This method does all necessary pre-job creation validation under resource group.
      *
      * @param resourceGroupName The Resource Group Name.
-     * @param location The location of the resource.
+     * @param location The name of Azure region.
      * @param validationRequest Inputs of the customer.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -97,25 +113,24 @@ public interface ServicesClient {
         String resourceGroupName, String location, ValidationRequest validationRequest);
 
     /**
-     * This method does all necessary pre-job creation validation under resource group.
+     * This method does all necessary pre-job creation validation under subscription.
      *
-     * @param resourceGroupName The Resource Group Name.
-     * @param location The location of the resource.
+     * @param location The name of Azure region.
      * @param validationRequest Inputs of the customer.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response of pre job creation validations.
+     * @return response of pre job creation validations along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<ValidationResponseInner> validateInputsByResourceGroupWithResponse(
-        String resourceGroupName, String location, ValidationRequest validationRequest, Context context);
+    Response<ValidationResponseInner> validateInputsWithResponse(
+        String location, ValidationRequest validationRequest, Context context);
 
     /**
      * This method does all necessary pre-job creation validation under subscription.
      *
-     * @param location The location of the resource.
+     * @param location The name of Azure region.
      * @param validationRequest Inputs of the customer.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -126,24 +141,24 @@ public interface ServicesClient {
     ValidationResponseInner validateInputs(String location, ValidationRequest validationRequest);
 
     /**
-     * This method does all necessary pre-job creation validation under subscription.
+     * This API provides configuration details specific to given region/location at Subscription level.
      *
-     * @param location The location of the resource.
-     * @param validationRequest Inputs of the customer.
+     * @param location The name of Azure region.
+     * @param regionConfigurationRequest Request body to get the configuration for the region.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response of pre job creation validations.
+     * @return configuration response specific to a region along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<ValidationResponseInner> validateInputsWithResponse(
-        String location, ValidationRequest validationRequest, Context context);
+    Response<RegionConfigurationResponseInner> regionConfigurationWithResponse(
+        String location, RegionConfigurationRequest regionConfigurationRequest, Context context);
 
     /**
      * This API provides configuration details specific to given region/location at Subscription level.
      *
-     * @param location The location of the resource.
+     * @param location The name of Azure region.
      * @param regionConfigurationRequest Request body to get the configuration for the region.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -155,25 +170,29 @@ public interface ServicesClient {
         String location, RegionConfigurationRequest regionConfigurationRequest);
 
     /**
-     * This API provides configuration details specific to given region/location at Subscription level.
+     * This API provides configuration details specific to given region/location at Resource group level.
      *
-     * @param location The location of the resource.
-     * @param regionConfigurationRequest Request body to get the configuration for the region.
+     * @param resourceGroupName The Resource Group Name.
+     * @param location The name of Azure region.
+     * @param regionConfigurationRequest Request body to get the configuration for the region at resource group level.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return configuration response specific to a region.
+     * @return configuration response specific to a region along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<RegionConfigurationResponseInner> regionConfigurationWithResponse(
-        String location, RegionConfigurationRequest regionConfigurationRequest, Context context);
+    Response<RegionConfigurationResponseInner> regionConfigurationByResourceGroupWithResponse(
+        String resourceGroupName,
+        String location,
+        RegionConfigurationRequest regionConfigurationRequest,
+        Context context);
 
     /**
      * This API provides configuration details specific to given region/location at Resource group level.
      *
      * @param resourceGroupName The Resource Group Name.
-     * @param location The location of the resource.
+     * @param location The name of Azure region.
      * @param regionConfigurationRequest Request body to get the configuration for the region at resource group level.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -183,23 +202,4 @@ public interface ServicesClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     RegionConfigurationResponseInner regionConfigurationByResourceGroup(
         String resourceGroupName, String location, RegionConfigurationRequest regionConfigurationRequest);
-
-    /**
-     * This API provides configuration details specific to given region/location at Resource group level.
-     *
-     * @param resourceGroupName The Resource Group Name.
-     * @param location The location of the resource.
-     * @param regionConfigurationRequest Request body to get the configuration for the region at resource group level.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return configuration response specific to a region.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<RegionConfigurationResponseInner> regionConfigurationByResourceGroupWithResponse(
-        String resourceGroupName,
-        String location,
-        RegionConfigurationRequest regionConfigurationRequest,
-        Context context);
 }
