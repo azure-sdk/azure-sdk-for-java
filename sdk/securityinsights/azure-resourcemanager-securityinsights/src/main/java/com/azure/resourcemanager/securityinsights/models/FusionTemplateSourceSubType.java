@@ -29,6 +29,10 @@ public final class FusionTemplateSourceSubType {
     @JsonProperty(value = "severityFilter", required = true)
     private FusionTemplateSubTypeSeverityFilter severityFilter;
 
+    /** Creates an instance of FusionTemplateSourceSubType class. */
+    public FusionTemplateSourceSubType() {
+    }
+
     /**
      * Get the sourceSubTypeName property: The name of source subtype under a source signal consumed in Fusion
      * detection.

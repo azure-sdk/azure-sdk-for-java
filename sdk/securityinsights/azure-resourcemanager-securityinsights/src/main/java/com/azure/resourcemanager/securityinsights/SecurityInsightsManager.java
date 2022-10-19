@@ -54,6 +54,7 @@ import com.azure.resourcemanager.securityinsights.implementation.SecurityMLAnaly
 import com.azure.resourcemanager.securityinsights.implementation.SentinelOnboardingStatesImpl;
 import com.azure.resourcemanager.securityinsights.implementation.SourceControlsImpl;
 import com.azure.resourcemanager.securityinsights.implementation.SourceControlsOperationsImpl;
+import com.azure.resourcemanager.securityinsights.implementation.SummariesImpl;
 import com.azure.resourcemanager.securityinsights.implementation.ThreatIntelligenceIndicatorMetricsImpl;
 import com.azure.resourcemanager.securityinsights.implementation.ThreatIntelligenceIndicatorsImpl;
 import com.azure.resourcemanager.securityinsights.implementation.ThreatIntelligenceIndicatorsOperationsImpl;
@@ -88,6 +89,7 @@ import com.azure.resourcemanager.securityinsights.models.SecurityMLAnalyticsSett
 import com.azure.resourcemanager.securityinsights.models.SentinelOnboardingStates;
 import com.azure.resourcemanager.securityinsights.models.SourceControls;
 import com.azure.resourcemanager.securityinsights.models.SourceControlsOperations;
+import com.azure.resourcemanager.securityinsights.models.Summaries;
 import com.azure.resourcemanager.securityinsights.models.ThreatIntelligenceIndicatorMetrics;
 import com.azure.resourcemanager.securityinsights.models.ThreatIntelligenceIndicators;
 import com.azure.resourcemanager.securityinsights.models.ThreatIntelligenceIndicatorsOperations;
@@ -172,6 +174,8 @@ public final class SecurityInsightsManager {
     private DataConnectorsCheckRequirementsOperations dataConnectorsCheckRequirementsOperations;
 
     private Operations operations;
+
+    private Summaries summaries;
 
     private final SecurityInsights clientObject;
 
@@ -338,7 +342,7 @@ public final class SecurityInsightsManager {
                 .append("-")
                 .append("com.azure.resourcemanager.securityinsights")
                 .append("/")
-                .append("1.0.0-beta.4");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder
                     .append(" (")
@@ -810,6 +814,18 @@ public final class SecurityInsightsManager {
             this.operations = new OperationsImpl(clientObject.getOperations(), this);
         }
         return operations;
+    }
+
+    /**
+     * Gets the resource collection API of Summaries. It manages Summary.
+     *
+     * @return Resource collection API of Summaries.
+     */
+    public Summaries summaries() {
+        if (this.summaries == null) {
+            this.summaries = new SummariesImpl(clientObject.getSummaries(), this);
+        }
+        return summaries;
     }
 
     /**

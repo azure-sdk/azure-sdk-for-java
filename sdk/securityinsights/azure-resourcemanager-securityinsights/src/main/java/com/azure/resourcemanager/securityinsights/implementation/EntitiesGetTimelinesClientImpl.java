@@ -222,24 +222,6 @@ public final class EntitiesGetTimelinesClientImpl implements EntitiesGetTimeline
      * @param workspaceName The name of the workspace.
      * @param entityId entity ID.
      * @param parameters The parameters required to execute an timeline operation on the given entity.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the entity timeline result operation response.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public EntityTimelineResponseInner list(
-        String resourceGroupName, String workspaceName, String entityId, EntityTimelineParameters parameters) {
-        return listAsync(resourceGroupName, workspaceName, entityId, parameters).block();
-    }
-
-    /**
-     * Timeline for an entity.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param entityId entity ID.
-     * @param parameters The parameters required to execute an timeline operation on the given entity.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -254,5 +236,23 @@ public final class EntitiesGetTimelinesClientImpl implements EntitiesGetTimeline
         EntityTimelineParameters parameters,
         Context context) {
         return listWithResponseAsync(resourceGroupName, workspaceName, entityId, parameters, context).block();
+    }
+
+    /**
+     * Timeline for an entity.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param entityId entity ID.
+     * @param parameters The parameters required to execute an timeline operation on the given entity.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the entity timeline result operation response.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public EntityTimelineResponseInner list(
+        String resourceGroupName, String workspaceName, String entityId, EntityTimelineParameters parameters) {
+        return listWithResponse(resourceGroupName, workspaceName, entityId, parameters, Context.NONE).getValue();
     }
 }

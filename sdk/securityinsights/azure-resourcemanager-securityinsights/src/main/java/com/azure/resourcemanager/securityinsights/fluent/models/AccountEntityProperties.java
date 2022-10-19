@@ -86,6 +86,10 @@ public final class AccountEntityProperties extends EntityCommonProperties {
     @JsonProperty(value = "dnsDomain", access = JsonProperty.Access.WRITE_ONLY)
     private String dnsDomain;
 
+    /** Creates an instance of AccountEntityProperties class. */
+    public AccountEntityProperties() {
+    }
+
     /**
      * Get the aadTenantId property: The Azure Active Directory tenant id.
      *

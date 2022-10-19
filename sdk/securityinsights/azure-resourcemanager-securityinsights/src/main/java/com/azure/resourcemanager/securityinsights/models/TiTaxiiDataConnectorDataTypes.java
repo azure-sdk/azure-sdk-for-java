@@ -17,6 +17,10 @@ public final class TiTaxiiDataConnectorDataTypes {
     @JsonProperty(value = "taxiiClient", required = true)
     private TiTaxiiDataConnectorDataTypesTaxiiClient taxiiClient;
 
+    /** Creates an instance of TiTaxiiDataConnectorDataTypes class. */
+    public TiTaxiiDataConnectorDataTypes() {
+    }
+
     /**
      * Get the taxiiClient property: Data type for TAXII connector.
      *

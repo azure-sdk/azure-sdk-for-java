@@ -23,6 +23,10 @@ public final class InsightsTableResult {
     @JsonProperty(value = "rows")
     private List<List<String>> rows;
 
+    /** Creates an instance of InsightsTableResult class. */
+    public InsightsTableResult() {
+    }
+
     /**
      * Get the columns property: Columns Metadata of the table.
      *
