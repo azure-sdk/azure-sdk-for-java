@@ -224,21 +224,6 @@ public final class OperationsClientImpl implements OperationsClient {
      * Checks whether the configuration store name is available for use.
      *
      * @param checkNameAvailabilityParameters The object containing information for the availability request.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the result of a request to check the availability of a resource name.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public NameAvailabilityStatusInner checkNameAvailability(
-        CheckNameAvailabilityParameters checkNameAvailabilityParameters) {
-        return checkNameAvailabilityAsync(checkNameAvailabilityParameters).block();
-    }
-
-    /**
-     * Checks whether the configuration store name is available for use.
-     *
-     * @param checkNameAvailabilityParameters The object containing information for the availability request.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -249,6 +234,21 @@ public final class OperationsClientImpl implements OperationsClient {
     public Response<NameAvailabilityStatusInner> checkNameAvailabilityWithResponse(
         CheckNameAvailabilityParameters checkNameAvailabilityParameters, Context context) {
         return checkNameAvailabilityWithResponseAsync(checkNameAvailabilityParameters, context).block();
+    }
+
+    /**
+     * Checks whether the configuration store name is available for use.
+     *
+     * @param checkNameAvailabilityParameters The object containing information for the availability request.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the result of a request to check the availability of a resource name.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public NameAvailabilityStatusInner checkNameAvailability(
+        CheckNameAvailabilityParameters checkNameAvailabilityParameters) {
+        return checkNameAvailabilityWithResponse(checkNameAvailabilityParameters, Context.NONE).getValue();
     }
 
     /**
@@ -409,7 +409,7 @@ public final class OperationsClientImpl implements OperationsClient {
     /**
      * Checks whether the configuration store name is available for use.
      *
-     * @param location The location in which uniqueness will be verified.
+     * @param location The name of Azure region.
      * @param checkNameAvailabilityParameters The object containing information for the availability request.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -462,7 +462,7 @@ public final class OperationsClientImpl implements OperationsClient {
     /**
      * Checks whether the configuration store name is available for use.
      *
-     * @param location The location in which uniqueness will be verified.
+     * @param location The name of Azure region.
      * @param checkNameAvailabilityParameters The object containing information for the availability request.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -513,7 +513,7 @@ public final class OperationsClientImpl implements OperationsClient {
     /**
      * Checks whether the configuration store name is available for use.
      *
-     * @param location The location in which uniqueness will be verified.
+     * @param location The name of Azure region.
      * @param checkNameAvailabilityParameters The object containing information for the availability request.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -531,23 +531,7 @@ public final class OperationsClientImpl implements OperationsClient {
     /**
      * Checks whether the configuration store name is available for use.
      *
-     * @param location The location in which uniqueness will be verified.
-     * @param checkNameAvailabilityParameters The object containing information for the availability request.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the result of a request to check the availability of a resource name.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public NameAvailabilityStatusInner regionalCheckNameAvailability(
-        String location, CheckNameAvailabilityParameters checkNameAvailabilityParameters) {
-        return regionalCheckNameAvailabilityAsync(location, checkNameAvailabilityParameters).block();
-    }
-
-    /**
-     * Checks whether the configuration store name is available for use.
-     *
-     * @param location The location in which uniqueness will be verified.
+     * @param location The name of Azure region.
      * @param checkNameAvailabilityParameters The object containing information for the availability request.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -563,9 +547,27 @@ public final class OperationsClientImpl implements OperationsClient {
     }
 
     /**
+     * Checks whether the configuration store name is available for use.
+     *
+     * @param location The name of Azure region.
+     * @param checkNameAvailabilityParameters The object containing information for the availability request.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the result of a request to check the availability of a resource name.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public NameAvailabilityStatusInner regionalCheckNameAvailability(
+        String location, CheckNameAvailabilityParameters checkNameAvailabilityParameters) {
+        return regionalCheckNameAvailabilityWithResponse(location, checkNameAvailabilityParameters, Context.NONE)
+            .getValue();
+    }
+
+    /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -601,7 +603,8 @@ public final class OperationsClientImpl implements OperationsClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.

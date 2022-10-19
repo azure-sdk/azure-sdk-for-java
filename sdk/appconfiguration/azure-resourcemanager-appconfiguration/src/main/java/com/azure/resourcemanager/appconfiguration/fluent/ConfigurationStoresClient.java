@@ -78,19 +78,6 @@ public interface ConfigurationStoresClient {
      *
      * @param resourceGroupName The name of the resource group to which the container registry belongs.
      * @param configStoreName The name of the configuration store.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the properties of the specified configuration store.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    ConfigurationStoreInner getByResourceGroup(String resourceGroupName, String configStoreName);
-
-    /**
-     * Gets the properties of the specified configuration store.
-     *
-     * @param resourceGroupName The name of the resource group to which the container registry belongs.
-     * @param configStoreName The name of the configuration store.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -100,6 +87,19 @@ public interface ConfigurationStoresClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<ConfigurationStoreInner> getByResourceGroupWithResponse(
         String resourceGroupName, String configStoreName, Context context);
+
+    /**
+     * Gets the properties of the specified configuration store.
+     *
+     * @param resourceGroupName The name of the resource group to which the container registry belongs.
+     * @param configStoreName The name of the configuration store.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the properties of the specified configuration store.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    ConfigurationStoreInner getByResourceGroup(String resourceGroupName, String configStoreName);
 
     /**
      * Creates a configuration store with the specified parameters.
@@ -330,21 +330,6 @@ public interface ConfigurationStoresClient {
      * @param resourceGroupName The name of the resource group to which the container registry belongs.
      * @param configStoreName The name of the configuration store.
      * @param regenerateKeyParameters The parameters for regenerating an access key.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an API key used for authenticating with a configuration store endpoint.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    ApiKeyInner regenerateKey(
-        String resourceGroupName, String configStoreName, RegenerateKeyParameters regenerateKeyParameters);
-
-    /**
-     * Regenerates an access key for the specified configuration store.
-     *
-     * @param resourceGroupName The name of the resource group to which the container registry belongs.
-     * @param configStoreName The name of the configuration store.
-     * @param regenerateKeyParameters The parameters for regenerating an access key.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -357,6 +342,21 @@ public interface ConfigurationStoresClient {
         String configStoreName,
         RegenerateKeyParameters regenerateKeyParameters,
         Context context);
+
+    /**
+     * Regenerates an access key for the specified configuration store.
+     *
+     * @param resourceGroupName The name of the resource group to which the container registry belongs.
+     * @param configStoreName The name of the configuration store.
+     * @param regenerateKeyParameters The parameters for regenerating an access key.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return an API key used for authenticating with a configuration store endpoint.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    ApiKeyInner regenerateKey(
+        String resourceGroupName, String configStoreName, RegenerateKeyParameters regenerateKeyParameters);
 
     /**
      * Gets information about the deleted configuration stores in a subscription.
@@ -385,20 +385,7 @@ public interface ConfigurationStoresClient {
     /**
      * Gets a deleted Azure app configuration store.
      *
-     * @param location The location in which uniqueness will be verified.
-     * @param configStoreName The name of the configuration store.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a deleted Azure app configuration store.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    DeletedConfigurationStoreInner getDeleted(String location, String configStoreName);
-
-    /**
-     * Gets a deleted Azure app configuration store.
-     *
-     * @param location The location in which uniqueness will be verified.
+     * @param location The name of Azure region.
      * @param configStoreName The name of the configuration store.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -411,9 +398,22 @@ public interface ConfigurationStoresClient {
         String location, String configStoreName, Context context);
 
     /**
+     * Gets a deleted Azure app configuration store.
+     *
+     * @param location The name of Azure region.
+     * @param configStoreName The name of the configuration store.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a deleted Azure app configuration store.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    DeletedConfigurationStoreInner getDeleted(String location, String configStoreName);
+
+    /**
      * Permanently deletes the specified configuration store.
      *
-     * @param location The location in which uniqueness will be verified.
+     * @param location The name of Azure region.
      * @param configStoreName The name of the configuration store.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -426,7 +426,7 @@ public interface ConfigurationStoresClient {
     /**
      * Permanently deletes the specified configuration store.
      *
-     * @param location The location in which uniqueness will be verified.
+     * @param location The name of Azure region.
      * @param configStoreName The name of the configuration store.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -440,7 +440,7 @@ public interface ConfigurationStoresClient {
     /**
      * Permanently deletes the specified configuration store.
      *
-     * @param location The location in which uniqueness will be verified.
+     * @param location The name of Azure region.
      * @param configStoreName The name of the configuration store.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -452,7 +452,7 @@ public interface ConfigurationStoresClient {
     /**
      * Permanently deletes the specified configuration store.
      *
-     * @param location The location in which uniqueness will be verified.
+     * @param location The name of Azure region.
      * @param configStoreName The name of the configuration store.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.

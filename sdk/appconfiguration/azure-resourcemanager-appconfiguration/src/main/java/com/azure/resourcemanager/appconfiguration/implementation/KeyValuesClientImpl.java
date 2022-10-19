@@ -497,23 +497,6 @@ public final class KeyValuesClientImpl implements KeyValuesClient {
      * @param configStoreName The name of the configuration store.
      * @param keyValueName Identifier of key and label combination. Key and label are joined by $ character. Label is
      *     optional.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the properties of the specified key-value.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public KeyValueInner get(String resourceGroupName, String configStoreName, String keyValueName) {
-        return getAsync(resourceGroupName, configStoreName, keyValueName).block();
-    }
-
-    /**
-     * Gets the properties of the specified key-value.
-     *
-     * @param resourceGroupName The name of the resource group to which the container registry belongs.
-     * @param configStoreName The name of the configuration store.
-     * @param keyValueName Identifier of key and label combination. Key and label are joined by $ character. Label is
-     *     optional.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -524,6 +507,23 @@ public final class KeyValuesClientImpl implements KeyValuesClient {
     public Response<KeyValueInner> getWithResponse(
         String resourceGroupName, String configStoreName, String keyValueName, Context context) {
         return getWithResponseAsync(resourceGroupName, configStoreName, keyValueName, context).block();
+    }
+
+    /**
+     * Gets the properties of the specified key-value.
+     *
+     * @param resourceGroupName The name of the resource group to which the container registry belongs.
+     * @param configStoreName The name of the configuration store.
+     * @param keyValueName Identifier of key and label combination. Key and label are joined by $ character. Label is
+     *     optional.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the properties of the specified key-value.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public KeyValueInner get(String resourceGroupName, String configStoreName, String keyValueName) {
+        return getWithResponse(resourceGroupName, configStoreName, keyValueName, Context.NONE).getValue();
     }
 
     /**
@@ -657,26 +657,6 @@ public final class KeyValuesClientImpl implements KeyValuesClient {
      * @param configStoreName The name of the configuration store.
      * @param keyValueName Identifier of key and label combination. Key and label are joined by $ character. Label is
      *     optional.
-     * @param keyValueParameters The parameters for creating a key-value.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the key-value resource along with all resource properties on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<KeyValueInner> createOrUpdateAsync(
-        String resourceGroupName, String configStoreName, String keyValueName, KeyValueInner keyValueParameters) {
-        return createOrUpdateWithResponseAsync(resourceGroupName, configStoreName, keyValueName, keyValueParameters)
-            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
-    }
-
-    /**
-     * Creates a key-value.
-     *
-     * @param resourceGroupName The name of the resource group to which the container registry belongs.
-     * @param configStoreName The name of the configuration store.
-     * @param keyValueName Identifier of key and label combination. Key and label are joined by $ character. Label is
-     *     optional.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -688,24 +668,6 @@ public final class KeyValuesClientImpl implements KeyValuesClient {
         final KeyValueInner keyValueParameters = null;
         return createOrUpdateWithResponseAsync(resourceGroupName, configStoreName, keyValueName, keyValueParameters)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
-    }
-
-    /**
-     * Creates a key-value.
-     *
-     * @param resourceGroupName The name of the resource group to which the container registry belongs.
-     * @param configStoreName The name of the configuration store.
-     * @param keyValueName Identifier of key and label combination. Key and label are joined by $ character. Label is
-     *     optional.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the key-value resource along with all resource properties.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public KeyValueInner createOrUpdate(String resourceGroupName, String configStoreName, String keyValueName) {
-        final KeyValueInner keyValueParameters = null;
-        return createOrUpdateAsync(resourceGroupName, configStoreName, keyValueName, keyValueParameters).block();
     }
 
     /**
@@ -732,6 +694,26 @@ public final class KeyValuesClientImpl implements KeyValuesClient {
         return createOrUpdateWithResponseAsync(
                 resourceGroupName, configStoreName, keyValueName, keyValueParameters, context)
             .block();
+    }
+
+    /**
+     * Creates a key-value.
+     *
+     * @param resourceGroupName The name of the resource group to which the container registry belongs.
+     * @param configStoreName The name of the configuration store.
+     * @param keyValueName Identifier of key and label combination. Key and label are joined by $ character. Label is
+     *     optional.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the key-value resource along with all resource properties.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public KeyValueInner createOrUpdate(String resourceGroupName, String configStoreName, String keyValueName) {
+        final KeyValueInner keyValueParameters = null;
+        return createOrUpdateWithResponse(
+                resourceGroupName, configStoreName, keyValueName, keyValueParameters, Context.NONE)
+            .getValue();
     }
 
     /**
@@ -1002,7 +984,8 @@ public final class KeyValuesClientImpl implements KeyValuesClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1039,7 +1022,8 @@ public final class KeyValuesClientImpl implements KeyValuesClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
