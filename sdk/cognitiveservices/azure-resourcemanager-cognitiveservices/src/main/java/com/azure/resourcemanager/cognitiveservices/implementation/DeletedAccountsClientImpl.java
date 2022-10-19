@@ -119,7 +119,7 @@ public final class DeletedAccountsClientImpl implements DeletedAccountsClient {
     /**
      * Returns a Cognitive Services account specified by the parameters.
      *
-     * @param location Resource location.
+     * @param location The name of Azure region.
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The name of Cognitive Services account.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -173,7 +173,7 @@ public final class DeletedAccountsClientImpl implements DeletedAccountsClient {
     /**
      * Returns a Cognitive Services account specified by the parameters.
      *
-     * @param location Resource location.
+     * @param location The name of Azure region.
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The name of Cognitive Services account.
      * @param context The context to associate with this operation.
@@ -225,7 +225,7 @@ public final class DeletedAccountsClientImpl implements DeletedAccountsClient {
     /**
      * Returns a Cognitive Services account specified by the parameters.
      *
-     * @param location Resource location.
+     * @param location The name of Azure region.
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The name of Cognitive Services account.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -243,24 +243,7 @@ public final class DeletedAccountsClientImpl implements DeletedAccountsClient {
     /**
      * Returns a Cognitive Services account specified by the parameters.
      *
-     * @param location Resource location.
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param accountName The name of Cognitive Services account.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return cognitive Services account is an Azure resource representing the provisioned account, it's type, location
-     *     and SKU.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public AccountInner get(String location, String resourceGroupName, String accountName) {
-        return getAsync(location, resourceGroupName, accountName).block();
-    }
-
-    /**
-     * Returns a Cognitive Services account specified by the parameters.
-     *
-     * @param location Resource location.
+     * @param location The name of Azure region.
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The name of Cognitive Services account.
      * @param context The context to associate with this operation.
@@ -277,9 +260,26 @@ public final class DeletedAccountsClientImpl implements DeletedAccountsClient {
     }
 
     /**
+     * Returns a Cognitive Services account specified by the parameters.
+     *
+     * @param location The name of Azure region.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param accountName The name of Cognitive Services account.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return cognitive Services account is an Azure resource representing the provisioned account, it's type, location
+     *     and SKU.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public AccountInner get(String location, String resourceGroupName, String accountName) {
+        return getWithResponse(location, resourceGroupName, accountName, Context.NONE).getValue();
+    }
+
+    /**
      * Deletes a Cognitive Services account from the resource group.
      *
-     * @param location Resource location.
+     * @param location The name of Azure region.
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The name of Cognitive Services account.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -332,7 +332,7 @@ public final class DeletedAccountsClientImpl implements DeletedAccountsClient {
     /**
      * Deletes a Cognitive Services account from the resource group.
      *
-     * @param location Resource location.
+     * @param location The name of Azure region.
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The name of Cognitive Services account.
      * @param context The context to associate with this operation.
@@ -383,7 +383,7 @@ public final class DeletedAccountsClientImpl implements DeletedAccountsClient {
     /**
      * Deletes a Cognitive Services account from the resource group.
      *
-     * @param location Resource location.
+     * @param location The name of Azure region.
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The name of Cognitive Services account.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -404,7 +404,7 @@ public final class DeletedAccountsClientImpl implements DeletedAccountsClient {
     /**
      * Deletes a Cognitive Services account from the resource group.
      *
-     * @param location Resource location.
+     * @param location The name of Azure region.
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The name of Cognitive Services account.
      * @param context The context to associate with this operation.
@@ -427,7 +427,7 @@ public final class DeletedAccountsClientImpl implements DeletedAccountsClient {
     /**
      * Deletes a Cognitive Services account from the resource group.
      *
-     * @param location Resource location.
+     * @param location The name of Azure region.
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The name of Cognitive Services account.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -444,7 +444,7 @@ public final class DeletedAccountsClientImpl implements DeletedAccountsClient {
     /**
      * Deletes a Cognitive Services account from the resource group.
      *
-     * @param location Resource location.
+     * @param location The name of Azure region.
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The name of Cognitive Services account.
      * @param context The context to associate with this operation.
@@ -462,7 +462,7 @@ public final class DeletedAccountsClientImpl implements DeletedAccountsClient {
     /**
      * Deletes a Cognitive Services account from the resource group.
      *
-     * @param location Resource location.
+     * @param location The name of Azure region.
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The name of Cognitive Services account.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -480,7 +480,7 @@ public final class DeletedAccountsClientImpl implements DeletedAccountsClient {
     /**
      * Deletes a Cognitive Services account from the resource group.
      *
-     * @param location Resource location.
+     * @param location The name of Azure region.
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The name of Cognitive Services account.
      * @param context The context to associate with this operation.
@@ -499,7 +499,7 @@ public final class DeletedAccountsClientImpl implements DeletedAccountsClient {
     /**
      * Deletes a Cognitive Services account from the resource group.
      *
-     * @param location Resource location.
+     * @param location The name of Azure region.
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The name of Cognitive Services account.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -514,7 +514,7 @@ public final class DeletedAccountsClientImpl implements DeletedAccountsClient {
     /**
      * Deletes a Cognitive Services account from the resource group.
      *
-     * @param location Resource location.
+     * @param location The name of Azure region.
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param accountName The name of Cognitive Services account.
      * @param context The context to associate with this operation.
@@ -674,7 +674,8 @@ public final class DeletedAccountsClientImpl implements DeletedAccountsClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -710,7 +711,8 @@ public final class DeletedAccountsClientImpl implements DeletedAccountsClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
