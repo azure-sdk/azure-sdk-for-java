@@ -13,20 +13,24 @@ import java.util.Map;
 @Fluent
 public class ImageTemplateIdentity {
     /*
-     * The type of identity used for the image template. The type 'None' will
-     * remove any identities from the image template.
+     * The type of identity used for the image template. The type 'None' will remove any identities from the image
+     * template.
      */
     @JsonProperty(value = "type")
     private ResourceIdentityType type;
 
     /*
-     * The list of user identities associated with the image template. The user
-     * identity dictionary key references will be ARM resource ids in the form:
+     * The list of user identities associated with the image template. The user identity dictionary key references will
+     * be ARM resource ids in the form:
      * '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}'.
      */
     @JsonProperty(value = "userAssignedIdentities")
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, ImageTemplateIdentityUserAssignedIdentities> userAssignedIdentities;
+
+    /** Creates an instance of ImageTemplateIdentity class. */
+    public ImageTemplateIdentity() {
+    }
 
     /**
      * Get the type property: The type of identity used for the image template. The type 'None' will remove any

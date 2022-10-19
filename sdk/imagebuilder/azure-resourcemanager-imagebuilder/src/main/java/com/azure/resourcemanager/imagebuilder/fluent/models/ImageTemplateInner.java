@@ -6,6 +6,7 @@ package com.azure.resourcemanager.imagebuilder.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.Resource;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.imagebuilder.models.ImageTemplateCustomizer;
 import com.azure.resourcemanager.imagebuilder.models.ImageTemplateDistributor;
@@ -35,6 +36,16 @@ public final class ImageTemplateInner extends Resource {
     @JsonProperty(value = "identity", required = true)
     private ImageTemplateIdentity identity;
 
+    /*
+     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     */
+    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
+    private SystemData systemData;
+
+    /** Creates an instance of ImageTemplateInner class. */
+    public ImageTemplateInner() {
+    }
+
     /**
      * Get the innerProperties property: The properties of the image template.
      *
@@ -62,6 +73,15 @@ public final class ImageTemplateInner extends Resource {
     public ImageTemplateInner withIdentity(ImageTemplateIdentity identity) {
         this.identity = identity;
         return this;
+    }
+
+    /**
+     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     *
+     * @return the systemData value.
+     */
+    public SystemData systemData() {
+        return this.systemData;
     }
 
     /** {@inheritDoc} */
