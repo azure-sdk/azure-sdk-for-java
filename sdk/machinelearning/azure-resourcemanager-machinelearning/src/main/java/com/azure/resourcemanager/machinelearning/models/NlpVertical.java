@@ -6,16 +6,11 @@ package com.azure.resourcemanager.machinelearning.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.List;
 
 /** Abstract class for NLP related AutoML tasks. NLP - Natural Language Processing. */
 @Fluent
 public class NlpVertical {
-    /*
-     * Data inputs for AutoMLJob.
-     */
-    @JsonProperty(value = "dataSettings")
-    private NlpVerticalDataSettings dataSettings;
-
     /*
      * Featurization inputs needed for AutoML job.
      */
@@ -23,29 +18,37 @@ public class NlpVertical {
     private NlpVerticalFeaturizationSettings featurizationSettings;
 
     /*
+     * Model/training parameters that will remain constant throughout training.
+     */
+    @JsonProperty(value = "fixedParameters")
+    private NlpFixedParameters fixedParameters;
+
+    /*
      * Execution constraints for AutoMLJob.
      */
     @JsonProperty(value = "limitSettings")
     private NlpVerticalLimitSettings limitSettings;
 
-    /**
-     * Get the dataSettings property: Data inputs for AutoMLJob.
-     *
-     * @return the dataSettings value.
+    /*
+     * Search space for sampling different combinations of models and their hyperparameters.
      */
-    public NlpVerticalDataSettings dataSettings() {
-        return this.dataSettings;
-    }
+    @JsonProperty(value = "searchSpace")
+    private List<NlpParameterSubspace> searchSpace;
 
-    /**
-     * Set the dataSettings property: Data inputs for AutoMLJob.
-     *
-     * @param dataSettings the dataSettings value to set.
-     * @return the NlpVertical object itself.
+    /*
+     * Settings for model sweeping and hyperparameter tuning.
      */
-    public NlpVertical withDataSettings(NlpVerticalDataSettings dataSettings) {
-        this.dataSettings = dataSettings;
-        return this;
+    @JsonProperty(value = "sweepSettings")
+    private NlpSweepSettings sweepSettings;
+
+    /*
+     * Validation data inputs.
+     */
+    @JsonProperty(value = "validationData")
+    private MLTableJobInput validationData;
+
+    /** Creates an instance of NlpVertical class. */
+    public NlpVertical() {
     }
 
     /**
@@ -65,6 +68,26 @@ public class NlpVertical {
      */
     public NlpVertical withFeaturizationSettings(NlpVerticalFeaturizationSettings featurizationSettings) {
         this.featurizationSettings = featurizationSettings;
+        return this;
+    }
+
+    /**
+     * Get the fixedParameters property: Model/training parameters that will remain constant throughout training.
+     *
+     * @return the fixedParameters value.
+     */
+    public NlpFixedParameters fixedParameters() {
+        return this.fixedParameters;
+    }
+
+    /**
+     * Set the fixedParameters property: Model/training parameters that will remain constant throughout training.
+     *
+     * @param fixedParameters the fixedParameters value to set.
+     * @return the NlpVertical object itself.
+     */
+    public NlpVertical withFixedParameters(NlpFixedParameters fixedParameters) {
+        this.fixedParameters = fixedParameters;
         return this;
     }
 
@@ -89,19 +112,90 @@ public class NlpVertical {
     }
 
     /**
+     * Get the searchSpace property: Search space for sampling different combinations of models and their
+     * hyperparameters.
+     *
+     * @return the searchSpace value.
+     */
+    public List<NlpParameterSubspace> searchSpace() {
+        return this.searchSpace;
+    }
+
+    /**
+     * Set the searchSpace property: Search space for sampling different combinations of models and their
+     * hyperparameters.
+     *
+     * @param searchSpace the searchSpace value to set.
+     * @return the NlpVertical object itself.
+     */
+    public NlpVertical withSearchSpace(List<NlpParameterSubspace> searchSpace) {
+        this.searchSpace = searchSpace;
+        return this;
+    }
+
+    /**
+     * Get the sweepSettings property: Settings for model sweeping and hyperparameter tuning.
+     *
+     * @return the sweepSettings value.
+     */
+    public NlpSweepSettings sweepSettings() {
+        return this.sweepSettings;
+    }
+
+    /**
+     * Set the sweepSettings property: Settings for model sweeping and hyperparameter tuning.
+     *
+     * @param sweepSettings the sweepSettings value to set.
+     * @return the NlpVertical object itself.
+     */
+    public NlpVertical withSweepSettings(NlpSweepSettings sweepSettings) {
+        this.sweepSettings = sweepSettings;
+        return this;
+    }
+
+    /**
+     * Get the validationData property: Validation data inputs.
+     *
+     * @return the validationData value.
+     */
+    public MLTableJobInput validationData() {
+        return this.validationData;
+    }
+
+    /**
+     * Set the validationData property: Validation data inputs.
+     *
+     * @param validationData the validationData value to set.
+     * @return the NlpVertical object itself.
+     */
+    public NlpVertical withValidationData(MLTableJobInput validationData) {
+        this.validationData = validationData;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (dataSettings() != null) {
-            dataSettings().validate();
-        }
         if (featurizationSettings() != null) {
             featurizationSettings().validate();
         }
+        if (fixedParameters() != null) {
+            fixedParameters().validate();
+        }
         if (limitSettings() != null) {
             limitSettings().validate();
+        }
+        if (searchSpace() != null) {
+            searchSpace().forEach(e -> e.validate());
+        }
+        if (sweepSettings() != null) {
+            sweepSettings().validate();
+        }
+        if (validationData() != null) {
+            validationData().validate();
         }
     }
 }

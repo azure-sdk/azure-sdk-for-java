@@ -10,8 +10,8 @@ import com.azure.core.http.rest.SimpleResponse;
 import com.azure.core.util.Context;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.machinelearning.fluent.EnvironmentContainersClient;
-import com.azure.resourcemanager.machinelearning.fluent.models.EnvironmentContainerDataInner;
-import com.azure.resourcemanager.machinelearning.models.EnvironmentContainerData;
+import com.azure.resourcemanager.machinelearning.fluent.models.EnvironmentContainerInner;
+import com.azure.resourcemanager.machinelearning.models.EnvironmentContainer;
 import com.azure.resourcemanager.machinelearning.models.EnvironmentContainers;
 import com.azure.resourcemanager.machinelearning.models.ListViewType;
 
@@ -29,21 +29,16 @@ public final class EnvironmentContainersImpl implements EnvironmentContainers {
         this.serviceManager = serviceManager;
     }
 
-    public PagedIterable<EnvironmentContainerData> list(String resourceGroupName, String workspaceName) {
-        PagedIterable<EnvironmentContainerDataInner> inner =
-            this.serviceClient().list(resourceGroupName, workspaceName);
-        return Utils.mapPage(inner, inner1 -> new EnvironmentContainerDataImpl(inner1, this.manager()));
+    public PagedIterable<EnvironmentContainer> list(String resourceGroupName, String workspaceName) {
+        PagedIterable<EnvironmentContainerInner> inner = this.serviceClient().list(resourceGroupName, workspaceName);
+        return Utils.mapPage(inner, inner1 -> new EnvironmentContainerImpl(inner1, this.manager()));
     }
 
-    public PagedIterable<EnvironmentContainerData> list(
+    public PagedIterable<EnvironmentContainer> list(
         String resourceGroupName, String workspaceName, String skip, ListViewType listViewType, Context context) {
-        PagedIterable<EnvironmentContainerDataInner> inner =
+        PagedIterable<EnvironmentContainerInner> inner =
             this.serviceClient().list(resourceGroupName, workspaceName, skip, listViewType, context);
-        return Utils.mapPage(inner, inner1 -> new EnvironmentContainerDataImpl(inner1, this.manager()));
-    }
-
-    public void delete(String resourceGroupName, String workspaceName, String name) {
-        this.serviceClient().delete(resourceGroupName, workspaceName, name);
+        return Utils.mapPage(inner, inner1 -> new EnvironmentContainerImpl(inner1, this.manager()));
     }
 
     public Response<Void> deleteWithResponse(
@@ -51,132 +46,58 @@ public final class EnvironmentContainersImpl implements EnvironmentContainers {
         return this.serviceClient().deleteWithResponse(resourceGroupName, workspaceName, name, context);
     }
 
-    public EnvironmentContainerData get(String resourceGroupName, String workspaceName, String name) {
-        EnvironmentContainerDataInner inner = this.serviceClient().get(resourceGroupName, workspaceName, name);
-        if (inner != null) {
-            return new EnvironmentContainerDataImpl(inner, this.manager());
-        } else {
-            return null;
-        }
+    public void delete(String resourceGroupName, String workspaceName, String name) {
+        this.serviceClient().delete(resourceGroupName, workspaceName, name);
     }
 
-    public Response<EnvironmentContainerData> getWithResponse(
+    public Response<EnvironmentContainer> getWithResponse(
         String resourceGroupName, String workspaceName, String name, Context context) {
-        Response<EnvironmentContainerDataInner> inner =
+        Response<EnvironmentContainerInner> inner =
             this.serviceClient().getWithResponse(resourceGroupName, workspaceName, name, context);
         if (inner != null) {
             return new SimpleResponse<>(
                 inner.getRequest(),
                 inner.getStatusCode(),
                 inner.getHeaders(),
-                new EnvironmentContainerDataImpl(inner.getValue(), this.manager()));
+                new EnvironmentContainerImpl(inner.getValue(), this.manager()));
         } else {
             return null;
         }
     }
 
-    public EnvironmentContainerData getById(String id) {
-        String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
-        if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+    public EnvironmentContainer get(String resourceGroupName, String workspaceName, String name) {
+        EnvironmentContainerInner inner = this.serviceClient().get(resourceGroupName, workspaceName, name);
+        if (inner != null) {
+            return new EnvironmentContainerImpl(inner, this.manager());
+        } else {
+            return null;
         }
-        String workspaceName = Utils.getValueFromIdByName(id, "workspaces");
-        if (workspaceName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'workspaces'.", id)));
-        }
-        String name = Utils.getValueFromIdByName(id, "environments");
-        if (name == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'environments'.", id)));
-        }
-        return this.getWithResponse(resourceGroupName, workspaceName, name, Context.NONE).getValue();
     }
 
-    public Response<EnvironmentContainerData> getByIdWithResponse(String id, Context context) {
-        String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
-        if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+    public Response<EnvironmentContainer> createOrUpdateWithResponse(
+        String resourceGroupName, String workspaceName, String name, EnvironmentContainerInner body, Context context) {
+        Response<EnvironmentContainerInner> inner =
+            this.serviceClient().createOrUpdateWithResponse(resourceGroupName, workspaceName, name, body, context);
+        if (inner != null) {
+            return new SimpleResponse<>(
+                inner.getRequest(),
+                inner.getStatusCode(),
+                inner.getHeaders(),
+                new EnvironmentContainerImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
         }
-        String workspaceName = Utils.getValueFromIdByName(id, "workspaces");
-        if (workspaceName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'workspaces'.", id)));
-        }
-        String name = Utils.getValueFromIdByName(id, "environments");
-        if (name == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'environments'.", id)));
-        }
-        return this.getWithResponse(resourceGroupName, workspaceName, name, context);
     }
 
-    public void deleteById(String id) {
-        String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
-        if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+    public EnvironmentContainer createOrUpdate(
+        String resourceGroupName, String workspaceName, String name, EnvironmentContainerInner body) {
+        EnvironmentContainerInner inner =
+            this.serviceClient().createOrUpdate(resourceGroupName, workspaceName, name, body);
+        if (inner != null) {
+            return new EnvironmentContainerImpl(inner, this.manager());
+        } else {
+            return null;
         }
-        String workspaceName = Utils.getValueFromIdByName(id, "workspaces");
-        if (workspaceName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'workspaces'.", id)));
-        }
-        String name = Utils.getValueFromIdByName(id, "environments");
-        if (name == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'environments'.", id)));
-        }
-        this.deleteWithResponse(resourceGroupName, workspaceName, name, Context.NONE);
-    }
-
-    public Response<Void> deleteByIdWithResponse(String id, Context context) {
-        String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
-        if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
-        }
-        String workspaceName = Utils.getValueFromIdByName(id, "workspaces");
-        if (workspaceName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'workspaces'.", id)));
-        }
-        String name = Utils.getValueFromIdByName(id, "environments");
-        if (name == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'environments'.", id)));
-        }
-        return this.deleteWithResponse(resourceGroupName, workspaceName, name, context);
     }
 
     private EnvironmentContainersClient serviceClient() {
@@ -185,9 +106,5 @@ public final class EnvironmentContainersImpl implements EnvironmentContainers {
 
     private com.azure.resourcemanager.machinelearning.MachineLearningManager manager() {
         return this.serviceManager;
-    }
-
-    public EnvironmentContainerDataImpl define(String name) {
-        return new EnvironmentContainerDataImpl(name, this.manager());
     }
 }

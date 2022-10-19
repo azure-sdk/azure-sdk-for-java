@@ -20,6 +20,10 @@ public final class Databricks extends Compute {
     @JsonProperty(value = "properties")
     private DatabricksProperties properties;
 
+    /** Creates an instance of Databricks class. */
+    public Databricks() {
+    }
+
     /**
      * Get the properties property: Properties of Databricks.
      *
@@ -51,13 +55,6 @@ public final class Databricks extends Compute {
     @Override
     public Databricks withResourceId(String resourceId) {
         super.withResourceId(resourceId);
-        return this;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Databricks withDisableLocalAuth(Boolean disableLocalAuth) {
-        super.withDisableLocalAuth(disableLocalAuth);
         return this;
     }
 

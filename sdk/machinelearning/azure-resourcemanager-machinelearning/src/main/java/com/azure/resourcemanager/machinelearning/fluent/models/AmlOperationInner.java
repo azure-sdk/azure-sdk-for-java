@@ -8,7 +8,7 @@ import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.machinelearning.models.AmlOperationDisplay;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Azure Machine Learning workspace REST API operation. */
+/** Azure Machine Learning REST API operation. */
 @Fluent
 public final class AmlOperationInner {
     /*
@@ -28,6 +28,10 @@ public final class AmlOperationInner {
      */
     @JsonProperty(value = "isDataAction")
     private Boolean isDataAction;
+
+    /** Creates an instance of AmlOperationInner class. */
+    public AmlOperationInner() {
+    }
 
     /**
      * Get the name property: Operation name: {provider}/{resource}/{operation}.
