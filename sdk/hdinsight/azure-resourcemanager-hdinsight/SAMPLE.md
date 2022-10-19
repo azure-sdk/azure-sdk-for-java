@@ -54,6 +54,10 @@
 - [ListUsages](#locations_listusages)
 - [ValidateClusterCreateRequest](#locations_validateclustercreaterequest)
 
+## Operations
+
+- [List](#operations_list)
+
 ## PrivateEndpointConnections
 
 - [CreateOrUpdate](#privateendpointconnections_createorupdate)
@@ -2520,6 +2524,27 @@ public final class LocationsValidateClusterCreateRequestSamples {
             map.put(key, value);
         }
         return map;
+    }
+}
+```
+
+### Operations_List
+
+```java
+import com.azure.core.util.Context;
+
+/** Samples for Operations List. */
+public final class OperationsListSamples {
+    /*
+     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/stable/2021-06-01/examples/ListHDInsightOperations.json
+     */
+    /**
+     * Sample code: Lists all of the available operations.
+     *
+     * @param manager Entry point to HDInsightManager.
+     */
+    public static void listsAllOfTheAvailableOperations(com.azure.resourcemanager.hdinsight.HDInsightManager manager) {
+        manager.operations().list(Context.NONE);
     }
 }
 ```
