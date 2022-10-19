@@ -13,10 +13,9 @@ import com.azure.resourcemanager.postgresqlflexibleserver.fluent.models.NameAvai
 import com.azure.resourcemanager.postgresqlflexibleserver.models.CheckNameAvailabilities;
 import com.azure.resourcemanager.postgresqlflexibleserver.models.NameAvailability;
 import com.azure.resourcemanager.postgresqlflexibleserver.models.NameAvailabilityRequest;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public final class CheckNameAvailabilitiesImpl implements CheckNameAvailabilities {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(CheckNameAvailabilitiesImpl.class);
+    private static final ClientLogger LOGGER = new ClientLogger(CheckNameAvailabilitiesImpl.class);
 
     private final CheckNameAvailabilitiesClient innerClient;
 
@@ -29,15 +28,6 @@ public final class CheckNameAvailabilitiesImpl implements CheckNameAvailabilitie
         this.serviceManager = serviceManager;
     }
 
-    public NameAvailability execute(NameAvailabilityRequest nameAvailabilityRequest) {
-        NameAvailabilityInner inner = this.serviceClient().execute(nameAvailabilityRequest);
-        if (inner != null) {
-            return new NameAvailabilityImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
     public Response<NameAvailability> executeWithResponse(
         NameAvailabilityRequest nameAvailabilityRequest, Context context) {
         Response<NameAvailabilityInner> inner =
@@ -48,6 +38,15 @@ public final class CheckNameAvailabilitiesImpl implements CheckNameAvailabilitie
                 inner.getStatusCode(),
                 inner.getHeaders(),
                 new NameAvailabilityImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public NameAvailability execute(NameAvailabilityRequest nameAvailabilityRequest) {
+        NameAvailabilityInner inner = this.serviceClient().execute(nameAvailabilityRequest);
+        if (inner != null) {
+            return new NameAvailabilityImpl(inner, this.manager());
         } else {
             return null;
         }
