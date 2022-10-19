@@ -31,6 +31,10 @@ public final class IotConnectorProperties {
     @JsonProperty(value = "deviceMapping")
     private IotMappingProperties deviceMapping;
 
+    /** Creates an instance of IotConnectorProperties class. */
+    public IotConnectorProperties() {
+    }
+
     /**
      * Get the provisioningState property: The provisioning state.
      *
