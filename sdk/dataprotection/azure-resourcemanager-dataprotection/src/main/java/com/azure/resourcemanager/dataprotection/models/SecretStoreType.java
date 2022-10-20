@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for SecretStoreType. */
+/** Gets or sets the type of secret store. */
 public final class SecretStoreType extends ExpandableStringEnum<SecretStoreType> {
     /** Static value Invalid for SecretStoreType. */
     public static final SecretStoreType INVALID = fromString("Invalid");
@@ -27,7 +27,11 @@ public final class SecretStoreType extends ExpandableStringEnum<SecretStoreType>
         return fromString(name, SecretStoreType.class);
     }
 
-    /** @return known SecretStoreType values. */
+    /**
+     * Gets known SecretStoreType values.
+     *
+     * @return known SecretStoreType values.
+     */
     public static Collection<SecretStoreType> values() {
         return values(SecretStoreType.class);
     }
