@@ -8,7 +8,10 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for IdentityType. */
+/**
+ * The type of managed identity used. The type 'SystemAssigned, UserAssigned' includes both an implicitly created
+ * identity and a set of user-assigned identities. The type 'None' will remove any identity.
+ */
 public final class IdentityType extends ExpandableStringEnum<IdentityType> {
     /** Static value None for IdentityType. */
     public static final IdentityType NONE = fromString("None");
