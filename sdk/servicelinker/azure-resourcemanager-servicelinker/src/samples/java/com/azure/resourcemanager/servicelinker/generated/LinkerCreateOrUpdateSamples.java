@@ -15,7 +15,7 @@ import com.azure.resourcemanager.servicelinker.models.ValueSecretInfo;
 /** Samples for Linker CreateOrUpdate. */
 public final class LinkerCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/servicelinker/resource-manager/Microsoft.ServiceLinker/stable/2022-05-01/examples/PutLinkWithSecretStore.json
+     * x-ms-original-file: specification/servicelinker/resource-manager/Microsoft.ServiceLinker/stable/2025-07-20/examples/PutLinkWithSecretStore.json
      */
     /**
      * Sample code: PutLinkWithSecretStore.
@@ -41,7 +41,7 @@ public final class LinkerCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/servicelinker/resource-manager/Microsoft.ServiceLinker/stable/2022-05-01/examples/PutLinkWithServiceEndpoint.json
+     * x-ms-original-file: specification/servicelinker/resource-manager/Microsoft.ServiceLinker/stable/2025-07-20/examples/PutLinkWithServiceEndpoint.json
      */
     /**
      * Sample code: PutLinkWithServiceEndpoint.
@@ -71,7 +71,7 @@ public final class LinkerCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/servicelinker/resource-manager/Microsoft.ServiceLinker/stable/2022-05-01/examples/PutLink.json
+     * x-ms-original-file: specification/servicelinker/resource-manager/Microsoft.ServiceLinker/stable/2025-07-20/examples/PutLink.json
      */
     /**
      * Sample code: PutLink.
