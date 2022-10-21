@@ -80,6 +80,29 @@ public final class SecureScoresClientImpl implements SecureScoresClient {
             Context context);
 
         @Headers({"Content-Type: application/json"})
+        @Get("/subscriptions/{subscriptionId}/providers/Microsoft.Security/secureScores")
+        @ExpectedResponses({200})
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<SecureScoresList>> list(
+            @HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion,
+            @PathParam("subscriptionId") String subscriptionId,
+            @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({"Content-Type: application/json"})
+        @Get("/subscriptions/{subscriptionId}/providers/Microsoft.Security/secureScores/{secureScoreName}")
+        @ExpectedResponses({200})
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<SecureScoreItemInner>> get(
+            @HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion,
+            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("secureScoreName") String secureScoreName,
+            @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({"Content-Type: application/json"})
         @Get("{nextLink}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
@@ -335,6 +358,24 @@ public final class SecureScoresClientImpl implements SecureScoresClient {
      *
      * @param secureScoreName The initiative name. For the ASC Default initiative, use 'ascScore' as in the sample
      *     request below.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return secure score for a specific Microsoft Defender for Cloud initiative within your current scope along with
+     *     {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<SecureScoreItemInner> getWithResponse(String secureScoreName, Context context) {
+        return getWithResponseAsync(secureScoreName, context).block();
+    }
+
+    /**
+     * Get secure score for a specific Microsoft Defender for Cloud initiative within your current scope. For the ASC
+     * Default initiative, use 'ascScore'.
+     *
+     * @param secureScoreName The initiative name. For the ASC Default initiative, use 'ascScore' as in the sample
+     *     request below.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -342,7 +383,246 @@ public final class SecureScoresClientImpl implements SecureScoresClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public SecureScoreItemInner get(String secureScoreName) {
-        return getAsync(secureScoreName).block();
+        return getWithResponse(secureScoreName, Context.NONE).getValue();
+    }
+
+    /**
+     * List secure scores for all your Microsoft Defender for Cloud initiatives within your current scope.
+     *
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of secure scores along with {@link PagedResponse} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<SecureScoreItemInner>> listSinglePageAsync() {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        final String apiVersion = "2020-01-01-preview";
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(
+                context ->
+                    service
+                        .list(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(), accept, context))
+            .<PagedResponse<SecureScoreItemInner>>map(
+                res ->
+                    new PagedResponseBase<>(
+                        res.getRequest(),
+                        res.getStatusCode(),
+                        res.getHeaders(),
+                        res.getValue().value(),
+                        res.getValue().nextLink(),
+                        null))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * List secure scores for all your Microsoft Defender for Cloud initiatives within your current scope.
+     *
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of secure scores along with {@link PagedResponse} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<SecureScoreItemInner>> listSinglePageAsync(Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        final String apiVersion = "2020-01-01-preview";
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service
+            .list(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(), accept, context)
+            .map(
+                res ->
+                    new PagedResponseBase<>(
+                        res.getRequest(),
+                        res.getStatusCode(),
+                        res.getHeaders(),
+                        res.getValue().value(),
+                        res.getValue().nextLink(),
+                        null));
+    }
+
+    /**
+     * List secure scores for all your Microsoft Defender for Cloud initiatives within your current scope.
+     *
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of secure scores as paginated response with {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    private PagedFlux<SecureScoreItemInner> listAsync() {
+        return new PagedFlux<>(() -> listSinglePageAsync(), nextLink -> listNextSinglePageAsync(nextLink));
+    }
+
+    /**
+     * List secure scores for all your Microsoft Defender for Cloud initiatives within your current scope.
+     *
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of secure scores as paginated response with {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    private PagedFlux<SecureScoreItemInner> listAsync(Context context) {
+        return new PagedFlux<>(
+            () -> listSinglePageAsync(context), nextLink -> listNextSinglePageAsync(nextLink, context));
+    }
+
+    /**
+     * List secure scores for all your Microsoft Defender for Cloud initiatives within your current scope.
+     *
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of secure scores as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedIterable<SecureScoreItemInner> list() {
+        return new PagedIterable<>(listAsync());
+    }
+
+    /**
+     * List secure scores for all your Microsoft Defender for Cloud initiatives within your current scope.
+     *
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of secure scores as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedIterable<SecureScoreItemInner> list(Context context) {
+        return new PagedIterable<>(listAsync(context));
+    }
+
+    /**
+     * Get secure score for a specific Microsoft Defender for Cloud initiative within your current scope. For the ASC
+     * Default initiative, use 'ascScore'.
+     *
+     * @param secureScoreName The initiative name. For the ASC Default initiative, use 'ascScore' as in the sample
+     *     request below.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return secure score for a specific Microsoft Defender for Cloud initiative within your current scope along with
+     *     {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<SecureScoreItemInner>> getWithResponseAsync(String secureScoreName) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (secureScoreName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter secureScoreName is required and cannot be null."));
+        }
+        final String apiVersion = "2020-01-01-preview";
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(
+                context ->
+                    service
+                        .get(
+                            this.client.getEndpoint(),
+                            apiVersion,
+                            this.client.getSubscriptionId(),
+                            secureScoreName,
+                            accept,
+                            context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Get secure score for a specific Microsoft Defender for Cloud initiative within your current scope. For the ASC
+     * Default initiative, use 'ascScore'.
+     *
+     * @param secureScoreName The initiative name. For the ASC Default initiative, use 'ascScore' as in the sample
+     *     request below.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return secure score for a specific Microsoft Defender for Cloud initiative within your current scope along with
+     *     {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<SecureScoreItemInner>> getWithResponseAsync(String secureScoreName, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (secureScoreName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter secureScoreName is required and cannot be null."));
+        }
+        final String apiVersion = "2020-01-01-preview";
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service
+            .get(
+                this.client.getEndpoint(),
+                apiVersion,
+                this.client.getSubscriptionId(),
+                secureScoreName,
+                accept,
+                context);
+    }
+
+    /**
+     * Get secure score for a specific Microsoft Defender for Cloud initiative within your current scope. For the ASC
+     * Default initiative, use 'ascScore'.
+     *
+     * @param secureScoreName The initiative name. For the ASC Default initiative, use 'ascScore' as in the sample
+     *     request below.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return secure score for a specific Microsoft Defender for Cloud initiative within your current scope on
+     *     successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<SecureScoreItemInner> getAsync(String secureScoreName) {
+        return getWithResponseAsync(secureScoreName).flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -361,6 +641,22 @@ public final class SecureScoresClientImpl implements SecureScoresClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<SecureScoreItemInner> getWithResponse(String secureScoreName, Context context) {
         return getWithResponseAsync(secureScoreName, context).block();
+    }
+
+    /**
+     * Get secure score for a specific Microsoft Defender for Cloud initiative within your current scope. For the ASC
+     * Default initiative, use 'ascScore'.
+     *
+     * @param secureScoreName The initiative name. For the ASC Default initiative, use 'ascScore' as in the sample
+     *     request below.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return secure score for a specific Microsoft Defender for Cloud initiative within your current scope.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public SecureScoreItemInner get(String secureScoreName) {
+        return getWithResponse(secureScoreName, Context.NONE).getValue();
     }
 
     /**

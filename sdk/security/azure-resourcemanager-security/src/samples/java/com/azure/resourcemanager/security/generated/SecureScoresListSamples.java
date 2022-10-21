@@ -19,4 +19,16 @@ public final class SecureScoresListSamples {
     public static void listSecureScores(com.azure.resourcemanager.security.SecurityManager manager) {
         manager.secureScores().list(Context.NONE);
     }
+
+    /*
+     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2020-01-01-preview/examples/secureScores/ListSecureScores_example.json
+     */
+    /**
+     * Sample code: List secure scores.
+     *
+     * @param manager Entry point to SecurityManager.
+     */
+    public static void listSecureScores(com.azure.resourcemanager.security.SecurityManager manager) {
+        manager.secureScores().list(Context.NONE);
+    }
 }

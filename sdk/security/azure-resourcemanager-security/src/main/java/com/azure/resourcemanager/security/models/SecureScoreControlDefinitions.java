@@ -48,4 +48,44 @@ public interface SecureScoreControlDefinitions {
      * @return list of security controls definition as paginated response with {@link PagedIterable}.
      */
     PagedIterable<SecureScoreControlDefinitionItem> listBySubscription(Context context);
+
+    /**
+     * List the available security controls, their assessments, and the max score.
+     *
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of security controls definition as paginated response with {@link PagedIterable}.
+     */
+    PagedIterable<SecureScoreControlDefinitionItem> list();
+
+    /**
+     * List the available security controls, their assessments, and the max score.
+     *
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of security controls definition as paginated response with {@link PagedIterable}.
+     */
+    PagedIterable<SecureScoreControlDefinitionItem> list(Context context);
+
+    /**
+     * For a specified subscription, list the available security controls, their assessments, and the max score.
+     *
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of security controls definition as paginated response with {@link PagedIterable}.
+     */
+    PagedIterable<SecureScoreControlDefinitionItem> listBySubscription();
+
+    /**
+     * For a specified subscription, list the available security controls, their assessments, and the max score.
+     *
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of security controls definition as paginated response with {@link PagedIterable}.
+     */
+    PagedIterable<SecureScoreControlDefinitionItem> listBySubscription(Context context);
 }
