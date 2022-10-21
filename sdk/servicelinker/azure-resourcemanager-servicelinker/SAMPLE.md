@@ -28,7 +28,7 @@ import com.azure.resourcemanager.servicelinker.models.ValueSecretInfo;
 /** Samples for Linker CreateOrUpdate. */
 public final class LinkerCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/servicelinker/resource-manager/Microsoft.ServiceLinker/stable/2022-05-01/examples/PutLinkWithSecretStore.json
+     * x-ms-original-file: specification/servicelinker/resource-manager/Microsoft.ServiceLinker/preview/2027-05-01-preview/examples/PutLinkWithSecretStore.json
      */
     /**
      * Sample code: PutLinkWithSecretStore.
@@ -54,7 +54,7 @@ public final class LinkerCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/servicelinker/resource-manager/Microsoft.ServiceLinker/stable/2022-05-01/examples/PutLinkWithServiceEndpoint.json
+     * x-ms-original-file: specification/servicelinker/resource-manager/Microsoft.ServiceLinker/preview/2027-05-01-preview/examples/PutLinkWithServiceEndpoint.json
      */
     /**
      * Sample code: PutLinkWithServiceEndpoint.
@@ -84,7 +84,7 @@ public final class LinkerCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/servicelinker/resource-manager/Microsoft.ServiceLinker/stable/2022-05-01/examples/PutLink.json
+     * x-ms-original-file: specification/servicelinker/resource-manager/Microsoft.ServiceLinker/preview/2027-05-01-preview/examples/PutLink.json
      */
     /**
      * Sample code: PutLink.
@@ -116,7 +116,7 @@ import com.azure.core.util.Context;
 /** Samples for Linker Delete. */
 public final class LinkerDeleteSamples {
     /*
-     * x-ms-original-file: specification/servicelinker/resource-manager/Microsoft.ServiceLinker/stable/2022-05-01/examples/DeleteLink.json
+     * x-ms-original-file: specification/servicelinker/resource-manager/Microsoft.ServiceLinker/preview/2027-05-01-preview/examples/DeleteLink.json
      */
     /**
      * Sample code: DeleteLink.
@@ -142,7 +142,7 @@ import com.azure.core.util.Context;
 /** Samples for Linker Get. */
 public final class LinkerGetSamples {
     /*
-     * x-ms-original-file: specification/servicelinker/resource-manager/Microsoft.ServiceLinker/stable/2022-05-01/examples/Link.json
+     * x-ms-original-file: specification/servicelinker/resource-manager/Microsoft.ServiceLinker/preview/2027-05-01-preview/examples/Link.json
      */
     /**
      * Sample code: Link.
@@ -168,7 +168,7 @@ import com.azure.core.util.Context;
 /** Samples for Linker List. */
 public final class LinkerListSamples {
     /*
-     * x-ms-original-file: specification/servicelinker/resource-manager/Microsoft.ServiceLinker/stable/2022-05-01/examples/LinkList.json
+     * x-ms-original-file: specification/servicelinker/resource-manager/Microsoft.ServiceLinker/preview/2027-05-01-preview/examples/LinkList.json
      */
     /**
      * Sample code: LinkList.
@@ -193,7 +193,7 @@ import com.azure.core.util.Context;
 /** Samples for Linker ListConfigurations. */
 public final class LinkerListConfigurationsSamples {
     /*
-     * x-ms-original-file: specification/servicelinker/resource-manager/Microsoft.ServiceLinker/stable/2022-05-01/examples/GetConfigurations.json
+     * x-ms-original-file: specification/servicelinker/resource-manager/Microsoft.ServiceLinker/preview/2027-05-01-preview/examples/GetConfigurations.json
      */
     /**
      * Sample code: GetConfiguration.
@@ -222,7 +222,7 @@ import com.azure.resourcemanager.servicelinker.models.ServicePrincipalSecretAuth
 /** Samples for Linker Update. */
 public final class LinkerUpdateSamples {
     /*
-     * x-ms-original-file: specification/servicelinker/resource-manager/Microsoft.ServiceLinker/stable/2022-05-01/examples/PatchLink.json
+     * x-ms-original-file: specification/servicelinker/resource-manager/Microsoft.ServiceLinker/preview/2027-05-01-preview/examples/PatchLink.json
      */
     /**
      * Sample code: PatchLink.
@@ -259,7 +259,7 @@ import com.azure.core.util.Context;
 /** Samples for Linker Validate. */
 public final class LinkerValidateSamples {
     /*
-     * x-ms-original-file: specification/servicelinker/resource-manager/Microsoft.ServiceLinker/stable/2022-05-01/examples/ValidateLinkSuccess.json
+     * x-ms-original-file: specification/servicelinker/resource-manager/Microsoft.ServiceLinker/preview/2027-05-01-preview/examples/ValidateLinkSuccess.json
      */
     /**
      * Sample code: ValidateLinkSuccess.
@@ -285,7 +285,7 @@ import com.azure.core.util.Context;
 /** Samples for Operations List. */
 public final class OperationsListSamples {
     /*
-     * x-ms-original-file: specification/servicelinker/resource-manager/Microsoft.ServiceLinker/stable/2022-05-01/examples/OperationsList.json
+     * x-ms-original-file: specification/servicelinker/resource-manager/Microsoft.ServiceLinker/preview/2027-05-01-preview/examples/OperationsList.json
      */
     /**
      * Sample code: GetConfiguration.
