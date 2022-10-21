@@ -41,6 +41,22 @@ public interface SecureScoresClient {
      *
      * @param secureScoreName The initiative name. For the ASC Default initiative, use 'ascScore' as in the sample
      *     request below.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return secure score for a specific Microsoft Defender for Cloud initiative within your current scope along with
+     *     {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    Response<SecureScoreItemInner> getWithResponse(String secureScoreName, Context context);
+
+    /**
+     * Get secure score for a specific Microsoft Defender for Cloud initiative within your current scope. For the ASC
+     * Default initiative, use 'ascScore'.
+     *
+     * @param secureScoreName The initiative name. For the ASC Default initiative, use 'ascScore' as in the sample
+     *     request below.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -48,6 +64,28 @@ public interface SecureScoresClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     SecureScoreItemInner get(String secureScoreName);
+
+    /**
+     * List secure scores for all your Microsoft Defender for Cloud initiatives within your current scope.
+     *
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of secure scores as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    PagedIterable<SecureScoreItemInner> list();
+
+    /**
+     * List secure scores for all your Microsoft Defender for Cloud initiatives within your current scope.
+     *
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of secure scores as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    PagedIterable<SecureScoreItemInner> list(Context context);
 
     /**
      * Get secure score for a specific Microsoft Defender for Cloud initiative within your current scope. For the ASC
@@ -64,4 +102,18 @@ public interface SecureScoresClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<SecureScoreItemInner> getWithResponse(String secureScoreName, Context context);
+
+    /**
+     * Get secure score for a specific Microsoft Defender for Cloud initiative within your current scope. For the ASC
+     * Default initiative, use 'ascScore'.
+     *
+     * @param secureScoreName The initiative name. For the ASC Default initiative, use 'ascScore' as in the sample
+     *     request below.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return secure score for a specific Microsoft Defender for Cloud initiative within your current scope.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    SecureScoreItemInner get(String secureScoreName);
 }

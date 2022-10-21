@@ -19,4 +19,16 @@ public final class SecureScoreControlsListSamples {
     public static void listAllSecureScoresControls(com.azure.resourcemanager.security.SecurityManager manager) {
         manager.secureScoreControls().list(null, Context.NONE);
     }
+
+    /*
+     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2020-01-01-preview/examples/secureScores/ListSecureScoreControls_example.json
+     */
+    /**
+     * Sample code: List all secure scores controls.
+     *
+     * @param manager Entry point to SecurityManager.
+     */
+    public static void listAllSecureScoresControls(com.azure.resourcemanager.security.SecurityManager manager) {
+        manager.secureScoreControls().list(null, Context.NONE);
+    }
 }
