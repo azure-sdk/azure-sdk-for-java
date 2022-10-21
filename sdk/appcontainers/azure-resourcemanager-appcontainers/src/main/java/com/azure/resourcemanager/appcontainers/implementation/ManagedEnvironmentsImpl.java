@@ -12,11 +12,9 @@ import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.appcontainers.fluent.ManagedEnvironmentsClient;
 import com.azure.resourcemanager.appcontainers.fluent.models.EnvironmentAuthTokenInner;
 import com.azure.resourcemanager.appcontainers.fluent.models.ManagedEnvironmentInner;
-import com.azure.resourcemanager.appcontainers.fluent.models.WorkloadProfileStatesInner;
 import com.azure.resourcemanager.appcontainers.models.EnvironmentAuthToken;
 import com.azure.resourcemanager.appcontainers.models.ManagedEnvironment;
 import com.azure.resourcemanager.appcontainers.models.ManagedEnvironments;
-import com.azure.resourcemanager.appcontainers.models.WorkloadProfileStates;
 
 public final class ManagedEnvironmentsImpl implements ManagedEnvironments {
     private static final ClientLogger LOGGER = new ClientLogger(ManagedEnvironmentsImpl.class);
@@ -119,20 +117,6 @@ public final class ManagedEnvironmentsImpl implements ManagedEnvironments {
         } else {
             return null;
         }
-    }
-
-    public PagedIterable<WorkloadProfileStates> listWorkloadProfileStates(
-        String resourceGroupName, String environmentName) {
-        PagedIterable<WorkloadProfileStatesInner> inner =
-            this.serviceClient().listWorkloadProfileStates(resourceGroupName, environmentName);
-        return Utils.mapPage(inner, inner1 -> new WorkloadProfileStatesImpl(inner1, this.manager()));
-    }
-
-    public PagedIterable<WorkloadProfileStates> listWorkloadProfileStates(
-        String resourceGroupName, String environmentName, Context context) {
-        PagedIterable<WorkloadProfileStatesInner> inner =
-            this.serviceClient().listWorkloadProfileStates(resourceGroupName, environmentName, context);
-        return Utils.mapPage(inner, inner1 -> new WorkloadProfileStatesImpl(inner1, this.manager()));
     }
 
     public ManagedEnvironment getById(String id) {

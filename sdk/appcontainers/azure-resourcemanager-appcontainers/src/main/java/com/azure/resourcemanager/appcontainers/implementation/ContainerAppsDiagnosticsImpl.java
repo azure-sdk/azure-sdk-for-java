@@ -10,9 +10,11 @@ import com.azure.core.http.rest.SimpleResponse;
 import com.azure.core.util.Context;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.appcontainers.fluent.ContainerAppsDiagnosticsClient;
+import com.azure.resourcemanager.appcontainers.fluent.models.AuthConfigInner;
 import com.azure.resourcemanager.appcontainers.fluent.models.ContainerAppInner;
 import com.azure.resourcemanager.appcontainers.fluent.models.DiagnosticsInner;
 import com.azure.resourcemanager.appcontainers.fluent.models.RevisionInner;
+import com.azure.resourcemanager.appcontainers.models.AuthConfig;
 import com.azure.resourcemanager.appcontainers.models.ContainerApp;
 import com.azure.resourcemanager.appcontainers.models.ContainerAppsDiagnostics;
 import com.azure.resourcemanager.appcontainers.models.Diagnostics;
@@ -123,6 +125,30 @@ public final class ContainerAppsDiagnosticsImpl implements ContainerAppsDiagnost
         ContainerAppInner inner = this.serviceClient().getRoot(resourceGroupName, containerAppName);
         if (inner != null) {
             return new ContainerAppImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
+    public Response<AuthConfig> getAuthConfigsWithResponse(
+        String resourceGroupName, String containerAppName, Context context) {
+        Response<AuthConfigInner> inner =
+            this.serviceClient().getAuthConfigsWithResponse(resourceGroupName, containerAppName, context);
+        if (inner != null) {
+            return new SimpleResponse<>(
+                inner.getRequest(),
+                inner.getStatusCode(),
+                inner.getHeaders(),
+                new AuthConfigImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public AuthConfig getAuthConfigs(String resourceGroupName, String containerAppName) {
+        AuthConfigInner inner = this.serviceClient().getAuthConfigs(resourceGroupName, containerAppName);
+        if (inner != null) {
+            return new AuthConfigImpl(inner, this.manager());
         } else {
             return null;
         }

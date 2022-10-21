@@ -150,4 +150,31 @@ public interface ContainerAppsDiagnostics {
      * @return the properties of a Container App.
      */
     ContainerApp getRoot(String resourceGroupName, String containerAppName);
+
+    /**
+     * Get the authentication configurations of a Container App.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param containerAppName Name of the Container App.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.resourcemanager.appcontainers.models.DefaultErrorResponseErrorException thrown if the request
+     *     is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the authentication configurations of a Container App along with {@link Response}.
+     */
+    Response<AuthConfig> getAuthConfigsWithResponse(String resourceGroupName, String containerAppName, Context context);
+
+    /**
+     * Get the authentication configurations of a Container App.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param containerAppName Name of the Container App.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.resourcemanager.appcontainers.models.DefaultErrorResponseErrorException thrown if the request
+     *     is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the authentication configurations of a Container App.
+     */
+    AuthConfig getAuthConfigs(String resourceGroupName, String containerAppName);
 }

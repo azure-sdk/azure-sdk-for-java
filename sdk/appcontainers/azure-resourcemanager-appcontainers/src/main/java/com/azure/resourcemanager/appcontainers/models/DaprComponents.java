@@ -111,7 +111,7 @@ public interface DaprComponents {
      * @throws com.azure.resourcemanager.appcontainers.models.DefaultErrorResponseErrorException thrown if the request
      *     is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return dapr component Secrets Collection for ListSecrets Action along with {@link Response}.
+     * @return dapr component Secrets Collection ARM resource along with {@link Response}.
      */
     Response<DaprSecretsCollection> listSecretsWithResponse(
         String resourceGroupName, String environmentName, String componentName, Context context);
@@ -126,7 +126,7 @@ public interface DaprComponents {
      * @throws com.azure.resourcemanager.appcontainers.models.DefaultErrorResponseErrorException thrown if the request
      *     is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return dapr component Secrets Collection for ListSecrets Action.
+     * @return dapr component Secrets Collection ARM resource.
      */
     DaprSecretsCollection listSecrets(String resourceGroupName, String environmentName, String componentName);
 

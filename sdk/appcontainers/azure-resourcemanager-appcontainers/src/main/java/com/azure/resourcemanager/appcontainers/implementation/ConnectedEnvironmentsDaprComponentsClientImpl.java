@@ -893,8 +893,8 @@ public final class ConnectedEnvironmentsDaprComponentsClientImpl implements Conn
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return dapr component Secrets Collection for ListSecrets Action along with {@link Response} on successful
-     *     completion of {@link Mono}.
+     * @return dapr component Secrets Collection ARM resource along with {@link Response} on successful completion of
+     *     {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<DaprSecretsCollectionInner>> listSecretsWithResponseAsync(
@@ -950,8 +950,8 @@ public final class ConnectedEnvironmentsDaprComponentsClientImpl implements Conn
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return dapr component Secrets Collection for ListSecrets Action along with {@link Response} on successful
-     *     completion of {@link Mono}.
+     * @return dapr component Secrets Collection ARM resource along with {@link Response} on successful completion of
+     *     {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<DaprSecretsCollectionInner>> listSecretsWithResponseAsync(
@@ -1003,7 +1003,7 @@ public final class ConnectedEnvironmentsDaprComponentsClientImpl implements Conn
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return dapr component Secrets Collection for ListSecrets Action on successful completion of {@link Mono}.
+     * @return dapr component Secrets Collection ARM resource on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<DaprSecretsCollectionInner> listSecretsAsync(
@@ -1022,7 +1022,7 @@ public final class ConnectedEnvironmentsDaprComponentsClientImpl implements Conn
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return dapr component Secrets Collection for ListSecrets Action along with {@link Response}.
+     * @return dapr component Secrets Collection ARM resource along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<DaprSecretsCollectionInner> listSecretsWithResponse(
@@ -1040,7 +1040,7 @@ public final class ConnectedEnvironmentsDaprComponentsClientImpl implements Conn
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return dapr component Secrets Collection for ListSecrets Action.
+     * @return dapr component Secrets Collection ARM resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public DaprSecretsCollectionInner listSecrets(

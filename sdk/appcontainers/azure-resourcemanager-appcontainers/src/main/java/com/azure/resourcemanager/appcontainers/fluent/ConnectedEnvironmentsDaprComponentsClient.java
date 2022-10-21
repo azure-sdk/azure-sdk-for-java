@@ -169,7 +169,7 @@ public interface ConnectedEnvironmentsDaprComponentsClient {
      * @throws com.azure.resourcemanager.appcontainers.models.DefaultErrorResponseErrorException thrown if the request
      *     is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return dapr component Secrets Collection for ListSecrets Action along with {@link Response}.
+     * @return dapr component Secrets Collection ARM resource along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<DaprSecretsCollectionInner> listSecretsWithResponse(
@@ -185,7 +185,7 @@ public interface ConnectedEnvironmentsDaprComponentsClient {
      * @throws com.azure.resourcemanager.appcontainers.models.DefaultErrorResponseErrorException thrown if the request
      *     is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return dapr component Secrets Collection for ListSecrets Action.
+     * @return dapr component Secrets Collection ARM resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     DaprSecretsCollectionInner listSecrets(

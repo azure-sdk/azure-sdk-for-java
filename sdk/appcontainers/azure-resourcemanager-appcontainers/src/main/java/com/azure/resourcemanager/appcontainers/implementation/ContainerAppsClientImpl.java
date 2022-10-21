@@ -189,7 +189,7 @@ public final class ContainerAppsClientImpl implements ContainerAppsClient {
         @Headers({"Content-Type: application/json"})
         @Post(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/containerApps"
-                + "/{containerAppName}/getAuthtoken")
+                + "/{containerAppName}/authtoken")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<ContainerAppAuthTokenInner>> getAuthToken(

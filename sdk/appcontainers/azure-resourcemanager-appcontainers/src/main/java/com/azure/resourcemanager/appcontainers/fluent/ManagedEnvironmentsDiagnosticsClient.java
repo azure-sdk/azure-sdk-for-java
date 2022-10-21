@@ -6,8 +6,11 @@ package com.azure.resourcemanager.appcontainers.fluent;
 
 import com.azure.core.annotation.ReturnType;
 import com.azure.core.annotation.ServiceMethod;
+import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.http.rest.Response;
 import com.azure.core.util.Context;
+import com.azure.resourcemanager.appcontainers.fluent.models.CertificateInner;
+import com.azure.resourcemanager.appcontainers.fluent.models.DaprComponentInner;
 import com.azure.resourcemanager.appcontainers.fluent.models.ManagedEnvironmentInner;
 
 /** An instance of this class provides access to all the operations defined in ManagedEnvironmentsDiagnosticsClient. */
@@ -45,4 +48,148 @@ public interface ManagedEnvironmentsDiagnosticsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     ManagedEnvironmentInner getRoot(String resourceGroupName, String environmentName);
+
+    /**
+     * Get the Dapr components of a Managed Environment.
+     *
+     * <p>Get the Dapr components of a Managed Environment used to host container apps.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param environmentName Name of the Environment.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.resourcemanager.appcontainers.models.DefaultErrorResponseErrorException thrown if the request
+     *     is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the Dapr components of a Managed Environment used to host container apps as paginated response with
+     *     {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    PagedIterable<DaprComponentInner> listDaprComponents(String resourceGroupName, String environmentName);
+
+    /**
+     * Get the Dapr components of a Managed Environment.
+     *
+     * <p>Get the Dapr components of a Managed Environment used to host container apps.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param environmentName Name of the Environment.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.resourcemanager.appcontainers.models.DefaultErrorResponseErrorException thrown if the request
+     *     is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the Dapr components of a Managed Environment used to host container apps as paginated response with
+     *     {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    PagedIterable<DaprComponentInner> listDaprComponents(
+        String resourceGroupName, String environmentName, Context context);
+
+    /**
+     * Get the Dapr component of a Managed Environment.
+     *
+     * <p>Get the Dapr component of a Managed Environment used to host container apps.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param environmentName Name of the Environment.
+     * @param componentName Name of the Dapr Component.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.resourcemanager.appcontainers.models.DefaultErrorResponseErrorException thrown if the request
+     *     is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the Dapr component of a Managed Environment used to host container apps along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    Response<DaprComponentInner> getDaprComponentsWithResponse(
+        String resourceGroupName, String environmentName, String componentName, Context context);
+
+    /**
+     * Get the Dapr component of a Managed Environment.
+     *
+     * <p>Get the Dapr component of a Managed Environment used to host container apps.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param environmentName Name of the Environment.
+     * @param componentName Name of the Dapr Component.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.resourcemanager.appcontainers.models.DefaultErrorResponseErrorException thrown if the request
+     *     is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the Dapr component of a Managed Environment used to host container apps.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    DaprComponentInner getDaprComponents(String resourceGroupName, String environmentName, String componentName);
+
+    /**
+     * Get the Certificates in a Managed Environment.
+     *
+     * <p>Get the Certificates of a Managed Environment used to host container apps.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param environmentName Name of the Environment.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.resourcemanager.appcontainers.models.DefaultErrorResponseErrorException thrown if the request
+     *     is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the Certificates of a Managed Environment used to host container apps as paginated response with {@link
+     *     PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    PagedIterable<CertificateInner> listCertificates(String resourceGroupName, String environmentName);
+
+    /**
+     * Get the Certificates in a Managed Environment.
+     *
+     * <p>Get the Certificates of a Managed Environment used to host container apps.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param environmentName Name of the Environment.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.resourcemanager.appcontainers.models.DefaultErrorResponseErrorException thrown if the request
+     *     is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the Certificates of a Managed Environment used to host container apps as paginated response with {@link
+     *     PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    PagedIterable<CertificateInner> listCertificates(String resourceGroupName, String environmentName, Context context);
+
+    /**
+     * Get the specified Certificate in a Managed Environment.
+     *
+     * <p>Get the specified Certificate of a Managed Environment used to host container apps.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param environmentName Name of the Environment.
+     * @param certificateName Name of the Certificate.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.resourcemanager.appcontainers.models.DefaultErrorResponseErrorException thrown if the request
+     *     is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the specified Certificate of a Managed Environment used to host container apps along with {@link
+     *     Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    Response<CertificateInner> getCertificatesWithResponse(
+        String resourceGroupName, String environmentName, String certificateName, Context context);
+
+    /**
+     * Get the specified Certificate in a Managed Environment.
+     *
+     * <p>Get the specified Certificate of a Managed Environment used to host container apps.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param environmentName Name of the Environment.
+     * @param certificateName Name of the Certificate.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.resourcemanager.appcontainers.models.DefaultErrorResponseErrorException thrown if the request
+     *     is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the specified Certificate of a Managed Environment used to host container apps.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    CertificateInner getCertificates(String resourceGroupName, String environmentName, String certificateName);
 }

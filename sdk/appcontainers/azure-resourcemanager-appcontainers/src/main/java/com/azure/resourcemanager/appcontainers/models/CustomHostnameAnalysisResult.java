@@ -47,14 +47,6 @@ public interface CustomHostnameAnalysisResult {
     Boolean hasConflictOnManagedEnvironment();
 
     /**
-     * Gets the conflictWithEnvironmentCustomDomain property: &lt;code&gt;true&lt;/code&gt; if there is a conflict on
-     * the Container App's managed environment level custom domain; otherwise, &lt;code&gt;false&lt;/code&gt;.
-     *
-     * @return the conflictWithEnvironmentCustomDomain value.
-     */
-    Boolean conflictWithEnvironmentCustomDomain();
-
-    /**
      * Gets the conflictingContainerAppResourceId property: Name of the conflicting Container App on the Managed
      * Environment if it's within the same subscription.
      *

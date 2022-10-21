@@ -24,7 +24,6 @@ import com.azure.core.management.profile.AzureProfile;
 import com.azure.core.util.Configuration;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.appcontainers.fluent.ContainerAppsApiClient;
-import com.azure.resourcemanager.appcontainers.implementation.AvailableWorkloadProfilesImpl;
 import com.azure.resourcemanager.appcontainers.implementation.BillingMetersImpl;
 import com.azure.resourcemanager.appcontainers.implementation.CertificatesImpl;
 import com.azure.resourcemanager.appcontainers.implementation.ConnectedEnvironmentsCertificatesImpl;
@@ -45,7 +44,6 @@ import com.azure.resourcemanager.appcontainers.implementation.ManagedEnvironment
 import com.azure.resourcemanager.appcontainers.implementation.ManagedEnvironmentsStoragesImpl;
 import com.azure.resourcemanager.appcontainers.implementation.NamespacesImpl;
 import com.azure.resourcemanager.appcontainers.implementation.OperationsImpl;
-import com.azure.resourcemanager.appcontainers.models.AvailableWorkloadProfiles;
 import com.azure.resourcemanager.appcontainers.models.BillingMeters;
 import com.azure.resourcemanager.appcontainers.models.Certificates;
 import com.azure.resourcemanager.appcontainers.models.ConnectedEnvironments;
@@ -109,8 +107,6 @@ public final class ContainerAppsApiManager {
     private ConnectedEnvironmentsDaprComponents connectedEnvironmentsDaprComponents;
 
     private ConnectedEnvironmentsStorages connectedEnvironmentsStorages;
-
-    private AvailableWorkloadProfiles availableWorkloadProfiles;
 
     private BillingMeters billingMeters;
 
@@ -279,7 +275,7 @@ public final class ContainerAppsApiManager {
                 .append("-")
                 .append("com.azure.resourcemanager.appcontainers")
                 .append("/")
-                .append("1.0.0-beta.4");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder
                     .append(" (")
@@ -562,19 +558,6 @@ public final class ContainerAppsApiManager {
                 new ConnectedEnvironmentsStoragesImpl(clientObject.getConnectedEnvironmentsStorages(), this);
         }
         return connectedEnvironmentsStorages;
-    }
-
-    /**
-     * Gets the resource collection API of AvailableWorkloadProfiles.
-     *
-     * @return Resource collection API of AvailableWorkloadProfiles.
-     */
-    public AvailableWorkloadProfiles availableWorkloadProfiles() {
-        if (this.availableWorkloadProfiles == null) {
-            this.availableWorkloadProfiles =
-                new AvailableWorkloadProfilesImpl(clientObject.getAvailableWorkloadProfiles(), this);
-        }
-        return availableWorkloadProfiles;
     }
 
     /**

@@ -171,13 +171,6 @@ public interface ContainerAppsApiClient {
     ConnectedEnvironmentsStoragesClient getConnectedEnvironmentsStorages();
 
     /**
-     * Gets the AvailableWorkloadProfilesClient object to access its operations.
-     *
-     * @return the AvailableWorkloadProfilesClient object.
-     */
-    AvailableWorkloadProfilesClient getAvailableWorkloadProfiles();
-
-    /**
      * Gets the BillingMetersClient object to access its operations.
      *
      * @return the BillingMetersClient object.

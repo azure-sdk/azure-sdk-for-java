@@ -43,10 +43,6 @@ public final class CustomHostnameAnalysisResultImpl implements CustomHostnameAna
         return this.innerModel().hasConflictOnManagedEnvironment();
     }
 
-    public Boolean conflictWithEnvironmentCustomDomain() {
-        return this.innerModel().conflictWithEnvironmentCustomDomain();
-    }
-
     public String conflictingContainerAppResourceId() {
         return this.innerModel().conflictingContainerAppResourceId();
     }

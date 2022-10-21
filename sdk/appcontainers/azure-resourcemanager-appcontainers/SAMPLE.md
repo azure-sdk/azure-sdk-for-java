@@ -1,10 +1,6 @@
 # Code snippets and samples
 
 
-## AvailableWorkloadProfiles
-
-- [Get](#availableworkloadprofiles_get)
-
 ## BillingMeters
 
 - [Get](#billingmeters_get)
@@ -71,6 +67,7 @@
 
 ## ContainerAppsDiagnostics
 
+- [GetAuthConfigs](#containerappsdiagnostics_getauthconfigs)
 - [GetDetector](#containerappsdiagnostics_getdetector)
 - [GetRevision](#containerappsdiagnostics_getrevision)
 - [GetRoot](#containerappsdiagnostics_getroot)
@@ -118,12 +115,15 @@
 - [GetByResourceGroup](#managedenvironments_getbyresourcegroup)
 - [List](#managedenvironments_list)
 - [ListByResourceGroup](#managedenvironments_listbyresourcegroup)
-- [ListWorkloadProfileStates](#managedenvironments_listworkloadprofilestates)
 - [Update](#managedenvironments_update)
 
 ## ManagedEnvironmentsDiagnostics
 
+- [GetCertificates](#managedenvironmentsdiagnostics_getcertificates)
+- [GetDaprComponents](#managedenvironmentsdiagnostics_getdaprcomponents)
 - [GetRoot](#managedenvironmentsdiagnostics_getroot)
+- [ListCertificates](#managedenvironmentsdiagnostics_listcertificates)
+- [ListDaprComponents](#managedenvironmentsdiagnostics_listdaprcomponents)
 
 ## ManagedEnvironmentsStorages
 
@@ -139,27 +139,6 @@
 ## Operations
 
 - [List](#operations_list)
-### AvailableWorkloadProfiles_Get
-
-```java
-import com.azure.core.util.Context;
-
-/** Samples for AvailableWorkloadProfiles Get. */
-public final class AvailableWorkloadProfilesGetSamples {
-    /*
-     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2022-06-01-preview/examples/AvailableWorkloadProfiles_Get.json
-     */
-    /**
-     * Sample code: BillingMeters_Get.
-     *
-     * @param manager Entry point to ContainerAppsApiManager.
-     */
-    public static void billingMetersGet(com.azure.resourcemanager.appcontainers.ContainerAppsApiManager manager) {
-        manager.availableWorkloadProfiles().get("East US", Context.NONE);
-    }
-}
-```
-
 ### BillingMeters_Get
 
 ```java
@@ -1532,6 +1511,30 @@ public final class ContainerAppsAuthConfigsListByContainerAppSamples {
 }
 ```
 
+### ContainerAppsDiagnostics_GetAuthConfigs
+
+```java
+import com.azure.core.util.Context;
+
+/** Samples for ContainerAppsDiagnostics GetAuthConfigs. */
+public final class ContainerAppsDiagnosticsGetAuthConfigsSamples {
+    /*
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2022-06-01-preview/examples/Diagnostics_AuthConfigs_Get.json
+     */
+    /**
+     * Sample code: Get Container App's auth configs for diagnostics.
+     *
+     * @param manager Entry point to ContainerAppsApiManager.
+     */
+    public static void getContainerAppSAuthConfigsForDiagnostics(
+        com.azure.resourcemanager.appcontainers.ContainerAppsApiManager manager) {
+        manager
+            .containerAppsDiagnostics()
+            .getAuthConfigsWithResponse("workerapps-rg-xj", "testcanadacentral", Context.NONE);
+    }
+}
+```
+
 ### ContainerAppsDiagnostics_GetDetector
 
 ```java
@@ -2323,28 +2326,6 @@ public final class ManagedEnvironmentsListByResourceGroupSamples {
 }
 ```
 
-### ManagedEnvironments_ListWorkloadProfileStates
-
-```java
-import com.azure.core.util.Context;
-
-/** Samples for ManagedEnvironments ListWorkloadProfileStates. */
-public final class ManagedEnvironmentsListWorkloadProfileStatesSamples {
-    /*
-     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2022-06-01-preview/examples/ManagedEnvironments_ListWorkloadProfileStates.json
-     */
-    /**
-     * Sample code: List environments by subscription.
-     *
-     * @param manager Entry point to ContainerAppsApiManager.
-     */
-    public static void listEnvironmentsBySubscription(
-        com.azure.resourcemanager.appcontainers.ContainerAppsApiManager manager) {
-        manager.managedEnvironments().listWorkloadProfileStates("examplerg", "jlaw-demo1", Context.NONE);
-    }
-}
-```
-
 ### ManagedEnvironments_Update
 
 ```java
@@ -2389,6 +2370,54 @@ public final class ManagedEnvironmentsUpdateSamples {
 }
 ```
 
+### ManagedEnvironmentsDiagnostics_GetCertificates
+
+```java
+import com.azure.core.util.Context;
+
+/** Samples for ManagedEnvironmentsDiagnostics GetCertificates. */
+public final class ManagedEnvironmentsDiagnosticsGetCertificatesSamples {
+    /*
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2022-06-01-preview/examples/Diagnostics_Certificate_Get.json
+     */
+    /**
+     * Sample code: Get the specified certificate.
+     *
+     * @param manager Entry point to ContainerAppsApiManager.
+     */
+    public static void getTheSpecifiedCertificate(
+        com.azure.resourcemanager.appcontainers.ContainerAppsApiManager manager) {
+        manager
+            .managedEnvironmentsDiagnostics()
+            .getCertificatesWithResponse("examplerg", "testcontainerenv", "certificate-firendly-name", Context.NONE);
+    }
+}
+```
+
+### ManagedEnvironmentsDiagnostics_GetDaprComponents
+
+```java
+import com.azure.core.util.Context;
+
+/** Samples for ManagedEnvironmentsDiagnostics GetDaprComponents. */
+public final class ManagedEnvironmentsDiagnosticsGetDaprComponentsSamples {
+    /*
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2022-06-01-preview/examples/Diagnostics_DaprComponents_Get_Secrets.json
+     */
+    /**
+     * Sample code: Get the specified Dapr Component.
+     *
+     * @param manager Entry point to ContainerAppsApiManager.
+     */
+    public static void getTheSpecifiedDaprComponent(
+        com.azure.resourcemanager.appcontainers.ContainerAppsApiManager manager) {
+        manager
+            .managedEnvironmentsDiagnostics()
+            .getDaprComponentsWithResponse("examplerg", "myenvironment", "reddog", Context.NONE);
+    }
+}
+```
+
 ### ManagedEnvironmentsDiagnostics_GetRoot
 
 ```java
@@ -2406,6 +2435,48 @@ public final class ManagedEnvironmentsDiagnosticsGetRootSamples {
      */
     public static void getEnvironmentsByName(com.azure.resourcemanager.appcontainers.ContainerAppsApiManager manager) {
         manager.managedEnvironmentsDiagnostics().getRootWithResponse("examplerg", "jlaw-demo1", Context.NONE);
+    }
+}
+```
+
+### ManagedEnvironmentsDiagnostics_ListCertificates
+
+```java
+import com.azure.core.util.Context;
+
+/** Samples for ManagedEnvironmentsDiagnostics ListCertificates. */
+public final class ManagedEnvironmentsDiagnosticsListCertificatesSamples {
+    /*
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2022-06-01-preview/examples/Diagnostics_Certificates_ListByManagedEnvironment.json
+     */
+    /**
+     * Sample code: List Certificates.
+     *
+     * @param manager Entry point to ContainerAppsApiManager.
+     */
+    public static void listCertificates(com.azure.resourcemanager.appcontainers.ContainerAppsApiManager manager) {
+        manager.managedEnvironmentsDiagnostics().listCertificates("examplerg", "testcontainerenv", Context.NONE);
+    }
+}
+```
+
+### ManagedEnvironmentsDiagnostics_ListDaprComponents
+
+```java
+import com.azure.core.util.Context;
+
+/** Samples for ManagedEnvironmentsDiagnostics ListDaprComponents. */
+public final class ManagedEnvironmentsDiagnosticsListDaprComponentsSamples {
+    /*
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2022-06-01-preview/examples/Diagnostics_DaprComponents_List.json
+     */
+    /**
+     * Sample code: List Dapr Components.
+     *
+     * @param manager Entry point to ContainerAppsApiManager.
+     */
+    public static void listDaprComponents(com.azure.resourcemanager.appcontainers.ContainerAppsApiManager manager) {
+        manager.managedEnvironmentsDiagnostics().listDaprComponents("examplerg", "myenvironment", Context.NONE);
     }
 }
 ```

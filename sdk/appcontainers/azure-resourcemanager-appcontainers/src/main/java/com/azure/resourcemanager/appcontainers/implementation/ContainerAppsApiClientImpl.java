@@ -22,7 +22,6 @@ import com.azure.core.util.polling.LongRunningOperationStatus;
 import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.serializer.SerializerAdapter;
 import com.azure.core.util.serializer.SerializerEncoding;
-import com.azure.resourcemanager.appcontainers.fluent.AvailableWorkloadProfilesClient;
 import com.azure.resourcemanager.appcontainers.fluent.BillingMetersClient;
 import com.azure.resourcemanager.appcontainers.fluent.CertificatesClient;
 import com.azure.resourcemanager.appcontainers.fluent.ConnectedEnvironmentsCertificatesClient;
@@ -343,18 +342,6 @@ public final class ContainerAppsApiClientImpl implements ContainerAppsApiClient 
         return this.connectedEnvironmentsStorages;
     }
 
-    /** The AvailableWorkloadProfilesClient object to access its operations. */
-    private final AvailableWorkloadProfilesClient availableWorkloadProfiles;
-
-    /**
-     * Gets the AvailableWorkloadProfilesClient object to access its operations.
-     *
-     * @return the AvailableWorkloadProfilesClient object.
-     */
-    public AvailableWorkloadProfilesClient getAvailableWorkloadProfiles() {
-        return this.availableWorkloadProfiles;
-    }
-
     /** The BillingMetersClient object to access its operations. */
     private final BillingMetersClient billingMeters;
 
@@ -408,7 +395,6 @@ public final class ContainerAppsApiClientImpl implements ContainerAppsApiClient 
         this.connectedEnvironmentsCertificates = new ConnectedEnvironmentsCertificatesClientImpl(this);
         this.connectedEnvironmentsDaprComponents = new ConnectedEnvironmentsDaprComponentsClientImpl(this);
         this.connectedEnvironmentsStorages = new ConnectedEnvironmentsStoragesClientImpl(this);
-        this.availableWorkloadProfiles = new AvailableWorkloadProfilesClientImpl(this);
         this.billingMeters = new BillingMetersClientImpl(this);
     }
 

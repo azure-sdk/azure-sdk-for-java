@@ -45,13 +45,6 @@ public final class CustomHostnameAnalysisResultInner {
     private Boolean hasConflictOnManagedEnvironment;
 
     /*
-     * <code>true</code> if there is a conflict on the Container App's managed environment level custom domain;
-     * otherwise, <code>false</code>.
-     */
-    @JsonProperty(value = "conflictWithEnvironmentCustomDomain", access = JsonProperty.Access.WRITE_ONLY)
-    private Boolean conflictWithEnvironmentCustomDomain;
-
-    /*
      * Name of the conflicting Container App on the Managed Environment if it's within the same subscription.
      */
     @JsonProperty(value = "conflictingContainerAppResourceId", access = JsonProperty.Access.WRITE_ONLY)
@@ -136,16 +129,6 @@ public final class CustomHostnameAnalysisResultInner {
      */
     public Boolean hasConflictOnManagedEnvironment() {
         return this.hasConflictOnManagedEnvironment;
-    }
-
-    /**
-     * Get the conflictWithEnvironmentCustomDomain property: &lt;code&gt;true&lt;/code&gt; if there is a conflict on the
-     * Container App's managed environment level custom domain; otherwise, &lt;code&gt;false&lt;/code&gt;.
-     *
-     * @return the conflictWithEnvironmentCustomDomain value.
-     */
-    public Boolean conflictWithEnvironmentCustomDomain() {
-        return this.conflictWithEnvironmentCustomDomain;
     }
 
     /**
