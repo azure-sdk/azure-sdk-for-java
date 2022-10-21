@@ -492,12 +492,47 @@ public interface ConfigurationStore {
      * Regenerates an access key for the specified configuration store.
      *
      * @param regenerateKeyParameters The parameters for regenerating an access key.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return an API key used for authenticating with a configuration store endpoint along with {@link Response}.
+     */
+    Response<ApiKey> regenerateKeyWithResponse(RegenerateKeyParameters regenerateKeyParameters, Context context);
+
+    /**
+     * Regenerates an access key for the specified configuration store.
+     *
+     * @param regenerateKeyParameters The parameters for regenerating an access key.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return an API key used for authenticating with a configuration store endpoint.
      */
     ApiKey regenerateKey(RegenerateKeyParameters regenerateKeyParameters);
+
+    /**
+     * Lists the access key for the specified configuration store.
+     *
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the result of a request to list API keys as paginated response with {@link PagedIterable}.
+     */
+    PagedIterable<ApiKey> listKeys();
+
+    /**
+     * Lists the access key for the specified configuration store.
+     *
+     * @param skipToken A skip token is used to continue retrieving items after an operation returns a partial result.
+     *     If a previous response contains a nextLink element, the value of the nextLink element will include a
+     *     skipToken parameter that specifies a starting point to use for subsequent calls.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the result of a request to list API keys as paginated response with {@link PagedIterable}.
+     */
+    PagedIterable<ApiKey> listKeys(String skipToken, Context context);
 
     /**
      * Regenerates an access key for the specified configuration store.
@@ -510,4 +545,15 @@ public interface ConfigurationStore {
      * @return an API key used for authenticating with a configuration store endpoint along with {@link Response}.
      */
     Response<ApiKey> regenerateKeyWithResponse(RegenerateKeyParameters regenerateKeyParameters, Context context);
+
+    /**
+     * Regenerates an access key for the specified configuration store.
+     *
+     * @param regenerateKeyParameters The parameters for regenerating an access key.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return an API key used for authenticating with a configuration store endpoint.
+     */
+    ApiKey regenerateKey(RegenerateKeyParameters regenerateKeyParameters);
 }

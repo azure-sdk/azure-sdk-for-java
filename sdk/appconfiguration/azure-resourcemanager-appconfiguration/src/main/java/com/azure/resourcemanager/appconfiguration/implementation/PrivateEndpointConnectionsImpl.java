@@ -42,6 +42,23 @@ public final class PrivateEndpointConnectionsImpl implements PrivateEndpointConn
         return Utils.mapPage(inner, inner1 -> new PrivateEndpointConnectionImpl(inner1, this.manager()));
     }
 
+    public Response<PrivateEndpointConnection> getWithResponse(
+        String resourceGroupName, String configStoreName, String privateEndpointConnectionName, Context context) {
+        Response<PrivateEndpointConnectionInner> inner =
+            this
+                .serviceClient()
+                .getWithResponse(resourceGroupName, configStoreName, privateEndpointConnectionName, context);
+        if (inner != null) {
+            return new SimpleResponse<>(
+                inner.getRequest(),
+                inner.getStatusCode(),
+                inner.getHeaders(),
+                new PrivateEndpointConnectionImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
     public PrivateEndpointConnection get(
         String resourceGroupName, String configStoreName, String privateEndpointConnectionName) {
         PrivateEndpointConnectionInner inner =
@@ -51,6 +68,29 @@ public final class PrivateEndpointConnectionsImpl implements PrivateEndpointConn
         } else {
             return null;
         }
+    }
+
+    public void delete(String resourceGroupName, String configStoreName, String privateEndpointConnectionName) {
+        this.serviceClient().delete(resourceGroupName, configStoreName, privateEndpointConnectionName);
+    }
+
+    public void delete(
+        String resourceGroupName, String configStoreName, String privateEndpointConnectionName, Context context) {
+        this.serviceClient().delete(resourceGroupName, configStoreName, privateEndpointConnectionName, context);
+    }
+
+    public PagedIterable<PrivateEndpointConnection> listByConfigurationStore(
+        String resourceGroupName, String configStoreName) {
+        PagedIterable<PrivateEndpointConnectionInner> inner =
+            this.serviceClient().listByConfigurationStore(resourceGroupName, configStoreName);
+        return Utils.mapPage(inner, inner1 -> new PrivateEndpointConnectionImpl(inner1, this.manager()));
+    }
+
+    public PagedIterable<PrivateEndpointConnection> listByConfigurationStore(
+        String resourceGroupName, String configStoreName, Context context) {
+        PagedIterable<PrivateEndpointConnectionInner> inner =
+            this.serviceClient().listByConfigurationStore(resourceGroupName, configStoreName, context);
+        return Utils.mapPage(inner, inner1 -> new PrivateEndpointConnectionImpl(inner1, this.manager()));
     }
 
     public Response<PrivateEndpointConnection> getWithResponse(
@@ -65,6 +105,17 @@ public final class PrivateEndpointConnectionsImpl implements PrivateEndpointConn
                 inner.getStatusCode(),
                 inner.getHeaders(),
                 new PrivateEndpointConnectionImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public PrivateEndpointConnection get(
+        String resourceGroupName, String configStoreName, String privateEndpointConnectionName) {
+        PrivateEndpointConnectionInner inner =
+            this.serviceClient().get(resourceGroupName, configStoreName, privateEndpointConnectionName);
+        if (inner != null) {
+            return new PrivateEndpointConnectionImpl(inner, this.manager());
         } else {
             return null;
         }

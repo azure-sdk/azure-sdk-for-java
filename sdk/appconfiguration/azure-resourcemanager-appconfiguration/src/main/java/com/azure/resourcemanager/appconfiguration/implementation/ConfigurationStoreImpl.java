@@ -207,7 +207,7 @@ public final class ConfigurationStoreImpl
             serviceManager
                 .serviceClient()
                 .getConfigurationStores()
-                .getByResourceGroupWithResponse(resourceGroupName, configStoreName, Context.NONE)
+                .getWithResponse(resourceGroupName, configStoreName, Context.NONE)
                 .getValue();
         return this;
     }
@@ -217,7 +217,7 @@ public final class ConfigurationStoreImpl
             serviceManager
                 .serviceClient()
                 .getConfigurationStores()
-                .getByResourceGroupWithResponse(resourceGroupName, configStoreName, context)
+                .getWithResponse(resourceGroupName, configStoreName, context)
                 .getValue();
         return this;
     }
@@ -230,10 +230,25 @@ public final class ConfigurationStoreImpl
         return serviceManager.configurationStores().listKeys(resourceGroupName, configStoreName, skipToken, context);
     }
 
+    public Response<ApiKey> regenerateKeyWithResponse(
+        RegenerateKeyParameters regenerateKeyParameters, Context context) {
+        return serviceManager
+            .configurationStores()
+            .regenerateKeyWithResponse(resourceGroupName, configStoreName, regenerateKeyParameters, context);
+    }
+
     public ApiKey regenerateKey(RegenerateKeyParameters regenerateKeyParameters) {
         return serviceManager
             .configurationStores()
             .regenerateKey(resourceGroupName, configStoreName, regenerateKeyParameters);
+    }
+
+    public PagedIterable<ApiKey> listKeys() {
+        return serviceManager.configurationStores().listKeys(resourceGroupName, configStoreName);
+    }
+
+    public PagedIterable<ApiKey> listKeys(String skipToken, Context context) {
+        return serviceManager.configurationStores().listKeys(resourceGroupName, configStoreName, skipToken, context);
     }
 
     public Response<ApiKey> regenerateKeyWithResponse(
@@ -241,6 +256,12 @@ public final class ConfigurationStoreImpl
         return serviceManager
             .configurationStores()
             .regenerateKeyWithResponse(resourceGroupName, configStoreName, regenerateKeyParameters, context);
+    }
+
+    public ApiKey regenerateKey(RegenerateKeyParameters regenerateKeyParameters) {
+        return serviceManager
+            .configurationStores()
+            .regenerateKey(resourceGroupName, configStoreName, regenerateKeyParameters);
     }
 
     public ConfigurationStoreImpl withRegion(Region location) {

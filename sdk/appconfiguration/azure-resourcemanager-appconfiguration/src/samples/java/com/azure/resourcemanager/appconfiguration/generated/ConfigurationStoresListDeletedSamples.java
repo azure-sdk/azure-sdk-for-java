@@ -20,4 +20,17 @@ public final class ConfigurationStoresListDeletedSamples {
         com.azure.resourcemanager.appconfiguration.AppConfigurationManager manager) {
         manager.configurationStores().listDeleted(Context.NONE);
     }
+
+    /*
+     * x-ms-original-file: specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/preview/2022-05-01-preview/examples/DeletedConfigurationStoresList.json
+     */
+    /**
+     * Sample code: DeletedConfigurationStores_List.
+     *
+     * @param manager Entry point to AppConfigurationManager.
+     */
+    public static void deletedConfigurationStoresList(
+        com.azure.resourcemanager.appconfiguration.AppConfigurationManager manager) {
+        manager.configurationStores().listDeleted(Context.NONE);
+    }
 }

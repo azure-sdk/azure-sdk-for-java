@@ -26,10 +26,7 @@ public final class ConfigurationStoresUpdateSamples {
     public static void configurationStoresUpdateDisableLocalAuth(
         com.azure.resourcemanager.appconfiguration.AppConfigurationManager manager) {
         ConfigurationStore resource =
-            manager
-                .configurationStores()
-                .getByResourceGroupWithResponse("myResourceGroup", "contoso", Context.NONE)
-                .getValue();
+            manager.configurationStores().getWithResponse("myResourceGroup", "contoso", Context.NONE).getValue();
         resource.update().withSku(new Sku().withName("Standard")).withDisableLocalAuth(true).apply();
     }
 
@@ -44,10 +41,7 @@ public final class ConfigurationStoresUpdateSamples {
     public static void configurationStoresUpdate(
         com.azure.resourcemanager.appconfiguration.AppConfigurationManager manager) {
         ConfigurationStore resource =
-            manager
-                .configurationStores()
-                .getByResourceGroupWithResponse("myResourceGroup", "contoso", Context.NONE)
-                .getValue();
+            manager.configurationStores().getWithResponse("myResourceGroup", "contoso", Context.NONE).getValue();
         resource.update().withTags(mapOf("Category", "Marketing")).withSku(new Sku().withName("Standard")).apply();
     }
 
@@ -62,10 +56,63 @@ public final class ConfigurationStoresUpdateSamples {
     public static void configurationStoresUpdateWithIdentity(
         com.azure.resourcemanager.appconfiguration.AppConfigurationManager manager) {
         ConfigurationStore resource =
-            manager
-                .configurationStores()
-                .getByResourceGroupWithResponse("myResourceGroup", "contoso", Context.NONE)
-                .getValue();
+            manager.configurationStores().getWithResponse("myResourceGroup", "contoso", Context.NONE).getValue();
+        resource
+            .update()
+            .withTags(mapOf("Category", "Marketing"))
+            .withIdentity(
+                new ResourceIdentity()
+                    .withType(IdentityType.SYSTEM_ASSIGNED_USER_ASSIGNED)
+                    .withUserAssignedIdentities(
+                        mapOf(
+                            "/subscriptions/c80fb759-c965-4c6a-9110-9b2b2d038882/resourcegroups/myResourceGroup1/providers/Microsoft.ManagedIdentity/userAssignedIdentities/identity2",
+                            new UserIdentity())))
+            .withSku(new Sku().withName("Standard"))
+            .apply();
+    }
+
+    /*
+     * x-ms-original-file: specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/preview/2022-05-01-preview/examples/ConfigurationStoresUpdateDisableLocalAuth.json
+     */
+    /**
+     * Sample code: ConfigurationStores_Update_Disable_Local_Auth.
+     *
+     * @param manager Entry point to AppConfigurationManager.
+     */
+    public static void configurationStoresUpdateDisableLocalAuth(
+        com.azure.resourcemanager.appconfiguration.AppConfigurationManager manager) {
+        ConfigurationStore resource =
+            manager.configurationStores().getWithResponse("myResourceGroup", "contoso", Context.NONE).getValue();
+        resource.update().withSku(new Sku().withName("Standard")).withDisableLocalAuth(true).apply();
+    }
+
+    /*
+     * x-ms-original-file: specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/preview/2022-05-01-preview/examples/ConfigurationStoresUpdate.json
+     */
+    /**
+     * Sample code: ConfigurationStores_Update.
+     *
+     * @param manager Entry point to AppConfigurationManager.
+     */
+    public static void configurationStoresUpdate(
+        com.azure.resourcemanager.appconfiguration.AppConfigurationManager manager) {
+        ConfigurationStore resource =
+            manager.configurationStores().getWithResponse("myResourceGroup", "contoso", Context.NONE).getValue();
+        resource.update().withTags(mapOf("Category", "Marketing")).withSku(new Sku().withName("Standard")).apply();
+    }
+
+    /*
+     * x-ms-original-file: specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/preview/2022-05-01-preview/examples/ConfigurationStoresUpdateWithIdentity.json
+     */
+    /**
+     * Sample code: ConfigurationStores_Update_With_Identity.
+     *
+     * @param manager Entry point to AppConfigurationManager.
+     */
+    public static void configurationStoresUpdateWithIdentity(
+        com.azure.resourcemanager.appconfiguration.AppConfigurationManager manager) {
+        ConfigurationStore resource =
+            manager.configurationStores().getWithResponse("myResourceGroup", "contoso", Context.NONE).getValue();
         resource
             .update()
             .withTags(mapOf("Category", "Marketing"))

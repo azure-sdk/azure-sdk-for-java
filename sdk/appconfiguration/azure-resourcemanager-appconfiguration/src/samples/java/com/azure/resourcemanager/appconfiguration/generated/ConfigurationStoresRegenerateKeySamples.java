@@ -24,4 +24,20 @@ public final class ConfigurationStoresRegenerateKeySamples {
             .regenerateKeyWithResponse(
                 "myResourceGroup", "contoso", new RegenerateKeyParameters().withId("439AD01B4BE67DB1"), Context.NONE);
     }
+
+    /*
+     * x-ms-original-file: specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/preview/2022-05-01-preview/examples/ConfigurationStoresRegenerateKey.json
+     */
+    /**
+     * Sample code: ConfigurationStores_RegenerateKey.
+     *
+     * @param manager Entry point to AppConfigurationManager.
+     */
+    public static void configurationStoresRegenerateKey(
+        com.azure.resourcemanager.appconfiguration.AppConfigurationManager manager) {
+        manager
+            .configurationStores()
+            .regenerateKeyWithResponse(
+                "myResourceGroup", "contoso", new RegenerateKeyParameters().withId("439AD01B4BE67DB1"), Context.NONE);
+    }
 }

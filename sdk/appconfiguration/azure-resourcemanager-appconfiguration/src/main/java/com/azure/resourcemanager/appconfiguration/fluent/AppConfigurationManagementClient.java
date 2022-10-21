@@ -24,13 +24,6 @@ public interface AppConfigurationManagementClient {
     String getEndpoint();
 
     /**
-     * Gets Api Version.
-     *
-     * @return the apiVersion value.
-     */
-    String getApiVersion();
-
-    /**
      * Gets The HTTP pipeline to send requests through.
      *
      * @return the httpPipeline value.
@@ -78,4 +71,11 @@ public interface AppConfigurationManagementClient {
      * @return the KeyValuesClient object.
      */
     KeyValuesClient getKeyValues();
+
+    /**
+     * Gets the ReplicasClient object to access its operations.
+     *
+     * @return the ReplicasClient object.
+     */
+    ReplicasClient getReplicas();
 }

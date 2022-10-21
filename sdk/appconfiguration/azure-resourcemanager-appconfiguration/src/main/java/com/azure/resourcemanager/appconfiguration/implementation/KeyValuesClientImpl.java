@@ -130,6 +130,71 @@ public final class KeyValuesClientImpl implements KeyValuesClient {
             Context context);
 
         @Headers({"Content-Type: application/json"})
+        @Get(
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AppConfiguration"
+                + "/configurationStores/{configStoreName}/keyValues")
+        @ExpectedResponses({200})
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<KeyValueListResult>> listByConfigurationStore(
+            @HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName,
+            @PathParam("configStoreName") String configStoreName,
+            @QueryParam("api-version") String apiVersion,
+            @QueryParam("$skipToken") String skipToken,
+            @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({"Content-Type: application/json"})
+        @Get(
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AppConfiguration"
+                + "/configurationStores/{configStoreName}/keyValues/{keyValueName}")
+        @ExpectedResponses({200})
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<KeyValueInner>> get(
+            @HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName,
+            @PathParam("configStoreName") String configStoreName,
+            @QueryParam("api-version") String apiVersion,
+            @PathParam("keyValueName") String keyValueName,
+            @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({"Content-Type: application/json"})
+        @Put(
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AppConfiguration"
+                + "/configurationStores/{configStoreName}/keyValues/{keyValueName}")
+        @ExpectedResponses({200})
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<KeyValueInner>> createOrUpdate(
+            @HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName,
+            @PathParam("configStoreName") String configStoreName,
+            @QueryParam("api-version") String apiVersion,
+            @PathParam("keyValueName") String keyValueName,
+            @BodyParam("application/json") KeyValueInner keyValueParameters,
+            @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({"Content-Type: application/json"})
+        @Delete(
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AppConfiguration"
+                + "/configurationStores/{configStoreName}/keyValues/{keyValueName}")
+        @ExpectedResponses({200, 202, 204})
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<Flux<ByteBuffer>>> delete(
+            @HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName,
+            @PathParam("configStoreName") String configStoreName,
+            @QueryParam("api-version") String apiVersion,
+            @PathParam("keyValueName") String keyValueName,
+            @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({"Content-Type: application/json"})
         @Get("{nextLink}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
@@ -177,6 +242,7 @@ public final class KeyValuesClientImpl implements KeyValuesClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter configStoreName is required and cannot be null."));
         }
+        final String apiVersion = "2022-05-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -187,7 +253,7 @@ public final class KeyValuesClientImpl implements KeyValuesClient {
                             this.client.getSubscriptionId(),
                             resourceGroupName,
                             configStoreName,
-                            this.client.getApiVersion(),
+                            apiVersion,
                             skipToken,
                             accept,
                             context))
@@ -241,6 +307,7 @@ public final class KeyValuesClientImpl implements KeyValuesClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter configStoreName is required and cannot be null."));
         }
+        final String apiVersion = "2022-05-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
@@ -249,7 +316,7 @@ public final class KeyValuesClientImpl implements KeyValuesClient {
                 this.client.getSubscriptionId(),
                 resourceGroupName,
                 configStoreName,
-                this.client.getApiVersion(),
+                apiVersion,
                 skipToken,
                 accept,
                 context)
@@ -401,6 +468,7 @@ public final class KeyValuesClientImpl implements KeyValuesClient {
         if (keyValueName == null) {
             return Mono.error(new IllegalArgumentException("Parameter keyValueName is required and cannot be null."));
         }
+        final String apiVersion = "2022-05-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -411,7 +479,7 @@ public final class KeyValuesClientImpl implements KeyValuesClient {
                             this.client.getSubscriptionId(),
                             resourceGroupName,
                             configStoreName,
-                            this.client.getApiVersion(),
+                            apiVersion,
                             keyValueName,
                             accept,
                             context))
@@ -458,6 +526,7 @@ public final class KeyValuesClientImpl implements KeyValuesClient {
         if (keyValueName == null) {
             return Mono.error(new IllegalArgumentException("Parameter keyValueName is required and cannot be null."));
         }
+        final String apiVersion = "2022-05-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
@@ -466,7 +535,7 @@ public final class KeyValuesClientImpl implements KeyValuesClient {
                 this.client.getSubscriptionId(),
                 resourceGroupName,
                 configStoreName,
-                this.client.getApiVersion(),
+                apiVersion,
                 keyValueName,
                 accept,
                 context);
@@ -497,23 +566,6 @@ public final class KeyValuesClientImpl implements KeyValuesClient {
      * @param configStoreName The name of the configuration store.
      * @param keyValueName Identifier of key and label combination. Key and label are joined by $ character. Label is
      *     optional.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the properties of the specified key-value.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public KeyValueInner get(String resourceGroupName, String configStoreName, String keyValueName) {
-        return getAsync(resourceGroupName, configStoreName, keyValueName).block();
-    }
-
-    /**
-     * Gets the properties of the specified key-value.
-     *
-     * @param resourceGroupName The name of the resource group to which the container registry belongs.
-     * @param configStoreName The name of the configuration store.
-     * @param keyValueName Identifier of key and label combination. Key and label are joined by $ character. Label is
-     *     optional.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -524,6 +576,23 @@ public final class KeyValuesClientImpl implements KeyValuesClient {
     public Response<KeyValueInner> getWithResponse(
         String resourceGroupName, String configStoreName, String keyValueName, Context context) {
         return getWithResponseAsync(resourceGroupName, configStoreName, keyValueName, context).block();
+    }
+
+    /**
+     * Gets the properties of the specified key-value.
+     *
+     * @param resourceGroupName The name of the resource group to which the container registry belongs.
+     * @param configStoreName The name of the configuration store.
+     * @param keyValueName Identifier of key and label combination. Key and label are joined by $ character. Label is
+     *     optional.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the properties of the specified key-value.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public KeyValueInner get(String resourceGroupName, String configStoreName, String keyValueName) {
+        return getWithResponse(resourceGroupName, configStoreName, keyValueName, Context.NONE).getValue();
     }
 
     /**
@@ -569,6 +638,7 @@ public final class KeyValuesClientImpl implements KeyValuesClient {
         if (keyValueParameters != null) {
             keyValueParameters.validate();
         }
+        final String apiVersion = "2022-05-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -579,7 +649,7 @@ public final class KeyValuesClientImpl implements KeyValuesClient {
                             this.client.getSubscriptionId(),
                             resourceGroupName,
                             configStoreName,
-                            this.client.getApiVersion(),
+                            apiVersion,
                             keyValueName,
                             keyValueParameters,
                             accept,
@@ -635,6 +705,7 @@ public final class KeyValuesClientImpl implements KeyValuesClient {
         if (keyValueParameters != null) {
             keyValueParameters.validate();
         }
+        final String apiVersion = "2022-05-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
@@ -643,31 +714,11 @@ public final class KeyValuesClientImpl implements KeyValuesClient {
                 this.client.getSubscriptionId(),
                 resourceGroupName,
                 configStoreName,
-                this.client.getApiVersion(),
+                apiVersion,
                 keyValueName,
                 keyValueParameters,
                 accept,
                 context);
-    }
-
-    /**
-     * Creates a key-value.
-     *
-     * @param resourceGroupName The name of the resource group to which the container registry belongs.
-     * @param configStoreName The name of the configuration store.
-     * @param keyValueName Identifier of key and label combination. Key and label are joined by $ character. Label is
-     *     optional.
-     * @param keyValueParameters The parameters for creating a key-value.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the key-value resource along with all resource properties on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<KeyValueInner> createOrUpdateAsync(
-        String resourceGroupName, String configStoreName, String keyValueName, KeyValueInner keyValueParameters) {
-        return createOrUpdateWithResponseAsync(resourceGroupName, configStoreName, keyValueName, keyValueParameters)
-            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -697,24 +748,6 @@ public final class KeyValuesClientImpl implements KeyValuesClient {
      * @param configStoreName The name of the configuration store.
      * @param keyValueName Identifier of key and label combination. Key and label are joined by $ character. Label is
      *     optional.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the key-value resource along with all resource properties.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public KeyValueInner createOrUpdate(String resourceGroupName, String configStoreName, String keyValueName) {
-        final KeyValueInner keyValueParameters = null;
-        return createOrUpdateAsync(resourceGroupName, configStoreName, keyValueName, keyValueParameters).block();
-    }
-
-    /**
-     * Creates a key-value.
-     *
-     * @param resourceGroupName The name of the resource group to which the container registry belongs.
-     * @param configStoreName The name of the configuration store.
-     * @param keyValueName Identifier of key and label combination. Key and label are joined by $ character. Label is
-     *     optional.
      * @param keyValueParameters The parameters for creating a key-value.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -732,6 +765,26 @@ public final class KeyValuesClientImpl implements KeyValuesClient {
         return createOrUpdateWithResponseAsync(
                 resourceGroupName, configStoreName, keyValueName, keyValueParameters, context)
             .block();
+    }
+
+    /**
+     * Creates a key-value.
+     *
+     * @param resourceGroupName The name of the resource group to which the container registry belongs.
+     * @param configStoreName The name of the configuration store.
+     * @param keyValueName Identifier of key and label combination. Key and label are joined by $ character. Label is
+     *     optional.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the key-value resource along with all resource properties.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public KeyValueInner createOrUpdate(String resourceGroupName, String configStoreName, String keyValueName) {
+        final KeyValueInner keyValueParameters = null;
+        return createOrUpdateWithResponse(
+                resourceGroupName, configStoreName, keyValueName, keyValueParameters, Context.NONE)
+            .getValue();
     }
 
     /**
@@ -772,6 +825,7 @@ public final class KeyValuesClientImpl implements KeyValuesClient {
         if (keyValueName == null) {
             return Mono.error(new IllegalArgumentException("Parameter keyValueName is required and cannot be null."));
         }
+        final String apiVersion = "2022-05-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -782,7 +836,7 @@ public final class KeyValuesClientImpl implements KeyValuesClient {
                             this.client.getSubscriptionId(),
                             resourceGroupName,
                             configStoreName,
-                            this.client.getApiVersion(),
+                            apiVersion,
                             keyValueName,
                             accept,
                             context))
@@ -828,6 +882,7 @@ public final class KeyValuesClientImpl implements KeyValuesClient {
         if (keyValueName == null) {
             return Mono.error(new IllegalArgumentException("Parameter keyValueName is required and cannot be null."));
         }
+        final String apiVersion = "2022-05-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
@@ -836,7 +891,856 @@ public final class KeyValuesClientImpl implements KeyValuesClient {
                 this.client.getSubscriptionId(),
                 resourceGroupName,
                 configStoreName,
-                this.client.getApiVersion(),
+                apiVersion,
+                keyValueName,
+                accept,
+                context);
+    }
+
+    /**
+     * Deletes a key-value.
+     *
+     * @param resourceGroupName The name of the resource group to which the container registry belongs.
+     * @param configStoreName The name of the configuration store.
+     * @param keyValueName Identifier of key and label combination. Key and label are joined by $ character. Label is
+     *     optional.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(
+        String resourceGroupName, String configStoreName, String keyValueName) {
+        Mono<Response<Flux<ByteBuffer>>> mono =
+            deleteWithResponseAsync(resourceGroupName, configStoreName, keyValueName);
+        return this
+            .client
+            .<Void, Void>getLroResult(
+                mono, this.client.getHttpPipeline(), Void.class, Void.class, this.client.getContext());
+    }
+
+    /**
+     * Deletes a key-value.
+     *
+     * @param resourceGroupName The name of the resource group to which the container registry belongs.
+     * @param configStoreName The name of the configuration store.
+     * @param keyValueName Identifier of key and label combination. Key and label are joined by $ character. Label is
+     *     optional.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(
+        String resourceGroupName, String configStoreName, String keyValueName, Context context) {
+        context = this.client.mergeContext(context);
+        Mono<Response<Flux<ByteBuffer>>> mono =
+            deleteWithResponseAsync(resourceGroupName, configStoreName, keyValueName, context);
+        return this
+            .client
+            .<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class, context);
+    }
+
+    /**
+     * Deletes a key-value.
+     *
+     * @param resourceGroupName The name of the resource group to which the container registry belongs.
+     * @param configStoreName The name of the configuration store.
+     * @param keyValueName Identifier of key and label combination. Key and label are joined by $ character. Label is
+     *     optional.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<Void>, Void> beginDelete(
+        String resourceGroupName, String configStoreName, String keyValueName) {
+        return beginDeleteAsync(resourceGroupName, configStoreName, keyValueName).getSyncPoller();
+    }
+
+    /**
+     * Deletes a key-value.
+     *
+     * @param resourceGroupName The name of the resource group to which the container registry belongs.
+     * @param configStoreName The name of the configuration store.
+     * @param keyValueName Identifier of key and label combination. Key and label are joined by $ character. Label is
+     *     optional.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<Void>, Void> beginDelete(
+        String resourceGroupName, String configStoreName, String keyValueName, Context context) {
+        return beginDeleteAsync(resourceGroupName, configStoreName, keyValueName, context).getSyncPoller();
+    }
+
+    /**
+     * Deletes a key-value.
+     *
+     * @param resourceGroupName The name of the resource group to which the container registry belongs.
+     * @param configStoreName The name of the configuration store.
+     * @param keyValueName Identifier of key and label combination. Key and label are joined by $ character. Label is
+     *     optional.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return A {@link Mono} that completes when a successful response is received.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Void> deleteAsync(String resourceGroupName, String configStoreName, String keyValueName) {
+        return beginDeleteAsync(resourceGroupName, configStoreName, keyValueName)
+            .last()
+            .flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Deletes a key-value.
+     *
+     * @param resourceGroupName The name of the resource group to which the container registry belongs.
+     * @param configStoreName The name of the configuration store.
+     * @param keyValueName Identifier of key and label combination. Key and label are joined by $ character. Label is
+     *     optional.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return A {@link Mono} that completes when a successful response is received.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Void> deleteAsync(
+        String resourceGroupName, String configStoreName, String keyValueName, Context context) {
+        return beginDeleteAsync(resourceGroupName, configStoreName, keyValueName, context)
+            .last()
+            .flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Deletes a key-value.
+     *
+     * @param resourceGroupName The name of the resource group to which the container registry belongs.
+     * @param configStoreName The name of the configuration store.
+     * @param keyValueName Identifier of key and label combination. Key and label are joined by $ character. Label is
+     *     optional.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public void delete(String resourceGroupName, String configStoreName, String keyValueName) {
+        deleteAsync(resourceGroupName, configStoreName, keyValueName).block();
+    }
+
+    /**
+     * Deletes a key-value.
+     *
+     * @param resourceGroupName The name of the resource group to which the container registry belongs.
+     * @param configStoreName The name of the configuration store.
+     * @param keyValueName Identifier of key and label combination. Key and label are joined by $ character. Label is
+     *     optional.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public void delete(String resourceGroupName, String configStoreName, String keyValueName, Context context) {
+        deleteAsync(resourceGroupName, configStoreName, keyValueName, context).block();
+    }
+
+    /**
+     * Lists the key-values for a given configuration store.
+     *
+     * @param resourceGroupName The name of the resource group to which the container registry belongs.
+     * @param configStoreName The name of the configuration store.
+     * @param skipToken A skip token is used to continue retrieving items after an operation returns a partial result.
+     *     If a previous response contains a nextLink element, the value of the nextLink element will include a
+     *     skipToken parameter that specifies a starting point to use for subsequent calls.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the result of a request to list key-values along with {@link PagedResponse} on successful completion of
+     *     {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<KeyValueInner>> listByConfigurationStoreSinglePageAsync(
+        String resourceGroupName, String configStoreName, String skipToken) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (configStoreName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter configStoreName is required and cannot be null."));
+        }
+        final String apiVersion = "2022-05-01-preview";
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(
+                context ->
+                    service
+                        .listByConfigurationStore(
+                            this.client.getEndpoint(),
+                            this.client.getSubscriptionId(),
+                            resourceGroupName,
+                            configStoreName,
+                            apiVersion,
+                            skipToken,
+                            accept,
+                            context))
+            .<PagedResponse<KeyValueInner>>map(
+                res ->
+                    new PagedResponseBase<>(
+                        res.getRequest(),
+                        res.getStatusCode(),
+                        res.getHeaders(),
+                        res.getValue().value(),
+                        res.getValue().nextLink(),
+                        null))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Lists the key-values for a given configuration store.
+     *
+     * @param resourceGroupName The name of the resource group to which the container registry belongs.
+     * @param configStoreName The name of the configuration store.
+     * @param skipToken A skip token is used to continue retrieving items after an operation returns a partial result.
+     *     If a previous response contains a nextLink element, the value of the nextLink element will include a
+     *     skipToken parameter that specifies a starting point to use for subsequent calls.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the result of a request to list key-values along with {@link PagedResponse} on successful completion of
+     *     {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<KeyValueInner>> listByConfigurationStoreSinglePageAsync(
+        String resourceGroupName, String configStoreName, String skipToken, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (configStoreName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter configStoreName is required and cannot be null."));
+        }
+        final String apiVersion = "2022-05-01-preview";
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service
+            .listByConfigurationStore(
+                this.client.getEndpoint(),
+                this.client.getSubscriptionId(),
+                resourceGroupName,
+                configStoreName,
+                apiVersion,
+                skipToken,
+                accept,
+                context)
+            .map(
+                res ->
+                    new PagedResponseBase<>(
+                        res.getRequest(),
+                        res.getStatusCode(),
+                        res.getHeaders(),
+                        res.getValue().value(),
+                        res.getValue().nextLink(),
+                        null));
+    }
+
+    /**
+     * Lists the key-values for a given configuration store.
+     *
+     * @param resourceGroupName The name of the resource group to which the container registry belongs.
+     * @param configStoreName The name of the configuration store.
+     * @param skipToken A skip token is used to continue retrieving items after an operation returns a partial result.
+     *     If a previous response contains a nextLink element, the value of the nextLink element will include a
+     *     skipToken parameter that specifies a starting point to use for subsequent calls.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the result of a request to list key-values as paginated response with {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    private PagedFlux<KeyValueInner> listByConfigurationStoreAsync(
+        String resourceGroupName, String configStoreName, String skipToken) {
+        return new PagedFlux<>(
+            () -> listByConfigurationStoreSinglePageAsync(resourceGroupName, configStoreName, skipToken),
+            nextLink -> listByConfigurationStoreNextSinglePageAsync(nextLink));
+    }
+
+    /**
+     * Lists the key-values for a given configuration store.
+     *
+     * @param resourceGroupName The name of the resource group to which the container registry belongs.
+     * @param configStoreName The name of the configuration store.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the result of a request to list key-values as paginated response with {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    private PagedFlux<KeyValueInner> listByConfigurationStoreAsync(String resourceGroupName, String configStoreName) {
+        final String skipToken = null;
+        return new PagedFlux<>(
+            () -> listByConfigurationStoreSinglePageAsync(resourceGroupName, configStoreName, skipToken),
+            nextLink -> listByConfigurationStoreNextSinglePageAsync(nextLink));
+    }
+
+    /**
+     * Lists the key-values for a given configuration store.
+     *
+     * @param resourceGroupName The name of the resource group to which the container registry belongs.
+     * @param configStoreName The name of the configuration store.
+     * @param skipToken A skip token is used to continue retrieving items after an operation returns a partial result.
+     *     If a previous response contains a nextLink element, the value of the nextLink element will include a
+     *     skipToken parameter that specifies a starting point to use for subsequent calls.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the result of a request to list key-values as paginated response with {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    private PagedFlux<KeyValueInner> listByConfigurationStoreAsync(
+        String resourceGroupName, String configStoreName, String skipToken, Context context) {
+        return new PagedFlux<>(
+            () -> listByConfigurationStoreSinglePageAsync(resourceGroupName, configStoreName, skipToken, context),
+            nextLink -> listByConfigurationStoreNextSinglePageAsync(nextLink, context));
+    }
+
+    /**
+     * Lists the key-values for a given configuration store.
+     *
+     * @param resourceGroupName The name of the resource group to which the container registry belongs.
+     * @param configStoreName The name of the configuration store.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the result of a request to list key-values as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedIterable<KeyValueInner> listByConfigurationStore(String resourceGroupName, String configStoreName) {
+        final String skipToken = null;
+        return new PagedIterable<>(listByConfigurationStoreAsync(resourceGroupName, configStoreName, skipToken));
+    }
+
+    /**
+     * Lists the key-values for a given configuration store.
+     *
+     * @param resourceGroupName The name of the resource group to which the container registry belongs.
+     * @param configStoreName The name of the configuration store.
+     * @param skipToken A skip token is used to continue retrieving items after an operation returns a partial result.
+     *     If a previous response contains a nextLink element, the value of the nextLink element will include a
+     *     skipToken parameter that specifies a starting point to use for subsequent calls.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the result of a request to list key-values as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedIterable<KeyValueInner> listByConfigurationStore(
+        String resourceGroupName, String configStoreName, String skipToken, Context context) {
+        return new PagedIterable<>(
+            listByConfigurationStoreAsync(resourceGroupName, configStoreName, skipToken, context));
+    }
+
+    /**
+     * Gets the properties of the specified key-value.
+     *
+     * @param resourceGroupName The name of the resource group to which the container registry belongs.
+     * @param configStoreName The name of the configuration store.
+     * @param keyValueName Identifier of key and label combination. Key and label are joined by $ character. Label is
+     *     optional.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the properties of the specified key-value along with {@link Response} on successful completion of {@link
+     *     Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<KeyValueInner>> getWithResponseAsync(
+        String resourceGroupName, String configStoreName, String keyValueName) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (configStoreName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter configStoreName is required and cannot be null."));
+        }
+        if (keyValueName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter keyValueName is required and cannot be null."));
+        }
+        final String apiVersion = "2022-05-01-preview";
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(
+                context ->
+                    service
+                        .get(
+                            this.client.getEndpoint(),
+                            this.client.getSubscriptionId(),
+                            resourceGroupName,
+                            configStoreName,
+                            apiVersion,
+                            keyValueName,
+                            accept,
+                            context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Gets the properties of the specified key-value.
+     *
+     * @param resourceGroupName The name of the resource group to which the container registry belongs.
+     * @param configStoreName The name of the configuration store.
+     * @param keyValueName Identifier of key and label combination. Key and label are joined by $ character. Label is
+     *     optional.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the properties of the specified key-value along with {@link Response} on successful completion of {@link
+     *     Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<KeyValueInner>> getWithResponseAsync(
+        String resourceGroupName, String configStoreName, String keyValueName, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (configStoreName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter configStoreName is required and cannot be null."));
+        }
+        if (keyValueName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter keyValueName is required and cannot be null."));
+        }
+        final String apiVersion = "2022-05-01-preview";
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service
+            .get(
+                this.client.getEndpoint(),
+                this.client.getSubscriptionId(),
+                resourceGroupName,
+                configStoreName,
+                apiVersion,
+                keyValueName,
+                accept,
+                context);
+    }
+
+    /**
+     * Gets the properties of the specified key-value.
+     *
+     * @param resourceGroupName The name of the resource group to which the container registry belongs.
+     * @param configStoreName The name of the configuration store.
+     * @param keyValueName Identifier of key and label combination. Key and label are joined by $ character. Label is
+     *     optional.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the properties of the specified key-value on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<KeyValueInner> getAsync(String resourceGroupName, String configStoreName, String keyValueName) {
+        return getWithResponseAsync(resourceGroupName, configStoreName, keyValueName)
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
+    }
+
+    /**
+     * Gets the properties of the specified key-value.
+     *
+     * @param resourceGroupName The name of the resource group to which the container registry belongs.
+     * @param configStoreName The name of the configuration store.
+     * @param keyValueName Identifier of key and label combination. Key and label are joined by $ character. Label is
+     *     optional.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the properties of the specified key-value along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<KeyValueInner> getWithResponse(
+        String resourceGroupName, String configStoreName, String keyValueName, Context context) {
+        return getWithResponseAsync(resourceGroupName, configStoreName, keyValueName, context).block();
+    }
+
+    /**
+     * Gets the properties of the specified key-value.
+     *
+     * @param resourceGroupName The name of the resource group to which the container registry belongs.
+     * @param configStoreName The name of the configuration store.
+     * @param keyValueName Identifier of key and label combination. Key and label are joined by $ character. Label is
+     *     optional.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the properties of the specified key-value.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public KeyValueInner get(String resourceGroupName, String configStoreName, String keyValueName) {
+        return getWithResponse(resourceGroupName, configStoreName, keyValueName, Context.NONE).getValue();
+    }
+
+    /**
+     * Creates a key-value.
+     *
+     * @param resourceGroupName The name of the resource group to which the container registry belongs.
+     * @param configStoreName The name of the configuration store.
+     * @param keyValueName Identifier of key and label combination. Key and label are joined by $ character. Label is
+     *     optional.
+     * @param keyValueParameters The parameters for creating a key-value.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the key-value resource along with all resource properties along with {@link Response} on successful
+     *     completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<KeyValueInner>> createOrUpdateWithResponseAsync(
+        String resourceGroupName, String configStoreName, String keyValueName, KeyValueInner keyValueParameters) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (configStoreName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter configStoreName is required and cannot be null."));
+        }
+        if (keyValueName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter keyValueName is required and cannot be null."));
+        }
+        if (keyValueParameters != null) {
+            keyValueParameters.validate();
+        }
+        final String apiVersion = "2022-05-01-preview";
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(
+                context ->
+                    service
+                        .createOrUpdate(
+                            this.client.getEndpoint(),
+                            this.client.getSubscriptionId(),
+                            resourceGroupName,
+                            configStoreName,
+                            apiVersion,
+                            keyValueName,
+                            keyValueParameters,
+                            accept,
+                            context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Creates a key-value.
+     *
+     * @param resourceGroupName The name of the resource group to which the container registry belongs.
+     * @param configStoreName The name of the configuration store.
+     * @param keyValueName Identifier of key and label combination. Key and label are joined by $ character. Label is
+     *     optional.
+     * @param keyValueParameters The parameters for creating a key-value.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the key-value resource along with all resource properties along with {@link Response} on successful
+     *     completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<KeyValueInner>> createOrUpdateWithResponseAsync(
+        String resourceGroupName,
+        String configStoreName,
+        String keyValueName,
+        KeyValueInner keyValueParameters,
+        Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (configStoreName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter configStoreName is required and cannot be null."));
+        }
+        if (keyValueName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter keyValueName is required and cannot be null."));
+        }
+        if (keyValueParameters != null) {
+            keyValueParameters.validate();
+        }
+        final String apiVersion = "2022-05-01-preview";
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service
+            .createOrUpdate(
+                this.client.getEndpoint(),
+                this.client.getSubscriptionId(),
+                resourceGroupName,
+                configStoreName,
+                apiVersion,
+                keyValueName,
+                keyValueParameters,
+                accept,
+                context);
+    }
+
+    /**
+     * Creates a key-value.
+     *
+     * @param resourceGroupName The name of the resource group to which the container registry belongs.
+     * @param configStoreName The name of the configuration store.
+     * @param keyValueName Identifier of key and label combination. Key and label are joined by $ character. Label is
+     *     optional.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the key-value resource along with all resource properties on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<KeyValueInner> createOrUpdateAsync(
+        String resourceGroupName, String configStoreName, String keyValueName) {
+        final KeyValueInner keyValueParameters = null;
+        return createOrUpdateWithResponseAsync(resourceGroupName, configStoreName, keyValueName, keyValueParameters)
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
+    }
+
+    /**
+     * Creates a key-value.
+     *
+     * @param resourceGroupName The name of the resource group to which the container registry belongs.
+     * @param configStoreName The name of the configuration store.
+     * @param keyValueName Identifier of key and label combination. Key and label are joined by $ character. Label is
+     *     optional.
+     * @param keyValueParameters The parameters for creating a key-value.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the key-value resource along with all resource properties along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<KeyValueInner> createOrUpdateWithResponse(
+        String resourceGroupName,
+        String configStoreName,
+        String keyValueName,
+        KeyValueInner keyValueParameters,
+        Context context) {
+        return createOrUpdateWithResponseAsync(
+                resourceGroupName, configStoreName, keyValueName, keyValueParameters, context)
+            .block();
+    }
+
+    /**
+     * Creates a key-value.
+     *
+     * @param resourceGroupName The name of the resource group to which the container registry belongs.
+     * @param configStoreName The name of the configuration store.
+     * @param keyValueName Identifier of key and label combination. Key and label are joined by $ character. Label is
+     *     optional.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the key-value resource along with all resource properties.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public KeyValueInner createOrUpdate(String resourceGroupName, String configStoreName, String keyValueName) {
+        final KeyValueInner keyValueParameters = null;
+        return createOrUpdateWithResponse(
+                resourceGroupName, configStoreName, keyValueName, keyValueParameters, Context.NONE)
+            .getValue();
+    }
+
+    /**
+     * Deletes a key-value.
+     *
+     * @param resourceGroupName The name of the resource group to which the container registry belongs.
+     * @param configStoreName The name of the configuration store.
+     * @param keyValueName Identifier of key and label combination. Key and label are joined by $ character. Label is
+     *     optional.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(
+        String resourceGroupName, String configStoreName, String keyValueName) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (configStoreName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter configStoreName is required and cannot be null."));
+        }
+        if (keyValueName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter keyValueName is required and cannot be null."));
+        }
+        final String apiVersion = "2022-05-01-preview";
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(
+                context ->
+                    service
+                        .delete(
+                            this.client.getEndpoint(),
+                            this.client.getSubscriptionId(),
+                            resourceGroupName,
+                            configStoreName,
+                            apiVersion,
+                            keyValueName,
+                            accept,
+                            context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Deletes a key-value.
+     *
+     * @param resourceGroupName The name of the resource group to which the container registry belongs.
+     * @param configStoreName The name of the configuration store.
+     * @param keyValueName Identifier of key and label combination. Key and label are joined by $ character. Label is
+     *     optional.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(
+        String resourceGroupName, String configStoreName, String keyValueName, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (configStoreName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter configStoreName is required and cannot be null."));
+        }
+        if (keyValueName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter keyValueName is required and cannot be null."));
+        }
+        final String apiVersion = "2022-05-01-preview";
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service
+            .delete(
+                this.client.getEndpoint(),
+                this.client.getSubscriptionId(),
+                resourceGroupName,
+                configStoreName,
+                apiVersion,
                 keyValueName,
                 accept,
                 context);
@@ -1002,7 +1906,8 @@ public final class KeyValuesClientImpl implements KeyValuesClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1039,7 +1944,8 @@ public final class KeyValuesClientImpl implements KeyValuesClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.

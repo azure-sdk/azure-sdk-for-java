@@ -28,6 +28,7 @@ import com.azure.resourcemanager.appconfiguration.fluent.KeyValuesClient;
 import com.azure.resourcemanager.appconfiguration.fluent.OperationsClient;
 import com.azure.resourcemanager.appconfiguration.fluent.PrivateEndpointConnectionsClient;
 import com.azure.resourcemanager.appconfiguration.fluent.PrivateLinkResourcesClient;
+import com.azure.resourcemanager.appconfiguration.fluent.ReplicasClient;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.nio.ByteBuffer;
@@ -62,18 +63,6 @@ public final class AppConfigurationManagementClientImpl implements AppConfigurat
      */
     public String getEndpoint() {
         return this.endpoint;
-    }
-
-    /** Api Version. */
-    private final String apiVersion;
-
-    /**
-     * Gets Api Version.
-     *
-     * @return the apiVersion value.
-     */
-    public String getApiVersion() {
-        return this.apiVersion;
     }
 
     /** The HTTP pipeline to send requests through. */
@@ -172,6 +161,18 @@ public final class AppConfigurationManagementClientImpl implements AppConfigurat
         return this.keyValues;
     }
 
+    /** The ReplicasClient object to access its operations. */
+    private final ReplicasClient replicas;
+
+    /**
+     * Gets the ReplicasClient object to access its operations.
+     *
+     * @return the ReplicasClient object.
+     */
+    public ReplicasClient getReplicas() {
+        return this.replicas;
+    }
+
     /**
      * Initializes an instance of AppConfigurationManagementClient client.
      *
@@ -194,12 +195,12 @@ public final class AppConfigurationManagementClientImpl implements AppConfigurat
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2022-05-01";
         this.configurationStores = new ConfigurationStoresClientImpl(this);
         this.operations = new OperationsClientImpl(this);
         this.privateEndpointConnections = new PrivateEndpointConnectionsClientImpl(this);
         this.privateLinkResources = new PrivateLinkResourcesClientImpl(this);
         this.keyValues = new KeyValuesClientImpl(this);
+        this.replicas = new ReplicasClientImpl(this);
     }
 
     /**

@@ -18,6 +18,22 @@ public interface OperationsClient {
     /**
      * Checks whether the configuration store name is available for use.
      *
+     * @param location The location in which uniqueness will be verified.
+     * @param checkNameAvailabilityParameters The object containing information for the availability request.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the result of a request to check the availability of a resource name along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    Response<NameAvailabilityStatusInner> regionalCheckNameAvailabilityWithResponse(
+        String location, CheckNameAvailabilityParameters checkNameAvailabilityParameters, Context context);
+
+    /**
+     * Checks whether the configuration store name is available for use.
+     *
+     * @param location The location in which uniqueness will be verified.
      * @param checkNameAvailabilityParameters The object containing information for the availability request.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -25,7 +41,8 @@ public interface OperationsClient {
      * @return the result of a request to check the availability of a resource name.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    NameAvailabilityStatusInner checkNameAvailability(CheckNameAvailabilityParameters checkNameAvailabilityParameters);
+    NameAvailabilityStatusInner regionalCheckNameAvailability(
+        String location, CheckNameAvailabilityParameters checkNameAvailabilityParameters);
 
     /**
      * Checks whether the configuration store name is available for use.
@@ -40,6 +57,18 @@ public interface OperationsClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<NameAvailabilityStatusInner> checkNameAvailabilityWithResponse(
         CheckNameAvailabilityParameters checkNameAvailabilityParameters, Context context);
+
+    /**
+     * Checks whether the configuration store name is available for use.
+     *
+     * @param checkNameAvailabilityParameters The object containing information for the availability request.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the result of a request to check the availability of a resource name.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    NameAvailabilityStatusInner checkNameAvailability(CheckNameAvailabilityParameters checkNameAvailabilityParameters);
 
     /**
      * Lists the operations available from this provider.
@@ -67,33 +96,4 @@ public interface OperationsClient {
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<OperationDefinitionInner> list(String skipToken, Context context);
-
-    /**
-     * Checks whether the configuration store name is available for use.
-     *
-     * @param location The location in which uniqueness will be verified.
-     * @param checkNameAvailabilityParameters The object containing information for the availability request.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the result of a request to check the availability of a resource name.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    NameAvailabilityStatusInner regionalCheckNameAvailability(
-        String location, CheckNameAvailabilityParameters checkNameAvailabilityParameters);
-
-    /**
-     * Checks whether the configuration store name is available for use.
-     *
-     * @param location The location in which uniqueness will be verified.
-     * @param checkNameAvailabilityParameters The object containing information for the availability request.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the result of a request to check the availability of a resource name along with {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<NameAvailabilityStatusInner> regionalCheckNameAvailabilityWithResponse(
-        String location, CheckNameAvailabilityParameters checkNameAvailabilityParameters, Context context);
 }

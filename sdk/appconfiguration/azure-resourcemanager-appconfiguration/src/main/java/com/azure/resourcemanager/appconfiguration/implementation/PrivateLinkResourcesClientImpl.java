@@ -89,6 +89,37 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
             Context context);
 
         @Headers({"Content-Type: application/json"})
+        @Get(
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AppConfiguration"
+                + "/configurationStores/{configStoreName}/privateLinkResources")
+        @ExpectedResponses({200})
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<PrivateLinkResourceListResult>> listByConfigurationStore(
+            @HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName,
+            @PathParam("configStoreName") String configStoreName,
+            @QueryParam("api-version") String apiVersion,
+            @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({"Content-Type: application/json"})
+        @Get(
+            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AppConfiguration"
+                + "/configurationStores/{configStoreName}/privateLinkResources/{groupName}")
+        @ExpectedResponses({200})
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<PrivateLinkResourceInner>> get(
+            @HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName,
+            @PathParam("configStoreName") String configStoreName,
+            @QueryParam("api-version") String apiVersion,
+            @PathParam("groupName") String groupName,
+            @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({"Content-Type: application/json"})
         @Get("{nextLink}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
@@ -133,6 +164,7 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
             return Mono
                 .error(new IllegalArgumentException("Parameter configStoreName is required and cannot be null."));
         }
+        final String apiVersion = "2022-05-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -143,7 +175,7 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
                             this.client.getSubscriptionId(),
                             resourceGroupName,
                             configStoreName,
-                            this.client.getApiVersion(),
+                            apiVersion,
                             accept,
                             context))
             .<PagedResponse<PrivateLinkResourceInner>>map(
@@ -193,6 +225,7 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
             return Mono
                 .error(new IllegalArgumentException("Parameter configStoreName is required and cannot be null."));
         }
+        final String apiVersion = "2022-05-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
@@ -201,7 +234,7 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
                 this.client.getSubscriptionId(),
                 resourceGroupName,
                 configStoreName,
-                this.client.getApiVersion(),
+                apiVersion,
                 accept,
                 context)
             .map(
@@ -327,6 +360,7 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
         if (groupName == null) {
             return Mono.error(new IllegalArgumentException("Parameter groupName is required and cannot be null."));
         }
+        final String apiVersion = "2022-05-01";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -337,7 +371,7 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
                             this.client.getSubscriptionId(),
                             resourceGroupName,
                             configStoreName,
-                            this.client.getApiVersion(),
+                            apiVersion,
                             groupName,
                             accept,
                             context))
@@ -383,6 +417,7 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
         if (groupName == null) {
             return Mono.error(new IllegalArgumentException("Parameter groupName is required and cannot be null."));
         }
+        final String apiVersion = "2022-05-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
@@ -391,7 +426,7 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
                 this.client.getSubscriptionId(),
                 resourceGroupName,
                 configStoreName,
-                this.client.getApiVersion(),
+                apiVersion,
                 groupName,
                 accept,
                 context);
@@ -422,6 +457,24 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
      * @param resourceGroupName The name of the resource group to which the container registry belongs.
      * @param configStoreName The name of the configuration store.
      * @param groupName The name of the private link resource group.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a private link resource that need to be created for a configuration store along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<PrivateLinkResourceInner> getWithResponse(
+        String resourceGroupName, String configStoreName, String groupName, Context context) {
+        return getWithResponseAsync(resourceGroupName, configStoreName, groupName, context).block();
+    }
+
+    /**
+     * Gets a private link resource that need to be created for a configuration store.
+     *
+     * @param resourceGroupName The name of the resource group to which the container registry belongs.
+     * @param configStoreName The name of the configuration store.
+     * @param groupName The name of the private link resource group.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -429,7 +482,328 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public PrivateLinkResourceInner get(String resourceGroupName, String configStoreName, String groupName) {
-        return getAsync(resourceGroupName, configStoreName, groupName).block();
+        return getWithResponse(resourceGroupName, configStoreName, groupName, Context.NONE).getValue();
+    }
+
+    /**
+     * Gets the private link resources that need to be created for a configuration store.
+     *
+     * @param resourceGroupName The name of the resource group to which the container registry belongs.
+     * @param configStoreName The name of the configuration store.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the private link resources that need to be created for a configuration store along with {@link
+     *     PagedResponse} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<PrivateLinkResourceInner>> listByConfigurationStoreSinglePageAsync(
+        String resourceGroupName, String configStoreName) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (configStoreName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter configStoreName is required and cannot be null."));
+        }
+        final String apiVersion = "2022-05-01-preview";
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(
+                context ->
+                    service
+                        .listByConfigurationStore(
+                            this.client.getEndpoint(),
+                            this.client.getSubscriptionId(),
+                            resourceGroupName,
+                            configStoreName,
+                            apiVersion,
+                            accept,
+                            context))
+            .<PagedResponse<PrivateLinkResourceInner>>map(
+                res ->
+                    new PagedResponseBase<>(
+                        res.getRequest(),
+                        res.getStatusCode(),
+                        res.getHeaders(),
+                        res.getValue().value(),
+                        res.getValue().nextLink(),
+                        null))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Gets the private link resources that need to be created for a configuration store.
+     *
+     * @param resourceGroupName The name of the resource group to which the container registry belongs.
+     * @param configStoreName The name of the configuration store.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the private link resources that need to be created for a configuration store along with {@link
+     *     PagedResponse} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<PrivateLinkResourceInner>> listByConfigurationStoreSinglePageAsync(
+        String resourceGroupName, String configStoreName, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (configStoreName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter configStoreName is required and cannot be null."));
+        }
+        final String apiVersion = "2022-05-01-preview";
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service
+            .listByConfigurationStore(
+                this.client.getEndpoint(),
+                this.client.getSubscriptionId(),
+                resourceGroupName,
+                configStoreName,
+                apiVersion,
+                accept,
+                context)
+            .map(
+                res ->
+                    new PagedResponseBase<>(
+                        res.getRequest(),
+                        res.getStatusCode(),
+                        res.getHeaders(),
+                        res.getValue().value(),
+                        res.getValue().nextLink(),
+                        null));
+    }
+
+    /**
+     * Gets the private link resources that need to be created for a configuration store.
+     *
+     * @param resourceGroupName The name of the resource group to which the container registry belongs.
+     * @param configStoreName The name of the configuration store.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the private link resources that need to be created for a configuration store as paginated response with
+     *     {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    private PagedFlux<PrivateLinkResourceInner> listByConfigurationStoreAsync(
+        String resourceGroupName, String configStoreName) {
+        return new PagedFlux<>(
+            () -> listByConfigurationStoreSinglePageAsync(resourceGroupName, configStoreName),
+            nextLink -> listByConfigurationStoreNextSinglePageAsync(nextLink));
+    }
+
+    /**
+     * Gets the private link resources that need to be created for a configuration store.
+     *
+     * @param resourceGroupName The name of the resource group to which the container registry belongs.
+     * @param configStoreName The name of the configuration store.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the private link resources that need to be created for a configuration store as paginated response with
+     *     {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    private PagedFlux<PrivateLinkResourceInner> listByConfigurationStoreAsync(
+        String resourceGroupName, String configStoreName, Context context) {
+        return new PagedFlux<>(
+            () -> listByConfigurationStoreSinglePageAsync(resourceGroupName, configStoreName, context),
+            nextLink -> listByConfigurationStoreNextSinglePageAsync(nextLink, context));
+    }
+
+    /**
+     * Gets the private link resources that need to be created for a configuration store.
+     *
+     * @param resourceGroupName The name of the resource group to which the container registry belongs.
+     * @param configStoreName The name of the configuration store.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the private link resources that need to be created for a configuration store as paginated response with
+     *     {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedIterable<PrivateLinkResourceInner> listByConfigurationStore(
+        String resourceGroupName, String configStoreName) {
+        return new PagedIterable<>(listByConfigurationStoreAsync(resourceGroupName, configStoreName));
+    }
+
+    /**
+     * Gets the private link resources that need to be created for a configuration store.
+     *
+     * @param resourceGroupName The name of the resource group to which the container registry belongs.
+     * @param configStoreName The name of the configuration store.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the private link resources that need to be created for a configuration store as paginated response with
+     *     {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedIterable<PrivateLinkResourceInner> listByConfigurationStore(
+        String resourceGroupName, String configStoreName, Context context) {
+        return new PagedIterable<>(listByConfigurationStoreAsync(resourceGroupName, configStoreName, context));
+    }
+
+    /**
+     * Gets a private link resource that need to be created for a configuration store.
+     *
+     * @param resourceGroupName The name of the resource group to which the container registry belongs.
+     * @param configStoreName The name of the configuration store.
+     * @param groupName The name of the private link resource group.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a private link resource that need to be created for a configuration store along with {@link Response} on
+     *     successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<PrivateLinkResourceInner>> getWithResponseAsync(
+        String resourceGroupName, String configStoreName, String groupName) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (configStoreName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter configStoreName is required and cannot be null."));
+        }
+        if (groupName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter groupName is required and cannot be null."));
+        }
+        final String apiVersion = "2022-05-01-preview";
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(
+                context ->
+                    service
+                        .get(
+                            this.client.getEndpoint(),
+                            this.client.getSubscriptionId(),
+                            resourceGroupName,
+                            configStoreName,
+                            apiVersion,
+                            groupName,
+                            accept,
+                            context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Gets a private link resource that need to be created for a configuration store.
+     *
+     * @param resourceGroupName The name of the resource group to which the container registry belongs.
+     * @param configStoreName The name of the configuration store.
+     * @param groupName The name of the private link resource group.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a private link resource that need to be created for a configuration store along with {@link Response} on
+     *     successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<PrivateLinkResourceInner>> getWithResponseAsync(
+        String resourceGroupName, String configStoreName, String groupName, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (configStoreName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter configStoreName is required and cannot be null."));
+        }
+        if (groupName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter groupName is required and cannot be null."));
+        }
+        final String apiVersion = "2022-05-01-preview";
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service
+            .get(
+                this.client.getEndpoint(),
+                this.client.getSubscriptionId(),
+                resourceGroupName,
+                configStoreName,
+                apiVersion,
+                groupName,
+                accept,
+                context);
+    }
+
+    /**
+     * Gets a private link resource that need to be created for a configuration store.
+     *
+     * @param resourceGroupName The name of the resource group to which the container registry belongs.
+     * @param configStoreName The name of the configuration store.
+     * @param groupName The name of the private link resource group.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a private link resource that need to be created for a configuration store on successful completion of
+     *     {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PrivateLinkResourceInner> getAsync(
+        String resourceGroupName, String configStoreName, String groupName) {
+        return getWithResponseAsync(resourceGroupName, configStoreName, groupName)
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -451,9 +825,26 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
     }
 
     /**
+     * Gets a private link resource that need to be created for a configuration store.
+     *
+     * @param resourceGroupName The name of the resource group to which the container registry belongs.
+     * @param configStoreName The name of the configuration store.
+     * @param groupName The name of the private link resource group.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a private link resource that need to be created for a configuration store.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public PrivateLinkResourceInner get(String resourceGroupName, String configStoreName, String groupName) {
+        return getWithResponse(resourceGroupName, configStoreName, groupName, Context.NONE).getValue();
+    }
+
+    /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -490,7 +881,8 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
