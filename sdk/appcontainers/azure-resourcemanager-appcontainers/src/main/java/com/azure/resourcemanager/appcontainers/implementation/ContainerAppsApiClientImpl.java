@@ -37,6 +37,7 @@ import com.azure.resourcemanager.appcontainers.fluent.ContainerAppsRevisionRepli
 import com.azure.resourcemanager.appcontainers.fluent.ContainerAppsRevisionsClient;
 import com.azure.resourcemanager.appcontainers.fluent.ContainerAppsSourceControlsClient;
 import com.azure.resourcemanager.appcontainers.fluent.DaprComponentsClient;
+import com.azure.resourcemanager.appcontainers.fluent.ManagedCertificatesClient;
 import com.azure.resourcemanager.appcontainers.fluent.ManagedEnvironmentDiagnosticsClient;
 import com.azure.resourcemanager.appcontainers.fluent.ManagedEnvironmentsClient;
 import com.azure.resourcemanager.appcontainers.fluent.ManagedEnvironmentsDiagnosticsClient;
@@ -259,6 +260,18 @@ public final class ContainerAppsApiClientImpl implements ContainerAppsApiClient 
         return this.certificates;
     }
 
+    /** The ManagedCertificatesClient object to access its operations. */
+    private final ManagedCertificatesClient managedCertificates;
+
+    /**
+     * Gets the ManagedCertificatesClient object to access its operations.
+     *
+     * @return the ManagedCertificatesClient object.
+     */
+    public ManagedCertificatesClient getManagedCertificates() {
+        return this.managedCertificates;
+    }
+
     /** The NamespacesClient object to access its operations. */
     private final NamespacesClient namespaces;
 
@@ -401,6 +414,7 @@ public final class ContainerAppsApiClientImpl implements ContainerAppsApiClient 
         this.operations = new OperationsClientImpl(this);
         this.managedEnvironments = new ManagedEnvironmentsClientImpl(this);
         this.certificates = new CertificatesClientImpl(this);
+        this.managedCertificates = new ManagedCertificatesClientImpl(this);
         this.namespaces = new NamespacesClientImpl(this);
         this.managedEnvironmentsStorages = new ManagedEnvironmentsStoragesClientImpl(this);
         this.containerAppsSourceControls = new ContainerAppsSourceControlsClientImpl(this);

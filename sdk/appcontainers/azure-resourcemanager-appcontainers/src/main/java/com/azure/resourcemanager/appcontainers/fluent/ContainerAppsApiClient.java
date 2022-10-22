@@ -122,6 +122,13 @@ public interface ContainerAppsApiClient {
     CertificatesClient getCertificates();
 
     /**
+     * Gets the ManagedCertificatesClient object to access its operations.
+     *
+     * @return the ManagedCertificatesClient object.
+     */
+    ManagedCertificatesClient getManagedCertificates();
+
+    /**
      * Gets the NamespacesClient object to access its operations.
      *
      * @return the NamespacesClient object.

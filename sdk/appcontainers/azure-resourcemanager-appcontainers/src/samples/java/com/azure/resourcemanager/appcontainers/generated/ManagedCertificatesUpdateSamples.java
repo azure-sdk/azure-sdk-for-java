@@ -5,26 +5,25 @@
 package com.azure.resourcemanager.appcontainers.generated;
 
 import com.azure.core.util.Context;
-import com.azure.resourcemanager.appcontainers.models.ManagedEnvironment;
+import com.azure.resourcemanager.appcontainers.models.ManagedCertificate;
 import java.util.HashMap;
 import java.util.Map;
 
-/** Samples for ManagedEnvironments Update. */
-public final class ManagedEnvironmentsUpdateSamples {
+/** Samples for ManagedCertificates Update. */
+public final class ManagedCertificatesUpdateSamples {
     /*
-     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2022-06-01-preview/examples/ManagedEnvironments_Patch.json
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2022-06-01-preview/examples/ManagedCertificates_Patch.json
      */
     /**
-     * Sample code: Patch Managed Environment.
+     * Sample code: Patch Certificate.
      *
      * @param manager Entry point to ContainerAppsApiManager.
      */
-    public static void patchManagedEnvironment(
-        com.azure.resourcemanager.appcontainers.ContainerAppsApiManager manager) {
-        ManagedEnvironment resource =
+    public static void patchCertificate(com.azure.resourcemanager.appcontainers.ContainerAppsApiManager manager) {
+        ManagedCertificate resource =
             manager
-                .managedEnvironments()
-                .getByResourceGroupWithResponse("examplerg", "testcontainerenv", Context.NONE)
+                .managedCertificates()
+                .getWithResponse("examplerg", "testcontainerenv", "certificate-firendly-name", Context.NONE)
                 .getValue();
         resource.update().withTags(mapOf("tag1", "value1", "tag2", "value2")).apply();
     }

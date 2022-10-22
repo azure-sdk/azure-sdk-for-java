@@ -39,6 +39,7 @@ import com.azure.resourcemanager.appcontainers.implementation.ContainerAppsRevis
 import com.azure.resourcemanager.appcontainers.implementation.ContainerAppsRevisionsImpl;
 import com.azure.resourcemanager.appcontainers.implementation.ContainerAppsSourceControlsImpl;
 import com.azure.resourcemanager.appcontainers.implementation.DaprComponentsImpl;
+import com.azure.resourcemanager.appcontainers.implementation.ManagedCertificatesImpl;
 import com.azure.resourcemanager.appcontainers.implementation.ManagedEnvironmentDiagnosticsImpl;
 import com.azure.resourcemanager.appcontainers.implementation.ManagedEnvironmentsDiagnosticsImpl;
 import com.azure.resourcemanager.appcontainers.implementation.ManagedEnvironmentsImpl;
@@ -59,6 +60,7 @@ import com.azure.resourcemanager.appcontainers.models.ContainerAppsRevisionRepli
 import com.azure.resourcemanager.appcontainers.models.ContainerAppsRevisions;
 import com.azure.resourcemanager.appcontainers.models.ContainerAppsSourceControls;
 import com.azure.resourcemanager.appcontainers.models.DaprComponents;
+import com.azure.resourcemanager.appcontainers.models.ManagedCertificates;
 import com.azure.resourcemanager.appcontainers.models.ManagedEnvironmentDiagnostics;
 import com.azure.resourcemanager.appcontainers.models.ManagedEnvironments;
 import com.azure.resourcemanager.appcontainers.models.ManagedEnvironmentsDiagnostics;
@@ -95,6 +97,8 @@ public final class ContainerAppsApiManager {
     private ManagedEnvironments managedEnvironments;
 
     private Certificates certificates;
+
+    private ManagedCertificates managedCertificates;
 
     private Namespaces namespaces;
 
@@ -279,7 +283,7 @@ public final class ContainerAppsApiManager {
                 .append("-")
                 .append("com.azure.resourcemanager.appcontainers")
                 .append("/")
-                .append("1.0.0-beta.4");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder
                     .append(" (")
@@ -472,6 +476,18 @@ public final class ContainerAppsApiManager {
             this.certificates = new CertificatesImpl(clientObject.getCertificates(), this);
         }
         return certificates;
+    }
+
+    /**
+     * Gets the resource collection API of ManagedCertificates. It manages ManagedCertificate.
+     *
+     * @return Resource collection API of ManagedCertificates.
+     */
+    public ManagedCertificates managedCertificates() {
+        if (this.managedCertificates == null) {
+            this.managedCertificates = new ManagedCertificatesImpl(clientObject.getManagedCertificates(), this);
+        }
+        return managedCertificates;
     }
 
     /**
