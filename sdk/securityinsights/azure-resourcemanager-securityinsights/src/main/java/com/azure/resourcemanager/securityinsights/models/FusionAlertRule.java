@@ -24,6 +24,10 @@ public final class FusionAlertRule extends AlertRuleInner {
     @JsonProperty(value = "properties")
     private FusionAlertRuleProperties innerProperties;
 
+    /** Creates an instance of FusionAlertRule class. */
+    public FusionAlertRule() {
+    }
+
     /**
      * Get the innerProperties property: Fusion alert rule properties.
      *
@@ -101,53 +105,6 @@ public final class FusionAlertRule extends AlertRuleInner {
             this.innerProperties = new FusionAlertRuleProperties();
         }
         this.innerProperties().withEnabled(enabled);
-        return this;
-    }
-
-    /**
-     * Get the sourceSettings property: Configuration for all supported source signals in fusion detection.
-     *
-     * @return the sourceSettings value.
-     */
-    public List<FusionSourceSettings> sourceSettings() {
-        return this.innerProperties() == null ? null : this.innerProperties().sourceSettings();
-    }
-
-    /**
-     * Set the sourceSettings property: Configuration for all supported source signals in fusion detection.
-     *
-     * @param sourceSettings the sourceSettings value to set.
-     * @return the FusionAlertRule object itself.
-     */
-    public FusionAlertRule withSourceSettings(List<FusionSourceSettings> sourceSettings) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new FusionAlertRuleProperties();
-        }
-        this.innerProperties().withSourceSettings(sourceSettings);
-        return this;
-    }
-
-    /**
-     * Get the scenarioExclusionPatterns property: Configuration to exclude scenarios in fusion detection.
-     *
-     * @return the scenarioExclusionPatterns value.
-     */
-    public List<FusionScenarioExclusionPattern> scenarioExclusionPatterns() {
-        return this.innerProperties() == null ? null : this.innerProperties().scenarioExclusionPatterns();
-    }
-
-    /**
-     * Set the scenarioExclusionPatterns property: Configuration to exclude scenarios in fusion detection.
-     *
-     * @param scenarioExclusionPatterns the scenarioExclusionPatterns value to set.
-     * @return the FusionAlertRule object itself.
-     */
-    public FusionAlertRule withScenarioExclusionPatterns(
-        List<FusionScenarioExclusionPattern> scenarioExclusionPatterns) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new FusionAlertRuleProperties();
-        }
-        this.innerProperties().withScenarioExclusionPatterns(scenarioExclusionPatterns);
         return this;
     }
 

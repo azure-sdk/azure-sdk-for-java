@@ -34,10 +34,7 @@ import com.azure.resourcemanager.securityinsights.fluent.models.IncidentAlertLis
 import com.azure.resourcemanager.securityinsights.fluent.models.IncidentBookmarkListInner;
 import com.azure.resourcemanager.securityinsights.fluent.models.IncidentEntitiesResponseInner;
 import com.azure.resourcemanager.securityinsights.fluent.models.IncidentInner;
-import com.azure.resourcemanager.securityinsights.fluent.models.TeamInformationInner;
 import com.azure.resourcemanager.securityinsights.models.IncidentList;
-import com.azure.resourcemanager.securityinsights.models.ManualTriggerRequestBody;
-import com.azure.resourcemanager.securityinsights.models.TeamProperties;
 import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in IncidentsClient. */
@@ -66,24 +63,6 @@ public final class IncidentsClientImpl implements IncidentsClient {
     @Host("{$host}")
     @ServiceInterface(name = "SecurityInsightsInci")
     private interface IncidentsService {
-        @Headers({"Content-Type: application/json"})
-        @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights"
-                + "/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/incidents/{incidentIdentifier}"
-                + "/runPlaybook")
-        @ExpectedResponses({204})
-        @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Object>> runPlaybook(
-            @HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("workspaceName") String workspaceName,
-            @PathParam("incidentIdentifier") String incidentIdentifier,
-            @BodyParam("application/json") ManualTriggerRequestBody requestBody,
-            @HeaderParam("Accept") String accept,
-            Context context);
-
         @Headers({"Content-Type: application/json"})
         @Get(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights"
@@ -155,23 +134,6 @@ public final class IncidentsClientImpl implements IncidentsClient {
         @Headers({"Content-Type: application/json"})
         @Post(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights"
-                + "/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/incidents/{incidentId}/createTeam")
-        @ExpectedResponses({200})
-        @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<TeamInformationInner>> createTeam(
-            @HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("workspaceName") String workspaceName,
-            @PathParam("incidentId") String incidentId,
-            @BodyParam("application/json") TeamProperties teamProperties,
-            @HeaderParam("Accept") String accept,
-            Context context);
-
-        @Headers({"Content-Type: application/json"})
-        @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights"
                 + "/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/incidents/{incidentId}/alerts")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
@@ -226,210 +188,6 @@ public final class IncidentsClientImpl implements IncidentsClient {
             @HostParam("$host") String endpoint,
             @HeaderParam("Accept") String accept,
             Context context);
-    }
-
-    /**
-     * Triggers playbook on a specific incident.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param incidentIdentifier The incidentIdentifier parameter.
-     * @param requestBody The requestBody parameter.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return any object along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Object>> runPlaybookWithResponseAsync(
-        String resourceGroupName,
-        String workspaceName,
-        String incidentIdentifier,
-        ManualTriggerRequestBody requestBody) {
-        if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (workspaceName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
-        }
-        if (incidentIdentifier == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter incidentIdentifier is required and cannot be null."));
-        }
-        if (requestBody != null) {
-            requestBody.validate();
-        }
-        final String accept = "application/json";
-        return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .runPlaybook(
-                            this.client.getEndpoint(),
-                            this.client.getApiVersion(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            workspaceName,
-                            incidentIdentifier,
-                            requestBody,
-                            accept,
-                            context))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * Triggers playbook on a specific incident.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param incidentIdentifier The incidentIdentifier parameter.
-     * @param requestBody The requestBody parameter.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return any object along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Object>> runPlaybookWithResponseAsync(
-        String resourceGroupName,
-        String workspaceName,
-        String incidentIdentifier,
-        ManualTriggerRequestBody requestBody,
-        Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (workspaceName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
-        }
-        if (incidentIdentifier == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter incidentIdentifier is required and cannot be null."));
-        }
-        if (requestBody != null) {
-            requestBody.validate();
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service
-            .runPlaybook(
-                this.client.getEndpoint(),
-                this.client.getApiVersion(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                workspaceName,
-                incidentIdentifier,
-                requestBody,
-                accept,
-                context);
-    }
-
-    /**
-     * Triggers playbook on a specific incident.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param incidentIdentifier The incidentIdentifier parameter.
-     * @param requestBody The requestBody parameter.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return any object on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Object> runPlaybookAsync(
-        String resourceGroupName,
-        String workspaceName,
-        String incidentIdentifier,
-        ManualTriggerRequestBody requestBody) {
-        return runPlaybookWithResponseAsync(resourceGroupName, workspaceName, incidentIdentifier, requestBody)
-            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
-    }
-
-    /**
-     * Triggers playbook on a specific incident.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param incidentIdentifier The incidentIdentifier parameter.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return any object on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Object> runPlaybookAsync(String resourceGroupName, String workspaceName, String incidentIdentifier) {
-        final ManualTriggerRequestBody requestBody = null;
-        return runPlaybookWithResponseAsync(resourceGroupName, workspaceName, incidentIdentifier, requestBody)
-            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
-    }
-
-    /**
-     * Triggers playbook on a specific incident.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param incidentIdentifier The incidentIdentifier parameter.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return any object.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Object runPlaybook(String resourceGroupName, String workspaceName, String incidentIdentifier) {
-        final ManualTriggerRequestBody requestBody = null;
-        return runPlaybookAsync(resourceGroupName, workspaceName, incidentIdentifier, requestBody).block();
-    }
-
-    /**
-     * Triggers playbook on a specific incident.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param incidentIdentifier The incidentIdentifier parameter.
-     * @param requestBody The requestBody parameter.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return any object along with {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<Object> runPlaybookWithResponse(
-        String resourceGroupName,
-        String workspaceName,
-        String incidentIdentifier,
-        ManualTriggerRequestBody requestBody,
-        Context context) {
-        return runPlaybookWithResponseAsync(resourceGroupName, workspaceName, incidentIdentifier, requestBody, context)
-            .block();
     }
 
     /**
@@ -696,7 +454,7 @@ public final class IncidentsClientImpl implements IncidentsClient {
     }
 
     /**
-     * Gets an incident.
+     * Gets a given incident.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -704,7 +462,7 @@ public final class IncidentsClientImpl implements IncidentsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an incident along with {@link Response} on successful completion of {@link Mono}.
+     * @return a given incident along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<IncidentInner>> getWithResponseAsync(
@@ -749,7 +507,7 @@ public final class IncidentsClientImpl implements IncidentsClient {
     }
 
     /**
-     * Gets an incident.
+     * Gets a given incident.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -758,7 +516,7 @@ public final class IncidentsClientImpl implements IncidentsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an incident along with {@link Response} on successful completion of {@link Mono}.
+     * @return a given incident along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<IncidentInner>> getWithResponseAsync(
@@ -800,7 +558,7 @@ public final class IncidentsClientImpl implements IncidentsClient {
     }
 
     /**
-     * Gets an incident.
+     * Gets a given incident.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -808,7 +566,7 @@ public final class IncidentsClientImpl implements IncidentsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an incident on successful completion of {@link Mono}.
+     * @return a given incident on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<IncidentInner> getAsync(String resourceGroupName, String workspaceName, String incidentId) {
@@ -817,23 +575,7 @@ public final class IncidentsClientImpl implements IncidentsClient {
     }
 
     /**
-     * Gets an incident.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param incidentId Incident ID.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an incident.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public IncidentInner get(String resourceGroupName, String workspaceName, String incidentId) {
-        return getAsync(resourceGroupName, workspaceName, incidentId).block();
-    }
-
-    /**
-     * Gets an incident.
+     * Gets a given incident.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -842,7 +584,7 @@ public final class IncidentsClientImpl implements IncidentsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an incident along with {@link Response}.
+     * @return a given incident along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<IncidentInner> getWithResponse(
@@ -851,7 +593,23 @@ public final class IncidentsClientImpl implements IncidentsClient {
     }
 
     /**
-     * Creates or updates the incident.
+     * Gets a given incident.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param incidentId Incident ID.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a given incident.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public IncidentInner get(String resourceGroupName, String workspaceName, String incidentId) {
+        return getWithResponse(resourceGroupName, workspaceName, incidentId, Context.NONE).getValue();
+    }
+
+    /**
+     * Creates or updates an incident.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -912,7 +670,7 @@ public final class IncidentsClientImpl implements IncidentsClient {
     }
 
     /**
-     * Creates or updates the incident.
+     * Creates or updates an incident.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -971,7 +729,7 @@ public final class IncidentsClientImpl implements IncidentsClient {
     }
 
     /**
-     * Creates or updates the incident.
+     * Creates or updates an incident.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -990,25 +748,7 @@ public final class IncidentsClientImpl implements IncidentsClient {
     }
 
     /**
-     * Creates or updates the incident.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param incidentId Incident ID.
-     * @param incident The incident.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return represents an incident in Azure Security Insights.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public IncidentInner createOrUpdate(
-        String resourceGroupName, String workspaceName, String incidentId, IncidentInner incident) {
-        return createOrUpdateAsync(resourceGroupName, workspaceName, incidentId, incident).block();
-    }
-
-    /**
-     * Creates or updates the incident.
+     * Creates or updates an incident.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -1027,7 +767,26 @@ public final class IncidentsClientImpl implements IncidentsClient {
     }
 
     /**
-     * Delete the incident.
+     * Creates or updates an incident.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param incidentId Incident ID.
+     * @param incident The incident.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return represents an incident in Azure Security Insights.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public IncidentInner createOrUpdate(
+        String resourceGroupName, String workspaceName, String incidentId, IncidentInner incident) {
+        return createOrUpdateWithResponse(resourceGroupName, workspaceName, incidentId, incident, Context.NONE)
+            .getValue();
+    }
+
+    /**
+     * Deletes a given incident.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -1080,7 +839,7 @@ public final class IncidentsClientImpl implements IncidentsClient {
     }
 
     /**
-     * Delete the incident.
+     * Deletes a given incident.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -1131,7 +890,7 @@ public final class IncidentsClientImpl implements IncidentsClient {
     }
 
     /**
-     * Delete the incident.
+     * Deletes a given incident.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -1147,22 +906,7 @@ public final class IncidentsClientImpl implements IncidentsClient {
     }
 
     /**
-     * Delete the incident.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param incidentId Incident ID.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public void delete(String resourceGroupName, String workspaceName, String incidentId) {
-        deleteAsync(resourceGroupName, workspaceName, incidentId).block();
-    }
-
-    /**
-     * Delete the incident.
+     * Deletes a given incident.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -1180,190 +924,22 @@ public final class IncidentsClientImpl implements IncidentsClient {
     }
 
     /**
-     * Creates a Microsoft team to investigate the incident by sharing information and insights between participants.
+     * Deletes a given incident.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param incidentId Incident ID.
-     * @param teamProperties Team properties.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return describes team information along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<TeamInformationInner>> createTeamWithResponseAsync(
-        String resourceGroupName, String workspaceName, String incidentId, TeamProperties teamProperties) {
-        if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (workspaceName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
-        }
-        if (incidentId == null) {
-            return Mono.error(new IllegalArgumentException("Parameter incidentId is required and cannot be null."));
-        }
-        if (teamProperties == null) {
-            return Mono.error(new IllegalArgumentException("Parameter teamProperties is required and cannot be null."));
-        } else {
-            teamProperties.validate();
-        }
-        final String accept = "application/json";
-        return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .createTeam(
-                            this.client.getEndpoint(),
-                            this.client.getApiVersion(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            workspaceName,
-                            incidentId,
-                            teamProperties,
-                            accept,
-                            context))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    public void delete(String resourceGroupName, String workspaceName, String incidentId) {
+        deleteWithResponse(resourceGroupName, workspaceName, incidentId, Context.NONE);
     }
 
     /**
-     * Creates a Microsoft team to investigate the incident by sharing information and insights between participants.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param incidentId Incident ID.
-     * @param teamProperties Team properties.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return describes team information along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<TeamInformationInner>> createTeamWithResponseAsync(
-        String resourceGroupName,
-        String workspaceName,
-        String incidentId,
-        TeamProperties teamProperties,
-        Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (workspaceName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
-        }
-        if (incidentId == null) {
-            return Mono.error(new IllegalArgumentException("Parameter incidentId is required and cannot be null."));
-        }
-        if (teamProperties == null) {
-            return Mono.error(new IllegalArgumentException("Parameter teamProperties is required and cannot be null."));
-        } else {
-            teamProperties.validate();
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service
-            .createTeam(
-                this.client.getEndpoint(),
-                this.client.getApiVersion(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                workspaceName,
-                incidentId,
-                teamProperties,
-                accept,
-                context);
-    }
-
-    /**
-     * Creates a Microsoft team to investigate the incident by sharing information and insights between participants.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param incidentId Incident ID.
-     * @param teamProperties Team properties.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return describes team information on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<TeamInformationInner> createTeamAsync(
-        String resourceGroupName, String workspaceName, String incidentId, TeamProperties teamProperties) {
-        return createTeamWithResponseAsync(resourceGroupName, workspaceName, incidentId, teamProperties)
-            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
-    }
-
-    /**
-     * Creates a Microsoft team to investigate the incident by sharing information and insights between participants.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param incidentId Incident ID.
-     * @param teamProperties Team properties.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return describes team information.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public TeamInformationInner createTeam(
-        String resourceGroupName, String workspaceName, String incidentId, TeamProperties teamProperties) {
-        return createTeamAsync(resourceGroupName, workspaceName, incidentId, teamProperties).block();
-    }
-
-    /**
-     * Creates a Microsoft team to investigate the incident by sharing information and insights between participants.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param incidentId Incident ID.
-     * @param teamProperties Team properties.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return describes team information along with {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<TeamInformationInner> createTeamWithResponse(
-        String resourceGroupName,
-        String workspaceName,
-        String incidentId,
-        TeamProperties teamProperties,
-        Context context) {
-        return createTeamWithResponseAsync(resourceGroupName, workspaceName, incidentId, teamProperties, context)
-            .block();
-    }
-
-    /**
-     * Gets all incident alerts.
+     * Gets all alerts for an incident.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -1371,7 +947,7 @@ public final class IncidentsClientImpl implements IncidentsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all incident alerts along with {@link Response} on successful completion of {@link Mono}.
+     * @return all alerts for an incident along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<IncidentAlertListInner>> listAlertsWithResponseAsync(
@@ -1416,7 +992,7 @@ public final class IncidentsClientImpl implements IncidentsClient {
     }
 
     /**
-     * Gets all incident alerts.
+     * Gets all alerts for an incident.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -1425,7 +1001,7 @@ public final class IncidentsClientImpl implements IncidentsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all incident alerts along with {@link Response} on successful completion of {@link Mono}.
+     * @return all alerts for an incident along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<IncidentAlertListInner>> listAlertsWithResponseAsync(
@@ -1467,7 +1043,7 @@ public final class IncidentsClientImpl implements IncidentsClient {
     }
 
     /**
-     * Gets all incident alerts.
+     * Gets all alerts for an incident.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -1475,7 +1051,7 @@ public final class IncidentsClientImpl implements IncidentsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all incident alerts on successful completion of {@link Mono}.
+     * @return all alerts for an incident on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<IncidentAlertListInner> listAlertsAsync(
@@ -1485,23 +1061,7 @@ public final class IncidentsClientImpl implements IncidentsClient {
     }
 
     /**
-     * Gets all incident alerts.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param incidentId Incident ID.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all incident alerts.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public IncidentAlertListInner listAlerts(String resourceGroupName, String workspaceName, String incidentId) {
-        return listAlertsAsync(resourceGroupName, workspaceName, incidentId).block();
-    }
-
-    /**
-     * Gets all incident alerts.
+     * Gets all alerts for an incident.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -1510,7 +1070,7 @@ public final class IncidentsClientImpl implements IncidentsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all incident alerts along with {@link Response}.
+     * @return all alerts for an incident along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<IncidentAlertListInner> listAlertsWithResponse(
@@ -1519,7 +1079,7 @@ public final class IncidentsClientImpl implements IncidentsClient {
     }
 
     /**
-     * Gets all incident bookmarks.
+     * Gets all alerts for an incident.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -1527,7 +1087,23 @@ public final class IncidentsClientImpl implements IncidentsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all incident bookmarks along with {@link Response} on successful completion of {@link Mono}.
+     * @return all alerts for an incident.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public IncidentAlertListInner listAlerts(String resourceGroupName, String workspaceName, String incidentId) {
+        return listAlertsWithResponse(resourceGroupName, workspaceName, incidentId, Context.NONE).getValue();
+    }
+
+    /**
+     * Gets all bookmarks for an incident.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param incidentId Incident ID.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return all bookmarks for an incident along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<IncidentBookmarkListInner>> listBookmarksWithResponseAsync(
@@ -1572,7 +1148,7 @@ public final class IncidentsClientImpl implements IncidentsClient {
     }
 
     /**
-     * Gets all incident bookmarks.
+     * Gets all bookmarks for an incident.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -1581,7 +1157,7 @@ public final class IncidentsClientImpl implements IncidentsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all incident bookmarks along with {@link Response} on successful completion of {@link Mono}.
+     * @return all bookmarks for an incident along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<IncidentBookmarkListInner>> listBookmarksWithResponseAsync(
@@ -1623,7 +1199,7 @@ public final class IncidentsClientImpl implements IncidentsClient {
     }
 
     /**
-     * Gets all incident bookmarks.
+     * Gets all bookmarks for an incident.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -1631,7 +1207,7 @@ public final class IncidentsClientImpl implements IncidentsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all incident bookmarks on successful completion of {@link Mono}.
+     * @return all bookmarks for an incident on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<IncidentBookmarkListInner> listBookmarksAsync(
@@ -1641,23 +1217,7 @@ public final class IncidentsClientImpl implements IncidentsClient {
     }
 
     /**
-     * Gets all incident bookmarks.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param incidentId Incident ID.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all incident bookmarks.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public IncidentBookmarkListInner listBookmarks(String resourceGroupName, String workspaceName, String incidentId) {
-        return listBookmarksAsync(resourceGroupName, workspaceName, incidentId).block();
-    }
-
-    /**
-     * Gets all incident bookmarks.
+     * Gets all bookmarks for an incident.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -1666,7 +1226,7 @@ public final class IncidentsClientImpl implements IncidentsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all incident bookmarks along with {@link Response}.
+     * @return all bookmarks for an incident along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<IncidentBookmarkListInner> listBookmarksWithResponse(
@@ -1675,7 +1235,7 @@ public final class IncidentsClientImpl implements IncidentsClient {
     }
 
     /**
-     * Gets all incident related entities.
+     * Gets all bookmarks for an incident.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -1683,7 +1243,23 @@ public final class IncidentsClientImpl implements IncidentsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all incident related entities along with {@link Response} on successful completion of {@link Mono}.
+     * @return all bookmarks for an incident.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public IncidentBookmarkListInner listBookmarks(String resourceGroupName, String workspaceName, String incidentId) {
+        return listBookmarksWithResponse(resourceGroupName, workspaceName, incidentId, Context.NONE).getValue();
+    }
+
+    /**
+     * Gets all entities for an incident.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param incidentId Incident ID.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return all entities for an incident along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<IncidentEntitiesResponseInner>> listEntitiesWithResponseAsync(
@@ -1728,7 +1304,7 @@ public final class IncidentsClientImpl implements IncidentsClient {
     }
 
     /**
-     * Gets all incident related entities.
+     * Gets all entities for an incident.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -1737,7 +1313,7 @@ public final class IncidentsClientImpl implements IncidentsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all incident related entities along with {@link Response} on successful completion of {@link Mono}.
+     * @return all entities for an incident along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<IncidentEntitiesResponseInner>> listEntitiesWithResponseAsync(
@@ -1779,7 +1355,7 @@ public final class IncidentsClientImpl implements IncidentsClient {
     }
 
     /**
-     * Gets all incident related entities.
+     * Gets all entities for an incident.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -1787,7 +1363,7 @@ public final class IncidentsClientImpl implements IncidentsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all incident related entities on successful completion of {@link Mono}.
+     * @return all entities for an incident on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<IncidentEntitiesResponseInner> listEntitiesAsync(
@@ -1797,24 +1373,7 @@ public final class IncidentsClientImpl implements IncidentsClient {
     }
 
     /**
-     * Gets all incident related entities.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param incidentId Incident ID.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all incident related entities.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public IncidentEntitiesResponseInner listEntities(
-        String resourceGroupName, String workspaceName, String incidentId) {
-        return listEntitiesAsync(resourceGroupName, workspaceName, incidentId).block();
-    }
-
-    /**
-     * Gets all incident related entities.
+     * Gets all entities for an incident.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -1823,12 +1382,29 @@ public final class IncidentsClientImpl implements IncidentsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all incident related entities along with {@link Response}.
+     * @return all entities for an incident along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<IncidentEntitiesResponseInner> listEntitiesWithResponse(
         String resourceGroupName, String workspaceName, String incidentId, Context context) {
         return listEntitiesWithResponseAsync(resourceGroupName, workspaceName, incidentId, context).block();
+    }
+
+    /**
+     * Gets all entities for an incident.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param incidentId Incident ID.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return all entities for an incident.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public IncidentEntitiesResponseInner listEntities(
+        String resourceGroupName, String workspaceName, String incidentId) {
+        return listEntitiesWithResponse(resourceGroupName, workspaceName, incidentId, Context.NONE).getValue();
     }
 
     /**

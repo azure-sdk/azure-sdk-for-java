@@ -9,6 +9,10 @@ import com.azure.core.annotation.Fluent;
 /** SharePoint data type connection. */
 @Fluent
 public final class OfficeDataConnectorDataTypesSharePoint extends DataConnectorDataTypeCommon {
+    /** Creates an instance of OfficeDataConnectorDataTypesSharePoint class. */
+    public OfficeDataConnectorDataTypesSharePoint() {
+    }
+
     /** {@inheritDoc} */
     @Override
     public OfficeDataConnectorDataTypesSharePoint withState(DataTypeState state) {

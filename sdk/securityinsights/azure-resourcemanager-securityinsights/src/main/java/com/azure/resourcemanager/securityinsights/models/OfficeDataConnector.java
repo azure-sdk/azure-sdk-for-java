@@ -22,6 +22,10 @@ public final class OfficeDataConnector extends DataConnectorInner {
     @JsonProperty(value = "properties")
     private OfficeDataConnectorProperties innerProperties;
 
+    /** Creates an instance of OfficeDataConnector class. */
+    public OfficeDataConnector() {
+    }
+
     /**
      * Get the innerProperties property: Office data connector properties.
      *
@@ -35,29 +39,6 @@ public final class OfficeDataConnector extends DataConnectorInner {
     @Override
     public OfficeDataConnector withEtag(String etag) {
         super.withEtag(etag);
-        return this;
-    }
-
-    /**
-     * Get the dataTypes property: The available data types for the connector.
-     *
-     * @return the dataTypes value.
-     */
-    public OfficeDataConnectorDataTypes dataTypes() {
-        return this.innerProperties() == null ? null : this.innerProperties().dataTypes();
-    }
-
-    /**
-     * Set the dataTypes property: The available data types for the connector.
-     *
-     * @param dataTypes the dataTypes value to set.
-     * @return the OfficeDataConnector object itself.
-     */
-    public OfficeDataConnector withDataTypes(OfficeDataConnectorDataTypes dataTypes) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new OfficeDataConnectorProperties();
-        }
-        this.innerProperties().withDataTypes(dataTypes);
         return this;
     }
 
@@ -81,6 +62,29 @@ public final class OfficeDataConnector extends DataConnectorInner {
             this.innerProperties = new OfficeDataConnectorProperties();
         }
         this.innerProperties().withTenantId(tenantId);
+        return this;
+    }
+
+    /**
+     * Get the dataTypes property: The available data types for the connector.
+     *
+     * @return the dataTypes value.
+     */
+    public OfficeDataConnectorDataTypes dataTypes() {
+        return this.innerProperties() == null ? null : this.innerProperties().dataTypes();
+    }
+
+    /**
+     * Set the dataTypes property: The available data types for the connector.
+     *
+     * @param dataTypes the dataTypes value to set.
+     * @return the OfficeDataConnector object itself.
+     */
+    public OfficeDataConnector withDataTypes(OfficeDataConnectorDataTypes dataTypes) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new OfficeDataConnectorProperties();
+        }
+        this.innerProperties().withDataTypes(dataTypes);
         return this;
     }
 

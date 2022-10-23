@@ -41,17 +41,6 @@ public final class WatchlistItemsImpl implements WatchlistItems {
         return Utils.mapPage(inner, inner1 -> new WatchlistItemImpl(inner1, this.manager()));
     }
 
-    public WatchlistItem get(
-        String resourceGroupName, String workspaceName, String watchlistAlias, String watchlistItemId) {
-        WatchlistItemInner inner =
-            this.serviceClient().get(resourceGroupName, workspaceName, watchlistAlias, watchlistItemId);
-        if (inner != null) {
-            return new WatchlistItemImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
     public Response<WatchlistItem> getWithResponse(
         String resourceGroupName,
         String workspaceName,
@@ -73,8 +62,15 @@ public final class WatchlistItemsImpl implements WatchlistItems {
         }
     }
 
-    public void delete(String resourceGroupName, String workspaceName, String watchlistAlias, String watchlistItemId) {
-        this.serviceClient().delete(resourceGroupName, workspaceName, watchlistAlias, watchlistItemId);
+    public WatchlistItem get(
+        String resourceGroupName, String workspaceName, String watchlistAlias, String watchlistItemId) {
+        WatchlistItemInner inner =
+            this.serviceClient().get(resourceGroupName, workspaceName, watchlistAlias, watchlistItemId);
+        if (inner != null) {
+            return new WatchlistItemImpl(inner, this.manager());
+        } else {
+            return null;
+        }
     }
 
     public Response<Void> deleteWithResponse(
@@ -86,6 +82,10 @@ public final class WatchlistItemsImpl implements WatchlistItems {
         return this
             .serviceClient()
             .deleteWithResponse(resourceGroupName, workspaceName, watchlistAlias, watchlistItemId, context);
+    }
+
+    public void delete(String resourceGroupName, String workspaceName, String watchlistAlias, String watchlistItemId) {
+        this.serviceClient().delete(resourceGroupName, workspaceName, watchlistAlias, watchlistItemId);
     }
 
     public WatchlistItem getById(String id) {

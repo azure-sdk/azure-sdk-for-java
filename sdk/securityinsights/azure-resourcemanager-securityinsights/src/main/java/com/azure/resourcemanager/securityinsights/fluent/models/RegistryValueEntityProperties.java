@@ -37,6 +37,10 @@ public final class RegistryValueEntityProperties extends EntityCommonProperties 
     @JsonProperty(value = "valueType", access = JsonProperty.Access.WRITE_ONLY)
     private RegistryValueKind valueType;
 
+    /** Creates an instance of RegistryValueEntityProperties class. */
+    public RegistryValueEntityProperties() {
+    }
+
     /**
      * Get the keyEntityId property: The registry key entity id.
      *

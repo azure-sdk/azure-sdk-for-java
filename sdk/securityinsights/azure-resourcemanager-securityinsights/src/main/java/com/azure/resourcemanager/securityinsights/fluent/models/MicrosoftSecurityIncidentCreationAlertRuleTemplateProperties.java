@@ -5,18 +5,60 @@
 package com.azure.resourcemanager.securityinsights.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.securityinsights.models.AlertRuleTemplateDataSource;
-import com.azure.resourcemanager.securityinsights.models.AlertRuleTemplatePropertiesBase;
 import com.azure.resourcemanager.securityinsights.models.AlertSeverity;
 import com.azure.resourcemanager.securityinsights.models.MicrosoftSecurityProductName;
 import com.azure.resourcemanager.securityinsights.models.TemplateStatus;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.time.OffsetDateTime;
 import java.util.List;
 
 /** MicrosoftSecurityIncidentCreation rule template properties. */
 @Fluent
-public final class MicrosoftSecurityIncidentCreationAlertRuleTemplateProperties
-    extends AlertRuleTemplatePropertiesBase {
+public final class MicrosoftSecurityIncidentCreationAlertRuleTemplateProperties {
+    /*
+     * the number of alert rules that were created by this template
+     */
+    @JsonProperty(value = "alertRulesCreatedByTemplateCount")
+    private Integer alertRulesCreatedByTemplateCount;
+
+    /*
+     * The time that this alert rule template has been added.
+     */
+    @JsonProperty(value = "createdDateUTC", access = JsonProperty.Access.WRITE_ONLY)
+    private OffsetDateTime createdDateUtc;
+
+    /*
+     * The time that this alert rule template was last updated.
+     */
+    @JsonProperty(value = "lastUpdatedDateUTC", access = JsonProperty.Access.WRITE_ONLY)
+    private OffsetDateTime lastUpdatedDateUtc;
+
+    /*
+     * The description of the alert rule template.
+     */
+    @JsonProperty(value = "description")
+    private String description;
+
+    /*
+     * The display name for alert rule template.
+     */
+    @JsonProperty(value = "displayName")
+    private String displayName;
+
+    /*
+     * The required data connectors for this template
+     */
+    @JsonProperty(value = "requiredDataConnectors")
+    private List<AlertRuleTemplateDataSource> requiredDataConnectors;
+
+    /*
+     * The alert rule template status.
+     */
+    @JsonProperty(value = "status")
+    private TemplateStatus status;
+
     /*
      * the alerts' displayNames on which the cases will be generated
      */
@@ -32,7 +74,7 @@ public final class MicrosoftSecurityIncidentCreationAlertRuleTemplateProperties
     /*
      * The alerts' productName on which the cases will be generated
      */
-    @JsonProperty(value = "productFilter")
+    @JsonProperty(value = "productFilter", required = true)
     private MicrosoftSecurityProductName productFilter;
 
     /*
@@ -40,6 +82,130 @@ public final class MicrosoftSecurityIncidentCreationAlertRuleTemplateProperties
      */
     @JsonProperty(value = "severitiesFilter")
     private List<AlertSeverity> severitiesFilter;
+
+    /** Creates an instance of MicrosoftSecurityIncidentCreationAlertRuleTemplateProperties class. */
+    public MicrosoftSecurityIncidentCreationAlertRuleTemplateProperties() {
+    }
+
+    /**
+     * Get the alertRulesCreatedByTemplateCount property: the number of alert rules that were created by this template.
+     *
+     * @return the alertRulesCreatedByTemplateCount value.
+     */
+    public Integer alertRulesCreatedByTemplateCount() {
+        return this.alertRulesCreatedByTemplateCount;
+    }
+
+    /**
+     * Set the alertRulesCreatedByTemplateCount property: the number of alert rules that were created by this template.
+     *
+     * @param alertRulesCreatedByTemplateCount the alertRulesCreatedByTemplateCount value to set.
+     * @return the MicrosoftSecurityIncidentCreationAlertRuleTemplateProperties object itself.
+     */
+    public MicrosoftSecurityIncidentCreationAlertRuleTemplateProperties withAlertRulesCreatedByTemplateCount(
+        Integer alertRulesCreatedByTemplateCount) {
+        this.alertRulesCreatedByTemplateCount = alertRulesCreatedByTemplateCount;
+        return this;
+    }
+
+    /**
+     * Get the createdDateUtc property: The time that this alert rule template has been added.
+     *
+     * @return the createdDateUtc value.
+     */
+    public OffsetDateTime createdDateUtc() {
+        return this.createdDateUtc;
+    }
+
+    /**
+     * Get the lastUpdatedDateUtc property: The time that this alert rule template was last updated.
+     *
+     * @return the lastUpdatedDateUtc value.
+     */
+    public OffsetDateTime lastUpdatedDateUtc() {
+        return this.lastUpdatedDateUtc;
+    }
+
+    /**
+     * Get the description property: The description of the alert rule template.
+     *
+     * @return the description value.
+     */
+    public String description() {
+        return this.description;
+    }
+
+    /**
+     * Set the description property: The description of the alert rule template.
+     *
+     * @param description the description value to set.
+     * @return the MicrosoftSecurityIncidentCreationAlertRuleTemplateProperties object itself.
+     */
+    public MicrosoftSecurityIncidentCreationAlertRuleTemplateProperties withDescription(String description) {
+        this.description = description;
+        return this;
+    }
+
+    /**
+     * Get the displayName property: The display name for alert rule template.
+     *
+     * @return the displayName value.
+     */
+    public String displayName() {
+        return this.displayName;
+    }
+
+    /**
+     * Set the displayName property: The display name for alert rule template.
+     *
+     * @param displayName the displayName value to set.
+     * @return the MicrosoftSecurityIncidentCreationAlertRuleTemplateProperties object itself.
+     */
+    public MicrosoftSecurityIncidentCreationAlertRuleTemplateProperties withDisplayName(String displayName) {
+        this.displayName = displayName;
+        return this;
+    }
+
+    /**
+     * Get the requiredDataConnectors property: The required data connectors for this template.
+     *
+     * @return the requiredDataConnectors value.
+     */
+    public List<AlertRuleTemplateDataSource> requiredDataConnectors() {
+        return this.requiredDataConnectors;
+    }
+
+    /**
+     * Set the requiredDataConnectors property: The required data connectors for this template.
+     *
+     * @param requiredDataConnectors the requiredDataConnectors value to set.
+     * @return the MicrosoftSecurityIncidentCreationAlertRuleTemplateProperties object itself.
+     */
+    public MicrosoftSecurityIncidentCreationAlertRuleTemplateProperties withRequiredDataConnectors(
+        List<AlertRuleTemplateDataSource> requiredDataConnectors) {
+        this.requiredDataConnectors = requiredDataConnectors;
+        return this;
+    }
+
+    /**
+     * Get the status property: The alert rule template status.
+     *
+     * @return the status value.
+     */
+    public TemplateStatus status() {
+        return this.status;
+    }
+
+    /**
+     * Set the status property: The alert rule template status.
+     *
+     * @param status the status value to set.
+     * @return the MicrosoftSecurityIncidentCreationAlertRuleTemplateProperties object itself.
+     */
+    public MicrosoftSecurityIncidentCreationAlertRuleTemplateProperties withStatus(TemplateStatus status) {
+        this.status = status;
+        return this;
+    }
 
     /**
      * Get the displayNamesFilter property: the alerts' displayNames on which the cases will be generated.
@@ -125,50 +291,24 @@ public final class MicrosoftSecurityIncidentCreationAlertRuleTemplateProperties
         return this;
     }
 
-    /** {@inheritDoc} */
-    @Override
-    public MicrosoftSecurityIncidentCreationAlertRuleTemplateProperties withAlertRulesCreatedByTemplateCount(
-        Integer alertRulesCreatedByTemplateCount) {
-        super.withAlertRulesCreatedByTemplateCount(alertRulesCreatedByTemplateCount);
-        return this;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public MicrosoftSecurityIncidentCreationAlertRuleTemplateProperties withDescription(String description) {
-        super.withDescription(description);
-        return this;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public MicrosoftSecurityIncidentCreationAlertRuleTemplateProperties withDisplayName(String displayName) {
-        super.withDisplayName(displayName);
-        return this;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public MicrosoftSecurityIncidentCreationAlertRuleTemplateProperties withRequiredDataConnectors(
-        List<AlertRuleTemplateDataSource> requiredDataConnectors) {
-        super.withRequiredDataConnectors(requiredDataConnectors);
-        return this;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public MicrosoftSecurityIncidentCreationAlertRuleTemplateProperties withStatus(TemplateStatus status) {
-        super.withStatus(status);
-        return this;
-    }
-
     /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
-    @Override
     public void validate() {
-        super.validate();
+        if (requiredDataConnectors() != null) {
+            requiredDataConnectors().forEach(e -> e.validate());
+        }
+        if (productFilter() == null) {
+            throw LOGGER
+                .logExceptionAsError(
+                    new IllegalArgumentException(
+                        "Missing required property productFilter in model"
+                            + " MicrosoftSecurityIncidentCreationAlertRuleTemplateProperties"));
+        }
     }
+
+    private static final ClientLogger LOGGER =
+        new ClientLogger(MicrosoftSecurityIncidentCreationAlertRuleTemplateProperties.class);
 }
