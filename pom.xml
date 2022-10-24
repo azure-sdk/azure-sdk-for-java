@@ -174,6 +174,7 @@
     <module>sdk/videoanalyzer</module>
     <module>sdk/vmwarecloudsimple</module>
     <module>sdk/webpubsub</module>
+    <module>sdk/windfall</module>
     <module>sdk/workloads</module>
   </modules>
 </project>
