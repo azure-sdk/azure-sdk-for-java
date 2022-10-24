@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for TableTypeEnum. */
+/** Table's creator. */
 public final class TableTypeEnum extends ExpandableStringEnum<TableTypeEnum> {
     /** Static value Microsoft for TableTypeEnum. */
     public static final TableTypeEnum MICROSOFT = fromString("Microsoft");

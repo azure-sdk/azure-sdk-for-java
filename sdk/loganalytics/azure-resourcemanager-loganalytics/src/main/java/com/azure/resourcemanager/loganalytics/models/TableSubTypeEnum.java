@@ -8,7 +8,9 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for TableSubTypeEnum. */
+/**
+ * The subtype describes what APIs can be used to interact with the table, and what features are available against it.
+ */
 public final class TableSubTypeEnum extends ExpandableStringEnum<TableSubTypeEnum> {
     /** Static value Any for TableSubTypeEnum. */
     public static final TableSubTypeEnum ANY = fromString("Any");
