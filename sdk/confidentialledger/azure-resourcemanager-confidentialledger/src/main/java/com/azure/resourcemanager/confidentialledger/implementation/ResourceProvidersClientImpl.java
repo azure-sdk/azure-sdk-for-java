@@ -176,21 +176,6 @@ public final class ResourceProvidersClientImpl implements ResourceProvidersClien
      * To check whether a resource name is available.
      *
      * @param nameAvailabilityRequest Name availability request payload.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the check availability result.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public CheckNameAvailabilityResponseInner checkNameAvailability(
-        CheckNameAvailabilityRequest nameAvailabilityRequest) {
-        return checkNameAvailabilityAsync(nameAvailabilityRequest).block();
-    }
-
-    /**
-     * To check whether a resource name is available.
-     *
-     * @param nameAvailabilityRequest Name availability request payload.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -201,5 +186,20 @@ public final class ResourceProvidersClientImpl implements ResourceProvidersClien
     public Response<CheckNameAvailabilityResponseInner> checkNameAvailabilityWithResponse(
         CheckNameAvailabilityRequest nameAvailabilityRequest, Context context) {
         return checkNameAvailabilityWithResponseAsync(nameAvailabilityRequest, context).block();
+    }
+
+    /**
+     * To check whether a resource name is available.
+     *
+     * @param nameAvailabilityRequest Name availability request payload.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the check availability result.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public CheckNameAvailabilityResponseInner checkNameAvailability(
+        CheckNameAvailabilityRequest nameAvailabilityRequest) {
+        return checkNameAvailabilityWithResponse(nameAvailabilityRequest, Context.NONE).getValue();
     }
 }
