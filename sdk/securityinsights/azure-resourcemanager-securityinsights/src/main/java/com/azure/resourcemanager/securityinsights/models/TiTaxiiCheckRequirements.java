@@ -4,7 +4,7 @@
 
 package com.azure.resourcemanager.securityinsights.models;
 
-import com.azure.core.annotation.Fluent;
+import com.azure.core.annotation.Immutable;
 import com.azure.resourcemanager.securityinsights.fluent.models.TiTaxiiCheckRequirementsProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
@@ -13,13 +13,17 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 /** Threat Intelligence TAXII data connector check requirements. */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "kind")
 @JsonTypeName("ThreatIntelligenceTaxii")
-@Fluent
+@Immutable
 public final class TiTaxiiCheckRequirements extends DataConnectorsCheckRequirements {
     /*
      * Threat Intelligence TAXII check required properties.
      */
     @JsonProperty(value = "properties")
     private TiTaxiiCheckRequirementsProperties innerProperties;
+
+    /** Creates an instance of TiTaxiiCheckRequirements class. */
+    public TiTaxiiCheckRequirements() {
+    }
 
     /**
      * Get the innerProperties property: Threat Intelligence TAXII check required properties.

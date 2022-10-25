@@ -83,6 +83,10 @@ public final class ActivityEntityQueriesProperties {
     @JsonProperty(value = "lastModifiedTimeUtc", access = JsonProperty.Access.WRITE_ONLY)
     private OffsetDateTime lastModifiedTimeUtc;
 
+    /** Creates an instance of ActivityEntityQueriesProperties class. */
+    public ActivityEntityQueriesProperties() {
+    }
+
     /**
      * Get the title property: The entity query title.
      *

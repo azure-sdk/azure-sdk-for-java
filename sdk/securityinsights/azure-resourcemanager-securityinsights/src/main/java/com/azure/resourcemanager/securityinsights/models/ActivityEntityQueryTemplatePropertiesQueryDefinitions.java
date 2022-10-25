@@ -22,6 +22,10 @@ public final class ActivityEntityQueryTemplatePropertiesQueryDefinitions {
     @JsonProperty(value = "summarizeBy")
     private String summarizeBy;
 
+    /** Creates an instance of ActivityEntityQueryTemplatePropertiesQueryDefinitions class. */
+    public ActivityEntityQueryTemplatePropertiesQueryDefinitions() {
+    }
+
     /**
      * Get the query property: The Activity query to run on a given entity.
      *

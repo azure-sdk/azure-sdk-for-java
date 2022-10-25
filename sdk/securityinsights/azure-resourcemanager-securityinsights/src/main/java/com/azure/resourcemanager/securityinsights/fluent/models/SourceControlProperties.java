@@ -72,6 +72,10 @@ public final class SourceControlProperties {
     @JsonProperty(value = "lastDeploymentInfo")
     private DeploymentInfo lastDeploymentInfo;
 
+    /** Creates an instance of SourceControlProperties class. */
+    public SourceControlProperties() {
+    }
+
     /**
      * Get the id property: The id (a Guid) of the source control.
      *
