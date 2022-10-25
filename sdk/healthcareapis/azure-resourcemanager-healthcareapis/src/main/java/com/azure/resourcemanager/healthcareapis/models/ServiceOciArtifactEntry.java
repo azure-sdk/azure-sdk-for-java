@@ -28,6 +28,10 @@ public final class ServiceOciArtifactEntry {
     @JsonProperty(value = "digest")
     private String digest;
 
+    /** Creates an instance of ServiceOciArtifactEntry class. */
+    public ServiceOciArtifactEntry() {
+    }
+
     /**
      * Get the loginServer property: The Azure Container Registry login server.
      *

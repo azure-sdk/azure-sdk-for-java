@@ -196,29 +196,7 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
     private Mono<PrivateLinkResourceListResultDescriptionInner> listByServiceAsync(
         String resourceGroupName, String resourceName) {
         return listByServiceWithResponseAsync(resourceGroupName, resourceName)
-            .flatMap(
-                (Response<PrivateLinkResourceListResultDescriptionInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
-    }
-
-    /**
-     * Gets the private link resources that need to be created for a service.
-     *
-     * @param resourceGroupName The name of the resource group that contains the service instance.
-     * @param resourceName The name of the service instance.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the private link resources that need to be created for a service.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public PrivateLinkResourceListResultDescriptionInner listByService(String resourceGroupName, String resourceName) {
-        return listByServiceAsync(resourceGroupName, resourceName).block();
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -236,6 +214,21 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
     public Response<PrivateLinkResourceListResultDescriptionInner> listByServiceWithResponse(
         String resourceGroupName, String resourceName, Context context) {
         return listByServiceWithResponseAsync(resourceGroupName, resourceName, context).block();
+    }
+
+    /**
+     * Gets the private link resources that need to be created for a service.
+     *
+     * @param resourceGroupName The name of the resource group that contains the service instance.
+     * @param resourceName The name of the service instance.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the private link resources that need to be created for a service.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public PrivateLinkResourceListResultDescriptionInner listByService(String resourceGroupName, String resourceName) {
+        return listByServiceWithResponse(resourceGroupName, resourceName, Context.NONE).getValue();
     }
 
     /**
@@ -359,30 +352,7 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
     private Mono<PrivateLinkResourceDescriptionInner> getAsync(
         String resourceGroupName, String resourceName, String groupName) {
         return getWithResponseAsync(resourceGroupName, resourceName, groupName)
-            .flatMap(
-                (Response<PrivateLinkResourceDescriptionInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
-    }
-
-    /**
-     * Gets a private link resource that need to be created for a service.
-     *
-     * @param resourceGroupName The name of the resource group that contains the service instance.
-     * @param resourceName The name of the service instance.
-     * @param groupName The name of the private link resource group.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a private link resource that need to be created for a service.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public PrivateLinkResourceDescriptionInner get(String resourceGroupName, String resourceName, String groupName) {
-        return getAsync(resourceGroupName, resourceName, groupName).block();
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -401,5 +371,21 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
     public Response<PrivateLinkResourceDescriptionInner> getWithResponse(
         String resourceGroupName, String resourceName, String groupName, Context context) {
         return getWithResponseAsync(resourceGroupName, resourceName, groupName, context).block();
+    }
+
+    /**
+     * Gets a private link resource that need to be created for a service.
+     *
+     * @param resourceGroupName The name of the resource group that contains the service instance.
+     * @param resourceName The name of the service instance.
+     * @param groupName The name of the private link resource group.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a private link resource that need to be created for a service.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public PrivateLinkResourceDescriptionInner get(String resourceGroupName, String resourceName, String groupName) {
+        return getWithResponse(resourceGroupName, resourceName, groupName, Context.NONE).getValue();
     }
 }

@@ -15,12 +15,15 @@ import com.azure.core.management.exception.ManagementException;
 import com.azure.core.management.polling.PollResult;
 import com.azure.core.management.polling.PollerFactory;
 import com.azure.core.util.Context;
+import com.azure.core.util.CoreUtils;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.core.util.polling.AsyncPollResponse;
 import com.azure.core.util.polling.LongRunningOperationStatus;
 import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.serializer.SerializerAdapter;
 import com.azure.core.util.serializer.SerializerEncoding;
+import com.azure.resourcemanager.healthcareapis.fluent.AnalyticsConnectorOperationsClient;
+import com.azure.resourcemanager.healthcareapis.fluent.AnalyticsConnectorsClient;
 import com.azure.resourcemanager.healthcareapis.fluent.DicomServicesClient;
 import com.azure.resourcemanager.healthcareapis.fluent.FhirDestinationsClient;
 import com.azure.resourcemanager.healthcareapis.fluent.FhirServicesClient;
@@ -41,7 +44,6 @@ import java.nio.ByteBuffer;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.time.Duration;
-import java.util.Map;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
@@ -252,6 +254,30 @@ public final class HealthcareApisManagementClientImpl implements HealthcareApisM
         return this.workspacePrivateLinkResources;
     }
 
+    /** The AnalyticsConnectorsClient object to access its operations. */
+    private final AnalyticsConnectorsClient analyticsConnectors;
+
+    /**
+     * Gets the AnalyticsConnectorsClient object to access its operations.
+     *
+     * @return the AnalyticsConnectorsClient object.
+     */
+    public AnalyticsConnectorsClient getAnalyticsConnectors() {
+        return this.analyticsConnectors;
+    }
+
+    /** The AnalyticsConnectorOperationsClient object to access its operations. */
+    private final AnalyticsConnectorOperationsClient analyticsConnectorOperations;
+
+    /**
+     * Gets the AnalyticsConnectorOperationsClient object to access its operations.
+     *
+     * @return the AnalyticsConnectorOperationsClient object.
+     */
+    public AnalyticsConnectorOperationsClient getAnalyticsConnectorOperations() {
+        return this.analyticsConnectorOperations;
+    }
+
     /** The OperationsClient object to access its operations. */
     private final OperationsClient operations;
 
@@ -298,7 +324,7 @@ public final class HealthcareApisManagementClientImpl implements HealthcareApisM
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2021-11-01";
+        this.apiVersion = "2022-10-01-preview";
         this.services = new ServicesClientImpl(this);
         this.privateEndpointConnections = new PrivateEndpointConnectionsClientImpl(this);
         this.privateLinkResources = new PrivateLinkResourcesClientImpl(this);
@@ -310,6 +336,8 @@ public final class HealthcareApisManagementClientImpl implements HealthcareApisM
         this.fhirServices = new FhirServicesClientImpl(this);
         this.workspacePrivateEndpointConnections = new WorkspacePrivateEndpointConnectionsClientImpl(this);
         this.workspacePrivateLinkResources = new WorkspacePrivateLinkResourcesClientImpl(this);
+        this.analyticsConnectors = new AnalyticsConnectorsClientImpl(this);
+        this.analyticsConnectorOperations = new AnalyticsConnectorOperationsClientImpl(this);
         this.operations = new OperationsClientImpl(this);
         this.operationResults = new OperationResultsClientImpl(this);
     }
@@ -330,10 +358,7 @@ public final class HealthcareApisManagementClientImpl implements HealthcareApisM
      * @return the merged context.
      */
     public Context mergeContext(Context context) {
-        for (Map.Entry<Object, Object> entry : this.getContext().getValues().entrySet()) {
-            context = context.addData(entry.getKey(), entry.getValue());
-        }
-        return context;
+        return CoreUtils.mergeContexts(this.getContext(), context);
     }
 
     /**
