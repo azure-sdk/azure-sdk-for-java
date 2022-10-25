@@ -59,6 +59,7 @@ import com.azure.resourcemanager.securityinsights.implementation.ThreatIntellige
 import com.azure.resourcemanager.securityinsights.implementation.ThreatIntelligenceIndicatorsOperationsImpl;
 import com.azure.resourcemanager.securityinsights.implementation.WatchlistItemsImpl;
 import com.azure.resourcemanager.securityinsights.implementation.WatchlistsImpl;
+import com.azure.resourcemanager.securityinsights.implementation.WorkspaceManagerConfigurationsImpl;
 import com.azure.resourcemanager.securityinsights.models.Actions;
 import com.azure.resourcemanager.securityinsights.models.AlertRuleTemplates;
 import com.azure.resourcemanager.securityinsights.models.AlertRules;
@@ -93,6 +94,7 @@ import com.azure.resourcemanager.securityinsights.models.ThreatIntelligenceIndic
 import com.azure.resourcemanager.securityinsights.models.ThreatIntelligenceIndicatorsOperations;
 import com.azure.resourcemanager.securityinsights.models.WatchlistItems;
 import com.azure.resourcemanager.securityinsights.models.Watchlists;
+import com.azure.resourcemanager.securityinsights.models.WorkspaceManagerConfigurations;
 import java.time.Duration;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
@@ -166,6 +168,8 @@ public final class SecurityInsightsManager {
     private Watchlists watchlists;
 
     private WatchlistItems watchlistItems;
+
+    private WorkspaceManagerConfigurations workspaceManagerConfigurations;
 
     private DataConnectors dataConnectors;
 
@@ -338,7 +342,7 @@ public final class SecurityInsightsManager {
                 .append("-")
                 .append("com.azure.resourcemanager.securityinsights")
                 .append("/")
-                .append("1.0.0-beta.4");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder
                     .append(" (")
@@ -772,6 +776,19 @@ public final class SecurityInsightsManager {
             this.watchlistItems = new WatchlistItemsImpl(clientObject.getWatchlistItems(), this);
         }
         return watchlistItems;
+    }
+
+    /**
+     * Gets the resource collection API of WorkspaceManagerConfigurations. It manages WorkspaceManagerConfiguration.
+     *
+     * @return Resource collection API of WorkspaceManagerConfigurations.
+     */
+    public WorkspaceManagerConfigurations workspaceManagerConfigurations() {
+        if (this.workspaceManagerConfigurations == null) {
+            this.workspaceManagerConfigurations =
+                new WorkspaceManagerConfigurationsImpl(clientObject.getWorkspaceManagerConfigurations(), this);
+        }
+        return workspaceManagerConfigurations;
     }
 
     /**

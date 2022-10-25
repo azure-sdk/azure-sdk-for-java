@@ -23,6 +23,10 @@ public final class FusionSubTypeSeverityFilter {
     @JsonProperty(value = "filters")
     private List<FusionSubTypeSeverityFiltersItem> filters;
 
+    /** Creates an instance of FusionSubTypeSeverityFilter class. */
+    public FusionSubTypeSeverityFilter() {
+    }
+
     /**
      * Get the isSupported property: Determines whether this source subtype supports severity configuration or not.
      *

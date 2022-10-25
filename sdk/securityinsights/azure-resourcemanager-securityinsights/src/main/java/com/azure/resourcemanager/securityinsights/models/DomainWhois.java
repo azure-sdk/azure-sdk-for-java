@@ -14,18 +14,6 @@ public interface DomainWhois {
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param domain Domain name to be enriched.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return whois information for a single domain name.
-     */
-    EnrichmentDomainWhois get(String resourceGroupName, String domain);
-
-    /**
-     * Get whois information for a single domain name.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param domain Domain name to be enriched.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -33,4 +21,16 @@ public interface DomainWhois {
      * @return whois information for a single domain name along with {@link Response}.
      */
     Response<EnrichmentDomainWhois> getWithResponse(String resourceGroupName, String domain, Context context);
+
+    /**
+     * Get whois information for a single domain name.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param domain Domain name to be enriched.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return whois information for a single domain name.
+     */
+    EnrichmentDomainWhois get(String resourceGroupName, String domain);
 }

@@ -17,6 +17,10 @@ public final class ActionResponseProperties extends ActionPropertiesBase {
     @JsonProperty(value = "workflowId")
     private String workflowId;
 
+    /** Creates an instance of ActionResponseProperties class. */
+    public ActionResponseProperties() {
+    }
+
     /**
      * Get the workflowId property: The name of the logic app's workflow.
      *

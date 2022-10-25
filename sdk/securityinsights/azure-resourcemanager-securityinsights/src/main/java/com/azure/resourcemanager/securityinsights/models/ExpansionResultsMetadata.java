@@ -17,6 +17,10 @@ public final class ExpansionResultsMetadata {
     @JsonProperty(value = "aggregations")
     private List<ExpansionResultAggregation> aggregations;
 
+    /** Creates an instance of ExpansionResultsMetadata class. */
+    public ExpansionResultsMetadata() {
+    }
+
     /**
      * Get the aggregations property: Information of the aggregated nodes in the expansion result.
      *
