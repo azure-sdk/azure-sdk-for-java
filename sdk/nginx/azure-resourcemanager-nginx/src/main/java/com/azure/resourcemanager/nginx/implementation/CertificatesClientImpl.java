@@ -140,7 +140,7 @@ public final class CertificatesClientImpl implements CertificatesClient {
     }
 
     /**
-     * Get a certificate of given Nginx deployment.
+     * Get a certificate of s given Nginx deployment.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param deploymentName The name of targeted Nginx deployment.
@@ -148,7 +148,7 @@ public final class CertificatesClientImpl implements CertificatesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a certificate of given Nginx deployment along with {@link Response} on successful completion of {@link
+     * @return a certificate of s given Nginx deployment along with {@link Response} on successful completion of {@link
      *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
@@ -195,7 +195,7 @@ public final class CertificatesClientImpl implements CertificatesClient {
     }
 
     /**
-     * Get a certificate of given Nginx deployment.
+     * Get a certificate of s given Nginx deployment.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param deploymentName The name of targeted Nginx deployment.
@@ -204,7 +204,7 @@ public final class CertificatesClientImpl implements CertificatesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a certificate of given Nginx deployment along with {@link Response} on successful completion of {@link
+     * @return a certificate of s given Nginx deployment along with {@link Response} on successful completion of {@link
      *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
@@ -248,7 +248,7 @@ public final class CertificatesClientImpl implements CertificatesClient {
     }
 
     /**
-     * Get a certificate of given Nginx deployment.
+     * Get a certificate of s given Nginx deployment.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param deploymentName The name of targeted Nginx deployment.
@@ -256,7 +256,7 @@ public final class CertificatesClientImpl implements CertificatesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a certificate of given Nginx deployment on successful completion of {@link Mono}.
+     * @return a certificate of s given Nginx deployment on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<NginxCertificateInner> getAsync(
@@ -266,7 +266,7 @@ public final class CertificatesClientImpl implements CertificatesClient {
     }
 
     /**
-     * Get a certificate of given Nginx deployment.
+     * Get a certificate of s given Nginx deployment.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param deploymentName The name of targeted Nginx deployment.
@@ -275,7 +275,7 @@ public final class CertificatesClientImpl implements CertificatesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a certificate of given Nginx deployment along with {@link Response}.
+     * @return a certificate of s given Nginx deployment along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<NginxCertificateInner> getWithResponse(
@@ -284,7 +284,7 @@ public final class CertificatesClientImpl implements CertificatesClient {
     }
 
     /**
-     * Get a certificate of given Nginx deployment.
+     * Get a certificate of s given Nginx deployment.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param deploymentName The name of targeted Nginx deployment.
@@ -292,7 +292,7 @@ public final class CertificatesClientImpl implements CertificatesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a certificate of given Nginx deployment.
+     * @return a certificate of s given Nginx deployment.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public NginxCertificateInner get(String resourceGroupName, String deploymentName, String certificateName) {

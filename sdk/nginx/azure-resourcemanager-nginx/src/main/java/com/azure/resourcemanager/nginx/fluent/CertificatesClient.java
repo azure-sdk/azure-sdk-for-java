@@ -16,7 +16,7 @@ import com.azure.resourcemanager.nginx.fluent.models.NginxCertificateInner;
 /** An instance of this class provides access to all the operations defined in CertificatesClient. */
 public interface CertificatesClient {
     /**
-     * Get a certificate of given Nginx deployment.
+     * Get a certificate of s given Nginx deployment.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param deploymentName The name of targeted Nginx deployment.
@@ -25,14 +25,14 @@ public interface CertificatesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a certificate of given Nginx deployment along with {@link Response}.
+     * @return a certificate of s given Nginx deployment along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<NginxCertificateInner> getWithResponse(
         String resourceGroupName, String deploymentName, String certificateName, Context context);
 
     /**
-     * Get a certificate of given Nginx deployment.
+     * Get a certificate of s given Nginx deployment.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param deploymentName The name of targeted Nginx deployment.
@@ -40,7 +40,7 @@ public interface CertificatesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a certificate of given Nginx deployment.
+     * @return a certificate of s given Nginx deployment.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     NginxCertificateInner get(String resourceGroupName, String deploymentName, String certificateName);

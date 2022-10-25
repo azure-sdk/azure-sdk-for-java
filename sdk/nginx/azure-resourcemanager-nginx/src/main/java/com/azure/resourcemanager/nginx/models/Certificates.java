@@ -11,7 +11,7 @@ import com.azure.core.util.Context;
 /** Resource collection API of Certificates. */
 public interface Certificates {
     /**
-     * Get a certificate of given Nginx deployment.
+     * Get a certificate of s given Nginx deployment.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param deploymentName The name of targeted Nginx deployment.
@@ -20,13 +20,13 @@ public interface Certificates {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a certificate of given Nginx deployment along with {@link Response}.
+     * @return a certificate of s given Nginx deployment along with {@link Response}.
      */
     Response<NginxCertificate> getWithResponse(
         String resourceGroupName, String deploymentName, String certificateName, Context context);
 
     /**
-     * Get a certificate of given Nginx deployment.
+     * Get a certificate of s given Nginx deployment.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param deploymentName The name of targeted Nginx deployment.
@@ -34,7 +34,7 @@ public interface Certificates {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a certificate of given Nginx deployment.
+     * @return a certificate of s given Nginx deployment.
      */
     NginxCertificate get(String resourceGroupName, String deploymentName, String certificateName);
 
@@ -89,25 +89,25 @@ public interface Certificates {
     PagedIterable<NginxCertificate> list(String resourceGroupName, String deploymentName, Context context);
 
     /**
-     * Get a certificate of given Nginx deployment.
+     * Get a certificate of s given Nginx deployment.
      *
      * @param id the resource ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a certificate of given Nginx deployment along with {@link Response}.
+     * @return a certificate of s given Nginx deployment along with {@link Response}.
      */
     NginxCertificate getById(String id);
 
     /**
-     * Get a certificate of given Nginx deployment.
+     * Get a certificate of s given Nginx deployment.
      *
      * @param id the resource ID.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a certificate of given Nginx deployment along with {@link Response}.
+     * @return a certificate of s given Nginx deployment along with {@link Response}.
      */
     Response<NginxCertificate> getByIdWithResponse(String id, Context context);
 
