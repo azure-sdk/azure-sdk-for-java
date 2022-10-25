@@ -19,6 +19,10 @@ public final class OfficeDataConnectorProperties extends DataConnectorTenantId {
     @JsonProperty(value = "dataTypes", required = true)
     private OfficeDataConnectorDataTypes dataTypes;
 
+    /** Creates an instance of OfficeDataConnectorProperties class. */
+    public OfficeDataConnectorProperties() {
+    }
+
     /**
      * Get the dataTypes property: The available data types for the connector.
      *

@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for FileImports Delete. */
 public final class FileImportsDeleteSamples {
     /*
-     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/fileImports/DeleteFileImport.json
+     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2023-03-01-preview/examples/fileImports/DeleteFileImport.json
      */
     /**
      * Sample code: Delete a file import.

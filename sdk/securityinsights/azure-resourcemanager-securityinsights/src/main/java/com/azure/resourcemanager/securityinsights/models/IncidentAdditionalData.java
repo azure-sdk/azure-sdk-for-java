@@ -53,6 +53,10 @@ public final class IncidentAdditionalData {
     @JsonProperty(value = "techniques", access = JsonProperty.Access.WRITE_ONLY)
     private List<String> techniques;
 
+    /** Creates an instance of IncidentAdditionalData class. */
+    public IncidentAdditionalData() {
+    }
+
     /**
      * Get the alertsCount property: The number of alerts in the incident.
      *

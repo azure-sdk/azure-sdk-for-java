@@ -22,6 +22,10 @@ public final class Anomalies extends SettingsInner {
     @JsonProperty(value = "properties")
     private AnomaliesSettingsProperties innerProperties;
 
+    /** Creates an instance of Anomalies class. */
+    public Anomalies() {
+    }
+
     /**
      * Get the innerProperties property: Anomalies properties.
      *

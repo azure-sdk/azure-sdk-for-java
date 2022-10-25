@@ -26,6 +26,10 @@ public final class IncidentInner extends ResourceWithEtag {
     @JsonProperty(value = "properties")
     private IncidentPropertiesInner innerProperties;
 
+    /** Creates an instance of IncidentInner class. */
+    public IncidentInner() {
+    }
+
     /**
      * Get the innerProperties property: Incident properties.
      *

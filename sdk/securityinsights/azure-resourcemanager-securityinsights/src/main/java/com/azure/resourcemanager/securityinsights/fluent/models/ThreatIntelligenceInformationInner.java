@@ -21,6 +21,10 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @JsonSubTypes({@JsonSubTypes.Type(name = "indicator", value = ThreatIntelligenceIndicatorModel.class)})
 @Fluent
 public class ThreatIntelligenceInformationInner extends ResourceWithEtag {
+    /** Creates an instance of ThreatIntelligenceInformationInner class. */
+    public ThreatIntelligenceInformationInner() {
+    }
+
     /** {@inheritDoc} */
     @Override
     public ThreatIntelligenceInformationInner withEtag(String etag) {

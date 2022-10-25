@@ -57,6 +57,7 @@ import com.azure.resourcemanager.securityinsights.fluent.ThreatIntelligenceIndic
 import com.azure.resourcemanager.securityinsights.fluent.ThreatIntelligenceIndicatorsOperationsClient;
 import com.azure.resourcemanager.securityinsights.fluent.WatchlistItemsClient;
 import com.azure.resourcemanager.securityinsights.fluent.WatchlistsClient;
+import com.azure.resourcemanager.securityinsights.fluent.WorkspaceManagerGroupsClient;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.nio.ByteBuffer;
@@ -513,6 +514,18 @@ public final class SecurityInsightsImpl implements SecurityInsights {
         return this.watchlistItems;
     }
 
+    /** The WorkspaceManagerGroupsClient object to access its operations. */
+    private final WorkspaceManagerGroupsClient workspaceManagerGroups;
+
+    /**
+     * Gets the WorkspaceManagerGroupsClient object to access its operations.
+     *
+     * @return the WorkspaceManagerGroupsClient object.
+     */
+    public WorkspaceManagerGroupsClient getWorkspaceManagerGroups() {
+        return this.workspaceManagerGroups;
+    }
+
     /** The DataConnectorsClient object to access its operations. */
     private final DataConnectorsClient dataConnectors;
 
@@ -571,7 +584,7 @@ public final class SecurityInsightsImpl implements SecurityInsights {
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2022-09-01-preview";
+        this.apiVersion = "2023-03-01-preview";
         this.alertRules = new AlertRulesClientImpl(this);
         this.actions = new ActionsClientImpl(this);
         this.alertRuleTemplates = new AlertRuleTemplatesClientImpl(this);
@@ -603,6 +616,7 @@ public final class SecurityInsightsImpl implements SecurityInsights {
         this.threatIntelligenceIndicatorMetrics = new ThreatIntelligenceIndicatorMetricsClientImpl(this);
         this.watchlists = new WatchlistsClientImpl(this);
         this.watchlistItems = new WatchlistItemsClientImpl(this);
+        this.workspaceManagerGroups = new WorkspaceManagerGroupsClientImpl(this);
         this.dataConnectors = new DataConnectorsClientImpl(this);
         this.dataConnectorsCheckRequirementsOperations = new DataConnectorsCheckRequirementsOperationsClientImpl(this);
         this.operations = new OperationsClientImpl(this);

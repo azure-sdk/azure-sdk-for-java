@@ -35,6 +35,10 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 })
 @Fluent
 public class AlertRuleInner extends ResourceWithEtag {
+    /** Creates an instance of AlertRuleInner class. */
+    public AlertRuleInner() {
+    }
+
     /** {@inheritDoc} */
     @Override
     public AlertRuleInner withEtag(String etag) {

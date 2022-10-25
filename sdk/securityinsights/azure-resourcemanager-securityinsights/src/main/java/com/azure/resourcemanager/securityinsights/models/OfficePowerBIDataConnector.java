@@ -22,6 +22,10 @@ public final class OfficePowerBIDataConnector extends DataConnectorInner {
     @JsonProperty(value = "properties")
     private OfficePowerBIDataConnectorProperties innerProperties;
 
+    /** Creates an instance of OfficePowerBIDataConnector class. */
+    public OfficePowerBIDataConnector() {
+    }
+
     /**
      * Get the innerProperties property: Office Microsoft PowerBI data connector properties.
      *
