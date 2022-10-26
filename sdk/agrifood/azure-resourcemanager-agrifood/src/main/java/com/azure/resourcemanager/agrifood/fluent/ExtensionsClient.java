@@ -20,20 +20,6 @@ public interface ExtensionsClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param farmBeatsResourceName FarmBeats resource name.
      * @param extensionId Id of extension resource.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return extension resource.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    ExtensionInner create(String resourceGroupName, String farmBeatsResourceName, String extensionId);
-
-    /**
-     * Install extension.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param farmBeatsResourceName FarmBeats resource name.
-     * @param extensionId Id of extension resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -45,7 +31,7 @@ public interface ExtensionsClient {
         String resourceGroupName, String farmBeatsResourceName, String extensionId, Context context);
 
     /**
-     * Get installed extension details by extension id.
+     * Install extension.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param farmBeatsResourceName FarmBeats resource name.
@@ -53,10 +39,10 @@ public interface ExtensionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return installed extension details by extension id.
+     * @return extension resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    ExtensionInner get(String resourceGroupName, String farmBeatsResourceName, String extensionId);
+    ExtensionInner create(String resourceGroupName, String farmBeatsResourceName, String extensionId);
 
     /**
      * Get installed extension details by extension id.
@@ -75,7 +61,7 @@ public interface ExtensionsClient {
         String resourceGroupName, String farmBeatsResourceName, String extensionId, Context context);
 
     /**
-     * Upgrade to latest extension.
+     * Get installed extension details by extension id.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param farmBeatsResourceName FarmBeats resource name.
@@ -83,10 +69,10 @@ public interface ExtensionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return extension resource.
+     * @return installed extension details by extension id.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    ExtensionInner update(String resourceGroupName, String farmBeatsResourceName, String extensionId);
+    ExtensionInner get(String resourceGroupName, String farmBeatsResourceName, String extensionId);
 
     /**
      * Upgrade to latest extension.
@@ -105,7 +91,7 @@ public interface ExtensionsClient {
         String resourceGroupName, String farmBeatsResourceName, String extensionId, Context context);
 
     /**
-     * Uninstall extension.
+     * Upgrade to latest extension.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param farmBeatsResourceName FarmBeats resource name.
@@ -113,9 +99,10 @@ public interface ExtensionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return extension resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    void delete(String resourceGroupName, String farmBeatsResourceName, String extensionId);
+    ExtensionInner update(String resourceGroupName, String farmBeatsResourceName, String extensionId);
 
     /**
      * Uninstall extension.
@@ -132,6 +119,19 @@ public interface ExtensionsClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<Void> deleteWithResponse(
         String resourceGroupName, String farmBeatsResourceName, String extensionId, Context context);
+
+    /**
+     * Uninstall extension.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param farmBeatsResourceName FarmBeats resource name.
+     * @param extensionId Id of extension resource.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    void delete(String resourceGroupName, String farmBeatsResourceName, String extensionId);
 
     /**
      * Get installed extensions details.

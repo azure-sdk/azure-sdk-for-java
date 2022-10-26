@@ -13,7 +13,7 @@
   <packaging>jar</packaging>
 
   <name>Microsoft Azure SDK for AgriFood Management</name>
-  <description>This package contains Microsoft Azure SDK for AgriFood Management SDK. For documentation on how to use this package, please see https://aka.ms/azsdk/java/mgmt. APIs documentation for Azure AgFoodPlatform Resource Provider Service. Package tag package-preview-2021-09.</description>
+  <description>This package contains Microsoft Azure SDK for AgriFood Management SDK. For documentation on how to use this package, please see https://aka.ms/azsdk/java/mgmt. APIs documentation for Azure s AgFoodPlatform Resource Provider Service. Package tag package-preview-2021-09.</description>
   <url>https://github.com/Azure/azure-sdk-for-java</url>
 
   <licenses>

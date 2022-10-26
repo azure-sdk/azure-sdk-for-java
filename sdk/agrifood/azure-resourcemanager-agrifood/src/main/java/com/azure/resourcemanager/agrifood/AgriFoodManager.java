@@ -46,7 +46,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-/** Entry point to AgriFoodManager. APIs documentation for Azure AgFoodPlatform Resource Provider Service. */
+/** Entry point to AgriFoodManager. APIs documentation for Azure s AgFoodPlatform Resource Provider Service. */
 public final class AgriFoodManager {
     private Extensions extensions;
 

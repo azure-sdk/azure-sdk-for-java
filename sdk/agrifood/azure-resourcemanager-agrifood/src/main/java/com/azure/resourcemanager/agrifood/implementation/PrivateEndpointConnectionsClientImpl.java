@@ -296,28 +296,6 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
      * @param farmBeatsResourceName FarmBeats resource name.
      * @param privateEndpointConnectionName Private endpoint connection name.
      * @param body Request object.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the Private Endpoint Connection resource.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public PrivateEndpointConnectionInner createOrUpdate(
-        String resourceGroupName,
-        String farmBeatsResourceName,
-        String privateEndpointConnectionName,
-        PrivateEndpointConnectionInner body) {
-        return createOrUpdateAsync(resourceGroupName, farmBeatsResourceName, privateEndpointConnectionName, body)
-            .block();
-    }
-
-    /**
-     * Approves or Rejects a Private endpoint connection request.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param farmBeatsResourceName FarmBeats resource name.
-     * @param privateEndpointConnectionName Private endpoint connection name.
-     * @param body Request object.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -334,6 +312,29 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
         return createOrUpdateWithResponseAsync(
                 resourceGroupName, farmBeatsResourceName, privateEndpointConnectionName, body, context)
             .block();
+    }
+
+    /**
+     * Approves or Rejects a Private endpoint connection request.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param farmBeatsResourceName FarmBeats resource name.
+     * @param privateEndpointConnectionName Private endpoint connection name.
+     * @param body Request object.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the Private Endpoint Connection resource.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public PrivateEndpointConnectionInner createOrUpdate(
+        String resourceGroupName,
+        String farmBeatsResourceName,
+        String privateEndpointConnectionName,
+        PrivateEndpointConnectionInner body) {
+        return createOrUpdateWithResponse(
+                resourceGroupName, farmBeatsResourceName, privateEndpointConnectionName, body, Context.NONE)
+            .getValue();
     }
 
     /**
@@ -472,23 +473,6 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param farmBeatsResourceName FarmBeats resource name.
      * @param privateEndpointConnectionName Private endpoint connection name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return private endpoint connection object.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public PrivateEndpointConnectionInner get(
-        String resourceGroupName, String farmBeatsResourceName, String privateEndpointConnectionName) {
-        return getAsync(resourceGroupName, farmBeatsResourceName, privateEndpointConnectionName).block();
-    }
-
-    /**
-     * Get Private endpoint connection object.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param farmBeatsResourceName FarmBeats resource name.
-     * @param privateEndpointConnectionName Private endpoint connection name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -500,6 +484,24 @@ public final class PrivateEndpointConnectionsClientImpl implements PrivateEndpoi
         String resourceGroupName, String farmBeatsResourceName, String privateEndpointConnectionName, Context context) {
         return getWithResponseAsync(resourceGroupName, farmBeatsResourceName, privateEndpointConnectionName, context)
             .block();
+    }
+
+    /**
+     * Get Private endpoint connection object.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param farmBeatsResourceName FarmBeats resource name.
+     * @param privateEndpointConnectionName Private endpoint connection name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return private endpoint connection object.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public PrivateEndpointConnectionInner get(
+        String resourceGroupName, String farmBeatsResourceName, String privateEndpointConnectionName) {
+        return getWithResponse(resourceGroupName, farmBeatsResourceName, privateEndpointConnectionName, Context.NONE)
+            .getValue();
     }
 
     /**

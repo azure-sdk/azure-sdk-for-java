@@ -28,15 +28,6 @@ public final class ExtensionsImpl implements Extensions {
         this.serviceManager = serviceManager;
     }
 
-    public Extension create(String resourceGroupName, String farmBeatsResourceName, String extensionId) {
-        ExtensionInner inner = this.serviceClient().create(resourceGroupName, farmBeatsResourceName, extensionId);
-        if (inner != null) {
-            return new ExtensionImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
     public Response<Extension> createWithResponse(
         String resourceGroupName, String farmBeatsResourceName, String extensionId, Context context) {
         Response<ExtensionInner> inner =
@@ -52,8 +43,8 @@ public final class ExtensionsImpl implements Extensions {
         }
     }
 
-    public Extension get(String resourceGroupName, String farmBeatsResourceName, String extensionId) {
-        ExtensionInner inner = this.serviceClient().get(resourceGroupName, farmBeatsResourceName, extensionId);
+    public Extension create(String resourceGroupName, String farmBeatsResourceName, String extensionId) {
+        ExtensionInner inner = this.serviceClient().create(resourceGroupName, farmBeatsResourceName, extensionId);
         if (inner != null) {
             return new ExtensionImpl(inner, this.manager());
         } else {
@@ -76,8 +67,8 @@ public final class ExtensionsImpl implements Extensions {
         }
     }
 
-    public Extension update(String resourceGroupName, String farmBeatsResourceName, String extensionId) {
-        ExtensionInner inner = this.serviceClient().update(resourceGroupName, farmBeatsResourceName, extensionId);
+    public Extension get(String resourceGroupName, String farmBeatsResourceName, String extensionId) {
+        ExtensionInner inner = this.serviceClient().get(resourceGroupName, farmBeatsResourceName, extensionId);
         if (inner != null) {
             return new ExtensionImpl(inner, this.manager());
         } else {
@@ -100,13 +91,22 @@ public final class ExtensionsImpl implements Extensions {
         }
     }
 
-    public void delete(String resourceGroupName, String farmBeatsResourceName, String extensionId) {
-        this.serviceClient().delete(resourceGroupName, farmBeatsResourceName, extensionId);
+    public Extension update(String resourceGroupName, String farmBeatsResourceName, String extensionId) {
+        ExtensionInner inner = this.serviceClient().update(resourceGroupName, farmBeatsResourceName, extensionId);
+        if (inner != null) {
+            return new ExtensionImpl(inner, this.manager());
+        } else {
+            return null;
+        }
     }
 
     public Response<Void> deleteWithResponse(
         String resourceGroupName, String farmBeatsResourceName, String extensionId, Context context) {
         return this.serviceClient().deleteWithResponse(resourceGroupName, farmBeatsResourceName, extensionId, context);
+    }
+
+    public void delete(String resourceGroupName, String farmBeatsResourceName, String extensionId) {
+        this.serviceClient().delete(resourceGroupName, farmBeatsResourceName, extensionId);
     }
 
     public PagedIterable<Extension> listByFarmBeats(String resourceGroupName, String farmBeatsResourceName) {

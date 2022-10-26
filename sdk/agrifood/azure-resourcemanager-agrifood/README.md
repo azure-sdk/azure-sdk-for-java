@@ -2,7 +2,7 @@
 
 Azure Resource Manager AgriFood client library for Java.
 
-This package contains Microsoft Azure SDK for AgriFood Management SDK. APIs documentation for Azure AgFoodPlatform Resource Provider Service. Package tag package-preview-2021-09. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
+This package contains Microsoft Azure SDK for AgriFood Management SDK. APIs documentation for Azure s AgFoodPlatform Resource Provider Service. Package tag package-preview-2021-09. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ## We'd love to hear your feedback
 
@@ -32,7 +32,7 @@ Various documentation is available to help you get started
 <dependency>
     <groupId>com.azure.resourcemanager</groupId>
     <artifactId>azure-resourcemanager-agrifood</artifactId>
-    <version>1.0.0-beta.1</version>
+    <version>1.0.0-beta.2</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})

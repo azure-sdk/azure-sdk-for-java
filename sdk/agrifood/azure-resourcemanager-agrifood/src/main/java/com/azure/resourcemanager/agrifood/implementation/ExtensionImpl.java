@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.agrifood.implementation;
 
+import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.agrifood.fluent.models.ExtensionInner;
 import com.azure.resourcemanager.agrifood.models.Extension;
 
@@ -31,6 +32,10 @@ public final class ExtensionImpl implements Extension {
 
     public String etag() {
         return this.innerModel().etag();
+    }
+
+    public SystemData systemData() {
+        return this.innerModel().systemData();
     }
 
     public String extensionId() {
