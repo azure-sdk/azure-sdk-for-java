@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for NodeArcState. */
+/** State of Arc agent in this node. */
 public final class NodeArcState extends ExpandableStringEnum<NodeArcState> {
     /** Static value NotSpecified for NodeArcState. */
     public static final NodeArcState NOT_SPECIFIED = fromString("NotSpecified");

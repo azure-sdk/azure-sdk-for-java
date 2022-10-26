@@ -54,6 +54,10 @@ public final class ClusterReportedProperties {
     @JsonProperty(value = "diagnosticLevel")
     private DiagnosticLevel diagnosticLevel;
 
+    /** Creates an instance of ClusterReportedProperties class. */
+    public ClusterReportedProperties() {
+    }
+
     /**
      * Get the clusterName property: Name of the on-prem cluster connected to this resource.
      *
