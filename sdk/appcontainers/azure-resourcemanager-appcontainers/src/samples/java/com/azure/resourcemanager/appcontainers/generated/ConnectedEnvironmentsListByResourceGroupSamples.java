@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for ConnectedEnvironments ListByResourceGroup. */
 public final class ConnectedEnvironmentsListByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2022-06-01-preview/examples/ConnectedEnvironments_ListByResourceGroup.json
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2022-10-01/examples/ConnectedEnvironments_ListByResourceGroup.json
      */
     /**
      * Sample code: List environments by resource group.

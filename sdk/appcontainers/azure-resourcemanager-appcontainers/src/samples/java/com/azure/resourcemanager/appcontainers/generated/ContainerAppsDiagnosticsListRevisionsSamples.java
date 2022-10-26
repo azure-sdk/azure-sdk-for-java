@@ -9,14 +9,14 @@ import com.azure.core.util.Context;
 /** Samples for ContainerAppsDiagnostics ListRevisions. */
 public final class ContainerAppsDiagnosticsListRevisionsSamples {
     /*
-     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2022-06-01-preview/examples/Revisions_List.json
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2022-10-01/examples/Revisions_List.json
      */
     /**
-     * Sample code: List Container App's revisions.
+     * Sample code: List Container App's revisions for diagnostics.
      *
      * @param manager Entry point to ContainerAppsApiManager.
      */
-    public static void listContainerAppSRevisions(
+    public static void listContainerAppSRevisionsForDiagnostics(
         com.azure.resourcemanager.appcontainers.ContainerAppsApiManager manager) {
         manager.containerAppsDiagnostics().listRevisions("rg", "testcontainerApp0", null, Context.NONE);
     }

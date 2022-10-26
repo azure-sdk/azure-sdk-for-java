@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for ConnectedEnvironmentsStorages List. */
 public final class ConnectedEnvironmentsStoragesListSamples {
     /*
-     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2022-06-01-preview/examples/ConnectedEnvironmentsStorages_List.json
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2022-10-01/examples/ConnectedEnvironmentsStorages_List.json
      */
     /**
      * Sample code: List environments storages by subscription.

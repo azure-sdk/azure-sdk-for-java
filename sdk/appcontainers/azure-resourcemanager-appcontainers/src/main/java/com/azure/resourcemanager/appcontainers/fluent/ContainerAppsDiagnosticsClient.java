@@ -9,6 +9,7 @@ import com.azure.core.annotation.ServiceMethod;
 import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.http.rest.Response;
 import com.azure.core.util.Context;
+import com.azure.resourcemanager.appcontainers.fluent.models.AuthConfigInner;
 import com.azure.resourcemanager.appcontainers.fluent.models.ContainerAppInner;
 import com.azure.resourcemanager.appcontainers.fluent.models.DiagnosticsInner;
 import com.azure.resourcemanager.appcontainers.fluent.models.RevisionInner;
@@ -165,4 +166,34 @@ public interface ContainerAppsDiagnosticsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     ContainerAppInner getRoot(String resourceGroupName, String containerAppName);
+
+    /**
+     * Get the authentication configurations of a Container App.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param containerAppName Name of the Container App.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.resourcemanager.appcontainers.models.DefaultErrorResponseErrorException thrown if the request
+     *     is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the authentication configurations of a Container App along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    Response<AuthConfigInner> getAuthConfigsWithResponse(
+        String resourceGroupName, String containerAppName, Context context);
+
+    /**
+     * Get the authentication configurations of a Container App.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param containerAppName Name of the Container App.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.resourcemanager.appcontainers.models.DefaultErrorResponseErrorException thrown if the request
+     *     is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the authentication configurations of a Container App.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    AuthConfigInner getAuthConfigs(String resourceGroupName, String containerAppName);
 }

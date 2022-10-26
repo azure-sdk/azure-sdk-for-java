@@ -4,12 +4,17 @@
 
 package com.azure.resourcemanager.appcontainers.implementation;
 
+import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.http.rest.Response;
 import com.azure.core.http.rest.SimpleResponse;
 import com.azure.core.util.Context;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.appcontainers.fluent.ManagedEnvironmentsDiagnosticsClient;
+import com.azure.resourcemanager.appcontainers.fluent.models.CertificateInner;
+import com.azure.resourcemanager.appcontainers.fluent.models.DaprComponentInner;
 import com.azure.resourcemanager.appcontainers.fluent.models.ManagedEnvironmentInner;
+import com.azure.resourcemanager.appcontainers.models.Certificate;
+import com.azure.resourcemanager.appcontainers.models.DaprComponent;
 import com.azure.resourcemanager.appcontainers.models.ManagedEnvironment;
 import com.azure.resourcemanager.appcontainers.models.ManagedEnvironmentsDiagnostics;
 
@@ -46,6 +51,86 @@ public final class ManagedEnvironmentsDiagnosticsImpl implements ManagedEnvironm
         ManagedEnvironmentInner inner = this.serviceClient().getRoot(resourceGroupName, environmentName);
         if (inner != null) {
             return new ManagedEnvironmentImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
+    public PagedIterable<DaprComponent> listDaprComponents(String resourceGroupName, String environmentName) {
+        PagedIterable<DaprComponentInner> inner =
+            this.serviceClient().listDaprComponents(resourceGroupName, environmentName);
+        return Utils.mapPage(inner, inner1 -> new DaprComponentImpl(inner1, this.manager()));
+    }
+
+    public PagedIterable<DaprComponent> listDaprComponents(
+        String resourceGroupName, String environmentName, Context context) {
+        PagedIterable<DaprComponentInner> inner =
+            this.serviceClient().listDaprComponents(resourceGroupName, environmentName, context);
+        return Utils.mapPage(inner, inner1 -> new DaprComponentImpl(inner1, this.manager()));
+    }
+
+    public Response<DaprComponent> getDaprComponentsWithResponse(
+        String resourceGroupName, String environmentName, String componentName, Context context) {
+        Response<DaprComponentInner> inner =
+            this
+                .serviceClient()
+                .getDaprComponentsWithResponse(resourceGroupName, environmentName, componentName, context);
+        if (inner != null) {
+            return new SimpleResponse<>(
+                inner.getRequest(),
+                inner.getStatusCode(),
+                inner.getHeaders(),
+                new DaprComponentImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public DaprComponent getDaprComponents(String resourceGroupName, String environmentName, String componentName) {
+        DaprComponentInner inner =
+            this.serviceClient().getDaprComponents(resourceGroupName, environmentName, componentName);
+        if (inner != null) {
+            return new DaprComponentImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
+    public PagedIterable<Certificate> listCertificates(String resourceGroupName, String environmentName) {
+        PagedIterable<CertificateInner> inner =
+            this.serviceClient().listCertificates(resourceGroupName, environmentName);
+        return Utils.mapPage(inner, inner1 -> new CertificateImpl(inner1, this.manager()));
+    }
+
+    public PagedIterable<Certificate> listCertificates(
+        String resourceGroupName, String environmentName, Context context) {
+        PagedIterable<CertificateInner> inner =
+            this.serviceClient().listCertificates(resourceGroupName, environmentName, context);
+        return Utils.mapPage(inner, inner1 -> new CertificateImpl(inner1, this.manager()));
+    }
+
+    public Response<Certificate> getCertificatesWithResponse(
+        String resourceGroupName, String environmentName, String certificateName, Context context) {
+        Response<CertificateInner> inner =
+            this
+                .serviceClient()
+                .getCertificatesWithResponse(resourceGroupName, environmentName, certificateName, context);
+        if (inner != null) {
+            return new SimpleResponse<>(
+                inner.getRequest(),
+                inner.getStatusCode(),
+                inner.getHeaders(),
+                new CertificateImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public Certificate getCertificates(String resourceGroupName, String environmentName, String certificateName) {
+        CertificateInner inner =
+            this.serviceClient().getCertificates(resourceGroupName, environmentName, certificateName);
+        if (inner != null) {
+            return new CertificateImpl(inner, this.manager());
         } else {
             return null;
         }

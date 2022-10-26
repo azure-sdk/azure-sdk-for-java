@@ -18,7 +18,7 @@ import java.util.Arrays;
 /** Samples for ManagedEnvironments CreateOrUpdate. */
 public final class ManagedEnvironmentsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2022-06-01-preview/examples/ManagedEnvironments_CreateOrUpdate.json
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2022-10-01/examples/ManagedEnvironments_CreateOrUpdate.json
      */
     /**
      * Sample code: Create environments.

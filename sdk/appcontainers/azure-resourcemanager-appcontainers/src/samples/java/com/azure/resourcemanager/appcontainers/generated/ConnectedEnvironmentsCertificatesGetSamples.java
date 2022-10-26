@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for ConnectedEnvironmentsCertificates Get. */
 public final class ConnectedEnvironmentsCertificatesGetSamples {
     /*
-     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2022-06-01-preview/examples/ConnectedEnvironmentsCertificate_Get.json
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2022-10-01/examples/ConnectedEnvironmentsCertificate_Get.json
      */
     /**
      * Sample code: Get Certificate.

@@ -6,20 +6,20 @@ package com.azure.resourcemanager.appcontainers.generated;
 
 import com.azure.core.util.Context;
 
-/** Samples for ContainerAppsDiagnostics GetRevision. */
-public final class ContainerAppsDiagnosticsGetRevisionSamples {
+/** Samples for ContainerAppsDiagnostics GetAuthConfigs. */
+public final class ContainerAppsDiagnosticsGetAuthConfigsSamples {
     /*
-     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2022-10-01/examples/Revisions_Get.json
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2022-10-01/examples/Diagnostics_AuthConfigs_Get.json
      */
     /**
-     * Sample code: Get Container App's revision for diagnostics.
+     * Sample code: Get Container App's auth configs for diagnostics.
      *
      * @param manager Entry point to ContainerAppsApiManager.
      */
-    public static void getContainerAppSRevisionForDiagnostics(
+    public static void getContainerAppSAuthConfigsForDiagnostics(
         com.azure.resourcemanager.appcontainers.ContainerAppsApiManager manager) {
         manager
             .containerAppsDiagnostics()
-            .getRevisionWithResponse("rg", "testcontainerApp0", "testcontainerApp0-pjxhsye", Context.NONE);
+            .getAuthConfigsWithResponse("workerapps-rg-xj", "testcanadacentral", Context.NONE);
     }
 }

@@ -9,14 +9,15 @@ import com.azure.core.util.Context;
 /** Samples for ContainerAppsDiagnostics GetRoot. */
 public final class ContainerAppsDiagnosticsGetRootSamples {
     /*
-     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2022-06-01-preview/examples/ContainerApps_Get.json
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2022-10-01/examples/ContainerApps_Get.json
      */
     /**
-     * Sample code: Get Container App.
+     * Sample code: Get Container App for diagnostics.
      *
      * @param manager Entry point to ContainerAppsApiManager.
      */
-    public static void getContainerApp(com.azure.resourcemanager.appcontainers.ContainerAppsApiManager manager) {
+    public static void getContainerAppForDiagnostics(
+        com.azure.resourcemanager.appcontainers.ContainerAppsApiManager manager) {
         manager.containerAppsDiagnostics().getRootWithResponse("rg", "testcontainerApp0", Context.NONE);
     }
 }
