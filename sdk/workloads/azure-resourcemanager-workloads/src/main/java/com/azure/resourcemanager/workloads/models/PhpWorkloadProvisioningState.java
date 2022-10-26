@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for PhpWorkloadProvisioningState. */
+/** Php workload resource provisioning state. */
 public final class PhpWorkloadProvisioningState extends ExpandableStringEnum<PhpWorkloadProvisioningState> {
     /** Static value NotSpecified for PhpWorkloadProvisioningState. */
     public static final PhpWorkloadProvisioningState NOT_SPECIFIED = fromString("NotSpecified");

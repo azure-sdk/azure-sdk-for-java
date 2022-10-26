@@ -20,6 +20,10 @@ public final class PrometheusOSProviderInstanceProperties extends ProviderSpecif
     @JsonProperty(value = "prometheusUrl")
     private String prometheusUrl;
 
+    /** Creates an instance of PrometheusOSProviderInstanceProperties class. */
+    public PrometheusOSProviderInstanceProperties() {
+    }
+
     /**
      * Get the prometheusUrl property: URL of the Node Exporter endpoint.
      *

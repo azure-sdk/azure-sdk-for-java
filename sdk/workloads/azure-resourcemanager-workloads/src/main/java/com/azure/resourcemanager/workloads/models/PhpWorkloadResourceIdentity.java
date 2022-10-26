@@ -10,6 +10,10 @@ import java.util.Map;
 /** Identity for the resource. Currently not supported. */
 @Fluent
 public class PhpWorkloadResourceIdentity extends UserAssignedServiceIdentity {
+    /** Creates an instance of PhpWorkloadResourceIdentity class. */
+    public PhpWorkloadResourceIdentity() {
+    }
+
     /** {@inheritDoc} */
     @Override
     public PhpWorkloadResourceIdentity withType(ManagedServiceIdentityType type) {

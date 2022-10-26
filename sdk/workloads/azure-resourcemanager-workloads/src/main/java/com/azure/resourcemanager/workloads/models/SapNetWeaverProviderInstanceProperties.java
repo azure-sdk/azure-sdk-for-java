@@ -75,6 +75,10 @@ public final class SapNetWeaverProviderInstanceProperties extends ProviderSpecif
     @JsonProperty(value = "sapSslCertificateUri")
     private String sapSslCertificateUri;
 
+    /** Creates an instance of SapNetWeaverProviderInstanceProperties class. */
+    public SapNetWeaverProviderInstanceProperties() {
+    }
+
     /**
      * Get the sapSid property: Gets or sets the SAP System Identifier.
      *

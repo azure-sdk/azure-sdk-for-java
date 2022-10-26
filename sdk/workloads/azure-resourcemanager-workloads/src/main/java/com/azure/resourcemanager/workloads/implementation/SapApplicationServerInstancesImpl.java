@@ -30,17 +30,6 @@ public final class SapApplicationServerInstancesImpl implements SapApplicationSe
         this.serviceManager = serviceManager;
     }
 
-    public SapApplicationServerInstance get(
-        String resourceGroupName, String sapVirtualInstanceName, String applicationInstanceName) {
-        SapApplicationServerInstanceInner inner =
-            this.serviceClient().get(resourceGroupName, sapVirtualInstanceName, applicationInstanceName);
-        if (inner != null) {
-            return new SapApplicationServerInstanceImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
     public Response<SapApplicationServerInstance> getWithResponse(
         String resourceGroupName, String sapVirtualInstanceName, String applicationInstanceName, Context context) {
         Response<SapApplicationServerInstanceInner> inner =
@@ -53,6 +42,17 @@ public final class SapApplicationServerInstancesImpl implements SapApplicationSe
                 inner.getStatusCode(),
                 inner.getHeaders(),
                 new SapApplicationServerInstanceImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public SapApplicationServerInstance get(
+        String resourceGroupName, String sapVirtualInstanceName, String applicationInstanceName) {
+        SapApplicationServerInstanceInner inner =
+            this.serviceClient().get(resourceGroupName, sapVirtualInstanceName, applicationInstanceName);
+        if (inner != null) {
+            return new SapApplicationServerInstanceImpl(inner, this.manager());
         } else {
             return null;
         }

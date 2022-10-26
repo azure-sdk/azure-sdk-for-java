@@ -17,6 +17,10 @@ public final class PhpProfile {
     @JsonProperty(value = "version", required = true)
     private PhpVersion version;
 
+    /** Creates an instance of PhpProfile class. */
+    public PhpProfile() {
+    }
+
     /**
      * Get the version property: PHP version.
      *

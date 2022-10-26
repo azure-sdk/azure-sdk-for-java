@@ -56,6 +56,10 @@ public final class DB2ProviderInstanceProperties extends ProviderSpecificPropert
     @JsonProperty(value = "sapSid")
     private String sapSid;
 
+    /** Creates an instance of DB2ProviderInstanceProperties class. */
+    public DB2ProviderInstanceProperties() {
+    }
+
     /**
      * Get the hostname property: Gets or sets the target virtual machine name.
      *

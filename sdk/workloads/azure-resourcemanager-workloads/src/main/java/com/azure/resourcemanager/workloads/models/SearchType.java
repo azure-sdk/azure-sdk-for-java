@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for SearchType. */
+/** Search type. */
 public final class SearchType extends ExpandableStringEnum<SearchType> {
     /** Static value Elastic for SearchType. */
     public static final SearchType ELASTIC = fromString("Elastic");

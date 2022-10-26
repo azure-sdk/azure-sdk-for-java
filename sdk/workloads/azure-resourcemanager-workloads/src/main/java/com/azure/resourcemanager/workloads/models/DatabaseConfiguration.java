@@ -35,6 +35,10 @@ public final class DatabaseConfiguration {
     @JsonProperty(value = "instanceCount", required = true)
     private long instanceCount;
 
+    /** Creates an instance of DatabaseConfiguration class. */
+    public DatabaseConfiguration() {
+    }
+
     /**
      * Get the databaseType property: The database type.
      *

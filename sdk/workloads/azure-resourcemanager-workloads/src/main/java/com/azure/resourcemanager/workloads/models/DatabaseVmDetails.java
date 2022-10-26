@@ -7,7 +7,7 @@ package com.azure.resourcemanager.workloads.models;
 import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The Database VM Details. */
+/** Database VM details. */
 @Immutable
 public final class DatabaseVmDetails {
     /*
@@ -21,6 +21,10 @@ public final class DatabaseVmDetails {
      */
     @JsonProperty(value = "status", access = JsonProperty.Access.WRITE_ONLY)
     private SapVirtualInstanceStatus status;
+
+    /** Creates an instance of DatabaseVmDetails class. */
+    public DatabaseVmDetails() {
+    }
 
     /**
      * Get the virtualMachineId property: The virtualMachineId property.
