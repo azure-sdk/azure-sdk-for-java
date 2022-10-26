@@ -71,7 +71,7 @@ public final class ContainerAppProperties {
     /*
      * Outbound IP Addresses for container app.
      */
-    @JsonProperty(value = "outboundIpAddresses", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "outboundIPAddresses", access = JsonProperty.Access.WRITE_ONLY)
     private List<String> outboundIpAddresses;
 
     /*
