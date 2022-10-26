@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for HAEnabled. */
+/** Whether to enable HA for the server. */
 public final class HAEnabled extends ExpandableStringEnum<HAEnabled> {
     /** Static value Enabled for HAEnabled. */
     public static final HAEnabled ENABLED = fromString("Enabled");

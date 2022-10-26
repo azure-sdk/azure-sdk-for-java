@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for OSImagePublisher. */
+/** OS image publisher. */
 public final class OSImagePublisher extends ExpandableStringEnum<OSImagePublisher> {
     /** Static value Canonical for OSImagePublisher. */
     public static final OSImagePublisher CANONICAL = fromString("Canonical");

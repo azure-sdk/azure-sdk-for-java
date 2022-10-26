@@ -23,6 +23,10 @@ public final class BackupProfile {
     @JsonProperty(value = "vaultResourceId", access = JsonProperty.Access.WRITE_ONLY)
     private String vaultResourceId;
 
+    /** Creates an instance of BackupProfile class. */
+    public BackupProfile() {
+    }
+
     /**
      * Get the backupEnabled property: Whether to enable Azure backup for the workload.
      *

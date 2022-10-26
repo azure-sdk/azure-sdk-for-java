@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for SapConfigurationType. */
+/** The configuration Type. */
 public final class SapConfigurationType extends ExpandableStringEnum<SapConfigurationType> {
     /** Static value Deployment for SapConfigurationType. */
     public static final SapConfigurationType DEPLOYMENT = fromString("Deployment");

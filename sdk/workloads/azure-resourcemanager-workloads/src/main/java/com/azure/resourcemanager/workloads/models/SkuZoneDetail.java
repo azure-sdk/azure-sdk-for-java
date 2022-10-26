@@ -23,6 +23,10 @@ public final class SkuZoneDetail {
     @JsonProperty(value = "capabilities")
     private List<SkuCapability> capabilities;
 
+    /** Creates an instance of SkuZoneDetail class. */
+    public SkuZoneDetail() {
+    }
+
     /**
      * Get the zones property: The physical zones.
      *

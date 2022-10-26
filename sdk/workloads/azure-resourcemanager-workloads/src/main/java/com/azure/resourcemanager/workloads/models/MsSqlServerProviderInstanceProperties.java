@@ -50,6 +50,10 @@ public final class MsSqlServerProviderInstanceProperties extends ProviderSpecifi
     @JsonProperty(value = "sapSid")
     private String sapSid;
 
+    /** Creates an instance of MsSqlServerProviderInstanceProperties class. */
+    public MsSqlServerProviderInstanceProperties() {
+    }
+
     /**
      * Get the hostname property: Gets or sets the SQL server host name.
      *
