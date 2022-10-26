@@ -13,7 +13,7 @@ import com.azure.resourcemanager.loganalytics.models.WorkspaceSkuNameEnum;
 /** Samples for Workspaces Update. */
 public final class WorkspacesUpdateSamples {
     /*
-     * x-ms-original-file: specification/operationalinsights/resource-manager/Microsoft.OperationalInsights/preview/2021-12-01-preview/examples/WorkspacesUpdate.json
+     * x-ms-original-file: specification/operationalinsights/resource-manager/Microsoft.OperationalInsights/stable/2022-10-01/examples/WorkspacesUpdate.json
      */
     /**
      * Sample code: WorkspacesPatch.
@@ -30,7 +30,7 @@ public final class WorkspacesUpdateSamples {
             .update()
             .withSku(new WorkspaceSku().withName(WorkspaceSkuNameEnum.PER_GB2018))
             .withRetentionInDays(30)
-            .withWorkspaceCapping(new WorkspaceCapping().withDailyQuotaGb(-1.0))
+            .withWorkspaceCapping(new WorkspaceCapping().withDailyQuotaGb(-1.0D))
             .apply();
     }
 }

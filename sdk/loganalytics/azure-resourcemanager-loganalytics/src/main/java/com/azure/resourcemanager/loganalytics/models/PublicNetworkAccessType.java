@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for PublicNetworkAccessType. */
+/** The network access type for operating on the Log Analytics Workspace. By default it is Enabled. */
 public final class PublicNetworkAccessType extends ExpandableStringEnum<PublicNetworkAccessType> {
     /** Static value Enabled for PublicNetworkAccessType. */
     public static final PublicNetworkAccessType ENABLED = fromString("Enabled");

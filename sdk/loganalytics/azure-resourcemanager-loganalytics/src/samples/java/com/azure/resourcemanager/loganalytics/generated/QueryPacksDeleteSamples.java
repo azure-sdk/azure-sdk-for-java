@@ -17,6 +17,6 @@ public final class QueryPacksDeleteSamples {
      * @param manager Entry point to LogAnalyticsManager.
      */
     public static void queryPacksDelete(com.azure.resourcemanager.loganalytics.LogAnalyticsManager manager) {
-        manager.queryPacks().deleteWithResponse("my-resource-group", "my-querypack", Context.NONE);
+        manager.queryPacks().deleteByResourceGroupWithResponse("my-resource-group", "my-querypack", Context.NONE);
     }
 }
