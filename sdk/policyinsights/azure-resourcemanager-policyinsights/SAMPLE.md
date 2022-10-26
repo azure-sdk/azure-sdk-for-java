@@ -16,6 +16,15 @@
 - [ListByResourceGroup](#attestations_listbyresourcegroup)
 - [ListForResource](#attestations_listforresource)
 
+## ComponentPolicyStates
+
+- [ListQueryResultsForPolicyDefinition](#componentpolicystates_listqueryresultsforpolicydefinition)
+- [ListQueryResultsForResource](#componentpolicystates_listqueryresultsforresource)
+- [ListQueryResultsForResourceGroup](#componentpolicystates_listqueryresultsforresourcegroup)
+- [ListQueryResultsForResourceGroupLevelPolicyAssignment](#componentpolicystates_listqueryresultsforresourcegrouplevelpolicyassignment)
+- [ListQueryResultsForSubscription](#componentpolicystates_listqueryresultsforsubscription)
+- [ListQueryResultsForSubscriptionLevelPolicyAssignment](#componentpolicystates_listqueryresultsforsubscriptionlevelpolicyassignment)
+
 ## Operations
 
 - [List](#operations_list)
@@ -556,6 +565,386 @@ public final class AttestationsListForResourceSamples {
 }
 ```
 
+### ComponentPolicyStates_ListQueryResultsForPolicyDefinition
+
+```java
+import com.azure.core.util.Context;
+import com.azure.resourcemanager.policyinsights.models.ComponentPolicyStatesResource;
+
+/** Samples for ComponentPolicyStates ListQueryResultsForPolicyDefinition. */
+public final class ComponentPolicyStatesListQueryResultsForPolicyDefinitionSamples {
+    /*
+     * x-ms-original-file: specification/policyinsights/resource-manager/Microsoft.PolicyInsights/stable/2022-04-01/examples/ComponentPolicyStates_QuerySubscriptionLevelPolicyDefinitionScope.json
+     */
+    /**
+     * Sample code: Query latest component policy states at subscription level policy definition scope.
+     *
+     * @param manager Entry point to PolicyInsightsManager.
+     */
+    public static void queryLatestComponentPolicyStatesAtSubscriptionLevelPolicyDefinitionScope(
+        com.azure.resourcemanager.policyinsights.PolicyInsightsManager manager) {
+        manager
+            .componentPolicyStates()
+            .listQueryResultsForPolicyDefinitionWithResponse(
+                "fffedd8f-ffff-fffd-fffd-fffed2f84852",
+                "24813039-7534-408a-9842-eb99f45721b1",
+                ComponentPolicyStatesResource.LATEST,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                Context.NONE);
+    }
+}
+```
+
+### ComponentPolicyStates_ListQueryResultsForResource
+
+```java
+import com.azure.core.util.Context;
+import com.azure.resourcemanager.policyinsights.models.ComponentPolicyStatesResource;
+
+/** Samples for ComponentPolicyStates ListQueryResultsForResource. */
+public final class ComponentPolicyStatesListQueryResultsForResourceSamples {
+    /*
+     * x-ms-original-file: specification/policyinsights/resource-manager/Microsoft.PolicyInsights/stable/2022-04-01/examples/ComponentPolicyStates_QueryResourceScopeFilterByComponentId.json
+     */
+    /**
+     * Sample code: Query latest component policy compliance state at resource scope filtered by given component id.
+     *
+     * @param manager Entry point to PolicyInsightsManager.
+     */
+    public static void queryLatestComponentPolicyComplianceStateAtResourceScopeFilteredByGivenComponentId(
+        com.azure.resourcemanager.policyinsights.PolicyInsightsManager manager) {
+        manager
+            .componentPolicyStates()
+            .listQueryResultsForResourceWithResponse(
+                "subscriptions/fff10b27-fff3-fff5-fff8-fffbe01e86a5/resourceGroups/myResourceGroup/providers/Microsoft.KeyVault/Vaults/myKVName",
+                ComponentPolicyStatesResource.LATEST,
+                null,
+                null,
+                null,
+                null,
+                null,
+                "componentId eq cert-RSA-cert-3",
+                null,
+                null,
+                Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file: specification/policyinsights/resource-manager/Microsoft.PolicyInsights/stable/2022-04-01/examples/ComponentPolicyStates_QueryNestedResourceScope.json
+     */
+    /**
+     * Sample code: Query latest component policy states at nested resource scope.
+     *
+     * @param manager Entry point to PolicyInsightsManager.
+     */
+    public static void queryLatestComponentPolicyStatesAtNestedResourceScope(
+        com.azure.resourcemanager.policyinsights.PolicyInsightsManager manager) {
+        manager
+            .componentPolicyStates()
+            .listQueryResultsForResourceWithResponse(
+                "subscriptions/fff10b27-fff3-fff5-fff8-fffbe01e86a5/resourceGroups/myResourceGroup/providers/Microsoft.KeyVault/vaults/myVault",
+                ComponentPolicyStatesResource.LATEST,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file: specification/policyinsights/resource-manager/Microsoft.PolicyInsights/stable/2022-04-01/examples/ComponentPolicyStates_QueryResourceScopeGroupByComponentTypeWithAggregate.json
+     */
+    /**
+     * Sample code: Query latest component policy compliance state count grouped by component type at resource scope
+     * filtered by given assignment.
+     *
+     * @param manager Entry point to PolicyInsightsManager.
+     */
+    public static void
+        queryLatestComponentPolicyComplianceStateCountGroupedByComponentTypeAtResourceScopeFilteredByGivenAssignment(
+            com.azure.resourcemanager.policyinsights.PolicyInsightsManager manager) {
+        manager
+            .componentPolicyStates()
+            .listQueryResultsForResourceWithResponse(
+                "subscriptions/e78961ba-36fe-4739-9212-e3031b4c8db7/resourceGroups/myResourceGroup/providers/Microsoft.KeyVault/Vaults/myKVName",
+                ComponentPolicyStatesResource.LATEST,
+                null,
+                null,
+                null,
+                null,
+                null,
+                "policyAssignmentId eq"
+                    + " '/subscriptions/e78961ba-36fe-4739-9212-e3031b4c8db7/providers/microsoft.authorization/policyassignments/560050f83dbb4a24974323f8'",
+                "groupby((componentType,complianceState),aggregate($count as count))",
+                null,
+                Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file: specification/policyinsights/resource-manager/Microsoft.PolicyInsights/stable/2022-04-01/examples/ComponentPolicyStates_QueryResourceScope.json
+     */
+    /**
+     * Sample code: Query latest component policy states at resource scope.
+     *
+     * @param manager Entry point to PolicyInsightsManager.
+     */
+    public static void queryLatestComponentPolicyStatesAtResourceScope(
+        com.azure.resourcemanager.policyinsights.PolicyInsightsManager manager) {
+        manager
+            .componentPolicyStates()
+            .listQueryResultsForResourceWithResponse(
+                "subscriptions/fff10b27-fff3-fff5-fff8-fffbe01e86a5/resourceGroups/myResourceGroup/providers/Microsoft.KeyVault/Vaults/myKVName",
+                ComponentPolicyStatesResource.LATEST,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file: specification/policyinsights/resource-manager/Microsoft.PolicyInsights/stable/2022-04-01/examples/ComponentPolicyStates_QueryResourceScopeExpandPolicyEvaluationDetails.json
+     */
+    /**
+     * Sample code: Query latest component policy states at resource scope and expand policyEvaluationDetails.
+     *
+     * @param manager Entry point to PolicyInsightsManager.
+     */
+    public static void queryLatestComponentPolicyStatesAtResourceScopeAndExpandPolicyEvaluationDetails(
+        com.azure.resourcemanager.policyinsights.PolicyInsightsManager manager) {
+        manager
+            .componentPolicyStates()
+            .listQueryResultsForResourceWithResponse(
+                "subscriptions/fff10b27-fff3-fff5-fff8-fffbe01e86a5/resourceGroups/myResourceGroup/providers/Microsoft.ContainerService/managedClusters/myCluster",
+                ComponentPolicyStatesResource.LATEST,
+                null,
+                null,
+                null,
+                null,
+                null,
+                "componentType eq 'pod' AND componentId eq 'default/test-pod' AND componentName eq 'test-pod'",
+                null,
+                "PolicyEvaluationDetails",
+                Context.NONE);
+    }
+}
+```
+
+### ComponentPolicyStates_ListQueryResultsForResourceGroup
+
+```java
+import com.azure.core.util.Context;
+import com.azure.resourcemanager.policyinsights.models.ComponentPolicyStatesResource;
+
+/** Samples for ComponentPolicyStates ListQueryResultsForResourceGroup. */
+public final class ComponentPolicyStatesListQueryResultsForResourceGroupSamples {
+    /*
+     * x-ms-original-file: specification/policyinsights/resource-manager/Microsoft.PolicyInsights/stable/2022-04-01/examples/ComponentPolicyStates_QueryResourceGroupScopeGroupByComponentTypeWithAggregate.json
+     */
+    /**
+     * Sample code: Query latest component policy compliance state count grouped by component type at resource group
+     * scope filtered by given assignment.
+     *
+     * @param manager Entry point to PolicyInsightsManager.
+     */
+    public static void
+        queryLatestComponentPolicyComplianceStateCountGroupedByComponentTypeAtResourceGroupScopeFilteredByGivenAssignment(
+            com.azure.resourcemanager.policyinsights.PolicyInsightsManager manager) {
+        manager
+            .componentPolicyStates()
+            .listQueryResultsForResourceGroupWithResponse(
+                "fffedd8f-ffff-fffd-fffd-fffed2f84852",
+                "myResourceGroup",
+                ComponentPolicyStatesResource.LATEST,
+                null,
+                null,
+                null,
+                null,
+                null,
+                "policyAssignmentId eq"
+                    + " '/subscriptions/fffedd8f-ffff-fffd-fffd-fffed2f84852/providers/microsoft.authorization/policyassignments/560050f83dbb4a24974323f8'",
+                "groupby((type,complianceState),aggregate($count as count))",
+                Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file: specification/policyinsights/resource-manager/Microsoft.PolicyInsights/stable/2022-04-01/examples/ComponentPolicyStates_QueryResourceGroupScope.json
+     */
+    /**
+     * Sample code: Query latest component policy states at resource group scope.
+     *
+     * @param manager Entry point to PolicyInsightsManager.
+     */
+    public static void queryLatestComponentPolicyStatesAtResourceGroupScope(
+        com.azure.resourcemanager.policyinsights.PolicyInsightsManager manager) {
+        manager
+            .componentPolicyStates()
+            .listQueryResultsForResourceGroupWithResponse(
+                "fffedd8f-ffff-fffd-fffd-fffed2f84852",
+                "myResourceGroup",
+                ComponentPolicyStatesResource.LATEST,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                Context.NONE);
+    }
+}
+```
+
+### ComponentPolicyStates_ListQueryResultsForResourceGroupLevelPolicyAssignment
+
+```java
+import com.azure.core.util.Context;
+import com.azure.resourcemanager.policyinsights.models.ComponentPolicyStatesResource;
+
+/** Samples for ComponentPolicyStates ListQueryResultsForResourceGroupLevelPolicyAssignment. */
+public final class ComponentPolicyStatesListQueryResultsForResourceGroupLevelPolicyAssignmentSamples {
+    /*
+     * x-ms-original-file: specification/policyinsights/resource-manager/Microsoft.PolicyInsights/stable/2022-04-01/examples/ComponentPolicyStates_QueryResourceGroupLevelPolicyAssignmentScope.json
+     */
+    /**
+     * Sample code: Query latest at resource group level policy assignment scope.
+     *
+     * @param manager Entry point to PolicyInsightsManager.
+     */
+    public static void queryLatestAtResourceGroupLevelPolicyAssignmentScope(
+        com.azure.resourcemanager.policyinsights.PolicyInsightsManager manager) {
+        manager
+            .componentPolicyStates()
+            .listQueryResultsForResourceGroupLevelPolicyAssignmentWithResponse(
+                "fffedd8f-ffff-fffd-fffd-fffed2f84852",
+                "myResourceGroup",
+                "myPolicyAssignment",
+                ComponentPolicyStatesResource.LATEST,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                Context.NONE);
+    }
+}
+```
+
+### ComponentPolicyStates_ListQueryResultsForSubscription
+
+```java
+import com.azure.core.util.Context;
+import com.azure.resourcemanager.policyinsights.models.ComponentPolicyStatesResource;
+
+/** Samples for ComponentPolicyStates ListQueryResultsForSubscription. */
+public final class ComponentPolicyStatesListQueryResultsForSubscriptionSamples {
+    /*
+     * x-ms-original-file: specification/policyinsights/resource-manager/Microsoft.PolicyInsights/stable/2022-04-01/examples/ComponentPolicyStates_QuerySubscriptionScopeGroupByComponentTypeWithAggregate.json
+     */
+    /**
+     * Sample code: Query latest component policy compliance state count grouped by component type at subscription scope
+     * filtered by given assignment.
+     *
+     * @param manager Entry point to PolicyInsightsManager.
+     */
+    public static void
+        queryLatestComponentPolicyComplianceStateCountGroupedByComponentTypeAtSubscriptionScopeFilteredByGivenAssignment(
+            com.azure.resourcemanager.policyinsights.PolicyInsightsManager manager) {
+        manager
+            .componentPolicyStates()
+            .listQueryResultsForSubscriptionWithResponse(
+                "e78961ba-36fe-4739-9212-e3031b4c8db7",
+                ComponentPolicyStatesResource.LATEST,
+                null,
+                null,
+                null,
+                null,
+                null,
+                "policyAssignmentId eq"
+                    + " '/subscriptions/e78961ba-36fe-4739-9212-e3031b4c8db7/providers/microsoft.authorization/policyassignments/560050f83dbb4a24974323f8'",
+                "groupby((componentType,complianceState),aggregate($count as count))",
+                Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file: specification/policyinsights/resource-manager/Microsoft.PolicyInsights/stable/2022-04-01/examples/ComponentPolicyStates_QuerySubscriptionScope.json
+     */
+    /**
+     * Sample code: Query latest component policy states at subscription scope.
+     *
+     * @param manager Entry point to PolicyInsightsManager.
+     */
+    public static void queryLatestComponentPolicyStatesAtSubscriptionScope(
+        com.azure.resourcemanager.policyinsights.PolicyInsightsManager manager) {
+        manager
+            .componentPolicyStates()
+            .listQueryResultsForSubscriptionWithResponse(
+                "fff10b27-fff3-fff5-fff8-fffbe01e86a5",
+                ComponentPolicyStatesResource.LATEST,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                Context.NONE);
+    }
+}
+```
+
+### ComponentPolicyStates_ListQueryResultsForSubscriptionLevelPolicyAssignment
+
+```java
+import com.azure.core.util.Context;
+import com.azure.resourcemanager.policyinsights.models.ComponentPolicyStatesResource;
+
+/** Samples for ComponentPolicyStates ListQueryResultsForSubscriptionLevelPolicyAssignment. */
+public final class ComponentPolicyStatesListQueryResultsForSubscriptionLevelPolicyAssignmentSamples {
+    /*
+     * x-ms-original-file: specification/policyinsights/resource-manager/Microsoft.PolicyInsights/stable/2022-04-01/examples/ComponentPolicyStates_QuerySubscriptionLevelPolicyAssignmentScope.json
+     */
+    /**
+     * Sample code: Query latest at subscription level policy assignment scope.
+     *
+     * @param manager Entry point to PolicyInsightsManager.
+     */
+    public static void queryLatestAtSubscriptionLevelPolicyAssignmentScope(
+        com.azure.resourcemanager.policyinsights.PolicyInsightsManager manager) {
+        manager
+            .componentPolicyStates()
+            .listQueryResultsForSubscriptionLevelPolicyAssignmentWithResponse(
+                "fffedd8f-ffff-fffd-fffd-fffed2f84852",
+                "ec8f9645-8ecb-4abb-9c0b-5292f19d4003",
+                ComponentPolicyStatesResource.LATEST,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                Context.NONE);
+    }
+}
+```
+
 ### Operations_List
 
 ```java
@@ -564,7 +953,7 @@ import com.azure.core.util.Context;
 /** Samples for Operations List. */
 public final class OperationsListSamples {
     /*
-     * x-ms-original-file: specification/policyinsights/resource-manager/Microsoft.PolicyInsights/stable/2019-10-01/examples/PolicyStates_ListOperations.json
+     * x-ms-original-file: specification/policyinsights/resource-manager/Microsoft.PolicyInsights/stable/2022-04-01/examples/Operations_ListOperations.json
      */
     /**
      * Sample code: List operations.

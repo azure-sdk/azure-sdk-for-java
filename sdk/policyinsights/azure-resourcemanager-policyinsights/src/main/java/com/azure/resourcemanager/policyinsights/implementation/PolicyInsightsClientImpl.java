@@ -23,6 +23,7 @@ import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.serializer.SerializerAdapter;
 import com.azure.core.util.serializer.SerializerEncoding;
 import com.azure.resourcemanager.policyinsights.fluent.AttestationsClient;
+import com.azure.resourcemanager.policyinsights.fluent.ComponentPolicyStatesClient;
 import com.azure.resourcemanager.policyinsights.fluent.OperationsClient;
 import com.azure.resourcemanager.policyinsights.fluent.PolicyEventsClient;
 import com.azure.resourcemanager.policyinsights.fluent.PolicyInsightsClient;
@@ -151,18 +152,6 @@ public final class PolicyInsightsClientImpl implements PolicyInsightsClient {
         return this.policyStates;
     }
 
-    /** The OperationsClient object to access its operations. */
-    private final OperationsClient operations;
-
-    /**
-     * Gets the OperationsClient object to access its operations.
-     *
-     * @return the OperationsClient object.
-     */
-    public OperationsClient getOperations() {
-        return this.operations;
-    }
-
     /** The PolicyMetadatasClient object to access its operations. */
     private final PolicyMetadatasClient policyMetadatas;
 
@@ -185,6 +174,30 @@ public final class PolicyInsightsClientImpl implements PolicyInsightsClient {
      */
     public PolicyRestrictionsClient getPolicyRestrictions() {
         return this.policyRestrictions;
+    }
+
+    /** The ComponentPolicyStatesClient object to access its operations. */
+    private final ComponentPolicyStatesClient componentPolicyStates;
+
+    /**
+     * Gets the ComponentPolicyStatesClient object to access its operations.
+     *
+     * @return the ComponentPolicyStatesClient object.
+     */
+    public ComponentPolicyStatesClient getComponentPolicyStates() {
+        return this.componentPolicyStates;
+    }
+
+    /** The OperationsClient object to access its operations. */
+    private final OperationsClient operations;
+
+    /**
+     * Gets the OperationsClient object to access its operations.
+     *
+     * @return the OperationsClient object.
+     */
+    public OperationsClient getOperations() {
+        return this.operations;
     }
 
     /** The AttestationsClient object to access its operations. */
@@ -225,9 +238,10 @@ public final class PolicyInsightsClientImpl implements PolicyInsightsClient {
         this.remediations = new RemediationsClientImpl(this);
         this.policyEvents = new PolicyEventsClientImpl(this);
         this.policyStates = new PolicyStatesClientImpl(this);
-        this.operations = new OperationsClientImpl(this);
         this.policyMetadatas = new PolicyMetadatasClientImpl(this);
         this.policyRestrictions = new PolicyRestrictionsClientImpl(this);
+        this.componentPolicyStates = new ComponentPolicyStatesClientImpl(this);
+        this.operations = new OperationsClientImpl(this);
         this.attestations = new AttestationsClientImpl(this);
     }
 

@@ -25,6 +25,7 @@ import com.azure.core.util.Configuration;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.policyinsights.fluent.PolicyInsightsClient;
 import com.azure.resourcemanager.policyinsights.implementation.AttestationsImpl;
+import com.azure.resourcemanager.policyinsights.implementation.ComponentPolicyStatesImpl;
 import com.azure.resourcemanager.policyinsights.implementation.OperationsImpl;
 import com.azure.resourcemanager.policyinsights.implementation.PolicyEventsImpl;
 import com.azure.resourcemanager.policyinsights.implementation.PolicyInsightsClientBuilder;
@@ -34,6 +35,7 @@ import com.azure.resourcemanager.policyinsights.implementation.PolicyStatesImpl;
 import com.azure.resourcemanager.policyinsights.implementation.PolicyTrackedResourcesImpl;
 import com.azure.resourcemanager.policyinsights.implementation.RemediationsImpl;
 import com.azure.resourcemanager.policyinsights.models.Attestations;
+import com.azure.resourcemanager.policyinsights.models.ComponentPolicyStates;
 import com.azure.resourcemanager.policyinsights.models.Operations;
 import com.azure.resourcemanager.policyinsights.models.PolicyEvents;
 import com.azure.resourcemanager.policyinsights.models.PolicyMetadatas;
@@ -48,7 +50,10 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-/** Entry point to PolicyInsightsManager. */
+/**
+ * Entry point to PolicyInsightsManager. Query component policy states at varying resource scopes for Resource Provider
+ * mode policies.
+ */
 public final class PolicyInsightsManager {
     private PolicyTrackedResources policyTrackedResources;
 
@@ -58,11 +63,13 @@ public final class PolicyInsightsManager {
 
     private PolicyStates policyStates;
 
-    private Operations operations;
-
     private PolicyMetadatas policyMetadatas;
 
     private PolicyRestrictions policyRestrictions;
+
+    private ComponentPolicyStates componentPolicyStates;
+
+    private Operations operations;
 
     private Attestations attestations;
 
@@ -231,7 +238,7 @@ public final class PolicyInsightsManager {
                 .append("-")
                 .append("com.azure.resourcemanager.policyinsights")
                 .append("/")
-                .append("1.0.0-beta.3");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder
                     .append(" (")
@@ -338,18 +345,6 @@ public final class PolicyInsightsManager {
     }
 
     /**
-     * Gets the resource collection API of Operations.
-     *
-     * @return Resource collection API of Operations.
-     */
-    public Operations operations() {
-        if (this.operations == null) {
-            this.operations = new OperationsImpl(clientObject.getOperations(), this);
-        }
-        return operations;
-    }
-
-    /**
      * Gets the resource collection API of PolicyMetadatas.
      *
      * @return Resource collection API of PolicyMetadatas.
@@ -371,6 +366,30 @@ public final class PolicyInsightsManager {
             this.policyRestrictions = new PolicyRestrictionsImpl(clientObject.getPolicyRestrictions(), this);
         }
         return policyRestrictions;
+    }
+
+    /**
+     * Gets the resource collection API of ComponentPolicyStates.
+     *
+     * @return Resource collection API of ComponentPolicyStates.
+     */
+    public ComponentPolicyStates componentPolicyStates() {
+        if (this.componentPolicyStates == null) {
+            this.componentPolicyStates = new ComponentPolicyStatesImpl(clientObject.getComponentPolicyStates(), this);
+        }
+        return componentPolicyStates;
+    }
+
+    /**
+     * Gets the resource collection API of Operations.
+     *
+     * @return Resource collection API of Operations.
+     */
+    public Operations operations() {
+        if (this.operations == null) {
+            this.operations = new OperationsImpl(clientObject.getOperations(), this);
+        }
+        return operations;
     }
 
     /**
