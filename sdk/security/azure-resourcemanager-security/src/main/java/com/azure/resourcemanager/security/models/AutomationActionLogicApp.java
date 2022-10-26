@@ -30,6 +30,10 @@ public final class AutomationActionLogicApp extends AutomationAction {
     @JsonProperty(value = "uri")
     private String uri;
 
+    /** Creates an instance of AutomationActionLogicApp class. */
+    public AutomationActionLogicApp() {
+    }
+
     /**
      * Get the logicAppResourceId property: The triggered Logic App Azure Resource ID. This can also reside on other
      * subscriptions, given that you have permissions to trigger the Logic App.
