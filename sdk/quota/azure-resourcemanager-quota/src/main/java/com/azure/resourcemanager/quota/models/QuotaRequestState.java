@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for QuotaRequestState. */
+/** Quota request status. */
 public final class QuotaRequestState extends ExpandableStringEnum<QuotaRequestState> {
     /** Static value Accepted for QuotaRequestState. */
     public static final QuotaRequestState ACCEPTED = fromString("Accepted");
@@ -36,7 +36,11 @@ public final class QuotaRequestState extends ExpandableStringEnum<QuotaRequestSt
         return fromString(name, QuotaRequestState.class);
     }
 
-    /** @return known QuotaRequestState values. */
+    /**
+     * Gets known QuotaRequestState values.
+     *
+     * @return known QuotaRequestState values.
+     */
     public static Collection<QuotaRequestState> values() {
         return values(QuotaRequestState.class);
     }

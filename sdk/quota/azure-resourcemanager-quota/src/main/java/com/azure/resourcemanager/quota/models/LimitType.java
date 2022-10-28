@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for LimitType. */
+/** The limit object type. */
 public final class LimitType extends ExpandableStringEnum<LimitType> {
     /** Static value LimitValue for LimitType. */
     public static final LimitType LIMIT_VALUE = fromString("LimitValue");
@@ -24,7 +24,11 @@ public final class LimitType extends ExpandableStringEnum<LimitType> {
         return fromString(name, LimitType.class);
     }
 
-    /** @return known LimitType values. */
+    /**
+     * Gets known LimitType values.
+     *
+     * @return known LimitType values.
+     */
     public static Collection<LimitType> values() {
         return values(LimitType.class);
     }

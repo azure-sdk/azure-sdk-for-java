@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for UsagesTypes. */
+/** The quota or usages limit types. */
 public final class UsagesTypes extends ExpandableStringEnum<UsagesTypes> {
     /** Static value Individual for UsagesTypes. */
     public static final UsagesTypes INDIVIDUAL = fromString("Individual");
@@ -27,7 +27,11 @@ public final class UsagesTypes extends ExpandableStringEnum<UsagesTypes> {
         return fromString(name, UsagesTypes.class);
     }
 
-    /** @return known UsagesTypes values. */
+    /**
+     * Gets known UsagesTypes values.
+     *
+     * @return known UsagesTypes values.
+     */
     public static Collection<UsagesTypes> values() {
         return values(UsagesTypes.class);
     }
