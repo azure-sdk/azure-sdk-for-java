@@ -225,12 +225,12 @@ public final class TopicImpl implements Topic, Topic.Definition, Topic.Update {
         return this;
     }
 
-    public TopicSharedAccessKeys listSharedAccessKeys() {
-        return serviceManager.topics().listSharedAccessKeys(resourceGroupName, topicName);
-    }
-
     public Response<TopicSharedAccessKeys> listSharedAccessKeysWithResponse(Context context) {
         return serviceManager.topics().listSharedAccessKeysWithResponse(resourceGroupName, topicName, context);
+    }
+
+    public TopicSharedAccessKeys listSharedAccessKeys() {
+        return serviceManager.topics().listSharedAccessKeys(resourceGroupName, topicName);
     }
 
     public TopicSharedAccessKeys regenerateKey(TopicRegenerateKeyRequest regenerateKeyRequest) {

@@ -11,24 +11,9 @@ import com.azure.core.util.Context;
 /** Resource collection API of PrivateLinkResources. */
 public interface PrivateLinkResources {
     /**
-     * Get properties of a private link resource.
+     * Get a private link resource.
      *
-     * @param resourceGroupName The name of the resource group within the user's subscription.
-     * @param parentType The type of the parent resource. This can be either \'topics\', \'domains\', or
-     *     \'partnerNamespaces\'.
-     * @param parentName The name of the parent resource (namely, either, the topic name, domain name, or partner
-     *     namespace name).
-     * @param privateLinkResourceName The name of private link resource.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return properties of a private link resource.
-     */
-    PrivateLinkResource get(
-        String resourceGroupName, String parentType, String parentName, String privateLinkResourceName);
-
-    /**
-     * Get properties of a private link resource.
+     * <p>Get properties of a private link resource.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param parentType The type of the parent resource. This can be either \'topics\', \'domains\', or
@@ -50,7 +35,28 @@ public interface PrivateLinkResources {
         Context context);
 
     /**
-     * List all the private link resources under a topic, domain, or partner namespace.
+     * Get a private link resource.
+     *
+     * <p>Get properties of a private link resource.
+     *
+     * @param resourceGroupName The name of the resource group within the user's subscription.
+     * @param parentType The type of the parent resource. This can be either \'topics\', \'domains\', or
+     *     \'partnerNamespaces\'.
+     * @param parentName The name of the parent resource (namely, either, the topic name, domain name, or partner
+     *     namespace name).
+     * @param privateLinkResourceName The name of private link resource.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return properties of a private link resource.
+     */
+    PrivateLinkResource get(
+        String resourceGroupName, String parentType, String parentName, String privateLinkResourceName);
+
+    /**
+     * List private link resources under specific topic, domain, or partner namespace.
+     *
+     * <p>List all the private link resources under a topic, domain, or partner namespace.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param parentType The type of the parent resource. This can be either \'topics\', \'domains\', or
@@ -65,7 +71,9 @@ public interface PrivateLinkResources {
     PagedIterable<PrivateLinkResource> listByResource(String resourceGroupName, String parentType, String parentName);
 
     /**
-     * List all the private link resources under a topic, domain, or partner namespace.
+     * List private link resources under specific topic, domain, or partner namespace.
+     *
+     * <p>List all the private link resources under a topic, domain, or partner namespace.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param parentType The type of the parent resource. This can be either \'topics\', \'domains\', or

@@ -233,16 +233,12 @@ public final class DomainImpl implements Domain, Domain.Definition, Domain.Updat
         return this;
     }
 
-    public DomainSharedAccessKeys listSharedAccessKeys() {
-        return serviceManager.domains().listSharedAccessKeys(resourceGroupName, domainName);
-    }
-
     public Response<DomainSharedAccessKeys> listSharedAccessKeysWithResponse(Context context) {
         return serviceManager.domains().listSharedAccessKeysWithResponse(resourceGroupName, domainName, context);
     }
 
-    public DomainSharedAccessKeys regenerateKey(DomainRegenerateKeyRequest regenerateKeyRequest) {
-        return serviceManager.domains().regenerateKey(resourceGroupName, domainName, regenerateKeyRequest);
+    public DomainSharedAccessKeys listSharedAccessKeys() {
+        return serviceManager.domains().listSharedAccessKeys(resourceGroupName, domainName);
     }
 
     public Response<DomainSharedAccessKeys> regenerateKeyWithResponse(
@@ -250,6 +246,10 @@ public final class DomainImpl implements Domain, Domain.Definition, Domain.Updat
         return serviceManager
             .domains()
             .regenerateKeyWithResponse(resourceGroupName, domainName, regenerateKeyRequest, context);
+    }
+
+    public DomainSharedAccessKeys regenerateKey(DomainRegenerateKeyRequest regenerateKeyRequest) {
+        return serviceManager.domains().regenerateKey(resourceGroupName, domainName, regenerateKeyRequest);
     }
 
     public DomainImpl withRegion(Region location) {
