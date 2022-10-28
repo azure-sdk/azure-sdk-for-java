@@ -9,7 +9,7 @@ import com.azure.resourcemanager.relay.models.Relaytype;
 /** Samples for WcfRelays CreateOrUpdate. */
 public final class WcfRelaysCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/relay/resource-manager/Microsoft.Relay/stable/2017-04-01/examples/Relay/RelayCreate.json
+     * x-ms-original-file: specification/relay/resource-manager/Microsoft.Relay/stable/2021-11-01/examples/Relay/RelayCreate.json
      */
     /**
      * Sample code: RelayCreate.

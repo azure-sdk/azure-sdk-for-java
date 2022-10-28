@@ -10,7 +10,7 @@ import com.azure.resourcemanager.relay.models.CheckNameAvailability;
 /** Samples for Namespaces CheckNameAvailability. */
 public final class NamespacesCheckNameAvailabilitySamples {
     /*
-     * x-ms-original-file: specification/relay/resource-manager/Microsoft.Relay/stable/2017-04-01/examples/NameSpaces/RelayNameSpaceCheckNameAvailability.json
+     * x-ms-original-file: specification/relay/resource-manager/Microsoft.Relay/stable/2021-11-01/examples/NameSpaces/RelayNameSpaceCheckNameAvailability.json
      */
     /**
      * Sample code: RelayCheckNameAvailability.
@@ -20,6 +20,7 @@ public final class NamespacesCheckNameAvailabilitySamples {
     public static void relayCheckNameAvailability(com.azure.resourcemanager.relay.RelayManager manager) {
         manager
             .namespaces()
-            .checkNameAvailabilityWithResponse(new CheckNameAvailability().withName("sdk-Namespace1321"), Context.NONE);
+            .checkNameAvailabilityWithResponse(
+                new CheckNameAvailability().withName("example-RelayNamespace1321"), Context.NONE);
     }
 }

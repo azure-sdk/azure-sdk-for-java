@@ -12,7 +12,7 @@ import java.util.Map;
 /** Samples for Namespaces Update. */
 public final class NamespacesUpdateSamples {
     /*
-     * x-ms-original-file: specification/relay/resource-manager/Microsoft.Relay/stable/2017-04-01/examples/NameSpaces/RelayNameSpaceUpdate.json
+     * x-ms-original-file: specification/relay/resource-manager/Microsoft.Relay/stable/2021-11-01/examples/NameSpaces/RelayNameSpaceUpdate.json
      */
     /**
      * Sample code: RelayNameSpaceUpdate.
@@ -23,7 +23,7 @@ public final class NamespacesUpdateSamples {
         RelayNamespace resource =
             manager
                 .namespaces()
-                .getByResourceGroupWithResponse("resourcegroup", "example-RelayNamespace-01", Context.NONE)
+                .getByResourceGroupWithResponse("RG-eg", "example-RelayRelayNamespace-01", Context.NONE)
                 .getValue();
         resource
             .update()

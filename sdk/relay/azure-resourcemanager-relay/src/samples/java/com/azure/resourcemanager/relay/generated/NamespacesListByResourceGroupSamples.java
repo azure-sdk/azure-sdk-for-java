@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for Namespaces ListByResourceGroup. */
 public final class NamespacesListByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/relay/resource-manager/Microsoft.Relay/stable/2017-04-01/examples/NameSpaces/RelayNameSpaceListByResourceGroup.json
+     * x-ms-original-file: specification/relay/resource-manager/Microsoft.Relay/stable/2021-11-01/examples/NameSpaces/RelayNameSpaceListByResourceGroup.json
      */
     /**
      * Sample code: RelayNameSpaceListByResourceGroup.

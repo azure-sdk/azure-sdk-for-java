@@ -4,19 +4,26 @@
 
 package com.azure.resourcemanager.relay.fluent.models;
 
-import com.azure.core.annotation.Immutable;
-import com.azure.resourcemanager.relay.models.ProvisioningStateEnum;
+import com.azure.core.annotation.Fluent;
+import com.azure.resourcemanager.relay.models.PublicNetworkAccess;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
+import java.util.List;
 
 /** Properties of the namespace. */
-@Immutable
+@Fluent
 public final class RelayNamespaceProperties {
     /*
-     * The provisioningState property.
+     * Provisioning state of the Namespace.
      */
     @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
-    private ProvisioningStateEnum provisioningState;
+    private String provisioningState;
+
+    /*
+     * Status of the Namespace.
+     */
+    @JsonProperty(value = "status", access = JsonProperty.Access.WRITE_ONLY)
+    private String status;
 
     /*
      * The time the namespace was created.
@@ -42,13 +49,38 @@ public final class RelayNamespaceProperties {
     @JsonProperty(value = "metricId", access = JsonProperty.Access.WRITE_ONLY)
     private String metricId;
 
+    /*
+     * List of private endpoint connections.
+     */
+    @JsonProperty(value = "privateEndpointConnections")
+    private List<PrivateEndpointConnectionInner> privateEndpointConnections;
+
+    /*
+     * This determines if traffic is allowed over public network. By default it is enabled.
+     */
+    @JsonProperty(value = "publicNetworkAccess")
+    private PublicNetworkAccess publicNetworkAccess;
+
+    /** Creates an instance of RelayNamespaceProperties class. */
+    public RelayNamespaceProperties() {
+    }
+
     /**
-     * Get the provisioningState property: The provisioningState property.
+     * Get the provisioningState property: Provisioning state of the Namespace.
      *
      * @return the provisioningState value.
      */
-    public ProvisioningStateEnum provisioningState() {
+    public String provisioningState() {
         return this.provisioningState;
+    }
+
+    /**
+     * Get the status property: Status of the Namespace.
+     *
+     * @return the status value.
+     */
+    public String status() {
+        return this.status;
     }
 
     /**
@@ -88,10 +120,56 @@ public final class RelayNamespaceProperties {
     }
 
     /**
+     * Get the privateEndpointConnections property: List of private endpoint connections.
+     *
+     * @return the privateEndpointConnections value.
+     */
+    public List<PrivateEndpointConnectionInner> privateEndpointConnections() {
+        return this.privateEndpointConnections;
+    }
+
+    /**
+     * Set the privateEndpointConnections property: List of private endpoint connections.
+     *
+     * @param privateEndpointConnections the privateEndpointConnections value to set.
+     * @return the RelayNamespaceProperties object itself.
+     */
+    public RelayNamespaceProperties withPrivateEndpointConnections(
+        List<PrivateEndpointConnectionInner> privateEndpointConnections) {
+        this.privateEndpointConnections = privateEndpointConnections;
+        return this;
+    }
+
+    /**
+     * Get the publicNetworkAccess property: This determines if traffic is allowed over public network. By default it is
+     * enabled.
+     *
+     * @return the publicNetworkAccess value.
+     */
+    public PublicNetworkAccess publicNetworkAccess() {
+        return this.publicNetworkAccess;
+    }
+
+    /**
+     * Set the publicNetworkAccess property: This determines if traffic is allowed over public network. By default it is
+     * enabled.
+     *
+     * @param publicNetworkAccess the publicNetworkAccess value to set.
+     * @return the RelayNamespaceProperties object itself.
+     */
+    public RelayNamespaceProperties withPublicNetworkAccess(PublicNetworkAccess publicNetworkAccess) {
+        this.publicNetworkAccess = publicNetworkAccess;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+        if (privateEndpointConnections() != null) {
+            privateEndpointConnections().forEach(e -> e.validate());
+        }
     }
 }

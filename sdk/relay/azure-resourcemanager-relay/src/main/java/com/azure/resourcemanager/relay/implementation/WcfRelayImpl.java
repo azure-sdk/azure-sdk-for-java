@@ -4,6 +4,8 @@
 
 package com.azure.resourcemanager.relay.implementation;
 
+import com.azure.core.management.Region;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.relay.fluent.models.WcfRelayInner;
 import com.azure.resourcemanager.relay.models.Relaytype;
@@ -25,6 +27,14 @@ public final class WcfRelayImpl implements WcfRelay, WcfRelay.Definition, WcfRel
 
     public String type() {
         return this.innerModel().type();
+    }
+
+    public SystemData systemData() {
+        return this.innerModel().systemData();
+    }
+
+    public String location() {
+        return this.innerModel().location();
     }
 
     public Boolean isDynamic() {
@@ -57,6 +67,14 @@ public final class WcfRelayImpl implements WcfRelay, WcfRelay.Definition, WcfRel
 
     public String userMetadata() {
         return this.innerModel().userMetadata();
+    }
+
+    public Region region() {
+        return Region.fromName(this.regionName());
+    }
+
+    public String regionName() {
+        return this.location();
     }
 
     public String resourceGroupName() {

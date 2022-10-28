@@ -7,7 +7,7 @@ package com.azure.resourcemanager.relay.generated;
 /** Samples for HybridConnections CreateOrUpdate. */
 public final class HybridConnectionsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/relay/resource-manager/Microsoft.Relay/stable/2017-04-01/examples/HybridConnection/RelayHybridConnectionCreate.json
+     * x-ms-original-file: specification/relay/resource-manager/Microsoft.Relay/stable/2021-11-01/examples/HybridConnection/RelayHybridConnectionCreate.json
      */
     /**
      * Sample code: RelayHybridConnectionCreate.

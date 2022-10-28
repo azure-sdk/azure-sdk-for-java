@@ -9,14 +9,14 @@ import com.azure.core.util.Context;
 /** Samples for WcfRelays ListAuthorizationRules. */
 public final class WcfRelaysListAuthorizationRulesSamples {
     /*
-     * x-ms-original-file: specification/relay/resource-manager/Microsoft.Relay/stable/2017-04-01/examples/Relay/RelayAutorizationRuleListAll.json
+     * x-ms-original-file: specification/relay/resource-manager/Microsoft.Relay/stable/2021-11-01/examples/Relay/RelayAuthorizationRuleListAll.json
      */
     /**
-     * Sample code: RelayAutorizationRuleListAll.
+     * Sample code: RelayAuthorizationRuleListAll.
      *
      * @param manager Entry point to RelayManager.
      */
-    public static void relayAutorizationRuleListAll(com.azure.resourcemanager.relay.RelayManager manager) {
+    public static void relayAuthorizationRuleListAll(com.azure.resourcemanager.relay.RelayManager manager) {
         manager
             .wcfRelays()
             .listAuthorizationRules("resourcegroup", "example-RelayNamespace-01", "example-Relay-Wcf-01", Context.NONE);

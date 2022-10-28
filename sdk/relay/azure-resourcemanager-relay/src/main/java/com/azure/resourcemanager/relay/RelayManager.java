@@ -27,11 +27,15 @@ import com.azure.resourcemanager.relay.fluent.RelayApi;
 import com.azure.resourcemanager.relay.implementation.HybridConnectionsImpl;
 import com.azure.resourcemanager.relay.implementation.NamespacesImpl;
 import com.azure.resourcemanager.relay.implementation.OperationsImpl;
+import com.azure.resourcemanager.relay.implementation.PrivateEndpointConnectionsImpl;
+import com.azure.resourcemanager.relay.implementation.PrivateLinkResourcesImpl;
 import com.azure.resourcemanager.relay.implementation.RelayApiBuilder;
 import com.azure.resourcemanager.relay.implementation.WcfRelaysImpl;
 import com.azure.resourcemanager.relay.models.HybridConnections;
 import com.azure.resourcemanager.relay.models.Namespaces;
 import com.azure.resourcemanager.relay.models.Operations;
+import com.azure.resourcemanager.relay.models.PrivateEndpointConnections;
+import com.azure.resourcemanager.relay.models.PrivateLinkResources;
 import com.azure.resourcemanager.relay.models.WcfRelays;
 import java.time.Duration;
 import java.time.temporal.ChronoUnit;
@@ -42,13 +46,17 @@ import java.util.stream.Collectors;
 
 /** Entry point to RelayManager. Use these API to manage Azure Relay resources through Azure Resource Manager. */
 public final class RelayManager {
-    private Operations operations;
-
     private Namespaces namespaces;
 
     private HybridConnections hybridConnections;
 
     private WcfRelays wcfRelays;
+
+    private PrivateEndpointConnections privateEndpointConnections;
+
+    private PrivateLinkResources privateLinkResources;
+
+    private Operations operations;
 
     private final RelayApi clientObject;
 
@@ -215,7 +223,7 @@ public final class RelayManager {
                 .append("-")
                 .append("com.azure.resourcemanager.relay")
                 .append("/")
-                .append("1.0.0-beta.2");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder
                     .append(" (")
@@ -273,18 +281,6 @@ public final class RelayManager {
     }
 
     /**
-     * Gets the resource collection API of Operations.
-     *
-     * @return Resource collection API of Operations.
-     */
-    public Operations operations() {
-        if (this.operations == null) {
-            this.operations = new OperationsImpl(clientObject.getOperations(), this);
-        }
-        return operations;
-    }
-
-    /**
      * Gets the resource collection API of Namespaces. It manages RelayNamespace, AuthorizationRule.
      *
      * @return Resource collection API of Namespaces.
@@ -318,6 +314,43 @@ public final class RelayManager {
             this.wcfRelays = new WcfRelaysImpl(clientObject.getWcfRelays(), this);
         }
         return wcfRelays;
+    }
+
+    /**
+     * Gets the resource collection API of PrivateEndpointConnections. It manages PrivateEndpointConnection.
+     *
+     * @return Resource collection API of PrivateEndpointConnections.
+     */
+    public PrivateEndpointConnections privateEndpointConnections() {
+        if (this.privateEndpointConnections == null) {
+            this.privateEndpointConnections =
+                new PrivateEndpointConnectionsImpl(clientObject.getPrivateEndpointConnections(), this);
+        }
+        return privateEndpointConnections;
+    }
+
+    /**
+     * Gets the resource collection API of PrivateLinkResources.
+     *
+     * @return Resource collection API of PrivateLinkResources.
+     */
+    public PrivateLinkResources privateLinkResources() {
+        if (this.privateLinkResources == null) {
+            this.privateLinkResources = new PrivateLinkResourcesImpl(clientObject.getPrivateLinkResources(), this);
+        }
+        return privateLinkResources;
+    }
+
+    /**
+     * Gets the resource collection API of Operations.
+     *
+     * @return Resource collection API of Operations.
+     */
+    public Operations operations() {
+        if (this.operations == null) {
+            this.operations = new OperationsImpl(clientObject.getOperations(), this);
+        }
+        return operations;
     }
 
     /**

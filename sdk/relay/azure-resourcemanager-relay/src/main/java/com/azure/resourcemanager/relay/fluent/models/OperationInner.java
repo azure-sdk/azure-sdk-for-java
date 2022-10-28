@@ -18,10 +18,32 @@ public final class OperationInner {
     private String name;
 
     /*
-     * The object that represents the operation.
+     * Indicates whether the operation is a data action
      */
-    @JsonProperty(value = "display")
+    @JsonProperty(value = "isDataAction", access = JsonProperty.Access.WRITE_ONLY)
+    private Boolean isDataAction;
+
+    /*
+     * Display of the operation
+     */
+    @JsonProperty(value = "display", access = JsonProperty.Access.WRITE_ONLY)
     private OperationDisplay display;
+
+    /*
+     * Origin of the operation
+     */
+    @JsonProperty(value = "origin", access = JsonProperty.Access.WRITE_ONLY)
+    private String origin;
+
+    /*
+     * Properties of the operation
+     */
+    @JsonProperty(value = "properties")
+    private Object properties;
+
+    /** Creates an instance of OperationInner class. */
+    public OperationInner() {
+    }
 
     /**
      * Get the name property: Operation name: {provider}/{resource}/{operation}.
@@ -33,7 +55,16 @@ public final class OperationInner {
     }
 
     /**
-     * Get the display property: The object that represents the operation.
+     * Get the isDataAction property: Indicates whether the operation is a data action.
+     *
+     * @return the isDataAction value.
+     */
+    public Boolean isDataAction() {
+        return this.isDataAction;
+    }
+
+    /**
+     * Get the display property: Display of the operation.
      *
      * @return the display value.
      */
@@ -42,13 +73,31 @@ public final class OperationInner {
     }
 
     /**
-     * Set the display property: The object that represents the operation.
+     * Get the origin property: Origin of the operation.
      *
-     * @param display the display value to set.
+     * @return the origin value.
+     */
+    public String origin() {
+        return this.origin;
+    }
+
+    /**
+     * Get the properties property: Properties of the operation.
+     *
+     * @return the properties value.
+     */
+    public Object properties() {
+        return this.properties;
+    }
+
+    /**
+     * Set the properties property: Properties of the operation.
+     *
+     * @param properties the properties value to set.
      * @return the OperationInner object itself.
      */
-    public OperationInner withDisplay(OperationDisplay display) {
-        this.display = display;
+    public OperationInner withProperties(Object properties) {
+        this.properties = properties;
         return this;
     }
 

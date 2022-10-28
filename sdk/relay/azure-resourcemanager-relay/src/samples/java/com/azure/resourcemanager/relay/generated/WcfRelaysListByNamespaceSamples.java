@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for WcfRelays ListByNamespace. */
 public final class WcfRelaysListByNamespaceSamples {
     /*
-     * x-ms-original-file: specification/relay/resource-manager/Microsoft.Relay/stable/2017-04-01/examples/Relay/RelayListAll.json
+     * x-ms-original-file: specification/relay/resource-manager/Microsoft.Relay/stable/2021-11-01/examples/Relay/RelayListAll.json
      */
     /**
      * Sample code: RelayListAll.

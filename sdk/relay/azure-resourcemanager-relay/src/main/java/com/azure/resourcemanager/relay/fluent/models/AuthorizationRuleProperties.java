@@ -10,7 +10,7 @@ import com.azure.resourcemanager.relay.models.AccessRights;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Authorization rule properties. */
+/** Properties supplied to create or update AuthorizationRule. */
 @Fluent
 public final class AuthorizationRuleProperties {
     /*
@@ -18,6 +18,10 @@ public final class AuthorizationRuleProperties {
      */
     @JsonProperty(value = "rights", required = true)
     private List<AccessRights> rights;
+
+    /** Creates an instance of AuthorizationRuleProperties class. */
+    public AuthorizationRuleProperties() {
+    }
 
     /**
      * Get the rights property: The rights associated with the rule.

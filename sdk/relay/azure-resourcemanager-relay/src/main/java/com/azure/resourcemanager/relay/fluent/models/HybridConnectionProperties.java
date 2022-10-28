@@ -24,27 +24,28 @@ public final class HybridConnectionProperties {
     private OffsetDateTime updatedAt;
 
     /*
-     * The number of listeners for this hybrid connection. Note that min : 1
-     * and max:25 are supported.
+     * The number of listeners for this hybrid connection. Note that min : 1 and max:25 are supported.
      */
     @JsonProperty(value = "listenerCount", access = JsonProperty.Access.WRITE_ONLY)
     private Integer listenerCount;
 
     /*
-     * Returns true if client authorization is needed for this hybrid
-     * connection; otherwise, false.
+     * Returns true if client authorization is needed for this hybrid connection; otherwise, false.
      */
     @JsonProperty(value = "requiresClientAuthorization")
     private Boolean requiresClientAuthorization;
 
     /*
-     * The usermetadata is a placeholder to store user-defined string data for
-     * the hybrid connection endpoint. For example, it can be used to store
-     * descriptive data, such as a list of teams and their contact information.
-     * Also, user-defined configuration settings can be stored.
+     * The usermetadata is a placeholder to store user-defined string data for the hybrid connection endpoint. For
+     * example, it can be used to store descriptive data, such as a list of teams and their contact information. Also,
+     * user-defined configuration settings can be stored.
      */
     @JsonProperty(value = "userMetadata")
     private String userMetadata;
+
+    /** Creates an instance of HybridConnectionProperties class. */
+    public HybridConnectionProperties() {
+    }
 
     /**
      * Get the createdAt property: The time the hybrid connection was created.

@@ -9,14 +9,14 @@ import com.azure.core.util.Context;
 /** Samples for Namespaces ListAuthorizationRules. */
 public final class NamespacesListAuthorizationRulesSamples {
     /*
-     * x-ms-original-file: specification/relay/resource-manager/Microsoft.Relay/stable/2017-04-01/examples/NameSpaces/RelayNameSpaceAutorizationRuleListAll.json
+     * x-ms-original-file: specification/relay/resource-manager/Microsoft.Relay/stable/2021-11-01/examples/NameSpaces/RelayNameSpaceAuthorizationRuleListAll.json
      */
     /**
-     * Sample code: RelayNameSpaceAutorizationRuleListAll.
+     * Sample code: RelayNameSpaceAuthorizationRuleListAll.
      *
      * @param manager Entry point to RelayManager.
      */
-    public static void relayNameSpaceAutorizationRuleListAll(com.azure.resourcemanager.relay.RelayManager manager) {
+    public static void relayNameSpaceAuthorizationRuleListAll(com.azure.resourcemanager.relay.RelayManager manager) {
         manager.namespaces().listAuthorizationRules("resourcegroup", "example-RelayNamespace-01", Context.NONE);
     }
 }
