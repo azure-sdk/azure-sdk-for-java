@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for Tier. */
+/** The tier of the peering SKU. */
 public final class Tier extends ExpandableStringEnum<Tier> {
     /** Static value Basic for Tier. */
     public static final Tier BASIC = fromString("Basic");
@@ -27,7 +27,11 @@ public final class Tier extends ExpandableStringEnum<Tier> {
         return fromString(name, Tier.class);
     }
 
-    /** @return known Tier values. */
+    /**
+     * Gets known Tier values.
+     *
+     * @return known Tier values.
+     */
     public static Collection<Tier> values() {
         return values(Tier.class);
     }

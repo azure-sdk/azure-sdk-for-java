@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for Kind. */
+/** The kind of the peering. */
 public final class Kind extends ExpandableStringEnum<Kind> {
     /** Static value Direct for Kind. */
     public static final Kind DIRECT = fromString("Direct");
@@ -27,7 +27,11 @@ public final class Kind extends ExpandableStringEnum<Kind> {
         return fromString(name, Kind.class);
     }
 
-    /** @return known Kind values. */
+    /**
+     * Gets known Kind values.
+     *
+     * @return known Kind values.
+     */
     public static Collection<Kind> values() {
         return values(Kind.class);
     }
