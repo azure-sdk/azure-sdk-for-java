@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for CreatedByType. */
+/** The type of identity that created the resource. */
 public final class CreatedByType extends ExpandableStringEnum<CreatedByType> {
     /** Static value User for CreatedByType. */
     public static final CreatedByType USER = fromString("User");
