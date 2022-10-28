@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for Risk. */
+/** The potential risk of not implementing the recommendation. */
 public final class Risk extends ExpandableStringEnum<Risk> {
     /** Static value Error for Risk. */
     public static final Risk ERROR = fromString("Error");
@@ -30,7 +30,11 @@ public final class Risk extends ExpandableStringEnum<Risk> {
         return fromString(name, Risk.class);
     }
 
-    /** @return known Risk values. */
+    /**
+     * Gets known Risk values.
+     *
+     * @return known Risk values.
+     */
     public static Collection<Risk> values() {
         return values(Risk.class);
     }
