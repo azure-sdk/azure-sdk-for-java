@@ -29,16 +29,6 @@ public final class PrivateLinkResourcesImpl implements PrivateLinkResources {
         this.serviceManager = serviceManager;
     }
 
-    public PrivateLinkResourceListResultDescription listByService(String resourceGroupName, String resourceName) {
-        PrivateLinkResourceListResultDescriptionInner inner =
-            this.serviceClient().listByService(resourceGroupName, resourceName);
-        if (inner != null) {
-            return new PrivateLinkResourceListResultDescriptionImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
     public Response<PrivateLinkResourceListResultDescription> listByServiceWithResponse(
         String resourceGroupName, String resourceName, Context context) {
         Response<PrivateLinkResourceListResultDescriptionInner> inner =
@@ -54,11 +44,11 @@ public final class PrivateLinkResourcesImpl implements PrivateLinkResources {
         }
     }
 
-    public PrivateLinkResourceDescription get(String resourceGroupName, String resourceName, String groupName) {
-        PrivateLinkResourceDescriptionInner inner =
-            this.serviceClient().get(resourceGroupName, resourceName, groupName);
+    public PrivateLinkResourceListResultDescription listByService(String resourceGroupName, String resourceName) {
+        PrivateLinkResourceListResultDescriptionInner inner =
+            this.serviceClient().listByService(resourceGroupName, resourceName);
         if (inner != null) {
-            return new PrivateLinkResourceDescriptionImpl(inner, this.manager());
+            return new PrivateLinkResourceListResultDescriptionImpl(inner, this.manager());
         } else {
             return null;
         }
@@ -74,6 +64,16 @@ public final class PrivateLinkResourcesImpl implements PrivateLinkResources {
                 inner.getStatusCode(),
                 inner.getHeaders(),
                 new PrivateLinkResourceDescriptionImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public PrivateLinkResourceDescription get(String resourceGroupName, String resourceName, String groupName) {
+        PrivateLinkResourceDescriptionInner inner =
+            this.serviceClient().get(resourceGroupName, resourceName, groupName);
+        if (inner != null) {
+            return new PrivateLinkResourceDescriptionImpl(inner, this.manager());
         } else {
             return null;
         }

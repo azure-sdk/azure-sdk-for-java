@@ -16,6 +16,10 @@ public class LocationBasedResource extends ResourceCore {
     @JsonProperty(value = "location")
     private String location;
 
+    /** Creates an instance of LocationBasedResource class. */
+    public LocationBasedResource() {
+    }
+
     /**
      * Get the location property: The resource location.
      *

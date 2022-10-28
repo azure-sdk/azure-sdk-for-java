@@ -16,6 +16,10 @@ public final class IotMappingProperties {
     @JsonProperty(value = "content")
     private Object content;
 
+    /** Creates an instance of IotMappingProperties class. */
+    public IotMappingProperties() {
+    }
+
     /**
      * Get the content property: The mapping.
      *
