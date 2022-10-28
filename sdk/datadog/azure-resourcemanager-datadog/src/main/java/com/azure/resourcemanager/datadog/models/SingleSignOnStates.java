@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for SingleSignOnStates. */
+/** Various states of the SSO resource. */
 public final class SingleSignOnStates extends ExpandableStringEnum<SingleSignOnStates> {
     /** Static value Initial for SingleSignOnStates. */
     public static final SingleSignOnStates INITIAL = fromString("Initial");
@@ -33,7 +33,11 @@ public final class SingleSignOnStates extends ExpandableStringEnum<SingleSignOnS
         return fromString(name, SingleSignOnStates.class);
     }
 
-    /** @return known SingleSignOnStates values. */
+    /**
+     * Gets known SingleSignOnStates values.
+     *
+     * @return known SingleSignOnStates values.
+     */
     public static Collection<SingleSignOnStates> values() {
         return values(SingleSignOnStates.class);
     }
