@@ -28,17 +28,6 @@ public final class RecoveryServicesImpl implements RecoveryServices {
         this.serviceManager = serviceManager;
     }
 
-    public CheckNameAvailabilityResult checkNameAvailability(
-        String resourceGroupName, String location, CheckNameAvailabilityParameters input) {
-        CheckNameAvailabilityResultInner inner =
-            this.serviceClient().checkNameAvailability(resourceGroupName, location, input);
-        if (inner != null) {
-            return new CheckNameAvailabilityResultImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
     public Response<CheckNameAvailabilityResult> checkNameAvailabilityWithResponse(
         String resourceGroupName, String location, CheckNameAvailabilityParameters input, Context context) {
         Response<CheckNameAvailabilityResultInner> inner =
@@ -49,6 +38,17 @@ public final class RecoveryServicesImpl implements RecoveryServices {
                 inner.getStatusCode(),
                 inner.getHeaders(),
                 new CheckNameAvailabilityResultImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public CheckNameAvailabilityResult checkNameAvailability(
+        String resourceGroupName, String location, CheckNameAvailabilityParameters input) {
+        CheckNameAvailabilityResultInner inner =
+            this.serviceClient().checkNameAvailability(resourceGroupName, location, input);
+        if (inner != null) {
+            return new CheckNameAvailabilityResultImpl(inner, this.manager());
         } else {
             return null;
         }
