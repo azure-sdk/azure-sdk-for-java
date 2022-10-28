@@ -30,16 +30,14 @@ import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.datamigration.fluent.TasksClient;
+import com.azure.resourcemanager.datamigration.fluent.models.CommandPropertiesInner;
 import com.azure.resourcemanager.datamigration.fluent.models.ProjectTaskInner;
 import com.azure.resourcemanager.datamigration.models.TaskList;
 import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in TasksClient. */
 public final class TasksClientImpl implements TasksClient {
-    private final ClientLogger logger = new ClientLogger(TasksClientImpl.class);
-
     /** The proxy service used to perform REST calls. */
     private final TasksService service;
 
@@ -170,6 +168,24 @@ public final class TasksClientImpl implements TasksClient {
             Context context);
 
         @Headers({"Content-Type: application/json"})
+        @Post(
+            "/subscriptions/{subscriptionId}/resourceGroups/{groupName}/providers/Microsoft.DataMigration/services"
+                + "/{serviceName}/projects/{projectName}/tasks/{taskName}/command")
+        @ExpectedResponses({200})
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<CommandPropertiesInner>> command(
+            @HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("groupName") String groupName,
+            @PathParam("serviceName") String serviceName,
+            @PathParam("projectName") String projectName,
+            @PathParam("taskName") String taskName,
+            @QueryParam("api-version") String apiVersion,
+            @BodyParam("application/json") CommandPropertiesInner parameters,
+            @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({"Content-Type: application/json"})
         @Get("{nextLink}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
@@ -181,7 +197,9 @@ public final class TasksClientImpl implements TasksClient {
     }
 
     /**
-     * The services resource is the top-level resource that represents the Database Migration Service. This method
+     * Get tasks in a service
+     *
+     * <p>The services resource is the top-level resource that represents the Database Migration Service. This method
      * returns a list of tasks owned by a service resource. Some tasks may have a status of Unknown, which indicates
      * that an error occurred while querying the status of that task.
      *
@@ -192,7 +210,7 @@ public final class TasksClientImpl implements TasksClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return oData page of tasks.
+     * @return oData page of tasks along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ProjectTaskInner>> listSinglePageAsync(
@@ -246,7 +264,9 @@ public final class TasksClientImpl implements TasksClient {
     }
 
     /**
-     * The services resource is the top-level resource that represents the Database Migration Service. This method
+     * Get tasks in a service
+     *
+     * <p>The services resource is the top-level resource that represents the Database Migration Service. This method
      * returns a list of tasks owned by a service resource. Some tasks may have a status of Unknown, which indicates
      * that an error occurred while querying the status of that task.
      *
@@ -258,7 +278,7 @@ public final class TasksClientImpl implements TasksClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return oData page of tasks.
+     * @return oData page of tasks along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ProjectTaskInner>> listSinglePageAsync(
@@ -309,7 +329,9 @@ public final class TasksClientImpl implements TasksClient {
     }
 
     /**
-     * The services resource is the top-level resource that represents the Database Migration Service. This method
+     * Get tasks in a service
+     *
+     * <p>The services resource is the top-level resource that represents the Database Migration Service. This method
      * returns a list of tasks owned by a service resource. Some tasks may have a status of Unknown, which indicates
      * that an error occurred while querying the status of that task.
      *
@@ -320,7 +342,7 @@ public final class TasksClientImpl implements TasksClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return oData page of tasks.
+     * @return oData page of tasks as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<ProjectTaskInner> listAsync(
@@ -331,7 +353,9 @@ public final class TasksClientImpl implements TasksClient {
     }
 
     /**
-     * The services resource is the top-level resource that represents the Database Migration Service. This method
+     * Get tasks in a service
+     *
+     * <p>The services resource is the top-level resource that represents the Database Migration Service. This method
      * returns a list of tasks owned by a service resource. Some tasks may have a status of Unknown, which indicates
      * that an error occurred while querying the status of that task.
      *
@@ -341,7 +365,7 @@ public final class TasksClientImpl implements TasksClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return oData page of tasks.
+     * @return oData page of tasks as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<ProjectTaskInner> listAsync(String groupName, String serviceName, String projectName) {
@@ -352,7 +376,9 @@ public final class TasksClientImpl implements TasksClient {
     }
 
     /**
-     * The services resource is the top-level resource that represents the Database Migration Service. This method
+     * Get tasks in a service
+     *
+     * <p>The services resource is the top-level resource that represents the Database Migration Service. This method
      * returns a list of tasks owned by a service resource. Some tasks may have a status of Unknown, which indicates
      * that an error occurred while querying the status of that task.
      *
@@ -364,7 +390,7 @@ public final class TasksClientImpl implements TasksClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return oData page of tasks.
+     * @return oData page of tasks as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<ProjectTaskInner> listAsync(
@@ -375,7 +401,9 @@ public final class TasksClientImpl implements TasksClient {
     }
 
     /**
-     * The services resource is the top-level resource that represents the Database Migration Service. This method
+     * Get tasks in a service
+     *
+     * <p>The services resource is the top-level resource that represents the Database Migration Service. This method
      * returns a list of tasks owned by a service resource. Some tasks may have a status of Unknown, which indicates
      * that an error occurred while querying the status of that task.
      *
@@ -385,7 +413,7 @@ public final class TasksClientImpl implements TasksClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return oData page of tasks.
+     * @return oData page of tasks as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<ProjectTaskInner> list(String groupName, String serviceName, String projectName) {
@@ -394,7 +422,9 @@ public final class TasksClientImpl implements TasksClient {
     }
 
     /**
-     * The services resource is the top-level resource that represents the Database Migration Service. This method
+     * Get tasks in a service
+     *
+     * <p>The services resource is the top-level resource that represents the Database Migration Service. This method
      * returns a list of tasks owned by a service resource. Some tasks may have a status of Unknown, which indicates
      * that an error occurred while querying the status of that task.
      *
@@ -406,7 +436,7 @@ public final class TasksClientImpl implements TasksClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return oData page of tasks.
+     * @return oData page of tasks as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<ProjectTaskInner> list(
@@ -415,9 +445,11 @@ public final class TasksClientImpl implements TasksClient {
     }
 
     /**
-     * The tasks resource is a nested, proxy-only resource representing work performed by a DMS instance. The PUT method
-     * creates a new task or updates an existing one, although since tasks have no mutable custom properties, there is
-     * little reason to update an existing one.
+     * Create or update task
+     *
+     * <p>The tasks resource is a nested, proxy-only resource representing work performed by a DMS instance. The PUT
+     * method creates a new task or updates an existing one, although since tasks have no mutable custom properties,
+     * there is little reason to update an existing one.
      *
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
@@ -427,7 +459,7 @@ public final class TasksClientImpl implements TasksClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a task resource.
+     * @return a task resource along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<ProjectTaskInner>> createOrUpdateWithResponseAsync(
@@ -481,9 +513,11 @@ public final class TasksClientImpl implements TasksClient {
     }
 
     /**
-     * The tasks resource is a nested, proxy-only resource representing work performed by a DMS instance. The PUT method
-     * creates a new task or updates an existing one, although since tasks have no mutable custom properties, there is
-     * little reason to update an existing one.
+     * Create or update task
+     *
+     * <p>The tasks resource is a nested, proxy-only resource representing work performed by a DMS instance. The PUT
+     * method creates a new task or updates an existing one, although since tasks have no mutable custom properties,
+     * there is little reason to update an existing one.
      *
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
@@ -494,7 +528,7 @@ public final class TasksClientImpl implements TasksClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a task resource.
+     * @return a task resource along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<ProjectTaskInner>> createOrUpdateWithResponseAsync(
@@ -550,9 +584,11 @@ public final class TasksClientImpl implements TasksClient {
     }
 
     /**
-     * The tasks resource is a nested, proxy-only resource representing work performed by a DMS instance. The PUT method
-     * creates a new task or updates an existing one, although since tasks have no mutable custom properties, there is
-     * little reason to update an existing one.
+     * Create or update task
+     *
+     * <p>The tasks resource is a nested, proxy-only resource representing work performed by a DMS instance. The PUT
+     * method creates a new task or updates an existing one, although since tasks have no mutable custom properties,
+     * there is little reason to update an existing one.
      *
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
@@ -562,47 +598,21 @@ public final class TasksClientImpl implements TasksClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a task resource.
+     * @return a task resource on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ProjectTaskInner> createOrUpdateAsync(
         String groupName, String serviceName, String projectName, String taskName, ProjectTaskInner parameters) {
         return createOrUpdateWithResponseAsync(groupName, serviceName, projectName, taskName, parameters)
-            .flatMap(
-                (Response<ProjectTaskInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
-     * The tasks resource is a nested, proxy-only resource representing work performed by a DMS instance. The PUT method
-     * creates a new task or updates an existing one, although since tasks have no mutable custom properties, there is
-     * little reason to update an existing one.
+     * Create or update task
      *
-     * @param groupName Name of the resource group.
-     * @param serviceName Name of the service.
-     * @param projectName Name of the project.
-     * @param taskName Name of the Task.
-     * @param parameters Information about the task.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a task resource.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public ProjectTaskInner createOrUpdate(
-        String groupName, String serviceName, String projectName, String taskName, ProjectTaskInner parameters) {
-        return createOrUpdateAsync(groupName, serviceName, projectName, taskName, parameters).block();
-    }
-
-    /**
-     * The tasks resource is a nested, proxy-only resource representing work performed by a DMS instance. The PUT method
-     * creates a new task or updates an existing one, although since tasks have no mutable custom properties, there is
-     * little reason to update an existing one.
+     * <p>The tasks resource is a nested, proxy-only resource representing work performed by a DMS instance. The PUT
+     * method creates a new task or updates an existing one, although since tasks have no mutable custom properties,
+     * there is little reason to update an existing one.
      *
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
@@ -613,7 +623,7 @@ public final class TasksClientImpl implements TasksClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a task resource.
+     * @return a task resource along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<ProjectTaskInner> createOrUpdateWithResponse(
@@ -628,8 +638,34 @@ public final class TasksClientImpl implements TasksClient {
     }
 
     /**
-     * The tasks resource is a nested, proxy-only resource representing work performed by a DMS instance. The GET method
-     * retrieves information about a task.
+     * Create or update task
+     *
+     * <p>The tasks resource is a nested, proxy-only resource representing work performed by a DMS instance. The PUT
+     * method creates a new task or updates an existing one, although since tasks have no mutable custom properties,
+     * there is little reason to update an existing one.
+     *
+     * @param groupName Name of the resource group.
+     * @param serviceName Name of the service.
+     * @param projectName Name of the project.
+     * @param taskName Name of the Task.
+     * @param parameters Information about the task.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a task resource.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public ProjectTaskInner createOrUpdate(
+        String groupName, String serviceName, String projectName, String taskName, ProjectTaskInner parameters) {
+        return createOrUpdateWithResponse(groupName, serviceName, projectName, taskName, parameters, Context.NONE)
+            .getValue();
+    }
+
+    /**
+     * Get task information
+     *
+     * <p>The tasks resource is a nested, proxy-only resource representing work performed by a DMS instance. The GET
+     * method retrieves information about a task.
      *
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
@@ -639,7 +675,7 @@ public final class TasksClientImpl implements TasksClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a task resource.
+     * @return a task resource along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<ProjectTaskInner>> getWithResponseAsync(
@@ -688,8 +724,10 @@ public final class TasksClientImpl implements TasksClient {
     }
 
     /**
-     * The tasks resource is a nested, proxy-only resource representing work performed by a DMS instance. The GET method
-     * retrieves information about a task.
+     * Get task information
+     *
+     * <p>The tasks resource is a nested, proxy-only resource representing work performed by a DMS instance. The GET
+     * method retrieves information about a task.
      *
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
@@ -700,7 +738,7 @@ public final class TasksClientImpl implements TasksClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a task resource.
+     * @return a task resource along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<ProjectTaskInner>> getWithResponseAsync(
@@ -746,63 +784,55 @@ public final class TasksClientImpl implements TasksClient {
     }
 
     /**
-     * The tasks resource is a nested, proxy-only resource representing work performed by a DMS instance. The GET method
-     * retrieves information about a task.
+     * Get task information
+     *
+     * <p>The tasks resource is a nested, proxy-only resource representing work performed by a DMS instance. The GET
+     * method retrieves information about a task.
+     *
+     * @param groupName Name of the resource group.
+     * @param serviceName Name of the service.
+     * @param projectName Name of the project.
+     * @param taskName Name of the Task.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a task resource on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<ProjectTaskInner> getAsync(String groupName, String serviceName, String projectName, String taskName) {
+        final String expand = null;
+        return getWithResponseAsync(groupName, serviceName, projectName, taskName, expand)
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
+    }
+
+    /**
+     * Get task information
+     *
+     * <p>The tasks resource is a nested, proxy-only resource representing work performed by a DMS instance. The GET
+     * method retrieves information about a task.
      *
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
      * @param projectName Name of the project.
      * @param taskName Name of the Task.
      * @param expand Expand the response.
+     * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a task resource.
+     * @return a task resource along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<ProjectTaskInner> getAsync(
-        String groupName, String serviceName, String projectName, String taskName, String expand) {
-        return getWithResponseAsync(groupName, serviceName, projectName, taskName, expand)
-            .flatMap(
-                (Response<ProjectTaskInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+    public Response<ProjectTaskInner> getWithResponse(
+        String groupName, String serviceName, String projectName, String taskName, String expand, Context context) {
+        return getWithResponseAsync(groupName, serviceName, projectName, taskName, expand, context).block();
     }
 
     /**
-     * The tasks resource is a nested, proxy-only resource representing work performed by a DMS instance. The GET method
-     * retrieves information about a task.
+     * Get task information
      *
-     * @param groupName Name of the resource group.
-     * @param serviceName Name of the service.
-     * @param projectName Name of the project.
-     * @param taskName Name of the Task.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a task resource.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<ProjectTaskInner> getAsync(String groupName, String serviceName, String projectName, String taskName) {
-        final String expand = null;
-        return getWithResponseAsync(groupName, serviceName, projectName, taskName, expand)
-            .flatMap(
-                (Response<ProjectTaskInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
-    }
-
-    /**
-     * The tasks resource is a nested, proxy-only resource representing work performed by a DMS instance. The GET method
-     * retrieves information about a task.
+     * <p>The tasks resource is a nested, proxy-only resource representing work performed by a DMS instance. The GET
+     * method retrieves information about a task.
      *
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
@@ -816,32 +846,13 @@ public final class TasksClientImpl implements TasksClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public ProjectTaskInner get(String groupName, String serviceName, String projectName, String taskName) {
         final String expand = null;
-        return getAsync(groupName, serviceName, projectName, taskName, expand).block();
+        return getWithResponse(groupName, serviceName, projectName, taskName, expand, Context.NONE).getValue();
     }
 
     /**
-     * The tasks resource is a nested, proxy-only resource representing work performed by a DMS instance. The GET method
-     * retrieves information about a task.
+     * Delete task
      *
-     * @param groupName Name of the resource group.
-     * @param serviceName Name of the service.
-     * @param projectName Name of the project.
-     * @param taskName Name of the Task.
-     * @param expand Expand the response.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a task resource.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ProjectTaskInner> getWithResponse(
-        String groupName, String serviceName, String projectName, String taskName, String expand, Context context) {
-        return getWithResponseAsync(groupName, serviceName, projectName, taskName, expand, context).block();
-    }
-
-    /**
-     * The tasks resource is a nested, proxy-only resource representing work performed by a DMS instance. The DELETE
+     * <p>The tasks resource is a nested, proxy-only resource representing work performed by a DMS instance. The DELETE
      * method deletes a task, canceling it first if it's running.
      *
      * @param groupName Name of the resource group.
@@ -852,7 +863,7 @@ public final class TasksClientImpl implements TasksClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the completion.
+     * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Void>> deleteWithResponseAsync(
@@ -901,7 +912,9 @@ public final class TasksClientImpl implements TasksClient {
     }
 
     /**
-     * The tasks resource is a nested, proxy-only resource representing work performed by a DMS instance. The DELETE
+     * Delete task
+     *
+     * <p>The tasks resource is a nested, proxy-only resource representing work performed by a DMS instance. The DELETE
      * method deletes a task, canceling it first if it's running.
      *
      * @param groupName Name of the resource group.
@@ -913,7 +926,7 @@ public final class TasksClientImpl implements TasksClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the completion.
+     * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Void>> deleteWithResponseAsync(
@@ -964,28 +977,9 @@ public final class TasksClientImpl implements TasksClient {
     }
 
     /**
-     * The tasks resource is a nested, proxy-only resource representing work performed by a DMS instance. The DELETE
-     * method deletes a task, canceling it first if it's running.
+     * Delete task
      *
-     * @param groupName Name of the resource group.
-     * @param serviceName Name of the service.
-     * @param projectName Name of the project.
-     * @param taskName Name of the Task.
-     * @param deleteRunningTasks Delete the resource even if it contains running tasks.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the completion.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Void> deleteAsync(
-        String groupName, String serviceName, String projectName, String taskName, Boolean deleteRunningTasks) {
-        return deleteWithResponseAsync(groupName, serviceName, projectName, taskName, deleteRunningTasks)
-            .flatMap((Response<Void> res) -> Mono.empty());
-    }
-
-    /**
-     * The tasks resource is a nested, proxy-only resource representing work performed by a DMS instance. The DELETE
+     * <p>The tasks resource is a nested, proxy-only resource representing work performed by a DMS instance. The DELETE
      * method deletes a task, canceling it first if it's running.
      *
      * @param groupName Name of the resource group.
@@ -995,35 +989,19 @@ public final class TasksClientImpl implements TasksClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the completion.
+     * @return A {@link Mono} that completes when a successful response is received.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> deleteAsync(String groupName, String serviceName, String projectName, String taskName) {
         final Boolean deleteRunningTasks = null;
         return deleteWithResponseAsync(groupName, serviceName, projectName, taskName, deleteRunningTasks)
-            .flatMap((Response<Void> res) -> Mono.empty());
+            .flatMap(ignored -> Mono.empty());
     }
 
     /**
-     * The tasks resource is a nested, proxy-only resource representing work performed by a DMS instance. The DELETE
-     * method deletes a task, canceling it first if it's running.
+     * Delete task
      *
-     * @param groupName Name of the resource group.
-     * @param serviceName Name of the service.
-     * @param projectName Name of the project.
-     * @param taskName Name of the Task.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public void delete(String groupName, String serviceName, String projectName, String taskName) {
-        final Boolean deleteRunningTasks = null;
-        deleteAsync(groupName, serviceName, projectName, taskName, deleteRunningTasks).block();
-    }
-
-    /**
-     * The tasks resource is a nested, proxy-only resource representing work performed by a DMS instance. The DELETE
+     * <p>The tasks resource is a nested, proxy-only resource representing work performed by a DMS instance. The DELETE
      * method deletes a task, canceling it first if it's running.
      *
      * @param groupName Name of the resource group.
@@ -1035,7 +1013,7 @@ public final class TasksClientImpl implements TasksClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
+     * @return the {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<Void> deleteWithResponse(
@@ -1050,7 +1028,29 @@ public final class TasksClientImpl implements TasksClient {
     }
 
     /**
-     * The tasks resource is a nested, proxy-only resource representing work performed by a DMS instance. The PATCH
+     * Delete task
+     *
+     * <p>The tasks resource is a nested, proxy-only resource representing work performed by a DMS instance. The DELETE
+     * method deletes a task, canceling it first if it's running.
+     *
+     * @param groupName Name of the resource group.
+     * @param serviceName Name of the service.
+     * @param projectName Name of the project.
+     * @param taskName Name of the Task.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public void delete(String groupName, String serviceName, String projectName, String taskName) {
+        final Boolean deleteRunningTasks = null;
+        deleteWithResponse(groupName, serviceName, projectName, taskName, deleteRunningTasks, Context.NONE);
+    }
+
+    /**
+     * Create or update task
+     *
+     * <p>The tasks resource is a nested, proxy-only resource representing work performed by a DMS instance. The PATCH
      * method updates an existing task, but since tasks have no mutable custom properties, there is little reason to do
      * so.
      *
@@ -1062,7 +1062,7 @@ public final class TasksClientImpl implements TasksClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a task resource.
+     * @return a task resource along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<ProjectTaskInner>> updateWithResponseAsync(
@@ -1116,7 +1116,9 @@ public final class TasksClientImpl implements TasksClient {
     }
 
     /**
-     * The tasks resource is a nested, proxy-only resource representing work performed by a DMS instance. The PATCH
+     * Create or update task
+     *
+     * <p>The tasks resource is a nested, proxy-only resource representing work performed by a DMS instance. The PATCH
      * method updates an existing task, but since tasks have no mutable custom properties, there is little reason to do
      * so.
      *
@@ -1129,7 +1131,7 @@ public final class TasksClientImpl implements TasksClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a task resource.
+     * @return a task resource along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<ProjectTaskInner>> updateWithResponseAsync(
@@ -1185,7 +1187,9 @@ public final class TasksClientImpl implements TasksClient {
     }
 
     /**
-     * The tasks resource is a nested, proxy-only resource representing work performed by a DMS instance. The PATCH
+     * Create or update task
+     *
+     * <p>The tasks resource is a nested, proxy-only resource representing work performed by a DMS instance. The PATCH
      * method updates an existing task, but since tasks have no mutable custom properties, there is little reason to do
      * so.
      *
@@ -1197,24 +1201,48 @@ public final class TasksClientImpl implements TasksClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a task resource.
+     * @return a task resource on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ProjectTaskInner> updateAsync(
         String groupName, String serviceName, String projectName, String taskName, ProjectTaskInner parameters) {
         return updateWithResponseAsync(groupName, serviceName, projectName, taskName, parameters)
-            .flatMap(
-                (Response<ProjectTaskInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
-     * The tasks resource is a nested, proxy-only resource representing work performed by a DMS instance. The PATCH
+     * Create or update task
+     *
+     * <p>The tasks resource is a nested, proxy-only resource representing work performed by a DMS instance. The PATCH
+     * method updates an existing task, but since tasks have no mutable custom properties, there is little reason to do
+     * so.
+     *
+     * @param groupName Name of the resource group.
+     * @param serviceName Name of the service.
+     * @param projectName Name of the project.
+     * @param taskName Name of the Task.
+     * @param parameters Information about the task.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a task resource along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<ProjectTaskInner> updateWithResponse(
+        String groupName,
+        String serviceName,
+        String projectName,
+        String taskName,
+        ProjectTaskInner parameters,
+        Context context) {
+        return updateWithResponseAsync(groupName, serviceName, projectName, taskName, parameters, context).block();
+    }
+
+    /**
+     * Create or update task
+     *
+     * <p>The tasks resource is a nested, proxy-only resource representing work performed by a DMS instance. The PATCH
      * method updates an existing task, but since tasks have no mutable custom properties, there is little reason to do
      * so.
      *
@@ -1231,38 +1259,13 @@ public final class TasksClientImpl implements TasksClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public ProjectTaskInner update(
         String groupName, String serviceName, String projectName, String taskName, ProjectTaskInner parameters) {
-        return updateAsync(groupName, serviceName, projectName, taskName, parameters).block();
+        return updateWithResponse(groupName, serviceName, projectName, taskName, parameters, Context.NONE).getValue();
     }
 
     /**
-     * The tasks resource is a nested, proxy-only resource representing work performed by a DMS instance. The PATCH
-     * method updates an existing task, but since tasks have no mutable custom properties, there is little reason to do
-     * so.
+     * Cancel a task
      *
-     * @param groupName Name of the resource group.
-     * @param serviceName Name of the service.
-     * @param projectName Name of the project.
-     * @param taskName Name of the Task.
-     * @param parameters Information about the task.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a task resource.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ProjectTaskInner> updateWithResponse(
-        String groupName,
-        String serviceName,
-        String projectName,
-        String taskName,
-        ProjectTaskInner parameters,
-        Context context) {
-        return updateWithResponseAsync(groupName, serviceName, projectName, taskName, parameters, context).block();
-    }
-
-    /**
-     * The tasks resource is a nested, proxy-only resource representing work performed by a DMS instance. This method
+     * <p>The tasks resource is a nested, proxy-only resource representing work performed by a DMS instance. This method
      * cancels a task if it's currently queued or running.
      *
      * @param groupName Name of the resource group.
@@ -1272,7 +1275,7 @@ public final class TasksClientImpl implements TasksClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a task resource.
+     * @return a task resource along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<ProjectTaskInner>> cancelWithResponseAsync(
@@ -1320,7 +1323,9 @@ public final class TasksClientImpl implements TasksClient {
     }
 
     /**
-     * The tasks resource is a nested, proxy-only resource representing work performed by a DMS instance. This method
+     * Cancel a task
+     *
+     * <p>The tasks resource is a nested, proxy-only resource representing work performed by a DMS instance. This method
      * cancels a task if it's currently queued or running.
      *
      * @param groupName Name of the resource group.
@@ -1331,7 +1336,7 @@ public final class TasksClientImpl implements TasksClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a task resource.
+     * @return a task resource along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<ProjectTaskInner>> cancelWithResponseAsync(
@@ -1376,7 +1381,9 @@ public final class TasksClientImpl implements TasksClient {
     }
 
     /**
-     * The tasks resource is a nested, proxy-only resource representing work performed by a DMS instance. This method
+     * Cancel a task
+     *
+     * <p>The tasks resource is a nested, proxy-only resource representing work performed by a DMS instance. This method
      * cancels a task if it's currently queued or running.
      *
      * @param groupName Name of the resource group.
@@ -1386,24 +1393,41 @@ public final class TasksClientImpl implements TasksClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a task resource.
+     * @return a task resource on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ProjectTaskInner> cancelAsync(
         String groupName, String serviceName, String projectName, String taskName) {
         return cancelWithResponseAsync(groupName, serviceName, projectName, taskName)
-            .flatMap(
-                (Response<ProjectTaskInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
-     * The tasks resource is a nested, proxy-only resource representing work performed by a DMS instance. This method
+     * Cancel a task
+     *
+     * <p>The tasks resource is a nested, proxy-only resource representing work performed by a DMS instance. This method
+     * cancels a task if it's currently queued or running.
+     *
+     * @param groupName Name of the resource group.
+     * @param serviceName Name of the service.
+     * @param projectName Name of the project.
+     * @param taskName Name of the Task.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a task resource along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<ProjectTaskInner> cancelWithResponse(
+        String groupName, String serviceName, String projectName, String taskName, Context context) {
+        return cancelWithResponseAsync(groupName, serviceName, projectName, taskName, context).block();
+    }
+
+    /**
+     * Cancel a task
+     *
+     * <p>The tasks resource is a nested, proxy-only resource representing work performed by a DMS instance. This method
      * cancels a task if it's currently queued or running.
      *
      * @param groupName Name of the resource group.
@@ -1417,37 +1441,230 @@ public final class TasksClientImpl implements TasksClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public ProjectTaskInner cancel(String groupName, String serviceName, String projectName, String taskName) {
-        return cancelAsync(groupName, serviceName, projectName, taskName).block();
+        return cancelWithResponse(groupName, serviceName, projectName, taskName, Context.NONE).getValue();
     }
 
     /**
-     * The tasks resource is a nested, proxy-only resource representing work performed by a DMS instance. This method
-     * cancels a task if it's currently queued or running.
+     * Execute a command on a task
+     *
+     * <p>The tasks resource is a nested, proxy-only resource representing work performed by a DMS instance. This method
+     * executes a command on a running task.
      *
      * @param groupName Name of the resource group.
      * @param serviceName Name of the service.
      * @param projectName Name of the project.
      * @param taskName Name of the Task.
+     * @param parameters Command to execute.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return base class for all types of DMS command properties along with {@link Response} on successful completion
+     *     of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<CommandPropertiesInner>> commandWithResponseAsync(
+        String groupName, String serviceName, String projectName, String taskName, CommandPropertiesInner parameters) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (groupName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter groupName is required and cannot be null."));
+        }
+        if (serviceName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter serviceName is required and cannot be null."));
+        }
+        if (projectName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter projectName is required and cannot be null."));
+        }
+        if (taskName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter taskName is required and cannot be null."));
+        }
+        if (parameters == null) {
+            return Mono.error(new IllegalArgumentException("Parameter parameters is required and cannot be null."));
+        } else {
+            parameters.validate();
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(
+                context ->
+                    service
+                        .command(
+                            this.client.getEndpoint(),
+                            this.client.getSubscriptionId(),
+                            groupName,
+                            serviceName,
+                            projectName,
+                            taskName,
+                            this.client.getApiVersion(),
+                            parameters,
+                            accept,
+                            context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Execute a command on a task
+     *
+     * <p>The tasks resource is a nested, proxy-only resource representing work performed by a DMS instance. This method
+     * executes a command on a running task.
+     *
+     * @param groupName Name of the resource group.
+     * @param serviceName Name of the service.
+     * @param projectName Name of the project.
+     * @param taskName Name of the Task.
+     * @param parameters Command to execute.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a task resource.
+     * @return base class for all types of DMS command properties along with {@link Response} on successful completion
+     *     of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ProjectTaskInner> cancelWithResponse(
-        String groupName, String serviceName, String projectName, String taskName, Context context) {
-        return cancelWithResponseAsync(groupName, serviceName, projectName, taskName, context).block();
+    private Mono<Response<CommandPropertiesInner>> commandWithResponseAsync(
+        String groupName,
+        String serviceName,
+        String projectName,
+        String taskName,
+        CommandPropertiesInner parameters,
+        Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (groupName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter groupName is required and cannot be null."));
+        }
+        if (serviceName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter serviceName is required and cannot be null."));
+        }
+        if (projectName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter projectName is required and cannot be null."));
+        }
+        if (taskName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter taskName is required and cannot be null."));
+        }
+        if (parameters == null) {
+            return Mono.error(new IllegalArgumentException("Parameter parameters is required and cannot be null."));
+        } else {
+            parameters.validate();
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service
+            .command(
+                this.client.getEndpoint(),
+                this.client.getSubscriptionId(),
+                groupName,
+                serviceName,
+                projectName,
+                taskName,
+                this.client.getApiVersion(),
+                parameters,
+                accept,
+                context);
+    }
+
+    /**
+     * Execute a command on a task
+     *
+     * <p>The tasks resource is a nested, proxy-only resource representing work performed by a DMS instance. This method
+     * executes a command on a running task.
+     *
+     * @param groupName Name of the resource group.
+     * @param serviceName Name of the service.
+     * @param projectName Name of the project.
+     * @param taskName Name of the Task.
+     * @param parameters Command to execute.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return base class for all types of DMS command properties on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<CommandPropertiesInner> commandAsync(
+        String groupName, String serviceName, String projectName, String taskName, CommandPropertiesInner parameters) {
+        return commandWithResponseAsync(groupName, serviceName, projectName, taskName, parameters)
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
+    }
+
+    /**
+     * Execute a command on a task
+     *
+     * <p>The tasks resource is a nested, proxy-only resource representing work performed by a DMS instance. This method
+     * executes a command on a running task.
+     *
+     * @param groupName Name of the resource group.
+     * @param serviceName Name of the service.
+     * @param projectName Name of the project.
+     * @param taskName Name of the Task.
+     * @param parameters Command to execute.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return base class for all types of DMS command properties along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<CommandPropertiesInner> commandWithResponse(
+        String groupName,
+        String serviceName,
+        String projectName,
+        String taskName,
+        CommandPropertiesInner parameters,
+        Context context) {
+        return commandWithResponseAsync(groupName, serviceName, projectName, taskName, parameters, context).block();
+    }
+
+    /**
+     * Execute a command on a task
+     *
+     * <p>The tasks resource is a nested, proxy-only resource representing work performed by a DMS instance. This method
+     * executes a command on a running task.
+     *
+     * @param groupName Name of the resource group.
+     * @param serviceName Name of the service.
+     * @param projectName Name of the project.
+     * @param taskName Name of the Task.
+     * @param parameters Command to execute.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return base class for all types of DMS command properties.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public CommandPropertiesInner command(
+        String groupName, String serviceName, String projectName, String taskName, CommandPropertiesInner parameters) {
+        return commandWithResponse(groupName, serviceName, projectName, taskName, parameters, Context.NONE).getValue();
     }
 
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return oData page of tasks.
+     * @return oData page of tasks along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ProjectTaskInner>> listNextSinglePageAsync(String nextLink) {
@@ -1478,12 +1695,13 @@ public final class TasksClientImpl implements TasksClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return oData page of tasks.
+     * @return oData page of tasks along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ProjectTaskInner>> listNextSinglePageAsync(String nextLink, Context context) {
