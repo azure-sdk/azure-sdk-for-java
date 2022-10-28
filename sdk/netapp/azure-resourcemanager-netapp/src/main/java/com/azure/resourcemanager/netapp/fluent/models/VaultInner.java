@@ -18,6 +18,10 @@ public final class VaultInner extends ProxyResource {
     @JsonProperty(value = "properties", required = true)
     private VaultProperties innerProperties = new VaultProperties();
 
+    /** Creates an instance of VaultInner class. */
+    public VaultInner() {
+    }
+
     /**
      * Get the innerProperties property: Vault Properties.
      *

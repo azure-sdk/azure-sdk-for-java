@@ -579,27 +579,6 @@ public final class SubvolumesClientImpl implements SubvolumesClient {
      * @param poolName The name of the capacity pool.
      * @param volumeName The name of the volume.
      * @param subvolumeName The name of the subvolume.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return subvolume Information properties.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public SubvolumeInfoInner get(
-        String resourceGroupName, String accountName, String poolName, String volumeName, String subvolumeName) {
-        return getAsync(resourceGroupName, accountName, poolName, volumeName, subvolumeName).block();
-    }
-
-    /**
-     * Get the path associated with the subvolumeName
-     *
-     * <p>Returns the path associated with the subvolumeName provided.
-     *
-     * @param resourceGroupName The name of the resource group.
-     * @param accountName The name of the NetApp account.
-     * @param poolName The name of the capacity pool.
-     * @param volumeName The name of the volume.
-     * @param subvolumeName The name of the subvolume.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -616,6 +595,28 @@ public final class SubvolumesClientImpl implements SubvolumesClient {
         Context context) {
         return getWithResponseAsync(resourceGroupName, accountName, poolName, volumeName, subvolumeName, context)
             .block();
+    }
+
+    /**
+     * Get the path associated with the subvolumeName
+     *
+     * <p>Returns the path associated with the subvolumeName provided.
+     *
+     * @param resourceGroupName The name of the resource group.
+     * @param accountName The name of the NetApp account.
+     * @param poolName The name of the capacity pool.
+     * @param volumeName The name of the volume.
+     * @param subvolumeName The name of the subvolume.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return subvolume Information properties.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public SubvolumeInfoInner get(
+        String resourceGroupName, String accountName, String poolName, String volumeName, String subvolumeName) {
+        return getWithResponse(resourceGroupName, accountName, poolName, volumeName, subvolumeName, Context.NONE)
+            .getValue();
     }
 
     /**

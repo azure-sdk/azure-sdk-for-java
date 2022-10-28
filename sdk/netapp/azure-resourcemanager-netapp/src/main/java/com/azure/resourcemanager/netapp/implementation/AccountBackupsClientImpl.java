@@ -421,24 +421,6 @@ public final class AccountBackupsClientImpl implements AccountBackupsClient {
      * @param resourceGroupName The name of the resource group.
      * @param accountName The name of the NetApp account.
      * @param backupName The name of the backup.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the specified backup for a Netapp Account.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public BackupInner get(String resourceGroupName, String accountName, String backupName) {
-        return getAsync(resourceGroupName, accountName, backupName).block();
-    }
-
-    /**
-     * Get Backup for a Netapp Account
-     *
-     * <p>Gets the specified backup for a Netapp Account.
-     *
-     * @param resourceGroupName The name of the resource group.
-     * @param accountName The name of the NetApp account.
-     * @param backupName The name of the backup.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -449,6 +431,24 @@ public final class AccountBackupsClientImpl implements AccountBackupsClient {
     public Response<BackupInner> getWithResponse(
         String resourceGroupName, String accountName, String backupName, Context context) {
         return getWithResponseAsync(resourceGroupName, accountName, backupName, context).block();
+    }
+
+    /**
+     * Get Backup for a Netapp Account
+     *
+     * <p>Gets the specified backup for a Netapp Account.
+     *
+     * @param resourceGroupName The name of the resource group.
+     * @param accountName The name of the NetApp account.
+     * @param backupName The name of the backup.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the specified backup for a Netapp Account.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public BackupInner get(String resourceGroupName, String accountName, String backupName) {
+        return getWithResponse(resourceGroupName, accountName, backupName, Context.NONE).getValue();
     }
 
     /**
