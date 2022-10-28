@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for UsagePermissionType. */
+/** The permission policy of the subnet for allowing public IP addresses (i.e. Allow, Deny)). */
 public final class UsagePermissionType extends ExpandableStringEnum<UsagePermissionType> {
     /** Static value Default for UsagePermissionType. */
     public static final UsagePermissionType DEFAULT = fromString("Default");
@@ -30,7 +30,11 @@ public final class UsagePermissionType extends ExpandableStringEnum<UsagePermiss
         return fromString(name, UsagePermissionType.class);
     }
 
-    /** @return known UsagePermissionType values. */
+    /**
+     * Gets known UsagePermissionType values.
+     *
+     * @return known UsagePermissionType values.
+     */
     public static Collection<UsagePermissionType> values() {
         return values(UsagePermissionType.class);
     }

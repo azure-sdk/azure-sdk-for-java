@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for StorageType. */
+/** The storage type for the disk (i.e. Standard, Premium). */
 public final class StorageType extends ExpandableStringEnum<StorageType> {
     /** Static value Standard for StorageType. */
     public static final StorageType STANDARD = fromString("Standard");
@@ -30,7 +30,11 @@ public final class StorageType extends ExpandableStringEnum<StorageType> {
         return fromString(name, StorageType.class);
     }
 
-    /** @return known StorageType values. */
+    /**
+     * Gets known StorageType values.
+     *
+     * @return known StorageType values.
+     */
     public static Collection<StorageType> values() {
         return values(StorageType.class);
     }
