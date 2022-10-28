@@ -4,11 +4,10 @@
 
 package com.azure.resourcemanager.consumption.models;
 
-import com.azure.core.annotation.Fluent;
+import com.azure.core.annotation.Immutable;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.consumption.fluent.models.ModernReservationRecommendationProperties;
 import com.azure.resourcemanager.consumption.fluent.models.ReservationRecommendationInner;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
@@ -20,15 +19,17 @@ import java.util.UUID;
 /** Modern reservation recommendation. */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "kind")
 @JsonTypeName("modern")
-@Fluent
+@Immutable
 public final class ModernReservationRecommendation extends ReservationRecommendationInner {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(ModernReservationRecommendation.class);
-
     /*
      * Properties for modern reservation recommendation
      */
     @JsonProperty(value = "properties", required = true)
     private ModernReservationRecommendationProperties innerProperties = new ModernReservationRecommendationProperties();
+
+    /** Creates an instance of ModernReservationRecommendation class. */
+    public ModernReservationRecommendation() {
+    }
 
     /**
      * Get the innerProperties property: Properties for modern reservation recommendation.
@@ -130,6 +131,15 @@ public final class ModernReservationRecommendation extends ReservationRecommenda
     }
 
     /**
+     * Get the resourceType property: Resource type.
+     *
+     * @return the resourceType value.
+     */
+    public String resourceType() {
+        return this.innerProperties() == null ? null : this.innerProperties().resourceType();
+    }
+
+    /**
      * Get the totalCostWithReservedInstances property: The total amount of cost with reserved instances.
      *
      * @return the totalCostWithReservedInstances value.
@@ -184,6 +194,15 @@ public final class ModernReservationRecommendation extends ReservationRecommenda
     }
 
     /**
+     * Get the subscriptionId property: Subscription ID.
+     *
+     * @return the subscriptionId value.
+     */
+    public UUID subscriptionId() {
+        return this.innerProperties() == null ? null : this.innerProperties().subscriptionId();
+    }
+
+    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -192,7 +211,7 @@ public final class ModernReservationRecommendation extends ReservationRecommenda
     public void validate() {
         super.validate();
         if (innerProperties() == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException(
                         "Missing required property innerProperties in model ModernReservationRecommendation"));
@@ -200,4 +219,6 @@ public final class ModernReservationRecommendation extends ReservationRecommenda
             innerProperties().validate();
         }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(ModernReservationRecommendation.class);
 }
