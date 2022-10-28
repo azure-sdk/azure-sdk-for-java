@@ -20,6 +20,10 @@ public final class Kubernetes extends Compute {
     @JsonProperty(value = "properties")
     private KubernetesProperties properties;
 
+    /** Creates an instance of Kubernetes class. */
+    public Kubernetes() {
+    }
+
     /**
      * Get the properties property: Properties of Kubernetes.
      *
@@ -51,13 +55,6 @@ public final class Kubernetes extends Compute {
     @Override
     public Kubernetes withResourceId(String resourceId) {
         super.withResourceId(resourceId);
-        return this;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Kubernetes withDisableLocalAuth(Boolean disableLocalAuth) {
-        super.withDisableLocalAuth(disableLocalAuth);
         return this;
     }
 

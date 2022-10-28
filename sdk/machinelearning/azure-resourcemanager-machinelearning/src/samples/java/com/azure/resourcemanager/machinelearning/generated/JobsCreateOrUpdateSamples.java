@@ -8,35 +8,32 @@ import com.azure.core.management.serializer.SerializerFactory;
 import com.azure.core.util.serializer.SerializerEncoding;
 import com.azure.resourcemanager.machinelearning.models.AmlToken;
 import com.azure.resourcemanager.machinelearning.models.AutoMLJob;
+import com.azure.resourcemanager.machinelearning.models.AutologgerSettings;
 import com.azure.resourcemanager.machinelearning.models.CommandJob;
 import com.azure.resourcemanager.machinelearning.models.CommandJobLimits;
-import com.azure.resourcemanager.machinelearning.models.CronSchedule;
 import com.azure.resourcemanager.machinelearning.models.Goal;
 import com.azure.resourcemanager.machinelearning.models.GridSamplingAlgorithm;
 import com.azure.resourcemanager.machinelearning.models.ImageClassification;
 import com.azure.resourcemanager.machinelearning.models.ImageLimitSettings;
 import com.azure.resourcemanager.machinelearning.models.ImageModelDistributionSettingsClassification;
 import com.azure.resourcemanager.machinelearning.models.ImageModelSettingsClassification;
-import com.azure.resourcemanager.machinelearning.models.ImageVerticalDataSettings;
+import com.azure.resourcemanager.machinelearning.models.JobResourceConfiguration;
 import com.azure.resourcemanager.machinelearning.models.JobService;
 import com.azure.resourcemanager.machinelearning.models.LiteralJobInput;
+import com.azure.resourcemanager.machinelearning.models.MLFlowAutologgerState;
 import com.azure.resourcemanager.machinelearning.models.MLTableJobInput;
 import com.azure.resourcemanager.machinelearning.models.MedianStoppingPolicy;
 import com.azure.resourcemanager.machinelearning.models.Mpi;
 import com.azure.resourcemanager.machinelearning.models.Objective;
 import com.azure.resourcemanager.machinelearning.models.OutputDeliveryMode;
 import com.azure.resourcemanager.machinelearning.models.PipelineJob;
-import com.azure.resourcemanager.machinelearning.models.ResourceConfiguration;
-import com.azure.resourcemanager.machinelearning.models.ScheduleStatus;
 import com.azure.resourcemanager.machinelearning.models.SweepJob;
 import com.azure.resourcemanager.machinelearning.models.SweepJobLimits;
 import com.azure.resourcemanager.machinelearning.models.TensorFlow;
-import com.azure.resourcemanager.machinelearning.models.TrainingDataSettings;
 import com.azure.resourcemanager.machinelearning.models.TrialComponent;
 import com.azure.resourcemanager.machinelearning.models.UriFileJobOutput;
 import java.io.IOException;
 import java.time.Duration;
-import java.time.OffsetDateTime;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -44,7 +41,7 @@ import java.util.Map;
 /** Samples for Jobs CreateOrUpdate. */
 public final class JobsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-02-01-preview/examples/Job/AutoMLJob/createOrUpdate.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-10-01-preview/examples/Job/AutoMLJob/createOrUpdate.json
      */
     /**
      * Sample code: CreateOrUpdate AutoML Job.
@@ -67,13 +64,6 @@ public final class JobsCreateOrUpdateSamples {
                     .withExperimentName("string")
                     .withIdentity(new AmlToken())
                     .withIsArchived(false)
-                    .withSchedule(
-                        new CronSchedule()
-                            .withEndTime(OffsetDateTime.parse("2020-01-01T12:34:56.999Z"))
-                            .withScheduleStatus(ScheduleStatus.DISABLED)
-                            .withStartTime(OffsetDateTime.parse("2020-01-01T12:34:56.999Z"))
-                            .withTimeZone("string")
-                            .withExpression("string"))
                     .withServices(
                         mapOf(
                             "string",
@@ -92,7 +82,7 @@ public final class JobsCreateOrUpdateSamples {
                                 .withMode(OutputDeliveryMode.READ_WRITE_MOUNT)
                                 .withUri("string")))
                     .withResources(
-                        new ResourceConfiguration()
+                        new JobResourceConfiguration()
                             .withInstanceCount(1)
                             .withInstanceType("string")
                             .withProperties(
@@ -106,23 +96,20 @@ public final class JobsCreateOrUpdateSamples {
                                             SerializerEncoding.JSON))))
                     .withTaskDetails(
                         new ImageClassification()
+                            .withTargetColumnName("string")
+                            .withTrainingData(new MLTableJobInput().withUri("string"))
                             .withModelSettings(new ImageModelSettingsClassification().withValidationCropSize(2))
                             .withSearchSpace(
                                 Arrays
                                     .asList(
                                         new ImageModelDistributionSettingsClassification()
                                             .withValidationCropSize("choice(2, 360)")))
-                            .withDataSettings(
-                                new ImageVerticalDataSettings()
-                                    .withTargetColumnName("string")
-                                    .withTrainingData(
-                                        new TrainingDataSettings().withData(new MLTableJobInput().withUri("string"))))
                             .withLimitSettings(new ImageLimitSettings().withMaxTrials(2))))
             .create();
     }
 
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-02-01-preview/examples/Job/SweepJob/createOrUpdate.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-10-01-preview/examples/Job/SweepJob/createOrUpdate.json
      */
     /**
      * Sample code: CreateOrUpdate Sweep Job.
@@ -171,7 +158,7 @@ public final class JobsCreateOrUpdateSamples {
                             .withEnvironmentId("string")
                             .withEnvironmentVariables(mapOf("string", "string"))
                             .withResources(
-                                new ResourceConfiguration()
+                                new JobResourceConfiguration()
                                     .withInstanceCount(1)
                                     .withInstanceType("string")
                                     .withProperties(
@@ -187,7 +174,7 @@ public final class JobsCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-02-01-preview/examples/Job/PipelineJob/createOrUpdate.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-10-01-preview/examples/Job/PipelineJob/createOrUpdate.json
      */
     /**
      * Sample code: CreateOrUpdate Pipeline Job.
@@ -232,7 +219,7 @@ public final class JobsCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-02-01-preview/examples/Job/CommandJob/createOrUpdate.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-10-01-preview/examples/Job/CommandJob/createOrUpdate.json
      */
     /**
      * Sample code: CreateOrUpdate Command Job.
@@ -262,6 +249,8 @@ public final class JobsCreateOrUpdateSamples {
                                 .withJobServiceType("string")
                                 .withPort(1)
                                 .withProperties(mapOf("string", "string"))))
+                    .withAutologgerSettings(
+                        new AutologgerSettings().withMlflowAutologger(MLFlowAutologgerState.ENABLED))
                     .withCodeId("string")
                     .withCommand("string")
                     .withDistribution(new TensorFlow().withParameterServerCount(1).withWorkerCount(1))
@@ -277,7 +266,7 @@ public final class JobsCreateOrUpdateSamples {
                                 .withMode(OutputDeliveryMode.READ_WRITE_MOUNT)
                                 .withUri("string")))
                     .withResources(
-                        new ResourceConfiguration()
+                        new JobResourceConfiguration()
                             .withInstanceCount(1)
                             .withInstanceType("string")
                             .withProperties(

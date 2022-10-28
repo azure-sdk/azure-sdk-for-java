@@ -9,14 +9,14 @@ import com.azure.core.util.Context;
 /** Samples for OnlineEndpoints GetToken. */
 public final class OnlineEndpointsGetTokenSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-02-01-preview/examples/OnlineEndpoint/getToken.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-10-01-preview/examples/Workspace/OnlineEndpoint/getToken.json
      */
     /**
-     * Sample code: GetToken Online Endpoint.
+     * Sample code: GetToken Workspace Online Endpoint.
      *
      * @param manager Entry point to MachineLearningManager.
      */
-    public static void getTokenOnlineEndpoint(
+    public static void getTokenWorkspaceOnlineEndpoint(
         com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
         manager.onlineEndpoints().getTokenWithResponse("test-rg", "my-aml-workspace", "testEndpointName", Context.NONE);
     }

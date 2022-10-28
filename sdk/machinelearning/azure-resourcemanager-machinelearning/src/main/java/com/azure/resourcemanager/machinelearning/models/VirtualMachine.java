@@ -20,6 +20,10 @@ public final class VirtualMachine extends Compute {
     @JsonProperty(value = "properties")
     private VirtualMachineSchemaProperties properties;
 
+    /** Creates an instance of VirtualMachine class. */
+    public VirtualMachine() {
+    }
+
     /**
      * Get the properties property: The properties property.
      *
@@ -51,13 +55,6 @@ public final class VirtualMachine extends Compute {
     @Override
     public VirtualMachine withResourceId(String resourceId) {
         super.withResourceId(resourceId);
-        return this;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public VirtualMachine withDisableLocalAuth(Boolean disableLocalAuth) {
-        super.withDisableLocalAuth(disableLocalAuth);
         return this;
     }
 
