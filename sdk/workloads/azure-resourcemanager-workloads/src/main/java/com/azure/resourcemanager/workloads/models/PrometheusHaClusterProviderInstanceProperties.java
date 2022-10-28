@@ -38,6 +38,10 @@ public final class PrometheusHaClusterProviderInstanceProperties extends Provide
     @JsonProperty(value = "clusterName")
     private String clusterName;
 
+    /** Creates an instance of PrometheusHaClusterProviderInstanceProperties class. */
+    public PrometheusHaClusterProviderInstanceProperties() {
+    }
+
     /**
      * Get the prometheusUrl property: URL of the Node Exporter endpoint.
      *

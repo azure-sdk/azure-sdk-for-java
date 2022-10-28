@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.workloads.implementation;
 
+import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.workloads.fluent.models.WordpressInstanceResourceInner;
 import com.azure.resourcemanager.workloads.models.ApplicationProvisioningState;
 import com.azure.resourcemanager.workloads.models.WordpressInstanceResource;
@@ -31,6 +32,10 @@ public final class WordpressInstanceResourceImpl implements WordpressInstanceRes
 
     public String type() {
         return this.innerModel().type();
+    }
+
+    public SystemData systemData() {
+        return this.innerModel().systemData();
     }
 
     public WordpressVersions version() {

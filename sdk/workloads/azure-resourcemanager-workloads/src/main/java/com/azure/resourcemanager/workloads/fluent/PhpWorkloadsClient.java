@@ -68,19 +68,6 @@ public interface PhpWorkloadsClient {
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param phpWorkloadName Php workload name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the PHP workload resource.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    PhpWorkloadResourceInner getByResourceGroup(String resourceGroupName, String phpWorkloadName);
-
-    /**
-     * Gets the PHP workload resource.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param phpWorkloadName Php workload name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -92,6 +79,19 @@ public interface PhpWorkloadsClient {
         String resourceGroupName, String phpWorkloadName, Context context);
 
     /**
+     * Gets the PHP workload resource.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param phpWorkloadName Php workload name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the PHP workload resource.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    PhpWorkloadResourceInner getByResourceGroup(String resourceGroupName, String phpWorkloadName);
+
+    /**
      * Create or updated PHP workload resource.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -158,21 +158,6 @@ public interface PhpWorkloadsClient {
         String phpWorkloadName,
         PhpWorkloadResourceInner phpWorkloadResource,
         Context context);
-
-    /**
-     * Update PHP workload resource.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param phpWorkloadName Php workload name.
-     * @param resourcePatchRequestBody Workload resource update data.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return php workload resource.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    PhpWorkloadResourceInner update(
-        String resourceGroupName, String phpWorkloadName, PatchResourceRequestBody resourcePatchRequestBody);
 
     /**
      * Update PHP workload resource.
@@ -194,19 +179,32 @@ public interface PhpWorkloadsClient {
         Context context);
 
     /**
+     * Update PHP workload resource.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param phpWorkloadName Php workload name.
+     * @param resourcePatchRequestBody Workload resource update data.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return php workload resource.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    PhpWorkloadResourceInner update(
+        String resourceGroupName, String phpWorkloadName, PatchResourceRequestBody resourcePatchRequestBody);
+
+    /**
      * Delete PHP workload resource.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param phpWorkloadName Php workload name.
-     * @param deleteInfra Whether to delete infra along with workload resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<Void>, Void> beginDelete(
-        String resourceGroupName, String phpWorkloadName, String deleteInfra);
+    SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String phpWorkloadName);
 
     /**
      * Delete PHP workload resource.
@@ -223,19 +221,6 @@ public interface PhpWorkloadsClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<Void>, Void> beginDelete(
         String resourceGroupName, String phpWorkloadName, String deleteInfra, Context context);
-
-    /**
-     * Delete PHP workload resource.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param phpWorkloadName Php workload name.
-     * @param deleteInfra Whether to delete infra along with workload resource.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    void delete(String resourceGroupName, String phpWorkloadName, String deleteInfra);
 
     /**
      * Delete PHP workload resource.

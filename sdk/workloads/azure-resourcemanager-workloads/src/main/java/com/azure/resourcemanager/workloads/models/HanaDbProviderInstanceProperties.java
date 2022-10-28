@@ -68,6 +68,10 @@ public final class HanaDbProviderInstanceProperties extends ProviderSpecificProp
     @JsonProperty(value = "sslHostNameInCertificate")
     private String sslHostnameInCertificate;
 
+    /** Creates an instance of HanaDbProviderInstanceProperties class. */
+    public HanaDbProviderInstanceProperties() {
+    }
+
     /**
      * Get the hostname property: Gets or sets the target virtual machine size.
      *

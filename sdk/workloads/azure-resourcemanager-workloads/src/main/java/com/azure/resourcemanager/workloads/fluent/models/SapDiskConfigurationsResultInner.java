@@ -18,6 +18,10 @@ public final class SapDiskConfigurationsResultInner {
     @JsonProperty(value = "diskConfigurations")
     private List<SapDiskConfiguration> diskConfigurations;
 
+    /** Creates an instance of SapDiskConfigurationsResultInner class. */
+    public SapDiskConfigurationsResultInner() {
+    }
+
     /**
      * Get the diskConfigurations property: Gets the list of Disk Configurations.
      *

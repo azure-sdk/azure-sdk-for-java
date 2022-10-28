@@ -43,6 +43,10 @@ public final class WordpressInstanceResourceProperties {
     @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
     private ApplicationProvisioningState provisioningState;
 
+    /** Creates an instance of WordpressInstanceResourceProperties class. */
+    public WordpressInstanceResourceProperties() {
+    }
+
     /**
      * Get the version property: Application version.
      *

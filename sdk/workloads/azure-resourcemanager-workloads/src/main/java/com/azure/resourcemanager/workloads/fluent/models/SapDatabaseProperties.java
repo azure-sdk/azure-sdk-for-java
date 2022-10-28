@@ -12,35 +12,35 @@ import com.azure.resourcemanager.workloads.models.SapVirtualInstanceStatus;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Defines the SAP Database properties. */
+/** Defines the Database properties. */
 @Immutable
 public final class SapDatabaseProperties {
     /*
-     * The database subnet.
+     * Database subnet.
      */
     @JsonProperty(value = "subnet", access = JsonProperty.Access.WRITE_ONLY)
     private String subnet;
 
     /*
-     * The database SID.
+     * Database SID name.
      */
     @JsonProperty(value = "databaseSid", access = JsonProperty.Access.WRITE_ONLY)
     private String databaseSid;
 
     /*
-     * The SAP database type.
+     * Database type, that is if the DB is HANA, DB2, Oracle, SAP ASE, Max DB or MS SQL Server.
      */
     @JsonProperty(value = "databaseType", access = JsonProperty.Access.WRITE_ONLY)
     private String databaseType;
 
     /*
-     * The database IP Address.
+     * Database IP Address.
      */
     @JsonProperty(value = "ipAddress", access = JsonProperty.Access.WRITE_ONLY)
     private String ipAddress;
 
     /*
-     * The list of virtual machines.
+     * The list of virtual machines corresponding to the Database resource.
      */
     @JsonProperty(value = "vmDetails", access = JsonProperty.Access.WRITE_ONLY)
     private List<DatabaseVmDetails> vmDetails;
@@ -58,13 +58,17 @@ public final class SapDatabaseProperties {
     private SapVirtualInstanceProvisioningState provisioningState;
 
     /*
-     * Defines the Database Instance errors.
+     * Defines the errors related to Database resource.
      */
     @JsonProperty(value = "errors", access = JsonProperty.Access.WRITE_ONLY)
     private SapVirtualInstanceError errors;
 
+    /** Creates an instance of SapDatabaseProperties class. */
+    public SapDatabaseProperties() {
+    }
+
     /**
-     * Get the subnet property: The database subnet.
+     * Get the subnet property: Database subnet.
      *
      * @return the subnet value.
      */
@@ -73,7 +77,7 @@ public final class SapDatabaseProperties {
     }
 
     /**
-     * Get the databaseSid property: The database SID.
+     * Get the databaseSid property: Database SID name.
      *
      * @return the databaseSid value.
      */
@@ -82,7 +86,8 @@ public final class SapDatabaseProperties {
     }
 
     /**
-     * Get the databaseType property: The SAP database type.
+     * Get the databaseType property: Database type, that is if the DB is HANA, DB2, Oracle, SAP ASE, Max DB or MS SQL
+     * Server.
      *
      * @return the databaseType value.
      */
@@ -91,7 +96,7 @@ public final class SapDatabaseProperties {
     }
 
     /**
-     * Get the ipAddress property: The database IP Address.
+     * Get the ipAddress property: Database IP Address.
      *
      * @return the ipAddress value.
      */
@@ -100,7 +105,7 @@ public final class SapDatabaseProperties {
     }
 
     /**
-     * Get the vmDetails property: The list of virtual machines.
+     * Get the vmDetails property: The list of virtual machines corresponding to the Database resource.
      *
      * @return the vmDetails value.
      */
@@ -127,7 +132,7 @@ public final class SapDatabaseProperties {
     }
 
     /**
-     * Get the errors property: Defines the Database Instance errors.
+     * Get the errors property: Defines the errors related to Database resource.
      *
      * @return the errors value.
      */
