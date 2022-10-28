@@ -993,22 +993,6 @@ public final class CachesClientImpl implements CachesClient {
      * @param resourceGroupName Target resource group.
      * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a Cache instance.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public CacheInner getByResourceGroup(String resourceGroupName, String cacheName) {
-        return getByResourceGroupAsync(resourceGroupName, cacheName).block();
-    }
-
-    /**
-     * Returns a Cache.
-     *
-     * @param resourceGroupName Target resource group.
-     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
-     *     [-0-9a-zA-Z_] char class.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1019,6 +1003,22 @@ public final class CachesClientImpl implements CachesClient {
     public Response<CacheInner> getByResourceGroupWithResponse(
         String resourceGroupName, String cacheName, Context context) {
         return getByResourceGroupWithResponseAsync(resourceGroupName, cacheName, context).block();
+    }
+
+    /**
+     * Returns a Cache.
+     *
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
+     *     [-0-9a-zA-Z_] char class.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a Cache instance.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public CacheInner getByResourceGroup(String resourceGroupName, String cacheName) {
+        return getByResourceGroupWithResponse(resourceGroupName, cacheName, Context.NONE).getValue();
     }
 
     /**
@@ -1158,6 +1158,28 @@ public final class CachesClientImpl implements CachesClient {
      * @param resourceGroupName Target resource group.
      * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of a Cache instance.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<CacheInner>, CacheInner> beginCreateOrUpdateAsync(
+        String resourceGroupName, String cacheName) {
+        final CacheInner cache = null;
+        Mono<Response<Flux<ByteBuffer>>> mono = createOrUpdateWithResponseAsync(resourceGroupName, cacheName, cache);
+        return this
+            .client
+            .<CacheInner, CacheInner>getLroResult(
+                mono, this.client.getHttpPipeline(), CacheInner.class, CacheInner.class, this.client.getContext());
+    }
+
+    /**
+     * Create or update a Cache.
+     *
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
+     *     [-0-9a-zA-Z_] char class.
      * @param cache Object containing the user-selectable properties of the new Cache. If read-only properties are
      *     included, they must match the existing values of those properties.
      * @param context The context to associate with this operation.
@@ -1184,8 +1206,6 @@ public final class CachesClientImpl implements CachesClient {
      * @param resourceGroupName Target resource group.
      * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
-     * @param cache Object containing the user-selectable properties of the new Cache. If read-only properties are
-     *     included, they must match the existing values of those properties.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1193,7 +1213,8 @@ public final class CachesClientImpl implements CachesClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<CacheInner>, CacheInner> beginCreateOrUpdate(
-        String resourceGroupName, String cacheName, CacheInner cache) {
+        String resourceGroupName, String cacheName) {
+        final CacheInner cache = null;
         return beginCreateOrUpdateAsync(resourceGroupName, cacheName, cache).getSyncPoller();
     }
 
@@ -1276,24 +1297,6 @@ public final class CachesClientImpl implements CachesClient {
         return beginCreateOrUpdateAsync(resourceGroupName, cacheName, cache, context)
             .last()
             .flatMap(this.client::getLroFinalResultOrError);
-    }
-
-    /**
-     * Create or update a Cache.
-     *
-     * @param resourceGroupName Target resource group.
-     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
-     *     [-0-9a-zA-Z_] char class.
-     * @param cache Object containing the user-selectable properties of the new Cache. If read-only properties are
-     *     included, they must match the existing values of those properties.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a Cache instance.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public CacheInner createOrUpdate(String resourceGroupName, String cacheName, CacheInner cache) {
-        return createOrUpdateAsync(resourceGroupName, cacheName, cache).block();
     }
 
     /**
@@ -1446,25 +1449,6 @@ public final class CachesClientImpl implements CachesClient {
      * @param resourceGroupName Target resource group.
      * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
-     * @param cache Object containing the user-selectable properties of the Cache. If read-only properties are included,
-     *     they must match the existing values of those properties.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a Cache instance on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<CacheInner> updateAsync(String resourceGroupName, String cacheName, CacheInner cache) {
-        return updateWithResponseAsync(resourceGroupName, cacheName, cache)
-            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
-    }
-
-    /**
-     * Update a Cache instance.
-     *
-     * @param resourceGroupName Target resource group.
-     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
-     *     [-0-9a-zA-Z_] char class.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1475,23 +1459,6 @@ public final class CachesClientImpl implements CachesClient {
         final CacheInner cache = null;
         return updateWithResponseAsync(resourceGroupName, cacheName, cache)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
-    }
-
-    /**
-     * Update a Cache instance.
-     *
-     * @param resourceGroupName Target resource group.
-     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
-     *     [-0-9a-zA-Z_] char class.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a Cache instance.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public CacheInner update(String resourceGroupName, String cacheName) {
-        final CacheInner cache = null;
-        return updateAsync(resourceGroupName, cacheName, cache).block();
     }
 
     /**
@@ -1512,6 +1479,23 @@ public final class CachesClientImpl implements CachesClient {
     public Response<CacheInner> updateWithResponse(
         String resourceGroupName, String cacheName, CacheInner cache, Context context) {
         return updateWithResponseAsync(resourceGroupName, cacheName, cache, context).block();
+    }
+
+    /**
+     * Update a Cache instance.
+     *
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
+     *     [-0-9a-zA-Z_] char class.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a Cache instance.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public CacheInner update(String resourceGroupName, String cacheName) {
+        final CacheInner cache = null;
+        return updateWithResponse(resourceGroupName, cacheName, cache, Context.NONE).getValue();
     }
 
     /**
@@ -2604,6 +2588,28 @@ public final class CachesClientImpl implements CachesClient {
      * @param resourceGroupName Target resource group.
      * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<Void>, Void> beginStartPrimingJobAsync(String resourceGroupName, String cacheName) {
+        final PrimingJob primingjob = null;
+        Mono<Response<Flux<ByteBuffer>>> mono =
+            startPrimingJobWithResponseAsync(resourceGroupName, cacheName, primingjob);
+        return this
+            .client
+            .<Void, Void>getLroResult(
+                mono, this.client.getHttpPipeline(), Void.class, Void.class, this.client.getContext());
+    }
+
+    /**
+     * Create a priming job. This operation is only allowed when the cache is healthy.
+     *
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
+     *     [-0-9a-zA-Z_] char class.
      * @param primingjob Object containing the definition of a priming job.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -2628,15 +2634,14 @@ public final class CachesClientImpl implements CachesClient {
      * @param resourceGroupName Target resource group.
      * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
-     * @param primingjob Object containing the definition of a priming job.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<Void>, Void> beginStartPrimingJob(
-        String resourceGroupName, String cacheName, PrimingJob primingjob) {
+    public SyncPoller<PollResult<Void>, Void> beginStartPrimingJob(String resourceGroupName, String cacheName) {
+        final PrimingJob primingjob = null;
         return beginStartPrimingJobAsync(resourceGroupName, cacheName, primingjob).getSyncPoller();
     }
 
@@ -2716,22 +2721,6 @@ public final class CachesClientImpl implements CachesClient {
         return beginStartPrimingJobAsync(resourceGroupName, cacheName, primingjob, context)
             .last()
             .flatMap(this.client::getLroFinalResultOrError);
-    }
-
-    /**
-     * Create a priming job. This operation is only allowed when the cache is healthy.
-     *
-     * @param resourceGroupName Target resource group.
-     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
-     *     [-0-9a-zA-Z_] char class.
-     * @param primingjob Object containing the definition of a priming job.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public void startPrimingJob(String resourceGroupName, String cacheName, PrimingJob primingjob) {
-        startPrimingJobAsync(resourceGroupName, cacheName, primingjob).block();
     }
 
     /**
@@ -2902,6 +2891,28 @@ public final class CachesClientImpl implements CachesClient {
      * @param resourceGroupName Target resource group.
      * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<Void>, Void> beginStopPrimingJobAsync(String resourceGroupName, String cacheName) {
+        final PrimingJobIdParameter primingJobId = null;
+        Mono<Response<Flux<ByteBuffer>>> mono =
+            stopPrimingJobWithResponseAsync(resourceGroupName, cacheName, primingJobId);
+        return this
+            .client
+            .<Void, Void>getLroResult(
+                mono, this.client.getHttpPipeline(), Void.class, Void.class, this.client.getContext());
+    }
+
+    /**
+     * Schedule a priming job for deletion.
+     *
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
+     *     [-0-9a-zA-Z_] char class.
      * @param primingJobId Object containing the priming job ID.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -2926,15 +2937,14 @@ public final class CachesClientImpl implements CachesClient {
      * @param resourceGroupName Target resource group.
      * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
-     * @param primingJobId Object containing the priming job ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<Void>, Void> beginStopPrimingJob(
-        String resourceGroupName, String cacheName, PrimingJobIdParameter primingJobId) {
+    public SyncPoller<PollResult<Void>, Void> beginStopPrimingJob(String resourceGroupName, String cacheName) {
+        final PrimingJobIdParameter primingJobId = null;
         return beginStopPrimingJobAsync(resourceGroupName, cacheName, primingJobId).getSyncPoller();
     }
 
@@ -3015,22 +3025,6 @@ public final class CachesClientImpl implements CachesClient {
         return beginStopPrimingJobAsync(resourceGroupName, cacheName, primingJobId, context)
             .last()
             .flatMap(this.client::getLroFinalResultOrError);
-    }
-
-    /**
-     * Schedule a priming job for deletion.
-     *
-     * @param resourceGroupName Target resource group.
-     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
-     *     [-0-9a-zA-Z_] char class.
-     * @param primingJobId Object containing the priming job ID.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public void stopPrimingJob(String resourceGroupName, String cacheName, PrimingJobIdParameter primingJobId) {
-        stopPrimingJobAsync(resourceGroupName, cacheName, primingJobId).block();
     }
 
     /**
@@ -3202,6 +3196,28 @@ public final class CachesClientImpl implements CachesClient {
      * @param resourceGroupName Target resource group.
      * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<Void>, Void> beginPausePrimingJobAsync(String resourceGroupName, String cacheName) {
+        final PrimingJobIdParameter primingJobId = null;
+        Mono<Response<Flux<ByteBuffer>>> mono =
+            pausePrimingJobWithResponseAsync(resourceGroupName, cacheName, primingJobId);
+        return this
+            .client
+            .<Void, Void>getLroResult(
+                mono, this.client.getHttpPipeline(), Void.class, Void.class, this.client.getContext());
+    }
+
+    /**
+     * Schedule a priming job to be paused.
+     *
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
+     *     [-0-9a-zA-Z_] char class.
      * @param primingJobId Object containing the priming job ID.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -3226,15 +3242,14 @@ public final class CachesClientImpl implements CachesClient {
      * @param resourceGroupName Target resource group.
      * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
-     * @param primingJobId Object containing the priming job ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<Void>, Void> beginPausePrimingJob(
-        String resourceGroupName, String cacheName, PrimingJobIdParameter primingJobId) {
+    public SyncPoller<PollResult<Void>, Void> beginPausePrimingJob(String resourceGroupName, String cacheName) {
+        final PrimingJobIdParameter primingJobId = null;
         return beginPausePrimingJobAsync(resourceGroupName, cacheName, primingJobId).getSyncPoller();
     }
 
@@ -3315,22 +3330,6 @@ public final class CachesClientImpl implements CachesClient {
         return beginPausePrimingJobAsync(resourceGroupName, cacheName, primingJobId, context)
             .last()
             .flatMap(this.client::getLroFinalResultOrError);
-    }
-
-    /**
-     * Schedule a priming job to be paused.
-     *
-     * @param resourceGroupName Target resource group.
-     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
-     *     [-0-9a-zA-Z_] char class.
-     * @param primingJobId Object containing the priming job ID.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public void pausePrimingJob(String resourceGroupName, String cacheName, PrimingJobIdParameter primingJobId) {
-        pausePrimingJobAsync(resourceGroupName, cacheName, primingJobId).block();
     }
 
     /**
@@ -3502,6 +3501,28 @@ public final class CachesClientImpl implements CachesClient {
      * @param resourceGroupName Target resource group.
      * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<Void>, Void> beginResumePrimingJobAsync(String resourceGroupName, String cacheName) {
+        final PrimingJobIdParameter primingJobId = null;
+        Mono<Response<Flux<ByteBuffer>>> mono =
+            resumePrimingJobWithResponseAsync(resourceGroupName, cacheName, primingJobId);
+        return this
+            .client
+            .<Void, Void>getLroResult(
+                mono, this.client.getHttpPipeline(), Void.class, Void.class, this.client.getContext());
+    }
+
+    /**
+     * Resumes a paused priming job.
+     *
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
+     *     [-0-9a-zA-Z_] char class.
      * @param primingJobId Object containing the priming job ID.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -3526,15 +3547,14 @@ public final class CachesClientImpl implements CachesClient {
      * @param resourceGroupName Target resource group.
      * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
-     * @param primingJobId Object containing the priming job ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<Void>, Void> beginResumePrimingJob(
-        String resourceGroupName, String cacheName, PrimingJobIdParameter primingJobId) {
+    public SyncPoller<PollResult<Void>, Void> beginResumePrimingJob(String resourceGroupName, String cacheName) {
+        final PrimingJobIdParameter primingJobId = null;
         return beginResumePrimingJobAsync(resourceGroupName, cacheName, primingJobId).getSyncPoller();
     }
 
@@ -3615,22 +3635,6 @@ public final class CachesClientImpl implements CachesClient {
         return beginResumePrimingJobAsync(resourceGroupName, cacheName, primingJobId, context)
             .last()
             .flatMap(this.client::getLroFinalResultOrError);
-    }
-
-    /**
-     * Resumes a paused priming job.
-     *
-     * @param resourceGroupName Target resource group.
-     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
-     *     [-0-9a-zA-Z_] char class.
-     * @param primingJobId Object containing the priming job ID.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public void resumePrimingJob(String resourceGroupName, String cacheName, PrimingJobIdParameter primingJobId) {
-        resumePrimingJobAsync(resourceGroupName, cacheName, primingJobId).block();
     }
 
     /**
@@ -4045,6 +4049,28 @@ public final class CachesClientImpl implements CachesClient {
      * @param resourceGroupName Target resource group.
      * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<Void>, Void> beginSpaceAllocationAsync(String resourceGroupName, String cacheName) {
+        final List<StorageTargetSpaceAllocation> spaceAllocation = null;
+        Mono<Response<Flux<ByteBuffer>>> mono =
+            spaceAllocationWithResponseAsync(resourceGroupName, cacheName, spaceAllocation);
+        return this
+            .client
+            .<Void, Void>getLroResult(
+                mono, this.client.getHttpPipeline(), Void.class, Void.class, this.client.getContext());
+    }
+
+    /**
+     * Update cache space allocation.
+     *
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
+     *     [-0-9a-zA-Z_] char class.
      * @param spaceAllocation List containing storage target cache space percentage allocations.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -4072,15 +4098,14 @@ public final class CachesClientImpl implements CachesClient {
      * @param resourceGroupName Target resource group.
      * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
-     * @param spaceAllocation List containing storage target cache space percentage allocations.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<Void>, Void> beginSpaceAllocation(
-        String resourceGroupName, String cacheName, List<StorageTargetSpaceAllocation> spaceAllocation) {
+    public SyncPoller<PollResult<Void>, Void> beginSpaceAllocation(String resourceGroupName, String cacheName) {
+        final List<StorageTargetSpaceAllocation> spaceAllocation = null;
         return beginSpaceAllocationAsync(resourceGroupName, cacheName, spaceAllocation).getSyncPoller();
     }
 
@@ -4175,23 +4200,6 @@ public final class CachesClientImpl implements CachesClient {
      * @param resourceGroupName Target resource group.
      * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
-     * @param spaceAllocation List containing storage target cache space percentage allocations.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public void spaceAllocation(
-        String resourceGroupName, String cacheName, List<StorageTargetSpaceAllocation> spaceAllocation) {
-        spaceAllocationAsync(resourceGroupName, cacheName, spaceAllocation).block();
-    }
-
-    /**
-     * Update cache space allocation.
-     *
-     * @param resourceGroupName Target resource group.
-     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
-     *     [-0-9a-zA-Z_] char class.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -4226,7 +4234,8 @@ public final class CachesClientImpl implements CachesClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -4262,7 +4271,8 @@ public final class CachesClientImpl implements CachesClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -4299,7 +4309,8 @@ public final class CachesClientImpl implements CachesClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -4336,7 +4347,8 @@ public final class CachesClientImpl implements CachesClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.

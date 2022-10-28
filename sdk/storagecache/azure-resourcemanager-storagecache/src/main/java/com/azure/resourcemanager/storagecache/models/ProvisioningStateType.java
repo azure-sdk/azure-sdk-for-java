@@ -8,7 +8,10 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for ProvisioningStateType. */
+/**
+ * ARM provisioning state, see
+ * https://github.com/Azure/azure-resource-manager-rpc/blob/master/v1.0/Addendum.md#provisioningstate-property.
+ */
 public final class ProvisioningStateType extends ExpandableStringEnum<ProvisioningStateType> {
     /** Static value Succeeded for ProvisioningStateType. */
     public static final ProvisioningStateType SUCCEEDED = fromString("Succeeded");
