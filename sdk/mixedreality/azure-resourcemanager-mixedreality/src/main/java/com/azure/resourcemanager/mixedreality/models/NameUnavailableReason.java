@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for NameUnavailableReason. */
+/** reason of name unavailable. */
 public final class NameUnavailableReason extends ExpandableStringEnum<NameUnavailableReason> {
     /** Static value Invalid for NameUnavailableReason. */
     public static final NameUnavailableReason INVALID = fromString("Invalid");
@@ -27,7 +27,11 @@ public final class NameUnavailableReason extends ExpandableStringEnum<NameUnavai
         return fromString(name, NameUnavailableReason.class);
     }
 
-    /** @return known NameUnavailableReason values. */
+    /**
+     * Gets known NameUnavailableReason values.
+     *
+     * @return known NameUnavailableReason values.
+     */
     public static Collection<NameUnavailableReason> values() {
         return values(NameUnavailableReason.class);
     }
