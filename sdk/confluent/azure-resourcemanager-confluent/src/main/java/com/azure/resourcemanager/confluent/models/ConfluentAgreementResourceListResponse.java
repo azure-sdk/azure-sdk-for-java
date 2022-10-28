@@ -5,17 +5,13 @@
 package com.azure.resourcemanager.confluent.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.confluent.fluent.models.ConfluentAgreementResourceInner;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** Response of a list operation. */
 @Fluent
 public final class ConfluentAgreementResourceListResponse {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(ConfluentAgreementResourceListResponse.class);
-
     /*
      * Results of a list operation.
      */
@@ -27,6 +23,10 @@ public final class ConfluentAgreementResourceListResponse {
      */
     @JsonProperty(value = "nextLink")
     private String nextLink;
+
+    /** Creates an instance of ConfluentAgreementResourceListResponse class. */
+    public ConfluentAgreementResourceListResponse() {
+    }
 
     /**
      * Get the value property: Results of a list operation.
