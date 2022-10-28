@@ -28,6 +28,10 @@ public final class ScheduleInner extends ProxyResource {
     @JsonProperty(value = "properties", required = true)
     private ScheduleProperties innerProperties = new ScheduleProperties();
 
+    /** Creates an instance of ScheduleInner class. */
+    public ScheduleInner() {
+    }
+
     /**
      * Get the systemData property: Metadata pertaining to creation and last modification of the schedule.
      *

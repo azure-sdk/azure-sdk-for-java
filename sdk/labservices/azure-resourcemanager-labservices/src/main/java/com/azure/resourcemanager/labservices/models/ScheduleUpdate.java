@@ -18,6 +18,10 @@ public final class ScheduleUpdate {
     @JsonProperty(value = "properties")
     private ScheduleUpdateProperties innerProperties;
 
+    /** Creates an instance of ScheduleUpdate class. */
+    public ScheduleUpdate() {
+    }
+
     /**
      * Get the innerProperties property: Schedule resource properties.
      *

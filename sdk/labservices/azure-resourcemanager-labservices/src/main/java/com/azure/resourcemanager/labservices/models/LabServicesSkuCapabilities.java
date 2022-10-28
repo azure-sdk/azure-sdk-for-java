@@ -22,6 +22,10 @@ public final class LabServicesSkuCapabilities {
     @JsonProperty(value = "value", access = JsonProperty.Access.WRITE_ONLY)
     private String value;
 
+    /** Creates an instance of LabServicesSkuCapabilities class. */
+    public LabServicesSkuCapabilities() {
+    }
+
     /**
      * Get the name property: The name of the capability for a SKU.
      *

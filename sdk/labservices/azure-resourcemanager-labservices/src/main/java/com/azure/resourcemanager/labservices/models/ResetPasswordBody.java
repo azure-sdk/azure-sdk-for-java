@@ -23,6 +23,10 @@ public final class ResetPasswordBody {
     @JsonProperty(value = "password", required = true)
     private String password;
 
+    /** Creates an instance of ResetPasswordBody class. */
+    public ResetPasswordBody() {
+    }
+
     /**
      * Get the username property: The user whose password is being reset.
      *

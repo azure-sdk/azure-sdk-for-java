@@ -551,14 +551,16 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
      * @param labName The name of the lab that uniquely identifies it within containing lab plan. Used in resource URIs.
      * @param virtualMachineName The ID of the virtual machine that uniquely identifies it within the containing lab.
      *     Used in resource URIs.
+     * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a lab virtual machine resource.
+     * @return a lab virtual machine resource along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public VirtualMachineInner get(String resourceGroupName, String labName, String virtualMachineName) {
-        return getAsync(resourceGroupName, labName, virtualMachineName).block();
+    public Response<VirtualMachineInner> getWithResponse(
+        String resourceGroupName, String labName, String virtualMachineName, Context context) {
+        return getWithResponseAsync(resourceGroupName, labName, virtualMachineName, context).block();
     }
 
     /**
@@ -570,16 +572,14 @@ public final class VirtualMachinesClientImpl implements VirtualMachinesClient {
      * @param labName The name of the lab that uniquely identifies it within containing lab plan. Used in resource URIs.
      * @param virtualMachineName The ID of the virtual machine that uniquely identifies it within the containing lab.
      *     Used in resource URIs.
-     * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a lab virtual machine resource along with {@link Response}.
+     * @return a lab virtual machine resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<VirtualMachineInner> getWithResponse(
-        String resourceGroupName, String labName, String virtualMachineName, Context context) {
-        return getWithResponseAsync(resourceGroupName, labName, virtualMachineName, context).block();
+    public VirtualMachineInner get(String resourceGroupName, String labName, String virtualMachineName) {
+        return getWithResponse(resourceGroupName, labName, virtualMachineName, Context.NONE).getValue();
     }
 
     /**

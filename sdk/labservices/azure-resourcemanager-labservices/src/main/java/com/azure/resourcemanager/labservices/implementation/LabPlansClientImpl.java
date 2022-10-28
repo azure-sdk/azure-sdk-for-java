@@ -677,24 +677,6 @@ public final class LabPlansClientImpl implements LabPlansClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labPlanName The name of the lab plan that uniquely identifies it within containing resource group. Used in
      *     resource URIs and in UI.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return lab Plans act as a permission container for creating labs via labs.azure.com.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public LabPlanInner getByResourceGroup(String resourceGroupName, String labPlanName) {
-        return getByResourceGroupAsync(resourceGroupName, labPlanName).block();
-    }
-
-    /**
-     * Retrieves a Lab Plan resource.
-     *
-     * <p>Retrieves the properties of a Lab Plan.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param labPlanName The name of the lab plan that uniquely identifies it within containing resource group. Used in
-     *     resource URIs and in UI.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -705,6 +687,24 @@ public final class LabPlansClientImpl implements LabPlansClient {
     public Response<LabPlanInner> getByResourceGroupWithResponse(
         String resourceGroupName, String labPlanName, Context context) {
         return getByResourceGroupWithResponseAsync(resourceGroupName, labPlanName, context).block();
+    }
+
+    /**
+     * Retrieves a Lab Plan resource.
+     *
+     * <p>Retrieves the properties of a Lab Plan.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param labPlanName The name of the lab plan that uniquely identifies it within containing resource group. Used in
+     *     resource URIs and in UI.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return lab Plans act as a permission container for creating labs via labs.azure.com.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public LabPlanInner getByResourceGroup(String resourceGroupName, String labPlanName) {
+        return getByResourceGroupWithResponse(resourceGroupName, labPlanName, Context.NONE).getValue();
     }
 
     /**
