@@ -46,20 +46,6 @@ public interface AlertRuleTemplatesClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param alertRuleTemplateId Alert rule template ID.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the alert rule template.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    AlertRuleTemplateInner get(String resourceGroupName, String workspaceName, String alertRuleTemplateId);
-
-    /**
-     * Gets the alert rule template.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param alertRuleTemplateId Alert rule template ID.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -69,4 +55,18 @@ public interface AlertRuleTemplatesClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<AlertRuleTemplateInner> getWithResponse(
         String resourceGroupName, String workspaceName, String alertRuleTemplateId, Context context);
+
+    /**
+     * Gets the alert rule template.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param alertRuleTemplateId Alert rule template ID.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the alert rule template.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    AlertRuleTemplateInner get(String resourceGroupName, String workspaceName, String alertRuleTemplateId);
 }

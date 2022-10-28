@@ -17,6 +17,10 @@ public final class AwsCloudTrailDataConnectorDataTypes {
     @JsonProperty(value = "logs", required = true)
     private AwsCloudTrailDataConnectorDataTypesLogs logs;
 
+    /** Creates an instance of AwsCloudTrailDataConnectorDataTypes class. */
+    public AwsCloudTrailDataConnectorDataTypes() {
+    }
+
     /**
      * Get the logs property: Logs data type.
      *

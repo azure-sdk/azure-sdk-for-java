@@ -17,6 +17,10 @@ public final class AwsS3DataConnectorDataTypes {
     @JsonProperty(value = "logs", required = true)
     private AwsS3DataConnectorDataTypesLogs logs;
 
+    /** Creates an instance of AwsS3DataConnectorDataTypes class. */
+    public AwsS3DataConnectorDataTypes() {
+    }
+
     /**
      * Get the logs property: Logs data type.
      *
