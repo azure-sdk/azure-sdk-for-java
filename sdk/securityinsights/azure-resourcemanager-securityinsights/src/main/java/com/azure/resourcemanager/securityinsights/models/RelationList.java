@@ -25,6 +25,10 @@ public final class RelationList {
     @JsonProperty(value = "value", required = true)
     private List<RelationInner> value;
 
+    /** Creates an instance of RelationList class. */
+    public RelationList() {
+    }
+
     /**
      * Get the nextLink property: URL to fetch the next set of relations.
      *

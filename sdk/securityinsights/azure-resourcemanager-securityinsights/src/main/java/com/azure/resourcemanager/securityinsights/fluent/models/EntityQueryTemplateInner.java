@@ -29,6 +29,10 @@ public class EntityQueryTemplateInner extends ProxyResource {
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
+    /** Creates an instance of EntityQueryTemplateInner class. */
+    public EntityQueryTemplateInner() {
+    }
+
     /**
      * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
      *

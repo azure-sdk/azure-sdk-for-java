@@ -23,6 +23,10 @@ public final class BookmarkEntityMappings {
     @JsonProperty(value = "fieldMappings")
     private List<EntityFieldMapping> fieldMappings;
 
+    /** Creates an instance of BookmarkEntityMappings class. */
+    public BookmarkEntityMappings() {
+    }
+
     /**
      * Get the entityType property: The entity type.
      *

@@ -17,6 +17,10 @@ public final class ThreatIntelligenceAppendTags {
     @JsonProperty(value = "threatIntelligenceTags")
     private List<String> threatIntelligenceTags;
 
+    /** Creates an instance of ThreatIntelligenceAppendTags class. */
+    public ThreatIntelligenceAppendTags() {
+    }
+
     /**
      * Get the threatIntelligenceTags property: List of tags to be appended.
      *

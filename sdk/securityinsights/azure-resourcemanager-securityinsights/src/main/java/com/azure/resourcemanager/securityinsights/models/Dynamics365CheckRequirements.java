@@ -4,7 +4,7 @@
 
 package com.azure.resourcemanager.securityinsights.models;
 
-import com.azure.core.annotation.Fluent;
+import com.azure.core.annotation.Immutable;
 import com.azure.resourcemanager.securityinsights.fluent.models.Dynamics365CheckRequirementsProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
@@ -13,13 +13,17 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 /** Represents Dynamics365 requirements check request. */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "kind")
 @JsonTypeName("Dynamics365")
-@Fluent
+@Immutable
 public final class Dynamics365CheckRequirements extends DataConnectorsCheckRequirements {
     /*
      * Dynamics365 requirements check properties.
      */
     @JsonProperty(value = "properties")
     private Dynamics365CheckRequirementsProperties innerProperties;
+
+    /** Creates an instance of Dynamics365CheckRequirements class. */
+    public Dynamics365CheckRequirements() {
+    }
 
     /**
      * Get the innerProperties property: Dynamics365 requirements check properties.

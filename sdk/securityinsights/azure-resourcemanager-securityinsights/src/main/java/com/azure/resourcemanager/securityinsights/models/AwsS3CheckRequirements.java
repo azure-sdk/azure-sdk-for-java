@@ -13,6 +13,10 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @JsonTypeName("AmazonWebServicesS3")
 @Immutable
 public final class AwsS3CheckRequirements extends DataConnectorsCheckRequirements {
+    /** Creates an instance of AwsS3CheckRequirements class. */
+    public AwsS3CheckRequirements() {
+    }
+
     /**
      * Validates the instance.
      *
