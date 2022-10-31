@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for LoginMigrationStage. */
+/** Enum of the different stage of login migration. */
 public final class LoginMigrationStage extends ExpandableStringEnum<LoginMigrationStage> {
     /** Static value None for LoginMigrationStage. */
     public static final LoginMigrationStage NONE = fromString("None");
@@ -48,7 +48,11 @@ public final class LoginMigrationStage extends ExpandableStringEnum<LoginMigrati
         return fromString(name, LoginMigrationStage.class);
     }
 
-    /** @return known LoginMigrationStage values. */
+    /**
+     * Gets known LoginMigrationStage values.
+     *
+     * @return known LoginMigrationStage values.
+     */
     public static Collection<LoginMigrationStage> values() {
         return values(LoginMigrationStage.class);
     }

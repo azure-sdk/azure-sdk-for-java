@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for CommandState. */
+/** The state of the command. This is ignored if submitted. */
 public final class CommandState extends ExpandableStringEnum<CommandState> {
     /** Static value Unknown for CommandState. */
     public static final CommandState UNKNOWN = fromString("Unknown");
@@ -36,7 +36,11 @@ public final class CommandState extends ExpandableStringEnum<CommandState> {
         return fromString(name, CommandState.class);
     }
 
-    /** @return known CommandState values. */
+    /**
+     * Gets known CommandState values.
+     *
+     * @return known CommandState values.
+     */
     public static Collection<CommandState> values() {
         return values(CommandState.class);
     }

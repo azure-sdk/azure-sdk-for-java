@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for MigrationStatus. */
+/** Current status of migration. */
 public final class MigrationStatus extends ExpandableStringEnum<MigrationStatus> {
     /** Static value Default for MigrationStatus. */
     public static final MigrationStatus DEFAULT = fromString("Default");
@@ -51,7 +51,11 @@ public final class MigrationStatus extends ExpandableStringEnum<MigrationStatus>
         return fromString(name, MigrationStatus.class);
     }
 
-    /** @return known MigrationStatus values. */
+    /**
+     * Gets known MigrationStatus values.
+     *
+     * @return known MigrationStatus values.
+     */
     public static Collection<MigrationStatus> values() {
         return values(MigrationStatus.class);
     }
