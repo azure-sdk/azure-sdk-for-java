@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for FileUploadOptions. */
+/** Options for uploading the files for the artifact. UploadFilesAndGenerateSasTokens is the default value. */
 public final class FileUploadOptions extends ExpandableStringEnum<FileUploadOptions> {
     /** Static value UploadFilesAndGenerateSasTokens for FileUploadOptions. */
     public static final FileUploadOptions UPLOAD_FILES_AND_GENERATE_SAS_TOKENS =
@@ -28,7 +28,11 @@ public final class FileUploadOptions extends ExpandableStringEnum<FileUploadOpti
         return fromString(name, FileUploadOptions.class);
     }
 
-    /** @return known FileUploadOptions values. */
+    /**
+     * Gets known FileUploadOptions values.
+     *
+     * @return known FileUploadOptions values.
+     */
     public static Collection<FileUploadOptions> values() {
         return values(FileUploadOptions.class);
     }
