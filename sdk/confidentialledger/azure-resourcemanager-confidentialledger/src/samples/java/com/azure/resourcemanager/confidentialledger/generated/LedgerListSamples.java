@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for Ledger List. */
 public final class LedgerListSamples {
     /*
-     * x-ms-original-file: specification/confidentialledger/resource-manager/Microsoft.ConfidentialLedger/stable/2022-05-13/examples/ConfidentialLedger_ListBySub.json
+     * x-ms-original-file: specification/confidentialledger/resource-manager/Microsoft.ConfidentialLedger/preview/2022-09-08-preview/examples/ConfidentialLedger_ListBySub.json
      */
     /**
      * Sample code: ConfidentialLedgerListBySub.

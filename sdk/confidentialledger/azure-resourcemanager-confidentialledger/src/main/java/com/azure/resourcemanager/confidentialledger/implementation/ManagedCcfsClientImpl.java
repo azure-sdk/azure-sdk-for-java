@@ -32,57 +32,58 @@ import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
 import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.polling.SyncPoller;
-import com.azure.resourcemanager.confidentialledger.fluent.LedgersClient;
-import com.azure.resourcemanager.confidentialledger.fluent.models.ConfidentialLedgerInner;
-import com.azure.resourcemanager.confidentialledger.models.ConfidentialLedgerList;
+import com.azure.resourcemanager.confidentialledger.fluent.ManagedCcfsClient;
+import com.azure.resourcemanager.confidentialledger.fluent.models.ManagedCcfInner;
+import com.azure.resourcemanager.confidentialledger.models.ManagedCcfList;
 import java.nio.ByteBuffer;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-/** An instance of this class provides access to all the operations defined in LedgersClient. */
-public final class LedgersClientImpl implements LedgersClient {
+/** An instance of this class provides access to all the operations defined in ManagedCcfsClient. */
+public final class ManagedCcfsClientImpl implements ManagedCcfsClient {
     /** The proxy service used to perform REST calls. */
-    private final LedgersService service;
+    private final ManagedCcfsService service;
 
     /** The service client containing this operation class. */
     private final ConfidentialLedgerManagementClientImpl client;
 
     /**
-     * Initializes an instance of LedgersClientImpl.
+     * Initializes an instance of ManagedCcfsClientImpl.
      *
      * @param client the instance of the service client containing this operation class.
      */
-    LedgersClientImpl(ConfidentialLedgerManagementClientImpl client) {
-        this.service = RestProxy.create(LedgersService.class, client.getHttpPipeline(), client.getSerializerAdapter());
+    ManagedCcfsClientImpl(ConfidentialLedgerManagementClientImpl client) {
+        this.service =
+            RestProxy.create(ManagedCcfsService.class, client.getHttpPipeline(), client.getSerializerAdapter());
         this.client = client;
     }
 
     /**
-     * The interface defining all the services for ConfidentialLedgerManagementClientLedgers to be used by the proxy
+     * The interface defining all the services for ConfidentialLedgerManagementClientManagedCcfs to be used by the proxy
      * service to perform REST calls.
      */
     @Host("{$host}")
     @ServiceInterface(name = "ConfidentialLedgerMa")
-    private interface LedgersService {
+    private interface ManagedCcfsService {
         @Headers({"Content-Type: application/json"})
         @Get(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ConfidentialLedger"
-                + "/ledgers/{ledgerName}")
+                + "/managedCCFs/{appName}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<ConfidentialLedgerInner>> getByResourceGroup(
+        Mono<Response<ManagedCcfInner>> getByResourceGroup(
             @HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("ledgerName") String ledgerName,
+            @PathParam("appName") String appName,
             @HeaderParam("Accept") String accept,
             Context context);
 
         @Headers({"Content-Type: application/json"})
         @Delete(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ConfidentialLedger"
-                + "/ledgers/{ledgerName}")
+                + "/managedCCFs/{appName}")
         @ExpectedResponses({200, 202, 204})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> delete(
@@ -90,14 +91,14 @@ public final class LedgersClientImpl implements LedgersClient {
             @QueryParam("api-version") String apiVersion,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("ledgerName") String ledgerName,
+            @PathParam("appName") String appName,
             @HeaderParam("Accept") String accept,
             Context context);
 
         @Headers({"Content-Type: application/json"})
         @Put(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ConfidentialLedger"
-                + "/ledgers/{ledgerName}")
+                + "/managedCCFs/{appName}")
         @ExpectedResponses({200, 201})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> create(
@@ -105,34 +106,34 @@ public final class LedgersClientImpl implements LedgersClient {
             @QueryParam("api-version") String apiVersion,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("ledgerName") String ledgerName,
-            @BodyParam("application/json") ConfidentialLedgerInner confidentialLedger,
+            @PathParam("appName") String appName,
+            @BodyParam("application/json") ManagedCcfInner managedCcf,
             @HeaderParam("Accept") String accept,
             Context context);
 
         @Headers({"Content-Type: application/json"})
         @Patch(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ConfidentialLedger"
-                + "/ledgers/{ledgerName}")
-        @ExpectedResponses({200, 201})
+                + "/managedCCFs/{appName}")
+        @ExpectedResponses({200, 202})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> update(
             @HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("ledgerName") String ledgerName,
-            @BodyParam("application/json") ConfidentialLedgerInner confidentialLedger,
+            @PathParam("appName") String appName,
+            @BodyParam("application/json") ManagedCcfInner managedCcf,
             @HeaderParam("Accept") String accept,
             Context context);
 
         @Headers({"Content-Type: application/json"})
         @Get(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ConfidentialLedger"
-                + "/ledgers")
+                + "/managedCCFs")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<ConfidentialLedgerList>> listByResourceGroup(
+        Mono<Response<ManagedCcfList>> listByResourceGroup(
             @HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion,
             @PathParam("subscriptionId") String subscriptionId,
@@ -142,10 +143,10 @@ public final class LedgersClientImpl implements LedgersClient {
             Context context);
 
         @Headers({"Content-Type: application/json"})
-        @Get("/subscriptions/{subscriptionId}/providers/Microsoft.ConfidentialLedger/ledgers/")
+        @Get("/subscriptions/{subscriptionId}/providers/Microsoft.ConfidentialLedger/managedCCFs/")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<ConfidentialLedgerList>> list(
+        Mono<Response<ManagedCcfList>> list(
             @HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion,
             @PathParam("subscriptionId") String subscriptionId,
@@ -157,7 +158,7 @@ public final class LedgersClientImpl implements LedgersClient {
         @Get("{nextLink}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<ConfidentialLedgerList>> listByResourceGroupNext(
+        Mono<Response<ManagedCcfList>> listByResourceGroupNext(
             @PathParam(value = "nextLink", encoded = true) String nextLink,
             @HostParam("$host") String endpoint,
             @HeaderParam("Accept") String accept,
@@ -167,7 +168,7 @@ public final class LedgersClientImpl implements LedgersClient {
         @Get("{nextLink}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<ConfidentialLedgerList>> listBySubscriptionNext(
+        Mono<Response<ManagedCcfList>> listBySubscriptionNext(
             @PathParam(value = "nextLink", encoded = true) String nextLink,
             @HostParam("$host") String endpoint,
             @HeaderParam("Accept") String accept,
@@ -175,20 +176,20 @@ public final class LedgersClientImpl implements LedgersClient {
     }
 
     /**
-     * Retrieves information about a Confidential Ledger resource.
+     * Retrieves information about a Managed CCF resource.
      *
-     * <p>Retrieves the properties of a Confidential Ledger.
+     * <p>Retrieves the properties of a Managed CCF app.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param ledgerName Name of the Confidential Ledger.
+     * @param appName Name of the Managed CCF.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return confidential Ledger along with {@link Response} on successful completion of {@link Mono}.
+     * @return managed CCF along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<ConfidentialLedgerInner>> getByResourceGroupWithResponseAsync(
-        String resourceGroupName, String ledgerName) {
+    private Mono<Response<ManagedCcfInner>> getByResourceGroupWithResponseAsync(
+        String resourceGroupName, String appName) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -205,8 +206,8 @@ public final class LedgersClientImpl implements LedgersClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
-        if (ledgerName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter ledgerName is required and cannot be null."));
+        if (appName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter appName is required and cannot be null."));
         }
         final String accept = "application/json";
         return FluxUtil
@@ -218,28 +219,28 @@ public final class LedgersClientImpl implements LedgersClient {
                             this.client.getApiVersion(),
                             this.client.getSubscriptionId(),
                             resourceGroupName,
-                            ledgerName,
+                            appName,
                             accept,
                             context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
-     * Retrieves information about a Confidential Ledger resource.
+     * Retrieves information about a Managed CCF resource.
      *
-     * <p>Retrieves the properties of a Confidential Ledger.
+     * <p>Retrieves the properties of a Managed CCF app.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param ledgerName Name of the Confidential Ledger.
+     * @param appName Name of the Managed CCF.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return confidential Ledger along with {@link Response} on successful completion of {@link Mono}.
+     * @return managed CCF along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<ConfidentialLedgerInner>> getByResourceGroupWithResponseAsync(
-        String resourceGroupName, String ledgerName, Context context) {
+    private Mono<Response<ManagedCcfInner>> getByResourceGroupWithResponseAsync(
+        String resourceGroupName, String appName, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -256,8 +257,8 @@ public final class LedgersClientImpl implements LedgersClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
-        if (ledgerName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter ledgerName is required and cannot be null."));
+        if (appName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter appName is required and cannot be null."));
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
@@ -267,79 +268,79 @@ public final class LedgersClientImpl implements LedgersClient {
                 this.client.getApiVersion(),
                 this.client.getSubscriptionId(),
                 resourceGroupName,
-                ledgerName,
+                appName,
                 accept,
                 context);
     }
 
     /**
-     * Retrieves information about a Confidential Ledger resource.
+     * Retrieves information about a Managed CCF resource.
      *
-     * <p>Retrieves the properties of a Confidential Ledger.
+     * <p>Retrieves the properties of a Managed CCF app.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param ledgerName Name of the Confidential Ledger.
+     * @param appName Name of the Managed CCF.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return confidential Ledger on successful completion of {@link Mono}.
+     * @return managed CCF on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<ConfidentialLedgerInner> getByResourceGroupAsync(String resourceGroupName, String ledgerName) {
-        return getByResourceGroupWithResponseAsync(resourceGroupName, ledgerName)
+    private Mono<ManagedCcfInner> getByResourceGroupAsync(String resourceGroupName, String appName) {
+        return getByResourceGroupWithResponseAsync(resourceGroupName, appName)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
-     * Retrieves information about a Confidential Ledger resource.
+     * Retrieves information about a Managed CCF resource.
      *
-     * <p>Retrieves the properties of a Confidential Ledger.
+     * <p>Retrieves the properties of a Managed CCF app.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param ledgerName Name of the Confidential Ledger.
+     * @param appName Name of the Managed CCF.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return confidential Ledger along with {@link Response}.
+     * @return managed CCF along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ConfidentialLedgerInner> getByResourceGroupWithResponse(
-        String resourceGroupName, String ledgerName, Context context) {
-        return getByResourceGroupWithResponseAsync(resourceGroupName, ledgerName, context).block();
+    public Response<ManagedCcfInner> getByResourceGroupWithResponse(
+        String resourceGroupName, String appName, Context context) {
+        return getByResourceGroupWithResponseAsync(resourceGroupName, appName, context).block();
     }
 
     /**
-     * Retrieves information about a Confidential Ledger resource.
+     * Retrieves information about a Managed CCF resource.
      *
-     * <p>Retrieves the properties of a Confidential Ledger.
+     * <p>Retrieves the properties of a Managed CCF app.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param ledgerName Name of the Confidential Ledger.
+     * @param appName Name of the Managed CCF.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return confidential Ledger.
+     * @return managed CCF.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public ConfidentialLedgerInner getByResourceGroup(String resourceGroupName, String ledgerName) {
-        return getByResourceGroupWithResponse(resourceGroupName, ledgerName, Context.NONE).getValue();
+    public ManagedCcfInner getByResourceGroup(String resourceGroupName, String appName) {
+        return getByResourceGroupWithResponse(resourceGroupName, appName, Context.NONE).getValue();
     }
 
     /**
-     * Deletes a Confidential Ledger resource.
+     * Deletes a Managed CCF resource.
      *
-     * <p>Deletes an existing Confidential Ledger.
+     * <p>Deletes an existing Managed CCF.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param ledgerName Name of the Confidential Ledger.
+     * @param appName Name of the Managed CCF.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(String resourceGroupName, String ledgerName) {
+    private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(String resourceGroupName, String appName) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -356,8 +357,8 @@ public final class LedgersClientImpl implements LedgersClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
-        if (ledgerName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter ledgerName is required and cannot be null."));
+        if (appName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter appName is required and cannot be null."));
         }
         final String accept = "application/json";
         return FluxUtil
@@ -369,19 +370,19 @@ public final class LedgersClientImpl implements LedgersClient {
                             this.client.getApiVersion(),
                             this.client.getSubscriptionId(),
                             resourceGroupName,
-                            ledgerName,
+                            appName,
                             accept,
                             context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
-     * Deletes a Confidential Ledger resource.
+     * Deletes a Managed CCF resource.
      *
-     * <p>Deletes an existing Confidential Ledger.
+     * <p>Deletes an existing Managed CCF.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param ledgerName Name of the Confidential Ledger.
+     * @param appName Name of the Managed CCF.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -390,7 +391,7 @@ public final class LedgersClientImpl implements LedgersClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(
-        String resourceGroupName, String ledgerName, Context context) {
+        String resourceGroupName, String appName, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -407,8 +408,8 @@ public final class LedgersClientImpl implements LedgersClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
-        if (ledgerName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter ledgerName is required and cannot be null."));
+        if (appName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter appName is required and cannot be null."));
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
@@ -418,26 +419,26 @@ public final class LedgersClientImpl implements LedgersClient {
                 this.client.getApiVersion(),
                 this.client.getSubscriptionId(),
                 resourceGroupName,
-                ledgerName,
+                appName,
                 accept,
                 context);
     }
 
     /**
-     * Deletes a Confidential Ledger resource.
+     * Deletes a Managed CCF resource.
      *
-     * <p>Deletes an existing Confidential Ledger.
+     * <p>Deletes an existing Managed CCF.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param ledgerName Name of the Confidential Ledger.
+     * @param appName Name of the Managed CCF.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link PollerFlux} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(String resourceGroupName, String ledgerName) {
-        Mono<Response<Flux<ByteBuffer>>> mono = deleteWithResponseAsync(resourceGroupName, ledgerName);
+    private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(String resourceGroupName, String appName) {
+        Mono<Response<Flux<ByteBuffer>>> mono = deleteWithResponseAsync(resourceGroupName, appName);
         return this
             .client
             .<Void, Void>getLroResult(
@@ -445,12 +446,12 @@ public final class LedgersClientImpl implements LedgersClient {
     }
 
     /**
-     * Deletes a Confidential Ledger resource.
+     * Deletes a Managed CCF resource.
      *
-     * <p>Deletes an existing Confidential Ledger.
+     * <p>Deletes an existing Managed CCF.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param ledgerName Name of the Confidential Ledger.
+     * @param appName Name of the Managed CCF.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -459,38 +460,38 @@ public final class LedgersClientImpl implements LedgersClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(
-        String resourceGroupName, String ledgerName, Context context) {
+        String resourceGroupName, String appName, Context context) {
         context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono = deleteWithResponseAsync(resourceGroupName, ledgerName, context);
+        Mono<Response<Flux<ByteBuffer>>> mono = deleteWithResponseAsync(resourceGroupName, appName, context);
         return this
             .client
             .<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class, context);
     }
 
     /**
-     * Deletes a Confidential Ledger resource.
+     * Deletes a Managed CCF resource.
      *
-     * <p>Deletes an existing Confidential Ledger.
+     * <p>Deletes an existing Managed CCF.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param ledgerName Name of the Confidential Ledger.
+     * @param appName Name of the Managed CCF.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String ledgerName) {
-        return beginDeleteAsync(resourceGroupName, ledgerName).getSyncPoller();
+    public SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String appName) {
+        return beginDeleteAsync(resourceGroupName, appName).getSyncPoller();
     }
 
     /**
-     * Deletes a Confidential Ledger resource.
+     * Deletes a Managed CCF resource.
      *
-     * <p>Deletes an existing Confidential Ledger.
+     * <p>Deletes an existing Managed CCF.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param ledgerName Name of the Confidential Ledger.
+     * @param appName Name of the Managed CCF.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -498,35 +499,34 @@ public final class LedgersClientImpl implements LedgersClient {
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<Void>, Void> beginDelete(
-        String resourceGroupName, String ledgerName, Context context) {
-        return beginDeleteAsync(resourceGroupName, ledgerName, context).getSyncPoller();
+    public SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String appName, Context context) {
+        return beginDeleteAsync(resourceGroupName, appName, context).getSyncPoller();
     }
 
     /**
-     * Deletes a Confidential Ledger resource.
+     * Deletes a Managed CCF resource.
      *
-     * <p>Deletes an existing Confidential Ledger.
+     * <p>Deletes an existing Managed CCF.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param ledgerName Name of the Confidential Ledger.
+     * @param appName Name of the Managed CCF.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return A {@link Mono} that completes when a successful response is received.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Void> deleteAsync(String resourceGroupName, String ledgerName) {
-        return beginDeleteAsync(resourceGroupName, ledgerName).last().flatMap(this.client::getLroFinalResultOrError);
+    private Mono<Void> deleteAsync(String resourceGroupName, String appName) {
+        return beginDeleteAsync(resourceGroupName, appName).last().flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
-     * Deletes a Confidential Ledger resource.
+     * Deletes a Managed CCF resource.
      *
-     * <p>Deletes an existing Confidential Ledger.
+     * <p>Deletes an existing Managed CCF.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param ledgerName Name of the Confidential Ledger.
+     * @param appName Name of the Managed CCF.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -534,61 +534,61 @@ public final class LedgersClientImpl implements LedgersClient {
      * @return A {@link Mono} that completes when a successful response is received.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Void> deleteAsync(String resourceGroupName, String ledgerName, Context context) {
-        return beginDeleteAsync(resourceGroupName, ledgerName, context)
+    private Mono<Void> deleteAsync(String resourceGroupName, String appName, Context context) {
+        return beginDeleteAsync(resourceGroupName, appName, context)
             .last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
-     * Deletes a Confidential Ledger resource.
+     * Deletes a Managed CCF resource.
      *
-     * <p>Deletes an existing Confidential Ledger.
+     * <p>Deletes an existing Managed CCF.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param ledgerName Name of the Confidential Ledger.
+     * @param appName Name of the Managed CCF.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void delete(String resourceGroupName, String ledgerName) {
-        deleteAsync(resourceGroupName, ledgerName).block();
+    public void delete(String resourceGroupName, String appName) {
+        deleteAsync(resourceGroupName, appName).block();
     }
 
     /**
-     * Deletes a Confidential Ledger resource.
+     * Deletes a Managed CCF resource.
      *
-     * <p>Deletes an existing Confidential Ledger.
+     * <p>Deletes an existing Managed CCF.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param ledgerName Name of the Confidential Ledger.
+     * @param appName Name of the Managed CCF.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void delete(String resourceGroupName, String ledgerName, Context context) {
-        deleteAsync(resourceGroupName, ledgerName, context).block();
+    public void delete(String resourceGroupName, String appName, Context context) {
+        deleteAsync(resourceGroupName, appName, context).block();
     }
 
     /**
-     * Creates a Confidential Ledger.
+     * Creates a Managed CCF.
      *
-     * <p>Creates a Confidential Ledger with the specified ledger parameters.
+     * <p>Creates a Managed CCF with the specified Managed CCF parameters.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param ledgerName Name of the Confidential Ledger.
-     * @param confidentialLedger Confidential Ledger Create Request Body.
+     * @param appName Name of the Managed CCF.
+     * @param managedCcf Managed CCF Create Request Body.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return confidential Ledger along with {@link Response} on successful completion of {@link Mono}.
+     * @return managed CCF along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> createWithResponseAsync(
-        String resourceGroupName, String ledgerName, ConfidentialLedgerInner confidentialLedger) {
+        String resourceGroupName, String appName, ManagedCcfInner managedCcf) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -605,14 +605,13 @@ public final class LedgersClientImpl implements LedgersClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
-        if (ledgerName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter ledgerName is required and cannot be null."));
+        if (appName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter appName is required and cannot be null."));
         }
-        if (confidentialLedger == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter confidentialLedger is required and cannot be null."));
+        if (managedCcf == null) {
+            return Mono.error(new IllegalArgumentException("Parameter managedCcf is required and cannot be null."));
         } else {
-            confidentialLedger.validate();
+            managedCcf.validate();
         }
         final String accept = "application/json";
         return FluxUtil
@@ -624,30 +623,30 @@ public final class LedgersClientImpl implements LedgersClient {
                             this.client.getApiVersion(),
                             this.client.getSubscriptionId(),
                             resourceGroupName,
-                            ledgerName,
-                            confidentialLedger,
+                            appName,
+                            managedCcf,
                             accept,
                             context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
-     * Creates a Confidential Ledger.
+     * Creates a Managed CCF.
      *
-     * <p>Creates a Confidential Ledger with the specified ledger parameters.
+     * <p>Creates a Managed CCF with the specified Managed CCF parameters.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param ledgerName Name of the Confidential Ledger.
-     * @param confidentialLedger Confidential Ledger Create Request Body.
+     * @param appName Name of the Managed CCF.
+     * @param managedCcf Managed CCF Create Request Body.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return confidential Ledger along with {@link Response} on successful completion of {@link Mono}.
+     * @return managed CCF along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> createWithResponseAsync(
-        String resourceGroupName, String ledgerName, ConfidentialLedgerInner confidentialLedger, Context context) {
+        String resourceGroupName, String appName, ManagedCcfInner managedCcf, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -664,14 +663,13 @@ public final class LedgersClientImpl implements LedgersClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
-        if (ledgerName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter ledgerName is required and cannot be null."));
+        if (appName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter appName is required and cannot be null."));
         }
-        if (confidentialLedger == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter confidentialLedger is required and cannot be null."));
+        if (managedCcf == null) {
+            return Mono.error(new IllegalArgumentException("Parameter managedCcf is required and cannot be null."));
         } else {
-            confidentialLedger.validate();
+            managedCcf.validate();
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
@@ -681,207 +679,200 @@ public final class LedgersClientImpl implements LedgersClient {
                 this.client.getApiVersion(),
                 this.client.getSubscriptionId(),
                 resourceGroupName,
-                ledgerName,
-                confidentialLedger,
+                appName,
+                managedCcf,
                 accept,
                 context);
     }
 
     /**
-     * Creates a Confidential Ledger.
+     * Creates a Managed CCF.
      *
-     * <p>Creates a Confidential Ledger with the specified ledger parameters.
+     * <p>Creates a Managed CCF with the specified Managed CCF parameters.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param ledgerName Name of the Confidential Ledger.
-     * @param confidentialLedger Confidential Ledger Create Request Body.
+     * @param appName Name of the Managed CCF.
+     * @param managedCcf Managed CCF Create Request Body.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of confidential Ledger.
+     * @return the {@link PollerFlux} for polling of managed CCF.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<ConfidentialLedgerInner>, ConfidentialLedgerInner> beginCreateAsync(
-        String resourceGroupName, String ledgerName, ConfidentialLedgerInner confidentialLedger) {
-        Mono<Response<Flux<ByteBuffer>>> mono =
-            createWithResponseAsync(resourceGroupName, ledgerName, confidentialLedger);
+    private PollerFlux<PollResult<ManagedCcfInner>, ManagedCcfInner> beginCreateAsync(
+        String resourceGroupName, String appName, ManagedCcfInner managedCcf) {
+        Mono<Response<Flux<ByteBuffer>>> mono = createWithResponseAsync(resourceGroupName, appName, managedCcf);
         return this
             .client
-            .<ConfidentialLedgerInner, ConfidentialLedgerInner>getLroResult(
+            .<ManagedCcfInner, ManagedCcfInner>getLroResult(
                 mono,
                 this.client.getHttpPipeline(),
-                ConfidentialLedgerInner.class,
-                ConfidentialLedgerInner.class,
+                ManagedCcfInner.class,
+                ManagedCcfInner.class,
                 this.client.getContext());
     }
 
     /**
-     * Creates a Confidential Ledger.
+     * Creates a Managed CCF.
      *
-     * <p>Creates a Confidential Ledger with the specified ledger parameters.
+     * <p>Creates a Managed CCF with the specified Managed CCF parameters.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param ledgerName Name of the Confidential Ledger.
-     * @param confidentialLedger Confidential Ledger Create Request Body.
+     * @param appName Name of the Managed CCF.
+     * @param managedCcf Managed CCF Create Request Body.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of confidential Ledger.
+     * @return the {@link PollerFlux} for polling of managed CCF.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<ConfidentialLedgerInner>, ConfidentialLedgerInner> beginCreateAsync(
-        String resourceGroupName, String ledgerName, ConfidentialLedgerInner confidentialLedger, Context context) {
+    private PollerFlux<PollResult<ManagedCcfInner>, ManagedCcfInner> beginCreateAsync(
+        String resourceGroupName, String appName, ManagedCcfInner managedCcf, Context context) {
         context = this.client.mergeContext(context);
         Mono<Response<Flux<ByteBuffer>>> mono =
-            createWithResponseAsync(resourceGroupName, ledgerName, confidentialLedger, context);
+            createWithResponseAsync(resourceGroupName, appName, managedCcf, context);
         return this
             .client
-            .<ConfidentialLedgerInner, ConfidentialLedgerInner>getLroResult(
-                mono,
-                this.client.getHttpPipeline(),
-                ConfidentialLedgerInner.class,
-                ConfidentialLedgerInner.class,
-                context);
+            .<ManagedCcfInner, ManagedCcfInner>getLroResult(
+                mono, this.client.getHttpPipeline(), ManagedCcfInner.class, ManagedCcfInner.class, context);
     }
 
     /**
-     * Creates a Confidential Ledger.
+     * Creates a Managed CCF.
      *
-     * <p>Creates a Confidential Ledger with the specified ledger parameters.
+     * <p>Creates a Managed CCF with the specified Managed CCF parameters.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param ledgerName Name of the Confidential Ledger.
-     * @param confidentialLedger Confidential Ledger Create Request Body.
+     * @param appName Name of the Managed CCF.
+     * @param managedCcf Managed CCF Create Request Body.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of confidential Ledger.
+     * @return the {@link SyncPoller} for polling of managed CCF.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<ConfidentialLedgerInner>, ConfidentialLedgerInner> beginCreate(
-        String resourceGroupName, String ledgerName, ConfidentialLedgerInner confidentialLedger) {
-        return beginCreateAsync(resourceGroupName, ledgerName, confidentialLedger).getSyncPoller();
+    public SyncPoller<PollResult<ManagedCcfInner>, ManagedCcfInner> beginCreate(
+        String resourceGroupName, String appName, ManagedCcfInner managedCcf) {
+        return beginCreateAsync(resourceGroupName, appName, managedCcf).getSyncPoller();
     }
 
     /**
-     * Creates a Confidential Ledger.
+     * Creates a Managed CCF.
      *
-     * <p>Creates a Confidential Ledger with the specified ledger parameters.
+     * <p>Creates a Managed CCF with the specified Managed CCF parameters.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param ledgerName Name of the Confidential Ledger.
-     * @param confidentialLedger Confidential Ledger Create Request Body.
+     * @param appName Name of the Managed CCF.
+     * @param managedCcf Managed CCF Create Request Body.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of confidential Ledger.
+     * @return the {@link SyncPoller} for polling of managed CCF.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<ConfidentialLedgerInner>, ConfidentialLedgerInner> beginCreate(
-        String resourceGroupName, String ledgerName, ConfidentialLedgerInner confidentialLedger, Context context) {
-        return beginCreateAsync(resourceGroupName, ledgerName, confidentialLedger, context).getSyncPoller();
+    public SyncPoller<PollResult<ManagedCcfInner>, ManagedCcfInner> beginCreate(
+        String resourceGroupName, String appName, ManagedCcfInner managedCcf, Context context) {
+        return beginCreateAsync(resourceGroupName, appName, managedCcf, context).getSyncPoller();
     }
 
     /**
-     * Creates a Confidential Ledger.
+     * Creates a Managed CCF.
      *
-     * <p>Creates a Confidential Ledger with the specified ledger parameters.
+     * <p>Creates a Managed CCF with the specified Managed CCF parameters.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param ledgerName Name of the Confidential Ledger.
-     * @param confidentialLedger Confidential Ledger Create Request Body.
+     * @param appName Name of the Managed CCF.
+     * @param managedCcf Managed CCF Create Request Body.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return confidential Ledger on successful completion of {@link Mono}.
+     * @return managed CCF on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<ConfidentialLedgerInner> createAsync(
-        String resourceGroupName, String ledgerName, ConfidentialLedgerInner confidentialLedger) {
-        return beginCreateAsync(resourceGroupName, ledgerName, confidentialLedger)
+    private Mono<ManagedCcfInner> createAsync(String resourceGroupName, String appName, ManagedCcfInner managedCcf) {
+        return beginCreateAsync(resourceGroupName, appName, managedCcf)
             .last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
-     * Creates a Confidential Ledger.
+     * Creates a Managed CCF.
      *
-     * <p>Creates a Confidential Ledger with the specified ledger parameters.
+     * <p>Creates a Managed CCF with the specified Managed CCF parameters.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param ledgerName Name of the Confidential Ledger.
-     * @param confidentialLedger Confidential Ledger Create Request Body.
+     * @param appName Name of the Managed CCF.
+     * @param managedCcf Managed CCF Create Request Body.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return confidential Ledger on successful completion of {@link Mono}.
+     * @return managed CCF on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<ConfidentialLedgerInner> createAsync(
-        String resourceGroupName, String ledgerName, ConfidentialLedgerInner confidentialLedger, Context context) {
-        return beginCreateAsync(resourceGroupName, ledgerName, confidentialLedger, context)
+    private Mono<ManagedCcfInner> createAsync(
+        String resourceGroupName, String appName, ManagedCcfInner managedCcf, Context context) {
+        return beginCreateAsync(resourceGroupName, appName, managedCcf, context)
             .last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
-     * Creates a Confidential Ledger.
+     * Creates a Managed CCF.
      *
-     * <p>Creates a Confidential Ledger with the specified ledger parameters.
+     * <p>Creates a Managed CCF with the specified Managed CCF parameters.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param ledgerName Name of the Confidential Ledger.
-     * @param confidentialLedger Confidential Ledger Create Request Body.
+     * @param appName Name of the Managed CCF.
+     * @param managedCcf Managed CCF Create Request Body.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return confidential Ledger.
+     * @return managed CCF.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public ConfidentialLedgerInner create(
-        String resourceGroupName, String ledgerName, ConfidentialLedgerInner confidentialLedger) {
-        return createAsync(resourceGroupName, ledgerName, confidentialLedger).block();
+    public ManagedCcfInner create(String resourceGroupName, String appName, ManagedCcfInner managedCcf) {
+        return createAsync(resourceGroupName, appName, managedCcf).block();
     }
 
     /**
-     * Creates a Confidential Ledger.
+     * Creates a Managed CCF.
      *
-     * <p>Creates a Confidential Ledger with the specified ledger parameters.
+     * <p>Creates a Managed CCF with the specified Managed CCF parameters.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param ledgerName Name of the Confidential Ledger.
-     * @param confidentialLedger Confidential Ledger Create Request Body.
+     * @param appName Name of the Managed CCF.
+     * @param managedCcf Managed CCF Create Request Body.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return confidential Ledger.
+     * @return managed CCF.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public ConfidentialLedgerInner create(
-        String resourceGroupName, String ledgerName, ConfidentialLedgerInner confidentialLedger, Context context) {
-        return createAsync(resourceGroupName, ledgerName, confidentialLedger, context).block();
+    public ManagedCcfInner create(
+        String resourceGroupName, String appName, ManagedCcfInner managedCcf, Context context) {
+        return createAsync(resourceGroupName, appName, managedCcf, context).block();
     }
 
     /**
-     * Update Confidential Ledger properties
+     * Update Managed CCF properties
      *
-     * <p>Updates properties of Confidential Ledger.
+     * <p>Updates properties of Managed CCF.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param ledgerName Name of the Confidential Ledger.
-     * @param confidentialLedger Confidential Ledger request body for Updating Ledger.
+     * @param appName Name of the Managed CCF.
+     * @param managedCcf Request body for Updating Managed CCF App.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return confidential Ledger along with {@link Response} on successful completion of {@link Mono}.
+     * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(
-        String resourceGroupName, String ledgerName, ConfidentialLedgerInner confidentialLedger) {
+        String resourceGroupName, String appName, ManagedCcfInner managedCcf) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -898,14 +889,13 @@ public final class LedgersClientImpl implements LedgersClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
-        if (ledgerName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter ledgerName is required and cannot be null."));
+        if (appName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter appName is required and cannot be null."));
         }
-        if (confidentialLedger == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter confidentialLedger is required and cannot be null."));
+        if (managedCcf == null) {
+            return Mono.error(new IllegalArgumentException("Parameter managedCcf is required and cannot be null."));
         } else {
-            confidentialLedger.validate();
+            managedCcf.validate();
         }
         final String accept = "application/json";
         return FluxUtil
@@ -917,30 +907,30 @@ public final class LedgersClientImpl implements LedgersClient {
                             this.client.getApiVersion(),
                             this.client.getSubscriptionId(),
                             resourceGroupName,
-                            ledgerName,
-                            confidentialLedger,
+                            appName,
+                            managedCcf,
                             accept,
                             context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
-     * Update Confidential Ledger properties
+     * Update Managed CCF properties
      *
-     * <p>Updates properties of Confidential Ledger.
+     * <p>Updates properties of Managed CCF.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param ledgerName Name of the Confidential Ledger.
-     * @param confidentialLedger Confidential Ledger request body for Updating Ledger.
+     * @param appName Name of the Managed CCF.
+     * @param managedCcf Request body for Updating Managed CCF App.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return confidential Ledger along with {@link Response} on successful completion of {@link Mono}.
+     * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(
-        String resourceGroupName, String ledgerName, ConfidentialLedgerInner confidentialLedger, Context context) {
+        String resourceGroupName, String appName, ManagedCcfInner managedCcf, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -957,14 +947,13 @@ public final class LedgersClientImpl implements LedgersClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
-        if (ledgerName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter ledgerName is required and cannot be null."));
+        if (appName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter appName is required and cannot be null."));
         }
-        if (confidentialLedger == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter confidentialLedger is required and cannot be null."));
+        if (managedCcf == null) {
+            return Mono.error(new IllegalArgumentException("Parameter managedCcf is required and cannot be null."));
         } else {
-            confidentialLedger.validate();
+            managedCcf.validate();
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
@@ -974,206 +963,191 @@ public final class LedgersClientImpl implements LedgersClient {
                 this.client.getApiVersion(),
                 this.client.getSubscriptionId(),
                 resourceGroupName,
-                ledgerName,
-                confidentialLedger,
+                appName,
+                managedCcf,
                 accept,
                 context);
     }
 
     /**
-     * Update Confidential Ledger properties
+     * Update Managed CCF properties
      *
-     * <p>Updates properties of Confidential Ledger.
+     * <p>Updates properties of Managed CCF.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param ledgerName Name of the Confidential Ledger.
-     * @param confidentialLedger Confidential Ledger request body for Updating Ledger.
+     * @param appName Name of the Managed CCF.
+     * @param managedCcf Request body for Updating Managed CCF App.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of confidential Ledger.
+     * @return the {@link PollerFlux} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<ConfidentialLedgerInner>, ConfidentialLedgerInner> beginUpdateAsync(
-        String resourceGroupName, String ledgerName, ConfidentialLedgerInner confidentialLedger) {
-        Mono<Response<Flux<ByteBuffer>>> mono =
-            updateWithResponseAsync(resourceGroupName, ledgerName, confidentialLedger);
+    private PollerFlux<PollResult<Void>, Void> beginUpdateAsync(
+        String resourceGroupName, String appName, ManagedCcfInner managedCcf) {
+        Mono<Response<Flux<ByteBuffer>>> mono = updateWithResponseAsync(resourceGroupName, appName, managedCcf);
         return this
             .client
-            .<ConfidentialLedgerInner, ConfidentialLedgerInner>getLroResult(
-                mono,
-                this.client.getHttpPipeline(),
-                ConfidentialLedgerInner.class,
-                ConfidentialLedgerInner.class,
-                this.client.getContext());
+            .<Void, Void>getLroResult(
+                mono, this.client.getHttpPipeline(), Void.class, Void.class, this.client.getContext());
     }
 
     /**
-     * Update Confidential Ledger properties
+     * Update Managed CCF properties
      *
-     * <p>Updates properties of Confidential Ledger.
+     * <p>Updates properties of Managed CCF.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param ledgerName Name of the Confidential Ledger.
-     * @param confidentialLedger Confidential Ledger request body for Updating Ledger.
+     * @param appName Name of the Managed CCF.
+     * @param managedCcf Request body for Updating Managed CCF App.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of confidential Ledger.
+     * @return the {@link PollerFlux} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<ConfidentialLedgerInner>, ConfidentialLedgerInner> beginUpdateAsync(
-        String resourceGroupName, String ledgerName, ConfidentialLedgerInner confidentialLedger, Context context) {
+    private PollerFlux<PollResult<Void>, Void> beginUpdateAsync(
+        String resourceGroupName, String appName, ManagedCcfInner managedCcf, Context context) {
         context = this.client.mergeContext(context);
         Mono<Response<Flux<ByteBuffer>>> mono =
-            updateWithResponseAsync(resourceGroupName, ledgerName, confidentialLedger, context);
+            updateWithResponseAsync(resourceGroupName, appName, managedCcf, context);
         return this
             .client
-            .<ConfidentialLedgerInner, ConfidentialLedgerInner>getLroResult(
-                mono,
-                this.client.getHttpPipeline(),
-                ConfidentialLedgerInner.class,
-                ConfidentialLedgerInner.class,
-                context);
+            .<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class, context);
     }
 
     /**
-     * Update Confidential Ledger properties
+     * Update Managed CCF properties
      *
-     * <p>Updates properties of Confidential Ledger.
+     * <p>Updates properties of Managed CCF.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param ledgerName Name of the Confidential Ledger.
-     * @param confidentialLedger Confidential Ledger request body for Updating Ledger.
+     * @param appName Name of the Managed CCF.
+     * @param managedCcf Request body for Updating Managed CCF App.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of confidential Ledger.
+     * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<ConfidentialLedgerInner>, ConfidentialLedgerInner> beginUpdate(
-        String resourceGroupName, String ledgerName, ConfidentialLedgerInner confidentialLedger) {
-        return beginUpdateAsync(resourceGroupName, ledgerName, confidentialLedger).getSyncPoller();
+    public SyncPoller<PollResult<Void>, Void> beginUpdate(
+        String resourceGroupName, String appName, ManagedCcfInner managedCcf) {
+        return beginUpdateAsync(resourceGroupName, appName, managedCcf).getSyncPoller();
     }
 
     /**
-     * Update Confidential Ledger properties
+     * Update Managed CCF properties
      *
-     * <p>Updates properties of Confidential Ledger.
+     * <p>Updates properties of Managed CCF.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param ledgerName Name of the Confidential Ledger.
-     * @param confidentialLedger Confidential Ledger request body for Updating Ledger.
+     * @param appName Name of the Managed CCF.
+     * @param managedCcf Request body for Updating Managed CCF App.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of confidential Ledger.
+     * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<ConfidentialLedgerInner>, ConfidentialLedgerInner> beginUpdate(
-        String resourceGroupName, String ledgerName, ConfidentialLedgerInner confidentialLedger, Context context) {
-        return beginUpdateAsync(resourceGroupName, ledgerName, confidentialLedger, context).getSyncPoller();
+    public SyncPoller<PollResult<Void>, Void> beginUpdate(
+        String resourceGroupName, String appName, ManagedCcfInner managedCcf, Context context) {
+        return beginUpdateAsync(resourceGroupName, appName, managedCcf, context).getSyncPoller();
     }
 
     /**
-     * Update Confidential Ledger properties
+     * Update Managed CCF properties
      *
-     * <p>Updates properties of Confidential Ledger.
+     * <p>Updates properties of Managed CCF.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param ledgerName Name of the Confidential Ledger.
-     * @param confidentialLedger Confidential Ledger request body for Updating Ledger.
+     * @param appName Name of the Managed CCF.
+     * @param managedCcf Request body for Updating Managed CCF App.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return confidential Ledger on successful completion of {@link Mono}.
+     * @return A {@link Mono} that completes when a successful response is received.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<ConfidentialLedgerInner> updateAsync(
-        String resourceGroupName, String ledgerName, ConfidentialLedgerInner confidentialLedger) {
-        return beginUpdateAsync(resourceGroupName, ledgerName, confidentialLedger)
+    private Mono<Void> updateAsync(String resourceGroupName, String appName, ManagedCcfInner managedCcf) {
+        return beginUpdateAsync(resourceGroupName, appName, managedCcf)
             .last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
-     * Update Confidential Ledger properties
+     * Update Managed CCF properties
      *
-     * <p>Updates properties of Confidential Ledger.
+     * <p>Updates properties of Managed CCF.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param ledgerName Name of the Confidential Ledger.
-     * @param confidentialLedger Confidential Ledger request body for Updating Ledger.
+     * @param appName Name of the Managed CCF.
+     * @param managedCcf Request body for Updating Managed CCF App.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return confidential Ledger on successful completion of {@link Mono}.
+     * @return A {@link Mono} that completes when a successful response is received.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<ConfidentialLedgerInner> updateAsync(
-        String resourceGroupName, String ledgerName, ConfidentialLedgerInner confidentialLedger, Context context) {
-        return beginUpdateAsync(resourceGroupName, ledgerName, confidentialLedger, context)
+    private Mono<Void> updateAsync(
+        String resourceGroupName, String appName, ManagedCcfInner managedCcf, Context context) {
+        return beginUpdateAsync(resourceGroupName, appName, managedCcf, context)
             .last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
-     * Update Confidential Ledger properties
+     * Update Managed CCF properties
      *
-     * <p>Updates properties of Confidential Ledger.
+     * <p>Updates properties of Managed CCF.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param ledgerName Name of the Confidential Ledger.
-     * @param confidentialLedger Confidential Ledger request body for Updating Ledger.
+     * @param appName Name of the Managed CCF.
+     * @param managedCcf Request body for Updating Managed CCF App.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return confidential Ledger.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public ConfidentialLedgerInner update(
-        String resourceGroupName, String ledgerName, ConfidentialLedgerInner confidentialLedger) {
-        return updateAsync(resourceGroupName, ledgerName, confidentialLedger).block();
+    public void update(String resourceGroupName, String appName, ManagedCcfInner managedCcf) {
+        updateAsync(resourceGroupName, appName, managedCcf).block();
     }
 
     /**
-     * Update Confidential Ledger properties
+     * Update Managed CCF properties
      *
-     * <p>Updates properties of Confidential Ledger.
+     * <p>Updates properties of Managed CCF.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param ledgerName Name of the Confidential Ledger.
-     * @param confidentialLedger Confidential Ledger request body for Updating Ledger.
+     * @param appName Name of the Managed CCF.
+     * @param managedCcf Request body for Updating Managed CCF App.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return confidential Ledger.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public ConfidentialLedgerInner update(
-        String resourceGroupName, String ledgerName, ConfidentialLedgerInner confidentialLedger, Context context) {
-        return updateAsync(resourceGroupName, ledgerName, confidentialLedger, context).block();
+    public void update(String resourceGroupName, String appName, ManagedCcfInner managedCcf, Context context) {
+        updateAsync(resourceGroupName, appName, managedCcf, context).block();
     }
 
     /**
-     * Retrieves information about all Confidential Ledger resources under the given subscription and resource group
+     * Retrieves information about all Managed CCF resources under the given subscription and resource group
      *
-     * <p>Retrieves the properties of all Confidential Ledgers.
+     * <p>Retrieves the properties of all Managed CCF apps.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param filter The filter to apply on the list operation. eg. $filter=ledgerType eq 'Public'.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return object that includes an array of Confidential Ledgers and a possible link for next set along with {@link
+     * @return object that includes an array of Managed CCF and a possible link for next set along with {@link
      *     PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<ConfidentialLedgerInner>> listByResourceGroupSinglePageAsync(
+    private Mono<PagedResponse<ManagedCcfInner>> listByResourceGroupSinglePageAsync(
         String resourceGroupName, String filter) {
         if (this.client.getEndpoint() == null) {
             return Mono
@@ -1204,7 +1178,7 @@ public final class LedgersClientImpl implements LedgersClient {
                             filter,
                             accept,
                             context))
-            .<PagedResponse<ConfidentialLedgerInner>>map(
+            .<PagedResponse<ManagedCcfInner>>map(
                 res ->
                     new PagedResponseBase<>(
                         res.getRequest(),
@@ -1217,9 +1191,9 @@ public final class LedgersClientImpl implements LedgersClient {
     }
 
     /**
-     * Retrieves information about all Confidential Ledger resources under the given subscription and resource group
+     * Retrieves information about all Managed CCF resources under the given subscription and resource group
      *
-     * <p>Retrieves the properties of all Confidential Ledgers.
+     * <p>Retrieves the properties of all Managed CCF apps.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param filter The filter to apply on the list operation. eg. $filter=ledgerType eq 'Public'.
@@ -1227,11 +1201,11 @@ public final class LedgersClientImpl implements LedgersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return object that includes an array of Confidential Ledgers and a possible link for next set along with {@link
+     * @return object that includes an array of Managed CCF and a possible link for next set along with {@link
      *     PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<ConfidentialLedgerInner>> listByResourceGroupSinglePageAsync(
+    private Mono<PagedResponse<ManagedCcfInner>> listByResourceGroupSinglePageAsync(
         String resourceGroupName, String filter, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono
@@ -1272,39 +1246,39 @@ public final class LedgersClientImpl implements LedgersClient {
     }
 
     /**
-     * Retrieves information about all Confidential Ledger resources under the given subscription and resource group
+     * Retrieves information about all Managed CCF resources under the given subscription and resource group
      *
-     * <p>Retrieves the properties of all Confidential Ledgers.
+     * <p>Retrieves the properties of all Managed CCF apps.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param filter The filter to apply on the list operation. eg. $filter=ledgerType eq 'Public'.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return object that includes an array of Confidential Ledgers and a possible link for next set as paginated
-     *     response with {@link PagedFlux}.
+     * @return object that includes an array of Managed CCF and a possible link for next set as paginated response with
+     *     {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<ConfidentialLedgerInner> listByResourceGroupAsync(String resourceGroupName, String filter) {
+    private PagedFlux<ManagedCcfInner> listByResourceGroupAsync(String resourceGroupName, String filter) {
         return new PagedFlux<>(
             () -> listByResourceGroupSinglePageAsync(resourceGroupName, filter),
             nextLink -> listByResourceGroupNextSinglePageAsync(nextLink));
     }
 
     /**
-     * Retrieves information about all Confidential Ledger resources under the given subscription and resource group
+     * Retrieves information about all Managed CCF resources under the given subscription and resource group
      *
-     * <p>Retrieves the properties of all Confidential Ledgers.
+     * <p>Retrieves the properties of all Managed CCF apps.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return object that includes an array of Confidential Ledgers and a possible link for next set as paginated
-     *     response with {@link PagedFlux}.
+     * @return object that includes an array of Managed CCF and a possible link for next set as paginated response with
+     *     {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<ConfidentialLedgerInner> listByResourceGroupAsync(String resourceGroupName) {
+    private PagedFlux<ManagedCcfInner> listByResourceGroupAsync(String resourceGroupName) {
         final String filter = null;
         return new PagedFlux<>(
             () -> listByResourceGroupSinglePageAsync(resourceGroupName, filter),
@@ -1312,9 +1286,9 @@ public final class LedgersClientImpl implements LedgersClient {
     }
 
     /**
-     * Retrieves information about all Confidential Ledger resources under the given subscription and resource group
+     * Retrieves information about all Managed CCF resources under the given subscription and resource group
      *
-     * <p>Retrieves the properties of all Confidential Ledgers.
+     * <p>Retrieves the properties of all Managed CCF apps.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param filter The filter to apply on the list operation. eg. $filter=ledgerType eq 'Public'.
@@ -1322,11 +1296,11 @@ public final class LedgersClientImpl implements LedgersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return object that includes an array of Confidential Ledgers and a possible link for next set as paginated
-     *     response with {@link PagedFlux}.
+     * @return object that includes an array of Managed CCF and a possible link for next set as paginated response with
+     *     {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<ConfidentialLedgerInner> listByResourceGroupAsync(
+    private PagedFlux<ManagedCcfInner> listByResourceGroupAsync(
         String resourceGroupName, String filter, Context context) {
         return new PagedFlux<>(
             () -> listByResourceGroupSinglePageAsync(resourceGroupName, filter, context),
@@ -1334,27 +1308,27 @@ public final class LedgersClientImpl implements LedgersClient {
     }
 
     /**
-     * Retrieves information about all Confidential Ledger resources under the given subscription and resource group
+     * Retrieves information about all Managed CCF resources under the given subscription and resource group
      *
-     * <p>Retrieves the properties of all Confidential Ledgers.
+     * <p>Retrieves the properties of all Managed CCF apps.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return object that includes an array of Confidential Ledgers and a possible link for next set as paginated
-     *     response with {@link PagedIterable}.
+     * @return object that includes an array of Managed CCF and a possible link for next set as paginated response with
+     *     {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<ConfidentialLedgerInner> listByResourceGroup(String resourceGroupName) {
+    public PagedIterable<ManagedCcfInner> listByResourceGroup(String resourceGroupName) {
         final String filter = null;
         return new PagedIterable<>(listByResourceGroupAsync(resourceGroupName, filter));
     }
 
     /**
-     * Retrieves information about all Confidential Ledger resources under the given subscription and resource group
+     * Retrieves information about all Managed CCF resources under the given subscription and resource group
      *
-     * <p>Retrieves the properties of all Confidential Ledgers.
+     * <p>Retrieves the properties of all Managed CCF apps.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param filter The filter to apply on the list operation. eg. $filter=ledgerType eq 'Public'.
@@ -1362,29 +1336,29 @@ public final class LedgersClientImpl implements LedgersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return object that includes an array of Confidential Ledgers and a possible link for next set as paginated
-     *     response with {@link PagedIterable}.
+     * @return object that includes an array of Managed CCF and a possible link for next set as paginated response with
+     *     {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<ConfidentialLedgerInner> listByResourceGroup(
+    public PagedIterable<ManagedCcfInner> listByResourceGroup(
         String resourceGroupName, String filter, Context context) {
         return new PagedIterable<>(listByResourceGroupAsync(resourceGroupName, filter, context));
     }
 
     /**
-     * Retrieves information about all Confidential Ledger resources under the given subscription
+     * Retrieves information about all Managed CCF resources under the given subscription
      *
-     * <p>Retrieves the properties of all Confidential Ledgers.
+     * <p>Retrieves the properties of all Managed CCF.
      *
      * @param filter The filter to apply on the list operation. eg. $filter=ledgerType eq 'Public'.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return object that includes an array of Confidential Ledgers and a possible link for next set along with {@link
+     * @return object that includes an array of Managed CCF and a possible link for next set along with {@link
      *     PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<ConfidentialLedgerInner>> listSinglePageAsync(String filter) {
+    private Mono<PagedResponse<ManagedCcfInner>> listSinglePageAsync(String filter) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -1409,7 +1383,7 @@ public final class LedgersClientImpl implements LedgersClient {
                             filter,
                             accept,
                             context))
-            .<PagedResponse<ConfidentialLedgerInner>>map(
+            .<PagedResponse<ManagedCcfInner>>map(
                 res ->
                     new PagedResponseBase<>(
                         res.getRequest(),
@@ -1422,20 +1396,20 @@ public final class LedgersClientImpl implements LedgersClient {
     }
 
     /**
-     * Retrieves information about all Confidential Ledger resources under the given subscription
+     * Retrieves information about all Managed CCF resources under the given subscription
      *
-     * <p>Retrieves the properties of all Confidential Ledgers.
+     * <p>Retrieves the properties of all Managed CCF.
      *
      * @param filter The filter to apply on the list operation. eg. $filter=ledgerType eq 'Public'.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return object that includes an array of Confidential Ledgers and a possible link for next set along with {@link
+     * @return object that includes an array of Managed CCF and a possible link for next set along with {@link
      *     PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<ConfidentialLedgerInner>> listSinglePageAsync(String filter, Context context) {
+    private Mono<PagedResponse<ManagedCcfInner>> listSinglePageAsync(String filter, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -1470,91 +1444,91 @@ public final class LedgersClientImpl implements LedgersClient {
     }
 
     /**
-     * Retrieves information about all Confidential Ledger resources under the given subscription
+     * Retrieves information about all Managed CCF resources under the given subscription
      *
-     * <p>Retrieves the properties of all Confidential Ledgers.
+     * <p>Retrieves the properties of all Managed CCF.
      *
      * @param filter The filter to apply on the list operation. eg. $filter=ledgerType eq 'Public'.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return object that includes an array of Confidential Ledgers and a possible link for next set as paginated
-     *     response with {@link PagedFlux}.
+     * @return object that includes an array of Managed CCF and a possible link for next set as paginated response with
+     *     {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<ConfidentialLedgerInner> listAsync(String filter) {
+    private PagedFlux<ManagedCcfInner> listAsync(String filter) {
         return new PagedFlux<>(
             () -> listSinglePageAsync(filter), nextLink -> listBySubscriptionNextSinglePageAsync(nextLink));
     }
 
     /**
-     * Retrieves information about all Confidential Ledger resources under the given subscription
+     * Retrieves information about all Managed CCF resources under the given subscription
      *
-     * <p>Retrieves the properties of all Confidential Ledgers.
+     * <p>Retrieves the properties of all Managed CCF.
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return object that includes an array of Confidential Ledgers and a possible link for next set as paginated
-     *     response with {@link PagedFlux}.
+     * @return object that includes an array of Managed CCF and a possible link for next set as paginated response with
+     *     {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<ConfidentialLedgerInner> listAsync() {
+    private PagedFlux<ManagedCcfInner> listAsync() {
         final String filter = null;
         return new PagedFlux<>(
             () -> listSinglePageAsync(filter), nextLink -> listBySubscriptionNextSinglePageAsync(nextLink));
     }
 
     /**
-     * Retrieves information about all Confidential Ledger resources under the given subscription
+     * Retrieves information about all Managed CCF resources under the given subscription
      *
-     * <p>Retrieves the properties of all Confidential Ledgers.
+     * <p>Retrieves the properties of all Managed CCF.
      *
      * @param filter The filter to apply on the list operation. eg. $filter=ledgerType eq 'Public'.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return object that includes an array of Confidential Ledgers and a possible link for next set as paginated
-     *     response with {@link PagedFlux}.
+     * @return object that includes an array of Managed CCF and a possible link for next set as paginated response with
+     *     {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<ConfidentialLedgerInner> listAsync(String filter, Context context) {
+    private PagedFlux<ManagedCcfInner> listAsync(String filter, Context context) {
         return new PagedFlux<>(
             () -> listSinglePageAsync(filter, context),
             nextLink -> listBySubscriptionNextSinglePageAsync(nextLink, context));
     }
 
     /**
-     * Retrieves information about all Confidential Ledger resources under the given subscription
+     * Retrieves information about all Managed CCF resources under the given subscription
      *
-     * <p>Retrieves the properties of all Confidential Ledgers.
+     * <p>Retrieves the properties of all Managed CCF.
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return object that includes an array of Confidential Ledgers and a possible link for next set as paginated
-     *     response with {@link PagedIterable}.
+     * @return object that includes an array of Managed CCF and a possible link for next set as paginated response with
+     *     {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<ConfidentialLedgerInner> list() {
+    public PagedIterable<ManagedCcfInner> list() {
         final String filter = null;
         return new PagedIterable<>(listAsync(filter));
     }
 
     /**
-     * Retrieves information about all Confidential Ledger resources under the given subscription
+     * Retrieves information about all Managed CCF resources under the given subscription
      *
-     * <p>Retrieves the properties of all Confidential Ledgers.
+     * <p>Retrieves the properties of all Managed CCF.
      *
      * @param filter The filter to apply on the list operation. eg. $filter=ledgerType eq 'Public'.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return object that includes an array of Confidential Ledgers and a possible link for next set as paginated
-     *     response with {@link PagedIterable}.
+     * @return object that includes an array of Managed CCF and a possible link for next set as paginated response with
+     *     {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<ConfidentialLedgerInner> list(String filter, Context context) {
+    public PagedIterable<ManagedCcfInner> list(String filter, Context context) {
         return new PagedIterable<>(listAsync(filter, context));
     }
 
@@ -1566,11 +1540,11 @@ public final class LedgersClientImpl implements LedgersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return object that includes an array of Confidential Ledgers and a possible link for next set along with {@link
+     * @return object that includes an array of Managed CCF and a possible link for next set along with {@link
      *     PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<ConfidentialLedgerInner>> listByResourceGroupNextSinglePageAsync(String nextLink) {
+    private Mono<PagedResponse<ManagedCcfInner>> listByResourceGroupNextSinglePageAsync(String nextLink) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
@@ -1584,7 +1558,7 @@ public final class LedgersClientImpl implements LedgersClient {
         return FluxUtil
             .withContext(
                 context -> service.listByResourceGroupNext(nextLink, this.client.getEndpoint(), accept, context))
-            .<PagedResponse<ConfidentialLedgerInner>>map(
+            .<PagedResponse<ManagedCcfInner>>map(
                 res ->
                     new PagedResponseBase<>(
                         res.getRequest(),
@@ -1605,11 +1579,11 @@ public final class LedgersClientImpl implements LedgersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return object that includes an array of Confidential Ledgers and a possible link for next set along with {@link
+     * @return object that includes an array of Managed CCF and a possible link for next set along with {@link
      *     PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<ConfidentialLedgerInner>> listByResourceGroupNextSinglePageAsync(
+    private Mono<PagedResponse<ManagedCcfInner>> listByResourceGroupNextSinglePageAsync(
         String nextLink, Context context) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
@@ -1643,11 +1617,11 @@ public final class LedgersClientImpl implements LedgersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return object that includes an array of Confidential Ledgers and a possible link for next set along with {@link
+     * @return object that includes an array of Managed CCF and a possible link for next set along with {@link
      *     PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<ConfidentialLedgerInner>> listBySubscriptionNextSinglePageAsync(String nextLink) {
+    private Mono<PagedResponse<ManagedCcfInner>> listBySubscriptionNextSinglePageAsync(String nextLink) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
@@ -1661,7 +1635,7 @@ public final class LedgersClientImpl implements LedgersClient {
         return FluxUtil
             .withContext(
                 context -> service.listBySubscriptionNext(nextLink, this.client.getEndpoint(), accept, context))
-            .<PagedResponse<ConfidentialLedgerInner>>map(
+            .<PagedResponse<ManagedCcfInner>>map(
                 res ->
                     new PagedResponseBase<>(
                         res.getRequest(),
@@ -1682,11 +1656,11 @@ public final class LedgersClientImpl implements LedgersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return object that includes an array of Confidential Ledgers and a possible link for next set along with {@link
+     * @return object that includes an array of Managed CCF and a possible link for next set along with {@link
      *     PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<ConfidentialLedgerInner>> listBySubscriptionNextSinglePageAsync(
+    private Mono<PagedResponse<ManagedCcfInner>> listBySubscriptionNextSinglePageAsync(
         String nextLink, Context context) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
