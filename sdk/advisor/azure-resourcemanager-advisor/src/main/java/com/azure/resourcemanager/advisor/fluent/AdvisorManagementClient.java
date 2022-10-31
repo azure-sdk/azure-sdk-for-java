@@ -78,4 +78,11 @@ public interface AdvisorManagementClient {
      * @return the SuppressionsClient object.
      */
     SuppressionsClient getSuppressions();
+
+    /**
+     * Gets the ResourceProvidersClient object to access its operations.
+     *
+     * @return the ResourceProvidersClient object.
+     */
+    ResourceProvidersClient getResourceProviders();
 }
