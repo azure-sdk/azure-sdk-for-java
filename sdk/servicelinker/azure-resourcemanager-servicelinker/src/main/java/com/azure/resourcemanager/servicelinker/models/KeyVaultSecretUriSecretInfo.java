@@ -23,6 +23,10 @@ public final class KeyVaultSecretUriSecretInfo extends SecretInfoBase {
     @JsonProperty(value = "value")
     private String value;
 
+    /** Creates an instance of KeyVaultSecretUriSecretInfo class. */
+    public KeyVaultSecretUriSecretInfo() {
+    }
+
     /**
      * Get the value property: URI to the keyvault secret.
      *
