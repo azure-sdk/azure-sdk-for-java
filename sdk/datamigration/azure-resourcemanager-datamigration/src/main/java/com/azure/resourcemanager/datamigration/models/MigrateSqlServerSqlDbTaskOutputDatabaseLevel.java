@@ -5,22 +5,17 @@
 package com.azure.resourcemanager.datamigration.models;
 
 import com.azure.core.annotation.Immutable;
-import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.time.OffsetDateTime;
 import java.util.List;
 
-/** Database level result for Sql Server to Azure Sql DB migration. */
+/** The MigrateSqlServerSqlDbTaskOutputDatabaseLevel model. */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "resultType")
 @JsonTypeName("DatabaseLevelOutput")
 @Immutable
 public final class MigrateSqlServerSqlDbTaskOutputDatabaseLevel extends MigrateSqlServerSqlDbTaskOutput {
-    @JsonIgnore
-    private final ClientLogger logger = new ClientLogger(MigrateSqlServerSqlDbTaskOutputDatabaseLevel.class);
-
     /*
      * Name of the item
      */
@@ -88,8 +83,7 @@ public final class MigrateSqlServerSqlDbTaskOutputDatabaseLevel extends MigrateS
     private String errorPrefix;
 
     /*
-     * Wildcard string prefix to use for querying all sub-tem results of the
-     * item
+     * Wildcard string prefix to use for querying all sub-tem results of the item
      */
     @JsonProperty(value = "resultPrefix", access = JsonProperty.Access.WRITE_ONLY)
     private String resultPrefix;
@@ -105,6 +99,10 @@ public final class MigrateSqlServerSqlDbTaskOutputDatabaseLevel extends MigrateS
      */
     @JsonProperty(value = "objectSummary", access = JsonProperty.Access.WRITE_ONLY)
     private String objectSummary;
+
+    /** Creates an instance of MigrateSqlServerSqlDbTaskOutputDatabaseLevel class. */
+    public MigrateSqlServerSqlDbTaskOutputDatabaseLevel() {
+    }
 
     /**
      * Get the databaseName property: Name of the item.
