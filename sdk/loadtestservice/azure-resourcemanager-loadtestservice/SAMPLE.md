@@ -193,9 +193,7 @@ public final class LoadTestsListOutboundNetworkDependenciesEndpointsSamples {
 ### LoadTests_Update
 
 ```java
-import com.azure.core.management.serializer.SerializerFactory;
 import com.azure.core.util.Context;
-import com.azure.core.util.serializer.SerializerEncoding;
 import com.azure.resourcemanager.loadtestservice.models.EncryptionProperties;
 import com.azure.resourcemanager.loadtestservice.models.EncryptionPropertiesIdentity;
 import com.azure.resourcemanager.loadtestservice.models.LoadTestResource;
@@ -203,7 +201,6 @@ import com.azure.resourcemanager.loadtestservice.models.ManagedServiceIdentity;
 import com.azure.resourcemanager.loadtestservice.models.ManagedServiceIdentityType;
 import com.azure.resourcemanager.loadtestservice.models.Type;
 import com.azure.resourcemanager.loadtestservice.models.UserAssignedIdentity;
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -217,16 +214,12 @@ public final class LoadTestsUpdateSamples {
      *
      * @param manager Entry point to LoadTestManager.
      */
-    public static void loadTestsUpdate(com.azure.resourcemanager.loadtestservice.LoadTestManager manager)
-        throws IOException {
+    public static void loadTestsUpdate(com.azure.resourcemanager.loadtestservice.LoadTestManager manager) {
         LoadTestResource resource =
             manager.loadTests().getByResourceGroupWithResponse("dummyrg", "myLoadTest", Context.NONE).getValue();
         resource
             .update()
-            .withTags(
-                SerializerFactory
-                    .createDefaultManagementSerializerAdapter()
-                    .deserialize("{\"Division\":\"LT\",\"Team\":\"Dev Exp\"}", Object.class, SerializerEncoding.JSON))
+            .withTags(mapOf("Division", "LT", "Team", "Dev Exp"))
             .withIdentity(
                 new ManagedServiceIdentity()
                     .withType(ManagedServiceIdentityType.SYSTEM_ASSIGNED_USER_ASSIGNED)
