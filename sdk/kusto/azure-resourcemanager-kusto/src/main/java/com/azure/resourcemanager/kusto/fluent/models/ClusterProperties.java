@@ -170,6 +170,10 @@ public final class ClusterProperties {
     @JsonProperty(value = "privateEndpointConnections", access = JsonProperty.Access.WRITE_ONLY)
     private List<PrivateEndpointConnectionInner> privateEndpointConnections;
 
+    /** Creates an instance of ClusterProperties class. */
+    public ClusterProperties() {
+    }
+
     /**
      * Get the state property: The state of the resource.
      *
