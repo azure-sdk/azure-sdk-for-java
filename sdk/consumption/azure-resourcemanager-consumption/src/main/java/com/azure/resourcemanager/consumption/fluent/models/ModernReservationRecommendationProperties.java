@@ -5,10 +5,8 @@
 package com.azure.resourcemanager.consumption.fluent.models;
 
 import com.azure.core.annotation.Immutable;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.consumption.models.Amount;
 import com.azure.resourcemanager.consumption.models.SkuProperty;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
@@ -18,8 +16,6 @@ import java.util.UUID;
 /** The properties of the reservation recommendation. */
 @Immutable
 public final class ModernReservationRecommendationProperties {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(ModernReservationRecommendationProperties.class);
-
     /*
      * Resource Location.
      */
@@ -81,6 +77,12 @@ public final class ModernReservationRecommendationProperties {
     private BigDecimal recommendedQuantity;
 
     /*
+     * Resource type.
+     */
+    @JsonProperty(value = "resourceType", access = JsonProperty.Access.WRITE_ONLY)
+    private String resourceType;
+
+    /*
      * The total amount of cost with reserved instances.
      */
     @JsonProperty(value = "totalCostWithReservedInstances", access = JsonProperty.Access.WRITE_ONLY)
@@ -115,6 +117,16 @@ public final class ModernReservationRecommendationProperties {
      */
     @JsonProperty(value = "skuName", access = JsonProperty.Access.WRITE_ONLY)
     private String skuName;
+
+    /*
+     * Subscription ID
+     */
+    @JsonProperty(value = "subscriptionId", access = JsonProperty.Access.WRITE_ONLY)
+    private UUID subscriptionId;
+
+    /** Creates an instance of ModernReservationRecommendationProperties class. */
+    public ModernReservationRecommendationProperties() {
+    }
 
     /**
      * Get the location property: Resource Location.
@@ -207,6 +219,15 @@ public final class ModernReservationRecommendationProperties {
     }
 
     /**
+     * Get the resourceType property: Resource type.
+     *
+     * @return the resourceType value.
+     */
+    public String resourceType() {
+        return this.resourceType;
+    }
+
+    /**
      * Get the totalCostWithReservedInstances property: The total amount of cost with reserved instances.
      *
      * @return the totalCostWithReservedInstances value.
@@ -258,6 +279,15 @@ public final class ModernReservationRecommendationProperties {
      */
     public String skuName() {
         return this.skuName;
+    }
+
+    /**
+     * Get the subscriptionId property: Subscription ID.
+     *
+     * @return the subscriptionId value.
+     */
+    public UUID subscriptionId() {
+        return this.subscriptionId;
     }
 
     /**
