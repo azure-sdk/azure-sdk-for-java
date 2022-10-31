@@ -264,7 +264,9 @@ public interface ProvisioningServiceDescription {
     ProvisioningServiceDescription refresh(Context context);
 
     /**
-     * List the primary and secondary keys for a provisioning service.
+     * Get the security metadata for a provisioning service.
+     *
+     * <p>List the primary and secondary keys for a provisioning service.
      *
      * @throws com.azure.resourcemanager.deviceprovisioningservices.models.ErrorDetailsException thrown if the request
      *     is rejected by server.
@@ -274,7 +276,9 @@ public interface ProvisioningServiceDescription {
     PagedIterable<SharedAccessSignatureAuthorizationRule> listKeys();
 
     /**
-     * List the primary and secondary keys for a provisioning service.
+     * Get the security metadata for a provisioning service.
+     *
+     * <p>List the primary and secondary keys for a provisioning service.
      *
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
