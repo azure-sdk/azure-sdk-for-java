@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for Appliances GetByResourceGroup. */
 public final class AppliancesGetByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/resourceconnector/resource-manager/Microsoft.ResourceConnector/preview/2022-04-15-preview/examples/AppliancesGet.json
+     * x-ms-original-file: specification/resourceconnector/resource-manager/Microsoft.ResourceConnector/stable/2022-10-27/examples/AppliancesGet.json
      */
     /**
      * Sample code: Get Appliance.

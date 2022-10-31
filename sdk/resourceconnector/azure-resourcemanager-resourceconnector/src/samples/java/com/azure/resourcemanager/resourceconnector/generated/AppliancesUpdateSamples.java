@@ -12,7 +12,7 @@ import java.util.Map;
 /** Samples for Appliances Update. */
 public final class AppliancesUpdateSamples {
     /*
-     * x-ms-original-file: specification/resourceconnector/resource-manager/Microsoft.ResourceConnector/preview/2022-04-15-preview/examples/AppliancesPatch.json
+     * x-ms-original-file: specification/resourceconnector/resource-manager/Microsoft.ResourceConnector/stable/2022-10-27/examples/AppliancesPatch.json
      */
     /**
      * Sample code: Update Appliance.

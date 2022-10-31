@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for Appliances ListOperations. */
 public final class AppliancesListOperationsSamples {
     /*
-     * x-ms-original-file: specification/resourceconnector/resource-manager/Microsoft.ResourceConnector/preview/2022-04-15-preview/examples/AppliancesListOperations.json
+     * x-ms-original-file: specification/resourceconnector/resource-manager/Microsoft.ResourceConnector/stable/2022-10-27/examples/AppliancesListOperations.json
      */
     /**
      * Sample code: List Appliances operations.

@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for Provider. */
+/** Information about the connected appliance. */
 public final class Provider extends ExpandableStringEnum<Provider> {
     /** Static value VMWare for Provider. */
     public static final Provider VMWARE = fromString("VMWare");

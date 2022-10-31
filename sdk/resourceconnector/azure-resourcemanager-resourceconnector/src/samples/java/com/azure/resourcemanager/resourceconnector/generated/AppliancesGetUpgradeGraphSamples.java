@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for Appliances GetUpgradeGraph. */
 public final class AppliancesGetUpgradeGraphSamples {
     /*
-     * x-ms-original-file: specification/resourceconnector/resource-manager/Microsoft.ResourceConnector/preview/2022-04-15-preview/examples/UpgradeGraph.json
+     * x-ms-original-file: specification/resourceconnector/resource-manager/Microsoft.ResourceConnector/stable/2022-10-27/examples/UpgradeGraph.json
      */
     /**
      * Sample code: Get Appliance Upgrade Graph.

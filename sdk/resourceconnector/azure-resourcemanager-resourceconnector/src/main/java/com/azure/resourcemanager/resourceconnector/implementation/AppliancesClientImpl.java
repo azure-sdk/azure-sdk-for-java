@@ -34,9 +34,10 @@ import com.azure.core.util.FluxUtil;
 import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.resourceconnector.fluent.AppliancesClient;
+import com.azure.resourcemanager.resourceconnector.fluent.models.ApplianceGetTelemetryConfigResultInner;
 import com.azure.resourcemanager.resourceconnector.fluent.models.ApplianceInner;
-import com.azure.resourcemanager.resourceconnector.fluent.models.ApplianceListClusterCustomerUserCredentialResultsInner;
 import com.azure.resourcemanager.resourceconnector.fluent.models.ApplianceListCredentialResultsInner;
+import com.azure.resourcemanager.resourceconnector.fluent.models.ApplianceListKeysResultsInner;
 import com.azure.resourcemanager.resourceconnector.fluent.models.ApplianceOperationInner;
 import com.azure.resourcemanager.resourceconnector.fluent.models.UpgradeGraphInner;
 import com.azure.resourcemanager.resourceconnector.models.ApplianceListResult;
@@ -87,6 +88,17 @@ public final class AppliancesClientImpl implements AppliancesClient {
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<ApplianceListResult>> list(
+            @HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion,
+            @PathParam("subscriptionId") String subscriptionId,
+            @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({"Content-Type: application/json"})
+        @Get("/subscriptions/{subscriptionId}/providers/Microsoft.ResourceConnector/telemetryconfig")
+        @ExpectedResponses({200})
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<ApplianceGetTelemetryConfigResultInner>> getTelemetryConfig(
             @HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion,
             @PathParam("subscriptionId") String subscriptionId,
@@ -172,10 +184,10 @@ public final class AppliancesClientImpl implements AppliancesClient {
         @Headers({"Content-Type: application/json"})
         @Post(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ResourceConnector"
-                + "/appliances/{resourceName}/listClusterCustomerUserCredential")
+                + "/appliances/{resourceName}/listClusterUserCredential")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<ApplianceListClusterCustomerUserCredentialResultsInner>> listClusterCustomerUserCredential(
+        Mono<Response<ApplianceListCredentialResultsInner>> listClusterUserCredential(
             @HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion,
             @PathParam("subscriptionId") String subscriptionId,
@@ -187,10 +199,10 @@ public final class AppliancesClientImpl implements AppliancesClient {
         @Headers({"Content-Type: application/json"})
         @Post(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ResourceConnector"
-                + "/appliances/{resourceName}/listClusterUserCredential")
+                + "/appliances/{resourceName}/listkeys")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<ApplianceListCredentialResultsInner>> listClusterUserCredential(
+        Mono<Response<ApplianceListKeysResultsInner>> listKeys(
             @HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion,
             @PathParam("subscriptionId") String subscriptionId,
@@ -366,7 +378,9 @@ public final class AppliancesClientImpl implements AppliancesClient {
     }
 
     /**
-     * Gets a list of Appliances in the specified subscription. The operation returns properties of each Appliance.
+     * Gets a list of Appliances in a subscription.
+     *
+     * <p>Gets a list of Appliances in the specified subscription. The operation returns properties of each Appliance.
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -411,7 +425,9 @@ public final class AppliancesClientImpl implements AppliancesClient {
     }
 
     /**
-     * Gets a list of Appliances in the specified subscription. The operation returns properties of each Appliance.
+     * Gets a list of Appliances in a subscription.
+     *
+     * <p>Gets a list of Appliances in the specified subscription. The operation returns properties of each Appliance.
      *
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -455,7 +471,9 @@ public final class AppliancesClientImpl implements AppliancesClient {
     }
 
     /**
-     * Gets a list of Appliances in the specified subscription. The operation returns properties of each Appliance.
+     * Gets a list of Appliances in a subscription.
+     *
+     * <p>Gets a list of Appliances in the specified subscription. The operation returns properties of each Appliance.
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -468,7 +486,9 @@ public final class AppliancesClientImpl implements AppliancesClient {
     }
 
     /**
-     * Gets a list of Appliances in the specified subscription. The operation returns properties of each Appliance.
+     * Gets a list of Appliances in a subscription.
+     *
+     * <p>Gets a list of Appliances in the specified subscription. The operation returns properties of each Appliance.
      *
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -483,7 +503,9 @@ public final class AppliancesClientImpl implements AppliancesClient {
     }
 
     /**
-     * Gets a list of Appliances in the specified subscription. The operation returns properties of each Appliance.
+     * Gets a list of Appliances in a subscription.
+     *
+     * <p>Gets a list of Appliances in the specified subscription. The operation returns properties of each Appliance.
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -495,7 +517,9 @@ public final class AppliancesClientImpl implements AppliancesClient {
     }
 
     /**
-     * Gets a list of Appliances in the specified subscription. The operation returns properties of each Appliance.
+     * Gets a list of Appliances in a subscription.
+     *
+     * <p>Gets a list of Appliances in the specified subscription. The operation returns properties of each Appliance.
      *
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -509,8 +533,118 @@ public final class AppliancesClientImpl implements AppliancesClient {
     }
 
     /**
-     * Gets a list of Appliances in the specified subscription and resource group. The operation returns properties of
-     * each Appliance.
+     * Gets the telemetry config.
+     *
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the telemetry config along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<ApplianceGetTelemetryConfigResultInner>> getTelemetryConfigWithResponseAsync() {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(
+                context ->
+                    service
+                        .getTelemetryConfig(
+                            this.client.getEndpoint(),
+                            this.client.getApiVersion(),
+                            this.client.getSubscriptionId(),
+                            accept,
+                            context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Gets the telemetry config.
+     *
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the telemetry config along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<ApplianceGetTelemetryConfigResultInner>> getTelemetryConfigWithResponseAsync(
+        Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service
+            .getTelemetryConfig(
+                this.client.getEndpoint(),
+                this.client.getApiVersion(),
+                this.client.getSubscriptionId(),
+                accept,
+                context);
+    }
+
+    /**
+     * Gets the telemetry config.
+     *
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the telemetry config on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<ApplianceGetTelemetryConfigResultInner> getTelemetryConfigAsync() {
+        return getTelemetryConfigWithResponseAsync().flatMap(res -> Mono.justOrEmpty(res.getValue()));
+    }
+
+    /**
+     * Gets the telemetry config.
+     *
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the telemetry config along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<ApplianceGetTelemetryConfigResultInner> getTelemetryConfigWithResponse(Context context) {
+        return getTelemetryConfigWithResponseAsync(context).block();
+    }
+
+    /**
+     * Gets the telemetry config.
+     *
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the telemetry config.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public ApplianceGetTelemetryConfigResultInner getTelemetryConfig() {
+        return getTelemetryConfigWithResponse(Context.NONE).getValue();
+    }
+
+    /**
+     * Gets a list of Appliances in the specified subscription and resource group.
+     *
+     * <p>Gets a list of Appliances in the specified subscription and resource group. The operation returns properties
+     * of each Appliance.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -562,8 +696,10 @@ public final class AppliancesClientImpl implements AppliancesClient {
     }
 
     /**
-     * Gets a list of Appliances in the specified subscription and resource group. The operation returns properties of
-     * each Appliance.
+     * Gets a list of Appliances in the specified subscription and resource group.
+     *
+     * <p>Gets a list of Appliances in the specified subscription and resource group. The operation returns properties
+     * of each Appliance.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param context The context to associate with this operation.
@@ -614,8 +750,10 @@ public final class AppliancesClientImpl implements AppliancesClient {
     }
 
     /**
-     * Gets a list of Appliances in the specified subscription and resource group. The operation returns properties of
-     * each Appliance.
+     * Gets a list of Appliances in the specified subscription and resource group.
+     *
+     * <p>Gets a list of Appliances in the specified subscription and resource group. The operation returns properties
+     * of each Appliance.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -632,8 +770,10 @@ public final class AppliancesClientImpl implements AppliancesClient {
     }
 
     /**
-     * Gets a list of Appliances in the specified subscription and resource group. The operation returns properties of
-     * each Appliance.
+     * Gets a list of Appliances in the specified subscription and resource group.
+     *
+     * <p>Gets a list of Appliances in the specified subscription and resource group. The operation returns properties
+     * of each Appliance.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param context The context to associate with this operation.
@@ -651,8 +791,10 @@ public final class AppliancesClientImpl implements AppliancesClient {
     }
 
     /**
-     * Gets a list of Appliances in the specified subscription and resource group. The operation returns properties of
-     * each Appliance.
+     * Gets a list of Appliances in the specified subscription and resource group.
+     *
+     * <p>Gets a list of Appliances in the specified subscription and resource group. The operation returns properties
+     * of each Appliance.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -667,8 +809,10 @@ public final class AppliancesClientImpl implements AppliancesClient {
     }
 
     /**
-     * Gets a list of Appliances in the specified subscription and resource group. The operation returns properties of
-     * each Appliance.
+     * Gets a list of Appliances in the specified subscription and resource group.
+     *
+     * <p>Gets a list of Appliances in the specified subscription and resource group. The operation returns properties
+     * of each Appliance.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param context The context to associate with this operation.
@@ -684,7 +828,9 @@ public final class AppliancesClientImpl implements AppliancesClient {
     }
 
     /**
-     * Gets the details of an Appliance with a specified resource group and name.
+     * Gets an Appliance.
+     *
+     * <p>Gets the details of an Appliance with a specified resource group and name.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName Appliances name.
@@ -733,7 +879,9 @@ public final class AppliancesClientImpl implements AppliancesClient {
     }
 
     /**
-     * Gets the details of an Appliance with a specified resource group and name.
+     * Gets an Appliance.
+     *
+     * <p>Gets the details of an Appliance with a specified resource group and name.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName Appliances name.
@@ -780,7 +928,9 @@ public final class AppliancesClientImpl implements AppliancesClient {
     }
 
     /**
-     * Gets the details of an Appliance with a specified resource group and name.
+     * Gets an Appliance.
+     *
+     * <p>Gets the details of an Appliance with a specified resource group and name.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName Appliances name.
@@ -797,22 +947,9 @@ public final class AppliancesClientImpl implements AppliancesClient {
     }
 
     /**
-     * Gets the details of an Appliance with a specified resource group and name.
+     * Gets an Appliance.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param resourceName Appliances name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the details of an Appliance with a specified resource group and name.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public ApplianceInner getByResourceGroup(String resourceGroupName, String resourceName) {
-        return getByResourceGroupAsync(resourceGroupName, resourceName).block();
-    }
-
-    /**
-     * Gets the details of an Appliance with a specified resource group and name.
+     * <p>Gets the details of an Appliance with a specified resource group and name.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName Appliances name.
@@ -829,7 +966,26 @@ public final class AppliancesClientImpl implements AppliancesClient {
     }
 
     /**
-     * Creates or updates an Appliance in the specified Subscription and Resource Group.
+     * Gets an Appliance.
+     *
+     * <p>Gets the details of an Appliance with a specified resource group and name.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param resourceName Appliances name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the details of an Appliance with a specified resource group and name.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public ApplianceInner getByResourceGroup(String resourceGroupName, String resourceName) {
+        return getByResourceGroupWithResponse(resourceGroupName, resourceName, Context.NONE).getValue();
+    }
+
+    /**
+     * Creates or updates an Appliance.
+     *
+     * <p>Creates or updates an Appliance in the specified Subscription and Resource Group.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName Appliances name.
@@ -884,7 +1040,9 @@ public final class AppliancesClientImpl implements AppliancesClient {
     }
 
     /**
-     * Creates or updates an Appliance in the specified Subscription and Resource Group.
+     * Creates or updates an Appliance.
+     *
+     * <p>Creates or updates an Appliance in the specified Subscription and Resource Group.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName Appliances name.
@@ -937,7 +1095,9 @@ public final class AppliancesClientImpl implements AppliancesClient {
     }
 
     /**
-     * Creates or updates an Appliance in the specified Subscription and Resource Group.
+     * Creates or updates an Appliance.
+     *
+     * <p>Creates or updates an Appliance in the specified Subscription and Resource Group.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName Appliances name.
@@ -963,7 +1123,9 @@ public final class AppliancesClientImpl implements AppliancesClient {
     }
 
     /**
-     * Creates or updates an Appliance in the specified Subscription and Resource Group.
+     * Creates or updates an Appliance.
+     *
+     * <p>Creates or updates an Appliance in the specified Subscription and Resource Group.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName Appliances name.
@@ -987,7 +1149,9 @@ public final class AppliancesClientImpl implements AppliancesClient {
     }
 
     /**
-     * Creates or updates an Appliance in the specified Subscription and Resource Group.
+     * Creates or updates an Appliance.
+     *
+     * <p>Creates or updates an Appliance in the specified Subscription and Resource Group.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName Appliances name.
@@ -1004,7 +1168,9 @@ public final class AppliancesClientImpl implements AppliancesClient {
     }
 
     /**
-     * Creates or updates an Appliance in the specified Subscription and Resource Group.
+     * Creates or updates an Appliance.
+     *
+     * <p>Creates or updates an Appliance in the specified Subscription and Resource Group.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName Appliances name.
@@ -1022,7 +1188,9 @@ public final class AppliancesClientImpl implements AppliancesClient {
     }
 
     /**
-     * Creates or updates an Appliance in the specified Subscription and Resource Group.
+     * Creates or updates an Appliance.
+     *
+     * <p>Creates or updates an Appliance in the specified Subscription and Resource Group.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName Appliances name.
@@ -1041,7 +1209,9 @@ public final class AppliancesClientImpl implements AppliancesClient {
     }
 
     /**
-     * Creates or updates an Appliance in the specified Subscription and Resource Group.
+     * Creates or updates an Appliance.
+     *
+     * <p>Creates or updates an Appliance in the specified Subscription and Resource Group.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName Appliances name.
@@ -1061,7 +1231,9 @@ public final class AppliancesClientImpl implements AppliancesClient {
     }
 
     /**
-     * Creates or updates an Appliance in the specified Subscription and Resource Group.
+     * Creates or updates an Appliance.
+     *
+     * <p>Creates or updates an Appliance in the specified Subscription and Resource Group.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName Appliances name.
@@ -1077,7 +1249,9 @@ public final class AppliancesClientImpl implements AppliancesClient {
     }
 
     /**
-     * Creates or updates an Appliance in the specified Subscription and Resource Group.
+     * Creates or updates an Appliance.
+     *
+     * <p>Creates or updates an Appliance in the specified Subscription and Resource Group.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName Appliances name.
@@ -1095,7 +1269,9 @@ public final class AppliancesClientImpl implements AppliancesClient {
     }
 
     /**
-     * Deletes an Appliance with the specified Resource Name, Resource Group, and Subscription Id.
+     * Deletes an Appliance.
+     *
+     * <p>Deletes an Appliance with the specified Resource Name, Resource Group, and Subscription Id.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName Appliances name.
@@ -1142,7 +1318,9 @@ public final class AppliancesClientImpl implements AppliancesClient {
     }
 
     /**
-     * Deletes an Appliance with the specified Resource Name, Resource Group, and Subscription Id.
+     * Deletes an Appliance.
+     *
+     * <p>Deletes an Appliance with the specified Resource Name, Resource Group, and Subscription Id.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName Appliances name.
@@ -1188,7 +1366,9 @@ public final class AppliancesClientImpl implements AppliancesClient {
     }
 
     /**
-     * Deletes an Appliance with the specified Resource Name, Resource Group, and Subscription Id.
+     * Deletes an Appliance.
+     *
+     * <p>Deletes an Appliance with the specified Resource Name, Resource Group, and Subscription Id.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName Appliances name.
@@ -1207,7 +1387,9 @@ public final class AppliancesClientImpl implements AppliancesClient {
     }
 
     /**
-     * Deletes an Appliance with the specified Resource Name, Resource Group, and Subscription Id.
+     * Deletes an Appliance.
+     *
+     * <p>Deletes an Appliance with the specified Resource Name, Resource Group, and Subscription Id.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName Appliances name.
@@ -1228,7 +1410,9 @@ public final class AppliancesClientImpl implements AppliancesClient {
     }
 
     /**
-     * Deletes an Appliance with the specified Resource Name, Resource Group, and Subscription Id.
+     * Deletes an Appliance.
+     *
+     * <p>Deletes an Appliance with the specified Resource Name, Resource Group, and Subscription Id.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName Appliances name.
@@ -1243,7 +1427,9 @@ public final class AppliancesClientImpl implements AppliancesClient {
     }
 
     /**
-     * Deletes an Appliance with the specified Resource Name, Resource Group, and Subscription Id.
+     * Deletes an Appliance.
+     *
+     * <p>Deletes an Appliance with the specified Resource Name, Resource Group, and Subscription Id.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName Appliances name.
@@ -1260,7 +1446,9 @@ public final class AppliancesClientImpl implements AppliancesClient {
     }
 
     /**
-     * Deletes an Appliance with the specified Resource Name, Resource Group, and Subscription Id.
+     * Deletes an Appliance.
+     *
+     * <p>Deletes an Appliance with the specified Resource Name, Resource Group, and Subscription Id.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName Appliances name.
@@ -1275,7 +1463,9 @@ public final class AppliancesClientImpl implements AppliancesClient {
     }
 
     /**
-     * Deletes an Appliance with the specified Resource Name, Resource Group, and Subscription Id.
+     * Deletes an Appliance.
+     *
+     * <p>Deletes an Appliance with the specified Resource Name, Resource Group, and Subscription Id.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName Appliances name.
@@ -1293,7 +1483,9 @@ public final class AppliancesClientImpl implements AppliancesClient {
     }
 
     /**
-     * Deletes an Appliance with the specified Resource Name, Resource Group, and Subscription Id.
+     * Deletes an Appliance.
+     *
+     * <p>Deletes an Appliance with the specified Resource Name, Resource Group, and Subscription Id.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName Appliances name.
@@ -1307,7 +1499,9 @@ public final class AppliancesClientImpl implements AppliancesClient {
     }
 
     /**
-     * Deletes an Appliance with the specified Resource Name, Resource Group, and Subscription Id.
+     * Deletes an Appliance.
+     *
+     * <p>Deletes an Appliance with the specified Resource Name, Resource Group, and Subscription Id.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName Appliances name.
@@ -1322,7 +1516,9 @@ public final class AppliancesClientImpl implements AppliancesClient {
     }
 
     /**
-     * Updates an Appliance with the specified Resource Name in the specified Resource Group and Subscription.
+     * Updates an Appliance.
+     *
+     * <p>Updates an Appliance with the specified Resource Name in the specified Resource Group and Subscription.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName Appliances name.
@@ -1377,7 +1573,9 @@ public final class AppliancesClientImpl implements AppliancesClient {
     }
 
     /**
-     * Updates an Appliance with the specified Resource Name in the specified Resource Group and Subscription.
+     * Updates an Appliance.
+     *
+     * <p>Updates an Appliance with the specified Resource Name in the specified Resource Group and Subscription.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName Appliances name.
@@ -1430,7 +1628,9 @@ public final class AppliancesClientImpl implements AppliancesClient {
     }
 
     /**
-     * Updates an Appliance with the specified Resource Name in the specified Resource Group and Subscription.
+     * Updates an Appliance.
+     *
+     * <p>Updates an Appliance with the specified Resource Name in the specified Resource Group and Subscription.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName Appliances name.
@@ -1448,23 +1648,9 @@ public final class AppliancesClientImpl implements AppliancesClient {
     }
 
     /**
-     * Updates an Appliance with the specified Resource Name in the specified Resource Group and Subscription.
+     * Updates an Appliance.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param resourceName Appliances name.
-     * @param parameters The updatable fields of an existing Appliance.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return appliances definition.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public ApplianceInner update(String resourceGroupName, String resourceName, PatchableAppliance parameters) {
-        return updateAsync(resourceGroupName, resourceName, parameters).block();
-    }
-
-    /**
-     * Updates an Appliance with the specified Resource Name in the specified Resource Group and Subscription.
+     * <p>Updates an Appliance with the specified Resource Name in the specified Resource Group and Subscription.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName Appliances name.
@@ -1482,154 +1668,27 @@ public final class AppliancesClientImpl implements AppliancesClient {
     }
 
     /**
-     * Returns the cluster customer user credentials for the dedicated appliance.
+     * Updates an Appliance.
+     *
+     * <p>Updates an Appliance with the specified Resource Name in the specified Resource Group and Subscription.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName Appliances name.
+     * @param parameters The updatable fields of an existing Appliance.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the List Cluster Customer User Credential Results appliance along with {@link Response} on successful
-     *     completion of {@link Mono}.
+     * @return appliances definition.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<ApplianceListClusterCustomerUserCredentialResultsInner>>
-        listClusterCustomerUserCredentialWithResponseAsync(String resourceGroupName, String resourceName) {
-        if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (resourceName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter resourceName is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .listClusterCustomerUserCredential(
-                            this.client.getEndpoint(),
-                            this.client.getApiVersion(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            resourceName,
-                            accept,
-                            context))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    public ApplianceInner update(String resourceGroupName, String resourceName, PatchableAppliance parameters) {
+        return updateWithResponse(resourceGroupName, resourceName, parameters, Context.NONE).getValue();
     }
 
     /**
-     * Returns the cluster customer user credentials for the dedicated appliance.
+     * Returns the cluster user credential.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param resourceName Appliances name.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the List Cluster Customer User Credential Results appliance along with {@link Response} on successful
-     *     completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<ApplianceListClusterCustomerUserCredentialResultsInner>>
-        listClusterCustomerUserCredentialWithResponseAsync(
-            String resourceGroupName, String resourceName, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (resourceName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter resourceName is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service
-            .listClusterCustomerUserCredential(
-                this.client.getEndpoint(),
-                this.client.getApiVersion(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                resourceName,
-                accept,
-                context);
-    }
-
-    /**
-     * Returns the cluster customer user credentials for the dedicated appliance.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param resourceName Appliances name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the List Cluster Customer User Credential Results appliance on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<ApplianceListClusterCustomerUserCredentialResultsInner> listClusterCustomerUserCredentialAsync(
-        String resourceGroupName, String resourceName) {
-        return listClusterCustomerUserCredentialWithResponseAsync(resourceGroupName, resourceName)
-            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
-    }
-
-    /**
-     * Returns the cluster customer user credentials for the dedicated appliance.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param resourceName Appliances name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the List Cluster Customer User Credential Results appliance.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public ApplianceListClusterCustomerUserCredentialResultsInner listClusterCustomerUserCredential(
-        String resourceGroupName, String resourceName) {
-        return listClusterCustomerUserCredentialAsync(resourceGroupName, resourceName).block();
-    }
-
-    /**
-     * Returns the cluster customer user credentials for the dedicated appliance.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param resourceName Appliances name.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the List Cluster Customer User Credential Results appliance along with {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ApplianceListClusterCustomerUserCredentialResultsInner>
-        listClusterCustomerUserCredentialWithResponse(String resourceGroupName, String resourceName, Context context) {
-        return listClusterCustomerUserCredentialWithResponseAsync(resourceGroupName, resourceName, context).block();
-    }
-
-    /**
-     * Returns the cluster user credentials for the dedicated appliance.
+     * <p>Returns the cluster user credentials for the dedicated appliance.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName Appliances name.
@@ -1678,7 +1737,9 @@ public final class AppliancesClientImpl implements AppliancesClient {
     }
 
     /**
-     * Returns the cluster user credentials for the dedicated appliance.
+     * Returns the cluster user credential.
+     *
+     * <p>Returns the cluster user credentials for the dedicated appliance.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName Appliances name.
@@ -1725,7 +1786,9 @@ public final class AppliancesClientImpl implements AppliancesClient {
     }
 
     /**
-     * Returns the cluster user credentials for the dedicated appliance.
+     * Returns the cluster user credential.
+     *
+     * <p>Returns the cluster user credentials for the dedicated appliance.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName Appliances name.
@@ -1742,23 +1805,9 @@ public final class AppliancesClientImpl implements AppliancesClient {
     }
 
     /**
-     * Returns the cluster user credentials for the dedicated appliance.
+     * Returns the cluster user credential.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param resourceName Appliances name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the List Cluster User Credential appliance.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public ApplianceListCredentialResultsInner listClusterUserCredential(
-        String resourceGroupName, String resourceName) {
-        return listClusterUserCredentialAsync(resourceGroupName, resourceName).block();
-    }
-
-    /**
-     * Returns the cluster user credentials for the dedicated appliance.
+     * <p>Returns the cluster user credentials for the dedicated appliance.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName Appliances name.
@@ -1775,7 +1824,181 @@ public final class AppliancesClientImpl implements AppliancesClient {
     }
 
     /**
-     * Gets the upgrade graph of an Appliance with a specified resource group and name and specific release train.
+     * Returns the cluster user credential.
+     *
+     * <p>Returns the cluster user credentials for the dedicated appliance.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param resourceName Appliances name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the List Cluster User Credential appliance.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public ApplianceListCredentialResultsInner listClusterUserCredential(
+        String resourceGroupName, String resourceName) {
+        return listClusterUserCredentialWithResponse(resourceGroupName, resourceName, Context.NONE).getValue();
+    }
+
+    /**
+     * Gets the management config.
+     *
+     * <p>Returns the cluster customer credentials for the dedicated appliance.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param resourceName Appliances name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the List Cluster Keys Results appliance along with {@link Response} on successful completion of {@link
+     *     Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<ApplianceListKeysResultsInner>> listKeysWithResponseAsync(
+        String resourceGroupName, String resourceName) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (resourceName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter resourceName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(
+                context ->
+                    service
+                        .listKeys(
+                            this.client.getEndpoint(),
+                            this.client.getApiVersion(),
+                            this.client.getSubscriptionId(),
+                            resourceGroupName,
+                            resourceName,
+                            accept,
+                            context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Gets the management config.
+     *
+     * <p>Returns the cluster customer credentials for the dedicated appliance.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param resourceName Appliances name.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the List Cluster Keys Results appliance along with {@link Response} on successful completion of {@link
+     *     Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<ApplianceListKeysResultsInner>> listKeysWithResponseAsync(
+        String resourceGroupName, String resourceName, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (resourceName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter resourceName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service
+            .listKeys(
+                this.client.getEndpoint(),
+                this.client.getApiVersion(),
+                this.client.getSubscriptionId(),
+                resourceGroupName,
+                resourceName,
+                accept,
+                context);
+    }
+
+    /**
+     * Gets the management config.
+     *
+     * <p>Returns the cluster customer credentials for the dedicated appliance.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param resourceName Appliances name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the List Cluster Keys Results appliance on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<ApplianceListKeysResultsInner> listKeysAsync(String resourceGroupName, String resourceName) {
+        return listKeysWithResponseAsync(resourceGroupName, resourceName)
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
+    }
+
+    /**
+     * Gets the management config.
+     *
+     * <p>Returns the cluster customer credentials for the dedicated appliance.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param resourceName Appliances name.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the List Cluster Keys Results appliance along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<ApplianceListKeysResultsInner> listKeysWithResponse(
+        String resourceGroupName, String resourceName, Context context) {
+        return listKeysWithResponseAsync(resourceGroupName, resourceName, context).block();
+    }
+
+    /**
+     * Gets the management config.
+     *
+     * <p>Returns the cluster customer credentials for the dedicated appliance.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param resourceName Appliances name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the List Cluster Keys Results appliance.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public ApplianceListKeysResultsInner listKeys(String resourceGroupName, String resourceName) {
+        return listKeysWithResponse(resourceGroupName, resourceName, Context.NONE).getValue();
+    }
+
+    /**
+     * Gets an Appliance upgrade graph.
+     *
+     * <p>Gets the upgrade graph of an Appliance with a specified resource group and name and specific release train.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName Appliances name.
@@ -1829,7 +2052,9 @@ public final class AppliancesClientImpl implements AppliancesClient {
     }
 
     /**
-     * Gets the upgrade graph of an Appliance with a specified resource group and name and specific release train.
+     * Gets an Appliance upgrade graph.
+     *
+     * <p>Gets the upgrade graph of an Appliance with a specified resource group and name and specific release train.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName Appliances name.
@@ -1881,7 +2106,9 @@ public final class AppliancesClientImpl implements AppliancesClient {
     }
 
     /**
-     * Gets the upgrade graph of an Appliance with a specified resource group and name and specific release train.
+     * Gets an Appliance upgrade graph.
+     *
+     * <p>Gets the upgrade graph of an Appliance with a specified resource group and name and specific release train.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName Appliances name.
@@ -1900,23 +2127,9 @@ public final class AppliancesClientImpl implements AppliancesClient {
     }
 
     /**
-     * Gets the upgrade graph of an Appliance with a specified resource group and name and specific release train.
+     * Gets an Appliance upgrade graph.
      *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param resourceName Appliances name.
-     * @param upgradeGraph Upgrade graph version, ex - stable.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the upgrade graph of an Appliance with a specified resource group and name and specific release train.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public UpgradeGraphInner getUpgradeGraph(String resourceGroupName, String resourceName, String upgradeGraph) {
-        return getUpgradeGraphAsync(resourceGroupName, resourceName, upgradeGraph).block();
-    }
-
-    /**
-     * Gets the upgrade graph of an Appliance with a specified resource group and name and specific release train.
+     * <p>Gets the upgrade graph of an Appliance with a specified resource group and name and specific release train.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param resourceName Appliances name.
@@ -1935,9 +2148,28 @@ public final class AppliancesClientImpl implements AppliancesClient {
     }
 
     /**
+     * Gets an Appliance upgrade graph.
+     *
+     * <p>Gets the upgrade graph of an Appliance with a specified resource group and name and specific release train.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param resourceName Appliances name.
+     * @param upgradeGraph Upgrade graph version, ex - stable.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the upgrade graph of an Appliance with a specified resource group and name and specific release train.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public UpgradeGraphInner getUpgradeGraph(String resourceGroupName, String resourceName, String upgradeGraph) {
+        return getUpgradeGraphWithResponse(resourceGroupName, resourceName, upgradeGraph, Context.NONE).getValue();
+    }
+
+    /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1972,7 +2204,8 @@ public final class AppliancesClientImpl implements AppliancesClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -2009,7 +2242,8 @@ public final class AppliancesClientImpl implements AppliancesClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -2046,7 +2280,8 @@ public final class AppliancesClientImpl implements AppliancesClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -2084,7 +2319,8 @@ public final class AppliancesClientImpl implements AppliancesClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -2121,7 +2357,8 @@ public final class AppliancesClientImpl implements AppliancesClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.

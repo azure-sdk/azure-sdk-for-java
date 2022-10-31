@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for AccessProfileType. */
+/** Name which contains the role of the kubeconfig. */
 public final class AccessProfileType extends ExpandableStringEnum<AccessProfileType> {
     /** Static value clusterUser for AccessProfileType. */
     public static final AccessProfileType CLUSTER_USER = fromString("clusterUser");

@@ -6,18 +6,18 @@ package com.azure.resourcemanager.resourceconnector.generated;
 
 import com.azure.core.util.Context;
 
-/** Samples for Appliances List. */
-public final class AppliancesListSamples {
+/** Samples for Appliances GetTelemetryConfig. */
+public final class AppliancesGetTelemetryConfigSamples {
     /*
-     * x-ms-original-file: specification/resourceconnector/resource-manager/Microsoft.ResourceConnector/stable/2022-10-27/examples/AppliancesListBySubscription.json
+     * x-ms-original-file: specification/resourceconnector/resource-manager/Microsoft.ResourceConnector/stable/2022-10-27/examples/TelemetryConfig.json
      */
     /**
-     * Sample code: List Appliances by subscription.
+     * Sample code: GetTelemetryConfig Appliance.
      *
      * @param manager Entry point to AppliancesManager.
      */
-    public static void listAppliancesBySubscription(
+    public static void getTelemetryConfigAppliance(
         com.azure.resourcemanager.resourceconnector.AppliancesManager manager) {
-        manager.appliances().list(Context.NONE);
+        manager.appliances().getTelemetryConfigWithResponse(Context.NONE);
     }
 }

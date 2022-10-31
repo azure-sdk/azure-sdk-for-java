@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for Appliances ListClusterUserCredential. */
 public final class AppliancesListClusterUserCredentialSamples {
     /*
-     * x-ms-original-file: specification/resourceconnector/resource-manager/Microsoft.ResourceConnector/preview/2022-04-15-preview/examples/AppliancesListClusterUserCredential.json
+     * x-ms-original-file: specification/resourceconnector/resource-manager/Microsoft.ResourceConnector/stable/2022-10-27/examples/AppliancesListClusterUserCredential.json
      */
     /**
      * Sample code: ListClusterUserCredentialAppliance.
