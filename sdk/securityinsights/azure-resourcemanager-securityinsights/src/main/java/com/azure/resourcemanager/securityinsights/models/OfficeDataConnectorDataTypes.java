@@ -29,6 +29,10 @@ public final class OfficeDataConnectorDataTypes {
     @JsonProperty(value = "teams", required = true)
     private OfficeDataConnectorDataTypesTeams teams;
 
+    /** Creates an instance of OfficeDataConnectorDataTypes class. */
+    public OfficeDataConnectorDataTypes() {
+    }
+
     /**
      * Get the exchange property: Exchange data type connection.
      *

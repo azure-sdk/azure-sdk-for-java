@@ -4,7 +4,7 @@
 
 package com.azure.resourcemanager.securityinsights.models;
 
-import com.azure.core.annotation.Fluent;
+import com.azure.core.annotation.Immutable;
 import com.azure.resourcemanager.securityinsights.fluent.models.OfficePowerBICheckRequirementsProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
@@ -13,13 +13,17 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 /** Represents Office PowerBI requirements check request. */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "kind")
 @JsonTypeName("OfficePowerBI")
-@Fluent
+@Immutable
 public final class OfficePowerBICheckRequirements extends DataConnectorsCheckRequirements {
     /*
      * Office Power BI requirements check properties.
      */
     @JsonProperty(value = "properties")
     private OfficePowerBICheckRequirementsProperties innerProperties;
+
+    /** Creates an instance of OfficePowerBICheckRequirements class. */
+    public OfficePowerBICheckRequirements() {
+    }
 
     /**
      * Get the innerProperties property: Office Power BI requirements check properties.

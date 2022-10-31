@@ -25,6 +25,10 @@ public final class IncidentList {
     @JsonProperty(value = "value", required = true)
     private List<IncidentInner> value;
 
+    /** Creates an instance of IncidentList class. */
+    public IncidentList() {
+    }
+
     /**
      * Get the nextLink property: URL to fetch the next set of incidents.
      *

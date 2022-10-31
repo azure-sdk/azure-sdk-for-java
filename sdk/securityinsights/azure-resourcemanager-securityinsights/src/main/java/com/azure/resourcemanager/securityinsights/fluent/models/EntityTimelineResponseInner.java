@@ -25,6 +25,10 @@ public final class EntityTimelineResponseInner {
     @JsonProperty(value = "value")
     private List<EntityTimelineItem> value;
 
+    /** Creates an instance of EntityTimelineResponseInner class. */
+    public EntityTimelineResponseInner() {
+    }
+
     /**
      * Get the metadata property: The metadata from the timeline operation results.
      *

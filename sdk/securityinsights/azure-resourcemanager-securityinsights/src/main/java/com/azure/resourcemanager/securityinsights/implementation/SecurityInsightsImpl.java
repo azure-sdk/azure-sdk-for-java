@@ -39,6 +39,8 @@ import com.azure.resourcemanager.securityinsights.fluent.EntityQueriesClient;
 import com.azure.resourcemanager.securityinsights.fluent.EntityQueryTemplatesClient;
 import com.azure.resourcemanager.securityinsights.fluent.EntityRelationsClient;
 import com.azure.resourcemanager.securityinsights.fluent.FileImportsClient;
+import com.azure.resourcemanager.securityinsights.fluent.GetRecommendationsClient;
+import com.azure.resourcemanager.securityinsights.fluent.GetsClient;
 import com.azure.resourcemanager.securityinsights.fluent.IncidentCommentsClient;
 import com.azure.resourcemanager.securityinsights.fluent.IncidentRelationsClient;
 import com.azure.resourcemanager.securityinsights.fluent.IncidentsClient;
@@ -55,6 +57,7 @@ import com.azure.resourcemanager.securityinsights.fluent.SourceControlsOperation
 import com.azure.resourcemanager.securityinsights.fluent.ThreatIntelligenceIndicatorMetricsClient;
 import com.azure.resourcemanager.securityinsights.fluent.ThreatIntelligenceIndicatorsClient;
 import com.azure.resourcemanager.securityinsights.fluent.ThreatIntelligenceIndicatorsOperationsClient;
+import com.azure.resourcemanager.securityinsights.fluent.UpdatesClient;
 import com.azure.resourcemanager.securityinsights.fluent.WatchlistItemsClient;
 import com.azure.resourcemanager.securityinsights.fluent.WatchlistsClient;
 import java.io.IOException;
@@ -453,6 +456,42 @@ public final class SecurityInsightsImpl implements SecurityInsights {
         return this.sourceControlsOperations;
     }
 
+    /** The GetRecommendationsClient object to access its operations. */
+    private final GetRecommendationsClient getRecommendations;
+
+    /**
+     * Gets the GetRecommendationsClient object to access its operations.
+     *
+     * @return the GetRecommendationsClient object.
+     */
+    public GetRecommendationsClient getGetRecommendations() {
+        return this.getRecommendations;
+    }
+
+    /** The GetsClient object to access its operations. */
+    private final GetsClient gets;
+
+    /**
+     * Gets the GetsClient object to access its operations.
+     *
+     * @return the GetsClient object.
+     */
+    public GetsClient getGets() {
+        return this.gets;
+    }
+
+    /** The UpdatesClient object to access its operations. */
+    private final UpdatesClient updates;
+
+    /**
+     * Gets the UpdatesClient object to access its operations.
+     *
+     * @return the UpdatesClient object.
+     */
+    public UpdatesClient getUpdates() {
+        return this.updates;
+    }
+
     /** The ThreatIntelligenceIndicatorsClient object to access its operations. */
     private final ThreatIntelligenceIndicatorsClient threatIntelligenceIndicators;
 
@@ -571,7 +610,7 @@ public final class SecurityInsightsImpl implements SecurityInsights {
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2022-09-01-preview";
+        this.apiVersion = "2022-11-01-preview";
         this.alertRules = new AlertRulesClientImpl(this);
         this.actions = new ActionsClientImpl(this);
         this.alertRuleTemplates = new AlertRuleTemplatesClientImpl(this);
@@ -598,6 +637,9 @@ public final class SecurityInsightsImpl implements SecurityInsights {
         this.productSettings = new ProductSettingsClientImpl(this);
         this.sourceControls = new SourceControlsClientImpl(this);
         this.sourceControlsOperations = new SourceControlsOperationsClientImpl(this);
+        this.getRecommendations = new GetRecommendationsClientImpl(this);
+        this.gets = new GetsClientImpl(this);
+        this.updates = new UpdatesClientImpl(this);
         this.threatIntelligenceIndicators = new ThreatIntelligenceIndicatorsClientImpl(this);
         this.threatIntelligenceIndicatorsOperations = new ThreatIntelligenceIndicatorsOperationsClientImpl(this);
         this.threatIntelligenceIndicatorMetrics = new ThreatIntelligenceIndicatorMetricsClientImpl(this);

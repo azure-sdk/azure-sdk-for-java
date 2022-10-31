@@ -4,7 +4,7 @@
 
 package com.azure.resourcemanager.securityinsights.models;
 
-import com.azure.core.annotation.Fluent;
+import com.azure.core.annotation.Immutable;
 import com.azure.resourcemanager.securityinsights.fluent.models.AadCheckRequirementsProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
@@ -13,13 +13,17 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 /** Represents AAD (Azure Active Directory) requirements check request. */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "kind")
 @JsonTypeName("AzureActiveDirectory")
-@Fluent
+@Immutable
 public final class AadCheckRequirements extends DataConnectorsCheckRequirements {
     /*
      * AAD (Azure Active Directory) requirements check properties.
      */
     @JsonProperty(value = "properties")
     private AadCheckRequirementsProperties innerProperties;
+
+    /** Creates an instance of AadCheckRequirements class. */
+    public AadCheckRequirements() {
+    }
 
     /**
      * Get the innerProperties property: AAD (Azure Active Directory) requirements check properties.

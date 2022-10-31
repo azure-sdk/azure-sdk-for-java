@@ -23,6 +23,10 @@ public final class IncidentEntitiesResultsMetadata {
     @JsonProperty(value = "entityKind", required = true)
     private EntityKind entityKind;
 
+    /** Creates an instance of IncidentEntitiesResultsMetadata class. */
+    public IncidentEntitiesResultsMetadata() {
+    }
+
     /**
      * Get the count property: Total number of aggregations of the given kind in the incident related entities result.
      *
