@@ -6,14 +6,11 @@ package com.azure.resourcemanager.databoxedge.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Metadata of IoT device/IoT Edge device to be configured. */
 @Fluent
 public final class IoTDeviceInfo {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(IoTDeviceInfo.class);
-
     /*
      * ID of the IoT device/edge device.
      */
@@ -33,10 +30,14 @@ public final class IoTDeviceInfo {
     private String ioTHostHubId;
 
     /*
-     * IoT device authentication info.
+     * Encrypted IoT device/IoT edge device connection string.
      */
     @JsonProperty(value = "authentication")
     private Authentication authentication;
+
+    /** Creates an instance of IoTDeviceInfo class. */
+    public IoTDeviceInfo() {
+    }
 
     /**
      * Get the deviceId property: ID of the IoT device/edge device.
@@ -99,7 +100,7 @@ public final class IoTDeviceInfo {
     }
 
     /**
-     * Get the authentication property: IoT device authentication info.
+     * Get the authentication property: Encrypted IoT device/IoT edge device connection string.
      *
      * @return the authentication value.
      */
@@ -108,7 +109,7 @@ public final class IoTDeviceInfo {
     }
 
     /**
-     * Set the authentication property: IoT device authentication info.
+     * Set the authentication property: Encrypted IoT device/IoT edge device connection string.
      *
      * @param authentication the authentication value to set.
      * @return the IoTDeviceInfo object itself.
@@ -125,12 +126,12 @@ public final class IoTDeviceInfo {
      */
     public void validate() {
         if (deviceId() == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property deviceId in model IoTDeviceInfo"));
         }
         if (ioTHostHub() == null) {
-            throw logger
+            throw LOGGER
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property ioTHostHub in model IoTDeviceInfo"));
         }
@@ -138,4 +139,6 @@ public final class IoTDeviceInfo {
             authentication().validate();
         }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(IoTDeviceInfo.class);
 }

@@ -42,7 +42,11 @@ public final class DayOfWeek extends ExpandableStringEnum<DayOfWeek> {
         return fromString(name, DayOfWeek.class);
     }
 
-    /** @return known DayOfWeek values. */
+    /**
+     * Gets known DayOfWeek values.
+     *
+     * @return known DayOfWeek values.
+     */
     public static Collection<DayOfWeek> values() {
         return values(DayOfWeek.class);
     }

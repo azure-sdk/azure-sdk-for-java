@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for UserType. */
+/** Type of the user. */
 public final class UserType extends ExpandableStringEnum<UserType> {
     /** Static value Share for UserType. */
     public static final UserType SHARE = fromString("Share");
@@ -30,7 +30,11 @@ public final class UserType extends ExpandableStringEnum<UserType> {
         return fromString(name, UserType.class);
     }
 
-    /** @return known UserType values. */
+    /**
+     * Gets known UserType values.
+     *
+     * @return known UserType values.
+     */
     public static Collection<UserType> values() {
         return values(UserType.class);
     }
