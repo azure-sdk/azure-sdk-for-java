@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for BudgetOperatorType. */
+/** The operator to use for comparison. */
 public final class BudgetOperatorType extends ExpandableStringEnum<BudgetOperatorType> {
     /** Static value In for BudgetOperatorType. */
     public static final BudgetOperatorType IN = fromString("In");
@@ -24,7 +24,11 @@ public final class BudgetOperatorType extends ExpandableStringEnum<BudgetOperato
         return fromString(name, BudgetOperatorType.class);
     }
 
-    /** @return known BudgetOperatorType values. */
+    /**
+     * Gets known BudgetOperatorType values.
+     *
+     * @return known BudgetOperatorType values.
+     */
     public static Collection<BudgetOperatorType> values() {
         return values(BudgetOperatorType.class);
     }
