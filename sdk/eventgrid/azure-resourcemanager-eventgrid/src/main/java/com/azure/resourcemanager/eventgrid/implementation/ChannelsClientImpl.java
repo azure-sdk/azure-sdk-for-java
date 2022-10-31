@@ -176,7 +176,9 @@ public final class ChannelsClientImpl implements ChannelsClient {
     }
 
     /**
-     * Get properties of a channel.
+     * Get a channel.
+     *
+     * <p>Get properties of a channel.
      *
      * @param resourceGroupName The name of the resource group within the partners subscription.
      * @param partnerNamespaceName Name of the partner namespace.
@@ -230,7 +232,9 @@ public final class ChannelsClientImpl implements ChannelsClient {
     }
 
     /**
-     * Get properties of a channel.
+     * Get a channel.
+     *
+     * <p>Get properties of a channel.
      *
      * @param resourceGroupName The name of the resource group within the partners subscription.
      * @param partnerNamespaceName Name of the partner namespace.
@@ -282,7 +286,9 @@ public final class ChannelsClientImpl implements ChannelsClient {
     }
 
     /**
-     * Get properties of a channel.
+     * Get a channel.
+     *
+     * <p>Get properties of a channel.
      *
      * @param resourceGroupName The name of the resource group within the partners subscription.
      * @param partnerNamespaceName Name of the partner namespace.
@@ -299,23 +305,9 @@ public final class ChannelsClientImpl implements ChannelsClient {
     }
 
     /**
-     * Get properties of a channel.
+     * Get a channel.
      *
-     * @param resourceGroupName The name of the resource group within the partners subscription.
-     * @param partnerNamespaceName Name of the partner namespace.
-     * @param channelName Name of the channel.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return properties of a channel.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public ChannelInner get(String resourceGroupName, String partnerNamespaceName, String channelName) {
-        return getAsync(resourceGroupName, partnerNamespaceName, channelName).block();
-    }
-
-    /**
-     * Get properties of a channel.
+     * <p>Get properties of a channel.
      *
      * @param resourceGroupName The name of the resource group within the partners subscription.
      * @param partnerNamespaceName Name of the partner namespace.
@@ -333,7 +325,27 @@ public final class ChannelsClientImpl implements ChannelsClient {
     }
 
     /**
-     * Synchronously creates or updates a new channel with the specified parameters.
+     * Get a channel.
+     *
+     * <p>Get properties of a channel.
+     *
+     * @param resourceGroupName The name of the resource group within the partners subscription.
+     * @param partnerNamespaceName Name of the partner namespace.
+     * @param channelName Name of the channel.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return properties of a channel.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public ChannelInner get(String resourceGroupName, String partnerNamespaceName, String channelName) {
+        return getWithResponse(resourceGroupName, partnerNamespaceName, channelName, Context.NONE).getValue();
+    }
+
+    /**
+     * Create or update a channel.
+     *
+     * <p>Synchronously creates or updates a new channel with the specified parameters.
      *
      * @param resourceGroupName The name of the resource group within the partners subscription.
      * @param partnerNamespaceName Name of the partner namespace.
@@ -394,7 +406,9 @@ public final class ChannelsClientImpl implements ChannelsClient {
     }
 
     /**
-     * Synchronously creates or updates a new channel with the specified parameters.
+     * Create or update a channel.
+     *
+     * <p>Synchronously creates or updates a new channel with the specified parameters.
      *
      * @param resourceGroupName The name of the resource group within the partners subscription.
      * @param partnerNamespaceName Name of the partner namespace.
@@ -457,7 +471,9 @@ public final class ChannelsClientImpl implements ChannelsClient {
     }
 
     /**
-     * Synchronously creates or updates a new channel with the specified parameters.
+     * Create or update a channel.
+     *
+     * <p>Synchronously creates or updates a new channel with the specified parameters.
      *
      * @param resourceGroupName The name of the resource group within the partners subscription.
      * @param partnerNamespaceName Name of the partner namespace.
@@ -476,25 +492,9 @@ public final class ChannelsClientImpl implements ChannelsClient {
     }
 
     /**
-     * Synchronously creates or updates a new channel with the specified parameters.
+     * Create or update a channel.
      *
-     * @param resourceGroupName The name of the resource group within the partners subscription.
-     * @param partnerNamespaceName Name of the partner namespace.
-     * @param channelName Name of the channel.
-     * @param channelInfo Channel information.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return channel info.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public ChannelInner createOrUpdate(
-        String resourceGroupName, String partnerNamespaceName, String channelName, ChannelInner channelInfo) {
-        return createOrUpdateAsync(resourceGroupName, partnerNamespaceName, channelName, channelInfo).block();
-    }
-
-    /**
-     * Synchronously creates or updates a new channel with the specified parameters.
+     * <p>Synchronously creates or updates a new channel with the specified parameters.
      *
      * @param resourceGroupName The name of the resource group within the partners subscription.
      * @param partnerNamespaceName Name of the partner namespace.
@@ -519,7 +519,31 @@ public final class ChannelsClientImpl implements ChannelsClient {
     }
 
     /**
-     * Delete an existing channel.
+     * Create or update a channel.
+     *
+     * <p>Synchronously creates or updates a new channel with the specified parameters.
+     *
+     * @param resourceGroupName The name of the resource group within the partners subscription.
+     * @param partnerNamespaceName Name of the partner namespace.
+     * @param channelName Name of the channel.
+     * @param channelInfo Channel information.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return channel info.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public ChannelInner createOrUpdate(
+        String resourceGroupName, String partnerNamespaceName, String channelName, ChannelInner channelInfo) {
+        return createOrUpdateWithResponse(
+                resourceGroupName, partnerNamespaceName, channelName, channelInfo, Context.NONE)
+            .getValue();
+    }
+
+    /**
+     * Delete a channel.
+     *
+     * <p>Delete an existing channel.
      *
      * @param resourceGroupName The name of the resource group within the partners subscription.
      * @param partnerNamespaceName Name of the partner namespace.
@@ -571,7 +595,9 @@ public final class ChannelsClientImpl implements ChannelsClient {
     }
 
     /**
-     * Delete an existing channel.
+     * Delete a channel.
+     *
+     * <p>Delete an existing channel.
      *
      * @param resourceGroupName The name of the resource group within the partners subscription.
      * @param partnerNamespaceName Name of the partner namespace.
@@ -621,7 +647,9 @@ public final class ChannelsClientImpl implements ChannelsClient {
     }
 
     /**
-     * Delete an existing channel.
+     * Delete a channel.
+     *
+     * <p>Delete an existing channel.
      *
      * @param resourceGroupName The name of the resource group within the partners subscription.
      * @param partnerNamespaceName Name of the partner namespace.
@@ -643,7 +671,9 @@ public final class ChannelsClientImpl implements ChannelsClient {
     }
 
     /**
-     * Delete an existing channel.
+     * Delete a channel.
+     *
+     * <p>Delete an existing channel.
      *
      * @param resourceGroupName The name of the resource group within the partners subscription.
      * @param partnerNamespaceName Name of the partner namespace.
@@ -666,7 +696,9 @@ public final class ChannelsClientImpl implements ChannelsClient {
     }
 
     /**
-     * Delete an existing channel.
+     * Delete a channel.
+     *
+     * <p>Delete an existing channel.
      *
      * @param resourceGroupName The name of the resource group within the partners subscription.
      * @param partnerNamespaceName Name of the partner namespace.
@@ -683,7 +715,9 @@ public final class ChannelsClientImpl implements ChannelsClient {
     }
 
     /**
-     * Delete an existing channel.
+     * Delete a channel.
+     *
+     * <p>Delete an existing channel.
      *
      * @param resourceGroupName The name of the resource group within the partners subscription.
      * @param partnerNamespaceName Name of the partner namespace.
@@ -701,7 +735,9 @@ public final class ChannelsClientImpl implements ChannelsClient {
     }
 
     /**
-     * Delete an existing channel.
+     * Delete a channel.
+     *
+     * <p>Delete an existing channel.
      *
      * @param resourceGroupName The name of the resource group within the partners subscription.
      * @param partnerNamespaceName Name of the partner namespace.
@@ -719,7 +755,9 @@ public final class ChannelsClientImpl implements ChannelsClient {
     }
 
     /**
-     * Delete an existing channel.
+     * Delete a channel.
+     *
+     * <p>Delete an existing channel.
      *
      * @param resourceGroupName The name of the resource group within the partners subscription.
      * @param partnerNamespaceName Name of the partner namespace.
@@ -739,7 +777,9 @@ public final class ChannelsClientImpl implements ChannelsClient {
     }
 
     /**
-     * Delete an existing channel.
+     * Delete a channel.
+     *
+     * <p>Delete an existing channel.
      *
      * @param resourceGroupName The name of the resource group within the partners subscription.
      * @param partnerNamespaceName Name of the partner namespace.
@@ -754,7 +794,9 @@ public final class ChannelsClientImpl implements ChannelsClient {
     }
 
     /**
-     * Delete an existing channel.
+     * Delete a channel.
+     *
+     * <p>Delete an existing channel.
      *
      * @param resourceGroupName The name of the resource group within the partners subscription.
      * @param partnerNamespaceName Name of the partner namespace.
@@ -770,7 +812,9 @@ public final class ChannelsClientImpl implements ChannelsClient {
     }
 
     /**
-     * Synchronously updates a channel with the specified parameters.
+     * Update a Channel.
+     *
+     * <p>Synchronously updates a channel with the specified parameters.
      *
      * @param resourceGroupName The name of the resource group within the partners subscription.
      * @param partnerNamespaceName Name of the partner namespace.
@@ -834,7 +878,9 @@ public final class ChannelsClientImpl implements ChannelsClient {
     }
 
     /**
-     * Synchronously updates a channel with the specified parameters.
+     * Update a Channel.
+     *
+     * <p>Synchronously updates a channel with the specified parameters.
      *
      * @param resourceGroupName The name of the resource group within the partners subscription.
      * @param partnerNamespaceName Name of the partner namespace.
@@ -897,7 +943,9 @@ public final class ChannelsClientImpl implements ChannelsClient {
     }
 
     /**
-     * Synchronously updates a channel with the specified parameters.
+     * Update a Channel.
+     *
+     * <p>Synchronously updates a channel with the specified parameters.
      *
      * @param resourceGroupName The name of the resource group within the partners subscription.
      * @param partnerNamespaceName Name of the partner namespace.
@@ -919,27 +967,9 @@ public final class ChannelsClientImpl implements ChannelsClient {
     }
 
     /**
-     * Synchronously updates a channel with the specified parameters.
+     * Update a Channel.
      *
-     * @param resourceGroupName The name of the resource group within the partners subscription.
-     * @param partnerNamespaceName Name of the partner namespace.
-     * @param channelName Name of the channel.
-     * @param channelUpdateParameters Channel update information.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public void update(
-        String resourceGroupName,
-        String partnerNamespaceName,
-        String channelName,
-        ChannelUpdateParameters channelUpdateParameters) {
-        updateAsync(resourceGroupName, partnerNamespaceName, channelName, channelUpdateParameters).block();
-    }
-
-    /**
-     * Synchronously updates a channel with the specified parameters.
+     * <p>Synchronously updates a channel with the specified parameters.
      *
      * @param resourceGroupName The name of the resource group within the partners subscription.
      * @param partnerNamespaceName Name of the partner namespace.
@@ -964,7 +994,31 @@ public final class ChannelsClientImpl implements ChannelsClient {
     }
 
     /**
-     * List all the channels in a partner namespace.
+     * Update a Channel.
+     *
+     * <p>Synchronously updates a channel with the specified parameters.
+     *
+     * @param resourceGroupName The name of the resource group within the partners subscription.
+     * @param partnerNamespaceName Name of the partner namespace.
+     * @param channelName Name of the channel.
+     * @param channelUpdateParameters Channel update information.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public void update(
+        String resourceGroupName,
+        String partnerNamespaceName,
+        String channelName,
+        ChannelUpdateParameters channelUpdateParameters) {
+        updateWithResponse(resourceGroupName, partnerNamespaceName, channelName, channelUpdateParameters, Context.NONE);
+    }
+
+    /**
+     * List channels.
+     *
+     * <p>List all the channels in a partner namespace.
      *
      * @param resourceGroupName The name of the resource group within the partners subscription.
      * @param partnerNamespaceName Name of the partner namespace.
@@ -1033,7 +1087,9 @@ public final class ChannelsClientImpl implements ChannelsClient {
     }
 
     /**
-     * List all the channels in a partner namespace.
+     * List channels.
+     *
+     * <p>List all the channels in a partner namespace.
      *
      * @param resourceGroupName The name of the resource group within the partners subscription.
      * @param partnerNamespaceName Name of the partner namespace.
@@ -1100,7 +1156,9 @@ public final class ChannelsClientImpl implements ChannelsClient {
     }
 
     /**
-     * List all the channels in a partner namespace.
+     * List channels.
+     *
+     * <p>List all the channels in a partner namespace.
      *
      * @param resourceGroupName The name of the resource group within the partners subscription.
      * @param partnerNamespaceName Name of the partner namespace.
@@ -1126,7 +1184,9 @@ public final class ChannelsClientImpl implements ChannelsClient {
     }
 
     /**
-     * List all the channels in a partner namespace.
+     * List channels.
+     *
+     * <p>List all the channels in a partner namespace.
      *
      * @param resourceGroupName The name of the resource group within the partners subscription.
      * @param partnerNamespaceName Name of the partner namespace.
@@ -1145,7 +1205,9 @@ public final class ChannelsClientImpl implements ChannelsClient {
     }
 
     /**
-     * List all the channels in a partner namespace.
+     * List channels.
+     *
+     * <p>List all the channels in a partner namespace.
      *
      * @param resourceGroupName The name of the resource group within the partners subscription.
      * @param partnerNamespaceName Name of the partner namespace.
@@ -1172,7 +1234,9 @@ public final class ChannelsClientImpl implements ChannelsClient {
     }
 
     /**
-     * List all the channels in a partner namespace.
+     * List channels.
+     *
+     * <p>List all the channels in a partner namespace.
      *
      * @param resourceGroupName The name of the resource group within the partners subscription.
      * @param partnerNamespaceName Name of the partner namespace.
@@ -1189,7 +1253,9 @@ public final class ChannelsClientImpl implements ChannelsClient {
     }
 
     /**
-     * List all the channels in a partner namespace.
+     * List channels.
+     *
+     * <p>List all the channels in a partner namespace.
      *
      * @param resourceGroupName The name of the resource group within the partners subscription.
      * @param partnerNamespaceName Name of the partner namespace.
@@ -1215,7 +1281,9 @@ public final class ChannelsClientImpl implements ChannelsClient {
     }
 
     /**
-     * Get the full endpoint URL of a partner destination channel.
+     * Get full URL of partner destination channel.
+     *
+     * <p>Get the full endpoint URL of a partner destination channel.
      *
      * @param resourceGroupName The name of the resource group within the partners subscription.
      * @param partnerNamespaceName Name of the partner namespace.
@@ -1270,7 +1338,9 @@ public final class ChannelsClientImpl implements ChannelsClient {
     }
 
     /**
-     * Get the full endpoint URL of a partner destination channel.
+     * Get full URL of partner destination channel.
+     *
+     * <p>Get the full endpoint URL of a partner destination channel.
      *
      * @param resourceGroupName The name of the resource group within the partners subscription.
      * @param partnerNamespaceName Name of the partner namespace.
@@ -1323,7 +1393,9 @@ public final class ChannelsClientImpl implements ChannelsClient {
     }
 
     /**
-     * Get the full endpoint URL of a partner destination channel.
+     * Get full URL of partner destination channel.
+     *
+     * <p>Get the full endpoint URL of a partner destination channel.
      *
      * @param resourceGroupName The name of the resource group within the partners subscription.
      * @param partnerNamespaceName Name of the partner namespace.
@@ -1341,24 +1413,9 @@ public final class ChannelsClientImpl implements ChannelsClient {
     }
 
     /**
-     * Get the full endpoint URL of a partner destination channel.
+     * Get full URL of partner destination channel.
      *
-     * @param resourceGroupName The name of the resource group within the partners subscription.
-     * @param partnerNamespaceName Name of the partner namespace.
-     * @param channelName Name of the Channel.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the full endpoint URL of a partner destination channel.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public EventSubscriptionFullUrlInner getFullUrl(
-        String resourceGroupName, String partnerNamespaceName, String channelName) {
-        return getFullUrlAsync(resourceGroupName, partnerNamespaceName, channelName).block();
-    }
-
-    /**
-     * Get the full endpoint URL of a partner destination channel.
+     * <p>Get the full endpoint URL of a partner destination channel.
      *
      * @param resourceGroupName The name of the resource group within the partners subscription.
      * @param partnerNamespaceName Name of the partner namespace.
@@ -1376,9 +1433,29 @@ public final class ChannelsClientImpl implements ChannelsClient {
     }
 
     /**
+     * Get full URL of partner destination channel.
+     *
+     * <p>Get the full endpoint URL of a partner destination channel.
+     *
+     * @param resourceGroupName The name of the resource group within the partners subscription.
+     * @param partnerNamespaceName Name of the partner namespace.
+     * @param channelName Name of the Channel.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the full endpoint URL of a partner destination channel.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public EventSubscriptionFullUrlInner getFullUrl(
+        String resourceGroupName, String partnerNamespaceName, String channelName) {
+        return getFullUrlWithResponse(resourceGroupName, partnerNamespaceName, channelName, Context.NONE).getValue();
+    }
+
+    /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1415,7 +1492,8 @@ public final class ChannelsClientImpl implements ChannelsClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.

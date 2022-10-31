@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for ReadinessState. */
+/** The readiness state of the corresponding partner topic. */
 public final class ReadinessState extends ExpandableStringEnum<ReadinessState> {
     /** Static value NeverActivated for ReadinessState. */
     public static final ReadinessState NEVER_ACTIVATED = fromString("NeverActivated");

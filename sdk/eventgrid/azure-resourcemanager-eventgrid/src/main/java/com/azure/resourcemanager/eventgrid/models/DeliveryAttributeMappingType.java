@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for DeliveryAttributeMappingType. */
+/** Type of the delivery attribute or header name. */
 public final class DeliveryAttributeMappingType extends ExpandableStringEnum<DeliveryAttributeMappingType> {
     /** Static value Static for DeliveryAttributeMappingType. */
     public static final DeliveryAttributeMappingType STATIC = fromString("Static");
