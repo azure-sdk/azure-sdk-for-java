@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for BackupMode. */
+/** An enumeration of backup modes. */
 public final class BackupMode extends ExpandableStringEnum<BackupMode> {
     /** Static value CreateBackup for BackupMode. */
     public static final BackupMode CREATE_BACKUP = fromString("CreateBackup");
@@ -27,7 +27,11 @@ public final class BackupMode extends ExpandableStringEnum<BackupMode> {
         return fromString(name, BackupMode.class);
     }
 
-    /** @return known BackupMode values. */
+    /**
+     * Gets known BackupMode values.
+     *
+     * @return known BackupMode values.
+     */
     public static Collection<BackupMode> values() {
         return values(BackupMode.class);
     }
