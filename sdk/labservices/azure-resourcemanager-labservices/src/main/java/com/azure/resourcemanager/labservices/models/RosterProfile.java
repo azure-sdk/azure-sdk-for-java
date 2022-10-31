@@ -40,6 +40,10 @@ public final class RosterProfile {
     @JsonProperty(value = "ltiRosterEndpoint")
     private String ltiRosterEndpoint;
 
+    /** Creates an instance of RosterProfile class. */
+    public RosterProfile() {
+    }
+
     /**
      * Get the activeDirectoryGroupId property: The AAD group ID which this lab roster is populated from. Having this
      * set enables AAD sync mode.

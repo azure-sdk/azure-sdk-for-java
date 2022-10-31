@@ -66,6 +66,10 @@ public class LabUpdateProperties {
     @JsonProperty(value = "description")
     private String description;
 
+    /** Creates an instance of LabUpdateProperties class. */
+    public LabUpdateProperties() {
+    }
+
     /**
      * Get the autoShutdownProfile property: The resource auto shutdown configuration for the lab. This controls whether
      * actions are taken on resources that are sitting idle.

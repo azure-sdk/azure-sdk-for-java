@@ -34,6 +34,10 @@ public final class LabInner extends Resource {
     @JsonProperty(value = "properties", required = true)
     private LabProperties innerProperties = new LabProperties();
 
+    /** Creates an instance of LabInner class. */
+    public LabInner() {
+    }
+
     /**
      * Get the systemData property: Metadata pertaining to creation and last modification of the lab.
      *

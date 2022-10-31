@@ -51,12 +51,13 @@ public interface Images {
      * @param labPlanName The name of the lab plan that uniquely identifies it within containing resource group. Used in
      *     resource URIs and in UI.
      * @param imageName The image name.
+     * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an image resource.
+     * @return an image resource along with {@link Response}.
      */
-    Image get(String resourceGroupName, String labPlanName, String imageName);
+    Response<Image> getWithResponse(String resourceGroupName, String labPlanName, String imageName, Context context);
 
     /**
      * Gets an image.
@@ -67,13 +68,12 @@ public interface Images {
      * @param labPlanName The name of the lab plan that uniquely identifies it within containing resource group. Used in
      *     resource URIs and in UI.
      * @param imageName The image name.
-     * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an image resource along with {@link Response}.
+     * @return an image resource.
      */
-    Response<Image> getWithResponse(String resourceGroupName, String labPlanName, String imageName, Context context);
+    Image get(String resourceGroupName, String labPlanName, String imageName);
 
     /**
      * Gets an image.
