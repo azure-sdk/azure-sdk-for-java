@@ -29,6 +29,10 @@ public final class LabServicesSkuRestrictions {
     @JsonProperty(value = "reasonCode", access = JsonProperty.Access.WRITE_ONLY)
     private RestrictionReasonCode reasonCode;
 
+    /** Creates an instance of LabServicesSkuRestrictions class. */
+    public LabServicesSkuRestrictions() {
+    }
+
     /**
      * Get the type property: The type of restriction.
      *

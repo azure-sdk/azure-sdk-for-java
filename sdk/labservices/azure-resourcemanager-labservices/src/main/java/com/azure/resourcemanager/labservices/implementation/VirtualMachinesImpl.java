@@ -40,15 +40,6 @@ public final class VirtualMachinesImpl implements VirtualMachines {
         return Utils.mapPage(inner, inner1 -> new VirtualMachineImpl(inner1, this.manager()));
     }
 
-    public VirtualMachine get(String resourceGroupName, String labName, String virtualMachineName) {
-        VirtualMachineInner inner = this.serviceClient().get(resourceGroupName, labName, virtualMachineName);
-        if (inner != null) {
-            return new VirtualMachineImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
     public Response<VirtualMachine> getWithResponse(
         String resourceGroupName, String labName, String virtualMachineName, Context context) {
         Response<VirtualMachineInner> inner =
@@ -59,6 +50,15 @@ public final class VirtualMachinesImpl implements VirtualMachines {
                 inner.getStatusCode(),
                 inner.getHeaders(),
                 new VirtualMachineImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public VirtualMachine get(String resourceGroupName, String labName, String virtualMachineName) {
+        VirtualMachineInner inner = this.serviceClient().get(resourceGroupName, labName, virtualMachineName);
+        if (inner != null) {
+            return new VirtualMachineImpl(inner, this.manager());
         } else {
             return null;
         }

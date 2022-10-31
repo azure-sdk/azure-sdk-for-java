@@ -504,14 +504,16 @@ public final class ImagesClientImpl implements ImagesClient {
      * @param labPlanName The name of the lab plan that uniquely identifies it within containing resource group. Used in
      *     resource URIs and in UI.
      * @param imageName The image name.
+     * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an image resource.
+     * @return an image resource along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public ImageInner get(String resourceGroupName, String labPlanName, String imageName) {
-        return getAsync(resourceGroupName, labPlanName, imageName).block();
+    public Response<ImageInner> getWithResponse(
+        String resourceGroupName, String labPlanName, String imageName, Context context) {
+        return getWithResponseAsync(resourceGroupName, labPlanName, imageName, context).block();
     }
 
     /**
@@ -523,16 +525,14 @@ public final class ImagesClientImpl implements ImagesClient {
      * @param labPlanName The name of the lab plan that uniquely identifies it within containing resource group. Used in
      *     resource URIs and in UI.
      * @param imageName The image name.
-     * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an image resource along with {@link Response}.
+     * @return an image resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ImageInner> getWithResponse(
-        String resourceGroupName, String labPlanName, String imageName, Context context) {
-        return getWithResponseAsync(resourceGroupName, labPlanName, imageName, context).block();
+    public ImageInner get(String resourceGroupName, String labPlanName, String imageName) {
+        return getWithResponse(resourceGroupName, labPlanName, imageName, Context.NONE).getValue();
     }
 
     /**
@@ -691,14 +691,16 @@ public final class ImagesClientImpl implements ImagesClient {
      *     resource URIs and in UI.
      * @param imageName The image name.
      * @param body The request body.
+     * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return lab services virtual machine image.
+     * @return lab services virtual machine image along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public ImageInner createOrUpdate(String resourceGroupName, String labPlanName, String imageName, ImageInner body) {
-        return createOrUpdateAsync(resourceGroupName, labPlanName, imageName, body).block();
+    public Response<ImageInner> createOrUpdateWithResponse(
+        String resourceGroupName, String labPlanName, String imageName, ImageInner body, Context context) {
+        return createOrUpdateWithResponseAsync(resourceGroupName, labPlanName, imageName, body, context).block();
     }
 
     /**
@@ -711,16 +713,14 @@ public final class ImagesClientImpl implements ImagesClient {
      *     resource URIs and in UI.
      * @param imageName The image name.
      * @param body The request body.
-     * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return lab services virtual machine image along with {@link Response}.
+     * @return lab services virtual machine image.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ImageInner> createOrUpdateWithResponse(
-        String resourceGroupName, String labPlanName, String imageName, ImageInner body, Context context) {
-        return createOrUpdateWithResponseAsync(resourceGroupName, labPlanName, imageName, body, context).block();
+    public ImageInner createOrUpdate(String resourceGroupName, String labPlanName, String imageName, ImageInner body) {
+        return createOrUpdateWithResponse(resourceGroupName, labPlanName, imageName, body, Context.NONE).getValue();
     }
 
     /**
@@ -879,14 +879,16 @@ public final class ImagesClientImpl implements ImagesClient {
      *     resource URIs and in UI.
      * @param imageName The image name.
      * @param body The request body.
+     * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return lab services virtual machine image.
+     * @return lab services virtual machine image along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public ImageInner update(String resourceGroupName, String labPlanName, String imageName, ImageUpdate body) {
-        return updateAsync(resourceGroupName, labPlanName, imageName, body).block();
+    public Response<ImageInner> updateWithResponse(
+        String resourceGroupName, String labPlanName, String imageName, ImageUpdate body, Context context) {
+        return updateWithResponseAsync(resourceGroupName, labPlanName, imageName, body, context).block();
     }
 
     /**
@@ -899,16 +901,14 @@ public final class ImagesClientImpl implements ImagesClient {
      *     resource URIs and in UI.
      * @param imageName The image name.
      * @param body The request body.
-     * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return lab services virtual machine image along with {@link Response}.
+     * @return lab services virtual machine image.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ImageInner> updateWithResponse(
-        String resourceGroupName, String labPlanName, String imageName, ImageUpdate body, Context context) {
-        return updateWithResponseAsync(resourceGroupName, labPlanName, imageName, body, context).block();
+    public ImageInner update(String resourceGroupName, String labPlanName, String imageName, ImageUpdate body) {
+        return updateWithResponse(resourceGroupName, labPlanName, imageName, body, Context.NONE).getValue();
     }
 
     /**
