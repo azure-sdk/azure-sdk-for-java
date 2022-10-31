@@ -62,6 +62,10 @@ public final class TopicTypeProperties {
     @JsonProperty(value = "supportedScopesForSource")
     private List<TopicTypeSourceScope> supportedScopesForSource;
 
+    /** Creates an instance of TopicTypeProperties class. */
+    public TopicTypeProperties() {
+    }
+
     /**
      * Get the provider property: Namespace of the provider of the topic type.
      *

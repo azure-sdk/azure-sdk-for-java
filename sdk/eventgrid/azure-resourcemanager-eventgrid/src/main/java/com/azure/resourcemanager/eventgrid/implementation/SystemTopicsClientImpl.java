@@ -178,7 +178,9 @@ public final class SystemTopicsClientImpl implements SystemTopicsClient {
     }
 
     /**
-     * Get properties of a system topic.
+     * Get a system topic.
+     *
+     * <p>Get properties of a system topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param systemTopicName Name of the system topic.
@@ -227,7 +229,9 @@ public final class SystemTopicsClientImpl implements SystemTopicsClient {
     }
 
     /**
-     * Get properties of a system topic.
+     * Get a system topic.
+     *
+     * <p>Get properties of a system topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param systemTopicName Name of the system topic.
@@ -274,7 +278,9 @@ public final class SystemTopicsClientImpl implements SystemTopicsClient {
     }
 
     /**
-     * Get properties of a system topic.
+     * Get a system topic.
+     *
+     * <p>Get properties of a system topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param systemTopicName Name of the system topic.
@@ -290,22 +296,9 @@ public final class SystemTopicsClientImpl implements SystemTopicsClient {
     }
 
     /**
-     * Get properties of a system topic.
+     * Get a system topic.
      *
-     * @param resourceGroupName The name of the resource group within the user's subscription.
-     * @param systemTopicName Name of the system topic.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return properties of a system topic.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public SystemTopicInner getByResourceGroup(String resourceGroupName, String systemTopicName) {
-        return getByResourceGroupAsync(resourceGroupName, systemTopicName).block();
-    }
-
-    /**
-     * Get properties of a system topic.
+     * <p>Get properties of a system topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param systemTopicName Name of the system topic.
@@ -322,7 +315,26 @@ public final class SystemTopicsClientImpl implements SystemTopicsClient {
     }
 
     /**
-     * Asynchronously creates a new system topic with the specified parameters.
+     * Get a system topic.
+     *
+     * <p>Get properties of a system topic.
+     *
+     * @param resourceGroupName The name of the resource group within the user's subscription.
+     * @param systemTopicName Name of the system topic.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return properties of a system topic.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public SystemTopicInner getByResourceGroup(String resourceGroupName, String systemTopicName) {
+        return getByResourceGroupWithResponse(resourceGroupName, systemTopicName, Context.NONE).getValue();
+    }
+
+    /**
+     * Create a system topic.
+     *
+     * <p>Asynchronously creates a new system topic with the specified parameters.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param systemTopicName Name of the system topic.
@@ -379,7 +391,9 @@ public final class SystemTopicsClientImpl implements SystemTopicsClient {
     }
 
     /**
-     * Asynchronously creates a new system topic with the specified parameters.
+     * Create a system topic.
+     *
+     * <p>Asynchronously creates a new system topic with the specified parameters.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param systemTopicName Name of the system topic.
@@ -434,7 +448,9 @@ public final class SystemTopicsClientImpl implements SystemTopicsClient {
     }
 
     /**
-     * Asynchronously creates a new system topic with the specified parameters.
+     * Create a system topic.
+     *
+     * <p>Asynchronously creates a new system topic with the specified parameters.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param systemTopicName Name of the system topic.
@@ -460,7 +476,9 @@ public final class SystemTopicsClientImpl implements SystemTopicsClient {
     }
 
     /**
-     * Asynchronously creates a new system topic with the specified parameters.
+     * Create a system topic.
+     *
+     * <p>Asynchronously creates a new system topic with the specified parameters.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param systemTopicName Name of the system topic.
@@ -484,7 +502,9 @@ public final class SystemTopicsClientImpl implements SystemTopicsClient {
     }
 
     /**
-     * Asynchronously creates a new system topic with the specified parameters.
+     * Create a system topic.
+     *
+     * <p>Asynchronously creates a new system topic with the specified parameters.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param systemTopicName Name of the system topic.
@@ -501,7 +521,9 @@ public final class SystemTopicsClientImpl implements SystemTopicsClient {
     }
 
     /**
-     * Asynchronously creates a new system topic with the specified parameters.
+     * Create a system topic.
+     *
+     * <p>Asynchronously creates a new system topic with the specified parameters.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param systemTopicName Name of the system topic.
@@ -519,7 +541,9 @@ public final class SystemTopicsClientImpl implements SystemTopicsClient {
     }
 
     /**
-     * Asynchronously creates a new system topic with the specified parameters.
+     * Create a system topic.
+     *
+     * <p>Asynchronously creates a new system topic with the specified parameters.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param systemTopicName Name of the system topic.
@@ -538,7 +562,9 @@ public final class SystemTopicsClientImpl implements SystemTopicsClient {
     }
 
     /**
-     * Asynchronously creates a new system topic with the specified parameters.
+     * Create a system topic.
+     *
+     * <p>Asynchronously creates a new system topic with the specified parameters.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param systemTopicName Name of the system topic.
@@ -558,7 +584,9 @@ public final class SystemTopicsClientImpl implements SystemTopicsClient {
     }
 
     /**
-     * Asynchronously creates a new system topic with the specified parameters.
+     * Create a system topic.
+     *
+     * <p>Asynchronously creates a new system topic with the specified parameters.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param systemTopicName Name of the system topic.
@@ -575,7 +603,9 @@ public final class SystemTopicsClientImpl implements SystemTopicsClient {
     }
 
     /**
-     * Asynchronously creates a new system topic with the specified parameters.
+     * Create a system topic.
+     *
+     * <p>Asynchronously creates a new system topic with the specified parameters.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param systemTopicName Name of the system topic.
@@ -593,7 +623,9 @@ public final class SystemTopicsClientImpl implements SystemTopicsClient {
     }
 
     /**
-     * Delete existing system topic.
+     * Delete a system topic.
+     *
+     * <p>Delete existing system topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param systemTopicName Name of the system topic.
@@ -639,7 +671,9 @@ public final class SystemTopicsClientImpl implements SystemTopicsClient {
     }
 
     /**
-     * Delete existing system topic.
+     * Delete a system topic.
+     *
+     * <p>Delete existing system topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param systemTopicName Name of the system topic.
@@ -684,7 +718,9 @@ public final class SystemTopicsClientImpl implements SystemTopicsClient {
     }
 
     /**
-     * Delete existing system topic.
+     * Delete a system topic.
+     *
+     * <p>Delete existing system topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param systemTopicName Name of the system topic.
@@ -703,7 +739,9 @@ public final class SystemTopicsClientImpl implements SystemTopicsClient {
     }
 
     /**
-     * Delete existing system topic.
+     * Delete a system topic.
+     *
+     * <p>Delete existing system topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param systemTopicName Name of the system topic.
@@ -724,7 +762,9 @@ public final class SystemTopicsClientImpl implements SystemTopicsClient {
     }
 
     /**
-     * Delete existing system topic.
+     * Delete a system topic.
+     *
+     * <p>Delete existing system topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param systemTopicName Name of the system topic.
@@ -739,7 +779,9 @@ public final class SystemTopicsClientImpl implements SystemTopicsClient {
     }
 
     /**
-     * Delete existing system topic.
+     * Delete a system topic.
+     *
+     * <p>Delete existing system topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param systemTopicName Name of the system topic.
@@ -756,7 +798,9 @@ public final class SystemTopicsClientImpl implements SystemTopicsClient {
     }
 
     /**
-     * Delete existing system topic.
+     * Delete a system topic.
+     *
+     * <p>Delete existing system topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param systemTopicName Name of the system topic.
@@ -773,7 +817,9 @@ public final class SystemTopicsClientImpl implements SystemTopicsClient {
     }
 
     /**
-     * Delete existing system topic.
+     * Delete a system topic.
+     *
+     * <p>Delete existing system topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param systemTopicName Name of the system topic.
@@ -791,7 +837,9 @@ public final class SystemTopicsClientImpl implements SystemTopicsClient {
     }
 
     /**
-     * Delete existing system topic.
+     * Delete a system topic.
+     *
+     * <p>Delete existing system topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param systemTopicName Name of the system topic.
@@ -805,7 +853,9 @@ public final class SystemTopicsClientImpl implements SystemTopicsClient {
     }
 
     /**
-     * Delete existing system topic.
+     * Delete a system topic.
+     *
+     * <p>Delete existing system topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param systemTopicName Name of the system topic.
@@ -820,7 +870,9 @@ public final class SystemTopicsClientImpl implements SystemTopicsClient {
     }
 
     /**
-     * Asynchronously updates a system topic with the specified parameters.
+     * Update a system topic.
+     *
+     * <p>Asynchronously updates a system topic with the specified parameters.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param systemTopicName Name of the system topic.
@@ -879,7 +931,9 @@ public final class SystemTopicsClientImpl implements SystemTopicsClient {
     }
 
     /**
-     * Asynchronously updates a system topic with the specified parameters.
+     * Update a system topic.
+     *
+     * <p>Asynchronously updates a system topic with the specified parameters.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param systemTopicName Name of the system topic.
@@ -939,7 +993,9 @@ public final class SystemTopicsClientImpl implements SystemTopicsClient {
     }
 
     /**
-     * Asynchronously updates a system topic with the specified parameters.
+     * Update a system topic.
+     *
+     * <p>Asynchronously updates a system topic with the specified parameters.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param systemTopicName Name of the system topic.
@@ -965,7 +1021,9 @@ public final class SystemTopicsClientImpl implements SystemTopicsClient {
     }
 
     /**
-     * Asynchronously updates a system topic with the specified parameters.
+     * Update a system topic.
+     *
+     * <p>Asynchronously updates a system topic with the specified parameters.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param systemTopicName Name of the system topic.
@@ -992,7 +1050,9 @@ public final class SystemTopicsClientImpl implements SystemTopicsClient {
     }
 
     /**
-     * Asynchronously updates a system topic with the specified parameters.
+     * Update a system topic.
+     *
+     * <p>Asynchronously updates a system topic with the specified parameters.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param systemTopicName Name of the system topic.
@@ -1009,7 +1069,9 @@ public final class SystemTopicsClientImpl implements SystemTopicsClient {
     }
 
     /**
-     * Asynchronously updates a system topic with the specified parameters.
+     * Update a system topic.
+     *
+     * <p>Asynchronously updates a system topic with the specified parameters.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param systemTopicName Name of the system topic.
@@ -1031,7 +1093,9 @@ public final class SystemTopicsClientImpl implements SystemTopicsClient {
     }
 
     /**
-     * Asynchronously updates a system topic with the specified parameters.
+     * Update a system topic.
+     *
+     * <p>Asynchronously updates a system topic with the specified parameters.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param systemTopicName Name of the system topic.
@@ -1050,7 +1114,9 @@ public final class SystemTopicsClientImpl implements SystemTopicsClient {
     }
 
     /**
-     * Asynchronously updates a system topic with the specified parameters.
+     * Update a system topic.
+     *
+     * <p>Asynchronously updates a system topic with the specified parameters.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param systemTopicName Name of the system topic.
@@ -1073,7 +1139,9 @@ public final class SystemTopicsClientImpl implements SystemTopicsClient {
     }
 
     /**
-     * Asynchronously updates a system topic with the specified parameters.
+     * Update a system topic.
+     *
+     * <p>Asynchronously updates a system topic with the specified parameters.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param systemTopicName Name of the system topic.
@@ -1090,7 +1158,9 @@ public final class SystemTopicsClientImpl implements SystemTopicsClient {
     }
 
     /**
-     * Asynchronously updates a system topic with the specified parameters.
+     * Update a system topic.
+     *
+     * <p>Asynchronously updates a system topic with the specified parameters.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param systemTopicName Name of the system topic.
@@ -1111,7 +1181,9 @@ public final class SystemTopicsClientImpl implements SystemTopicsClient {
     }
 
     /**
-     * List all the system topics under an Azure subscription.
+     * List system topics under an Azure subscription.
+     *
+     * <p>List all the system topics under an Azure subscription.
      *
      * @param filter The query used to filter the search results using OData syntax. Filtering is permitted on the
      *     'name' property only and with limited number of OData operations. These operations are: the 'contains'
@@ -1167,7 +1239,9 @@ public final class SystemTopicsClientImpl implements SystemTopicsClient {
     }
 
     /**
-     * List all the system topics under an Azure subscription.
+     * List system topics under an Azure subscription.
+     *
+     * <p>List all the system topics under an Azure subscription.
      *
      * @param filter The query used to filter the search results using OData syntax. Filtering is permitted on the
      *     'name' property only and with limited number of OData operations. These operations are: the 'contains'
@@ -1221,7 +1295,9 @@ public final class SystemTopicsClientImpl implements SystemTopicsClient {
     }
 
     /**
-     * List all the system topics under an Azure subscription.
+     * List system topics under an Azure subscription.
+     *
+     * <p>List all the system topics under an Azure subscription.
      *
      * @param filter The query used to filter the search results using OData syntax. Filtering is permitted on the
      *     'name' property only and with limited number of OData operations. These operations are: the 'contains'
@@ -1243,7 +1319,9 @@ public final class SystemTopicsClientImpl implements SystemTopicsClient {
     }
 
     /**
-     * List all the system topics under an Azure subscription.
+     * List system topics under an Azure subscription.
+     *
+     * <p>List all the system topics under an Azure subscription.
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1258,7 +1336,9 @@ public final class SystemTopicsClientImpl implements SystemTopicsClient {
     }
 
     /**
-     * List all the system topics under an Azure subscription.
+     * List system topics under an Azure subscription.
+     *
+     * <p>List all the system topics under an Azure subscription.
      *
      * @param filter The query used to filter the search results using OData syntax. Filtering is permitted on the
      *     'name' property only and with limited number of OData operations. These operations are: the 'contains'
@@ -1282,7 +1362,9 @@ public final class SystemTopicsClientImpl implements SystemTopicsClient {
     }
 
     /**
-     * List all the system topics under an Azure subscription.
+     * List system topics under an Azure subscription.
+     *
+     * <p>List all the system topics under an Azure subscription.
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1296,7 +1378,9 @@ public final class SystemTopicsClientImpl implements SystemTopicsClient {
     }
 
     /**
-     * List all the system topics under an Azure subscription.
+     * List system topics under an Azure subscription.
+     *
+     * <p>List all the system topics under an Azure subscription.
      *
      * @param filter The query used to filter the search results using OData syntax. Filtering is permitted on the
      *     'name' property only and with limited number of OData operations. These operations are: the 'contains'
@@ -1318,7 +1402,9 @@ public final class SystemTopicsClientImpl implements SystemTopicsClient {
     }
 
     /**
-     * List all the system topics under a resource group.
+     * List system topics under a resource group.
+     *
+     * <p>List all the system topics under a resource group.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param filter The query used to filter the search results using OData syntax. Filtering is permitted on the
@@ -1381,7 +1467,9 @@ public final class SystemTopicsClientImpl implements SystemTopicsClient {
     }
 
     /**
-     * List all the system topics under a resource group.
+     * List system topics under a resource group.
+     *
+     * <p>List all the system topics under a resource group.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param filter The query used to filter the search results using OData syntax. Filtering is permitted on the
@@ -1442,7 +1530,9 @@ public final class SystemTopicsClientImpl implements SystemTopicsClient {
     }
 
     /**
-     * List all the system topics under a resource group.
+     * List system topics under a resource group.
+     *
+     * <p>List all the system topics under a resource group.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param filter The query used to filter the search results using OData syntax. Filtering is permitted on the
@@ -1466,7 +1556,9 @@ public final class SystemTopicsClientImpl implements SystemTopicsClient {
     }
 
     /**
-     * List all the system topics under a resource group.
+     * List system topics under a resource group.
+     *
+     * <p>List all the system topics under a resource group.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1484,7 +1576,9 @@ public final class SystemTopicsClientImpl implements SystemTopicsClient {
     }
 
     /**
-     * List all the system topics under a resource group.
+     * List system topics under a resource group.
+     *
+     * <p>List all the system topics under a resource group.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param filter The query used to filter the search results using OData syntax. Filtering is permitted on the
@@ -1510,7 +1604,9 @@ public final class SystemTopicsClientImpl implements SystemTopicsClient {
     }
 
     /**
-     * List all the system topics under a resource group.
+     * List system topics under a resource group.
+     *
+     * <p>List all the system topics under a resource group.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1526,7 +1622,9 @@ public final class SystemTopicsClientImpl implements SystemTopicsClient {
     }
 
     /**
-     * List all the system topics under a resource group.
+     * List system topics under a resource group.
+     *
+     * <p>List all the system topics under a resource group.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param filter The query used to filter the search results using OData syntax. Filtering is permitted on the
@@ -1552,7 +1650,8 @@ public final class SystemTopicsClientImpl implements SystemTopicsClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1589,7 +1688,8 @@ public final class SystemTopicsClientImpl implements SystemTopicsClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1627,7 +1727,8 @@ public final class SystemTopicsClientImpl implements SystemTopicsClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1664,7 +1765,8 @@ public final class SystemTopicsClientImpl implements SystemTopicsClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.

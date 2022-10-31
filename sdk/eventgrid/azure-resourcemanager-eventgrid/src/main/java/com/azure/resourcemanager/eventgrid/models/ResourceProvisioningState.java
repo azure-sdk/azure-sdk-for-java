@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for ResourceProvisioningState. */
+/** Provisioning state of the Private Endpoint Connection. */
 public final class ResourceProvisioningState extends ExpandableStringEnum<ResourceProvisioningState> {
     /** Static value Creating for ResourceProvisioningState. */
     public static final ResourceProvisioningState CREATING = fromString("Creating");
