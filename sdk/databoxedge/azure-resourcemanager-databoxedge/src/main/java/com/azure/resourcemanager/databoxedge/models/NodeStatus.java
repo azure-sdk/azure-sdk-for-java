@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for NodeStatus. */
+/** The current status of the individual node. */
 public final class NodeStatus extends ExpandableStringEnum<NodeStatus> {
     /** Static value Unknown for NodeStatus. */
     public static final NodeStatus UNKNOWN = fromString("Unknown");
@@ -36,7 +36,11 @@ public final class NodeStatus extends ExpandableStringEnum<NodeStatus> {
         return fromString(name, NodeStatus.class);
     }
 
-    /** @return known NodeStatus values. */
+    /**
+     * Gets known NodeStatus values.
+     *
+     * @return known NodeStatus values.
+     */
     public static Collection<NodeStatus> values() {
         return values(NodeStatus.class);
     }
