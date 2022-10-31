@@ -65,6 +65,10 @@ public final class ClusterInner extends Resource {
     @JsonProperty(value = "etag", access = JsonProperty.Access.WRITE_ONLY)
     private String etag;
 
+    /** Creates an instance of ClusterInner class. */
+    public ClusterInner() {
+    }
+
     /**
      * Get the sku property: The SKU of the cluster.
      *
