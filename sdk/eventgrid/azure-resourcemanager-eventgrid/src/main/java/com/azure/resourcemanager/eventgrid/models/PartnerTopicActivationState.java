@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for PartnerTopicActivationState. */
+/** Activation state of the partner topic. */
 public final class PartnerTopicActivationState extends ExpandableStringEnum<PartnerTopicActivationState> {
     /** Static value NeverActivated for PartnerTopicActivationState. */
     public static final PartnerTopicActivationState NEVER_ACTIVATED = fromString("NeverActivated");

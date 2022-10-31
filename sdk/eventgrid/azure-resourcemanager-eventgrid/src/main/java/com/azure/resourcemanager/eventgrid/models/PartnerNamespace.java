@@ -402,16 +402,9 @@ public interface PartnerNamespace {
     PartnerNamespace refresh(Context context);
 
     /**
-     * List the two keys used to publish to a partner namespace.
+     * List keys for a partner namespace.
      *
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return shared access keys of the partner namespace.
-     */
-    PartnerNamespaceSharedAccessKeys listSharedAccessKeys();
-
-    /**
-     * List the two keys used to publish to a partner namespace.
+     * <p>List the two keys used to publish to a partner namespace.
      *
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -422,18 +415,20 @@ public interface PartnerNamespace {
     Response<PartnerNamespaceSharedAccessKeys> listSharedAccessKeysWithResponse(Context context);
 
     /**
-     * Regenerate a shared access key for a partner namespace.
+     * List keys for a partner namespace.
      *
-     * @param regenerateKeyRequest Request body to regenerate key.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * <p>List the two keys used to publish to a partner namespace.
+     *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return shared access keys of the partner namespace.
      */
-    PartnerNamespaceSharedAccessKeys regenerateKey(PartnerNamespaceRegenerateKeyRequest regenerateKeyRequest);
+    PartnerNamespaceSharedAccessKeys listSharedAccessKeys();
 
     /**
-     * Regenerate a shared access key for a partner namespace.
+     * Regenerate key for a partner namespace.
+     *
+     * <p>Regenerate a shared access key for a partner namespace.
      *
      * @param regenerateKeyRequest Request body to regenerate key.
      * @param context The context to associate with this operation.
@@ -444,4 +439,17 @@ public interface PartnerNamespace {
      */
     Response<PartnerNamespaceSharedAccessKeys> regenerateKeyWithResponse(
         PartnerNamespaceRegenerateKeyRequest regenerateKeyRequest, Context context);
+
+    /**
+     * Regenerate key for a partner namespace.
+     *
+     * <p>Regenerate a shared access key for a partner namespace.
+     *
+     * @param regenerateKeyRequest Request body to regenerate key.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return shared access keys of the partner namespace.
+     */
+    PartnerNamespaceSharedAccessKeys regenerateKey(PartnerNamespaceRegenerateKeyRequest regenerateKeyRequest);
 }

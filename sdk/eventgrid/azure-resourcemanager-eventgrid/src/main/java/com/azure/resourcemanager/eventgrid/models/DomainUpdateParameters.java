@@ -33,6 +33,10 @@ public final class DomainUpdateParameters {
     @JsonProperty(value = "identity")
     private IdentityInfo identity;
 
+    /** Creates an instance of DomainUpdateParameters class. */
+    public DomainUpdateParameters() {
+    }
+
     /**
      * Get the tags property: Tags of the domains resource.
      *
