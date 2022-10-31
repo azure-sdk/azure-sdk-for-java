@@ -22,6 +22,10 @@ public final class ServiceCosmosDbConfigurationInfo {
     @JsonProperty(value = "keyVaultKeyUri")
     private String keyVaultKeyUri;
 
+    /** Creates an instance of ServiceCosmosDbConfigurationInfo class. */
+    public ServiceCosmosDbConfigurationInfo() {
+    }
+
     /**
      * Get the offerThroughput property: The provisioned throughput for the backing database.
      *

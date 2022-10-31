@@ -24,6 +24,10 @@ public final class IotFhirDestinationCollection {
     @JsonProperty(value = "value")
     private List<IotFhirDestinationInner> value;
 
+    /** Creates an instance of IotFhirDestinationCollection class. */
+    public IotFhirDestinationCollection() {
+    }
+
     /**
      * Get the nextLink property: The link used to get the next page of IoT FHIR destinations.
      *

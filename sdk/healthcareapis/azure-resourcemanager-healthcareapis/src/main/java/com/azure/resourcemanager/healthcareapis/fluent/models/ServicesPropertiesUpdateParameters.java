@@ -12,11 +12,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Fluent
 public final class ServicesPropertiesUpdateParameters {
     /*
-     * Control permission for data plane traffic coming from public networks
-     * while private endpoint is enabled.
+     * Control permission for data plane traffic coming from public networks while private endpoint is enabled.
      */
     @JsonProperty(value = "publicNetworkAccess")
     private PublicNetworkAccess publicNetworkAccess;
+
+    /** Creates an instance of ServicesPropertiesUpdateParameters class. */
+    public ServicesPropertiesUpdateParameters() {
+    }
 
     /**
      * Get the publicNetworkAccess property: Control permission for data plane traffic coming from public networks while
