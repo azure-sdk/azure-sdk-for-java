@@ -28,6 +28,10 @@ public final class AccountInfoSecureInner {
     @JsonProperty(value = "regionId", access = JsonProperty.Access.WRITE_ONLY)
     private String regionId;
 
+    /** Creates an instance of AccountInfoSecureInner class. */
+    public AccountInfoSecureInner() {
+    }
+
     /**
      * Get the accountId property: Account Id of the account this environment is linked to.
      *

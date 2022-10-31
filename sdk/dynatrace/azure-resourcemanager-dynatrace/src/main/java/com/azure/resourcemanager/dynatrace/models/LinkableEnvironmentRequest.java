@@ -28,6 +28,10 @@ public final class LinkableEnvironmentRequest {
     @JsonProperty(value = "region")
     private String region;
 
+    /** Creates an instance of LinkableEnvironmentRequest class. */
+    public LinkableEnvironmentRequest() {
+    }
+
     /**
      * Get the tenantId property: Tenant Id of the user in which they want to link the environment.
      *

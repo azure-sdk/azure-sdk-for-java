@@ -451,21 +451,6 @@ public final class MonitorsClientImpl implements MonitorsClient {
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param monitorName Monitor resource name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the user account credentials for a Monitor.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public AccountInfoSecureInner getAccountCredentials(String resourceGroupName, String monitorName) {
-        return getAccountCredentialsAsync(resourceGroupName, monitorName).block();
-    }
-
-    /**
-     * Gets the user account credentials for a Monitor.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param monitorName Monitor resource name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -476,6 +461,21 @@ public final class MonitorsClientImpl implements MonitorsClient {
     public Response<AccountInfoSecureInner> getAccountCredentialsWithResponse(
         String resourceGroupName, String monitorName, Context context) {
         return getAccountCredentialsWithResponseAsync(resourceGroupName, monitorName, context).block();
+    }
+
+    /**
+     * Gets the user account credentials for a Monitor.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param monitorName Monitor resource name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the user account credentials for a Monitor.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public AccountInfoSecureInner getAccountCredentials(String resourceGroupName, String monitorName) {
+        return getAccountCredentialsWithResponse(resourceGroupName, monitorName, Context.NONE).getValue();
     }
 
     /**
@@ -782,21 +782,6 @@ public final class MonitorsClientImpl implements MonitorsClient {
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param monitorName Monitor resource name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response of payload to be passed while installing VM agent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public VMExtensionPayloadInner getVMHostPayload(String resourceGroupName, String monitorName) {
-        return getVMHostPayloadAsync(resourceGroupName, monitorName).block();
-    }
-
-    /**
-     * Returns the payload that needs to be passed in the request body for installing Dynatrace agent on a VM.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param monitorName Monitor resource name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -807,6 +792,21 @@ public final class MonitorsClientImpl implements MonitorsClient {
     public Response<VMExtensionPayloadInner> getVMHostPayloadWithResponse(
         String resourceGroupName, String monitorName, Context context) {
         return getVMHostPayloadWithResponseAsync(resourceGroupName, monitorName, context).block();
+    }
+
+    /**
+     * Returns the payload that needs to be passed in the request body for installing Dynatrace agent on a VM.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param monitorName Monitor resource name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return response of payload to be passed while installing VM agent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public VMExtensionPayloadInner getVMHostPayload(String resourceGroupName, String monitorName) {
+        return getVMHostPayloadWithResponse(resourceGroupName, monitorName, Context.NONE).getValue();
     }
 
     /**
@@ -924,21 +924,6 @@ public final class MonitorsClientImpl implements MonitorsClient {
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param monitorName Monitor resource name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a MonitorResource.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public MonitorResourceInner getByResourceGroup(String resourceGroupName, String monitorName) {
-        return getByResourceGroupAsync(resourceGroupName, monitorName).block();
-    }
-
-    /**
-     * Get a MonitorResource.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param monitorName Monitor resource name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -949,6 +934,21 @@ public final class MonitorsClientImpl implements MonitorsClient {
     public Response<MonitorResourceInner> getByResourceGroupWithResponse(
         String resourceGroupName, String monitorName, Context context) {
         return getByResourceGroupWithResponseAsync(resourceGroupName, monitorName, context).block();
+    }
+
+    /**
+     * Get a MonitorResource.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param monitorName Monitor resource name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a MonitorResource.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public MonitorResourceInner getByResourceGroup(String resourceGroupName, String monitorName) {
+        return getByResourceGroupWithResponse(resourceGroupName, monitorName, Context.NONE).getValue();
     }
 
     /**
@@ -1350,22 +1350,6 @@ public final class MonitorsClientImpl implements MonitorsClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param monitorName Monitor resource name.
      * @param resource The resource properties to be updated.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return dynatrace Monitor Resource.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public MonitorResourceInner update(String resourceGroupName, String monitorName, MonitorResourceUpdate resource) {
-        return updateAsync(resourceGroupName, monitorName, resource).block();
-    }
-
-    /**
-     * Update a MonitorResource.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param monitorName Monitor resource name.
-     * @param resource The resource properties to be updated.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1376,6 +1360,22 @@ public final class MonitorsClientImpl implements MonitorsClient {
     public Response<MonitorResourceInner> updateWithResponse(
         String resourceGroupName, String monitorName, MonitorResourceUpdate resource, Context context) {
         return updateWithResponseAsync(resourceGroupName, monitorName, resource, context).block();
+    }
+
+    /**
+     * Update a MonitorResource.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param monitorName Monitor resource name.
+     * @param resource The resource properties to be updated.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return dynatrace Monitor Resource.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public MonitorResourceInner update(String resourceGroupName, String monitorName, MonitorResourceUpdate resource) {
+        return updateWithResponse(resourceGroupName, monitorName, resource, Context.NONE).getValue();
     }
 
     /**
@@ -2387,24 +2387,6 @@ public final class MonitorsClientImpl implements MonitorsClient {
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param monitorName Monitor resource name.
-     * @param request The details of the get sso details request.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the SSO configuration details from the partner on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<SsoDetailsResponseInner> getSsoDetailsAsync(
-        String resourceGroupName, String monitorName, SsoDetailsRequest request) {
-        return getSsoDetailsWithResponseAsync(resourceGroupName, monitorName, request)
-            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
-    }
-
-    /**
-     * Gets the SSO configuration details from the partner.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param monitorName Monitor resource name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -2415,22 +2397,6 @@ public final class MonitorsClientImpl implements MonitorsClient {
         final SsoDetailsRequest request = null;
         return getSsoDetailsWithResponseAsync(resourceGroupName, monitorName, request)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
-    }
-
-    /**
-     * Gets the SSO configuration details from the partner.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param monitorName Monitor resource name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the SSO configuration details from the partner.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public SsoDetailsResponseInner getSsoDetails(String resourceGroupName, String monitorName) {
-        final SsoDetailsRequest request = null;
-        return getSsoDetailsAsync(resourceGroupName, monitorName, request).block();
     }
 
     /**
@@ -2449,6 +2415,22 @@ public final class MonitorsClientImpl implements MonitorsClient {
     public Response<SsoDetailsResponseInner> getSsoDetailsWithResponse(
         String resourceGroupName, String monitorName, SsoDetailsRequest request, Context context) {
         return getSsoDetailsWithResponseAsync(resourceGroupName, monitorName, request, context).block();
+    }
+
+    /**
+     * Gets the SSO configuration details from the partner.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param monitorName Monitor resource name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the SSO configuration details from the partner.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public SsoDetailsResponseInner getSsoDetails(String resourceGroupName, String monitorName) {
+        final SsoDetailsRequest request = null;
+        return getSsoDetailsWithResponse(resourceGroupName, monitorName, request, Context.NONE).getValue();
     }
 
     /**
