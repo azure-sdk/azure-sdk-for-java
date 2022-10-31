@@ -5,15 +5,11 @@
 package com.azure.resourcemanager.attestation.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Definition object with the name and properties of an operation. */
 @Fluent
 public final class OperationsDefinition {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(OperationsDefinition.class);
-
     /*
      * Name of the operation.
      */
@@ -25,6 +21,16 @@ public final class OperationsDefinition {
      */
     @JsonProperty(value = "display")
     private OperationsDisplayDefinition display;
+
+    /*
+     * Properties of the operation
+     */
+    @JsonProperty(value = "properties")
+    private OperationProperties properties;
+
+    /** Creates an instance of OperationsDefinition class. */
+    public OperationsDefinition() {
+    }
 
     /**
      * Get the name property: Name of the operation.
@@ -67,6 +73,26 @@ public final class OperationsDefinition {
     }
 
     /**
+     * Get the properties property: Properties of the operation.
+     *
+     * @return the properties value.
+     */
+    public OperationProperties properties() {
+        return this.properties;
+    }
+
+    /**
+     * Set the properties property: Properties of the operation.
+     *
+     * @param properties the properties value to set.
+     * @return the OperationsDefinition object itself.
+     */
+    public OperationsDefinition withProperties(OperationProperties properties) {
+        this.properties = properties;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -74,6 +100,9 @@ public final class OperationsDefinition {
     public void validate() {
         if (display() != null) {
             display().validate();
+        }
+        if (properties() != null) {
+            properties().validate();
         }
     }
 }
