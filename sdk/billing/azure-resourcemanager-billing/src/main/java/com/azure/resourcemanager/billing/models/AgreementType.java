@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for AgreementType. */
+/** The type of agreement. */
 public final class AgreementType extends ExpandableStringEnum<AgreementType> {
     /** Static value MicrosoftCustomerAgreement for AgreementType. */
     public static final AgreementType MICROSOFT_CUSTOMER_AGREEMENT = fromString("MicrosoftCustomerAgreement");
@@ -33,7 +33,11 @@ public final class AgreementType extends ExpandableStringEnum<AgreementType> {
         return fromString(name, AgreementType.class);
     }
 
-    /** @return known AgreementType values. */
+    /**
+     * Gets known AgreementType values.
+     *
+     * @return known AgreementType values.
+     */
     public static Collection<AgreementType> values() {
         return values(AgreementType.class);
     }

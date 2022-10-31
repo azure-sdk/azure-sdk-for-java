@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for ViewCharges. */
+/** The policy that controls whether the users in customer's organization can view charges at pay-as-you-go prices. */
 public final class ViewCharges extends ExpandableStringEnum<ViewCharges> {
     /** Static value Allowed for ViewCharges. */
     public static final ViewCharges ALLOWED = fromString("Allowed");
@@ -27,7 +27,11 @@ public final class ViewCharges extends ExpandableStringEnum<ViewCharges> {
         return fromString(name, ViewCharges.class);
     }
 
-    /** @return known ViewCharges values. */
+    /**
+     * Gets known ViewCharges values.
+     *
+     * @return known ViewCharges values.
+     */
     public static Collection<ViewCharges> values() {
         return values(ViewCharges.class);
     }
