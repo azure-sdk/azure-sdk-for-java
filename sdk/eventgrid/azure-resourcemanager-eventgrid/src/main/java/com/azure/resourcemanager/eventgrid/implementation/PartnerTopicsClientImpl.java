@@ -209,7 +209,9 @@ public final class PartnerTopicsClientImpl implements PartnerTopicsClient {
     }
 
     /**
-     * Get properties of a partner topic.
+     * Get a partner topic.
+     *
+     * <p>Get properties of a partner topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerTopicName Name of the partner topic.
@@ -258,7 +260,9 @@ public final class PartnerTopicsClientImpl implements PartnerTopicsClient {
     }
 
     /**
-     * Get properties of a partner topic.
+     * Get a partner topic.
+     *
+     * <p>Get properties of a partner topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerTopicName Name of the partner topic.
@@ -305,7 +309,9 @@ public final class PartnerTopicsClientImpl implements PartnerTopicsClient {
     }
 
     /**
-     * Get properties of a partner topic.
+     * Get a partner topic.
+     *
+     * <p>Get properties of a partner topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerTopicName Name of the partner topic.
@@ -321,22 +327,9 @@ public final class PartnerTopicsClientImpl implements PartnerTopicsClient {
     }
 
     /**
-     * Get properties of a partner topic.
+     * Get a partner topic.
      *
-     * @param resourceGroupName The name of the resource group within the user's subscription.
-     * @param partnerTopicName Name of the partner topic.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return properties of a partner topic.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public PartnerTopicInner getByResourceGroup(String resourceGroupName, String partnerTopicName) {
-        return getByResourceGroupAsync(resourceGroupName, partnerTopicName).block();
-    }
-
-    /**
-     * Get properties of a partner topic.
+     * <p>Get properties of a partner topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerTopicName Name of the partner topic.
@@ -353,7 +346,26 @@ public final class PartnerTopicsClientImpl implements PartnerTopicsClient {
     }
 
     /**
-     * Asynchronously creates a new partner topic with the specified parameters.
+     * Get a partner topic.
+     *
+     * <p>Get properties of a partner topic.
+     *
+     * @param resourceGroupName The name of the resource group within the user's subscription.
+     * @param partnerTopicName Name of the partner topic.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return properties of a partner topic.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public PartnerTopicInner getByResourceGroup(String resourceGroupName, String partnerTopicName) {
+        return getByResourceGroupWithResponse(resourceGroupName, partnerTopicName, Context.NONE).getValue();
+    }
+
+    /**
+     * Create a partner topic.
+     *
+     * <p>Asynchronously creates a new partner topic with the specified parameters.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerTopicName Name of the partner topic.
@@ -410,7 +422,9 @@ public final class PartnerTopicsClientImpl implements PartnerTopicsClient {
     }
 
     /**
-     * Asynchronously creates a new partner topic with the specified parameters.
+     * Create a partner topic.
+     *
+     * <p>Asynchronously creates a new partner topic with the specified parameters.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerTopicName Name of the partner topic.
@@ -465,7 +479,9 @@ public final class PartnerTopicsClientImpl implements PartnerTopicsClient {
     }
 
     /**
-     * Asynchronously creates a new partner topic with the specified parameters.
+     * Create a partner topic.
+     *
+     * <p>Asynchronously creates a new partner topic with the specified parameters.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerTopicName Name of the partner topic.
@@ -483,24 +499,9 @@ public final class PartnerTopicsClientImpl implements PartnerTopicsClient {
     }
 
     /**
-     * Asynchronously creates a new partner topic with the specified parameters.
+     * Create a partner topic.
      *
-     * @param resourceGroupName The name of the resource group within the user's subscription.
-     * @param partnerTopicName Name of the partner topic.
-     * @param partnerTopicInfo Partner Topic information.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return event Grid Partner Topic.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public PartnerTopicInner createOrUpdate(
-        String resourceGroupName, String partnerTopicName, PartnerTopicInner partnerTopicInfo) {
-        return createOrUpdateAsync(resourceGroupName, partnerTopicName, partnerTopicInfo).block();
-    }
-
-    /**
-     * Asynchronously creates a new partner topic with the specified parameters.
+     * <p>Asynchronously creates a new partner topic with the specified parameters.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerTopicName Name of the partner topic.
@@ -518,7 +519,29 @@ public final class PartnerTopicsClientImpl implements PartnerTopicsClient {
     }
 
     /**
-     * Delete existing partner topic.
+     * Create a partner topic.
+     *
+     * <p>Asynchronously creates a new partner topic with the specified parameters.
+     *
+     * @param resourceGroupName The name of the resource group within the user's subscription.
+     * @param partnerTopicName Name of the partner topic.
+     * @param partnerTopicInfo Partner Topic information.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return event Grid Partner Topic.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public PartnerTopicInner createOrUpdate(
+        String resourceGroupName, String partnerTopicName, PartnerTopicInner partnerTopicInfo) {
+        return createOrUpdateWithResponse(resourceGroupName, partnerTopicName, partnerTopicInfo, Context.NONE)
+            .getValue();
+    }
+
+    /**
+     * Delete a partner topic.
+     *
+     * <p>Delete existing partner topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerTopicName Name of the partner topic.
@@ -565,7 +588,9 @@ public final class PartnerTopicsClientImpl implements PartnerTopicsClient {
     }
 
     /**
-     * Delete existing partner topic.
+     * Delete a partner topic.
+     *
+     * <p>Delete existing partner topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerTopicName Name of the partner topic.
@@ -610,7 +635,9 @@ public final class PartnerTopicsClientImpl implements PartnerTopicsClient {
     }
 
     /**
-     * Delete existing partner topic.
+     * Delete a partner topic.
+     *
+     * <p>Delete existing partner topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerTopicName Name of the partner topic.
@@ -629,7 +656,9 @@ public final class PartnerTopicsClientImpl implements PartnerTopicsClient {
     }
 
     /**
-     * Delete existing partner topic.
+     * Delete a partner topic.
+     *
+     * <p>Delete existing partner topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerTopicName Name of the partner topic.
@@ -650,7 +679,9 @@ public final class PartnerTopicsClientImpl implements PartnerTopicsClient {
     }
 
     /**
-     * Delete existing partner topic.
+     * Delete a partner topic.
+     *
+     * <p>Delete existing partner topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerTopicName Name of the partner topic.
@@ -665,7 +696,9 @@ public final class PartnerTopicsClientImpl implements PartnerTopicsClient {
     }
 
     /**
-     * Delete existing partner topic.
+     * Delete a partner topic.
+     *
+     * <p>Delete existing partner topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerTopicName Name of the partner topic.
@@ -682,7 +715,9 @@ public final class PartnerTopicsClientImpl implements PartnerTopicsClient {
     }
 
     /**
-     * Delete existing partner topic.
+     * Delete a partner topic.
+     *
+     * <p>Delete existing partner topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerTopicName Name of the partner topic.
@@ -699,7 +734,9 @@ public final class PartnerTopicsClientImpl implements PartnerTopicsClient {
     }
 
     /**
-     * Delete existing partner topic.
+     * Delete a partner topic.
+     *
+     * <p>Delete existing partner topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerTopicName Name of the partner topic.
@@ -717,7 +754,9 @@ public final class PartnerTopicsClientImpl implements PartnerTopicsClient {
     }
 
     /**
-     * Delete existing partner topic.
+     * Delete a partner topic.
+     *
+     * <p>Delete existing partner topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerTopicName Name of the partner topic.
@@ -731,7 +770,9 @@ public final class PartnerTopicsClientImpl implements PartnerTopicsClient {
     }
 
     /**
-     * Delete existing partner topic.
+     * Delete a partner topic.
+     *
+     * <p>Delete existing partner topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerTopicName Name of the partner topic.
@@ -746,7 +787,9 @@ public final class PartnerTopicsClientImpl implements PartnerTopicsClient {
     }
 
     /**
-     * Asynchronously updates a partner topic with the specified parameters.
+     * Update a partner topic.
+     *
+     * <p>Asynchronously updates a partner topic with the specified parameters.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerTopicName Name of the partner topic.
@@ -805,7 +848,9 @@ public final class PartnerTopicsClientImpl implements PartnerTopicsClient {
     }
 
     /**
-     * Asynchronously updates a partner topic with the specified parameters.
+     * Update a partner topic.
+     *
+     * <p>Asynchronously updates a partner topic with the specified parameters.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerTopicName Name of the partner topic.
@@ -865,7 +910,9 @@ public final class PartnerTopicsClientImpl implements PartnerTopicsClient {
     }
 
     /**
-     * Asynchronously updates a partner topic with the specified parameters.
+     * Update a partner topic.
+     *
+     * <p>Asynchronously updates a partner topic with the specified parameters.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerTopicName Name of the partner topic.
@@ -883,24 +930,9 @@ public final class PartnerTopicsClientImpl implements PartnerTopicsClient {
     }
 
     /**
-     * Asynchronously updates a partner topic with the specified parameters.
+     * Update a partner topic.
      *
-     * @param resourceGroupName The name of the resource group within the user's subscription.
-     * @param partnerTopicName Name of the partner topic.
-     * @param partnerTopicUpdateParameters PartnerTopic update information.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public PartnerTopicInner update(
-        String resourceGroupName, String partnerTopicName, PartnerTopicUpdateParameters partnerTopicUpdateParameters) {
-        return updateAsync(resourceGroupName, partnerTopicName, partnerTopicUpdateParameters).block();
-    }
-
-    /**
-     * Asynchronously updates a partner topic with the specified parameters.
+     * <p>Asynchronously updates a partner topic with the specified parameters.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerTopicName Name of the partner topic.
@@ -922,7 +954,29 @@ public final class PartnerTopicsClientImpl implements PartnerTopicsClient {
     }
 
     /**
-     * List all the partner topics under an Azure subscription.
+     * Update a partner topic.
+     *
+     * <p>Asynchronously updates a partner topic with the specified parameters.
+     *
+     * @param resourceGroupName The name of the resource group within the user's subscription.
+     * @param partnerTopicName Name of the partner topic.
+     * @param partnerTopicUpdateParameters PartnerTopic update information.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public PartnerTopicInner update(
+        String resourceGroupName, String partnerTopicName, PartnerTopicUpdateParameters partnerTopicUpdateParameters) {
+        return updateWithResponse(resourceGroupName, partnerTopicName, partnerTopicUpdateParameters, Context.NONE)
+            .getValue();
+    }
+
+    /**
+     * List partner topics under an Azure subscription.
+     *
+     * <p>List all the partner topics under an Azure subscription.
      *
      * @param filter The query used to filter the search results using OData syntax. Filtering is permitted on the
      *     'name' property only and with limited number of OData operations. These operations are: the 'contains'
@@ -978,7 +1032,9 @@ public final class PartnerTopicsClientImpl implements PartnerTopicsClient {
     }
 
     /**
-     * List all the partner topics under an Azure subscription.
+     * List partner topics under an Azure subscription.
+     *
+     * <p>List all the partner topics under an Azure subscription.
      *
      * @param filter The query used to filter the search results using OData syntax. Filtering is permitted on the
      *     'name' property only and with limited number of OData operations. These operations are: the 'contains'
@@ -1032,7 +1088,9 @@ public final class PartnerTopicsClientImpl implements PartnerTopicsClient {
     }
 
     /**
-     * List all the partner topics under an Azure subscription.
+     * List partner topics under an Azure subscription.
+     *
+     * <p>List all the partner topics under an Azure subscription.
      *
      * @param filter The query used to filter the search results using OData syntax. Filtering is permitted on the
      *     'name' property only and with limited number of OData operations. These operations are: the 'contains'
@@ -1054,7 +1112,9 @@ public final class PartnerTopicsClientImpl implements PartnerTopicsClient {
     }
 
     /**
-     * List all the partner topics under an Azure subscription.
+     * List partner topics under an Azure subscription.
+     *
+     * <p>List all the partner topics under an Azure subscription.
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1069,7 +1129,9 @@ public final class PartnerTopicsClientImpl implements PartnerTopicsClient {
     }
 
     /**
-     * List all the partner topics under an Azure subscription.
+     * List partner topics under an Azure subscription.
+     *
+     * <p>List all the partner topics under an Azure subscription.
      *
      * @param filter The query used to filter the search results using OData syntax. Filtering is permitted on the
      *     'name' property only and with limited number of OData operations. These operations are: the 'contains'
@@ -1093,7 +1155,9 @@ public final class PartnerTopicsClientImpl implements PartnerTopicsClient {
     }
 
     /**
-     * List all the partner topics under an Azure subscription.
+     * List partner topics under an Azure subscription.
+     *
+     * <p>List all the partner topics under an Azure subscription.
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1107,7 +1171,9 @@ public final class PartnerTopicsClientImpl implements PartnerTopicsClient {
     }
 
     /**
-     * List all the partner topics under an Azure subscription.
+     * List partner topics under an Azure subscription.
+     *
+     * <p>List all the partner topics under an Azure subscription.
      *
      * @param filter The query used to filter the search results using OData syntax. Filtering is permitted on the
      *     'name' property only and with limited number of OData operations. These operations are: the 'contains'
@@ -1129,7 +1195,9 @@ public final class PartnerTopicsClientImpl implements PartnerTopicsClient {
     }
 
     /**
-     * List all the partner topics under a resource group.
+     * List partner topics under a resource group.
+     *
+     * <p>List all the partner topics under a resource group.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param filter The query used to filter the search results using OData syntax. Filtering is permitted on the
@@ -1192,7 +1260,9 @@ public final class PartnerTopicsClientImpl implements PartnerTopicsClient {
     }
 
     /**
-     * List all the partner topics under a resource group.
+     * List partner topics under a resource group.
+     *
+     * <p>List all the partner topics under a resource group.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param filter The query used to filter the search results using OData syntax. Filtering is permitted on the
@@ -1253,7 +1323,9 @@ public final class PartnerTopicsClientImpl implements PartnerTopicsClient {
     }
 
     /**
-     * List all the partner topics under a resource group.
+     * List partner topics under a resource group.
+     *
+     * <p>List all the partner topics under a resource group.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param filter The query used to filter the search results using OData syntax. Filtering is permitted on the
@@ -1278,7 +1350,9 @@ public final class PartnerTopicsClientImpl implements PartnerTopicsClient {
     }
 
     /**
-     * List all the partner topics under a resource group.
+     * List partner topics under a resource group.
+     *
+     * <p>List all the partner topics under a resource group.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1296,7 +1370,9 @@ public final class PartnerTopicsClientImpl implements PartnerTopicsClient {
     }
 
     /**
-     * List all the partner topics under a resource group.
+     * List partner topics under a resource group.
+     *
+     * <p>List all the partner topics under a resource group.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param filter The query used to filter the search results using OData syntax. Filtering is permitted on the
@@ -1322,7 +1398,9 @@ public final class PartnerTopicsClientImpl implements PartnerTopicsClient {
     }
 
     /**
-     * List all the partner topics under a resource group.
+     * List partner topics under a resource group.
+     *
+     * <p>List all the partner topics under a resource group.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1338,7 +1416,9 @@ public final class PartnerTopicsClientImpl implements PartnerTopicsClient {
     }
 
     /**
-     * List all the partner topics under a resource group.
+     * List partner topics under a resource group.
+     *
+     * <p>List all the partner topics under a resource group.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param filter The query used to filter the search results using OData syntax. Filtering is permitted on the
@@ -1362,7 +1442,9 @@ public final class PartnerTopicsClientImpl implements PartnerTopicsClient {
     }
 
     /**
-     * Activate a newly created partner topic.
+     * Activate a partner topic.
+     *
+     * <p>Activate a newly created partner topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerTopicName Name of the partner topic.
@@ -1411,7 +1493,9 @@ public final class PartnerTopicsClientImpl implements PartnerTopicsClient {
     }
 
     /**
-     * Activate a newly created partner topic.
+     * Activate a partner topic.
+     *
+     * <p>Activate a newly created partner topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerTopicName Name of the partner topic.
@@ -1458,7 +1542,9 @@ public final class PartnerTopicsClientImpl implements PartnerTopicsClient {
     }
 
     /**
-     * Activate a newly created partner topic.
+     * Activate a partner topic.
+     *
+     * <p>Activate a newly created partner topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerTopicName Name of the partner topic.
@@ -1474,22 +1560,9 @@ public final class PartnerTopicsClientImpl implements PartnerTopicsClient {
     }
 
     /**
-     * Activate a newly created partner topic.
+     * Activate a partner topic.
      *
-     * @param resourceGroupName The name of the resource group within the user's subscription.
-     * @param partnerTopicName Name of the partner topic.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return event Grid Partner Topic.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public PartnerTopicInner activate(String resourceGroupName, String partnerTopicName) {
-        return activateAsync(resourceGroupName, partnerTopicName).block();
-    }
-
-    /**
-     * Activate a newly created partner topic.
+     * <p>Activate a newly created partner topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerTopicName Name of the partner topic.
@@ -1506,7 +1579,26 @@ public final class PartnerTopicsClientImpl implements PartnerTopicsClient {
     }
 
     /**
-     * Deactivate specific partner topic.
+     * Activate a partner topic.
+     *
+     * <p>Activate a newly created partner topic.
+     *
+     * @param resourceGroupName The name of the resource group within the user's subscription.
+     * @param partnerTopicName Name of the partner topic.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return event Grid Partner Topic.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public PartnerTopicInner activate(String resourceGroupName, String partnerTopicName) {
+        return activateWithResponse(resourceGroupName, partnerTopicName, Context.NONE).getValue();
+    }
+
+    /**
+     * Deactivate a partner topic.
+     *
+     * <p>Deactivate specific partner topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerTopicName Name of the partner topic.
@@ -1555,7 +1647,9 @@ public final class PartnerTopicsClientImpl implements PartnerTopicsClient {
     }
 
     /**
-     * Deactivate specific partner topic.
+     * Deactivate a partner topic.
+     *
+     * <p>Deactivate specific partner topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerTopicName Name of the partner topic.
@@ -1602,7 +1696,9 @@ public final class PartnerTopicsClientImpl implements PartnerTopicsClient {
     }
 
     /**
-     * Deactivate specific partner topic.
+     * Deactivate a partner topic.
+     *
+     * <p>Deactivate specific partner topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerTopicName Name of the partner topic.
@@ -1618,22 +1714,9 @@ public final class PartnerTopicsClientImpl implements PartnerTopicsClient {
     }
 
     /**
-     * Deactivate specific partner topic.
+     * Deactivate a partner topic.
      *
-     * @param resourceGroupName The name of the resource group within the user's subscription.
-     * @param partnerTopicName Name of the partner topic.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return event Grid Partner Topic.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public PartnerTopicInner deactivate(String resourceGroupName, String partnerTopicName) {
-        return deactivateAsync(resourceGroupName, partnerTopicName).block();
-    }
-
-    /**
-     * Deactivate specific partner topic.
+     * <p>Deactivate specific partner topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerTopicName Name of the partner topic.
@@ -1650,9 +1733,27 @@ public final class PartnerTopicsClientImpl implements PartnerTopicsClient {
     }
 
     /**
+     * Deactivate a partner topic.
+     *
+     * <p>Deactivate specific partner topic.
+     *
+     * @param resourceGroupName The name of the resource group within the user's subscription.
+     * @param partnerTopicName Name of the partner topic.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return event Grid Partner Topic.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public PartnerTopicInner deactivate(String resourceGroupName, String partnerTopicName) {
+        return deactivateWithResponse(resourceGroupName, partnerTopicName, Context.NONE).getValue();
+    }
+
+    /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1689,7 +1790,8 @@ public final class PartnerTopicsClientImpl implements PartnerTopicsClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1727,7 +1829,8 @@ public final class PartnerTopicsClientImpl implements PartnerTopicsClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1764,7 +1867,8 @@ public final class PartnerTopicsClientImpl implements PartnerTopicsClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.

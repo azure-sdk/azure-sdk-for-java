@@ -8,7 +8,10 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for InputSchema. */
+/**
+ * This determines the format that Event Grid should expect for incoming events published to the Event Grid Domain
+ * Resource.
+ */
 public final class InputSchema extends ExpandableStringEnum<InputSchema> {
     /** Static value EventGridSchema for InputSchema. */
     public static final InputSchema EVENT_GRID_SCHEMA = fromString("EventGridSchema");

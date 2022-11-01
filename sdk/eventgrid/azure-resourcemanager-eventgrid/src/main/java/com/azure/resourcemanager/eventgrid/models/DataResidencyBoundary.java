@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for DataResidencyBoundary. */
+/** Data Residency Boundary of the resource. */
 public final class DataResidencyBoundary extends ExpandableStringEnum<DataResidencyBoundary> {
     /** Static value WithinGeopair for DataResidencyBoundary. */
     public static final DataResidencyBoundary WITHIN_GEOPAIR = fromString("WithinGeopair");

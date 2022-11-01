@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for ResourceRegionType. */
+/** Region type of the resource. */
 public final class ResourceRegionType extends ExpandableStringEnum<ResourceRegionType> {
     /** Static value RegionalResource for ResourceRegionType. */
     public static final ResourceRegionType REGIONAL_RESOURCE = fromString("RegionalResource");
