@@ -6,20 +6,14 @@ package com.azure.resourcemanager.consumption.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.ProxyResource;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.consumption.models.Amount;
 import com.azure.resourcemanager.consumption.models.CreditBalanceSummary;
 import com.azure.resourcemanager.consumption.models.Reseller;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.Map;
 
 /** A credit summary resource. */
 @Fluent
 public final class CreditSummaryInner extends ProxyResource {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(CreditSummaryInner.class);
-
     /*
      * The properties of the credit summary.
      */
@@ -27,17 +21,15 @@ public final class CreditSummaryInner extends ProxyResource {
     private CreditSummaryProperties innerProperties;
 
     /*
-     * The etag for the resource.
+     * eTag of the resource. To handle concurrent update scenario, this field will be used to determine whether the
+     * user is updating the latest version or not.
      */
-    @JsonProperty(value = "etag", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "eTag")
     private String etag;
 
-    /*
-     * Resource tags.
-     */
-    @JsonProperty(value = "tags", access = JsonProperty.Access.WRITE_ONLY)
-    @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
-    private Map<String, String> tags;
+    /** Creates an instance of CreditSummaryInner class. */
+    public CreditSummaryInner() {
+    }
 
     /**
      * Get the innerProperties property: The properties of the credit summary.
@@ -49,7 +41,8 @@ public final class CreditSummaryInner extends ProxyResource {
     }
 
     /**
-     * Get the etag property: The etag for the resource.
+     * Get the etag property: eTag of the resource. To handle concurrent update scenario, this field will be used to
+     * determine whether the user is updating the latest version or not.
      *
      * @return the etag value.
      */
@@ -58,12 +51,15 @@ public final class CreditSummaryInner extends ProxyResource {
     }
 
     /**
-     * Get the tags property: Resource tags.
+     * Set the etag property: eTag of the resource. To handle concurrent update scenario, this field will be used to
+     * determine whether the user is updating the latest version or not.
      *
-     * @return the tags value.
+     * @param etag the etag value to set.
+     * @return the CreditSummaryInner object itself.
      */
-    public Map<String, String> tags() {
-        return this.tags;
+    public CreditSummaryInner withEtag(String etag) {
+        this.etag = etag;
+        return this;
     }
 
     /**
