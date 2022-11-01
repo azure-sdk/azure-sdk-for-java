@@ -342,15 +342,16 @@ public final class BackupsClientImpl implements BackupsClient {
      * @param accountName The name of the NetApp account.
      * @param poolName The name of the capacity pool.
      * @param volumeName The name of the volume.
+     * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the status of the backup for a volume.
+     * @return the status of the backup for a volume along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public BackupStatusInner getStatus(
-        String resourceGroupName, String accountName, String poolName, String volumeName) {
-        return getStatusAsync(resourceGroupName, accountName, poolName, volumeName).block();
+    public Response<BackupStatusInner> getStatusWithResponse(
+        String resourceGroupName, String accountName, String poolName, String volumeName, Context context) {
+        return getStatusWithResponseAsync(resourceGroupName, accountName, poolName, volumeName, context).block();
     }
 
     /**
@@ -362,16 +363,15 @@ public final class BackupsClientImpl implements BackupsClient {
      * @param accountName The name of the NetApp account.
      * @param poolName The name of the capacity pool.
      * @param volumeName The name of the volume.
-     * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the status of the backup for a volume along with {@link Response}.
+     * @return the status of the backup for a volume.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<BackupStatusInner> getStatusWithResponse(
-        String resourceGroupName, String accountName, String poolName, String volumeName, Context context) {
-        return getStatusWithResponseAsync(resourceGroupName, accountName, poolName, volumeName, context).block();
+    public BackupStatusInner getStatus(
+        String resourceGroupName, String accountName, String poolName, String volumeName) {
+        return getStatusWithResponse(resourceGroupName, accountName, poolName, volumeName, Context.NONE).getValue();
     }
 
     /**
@@ -524,26 +524,6 @@ public final class BackupsClientImpl implements BackupsClient {
      * @param accountName The name of the NetApp account.
      * @param poolName The name of the capacity pool.
      * @param volumeName The name of the volume.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the status of the restore for a volume.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public RestoreStatusInner getVolumeRestoreStatus(
-        String resourceGroupName, String accountName, String poolName, String volumeName) {
-        return getVolumeRestoreStatusAsync(resourceGroupName, accountName, poolName, volumeName).block();
-    }
-
-    /**
-     * Get volume's restore status
-     *
-     * <p>Get the status of the restore for a volume.
-     *
-     * @param resourceGroupName The name of the resource group.
-     * @param accountName The name of the NetApp account.
-     * @param poolName The name of the capacity pool.
-     * @param volumeName The name of the volume.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -555,6 +535,27 @@ public final class BackupsClientImpl implements BackupsClient {
         String resourceGroupName, String accountName, String poolName, String volumeName, Context context) {
         return getVolumeRestoreStatusWithResponseAsync(resourceGroupName, accountName, poolName, volumeName, context)
             .block();
+    }
+
+    /**
+     * Get volume's restore status
+     *
+     * <p>Get the status of the restore for a volume.
+     *
+     * @param resourceGroupName The name of the resource group.
+     * @param accountName The name of the NetApp account.
+     * @param poolName The name of the capacity pool.
+     * @param volumeName The name of the volume.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the status of the restore for a volume.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public RestoreStatusInner getVolumeRestoreStatus(
+        String resourceGroupName, String accountName, String poolName, String volumeName) {
+        return getVolumeRestoreStatusWithResponse(resourceGroupName, accountName, poolName, volumeName, Context.NONE)
+            .getValue();
     }
 
     /**
@@ -931,27 +932,6 @@ public final class BackupsClientImpl implements BackupsClient {
      * @param poolName The name of the capacity pool.
      * @param volumeName The name of the volume.
      * @param backupName The name of the backup.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the specified backup of the volume.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public BackupInner get(
-        String resourceGroupName, String accountName, String poolName, String volumeName, String backupName) {
-        return getAsync(resourceGroupName, accountName, poolName, volumeName, backupName).block();
-    }
-
-    /**
-     * Get a backup
-     *
-     * <p>Gets the specified backup of the volume.
-     *
-     * @param resourceGroupName The name of the resource group.
-     * @param accountName The name of the NetApp account.
-     * @param poolName The name of the capacity pool.
-     * @param volumeName The name of the volume.
-     * @param backupName The name of the backup.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -967,6 +947,28 @@ public final class BackupsClientImpl implements BackupsClient {
         String backupName,
         Context context) {
         return getWithResponseAsync(resourceGroupName, accountName, poolName, volumeName, backupName, context).block();
+    }
+
+    /**
+     * Get a backup
+     *
+     * <p>Gets the specified backup of the volume.
+     *
+     * @param resourceGroupName The name of the resource group.
+     * @param accountName The name of the NetApp account.
+     * @param poolName The name of the capacity pool.
+     * @param volumeName The name of the volume.
+     * @param backupName The name of the backup.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the specified backup of the volume.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public BackupInner get(
+        String resourceGroupName, String accountName, String poolName, String volumeName, String backupName) {
+        return getWithResponse(resourceGroupName, accountName, poolName, volumeName, backupName, Context.NONE)
+            .getValue();
     }
 
     /**
@@ -1553,6 +1555,33 @@ public final class BackupsClientImpl implements BackupsClient {
      * @param poolName The name of the capacity pool.
      * @param volumeName The name of the volume.
      * @param backupName The name of the backup.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of backup of a Volume.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<BackupInner>, BackupInner> beginUpdateAsync(
+        String resourceGroupName, String accountName, String poolName, String volumeName, String backupName) {
+        final BackupPatch body = null;
+        Mono<Response<Flux<ByteBuffer>>> mono =
+            updateWithResponseAsync(resourceGroupName, accountName, poolName, volumeName, backupName, body);
+        return this
+            .client
+            .<BackupInner, BackupInner>getLroResult(
+                mono, this.client.getHttpPipeline(), BackupInner.class, BackupInner.class, this.client.getContext());
+    }
+
+    /**
+     * Patch a backup
+     *
+     * <p>Patch a backup for the volume.
+     *
+     * @param resourceGroupName The name of the resource group.
+     * @param accountName The name of the NetApp account.
+     * @param poolName The name of the capacity pool.
+     * @param volumeName The name of the volume.
+     * @param backupName The name of the backup.
      * @param body Backup object supplied in the body of the operation.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1588,7 +1617,6 @@ public final class BackupsClientImpl implements BackupsClient {
      * @param poolName The name of the capacity pool.
      * @param volumeName The name of the volume.
      * @param backupName The name of the backup.
-     * @param body Backup object supplied in the body of the operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1596,12 +1624,8 @@ public final class BackupsClientImpl implements BackupsClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<BackupInner>, BackupInner> beginUpdate(
-        String resourceGroupName,
-        String accountName,
-        String poolName,
-        String volumeName,
-        String backupName,
-        BackupPatch body) {
+        String resourceGroupName, String accountName, String poolName, String volumeName, String backupName) {
+        final BackupPatch body = null;
         return beginUpdateAsync(resourceGroupName, accountName, poolName, volumeName, backupName, body).getSyncPoller();
     }
 
@@ -1717,33 +1741,6 @@ public final class BackupsClientImpl implements BackupsClient {
         return beginUpdateAsync(resourceGroupName, accountName, poolName, volumeName, backupName, body, context)
             .last()
             .flatMap(this.client::getLroFinalResultOrError);
-    }
-
-    /**
-     * Patch a backup
-     *
-     * <p>Patch a backup for the volume.
-     *
-     * @param resourceGroupName The name of the resource group.
-     * @param accountName The name of the NetApp account.
-     * @param poolName The name of the capacity pool.
-     * @param volumeName The name of the volume.
-     * @param backupName The name of the backup.
-     * @param body Backup object supplied in the body of the operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return backup of a Volume.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public BackupInner update(
-        String resourceGroupName,
-        String accountName,
-        String poolName,
-        String volumeName,
-        String backupName,
-        BackupPatch body) {
-        return updateAsync(resourceGroupName, accountName, poolName, volumeName, backupName, body).block();
     }
 
     /**

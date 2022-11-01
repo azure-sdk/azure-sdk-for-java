@@ -367,23 +367,6 @@ public final class NetAppResourceQuotaLimitsClientImpl implements NetAppResource
      *
      * @param location The location.
      * @param quotaLimitName The name of the Quota Limit.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the default and current subscription quota limit.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public SubscriptionQuotaItemInner get(String location, String quotaLimitName) {
-        return getAsync(location, quotaLimitName).block();
-    }
-
-    /**
-     * Get quota limits
-     *
-     * <p>Get the default and current subscription quota limit.
-     *
-     * @param location The location.
-     * @param quotaLimitName The name of the Quota Limit.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -394,5 +377,22 @@ public final class NetAppResourceQuotaLimitsClientImpl implements NetAppResource
     public Response<SubscriptionQuotaItemInner> getWithResponse(
         String location, String quotaLimitName, Context context) {
         return getWithResponseAsync(location, quotaLimitName, context).block();
+    }
+
+    /**
+     * Get quota limits
+     *
+     * <p>Get the default and current subscription quota limit.
+     *
+     * @param location The location.
+     * @param quotaLimitName The name of the Quota Limit.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the default and current subscription quota limit.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public SubscriptionQuotaItemInner get(String location, String quotaLimitName) {
+        return getWithResponse(location, quotaLimitName, Context.NONE).getValue();
     }
 }
