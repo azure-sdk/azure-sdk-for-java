@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for FluxComplianceState. */
+/** Compliance state of the cluster object. */
 public final class FluxComplianceState extends ExpandableStringEnum<FluxComplianceState> {
     /** Static value Compliant for FluxComplianceState. */
     public static final FluxComplianceState COMPLIANT = fromString("Compliant");
@@ -36,7 +36,11 @@ public final class FluxComplianceState extends ExpandableStringEnum<FluxComplian
         return fromString(name, FluxComplianceState.class);
     }
 
-    /** @return known FluxComplianceState values. */
+    /**
+     * Gets known FluxComplianceState values.
+     *
+     * @return known FluxComplianceState values.
+     */
     public static Collection<FluxComplianceState> values() {
         return values(FluxComplianceState.class);
     }

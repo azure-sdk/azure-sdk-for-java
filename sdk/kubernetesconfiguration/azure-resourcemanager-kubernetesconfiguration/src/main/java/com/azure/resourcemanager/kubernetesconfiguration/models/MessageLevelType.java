@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for MessageLevelType. */
+/** Level of the message. */
 public final class MessageLevelType extends ExpandableStringEnum<MessageLevelType> {
     /** Static value Error for MessageLevelType. */
     public static final MessageLevelType ERROR = fromString("Error");
@@ -30,7 +30,11 @@ public final class MessageLevelType extends ExpandableStringEnum<MessageLevelTyp
         return fromString(name, MessageLevelType.class);
     }
 
-    /** @return known MessageLevelType values. */
+    /**
+     * Gets known MessageLevelType values.
+     *
+     * @return known MessageLevelType values.
+     */
     public static Collection<MessageLevelType> values() {
         return values(MessageLevelType.class);
     }

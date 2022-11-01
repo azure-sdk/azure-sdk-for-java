@@ -9,7 +9,23 @@ import com.azure.core.util.Context;
 /** Samples for Extensions Get. */
 public final class ExtensionsGetSamples {
     /*
-     * x-ms-original-file: specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/stable/2022-03-01/examples/GetExtension.json
+     * x-ms-original-file: specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/stable/2022-11-01/examples/GetExtensionWithPlan.json
+     */
+    /**
+     * Sample code: Get Extension with Plan.
+     *
+     * @param manager Entry point to SourceControlConfigurationManager.
+     */
+    public static void getExtensionWithPlan(
+        com.azure.resourcemanager.kubernetesconfiguration.SourceControlConfigurationManager manager) {
+        manager
+            .extensions()
+            .getWithResponse(
+                "rg1", "Microsoft.Kubernetes", "connectedClusters", "clusterName1", "azureVote", Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file: specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/stable/2022-11-01/examples/GetExtension.json
      */
     /**
      * Sample code: Get Extension.

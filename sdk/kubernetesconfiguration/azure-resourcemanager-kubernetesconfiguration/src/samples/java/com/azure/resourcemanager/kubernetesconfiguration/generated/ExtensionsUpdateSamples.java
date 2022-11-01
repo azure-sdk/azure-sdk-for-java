@@ -12,7 +12,7 @@ import java.util.Map;
 /** Samples for Extensions Update. */
 public final class ExtensionsUpdateSamples {
     /*
-     * x-ms-original-file: specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/stable/2022-03-01/examples/PatchExtension.json
+     * x-ms-original-file: specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/stable/2022-11-01/examples/PatchExtension.json
      */
     /**
      * Sample code: Update Extension.

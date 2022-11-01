@@ -130,7 +130,7 @@ public final class ExtensionsClientImpl implements ExtensionsClient {
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{clusterRp}"
                 + "/{clusterResourceName}/{clusterName}/providers/Microsoft.KubernetesConfiguration/extensions"
                 + "/{extensionName}")
-        @ExpectedResponses({202})
+        @ExpectedResponses({200, 202})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> update(
             @HostParam("$host") String endpoint,
@@ -744,39 +744,7 @@ public final class ExtensionsClientImpl implements ExtensionsClient {
         String clusterName,
         String extensionName) {
         return getWithResponseAsync(resourceGroupName, clusterRp, clusterResourceName, clusterName, extensionName)
-            .flatMap(
-                (Response<ExtensionInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
-    }
-
-    /**
-     * Gets Kubernetes Cluster Extension.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param clusterRp The Kubernetes cluster RP - i.e. Microsoft.ContainerService, Microsoft.Kubernetes,
-     *     Microsoft.HybridContainerService.
-     * @param clusterResourceName The Kubernetes cluster resource name - i.e. managedClusters, connectedClusters,
-     *     provisionedClusters.
-     * @param clusterName The name of the kubernetes cluster.
-     * @param extensionName Name of the Extension.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return kubernetes Cluster Extension.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public ExtensionInner get(
-        String resourceGroupName,
-        String clusterRp,
-        String clusterResourceName,
-        String clusterName,
-        String extensionName) {
-        return getAsync(resourceGroupName, clusterRp, clusterResourceName, clusterName, extensionName).block();
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -806,6 +774,33 @@ public final class ExtensionsClientImpl implements ExtensionsClient {
         return getWithResponseAsync(
                 resourceGroupName, clusterRp, clusterResourceName, clusterName, extensionName, context)
             .block();
+    }
+
+    /**
+     * Gets Kubernetes Cluster Extension.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param clusterRp The Kubernetes cluster RP - i.e. Microsoft.ContainerService, Microsoft.Kubernetes,
+     *     Microsoft.HybridContainerService.
+     * @param clusterResourceName The Kubernetes cluster resource name - i.e. managedClusters, connectedClusters,
+     *     provisionedClusters.
+     * @param clusterName The name of the kubernetes cluster.
+     * @param extensionName Name of the Extension.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return kubernetes Cluster Extension.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public ExtensionInner get(
+        String resourceGroupName,
+        String clusterRp,
+        String clusterResourceName,
+        String clusterName,
+        String extensionName) {
+        return getWithResponse(
+                resourceGroupName, clusterRp, clusterResourceName, clusterName, extensionName, Context.NONE)
+            .getValue();
     }
 
     /**
@@ -996,6 +991,38 @@ public final class ExtensionsClientImpl implements ExtensionsClient {
      *     provisionedClusters.
      * @param clusterName The name of the kubernetes cluster.
      * @param extensionName Name of the Extension.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(
+        String resourceGroupName,
+        String clusterRp,
+        String clusterResourceName,
+        String clusterName,
+        String extensionName) {
+        final Boolean forceDelete = null;
+        Mono<Response<Flux<ByteBuffer>>> mono =
+            deleteWithResponseAsync(
+                resourceGroupName, clusterRp, clusterResourceName, clusterName, extensionName, forceDelete);
+        return this
+            .client
+            .<Void, Void>getLroResult(
+                mono, this.client.getHttpPipeline(), Void.class, Void.class, this.client.getContext());
+    }
+
+    /**
+     * Delete a Kubernetes Cluster Extension. This will cause the Agent to Uninstall the extension from the cluster.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param clusterRp The Kubernetes cluster RP - i.e. Microsoft.ContainerService, Microsoft.Kubernetes,
+     *     Microsoft.HybridContainerService.
+     * @param clusterResourceName The Kubernetes cluster resource name - i.e. managedClusters, connectedClusters,
+     *     provisionedClusters.
+     * @param clusterName The name of the kubernetes cluster.
+     * @param extensionName Name of the Extension.
      * @param forceDelete Delete the extension resource in Azure - not the normal asynchronous delete.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1031,7 +1058,6 @@ public final class ExtensionsClientImpl implements ExtensionsClient {
      *     provisionedClusters.
      * @param clusterName The name of the kubernetes cluster.
      * @param extensionName Name of the Extension.
-     * @param forceDelete Delete the extension resource in Azure - not the normal asynchronous delete.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1043,8 +1069,8 @@ public final class ExtensionsClientImpl implements ExtensionsClient {
         String clusterRp,
         String clusterResourceName,
         String clusterName,
-        String extensionName,
-        Boolean forceDelete) {
+        String extensionName) {
+        final Boolean forceDelete = null;
         return beginDeleteAsync(
                 resourceGroupName, clusterRp, clusterResourceName, clusterName, extensionName, forceDelete)
             .getSyncPoller();
@@ -1170,32 +1196,6 @@ public final class ExtensionsClientImpl implements ExtensionsClient {
                 resourceGroupName, clusterRp, clusterResourceName, clusterName, extensionName, forceDelete, context)
             .last()
             .flatMap(this.client::getLroFinalResultOrError);
-    }
-
-    /**
-     * Delete a Kubernetes Cluster Extension. This will cause the Agent to Uninstall the extension from the cluster.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param clusterRp The Kubernetes cluster RP - i.e. Microsoft.ContainerService, Microsoft.Kubernetes,
-     *     Microsoft.HybridContainerService.
-     * @param clusterResourceName The Kubernetes cluster resource name - i.e. managedClusters, connectedClusters,
-     *     provisionedClusters.
-     * @param clusterName The name of the kubernetes cluster.
-     * @param extensionName Name of the Extension.
-     * @param forceDelete Delete the extension resource in Azure - not the normal asynchronous delete.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public void delete(
-        String resourceGroupName,
-        String clusterRp,
-        String clusterResourceName,
-        String clusterName,
-        String extensionName,
-        Boolean forceDelete) {
-        deleteAsync(resourceGroupName, clusterRp, clusterResourceName, clusterName, extensionName, forceDelete).block();
     }
 
     /**
@@ -1891,7 +1891,8 @@ public final class ExtensionsClientImpl implements ExtensionsClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1927,7 +1928,8 @@ public final class ExtensionsClientImpl implements ExtensionsClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.

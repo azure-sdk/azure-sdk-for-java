@@ -41,6 +41,7 @@
 ```java
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.kubernetesconfiguration.fluent.models.ExtensionInner;
+import com.azure.resourcemanager.kubernetesconfiguration.models.Plan;
 import com.azure.resourcemanager.kubernetesconfiguration.models.Scope;
 import com.azure.resourcemanager.kubernetesconfiguration.models.ScopeCluster;
 import java.util.HashMap;
@@ -49,7 +50,7 @@ import java.util.Map;
 /** Samples for Extensions Create. */
 public final class ExtensionsCreateSamples {
     /*
-     * x-ms-original-file: specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/stable/2022-03-01/examples/CreateExtension.json
+     * x-ms-original-file: specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/stable/2022-11-01/examples/CreateExtension.json
      */
     /**
      * Sample code: Create Extension.
@@ -81,6 +82,36 @@ public final class ExtensionsCreateSamples {
                 Context.NONE);
     }
 
+    /*
+     * x-ms-original-file: specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/stable/2022-11-01/examples/CreateExtensionWithPlan.json
+     */
+    /**
+     * Sample code: Create Extension with Plan.
+     *
+     * @param manager Entry point to SourceControlConfigurationManager.
+     */
+    public static void createExtensionWithPlan(
+        com.azure.resourcemanager.kubernetesconfiguration.SourceControlConfigurationManager manager) {
+        manager
+            .extensions()
+            .create(
+                "rg1",
+                "Microsoft.Kubernetes",
+                "connectedClusters",
+                "clusterName1",
+                "azureVote",
+                new ExtensionInner()
+                    .withPlan(
+                        new Plan()
+                            .withName("azure-vote-standard")
+                            .withPublisher("Microsoft")
+                            .withProduct("azure-vote-standard-offer-id"))
+                    .withExtensionType("azure-vote")
+                    .withAutoUpgradeMinorVersion(true)
+                    .withReleaseTrain("Preview"),
+                Context.NONE);
+    }
+
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();
@@ -102,7 +133,7 @@ import com.azure.core.util.Context;
 /** Samples for Extensions Delete. */
 public final class ExtensionsDeleteSamples {
     /*
-     * x-ms-original-file: specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/stable/2022-03-01/examples/DeleteExtension.json
+     * x-ms-original-file: specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/stable/2022-11-01/examples/DeleteExtension.json
      */
     /**
      * Sample code: Delete Extension.
@@ -133,7 +164,23 @@ import com.azure.core.util.Context;
 /** Samples for Extensions Get. */
 public final class ExtensionsGetSamples {
     /*
-     * x-ms-original-file: specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/stable/2022-03-01/examples/GetExtension.json
+     * x-ms-original-file: specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/stable/2022-11-01/examples/GetExtensionWithPlan.json
+     */
+    /**
+     * Sample code: Get Extension with Plan.
+     *
+     * @param manager Entry point to SourceControlConfigurationManager.
+     */
+    public static void getExtensionWithPlan(
+        com.azure.resourcemanager.kubernetesconfiguration.SourceControlConfigurationManager manager) {
+        manager
+            .extensions()
+            .getWithResponse(
+                "rg1", "Microsoft.Kubernetes", "connectedClusters", "clusterName1", "azureVote", Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file: specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/stable/2022-11-01/examples/GetExtension.json
      */
     /**
      * Sample code: Get Extension.
@@ -158,7 +205,7 @@ import com.azure.core.util.Context;
 /** Samples for Extensions List. */
 public final class ExtensionsListSamples {
     /*
-     * x-ms-original-file: specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/stable/2022-03-01/examples/ListExtensions.json
+     * x-ms-original-file: specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/stable/2022-11-01/examples/ListExtensions.json
      */
     /**
      * Sample code: List Extensions.
@@ -183,7 +230,7 @@ import java.util.Map;
 /** Samples for Extensions Update. */
 public final class ExtensionsUpdateSamples {
     /*
-     * x-ms-original-file: specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/stable/2022-03-01/examples/PatchExtension.json
+     * x-ms-original-file: specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/stable/2022-11-01/examples/PatchExtension.json
      */
     /**
      * Sample code: Update Extension.
@@ -234,7 +281,7 @@ import com.azure.core.util.Context;
 /** Samples for FluxConfigOperationStatus Get. */
 public final class FluxConfigOperationStatusGetSamples {
     /*
-     * x-ms-original-file: specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/stable/2022-03-01/examples/GetFluxConfigurationAsyncOperationStatus.json
+     * x-ms-original-file: specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/stable/2022-11-01/examples/GetFluxConfigurationAsyncOperationStatus.json
      */
     /**
      * Sample code: FluxConfigurationAsyncOperationStatus Get.
@@ -275,7 +322,7 @@ import java.util.Map;
 /** Samples for FluxConfigurations CreateOrUpdate. */
 public final class FluxConfigurationsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/stable/2022-03-01/examples/CreateFluxConfiguration.json
+     * x-ms-original-file: specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/stable/2022-11-01/examples/CreateFluxConfiguration.json
      */
     /**
      * Sample code: Create Flux Configuration.
@@ -324,7 +371,7 @@ public final class FluxConfigurationsCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/stable/2022-03-01/examples/CreateFluxConfigurationWithBucket.json
+     * x-ms-original-file: specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/stable/2022-11-01/examples/CreateFluxConfigurationWithBucket.json
      */
     /**
      * Sample code: Create Flux Configuration with Bucket Source Kind.
@@ -393,7 +440,7 @@ import com.azure.core.util.Context;
 /** Samples for FluxConfigurations Delete. */
 public final class FluxConfigurationsDeleteSamples {
     /*
-     * x-ms-original-file: specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/stable/2022-03-01/examples/DeleteFluxConfiguration.json
+     * x-ms-original-file: specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/stable/2022-11-01/examples/DeleteFluxConfiguration.json
      */
     /**
      * Sample code: Delete Flux Configuration.
@@ -424,7 +471,7 @@ import com.azure.core.util.Context;
 /** Samples for FluxConfigurations Get. */
 public final class FluxConfigurationsGetSamples {
     /*
-     * x-ms-original-file: specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/stable/2022-03-01/examples/GetFluxConfiguration.json
+     * x-ms-original-file: specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/stable/2022-11-01/examples/GetFluxConfiguration.json
      */
     /**
      * Sample code: Get Flux Configuration.
@@ -449,7 +496,7 @@ import com.azure.core.util.Context;
 /** Samples for FluxConfigurations List. */
 public final class FluxConfigurationsListSamples {
     /*
-     * x-ms-original-file: specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/stable/2022-03-01/examples/ListFluxConfigurations.json
+     * x-ms-original-file: specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/stable/2022-11-01/examples/ListFluxConfigurations.json
      */
     /**
      * Sample code: List Flux Configuration.
@@ -478,7 +525,7 @@ import java.util.Map;
 /** Samples for FluxConfigurations Update. */
 public final class FluxConfigurationsUpdateSamples {
     /*
-     * x-ms-original-file: specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/stable/2022-03-01/examples/PatchFluxConfiguration.json
+     * x-ms-original-file: specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/stable/2022-11-01/examples/PatchFluxConfiguration.json
      */
     /**
      * Sample code: Patch Flux Configuration.
@@ -536,7 +583,7 @@ import com.azure.core.util.Context;
 /** Samples for OperationStatus Get. */
 public final class OperationStatusGetSamples {
     /*
-     * x-ms-original-file: specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/stable/2022-03-01/examples/GetExtensionAsyncOperationStatus.json
+     * x-ms-original-file: specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/stable/2022-11-01/examples/GetExtensionAsyncOperationStatus.json
      */
     /**
      * Sample code: ExtensionAsyncOperationStatus Get.
@@ -567,7 +614,7 @@ import com.azure.core.util.Context;
 /** Samples for OperationStatus List. */
 public final class OperationStatusListSamples {
     /*
-     * x-ms-original-file: specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/stable/2022-03-01/examples/ListAsyncOperationStatus.json
+     * x-ms-original-file: specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/stable/2022-11-01/examples/ListAsyncOperationStatus.json
      */
     /**
      * Sample code: AsyncOperationStatus List.
@@ -591,7 +638,7 @@ import com.azure.core.util.Context;
 /** Samples for Operations List. */
 public final class OperationsListSamples {
     /*
-     * x-ms-original-file: specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/stable/2022-03-01/examples/OperationsList.json
+     * x-ms-original-file: specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/stable/2022-11-01/examples/OperationsList.json
      */
     /**
      * Sample code: BatchAccountDelete.
@@ -619,7 +666,7 @@ import java.util.Map;
 /** Samples for SourceControlConfigurations CreateOrUpdate. */
 public final class SourceControlConfigurationsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/stable/2022-03-01/examples/CreateSourceControlConfiguration.json
+     * x-ms-original-file: specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/stable/2022-11-01/examples/CreateSourceControlConfiguration.json
      */
     /**
      * Sample code: Create Source Control Configuration.
@@ -676,7 +723,7 @@ import com.azure.core.util.Context;
 /** Samples for SourceControlConfigurations Delete. */
 public final class SourceControlConfigurationsDeleteSamples {
     /*
-     * x-ms-original-file: specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/stable/2022-03-01/examples/DeleteSourceControlConfiguration.json
+     * x-ms-original-file: specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/stable/2022-11-01/examples/DeleteSourceControlConfiguration.json
      */
     /**
      * Sample code: Delete Source Control Configuration.
@@ -701,7 +748,7 @@ import com.azure.core.util.Context;
 /** Samples for SourceControlConfigurations Get. */
 public final class SourceControlConfigurationsGetSamples {
     /*
-     * x-ms-original-file: specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/stable/2022-03-01/examples/GetSourceControlConfiguration.json
+     * x-ms-original-file: specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/stable/2022-11-01/examples/GetSourceControlConfiguration.json
      */
     /**
      * Sample code: Get Source Control Configuration.
@@ -726,7 +773,7 @@ import com.azure.core.util.Context;
 /** Samples for SourceControlConfigurations List. */
 public final class SourceControlConfigurationsListSamples {
     /*
-     * x-ms-original-file: specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/stable/2022-03-01/examples/ListSourceControlConfiguration.json
+     * x-ms-original-file: specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/stable/2022-11-01/examples/ListSourceControlConfiguration.json
      */
     /**
      * Sample code: List Source Control Configuration.

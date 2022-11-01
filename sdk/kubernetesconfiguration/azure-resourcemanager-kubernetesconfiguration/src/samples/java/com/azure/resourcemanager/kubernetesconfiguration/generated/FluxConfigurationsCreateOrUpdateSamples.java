@@ -19,7 +19,7 @@ import java.util.Map;
 /** Samples for FluxConfigurations CreateOrUpdate. */
 public final class FluxConfigurationsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/stable/2022-03-01/examples/CreateFluxConfiguration.json
+     * x-ms-original-file: specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/stable/2022-11-01/examples/CreateFluxConfiguration.json
      */
     /**
      * Sample code: Create Flux Configuration.
@@ -68,7 +68,7 @@ public final class FluxConfigurationsCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/stable/2022-03-01/examples/CreateFluxConfigurationWithBucket.json
+     * x-ms-original-file: specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/stable/2022-11-01/examples/CreateFluxConfigurationWithBucket.json
      */
     /**
      * Sample code: Create Flux Configuration with Bucket Source Kind.
