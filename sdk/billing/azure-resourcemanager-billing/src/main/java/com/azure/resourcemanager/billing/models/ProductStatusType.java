@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for ProductStatusType. */
+/** The current status of the product. */
 public final class ProductStatusType extends ExpandableStringEnum<ProductStatusType> {
     /** Static value Active for ProductStatusType. */
     public static final ProductStatusType ACTIVE = fromString("Active");
@@ -45,7 +45,11 @@ public final class ProductStatusType extends ExpandableStringEnum<ProductStatusT
         return fromString(name, ProductStatusType.class);
     }
 
-    /** @return known ProductStatusType values. */
+    /**
+     * Gets known ProductStatusType values.
+     *
+     * @return known ProductStatusType values.
+     */
     public static Collection<ProductStatusType> values() {
         return values(ProductStatusType.class);
     }
