@@ -1067,29 +1067,7 @@ public final class DedicatedHsmsClientImpl implements DedicatedHsmsClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<DedicatedHsmInner> getByResourceGroupAsync(String resourceGroupName, String name) {
         return getByResourceGroupWithResponseAsync(resourceGroupName, name)
-            .flatMap(
-                (Response<DedicatedHsmInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
-    }
-
-    /**
-     * Gets the specified Azure dedicated HSM.
-     *
-     * @param resourceGroupName The name of the Resource Group to which the dedicated hsm belongs.
-     * @param name The name of the dedicated HSM.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ErrorException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the specified Azure dedicated HSM.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public DedicatedHsmInner getByResourceGroup(String resourceGroupName, String name) {
-        return getByResourceGroupAsync(resourceGroupName, name).block();
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -1107,6 +1085,21 @@ public final class DedicatedHsmsClientImpl implements DedicatedHsmsClient {
     public Response<DedicatedHsmInner> getByResourceGroupWithResponse(
         String resourceGroupName, String name, Context context) {
         return getByResourceGroupWithResponseAsync(resourceGroupName, name, context).block();
+    }
+
+    /**
+     * Gets the specified Azure dedicated HSM.
+     *
+     * @param resourceGroupName The name of the Resource Group to which the dedicated hsm belongs.
+     * @param name The name of the dedicated HSM.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ErrorException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the specified Azure dedicated HSM.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public DedicatedHsmInner getByResourceGroup(String resourceGroupName, String name) {
+        return getByResourceGroupWithResponse(resourceGroupName, name, Context.NONE).getValue();
     }
 
     /**
@@ -1475,7 +1468,10 @@ public final class DedicatedHsmsClientImpl implements DedicatedHsmsClient {
 
     /**
      * Gets a list of egress endpoints (network endpoints of all outbound dependencies) in the specified dedicated hsm
-     * resource. The operation returns properties of each egress endpoint.
+     * resource.
+     *
+     * <p>Gets a list of egress endpoints (network endpoints of all outbound dependencies) in the specified dedicated
+     * hsm resource. The operation returns properties of each egress endpoint.
      *
      * @param resourceGroupName The name of the Resource Group to which the dedicated hsm belongs.
      * @param name The name of the dedicated HSM.
@@ -1534,7 +1530,10 @@ public final class DedicatedHsmsClientImpl implements DedicatedHsmsClient {
 
     /**
      * Gets a list of egress endpoints (network endpoints of all outbound dependencies) in the specified dedicated hsm
-     * resource. The operation returns properties of each egress endpoint.
+     * resource.
+     *
+     * <p>Gets a list of egress endpoints (network endpoints of all outbound dependencies) in the specified dedicated
+     * hsm resource. The operation returns properties of each egress endpoint.
      *
      * @param resourceGroupName The name of the Resource Group to which the dedicated hsm belongs.
      * @param name The name of the dedicated HSM.
@@ -1592,7 +1591,10 @@ public final class DedicatedHsmsClientImpl implements DedicatedHsmsClient {
 
     /**
      * Gets a list of egress endpoints (network endpoints of all outbound dependencies) in the specified dedicated hsm
-     * resource. The operation returns properties of each egress endpoint.
+     * resource.
+     *
+     * <p>Gets a list of egress endpoints (network endpoints of all outbound dependencies) in the specified dedicated
+     * hsm resource. The operation returns properties of each egress endpoint.
      *
      * @param resourceGroupName The name of the Resource Group to which the dedicated hsm belongs.
      * @param name The name of the dedicated HSM.
@@ -1612,7 +1614,10 @@ public final class DedicatedHsmsClientImpl implements DedicatedHsmsClient {
 
     /**
      * Gets a list of egress endpoints (network endpoints of all outbound dependencies) in the specified dedicated hsm
-     * resource. The operation returns properties of each egress endpoint.
+     * resource.
+     *
+     * <p>Gets a list of egress endpoints (network endpoints of all outbound dependencies) in the specified dedicated
+     * hsm resource. The operation returns properties of each egress endpoint.
      *
      * @param resourceGroupName The name of the Resource Group to which the dedicated hsm belongs.
      * @param name The name of the dedicated HSM.
@@ -1633,7 +1638,10 @@ public final class DedicatedHsmsClientImpl implements DedicatedHsmsClient {
 
     /**
      * Gets a list of egress endpoints (network endpoints of all outbound dependencies) in the specified dedicated hsm
-     * resource. The operation returns properties of each egress endpoint.
+     * resource.
+     *
+     * <p>Gets a list of egress endpoints (network endpoints of all outbound dependencies) in the specified dedicated
+     * hsm resource. The operation returns properties of each egress endpoint.
      *
      * @param resourceGroupName The name of the Resource Group to which the dedicated hsm belongs.
      * @param name The name of the dedicated HSM.
@@ -1651,7 +1659,10 @@ public final class DedicatedHsmsClientImpl implements DedicatedHsmsClient {
 
     /**
      * Gets a list of egress endpoints (network endpoints of all outbound dependencies) in the specified dedicated hsm
-     * resource. The operation returns properties of each egress endpoint.
+     * resource.
+     *
+     * <p>Gets a list of egress endpoints (network endpoints of all outbound dependencies) in the specified dedicated
+     * hsm resource. The operation returns properties of each egress endpoint.
      *
      * @param resourceGroupName The name of the Resource Group to which the dedicated hsm belongs.
      * @param name The name of the dedicated HSM.
@@ -1671,7 +1682,8 @@ public final class DedicatedHsmsClientImpl implements DedicatedHsmsClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1707,7 +1719,8 @@ public final class DedicatedHsmsClientImpl implements DedicatedHsmsClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorException thrown if the request is rejected by server.
@@ -1744,7 +1757,8 @@ public final class DedicatedHsmsClientImpl implements DedicatedHsmsClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1780,7 +1794,8 @@ public final class DedicatedHsmsClientImpl implements DedicatedHsmsClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorException thrown if the request is rejected by server.
@@ -1817,7 +1832,8 @@ public final class DedicatedHsmsClientImpl implements DedicatedHsmsClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1858,7 +1874,8 @@ public final class DedicatedHsmsClientImpl implements DedicatedHsmsClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ErrorException thrown if the request is rejected by server.
