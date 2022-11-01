@@ -30,7 +30,11 @@ public final class Metrictype extends ExpandableStringEnum<Metrictype> {
         return fromString(name, Metrictype.class);
     }
 
-    /** @return known Metrictype values. */
+    /**
+     * Gets known Metrictype values.
+     *
+     * @return known Metrictype values.
+     */
     public static Collection<Metrictype> values() {
         return values(Metrictype.class);
     }

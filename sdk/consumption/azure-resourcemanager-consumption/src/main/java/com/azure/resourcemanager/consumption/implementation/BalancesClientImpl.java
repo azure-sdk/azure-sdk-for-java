@@ -21,15 +21,12 @@ import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.consumption.fluent.BalancesClient;
 import com.azure.resourcemanager.consumption.fluent.models.BalanceInner;
 import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in BalancesClient. */
 public final class BalancesClientImpl implements BalancesClient {
-    private final ClientLogger logger = new ClientLogger(BalancesClientImpl.class);
-
     /** The proxy service used to perform REST calls. */
     private final BalancesService service;
 
@@ -87,7 +84,8 @@ public final class BalancesClientImpl implements BalancesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the balances for a scope by billingAccountId.
+     * @return the balances for a scope by billingAccountId along with {@link Response} on successful completion of
+     *     {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<BalanceInner>> getByBillingAccountWithResponseAsync(String billingAccountId) {
@@ -120,7 +118,8 @@ public final class BalancesClientImpl implements BalancesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the balances for a scope by billingAccountId.
+     * @return the balances for a scope by billingAccountId along with {@link Response} on successful completion of
+     *     {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<BalanceInner>> getByBillingAccountWithResponseAsync(
@@ -150,19 +149,27 @@ public final class BalancesClientImpl implements BalancesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the balances for a scope by billingAccountId.
+     * @return the balances for a scope by billingAccountId on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<BalanceInner> getByBillingAccountAsync(String billingAccountId) {
-        return getByBillingAccountWithResponseAsync(billingAccountId)
-            .flatMap(
-                (Response<BalanceInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+        return getByBillingAccountWithResponseAsync(billingAccountId).flatMap(res -> Mono.justOrEmpty(res.getValue()));
+    }
+
+    /**
+     * Gets the balances for a scope by billingAccountId. Balances are available via this API only for May 1, 2014 or
+     * later.
+     *
+     * @param billingAccountId BillingAccount ID.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the balances for a scope by billingAccountId along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<BalanceInner> getByBillingAccountWithResponse(String billingAccountId, Context context) {
+        return getByBillingAccountWithResponseAsync(billingAccountId, context).block();
     }
 
     /**
@@ -177,23 +184,7 @@ public final class BalancesClientImpl implements BalancesClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public BalanceInner getByBillingAccount(String billingAccountId) {
-        return getByBillingAccountAsync(billingAccountId).block();
-    }
-
-    /**
-     * Gets the balances for a scope by billingAccountId. Balances are available via this API only for May 1, 2014 or
-     * later.
-     *
-     * @param billingAccountId BillingAccount ID.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the balances for a scope by billingAccountId.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<BalanceInner> getByBillingAccountWithResponse(String billingAccountId, Context context) {
-        return getByBillingAccountWithResponseAsync(billingAccountId, context).block();
+        return getByBillingAccountWithResponse(billingAccountId, Context.NONE).getValue();
     }
 
     /**
@@ -205,7 +196,8 @@ public final class BalancesClientImpl implements BalancesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the balances for a scope by billing period and billingAccountId.
+     * @return the balances for a scope by billing period and billingAccountId along with {@link Response} on successful
+     *     completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<BalanceInner>> getForBillingPeriodByBillingAccountWithResponseAsync(
@@ -249,7 +241,8 @@ public final class BalancesClientImpl implements BalancesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the balances for a scope by billing period and billingAccountId.
+     * @return the balances for a scope by billing period and billingAccountId along with {@link Response} on successful
+     *     completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<BalanceInner>> getForBillingPeriodByBillingAccountWithResponseAsync(
@@ -289,20 +282,32 @@ public final class BalancesClientImpl implements BalancesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the balances for a scope by billing period and billingAccountId.
+     * @return the balances for a scope by billing period and billingAccountId on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<BalanceInner> getForBillingPeriodByBillingAccountAsync(
         String billingAccountId, String billingPeriodName) {
         return getForBillingPeriodByBillingAccountWithResponseAsync(billingAccountId, billingPeriodName)
-            .flatMap(
-                (Response<BalanceInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
+    }
+
+    /**
+     * Gets the balances for a scope by billing period and billingAccountId. Balances are available via this API only
+     * for May 1, 2014 or later.
+     *
+     * @param billingAccountId BillingAccount ID.
+     * @param billingPeriodName Billing Period Name.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the balances for a scope by billing period and billingAccountId along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<BalanceInner> getForBillingPeriodByBillingAccountWithResponse(
+        String billingAccountId, String billingPeriodName, Context context) {
+        return getForBillingPeriodByBillingAccountWithResponseAsync(billingAccountId, billingPeriodName, context)
+            .block();
     }
 
     /**
@@ -318,25 +323,7 @@ public final class BalancesClientImpl implements BalancesClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public BalanceInner getForBillingPeriodByBillingAccount(String billingAccountId, String billingPeriodName) {
-        return getForBillingPeriodByBillingAccountAsync(billingAccountId, billingPeriodName).block();
-    }
-
-    /**
-     * Gets the balances for a scope by billing period and billingAccountId. Balances are available via this API only
-     * for May 1, 2014 or later.
-     *
-     * @param billingAccountId BillingAccount ID.
-     * @param billingPeriodName Billing Period Name.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the balances for a scope by billing period and billingAccountId.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<BalanceInner> getForBillingPeriodByBillingAccountWithResponse(
-        String billingAccountId, String billingPeriodName, Context context) {
-        return getForBillingPeriodByBillingAccountWithResponseAsync(billingAccountId, billingPeriodName, context)
-            .block();
+        return getForBillingPeriodByBillingAccountWithResponse(billingAccountId, billingPeriodName, Context.NONE)
+            .getValue();
     }
 }
