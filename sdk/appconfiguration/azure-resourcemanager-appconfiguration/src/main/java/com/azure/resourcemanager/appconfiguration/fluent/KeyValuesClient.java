@@ -53,21 +53,6 @@ public interface KeyValuesClient {
      * @param configStoreName The name of the configuration store.
      * @param keyValueName Identifier of key and label combination. Key and label are joined by $ character. Label is
      *     optional.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the properties of the specified key-value.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    KeyValueInner get(String resourceGroupName, String configStoreName, String keyValueName);
-
-    /**
-     * Gets the properties of the specified key-value.
-     *
-     * @param resourceGroupName The name of the resource group to which the container registry belongs.
-     * @param configStoreName The name of the configuration store.
-     * @param keyValueName Identifier of key and label combination. Key and label are joined by $ character. Label is
-     *     optional.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -79,7 +64,7 @@ public interface KeyValuesClient {
         String resourceGroupName, String configStoreName, String keyValueName, Context context);
 
     /**
-     * Creates a key-value.
+     * Gets the properties of the specified key-value.
      *
      * @param resourceGroupName The name of the resource group to which the container registry belongs.
      * @param configStoreName The name of the configuration store.
@@ -88,10 +73,10 @@ public interface KeyValuesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the key-value resource along with all resource properties.
+     * @return the properties of the specified key-value.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    KeyValueInner createOrUpdate(String resourceGroupName, String configStoreName, String keyValueName);
+    KeyValueInner get(String resourceGroupName, String configStoreName, String keyValueName);
 
     /**
      * Creates a key-value.
@@ -114,6 +99,21 @@ public interface KeyValuesClient {
         String keyValueName,
         KeyValueInner keyValueParameters,
         Context context);
+
+    /**
+     * Creates a key-value.
+     *
+     * @param resourceGroupName The name of the resource group to which the container registry belongs.
+     * @param configStoreName The name of the configuration store.
+     * @param keyValueName Identifier of key and label combination. Key and label are joined by $ character. Label is
+     *     optional.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the key-value resource along with all resource properties.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    KeyValueInner createOrUpdate(String resourceGroupName, String configStoreName, String keyValueName);
 
     /**
      * Deletes a key-value.
