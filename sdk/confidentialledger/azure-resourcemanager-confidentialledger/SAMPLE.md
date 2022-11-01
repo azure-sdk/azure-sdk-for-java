@@ -10,6 +10,15 @@
 - [ListByResourceGroup](#ledger_listbyresourcegroup)
 - [Update](#ledger_update)
 
+## ManagedCcf
+
+- [Create](#managedccf_create)
+- [Delete](#managedccf_delete)
+- [GetByResourceGroup](#managedccf_getbyresourcegroup)
+- [List](#managedccf_list)
+- [ListByResourceGroup](#managedccf_listbyresourcegroup)
+- [Update](#managedccf_update)
+
 ## Operations
 
 - [List](#operations_list)
@@ -32,7 +41,7 @@ import java.util.Map;
 /** Samples for Ledger Create. */
 public final class LedgerCreateSamples {
     /*
-     * x-ms-original-file: specification/confidentialledger/resource-manager/Microsoft.ConfidentialLedger/stable/2022-05-13/examples/ConfidentialLedger_Create.json
+     * x-ms-original-file: specification/confidentialledger/resource-manager/Microsoft.ConfidentialLedger/preview/2022-09-08-preview/examples/ConfidentialLedger_Create.json
      */
     /**
      * Sample code: ConfidentialLedgerCreate.
@@ -90,7 +99,7 @@ import com.azure.core.util.Context;
 /** Samples for Ledger Delete. */
 public final class LedgerDeleteSamples {
     /*
-     * x-ms-original-file: specification/confidentialledger/resource-manager/Microsoft.ConfidentialLedger/stable/2022-05-13/examples/ConfidentialLedger_Delete.json
+     * x-ms-original-file: specification/confidentialledger/resource-manager/Microsoft.ConfidentialLedger/preview/2022-09-08-preview/examples/ConfidentialLedger_Delete.json
      */
     /**
      * Sample code: ConfidentialLedgerDelete.
@@ -112,7 +121,7 @@ import com.azure.core.util.Context;
 /** Samples for Ledger GetByResourceGroup. */
 public final class LedgerGetByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/confidentialledger/resource-manager/Microsoft.ConfidentialLedger/stable/2022-05-13/examples/ConfidentialLedger_Get.json
+     * x-ms-original-file: specification/confidentialledger/resource-manager/Microsoft.ConfidentialLedger/preview/2022-09-08-preview/examples/ConfidentialLedger_Get.json
      */
     /**
      * Sample code: ConfidentialLedgerGet.
@@ -134,7 +143,7 @@ import com.azure.core.util.Context;
 /** Samples for Ledger List. */
 public final class LedgerListSamples {
     /*
-     * x-ms-original-file: specification/confidentialledger/resource-manager/Microsoft.ConfidentialLedger/stable/2022-05-13/examples/ConfidentialLedger_ListBySub.json
+     * x-ms-original-file: specification/confidentialledger/resource-manager/Microsoft.ConfidentialLedger/preview/2022-09-08-preview/examples/ConfidentialLedger_ListBySub.json
      */
     /**
      * Sample code: ConfidentialLedgerListBySub.
@@ -156,7 +165,7 @@ import com.azure.core.util.Context;
 /** Samples for Ledger ListByResourceGroup. */
 public final class LedgerListByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/confidentialledger/resource-manager/Microsoft.ConfidentialLedger/stable/2022-05-13/examples/ConfidentialLedger_List.json
+     * x-ms-original-file: specification/confidentialledger/resource-manager/Microsoft.ConfidentialLedger/preview/2022-09-08-preview/examples/ConfidentialLedger_List.json
      */
     /**
      * Sample code: ConfidentialLedgerList.
@@ -187,7 +196,7 @@ import java.util.Map;
 /** Samples for Ledger Update. */
 public final class LedgerUpdateSamples {
     /*
-     * x-ms-original-file: specification/confidentialledger/resource-manager/Microsoft.ConfidentialLedger/stable/2022-05-13/examples/ConfidentialLedger_Update.json
+     * x-ms-original-file: specification/confidentialledger/resource-manager/Microsoft.ConfidentialLedger/preview/2022-09-08-preview/examples/ConfidentialLedger_Update.json
      */
     /**
      * Sample code: ConfidentialLedgerUpdate.
@@ -239,6 +248,219 @@ public final class LedgerUpdateSamples {
 }
 ```
 
+### ManagedCcf_Create
+
+```java
+import com.azure.core.management.serializer.SerializerFactory;
+import com.azure.core.util.serializer.SerializerEncoding;
+import com.azure.resourcemanager.confidentialledger.models.DeploymentType;
+import com.azure.resourcemanager.confidentialledger.models.LanguageRuntime;
+import com.azure.resourcemanager.confidentialledger.models.ManagedCcfProperties;
+import com.azure.resourcemanager.confidentialledger.models.MemberIdentityCertificate;
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+
+/** Samples for ManagedCcf Create. */
+public final class ManagedCcfCreateSamples {
+    /*
+     * x-ms-original-file: specification/confidentialledger/resource-manager/Microsoft.ConfidentialLedger/preview/2022-09-08-preview/examples/ManagedCCF_Create.json
+     */
+    /**
+     * Sample code: ManagedCCFCreate.
+     *
+     * @param manager Entry point to ConfidentialLedgerManager.
+     */
+    public static void managedCCFCreate(com.azure.resourcemanager.confidentialledger.ConfidentialLedgerManager manager)
+        throws IOException {
+        manager
+            .managedCcfs()
+            .define("DummyMccfAppName")
+            .withRegion("EastUS")
+            .withExistingResourceGroup("DummyResourceGroupName")
+            .withTags(mapOf("additionalProps1", "additional properties"))
+            .withProperties(
+                new ManagedCcfProperties()
+                    .withMemberIdentityCertificates(
+                        Arrays
+                            .asList(
+                                new MemberIdentityCertificate()
+                                    .withCertificate(
+                                        "-----BEGIN"
+                                            + " CERTIFICATE-----MIIBsjCCATigAwIBAgIUZWIbyG79TniQLd2UxJuU74tqrKcwCgYIKoZIzj0EAwMwEDEOMAwGA1UEAwwFdXNlcjAwHhcNMjEwMzE2MTgwNjExWhcNMjIwMzE2MTgwNjExWjAQMQ4wDAYDVQQDDAV1c2VyMDB2MBAGByqGSM49AgEGBSuBBAAiA2IABBiWSo/j8EFit7aUMm5lF+lUmCu+IgfnpFD+7QMgLKtxRJ3aGSqgS/GpqcYVGddnODtSarNE/HyGKUFUolLPQ5ybHcouUk0kyfA7XMeSoUA4lBz63Wha8wmXo+NdBRo39qNTMFEwHQYDVR0OBBYEFPtuhrwgGjDFHeUUT4nGsXaZn69KMB8GA1UdIwQYMBaAFPtuhrwgGjDFHeUUT4nGsXaZn69KMA8GA1UdEwEB/wQFMAMBAf8wCgYIKoZIzj0EAwMDaAAwZQIxAOnozm2CyqRwSSQLls5r+mUHRGRyXHXwYtM4Dcst/VEZdmS9fqvHRCHbjUlO/+HNfgIwMWZ4FmsjD3wnPxONOm9YdVn/PRD7SsPRPbOjwBiE4EBGaHDsLjYAGDSGi7NJnSkA-----END"
+                                            + " CERTIFICATE-----")
+                                    .withEncryptionkey("ledgerencryptionkey")
+                                    .withTags(
+                                        SerializerFactory
+                                            .createDefaultManagementSerializerAdapter()
+                                            .deserialize(
+                                                "{\"additionalProps1\":\"additional properties\"}",
+                                                Object.class,
+                                                SerializerEncoding.JSON))))
+                    .withDeploymentType(
+                        new DeploymentType()
+                            .withLanguageRuntime(LanguageRuntime.CPP)
+                            .withAppSourceUri(
+                                "https://myaccount.blob.core.windows.net/storage/mccfsource?sv=2022-02-11%st=2022-03-11")))
+            .create();
+    }
+
+    @SuppressWarnings("unchecked")
+    private static <T> Map<String, T> mapOf(Object... inputs) {
+        Map<String, T> map = new HashMap<>();
+        for (int i = 0; i < inputs.length; i += 2) {
+            String key = (String) inputs[i];
+            T value = (T) inputs[i + 1];
+            map.put(key, value);
+        }
+        return map;
+    }
+}
+```
+
+### ManagedCcf_Delete
+
+```java
+import com.azure.core.util.Context;
+
+/** Samples for ManagedCcf Delete. */
+public final class ManagedCcfDeleteSamples {
+    /*
+     * x-ms-original-file: specification/confidentialledger/resource-manager/Microsoft.ConfidentialLedger/preview/2022-09-08-preview/examples/ManagedCCF_Delete.json
+     */
+    /**
+     * Sample code: ConfidentialLedgerDelete.
+     *
+     * @param manager Entry point to ConfidentialLedgerManager.
+     */
+    public static void confidentialLedgerDelete(
+        com.azure.resourcemanager.confidentialledger.ConfidentialLedgerManager manager) {
+        manager.managedCcfs().delete("DummyResourceGroupName", "DummyMccfAppName", Context.NONE);
+    }
+}
+```
+
+### ManagedCcf_GetByResourceGroup
+
+```java
+import com.azure.core.util.Context;
+
+/** Samples for ManagedCcf GetByResourceGroup. */
+public final class ManagedCcfGetByResourceGroupSamples {
+    /*
+     * x-ms-original-file: specification/confidentialledger/resource-manager/Microsoft.ConfidentialLedger/preview/2022-09-08-preview/examples/ManagedCCF_Get.json
+     */
+    /**
+     * Sample code: ManagedCCFGet.
+     *
+     * @param manager Entry point to ConfidentialLedgerManager.
+     */
+    public static void managedCCFGet(com.azure.resourcemanager.confidentialledger.ConfidentialLedgerManager manager) {
+        manager
+            .managedCcfs()
+            .getByResourceGroupWithResponse("DummyResourceGroupName", "DummyMccfAppName", Context.NONE);
+    }
+}
+```
+
+### ManagedCcf_List
+
+```java
+import com.azure.core.util.Context;
+
+/** Samples for ManagedCcf List. */
+public final class ManagedCcfListSamples {
+    /*
+     * x-ms-original-file: specification/confidentialledger/resource-manager/Microsoft.ConfidentialLedger/preview/2022-09-08-preview/examples/ManagedCCF_ListBySub.json
+     */
+    /**
+     * Sample code: ManagedCCFListBySub.
+     *
+     * @param manager Entry point to ConfidentialLedgerManager.
+     */
+    public static void managedCCFListBySub(
+        com.azure.resourcemanager.confidentialledger.ConfidentialLedgerManager manager) {
+        manager.managedCcfs().list(null, Context.NONE);
+    }
+}
+```
+
+### ManagedCcf_ListByResourceGroup
+
+```java
+import com.azure.core.util.Context;
+
+/** Samples for ManagedCcf ListByResourceGroup. */
+public final class ManagedCcfListByResourceGroupSamples {
+    /*
+     * x-ms-original-file: specification/confidentialledger/resource-manager/Microsoft.ConfidentialLedger/preview/2022-09-08-preview/examples/ManagedCCF_List.json
+     */
+    /**
+     * Sample code: ManagedCCFList.
+     *
+     * @param manager Entry point to ConfidentialLedgerManager.
+     */
+    public static void managedCCFList(com.azure.resourcemanager.confidentialledger.ConfidentialLedgerManager manager) {
+        manager.managedCcfs().listByResourceGroup("DummyResourceGroupName", null, Context.NONE);
+    }
+}
+```
+
+### ManagedCcf_Update
+
+```java
+import com.azure.core.util.Context;
+import com.azure.resourcemanager.confidentialledger.fluent.models.ManagedCcfInner;
+import com.azure.resourcemanager.confidentialledger.models.DeploymentType;
+import com.azure.resourcemanager.confidentialledger.models.LanguageRuntime;
+import com.azure.resourcemanager.confidentialledger.models.ManagedCcfProperties;
+import java.util.HashMap;
+import java.util.Map;
+
+/** Samples for ManagedCcf Update. */
+public final class ManagedCcfUpdateSamples {
+    /*
+     * x-ms-original-file: specification/confidentialledger/resource-manager/Microsoft.ConfidentialLedger/preview/2022-09-08-preview/examples/ManagedCCF_Update.json
+     */
+    /**
+     * Sample code: ManagedCCFUpdate.
+     *
+     * @param manager Entry point to ConfidentialLedgerManager.
+     */
+    public static void managedCCFUpdate(
+        com.azure.resourcemanager.confidentialledger.ConfidentialLedgerManager manager) {
+        manager
+            .managedCcfs()
+            .update(
+                "DummyResourceGroupName",
+                "DummyMccfAppName",
+                new ManagedCcfInner()
+                    .withLocation("EastUS")
+                    .withTags(mapOf("additionalProps1", "additional properties"))
+                    .withProperties(
+                        new ManagedCcfProperties()
+                            .withDeploymentType(
+                                new DeploymentType()
+                                    .withLanguageRuntime(LanguageRuntime.CPP)
+                                    .withAppSourceUri(
+                                        "https://myaccount.blob.core.windows.net/storage/mccfsource?sv=2022-02-11%st=2022-03-11"))),
+                Context.NONE);
+    }
+
+    @SuppressWarnings("unchecked")
+    private static <T> Map<String, T> mapOf(Object... inputs) {
+        Map<String, T> map = new HashMap<>();
+        for (int i = 0; i < inputs.length; i += 2) {
+            String key = (String) inputs[i];
+            T value = (T) inputs[i + 1];
+            map.put(key, value);
+        }
+        return map;
+    }
+}
+```
+
 ### Operations_List
 
 ```java
@@ -247,7 +469,7 @@ import com.azure.core.util.Context;
 /** Samples for Operations List. */
 public final class OperationsListSamples {
     /*
-     * x-ms-original-file: specification/confidentialledger/resource-manager/Microsoft.ConfidentialLedger/stable/2022-05-13/examples/Operations_Get.json
+     * x-ms-original-file: specification/confidentialledger/resource-manager/Microsoft.ConfidentialLedger/preview/2022-09-08-preview/examples/Operations_Get.json
      */
     /**
      * Sample code: OperationsGet.
@@ -269,7 +491,7 @@ import com.azure.resourcemanager.confidentialledger.models.CheckNameAvailability
 /** Samples for ResourceProvider CheckNameAvailability. */
 public final class ResourceProviderCheckNameAvailabilitySamples {
     /*
-     * x-ms-original-file: specification/confidentialledger/resource-manager/Microsoft.ConfidentialLedger/stable/2022-05-13/examples/CheckNameAvailability.json
+     * x-ms-original-file: specification/confidentialledger/resource-manager/Microsoft.ConfidentialLedger/preview/2022-09-08-preview/examples/CheckNameAvailability.json
      */
     /**
      * Sample code: CheckNameAvailability.
