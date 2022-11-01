@@ -4,22 +4,52 @@
 
 package com.azure.resourcemanager.loganalytics.models;
 
-import com.azure.resourcemanager.loganalytics.fluent.models.SavedSearchesListResultInner;
+import com.azure.core.annotation.Fluent;
+import com.azure.resourcemanager.loganalytics.fluent.models.SavedSearchInner;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** An immutable client-side representation of SavedSearchesListResult. */
-public interface SavedSearchesListResult {
+/** The saved search list operation response. */
+@Fluent
+public final class SavedSearchesListResult {
+    /*
+     * The array of result values.
+     */
+    @JsonProperty(value = "value")
+    private List<SavedSearchInner> value;
+
+    /** Creates an instance of SavedSearchesListResult class. */
+    public SavedSearchesListResult() {
+    }
+
     /**
-     * Gets the value property: The array of result values.
+     * Get the value property: The array of result values.
      *
      * @return the value value.
      */
-    List<SavedSearch> value();
+    public List<SavedSearchInner> value() {
+        return this.value;
+    }
 
     /**
-     * Gets the inner com.azure.resourcemanager.loganalytics.fluent.models.SavedSearchesListResultInner object.
+     * Set the value property: The array of result values.
      *
-     * @return the inner object.
+     * @param value the value value to set.
+     * @return the SavedSearchesListResult object itself.
      */
-    SavedSearchesListResultInner innerModel();
+    public SavedSearchesListResult withValue(List<SavedSearchInner> value) {
+        this.value = value;
+        return this;
+    }
+
+    /**
+     * Validates the instance.
+     *
+     * @throws IllegalArgumentException thrown if the instance is not valid.
+     */
+    public void validate() {
+        if (value() != null) {
+            value().forEach(e -> e.validate());
+        }
+    }
 }

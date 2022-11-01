@@ -7,6 +7,7 @@ package com.azure.resourcemanager.loganalytics.implementation;
 import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.http.rest.Response;
 import com.azure.core.http.rest.SimpleResponse;
+import com.azure.core.management.exception.ManagementError;
 import com.azure.core.util.Context;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.loganalytics.fluent.DataExportsClient;
@@ -38,15 +39,6 @@ public final class DataExportsImpl implements DataExports {
         return Utils.mapPage(inner, inner1 -> new DataExportImpl(inner1, this.manager()));
     }
 
-    public DataExport get(String resourceGroupName, String workspaceName, String dataExportName) {
-        DataExportInner inner = this.serviceClient().get(resourceGroupName, workspaceName, dataExportName);
-        if (inner != null) {
-            return new DataExportImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
     public Response<DataExport> getWithResponse(
         String resourceGroupName, String workspaceName, String dataExportName, Context context) {
         Response<DataExportInner> inner =
@@ -62,13 +54,22 @@ public final class DataExportsImpl implements DataExports {
         }
     }
 
-    public void delete(String resourceGroupName, String workspaceName, String dataExportName) {
-        this.serviceClient().delete(resourceGroupName, workspaceName, dataExportName);
+    public DataExport get(String resourceGroupName, String workspaceName, String dataExportName) {
+        DataExportInner inner = this.serviceClient().get(resourceGroupName, workspaceName, dataExportName);
+        if (inner != null) {
+            return new DataExportImpl(inner, this.manager());
+        } else {
+            return null;
+        }
     }
 
-    public Response<Void> deleteWithResponse(
+    public Response<ManagementError> deleteWithResponse(
         String resourceGroupName, String workspaceName, String dataExportName, Context context) {
         return this.serviceClient().deleteWithResponse(resourceGroupName, workspaceName, dataExportName, context);
+    }
+
+    public ManagementError delete(String resourceGroupName, String workspaceName, String dataExportName) {
+        return this.serviceClient().delete(resourceGroupName, workspaceName, dataExportName);
     }
 
     public DataExport getById(String id) {
@@ -123,7 +124,7 @@ public final class DataExportsImpl implements DataExports {
         return this.getWithResponse(resourceGroupName, workspaceName, dataExportName, context);
     }
 
-    public void deleteById(String id) {
+    public ManagementError deleteById(String id) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourcegroups");
         if (resourceGroupName == null) {
             throw LOGGER
@@ -146,10 +147,10 @@ public final class DataExportsImpl implements DataExports {
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'dataExports'.", id)));
         }
-        this.deleteWithResponse(resourceGroupName, workspaceName, dataExportName, Context.NONE);
+        return this.deleteWithResponse(resourceGroupName, workspaceName, dataExportName, Context.NONE).getValue();
     }
 
-    public Response<Void> deleteByIdWithResponse(String id, Context context) {
+    public Response<ManagementError> deleteByIdWithResponse(String id, Context context) {
         String resourceGroupName = Utils.getValueFromIdByName(id, "resourcegroups");
         if (resourceGroupName == null) {
             throw LOGGER

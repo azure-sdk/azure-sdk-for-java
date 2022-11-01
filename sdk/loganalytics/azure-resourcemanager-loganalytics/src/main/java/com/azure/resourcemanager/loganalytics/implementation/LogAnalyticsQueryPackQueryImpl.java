@@ -8,11 +8,7 @@ import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.loganalytics.fluent.models.LogAnalyticsQueryPackQueryInner;
 import com.azure.resourcemanager.loganalytics.models.LogAnalyticsQueryPackQuery;
-import com.azure.resourcemanager.loganalytics.models.LogAnalyticsQueryPackQueryPropertiesRelated;
-import java.time.OffsetDateTime;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
+import com.azure.resourcemanager.loganalytics.models.LogAnalyticsQueryPackQueryProperties;
 
 public final class LogAnalyticsQueryPackQueryImpl
     implements LogAnalyticsQueryPackQuery, LogAnalyticsQueryPackQuery.Definition, LogAnalyticsQueryPackQuery.Update {
@@ -36,48 +32,7 @@ public final class LogAnalyticsQueryPackQueryImpl
         return this.innerModel().systemData();
     }
 
-    public String idPropertiesId() {
-        return this.innerModel().idPropertiesId();
-    }
-
-    public String displayName() {
-        return this.innerModel().displayName();
-    }
-
-    public OffsetDateTime timeCreated() {
-        return this.innerModel().timeCreated();
-    }
-
-    public OffsetDateTime timeModified() {
-        return this.innerModel().timeModified();
-    }
-
-    public String author() {
-        return this.innerModel().author();
-    }
-
-    public String description() {
-        return this.innerModel().description();
-    }
-
-    public String body() {
-        return this.innerModel().body();
-    }
-
-    public LogAnalyticsQueryPackQueryPropertiesRelated related() {
-        return this.innerModel().related();
-    }
-
-    public Map<String, List<String>> tags() {
-        Map<String, List<String>> inner = this.innerModel().tags();
-        if (inner != null) {
-            return Collections.unmodifiableMap(inner);
-        } else {
-            return Collections.emptyMap();
-        }
-    }
-
-    public Object properties() {
+    public LogAnalyticsQueryPackQueryProperties properties() {
         return this.innerModel().properties();
     }
 
@@ -186,32 +141,7 @@ public final class LogAnalyticsQueryPackQueryImpl
         return this;
     }
 
-    public LogAnalyticsQueryPackQueryImpl withTags(Map<String, List<String>> tags) {
-        this.innerModel().withTags(tags);
-        return this;
-    }
-
-    public LogAnalyticsQueryPackQueryImpl withDisplayName(String displayName) {
-        this.innerModel().withDisplayName(displayName);
-        return this;
-    }
-
-    public LogAnalyticsQueryPackQueryImpl withDescription(String description) {
-        this.innerModel().withDescription(description);
-        return this;
-    }
-
-    public LogAnalyticsQueryPackQueryImpl withBody(String body) {
-        this.innerModel().withBody(body);
-        return this;
-    }
-
-    public LogAnalyticsQueryPackQueryImpl withRelated(LogAnalyticsQueryPackQueryPropertiesRelated related) {
-        this.innerModel().withRelated(related);
-        return this;
-    }
-
-    public LogAnalyticsQueryPackQueryImpl withProperties(Object properties) {
+    public LogAnalyticsQueryPackQueryImpl withProperties(LogAnalyticsQueryPackQueryProperties properties) {
         this.innerModel().withProperties(properties);
         return this;
     }

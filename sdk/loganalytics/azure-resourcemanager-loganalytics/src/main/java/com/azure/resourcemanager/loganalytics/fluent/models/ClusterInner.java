@@ -38,6 +38,10 @@ public final class ClusterInner extends Resource {
     @JsonProperty(value = "properties")
     private ClusterProperties innerProperties;
 
+    /** Creates an instance of ClusterInner class. */
+    public ClusterInner() {
+    }
+
     /**
      * Get the identity property: The identity of the resource.
      *
@@ -242,20 +246,6 @@ public final class ClusterInner extends Resource {
      */
     public List<AssociatedWorkspace> associatedWorkspaces() {
         return this.innerProperties() == null ? null : this.innerProperties().associatedWorkspaces();
-    }
-
-    /**
-     * Set the associatedWorkspaces property: The list of Log Analytics workspaces associated with the cluster.
-     *
-     * @param associatedWorkspaces the associatedWorkspaces value to set.
-     * @return the ClusterInner object itself.
-     */
-    public ClusterInner withAssociatedWorkspaces(List<AssociatedWorkspace> associatedWorkspaces) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new ClusterProperties();
-        }
-        this.innerProperties().withAssociatedWorkspaces(associatedWorkspaces);
-        return this;
     }
 
     /**

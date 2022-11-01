@@ -278,11 +278,6 @@ public final class ClusterImpl implements Cluster, Cluster.Definition, Cluster.U
         }
     }
 
-    public ClusterImpl withAssociatedWorkspaces(List<AssociatedWorkspace> associatedWorkspaces) {
-        this.innerModel().withAssociatedWorkspaces(associatedWorkspaces);
-        return this;
-    }
-
     public ClusterImpl withCapacityReservationProperties(CapacityReservationProperties capacityReservationProperties) {
         this.innerModel().withCapacityReservationProperties(capacityReservationProperties);
         return this;

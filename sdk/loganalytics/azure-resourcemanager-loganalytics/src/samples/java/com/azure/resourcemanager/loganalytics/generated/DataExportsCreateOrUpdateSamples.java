@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.loganalytics.generated;
 
+import com.azure.resourcemanager.loganalytics.models.Destination;
 import java.util.Arrays;
 
 /** Samples for DataExports CreateOrUpdate. */
@@ -22,8 +23,10 @@ public final class DataExportsCreateOrUpdateSamples {
             .define("export1")
             .withExistingWorkspace("RgTest1", "DeWnTest1234")
             .withTableNames(Arrays.asList("Heartbeat"))
-            .withResourceId(
-                "/subscriptions/192b9f85-a39a-4276-b96d-d5cd351703f9/resourceGroups/OIAutoRest1234/providers/Microsoft.EventHub/namespaces/test")
+            .withDestination(
+                new Destination()
+                    .withResourceId(
+                        "/subscriptions/192b9f85-a39a-4276-b96d-d5cd351703f9/resourceGroups/OIAutoRest1234/providers/Microsoft.EventHub/namespaces/test"))
             .create();
     }
 }

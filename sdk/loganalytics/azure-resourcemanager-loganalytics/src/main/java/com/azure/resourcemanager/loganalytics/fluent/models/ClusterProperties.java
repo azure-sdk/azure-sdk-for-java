@@ -29,17 +29,16 @@ public final class ClusterProperties {
     private ClusterEntityStatus provisioningState;
 
     /*
-     * Configures whether cluster will use double encryption. This Property can
-     * not be modified after cluster creation. Default value is 'true'
+     * Configures whether cluster will use double encryption. This Property can not be modified after cluster creation.
+     * Default value is 'true'
      */
     @JsonProperty(value = "isDoubleEncryptionEnabled")
     private Boolean isDoubleEncryptionEnabled;
 
     /*
-     * Sets whether the cluster will support availability zones. This can be
-     * set as true only in regions where Azure Data Explorer support
-     * Availability Zones. This Property can not be modified after cluster
-     * creation. Default value is 'true' if region supports Availability Zones.
+     * Sets whether the cluster will support availability zones. This can be set as true only in regions where Azure
+     * Data Explorer support Availability Zones. This Property can not be modified after cluster creation. Default
+     * value is 'true' if region supports Availability Zones.
      */
     @JsonProperty(value = "isAvailabilityZonesEnabled")
     private Boolean isAvailabilityZonesEnabled;
@@ -71,7 +70,7 @@ public final class ClusterProperties {
     /*
      * The list of Log Analytics workspaces associated with the cluster
      */
-    @JsonProperty(value = "associatedWorkspaces")
+    @JsonProperty(value = "associatedWorkspaces", access = JsonProperty.Access.WRITE_ONLY)
     private List<AssociatedWorkspace> associatedWorkspaces;
 
     /*
@@ -79,6 +78,10 @@ public final class ClusterProperties {
      */
     @JsonProperty(value = "capacityReservationProperties")
     private CapacityReservationProperties capacityReservationProperties;
+
+    /** Creates an instance of ClusterProperties class. */
+    public ClusterProperties() {
+    }
 
     /**
      * Get the clusterId property: The ID associated with the cluster.
@@ -209,17 +212,6 @@ public final class ClusterProperties {
      */
     public List<AssociatedWorkspace> associatedWorkspaces() {
         return this.associatedWorkspaces;
-    }
-
-    /**
-     * Set the associatedWorkspaces property: The list of Log Analytics workspaces associated with the cluster.
-     *
-     * @param associatedWorkspaces the associatedWorkspaces value to set.
-     * @return the ClusterProperties object itself.
-     */
-    public ClusterProperties withAssociatedWorkspaces(List<AssociatedWorkspace> associatedWorkspaces) {
-        this.associatedWorkspaces = associatedWorkspaces;
-        return this;
     }
 
     /**

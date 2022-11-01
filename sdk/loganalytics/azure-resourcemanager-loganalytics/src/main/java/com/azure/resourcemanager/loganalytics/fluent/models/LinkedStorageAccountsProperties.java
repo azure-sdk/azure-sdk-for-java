@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.loganalytics.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.loganalytics.models.DataSourceType;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
@@ -21,8 +22,12 @@ public final class LinkedStorageAccountsProperties {
     /*
      * Linked storage accounts resources ids.
      */
-    @JsonProperty(value = "storageAccountIds")
+    @JsonProperty(value = "storageAccountIds", required = true)
     private List<String> storageAccountIds;
+
+    /** Creates an instance of LinkedStorageAccountsProperties class. */
+    public LinkedStorageAccountsProperties() {
+    }
 
     /**
      * Get the dataSourceType property: Linked storage accounts type.
@@ -59,5 +64,13 @@ public final class LinkedStorageAccountsProperties {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+        if (storageAccountIds() == null) {
+            throw LOGGER
+                .logExceptionAsError(
+                    new IllegalArgumentException(
+                        "Missing required property storageAccountIds in model LinkedStorageAccountsProperties"));
+        }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(LinkedStorageAccountsProperties.class);
 }

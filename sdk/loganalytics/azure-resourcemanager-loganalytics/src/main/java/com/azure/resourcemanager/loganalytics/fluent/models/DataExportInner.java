@@ -6,7 +6,8 @@ package com.azure.resourcemanager.loganalytics.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.ProxyResource;
-import com.azure.resourcemanager.loganalytics.models.Type;
+import com.azure.core.util.logging.ClientLogger;
+import com.azure.resourcemanager.loganalytics.models.Destination;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
@@ -16,8 +17,12 @@ public final class DataExportInner extends ProxyResource {
     /*
      * data export properties.
      */
-    @JsonProperty(value = "properties")
-    private DataExportProperties innerProperties;
+    @JsonProperty(value = "properties", required = true)
+    private DataExportProperties innerProperties = new DataExportProperties();
+
+    /** Creates an instance of DataExportInner class. */
+    public DataExportInner() {
+    }
 
     /**
      * Get the innerProperties property: data export properties.
@@ -71,6 +76,29 @@ public final class DataExportInner extends ProxyResource {
             this.innerProperties = new DataExportProperties();
         }
         this.innerProperties().withTableNames(tableNames);
+        return this;
+    }
+
+    /**
+     * Get the destination property: destination properties.
+     *
+     * @return the destination value.
+     */
+    public Destination destination() {
+        return this.innerProperties() == null ? null : this.innerProperties().destination();
+    }
+
+    /**
+     * Set the destination property: destination properties.
+     *
+     * @param destination the destination value to set.
+     * @return the DataExportInner object itself.
+     */
+    public DataExportInner withDestination(Destination destination) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new DataExportProperties();
+        }
+        this.innerProperties().withDestination(destination);
         return this;
     }
 
@@ -144,72 +172,19 @@ public final class DataExportInner extends ProxyResource {
     }
 
     /**
-     * Get the resourceId property: The destination resource ID. This can be copied from the Properties entry of the
-     * destination resource in Azure.
-     *
-     * @return the resourceId value.
-     */
-    public String resourceId() {
-        return this.innerProperties() == null ? null : this.innerProperties().resourceId();
-    }
-
-    /**
-     * Set the resourceId property: The destination resource ID. This can be copied from the Properties entry of the
-     * destination resource in Azure.
-     *
-     * @param resourceId the resourceId value to set.
-     * @return the DataExportInner object itself.
-     */
-    public DataExportInner withResourceId(String resourceId) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new DataExportProperties();
-        }
-        this.innerProperties().withResourceId(resourceId);
-        return this;
-    }
-
-    /**
-     * Get the type property: The type of the destination resource.
-     *
-     * @return the type value.
-     */
-    public Type typePropertiesType() {
-        return this.innerProperties() == null ? null : this.innerProperties().type();
-    }
-
-    /**
-     * Get the eventHubName property: Optional. Allows to define an Event Hub name. Not applicable when destination is
-     * Storage Account.
-     *
-     * @return the eventHubName value.
-     */
-    public String eventHubName() {
-        return this.innerProperties() == null ? null : this.innerProperties().eventHubName();
-    }
-
-    /**
-     * Set the eventHubName property: Optional. Allows to define an Event Hub name. Not applicable when destination is
-     * Storage Account.
-     *
-     * @param eventHubName the eventHubName value to set.
-     * @return the DataExportInner object itself.
-     */
-    public DataExportInner withEventHubName(String eventHubName) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new DataExportProperties();
-        }
-        this.innerProperties().withEventHubName(eventHubName);
-        return this;
-    }
-
-    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (innerProperties() != null) {
+        if (innerProperties() == null) {
+            throw LOGGER
+                .logExceptionAsError(
+                    new IllegalArgumentException("Missing required property innerProperties in model DataExportInner"));
+        } else {
             innerProperties().validate();
         }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(DataExportInner.class);
 }

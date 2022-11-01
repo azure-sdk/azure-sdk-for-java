@@ -7,9 +7,6 @@ package com.azure.resourcemanager.loganalytics.models;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.loganalytics.fluent.models.LogAnalyticsQueryPackQueryInner;
-import java.time.OffsetDateTime;
-import java.util.List;
-import java.util.Map;
 
 /** An immutable client-side representation of LogAnalyticsQueryPackQuery. */
 public interface LogAnalyticsQueryPackQuery {
@@ -42,74 +39,11 @@ public interface LogAnalyticsQueryPackQuery {
     SystemData systemData();
 
     /**
-     * Gets the idPropertiesId property: The unique ID of your application. This field cannot be changed.
-     *
-     * @return the idPropertiesId value.
-     */
-    String idPropertiesId();
-
-    /**
-     * Gets the displayName property: Unique display name for your query within the Query Pack.
-     *
-     * @return the displayName value.
-     */
-    String displayName();
-
-    /**
-     * Gets the timeCreated property: Creation Date for the Log Analytics Query, in ISO 8601 format.
-     *
-     * @return the timeCreated value.
-     */
-    OffsetDateTime timeCreated();
-
-    /**
-     * Gets the timeModified property: Last modified date of the Log Analytics Query, in ISO 8601 format.
-     *
-     * @return the timeModified value.
-     */
-    OffsetDateTime timeModified();
-
-    /**
-     * Gets the author property: Object Id of user creating the query.
-     *
-     * @return the author value.
-     */
-    String author();
-
-    /**
-     * Gets the description property: Description of the query.
-     *
-     * @return the description value.
-     */
-    String description();
-
-    /**
-     * Gets the body property: Body of the query.
-     *
-     * @return the body value.
-     */
-    String body();
-
-    /**
-     * Gets the related property: The related metadata items for the function.
-     *
-     * @return the related value.
-     */
-    LogAnalyticsQueryPackQueryPropertiesRelated related();
-
-    /**
-     * Gets the tags property: Tags associated with the query.
-     *
-     * @return the tags value.
-     */
-    Map<String, List<String>> tags();
-
-    /**
-     * Gets the properties property: Additional properties that can be set for the query.
+     * Gets the properties property: Properties that define an Log Analytics QueryPack-Query resource.
      *
      * @return the properties value.
      */
-    Object properties();
+    LogAnalyticsQueryPackQueryProperties properties();
 
     /**
      * Gets the name of the resource group.
@@ -127,7 +61,10 @@ public interface LogAnalyticsQueryPackQuery {
 
     /** The entirety of the LogAnalyticsQueryPackQuery definition. */
     interface Definition
-        extends DefinitionStages.Blank, DefinitionStages.WithParentResource, DefinitionStages.WithCreate {
+        extends DefinitionStages.Blank,
+            DefinitionStages.WithParentResource,
+            DefinitionStages.WithProperties,
+            DefinitionStages.WithCreate {
     }
     /** The LogAnalyticsQueryPackQuery definition stages. */
     interface DefinitionStages {
@@ -143,19 +80,23 @@ public interface LogAnalyticsQueryPackQuery {
              * @param queryPackName The name of the Log Analytics QueryPack resource.
              * @return the next definition stage.
              */
-            WithCreate withExistingQueryPack(String resourceGroupName, String queryPackName);
+            WithProperties withExistingQueryPack(String resourceGroupName, String queryPackName);
+        }
+        /** The stage of the LogAnalyticsQueryPackQuery definition allowing to specify properties. */
+        interface WithProperties {
+            /**
+             * Specifies the properties property: Properties that define an Log Analytics QueryPack-Query resource..
+             *
+             * @param properties Properties that define an Log Analytics QueryPack-Query resource.
+             * @return the next definition stage.
+             */
+            WithCreate withProperties(LogAnalyticsQueryPackQueryProperties properties);
         }
         /**
          * The stage of the LogAnalyticsQueryPackQuery definition which contains all the minimum required properties for
          * the resource to be created, but also allows for any other optional properties to be specified.
          */
-        interface WithCreate
-            extends DefinitionStages.WithTags,
-                DefinitionStages.WithDisplayName,
-                DefinitionStages.WithDescription,
-                DefinitionStages.WithBody,
-                DefinitionStages.WithRelated,
-                DefinitionStages.WithProperties {
+        interface WithCreate {
             /**
              * Executes the create request.
              *
@@ -171,66 +112,6 @@ public interface LogAnalyticsQueryPackQuery {
              */
             LogAnalyticsQueryPackQuery create(Context context);
         }
-        /** The stage of the LogAnalyticsQueryPackQuery definition allowing to specify tags. */
-        interface WithTags {
-            /**
-             * Specifies the tags property: Tags associated with the query..
-             *
-             * @param tags Tags associated with the query.
-             * @return the next definition stage.
-             */
-            WithCreate withTags(Map<String, List<String>> tags);
-        }
-        /** The stage of the LogAnalyticsQueryPackQuery definition allowing to specify displayName. */
-        interface WithDisplayName {
-            /**
-             * Specifies the displayName property: Unique display name for your query within the Query Pack..
-             *
-             * @param displayName Unique display name for your query within the Query Pack.
-             * @return the next definition stage.
-             */
-            WithCreate withDisplayName(String displayName);
-        }
-        /** The stage of the LogAnalyticsQueryPackQuery definition allowing to specify description. */
-        interface WithDescription {
-            /**
-             * Specifies the description property: Description of the query..
-             *
-             * @param description Description of the query.
-             * @return the next definition stage.
-             */
-            WithCreate withDescription(String description);
-        }
-        /** The stage of the LogAnalyticsQueryPackQuery definition allowing to specify body. */
-        interface WithBody {
-            /**
-             * Specifies the body property: Body of the query..
-             *
-             * @param body Body of the query.
-             * @return the next definition stage.
-             */
-            WithCreate withBody(String body);
-        }
-        /** The stage of the LogAnalyticsQueryPackQuery definition allowing to specify related. */
-        interface WithRelated {
-            /**
-             * Specifies the related property: The related metadata items for the function..
-             *
-             * @param related The related metadata items for the function.
-             * @return the next definition stage.
-             */
-            WithCreate withRelated(LogAnalyticsQueryPackQueryPropertiesRelated related);
-        }
-        /** The stage of the LogAnalyticsQueryPackQuery definition allowing to specify properties. */
-        interface WithProperties {
-            /**
-             * Specifies the properties property: Additional properties that can be set for the query..
-             *
-             * @param properties Additional properties that can be set for the query.
-             * @return the next definition stage.
-             */
-            WithCreate withProperties(Object properties);
-        }
     }
     /**
      * Begins update for the LogAnalyticsQueryPackQuery resource.
@@ -240,13 +121,7 @@ public interface LogAnalyticsQueryPackQuery {
     LogAnalyticsQueryPackQuery.Update update();
 
     /** The template for LogAnalyticsQueryPackQuery update. */
-    interface Update
-        extends UpdateStages.WithTags,
-            UpdateStages.WithDisplayName,
-            UpdateStages.WithDescription,
-            UpdateStages.WithBody,
-            UpdateStages.WithRelated,
-            UpdateStages.WithProperties {
+    interface Update extends UpdateStages.WithProperties {
         /**
          * Executes the update request.
          *
@@ -264,65 +139,15 @@ public interface LogAnalyticsQueryPackQuery {
     }
     /** The LogAnalyticsQueryPackQuery update stages. */
     interface UpdateStages {
-        /** The stage of the LogAnalyticsQueryPackQuery update allowing to specify tags. */
-        interface WithTags {
-            /**
-             * Specifies the tags property: Tags associated with the query..
-             *
-             * @param tags Tags associated with the query.
-             * @return the next definition stage.
-             */
-            Update withTags(Map<String, List<String>> tags);
-        }
-        /** The stage of the LogAnalyticsQueryPackQuery update allowing to specify displayName. */
-        interface WithDisplayName {
-            /**
-             * Specifies the displayName property: Unique display name for your query within the Query Pack..
-             *
-             * @param displayName Unique display name for your query within the Query Pack.
-             * @return the next definition stage.
-             */
-            Update withDisplayName(String displayName);
-        }
-        /** The stage of the LogAnalyticsQueryPackQuery update allowing to specify description. */
-        interface WithDescription {
-            /**
-             * Specifies the description property: Description of the query..
-             *
-             * @param description Description of the query.
-             * @return the next definition stage.
-             */
-            Update withDescription(String description);
-        }
-        /** The stage of the LogAnalyticsQueryPackQuery update allowing to specify body. */
-        interface WithBody {
-            /**
-             * Specifies the body property: Body of the query..
-             *
-             * @param body Body of the query.
-             * @return the next definition stage.
-             */
-            Update withBody(String body);
-        }
-        /** The stage of the LogAnalyticsQueryPackQuery update allowing to specify related. */
-        interface WithRelated {
-            /**
-             * Specifies the related property: The related metadata items for the function..
-             *
-             * @param related The related metadata items for the function.
-             * @return the next definition stage.
-             */
-            Update withRelated(LogAnalyticsQueryPackQueryPropertiesRelated related);
-        }
         /** The stage of the LogAnalyticsQueryPackQuery update allowing to specify properties. */
         interface WithProperties {
             /**
-             * Specifies the properties property: Additional properties that can be set for the query..
+             * Specifies the properties property: Properties that define an Log Analytics QueryPack-Query resource..
              *
-             * @param properties Additional properties that can be set for the query.
+             * @param properties Properties that define an Log Analytics QueryPack-Query resource.
              * @return the next definition stage.
              */
-            Update withProperties(Object properties);
+            Update withProperties(LogAnalyticsQueryPackQueryProperties properties);
         }
     }
     /**

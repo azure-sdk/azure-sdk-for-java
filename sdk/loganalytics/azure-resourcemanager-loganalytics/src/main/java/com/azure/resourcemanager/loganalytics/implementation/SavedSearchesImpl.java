@@ -4,16 +4,15 @@
 
 package com.azure.resourcemanager.loganalytics.implementation;
 
+import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.http.rest.Response;
 import com.azure.core.http.rest.SimpleResponse;
 import com.azure.core.util.Context;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.loganalytics.fluent.SavedSearchesClient;
 import com.azure.resourcemanager.loganalytics.fluent.models.SavedSearchInner;
-import com.azure.resourcemanager.loganalytics.fluent.models.SavedSearchesListResultInner;
 import com.azure.resourcemanager.loganalytics.models.SavedSearch;
 import com.azure.resourcemanager.loganalytics.models.SavedSearches;
-import com.azure.resourcemanager.loganalytics.models.SavedSearchesListResult;
 
 public final class SavedSearchesImpl implements SavedSearches {
     private static final ClientLogger LOGGER = new ClientLogger(SavedSearchesImpl.class);
@@ -28,22 +27,13 @@ public final class SavedSearchesImpl implements SavedSearches {
         this.serviceManager = serviceManager;
     }
 
-    public void delete(String resourceGroupName, String workspaceName, String savedSearchId) {
-        this.serviceClient().delete(resourceGroupName, workspaceName, savedSearchId);
-    }
-
     public Response<Void> deleteWithResponse(
         String resourceGroupName, String workspaceName, String savedSearchId, Context context) {
         return this.serviceClient().deleteWithResponse(resourceGroupName, workspaceName, savedSearchId, context);
     }
 
-    public SavedSearch get(String resourceGroupName, String workspaceName, String savedSearchId) {
-        SavedSearchInner inner = this.serviceClient().get(resourceGroupName, workspaceName, savedSearchId);
-        if (inner != null) {
-            return new SavedSearchImpl(inner, this.manager());
-        } else {
-            return null;
-        }
+    public void delete(String resourceGroupName, String workspaceName, String savedSearchId) {
+        this.serviceClient().delete(resourceGroupName, workspaceName, savedSearchId);
     }
 
     public Response<SavedSearch> getWithResponse(
@@ -61,28 +51,24 @@ public final class SavedSearchesImpl implements SavedSearches {
         }
     }
 
-    public SavedSearchesListResult listByWorkspace(String resourceGroupName, String workspaceName) {
-        SavedSearchesListResultInner inner = this.serviceClient().listByWorkspace(resourceGroupName, workspaceName);
+    public SavedSearch get(String resourceGroupName, String workspaceName, String savedSearchId) {
+        SavedSearchInner inner = this.serviceClient().get(resourceGroupName, workspaceName, savedSearchId);
         if (inner != null) {
-            return new SavedSearchesListResultImpl(inner, this.manager());
+            return new SavedSearchImpl(inner, this.manager());
         } else {
             return null;
         }
     }
 
-    public Response<SavedSearchesListResult> listByWorkspaceWithResponse(
-        String resourceGroupName, String workspaceName, Context context) {
-        Response<SavedSearchesListResultInner> inner =
-            this.serviceClient().listByWorkspaceWithResponse(resourceGroupName, workspaceName, context);
-        if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
-                new SavedSearchesListResultImpl(inner.getValue(), this.manager()));
-        } else {
-            return null;
-        }
+    public PagedIterable<SavedSearch> listByWorkspace(String resourceGroupName, String workspaceName) {
+        PagedIterable<SavedSearchInner> inner = this.serviceClient().listByWorkspace(resourceGroupName, workspaceName);
+        return Utils.mapPage(inner, inner1 -> new SavedSearchImpl(inner1, this.manager()));
+    }
+
+    public PagedIterable<SavedSearch> listByWorkspace(String resourceGroupName, String workspaceName, Context context) {
+        PagedIterable<SavedSearchInner> inner =
+            this.serviceClient().listByWorkspace(resourceGroupName, workspaceName, context);
+        return Utils.mapPage(inner, inner1 -> new SavedSearchImpl(inner1, this.manager()));
     }
 
     public SavedSearch getById(String id) {

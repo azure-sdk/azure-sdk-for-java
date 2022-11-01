@@ -25,6 +25,7 @@ import com.azure.core.http.rest.PagedResponse;
 import com.azure.core.http.rest.PagedResponseBase;
 import com.azure.core.http.rest.Response;
 import com.azure.core.http.rest.RestProxy;
+import com.azure.core.management.exception.ManagementError;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
@@ -113,7 +114,7 @@ public final class DataExportsClientImpl implements DataExportsClient {
                 + "/workspaces/{workspaceName}/dataExports/{dataExportName}")
         @ExpectedResponses({200, 404})
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Void>> delete(
+        Mono<Response<ManagementError>> delete(
             @HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
@@ -446,24 +447,6 @@ public final class DataExportsClientImpl implements DataExportsClient {
      * @param workspaceName The name of the workspace.
      * @param dataExportName The data export rule name.
      * @param parameters The parameters required to create or update a data export.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the top level data export resource container.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public DataExportInner createOrUpdate(
-        String resourceGroupName, String workspaceName, String dataExportName, DataExportInner parameters) {
-        return createOrUpdateAsync(resourceGroupName, workspaceName, dataExportName, parameters).block();
-    }
-
-    /**
-     * Create or update a data export.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param dataExportName The data export rule name.
-     * @param parameters The parameters required to create or update a data export.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -479,6 +462,25 @@ public final class DataExportsClientImpl implements DataExportsClient {
         Context context) {
         return createOrUpdateWithResponseAsync(resourceGroupName, workspaceName, dataExportName, parameters, context)
             .block();
+    }
+
+    /**
+     * Create or update a data export.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param dataExportName The data export rule name.
+     * @param parameters The parameters required to create or update a data export.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the top level data export resource container.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public DataExportInner createOrUpdate(
+        String resourceGroupName, String workspaceName, String dataExportName, DataExportInner parameters) {
+        return createOrUpdateWithResponse(resourceGroupName, workspaceName, dataExportName, parameters, Context.NONE)
+            .getValue();
     }
 
     /**
@@ -610,22 +612,6 @@ public final class DataExportsClientImpl implements DataExportsClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param dataExportName The data export rule name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a data export instance.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public DataExportInner get(String resourceGroupName, String workspaceName, String dataExportName) {
-        return getAsync(resourceGroupName, workspaceName, dataExportName).block();
-    }
-
-    /**
-     * Gets a data export instance.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param dataExportName The data export rule name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -639,6 +625,22 @@ public final class DataExportsClientImpl implements DataExportsClient {
     }
 
     /**
+     * Gets a data export instance.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param dataExportName The data export rule name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a data export instance.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public DataExportInner get(String resourceGroupName, String workspaceName, String dataExportName) {
+        return getWithResponse(resourceGroupName, workspaceName, dataExportName, Context.NONE).getValue();
+    }
+
+    /**
      * Deletes the specified data export in a given workspace..
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -647,10 +649,10 @@ public final class DataExportsClientImpl implements DataExportsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Void>> deleteWithResponseAsync(
+    private Mono<Response<ManagementError>> deleteWithResponseAsync(
         String resourceGroupName, String workspaceName, String dataExportName) {
         if (this.client.getEndpoint() == null) {
             return Mono
@@ -702,10 +704,10 @@ public final class DataExportsClientImpl implements DataExportsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Void>> deleteWithResponseAsync(
+    private Mono<Response<ManagementError>> deleteWithResponseAsync(
         String resourceGroupName, String workspaceName, String dataExportName, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono
@@ -753,27 +755,12 @@ public final class DataExportsClientImpl implements DataExportsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return the response body on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Void> deleteAsync(String resourceGroupName, String workspaceName, String dataExportName) {
+    private Mono<ManagementError> deleteAsync(String resourceGroupName, String workspaceName, String dataExportName) {
         return deleteWithResponseAsync(resourceGroupName, workspaceName, dataExportName)
-            .flatMap(ignored -> Mono.empty());
-    }
-
-    /**
-     * Deletes the specified data export in a given workspace..
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param dataExportName The data export rule name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public void delete(String resourceGroupName, String workspaceName, String dataExportName) {
-        deleteAsync(resourceGroupName, workspaceName, dataExportName).block();
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -786,11 +773,27 @@ public final class DataExportsClientImpl implements DataExportsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response body along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<Void> deleteWithResponse(
+    public Response<ManagementError> deleteWithResponse(
         String resourceGroupName, String workspaceName, String dataExportName, Context context) {
         return deleteWithResponseAsync(resourceGroupName, workspaceName, dataExportName, context).block();
+    }
+
+    /**
+     * Deletes the specified data export in a given workspace..
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param dataExportName The data export rule name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public ManagementError delete(String resourceGroupName, String workspaceName, String dataExportName) {
+        return deleteWithResponse(resourceGroupName, workspaceName, dataExportName, Context.NONE).getValue();
     }
 }

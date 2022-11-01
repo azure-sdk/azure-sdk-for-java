@@ -7,7 +7,7 @@ package com.azure.resourcemanager.loganalytics.implementation;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.loganalytics.fluent.models.DataExportInner;
 import com.azure.resourcemanager.loganalytics.models.DataExport;
-import com.azure.resourcemanager.loganalytics.models.Type;
+import com.azure.resourcemanager.loganalytics.models.Destination;
 import java.util.Collections;
 import java.util.List;
 
@@ -41,6 +41,10 @@ public final class DataExportImpl implements DataExport, DataExport.Definition, 
         }
     }
 
+    public Destination destination() {
+        return this.innerModel().destination();
+    }
+
     public Boolean enable() {
         return this.innerModel().enable();
     }
@@ -51,18 +55,6 @@ public final class DataExportImpl implements DataExport, DataExport.Definition, 
 
     public String lastModifiedDate() {
         return this.innerModel().lastModifiedDate();
-    }
-
-    public String resourceId() {
-        return this.innerModel().resourceId();
-    }
-
-    public Type typePropertiesType() {
-        return this.innerModel().typePropertiesType();
-    }
-
-    public String eventHubName() {
-        return this.innerModel().eventHubName();
     }
 
     public String resourceGroupName() {
@@ -172,13 +164,18 @@ public final class DataExportImpl implements DataExport, DataExport.Definition, 
         return this;
     }
 
-    public DataExportImpl withDataExportId(String dataExportId) {
-        this.innerModel().withDataExportId(dataExportId);
+    public DataExportImpl withTableNames(List<String> tableNames) {
+        this.innerModel().withTableNames(tableNames);
         return this;
     }
 
-    public DataExportImpl withTableNames(List<String> tableNames) {
-        this.innerModel().withTableNames(tableNames);
+    public DataExportImpl withDestination(Destination destination) {
+        this.innerModel().withDestination(destination);
+        return this;
+    }
+
+    public DataExportImpl withDataExportId(String dataExportId) {
+        this.innerModel().withDataExportId(dataExportId);
         return this;
     }
 
@@ -194,16 +191,6 @@ public final class DataExportImpl implements DataExport, DataExport.Definition, 
 
     public DataExportImpl withLastModifiedDate(String lastModifiedDate) {
         this.innerModel().withLastModifiedDate(lastModifiedDate);
-        return this;
-    }
-
-    public DataExportImpl withResourceId(String resourceId) {
-        this.innerModel().withResourceId(resourceId);
-        return this;
-    }
-
-    public DataExportImpl withEventHubName(String eventHubName) {
-        this.innerModel().withEventHubName(eventHubName);
         return this;
     }
 }

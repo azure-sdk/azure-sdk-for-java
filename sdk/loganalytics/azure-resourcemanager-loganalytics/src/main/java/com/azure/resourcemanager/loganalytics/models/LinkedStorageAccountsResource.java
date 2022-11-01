@@ -61,7 +61,10 @@ public interface LinkedStorageAccountsResource {
 
     /** The entirety of the LinkedStorageAccountsResource definition. */
     interface Definition
-        extends DefinitionStages.Blank, DefinitionStages.WithParentResource, DefinitionStages.WithCreate {
+        extends DefinitionStages.Blank,
+            DefinitionStages.WithParentResource,
+            DefinitionStages.WithStorageAccountIds,
+            DefinitionStages.WithCreate {
     }
     /** The LinkedStorageAccountsResource definition stages. */
     interface DefinitionStages {
@@ -77,13 +80,23 @@ public interface LinkedStorageAccountsResource {
              * @param workspaceName The name of the workspace.
              * @return the next definition stage.
              */
-            WithCreate withExistingWorkspace(String resourceGroupName, String workspaceName);
+            WithStorageAccountIds withExistingWorkspace(String resourceGroupName, String workspaceName);
+        }
+        /** The stage of the LinkedStorageAccountsResource definition allowing to specify storageAccountIds. */
+        interface WithStorageAccountIds {
+            /**
+             * Specifies the storageAccountIds property: Linked storage accounts resources ids..
+             *
+             * @param storageAccountIds Linked storage accounts resources ids.
+             * @return the next definition stage.
+             */
+            WithCreate withStorageAccountIds(List<String> storageAccountIds);
         }
         /**
          * The stage of the LinkedStorageAccountsResource definition which contains all the minimum required properties
          * for the resource to be created, but also allows for any other optional properties to be specified.
          */
-        interface WithCreate extends DefinitionStages.WithStorageAccountIds {
+        interface WithCreate {
             /**
              * Executes the create request.
              *
@@ -98,16 +111,6 @@ public interface LinkedStorageAccountsResource {
              * @return the created resource.
              */
             LinkedStorageAccountsResource create(Context context);
-        }
-        /** The stage of the LinkedStorageAccountsResource definition allowing to specify storageAccountIds. */
-        interface WithStorageAccountIds {
-            /**
-             * Specifies the storageAccountIds property: Linked storage accounts resources ids..
-             *
-             * @param storageAccountIds Linked storage accounts resources ids.
-             * @return the next definition stage.
-             */
-            WithCreate withStorageAccountIds(List<String> storageAccountIds);
         }
     }
     /**

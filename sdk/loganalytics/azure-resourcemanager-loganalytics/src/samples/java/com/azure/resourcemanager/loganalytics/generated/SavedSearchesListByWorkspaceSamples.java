@@ -17,6 +17,6 @@ public final class SavedSearchesListByWorkspaceSamples {
      * @param manager Entry point to LogAnalyticsManager.
      */
     public static void savedSearchesList(com.azure.resourcemanager.loganalytics.LogAnalyticsManager manager) {
-        manager.savedSearches().listByWorkspaceWithResponse("TestRG", "TestWS", Context.NONE);
+        manager.savedSearches().listByWorkspace("TestRG", "TestWS", Context.NONE);
     }
 }

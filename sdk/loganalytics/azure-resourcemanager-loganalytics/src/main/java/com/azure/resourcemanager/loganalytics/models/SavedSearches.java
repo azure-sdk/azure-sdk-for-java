@@ -4,23 +4,12 @@
 
 package com.azure.resourcemanager.loganalytics.models;
 
+import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.http.rest.Response;
 import com.azure.core.util.Context;
 
 /** Resource collection API of SavedSearches. */
 public interface SavedSearches {
-    /**
-     * Deletes the specified saved search in a given workspace.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param savedSearchId The id of the saved search.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    void delete(String resourceGroupName, String workspaceName, String savedSearchId);
-
     /**
      * Deletes the specified saved search in a given workspace.
      *
@@ -37,7 +26,7 @@ public interface SavedSearches {
         String resourceGroupName, String workspaceName, String savedSearchId, Context context);
 
     /**
-     * Gets the specified saved search for a given workspace.
+     * Deletes the specified saved search in a given workspace.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -45,9 +34,8 @@ public interface SavedSearches {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the specified saved search for a given workspace.
      */
-    SavedSearch get(String resourceGroupName, String workspaceName, String savedSearchId);
+    void delete(String resourceGroupName, String workspaceName, String savedSearchId);
 
     /**
      * Gets the specified saved search for a given workspace.
@@ -65,6 +53,19 @@ public interface SavedSearches {
         String resourceGroupName, String workspaceName, String savedSearchId, Context context);
 
     /**
+     * Gets the specified saved search for a given workspace.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param savedSearchId The id of the saved search.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the specified saved search for a given workspace.
+     */
+    SavedSearch get(String resourceGroupName, String workspaceName, String savedSearchId);
+
+    /**
      * Gets the saved searches for a given Log Analytics Workspace.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -72,9 +73,9 @@ public interface SavedSearches {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the saved searches for a given Log Analytics Workspace.
+     * @return the saved searches for a given Log Analytics Workspace as paginated response with {@link PagedIterable}.
      */
-    SavedSearchesListResult listByWorkspace(String resourceGroupName, String workspaceName);
+    PagedIterable<SavedSearch> listByWorkspace(String resourceGroupName, String workspaceName);
 
     /**
      * Gets the saved searches for a given Log Analytics Workspace.
@@ -85,10 +86,9 @@ public interface SavedSearches {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the saved searches for a given Log Analytics Workspace along with {@link Response}.
+     * @return the saved searches for a given Log Analytics Workspace as paginated response with {@link PagedIterable}.
      */
-    Response<SavedSearchesListResult> listByWorkspaceWithResponse(
-        String resourceGroupName, String workspaceName, Context context);
+    PagedIterable<SavedSearch> listByWorkspace(String resourceGroupName, String workspaceName, Context context);
 
     /**
      * Gets the specified saved search for a given workspace.

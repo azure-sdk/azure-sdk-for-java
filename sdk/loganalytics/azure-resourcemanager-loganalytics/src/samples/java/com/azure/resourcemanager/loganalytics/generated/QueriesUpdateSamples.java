@@ -6,6 +6,7 @@ package com.azure.resourcemanager.loganalytics.generated;
 
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.loganalytics.models.LogAnalyticsQueryPackQuery;
+import com.azure.resourcemanager.loganalytics.models.LogAnalyticsQueryPackQueryProperties;
 import com.azure.resourcemanager.loganalytics.models.LogAnalyticsQueryPackQueryPropertiesRelated;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -30,24 +31,27 @@ public final class QueriesUpdateSamples {
                 .getValue();
         resource
             .update()
-            .withTags(mapOf("my-label", Arrays.asList("label1"), "my-other-label", Arrays.asList("label2")))
-            .withDisplayName("Exceptions - New in the last 24 hours")
-            .withDescription("my description")
-            .withBody(
-                "let newExceptionsTimeRange = 1d;\n"
-                    + "let timeRangeToCheckBefore = 7d;\n"
-                    + "exceptions\n"
-                    + "| where timestamp < ago(timeRangeToCheckBefore)\n"
-                    + "| summarize count() by problemId\n"
-                    + "| join kind= rightanti (\n"
-                    + "exceptions\n"
-                    + "| where timestamp >= ago(newExceptionsTimeRange)\n"
-                    + "| extend stack = tostring(details[0].rawStack)\n"
-                    + "| summarize count(), dcount(user_AuthenticatedId), min(timestamp), max(timestamp), any(stack) by"
-                    + " problemId  \n"
-                    + ") on problemId \n"
-                    + "| order by  count_ desc\n")
-            .withRelated(new LogAnalyticsQueryPackQueryPropertiesRelated().withCategories(Arrays.asList("analytics")))
+            .withProperties(
+                new LogAnalyticsQueryPackQueryProperties()
+                    .withDisplayName("Exceptions - New in the last 24 hours")
+                    .withDescription("my description")
+                    .withBody(
+                        "let newExceptionsTimeRange = 1d;\n"
+                            + "let timeRangeToCheckBefore = 7d;\n"
+                            + "exceptions\n"
+                            + "| where timestamp < ago(timeRangeToCheckBefore)\n"
+                            + "| summarize count() by problemId\n"
+                            + "| join kind= rightanti (\n"
+                            + "exceptions\n"
+                            + "| where timestamp >= ago(newExceptionsTimeRange)\n"
+                            + "| extend stack = tostring(details[0].rawStack)\n"
+                            + "| summarize count(), dcount(user_AuthenticatedId), min(timestamp), max(timestamp),"
+                            + " any(stack) by problemId  \n"
+                            + ") on problemId \n"
+                            + "| order by  count_ desc\n")
+                    .withRelated(
+                        new LogAnalyticsQueryPackQueryPropertiesRelated().withCategories(Arrays.asList("analytics")))
+                    .withTags(mapOf("my-label", Arrays.asList("label1"), "my-other-label", Arrays.asList("label2"))))
             .apply();
     }
 

@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for WorkspaceSkuNameEnum. */
+/** The name of the SKU. */
 public final class WorkspaceSkuNameEnum extends ExpandableStringEnum<WorkspaceSkuNameEnum> {
     /** Static value Free for WorkspaceSkuNameEnum. */
     public static final WorkspaceSkuNameEnum FREE = fromString("Free");

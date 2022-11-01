@@ -6,6 +6,7 @@ package com.azure.resourcemanager.loganalytics.models;
 
 import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.http.rest.Response;
+import com.azure.core.management.exception.ManagementError;
 import com.azure.core.util.Context;
 
 /** Resource collection API of DataExports. */
@@ -41,19 +42,6 @@ public interface DataExports {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param dataExportName The data export rule name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a data export instance.
-     */
-    DataExport get(String resourceGroupName, String workspaceName, String dataExportName);
-
-    /**
-     * Gets a data export instance.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param dataExportName The data export rule name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -64,7 +52,7 @@ public interface DataExports {
         String resourceGroupName, String workspaceName, String dataExportName, Context context);
 
     /**
-     * Deletes the specified data export in a given workspace..
+     * Gets a data export instance.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
@@ -72,8 +60,9 @@ public interface DataExports {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a data export instance.
      */
-    void delete(String resourceGroupName, String workspaceName, String dataExportName);
+    DataExport get(String resourceGroupName, String workspaceName, String dataExportName);
 
     /**
      * Deletes the specified data export in a given workspace..
@@ -85,10 +74,23 @@ public interface DataExports {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response body along with {@link Response}.
      */
-    Response<Void> deleteWithResponse(
+    Response<ManagementError> deleteWithResponse(
         String resourceGroupName, String workspaceName, String dataExportName, Context context);
+
+    /**
+     * Deletes the specified data export in a given workspace..
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param dataExportName The data export rule name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response.
+     */
+    ManagementError delete(String resourceGroupName, String workspaceName, String dataExportName);
 
     /**
      * Gets a data export instance.
@@ -120,8 +122,9 @@ public interface DataExports {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body along with {@link Response}.
      */
-    void deleteById(String id);
+    ManagementError deleteById(String id);
 
     /**
      * Deletes the specified data export in a given workspace..
@@ -131,9 +134,9 @@ public interface DataExports {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return the response body along with {@link Response}.
      */
-    Response<Void> deleteByIdWithResponse(String id, Context context);
+    Response<ManagementError> deleteByIdWithResponse(String id, Context context);
 
     /**
      * Begins definition for a new DataExport resource.

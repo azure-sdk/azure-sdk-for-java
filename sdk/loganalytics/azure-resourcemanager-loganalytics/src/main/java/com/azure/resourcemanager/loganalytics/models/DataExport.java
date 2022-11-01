@@ -46,6 +46,13 @@ public interface DataExport {
     List<String> tableNames();
 
     /**
+     * Gets the destination property: destination properties.
+     *
+     * @return the destination value.
+     */
+    Destination destination();
+
+    /**
      * Gets the enable property: Active when enabled.
      *
      * @return the enable value.
@@ -67,29 +74,6 @@ public interface DataExport {
     String lastModifiedDate();
 
     /**
-     * Gets the resourceId property: The destination resource ID. This can be copied from the Properties entry of the
-     * destination resource in Azure.
-     *
-     * @return the resourceId value.
-     */
-    String resourceId();
-
-    /**
-     * Gets the typePropertiesType property: The type of the destination resource.
-     *
-     * @return the typePropertiesType value.
-     */
-    Type typePropertiesType();
-
-    /**
-     * Gets the eventHubName property: Optional. Allows to define an Event Hub name. Not applicable when destination is
-     * Storage Account.
-     *
-     * @return the eventHubName value.
-     */
-    String eventHubName();
-
-    /**
      * Gets the name of the resource group.
      *
      * @return the name of the resource group.
@@ -105,7 +89,11 @@ public interface DataExport {
 
     /** The entirety of the DataExport definition. */
     interface Definition
-        extends DefinitionStages.Blank, DefinitionStages.WithParentResource, DefinitionStages.WithCreate {
+        extends DefinitionStages.Blank,
+            DefinitionStages.WithParentResource,
+            DefinitionStages.WithTableNames,
+            DefinitionStages.WithDestination,
+            DefinitionStages.WithCreate {
     }
     /** The DataExport definition stages. */
     interface DefinitionStages {
@@ -121,7 +109,28 @@ public interface DataExport {
              * @param workspaceName The name of the workspace.
              * @return the next definition stage.
              */
-            WithCreate withExistingWorkspace(String resourceGroupName, String workspaceName);
+            WithTableNames withExistingWorkspace(String resourceGroupName, String workspaceName);
+        }
+        /** The stage of the DataExport definition allowing to specify tableNames. */
+        interface WithTableNames {
+            /**
+             * Specifies the tableNames property: An array of tables to export, for example: [“Heartbeat,
+             * SecurityEvent”]..
+             *
+             * @param tableNames An array of tables to export, for example: [“Heartbeat, SecurityEvent”].
+             * @return the next definition stage.
+             */
+            WithDestination withTableNames(List<String> tableNames);
+        }
+        /** The stage of the DataExport definition allowing to specify destination. */
+        interface WithDestination {
+            /**
+             * Specifies the destination property: destination properties..
+             *
+             * @param destination destination properties.
+             * @return the next definition stage.
+             */
+            WithCreate withDestination(Destination destination);
         }
         /**
          * The stage of the DataExport definition which contains all the minimum required properties for the resource to
@@ -129,12 +138,9 @@ public interface DataExport {
          */
         interface WithCreate
             extends DefinitionStages.WithDataExportId,
-                DefinitionStages.WithTableNames,
                 DefinitionStages.WithEnable,
                 DefinitionStages.WithCreatedDate,
-                DefinitionStages.WithLastModifiedDate,
-                DefinitionStages.WithResourceId,
-                DefinitionStages.WithEventHubName {
+                DefinitionStages.WithLastModifiedDate {
             /**
              * Executes the create request.
              *
@@ -159,17 +165,6 @@ public interface DataExport {
              * @return the next definition stage.
              */
             WithCreate withDataExportId(String dataExportId);
-        }
-        /** The stage of the DataExport definition allowing to specify tableNames. */
-        interface WithTableNames {
-            /**
-             * Specifies the tableNames property: An array of tables to export, for example: [“Heartbeat,
-             * SecurityEvent”]..
-             *
-             * @param tableNames An array of tables to export, for example: [“Heartbeat, SecurityEvent”].
-             * @return the next definition stage.
-             */
-            WithCreate withTableNames(List<String> tableNames);
         }
         /** The stage of the DataExport definition allowing to specify enable. */
         interface WithEnable {
@@ -201,30 +196,6 @@ public interface DataExport {
              */
             WithCreate withLastModifiedDate(String lastModifiedDate);
         }
-        /** The stage of the DataExport definition allowing to specify resourceId. */
-        interface WithResourceId {
-            /**
-             * Specifies the resourceId property: The destination resource ID. This can be copied from the Properties
-             * entry of the destination resource in Azure..
-             *
-             * @param resourceId The destination resource ID. This can be copied from the Properties entry of the
-             *     destination resource in Azure.
-             * @return the next definition stage.
-             */
-            WithCreate withResourceId(String resourceId);
-        }
-        /** The stage of the DataExport definition allowing to specify eventHubName. */
-        interface WithEventHubName {
-            /**
-             * Specifies the eventHubName property: Optional. Allows to define an Event Hub name. Not applicable when
-             * destination is Storage Account..
-             *
-             * @param eventHubName Optional. Allows to define an Event Hub name. Not applicable when destination is
-             *     Storage Account.
-             * @return the next definition stage.
-             */
-            WithCreate withEventHubName(String eventHubName);
-        }
     }
     /**
      * Begins update for the DataExport resource.
@@ -237,11 +208,10 @@ public interface DataExport {
     interface Update
         extends UpdateStages.WithDataExportId,
             UpdateStages.WithTableNames,
+            UpdateStages.WithDestination,
             UpdateStages.WithEnable,
             UpdateStages.WithCreatedDate,
-            UpdateStages.WithLastModifiedDate,
-            UpdateStages.WithResourceId,
-            UpdateStages.WithEventHubName {
+            UpdateStages.WithLastModifiedDate {
         /**
          * Executes the update request.
          *
@@ -280,6 +250,16 @@ public interface DataExport {
              */
             Update withTableNames(List<String> tableNames);
         }
+        /** The stage of the DataExport update allowing to specify destination. */
+        interface WithDestination {
+            /**
+             * Specifies the destination property: destination properties..
+             *
+             * @param destination destination properties.
+             * @return the next definition stage.
+             */
+            Update withDestination(Destination destination);
+        }
         /** The stage of the DataExport update allowing to specify enable. */
         interface WithEnable {
             /**
@@ -309,30 +289,6 @@ public interface DataExport {
              * @return the next definition stage.
              */
             Update withLastModifiedDate(String lastModifiedDate);
-        }
-        /** The stage of the DataExport update allowing to specify resourceId. */
-        interface WithResourceId {
-            /**
-             * Specifies the resourceId property: The destination resource ID. This can be copied from the Properties
-             * entry of the destination resource in Azure..
-             *
-             * @param resourceId The destination resource ID. This can be copied from the Properties entry of the
-             *     destination resource in Azure.
-             * @return the next definition stage.
-             */
-            Update withResourceId(String resourceId);
-        }
-        /** The stage of the DataExport update allowing to specify eventHubName. */
-        interface WithEventHubName {
-            /**
-             * Specifies the eventHubName property: Optional. Allows to define an Event Hub name. Not applicable when
-             * destination is Storage Account..
-             *
-             * @param eventHubName Optional. Allows to define an Event Hub name. Not applicable when destination is
-             *     Storage Account.
-             * @return the next definition stage.
-             */
-            Update withEventHubName(String eventHubName);
         }
     }
     /**

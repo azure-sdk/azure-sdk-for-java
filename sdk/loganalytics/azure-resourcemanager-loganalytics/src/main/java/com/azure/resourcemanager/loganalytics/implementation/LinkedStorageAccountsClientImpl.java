@@ -78,7 +78,7 @@ public final class LinkedStorageAccountsClientImpl implements LinkedStorageAccou
             @HeaderParam("Accept") String accept,
             Context context);
 
-        @Headers({"Accept: application/json;q=0.9", "Content-Type: application/json"})
+        @Headers({"Content-Type: application/json"})
         @Delete(
             "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.OperationalInsights"
                 + "/workspaces/{workspaceName}/linkedStorageAccounts/{dataSourceType}")
@@ -91,6 +91,7 @@ public final class LinkedStorageAccountsClientImpl implements LinkedStorageAccou
             @PathParam("dataSourceType") DataSourceType dataSourceType,
             @QueryParam("api-version") String apiVersion,
             @PathParam("subscriptionId") String subscriptionId,
+            @HeaderParam("Accept") String accept,
             Context context);
 
         @Headers({"Content-Type: application/json"})
@@ -287,28 +288,6 @@ public final class LinkedStorageAccountsClientImpl implements LinkedStorageAccou
      * @param workspaceName The name of the workspace.
      * @param dataSourceType Linked storage accounts type.
      * @param parameters The parameters required to create or update linked storage accounts.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return linked storage accounts top level resource container.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public LinkedStorageAccountsResourceInner createOrUpdate(
-        String resourceGroupName,
-        String workspaceName,
-        DataSourceType dataSourceType,
-        LinkedStorageAccountsResourceInner parameters) {
-        return createOrUpdateAsync(resourceGroupName, workspaceName, dataSourceType, parameters).block();
-    }
-
-    /**
-     * Create or Update a link relation between current workspace and a group of storage accounts of a specific data
-     * source type.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param dataSourceType Linked storage accounts type.
-     * @param parameters The parameters required to create or update linked storage accounts.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -324,6 +303,29 @@ public final class LinkedStorageAccountsClientImpl implements LinkedStorageAccou
         Context context) {
         return createOrUpdateWithResponseAsync(resourceGroupName, workspaceName, dataSourceType, parameters, context)
             .block();
+    }
+
+    /**
+     * Create or Update a link relation between current workspace and a group of storage accounts of a specific data
+     * source type.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param dataSourceType Linked storage accounts type.
+     * @param parameters The parameters required to create or update linked storage accounts.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return linked storage accounts top level resource container.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public LinkedStorageAccountsResourceInner createOrUpdate(
+        String resourceGroupName,
+        String workspaceName,
+        DataSourceType dataSourceType,
+        LinkedStorageAccountsResourceInner parameters) {
+        return createOrUpdateWithResponse(resourceGroupName, workspaceName, dataSourceType, parameters, Context.NONE)
+            .getValue();
     }
 
     /**
@@ -363,6 +365,7 @@ public final class LinkedStorageAccountsClientImpl implements LinkedStorageAccou
                         "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         final String apiVersion = "2020-08-01";
+        final String accept = "application/json";
         return FluxUtil
             .withContext(
                 context ->
@@ -374,6 +377,7 @@ public final class LinkedStorageAccountsClientImpl implements LinkedStorageAccou
                             dataSourceType,
                             apiVersion,
                             this.client.getSubscriptionId(),
+                            accept,
                             context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
@@ -416,6 +420,7 @@ public final class LinkedStorageAccountsClientImpl implements LinkedStorageAccou
                         "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         final String apiVersion = "2020-08-01";
+        final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .delete(
@@ -425,6 +430,7 @@ public final class LinkedStorageAccountsClientImpl implements LinkedStorageAccou
                 dataSourceType,
                 apiVersion,
                 this.client.getSubscriptionId(),
+                accept,
                 context);
     }
 
@@ -451,21 +457,6 @@ public final class LinkedStorageAccountsClientImpl implements LinkedStorageAccou
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param dataSourceType Linked storage accounts type.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public void delete(String resourceGroupName, String workspaceName, DataSourceType dataSourceType) {
-        deleteAsync(resourceGroupName, workspaceName, dataSourceType).block();
-    }
-
-    /**
-     * Deletes all linked storage accounts of a specific data source type associated with the specified workspace.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param dataSourceType Linked storage accounts type.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -476,6 +467,21 @@ public final class LinkedStorageAccountsClientImpl implements LinkedStorageAccou
     public Response<Void> deleteWithResponse(
         String resourceGroupName, String workspaceName, DataSourceType dataSourceType, Context context) {
         return deleteWithResponseAsync(resourceGroupName, workspaceName, dataSourceType, context).block();
+    }
+
+    /**
+     * Deletes all linked storage accounts of a specific data source type associated with the specified workspace.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param dataSourceType Linked storage accounts type.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public void delete(String resourceGroupName, String workspaceName, DataSourceType dataSourceType) {
+        deleteWithResponse(resourceGroupName, workspaceName, dataSourceType, Context.NONE);
     }
 
     /**
@@ -611,23 +617,6 @@ public final class LinkedStorageAccountsClientImpl implements LinkedStorageAccou
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param dataSourceType Linked storage accounts type.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all linked storage account of a specific data source type associated with the specified workspace.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public LinkedStorageAccountsResourceInner get(
-        String resourceGroupName, String workspaceName, DataSourceType dataSourceType) {
-        return getAsync(resourceGroupName, workspaceName, dataSourceType).block();
-    }
-
-    /**
-     * Gets all linked storage account of a specific data source type associated with the specified workspace.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param dataSourceType Linked storage accounts type.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -639,6 +628,23 @@ public final class LinkedStorageAccountsClientImpl implements LinkedStorageAccou
     public Response<LinkedStorageAccountsResourceInner> getWithResponse(
         String resourceGroupName, String workspaceName, DataSourceType dataSourceType, Context context) {
         return getWithResponseAsync(resourceGroupName, workspaceName, dataSourceType, context).block();
+    }
+
+    /**
+     * Gets all linked storage account of a specific data source type associated with the specified workspace.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param dataSourceType Linked storage accounts type.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return all linked storage account of a specific data source type associated with the specified workspace.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public LinkedStorageAccountsResourceInner get(
+        String resourceGroupName, String workspaceName, DataSourceType dataSourceType) {
+        return getWithResponse(resourceGroupName, workspaceName, dataSourceType, Context.NONE).getValue();
     }
 
     /**

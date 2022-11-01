@@ -6,6 +6,7 @@ package com.azure.resourcemanager.loganalytics.implementation;
 
 import com.azure.core.annotation.Delete;
 import com.azure.core.annotation.ExpectedResponses;
+import com.azure.core.annotation.HeaderParam;
 import com.azure.core.annotation.Headers;
 import com.azure.core.annotation.Host;
 import com.azure.core.annotation.HostParam;
@@ -48,7 +49,7 @@ public final class GatewaysClientImpl implements GatewaysClient {
     @Host("{$host}")
     @ServiceInterface(name = "OperationalInsightsM")
     private interface GatewaysService {
-        @Headers({"Accept: application/json;q=0.9", "Content-Type: application/json"})
+        @Headers({"Content-Type: application/json"})
         @Delete(
             "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.OperationalInsights"
                 + "/workspaces/{workspaceName}/gateways/{gatewayId}")
@@ -61,6 +62,7 @@ public final class GatewaysClientImpl implements GatewaysClient {
             @PathParam("workspaceName") String workspaceName,
             @PathParam("gatewayId") String gatewayId,
             @QueryParam("api-version") String apiVersion,
+            @HeaderParam("Accept") String accept,
             Context context);
     }
 
@@ -101,6 +103,7 @@ public final class GatewaysClientImpl implements GatewaysClient {
             return Mono.error(new IllegalArgumentException("Parameter gatewayId is required and cannot be null."));
         }
         final String apiVersion = "2020-08-01";
+        final String accept = "application/json";
         return FluxUtil
             .withContext(
                 context ->
@@ -112,6 +115,7 @@ public final class GatewaysClientImpl implements GatewaysClient {
                             workspaceName,
                             gatewayId,
                             apiVersion,
+                            accept,
                             context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
@@ -154,6 +158,7 @@ public final class GatewaysClientImpl implements GatewaysClient {
             return Mono.error(new IllegalArgumentException("Parameter gatewayId is required and cannot be null."));
         }
         final String apiVersion = "2020-08-01";
+        final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .delete(
@@ -163,6 +168,7 @@ public final class GatewaysClientImpl implements GatewaysClient {
                 workspaceName,
                 gatewayId,
                 apiVersion,
+                accept,
                 context);
     }
 
@@ -188,21 +194,6 @@ public final class GatewaysClientImpl implements GatewaysClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param gatewayId The Log Analytics gateway Id.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public void delete(String resourceGroupName, String workspaceName, String gatewayId) {
-        deleteAsync(resourceGroupName, workspaceName, gatewayId).block();
-    }
-
-    /**
-     * Delete a Log Analytics gateway.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param gatewayId The Log Analytics gateway Id.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -213,5 +204,20 @@ public final class GatewaysClientImpl implements GatewaysClient {
     public Response<Void> deleteWithResponse(
         String resourceGroupName, String workspaceName, String gatewayId, Context context) {
         return deleteWithResponseAsync(resourceGroupName, workspaceName, gatewayId, context).block();
+    }
+
+    /**
+     * Delete a Log Analytics gateway.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param gatewayId The Log Analytics gateway Id.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public void delete(String resourceGroupName, String workspaceName, String gatewayId) {
+        deleteWithResponse(resourceGroupName, workspaceName, gatewayId, Context.NONE);
     }
 }

@@ -6,7 +6,7 @@ package com.azure.resourcemanager.loganalytics.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
-import com.azure.resourcemanager.loganalytics.models.Type;
+import com.azure.resourcemanager.loganalytics.models.Destination;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
@@ -28,8 +28,8 @@ public final class DataExportProperties {
     /*
      * destination properties.
      */
-    @JsonProperty(value = "destination")
-    private Destination innerDestination;
+    @JsonProperty(value = "destination", required = true)
+    private Destination destination;
 
     /*
      * Active when enabled.
@@ -48,6 +48,10 @@ public final class DataExportProperties {
      */
     @JsonProperty(value = "lastModifiedDate")
     private String lastModifiedDate;
+
+    /** Creates an instance of DataExportProperties class. */
+    public DataExportProperties() {
+    }
 
     /**
      * Get the dataExportId property: The data export rule ID.
@@ -90,12 +94,23 @@ public final class DataExportProperties {
     }
 
     /**
-     * Get the innerDestination property: destination properties.
+     * Get the destination property: destination properties.
      *
-     * @return the innerDestination value.
+     * @return the destination value.
      */
-    private Destination innerDestination() {
-        return this.innerDestination;
+    public Destination destination() {
+        return this.destination;
+    }
+
+    /**
+     * Set the destination property: destination properties.
+     *
+     * @param destination the destination value to set.
+     * @return the DataExportProperties object itself.
+     */
+    public DataExportProperties withDestination(Destination destination) {
+        this.destination = destination;
+        return this;
     }
 
     /**
@@ -159,65 +174,6 @@ public final class DataExportProperties {
     }
 
     /**
-     * Get the resourceId property: The destination resource ID. This can be copied from the Properties entry of the
-     * destination resource in Azure.
-     *
-     * @return the resourceId value.
-     */
-    public String resourceId() {
-        return this.innerDestination() == null ? null : this.innerDestination().resourceId();
-    }
-
-    /**
-     * Set the resourceId property: The destination resource ID. This can be copied from the Properties entry of the
-     * destination resource in Azure.
-     *
-     * @param resourceId the resourceId value to set.
-     * @return the DataExportProperties object itself.
-     */
-    public DataExportProperties withResourceId(String resourceId) {
-        if (this.innerDestination() == null) {
-            this.innerDestination = new Destination();
-        }
-        this.innerDestination().withResourceId(resourceId);
-        return this;
-    }
-
-    /**
-     * Get the type property: The type of the destination resource.
-     *
-     * @return the type value.
-     */
-    public Type type() {
-        return this.innerDestination() == null ? null : this.innerDestination().type();
-    }
-
-    /**
-     * Get the eventHubName property: Optional. Allows to define an Event Hub name. Not applicable when destination is
-     * Storage Account.
-     *
-     * @return the eventHubName value.
-     */
-    public String eventHubName() {
-        return this.innerDestination() == null ? null : this.innerDestination().eventHubName();
-    }
-
-    /**
-     * Set the eventHubName property: Optional. Allows to define an Event Hub name. Not applicable when destination is
-     * Storage Account.
-     *
-     * @param eventHubName the eventHubName value to set.
-     * @return the DataExportProperties object itself.
-     */
-    public DataExportProperties withEventHubName(String eventHubName) {
-        if (this.innerDestination() == null) {
-            this.innerDestination = new Destination();
-        }
-        this.innerDestination().withEventHubName(eventHubName);
-        return this;
-    }
-
-    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -228,8 +184,13 @@ public final class DataExportProperties {
                 .logExceptionAsError(
                     new IllegalArgumentException("Missing required property tableNames in model DataExportProperties"));
         }
-        if (innerDestination() != null) {
-            innerDestination().validate();
+        if (destination() == null) {
+            throw LOGGER
+                .logExceptionAsError(
+                    new IllegalArgumentException(
+                        "Missing required property destination in model DataExportProperties"));
+        } else {
+            destination().validate();
         }
     }
 

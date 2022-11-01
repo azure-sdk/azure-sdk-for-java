@@ -214,7 +214,6 @@ public interface Cluster {
                 DefinitionStages.WithIsAvailabilityZonesEnabled,
                 DefinitionStages.WithBillingType,
                 DefinitionStages.WithKeyVaultProperties,
-                DefinitionStages.WithAssociatedWorkspaces,
                 DefinitionStages.WithCapacityReservationProperties {
             /**
              * Executes the create request.
@@ -308,17 +307,6 @@ public interface Cluster {
              * @return the next definition stage.
              */
             WithCreate withKeyVaultProperties(KeyVaultProperties keyVaultProperties);
-        }
-        /** The stage of the Cluster definition allowing to specify associatedWorkspaces. */
-        interface WithAssociatedWorkspaces {
-            /**
-             * Specifies the associatedWorkspaces property: The list of Log Analytics workspaces associated with the
-             * cluster.
-             *
-             * @param associatedWorkspaces The list of Log Analytics workspaces associated with the cluster.
-             * @return the next definition stage.
-             */
-            WithCreate withAssociatedWorkspaces(List<AssociatedWorkspace> associatedWorkspaces);
         }
         /** The stage of the Cluster definition allowing to specify capacityReservationProperties. */
         interface WithCapacityReservationProperties {
