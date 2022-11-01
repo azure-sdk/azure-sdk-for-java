@@ -5,20 +5,17 @@
 package com.azure.resourcemanager.datamigration.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.List;
+import java.util.Map;
 
 /** Properties for the task that collects user tables for the given list of databases. */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "taskType")
 @JsonTypeName("GetUserTables.AzureSqlDb.Sync")
 @Fluent
 public final class GetUserTablesSqlSyncTaskProperties extends ProjectTaskProperties {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(GetUserTablesSqlSyncTaskProperties.class);
-
     /*
      * Task input
      */
@@ -30,6 +27,10 @@ public final class GetUserTablesSqlSyncTaskProperties extends ProjectTaskPropert
      */
     @JsonProperty(value = "output", access = JsonProperty.Access.WRITE_ONLY)
     private List<GetUserTablesSqlSyncTaskOutput> output;
+
+    /** Creates an instance of GetUserTablesSqlSyncTaskProperties class. */
+    public GetUserTablesSqlSyncTaskProperties() {
+    }
 
     /**
      * Get the input property: Task input.
@@ -58,6 +59,13 @@ public final class GetUserTablesSqlSyncTaskProperties extends ProjectTaskPropert
      */
     public List<GetUserTablesSqlSyncTaskOutput> output() {
         return this.output;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public GetUserTablesSqlSyncTaskProperties withClientData(Map<String, String> clientData) {
+        super.withClientData(clientData);
+        return this;
     }
 
     /**

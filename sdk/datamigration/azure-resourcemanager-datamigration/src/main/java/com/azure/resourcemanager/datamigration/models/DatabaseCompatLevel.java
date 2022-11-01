@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for DatabaseCompatLevel. */
+/** An enumeration of SQL Server database compatibility levels. */
 public final class DatabaseCompatLevel extends ExpandableStringEnum<DatabaseCompatLevel> {
     /** Static value CompatLevel80 for DatabaseCompatLevel. */
     public static final DatabaseCompatLevel COMPAT_LEVEL80 = fromString("CompatLevel80");
@@ -42,7 +42,11 @@ public final class DatabaseCompatLevel extends ExpandableStringEnum<DatabaseComp
         return fromString(name, DatabaseCompatLevel.class);
     }
 
-    /** @return known DatabaseCompatLevel values. */
+    /**
+     * Gets known DatabaseCompatLevel values.
+     *
+     * @return known DatabaseCompatLevel values.
+     */
     public static Collection<DatabaseCompatLevel> values() {
         return values(DatabaseCompatLevel.class);
     }
