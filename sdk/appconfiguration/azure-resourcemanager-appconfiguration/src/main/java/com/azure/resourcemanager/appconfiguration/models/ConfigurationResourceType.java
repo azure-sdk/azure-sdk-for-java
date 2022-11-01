@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for ConfigurationResourceType. */
+/** The resource type to check for name availability. */
 public final class ConfigurationResourceType extends ExpandableStringEnum<ConfigurationResourceType> {
     /** Static value Microsoft.AppConfiguration/configurationStores for ConfigurationResourceType. */
     public static final ConfigurationResourceType MICROSOFT_APP_CONFIGURATION_CONFIGURATION_STORES =
