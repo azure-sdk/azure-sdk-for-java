@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for ImdsAttestation. */
+/** IMDS attestation status of the cluster. */
 public final class ImdsAttestation extends ExpandableStringEnum<ImdsAttestation> {
     /** Static value Disabled for ImdsAttestation. */
     public static final ImdsAttestation DISABLED = fromString("Disabled");
