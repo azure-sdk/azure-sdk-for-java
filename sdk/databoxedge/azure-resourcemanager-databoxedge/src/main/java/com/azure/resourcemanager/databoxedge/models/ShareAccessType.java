@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for ShareAccessType. */
+/** Type of access to be allowed on the share for this user. */
 public final class ShareAccessType extends ExpandableStringEnum<ShareAccessType> {
     /** Static value Change for ShareAccessType. */
     public static final ShareAccessType CHANGE = fromString("Change");
@@ -30,7 +30,11 @@ public final class ShareAccessType extends ExpandableStringEnum<ShareAccessType>
         return fromString(name, ShareAccessType.class);
     }
 
-    /** @return known ShareAccessType values. */
+    /**
+     * Gets known ShareAccessType values.
+     *
+     * @return known ShareAccessType values.
+     */
     public static Collection<ShareAccessType> values() {
         return values(ShareAccessType.class);
     }

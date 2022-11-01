@@ -5,15 +5,11 @@
 package com.azure.resourcemanager.databoxedge.models;
 
 import com.azure.core.annotation.Immutable;
-import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** The metadata for retrieving price info. */
 @Immutable
 public final class SkuCost {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(SkuCost.class);
-
     /*
      * Used for querying price from commerce.
      */
@@ -27,10 +23,14 @@ public final class SkuCost {
     private Long quantity;
 
     /*
-     * Restriction of the SKU for the location/zone
+     * The extended unit.
      */
     @JsonProperty(value = "extendedUnit", access = JsonProperty.Access.WRITE_ONLY)
     private String extendedUnit;
+
+    /** Creates an instance of SkuCost class. */
+    public SkuCost() {
+    }
 
     /**
      * Get the meterId property: Used for querying price from commerce.
@@ -51,7 +51,7 @@ public final class SkuCost {
     }
 
     /**
-     * Get the extendedUnit property: Restriction of the SKU for the location/zone.
+     * Get the extendedUnit property: The extended unit.
      *
      * @return the extendedUnit value.
      */
