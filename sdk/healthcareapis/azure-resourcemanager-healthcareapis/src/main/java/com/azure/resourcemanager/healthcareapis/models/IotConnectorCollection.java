@@ -24,6 +24,10 @@ public final class IotConnectorCollection {
     @JsonProperty(value = "value")
     private List<IotConnectorInner> value;
 
+    /** Creates an instance of IotConnectorCollection class. */
+    public IotConnectorCollection() {
+    }
+
     /**
      * Get the nextLink property: The link used to get the next page of IoT Connectors.
      *

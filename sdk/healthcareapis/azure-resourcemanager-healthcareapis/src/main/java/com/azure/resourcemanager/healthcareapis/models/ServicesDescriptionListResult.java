@@ -24,6 +24,10 @@ public final class ServicesDescriptionListResult {
     @JsonProperty(value = "value")
     private List<ServicesDescriptionInner> value;
 
+    /** Creates an instance of ServicesDescriptionListResult class. */
+    public ServicesDescriptionListResult() {
+    }
+
     /**
      * Get the nextLink property: The link used to get the next page of service description objects.
      *

@@ -28,6 +28,10 @@ public final class ServiceAuthenticationConfigurationInfo {
     @JsonProperty(value = "smartProxyEnabled")
     private Boolean smartProxyEnabled;
 
+    /** Creates an instance of ServiceAuthenticationConfigurationInfo class. */
+    public ServiceAuthenticationConfigurationInfo() {
+    }
+
     /**
      * Get the authority property: The authority url for the service.
      *

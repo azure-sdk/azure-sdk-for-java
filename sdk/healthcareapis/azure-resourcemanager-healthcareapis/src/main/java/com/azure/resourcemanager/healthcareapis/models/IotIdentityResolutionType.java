@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for IotIdentityResolutionType. */
+/** The type of IoT identity resolution to use with the destination. */
 public final class IotIdentityResolutionType extends ExpandableStringEnum<IotIdentityResolutionType> {
     /** Static value Create for IotIdentityResolutionType. */
     public static final IotIdentityResolutionType CREATE = fromString("Create");
@@ -27,7 +27,11 @@ public final class IotIdentityResolutionType extends ExpandableStringEnum<IotIde
         return fromString(name, IotIdentityResolutionType.class);
     }
 
-    /** @return known IotIdentityResolutionType values. */
+    /**
+     * Gets known IotIdentityResolutionType values.
+     *
+     * @return known IotIdentityResolutionType values.
+     */
     public static Collection<IotIdentityResolutionType> values() {
         return values(IotIdentityResolutionType.class);
     }
