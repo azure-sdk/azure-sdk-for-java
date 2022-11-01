@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for BackupFileStatus. */
+/** An enumeration of Status of the log backup file. */
 public final class BackupFileStatus extends ExpandableStringEnum<BackupFileStatus> {
     /** Static value Arrived for BackupFileStatus. */
     public static final BackupFileStatus ARRIVED = fromString("Arrived");
@@ -42,7 +42,11 @@ public final class BackupFileStatus extends ExpandableStringEnum<BackupFileStatu
         return fromString(name, BackupFileStatus.class);
     }
 
-    /** @return known BackupFileStatus values. */
+    /**
+     * Gets known BackupFileStatus values.
+     *
+     * @return known BackupFileStatus values.
+     */
     public static Collection<BackupFileStatus> values() {
         return values(BackupFileStatus.class);
     }

@@ -5,20 +5,17 @@
 package com.azure.resourcemanager.datamigration.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.List;
+import java.util.Map;
 
 /** Properties for the task that validates connection to Azure SQL Database Managed Instance. */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "taskType")
 @JsonTypeName("ConnectToTarget.AzureSqlDbMI.Sync.LRS")
 @Fluent
 public final class ConnectToTargetSqlMISyncTaskProperties extends ProjectTaskProperties {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(ConnectToTargetSqlMISyncTaskProperties.class);
-
     /*
      * Task input
      */
@@ -30,6 +27,10 @@ public final class ConnectToTargetSqlMISyncTaskProperties extends ProjectTaskPro
      */
     @JsonProperty(value = "output", access = JsonProperty.Access.WRITE_ONLY)
     private List<ConnectToTargetSqlMISyncTaskOutput> output;
+
+    /** Creates an instance of ConnectToTargetSqlMISyncTaskProperties class. */
+    public ConnectToTargetSqlMISyncTaskProperties() {
+    }
 
     /**
      * Get the input property: Task input.
@@ -58,6 +59,13 @@ public final class ConnectToTargetSqlMISyncTaskProperties extends ProjectTaskPro
      */
     public List<ConnectToTargetSqlMISyncTaskOutput> output() {
         return this.output;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public ConnectToTargetSqlMISyncTaskProperties withClientData(Map<String, String> clientData) {
+        super.withClientData(clientData);
+        return this;
     }
 
     /**
