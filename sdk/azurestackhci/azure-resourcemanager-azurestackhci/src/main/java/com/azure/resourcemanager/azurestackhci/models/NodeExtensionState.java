@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for NodeExtensionState. */
+/** State of Arc Extension in this node. */
 public final class NodeExtensionState extends ExpandableStringEnum<NodeExtensionState> {
     /** Static value NotSpecified for NodeExtensionState. */
     public static final NodeExtensionState NOT_SPECIFIED = fromString("NotSpecified");
