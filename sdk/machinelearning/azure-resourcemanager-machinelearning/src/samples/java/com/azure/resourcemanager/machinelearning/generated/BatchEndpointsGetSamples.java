@@ -9,14 +9,15 @@ import com.azure.core.util.Context;
 /** Samples for BatchEndpoints Get. */
 public final class BatchEndpointsGetSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-02-01-preview/examples/BatchEndpoint/get.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Workspace/BatchEndpoint/get.json
      */
     /**
-     * Sample code: Get Batch Endpoint.
+     * Sample code: Get Workspace Batch Endpoint.
      *
      * @param manager Entry point to MachineLearningManager.
      */
-    public static void getBatchEndpoint(com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
+    public static void getWorkspaceBatchEndpoint(
+        com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
         manager.batchEndpoints().getWithResponse("test-rg", "my-aml-workspace", "testEndpointName", Context.NONE);
     }
 }

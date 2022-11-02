@@ -4,34 +4,51 @@
 
 package com.azure.resourcemanager.machinelearning.generated;
 
-import com.azure.resourcemanager.machinelearning.models.EnvironmentContainerDetails;
+import com.azure.core.util.Context;
+import com.azure.resourcemanager.machinelearning.fluent.models.EnvironmentContainerInner;
+import com.azure.resourcemanager.machinelearning.models.EnvironmentContainerProperties;
 import java.util.HashMap;
 import java.util.Map;
 
 /** Samples for EnvironmentContainers CreateOrUpdate. */
 public final class EnvironmentContainersCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-02-01-preview/examples/EnvironmentContainer/createOrUpdate.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Workspace/EnvironmentContainer/createOrUpdate.json
      */
     /**
-     * Sample code: CreateOrUpdate Environment Container.
+     * Sample code: CreateOrUpdate Workspace Environment Container.
      *
      * @param manager Entry point to MachineLearningManager.
      */
-    public static void createOrUpdateEnvironmentContainer(
+    public static void createOrUpdateWorkspaceEnvironmentContainer(
         com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
         manager
             .environmentContainers()
-            .define("testEnvironment")
-            .withExistingWorkspace("testrg123", "testworkspace")
-            .withProperties(
-                new EnvironmentContainerDetails()
-                    .withDescription("string")
+            .createOrUpdateWithResponse(
+                "testrg123",
+                "testworkspace",
+                "testEnvironment",
+                new EnvironmentContainerInner()
                     .withProperties(
-                        mapOf("additionalProp1", "string", "additionalProp2", "string", "additionalProp3", "string"))
-                    .withTags(
-                        mapOf("additionalProp1", "string", "additionalProp2", "string", "additionalProp3", "string")))
-            .create();
+                        new EnvironmentContainerProperties()
+                            .withDescription("string")
+                            .withProperties(
+                                mapOf(
+                                    "additionalProp1",
+                                    "string",
+                                    "additionalProp2",
+                                    "string",
+                                    "additionalProp3",
+                                    "string"))
+                            .withTags(
+                                mapOf(
+                                    "additionalProp1",
+                                    "string",
+                                    "additionalProp2",
+                                    "string",
+                                    "additionalProp3",
+                                    "string"))),
+                Context.NONE);
     }
 
     @SuppressWarnings("unchecked")

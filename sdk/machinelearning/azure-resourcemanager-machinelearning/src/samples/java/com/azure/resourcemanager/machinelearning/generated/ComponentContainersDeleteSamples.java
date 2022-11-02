@@ -9,14 +9,14 @@ import com.azure.core.util.Context;
 /** Samples for ComponentContainers Delete. */
 public final class ComponentContainersDeleteSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-02-01-preview/examples/ComponentContainer/delete.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Workspace/ComponentContainer/delete.json
      */
     /**
-     * Sample code: Delete Component Container.
+     * Sample code: Delete Workspace Component Container.
      *
      * @param manager Entry point to MachineLearningManager.
      */
-    public static void deleteComponentContainer(
+    public static void deleteWorkspaceComponentContainer(
         com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
         manager.componentContainers().deleteWithResponse("test-rg", "my-aml-workspace", "string", Context.NONE);
     }

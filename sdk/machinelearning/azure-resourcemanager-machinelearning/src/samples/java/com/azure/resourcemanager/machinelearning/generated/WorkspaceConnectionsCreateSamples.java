@@ -4,10 +4,12 @@
 
 package com.azure.resourcemanager.machinelearning.generated;
 
+import com.azure.resourcemanager.machinelearning.models.NoneAuthTypeWorkspaceConnectionProperties;
+
 /** Samples for WorkspaceConnections Create. */
 public final class WorkspaceConnectionsCreateSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-02-01-preview/examples/WorkspaceConnection/create.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/WorkspaceConnection/create.json
      */
     /**
      * Sample code: CreateWorkspaceConnection.
@@ -20,10 +22,10 @@ public final class WorkspaceConnectionsCreateSamples {
             .workspaceConnections()
             .define("connection-1")
             .withExistingWorkspace("resourceGroup-1", "workspace-1")
-            .withCategory("ACR")
-            .withTarget("www.facebook.com")
-            .withAuthType("PAT")
-            .withValue("secrets")
+            .withProperties(
+                new NoneAuthTypeWorkspaceConnectionProperties()
+                    .withCategory("ContainerRegistry")
+                    .withTarget("www.facebook.com"))
             .create();
     }
 }

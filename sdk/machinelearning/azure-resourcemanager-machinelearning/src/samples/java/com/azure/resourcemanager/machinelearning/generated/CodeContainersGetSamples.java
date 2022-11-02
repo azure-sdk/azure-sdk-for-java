@@ -9,14 +9,15 @@ import com.azure.core.util.Context;
 /** Samples for CodeContainers Get. */
 public final class CodeContainersGetSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-02-01-preview/examples/CodeContainer/get.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Workspace/CodeContainer/get.json
      */
     /**
-     * Sample code: Get Code Container.
+     * Sample code: Get Workspace Code Container.
      *
      * @param manager Entry point to MachineLearningManager.
      */
-    public static void getCodeContainer(com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
+    public static void getWorkspaceCodeContainer(
+        com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
         manager.codeContainers().getWithResponse("testrg123", "testworkspace", "testContainer", Context.NONE);
     }
 }

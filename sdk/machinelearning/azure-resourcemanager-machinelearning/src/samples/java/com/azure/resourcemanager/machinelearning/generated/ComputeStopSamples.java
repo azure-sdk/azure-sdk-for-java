@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for Compute Stop. */
 public final class ComputeStopSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-02-01-preview/examples/Compute/stop.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Compute/stop.json
      */
     /**
      * Sample code: Stop ComputeInstance Compute.

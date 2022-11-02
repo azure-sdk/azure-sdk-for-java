@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for Workspaces PrepareNotebook. */
 public final class WorkspacesPrepareNotebookSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-02-01-preview/examples/Notebook/prepare.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Notebook/prepare.json
      */
     /**
      * Sample code: Prepare Notebook.

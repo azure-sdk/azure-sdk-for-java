@@ -11,14 +11,14 @@ import java.util.Map;
 /** Samples for DataVersions CreateOrUpdate. */
 public final class DataVersionsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-02-01-preview/examples/DataVersionBase/createOrUpdate.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Workspace/DataVersionBase/createOrUpdate.json
      */
     /**
-     * Sample code: CreateOrUpdate Data Version Base.
+     * Sample code: CreateOrUpdate Workspace Data Version Base.
      *
      * @param manager Entry point to MachineLearningManager.
      */
-    public static void createOrUpdateDataVersionBase(
+    public static void createOrUpdateWorkspaceDataVersionBase(
         com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
         manager
             .dataVersions()

@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for WorkspaceConnections Delete. */
 public final class WorkspaceConnectionsDeleteSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-02-01-preview/examples/WorkspaceConnection/delete.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/WorkspaceConnection/delete.json
      */
     /**
      * Sample code: DeleteWorkspaceConnection.
