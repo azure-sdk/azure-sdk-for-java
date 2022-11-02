@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for HybridConnections ListByNamespace. */
 public final class HybridConnectionsListByNamespaceSamples {
     /*
-     * x-ms-original-file: specification/relay/resource-manager/Microsoft.Relay/stable/2017-04-01/examples/HybridConnection/RelayHybridConnectionListAll.json
+     * x-ms-original-file: specification/relay/resource-manager/Microsoft.Relay/stable/2021-11-01/examples/HybridConnection/RelayHybridConnectionListAll.json
      */
     /**
      * Sample code: RelayHybridConnectionListAll.

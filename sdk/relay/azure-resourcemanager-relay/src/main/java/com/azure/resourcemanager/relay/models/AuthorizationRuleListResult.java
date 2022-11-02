@@ -19,11 +19,14 @@ public final class AuthorizationRuleListResult {
     private List<AuthorizationRuleInner> value;
 
     /*
-     * Link to the next set of results. Not empty if value contains incomplete
-     * list of authorization rules.
+     * Link to the next set of results. Not empty if value contains incomplete list of authorization rules.
      */
     @JsonProperty(value = "nextLink")
     private String nextLink;
+
+    /** Creates an instance of AuthorizationRuleListResult class. */
+    public AuthorizationRuleListResult() {
+    }
 
     /**
      * Get the value property: Result of the list authorization rules operation.

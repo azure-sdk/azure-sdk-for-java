@@ -9,14 +9,14 @@ import com.azure.core.util.Context;
 /** Samples for HybridConnections ListAuthorizationRules. */
 public final class HybridConnectionsListAuthorizationRulesSamples {
     /*
-     * x-ms-original-file: specification/relay/resource-manager/Microsoft.Relay/stable/2017-04-01/examples/HybridConnection/RelayHybridConnectionAutorizationRuleListAll.json
+     * x-ms-original-file: specification/relay/resource-manager/Microsoft.Relay/stable/2021-11-01/examples/HybridConnection/RelayHybridConnectionAuthorizationRuleListAll.json
      */
     /**
-     * Sample code: RelayHybridConnectionAutorizationRuleListAll.
+     * Sample code: RelayHybridConnectionAuthorizationRuleListAll.
      *
      * @param manager Entry point to RelayManager.
      */
-    public static void relayHybridConnectionAutorizationRuleListAll(
+    public static void relayHybridConnectionAuthorizationRuleListAll(
         com.azure.resourcemanager.relay.RelayManager manager) {
         manager
             .hybridConnections()

@@ -10,7 +10,7 @@ import java.util.Arrays;
 /** Samples for Namespaces CreateOrUpdateAuthorizationRule. */
 public final class NamespacesCreateOrUpdateAuthorizationRuleSamples {
     /*
-     * x-ms-original-file: specification/relay/resource-manager/Microsoft.Relay/stable/2017-04-01/examples/NameSpaces/RelayNameSpaceAuthorizationRuleCreate.json
+     * x-ms-original-file: specification/relay/resource-manager/Microsoft.Relay/stable/2021-11-01/examples/NameSpaces/RelayNameSpaceAuthorizationRuleCreate.json
      */
     /**
      * Sample code: RelayNameSpaceAuthorizationRuleCreate.

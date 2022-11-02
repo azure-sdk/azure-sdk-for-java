@@ -32,52 +32,6 @@ public final class HybridConnectionsImpl implements HybridConnections {
         this.serviceManager = serviceManager;
     }
 
-    public PagedIterable<HybridConnection> listByNamespace(String resourceGroupName, String namespaceName) {
-        PagedIterable<HybridConnectionInner> inner =
-            this.serviceClient().listByNamespace(resourceGroupName, namespaceName);
-        return Utils.mapPage(inner, inner1 -> new HybridConnectionImpl(inner1, this.manager()));
-    }
-
-    public PagedIterable<HybridConnection> listByNamespace(
-        String resourceGroupName, String namespaceName, Context context) {
-        PagedIterable<HybridConnectionInner> inner =
-            this.serviceClient().listByNamespace(resourceGroupName, namespaceName, context);
-        return Utils.mapPage(inner, inner1 -> new HybridConnectionImpl(inner1, this.manager()));
-    }
-
-    public void delete(String resourceGroupName, String namespaceName, String hybridConnectionName) {
-        this.serviceClient().delete(resourceGroupName, namespaceName, hybridConnectionName);
-    }
-
-    public Response<Void> deleteWithResponse(
-        String resourceGroupName, String namespaceName, String hybridConnectionName, Context context) {
-        return this.serviceClient().deleteWithResponse(resourceGroupName, namespaceName, hybridConnectionName, context);
-    }
-
-    public HybridConnection get(String resourceGroupName, String namespaceName, String hybridConnectionName) {
-        HybridConnectionInner inner = this.serviceClient().get(resourceGroupName, namespaceName, hybridConnectionName);
-        if (inner != null) {
-            return new HybridConnectionImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
-    public Response<HybridConnection> getWithResponse(
-        String resourceGroupName, String namespaceName, String hybridConnectionName, Context context) {
-        Response<HybridConnectionInner> inner =
-            this.serviceClient().getWithResponse(resourceGroupName, namespaceName, hybridConnectionName, context);
-        if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
-                new HybridConnectionImpl(inner.getValue(), this.manager()));
-        } else {
-            return null;
-        }
-    }
-
     public PagedIterable<AuthorizationRule> listAuthorizationRules(
         String resourceGroupName, String namespaceName, String hybridConnectionName) {
         PagedIterable<AuthorizationRuleInner> inner =
@@ -92,24 +46,6 @@ public final class HybridConnectionsImpl implements HybridConnections {
                 .serviceClient()
                 .listAuthorizationRules(resourceGroupName, namespaceName, hybridConnectionName, context);
         return Utils.mapPage(inner, inner1 -> new AuthorizationRuleImpl(inner1, this.manager()));
-    }
-
-    public AuthorizationRule createOrUpdateAuthorizationRule(
-        String resourceGroupName,
-        String namespaceName,
-        String hybridConnectionName,
-        String authorizationRuleName,
-        AuthorizationRuleInner parameters) {
-        AuthorizationRuleInner inner =
-            this
-                .serviceClient()
-                .createOrUpdateAuthorizationRule(
-                    resourceGroupName, namespaceName, hybridConnectionName, authorizationRuleName, parameters);
-        if (inner != null) {
-            return new AuthorizationRuleImpl(inner, this.manager());
-        } else {
-            return null;
-        }
     }
 
     public Response<AuthorizationRule> createOrUpdateAuthorizationRuleWithResponse(
@@ -135,11 +71,22 @@ public final class HybridConnectionsImpl implements HybridConnections {
         }
     }
 
-    public void deleteAuthorizationRule(
-        String resourceGroupName, String namespaceName, String hybridConnectionName, String authorizationRuleName) {
-        this
-            .serviceClient()
-            .deleteAuthorizationRule(resourceGroupName, namespaceName, hybridConnectionName, authorizationRuleName);
+    public AuthorizationRule createOrUpdateAuthorizationRule(
+        String resourceGroupName,
+        String namespaceName,
+        String hybridConnectionName,
+        String authorizationRuleName,
+        AuthorizationRuleInner parameters) {
+        AuthorizationRuleInner inner =
+            this
+                .serviceClient()
+                .createOrUpdateAuthorizationRule(
+                    resourceGroupName, namespaceName, hybridConnectionName, authorizationRuleName, parameters);
+        if (inner != null) {
+            return new AuthorizationRuleImpl(inner, this.manager());
+        } else {
+            return null;
+        }
     }
 
     public Response<Void> deleteAuthorizationRuleWithResponse(
@@ -154,17 +101,11 @@ public final class HybridConnectionsImpl implements HybridConnections {
                 resourceGroupName, namespaceName, hybridConnectionName, authorizationRuleName, context);
     }
 
-    public AuthorizationRule getAuthorizationRule(
+    public void deleteAuthorizationRule(
         String resourceGroupName, String namespaceName, String hybridConnectionName, String authorizationRuleName) {
-        AuthorizationRuleInner inner =
-            this
-                .serviceClient()
-                .getAuthorizationRule(resourceGroupName, namespaceName, hybridConnectionName, authorizationRuleName);
-        if (inner != null) {
-            return new AuthorizationRuleImpl(inner, this.manager());
-        } else {
-            return null;
-        }
+        this
+            .serviceClient()
+            .deleteAuthorizationRule(resourceGroupName, namespaceName, hybridConnectionName, authorizationRuleName);
     }
 
     public Response<AuthorizationRule> getAuthorizationRuleWithResponse(
@@ -189,14 +130,14 @@ public final class HybridConnectionsImpl implements HybridConnections {
         }
     }
 
-    public AccessKeys listKeys(
+    public AuthorizationRule getAuthorizationRule(
         String resourceGroupName, String namespaceName, String hybridConnectionName, String authorizationRuleName) {
-        AccessKeysInner inner =
+        AuthorizationRuleInner inner =
             this
                 .serviceClient()
-                .listKeys(resourceGroupName, namespaceName, hybridConnectionName, authorizationRuleName);
+                .getAuthorizationRule(resourceGroupName, namespaceName, hybridConnectionName, authorizationRuleName);
         if (inner != null) {
-            return new AccessKeysImpl(inner, this.manager());
+            return new AuthorizationRuleImpl(inner, this.manager());
         } else {
             return null;
         }
@@ -213,6 +154,42 @@ public final class HybridConnectionsImpl implements HybridConnections {
                 .serviceClient()
                 .listKeysWithResponse(
                     resourceGroupName, namespaceName, hybridConnectionName, authorizationRuleName, context);
+        if (inner != null) {
+            return new SimpleResponse<>(
+                inner.getRequest(),
+                inner.getStatusCode(),
+                inner.getHeaders(),
+                new AccessKeysImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public AccessKeys listKeys(
+        String resourceGroupName, String namespaceName, String hybridConnectionName, String authorizationRuleName) {
+        AccessKeysInner inner =
+            this
+                .serviceClient()
+                .listKeys(resourceGroupName, namespaceName, hybridConnectionName, authorizationRuleName);
+        if (inner != null) {
+            return new AccessKeysImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
+    public Response<AccessKeys> regenerateKeysWithResponse(
+        String resourceGroupName,
+        String namespaceName,
+        String hybridConnectionName,
+        String authorizationRuleName,
+        RegenerateAccessKeyParameters parameters,
+        Context context) {
+        Response<AccessKeysInner> inner =
+            this
+                .serviceClient()
+                .regenerateKeysWithResponse(
+                    resourceGroupName, namespaceName, hybridConnectionName, authorizationRuleName, parameters, context);
         if (inner != null) {
             return new SimpleResponse<>(
                 inner.getRequest(),
@@ -242,24 +219,47 @@ public final class HybridConnectionsImpl implements HybridConnections {
         }
     }
 
-    public Response<AccessKeys> regenerateKeysWithResponse(
-        String resourceGroupName,
-        String namespaceName,
-        String hybridConnectionName,
-        String authorizationRuleName,
-        RegenerateAccessKeyParameters parameters,
-        Context context) {
-        Response<AccessKeysInner> inner =
-            this
-                .serviceClient()
-                .regenerateKeysWithResponse(
-                    resourceGroupName, namespaceName, hybridConnectionName, authorizationRuleName, parameters, context);
+    public PagedIterable<HybridConnection> listByNamespace(String resourceGroupName, String namespaceName) {
+        PagedIterable<HybridConnectionInner> inner =
+            this.serviceClient().listByNamespace(resourceGroupName, namespaceName);
+        return Utils.mapPage(inner, inner1 -> new HybridConnectionImpl(inner1, this.manager()));
+    }
+
+    public PagedIterable<HybridConnection> listByNamespace(
+        String resourceGroupName, String namespaceName, Context context) {
+        PagedIterable<HybridConnectionInner> inner =
+            this.serviceClient().listByNamespace(resourceGroupName, namespaceName, context);
+        return Utils.mapPage(inner, inner1 -> new HybridConnectionImpl(inner1, this.manager()));
+    }
+
+    public Response<Void> deleteWithResponse(
+        String resourceGroupName, String namespaceName, String hybridConnectionName, Context context) {
+        return this.serviceClient().deleteWithResponse(resourceGroupName, namespaceName, hybridConnectionName, context);
+    }
+
+    public void delete(String resourceGroupName, String namespaceName, String hybridConnectionName) {
+        this.serviceClient().delete(resourceGroupName, namespaceName, hybridConnectionName);
+    }
+
+    public Response<HybridConnection> getWithResponse(
+        String resourceGroupName, String namespaceName, String hybridConnectionName, Context context) {
+        Response<HybridConnectionInner> inner =
+            this.serviceClient().getWithResponse(resourceGroupName, namespaceName, hybridConnectionName, context);
         if (inner != null) {
             return new SimpleResponse<>(
                 inner.getRequest(),
                 inner.getStatusCode(),
                 inner.getHeaders(),
-                new AccessKeysImpl(inner.getValue(), this.manager()));
+                new HybridConnectionImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public HybridConnection get(String resourceGroupName, String namespaceName, String hybridConnectionName) {
+        HybridConnectionInner inner = this.serviceClient().get(resourceGroupName, namespaceName, hybridConnectionName);
+        if (inner != null) {
+            return new HybridConnectionImpl(inner, this.manager());
         } else {
             return null;
         }

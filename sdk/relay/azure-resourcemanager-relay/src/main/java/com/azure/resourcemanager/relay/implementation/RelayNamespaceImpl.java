@@ -5,15 +5,20 @@
 package com.azure.resourcemanager.relay.implementation;
 
 import com.azure.core.management.Region;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
+import com.azure.resourcemanager.relay.fluent.models.PrivateEndpointConnectionInner;
 import com.azure.resourcemanager.relay.fluent.models.RelayNamespaceInner;
-import com.azure.resourcemanager.relay.models.ProvisioningStateEnum;
+import com.azure.resourcemanager.relay.models.PrivateEndpointConnection;
+import com.azure.resourcemanager.relay.models.PublicNetworkAccess;
 import com.azure.resourcemanager.relay.models.RelayNamespace;
 import com.azure.resourcemanager.relay.models.RelayUpdateParameters;
 import com.azure.resourcemanager.relay.models.Sku;
 import java.time.OffsetDateTime;
 import java.util.Collections;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public final class RelayNamespaceImpl implements RelayNamespace, RelayNamespace.Definition, RelayNamespace.Update {
     private RelayNamespaceInner innerObject;
@@ -49,8 +54,16 @@ public final class RelayNamespaceImpl implements RelayNamespace, RelayNamespace.
         return this.innerModel().sku();
     }
 
-    public ProvisioningStateEnum provisioningState() {
+    public SystemData systemData() {
+        return this.innerModel().systemData();
+    }
+
+    public String provisioningState() {
         return this.innerModel().provisioningState();
+    }
+
+    public String status() {
+        return this.innerModel().status();
     }
 
     public OffsetDateTime createdAt() {
@@ -67,6 +80,24 @@ public final class RelayNamespaceImpl implements RelayNamespace, RelayNamespace.
 
     public String metricId() {
         return this.innerModel().metricId();
+    }
+
+    public List<PrivateEndpointConnection> privateEndpointConnections() {
+        List<PrivateEndpointConnectionInner> inner = this.innerModel().privateEndpointConnections();
+        if (inner != null) {
+            return Collections
+                .unmodifiableList(
+                    inner
+                        .stream()
+                        .map(inner1 -> new PrivateEndpointConnectionImpl(inner1, this.manager()))
+                        .collect(Collectors.toList()));
+        } else {
+            return Collections.emptyList();
+        }
+    }
+
+    public PublicNetworkAccess publicNetworkAccess() {
+        return this.innerModel().publicNetworkAccess();
     }
 
     public Region region() {
@@ -202,6 +233,27 @@ public final class RelayNamespaceImpl implements RelayNamespace, RelayNamespace.
             return this;
         } else {
             this.updateParameters.withSku(sku);
+            return this;
+        }
+    }
+
+    public RelayNamespaceImpl withPrivateEndpointConnections(
+        List<PrivateEndpointConnectionInner> privateEndpointConnections) {
+        if (isInCreateMode()) {
+            this.innerModel().withPrivateEndpointConnections(privateEndpointConnections);
+            return this;
+        } else {
+            this.updateParameters.withPrivateEndpointConnections(privateEndpointConnections);
+            return this;
+        }
+    }
+
+    public RelayNamespaceImpl withPublicNetworkAccess(PublicNetworkAccess publicNetworkAccess) {
+        if (isInCreateMode()) {
+            this.innerModel().withPublicNetworkAccess(publicNetworkAccess);
+            return this;
+        } else {
+            this.updateParameters.withPublicNetworkAccess(publicNetworkAccess);
             return this;
         }
     }

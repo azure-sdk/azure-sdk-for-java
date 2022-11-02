@@ -11,14 +11,14 @@ import com.azure.resourcemanager.relay.models.RegenerateAccessKeyParameters;
 /** Samples for Namespaces RegenerateKeys. */
 public final class NamespacesRegenerateKeysSamples {
     /*
-     * x-ms-original-file: specification/relay/resource-manager/Microsoft.Relay/stable/2017-04-01/examples/NameSpaces/RelayNameSpaceAuthorizationRuleRegenrateKey.json
+     * x-ms-original-file: specification/relay/resource-manager/Microsoft.Relay/stable/2021-11-01/examples/NameSpaces/RelayNameSpaceAuthorizationRuleRegenerateKey.json
      */
     /**
-     * Sample code: RelayNameSpaceAuthorizationRuleRegenrateKey.
+     * Sample code: RelayNameSpaceAuthorizationRuleRegenerateKey.
      *
      * @param manager Entry point to RelayManager.
      */
-    public static void relayNameSpaceAuthorizationRuleRegenrateKey(
+    public static void relayNameSpaceAuthorizationRuleRegenerateKey(
         com.azure.resourcemanager.relay.RelayManager manager) {
         manager
             .namespaces()

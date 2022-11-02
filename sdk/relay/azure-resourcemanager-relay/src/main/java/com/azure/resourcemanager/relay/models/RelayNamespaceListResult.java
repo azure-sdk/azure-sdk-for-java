@@ -19,11 +19,14 @@ public final class RelayNamespaceListResult {
     private List<RelayNamespaceInner> value;
 
     /*
-     * Link to the next set of results. Not empty if value contains incomplete
-     * list of namespaces.
+     * Link to the next set of results. Not empty if value contains incomplete list of namespaces.
      */
     @JsonProperty(value = "nextLink")
     private String nextLink;
+
+    /** Creates an instance of RelayNamespaceListResult class. */
+    public RelayNamespaceListResult() {
+    }
 
     /**
      * Get the value property: Result of the list namespace operation.

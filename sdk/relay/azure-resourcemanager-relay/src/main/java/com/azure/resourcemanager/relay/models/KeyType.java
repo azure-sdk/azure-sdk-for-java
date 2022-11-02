@@ -4,44 +4,35 @@
 
 package com.azure.resourcemanager.relay.models;
 
+import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonValue;
+import java.util.Collection;
 
-/** Defines values for KeyType. */
-public enum KeyType {
-    /** Enum value PrimaryKey. */
-    PRIMARY_KEY("PrimaryKey"),
+/** The access key to regenerate. */
+public final class KeyType extends ExpandableStringEnum<KeyType> {
+    /** Static value PrimaryKey for KeyType. */
+    public static final KeyType PRIMARY_KEY = fromString("PrimaryKey");
 
-    /** Enum value SecondaryKey. */
-    SECONDARY_KEY("SecondaryKey");
+    /** Static value SecondaryKey for KeyType. */
+    public static final KeyType SECONDARY_KEY = fromString("SecondaryKey");
 
-    /** The actual serialized value for a KeyType instance. */
-    private final String value;
-
-    KeyType(String value) {
-        this.value = value;
+    /**
+     * Creates or finds a KeyType from its string representation.
+     *
+     * @param name a name to look for.
+     * @return the corresponding KeyType.
+     */
+    @JsonCreator
+    public static KeyType fromString(String name) {
+        return fromString(name, KeyType.class);
     }
 
     /**
-     * Parses a serialized value to a KeyType instance.
+     * Gets known KeyType values.
      *
-     * @param value the serialized value to parse.
-     * @return the parsed KeyType object, or null if unable to parse.
+     * @return known KeyType values.
      */
-    @JsonCreator
-    public static KeyType fromString(String value) {
-        KeyType[] items = KeyType.values();
-        for (KeyType item : items) {
-            if (item.toString().equalsIgnoreCase(value)) {
-                return item;
-            }
-        }
-        return null;
-    }
-
-    @JsonValue
-    @Override
-    public String toString() {
-        return this.value;
+    public static Collection<KeyType> values() {
+        return values(KeyType.class);
     }
 }

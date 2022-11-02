@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for WcfRelays ListKeys. */
 public final class WcfRelaysListKeysSamples {
     /*
-     * x-ms-original-file: specification/relay/resource-manager/Microsoft.Relay/stable/2017-04-01/examples/Relay/RelayAuthorizationRuleListKey.json
+     * x-ms-original-file: specification/relay/resource-manager/Microsoft.Relay/stable/2021-11-01/examples/Relay/RelayAuthorizationRuleListKey.json
      */
     /**
      * Sample code: RelayAuthorizationRuleListKey.json.

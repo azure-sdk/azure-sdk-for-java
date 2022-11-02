@@ -23,15 +23,13 @@ public final class AccessKeysInner {
     private String secondaryConnectionString;
 
     /*
-     * A base64-encoded 256-bit primary key for signing and validating the SAS
-     * token.
+     * A base64-encoded 256-bit primary key for signing and validating the SAS token.
      */
     @JsonProperty(value = "primaryKey")
     private String primaryKey;
 
     /*
-     * A base64-encoded 256-bit secondary key for signing and validating the
-     * SAS token.
+     * A base64-encoded 256-bit secondary key for signing and validating the SAS token.
      */
     @JsonProperty(value = "secondaryKey")
     private String secondaryKey;
@@ -41,6 +39,10 @@ public final class AccessKeysInner {
      */
     @JsonProperty(value = "keyName")
     private String keyName;
+
+    /** Creates an instance of AccessKeysInner class. */
+    public AccessKeysInner() {
+    }
 
     /**
      * Get the primaryConnectionString property: Primary connection string of the created namespace authorization rule.

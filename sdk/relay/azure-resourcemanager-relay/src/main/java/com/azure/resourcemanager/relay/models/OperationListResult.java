@@ -16,7 +16,7 @@ import java.util.List;
 @Immutable
 public final class OperationListResult {
     /*
-     * List of Relay operations supported by resource provider.
+     * List of Relay operations supported by the Microsoft.Relay resource provider.
      */
     @JsonProperty(value = "value", access = JsonProperty.Access.WRITE_ONLY)
     private List<OperationInner> value;
@@ -27,8 +27,12 @@ public final class OperationListResult {
     @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
     private String nextLink;
 
+    /** Creates an instance of OperationListResult class. */
+    public OperationListResult() {
+    }
+
     /**
-     * Get the value property: List of Relay operations supported by resource provider.
+     * Get the value property: List of Relay operations supported by the Microsoft.Relay resource provider.
      *
      * @return the value value.
      */

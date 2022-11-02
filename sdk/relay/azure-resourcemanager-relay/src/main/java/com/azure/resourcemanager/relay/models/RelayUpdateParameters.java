@@ -5,9 +5,11 @@
 package com.azure.resourcemanager.relay.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.resourcemanager.relay.fluent.models.PrivateEndpointConnectionInner;
 import com.azure.resourcemanager.relay.fluent.models.RelayNamespaceProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
+import java.util.List;
 import java.util.Map;
 
 /** Description of a namespace resource. */
@@ -24,6 +26,10 @@ public final class RelayUpdateParameters extends ResourceNamespacePatch {
      */
     @JsonProperty(value = "properties")
     private RelayNamespaceProperties innerProperties;
+
+    /** Creates an instance of RelayUpdateParameters class. */
+    public RelayUpdateParameters() {
+    }
 
     /**
      * Get the sku property: SKU of the namespace.
@@ -62,12 +68,21 @@ public final class RelayUpdateParameters extends ResourceNamespacePatch {
     }
 
     /**
-     * Get the provisioningState property: The provisioningState property.
+     * Get the provisioningState property: Provisioning state of the Namespace.
      *
      * @return the provisioningState value.
      */
-    public ProvisioningStateEnum provisioningState() {
+    public String provisioningState() {
         return this.innerProperties() == null ? null : this.innerProperties().provisioningState();
+    }
+
+    /**
+     * Get the status property: Status of the Namespace.
+     *
+     * @return the status value.
+     */
+    public String status() {
+        return this.innerProperties() == null ? null : this.innerProperties().status();
     }
 
     /**
@@ -104,6 +119,55 @@ public final class RelayUpdateParameters extends ResourceNamespacePatch {
      */
     public String metricId() {
         return this.innerProperties() == null ? null : this.innerProperties().metricId();
+    }
+
+    /**
+     * Get the privateEndpointConnections property: List of private endpoint connections.
+     *
+     * @return the privateEndpointConnections value.
+     */
+    public List<PrivateEndpointConnectionInner> privateEndpointConnections() {
+        return this.innerProperties() == null ? null : this.innerProperties().privateEndpointConnections();
+    }
+
+    /**
+     * Set the privateEndpointConnections property: List of private endpoint connections.
+     *
+     * @param privateEndpointConnections the privateEndpointConnections value to set.
+     * @return the RelayUpdateParameters object itself.
+     */
+    public RelayUpdateParameters withPrivateEndpointConnections(
+        List<PrivateEndpointConnectionInner> privateEndpointConnections) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new RelayNamespaceProperties();
+        }
+        this.innerProperties().withPrivateEndpointConnections(privateEndpointConnections);
+        return this;
+    }
+
+    /**
+     * Get the publicNetworkAccess property: This determines if traffic is allowed over public network. By default it is
+     * enabled.
+     *
+     * @return the publicNetworkAccess value.
+     */
+    public PublicNetworkAccess publicNetworkAccess() {
+        return this.innerProperties() == null ? null : this.innerProperties().publicNetworkAccess();
+    }
+
+    /**
+     * Set the publicNetworkAccess property: This determines if traffic is allowed over public network. By default it is
+     * enabled.
+     *
+     * @param publicNetworkAccess the publicNetworkAccess value to set.
+     * @return the RelayUpdateParameters object itself.
+     */
+    public RelayUpdateParameters withPublicNetworkAccess(PublicNetworkAccess publicNetworkAccess) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new RelayNamespaceProperties();
+        }
+        this.innerProperties().withPublicNetworkAccess(publicNetworkAccess);
+        return this;
     }
 
     /**

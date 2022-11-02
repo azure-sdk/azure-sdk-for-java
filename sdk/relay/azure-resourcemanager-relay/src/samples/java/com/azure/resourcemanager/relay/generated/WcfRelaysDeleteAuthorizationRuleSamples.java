@@ -9,14 +9,14 @@ import com.azure.core.util.Context;
 /** Samples for WcfRelays DeleteAuthorizationRule. */
 public final class WcfRelaysDeleteAuthorizationRuleSamples {
     /*
-     * x-ms-original-file: specification/relay/resource-manager/Microsoft.Relay/stable/2017-04-01/examples/Relay/RelayAutorizationRuleDelete.json
+     * x-ms-original-file: specification/relay/resource-manager/Microsoft.Relay/stable/2021-11-01/examples/Relay/RelayAuthorizationRuleDelete.json
      */
     /**
-     * Sample code: RelayAutorizationRuleDelete.
+     * Sample code: RelayAuthorizationRuleDelete.
      *
      * @param manager Entry point to RelayManager.
      */
-    public static void relayAutorizationRuleDelete(com.azure.resourcemanager.relay.RelayManager manager) {
+    public static void relayAuthorizationRuleDelete(com.azure.resourcemanager.relay.RelayManager manager) {
         manager
             .wcfRelays()
             .deleteAuthorizationRuleWithResponse(

@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for Namespaces ListKeys. */
 public final class NamespacesListKeysSamples {
     /*
-     * x-ms-original-file: specification/relay/resource-manager/Microsoft.Relay/stable/2017-04-01/examples/NameSpaces/RelayNameSpaceAuthorizationRuleListKey.json
+     * x-ms-original-file: specification/relay/resource-manager/Microsoft.Relay/stable/2021-11-01/examples/NameSpaces/RelayNameSpaceAuthorizationRuleListKey.json
      */
     /**
      * Sample code: RelayNameSpaceAuthorizationRuleListKey.
