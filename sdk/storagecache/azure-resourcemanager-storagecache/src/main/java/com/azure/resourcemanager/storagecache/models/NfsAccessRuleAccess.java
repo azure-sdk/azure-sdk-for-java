@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for NfsAccessRuleAccess. */
+/** Access allowed by this rule. */
 public final class NfsAccessRuleAccess extends ExpandableStringEnum<NfsAccessRuleAccess> {
     /** Static value no for NfsAccessRuleAccess. */
     public static final NfsAccessRuleAccess NO = fromString("no");

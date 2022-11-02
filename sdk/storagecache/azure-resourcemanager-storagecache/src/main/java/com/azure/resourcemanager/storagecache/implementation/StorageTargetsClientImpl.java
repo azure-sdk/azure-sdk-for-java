@@ -765,6 +765,33 @@ public final class StorageTargetsClientImpl implements StorageTargetsClient {
      * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @param storageTargetName Name of Storage Target.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(
+        String resourceGroupName, String cacheName, String storageTargetName) {
+        final String force = null;
+        Mono<Response<Flux<ByteBuffer>>> mono =
+            deleteWithResponseAsync(resourceGroupName, cacheName, storageTargetName, force);
+        return this
+            .client
+            .<Void, Void>getLroResult(
+                mono, this.client.getHttpPipeline(), Void.class, Void.class, this.client.getContext());
+    }
+
+    /**
+     * Removes a Storage Target from a Cache. This operation is allowed at any time, but if the Cache is down or
+     * unhealthy, the actual removal of the Storage Target may be delayed until the Cache is healthy again. Note that if
+     * the Cache has data to flush to the Storage Target, the data will be flushed before the Storage Target will be
+     * deleted.
+     *
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
+     *     [-0-9a-zA-Z_] char class.
+     * @param storageTargetName Name of Storage Target.
      * @param force Boolean value requesting the force delete operation for a storage target. Force delete discards
      *     unwritten-data in the cache instead of flushing it to back-end storage.
      * @param context The context to associate with this operation.
@@ -794,8 +821,6 @@ public final class StorageTargetsClientImpl implements StorageTargetsClient {
      * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @param storageTargetName Name of Storage Target.
-     * @param force Boolean value requesting the force delete operation for a storage target. Force delete discards
-     *     unwritten-data in the cache instead of flushing it to back-end storage.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -803,7 +828,8 @@ public final class StorageTargetsClientImpl implements StorageTargetsClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(
-        String resourceGroupName, String cacheName, String storageTargetName, String force) {
+        String resourceGroupName, String cacheName, String storageTargetName) {
+        final String force = null;
         return beginDeleteAsync(resourceGroupName, cacheName, storageTargetName, force).getSyncPoller();
     }
 
@@ -902,27 +928,6 @@ public final class StorageTargetsClientImpl implements StorageTargetsClient {
         return beginDeleteAsync(resourceGroupName, cacheName, storageTargetName, force, context)
             .last()
             .flatMap(this.client::getLroFinalResultOrError);
-    }
-
-    /**
-     * Removes a Storage Target from a Cache. This operation is allowed at any time, but if the Cache is down or
-     * unhealthy, the actual removal of the Storage Target may be delayed until the Cache is healthy again. Note that if
-     * the Cache has data to flush to the Storage Target, the data will be flushed before the Storage Target will be
-     * deleted.
-     *
-     * @param resourceGroupName Target resource group.
-     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
-     *     [-0-9a-zA-Z_] char class.
-     * @param storageTargetName Name of Storage Target.
-     * @param force Boolean value requesting the force delete operation for a storage target. Force delete discards
-     *     unwritten-data in the cache instead of flushing it to back-end storage.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public void delete(String resourceGroupName, String cacheName, String storageTargetName, String force) {
-        deleteAsync(resourceGroupName, cacheName, storageTargetName, force).block();
     }
 
     /**
@@ -1101,23 +1106,6 @@ public final class StorageTargetsClientImpl implements StorageTargetsClient {
      * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @param storageTargetName Name of Storage Target.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return type of the Storage Target.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public StorageTargetInner get(String resourceGroupName, String cacheName, String storageTargetName) {
-        return getAsync(resourceGroupName, cacheName, storageTargetName).block();
-    }
-
-    /**
-     * Returns a Storage Target from a Cache.
-     *
-     * @param resourceGroupName Target resource group.
-     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
-     *     [-0-9a-zA-Z_] char class.
-     * @param storageTargetName Name of Storage Target.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1128,6 +1116,23 @@ public final class StorageTargetsClientImpl implements StorageTargetsClient {
     public Response<StorageTargetInner> getWithResponse(
         String resourceGroupName, String cacheName, String storageTargetName, Context context) {
         return getWithResponseAsync(resourceGroupName, cacheName, storageTargetName, context).block();
+    }
+
+    /**
+     * Returns a Storage Target from a Cache.
+     *
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
+     *     [-0-9a-zA-Z_] char class.
+     * @param storageTargetName Name of Storage Target.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return type of the Storage Target.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public StorageTargetInner get(String resourceGroupName, String cacheName, String storageTargetName) {
+        return getWithResponse(resourceGroupName, cacheName, storageTargetName, Context.NONE).getValue();
     }
 
     /**
@@ -1291,6 +1296,35 @@ public final class StorageTargetsClientImpl implements StorageTargetsClient {
      * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @param storageTargetName Name of Storage Target.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of type of the Storage Target.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<StorageTargetInner>, StorageTargetInner> beginCreateOrUpdateAsync(
+        String resourceGroupName, String cacheName, String storageTargetName) {
+        final StorageTargetInner storagetarget = null;
+        Mono<Response<Flux<ByteBuffer>>> mono =
+            createOrUpdateWithResponseAsync(resourceGroupName, cacheName, storageTargetName, storagetarget);
+        return this
+            .client
+            .<StorageTargetInner, StorageTargetInner>getLroResult(
+                mono,
+                this.client.getHttpPipeline(),
+                StorageTargetInner.class,
+                StorageTargetInner.class,
+                this.client.getContext());
+    }
+
+    /**
+     * Create or update a Storage Target. This operation is allowed at any time, but if the Cache is down or unhealthy,
+     * the actual creation/modification of the Storage Target may be delayed until the Cache is healthy again.
+     *
+     * @param resourceGroupName Target resource group.
+     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
+     *     [-0-9a-zA-Z_] char class.
+     * @param storageTargetName Name of Storage Target.
      * @param storagetarget Object containing the definition of a Storage Target.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1322,7 +1356,6 @@ public final class StorageTargetsClientImpl implements StorageTargetsClient {
      * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @param storageTargetName Name of Storage Target.
-     * @param storagetarget Object containing the definition of a Storage Target.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1330,7 +1363,8 @@ public final class StorageTargetsClientImpl implements StorageTargetsClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<StorageTargetInner>, StorageTargetInner> beginCreateOrUpdate(
-        String resourceGroupName, String cacheName, String storageTargetName, StorageTargetInner storagetarget) {
+        String resourceGroupName, String cacheName, String storageTargetName) {
+        final StorageTargetInner storagetarget = null;
         return beginCreateOrUpdateAsync(resourceGroupName, cacheName, storageTargetName, storagetarget).getSyncPoller();
     }
 
@@ -1439,26 +1473,6 @@ public final class StorageTargetsClientImpl implements StorageTargetsClient {
      * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
      *     [-0-9a-zA-Z_] char class.
      * @param storageTargetName Name of Storage Target.
-     * @param storagetarget Object containing the definition of a Storage Target.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return type of the Storage Target.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public StorageTargetInner createOrUpdate(
-        String resourceGroupName, String cacheName, String storageTargetName, StorageTargetInner storagetarget) {
-        return createOrUpdateAsync(resourceGroupName, cacheName, storageTargetName, storagetarget).block();
-    }
-
-    /**
-     * Create or update a Storage Target. This operation is allowed at any time, but if the Cache is down or unhealthy,
-     * the actual creation/modification of the Storage Target may be delayed until the Cache is healthy again.
-     *
-     * @param resourceGroupName Target resource group.
-     * @param cacheName Name of Cache. Length of name must not be greater than 80 and chars must be from the
-     *     [-0-9a-zA-Z_] char class.
-     * @param storageTargetName Name of Storage Target.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1498,7 +1512,8 @@ public final class StorageTargetsClientImpl implements StorageTargetsClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1533,7 +1548,8 @@ public final class StorageTargetsClientImpl implements StorageTargetsClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.

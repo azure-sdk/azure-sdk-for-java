@@ -17,11 +17,14 @@ public final class Nfs3Target {
     private String target;
 
     /*
-     * Identifies the StorageCache usage model to be used for this storage
-     * target.
+     * Identifies the StorageCache usage model to be used for this storage target.
      */
     @JsonProperty(value = "usageModel")
     private String usageModel;
+
+    /** Creates an instance of Nfs3Target class. */
+    public Nfs3Target() {
+    }
 
     /**
      * Get the target property: IP address or host name of an NFSv3 host (e.g., 10.0.44.44).
