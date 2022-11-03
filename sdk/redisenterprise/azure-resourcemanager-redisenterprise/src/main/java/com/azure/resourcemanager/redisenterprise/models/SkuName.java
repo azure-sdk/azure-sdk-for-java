@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for SkuName. */
+/** The type of RedisEnterprise cluster to deploy. Possible values: (Enterprise_E10, EnterpriseFlash_F300 etc.). */
 public final class SkuName extends ExpandableStringEnum<SkuName> {
     /** Static value Enterprise_E10 for SkuName. */
     public static final SkuName ENTERPRISE_E10 = fromString("Enterprise_E10");
@@ -42,7 +42,11 @@ public final class SkuName extends ExpandableStringEnum<SkuName> {
         return fromString(name, SkuName.class);
     }
 
-    /** @return known SkuName values. */
+    /**
+     * Gets known SkuName values.
+     *
+     * @return known SkuName values.
+     */
     public static Collection<SkuName> values() {
         return values(SkuName.class);
     }

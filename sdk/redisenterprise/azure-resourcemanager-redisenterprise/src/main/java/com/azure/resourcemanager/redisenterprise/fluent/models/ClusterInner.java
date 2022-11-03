@@ -31,10 +31,16 @@ public final class ClusterInner extends Resource {
     private List<String> zones;
 
     /*
-     * RedisEnterprise cluster properties Other properties of the cluster.
+     * RedisEnterprise cluster properties
+     *
+     * Other properties of the cluster.
      */
     @JsonProperty(value = "properties")
     private ClusterProperties innerProperties;
+
+    /** Creates an instance of ClusterInner class. */
+    public ClusterInner() {
+    }
 
     /**
      * Get the sku property: The SKU to create, which affects price, performance, and features.
@@ -77,7 +83,9 @@ public final class ClusterInner extends Resource {
     }
 
     /**
-     * Get the innerProperties property: RedisEnterprise cluster properties Other properties of the cluster.
+     * Get the innerProperties property: RedisEnterprise cluster properties
+     *
+     * <p>Other properties of the cluster.
      *
      * @return the innerProperties value.
      */

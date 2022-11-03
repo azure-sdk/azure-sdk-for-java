@@ -83,6 +83,10 @@ public final class DatabaseImpl implements Database, Database.Definition, Databa
         return this.innerModel().geoReplication();
     }
 
+    public String resourceGroupName() {
+        return resourceGroupName;
+    }
+
     public DatabaseInner innerModel() {
         return this.innerObject;
     }
@@ -181,12 +185,12 @@ public final class DatabaseImpl implements Database, Database.Definition, Databa
         return this;
     }
 
-    public AccessKeys listKeys() {
-        return serviceManager.databases().listKeys(resourceGroupName, clusterName, databaseName);
-    }
-
     public Response<AccessKeys> listKeysWithResponse(Context context) {
         return serviceManager.databases().listKeysWithResponse(resourceGroupName, clusterName, databaseName, context);
+    }
+
+    public AccessKeys listKeys() {
+        return serviceManager.databases().listKeys(resourceGroupName, clusterName, databaseName);
     }
 
     public AccessKeys regenerateKey(RegenerateKeyParameters parameters) {

@@ -1122,30 +1122,7 @@ public final class DatabasesClientImpl implements DatabasesClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<DatabaseInner> getAsync(String resourceGroupName, String clusterName, String databaseName) {
         return getWithResponseAsync(resourceGroupName, clusterName, databaseName)
-            .flatMap(
-                (Response<DatabaseInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
-    }
-
-    /**
-     * Gets information about a database in a RedisEnterprise cluster.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param clusterName The name of the RedisEnterprise cluster.
-     * @param databaseName The name of the database.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return information about a database in a RedisEnterprise cluster.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public DatabaseInner get(String resourceGroupName, String clusterName, String databaseName) {
-        return getAsync(resourceGroupName, clusterName, databaseName).block();
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -1164,6 +1141,22 @@ public final class DatabasesClientImpl implements DatabasesClient {
     public Response<DatabaseInner> getWithResponse(
         String resourceGroupName, String clusterName, String databaseName, Context context) {
         return getWithResponseAsync(resourceGroupName, clusterName, databaseName, context).block();
+    }
+
+    /**
+     * Gets information about a database in a RedisEnterprise cluster.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param clusterName The name of the RedisEnterprise cluster.
+     * @param databaseName The name of the database.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return information about a database in a RedisEnterprise cluster.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public DatabaseInner get(String resourceGroupName, String clusterName, String databaseName) {
+        return getWithResponse(resourceGroupName, clusterName, databaseName, Context.NONE).getValue();
     }
 
     /**
@@ -1535,30 +1528,7 @@ public final class DatabasesClientImpl implements DatabasesClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<AccessKeysInner> listKeysAsync(String resourceGroupName, String clusterName, String databaseName) {
         return listKeysWithResponseAsync(resourceGroupName, clusterName, databaseName)
-            .flatMap(
-                (Response<AccessKeysInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
-    }
-
-    /**
-     * Retrieves the access keys for the RedisEnterprise database.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param clusterName The name of the RedisEnterprise cluster.
-     * @param databaseName The name of the database.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return access keys.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public AccessKeysInner listKeys(String resourceGroupName, String clusterName, String databaseName) {
-        return listKeysAsync(resourceGroupName, clusterName, databaseName).block();
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -1577,6 +1547,22 @@ public final class DatabasesClientImpl implements DatabasesClient {
     public Response<AccessKeysInner> listKeysWithResponse(
         String resourceGroupName, String clusterName, String databaseName, Context context) {
         return listKeysWithResponseAsync(resourceGroupName, clusterName, databaseName, context).block();
+    }
+
+    /**
+     * Retrieves the access keys for the RedisEnterprise database.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param clusterName The name of the RedisEnterprise cluster.
+     * @param databaseName The name of the database.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return access keys.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public AccessKeysInner listKeys(String resourceGroupName, String clusterName, String databaseName) {
+        return listKeysWithResponse(resourceGroupName, clusterName, databaseName, Context.NONE).getValue();
     }
 
     /**
@@ -2783,7 +2769,8 @@ public final class DatabasesClientImpl implements DatabasesClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -2819,7 +2806,8 @@ public final class DatabasesClientImpl implements DatabasesClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
