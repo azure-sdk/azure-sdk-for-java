@@ -80,20 +80,6 @@ public interface Certificates {
      * @param accountName The name of the Batch account.
      * @param certificateName The identifier for the certificate. This must be made up of algorithm and thumbprint
      *     separated by a dash, and must match the certificate data in the request. For example SHA1-a3d1c5.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return information about the specified certificate.
-     */
-    Certificate get(String resourceGroupName, String accountName, String certificateName);
-
-    /**
-     * Gets information about the specified certificate.
-     *
-     * @param resourceGroupName The name of the resource group that contains the Batch account.
-     * @param accountName The name of the Batch account.
-     * @param certificateName The identifier for the certificate. This must be made up of algorithm and thumbprint
-     *     separated by a dash, and must match the certificate data in the request. For example SHA1-a3d1c5.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -104,11 +90,7 @@ public interface Certificates {
         String resourceGroupName, String accountName, String certificateName, Context context);
 
     /**
-     * If you try to delete a certificate that is being used by a pool or compute node, the status of the certificate
-     * changes to deleteFailed. If you decide that you want to continue using the certificate, you can use this
-     * operation to set the status of the certificate back to active. If you intend to delete the certificate, you do
-     * not need to run this operation after the deletion failed. You must make sure that the certificate is not being
-     * used by any resources, and then you can try again to delete the certificate.
+     * Gets information about the specified certificate.
      *
      * @param resourceGroupName The name of the resource group that contains the Batch account.
      * @param accountName The name of the Batch account.
@@ -117,12 +99,14 @@ public interface Certificates {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return contains information about a certificate.
+     * @return information about the specified certificate.
      */
-    Certificate cancelDeletion(String resourceGroupName, String accountName, String certificateName);
+    Certificate get(String resourceGroupName, String accountName, String certificateName);
 
     /**
-     * If you try to delete a certificate that is being used by a pool or compute node, the status of the certificate
+     * Cancels a failed deletion of a certificate from the specified account.
+     *
+     * <p>If you try to delete a certificate that is being used by a pool or compute node, the status of the certificate
      * changes to deleteFailed. If you decide that you want to continue using the certificate, you can use this
      * operation to set the status of the certificate back to active. If you intend to delete the certificate, you do
      * not need to run this operation after the deletion failed. You must make sure that the certificate is not being
@@ -140,6 +124,26 @@ public interface Certificates {
      */
     Response<Certificate> cancelDeletionWithResponse(
         String resourceGroupName, String accountName, String certificateName, Context context);
+
+    /**
+     * Cancels a failed deletion of a certificate from the specified account.
+     *
+     * <p>If you try to delete a certificate that is being used by a pool or compute node, the status of the certificate
+     * changes to deleteFailed. If you decide that you want to continue using the certificate, you can use this
+     * operation to set the status of the certificate back to active. If you intend to delete the certificate, you do
+     * not need to run this operation after the deletion failed. You must make sure that the certificate is not being
+     * used by any resources, and then you can try again to delete the certificate.
+     *
+     * @param resourceGroupName The name of the resource group that contains the Batch account.
+     * @param accountName The name of the Batch account.
+     * @param certificateName The identifier for the certificate. This must be made up of algorithm and thumbprint
+     *     separated by a dash, and must match the certificate data in the request. For example SHA1-a3d1c5.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return contains information about a certificate.
+     */
+    Certificate cancelDeletion(String resourceGroupName, String accountName, String certificateName);
 
     /**
      * Gets information about the specified certificate.

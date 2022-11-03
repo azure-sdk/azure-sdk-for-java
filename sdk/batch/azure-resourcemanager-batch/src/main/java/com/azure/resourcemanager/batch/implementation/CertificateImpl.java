@@ -71,6 +71,10 @@ public final class CertificateImpl implements Certificate, Certificate.Definitio
         return this.innerModel().format();
     }
 
+    public String resourceGroupName() {
+        return resourceGroupName;
+    }
+
     public CertificateInner innerModel() {
         return this.innerObject;
     }
@@ -200,14 +204,14 @@ public final class CertificateImpl implements Certificate, Certificate.Definitio
         return this;
     }
 
-    public Certificate cancelDeletion() {
-        return serviceManager.certificates().cancelDeletion(resourceGroupName, accountName, certificateName);
-    }
-
     public Response<Certificate> cancelDeletionWithResponse(Context context) {
         return serviceManager
             .certificates()
             .cancelDeletionWithResponse(resourceGroupName, accountName, certificateName, context);
+    }
+
+    public Certificate cancelDeletion() {
+        return serviceManager.certificates().cancelDeletion(resourceGroupName, accountName, certificateName);
     }
 
     public CertificateImpl withData(String data) {

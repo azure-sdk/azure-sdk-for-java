@@ -592,43 +592,6 @@ public final class CertificatesClientImpl implements CertificatesClient {
      * @param certificateName The identifier for the certificate. This must be made up of algorithm and thumbprint
      *     separated by a dash, and must match the certificate data in the request. For example SHA1-a3d1c5.
      * @param parameters Additional parameters for certificate creation.
-     * @param ifMatch The entity state (ETag) version of the certificate to update. A value of "*" can be used to apply
-     *     the operation only if the certificate already exists. If omitted, this operation will always be applied.
-     * @param ifNoneMatch Set to '*' to allow a new certificate to be created, but to prevent updating an existing
-     *     certificate. Other values will be ignored.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return contains information about a certificate on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<CertificateInner> createAsync(
-        String resourceGroupName,
-        String accountName,
-        String certificateName,
-        CertificateCreateOrUpdateParameters parameters,
-        String ifMatch,
-        String ifNoneMatch) {
-        return createWithResponseAsync(
-                resourceGroupName, accountName, certificateName, parameters, ifMatch, ifNoneMatch)
-            .flatMap(
-                (CertificatesCreateResponse res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
-    }
-
-    /**
-     * Creates a new certificate inside the specified account.
-     *
-     * @param resourceGroupName The name of the resource group that contains the Batch account.
-     * @param accountName The name of the Batch account.
-     * @param certificateName The identifier for the certificate. This must be made up of algorithm and thumbprint
-     *     separated by a dash, and must match the certificate data in the request. For example SHA1-a3d1c5.
-     * @param parameters Additional parameters for certificate creation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -644,38 +607,7 @@ public final class CertificatesClientImpl implements CertificatesClient {
         final String ifNoneMatch = null;
         return createWithResponseAsync(
                 resourceGroupName, accountName, certificateName, parameters, ifMatch, ifNoneMatch)
-            .flatMap(
-                (CertificatesCreateResponse res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
-    }
-
-    /**
-     * Creates a new certificate inside the specified account.
-     *
-     * @param resourceGroupName The name of the resource group that contains the Batch account.
-     * @param accountName The name of the Batch account.
-     * @param certificateName The identifier for the certificate. This must be made up of algorithm and thumbprint
-     *     separated by a dash, and must match the certificate data in the request. For example SHA1-a3d1c5.
-     * @param parameters Additional parameters for certificate creation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return contains information about a certificate.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public CertificateInner create(
-        String resourceGroupName,
-        String accountName,
-        String certificateName,
-        CertificateCreateOrUpdateParameters parameters) {
-        final String ifMatch = null;
-        final String ifNoneMatch = null;
-        return createAsync(resourceGroupName, accountName, certificateName, parameters, ifMatch, ifNoneMatch).block();
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -708,6 +640,32 @@ public final class CertificatesClientImpl implements CertificatesClient {
         return createWithResponseAsync(
                 resourceGroupName, accountName, certificateName, parameters, ifMatch, ifNoneMatch, context)
             .block();
+    }
+
+    /**
+     * Creates a new certificate inside the specified account.
+     *
+     * @param resourceGroupName The name of the resource group that contains the Batch account.
+     * @param accountName The name of the Batch account.
+     * @param certificateName The identifier for the certificate. This must be made up of algorithm and thumbprint
+     *     separated by a dash, and must match the certificate data in the request. For example SHA1-a3d1c5.
+     * @param parameters Additional parameters for certificate creation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return contains information about a certificate.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public CertificateInner create(
+        String resourceGroupName,
+        String accountName,
+        String certificateName,
+        CertificateCreateOrUpdateParameters parameters) {
+        final String ifMatch = null;
+        final String ifNoneMatch = null;
+        return createWithResponse(
+                resourceGroupName, accountName, certificateName, parameters, ifMatch, ifNoneMatch, Context.NONE)
+            .getValue();
     }
 
     /**
@@ -855,39 +813,6 @@ public final class CertificatesClientImpl implements CertificatesClient {
      * @param certificateName The identifier for the certificate. This must be made up of algorithm and thumbprint
      *     separated by a dash, and must match the certificate data in the request. For example SHA1-a3d1c5.
      * @param parameters Certificate entity to update.
-     * @param ifMatch The entity state (ETag) version of the certificate to update. This value can be omitted or set to
-     *     "*" to apply the operation unconditionally.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return contains information about a certificate on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<CertificateInner> updateAsync(
-        String resourceGroupName,
-        String accountName,
-        String certificateName,
-        CertificateCreateOrUpdateParameters parameters,
-        String ifMatch) {
-        return updateWithResponseAsync(resourceGroupName, accountName, certificateName, parameters, ifMatch)
-            .flatMap(
-                (CertificatesUpdateResponse res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
-    }
-
-    /**
-     * Updates the properties of an existing certificate.
-     *
-     * @param resourceGroupName The name of the resource group that contains the Batch account.
-     * @param accountName The name of the Batch account.
-     * @param certificateName The identifier for the certificate. This must be made up of algorithm and thumbprint
-     *     separated by a dash, and must match the certificate data in the request. For example SHA1-a3d1c5.
-     * @param parameters Certificate entity to update.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -901,37 +826,7 @@ public final class CertificatesClientImpl implements CertificatesClient {
         CertificateCreateOrUpdateParameters parameters) {
         final String ifMatch = null;
         return updateWithResponseAsync(resourceGroupName, accountName, certificateName, parameters, ifMatch)
-            .flatMap(
-                (CertificatesUpdateResponse res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
-    }
-
-    /**
-     * Updates the properties of an existing certificate.
-     *
-     * @param resourceGroupName The name of the resource group that contains the Batch account.
-     * @param accountName The name of the Batch account.
-     * @param certificateName The identifier for the certificate. This must be made up of algorithm and thumbprint
-     *     separated by a dash, and must match the certificate data in the request. For example SHA1-a3d1c5.
-     * @param parameters Certificate entity to update.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return contains information about a certificate.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public CertificateInner update(
-        String resourceGroupName,
-        String accountName,
-        String certificateName,
-        CertificateCreateOrUpdateParameters parameters) {
-        final String ifMatch = null;
-        return updateAsync(resourceGroupName, accountName, certificateName, parameters, ifMatch).block();
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -960,6 +855,30 @@ public final class CertificatesClientImpl implements CertificatesClient {
         Context context) {
         return updateWithResponseAsync(resourceGroupName, accountName, certificateName, parameters, ifMatch, context)
             .block();
+    }
+
+    /**
+     * Updates the properties of an existing certificate.
+     *
+     * @param resourceGroupName The name of the resource group that contains the Batch account.
+     * @param accountName The name of the Batch account.
+     * @param certificateName The identifier for the certificate. This must be made up of algorithm and thumbprint
+     *     separated by a dash, and must match the certificate data in the request. For example SHA1-a3d1c5.
+     * @param parameters Certificate entity to update.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return contains information about a certificate.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public CertificateInner update(
+        String resourceGroupName,
+        String accountName,
+        String certificateName,
+        CertificateCreateOrUpdateParameters parameters) {
+        final String ifMatch = null;
+        return updateWithResponse(resourceGroupName, accountName, certificateName, parameters, ifMatch, Context.NONE)
+            .getValue();
     }
 
     /**
@@ -1350,31 +1269,7 @@ public final class CertificatesClientImpl implements CertificatesClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<CertificateInner> getAsync(String resourceGroupName, String accountName, String certificateName) {
         return getWithResponseAsync(resourceGroupName, accountName, certificateName)
-            .flatMap(
-                (CertificatesGetResponse res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
-    }
-
-    /**
-     * Gets information about the specified certificate.
-     *
-     * @param resourceGroupName The name of the resource group that contains the Batch account.
-     * @param accountName The name of the Batch account.
-     * @param certificateName The identifier for the certificate. This must be made up of algorithm and thumbprint
-     *     separated by a dash, and must match the certificate data in the request. For example SHA1-a3d1c5.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return information about the specified certificate.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public CertificateInner get(String resourceGroupName, String accountName, String certificateName) {
-        return getAsync(resourceGroupName, accountName, certificateName).block();
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -1397,7 +1292,26 @@ public final class CertificatesClientImpl implements CertificatesClient {
     }
 
     /**
-     * If you try to delete a certificate that is being used by a pool or compute node, the status of the certificate
+     * Gets information about the specified certificate.
+     *
+     * @param resourceGroupName The name of the resource group that contains the Batch account.
+     * @param accountName The name of the Batch account.
+     * @param certificateName The identifier for the certificate. This must be made up of algorithm and thumbprint
+     *     separated by a dash, and must match the certificate data in the request. For example SHA1-a3d1c5.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return information about the specified certificate.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public CertificateInner get(String resourceGroupName, String accountName, String certificateName) {
+        return getWithResponse(resourceGroupName, accountName, certificateName, Context.NONE).getValue();
+    }
+
+    /**
+     * Cancels a failed deletion of a certificate from the specified account.
+     *
+     * <p>If you try to delete a certificate that is being used by a pool or compute node, the status of the certificate
      * changes to deleteFailed. If you decide that you want to continue using the certificate, you can use this
      * operation to set the status of the certificate back to active. If you intend to delete the certificate, you do
      * not need to run this operation after the deletion failed. You must make sure that the certificate is not being
@@ -1456,7 +1370,9 @@ public final class CertificatesClientImpl implements CertificatesClient {
     }
 
     /**
-     * If you try to delete a certificate that is being used by a pool or compute node, the status of the certificate
+     * Cancels a failed deletion of a certificate from the specified account.
+     *
+     * <p>If you try to delete a certificate that is being used by a pool or compute node, the status of the certificate
      * changes to deleteFailed. If you decide that you want to continue using the certificate, you can use this
      * operation to set the status of the certificate back to active. If you intend to delete the certificate, you do
      * not need to run this operation after the deletion failed. You must make sure that the certificate is not being
@@ -1513,7 +1429,9 @@ public final class CertificatesClientImpl implements CertificatesClient {
     }
 
     /**
-     * If you try to delete a certificate that is being used by a pool or compute node, the status of the certificate
+     * Cancels a failed deletion of a certificate from the specified account.
+     *
+     * <p>If you try to delete a certificate that is being used by a pool or compute node, the status of the certificate
      * changes to deleteFailed. If you decide that you want to continue using the certificate, you can use this
      * operation to set the status of the certificate back to active. If you intend to delete the certificate, you do
      * not need to run this operation after the deletion failed. You must make sure that the certificate is not being
@@ -1532,39 +1450,13 @@ public final class CertificatesClientImpl implements CertificatesClient {
     private Mono<CertificateInner> cancelDeletionAsync(
         String resourceGroupName, String accountName, String certificateName) {
         return cancelDeletionWithResponseAsync(resourceGroupName, accountName, certificateName)
-            .flatMap(
-                (CertificatesCancelDeletionResponse res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
-     * If you try to delete a certificate that is being used by a pool or compute node, the status of the certificate
-     * changes to deleteFailed. If you decide that you want to continue using the certificate, you can use this
-     * operation to set the status of the certificate back to active. If you intend to delete the certificate, you do
-     * not need to run this operation after the deletion failed. You must make sure that the certificate is not being
-     * used by any resources, and then you can try again to delete the certificate.
+     * Cancels a failed deletion of a certificate from the specified account.
      *
-     * @param resourceGroupName The name of the resource group that contains the Batch account.
-     * @param accountName The name of the Batch account.
-     * @param certificateName The identifier for the certificate. This must be made up of algorithm and thumbprint
-     *     separated by a dash, and must match the certificate data in the request. For example SHA1-a3d1c5.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return contains information about a certificate.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public CertificateInner cancelDeletion(String resourceGroupName, String accountName, String certificateName) {
-        return cancelDeletionAsync(resourceGroupName, accountName, certificateName).block();
-    }
-
-    /**
-     * If you try to delete a certificate that is being used by a pool or compute node, the status of the certificate
+     * <p>If you try to delete a certificate that is being used by a pool or compute node, the status of the certificate
      * changes to deleteFailed. If you decide that you want to continue using the certificate, you can use this
      * operation to set the status of the certificate back to active. If you intend to delete the certificate, you do
      * not need to run this operation after the deletion failed. You must make sure that the certificate is not being
@@ -1587,9 +1479,33 @@ public final class CertificatesClientImpl implements CertificatesClient {
     }
 
     /**
+     * Cancels a failed deletion of a certificate from the specified account.
+     *
+     * <p>If you try to delete a certificate that is being used by a pool or compute node, the status of the certificate
+     * changes to deleteFailed. If you decide that you want to continue using the certificate, you can use this
+     * operation to set the status of the certificate back to active. If you intend to delete the certificate, you do
+     * not need to run this operation after the deletion failed. You must make sure that the certificate is not being
+     * used by any resources, and then you can try again to delete the certificate.
+     *
+     * @param resourceGroupName The name of the resource group that contains the Batch account.
+     * @param accountName The name of the Batch account.
+     * @param certificateName The identifier for the certificate. This must be made up of algorithm and thumbprint
+     *     separated by a dash, and must match the certificate data in the request. For example SHA1-a3d1c5.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return contains information about a certificate.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public CertificateInner cancelDeletion(String resourceGroupName, String accountName, String certificateName) {
+        return cancelDeletionWithResponse(resourceGroupName, accountName, certificateName, Context.NONE).getValue();
+    }
+
+    /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1626,7 +1542,8 @@ public final class CertificatesClientImpl implements CertificatesClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.

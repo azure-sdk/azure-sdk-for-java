@@ -29,6 +29,10 @@ public final class PrivateLinkServiceConnectionState {
     @JsonProperty(value = "actionRequired", access = JsonProperty.Access.WRITE_ONLY)
     private String actionRequired;
 
+    /** Creates an instance of PrivateLinkServiceConnectionState class. */
+    public PrivateLinkServiceConnectionState() {
+    }
+
     /**
      * Get the status property: The status of the Batch private endpoint connection.
      *

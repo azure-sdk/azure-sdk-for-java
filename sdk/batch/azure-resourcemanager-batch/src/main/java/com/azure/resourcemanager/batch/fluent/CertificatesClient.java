@@ -65,26 +65,6 @@ public interface CertificatesClient {
      * @param certificateName The identifier for the certificate. This must be made up of algorithm and thumbprint
      *     separated by a dash, and must match the certificate data in the request. For example SHA1-a3d1c5.
      * @param parameters Additional parameters for certificate creation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return contains information about a certificate.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    CertificateInner create(
-        String resourceGroupName,
-        String accountName,
-        String certificateName,
-        CertificateCreateOrUpdateParameters parameters);
-
-    /**
-     * Creates a new certificate inside the specified account.
-     *
-     * @param resourceGroupName The name of the resource group that contains the Batch account.
-     * @param accountName The name of the Batch account.
-     * @param certificateName The identifier for the certificate. This must be made up of algorithm and thumbprint
-     *     separated by a dash, and must match the certificate data in the request. For example SHA1-a3d1c5.
-     * @param parameters Additional parameters for certificate creation.
      * @param ifMatch The entity state (ETag) version of the certificate to update. A value of "*" can be used to apply
      *     the operation only if the certificate already exists. If omitted, this operation will always be applied.
      * @param ifNoneMatch Set to '*' to allow a new certificate to be created, but to prevent updating an existing
@@ -106,20 +86,20 @@ public interface CertificatesClient {
         Context context);
 
     /**
-     * Updates the properties of an existing certificate.
+     * Creates a new certificate inside the specified account.
      *
      * @param resourceGroupName The name of the resource group that contains the Batch account.
      * @param accountName The name of the Batch account.
      * @param certificateName The identifier for the certificate. This must be made up of algorithm and thumbprint
      *     separated by a dash, and must match the certificate data in the request. For example SHA1-a3d1c5.
-     * @param parameters Certificate entity to update.
+     * @param parameters Additional parameters for certificate creation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return contains information about a certificate.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    CertificateInner update(
+    CertificateInner create(
         String resourceGroupName,
         String accountName,
         String certificateName,
@@ -149,6 +129,26 @@ public interface CertificatesClient {
         CertificateCreateOrUpdateParameters parameters,
         String ifMatch,
         Context context);
+
+    /**
+     * Updates the properties of an existing certificate.
+     *
+     * @param resourceGroupName The name of the resource group that contains the Batch account.
+     * @param accountName The name of the Batch account.
+     * @param certificateName The identifier for the certificate. This must be made up of algorithm and thumbprint
+     *     separated by a dash, and must match the certificate data in the request. For example SHA1-a3d1c5.
+     * @param parameters Certificate entity to update.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return contains information about a certificate.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    CertificateInner update(
+        String resourceGroupName,
+        String accountName,
+        String certificateName,
+        CertificateCreateOrUpdateParameters parameters);
 
     /**
      * Deletes the specified certificate.
@@ -219,21 +219,6 @@ public interface CertificatesClient {
      * @param accountName The name of the Batch account.
      * @param certificateName The identifier for the certificate. This must be made up of algorithm and thumbprint
      *     separated by a dash, and must match the certificate data in the request. For example SHA1-a3d1c5.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return information about the specified certificate.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    CertificateInner get(String resourceGroupName, String accountName, String certificateName);
-
-    /**
-     * Gets information about the specified certificate.
-     *
-     * @param resourceGroupName The name of the resource group that contains the Batch account.
-     * @param accountName The name of the Batch account.
-     * @param certificateName The identifier for the certificate. This must be made up of algorithm and thumbprint
-     *     separated by a dash, and must match the certificate data in the request. For example SHA1-a3d1c5.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -245,11 +230,7 @@ public interface CertificatesClient {
         String resourceGroupName, String accountName, String certificateName, Context context);
 
     /**
-     * If you try to delete a certificate that is being used by a pool or compute node, the status of the certificate
-     * changes to deleteFailed. If you decide that you want to continue using the certificate, you can use this
-     * operation to set the status of the certificate back to active. If you intend to delete the certificate, you do
-     * not need to run this operation after the deletion failed. You must make sure that the certificate is not being
-     * used by any resources, and then you can try again to delete the certificate.
+     * Gets information about the specified certificate.
      *
      * @param resourceGroupName The name of the resource group that contains the Batch account.
      * @param accountName The name of the Batch account.
@@ -258,13 +239,15 @@ public interface CertificatesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return contains information about a certificate.
+     * @return information about the specified certificate.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    CertificateInner cancelDeletion(String resourceGroupName, String accountName, String certificateName);
+    CertificateInner get(String resourceGroupName, String accountName, String certificateName);
 
     /**
-     * If you try to delete a certificate that is being used by a pool or compute node, the status of the certificate
+     * Cancels a failed deletion of a certificate from the specified account.
+     *
+     * <p>If you try to delete a certificate that is being used by a pool or compute node, the status of the certificate
      * changes to deleteFailed. If you decide that you want to continue using the certificate, you can use this
      * operation to set the status of the certificate back to active. If you intend to delete the certificate, you do
      * not need to run this operation after the deletion failed. You must make sure that the certificate is not being
@@ -283,4 +266,25 @@ public interface CertificatesClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     CertificatesCancelDeletionResponse cancelDeletionWithResponse(
         String resourceGroupName, String accountName, String certificateName, Context context);
+
+    /**
+     * Cancels a failed deletion of a certificate from the specified account.
+     *
+     * <p>If you try to delete a certificate that is being used by a pool or compute node, the status of the certificate
+     * changes to deleteFailed. If you decide that you want to continue using the certificate, you can use this
+     * operation to set the status of the certificate back to active. If you intend to delete the certificate, you do
+     * not need to run this operation after the deletion failed. You must make sure that the certificate is not being
+     * used by any resources, and then you can try again to delete the certificate.
+     *
+     * @param resourceGroupName The name of the resource group that contains the Batch account.
+     * @param accountName The name of the Batch account.
+     * @param certificateName The identifier for the certificate. This must be made up of algorithm and thumbprint
+     *     separated by a dash, and must match the certificate data in the request. For example SHA1-a3d1c5.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return contains information about a certificate.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    CertificateInner cancelDeletion(String resourceGroupName, String accountName, String certificateName);
 }
