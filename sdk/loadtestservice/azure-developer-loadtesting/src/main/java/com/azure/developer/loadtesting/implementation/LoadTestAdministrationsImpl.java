@@ -65,7 +65,7 @@ public final class LoadTestAdministrationsImpl {
     @Host("https://{Endpoint}")
     @ServiceInterface(name = "LoadTestingClientLoa")
     private interface LoadTestAdministrationsService {
-        @Patch("/appcomponents/{name}")
+        @Patch("/tests/{testId}")
         @ExpectedResponses({200, 201})
         @UnexpectedResponseExceptionType(
                 value = ClientAuthenticationException.class,
@@ -77,16 +77,16 @@ public final class LoadTestAdministrationsImpl {
                 value = ResourceModifiedException.class,
                 code = {409})
         @UnexpectedResponseExceptionType(HttpResponseException.class)
-        Mono<Response<BinaryData>> createOrUpdateAppComponents(
+        Mono<Response<BinaryData>> createOrUpdate(
                 @HostParam("Endpoint") String endpoint,
-                @PathParam("name") String name,
+                @PathParam("testId") String testId,
                 @QueryParam("api-version") String apiVersion,
                 @BodyParam("application/merge-patch+json") BinaryData body,
                 @HeaderParam("Accept") String accept,
                 RequestOptions requestOptions,
                 Context context);
 
-        @Delete("/appcomponents/{name}")
+        @Delete("/tests/{testId}")
         @ExpectedResponses({204})
         @UnexpectedResponseExceptionType(
                 value = ClientAuthenticationException.class,
@@ -98,15 +98,15 @@ public final class LoadTestAdministrationsImpl {
                 value = ResourceModifiedException.class,
                 code = {409})
         @UnexpectedResponseExceptionType(HttpResponseException.class)
-        Mono<Response<Void>> deleteAppComponent(
+        Mono<Response<Void>> delete(
                 @HostParam("Endpoint") String endpoint,
-                @PathParam("name") String name,
+                @PathParam("testId") String testId,
                 @QueryParam("api-version") String apiVersion,
                 @HeaderParam("Accept") String accept,
                 RequestOptions requestOptions,
                 Context context);
 
-        @Get("/appcomponents/{name}")
+        @Get("/tests/{testId}")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(
                 value = ClientAuthenticationException.class,
@@ -118,15 +118,15 @@ public final class LoadTestAdministrationsImpl {
                 value = ResourceModifiedException.class,
                 code = {409})
         @UnexpectedResponseExceptionType(HttpResponseException.class)
-        Mono<Response<BinaryData>> getAppComponentByName(
+        Mono<Response<BinaryData>> get(
                 @HostParam("Endpoint") String endpoint,
-                @PathParam("name") String name,
+                @PathParam("testId") String testId,
                 @QueryParam("api-version") String apiVersion,
                 @HeaderParam("Accept") String accept,
                 RequestOptions requestOptions,
                 Context context);
 
-        @Get("/appcomponents")
+        @Get("/tests")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(
                 value = ClientAuthenticationException.class,
@@ -138,14 +138,140 @@ public final class LoadTestAdministrationsImpl {
                 value = ResourceModifiedException.class,
                 code = {409})
         @UnexpectedResponseExceptionType(HttpResponseException.class)
-        Mono<Response<BinaryData>> getAppComponent(
+        Mono<Response<BinaryData>> list(
                 @HostParam("Endpoint") String endpoint,
                 @QueryParam("api-version") String apiVersion,
                 @HeaderParam("Accept") String accept,
                 RequestOptions requestOptions,
                 Context context);
 
-        @Patch("/serverMetricsConfig/{name}")
+        // @Multipart not supported by RestProxy
+        @Put("/tests/{testId}/files/{fileId}")
+        @ExpectedResponses({201})
+        @UnexpectedResponseExceptionType(
+                value = ClientAuthenticationException.class,
+                code = {401})
+        @UnexpectedResponseExceptionType(
+                value = ResourceNotFoundException.class,
+                code = {404})
+        @UnexpectedResponseExceptionType(
+                value = ResourceModifiedException.class,
+                code = {409})
+        @UnexpectedResponseExceptionType(HttpResponseException.class)
+        Mono<Response<BinaryData>> uploadFile(
+                @HostParam("Endpoint") String endpoint,
+                @PathParam("testId") String testId,
+                @PathParam("fileId") String fileId,
+                @QueryParam("api-version") String apiVersion,
+                @BodyParam("multipart/form-data") BinaryData file,
+                @HeaderParam("Accept") String accept,
+                RequestOptions requestOptions,
+                Context context);
+
+        @Get("/tests/{testId}/files/{fileId}")
+        @ExpectedResponses({200})
+        @UnexpectedResponseExceptionType(
+                value = ClientAuthenticationException.class,
+                code = {401})
+        @UnexpectedResponseExceptionType(
+                value = ResourceNotFoundException.class,
+                code = {404})
+        @UnexpectedResponseExceptionType(
+                value = ResourceModifiedException.class,
+                code = {409})
+        @UnexpectedResponseExceptionType(HttpResponseException.class)
+        Mono<Response<BinaryData>> getFile(
+                @HostParam("Endpoint") String endpoint,
+                @PathParam("testId") String testId,
+                @PathParam("fileId") String fileId,
+                @QueryParam("api-version") String apiVersion,
+                @HeaderParam("Accept") String accept,
+                RequestOptions requestOptions,
+                Context context);
+
+        @Delete("/tests/{testId}/files/{fileId}")
+        @ExpectedResponses({204})
+        @UnexpectedResponseExceptionType(
+                value = ClientAuthenticationException.class,
+                code = {401})
+        @UnexpectedResponseExceptionType(
+                value = ResourceNotFoundException.class,
+                code = {404})
+        @UnexpectedResponseExceptionType(
+                value = ResourceModifiedException.class,
+                code = {409})
+        @UnexpectedResponseExceptionType(HttpResponseException.class)
+        Mono<Response<Void>> deleteFile(
+                @HostParam("Endpoint") String endpoint,
+                @PathParam("testId") String testId,
+                @PathParam("fileId") String fileId,
+                @QueryParam("api-version") String apiVersion,
+                @HeaderParam("Accept") String accept,
+                RequestOptions requestOptions,
+                Context context);
+
+        @Get("/tests/{testId}/files")
+        @ExpectedResponses({200})
+        @UnexpectedResponseExceptionType(
+                value = ClientAuthenticationException.class,
+                code = {401})
+        @UnexpectedResponseExceptionType(
+                value = ResourceNotFoundException.class,
+                code = {404})
+        @UnexpectedResponseExceptionType(
+                value = ResourceModifiedException.class,
+                code = {409})
+        @UnexpectedResponseExceptionType(HttpResponseException.class)
+        Mono<Response<BinaryData>> listFiles(
+                @HostParam("Endpoint") String endpoint,
+                @PathParam("testId") String testId,
+                @QueryParam("api-version") String apiVersion,
+                @HeaderParam("Accept") String accept,
+                RequestOptions requestOptions,
+                Context context);
+
+        @Patch("/tests/{testId}/app-components")
+        @ExpectedResponses({200, 201})
+        @UnexpectedResponseExceptionType(
+                value = ClientAuthenticationException.class,
+                code = {401})
+        @UnexpectedResponseExceptionType(
+                value = ResourceNotFoundException.class,
+                code = {404})
+        @UnexpectedResponseExceptionType(
+                value = ResourceModifiedException.class,
+                code = {409})
+        @UnexpectedResponseExceptionType(HttpResponseException.class)
+        Mono<Response<BinaryData>> createOrUpdateAppComponent(
+                @HostParam("Endpoint") String endpoint,
+                @PathParam("testId") String testId,
+                @QueryParam("api-version") String apiVersion,
+                @BodyParam("application/merge-patch+json") BinaryData body,
+                @HeaderParam("Accept") String accept,
+                RequestOptions requestOptions,
+                Context context);
+
+        @Get("/tests/{testId}/app-components")
+        @ExpectedResponses({200})
+        @UnexpectedResponseExceptionType(
+                value = ClientAuthenticationException.class,
+                code = {401})
+        @UnexpectedResponseExceptionType(
+                value = ResourceNotFoundException.class,
+                code = {404})
+        @UnexpectedResponseExceptionType(
+                value = ResourceModifiedException.class,
+                code = {409})
+        @UnexpectedResponseExceptionType(HttpResponseException.class)
+        Mono<Response<BinaryData>> getAppComponents(
+                @HostParam("Endpoint") String endpoint,
+                @PathParam("testId") String testId,
+                @QueryParam("api-version") String apiVersion,
+                @HeaderParam("Accept") String accept,
+                RequestOptions requestOptions,
+                Context context);
+
+        @Patch("/tests/{testId}/server-metric-configs")
         @ExpectedResponses({200, 201})
         @UnexpectedResponseExceptionType(
                 value = ClientAuthenticationException.class,
@@ -159,14 +285,14 @@ public final class LoadTestAdministrationsImpl {
         @UnexpectedResponseExceptionType(HttpResponseException.class)
         Mono<Response<BinaryData>> createOrUpdateServerMetricsConfig(
                 @HostParam("Endpoint") String endpoint,
-                @PathParam("name") String name,
+                @PathParam("testId") String testId,
                 @QueryParam("api-version") String apiVersion,
                 @BodyParam("application/merge-patch+json") BinaryData body,
                 @HeaderParam("Accept") String accept,
                 RequestOptions requestOptions,
                 Context context);
 
-        @Get("/serverMetricsConfig/{name}")
+        @Get("/tests/{testId}/server-metric-configs")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(
                 value = ClientAuthenticationException.class,
@@ -178,252 +304,10 @@ public final class LoadTestAdministrationsImpl {
                 value = ResourceModifiedException.class,
                 code = {409})
         @UnexpectedResponseExceptionType(HttpResponseException.class)
-        Mono<Response<BinaryData>> getServerMetricsByName(
-                @HostParam("Endpoint") String endpoint,
-                @PathParam("name") String name,
-                @QueryParam("api-version") String apiVersion,
-                @HeaderParam("Accept") String accept,
-                RequestOptions requestOptions,
-                Context context);
-
-        @Delete("/serverMetricsConfig/{name}")
-        @ExpectedResponses({204})
-        @UnexpectedResponseExceptionType(
-                value = ClientAuthenticationException.class,
-                code = {401})
-        @UnexpectedResponseExceptionType(
-                value = ResourceNotFoundException.class,
-                code = {404})
-        @UnexpectedResponseExceptionType(
-                value = ResourceModifiedException.class,
-                code = {409})
-        @UnexpectedResponseExceptionType(HttpResponseException.class)
-        Mono<Response<Void>> deleteServerMetrics(
-                @HostParam("Endpoint") String endpoint,
-                @PathParam("name") String name,
-                @QueryParam("api-version") String apiVersion,
-                @HeaderParam("Accept") String accept,
-                RequestOptions requestOptions,
-                Context context);
-
-        @Get("/serverMetricsConfig")
-        @ExpectedResponses({200})
-        @UnexpectedResponseExceptionType(
-                value = ClientAuthenticationException.class,
-                code = {401})
-        @UnexpectedResponseExceptionType(
-                value = ResourceNotFoundException.class,
-                code = {404})
-        @UnexpectedResponseExceptionType(
-                value = ResourceModifiedException.class,
-                code = {409})
-        @UnexpectedResponseExceptionType(HttpResponseException.class)
-        Mono<Response<BinaryData>> getServerMetrics(
-                @HostParam("Endpoint") String endpoint,
-                @QueryParam("api-version") String apiVersion,
-                @HeaderParam("Accept") String accept,
-                RequestOptions requestOptions,
-                Context context);
-
-        @Get("/serverMetricsConfig/default")
-        @ExpectedResponses({200})
-        @UnexpectedResponseExceptionType(
-                value = ClientAuthenticationException.class,
-                code = {401})
-        @UnexpectedResponseExceptionType(
-                value = ResourceNotFoundException.class,
-                code = {404})
-        @UnexpectedResponseExceptionType(
-                value = ResourceModifiedException.class,
-                code = {409})
-        @UnexpectedResponseExceptionType(HttpResponseException.class)
-        Mono<Response<BinaryData>> getServerDefaultMetrics(
-                @HostParam("Endpoint") String endpoint,
-                @QueryParam("api-version") String apiVersion,
-                @HeaderParam("Accept") String accept,
-                RequestOptions requestOptions,
-                Context context);
-
-        @Get("/serverMetricsConfig/supportedResourceTypes")
-        @ExpectedResponses({200})
-        @UnexpectedResponseExceptionType(
-                value = ClientAuthenticationException.class,
-                code = {401})
-        @UnexpectedResponseExceptionType(
-                value = ResourceNotFoundException.class,
-                code = {404})
-        @UnexpectedResponseExceptionType(
-                value = ResourceModifiedException.class,
-                code = {409})
-        @UnexpectedResponseExceptionType(HttpResponseException.class)
-        Mono<Response<BinaryData>> listSupportedResourceType(
-                @HostParam("Endpoint") String endpoint,
-                @QueryParam("api-version") String apiVersion,
-                @HeaderParam("Accept") String accept,
-                RequestOptions requestOptions,
-                Context context);
-
-        @Patch("/loadtests/{testId}")
-        @ExpectedResponses({200, 201})
-        @UnexpectedResponseExceptionType(
-                value = ClientAuthenticationException.class,
-                code = {401})
-        @UnexpectedResponseExceptionType(
-                value = ResourceNotFoundException.class,
-                code = {404})
-        @UnexpectedResponseExceptionType(
-                value = ResourceModifiedException.class,
-                code = {409})
-        @UnexpectedResponseExceptionType(HttpResponseException.class)
-        Mono<Response<BinaryData>> createOrUpdateTest(
-                @HostParam("Endpoint") String endpoint,
-                @QueryParam("api-version") String apiVersion,
-                @PathParam("testId") String testId,
-                @BodyParam("application/merge-patch+json") BinaryData body,
-                @HeaderParam("Accept") String accept,
-                RequestOptions requestOptions,
-                Context context);
-
-        @Delete("/loadtests/{testId}")
-        @ExpectedResponses({204})
-        @UnexpectedResponseExceptionType(
-                value = ClientAuthenticationException.class,
-                code = {401})
-        @UnexpectedResponseExceptionType(
-                value = ResourceNotFoundException.class,
-                code = {404})
-        @UnexpectedResponseExceptionType(
-                value = ResourceModifiedException.class,
-                code = {409})
-        @UnexpectedResponseExceptionType(HttpResponseException.class)
-        Mono<Response<Void>> deleteLoadTest(
-                @HostParam("Endpoint") String endpoint,
-                @QueryParam("api-version") String apiVersion,
-                @PathParam("testId") String testId,
-                @HeaderParam("Accept") String accept,
-                RequestOptions requestOptions,
-                Context context);
-
-        @Get("/loadtests/{testId}")
-        @ExpectedResponses({200})
-        @UnexpectedResponseExceptionType(
-                value = ClientAuthenticationException.class,
-                code = {401})
-        @UnexpectedResponseExceptionType(
-                value = ResourceNotFoundException.class,
-                code = {404})
-        @UnexpectedResponseExceptionType(
-                value = ResourceModifiedException.class,
-                code = {409})
-        @UnexpectedResponseExceptionType(HttpResponseException.class)
-        Mono<Response<BinaryData>> getLoadTest(
-                @HostParam("Endpoint") String endpoint,
-                @QueryParam("api-version") String apiVersion,
-                @PathParam("testId") String testId,
-                @HeaderParam("Accept") String accept,
-                RequestOptions requestOptions,
-                Context context);
-
-        @Get("/loadtests/sortAndFilter")
-        @ExpectedResponses({200})
-        @UnexpectedResponseExceptionType(
-                value = ClientAuthenticationException.class,
-                code = {401})
-        @UnexpectedResponseExceptionType(
-                value = ResourceNotFoundException.class,
-                code = {404})
-        @UnexpectedResponseExceptionType(
-                value = ResourceModifiedException.class,
-                code = {409})
-        @UnexpectedResponseExceptionType(HttpResponseException.class)
-        Mono<Response<BinaryData>> listLoadTestSearch(
-                @HostParam("Endpoint") String endpoint,
-                @QueryParam("api-version") String apiVersion,
-                @HeaderParam("Accept") String accept,
-                RequestOptions requestOptions,
-                Context context);
-
-        // @Multipart not supported by RestProxy
-        @Put("/loadtests/{testId}/files/{fileId}")
-        @ExpectedResponses({201})
-        @UnexpectedResponseExceptionType(
-                value = ClientAuthenticationException.class,
-                code = {401})
-        @UnexpectedResponseExceptionType(
-                value = ResourceNotFoundException.class,
-                code = {404})
-        @UnexpectedResponseExceptionType(
-                value = ResourceModifiedException.class,
-                code = {409})
-        @UnexpectedResponseExceptionType(HttpResponseException.class)
-        Mono<Response<BinaryData>> uploadTestFile(
+        Mono<Response<BinaryData>> getServerMetricsConfig(
                 @HostParam("Endpoint") String endpoint,
                 @PathParam("testId") String testId,
-                @PathParam("fileId") String fileId,
                 @QueryParam("api-version") String apiVersion,
-                @BodyParam("multipart/form-data") BinaryData file,
-                @HeaderParam("Accept") String accept,
-                RequestOptions requestOptions,
-                Context context);
-
-        @Get("/loadtests/{testId}/files/{fileId}")
-        @ExpectedResponses({200})
-        @UnexpectedResponseExceptionType(
-                value = ClientAuthenticationException.class,
-                code = {401})
-        @UnexpectedResponseExceptionType(
-                value = ResourceNotFoundException.class,
-                code = {404})
-        @UnexpectedResponseExceptionType(
-                value = ResourceModifiedException.class,
-                code = {409})
-        @UnexpectedResponseExceptionType(HttpResponseException.class)
-        Mono<Response<BinaryData>> getTestFile(
-                @HostParam("Endpoint") String endpoint,
-                @PathParam("testId") String testId,
-                @PathParam("fileId") String fileId,
-                @QueryParam("api-version") String apiVersion,
-                @HeaderParam("Accept") String accept,
-                RequestOptions requestOptions,
-                Context context);
-
-        @Delete("/loadtests/{testId}/files/{fileId}")
-        @ExpectedResponses({204})
-        @UnexpectedResponseExceptionType(
-                value = ClientAuthenticationException.class,
-                code = {401})
-        @UnexpectedResponseExceptionType(
-                value = ResourceNotFoundException.class,
-                code = {404})
-        @UnexpectedResponseExceptionType(
-                value = ResourceModifiedException.class,
-                code = {409})
-        @UnexpectedResponseExceptionType(HttpResponseException.class)
-        Mono<Response<Void>> deleteTestFile(
-                @HostParam("Endpoint") String endpoint,
-                @PathParam("testId") String testId,
-                @PathParam("fileId") String fileId,
-                @QueryParam("api-version") String apiVersion,
-                @HeaderParam("Accept") String accept,
-                RequestOptions requestOptions,
-                Context context);
-
-        @Get("/loadtests/{testId}/files")
-        @ExpectedResponses({200})
-        @UnexpectedResponseExceptionType(
-                value = ClientAuthenticationException.class,
-                code = {401})
-        @UnexpectedResponseExceptionType(
-                value = ResourceNotFoundException.class,
-                code = {404})
-        @UnexpectedResponseExceptionType(
-                value = ResourceModifiedException.class,
-                code = {409})
-        @UnexpectedResponseExceptionType(HttpResponseException.class)
-        Mono<Response<BinaryData>> getAllTestFiles(
-                @HostParam("Endpoint") String endpoint,
-                @QueryParam("api-version") String apiVersion,
-                @PathParam("testId") String testId,
                 @HeaderParam("Accept") String accept,
                 RequestOptions requestOptions,
                 Context context);
@@ -440,7 +324,7 @@ public final class LoadTestAdministrationsImpl {
                 value = ResourceModifiedException.class,
                 code = {409})
         @UnexpectedResponseExceptionType(HttpResponseException.class)
-        Mono<Response<BinaryData>> listLoadTestSearchNext(
+        Mono<Response<BinaryData>> listNext(
                 @PathParam(value = "nextLink", encoded = true) String nextLink,
                 @HostParam("Endpoint") String endpoint,
                 @HeaderParam("Accept") String accept,
@@ -459,7 +343,7 @@ public final class LoadTestAdministrationsImpl {
                 value = ResourceModifiedException.class,
                 code = {409})
         @UnexpectedResponseExceptionType(HttpResponseException.class)
-        Mono<Response<BinaryData>> getAllTestFilesNext(
+        Mono<Response<BinaryData>> listFilesNext(
                 @PathParam(value = "nextLink", encoded = true) String nextLink,
                 @HostParam("Endpoint") String endpoint,
                 @HeaderParam("Accept") String accept,
@@ -468,1456 +352,77 @@ public final class LoadTestAdministrationsImpl {
     }
 
     /**
-     * Associate an App Component (Azure resource) to a test or test run.
+     * Create a new test or update an existing test.
      *
      * <p><strong>Request Body Schema</strong>
      *
      * <pre>{@code
      * {
-     *     resourceId: String (Optional)
-     *     testId: String (Optional)
-     *     testRunId: String (Optional)
-     *     name: String (Optional)
-     *     value (Required): {
-     *         String (Required): {
-     *             resourceId: String (Required)
-     *             resourceName: String (Required)
-     *             resourceType: String (Required)
-     *             displayName: String (Optional)
-     *             resourceGroup: String (Optional)
-     *             subscriptionId: String (Optional)
-     *             kind: String (Optional)
-     *         }
-     *     }
-     * }
-     * }</pre>
-     *
-     * <p><strong>Response Body Schema</strong>
-     *
-     * <pre>{@code
-     * {
-     *     resourceId: String (Optional)
-     *     testId: String (Optional)
-     *     testRunId: String (Optional)
-     *     name: String (Optional)
-     *     value (Required): {
-     *         String (Required): {
-     *             resourceId: String (Required)
-     *             resourceName: String (Required)
-     *             resourceType: String (Required)
-     *             displayName: String (Optional)
-     *             resourceGroup: String (Optional)
-     *             subscriptionId: String (Optional)
-     *             kind: String (Optional)
-     *         }
-     *     }
-     * }
-     * }</pre>
-     *
-     * @param name Unique name of the App Component, must be a valid URL character ^[a-z0-9_-]*$.
-     * @param body App Component model.
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return app Components model along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<BinaryData>> createOrUpdateAppComponentsWithResponseAsync(
-            String name, BinaryData body, RequestOptions requestOptions) {
-        final String accept = "application/json";
-        return FluxUtil.withContext(
-                context ->
-                        service.createOrUpdateAppComponents(
-                                this.client.getEndpoint(),
-                                name,
-                                this.client.getServiceVersion().getVersion(),
-                                body,
-                                accept,
-                                requestOptions,
-                                context));
-    }
-
-    /**
-     * Associate an App Component (Azure resource) to a test or test run.
-     *
-     * <p><strong>Request Body Schema</strong>
-     *
-     * <pre>{@code
-     * {
-     *     resourceId: String (Optional)
-     *     testId: String (Optional)
-     *     testRunId: String (Optional)
-     *     name: String (Optional)
-     *     value (Required): {
-     *         String (Required): {
-     *             resourceId: String (Required)
-     *             resourceName: String (Required)
-     *             resourceType: String (Required)
-     *             displayName: String (Optional)
-     *             resourceGroup: String (Optional)
-     *             subscriptionId: String (Optional)
-     *             kind: String (Optional)
-     *         }
-     *     }
-     * }
-     * }</pre>
-     *
-     * <p><strong>Response Body Schema</strong>
-     *
-     * <pre>{@code
-     * {
-     *     resourceId: String (Optional)
-     *     testId: String (Optional)
-     *     testRunId: String (Optional)
-     *     name: String (Optional)
-     *     value (Required): {
-     *         String (Required): {
-     *             resourceId: String (Required)
-     *             resourceName: String (Required)
-     *             resourceType: String (Required)
-     *             displayName: String (Optional)
-     *             resourceGroup: String (Optional)
-     *             subscriptionId: String (Optional)
-     *             kind: String (Optional)
-     *         }
-     *     }
-     * }
-     * }</pre>
-     *
-     * @param name Unique name of the App Component, must be a valid URL character ^[a-z0-9_-]*$.
-     * @param body App Component model.
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @param context The context to associate with this operation.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return app Components model along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<BinaryData>> createOrUpdateAppComponentsWithResponseAsync(
-            String name, BinaryData body, RequestOptions requestOptions, Context context) {
-        final String accept = "application/json";
-        return service.createOrUpdateAppComponents(
-                this.client.getEndpoint(),
-                name,
-                this.client.getServiceVersion().getVersion(),
-                body,
-                accept,
-                requestOptions,
-                context);
-    }
-
-    /**
-     * Associate an App Component (Azure resource) to a test or test run.
-     *
-     * <p><strong>Request Body Schema</strong>
-     *
-     * <pre>{@code
-     * {
-     *     resourceId: String (Optional)
-     *     testId: String (Optional)
-     *     testRunId: String (Optional)
-     *     name: String (Optional)
-     *     value (Required): {
-     *         String (Required): {
-     *             resourceId: String (Required)
-     *             resourceName: String (Required)
-     *             resourceType: String (Required)
-     *             displayName: String (Optional)
-     *             resourceGroup: String (Optional)
-     *             subscriptionId: String (Optional)
-     *             kind: String (Optional)
-     *         }
-     *     }
-     * }
-     * }</pre>
-     *
-     * <p><strong>Response Body Schema</strong>
-     *
-     * <pre>{@code
-     * {
-     *     resourceId: String (Optional)
-     *     testId: String (Optional)
-     *     testRunId: String (Optional)
-     *     name: String (Optional)
-     *     value (Required): {
-     *         String (Required): {
-     *             resourceId: String (Required)
-     *             resourceName: String (Required)
-     *             resourceType: String (Required)
-     *             displayName: String (Optional)
-     *             resourceGroup: String (Optional)
-     *             subscriptionId: String (Optional)
-     *             kind: String (Optional)
-     *         }
-     *     }
-     * }
-     * }</pre>
-     *
-     * @param name Unique name of the App Component, must be a valid URL character ^[a-z0-9_-]*$.
-     * @param body App Component model.
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return app Components model along with {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<BinaryData> createOrUpdateAppComponentsWithResponse(
-            String name, BinaryData body, RequestOptions requestOptions) {
-        return createOrUpdateAppComponentsWithResponseAsync(name, body, requestOptions).block();
-    }
-
-    /**
-     * Delete an App Component.
-     *
-     * @param name Unique name of the App Component, must be a valid URL character ^[a-z0-9_-]*$.
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return the {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Void>> deleteAppComponentWithResponseAsync(String name, RequestOptions requestOptions) {
-        final String accept = "application/json";
-        return FluxUtil.withContext(
-                context ->
-                        service.deleteAppComponent(
-                                this.client.getEndpoint(),
-                                name,
-                                this.client.getServiceVersion().getVersion(),
-                                accept,
-                                requestOptions,
-                                context));
-    }
-
-    /**
-     * Delete an App Component.
-     *
-     * @param name Unique name of the App Component, must be a valid URL character ^[a-z0-9_-]*$.
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @param context The context to associate with this operation.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return the {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Void>> deleteAppComponentWithResponseAsync(
-            String name, RequestOptions requestOptions, Context context) {
-        final String accept = "application/json";
-        return service.deleteAppComponent(
-                this.client.getEndpoint(),
-                name,
-                this.client.getServiceVersion().getVersion(),
-                accept,
-                requestOptions,
-                context);
-    }
-
-    /**
-     * Delete an App Component.
-     *
-     * @param name Unique name of the App Component, must be a valid URL character ^[a-z0-9_-]*$.
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return the {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<Void> deleteAppComponentWithResponse(String name, RequestOptions requestOptions) {
-        return deleteAppComponentWithResponseAsync(name, requestOptions).block();
-    }
-
-    /**
-     * Get App Component details by App Component name.
-     *
-     * <p><strong>Response Body Schema</strong>
-     *
-     * <pre>{@code
-     * {
-     *     resourceId: String (Optional)
-     *     testId: String (Optional)
-     *     testRunId: String (Optional)
-     *     name: String (Optional)
-     *     value (Required): {
-     *         String (Required): {
-     *             resourceId: String (Required)
-     *             resourceName: String (Required)
-     *             resourceType: String (Required)
-     *             displayName: String (Optional)
-     *             resourceGroup: String (Optional)
-     *             subscriptionId: String (Optional)
-     *             kind: String (Optional)
-     *         }
-     *     }
-     * }
-     * }</pre>
-     *
-     * @param name Unique name of the App Component, must be a valid URL character ^[a-z0-9_-]*$.
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return app Component details by App Component name along with {@link Response} on successful completion of
-     *     {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<BinaryData>> getAppComponentByNameWithResponseAsync(
-            String name, RequestOptions requestOptions) {
-        final String accept = "application/json";
-        return FluxUtil.withContext(
-                context ->
-                        service.getAppComponentByName(
-                                this.client.getEndpoint(),
-                                name,
-                                this.client.getServiceVersion().getVersion(),
-                                accept,
-                                requestOptions,
-                                context));
-    }
-
-    /**
-     * Get App Component details by App Component name.
-     *
-     * <p><strong>Response Body Schema</strong>
-     *
-     * <pre>{@code
-     * {
-     *     resourceId: String (Optional)
-     *     testId: String (Optional)
-     *     testRunId: String (Optional)
-     *     name: String (Optional)
-     *     value (Required): {
-     *         String (Required): {
-     *             resourceId: String (Required)
-     *             resourceName: String (Required)
-     *             resourceType: String (Required)
-     *             displayName: String (Optional)
-     *             resourceGroup: String (Optional)
-     *             subscriptionId: String (Optional)
-     *             kind: String (Optional)
-     *         }
-     *     }
-     * }
-     * }</pre>
-     *
-     * @param name Unique name of the App Component, must be a valid URL character ^[a-z0-9_-]*$.
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @param context The context to associate with this operation.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return app Component details by App Component name along with {@link Response} on successful completion of
-     *     {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<BinaryData>> getAppComponentByNameWithResponseAsync(
-            String name, RequestOptions requestOptions, Context context) {
-        final String accept = "application/json";
-        return service.getAppComponentByName(
-                this.client.getEndpoint(),
-                name,
-                this.client.getServiceVersion().getVersion(),
-                accept,
-                requestOptions,
-                context);
-    }
-
-    /**
-     * Get App Component details by App Component name.
-     *
-     * <p><strong>Response Body Schema</strong>
-     *
-     * <pre>{@code
-     * {
-     *     resourceId: String (Optional)
-     *     testId: String (Optional)
-     *     testRunId: String (Optional)
-     *     name: String (Optional)
-     *     value (Required): {
-     *         String (Required): {
-     *             resourceId: String (Required)
-     *             resourceName: String (Required)
-     *             resourceType: String (Required)
-     *             displayName: String (Optional)
-     *             resourceGroup: String (Optional)
-     *             subscriptionId: String (Optional)
-     *             kind: String (Optional)
-     *         }
-     *     }
-     * }
-     * }</pre>
-     *
-     * @param name Unique name of the App Component, must be a valid URL character ^[a-z0-9_-]*$.
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return app Component details by App Component name along with {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<BinaryData> getAppComponentByNameWithResponse(String name, RequestOptions requestOptions) {
-        return getAppComponentByNameWithResponseAsync(name, requestOptions).block();
-    }
-
-    /**
-     * Get App Components for a test or a test run by its name.
-     *
-     * <p><strong>Query Parameters</strong>
-     *
-     * <table border="1">
-     *     <caption>Query Parameters</caption>
-     *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>testRunId</td><td>String</td><td>No</td><td>[Required, if testId is not provided] Test run Id.</td></tr>
-     *     <tr><td>testId</td><td>String</td><td>No</td><td>Unique name for load test, must be a valid URL character ^[a-z0-9_-]*$.</td></tr>
-     * </table>
-     *
-     * You can add these to a request with {@link RequestOptions#addQueryParam}
-     *
-     * <p><strong>Response Body Schema</strong>
-     *
-     * <pre>{@code
-     * {
-     *     resourceId: String (Optional)
-     *     testId: String (Optional)
-     *     testRunId: String (Optional)
-     *     name: String (Optional)
-     *     value (Required): {
-     *         String (Required): {
-     *             resourceId: String (Required)
-     *             resourceName: String (Required)
-     *             resourceType: String (Required)
-     *             displayName: String (Optional)
-     *             resourceGroup: String (Optional)
-     *             subscriptionId: String (Optional)
-     *             kind: String (Optional)
-     *         }
-     *     }
-     * }
-     * }</pre>
-     *
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return app Components for a test or a test run by its name along with {@link Response} on successful completion
-     *     of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<BinaryData>> getAppComponentWithResponseAsync(RequestOptions requestOptions) {
-        final String accept = "application/json";
-        return FluxUtil.withContext(
-                context ->
-                        service.getAppComponent(
-                                this.client.getEndpoint(),
-                                this.client.getServiceVersion().getVersion(),
-                                accept,
-                                requestOptions,
-                                context));
-    }
-
-    /**
-     * Get App Components for a test or a test run by its name.
-     *
-     * <p><strong>Query Parameters</strong>
-     *
-     * <table border="1">
-     *     <caption>Query Parameters</caption>
-     *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>testRunId</td><td>String</td><td>No</td><td>[Required, if testId is not provided] Test run Id.</td></tr>
-     *     <tr><td>testId</td><td>String</td><td>No</td><td>Unique name for load test, must be a valid URL character ^[a-z0-9_-]*$.</td></tr>
-     * </table>
-     *
-     * You can add these to a request with {@link RequestOptions#addQueryParam}
-     *
-     * <p><strong>Response Body Schema</strong>
-     *
-     * <pre>{@code
-     * {
-     *     resourceId: String (Optional)
-     *     testId: String (Optional)
-     *     testRunId: String (Optional)
-     *     name: String (Optional)
-     *     value (Required): {
-     *         String (Required): {
-     *             resourceId: String (Required)
-     *             resourceName: String (Required)
-     *             resourceType: String (Required)
-     *             displayName: String (Optional)
-     *             resourceGroup: String (Optional)
-     *             subscriptionId: String (Optional)
-     *             kind: String (Optional)
-     *         }
-     *     }
-     * }
-     * }</pre>
-     *
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @param context The context to associate with this operation.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return app Components for a test or a test run by its name along with {@link Response} on successful completion
-     *     of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<BinaryData>> getAppComponentWithResponseAsync(RequestOptions requestOptions, Context context) {
-        final String accept = "application/json";
-        return service.getAppComponent(
-                this.client.getEndpoint(),
-                this.client.getServiceVersion().getVersion(),
-                accept,
-                requestOptions,
-                context);
-    }
-
-    /**
-     * Get App Components for a test or a test run by its name.
-     *
-     * <p><strong>Query Parameters</strong>
-     *
-     * <table border="1">
-     *     <caption>Query Parameters</caption>
-     *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>testRunId</td><td>String</td><td>No</td><td>[Required, if testId is not provided] Test run Id.</td></tr>
-     *     <tr><td>testId</td><td>String</td><td>No</td><td>Unique name for load test, must be a valid URL character ^[a-z0-9_-]*$.</td></tr>
-     * </table>
-     *
-     * You can add these to a request with {@link RequestOptions#addQueryParam}
-     *
-     * <p><strong>Response Body Schema</strong>
-     *
-     * <pre>{@code
-     * {
-     *     resourceId: String (Optional)
-     *     testId: String (Optional)
-     *     testRunId: String (Optional)
-     *     name: String (Optional)
-     *     value (Required): {
-     *         String (Required): {
-     *             resourceId: String (Required)
-     *             resourceName: String (Required)
-     *             resourceType: String (Required)
-     *             displayName: String (Optional)
-     *             resourceGroup: String (Optional)
-     *             subscriptionId: String (Optional)
-     *             kind: String (Optional)
-     *         }
-     *     }
-     * }
-     * }</pre>
-     *
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return app Components for a test or a test run by its name along with {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<BinaryData> getAppComponentWithResponse(RequestOptions requestOptions) {
-        return getAppComponentWithResponseAsync(requestOptions).block();
-    }
-
-    /**
-     * Configure server metrics for a test or test run.
-     *
-     * <p><strong>Request Body Schema</strong>
-     *
-     * <pre>{@code
-     * {
-     *     name: String (Optional)
-     *     testId: String (Optional)
-     *     testRunId: String (Optional)
-     *     metrics (Optional): {
-     *         String (Optional): {
-     *             id: String (Optional)
-     *             resourceId: String (Required)
-     *             metricnamespace: String (Required)
-     *             displayDescription: String (Optional)
-     *             name (Required): {
-     *                 value: String (Required)
-     *                 localizedValue: String (Required)
-     *             }
-     *             aggregation: String (Required)
-     *             unit: String (Optional)
-     *             resourceType: String (Required)
-     *         }
-     *     }
-     * }
-     * }</pre>
-     *
-     * <p><strong>Response Body Schema</strong>
-     *
-     * <pre>{@code
-     * {
-     *     name: String (Optional)
-     *     testId: String (Optional)
-     *     testRunId: String (Optional)
-     *     metrics (Optional): {
-     *         String (Optional): {
-     *             id: String (Optional)
-     *             resourceId: String (Required)
-     *             metricnamespace: String (Required)
-     *             displayDescription: String (Optional)
-     *             name (Required): {
-     *                 value: String (Required)
-     *                 localizedValue: String (Required)
-     *             }
-     *             aggregation: String (Required)
-     *             unit: String (Optional)
-     *             resourceType: String (Required)
-     *         }
-     *     }
-     * }
-     * }</pre>
-     *
-     * @param name Unique name for server metrics, must be a valid URL character ^[a-z0-9_-]*$.
-     * @param body Server metrics configuration model.
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return server metrics config model along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<BinaryData>> createOrUpdateServerMetricsConfigWithResponseAsync(
-            String name, BinaryData body, RequestOptions requestOptions) {
-        final String accept = "application/json";
-        return FluxUtil.withContext(
-                context ->
-                        service.createOrUpdateServerMetricsConfig(
-                                this.client.getEndpoint(),
-                                name,
-                                this.client.getServiceVersion().getVersion(),
-                                body,
-                                accept,
-                                requestOptions,
-                                context));
-    }
-
-    /**
-     * Configure server metrics for a test or test run.
-     *
-     * <p><strong>Request Body Schema</strong>
-     *
-     * <pre>{@code
-     * {
-     *     name: String (Optional)
-     *     testId: String (Optional)
-     *     testRunId: String (Optional)
-     *     metrics (Optional): {
-     *         String (Optional): {
-     *             id: String (Optional)
-     *             resourceId: String (Required)
-     *             metricnamespace: String (Required)
-     *             displayDescription: String (Optional)
-     *             name (Required): {
-     *                 value: String (Required)
-     *                 localizedValue: String (Required)
-     *             }
-     *             aggregation: String (Required)
-     *             unit: String (Optional)
-     *             resourceType: String (Required)
-     *         }
-     *     }
-     * }
-     * }</pre>
-     *
-     * <p><strong>Response Body Schema</strong>
-     *
-     * <pre>{@code
-     * {
-     *     name: String (Optional)
-     *     testId: String (Optional)
-     *     testRunId: String (Optional)
-     *     metrics (Optional): {
-     *         String (Optional): {
-     *             id: String (Optional)
-     *             resourceId: String (Required)
-     *             metricnamespace: String (Required)
-     *             displayDescription: String (Optional)
-     *             name (Required): {
-     *                 value: String (Required)
-     *                 localizedValue: String (Required)
-     *             }
-     *             aggregation: String (Required)
-     *             unit: String (Optional)
-     *             resourceType: String (Required)
-     *         }
-     *     }
-     * }
-     * }</pre>
-     *
-     * @param name Unique name for server metrics, must be a valid URL character ^[a-z0-9_-]*$.
-     * @param body Server metrics configuration model.
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @param context The context to associate with this operation.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return server metrics config model along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<BinaryData>> createOrUpdateServerMetricsConfigWithResponseAsync(
-            String name, BinaryData body, RequestOptions requestOptions, Context context) {
-        final String accept = "application/json";
-        return service.createOrUpdateServerMetricsConfig(
-                this.client.getEndpoint(),
-                name,
-                this.client.getServiceVersion().getVersion(),
-                body,
-                accept,
-                requestOptions,
-                context);
-    }
-
-    /**
-     * Configure server metrics for a test or test run.
-     *
-     * <p><strong>Request Body Schema</strong>
-     *
-     * <pre>{@code
-     * {
-     *     name: String (Optional)
-     *     testId: String (Optional)
-     *     testRunId: String (Optional)
-     *     metrics (Optional): {
-     *         String (Optional): {
-     *             id: String (Optional)
-     *             resourceId: String (Required)
-     *             metricnamespace: String (Required)
-     *             displayDescription: String (Optional)
-     *             name (Required): {
-     *                 value: String (Required)
-     *                 localizedValue: String (Required)
-     *             }
-     *             aggregation: String (Required)
-     *             unit: String (Optional)
-     *             resourceType: String (Required)
-     *         }
-     *     }
-     * }
-     * }</pre>
-     *
-     * <p><strong>Response Body Schema</strong>
-     *
-     * <pre>{@code
-     * {
-     *     name: String (Optional)
-     *     testId: String (Optional)
-     *     testRunId: String (Optional)
-     *     metrics (Optional): {
-     *         String (Optional): {
-     *             id: String (Optional)
-     *             resourceId: String (Required)
-     *             metricnamespace: String (Required)
-     *             displayDescription: String (Optional)
-     *             name (Required): {
-     *                 value: String (Required)
-     *                 localizedValue: String (Required)
-     *             }
-     *             aggregation: String (Required)
-     *             unit: String (Optional)
-     *             resourceType: String (Required)
-     *         }
-     *     }
-     * }
-     * }</pre>
-     *
-     * @param name Unique name for server metrics, must be a valid URL character ^[a-z0-9_-]*$.
-     * @param body Server metrics configuration model.
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return server metrics config model along with {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<BinaryData> createOrUpdateServerMetricsConfigWithResponse(
-            String name, BinaryData body, RequestOptions requestOptions) {
-        return createOrUpdateServerMetricsConfigWithResponseAsync(name, body, requestOptions).block();
-    }
-
-    /**
-     * Get server metrics configuration by its name.
-     *
-     * <p><strong>Response Body Schema</strong>
-     *
-     * <pre>{@code
-     * {
-     *     name: String (Optional)
-     *     testId: String (Optional)
-     *     testRunId: String (Optional)
-     *     metrics (Optional): {
-     *         String (Optional): {
-     *             id: String (Optional)
-     *             resourceId: String (Required)
-     *             metricnamespace: String (Required)
-     *             displayDescription: String (Optional)
-     *             name (Required): {
-     *                 value: String (Required)
-     *                 localizedValue: String (Required)
-     *             }
-     *             aggregation: String (Required)
-     *             unit: String (Optional)
-     *             resourceType: String (Required)
-     *         }
-     *     }
-     * }
-     * }</pre>
-     *
-     * @param name Unique name for server metrics, must be a valid URL character ^[a-z0-9_-]*$.
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return server metrics configuration by its name along with {@link Response} on successful completion of {@link
-     *     Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<BinaryData>> getServerMetricsByNameWithResponseAsync(
-            String name, RequestOptions requestOptions) {
-        final String accept = "application/json";
-        return FluxUtil.withContext(
-                context ->
-                        service.getServerMetricsByName(
-                                this.client.getEndpoint(),
-                                name,
-                                this.client.getServiceVersion().getVersion(),
-                                accept,
-                                requestOptions,
-                                context));
-    }
-
-    /**
-     * Get server metrics configuration by its name.
-     *
-     * <p><strong>Response Body Schema</strong>
-     *
-     * <pre>{@code
-     * {
-     *     name: String (Optional)
-     *     testId: String (Optional)
-     *     testRunId: String (Optional)
-     *     metrics (Optional): {
-     *         String (Optional): {
-     *             id: String (Optional)
-     *             resourceId: String (Required)
-     *             metricnamespace: String (Required)
-     *             displayDescription: String (Optional)
-     *             name (Required): {
-     *                 value: String (Required)
-     *                 localizedValue: String (Required)
-     *             }
-     *             aggregation: String (Required)
-     *             unit: String (Optional)
-     *             resourceType: String (Required)
-     *         }
-     *     }
-     * }
-     * }</pre>
-     *
-     * @param name Unique name for server metrics, must be a valid URL character ^[a-z0-9_-]*$.
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @param context The context to associate with this operation.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return server metrics configuration by its name along with {@link Response} on successful completion of {@link
-     *     Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<BinaryData>> getServerMetricsByNameWithResponseAsync(
-            String name, RequestOptions requestOptions, Context context) {
-        final String accept = "application/json";
-        return service.getServerMetricsByName(
-                this.client.getEndpoint(),
-                name,
-                this.client.getServiceVersion().getVersion(),
-                accept,
-                requestOptions,
-                context);
-    }
-
-    /**
-     * Get server metrics configuration by its name.
-     *
-     * <p><strong>Response Body Schema</strong>
-     *
-     * <pre>{@code
-     * {
-     *     name: String (Optional)
-     *     testId: String (Optional)
-     *     testRunId: String (Optional)
-     *     metrics (Optional): {
-     *         String (Optional): {
-     *             id: String (Optional)
-     *             resourceId: String (Required)
-     *             metricnamespace: String (Required)
-     *             displayDescription: String (Optional)
-     *             name (Required): {
-     *                 value: String (Required)
-     *                 localizedValue: String (Required)
-     *             }
-     *             aggregation: String (Required)
-     *             unit: String (Optional)
-     *             resourceType: String (Required)
-     *         }
-     *     }
-     * }
-     * }</pre>
-     *
-     * @param name Unique name for server metrics, must be a valid URL character ^[a-z0-9_-]*$.
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return server metrics configuration by its name along with {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<BinaryData> getServerMetricsByNameWithResponse(String name, RequestOptions requestOptions) {
-        return getServerMetricsByNameWithResponseAsync(name, requestOptions).block();
-    }
-
-    /**
-     * Delete server metrics configuration by its name.
-     *
-     * @param name Unique name for server metrics, must be a valid URL character ^[a-z0-9_-]*$.
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return the {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Void>> deleteServerMetricsWithResponseAsync(String name, RequestOptions requestOptions) {
-        final String accept = "application/json";
-        return FluxUtil.withContext(
-                context ->
-                        service.deleteServerMetrics(
-                                this.client.getEndpoint(),
-                                name,
-                                this.client.getServiceVersion().getVersion(),
-                                accept,
-                                requestOptions,
-                                context));
-    }
-
-    /**
-     * Delete server metrics configuration by its name.
-     *
-     * @param name Unique name for server metrics, must be a valid URL character ^[a-z0-9_-]*$.
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @param context The context to associate with this operation.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return the {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Void>> deleteServerMetricsWithResponseAsync(
-            String name, RequestOptions requestOptions, Context context) {
-        final String accept = "application/json";
-        return service.deleteServerMetrics(
-                this.client.getEndpoint(),
-                name,
-                this.client.getServiceVersion().getVersion(),
-                accept,
-                requestOptions,
-                context);
-    }
-
-    /**
-     * Delete server metrics configuration by its name.
-     *
-     * @param name Unique name for server metrics, must be a valid URL character ^[a-z0-9_-]*$.
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return the {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<Void> deleteServerMetricsWithResponse(String name, RequestOptions requestOptions) {
-        return deleteServerMetricsWithResponseAsync(name, requestOptions).block();
-    }
-
-    /**
-     * Get server metrics configuration for a test or test run by its name.
-     *
-     * <p><strong>Query Parameters</strong>
-     *
-     * <table border="1">
-     *     <caption>Query Parameters</caption>
-     *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>testRunId</td><td>String</td><td>No</td><td>[Required, if testId is not provided] Test run Id.</td></tr>
-     *     <tr><td>testId</td><td>String</td><td>No</td><td>Unique name for load test, must be a valid URL character ^[a-z0-9_-]*$.</td></tr>
-     * </table>
-     *
-     * You can add these to a request with {@link RequestOptions#addQueryParam}
-     *
-     * <p><strong>Response Body Schema</strong>
-     *
-     * <pre>{@code
-     * {
-     *     name: String (Optional)
-     *     testId: String (Optional)
-     *     testRunId: String (Optional)
-     *     metrics (Optional): {
-     *         String (Optional): {
-     *             id: String (Optional)
-     *             resourceId: String (Required)
-     *             metricnamespace: String (Required)
-     *             displayDescription: String (Optional)
-     *             name (Required): {
-     *                 value: String (Required)
-     *                 localizedValue: String (Required)
-     *             }
-     *             aggregation: String (Required)
-     *             unit: String (Optional)
-     *             resourceType: String (Required)
-     *         }
-     *     }
-     * }
-     * }</pre>
-     *
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return server metrics configuration for a test or test run by its name along with {@link Response} on successful
-     *     completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<BinaryData>> getServerMetricsWithResponseAsync(RequestOptions requestOptions) {
-        final String accept = "application/json";
-        return FluxUtil.withContext(
-                context ->
-                        service.getServerMetrics(
-                                this.client.getEndpoint(),
-                                this.client.getServiceVersion().getVersion(),
-                                accept,
-                                requestOptions,
-                                context));
-    }
-
-    /**
-     * Get server metrics configuration for a test or test run by its name.
-     *
-     * <p><strong>Query Parameters</strong>
-     *
-     * <table border="1">
-     *     <caption>Query Parameters</caption>
-     *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>testRunId</td><td>String</td><td>No</td><td>[Required, if testId is not provided] Test run Id.</td></tr>
-     *     <tr><td>testId</td><td>String</td><td>No</td><td>Unique name for load test, must be a valid URL character ^[a-z0-9_-]*$.</td></tr>
-     * </table>
-     *
-     * You can add these to a request with {@link RequestOptions#addQueryParam}
-     *
-     * <p><strong>Response Body Schema</strong>
-     *
-     * <pre>{@code
-     * {
-     *     name: String (Optional)
-     *     testId: String (Optional)
-     *     testRunId: String (Optional)
-     *     metrics (Optional): {
-     *         String (Optional): {
-     *             id: String (Optional)
-     *             resourceId: String (Required)
-     *             metricnamespace: String (Required)
-     *             displayDescription: String (Optional)
-     *             name (Required): {
-     *                 value: String (Required)
-     *                 localizedValue: String (Required)
-     *             }
-     *             aggregation: String (Required)
-     *             unit: String (Optional)
-     *             resourceType: String (Required)
-     *         }
-     *     }
-     * }
-     * }</pre>
-     *
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @param context The context to associate with this operation.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return server metrics configuration for a test or test run by its name along with {@link Response} on successful
-     *     completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<BinaryData>> getServerMetricsWithResponseAsync(
-            RequestOptions requestOptions, Context context) {
-        final String accept = "application/json";
-        return service.getServerMetrics(
-                this.client.getEndpoint(),
-                this.client.getServiceVersion().getVersion(),
-                accept,
-                requestOptions,
-                context);
-    }
-
-    /**
-     * Get server metrics configuration for a test or test run by its name.
-     *
-     * <p><strong>Query Parameters</strong>
-     *
-     * <table border="1">
-     *     <caption>Query Parameters</caption>
-     *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>testRunId</td><td>String</td><td>No</td><td>[Required, if testId is not provided] Test run Id.</td></tr>
-     *     <tr><td>testId</td><td>String</td><td>No</td><td>Unique name for load test, must be a valid URL character ^[a-z0-9_-]*$.</td></tr>
-     * </table>
-     *
-     * You can add these to a request with {@link RequestOptions#addQueryParam}
-     *
-     * <p><strong>Response Body Schema</strong>
-     *
-     * <pre>{@code
-     * {
-     *     name: String (Optional)
-     *     testId: String (Optional)
-     *     testRunId: String (Optional)
-     *     metrics (Optional): {
-     *         String (Optional): {
-     *             id: String (Optional)
-     *             resourceId: String (Required)
-     *             metricnamespace: String (Required)
-     *             displayDescription: String (Optional)
-     *             name (Required): {
-     *                 value: String (Required)
-     *                 localizedValue: String (Required)
-     *             }
-     *             aggregation: String (Required)
-     *             unit: String (Optional)
-     *             resourceType: String (Required)
-     *         }
-     *     }
-     * }
-     * }</pre>
-     *
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return server metrics configuration for a test or test run by its name along with {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<BinaryData> getServerMetricsWithResponse(RequestOptions requestOptions) {
-        return getServerMetricsWithResponseAsync(requestOptions).block();
-    }
-
-    /**
-     * Get all default server metrics configuration for supported resource types.
-     *
-     * <p><strong>Response Body Schema</strong>
-     *
-     * <pre>{@code
-     * {
-     *     defaultMetrics (Optional): {
-     *         String (Optional): [
-     *              (Optional){
-     *                 metricnamespace: String (Optional)
-     *                 aggregation: String (Optional)
-     *                 name (Optional): {
-     *                     value: String (Optional)
-     *                     localizedValue: String (Optional)
-     *                 }
-     *                 unit: String (Optional)
-     *                 displayDescription: String (Optional)
-     *             }
-     *         ]
-     *     }
-     * }
-     * }</pre>
-     *
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return all default server metrics configuration for supported resource types along with {@link Response} on
-     *     successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<BinaryData>> getServerDefaultMetricsWithResponseAsync(RequestOptions requestOptions) {
-        final String accept = "application/json";
-        return FluxUtil.withContext(
-                context ->
-                        service.getServerDefaultMetrics(
-                                this.client.getEndpoint(),
-                                this.client.getServiceVersion().getVersion(),
-                                accept,
-                                requestOptions,
-                                context));
-    }
-
-    /**
-     * Get all default server metrics configuration for supported resource types.
-     *
-     * <p><strong>Response Body Schema</strong>
-     *
-     * <pre>{@code
-     * {
-     *     defaultMetrics (Optional): {
-     *         String (Optional): [
-     *              (Optional){
-     *                 metricnamespace: String (Optional)
-     *                 aggregation: String (Optional)
-     *                 name (Optional): {
-     *                     value: String (Optional)
-     *                     localizedValue: String (Optional)
-     *                 }
-     *                 unit: String (Optional)
-     *                 displayDescription: String (Optional)
-     *             }
-     *         ]
-     *     }
-     * }
-     * }</pre>
-     *
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @param context The context to associate with this operation.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return all default server metrics configuration for supported resource types along with {@link Response} on
-     *     successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<BinaryData>> getServerDefaultMetricsWithResponseAsync(
-            RequestOptions requestOptions, Context context) {
-        final String accept = "application/json";
-        return service.getServerDefaultMetrics(
-                this.client.getEndpoint(),
-                this.client.getServiceVersion().getVersion(),
-                accept,
-                requestOptions,
-                context);
-    }
-
-    /**
-     * Get all default server metrics configuration for supported resource types.
-     *
-     * <p><strong>Response Body Schema</strong>
-     *
-     * <pre>{@code
-     * {
-     *     defaultMetrics (Optional): {
-     *         String (Optional): [
-     *              (Optional){
-     *                 metricnamespace: String (Optional)
-     *                 aggregation: String (Optional)
-     *                 name (Optional): {
-     *                     value: String (Optional)
-     *                     localizedValue: String (Optional)
-     *                 }
-     *                 unit: String (Optional)
-     *                 displayDescription: String (Optional)
-     *             }
-     *         ]
-     *     }
-     * }
-     * }</pre>
-     *
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return all default server metrics configuration for supported resource types along with {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<BinaryData> getServerDefaultMetricsWithResponse(RequestOptions requestOptions) {
-        return getServerDefaultMetricsWithResponseAsync(requestOptions).block();
-    }
-
-    /**
-     * Get all supported resource types for App Components(Azure resource types).
-     *
-     * <p><strong>Response Body Schema</strong>
-     *
-     * <pre>{@code
-     * {
-     *     value (Optional): [
-     *         String (Optional)
-     *     ]
-     * }
-     * }</pre>
-     *
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return all supported resource types for App Components(Azure resource types) along with {@link Response} on
-     *     successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<BinaryData>> listSupportedResourceTypeWithResponseAsync(RequestOptions requestOptions) {
-        final String accept = "application/json";
-        return FluxUtil.withContext(
-                context ->
-                        service.listSupportedResourceType(
-                                this.client.getEndpoint(),
-                                this.client.getServiceVersion().getVersion(),
-                                accept,
-                                requestOptions,
-                                context));
-    }
-
-    /**
-     * Get all supported resource types for App Components(Azure resource types).
-     *
-     * <p><strong>Response Body Schema</strong>
-     *
-     * <pre>{@code
-     * {
-     *     value (Optional): [
-     *         String (Optional)
-     *     ]
-     * }
-     * }</pre>
-     *
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @param context The context to associate with this operation.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return all supported resource types for App Components(Azure resource types) along with {@link Response} on
-     *     successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<BinaryData>> listSupportedResourceTypeWithResponseAsync(
-            RequestOptions requestOptions, Context context) {
-        final String accept = "application/json";
-        return service.listSupportedResourceType(
-                this.client.getEndpoint(),
-                this.client.getServiceVersion().getVersion(),
-                accept,
-                requestOptions,
-                context);
-    }
-
-    /**
-     * Get all supported resource types for App Components(Azure resource types).
-     *
-     * <p><strong>Response Body Schema</strong>
-     *
-     * <pre>{@code
-     * {
-     *     value (Optional): [
-     *         String (Optional)
-     *     ]
-     * }
-     * }</pre>
-     *
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return all supported resource types for App Components(Azure resource types) along with {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<BinaryData> listSupportedResourceTypeWithResponse(RequestOptions requestOptions) {
-        return listSupportedResourceTypeWithResponseAsync(requestOptions).block();
-    }
-
-    /**
-     * Create a new test or Update an existing test.
-     *
-     * <p><strong>Request Body Schema</strong>
-     *
-     * <pre>{@code
-     * {
-     *     testId: String (Optional)
-     *     description: String (Optional)
-     *     displayName: String (Optional)
-     *     resourceId: String (Optional)
-     *     loadTestConfig (Optional): {
-     *         engineInstances: Integer (Optional)
-     *         splitAllCSVs: Boolean (Optional)
-     *     }
      *     passFailCriteria (Optional): {
      *         passFailMetrics (Optional): {
      *             String (Optional): {
-     *                 clientmetric: String (Optional)
-     *                 aggregate: String (Optional)
+     *                 clientmetric: String(response_time_ms/latency/error/requests/requests_per_sec) (Optional)
+     *                 aggregate: String(count/percentage/avg/p50/p90/p95/p99/min/max) (Optional)
      *                 condition: String (Optional)
      *                 requestName: String (Optional)
      *                 value: Double (Optional)
-     *                 action: String (Optional)
+     *                 action: String(stop/continue) (Optional)
      *                 actualValue: Double (Optional)
-     *                 result: String (Optional)
+     *                 result: String(passed/undetermined/failed) (Optional)
      *             }
      *         }
-     *     }
-     *     createdDateTime: OffsetDateTime (Optional)
-     *     createdBy: String (Optional)
-     *     lastModifiedDateTime: OffsetDateTime (Optional)
-     *     lastModifiedBy: String (Optional)
-     *     inputArtifacts (Optional): {
-     *         configUrl (Optional): {
-     *             url: String (Optional)
-     *             fileId: String (Optional)
-     *             filename: String (Optional)
-     *             fileType: String(0/1/2) (Optional)
-     *             expireTime: OffsetDateTime (Optional)
-     *             validationStatus: String (Optional)
-     *         }
-     *         testScriptUrl (Optional): (recursive schema, see testScriptUrl above)
-     *         userPropUrl (Optional): (recursive schema, see userPropUrl above)
-     *         inputArtifactsZipFileurl (Optional): (recursive schema, see inputArtifactsZipFileurl above)
-     *         additionalUrls (Optional): [
-     *             (recursive schema, see above)
-     *         ]
      *     }
      *     secrets (Optional): {
      *         String (Optional): {
      *             value: String (Optional)
-     *             type: String (Optional)
+     *             type: String(AKV_SECRET_URI/SECRET_VALUE) (Optional)
      *         }
+     *     }
+     *     certificate (Optional): {
+     *         value: String (Optional)
+     *         type: String(AKV_CERT_URI) (Optional)
+     *         name: String (Optional)
      *     }
      *     environmentVariables (Optional): {
      *         String: String (Optional)
      *     }
+     *     loadTestConfiguration (Optional): {
+     *         engineInstances: Integer (Optional)
+     *         splitAllCSVs: Boolean (Optional)
+     *         quickStartTest: Boolean (Optional)
+     *         optionalLoadTestConfig (Optional): {
+     *             endpointUrl: String (Optional)
+     *             vusers: Integer (Optional)
+     *             rampUpTime: Integer (Optional)
+     *             duration: Integer (Optional)
+     *         }
+     *     }
+     *     inputArtifacts (Optional): {
+     *         configFileInfo (Optional): {
+     *             url: String (Optional)
+     *             fileId: String (Optional)
+     *             filename: String (Optional)
+     *             fileType: String(JMX_FILE/USER_PROPERTIES/ADDITIONAL_ARTIFACTS) (Optional)
+     *             expireDateTime: OffsetDateTime (Optional)
+     *             validationStatus: String(NOT_VALIDATED/VALIDATION_SUCCESS/VALIDATION_FAILURE/VALIDATION_INITIATED/VALIDATION_NOT_REQUIRED) (Optional)
+     *         }
+     *         testScriptFileInfo (Optional): (recursive schema, see testScriptFileInfo above)
+     *         userPropFileInfo (Optional): (recursive schema, see userPropFileInfo above)
+     *         inputArtifactsZipFileInfo (Optional): (recursive schema, see inputArtifactsZipFileInfo above)
+     *         additionalFileInfo (Optional): [
+     *             (recursive schema, see above)
+     *         ]
+     *     }
+     *     testId: String (Optional)
+     *     description: String (Optional)
+     *     displayName: String (Optional)
      *     subnetId: String (Optional)
      *     keyvaultReferenceIdentityType: String (Optional)
      *     keyvaultReferenceIdentityId: String (Optional)
+     *     createdDateTime: OffsetDateTime (Optional)
+     *     createdBy: String (Optional)
+     *     lastModifiedDateTime: OffsetDateTime (Optional)
+     *     lastModifiedBy: String (Optional)
      * }
      * }</pre>
      *
@@ -1925,64 +430,76 @@ public final class LoadTestAdministrationsImpl {
      *
      * <pre>{@code
      * {
-     *     testId: String (Optional)
-     *     description: String (Optional)
-     *     displayName: String (Optional)
-     *     resourceId: String (Optional)
-     *     loadTestConfig (Optional): {
-     *         engineInstances: Integer (Optional)
-     *         splitAllCSVs: Boolean (Optional)
-     *     }
      *     passFailCriteria (Optional): {
      *         passFailMetrics (Optional): {
      *             String (Optional): {
-     *                 clientmetric: String (Optional)
-     *                 aggregate: String (Optional)
+     *                 clientmetric: String(response_time_ms/latency/error/requests/requests_per_sec) (Optional)
+     *                 aggregate: String(count/percentage/avg/p50/p90/p95/p99/min/max) (Optional)
      *                 condition: String (Optional)
      *                 requestName: String (Optional)
      *                 value: Double (Optional)
-     *                 action: String (Optional)
+     *                 action: String(stop/continue) (Optional)
      *                 actualValue: Double (Optional)
-     *                 result: String (Optional)
+     *                 result: String(passed/undetermined/failed) (Optional)
      *             }
      *         }
-     *     }
-     *     createdDateTime: OffsetDateTime (Optional)
-     *     createdBy: String (Optional)
-     *     lastModifiedDateTime: OffsetDateTime (Optional)
-     *     lastModifiedBy: String (Optional)
-     *     inputArtifacts (Optional): {
-     *         configUrl (Optional): {
-     *             url: String (Optional)
-     *             fileId: String (Optional)
-     *             filename: String (Optional)
-     *             fileType: String(0/1/2) (Optional)
-     *             expireTime: OffsetDateTime (Optional)
-     *             validationStatus: String (Optional)
-     *         }
-     *         testScriptUrl (Optional): (recursive schema, see testScriptUrl above)
-     *         userPropUrl (Optional): (recursive schema, see userPropUrl above)
-     *         inputArtifactsZipFileurl (Optional): (recursive schema, see inputArtifactsZipFileurl above)
-     *         additionalUrls (Optional): [
-     *             (recursive schema, see above)
-     *         ]
      *     }
      *     secrets (Optional): {
      *         String (Optional): {
      *             value: String (Optional)
-     *             type: String (Optional)
+     *             type: String(AKV_SECRET_URI/SECRET_VALUE) (Optional)
      *         }
+     *     }
+     *     certificate (Optional): {
+     *         value: String (Optional)
+     *         type: String(AKV_CERT_URI) (Optional)
+     *         name: String (Optional)
      *     }
      *     environmentVariables (Optional): {
      *         String: String (Optional)
      *     }
+     *     loadTestConfiguration (Optional): {
+     *         engineInstances: Integer (Optional)
+     *         splitAllCSVs: Boolean (Optional)
+     *         quickStartTest: Boolean (Optional)
+     *         optionalLoadTestConfig (Optional): {
+     *             endpointUrl: String (Optional)
+     *             vusers: Integer (Optional)
+     *             rampUpTime: Integer (Optional)
+     *             duration: Integer (Optional)
+     *         }
+     *     }
+     *     inputArtifacts (Optional): {
+     *         configFileInfo (Optional): {
+     *             url: String (Optional)
+     *             fileId: String (Optional)
+     *             filename: String (Optional)
+     *             fileType: String(JMX_FILE/USER_PROPERTIES/ADDITIONAL_ARTIFACTS) (Optional)
+     *             expireDateTime: OffsetDateTime (Optional)
+     *             validationStatus: String(NOT_VALIDATED/VALIDATION_SUCCESS/VALIDATION_FAILURE/VALIDATION_INITIATED/VALIDATION_NOT_REQUIRED) (Optional)
+     *         }
+     *         testScriptFileInfo (Optional): (recursive schema, see testScriptFileInfo above)
+     *         userPropFileInfo (Optional): (recursive schema, see userPropFileInfo above)
+     *         inputArtifactsZipFileInfo (Optional): (recursive schema, see inputArtifactsZipFileInfo above)
+     *         additionalFileInfo (Optional): [
+     *             (recursive schema, see above)
+     *         ]
+     *     }
+     *     testId: String (Optional)
+     *     description: String (Optional)
+     *     displayName: String (Optional)
      *     subnetId: String (Optional)
      *     keyvaultReferenceIdentityType: String (Optional)
      *     keyvaultReferenceIdentityId: String (Optional)
+     *     createdDateTime: OffsetDateTime (Optional)
+     *     createdBy: String (Optional)
+     *     lastModifiedDateTime: OffsetDateTime (Optional)
+     *     lastModifiedBy: String (Optional)
      * }
      * }</pre>
      *
-     * @param testId Unique name for load test, must be a valid URL character ^[a-z0-9_-]*$.
+     * @param testId Unique name for the load test, must contain only lower-case alphabetic, numeric, underscore or
+     *     hyphen characters.
      * @param body Load test model.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
@@ -1992,15 +509,15 @@ public final class LoadTestAdministrationsImpl {
      * @return load test model along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<BinaryData>> createOrUpdateTestWithResponseAsync(
+    public Mono<Response<BinaryData>> createOrUpdateWithResponseAsync(
             String testId, BinaryData body, RequestOptions requestOptions) {
         final String accept = "application/json";
         return FluxUtil.withContext(
                 context ->
-                        service.createOrUpdateTest(
+                        service.createOrUpdate(
                                 this.client.getEndpoint(),
-                                this.client.getServiceVersion().getVersion(),
                                 testId,
+                                this.client.getServiceVersion().getVersion(),
                                 body,
                                 accept,
                                 requestOptions,
@@ -2008,66 +525,77 @@ public final class LoadTestAdministrationsImpl {
     }
 
     /**
-     * Create a new test or Update an existing test.
+     * Create a new test or update an existing test.
      *
      * <p><strong>Request Body Schema</strong>
      *
      * <pre>{@code
      * {
-     *     testId: String (Optional)
-     *     description: String (Optional)
-     *     displayName: String (Optional)
-     *     resourceId: String (Optional)
-     *     loadTestConfig (Optional): {
-     *         engineInstances: Integer (Optional)
-     *         splitAllCSVs: Boolean (Optional)
-     *     }
      *     passFailCriteria (Optional): {
      *         passFailMetrics (Optional): {
      *             String (Optional): {
-     *                 clientmetric: String (Optional)
-     *                 aggregate: String (Optional)
+     *                 clientmetric: String(response_time_ms/latency/error/requests/requests_per_sec) (Optional)
+     *                 aggregate: String(count/percentage/avg/p50/p90/p95/p99/min/max) (Optional)
      *                 condition: String (Optional)
      *                 requestName: String (Optional)
      *                 value: Double (Optional)
-     *                 action: String (Optional)
+     *                 action: String(stop/continue) (Optional)
      *                 actualValue: Double (Optional)
-     *                 result: String (Optional)
+     *                 result: String(passed/undetermined/failed) (Optional)
      *             }
      *         }
-     *     }
-     *     createdDateTime: OffsetDateTime (Optional)
-     *     createdBy: String (Optional)
-     *     lastModifiedDateTime: OffsetDateTime (Optional)
-     *     lastModifiedBy: String (Optional)
-     *     inputArtifacts (Optional): {
-     *         configUrl (Optional): {
-     *             url: String (Optional)
-     *             fileId: String (Optional)
-     *             filename: String (Optional)
-     *             fileType: String(0/1/2) (Optional)
-     *             expireTime: OffsetDateTime (Optional)
-     *             validationStatus: String (Optional)
-     *         }
-     *         testScriptUrl (Optional): (recursive schema, see testScriptUrl above)
-     *         userPropUrl (Optional): (recursive schema, see userPropUrl above)
-     *         inputArtifactsZipFileurl (Optional): (recursive schema, see inputArtifactsZipFileurl above)
-     *         additionalUrls (Optional): [
-     *             (recursive schema, see above)
-     *         ]
      *     }
      *     secrets (Optional): {
      *         String (Optional): {
      *             value: String (Optional)
-     *             type: String (Optional)
+     *             type: String(AKV_SECRET_URI/SECRET_VALUE) (Optional)
      *         }
+     *     }
+     *     certificate (Optional): {
+     *         value: String (Optional)
+     *         type: String(AKV_CERT_URI) (Optional)
+     *         name: String (Optional)
      *     }
      *     environmentVariables (Optional): {
      *         String: String (Optional)
      *     }
+     *     loadTestConfiguration (Optional): {
+     *         engineInstances: Integer (Optional)
+     *         splitAllCSVs: Boolean (Optional)
+     *         quickStartTest: Boolean (Optional)
+     *         optionalLoadTestConfig (Optional): {
+     *             endpointUrl: String (Optional)
+     *             vusers: Integer (Optional)
+     *             rampUpTime: Integer (Optional)
+     *             duration: Integer (Optional)
+     *         }
+     *     }
+     *     inputArtifacts (Optional): {
+     *         configFileInfo (Optional): {
+     *             url: String (Optional)
+     *             fileId: String (Optional)
+     *             filename: String (Optional)
+     *             fileType: String(JMX_FILE/USER_PROPERTIES/ADDITIONAL_ARTIFACTS) (Optional)
+     *             expireDateTime: OffsetDateTime (Optional)
+     *             validationStatus: String(NOT_VALIDATED/VALIDATION_SUCCESS/VALIDATION_FAILURE/VALIDATION_INITIATED/VALIDATION_NOT_REQUIRED) (Optional)
+     *         }
+     *         testScriptFileInfo (Optional): (recursive schema, see testScriptFileInfo above)
+     *         userPropFileInfo (Optional): (recursive schema, see userPropFileInfo above)
+     *         inputArtifactsZipFileInfo (Optional): (recursive schema, see inputArtifactsZipFileInfo above)
+     *         additionalFileInfo (Optional): [
+     *             (recursive schema, see above)
+     *         ]
+     *     }
+     *     testId: String (Optional)
+     *     description: String (Optional)
+     *     displayName: String (Optional)
      *     subnetId: String (Optional)
      *     keyvaultReferenceIdentityType: String (Optional)
      *     keyvaultReferenceIdentityId: String (Optional)
+     *     createdDateTime: OffsetDateTime (Optional)
+     *     createdBy: String (Optional)
+     *     lastModifiedDateTime: OffsetDateTime (Optional)
+     *     lastModifiedBy: String (Optional)
      * }
      * }</pre>
      *
@@ -2075,213 +603,76 @@ public final class LoadTestAdministrationsImpl {
      *
      * <pre>{@code
      * {
-     *     testId: String (Optional)
-     *     description: String (Optional)
-     *     displayName: String (Optional)
-     *     resourceId: String (Optional)
-     *     loadTestConfig (Optional): {
-     *         engineInstances: Integer (Optional)
-     *         splitAllCSVs: Boolean (Optional)
-     *     }
      *     passFailCriteria (Optional): {
      *         passFailMetrics (Optional): {
      *             String (Optional): {
-     *                 clientmetric: String (Optional)
-     *                 aggregate: String (Optional)
+     *                 clientmetric: String(response_time_ms/latency/error/requests/requests_per_sec) (Optional)
+     *                 aggregate: String(count/percentage/avg/p50/p90/p95/p99/min/max) (Optional)
      *                 condition: String (Optional)
      *                 requestName: String (Optional)
      *                 value: Double (Optional)
-     *                 action: String (Optional)
+     *                 action: String(stop/continue) (Optional)
      *                 actualValue: Double (Optional)
-     *                 result: String (Optional)
+     *                 result: String(passed/undetermined/failed) (Optional)
      *             }
      *         }
-     *     }
-     *     createdDateTime: OffsetDateTime (Optional)
-     *     createdBy: String (Optional)
-     *     lastModifiedDateTime: OffsetDateTime (Optional)
-     *     lastModifiedBy: String (Optional)
-     *     inputArtifacts (Optional): {
-     *         configUrl (Optional): {
-     *             url: String (Optional)
-     *             fileId: String (Optional)
-     *             filename: String (Optional)
-     *             fileType: String(0/1/2) (Optional)
-     *             expireTime: OffsetDateTime (Optional)
-     *             validationStatus: String (Optional)
-     *         }
-     *         testScriptUrl (Optional): (recursive schema, see testScriptUrl above)
-     *         userPropUrl (Optional): (recursive schema, see userPropUrl above)
-     *         inputArtifactsZipFileurl (Optional): (recursive schema, see inputArtifactsZipFileurl above)
-     *         additionalUrls (Optional): [
-     *             (recursive schema, see above)
-     *         ]
      *     }
      *     secrets (Optional): {
      *         String (Optional): {
      *             value: String (Optional)
-     *             type: String (Optional)
+     *             type: String(AKV_SECRET_URI/SECRET_VALUE) (Optional)
      *         }
+     *     }
+     *     certificate (Optional): {
+     *         value: String (Optional)
+     *         type: String(AKV_CERT_URI) (Optional)
+     *         name: String (Optional)
      *     }
      *     environmentVariables (Optional): {
      *         String: String (Optional)
      *     }
-     *     subnetId: String (Optional)
-     *     keyvaultReferenceIdentityType: String (Optional)
-     *     keyvaultReferenceIdentityId: String (Optional)
-     * }
-     * }</pre>
-     *
-     * @param testId Unique name for load test, must be a valid URL character ^[a-z0-9_-]*$.
-     * @param body Load test model.
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @param context The context to associate with this operation.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return load test model along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<BinaryData>> createOrUpdateTestWithResponseAsync(
-            String testId, BinaryData body, RequestOptions requestOptions, Context context) {
-        final String accept = "application/json";
-        return service.createOrUpdateTest(
-                this.client.getEndpoint(),
-                this.client.getServiceVersion().getVersion(),
-                testId,
-                body,
-                accept,
-                requestOptions,
-                context);
-    }
-
-    /**
-     * Create a new test or Update an existing test.
-     *
-     * <p><strong>Request Body Schema</strong>
-     *
-     * <pre>{@code
-     * {
+     *     loadTestConfiguration (Optional): {
+     *         engineInstances: Integer (Optional)
+     *         splitAllCSVs: Boolean (Optional)
+     *         quickStartTest: Boolean (Optional)
+     *         optionalLoadTestConfig (Optional): {
+     *             endpointUrl: String (Optional)
+     *             vusers: Integer (Optional)
+     *             rampUpTime: Integer (Optional)
+     *             duration: Integer (Optional)
+     *         }
+     *     }
+     *     inputArtifacts (Optional): {
+     *         configFileInfo (Optional): {
+     *             url: String (Optional)
+     *             fileId: String (Optional)
+     *             filename: String (Optional)
+     *             fileType: String(JMX_FILE/USER_PROPERTIES/ADDITIONAL_ARTIFACTS) (Optional)
+     *             expireDateTime: OffsetDateTime (Optional)
+     *             validationStatus: String(NOT_VALIDATED/VALIDATION_SUCCESS/VALIDATION_FAILURE/VALIDATION_INITIATED/VALIDATION_NOT_REQUIRED) (Optional)
+     *         }
+     *         testScriptFileInfo (Optional): (recursive schema, see testScriptFileInfo above)
+     *         userPropFileInfo (Optional): (recursive schema, see userPropFileInfo above)
+     *         inputArtifactsZipFileInfo (Optional): (recursive schema, see inputArtifactsZipFileInfo above)
+     *         additionalFileInfo (Optional): [
+     *             (recursive schema, see above)
+     *         ]
+     *     }
      *     testId: String (Optional)
      *     description: String (Optional)
      *     displayName: String (Optional)
-     *     resourceId: String (Optional)
-     *     loadTestConfig (Optional): {
-     *         engineInstances: Integer (Optional)
-     *         splitAllCSVs: Boolean (Optional)
-     *     }
-     *     passFailCriteria (Optional): {
-     *         passFailMetrics (Optional): {
-     *             String (Optional): {
-     *                 clientmetric: String (Optional)
-     *                 aggregate: String (Optional)
-     *                 condition: String (Optional)
-     *                 requestName: String (Optional)
-     *                 value: Double (Optional)
-     *                 action: String (Optional)
-     *                 actualValue: Double (Optional)
-     *                 result: String (Optional)
-     *             }
-     *         }
-     *     }
+     *     subnetId: String (Optional)
+     *     keyvaultReferenceIdentityType: String (Optional)
+     *     keyvaultReferenceIdentityId: String (Optional)
      *     createdDateTime: OffsetDateTime (Optional)
      *     createdBy: String (Optional)
      *     lastModifiedDateTime: OffsetDateTime (Optional)
      *     lastModifiedBy: String (Optional)
-     *     inputArtifacts (Optional): {
-     *         configUrl (Optional): {
-     *             url: String (Optional)
-     *             fileId: String (Optional)
-     *             filename: String (Optional)
-     *             fileType: String(0/1/2) (Optional)
-     *             expireTime: OffsetDateTime (Optional)
-     *             validationStatus: String (Optional)
-     *         }
-     *         testScriptUrl (Optional): (recursive schema, see testScriptUrl above)
-     *         userPropUrl (Optional): (recursive schema, see userPropUrl above)
-     *         inputArtifactsZipFileurl (Optional): (recursive schema, see inputArtifactsZipFileurl above)
-     *         additionalUrls (Optional): [
-     *             (recursive schema, see above)
-     *         ]
-     *     }
-     *     secrets (Optional): {
-     *         String (Optional): {
-     *             value: String (Optional)
-     *             type: String (Optional)
-     *         }
-     *     }
-     *     environmentVariables (Optional): {
-     *         String: String (Optional)
-     *     }
-     *     subnetId: String (Optional)
-     *     keyvaultReferenceIdentityType: String (Optional)
-     *     keyvaultReferenceIdentityId: String (Optional)
      * }
      * }</pre>
      *
-     * <p><strong>Response Body Schema</strong>
-     *
-     * <pre>{@code
-     * {
-     *     testId: String (Optional)
-     *     description: String (Optional)
-     *     displayName: String (Optional)
-     *     resourceId: String (Optional)
-     *     loadTestConfig (Optional): {
-     *         engineInstances: Integer (Optional)
-     *         splitAllCSVs: Boolean (Optional)
-     *     }
-     *     passFailCriteria (Optional): {
-     *         passFailMetrics (Optional): {
-     *             String (Optional): {
-     *                 clientmetric: String (Optional)
-     *                 aggregate: String (Optional)
-     *                 condition: String (Optional)
-     *                 requestName: String (Optional)
-     *                 value: Double (Optional)
-     *                 action: String (Optional)
-     *                 actualValue: Double (Optional)
-     *                 result: String (Optional)
-     *             }
-     *         }
-     *     }
-     *     createdDateTime: OffsetDateTime (Optional)
-     *     createdBy: String (Optional)
-     *     lastModifiedDateTime: OffsetDateTime (Optional)
-     *     lastModifiedBy: String (Optional)
-     *     inputArtifacts (Optional): {
-     *         configUrl (Optional): {
-     *             url: String (Optional)
-     *             fileId: String (Optional)
-     *             filename: String (Optional)
-     *             fileType: String(0/1/2) (Optional)
-     *             expireTime: OffsetDateTime (Optional)
-     *             validationStatus: String (Optional)
-     *         }
-     *         testScriptUrl (Optional): (recursive schema, see testScriptUrl above)
-     *         userPropUrl (Optional): (recursive schema, see userPropUrl above)
-     *         inputArtifactsZipFileurl (Optional): (recursive schema, see inputArtifactsZipFileurl above)
-     *         additionalUrls (Optional): [
-     *             (recursive schema, see above)
-     *         ]
-     *     }
-     *     secrets (Optional): {
-     *         String (Optional): {
-     *             value: String (Optional)
-     *             type: String (Optional)
-     *         }
-     *     }
-     *     environmentVariables (Optional): {
-     *         String: String (Optional)
-     *     }
-     *     subnetId: String (Optional)
-     *     keyvaultReferenceIdentityType: String (Optional)
-     *     keyvaultReferenceIdentityId: String (Optional)
-     * }
-     * }</pre>
-     *
-     * @param testId Unique name for load test, must be a valid URL character ^[a-z0-9_-]*$.
+     * @param testId Unique name for the load test, must contain only lower-case alphabetic, numeric, underscore or
+     *     hyphen characters.
      * @param body Load test model.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
@@ -2291,15 +682,16 @@ public final class LoadTestAdministrationsImpl {
      * @return load test model along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<BinaryData> createOrUpdateTestWithResponse(
+    public Response<BinaryData> createOrUpdateWithResponse(
             String testId, BinaryData body, RequestOptions requestOptions) {
-        return createOrUpdateTestWithResponseAsync(testId, body, requestOptions).block();
+        return createOrUpdateWithResponseAsync(testId, body, requestOptions).block();
     }
 
     /**
      * Delete a test by its name.
      *
-     * @param testId Unique name for load test, must be a valid URL character ^[a-z0-9_-]*$.
+     * @param testId Unique name for the load test, must contain only lower-case alphabetic, numeric, underscore or
+     *     hyphen characters.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
@@ -2308,14 +700,14 @@ public final class LoadTestAdministrationsImpl {
      * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Void>> deleteLoadTestWithResponseAsync(String testId, RequestOptions requestOptions) {
+    public Mono<Response<Void>> deleteWithResponseAsync(String testId, RequestOptions requestOptions) {
         final String accept = "application/json";
         return FluxUtil.withContext(
                 context ->
-                        service.deleteLoadTest(
+                        service.delete(
                                 this.client.getEndpoint(),
-                                this.client.getServiceVersion().getVersion(),
                                 testId,
+                                this.client.getServiceVersion().getVersion(),
                                 accept,
                                 requestOptions,
                                 context));
@@ -2324,32 +716,8 @@ public final class LoadTestAdministrationsImpl {
     /**
      * Delete a test by its name.
      *
-     * @param testId Unique name for load test, must be a valid URL character ^[a-z0-9_-]*$.
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @param context The context to associate with this operation.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return the {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Void>> deleteLoadTestWithResponseAsync(
-            String testId, RequestOptions requestOptions, Context context) {
-        final String accept = "application/json";
-        return service.deleteLoadTest(
-                this.client.getEndpoint(),
-                this.client.getServiceVersion().getVersion(),
-                testId,
-                accept,
-                requestOptions,
-                context);
-    }
-
-    /**
-     * Delete a test by its name.
-     *
-     * @param testId Unique name for load test, must be a valid URL character ^[a-z0-9_-]*$.
+     * @param testId Unique name for the load test, must contain only lower-case alphabetic, numeric, underscore or
+     *     hyphen characters.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
@@ -2358,8 +726,8 @@ public final class LoadTestAdministrationsImpl {
      * @return the {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<Void> deleteLoadTestWithResponse(String testId, RequestOptions requestOptions) {
-        return deleteLoadTestWithResponseAsync(testId, requestOptions).block();
+    public Response<Void> deleteWithResponse(String testId, RequestOptions requestOptions) {
+        return deleteWithResponseAsync(testId, requestOptions).block();
     }
 
     /**
@@ -2369,64 +737,76 @@ public final class LoadTestAdministrationsImpl {
      *
      * <pre>{@code
      * {
-     *     testId: String (Optional)
-     *     description: String (Optional)
-     *     displayName: String (Optional)
-     *     resourceId: String (Optional)
-     *     loadTestConfig (Optional): {
-     *         engineInstances: Integer (Optional)
-     *         splitAllCSVs: Boolean (Optional)
-     *     }
      *     passFailCriteria (Optional): {
      *         passFailMetrics (Optional): {
      *             String (Optional): {
-     *                 clientmetric: String (Optional)
-     *                 aggregate: String (Optional)
+     *                 clientmetric: String(response_time_ms/latency/error/requests/requests_per_sec) (Optional)
+     *                 aggregate: String(count/percentage/avg/p50/p90/p95/p99/min/max) (Optional)
      *                 condition: String (Optional)
      *                 requestName: String (Optional)
      *                 value: Double (Optional)
-     *                 action: String (Optional)
+     *                 action: String(stop/continue) (Optional)
      *                 actualValue: Double (Optional)
-     *                 result: String (Optional)
+     *                 result: String(passed/undetermined/failed) (Optional)
      *             }
      *         }
-     *     }
-     *     createdDateTime: OffsetDateTime (Optional)
-     *     createdBy: String (Optional)
-     *     lastModifiedDateTime: OffsetDateTime (Optional)
-     *     lastModifiedBy: String (Optional)
-     *     inputArtifacts (Optional): {
-     *         configUrl (Optional): {
-     *             url: String (Optional)
-     *             fileId: String (Optional)
-     *             filename: String (Optional)
-     *             fileType: String(0/1/2) (Optional)
-     *             expireTime: OffsetDateTime (Optional)
-     *             validationStatus: String (Optional)
-     *         }
-     *         testScriptUrl (Optional): (recursive schema, see testScriptUrl above)
-     *         userPropUrl (Optional): (recursive schema, see userPropUrl above)
-     *         inputArtifactsZipFileurl (Optional): (recursive schema, see inputArtifactsZipFileurl above)
-     *         additionalUrls (Optional): [
-     *             (recursive schema, see above)
-     *         ]
      *     }
      *     secrets (Optional): {
      *         String (Optional): {
      *             value: String (Optional)
-     *             type: String (Optional)
+     *             type: String(AKV_SECRET_URI/SECRET_VALUE) (Optional)
      *         }
+     *     }
+     *     certificate (Optional): {
+     *         value: String (Optional)
+     *         type: String(AKV_CERT_URI) (Optional)
+     *         name: String (Optional)
      *     }
      *     environmentVariables (Optional): {
      *         String: String (Optional)
      *     }
+     *     loadTestConfiguration (Optional): {
+     *         engineInstances: Integer (Optional)
+     *         splitAllCSVs: Boolean (Optional)
+     *         quickStartTest: Boolean (Optional)
+     *         optionalLoadTestConfig (Optional): {
+     *             endpointUrl: String (Optional)
+     *             vusers: Integer (Optional)
+     *             rampUpTime: Integer (Optional)
+     *             duration: Integer (Optional)
+     *         }
+     *     }
+     *     inputArtifacts (Optional): {
+     *         configFileInfo (Optional): {
+     *             url: String (Optional)
+     *             fileId: String (Optional)
+     *             filename: String (Optional)
+     *             fileType: String(JMX_FILE/USER_PROPERTIES/ADDITIONAL_ARTIFACTS) (Optional)
+     *             expireDateTime: OffsetDateTime (Optional)
+     *             validationStatus: String(NOT_VALIDATED/VALIDATION_SUCCESS/VALIDATION_FAILURE/VALIDATION_INITIATED/VALIDATION_NOT_REQUIRED) (Optional)
+     *         }
+     *         testScriptFileInfo (Optional): (recursive schema, see testScriptFileInfo above)
+     *         userPropFileInfo (Optional): (recursive schema, see userPropFileInfo above)
+     *         inputArtifactsZipFileInfo (Optional): (recursive schema, see inputArtifactsZipFileInfo above)
+     *         additionalFileInfo (Optional): [
+     *             (recursive schema, see above)
+     *         ]
+     *     }
+     *     testId: String (Optional)
+     *     description: String (Optional)
+     *     displayName: String (Optional)
      *     subnetId: String (Optional)
      *     keyvaultReferenceIdentityType: String (Optional)
      *     keyvaultReferenceIdentityId: String (Optional)
+     *     createdDateTime: OffsetDateTime (Optional)
+     *     createdBy: String (Optional)
+     *     lastModifiedDateTime: OffsetDateTime (Optional)
+     *     lastModifiedBy: String (Optional)
      * }
      * }</pre>
      *
-     * @param testId Unique name for load test, must be a valid URL character ^[a-z0-9_-]*$.
+     * @param testId Unique name for the load test, must contain only lower-case alphabetic, numeric, underscore or
+     *     hyphen characters.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
@@ -2435,14 +815,14 @@ public final class LoadTestAdministrationsImpl {
      * @return load test details by test name along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<BinaryData>> getLoadTestWithResponseAsync(String testId, RequestOptions requestOptions) {
+    public Mono<Response<BinaryData>> getWithResponseAsync(String testId, RequestOptions requestOptions) {
         final String accept = "application/json";
         return FluxUtil.withContext(
                 context ->
-                        service.getLoadTest(
+                        service.get(
                                 this.client.getEndpoint(),
-                                this.client.getServiceVersion().getVersion(),
                                 testId,
+                                this.client.getServiceVersion().getVersion(),
                                 accept,
                                 requestOptions,
                                 context));
@@ -2455,150 +835,76 @@ public final class LoadTestAdministrationsImpl {
      *
      * <pre>{@code
      * {
-     *     testId: String (Optional)
-     *     description: String (Optional)
-     *     displayName: String (Optional)
-     *     resourceId: String (Optional)
-     *     loadTestConfig (Optional): {
-     *         engineInstances: Integer (Optional)
-     *         splitAllCSVs: Boolean (Optional)
-     *     }
      *     passFailCriteria (Optional): {
      *         passFailMetrics (Optional): {
      *             String (Optional): {
-     *                 clientmetric: String (Optional)
-     *                 aggregate: String (Optional)
+     *                 clientmetric: String(response_time_ms/latency/error/requests/requests_per_sec) (Optional)
+     *                 aggregate: String(count/percentage/avg/p50/p90/p95/p99/min/max) (Optional)
      *                 condition: String (Optional)
      *                 requestName: String (Optional)
      *                 value: Double (Optional)
-     *                 action: String (Optional)
+     *                 action: String(stop/continue) (Optional)
      *                 actualValue: Double (Optional)
-     *                 result: String (Optional)
+     *                 result: String(passed/undetermined/failed) (Optional)
      *             }
      *         }
-     *     }
-     *     createdDateTime: OffsetDateTime (Optional)
-     *     createdBy: String (Optional)
-     *     lastModifiedDateTime: OffsetDateTime (Optional)
-     *     lastModifiedBy: String (Optional)
-     *     inputArtifacts (Optional): {
-     *         configUrl (Optional): {
-     *             url: String (Optional)
-     *             fileId: String (Optional)
-     *             filename: String (Optional)
-     *             fileType: String(0/1/2) (Optional)
-     *             expireTime: OffsetDateTime (Optional)
-     *             validationStatus: String (Optional)
-     *         }
-     *         testScriptUrl (Optional): (recursive schema, see testScriptUrl above)
-     *         userPropUrl (Optional): (recursive schema, see userPropUrl above)
-     *         inputArtifactsZipFileurl (Optional): (recursive schema, see inputArtifactsZipFileurl above)
-     *         additionalUrls (Optional): [
-     *             (recursive schema, see above)
-     *         ]
      *     }
      *     secrets (Optional): {
      *         String (Optional): {
      *             value: String (Optional)
-     *             type: String (Optional)
+     *             type: String(AKV_SECRET_URI/SECRET_VALUE) (Optional)
      *         }
+     *     }
+     *     certificate (Optional): {
+     *         value: String (Optional)
+     *         type: String(AKV_CERT_URI) (Optional)
+     *         name: String (Optional)
      *     }
      *     environmentVariables (Optional): {
      *         String: String (Optional)
      *     }
-     *     subnetId: String (Optional)
-     *     keyvaultReferenceIdentityType: String (Optional)
-     *     keyvaultReferenceIdentityId: String (Optional)
-     * }
-     * }</pre>
-     *
-     * @param testId Unique name for load test, must be a valid URL character ^[a-z0-9_-]*$.
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @param context The context to associate with this operation.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return load test details by test name along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<BinaryData>> getLoadTestWithResponseAsync(
-            String testId, RequestOptions requestOptions, Context context) {
-        final String accept = "application/json";
-        return service.getLoadTest(
-                this.client.getEndpoint(),
-                this.client.getServiceVersion().getVersion(),
-                testId,
-                accept,
-                requestOptions,
-                context);
-    }
-
-    /**
-     * Get load test details by test name.
-     *
-     * <p><strong>Response Body Schema</strong>
-     *
-     * <pre>{@code
-     * {
+     *     loadTestConfiguration (Optional): {
+     *         engineInstances: Integer (Optional)
+     *         splitAllCSVs: Boolean (Optional)
+     *         quickStartTest: Boolean (Optional)
+     *         optionalLoadTestConfig (Optional): {
+     *             endpointUrl: String (Optional)
+     *             vusers: Integer (Optional)
+     *             rampUpTime: Integer (Optional)
+     *             duration: Integer (Optional)
+     *         }
+     *     }
+     *     inputArtifacts (Optional): {
+     *         configFileInfo (Optional): {
+     *             url: String (Optional)
+     *             fileId: String (Optional)
+     *             filename: String (Optional)
+     *             fileType: String(JMX_FILE/USER_PROPERTIES/ADDITIONAL_ARTIFACTS) (Optional)
+     *             expireDateTime: OffsetDateTime (Optional)
+     *             validationStatus: String(NOT_VALIDATED/VALIDATION_SUCCESS/VALIDATION_FAILURE/VALIDATION_INITIATED/VALIDATION_NOT_REQUIRED) (Optional)
+     *         }
+     *         testScriptFileInfo (Optional): (recursive schema, see testScriptFileInfo above)
+     *         userPropFileInfo (Optional): (recursive schema, see userPropFileInfo above)
+     *         inputArtifactsZipFileInfo (Optional): (recursive schema, see inputArtifactsZipFileInfo above)
+     *         additionalFileInfo (Optional): [
+     *             (recursive schema, see above)
+     *         ]
+     *     }
      *     testId: String (Optional)
      *     description: String (Optional)
      *     displayName: String (Optional)
-     *     resourceId: String (Optional)
-     *     loadTestConfig (Optional): {
-     *         engineInstances: Integer (Optional)
-     *         splitAllCSVs: Boolean (Optional)
-     *     }
-     *     passFailCriteria (Optional): {
-     *         passFailMetrics (Optional): {
-     *             String (Optional): {
-     *                 clientmetric: String (Optional)
-     *                 aggregate: String (Optional)
-     *                 condition: String (Optional)
-     *                 requestName: String (Optional)
-     *                 value: Double (Optional)
-     *                 action: String (Optional)
-     *                 actualValue: Double (Optional)
-     *                 result: String (Optional)
-     *             }
-     *         }
-     *     }
+     *     subnetId: String (Optional)
+     *     keyvaultReferenceIdentityType: String (Optional)
+     *     keyvaultReferenceIdentityId: String (Optional)
      *     createdDateTime: OffsetDateTime (Optional)
      *     createdBy: String (Optional)
      *     lastModifiedDateTime: OffsetDateTime (Optional)
      *     lastModifiedBy: String (Optional)
-     *     inputArtifacts (Optional): {
-     *         configUrl (Optional): {
-     *             url: String (Optional)
-     *             fileId: String (Optional)
-     *             filename: String (Optional)
-     *             fileType: String(0/1/2) (Optional)
-     *             expireTime: OffsetDateTime (Optional)
-     *             validationStatus: String (Optional)
-     *         }
-     *         testScriptUrl (Optional): (recursive schema, see testScriptUrl above)
-     *         userPropUrl (Optional): (recursive schema, see userPropUrl above)
-     *         inputArtifactsZipFileurl (Optional): (recursive schema, see inputArtifactsZipFileurl above)
-     *         additionalUrls (Optional): [
-     *             (recursive schema, see above)
-     *         ]
-     *     }
-     *     secrets (Optional): {
-     *         String (Optional): {
-     *             value: String (Optional)
-     *             type: String (Optional)
-     *         }
-     *     }
-     *     environmentVariables (Optional): {
-     *         String: String (Optional)
-     *     }
-     *     subnetId: String (Optional)
-     *     keyvaultReferenceIdentityType: String (Optional)
-     *     keyvaultReferenceIdentityId: String (Optional)
      * }
      * }</pre>
      *
-     * @param testId Unique name for load test, must be a valid URL character ^[a-z0-9_-]*$.
+     * @param testId Unique name for the load test, must contain only lower-case alphabetic, numeric, underscore or
+     *     hyphen characters.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
@@ -2607,8 +913,8 @@ public final class LoadTestAdministrationsImpl {
      * @return load test details by test name along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<BinaryData> getLoadTestWithResponse(String testId, RequestOptions requestOptions) {
-        return getLoadTestWithResponseAsync(testId, requestOptions).block();
+    public Response<BinaryData> getWithResponse(String testId, RequestOptions requestOptions) {
+        return getWithResponseAsync(testId, requestOptions).block();
     }
 
     /**
@@ -2620,12 +926,12 @@ public final class LoadTestAdministrationsImpl {
      * <table border="1">
      *     <caption>Query Parameters</caption>
      *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>orderBy</td><td>String</td><td>No</td><td>Sort on one of the field - lastModifiedDateTime, displayName, createdBy in (field asc/desc) format. eg: displayName asc.</td></tr>
+     *     <tr><td>orderby</td><td>String</td><td>No</td><td>Sort on one of the field - lastModifiedDateTime, displayName, createdBy in (field asc/desc) format. eg: displayName asc.</td></tr>
      *     <tr><td>search</td><td>String</td><td>No</td><td>Filter search based on searchable fields - testId, createdBy.</td></tr>
-     *     <tr><td>lastUpdatedStartTime</td><td>OffsetDateTime</td><td>No</td><td>Start DateTime(ISO 8601 literal format) of the last updated time range to filter tests.</td></tr>
-     *     <tr><td>lastUpdatedEndTime</td><td>OffsetDateTime</td><td>No</td><td>End DateTime(ISO 8601 literal format) of the last updated time range to filter tests.</td></tr>
-     *     <tr><td>continuationToken</td><td>String</td><td>No</td><td>Continuation token to get the next page of response.</td></tr>
-     *     <tr><td>maxPageSize</td><td>Integer</td><td>No</td><td>Number of results in response.</td></tr>
+     *     <tr><td>lastModifiedStartTime</td><td>OffsetDateTime</td><td>No</td><td>Start DateTime(ISO 8601 literal format) of the last updated time range to filter tests.</td></tr>
+     *     <tr><td>lastModifiedEndTime</td><td>OffsetDateTime</td><td>No</td><td>End DateTime(ISO 8601 literal format) of the last updated time range to filter tests.</td></tr>
+     *     <tr><td>continuationToken</td><td>String</td><td>No</td><td>Continuation token to get the next page of response</td></tr>
+     *     <tr><td>maxpagesize</td><td>Integer</td><td>No</td><td>Number of results in response.</td></tr>
      * </table>
      *
      * You can add these to a request with {@link RequestOptions#addQueryParam}
@@ -2634,65 +940,71 @@ public final class LoadTestAdministrationsImpl {
      *
      * <pre>{@code
      * {
-     *     value (Required): [
-     *          (Required){
-     *             testId: String (Optional)
-     *             description: String (Optional)
-     *             displayName: String (Optional)
-     *             resourceId: String (Optional)
-     *             loadTestConfig (Optional): {
-     *                 engineInstances: Integer (Optional)
-     *                 splitAllCSVs: Boolean (Optional)
+     *     passFailCriteria (Optional): {
+     *         passFailMetrics (Optional): {
+     *             String (Optional): {
+     *                 clientmetric: String(response_time_ms/latency/error/requests/requests_per_sec) (Optional)
+     *                 aggregate: String(count/percentage/avg/p50/p90/p95/p99/min/max) (Optional)
+     *                 condition: String (Optional)
+     *                 requestName: String (Optional)
+     *                 value: Double (Optional)
+     *                 action: String(stop/continue) (Optional)
+     *                 actualValue: Double (Optional)
+     *                 result: String(passed/undetermined/failed) (Optional)
      *             }
-     *             passFailCriteria (Optional): {
-     *                 passFailMetrics (Optional): {
-     *                     String (Optional): {
-     *                         clientmetric: String (Optional)
-     *                         aggregate: String (Optional)
-     *                         condition: String (Optional)
-     *                         requestName: String (Optional)
-     *                         value: Double (Optional)
-     *                         action: String (Optional)
-     *                         actualValue: Double (Optional)
-     *                         result: String (Optional)
-     *                     }
-     *                 }
-     *             }
-     *             createdDateTime: OffsetDateTime (Optional)
-     *             createdBy: String (Optional)
-     *             lastModifiedDateTime: OffsetDateTime (Optional)
-     *             lastModifiedBy: String (Optional)
-     *             inputArtifacts (Optional): {
-     *                 configUrl (Optional): {
-     *                     url: String (Optional)
-     *                     fileId: String (Optional)
-     *                     filename: String (Optional)
-     *                     fileType: String(0/1/2) (Optional)
-     *                     expireTime: OffsetDateTime (Optional)
-     *                     validationStatus: String (Optional)
-     *                 }
-     *                 testScriptUrl (Optional): (recursive schema, see testScriptUrl above)
-     *                 userPropUrl (Optional): (recursive schema, see userPropUrl above)
-     *                 inputArtifactsZipFileurl (Optional): (recursive schema, see inputArtifactsZipFileurl above)
-     *                 additionalUrls (Optional): [
-     *                     (recursive schema, see above)
-     *                 ]
-     *             }
-     *             secrets (Optional): {
-     *                 String (Optional): {
-     *                     value: String (Optional)
-     *                     type: String (Optional)
-     *                 }
-     *             }
-     *             environmentVariables (Optional): {
-     *                 String: String (Optional)
-     *             }
-     *             subnetId: String (Optional)
-     *             keyvaultReferenceIdentityType: String (Optional)
-     *             keyvaultReferenceIdentityId: String (Optional)
      *         }
-     *     ]
-     *     nextLink: String (Optional)
+     *     }
+     *     secrets (Optional): {
+     *         String (Optional): {
+     *             value: String (Optional)
+     *             type: String(AKV_SECRET_URI/SECRET_VALUE) (Optional)
+     *         }
+     *     }
+     *     certificate (Optional): {
+     *         value: String (Optional)
+     *         type: String(AKV_CERT_URI) (Optional)
+     *         name: String (Optional)
+     *     }
+     *     environmentVariables (Optional): {
+     *         String: String (Optional)
+     *     }
+     *     loadTestConfiguration (Optional): {
+     *         engineInstances: Integer (Optional)
+     *         splitAllCSVs: Boolean (Optional)
+     *         quickStartTest: Boolean (Optional)
+     *         optionalLoadTestConfig (Optional): {
+     *             endpointUrl: String (Optional)
+     *             vusers: Integer (Optional)
+     *             rampUpTime: Integer (Optional)
+     *             duration: Integer (Optional)
+     *         }
+     *     }
+     *     inputArtifacts (Optional): {
+     *         configFileInfo (Optional): {
+     *             url: String (Optional)
+     *             fileId: String (Optional)
+     *             filename: String (Optional)
+     *             fileType: String(JMX_FILE/USER_PROPERTIES/ADDITIONAL_ARTIFACTS) (Optional)
+     *             expireDateTime: OffsetDateTime (Optional)
+     *             validationStatus: String(NOT_VALIDATED/VALIDATION_SUCCESS/VALIDATION_FAILURE/VALIDATION_INITIATED/VALIDATION_NOT_REQUIRED) (Optional)
+     *         }
+     *         testScriptFileInfo (Optional): (recursive schema, see testScriptFileInfo above)
+     *         userPropFileInfo (Optional): (recursive schema, see userPropFileInfo above)
+     *         inputArtifactsZipFileInfo (Optional): (recursive schema, see inputArtifactsZipFileInfo above)
+     *         additionalFileInfo (Optional): [
+     *             (recursive schema, see above)
+     *         ]
+     *     }
+     *     testId: String (Optional)
+     *     description: String (Optional)
+     *     displayName: String (Optional)
+     *     subnetId: String (Optional)
+     *     keyvaultReferenceIdentityType: String (Optional)
+     *     keyvaultReferenceIdentityId: String (Optional)
+     *     createdDateTime: OffsetDateTime (Optional)
+     *     createdBy: String (Optional)
+     *     lastModifiedDateTime: OffsetDateTime (Optional)
+     *     lastModifiedBy: String (Optional)
      * }
      * }</pre>
      *
@@ -2706,11 +1018,11 @@ public final class LoadTestAdministrationsImpl {
      *     {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<PagedResponse<BinaryData>> listLoadTestSearchSinglePageAsync(RequestOptions requestOptions) {
+    private Mono<PagedResponse<BinaryData>> listSinglePageAsync(RequestOptions requestOptions) {
         final String accept = "application/json";
         return FluxUtil.withContext(
                         context ->
-                                service.listLoadTestSearch(
+                                service.list(
                                         this.client.getEndpoint(),
                                         this.client.getServiceVersion().getVersion(),
                                         accept,
@@ -2736,12 +1048,12 @@ public final class LoadTestAdministrationsImpl {
      * <table border="1">
      *     <caption>Query Parameters</caption>
      *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>orderBy</td><td>String</td><td>No</td><td>Sort on one of the field - lastModifiedDateTime, displayName, createdBy in (field asc/desc) format. eg: displayName asc.</td></tr>
+     *     <tr><td>orderby</td><td>String</td><td>No</td><td>Sort on one of the field - lastModifiedDateTime, displayName, createdBy in (field asc/desc) format. eg: displayName asc.</td></tr>
      *     <tr><td>search</td><td>String</td><td>No</td><td>Filter search based on searchable fields - testId, createdBy.</td></tr>
-     *     <tr><td>lastUpdatedStartTime</td><td>OffsetDateTime</td><td>No</td><td>Start DateTime(ISO 8601 literal format) of the last updated time range to filter tests.</td></tr>
-     *     <tr><td>lastUpdatedEndTime</td><td>OffsetDateTime</td><td>No</td><td>End DateTime(ISO 8601 literal format) of the last updated time range to filter tests.</td></tr>
-     *     <tr><td>continuationToken</td><td>String</td><td>No</td><td>Continuation token to get the next page of response.</td></tr>
-     *     <tr><td>maxPageSize</td><td>Integer</td><td>No</td><td>Number of results in response.</td></tr>
+     *     <tr><td>lastModifiedStartTime</td><td>OffsetDateTime</td><td>No</td><td>Start DateTime(ISO 8601 literal format) of the last updated time range to filter tests.</td></tr>
+     *     <tr><td>lastModifiedEndTime</td><td>OffsetDateTime</td><td>No</td><td>End DateTime(ISO 8601 literal format) of the last updated time range to filter tests.</td></tr>
+     *     <tr><td>continuationToken</td><td>String</td><td>No</td><td>Continuation token to get the next page of response</td></tr>
+     *     <tr><td>maxpagesize</td><td>Integer</td><td>No</td><td>Number of results in response.</td></tr>
      * </table>
      *
      * You can add these to a request with {@link RequestOptions#addQueryParam}
@@ -2750,181 +1062,71 @@ public final class LoadTestAdministrationsImpl {
      *
      * <pre>{@code
      * {
-     *     value (Required): [
-     *          (Required){
-     *             testId: String (Optional)
-     *             description: String (Optional)
-     *             displayName: String (Optional)
-     *             resourceId: String (Optional)
-     *             loadTestConfig (Optional): {
-     *                 engineInstances: Integer (Optional)
-     *                 splitAllCSVs: Boolean (Optional)
+     *     passFailCriteria (Optional): {
+     *         passFailMetrics (Optional): {
+     *             String (Optional): {
+     *                 clientmetric: String(response_time_ms/latency/error/requests/requests_per_sec) (Optional)
+     *                 aggregate: String(count/percentage/avg/p50/p90/p95/p99/min/max) (Optional)
+     *                 condition: String (Optional)
+     *                 requestName: String (Optional)
+     *                 value: Double (Optional)
+     *                 action: String(stop/continue) (Optional)
+     *                 actualValue: Double (Optional)
+     *                 result: String(passed/undetermined/failed) (Optional)
      *             }
-     *             passFailCriteria (Optional): {
-     *                 passFailMetrics (Optional): {
-     *                     String (Optional): {
-     *                         clientmetric: String (Optional)
-     *                         aggregate: String (Optional)
-     *                         condition: String (Optional)
-     *                         requestName: String (Optional)
-     *                         value: Double (Optional)
-     *                         action: String (Optional)
-     *                         actualValue: Double (Optional)
-     *                         result: String (Optional)
-     *                     }
-     *                 }
-     *             }
-     *             createdDateTime: OffsetDateTime (Optional)
-     *             createdBy: String (Optional)
-     *             lastModifiedDateTime: OffsetDateTime (Optional)
-     *             lastModifiedBy: String (Optional)
-     *             inputArtifacts (Optional): {
-     *                 configUrl (Optional): {
-     *                     url: String (Optional)
-     *                     fileId: String (Optional)
-     *                     filename: String (Optional)
-     *                     fileType: String(0/1/2) (Optional)
-     *                     expireTime: OffsetDateTime (Optional)
-     *                     validationStatus: String (Optional)
-     *                 }
-     *                 testScriptUrl (Optional): (recursive schema, see testScriptUrl above)
-     *                 userPropUrl (Optional): (recursive schema, see userPropUrl above)
-     *                 inputArtifactsZipFileurl (Optional): (recursive schema, see inputArtifactsZipFileurl above)
-     *                 additionalUrls (Optional): [
-     *                     (recursive schema, see above)
-     *                 ]
-     *             }
-     *             secrets (Optional): {
-     *                 String (Optional): {
-     *                     value: String (Optional)
-     *                     type: String (Optional)
-     *                 }
-     *             }
-     *             environmentVariables (Optional): {
-     *                 String: String (Optional)
-     *             }
-     *             subnetId: String (Optional)
-     *             keyvaultReferenceIdentityType: String (Optional)
-     *             keyvaultReferenceIdentityId: String (Optional)
      *         }
-     *     ]
-     *     nextLink: String (Optional)
-     * }
-     * }</pre>
-     *
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @param context The context to associate with this operation.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return all load tests by the fully qualified resource Id e.g
-     *     subscriptions/{subId}/resourceGroups/{rg}/providers/Microsoft.LoadTestService/loadtests/{resName} along with
-     *     {@link PagedResponse} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<PagedResponse<BinaryData>> listLoadTestSearchSinglePageAsync(
-            RequestOptions requestOptions, Context context) {
-        final String accept = "application/json";
-        return service.listLoadTestSearch(
-                        this.client.getEndpoint(),
-                        this.client.getServiceVersion().getVersion(),
-                        accept,
-                        requestOptions,
-                        context)
-                .map(
-                        res ->
-                                new PagedResponseBase<>(
-                                        res.getRequest(),
-                                        res.getStatusCode(),
-                                        res.getHeaders(),
-                                        getValues(res.getValue(), "value"),
-                                        getNextLink(res.getValue(), "nextLink"),
-                                        null));
-    }
-
-    /**
-     * Get all load tests by the fully qualified resource Id e.g
-     * subscriptions/{subId}/resourceGroups/{rg}/providers/Microsoft.LoadTestService/loadtests/{resName}.
-     *
-     * <p><strong>Query Parameters</strong>
-     *
-     * <table border="1">
-     *     <caption>Query Parameters</caption>
-     *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>orderBy</td><td>String</td><td>No</td><td>Sort on one of the field - lastModifiedDateTime, displayName, createdBy in (field asc/desc) format. eg: displayName asc.</td></tr>
-     *     <tr><td>search</td><td>String</td><td>No</td><td>Filter search based on searchable fields - testId, createdBy.</td></tr>
-     *     <tr><td>lastUpdatedStartTime</td><td>OffsetDateTime</td><td>No</td><td>Start DateTime(ISO 8601 literal format) of the last updated time range to filter tests.</td></tr>
-     *     <tr><td>lastUpdatedEndTime</td><td>OffsetDateTime</td><td>No</td><td>End DateTime(ISO 8601 literal format) of the last updated time range to filter tests.</td></tr>
-     *     <tr><td>continuationToken</td><td>String</td><td>No</td><td>Continuation token to get the next page of response.</td></tr>
-     *     <tr><td>maxPageSize</td><td>Integer</td><td>No</td><td>Number of results in response.</td></tr>
-     * </table>
-     *
-     * You can add these to a request with {@link RequestOptions#addQueryParam}
-     *
-     * <p><strong>Response Body Schema</strong>
-     *
-     * <pre>{@code
-     * {
-     *     value (Required): [
-     *          (Required){
-     *             testId: String (Optional)
-     *             description: String (Optional)
-     *             displayName: String (Optional)
-     *             resourceId: String (Optional)
-     *             loadTestConfig (Optional): {
-     *                 engineInstances: Integer (Optional)
-     *                 splitAllCSVs: Boolean (Optional)
-     *             }
-     *             passFailCriteria (Optional): {
-     *                 passFailMetrics (Optional): {
-     *                     String (Optional): {
-     *                         clientmetric: String (Optional)
-     *                         aggregate: String (Optional)
-     *                         condition: String (Optional)
-     *                         requestName: String (Optional)
-     *                         value: Double (Optional)
-     *                         action: String (Optional)
-     *                         actualValue: Double (Optional)
-     *                         result: String (Optional)
-     *                     }
-     *                 }
-     *             }
-     *             createdDateTime: OffsetDateTime (Optional)
-     *             createdBy: String (Optional)
-     *             lastModifiedDateTime: OffsetDateTime (Optional)
-     *             lastModifiedBy: String (Optional)
-     *             inputArtifacts (Optional): {
-     *                 configUrl (Optional): {
-     *                     url: String (Optional)
-     *                     fileId: String (Optional)
-     *                     filename: String (Optional)
-     *                     fileType: String(0/1/2) (Optional)
-     *                     expireTime: OffsetDateTime (Optional)
-     *                     validationStatus: String (Optional)
-     *                 }
-     *                 testScriptUrl (Optional): (recursive schema, see testScriptUrl above)
-     *                 userPropUrl (Optional): (recursive schema, see userPropUrl above)
-     *                 inputArtifactsZipFileurl (Optional): (recursive schema, see inputArtifactsZipFileurl above)
-     *                 additionalUrls (Optional): [
-     *                     (recursive schema, see above)
-     *                 ]
-     *             }
-     *             secrets (Optional): {
-     *                 String (Optional): {
-     *                     value: String (Optional)
-     *                     type: String (Optional)
-     *                 }
-     *             }
-     *             environmentVariables (Optional): {
-     *                 String: String (Optional)
-     *             }
-     *             subnetId: String (Optional)
-     *             keyvaultReferenceIdentityType: String (Optional)
-     *             keyvaultReferenceIdentityId: String (Optional)
+     *     }
+     *     secrets (Optional): {
+     *         String (Optional): {
+     *             value: String (Optional)
+     *             type: String(AKV_SECRET_URI/SECRET_VALUE) (Optional)
      *         }
-     *     ]
-     *     nextLink: String (Optional)
+     *     }
+     *     certificate (Optional): {
+     *         value: String (Optional)
+     *         type: String(AKV_CERT_URI) (Optional)
+     *         name: String (Optional)
+     *     }
+     *     environmentVariables (Optional): {
+     *         String: String (Optional)
+     *     }
+     *     loadTestConfiguration (Optional): {
+     *         engineInstances: Integer (Optional)
+     *         splitAllCSVs: Boolean (Optional)
+     *         quickStartTest: Boolean (Optional)
+     *         optionalLoadTestConfig (Optional): {
+     *             endpointUrl: String (Optional)
+     *             vusers: Integer (Optional)
+     *             rampUpTime: Integer (Optional)
+     *             duration: Integer (Optional)
+     *         }
+     *     }
+     *     inputArtifacts (Optional): {
+     *         configFileInfo (Optional): {
+     *             url: String (Optional)
+     *             fileId: String (Optional)
+     *             filename: String (Optional)
+     *             fileType: String(JMX_FILE/USER_PROPERTIES/ADDITIONAL_ARTIFACTS) (Optional)
+     *             expireDateTime: OffsetDateTime (Optional)
+     *             validationStatus: String(NOT_VALIDATED/VALIDATION_SUCCESS/VALIDATION_FAILURE/VALIDATION_INITIATED/VALIDATION_NOT_REQUIRED) (Optional)
+     *         }
+     *         testScriptFileInfo (Optional): (recursive schema, see testScriptFileInfo above)
+     *         userPropFileInfo (Optional): (recursive schema, see userPropFileInfo above)
+     *         inputArtifactsZipFileInfo (Optional): (recursive schema, see inputArtifactsZipFileInfo above)
+     *         additionalFileInfo (Optional): [
+     *             (recursive schema, see above)
+     *         ]
+     *     }
+     *     testId: String (Optional)
+     *     description: String (Optional)
+     *     displayName: String (Optional)
+     *     subnetId: String (Optional)
+     *     keyvaultReferenceIdentityType: String (Optional)
+     *     keyvaultReferenceIdentityId: String (Optional)
+     *     createdDateTime: OffsetDateTime (Optional)
+     *     createdBy: String (Optional)
+     *     lastModifiedDateTime: OffsetDateTime (Optional)
+     *     lastModifiedBy: String (Optional)
      * }
      * }</pre>
      *
@@ -2938,15 +1140,15 @@ public final class LoadTestAdministrationsImpl {
      *     paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedFlux<BinaryData> listLoadTestSearchAsync(RequestOptions requestOptions) {
+    public PagedFlux<BinaryData> listAsync(RequestOptions requestOptions) {
         RequestOptions requestOptionsForNextPage = new RequestOptions();
         requestOptionsForNextPage.setContext(
                 requestOptions != null && requestOptions.getContext() != null
                         ? requestOptions.getContext()
                         : Context.NONE);
         return new PagedFlux<>(
-                () -> listLoadTestSearchSinglePageAsync(requestOptions),
-                nextLink -> listLoadTestSearchNextSinglePageAsync(nextLink, requestOptionsForNextPage));
+                () -> listSinglePageAsync(requestOptions),
+                nextLink -> listNextSinglePageAsync(nextLink, requestOptionsForNextPage));
     }
 
     /**
@@ -2958,12 +1160,12 @@ public final class LoadTestAdministrationsImpl {
      * <table border="1">
      *     <caption>Query Parameters</caption>
      *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>orderBy</td><td>String</td><td>No</td><td>Sort on one of the field - lastModifiedDateTime, displayName, createdBy in (field asc/desc) format. eg: displayName asc.</td></tr>
+     *     <tr><td>orderby</td><td>String</td><td>No</td><td>Sort on one of the field - lastModifiedDateTime, displayName, createdBy in (field asc/desc) format. eg: displayName asc.</td></tr>
      *     <tr><td>search</td><td>String</td><td>No</td><td>Filter search based on searchable fields - testId, createdBy.</td></tr>
-     *     <tr><td>lastUpdatedStartTime</td><td>OffsetDateTime</td><td>No</td><td>Start DateTime(ISO 8601 literal format) of the last updated time range to filter tests.</td></tr>
-     *     <tr><td>lastUpdatedEndTime</td><td>OffsetDateTime</td><td>No</td><td>End DateTime(ISO 8601 literal format) of the last updated time range to filter tests.</td></tr>
-     *     <tr><td>continuationToken</td><td>String</td><td>No</td><td>Continuation token to get the next page of response.</td></tr>
-     *     <tr><td>maxPageSize</td><td>Integer</td><td>No</td><td>Number of results in response.</td></tr>
+     *     <tr><td>lastModifiedStartTime</td><td>OffsetDateTime</td><td>No</td><td>Start DateTime(ISO 8601 literal format) of the last updated time range to filter tests.</td></tr>
+     *     <tr><td>lastModifiedEndTime</td><td>OffsetDateTime</td><td>No</td><td>End DateTime(ISO 8601 literal format) of the last updated time range to filter tests.</td></tr>
+     *     <tr><td>continuationToken</td><td>String</td><td>No</td><td>Continuation token to get the next page of response</td></tr>
+     *     <tr><td>maxpagesize</td><td>Integer</td><td>No</td><td>Number of results in response.</td></tr>
      * </table>
      *
      * You can add these to a request with {@link RequestOptions#addQueryParam}
@@ -2972,172 +1174,71 @@ public final class LoadTestAdministrationsImpl {
      *
      * <pre>{@code
      * {
-     *     value (Required): [
-     *          (Required){
-     *             testId: String (Optional)
-     *             description: String (Optional)
-     *             displayName: String (Optional)
-     *             resourceId: String (Optional)
-     *             loadTestConfig (Optional): {
-     *                 engineInstances: Integer (Optional)
-     *                 splitAllCSVs: Boolean (Optional)
+     *     passFailCriteria (Optional): {
+     *         passFailMetrics (Optional): {
+     *             String (Optional): {
+     *                 clientmetric: String(response_time_ms/latency/error/requests/requests_per_sec) (Optional)
+     *                 aggregate: String(count/percentage/avg/p50/p90/p95/p99/min/max) (Optional)
+     *                 condition: String (Optional)
+     *                 requestName: String (Optional)
+     *                 value: Double (Optional)
+     *                 action: String(stop/continue) (Optional)
+     *                 actualValue: Double (Optional)
+     *                 result: String(passed/undetermined/failed) (Optional)
      *             }
-     *             passFailCriteria (Optional): {
-     *                 passFailMetrics (Optional): {
-     *                     String (Optional): {
-     *                         clientmetric: String (Optional)
-     *                         aggregate: String (Optional)
-     *                         condition: String (Optional)
-     *                         requestName: String (Optional)
-     *                         value: Double (Optional)
-     *                         action: String (Optional)
-     *                         actualValue: Double (Optional)
-     *                         result: String (Optional)
-     *                     }
-     *                 }
-     *             }
-     *             createdDateTime: OffsetDateTime (Optional)
-     *             createdBy: String (Optional)
-     *             lastModifiedDateTime: OffsetDateTime (Optional)
-     *             lastModifiedBy: String (Optional)
-     *             inputArtifacts (Optional): {
-     *                 configUrl (Optional): {
-     *                     url: String (Optional)
-     *                     fileId: String (Optional)
-     *                     filename: String (Optional)
-     *                     fileType: String(0/1/2) (Optional)
-     *                     expireTime: OffsetDateTime (Optional)
-     *                     validationStatus: String (Optional)
-     *                 }
-     *                 testScriptUrl (Optional): (recursive schema, see testScriptUrl above)
-     *                 userPropUrl (Optional): (recursive schema, see userPropUrl above)
-     *                 inputArtifactsZipFileurl (Optional): (recursive schema, see inputArtifactsZipFileurl above)
-     *                 additionalUrls (Optional): [
-     *                     (recursive schema, see above)
-     *                 ]
-     *             }
-     *             secrets (Optional): {
-     *                 String (Optional): {
-     *                     value: String (Optional)
-     *                     type: String (Optional)
-     *                 }
-     *             }
-     *             environmentVariables (Optional): {
-     *                 String: String (Optional)
-     *             }
-     *             subnetId: String (Optional)
-     *             keyvaultReferenceIdentityType: String (Optional)
-     *             keyvaultReferenceIdentityId: String (Optional)
      *         }
-     *     ]
-     *     nextLink: String (Optional)
-     * }
-     * }</pre>
-     *
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @param context The context to associate with this operation.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return all load tests by the fully qualified resource Id e.g
-     *     subscriptions/{subId}/resourceGroups/{rg}/providers/Microsoft.LoadTestService/loadtests/{resName} as
-     *     paginated response with {@link PagedFlux}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedFlux<BinaryData> listLoadTestSearchAsync(RequestOptions requestOptions, Context context) {
-        RequestOptions requestOptionsForNextPage = new RequestOptions();
-        requestOptionsForNextPage.setContext(
-                requestOptions != null && requestOptions.getContext() != null
-                        ? requestOptions.getContext()
-                        : Context.NONE);
-        return new PagedFlux<>(
-                () -> listLoadTestSearchSinglePageAsync(requestOptions, context),
-                nextLink -> listLoadTestSearchNextSinglePageAsync(nextLink, requestOptionsForNextPage, context));
-    }
-
-    /**
-     * Get all load tests by the fully qualified resource Id e.g
-     * subscriptions/{subId}/resourceGroups/{rg}/providers/Microsoft.LoadTestService/loadtests/{resName}.
-     *
-     * <p><strong>Query Parameters</strong>
-     *
-     * <table border="1">
-     *     <caption>Query Parameters</caption>
-     *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>orderBy</td><td>String</td><td>No</td><td>Sort on one of the field - lastModifiedDateTime, displayName, createdBy in (field asc/desc) format. eg: displayName asc.</td></tr>
-     *     <tr><td>search</td><td>String</td><td>No</td><td>Filter search based on searchable fields - testId, createdBy.</td></tr>
-     *     <tr><td>lastUpdatedStartTime</td><td>OffsetDateTime</td><td>No</td><td>Start DateTime(ISO 8601 literal format) of the last updated time range to filter tests.</td></tr>
-     *     <tr><td>lastUpdatedEndTime</td><td>OffsetDateTime</td><td>No</td><td>End DateTime(ISO 8601 literal format) of the last updated time range to filter tests.</td></tr>
-     *     <tr><td>continuationToken</td><td>String</td><td>No</td><td>Continuation token to get the next page of response.</td></tr>
-     *     <tr><td>maxPageSize</td><td>Integer</td><td>No</td><td>Number of results in response.</td></tr>
-     * </table>
-     *
-     * You can add these to a request with {@link RequestOptions#addQueryParam}
-     *
-     * <p><strong>Response Body Schema</strong>
-     *
-     * <pre>{@code
-     * {
-     *     value (Required): [
-     *          (Required){
-     *             testId: String (Optional)
-     *             description: String (Optional)
-     *             displayName: String (Optional)
-     *             resourceId: String (Optional)
-     *             loadTestConfig (Optional): {
-     *                 engineInstances: Integer (Optional)
-     *                 splitAllCSVs: Boolean (Optional)
-     *             }
-     *             passFailCriteria (Optional): {
-     *                 passFailMetrics (Optional): {
-     *                     String (Optional): {
-     *                         clientmetric: String (Optional)
-     *                         aggregate: String (Optional)
-     *                         condition: String (Optional)
-     *                         requestName: String (Optional)
-     *                         value: Double (Optional)
-     *                         action: String (Optional)
-     *                         actualValue: Double (Optional)
-     *                         result: String (Optional)
-     *                     }
-     *                 }
-     *             }
-     *             createdDateTime: OffsetDateTime (Optional)
-     *             createdBy: String (Optional)
-     *             lastModifiedDateTime: OffsetDateTime (Optional)
-     *             lastModifiedBy: String (Optional)
-     *             inputArtifacts (Optional): {
-     *                 configUrl (Optional): {
-     *                     url: String (Optional)
-     *                     fileId: String (Optional)
-     *                     filename: String (Optional)
-     *                     fileType: String(0/1/2) (Optional)
-     *                     expireTime: OffsetDateTime (Optional)
-     *                     validationStatus: String (Optional)
-     *                 }
-     *                 testScriptUrl (Optional): (recursive schema, see testScriptUrl above)
-     *                 userPropUrl (Optional): (recursive schema, see userPropUrl above)
-     *                 inputArtifactsZipFileurl (Optional): (recursive schema, see inputArtifactsZipFileurl above)
-     *                 additionalUrls (Optional): [
-     *                     (recursive schema, see above)
-     *                 ]
-     *             }
-     *             secrets (Optional): {
-     *                 String (Optional): {
-     *                     value: String (Optional)
-     *                     type: String (Optional)
-     *                 }
-     *             }
-     *             environmentVariables (Optional): {
-     *                 String: String (Optional)
-     *             }
-     *             subnetId: String (Optional)
-     *             keyvaultReferenceIdentityType: String (Optional)
-     *             keyvaultReferenceIdentityId: String (Optional)
+     *     }
+     *     secrets (Optional): {
+     *         String (Optional): {
+     *             value: String (Optional)
+     *             type: String(AKV_SECRET_URI/SECRET_VALUE) (Optional)
      *         }
-     *     ]
-     *     nextLink: String (Optional)
+     *     }
+     *     certificate (Optional): {
+     *         value: String (Optional)
+     *         type: String(AKV_CERT_URI) (Optional)
+     *         name: String (Optional)
+     *     }
+     *     environmentVariables (Optional): {
+     *         String: String (Optional)
+     *     }
+     *     loadTestConfiguration (Optional): {
+     *         engineInstances: Integer (Optional)
+     *         splitAllCSVs: Boolean (Optional)
+     *         quickStartTest: Boolean (Optional)
+     *         optionalLoadTestConfig (Optional): {
+     *             endpointUrl: String (Optional)
+     *             vusers: Integer (Optional)
+     *             rampUpTime: Integer (Optional)
+     *             duration: Integer (Optional)
+     *         }
+     *     }
+     *     inputArtifacts (Optional): {
+     *         configFileInfo (Optional): {
+     *             url: String (Optional)
+     *             fileId: String (Optional)
+     *             filename: String (Optional)
+     *             fileType: String(JMX_FILE/USER_PROPERTIES/ADDITIONAL_ARTIFACTS) (Optional)
+     *             expireDateTime: OffsetDateTime (Optional)
+     *             validationStatus: String(NOT_VALIDATED/VALIDATION_SUCCESS/VALIDATION_FAILURE/VALIDATION_INITIATED/VALIDATION_NOT_REQUIRED) (Optional)
+     *         }
+     *         testScriptFileInfo (Optional): (recursive schema, see testScriptFileInfo above)
+     *         userPropFileInfo (Optional): (recursive schema, see userPropFileInfo above)
+     *         inputArtifactsZipFileInfo (Optional): (recursive schema, see inputArtifactsZipFileInfo above)
+     *         additionalFileInfo (Optional): [
+     *             (recursive schema, see above)
+     *         ]
+     *     }
+     *     testId: String (Optional)
+     *     description: String (Optional)
+     *     displayName: String (Optional)
+     *     subnetId: String (Optional)
+     *     keyvaultReferenceIdentityType: String (Optional)
+     *     keyvaultReferenceIdentityId: String (Optional)
+     *     createdDateTime: OffsetDateTime (Optional)
+     *     createdBy: String (Optional)
+     *     lastModifiedDateTime: OffsetDateTime (Optional)
+     *     lastModifiedBy: String (Optional)
      * }
      * }</pre>
      *
@@ -3151,8 +1252,8 @@ public final class LoadTestAdministrationsImpl {
      *     paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<BinaryData> listLoadTestSearch(RequestOptions requestOptions) {
-        return new PagedIterable<>(listLoadTestSearchAsync(requestOptions));
+    public PagedIterable<BinaryData> list(RequestOptions requestOptions) {
+        return new PagedIterable<>(listAsync(requestOptions));
     }
 
     /**
@@ -3164,7 +1265,7 @@ public final class LoadTestAdministrationsImpl {
      * <table border="1">
      *     <caption>Query Parameters</caption>
      *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>fileType</td><td>Integer</td><td>No</td><td>Integer representation of the file type (0 = JMX_FILE, 1 = USER_PROPERTIES, 2 = ADDITIONAL_ARTIFACTS).</td></tr>
+     *     <tr><td>fileType</td><td>String</td><td>No</td><td>File type. Allowed values: "JMX_FILE", "USER_PROPERTIES", "ADDITIONAL_ARTIFACTS".</td></tr>
      * </table>
      *
      * You can add these to a request with {@link RequestOptions#addQueryParam}
@@ -3172,7 +1273,7 @@ public final class LoadTestAdministrationsImpl {
      * <p><strong>Request Body Schema</strong>
      *
      * <pre>{@code
-     * Flux<ByteBuffer>
+     * BinaryData
      * }</pre>
      *
      * <p><strong>Response Body Schema</strong>
@@ -3182,29 +1283,31 @@ public final class LoadTestAdministrationsImpl {
      *     url: String (Optional)
      *     fileId: String (Optional)
      *     filename: String (Optional)
-     *     fileType: String(0/1/2) (Optional)
-     *     expireTime: OffsetDateTime (Optional)
-     *     validationStatus: String (Optional)
+     *     fileType: String(JMX_FILE/USER_PROPERTIES/ADDITIONAL_ARTIFACTS) (Optional)
+     *     expireDateTime: OffsetDateTime (Optional)
+     *     validationStatus: String(NOT_VALIDATED/VALIDATION_SUCCESS/VALIDATION_FAILURE/VALIDATION_INITIATED/VALIDATION_NOT_REQUIRED) (Optional)
      * }
      * }</pre>
      *
-     * @param testId Unique name for load test, must be a valid URL character ^[a-z0-9_-]*$.
-     * @param fileId Unique identifier for test file, must be a valid URL character ^[a-z0-9_-]*$.
-     * @param file The file to be uploaded.
+     * @param testId Unique name for the load test, must contain only lower-case alphabetic, numeric, underscore or
+     *     hyphen characters.
+     * @param fileId Unique name for test file, must contain only lower-case alphabetic, numeric, underscore or hyphen
+     *     characters.
+     * @param file The file to be uploaded as multipart form-data.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
      * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
      * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return fileUrl Model along with {@link Response} on successful completion of {@link Mono}.
+     * @return file info along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<BinaryData>> uploadTestFileWithResponseAsync(
+    public Mono<Response<BinaryData>> uploadFileWithResponseAsync(
             String testId, String fileId, BinaryData file, RequestOptions requestOptions) {
         final String accept = "application/json";
         return FluxUtil.withContext(
                 context ->
-                        service.uploadTestFile(
+                        service.uploadFile(
                                 this.client.getEndpoint(),
                                 testId,
                                 fileId,
@@ -3224,7 +1327,7 @@ public final class LoadTestAdministrationsImpl {
      * <table border="1">
      *     <caption>Query Parameters</caption>
      *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>fileType</td><td>Integer</td><td>No</td><td>Integer representation of the file type (0 = JMX_FILE, 1 = USER_PROPERTIES, 2 = ADDITIONAL_ARTIFACTS).</td></tr>
+     *     <tr><td>fileType</td><td>String</td><td>No</td><td>File type. Allowed values: "JMX_FILE", "USER_PROPERTIES", "ADDITIONAL_ARTIFACTS".</td></tr>
      * </table>
      *
      * You can add these to a request with {@link RequestOptions#addQueryParam}
@@ -3232,7 +1335,7 @@ public final class LoadTestAdministrationsImpl {
      * <p><strong>Request Body Schema</strong>
      *
      * <pre>{@code
-     * Flux<ByteBuffer>
+     * BinaryData
      * }</pre>
      *
      * <p><strong>Response Body Schema</strong>
@@ -3242,85 +1345,28 @@ public final class LoadTestAdministrationsImpl {
      *     url: String (Optional)
      *     fileId: String (Optional)
      *     filename: String (Optional)
-     *     fileType: String(0/1/2) (Optional)
-     *     expireTime: OffsetDateTime (Optional)
-     *     validationStatus: String (Optional)
+     *     fileType: String(JMX_FILE/USER_PROPERTIES/ADDITIONAL_ARTIFACTS) (Optional)
+     *     expireDateTime: OffsetDateTime (Optional)
+     *     validationStatus: String(NOT_VALIDATED/VALIDATION_SUCCESS/VALIDATION_FAILURE/VALIDATION_INITIATED/VALIDATION_NOT_REQUIRED) (Optional)
      * }
      * }</pre>
      *
-     * @param testId Unique name for load test, must be a valid URL character ^[a-z0-9_-]*$.
-     * @param fileId Unique identifier for test file, must be a valid URL character ^[a-z0-9_-]*$.
-     * @param file The file to be uploaded.
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @param context The context to associate with this operation.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return fileUrl Model along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<BinaryData>> uploadTestFileWithResponseAsync(
-            String testId, String fileId, BinaryData file, RequestOptions requestOptions, Context context) {
-        final String accept = "application/json";
-        return service.uploadTestFile(
-                this.client.getEndpoint(),
-                testId,
-                fileId,
-                this.client.getServiceVersion().getVersion(),
-                file,
-                accept,
-                requestOptions,
-                context);
-    }
-
-    /**
-     * Upload input file for a given test name. File size can't be more than 50 MB. Existing file with same name for the
-     * given test will be overwritten. File should be provided in the request body as multipart/form-data.
-     *
-     * <p><strong>Query Parameters</strong>
-     *
-     * <table border="1">
-     *     <caption>Query Parameters</caption>
-     *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>fileType</td><td>Integer</td><td>No</td><td>Integer representation of the file type (0 = JMX_FILE, 1 = USER_PROPERTIES, 2 = ADDITIONAL_ARTIFACTS).</td></tr>
-     * </table>
-     *
-     * You can add these to a request with {@link RequestOptions#addQueryParam}
-     *
-     * <p><strong>Request Body Schema</strong>
-     *
-     * <pre>{@code
-     * Flux<ByteBuffer>
-     * }</pre>
-     *
-     * <p><strong>Response Body Schema</strong>
-     *
-     * <pre>{@code
-     * {
-     *     url: String (Optional)
-     *     fileId: String (Optional)
-     *     filename: String (Optional)
-     *     fileType: String(0/1/2) (Optional)
-     *     expireTime: OffsetDateTime (Optional)
-     *     validationStatus: String (Optional)
-     * }
-     * }</pre>
-     *
-     * @param testId Unique name for load test, must be a valid URL character ^[a-z0-9_-]*$.
-     * @param fileId Unique identifier for test file, must be a valid URL character ^[a-z0-9_-]*$.
-     * @param file The file to be uploaded.
+     * @param testId Unique name for the load test, must contain only lower-case alphabetic, numeric, underscore or
+     *     hyphen characters.
+     * @param fileId Unique name for test file, must contain only lower-case alphabetic, numeric, underscore or hyphen
+     *     characters.
+     * @param file The file to be uploaded as multipart form-data.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
      * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
      * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return fileUrl Model along with {@link Response}.
+     * @return file info along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<BinaryData> uploadTestFileWithResponse(
+    public Response<BinaryData> uploadFileWithResponse(
             String testId, String fileId, BinaryData file, RequestOptions requestOptions) {
-        return uploadTestFileWithResponseAsync(testId, fileId, file, requestOptions).block();
+        return uploadFileWithResponseAsync(testId, fileId, file, requestOptions).block();
     }
 
     /**
@@ -3333,14 +1379,16 @@ public final class LoadTestAdministrationsImpl {
      *     url: String (Optional)
      *     fileId: String (Optional)
      *     filename: String (Optional)
-     *     fileType: String(0/1/2) (Optional)
-     *     expireTime: OffsetDateTime (Optional)
-     *     validationStatus: String (Optional)
+     *     fileType: String(JMX_FILE/USER_PROPERTIES/ADDITIONAL_ARTIFACTS) (Optional)
+     *     expireDateTime: OffsetDateTime (Optional)
+     *     validationStatus: String(NOT_VALIDATED/VALIDATION_SUCCESS/VALIDATION_FAILURE/VALIDATION_INITIATED/VALIDATION_NOT_REQUIRED) (Optional)
      * }
      * }</pre>
      *
-     * @param testId Unique name for load test, must be a valid URL character ^[a-z0-9_-]*$.
-     * @param fileId Unique identifier for test file, must be a valid URL character ^[a-z0-9_-]*$.
+     * @param testId Unique name for the load test, must contain only lower-case alphabetic, numeric, underscore or
+     *     hyphen characters.
+     * @param fileId Unique name for test file, must contain only lower-case alphabetic, numeric, underscore or hyphen
+     *     characters.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
@@ -3349,12 +1397,12 @@ public final class LoadTestAdministrationsImpl {
      * @return test file by the file name along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<BinaryData>> getTestFileWithResponseAsync(
+    public Mono<Response<BinaryData>> getFileWithResponseAsync(
             String testId, String fileId, RequestOptions requestOptions) {
         final String accept = "application/json";
         return FluxUtil.withContext(
                 context ->
-                        service.getTestFile(
+                        service.getFile(
                                 this.client.getEndpoint(),
                                 testId,
                                 fileId,
@@ -3374,54 +1422,16 @@ public final class LoadTestAdministrationsImpl {
      *     url: String (Optional)
      *     fileId: String (Optional)
      *     filename: String (Optional)
-     *     fileType: String(0/1/2) (Optional)
-     *     expireTime: OffsetDateTime (Optional)
-     *     validationStatus: String (Optional)
+     *     fileType: String(JMX_FILE/USER_PROPERTIES/ADDITIONAL_ARTIFACTS) (Optional)
+     *     expireDateTime: OffsetDateTime (Optional)
+     *     validationStatus: String(NOT_VALIDATED/VALIDATION_SUCCESS/VALIDATION_FAILURE/VALIDATION_INITIATED/VALIDATION_NOT_REQUIRED) (Optional)
      * }
      * }</pre>
      *
-     * @param testId Unique name for load test, must be a valid URL character ^[a-z0-9_-]*$.
-     * @param fileId Unique identifier for test file, must be a valid URL character ^[a-z0-9_-]*$.
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @param context The context to associate with this operation.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return test file by the file name along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<BinaryData>> getTestFileWithResponseAsync(
-            String testId, String fileId, RequestOptions requestOptions, Context context) {
-        final String accept = "application/json";
-        return service.getTestFile(
-                this.client.getEndpoint(),
-                testId,
-                fileId,
-                this.client.getServiceVersion().getVersion(),
-                accept,
-                requestOptions,
-                context);
-    }
-
-    /**
-     * Get test file by the file name.
-     *
-     * <p><strong>Response Body Schema</strong>
-     *
-     * <pre>{@code
-     * {
-     *     url: String (Optional)
-     *     fileId: String (Optional)
-     *     filename: String (Optional)
-     *     fileType: String(0/1/2) (Optional)
-     *     expireTime: OffsetDateTime (Optional)
-     *     validationStatus: String (Optional)
-     * }
-     * }</pre>
-     *
-     * @param testId Unique name for load test, must be a valid URL character ^[a-z0-9_-]*$.
-     * @param fileId Unique identifier for test file, must be a valid URL character ^[a-z0-9_-]*$.
+     * @param testId Unique name for the load test, must contain only lower-case alphabetic, numeric, underscore or
+     *     hyphen characters.
+     * @param fileId Unique name for test file, must contain only lower-case alphabetic, numeric, underscore or hyphen
+     *     characters.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
@@ -3430,15 +1440,17 @@ public final class LoadTestAdministrationsImpl {
      * @return test file by the file name along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<BinaryData> getTestFileWithResponse(String testId, String fileId, RequestOptions requestOptions) {
-        return getTestFileWithResponseAsync(testId, fileId, requestOptions).block();
+    public Response<BinaryData> getFileWithResponse(String testId, String fileId, RequestOptions requestOptions) {
+        return getFileWithResponseAsync(testId, fileId, requestOptions).block();
     }
 
     /**
      * Delete file by the file name for a test.
      *
-     * @param testId Unique name for load test, must be a valid URL character ^[a-z0-9_-]*$.
-     * @param fileId Unique identifier for test file, must be a valid URL character ^[a-z0-9_-]*$.
+     * @param testId Unique name for the load test, must contain only lower-case alphabetic, numeric, underscore or
+     *     hyphen characters.
+     * @param fileId Unique name for test file, must contain only lower-case alphabetic, numeric, underscore or hyphen
+     *     characters.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
@@ -3447,12 +1459,12 @@ public final class LoadTestAdministrationsImpl {
      * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Void>> deleteTestFileWithResponseAsync(
+    public Mono<Response<Void>> deleteFileWithResponseAsync(
             String testId, String fileId, RequestOptions requestOptions) {
         final String accept = "application/json";
         return FluxUtil.withContext(
                 context ->
-                        service.deleteTestFile(
+                        service.deleteFile(
                                 this.client.getEndpoint(),
                                 testId,
                                 fileId,
@@ -3465,35 +1477,10 @@ public final class LoadTestAdministrationsImpl {
     /**
      * Delete file by the file name for a test.
      *
-     * @param testId Unique name for load test, must be a valid URL character ^[a-z0-9_-]*$.
-     * @param fileId Unique identifier for test file, must be a valid URL character ^[a-z0-9_-]*$.
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @param context The context to associate with this operation.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return the {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Void>> deleteTestFileWithResponseAsync(
-            String testId, String fileId, RequestOptions requestOptions, Context context) {
-        final String accept = "application/json";
-        return service.deleteTestFile(
-                this.client.getEndpoint(),
-                testId,
-                fileId,
-                this.client.getServiceVersion().getVersion(),
-                accept,
-                requestOptions,
-                context);
-    }
-
-    /**
-     * Delete file by the file name for a test.
-     *
-     * @param testId Unique name for load test, must be a valid URL character ^[a-z0-9_-]*$.
-     * @param fileId Unique identifier for test file, must be a valid URL character ^[a-z0-9_-]*$.
+     * @param testId Unique name for the load test, must contain only lower-case alphabetic, numeric, underscore or
+     *     hyphen characters.
+     * @param fileId Unique name for test file, must contain only lower-case alphabetic, numeric, underscore or hyphen
+     *     characters.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
@@ -3502,8 +1489,8 @@ public final class LoadTestAdministrationsImpl {
      * @return the {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<Void> deleteTestFileWithResponse(String testId, String fileId, RequestOptions requestOptions) {
-        return deleteTestFileWithResponseAsync(testId, fileId, requestOptions).block();
+    public Response<Void> deleteFileWithResponse(String testId, String fileId, RequestOptions requestOptions) {
+        return deleteFileWithResponseAsync(testId, fileId, requestOptions).block();
     }
 
     /**
@@ -3514,7 +1501,7 @@ public final class LoadTestAdministrationsImpl {
      * <table border="1">
      *     <caption>Query Parameters</caption>
      *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>continuationToken</td><td>String</td><td>No</td><td>Continuation token to get the next page of response.</td></tr>
+     *     <tr><td>continuationToken</td><td>String</td><td>No</td><td>Continuation token to get the next page of response</td></tr>
      * </table>
      *
      * You can add these to a request with {@link RequestOptions#addQueryParam}
@@ -3523,21 +1510,17 @@ public final class LoadTestAdministrationsImpl {
      *
      * <pre>{@code
      * {
-     *     value (Required): [
-     *          (Required){
-     *             url: String (Optional)
-     *             fileId: String (Optional)
-     *             filename: String (Optional)
-     *             fileType: String(0/1/2) (Optional)
-     *             expireTime: OffsetDateTime (Optional)
-     *             validationStatus: String (Optional)
-     *         }
-     *     ]
-     *     nextLink: String (Optional)
+     *     url: String (Optional)
+     *     fileId: String (Optional)
+     *     filename: String (Optional)
+     *     fileType: String(JMX_FILE/USER_PROPERTIES/ADDITIONAL_ARTIFACTS) (Optional)
+     *     expireDateTime: OffsetDateTime (Optional)
+     *     validationStatus: String(NOT_VALIDATED/VALIDATION_SUCCESS/VALIDATION_FAILURE/VALIDATION_INITIATED/VALIDATION_NOT_REQUIRED) (Optional)
      * }
      * }</pre>
      *
-     * @param testId Unique name for load test, must be a valid URL character ^[a-z0-9_-]*$.
+     * @param testId Unique name for the load test, must contain only lower-case alphabetic, numeric, underscore or
+     *     hyphen characters.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
@@ -3546,15 +1529,14 @@ public final class LoadTestAdministrationsImpl {
      * @return all test files along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<PagedResponse<BinaryData>> getAllTestFilesSinglePageAsync(
-            String testId, RequestOptions requestOptions) {
+    private Mono<PagedResponse<BinaryData>> listFilesSinglePageAsync(String testId, RequestOptions requestOptions) {
         final String accept = "application/json";
         return FluxUtil.withContext(
                         context ->
-                                service.getAllTestFiles(
+                                service.listFiles(
                                         this.client.getEndpoint(),
-                                        this.client.getServiceVersion().getVersion(),
                                         testId,
+                                        this.client.getServiceVersion().getVersion(),
                                         accept,
                                         requestOptions,
                                         context))
@@ -3577,7 +1559,7 @@ public final class LoadTestAdministrationsImpl {
      * <table border="1">
      *     <caption>Query Parameters</caption>
      *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>continuationToken</td><td>String</td><td>No</td><td>Continuation token to get the next page of response.</td></tr>
+     *     <tr><td>continuationToken</td><td>String</td><td>No</td><td>Continuation token to get the next page of response</td></tr>
      * </table>
      *
      * You can add these to a request with {@link RequestOptions#addQueryParam}
@@ -3586,83 +1568,17 @@ public final class LoadTestAdministrationsImpl {
      *
      * <pre>{@code
      * {
-     *     value (Required): [
-     *          (Required){
-     *             url: String (Optional)
-     *             fileId: String (Optional)
-     *             filename: String (Optional)
-     *             fileType: String(0/1/2) (Optional)
-     *             expireTime: OffsetDateTime (Optional)
-     *             validationStatus: String (Optional)
-     *         }
-     *     ]
-     *     nextLink: String (Optional)
+     *     url: String (Optional)
+     *     fileId: String (Optional)
+     *     filename: String (Optional)
+     *     fileType: String(JMX_FILE/USER_PROPERTIES/ADDITIONAL_ARTIFACTS) (Optional)
+     *     expireDateTime: OffsetDateTime (Optional)
+     *     validationStatus: String(NOT_VALIDATED/VALIDATION_SUCCESS/VALIDATION_FAILURE/VALIDATION_INITIATED/VALIDATION_NOT_REQUIRED) (Optional)
      * }
      * }</pre>
      *
-     * @param testId Unique name for load test, must be a valid URL character ^[a-z0-9_-]*$.
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @param context The context to associate with this operation.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return all test files along with {@link PagedResponse} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<PagedResponse<BinaryData>> getAllTestFilesSinglePageAsync(
-            String testId, RequestOptions requestOptions, Context context) {
-        final String accept = "application/json";
-        return service.getAllTestFiles(
-                        this.client.getEndpoint(),
-                        this.client.getServiceVersion().getVersion(),
-                        testId,
-                        accept,
-                        requestOptions,
-                        context)
-                .map(
-                        res ->
-                                new PagedResponseBase<>(
-                                        res.getRequest(),
-                                        res.getStatusCode(),
-                                        res.getHeaders(),
-                                        getValues(res.getValue(), "value"),
-                                        getNextLink(res.getValue(), "nextLink"),
-                                        null));
-    }
-
-    /**
-     * Get all test files.
-     *
-     * <p><strong>Query Parameters</strong>
-     *
-     * <table border="1">
-     *     <caption>Query Parameters</caption>
-     *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>continuationToken</td><td>String</td><td>No</td><td>Continuation token to get the next page of response.</td></tr>
-     * </table>
-     *
-     * You can add these to a request with {@link RequestOptions#addQueryParam}
-     *
-     * <p><strong>Response Body Schema</strong>
-     *
-     * <pre>{@code
-     * {
-     *     value (Required): [
-     *          (Required){
-     *             url: String (Optional)
-     *             fileId: String (Optional)
-     *             filename: String (Optional)
-     *             fileType: String(0/1/2) (Optional)
-     *             expireTime: OffsetDateTime (Optional)
-     *             validationStatus: String (Optional)
-     *         }
-     *     ]
-     *     nextLink: String (Optional)
-     * }
-     * }</pre>
-     *
-     * @param testId Unique name for load test, must be a valid URL character ^[a-z0-9_-]*$.
+     * @param testId Unique name for the load test, must contain only lower-case alphabetic, numeric, underscore or
+     *     hyphen characters.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
@@ -3671,15 +1587,15 @@ public final class LoadTestAdministrationsImpl {
      * @return all test files as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedFlux<BinaryData> getAllTestFilesAsync(String testId, RequestOptions requestOptions) {
+    public PagedFlux<BinaryData> listFilesAsync(String testId, RequestOptions requestOptions) {
         RequestOptions requestOptionsForNextPage = new RequestOptions();
         requestOptionsForNextPage.setContext(
                 requestOptions != null && requestOptions.getContext() != null
                         ? requestOptions.getContext()
                         : Context.NONE);
         return new PagedFlux<>(
-                () -> getAllTestFilesSinglePageAsync(testId, requestOptions),
-                nextLink -> getAllTestFilesNextSinglePageAsync(nextLink, requestOptionsForNextPage));
+                () -> listFilesSinglePageAsync(testId, requestOptions),
+                nextLink -> listFilesNextSinglePageAsync(nextLink, requestOptionsForNextPage));
     }
 
     /**
@@ -3690,7 +1606,7 @@ public final class LoadTestAdministrationsImpl {
      * <table border="1">
      *     <caption>Query Parameters</caption>
      *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>continuationToken</td><td>String</td><td>No</td><td>Continuation token to get the next page of response.</td></tr>
+     *     <tr><td>continuationToken</td><td>String</td><td>No</td><td>Continuation token to get the next page of response</td></tr>
      * </table>
      *
      * You can add these to a request with {@link RequestOptions#addQueryParam}
@@ -3699,73 +1615,17 @@ public final class LoadTestAdministrationsImpl {
      *
      * <pre>{@code
      * {
-     *     value (Required): [
-     *          (Required){
-     *             url: String (Optional)
-     *             fileId: String (Optional)
-     *             filename: String (Optional)
-     *             fileType: String(0/1/2) (Optional)
-     *             expireTime: OffsetDateTime (Optional)
-     *             validationStatus: String (Optional)
-     *         }
-     *     ]
-     *     nextLink: String (Optional)
+     *     url: String (Optional)
+     *     fileId: String (Optional)
+     *     filename: String (Optional)
+     *     fileType: String(JMX_FILE/USER_PROPERTIES/ADDITIONAL_ARTIFACTS) (Optional)
+     *     expireDateTime: OffsetDateTime (Optional)
+     *     validationStatus: String(NOT_VALIDATED/VALIDATION_SUCCESS/VALIDATION_FAILURE/VALIDATION_INITIATED/VALIDATION_NOT_REQUIRED) (Optional)
      * }
      * }</pre>
      *
-     * @param testId Unique name for load test, must be a valid URL character ^[a-z0-9_-]*$.
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @param context The context to associate with this operation.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return all test files as paginated response with {@link PagedFlux}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedFlux<BinaryData> getAllTestFilesAsync(String testId, RequestOptions requestOptions, Context context) {
-        RequestOptions requestOptionsForNextPage = new RequestOptions();
-        requestOptionsForNextPage.setContext(
-                requestOptions != null && requestOptions.getContext() != null
-                        ? requestOptions.getContext()
-                        : Context.NONE);
-        return new PagedFlux<>(
-                () -> getAllTestFilesSinglePageAsync(testId, requestOptions, context),
-                nextLink -> getAllTestFilesNextSinglePageAsync(nextLink, requestOptionsForNextPage, context));
-    }
-
-    /**
-     * Get all test files.
-     *
-     * <p><strong>Query Parameters</strong>
-     *
-     * <table border="1">
-     *     <caption>Query Parameters</caption>
-     *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>continuationToken</td><td>String</td><td>No</td><td>Continuation token to get the next page of response.</td></tr>
-     * </table>
-     *
-     * You can add these to a request with {@link RequestOptions#addQueryParam}
-     *
-     * <p><strong>Response Body Schema</strong>
-     *
-     * <pre>{@code
-     * {
-     *     value (Required): [
-     *          (Required){
-     *             url: String (Optional)
-     *             fileId: String (Optional)
-     *             filename: String (Optional)
-     *             fileType: String(0/1/2) (Optional)
-     *             expireTime: OffsetDateTime (Optional)
-     *             validationStatus: String (Optional)
-     *         }
-     *     ]
-     *     nextLink: String (Optional)
-     * }
-     * }</pre>
-     *
-     * @param testId Unique name for load test, must be a valid URL character ^[a-z0-9_-]*$.
+     * @param testId Unique name for the load test, must contain only lower-case alphabetic, numeric, underscore or
+     *     hyphen characters.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
@@ -3774,8 +1634,493 @@ public final class LoadTestAdministrationsImpl {
      * @return all test files as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<BinaryData> getAllTestFiles(String testId, RequestOptions requestOptions) {
-        return new PagedIterable<>(getAllTestFilesAsync(testId, requestOptions));
+    public PagedIterable<BinaryData> listFiles(String testId, RequestOptions requestOptions) {
+        return new PagedIterable<>(listFilesAsync(testId, requestOptions));
+    }
+
+    /**
+     * Associate an app component (collection of azure resources) to a test.
+     *
+     * <p><strong>Request Body Schema</strong>
+     *
+     * <pre>{@code
+     * {
+     *     testId: String (Optional)
+     *     components (Required): {
+     *         String (Required): {
+     *             resourceId: String (Optional)
+     *             resourceName: String (Optional)
+     *             resourceType: String (Optional)
+     *             displayName: String (Optional)
+     *             resourceGroup: String (Optional)
+     *             subscriptionId: String (Optional)
+     *             kind: String (Optional)
+     *         }
+     *     }
+     *     createdDateTime: OffsetDateTime (Optional)
+     *     createdBy: String (Optional)
+     *     lastModifiedDateTime: OffsetDateTime (Optional)
+     *     lastModifiedBy: String (Optional)
+     * }
+     * }</pre>
+     *
+     * <p><strong>Response Body Schema</strong>
+     *
+     * <pre>{@code
+     * {
+     *     testId: String (Optional)
+     *     components (Required): {
+     *         String (Required): {
+     *             resourceId: String (Optional)
+     *             resourceName: String (Optional)
+     *             resourceType: String (Optional)
+     *             displayName: String (Optional)
+     *             resourceGroup: String (Optional)
+     *             subscriptionId: String (Optional)
+     *             kind: String (Optional)
+     *         }
+     *     }
+     *     createdDateTime: OffsetDateTime (Optional)
+     *     createdBy: String (Optional)
+     *     lastModifiedDateTime: OffsetDateTime (Optional)
+     *     lastModifiedBy: String (Optional)
+     * }
+     * }</pre>
+     *
+     * @param testId Unique name for the load test, must contain only lower-case alphabetic, numeric, underscore or
+     *     hyphen characters.
+     * @param body App Component model.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return test app component along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<BinaryData>> createOrUpdateAppComponentWithResponseAsync(
+            String testId, BinaryData body, RequestOptions requestOptions) {
+        final String accept = "application/json";
+        return FluxUtil.withContext(
+                context ->
+                        service.createOrUpdateAppComponent(
+                                this.client.getEndpoint(),
+                                testId,
+                                this.client.getServiceVersion().getVersion(),
+                                body,
+                                accept,
+                                requestOptions,
+                                context));
+    }
+
+    /**
+     * Associate an app component (collection of azure resources) to a test.
+     *
+     * <p><strong>Request Body Schema</strong>
+     *
+     * <pre>{@code
+     * {
+     *     testId: String (Optional)
+     *     components (Required): {
+     *         String (Required): {
+     *             resourceId: String (Optional)
+     *             resourceName: String (Optional)
+     *             resourceType: String (Optional)
+     *             displayName: String (Optional)
+     *             resourceGroup: String (Optional)
+     *             subscriptionId: String (Optional)
+     *             kind: String (Optional)
+     *         }
+     *     }
+     *     createdDateTime: OffsetDateTime (Optional)
+     *     createdBy: String (Optional)
+     *     lastModifiedDateTime: OffsetDateTime (Optional)
+     *     lastModifiedBy: String (Optional)
+     * }
+     * }</pre>
+     *
+     * <p><strong>Response Body Schema</strong>
+     *
+     * <pre>{@code
+     * {
+     *     testId: String (Optional)
+     *     components (Required): {
+     *         String (Required): {
+     *             resourceId: String (Optional)
+     *             resourceName: String (Optional)
+     *             resourceType: String (Optional)
+     *             displayName: String (Optional)
+     *             resourceGroup: String (Optional)
+     *             subscriptionId: String (Optional)
+     *             kind: String (Optional)
+     *         }
+     *     }
+     *     createdDateTime: OffsetDateTime (Optional)
+     *     createdBy: String (Optional)
+     *     lastModifiedDateTime: OffsetDateTime (Optional)
+     *     lastModifiedBy: String (Optional)
+     * }
+     * }</pre>
+     *
+     * @param testId Unique name for the load test, must contain only lower-case alphabetic, numeric, underscore or
+     *     hyphen characters.
+     * @param body App Component model.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return test app component along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<BinaryData> createOrUpdateAppComponentWithResponse(
+            String testId, BinaryData body, RequestOptions requestOptions) {
+        return createOrUpdateAppComponentWithResponseAsync(testId, body, requestOptions).block();
+    }
+
+    /**
+     * Get associated app component (collection of azure resources) for the given test.
+     *
+     * <p><strong>Response Body Schema</strong>
+     *
+     * <pre>{@code
+     * {
+     *     testId: String (Optional)
+     *     components (Required): {
+     *         String (Required): {
+     *             resourceId: String (Optional)
+     *             resourceName: String (Optional)
+     *             resourceType: String (Optional)
+     *             displayName: String (Optional)
+     *             resourceGroup: String (Optional)
+     *             subscriptionId: String (Optional)
+     *             kind: String (Optional)
+     *         }
+     *     }
+     *     createdDateTime: OffsetDateTime (Optional)
+     *     createdBy: String (Optional)
+     *     lastModifiedDateTime: OffsetDateTime (Optional)
+     *     lastModifiedBy: String (Optional)
+     * }
+     * }</pre>
+     *
+     * @param testId Unique name for the load test, must contain only lower-case alphabetic, numeric, underscore or
+     *     hyphen characters.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return associated app component (collection of azure resources) for the given test along with {@link Response}
+     *     on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<BinaryData>> getAppComponentsWithResponseAsync(String testId, RequestOptions requestOptions) {
+        final String accept = "application/json";
+        return FluxUtil.withContext(
+                context ->
+                        service.getAppComponents(
+                                this.client.getEndpoint(),
+                                testId,
+                                this.client.getServiceVersion().getVersion(),
+                                accept,
+                                requestOptions,
+                                context));
+    }
+
+    /**
+     * Get associated app component (collection of azure resources) for the given test.
+     *
+     * <p><strong>Response Body Schema</strong>
+     *
+     * <pre>{@code
+     * {
+     *     testId: String (Optional)
+     *     components (Required): {
+     *         String (Required): {
+     *             resourceId: String (Optional)
+     *             resourceName: String (Optional)
+     *             resourceType: String (Optional)
+     *             displayName: String (Optional)
+     *             resourceGroup: String (Optional)
+     *             subscriptionId: String (Optional)
+     *             kind: String (Optional)
+     *         }
+     *     }
+     *     createdDateTime: OffsetDateTime (Optional)
+     *     createdBy: String (Optional)
+     *     lastModifiedDateTime: OffsetDateTime (Optional)
+     *     lastModifiedBy: String (Optional)
+     * }
+     * }</pre>
+     *
+     * @param testId Unique name for the load test, must contain only lower-case alphabetic, numeric, underscore or
+     *     hyphen characters.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return associated app component (collection of azure resources) for the given test along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<BinaryData> getAppComponentsWithResponse(String testId, RequestOptions requestOptions) {
+        return getAppComponentsWithResponseAsync(testId, requestOptions).block();
+    }
+
+    /**
+     * Configure server metrics for a test.
+     *
+     * <p><strong>Request Body Schema</strong>
+     *
+     * <pre>{@code
+     * {
+     *     testId: String (Optional)
+     *     metrics (Optional): {
+     *         String (Optional): {
+     *             id: String (Optional)
+     *             resourceId: String (Required)
+     *             metricNamespace: String (Required)
+     *             displayDescription: String (Optional)
+     *             name (Required): {
+     *                 localizedValue: String (Optional)
+     *                 value: String (Optional)
+     *             }
+     *             aggregation: String (Required)
+     *             unit: String (Optional)
+     *             resourceType: String (Required)
+     *         }
+     *     }
+     *     createdDateTime: OffsetDateTime (Optional)
+     *     createdBy: String (Optional)
+     *     lastModifiedDateTime: OffsetDateTime (Optional)
+     *     lastModifiedBy: String (Optional)
+     * }
+     * }</pre>
+     *
+     * <p><strong>Response Body Schema</strong>
+     *
+     * <pre>{@code
+     * {
+     *     testId: String (Optional)
+     *     metrics (Optional): {
+     *         String (Optional): {
+     *             id: String (Optional)
+     *             resourceId: String (Required)
+     *             metricNamespace: String (Required)
+     *             displayDescription: String (Optional)
+     *             name (Required): {
+     *                 localizedValue: String (Optional)
+     *                 value: String (Optional)
+     *             }
+     *             aggregation: String (Required)
+     *             unit: String (Optional)
+     *             resourceType: String (Required)
+     *         }
+     *     }
+     *     createdDateTime: OffsetDateTime (Optional)
+     *     createdBy: String (Optional)
+     *     lastModifiedDateTime: OffsetDateTime (Optional)
+     *     lastModifiedBy: String (Optional)
+     * }
+     * }</pre>
+     *
+     * @param testId Unique name for the load test, must contain only lower-case alphabetic, numeric, underscore or
+     *     hyphen characters.
+     * @param body Server metric configuration model.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return test server metric configuration along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<BinaryData>> createOrUpdateServerMetricsConfigWithResponseAsync(
+            String testId, BinaryData body, RequestOptions requestOptions) {
+        final String accept = "application/json";
+        return FluxUtil.withContext(
+                context ->
+                        service.createOrUpdateServerMetricsConfig(
+                                this.client.getEndpoint(),
+                                testId,
+                                this.client.getServiceVersion().getVersion(),
+                                body,
+                                accept,
+                                requestOptions,
+                                context));
+    }
+
+    /**
+     * Configure server metrics for a test.
+     *
+     * <p><strong>Request Body Schema</strong>
+     *
+     * <pre>{@code
+     * {
+     *     testId: String (Optional)
+     *     metrics (Optional): {
+     *         String (Optional): {
+     *             id: String (Optional)
+     *             resourceId: String (Required)
+     *             metricNamespace: String (Required)
+     *             displayDescription: String (Optional)
+     *             name (Required): {
+     *                 localizedValue: String (Optional)
+     *                 value: String (Optional)
+     *             }
+     *             aggregation: String (Required)
+     *             unit: String (Optional)
+     *             resourceType: String (Required)
+     *         }
+     *     }
+     *     createdDateTime: OffsetDateTime (Optional)
+     *     createdBy: String (Optional)
+     *     lastModifiedDateTime: OffsetDateTime (Optional)
+     *     lastModifiedBy: String (Optional)
+     * }
+     * }</pre>
+     *
+     * <p><strong>Response Body Schema</strong>
+     *
+     * <pre>{@code
+     * {
+     *     testId: String (Optional)
+     *     metrics (Optional): {
+     *         String (Optional): {
+     *             id: String (Optional)
+     *             resourceId: String (Required)
+     *             metricNamespace: String (Required)
+     *             displayDescription: String (Optional)
+     *             name (Required): {
+     *                 localizedValue: String (Optional)
+     *                 value: String (Optional)
+     *             }
+     *             aggregation: String (Required)
+     *             unit: String (Optional)
+     *             resourceType: String (Required)
+     *         }
+     *     }
+     *     createdDateTime: OffsetDateTime (Optional)
+     *     createdBy: String (Optional)
+     *     lastModifiedDateTime: OffsetDateTime (Optional)
+     *     lastModifiedBy: String (Optional)
+     * }
+     * }</pre>
+     *
+     * @param testId Unique name for the load test, must contain only lower-case alphabetic, numeric, underscore or
+     *     hyphen characters.
+     * @param body Server metric configuration model.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return test server metric configuration along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<BinaryData> createOrUpdateServerMetricsConfigWithResponse(
+            String testId, BinaryData body, RequestOptions requestOptions) {
+        return createOrUpdateServerMetricsConfigWithResponseAsync(testId, body, requestOptions).block();
+    }
+
+    /**
+     * Get server metric configuration for the given test.
+     *
+     * <p><strong>Response Body Schema</strong>
+     *
+     * <pre>{@code
+     * {
+     *     testId: String (Optional)
+     *     metrics (Optional): {
+     *         String (Optional): {
+     *             id: String (Optional)
+     *             resourceId: String (Required)
+     *             metricNamespace: String (Required)
+     *             displayDescription: String (Optional)
+     *             name (Required): {
+     *                 localizedValue: String (Optional)
+     *                 value: String (Optional)
+     *             }
+     *             aggregation: String (Required)
+     *             unit: String (Optional)
+     *             resourceType: String (Required)
+     *         }
+     *     }
+     *     createdDateTime: OffsetDateTime (Optional)
+     *     createdBy: String (Optional)
+     *     lastModifiedDateTime: OffsetDateTime (Optional)
+     *     lastModifiedBy: String (Optional)
+     * }
+     * }</pre>
+     *
+     * @param testId Unique name for the load test, must contain only lower-case alphabetic, numeric, underscore or
+     *     hyphen characters.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return server metric configuration for the given test along with {@link Response} on successful completion of
+     *     {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<BinaryData>> getServerMetricsConfigWithResponseAsync(
+            String testId, RequestOptions requestOptions) {
+        final String accept = "application/json";
+        return FluxUtil.withContext(
+                context ->
+                        service.getServerMetricsConfig(
+                                this.client.getEndpoint(),
+                                testId,
+                                this.client.getServiceVersion().getVersion(),
+                                accept,
+                                requestOptions,
+                                context));
+    }
+
+    /**
+     * Get server metric configuration for the given test.
+     *
+     * <p><strong>Response Body Schema</strong>
+     *
+     * <pre>{@code
+     * {
+     *     testId: String (Optional)
+     *     metrics (Optional): {
+     *         String (Optional): {
+     *             id: String (Optional)
+     *             resourceId: String (Required)
+     *             metricNamespace: String (Required)
+     *             displayDescription: String (Optional)
+     *             name (Required): {
+     *                 localizedValue: String (Optional)
+     *                 value: String (Optional)
+     *             }
+     *             aggregation: String (Required)
+     *             unit: String (Optional)
+     *             resourceType: String (Required)
+     *         }
+     *     }
+     *     createdDateTime: OffsetDateTime (Optional)
+     *     createdBy: String (Optional)
+     *     lastModifiedDateTime: OffsetDateTime (Optional)
+     *     lastModifiedBy: String (Optional)
+     * }
+     * }</pre>
+     *
+     * @param testId Unique name for the load test, must contain only lower-case alphabetic, numeric, underscore or
+     *     hyphen characters.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return server metric configuration for the given test along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<BinaryData> getServerMetricsConfigWithResponse(String testId, RequestOptions requestOptions) {
+        return getServerMetricsConfigWithResponseAsync(testId, requestOptions).block();
     }
 
     /**
@@ -3785,272 +2130,133 @@ public final class LoadTestAdministrationsImpl {
      *
      * <pre>{@code
      * {
-     *     value (Required): [
-     *          (Required){
-     *             testId: String (Optional)
-     *             description: String (Optional)
-     *             displayName: String (Optional)
-     *             resourceId: String (Optional)
-     *             loadTestConfig (Optional): {
-     *                 engineInstances: Integer (Optional)
-     *                 splitAllCSVs: Boolean (Optional)
+     *     passFailCriteria (Optional): {
+     *         passFailMetrics (Optional): {
+     *             String (Optional): {
+     *                 clientmetric: String(response_time_ms/latency/error/requests/requests_per_sec) (Optional)
+     *                 aggregate: String(count/percentage/avg/p50/p90/p95/p99/min/max) (Optional)
+     *                 condition: String (Optional)
+     *                 requestName: String (Optional)
+     *                 value: Double (Optional)
+     *                 action: String(stop/continue) (Optional)
+     *                 actualValue: Double (Optional)
+     *                 result: String(passed/undetermined/failed) (Optional)
      *             }
-     *             passFailCriteria (Optional): {
-     *                 passFailMetrics (Optional): {
-     *                     String (Optional): {
-     *                         clientmetric: String (Optional)
-     *                         aggregate: String (Optional)
-     *                         condition: String (Optional)
-     *                         requestName: String (Optional)
-     *                         value: Double (Optional)
-     *                         action: String (Optional)
-     *                         actualValue: Double (Optional)
-     *                         result: String (Optional)
-     *                     }
-     *                 }
-     *             }
-     *             createdDateTime: OffsetDateTime (Optional)
-     *             createdBy: String (Optional)
-     *             lastModifiedDateTime: OffsetDateTime (Optional)
-     *             lastModifiedBy: String (Optional)
-     *             inputArtifacts (Optional): {
-     *                 configUrl (Optional): {
-     *                     url: String (Optional)
-     *                     fileId: String (Optional)
-     *                     filename: String (Optional)
-     *                     fileType: String(0/1/2) (Optional)
-     *                     expireTime: OffsetDateTime (Optional)
-     *                     validationStatus: String (Optional)
-     *                 }
-     *                 testScriptUrl (Optional): (recursive schema, see testScriptUrl above)
-     *                 userPropUrl (Optional): (recursive schema, see userPropUrl above)
-     *                 inputArtifactsZipFileurl (Optional): (recursive schema, see inputArtifactsZipFileurl above)
-     *                 additionalUrls (Optional): [
-     *                     (recursive schema, see above)
-     *                 ]
-     *             }
-     *             secrets (Optional): {
-     *                 String (Optional): {
-     *                     value: String (Optional)
-     *                     type: String (Optional)
-     *                 }
-     *             }
-     *             environmentVariables (Optional): {
-     *                 String: String (Optional)
-     *             }
-     *             subnetId: String (Optional)
-     *             keyvaultReferenceIdentityType: String (Optional)
-     *             keyvaultReferenceIdentityId: String (Optional)
      *         }
-     *     ]
-     *     nextLink: String (Optional)
+     *     }
+     *     secrets (Optional): {
+     *         String (Optional): {
+     *             value: String (Optional)
+     *             type: String(AKV_SECRET_URI/SECRET_VALUE) (Optional)
+     *         }
+     *     }
+     *     certificate (Optional): {
+     *         value: String (Optional)
+     *         type: String(AKV_CERT_URI) (Optional)
+     *         name: String (Optional)
+     *     }
+     *     environmentVariables (Optional): {
+     *         String: String (Optional)
+     *     }
+     *     loadTestConfiguration (Optional): {
+     *         engineInstances: Integer (Optional)
+     *         splitAllCSVs: Boolean (Optional)
+     *         quickStartTest: Boolean (Optional)
+     *         optionalLoadTestConfig (Optional): {
+     *             endpointUrl: String (Optional)
+     *             vusers: Integer (Optional)
+     *             rampUpTime: Integer (Optional)
+     *             duration: Integer (Optional)
+     *         }
+     *     }
+     *     inputArtifacts (Optional): {
+     *         configFileInfo (Optional): {
+     *             url: String (Optional)
+     *             fileId: String (Optional)
+     *             filename: String (Optional)
+     *             fileType: String(JMX_FILE/USER_PROPERTIES/ADDITIONAL_ARTIFACTS) (Optional)
+     *             expireDateTime: OffsetDateTime (Optional)
+     *             validationStatus: String(NOT_VALIDATED/VALIDATION_SUCCESS/VALIDATION_FAILURE/VALIDATION_INITIATED/VALIDATION_NOT_REQUIRED) (Optional)
+     *         }
+     *         testScriptFileInfo (Optional): (recursive schema, see testScriptFileInfo above)
+     *         userPropFileInfo (Optional): (recursive schema, see userPropFileInfo above)
+     *         inputArtifactsZipFileInfo (Optional): (recursive schema, see inputArtifactsZipFileInfo above)
+     *         additionalFileInfo (Optional): [
+     *             (recursive schema, see above)
+     *         ]
+     *     }
+     *     testId: String (Optional)
+     *     description: String (Optional)
+     *     displayName: String (Optional)
+     *     subnetId: String (Optional)
+     *     keyvaultReferenceIdentityType: String (Optional)
+     *     keyvaultReferenceIdentityId: String (Optional)
+     *     createdDateTime: OffsetDateTime (Optional)
+     *     createdBy: String (Optional)
+     *     lastModifiedDateTime: OffsetDateTime (Optional)
+     *     lastModifiedBy: String (Optional)
      * }
      * }</pre>
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
      * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
      * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return list of Resources along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return collection of tests along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<PagedResponse<BinaryData>> listLoadTestSearchNextSinglePageAsync(
+    private Mono<PagedResponse<BinaryData>> listNextSinglePageAsync(String nextLink, RequestOptions requestOptions) {
+        final String accept = "application/json";
+        return FluxUtil.withContext(
+                        context ->
+                                service.listNext(nextLink, this.client.getEndpoint(), accept, requestOptions, context))
+                .map(
+                        res ->
+                                new PagedResponseBase<>(
+                                        res.getRequest(),
+                                        res.getStatusCode(),
+                                        res.getHeaders(),
+                                        getValues(res.getValue(), "value"),
+                                        getNextLink(res.getValue(), "nextLink"),
+                                        null));
+    }
+
+    /**
+     * Get the next page of items.
+     *
+     * <p><strong>Response Body Schema</strong>
+     *
+     * <pre>{@code
+     * {
+     *     url: String (Optional)
+     *     fileId: String (Optional)
+     *     filename: String (Optional)
+     *     fileType: String(JMX_FILE/USER_PROPERTIES/ADDITIONAL_ARTIFACTS) (Optional)
+     *     expireDateTime: OffsetDateTime (Optional)
+     *     validationStatus: String(NOT_VALIDATED/VALIDATION_SUCCESS/VALIDATION_FAILURE/VALIDATION_INITIATED/VALIDATION_NOT_REQUIRED) (Optional)
+     * }
+     * }</pre>
+     *
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return collection of files along with {@link PagedResponse} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<BinaryData>> listFilesNextSinglePageAsync(
             String nextLink, RequestOptions requestOptions) {
         final String accept = "application/json";
         return FluxUtil.withContext(
                         context ->
-                                service.listLoadTestSearchNext(
+                                service.listFilesNext(
                                         nextLink, this.client.getEndpoint(), accept, requestOptions, context))
-                .map(
-                        res ->
-                                new PagedResponseBase<>(
-                                        res.getRequest(),
-                                        res.getStatusCode(),
-                                        res.getHeaders(),
-                                        getValues(res.getValue(), "value"),
-                                        getNextLink(res.getValue(), "nextLink"),
-                                        null));
-    }
-
-    /**
-     * Get the next page of items.
-     *
-     * <p><strong>Response Body Schema</strong>
-     *
-     * <pre>{@code
-     * {
-     *     value (Required): [
-     *          (Required){
-     *             testId: String (Optional)
-     *             description: String (Optional)
-     *             displayName: String (Optional)
-     *             resourceId: String (Optional)
-     *             loadTestConfig (Optional): {
-     *                 engineInstances: Integer (Optional)
-     *                 splitAllCSVs: Boolean (Optional)
-     *             }
-     *             passFailCriteria (Optional): {
-     *                 passFailMetrics (Optional): {
-     *                     String (Optional): {
-     *                         clientmetric: String (Optional)
-     *                         aggregate: String (Optional)
-     *                         condition: String (Optional)
-     *                         requestName: String (Optional)
-     *                         value: Double (Optional)
-     *                         action: String (Optional)
-     *                         actualValue: Double (Optional)
-     *                         result: String (Optional)
-     *                     }
-     *                 }
-     *             }
-     *             createdDateTime: OffsetDateTime (Optional)
-     *             createdBy: String (Optional)
-     *             lastModifiedDateTime: OffsetDateTime (Optional)
-     *             lastModifiedBy: String (Optional)
-     *             inputArtifacts (Optional): {
-     *                 configUrl (Optional): {
-     *                     url: String (Optional)
-     *                     fileId: String (Optional)
-     *                     filename: String (Optional)
-     *                     fileType: String(0/1/2) (Optional)
-     *                     expireTime: OffsetDateTime (Optional)
-     *                     validationStatus: String (Optional)
-     *                 }
-     *                 testScriptUrl (Optional): (recursive schema, see testScriptUrl above)
-     *                 userPropUrl (Optional): (recursive schema, see userPropUrl above)
-     *                 inputArtifactsZipFileurl (Optional): (recursive schema, see inputArtifactsZipFileurl above)
-     *                 additionalUrls (Optional): [
-     *                     (recursive schema, see above)
-     *                 ]
-     *             }
-     *             secrets (Optional): {
-     *                 String (Optional): {
-     *                     value: String (Optional)
-     *                     type: String (Optional)
-     *                 }
-     *             }
-     *             environmentVariables (Optional): {
-     *                 String: String (Optional)
-     *             }
-     *             subnetId: String (Optional)
-     *             keyvaultReferenceIdentityType: String (Optional)
-     *             keyvaultReferenceIdentityId: String (Optional)
-     *         }
-     *     ]
-     *     nextLink: String (Optional)
-     * }
-     * }</pre>
-     *
-     * @param nextLink The nextLink parameter.
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @param context The context to associate with this operation.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return list of Resources along with {@link PagedResponse} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<PagedResponse<BinaryData>> listLoadTestSearchNextSinglePageAsync(
-            String nextLink, RequestOptions requestOptions, Context context) {
-        final String accept = "application/json";
-        return service.listLoadTestSearchNext(nextLink, this.client.getEndpoint(), accept, requestOptions, context)
-                .map(
-                        res ->
-                                new PagedResponseBase<>(
-                                        res.getRequest(),
-                                        res.getStatusCode(),
-                                        res.getHeaders(),
-                                        getValues(res.getValue(), "value"),
-                                        getNextLink(res.getValue(), "nextLink"),
-                                        null));
-    }
-
-    /**
-     * Get the next page of items.
-     *
-     * <p><strong>Response Body Schema</strong>
-     *
-     * <pre>{@code
-     * {
-     *     value (Required): [
-     *          (Required){
-     *             url: String (Optional)
-     *             fileId: String (Optional)
-     *             filename: String (Optional)
-     *             fileType: String(0/1/2) (Optional)
-     *             expireTime: OffsetDateTime (Optional)
-     *             validationStatus: String (Optional)
-     *         }
-     *     ]
-     *     nextLink: String (Optional)
-     * }
-     * }</pre>
-     *
-     * @param nextLink The nextLink parameter.
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return the response body along with {@link PagedResponse} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<PagedResponse<BinaryData>> getAllTestFilesNextSinglePageAsync(
-            String nextLink, RequestOptions requestOptions) {
-        final String accept = "application/json";
-        return FluxUtil.withContext(
-                        context ->
-                                service.getAllTestFilesNext(
-                                        nextLink, this.client.getEndpoint(), accept, requestOptions, context))
-                .map(
-                        res ->
-                                new PagedResponseBase<>(
-                                        res.getRequest(),
-                                        res.getStatusCode(),
-                                        res.getHeaders(),
-                                        getValues(res.getValue(), "value"),
-                                        getNextLink(res.getValue(), "nextLink"),
-                                        null));
-    }
-
-    /**
-     * Get the next page of items.
-     *
-     * <p><strong>Response Body Schema</strong>
-     *
-     * <pre>{@code
-     * {
-     *     value (Required): [
-     *          (Required){
-     *             url: String (Optional)
-     *             fileId: String (Optional)
-     *             filename: String (Optional)
-     *             fileType: String(0/1/2) (Optional)
-     *             expireTime: OffsetDateTime (Optional)
-     *             validationStatus: String (Optional)
-     *         }
-     *     ]
-     *     nextLink: String (Optional)
-     * }
-     * }</pre>
-     *
-     * @param nextLink The nextLink parameter.
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @param context The context to associate with this operation.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return the response body along with {@link PagedResponse} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<PagedResponse<BinaryData>> getAllTestFilesNextSinglePageAsync(
-            String nextLink, RequestOptions requestOptions, Context context) {
-        final String accept = "application/json";
-        return service.getAllTestFilesNext(nextLink, this.client.getEndpoint(), accept, requestOptions, context)
                 .map(
                         res ->
                                 new PagedResponseBase<>(
