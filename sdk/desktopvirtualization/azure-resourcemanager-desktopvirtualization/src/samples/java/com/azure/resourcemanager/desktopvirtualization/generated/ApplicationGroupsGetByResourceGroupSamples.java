@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for ApplicationGroups GetByResourceGroup. */
 public final class ApplicationGroupsGetByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2021-09-03-preview/examples/ApplicationGroup_Get.json
+     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2022-09-09/examples/ApplicationGroup_Get.json
      */
     /**
      * Sample code: ApplicationGroup_Get.
