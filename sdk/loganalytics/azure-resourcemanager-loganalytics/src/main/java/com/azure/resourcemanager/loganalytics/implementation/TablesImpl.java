@@ -38,15 +38,6 @@ public final class TablesImpl implements Tables {
         return Utils.mapPage(inner, inner1 -> new TableImpl(inner1, this.manager()));
     }
 
-    public Table get(String resourceGroupName, String workspaceName, String tableName) {
-        TableInner inner = this.serviceClient().get(resourceGroupName, workspaceName, tableName);
-        if (inner != null) {
-            return new TableImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
     public Response<Table> getWithResponse(
         String resourceGroupName, String workspaceName, String tableName, Context context) {
         Response<TableInner> inner =
@@ -62,6 +53,15 @@ public final class TablesImpl implements Tables {
         }
     }
 
+    public Table get(String resourceGroupName, String workspaceName, String tableName) {
+        TableInner inner = this.serviceClient().get(resourceGroupName, workspaceName, tableName);
+        if (inner != null) {
+            return new TableImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
     public void delete(String resourceGroupName, String workspaceName, String tableName) {
         this.serviceClient().delete(resourceGroupName, workspaceName, tableName);
     }
@@ -70,13 +70,13 @@ public final class TablesImpl implements Tables {
         this.serviceClient().delete(resourceGroupName, workspaceName, tableName, context);
     }
 
-    public void migrate(String resourceGroupName, String workspaceName, String tableName) {
-        this.serviceClient().migrate(resourceGroupName, workspaceName, tableName);
-    }
-
     public Response<Void> migrateWithResponse(
         String resourceGroupName, String workspaceName, String tableName, Context context) {
         return this.serviceClient().migrateWithResponse(resourceGroupName, workspaceName, tableName, context);
+    }
+
+    public void migrate(String resourceGroupName, String workspaceName, String tableName) {
+        this.serviceClient().migrate(resourceGroupName, workspaceName, tableName);
     }
 
     public Table getById(String id) {

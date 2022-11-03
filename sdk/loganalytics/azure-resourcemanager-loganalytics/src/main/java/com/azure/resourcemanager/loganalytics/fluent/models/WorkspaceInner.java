@@ -38,6 +38,10 @@ public final class WorkspaceInner extends Resource {
     @JsonProperty(value = "eTag")
     private String etag;
 
+    /** Creates an instance of WorkspaceInner class. */
+    public WorkspaceInner() {
+    }
+
     /**
      * Get the innerProperties property: Workspace properties.
      *

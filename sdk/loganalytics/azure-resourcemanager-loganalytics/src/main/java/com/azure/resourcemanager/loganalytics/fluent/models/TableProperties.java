@@ -17,22 +17,21 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Fluent
 public final class TableProperties {
     /*
-     * The table retention in days, between 4 and 730. Setting this property to
-     * -1 will default to the workspace retention.
+     * The table retention in days, between 4 and 730. Setting this property to -1 will default to the workspace
+     * retention.
      */
     @JsonProperty(value = "retentionInDays")
     private Integer retentionInDays;
 
     /*
-     * The table total retention in days, between 4 and 2555. Setting this
-     * property to -1 will default to table retention.
+     * The table total retention in days, between 4 and 2555. Setting this property to -1 will default to table
+     * retention.
      */
     @JsonProperty(value = "totalRetentionInDays")
     private Integer totalRetentionInDays;
 
     /*
-     * The table data archive retention in days. Calculated as
-     * (totalRetentionInDays-retentionInDays)
+     * The table data archive retention in days. Calculated as (totalRetentionInDays-retentionInDays)
      */
     @JsonProperty(value = "archiveRetentionInDays", access = JsonProperty.Access.WRITE_ONLY)
     private Integer archiveRetentionInDays;
@@ -56,8 +55,7 @@ public final class TableProperties {
     private ResultStatistics resultStatistics;
 
     /*
-     * Instruct the system how to handle and charge the logs ingested to this
-     * table.
+     * Instruct the system how to handle and charge the logs ingested to this table.
      */
     @JsonProperty(value = "plan")
     private TablePlanEnum plan;
@@ -75,12 +73,15 @@ public final class TableProperties {
     private Schema schema;
 
     /*
-     * Table's current provisioning state. If set to 'updating', indicates a
-     * resource lock due to ongoing operation, forbidding any update to the
-     * table until the ongoing operation is concluded.
+     * Table's current provisioning state. If set to 'updating', indicates a resource lock due to ongoing operation,
+     * forbidding any update to the table until the ongoing operation is concluded.
      */
     @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
     private ProvisioningStateEnum provisioningState;
+
+    /** Creates an instance of TableProperties class. */
+    public TableProperties() {
+    }
 
     /**
      * Get the retentionInDays property: The table retention in days, between 4 and 730. Setting this property to -1

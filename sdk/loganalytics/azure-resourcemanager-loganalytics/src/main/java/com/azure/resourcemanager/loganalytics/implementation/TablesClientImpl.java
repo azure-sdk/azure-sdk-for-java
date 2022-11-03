@@ -1029,22 +1029,6 @@ public final class TablesClientImpl implements TablesClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param tableName The name of the table.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a Log Analytics workspace table.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public TableInner get(String resourceGroupName, String workspaceName, String tableName) {
-        return getAsync(resourceGroupName, workspaceName, tableName).block();
-    }
-
-    /**
-     * Gets a Log Analytics workspace table.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param tableName The name of the table.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1055,6 +1039,22 @@ public final class TablesClientImpl implements TablesClient {
     public Response<TableInner> getWithResponse(
         String resourceGroupName, String workspaceName, String tableName, Context context) {
         return getWithResponseAsync(resourceGroupName, workspaceName, tableName, context).block();
+    }
+
+    /**
+     * Gets a Log Analytics workspace table.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param tableName The name of the table.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a Log Analytics workspace table.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public TableInner get(String resourceGroupName, String workspaceName, String tableName) {
+        return getWithResponse(resourceGroupName, workspaceName, tableName, Context.NONE).getValue();
     }
 
     /**
@@ -1442,22 +1442,6 @@ public final class TablesClientImpl implements TablesClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param tableName The name of the table.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public void migrate(String resourceGroupName, String workspaceName, String tableName) {
-        migrateAsync(resourceGroupName, workspaceName, tableName).block();
-    }
-
-    /**
-     * Migrate a Log Analytics table from support of the Data Collector API and Custom Fields features to support of
-     * Data Collection Rule-based Custom Logs.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param tableName The name of the table.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1468,5 +1452,21 @@ public final class TablesClientImpl implements TablesClient {
     public Response<Void> migrateWithResponse(
         String resourceGroupName, String workspaceName, String tableName, Context context) {
         return migrateWithResponseAsync(resourceGroupName, workspaceName, tableName, context).block();
+    }
+
+    /**
+     * Migrate a Log Analytics table from support of the Data Collector API and Custom Fields features to support of
+     * Data Collection Rule-based Custom Logs.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param tableName The name of the table.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public void migrate(String resourceGroupName, String workspaceName, String tableName) {
+        migrateWithResponse(resourceGroupName, workspaceName, tableName, Context.NONE);
     }
 }

@@ -48,21 +48,13 @@ public final class QueryPacksImpl implements QueryPacks {
         return Utils.mapPage(inner, inner1 -> new LogAnalyticsQueryPackImpl(inner1, this.manager()));
     }
 
-    public void deleteByResourceGroup(String resourceGroupName, String queryPackName) {
-        this.serviceClient().delete(resourceGroupName, queryPackName);
-    }
-
-    public Response<Void> deleteWithResponse(String resourceGroupName, String queryPackName, Context context) {
+    public Response<Void> deleteByResourceGroupWithResponse(
+        String resourceGroupName, String queryPackName, Context context) {
         return this.serviceClient().deleteWithResponse(resourceGroupName, queryPackName, context);
     }
 
-    public LogAnalyticsQueryPack getByResourceGroup(String resourceGroupName, String queryPackName) {
-        LogAnalyticsQueryPackInner inner = this.serviceClient().getByResourceGroup(resourceGroupName, queryPackName);
-        if (inner != null) {
-            return new LogAnalyticsQueryPackImpl(inner, this.manager());
-        } else {
-            return null;
-        }
+    public void deleteByResourceGroup(String resourceGroupName, String queryPackName) {
+        this.serviceClient().delete(resourceGroupName, queryPackName);
     }
 
     public Response<LogAnalyticsQueryPack> getByResourceGroupWithResponse(
@@ -75,6 +67,15 @@ public final class QueryPacksImpl implements QueryPacks {
                 inner.getStatusCode(),
                 inner.getHeaders(),
                 new LogAnalyticsQueryPackImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public LogAnalyticsQueryPack getByResourceGroup(String resourceGroupName, String queryPackName) {
+        LogAnalyticsQueryPackInner inner = this.serviceClient().getByResourceGroup(resourceGroupName, queryPackName);
+        if (inner != null) {
+            return new LogAnalyticsQueryPackImpl(inner, this.manager());
         } else {
             return null;
         }
@@ -134,7 +135,7 @@ public final class QueryPacksImpl implements QueryPacks {
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'queryPacks'.", id)));
         }
-        this.deleteWithResponse(resourceGroupName, queryPackName, Context.NONE);
+        this.deleteByResourceGroupWithResponse(resourceGroupName, queryPackName, Context.NONE);
     }
 
     public Response<Void> deleteByIdWithResponse(String id, Context context) {
@@ -153,7 +154,7 @@ public final class QueryPacksImpl implements QueryPacks {
                     new IllegalArgumentException(
                         String.format("The resource ID '%s' is not valid. Missing path segment 'queryPacks'.", id)));
         }
-        return this.deleteWithResponse(resourceGroupName, queryPackName, context);
+        return this.deleteByResourceGroupWithResponse(resourceGroupName, queryPackName, context);
     }
 
     private QueryPacksClient serviceClient() {

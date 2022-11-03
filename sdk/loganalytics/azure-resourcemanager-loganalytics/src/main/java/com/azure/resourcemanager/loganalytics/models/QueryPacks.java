@@ -62,36 +62,24 @@ public interface QueryPacks {
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param queryPackName The name of the Log Analytics QueryPack resource.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    void deleteByResourceGroup(String resourceGroupName, String queryPackName);
-
-    /**
-     * Deletes a Log Analytics QueryPack.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param queryPackName The name of the Log Analytics QueryPack resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link Response}.
      */
-    Response<Void> deleteWithResponse(String resourceGroupName, String queryPackName, Context context);
+    Response<Void> deleteByResourceGroupWithResponse(String resourceGroupName, String queryPackName, Context context);
 
     /**
-     * Returns a Log Analytics QueryPack.
+     * Deletes a Log Analytics QueryPack.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param queryPackName The name of the Log Analytics QueryPack resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an Log Analytics QueryPack definition.
      */
-    LogAnalyticsQueryPack getByResourceGroup(String resourceGroupName, String queryPackName);
+    void deleteByResourceGroup(String resourceGroupName, String queryPackName);
 
     /**
      * Returns a Log Analytics QueryPack.
@@ -106,6 +94,18 @@ public interface QueryPacks {
      */
     Response<LogAnalyticsQueryPack> getByResourceGroupWithResponse(
         String resourceGroupName, String queryPackName, Context context);
+
+    /**
+     * Returns a Log Analytics QueryPack.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param queryPackName The name of the Log Analytics QueryPack resource.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return an Log Analytics QueryPack definition.
+     */
+    LogAnalyticsQueryPack getByResourceGroup(String resourceGroupName, String queryPackName);
 
     /**
      * Returns a Log Analytics QueryPack.

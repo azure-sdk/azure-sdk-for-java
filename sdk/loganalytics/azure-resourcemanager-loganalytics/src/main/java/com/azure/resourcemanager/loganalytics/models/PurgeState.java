@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for PurgeState. */
+/** Status of the operation represented by the requested Id. */
 public final class PurgeState extends ExpandableStringEnum<PurgeState> {
     /** Static value pending for PurgeState. */
     public static final PurgeState PENDING = fromString("pending");

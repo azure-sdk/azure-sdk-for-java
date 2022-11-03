@@ -29,6 +29,10 @@ public final class RestoredLogs {
     @JsonProperty(value = "sourceTable")
     private String sourceTable;
 
+    /** Creates an instance of RestoredLogs class. */
+    public RestoredLogs() {
+    }
+
     /**
      * Get the startRestoreTime property: The timestamp to start the restore from (UTC).
      *

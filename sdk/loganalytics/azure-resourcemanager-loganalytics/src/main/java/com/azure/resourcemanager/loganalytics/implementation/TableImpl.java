@@ -175,12 +175,12 @@ public final class TableImpl implements Table, Table.Definition, Table.Update {
         return this;
     }
 
-    public void migrate() {
-        serviceManager.tables().migrate(resourceGroupName, workspaceName, tableName);
-    }
-
     public Response<Void> migrateWithResponse(Context context) {
         return serviceManager.tables().migrateWithResponse(resourceGroupName, workspaceName, tableName, context);
+    }
+
+    public void migrate() {
+        serviceManager.tables().migrate(resourceGroupName, workspaceName, tableName);
     }
 
     public TableImpl withRetentionInDays(Integer retentionInDays) {

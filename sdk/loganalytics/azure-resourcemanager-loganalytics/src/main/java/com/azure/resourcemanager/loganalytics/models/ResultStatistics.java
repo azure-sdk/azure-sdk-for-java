@@ -22,6 +22,10 @@ public final class ResultStatistics {
     @JsonProperty(value = "ingestedRecords", access = JsonProperty.Access.WRITE_ONLY)
     private Integer ingestedRecords;
 
+    /** Creates an instance of ResultStatistics class. */
+    public ResultStatistics() {
+    }
+
     /**
      * Get the progress property: Search job completion percentage.
      *

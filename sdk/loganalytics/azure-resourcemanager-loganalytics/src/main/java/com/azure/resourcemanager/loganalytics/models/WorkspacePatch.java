@@ -27,6 +27,10 @@ public final class WorkspacePatch extends AzureEntityResource {
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, String> tags;
 
+    /** Creates an instance of WorkspacePatch class. */
+    public WorkspacePatch() {
+    }
+
     /**
      * Get the innerProperties property: Workspace properties.
      *

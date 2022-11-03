@@ -47,6 +47,10 @@ public final class SearchResults {
     @JsonProperty(value = "sourceTable", access = JsonProperty.Access.WRITE_ONLY)
     private String sourceTable;
 
+    /** Creates an instance of SearchResults class. */
+    public SearchResults() {
+    }
+
     /**
      * Get the query property: Search job query.
      *

@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for TablePlanEnum. */
+/** Instruct the system how to handle and charge the logs ingested to this table. */
 public final class TablePlanEnum extends ExpandableStringEnum<TablePlanEnum> {
     /** Static value Basic for TablePlanEnum. */
     public static final TablePlanEnum BASIC = fromString("Basic");

@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for ClusterSkuNameEnum. */
+/** The name of the SKU. */
 public final class ClusterSkuNameEnum extends ExpandableStringEnum<ClusterSkuNameEnum> {
     /** Static value CapacityReservation for ClusterSkuNameEnum. */
     public static final ClusterSkuNameEnum CAPACITY_RESERVATION = fromString("CapacityReservation");
