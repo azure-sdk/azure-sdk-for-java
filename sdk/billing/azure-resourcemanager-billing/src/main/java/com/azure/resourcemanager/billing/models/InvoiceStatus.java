@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for InvoiceStatus. */
+/** The current status of the invoice. */
 public final class InvoiceStatus extends ExpandableStringEnum<InvoiceStatus> {
     /** Static value Due for InvoiceStatus. */
     public static final InvoiceStatus DUE = fromString("Due");
@@ -33,7 +33,11 @@ public final class InvoiceStatus extends ExpandableStringEnum<InvoiceStatus> {
         return fromString(name, InvoiceStatus.class);
     }
 
-    /** @return known InvoiceStatus values. */
+    /**
+     * Gets known InvoiceStatus values.
+     *
+     * @return known InvoiceStatus values.
+     */
     public static Collection<InvoiceStatus> values() {
         return values(InvoiceStatus.class);
     }

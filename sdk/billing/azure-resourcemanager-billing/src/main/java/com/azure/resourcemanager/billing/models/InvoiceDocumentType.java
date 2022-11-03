@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for InvoiceDocumentType. */
+/** The type of the document. */
 public final class InvoiceDocumentType extends ExpandableStringEnum<InvoiceDocumentType> {
     /** Static value Invoice for InvoiceDocumentType. */
     public static final InvoiceDocumentType INVOICE = fromString("Invoice");
@@ -27,7 +27,11 @@ public final class InvoiceDocumentType extends ExpandableStringEnum<InvoiceDocum
         return fromString(name, InvoiceDocumentType.class);
     }
 
-    /** @return known InvoiceDocumentType values. */
+    /**
+     * Gets known InvoiceDocumentType values.
+     *
+     * @return known InvoiceDocumentType values.
+     */
     public static Collection<InvoiceDocumentType> values() {
         return values(InvoiceDocumentType.class);
     }

@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for TransactionTypeKind. */
+/** The kind of transaction. Options are all or reservation. */
 public final class TransactionTypeKind extends ExpandableStringEnum<TransactionTypeKind> {
     /** Static value all for TransactionTypeKind. */
     public static final TransactionTypeKind ALL = fromString("all");
@@ -27,7 +27,11 @@ public final class TransactionTypeKind extends ExpandableStringEnum<TransactionT
         return fromString(name, TransactionTypeKind.class);
     }
 
-    /** @return known TransactionTypeKind values. */
+    /**
+     * Gets known TransactionTypeKind values.
+     *
+     * @return known TransactionTypeKind values.
+     */
     public static Collection<TransactionTypeKind> values() {
         return values(TransactionTypeKind.class);
     }

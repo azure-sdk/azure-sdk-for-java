@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for AcceptanceMode. */
+/** The mode of acceptance for an agreement. */
 public final class AcceptanceMode extends ExpandableStringEnum<AcceptanceMode> {
     /** Static value ClickToAccept for AcceptanceMode. */
     public static final AcceptanceMode CLICK_TO_ACCEPT = fromString("ClickToAccept");
@@ -30,7 +30,11 @@ public final class AcceptanceMode extends ExpandableStringEnum<AcceptanceMode> {
         return fromString(name, AcceptanceMode.class);
     }
 
-    /** @return known AcceptanceMode values. */
+    /**
+     * Gets known AcceptanceMode values.
+     *
+     * @return known AcceptanceMode values.
+     */
     public static Collection<AcceptanceMode> values() {
         return values(AcceptanceMode.class);
     }

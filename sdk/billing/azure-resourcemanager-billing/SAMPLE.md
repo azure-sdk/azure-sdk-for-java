@@ -112,6 +112,10 @@
 - [ListByBillingProfile](#invoices_listbybillingprofile)
 - [ListByBillingSubscription](#invoices_listbybillingsubscription)
 
+## Operations
+
+- [List](#operations_list)
+
 ## Policies
 
 - [GetByBillingProfile](#policies_getbybillingprofile)
@@ -1836,7 +1840,28 @@ public final class InvoicesListByBillingSubscriptionSamples {
      */
     public static void billingSubscriptionsListByBillingAccount(
         com.azure.resourcemanager.billing.BillingManager manager) {
-        manager.invoices().listByBillingSubscription("2018-01-01", "2018-06-30", Context.NONE);
+        manager.invoices().listByBillingSubscription("2022-01-01", "2022-06-30", Context.NONE);
+    }
+}
+```
+
+### Operations_List
+
+```java
+import com.azure.core.util.Context;
+
+/** Samples for Operations List. */
+public final class OperationsListSamples {
+    /*
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/GetOperations.json
+     */
+    /**
+     * Sample code: BillingAccountPermissionsList.
+     *
+     * @param manager Entry point to BillingManager.
+     */
+    public static void billingAccountPermissionsList(com.azure.resourcemanager.billing.BillingManager manager) {
+        manager.operations().list(Context.NONE);
     }
 }
 ```
