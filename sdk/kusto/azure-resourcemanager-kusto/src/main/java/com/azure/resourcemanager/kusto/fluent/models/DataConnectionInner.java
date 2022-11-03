@@ -34,6 +34,10 @@ public class DataConnectionInner extends ProxyResource {
     @JsonProperty(value = "location")
     private String location;
 
+    /** Creates an instance of DataConnectionInner class. */
+    public DataConnectionInner() {
+    }
+
     /**
      * Get the location property: Resource location.
      *
