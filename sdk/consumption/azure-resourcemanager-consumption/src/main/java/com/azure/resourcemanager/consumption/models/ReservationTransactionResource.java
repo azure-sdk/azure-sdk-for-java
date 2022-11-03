@@ -6,21 +6,21 @@ package com.azure.resourcemanager.consumption.models;
 
 import com.azure.core.annotation.Immutable;
 import com.azure.core.management.ProxyResource;
-import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** The Resource model definition. */
 @Immutable
 public class ReservationTransactionResource extends ProxyResource {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(ReservationTransactionResource.class);
-
     /*
      * Resource tags.
      */
     @JsonProperty(value = "tags", access = JsonProperty.Access.WRITE_ONLY)
     private List<String> tags;
+
+    /** Creates an instance of ReservationTransactionResource class. */
+    public ReservationTransactionResource() {
+    }
 
     /**
      * Get the tags property: Resource tags.

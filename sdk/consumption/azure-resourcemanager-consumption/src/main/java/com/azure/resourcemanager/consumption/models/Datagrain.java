@@ -27,7 +27,11 @@ public final class Datagrain extends ExpandableStringEnum<Datagrain> {
         return fromString(name, Datagrain.class);
     }
 
-    /** @return known Datagrain values. */
+    /**
+     * Gets known Datagrain values.
+     *
+     * @return known Datagrain values.
+     */
     public static Collection<Datagrain> values() {
         return values(Datagrain.class);
     }

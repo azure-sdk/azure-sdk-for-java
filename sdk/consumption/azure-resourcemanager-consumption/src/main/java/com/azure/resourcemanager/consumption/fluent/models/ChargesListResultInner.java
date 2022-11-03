@@ -5,22 +5,22 @@
 package com.azure.resourcemanager.consumption.fluent.models;
 
 import com.azure.core.annotation.Immutable;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.consumption.models.ChargeSummary;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /** Result of listing charge summary. */
 @Immutable
 public final class ChargesListResultInner {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(ChargesListResultInner.class);
-
     /*
      * The list of charge summary
      */
     @JsonProperty(value = "value", access = JsonProperty.Access.WRITE_ONLY)
     private List<ChargeSummary> value;
+
+    /** Creates an instance of ChargesListResultInner class. */
+    public ChargesListResultInner() {
+    }
 
     /**
      * Get the value property: The list of charge summary.
