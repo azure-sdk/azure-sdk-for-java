@@ -35,22 +35,22 @@ public final class ComputeStartStopSchedule {
     private ComputePowerAction action;
 
     /*
-     * [Required] The schedule trigger type.
+     * The triggerType property.
      */
     @JsonProperty(value = "triggerType")
     private TriggerType triggerType;
 
     /*
-     * Required if triggerType is Recurrence.
+     * The workflow trigger recurrence for ComputeStartStop schedule type.
      */
     @JsonProperty(value = "recurrence")
-    private RecurrenceTrigger recurrence;
+    private Recurrence recurrence;
 
     /*
-     * Required if triggerType is Cron.
+     * The workflow trigger cron for ComputeStartStop schedule type.
      */
     @JsonProperty(value = "cron")
-    private CronTrigger cron;
+    private Cron cron;
 
     /*
      * [Deprecated] Not used any more.
@@ -121,7 +121,7 @@ public final class ComputeStartStopSchedule {
     }
 
     /**
-     * Get the triggerType property: [Required] The schedule trigger type.
+     * Get the triggerType property: The triggerType property.
      *
      * @return the triggerType value.
      */
@@ -130,7 +130,7 @@ public final class ComputeStartStopSchedule {
     }
 
     /**
-     * Set the triggerType property: [Required] The schedule trigger type.
+     * Set the triggerType property: The triggerType property.
      *
      * @param triggerType the triggerType value to set.
      * @return the ComputeStartStopSchedule object itself.
@@ -141,41 +141,41 @@ public final class ComputeStartStopSchedule {
     }
 
     /**
-     * Get the recurrence property: Required if triggerType is Recurrence.
+     * Get the recurrence property: The workflow trigger recurrence for ComputeStartStop schedule type.
      *
      * @return the recurrence value.
      */
-    public RecurrenceTrigger recurrence() {
+    public Recurrence recurrence() {
         return this.recurrence;
     }
 
     /**
-     * Set the recurrence property: Required if triggerType is Recurrence.
+     * Set the recurrence property: The workflow trigger recurrence for ComputeStartStop schedule type.
      *
      * @param recurrence the recurrence value to set.
      * @return the ComputeStartStopSchedule object itself.
      */
-    public ComputeStartStopSchedule withRecurrence(RecurrenceTrigger recurrence) {
+    public ComputeStartStopSchedule withRecurrence(Recurrence recurrence) {
         this.recurrence = recurrence;
         return this;
     }
 
     /**
-     * Get the cron property: Required if triggerType is Cron.
+     * Get the cron property: The workflow trigger cron for ComputeStartStop schedule type.
      *
      * @return the cron value.
      */
-    public CronTrigger cron() {
+    public Cron cron() {
         return this.cron;
     }
 
     /**
-     * Set the cron property: Required if triggerType is Cron.
+     * Set the cron property: The workflow trigger cron for ComputeStartStop schedule type.
      *
      * @param cron the cron value to set.
      * @return the ComputeStartStopSchedule object itself.
      */
-    public ComputeStartStopSchedule withCron(CronTrigger cron) {
+    public ComputeStartStopSchedule withCron(Cron cron) {
         this.cron = cron;
         return this;
     }

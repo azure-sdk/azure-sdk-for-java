@@ -18,6 +18,12 @@ import java.util.Map;
 @Fluent
 public final class CommandJob extends JobBaseProperties {
     /*
+     * Distribution configuration of the job. If set, this should be one of Mpi, Tensorflow, PyTorch, or null.
+     */
+    @JsonProperty(value = "autologgerSettings")
+    private AutologgerSettings autologgerSettings;
+
+    /*
      * ARM resource ID of the code asset.
      */
     @JsonProperty(value = "codeId")
@@ -82,6 +88,28 @@ public final class CommandJob extends JobBaseProperties {
 
     /** Creates an instance of CommandJob class. */
     public CommandJob() {
+    }
+
+    /**
+     * Get the autologgerSettings property: Distribution configuration of the job. If set, this should be one of Mpi,
+     * Tensorflow, PyTorch, or null.
+     *
+     * @return the autologgerSettings value.
+     */
+    public AutologgerSettings autologgerSettings() {
+        return this.autologgerSettings;
+    }
+
+    /**
+     * Set the autologgerSettings property: Distribution configuration of the job. If set, this should be one of Mpi,
+     * Tensorflow, PyTorch, or null.
+     *
+     * @param autologgerSettings the autologgerSettings value to set.
+     * @return the CommandJob object itself.
+     */
+    public CommandJob withAutologgerSettings(AutologgerSettings autologgerSettings) {
+        this.autologgerSettings = autologgerSettings;
+        return this;
     }
 
     /**
@@ -353,6 +381,9 @@ public final class CommandJob extends JobBaseProperties {
     @Override
     public void validate() {
         super.validate();
+        if (autologgerSettings() != null) {
+            autologgerSettings().validate();
+        }
         if (command() == null) {
             throw LOGGER
                 .logExceptionAsError(

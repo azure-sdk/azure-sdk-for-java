@@ -35,10 +35,28 @@ public final class ComputeInstanceProperties {
     private ApplicationSharingPolicy applicationSharingPolicy;
 
     /*
+     * Specifies settings for autologger.
+     */
+    @JsonProperty(value = "autologgerSettings")
+    private ComputeInstanceAutologgerSettings autologgerSettings;
+
+    /*
      * Specifies policy and settings for SSH access.
      */
     @JsonProperty(value = "sshSettings")
     private ComputeInstanceSshSettings sshSettings;
+
+    /*
+     * List of Custom Services added to the compute.
+     */
+    @JsonProperty(value = "customServices")
+    private List<CustomService> customServices;
+
+    /*
+     * Returns metadata about the operating system image for this compute instance.
+     */
+    @JsonProperty(value = "osImageMetadata", access = JsonProperty.Access.WRITE_ONLY)
+    private ImageMetadata osImageMetadata;
 
     /*
      * Describes all connectivity endpoints available for this ComputeInstance.
@@ -103,6 +121,13 @@ public final class ComputeInstanceProperties {
      */
     @JsonProperty(value = "schedules", access = JsonProperty.Access.WRITE_ONLY)
     private ComputeSchedules schedules;
+
+    /*
+     * Stops compute instance after user defined period of inactivity. Time is defined in ISO8601 format. Minimum is 15
+     * min, maximum is 3 days.
+     */
+    @JsonProperty(value = "idleTimeBeforeShutdown")
+    private String idleTimeBeforeShutdown;
 
     /*
      * Enable node public IP.
@@ -211,6 +236,26 @@ public final class ComputeInstanceProperties {
     }
 
     /**
+     * Get the autologgerSettings property: Specifies settings for autologger.
+     *
+     * @return the autologgerSettings value.
+     */
+    public ComputeInstanceAutologgerSettings autologgerSettings() {
+        return this.autologgerSettings;
+    }
+
+    /**
+     * Set the autologgerSettings property: Specifies settings for autologger.
+     *
+     * @param autologgerSettings the autologgerSettings value to set.
+     * @return the ComputeInstanceProperties object itself.
+     */
+    public ComputeInstanceProperties withAutologgerSettings(ComputeInstanceAutologgerSettings autologgerSettings) {
+        this.autologgerSettings = autologgerSettings;
+        return this;
+    }
+
+    /**
      * Get the sshSettings property: Specifies policy and settings for SSH access.
      *
      * @return the sshSettings value.
@@ -228,6 +273,35 @@ public final class ComputeInstanceProperties {
     public ComputeInstanceProperties withSshSettings(ComputeInstanceSshSettings sshSettings) {
         this.sshSettings = sshSettings;
         return this;
+    }
+
+    /**
+     * Get the customServices property: List of Custom Services added to the compute.
+     *
+     * @return the customServices value.
+     */
+    public List<CustomService> customServices() {
+        return this.customServices;
+    }
+
+    /**
+     * Set the customServices property: List of Custom Services added to the compute.
+     *
+     * @param customServices the customServices value to set.
+     * @return the ComputeInstanceProperties object itself.
+     */
+    public ComputeInstanceProperties withCustomServices(List<CustomService> customServices) {
+        this.customServices = customServices;
+        return this;
+    }
+
+    /**
+     * Get the osImageMetadata property: Returns metadata about the operating system image for this compute instance.
+     *
+     * @return the osImageMetadata value.
+     */
+    public ImageMetadata osImageMetadata() {
+        return this.osImageMetadata;
     }
 
     /**
@@ -362,6 +436,28 @@ public final class ComputeInstanceProperties {
     }
 
     /**
+     * Get the idleTimeBeforeShutdown property: Stops compute instance after user defined period of inactivity. Time is
+     * defined in ISO8601 format. Minimum is 15 min, maximum is 3 days.
+     *
+     * @return the idleTimeBeforeShutdown value.
+     */
+    public String idleTimeBeforeShutdown() {
+        return this.idleTimeBeforeShutdown;
+    }
+
+    /**
+     * Set the idleTimeBeforeShutdown property: Stops compute instance after user defined period of inactivity. Time is
+     * defined in ISO8601 format. Minimum is 15 min, maximum is 3 days.
+     *
+     * @param idleTimeBeforeShutdown the idleTimeBeforeShutdown value to set.
+     * @return the ComputeInstanceProperties object itself.
+     */
+    public ComputeInstanceProperties withIdleTimeBeforeShutdown(String idleTimeBeforeShutdown) {
+        this.idleTimeBeforeShutdown = idleTimeBeforeShutdown;
+        return this;
+    }
+
+    /**
      * Get the enableNodePublicIp property: Enable node public IP.
      *
      * <p>Enable or disable node public IP address provisioning. Possible values are: Possible values are: true -
@@ -434,8 +530,17 @@ public final class ComputeInstanceProperties {
         if (subnet() != null) {
             subnet().validate();
         }
+        if (autologgerSettings() != null) {
+            autologgerSettings().validate();
+        }
         if (sshSettings() != null) {
             sshSettings().validate();
+        }
+        if (customServices() != null) {
+            customServices().forEach(e -> e.validate());
+        }
+        if (osImageMetadata() != null) {
+            osImageMetadata().validate();
         }
         if (connectivityEndpoints() != null) {
             connectivityEndpoints().validate();

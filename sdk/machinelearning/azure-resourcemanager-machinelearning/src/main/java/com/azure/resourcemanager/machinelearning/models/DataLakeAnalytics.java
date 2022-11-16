@@ -46,13 +46,6 @@ public final class DataLakeAnalytics extends Compute {
 
     /** {@inheritDoc} */
     @Override
-    public DataLakeAnalytics withComputeLocation(String computeLocation) {
-        super.withComputeLocation(computeLocation);
-        return this;
-    }
-
-    /** {@inheritDoc} */
-    @Override
     public DataLakeAnalytics withDescription(String description) {
         super.withDescription(description);
         return this;
@@ -62,13 +55,6 @@ public final class DataLakeAnalytics extends Compute {
     @Override
     public DataLakeAnalytics withResourceId(String resourceId) {
         super.withResourceId(resourceId);
-        return this;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public DataLakeAnalytics withDisableLocalAuth(Boolean disableLocalAuth) {
-        super.withDisableLocalAuth(disableLocalAuth);
         return this;
     }
 

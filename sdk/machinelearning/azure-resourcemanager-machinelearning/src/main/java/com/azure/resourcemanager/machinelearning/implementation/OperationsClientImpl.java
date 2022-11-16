@@ -35,26 +35,26 @@ public final class OperationsClientImpl implements OperationsClient {
     private final OperationsService service;
 
     /** The service client containing this operation class. */
-    private final AzureMachineLearningWorkspacesImpl client;
+    private final AzureMachineLearningServicesImpl client;
 
     /**
      * Initializes an instance of OperationsClientImpl.
      *
      * @param client the instance of the service client containing this operation class.
      */
-    OperationsClientImpl(AzureMachineLearningWorkspacesImpl client) {
+    OperationsClientImpl(AzureMachineLearningServicesImpl client) {
         this.service =
             RestProxy.create(OperationsService.class, client.getHttpPipeline(), client.getSerializerAdapter());
         this.client = client;
     }
 
     /**
-     * The interface defining all the services for AzureMachineLearningWorkspacesOperations to be used by the proxy
+     * The interface defining all the services for AzureMachineLearningServicesOperations to be used by the proxy
      * service to perform REST calls.
      */
     @Host("{$host}")
     @ServiceInterface(name = "AzureMachineLearning")
-    private interface OperationsService {
+    public interface OperationsService {
         @Headers({"Content-Type: application/json"})
         @Get("/providers/Microsoft.MachineLearningServices/operations")
         @ExpectedResponses({200})
@@ -67,7 +67,7 @@ public final class OperationsClientImpl implements OperationsClient {
     }
 
     /**
-     * Lists all of the available Azure Machine Learning Workspaces REST API operations.
+     * Lists all of the available Azure Machine Learning Services REST API operations.
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -94,7 +94,7 @@ public final class OperationsClientImpl implements OperationsClient {
     }
 
     /**
-     * Lists all of the available Azure Machine Learning Workspaces REST API operations.
+     * Lists all of the available Azure Machine Learning Services REST API operations.
      *
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -122,7 +122,7 @@ public final class OperationsClientImpl implements OperationsClient {
     }
 
     /**
-     * Lists all of the available Azure Machine Learning Workspaces REST API operations.
+     * Lists all of the available Azure Machine Learning Services REST API operations.
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -134,7 +134,7 @@ public final class OperationsClientImpl implements OperationsClient {
     }
 
     /**
-     * Lists all of the available Azure Machine Learning Workspaces REST API operations.
+     * Lists all of the available Azure Machine Learning Services REST API operations.
      *
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -148,7 +148,7 @@ public final class OperationsClientImpl implements OperationsClient {
     }
 
     /**
-     * Lists all of the available Azure Machine Learning Workspaces REST API operations.
+     * Lists all of the available Azure Machine Learning Services REST API operations.
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -161,7 +161,7 @@ public final class OperationsClientImpl implements OperationsClient {
     }
 
     /**
-     * Lists all of the available Azure Machine Learning Workspaces REST API operations.
+     * Lists all of the available Azure Machine Learning Services REST API operations.
      *
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
