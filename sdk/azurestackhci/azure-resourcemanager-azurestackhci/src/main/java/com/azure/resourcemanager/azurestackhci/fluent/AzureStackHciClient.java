@@ -71,4 +71,46 @@ public interface AzureStackHciClient {
      * @return the OperationsClient object.
      */
     OperationsClient getOperations();
+
+    /**
+     * Gets the OffersClient object to access its operations.
+     *
+     * @return the OffersClient object.
+     */
+    OffersClient getOffers();
+
+    /**
+     * Gets the PublishersClient object to access its operations.
+     *
+     * @return the PublishersClient object.
+     */
+    PublishersClient getPublishers();
+
+    /**
+     * Gets the SkusClient object to access its operations.
+     *
+     * @return the SkusClient object.
+     */
+    SkusClient getSkus();
+
+    /**
+     * Gets the UpdateRunsClient object to access its operations.
+     *
+     * @return the UpdateRunsClient object.
+     */
+    UpdateRunsClient getUpdateRuns();
+
+    /**
+     * Gets the UpdateSummariesOperationsClient object to access its operations.
+     *
+     * @return the UpdateSummariesOperationsClient object.
+     */
+    UpdateSummariesOperationsClient getUpdateSummariesOperations();
+
+    /**
+     * Gets the UpdatesClient object to access its operations.
+     *
+     * @return the UpdatesClient object.
+     */
+    UpdatesClient getUpdates();
 }
