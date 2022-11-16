@@ -55,7 +55,7 @@ public final class BackupWorkloadItemsClientImpl implements BackupWorkloadItemsC
      */
     @Host("{$host}")
     @ServiceInterface(name = "RecoveryServicesBack")
-    private interface BackupWorkloadItemsService {
+    public interface BackupWorkloadItemsService {
         @Headers({"Content-Type: application/json"})
         @Get(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices"
@@ -158,7 +158,7 @@ public final class BackupWorkloadItemsClientImpl implements BackupWorkloadItemsC
                         res.getStatusCode(),
                         res.getHeaders(),
                         res.getValue().value(),
-                        res.getValue().nextLink(),
+                        res.getValue().nextLink().toString(),
                         null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
@@ -235,7 +235,7 @@ public final class BackupWorkloadItemsClientImpl implements BackupWorkloadItemsC
                         res.getStatusCode(),
                         res.getHeaders(),
                         res.getValue().value(),
-                        res.getValue().nextLink(),
+                        res.getValue().nextLink().toString(),
                         null));
     }
 
@@ -404,7 +404,7 @@ public final class BackupWorkloadItemsClientImpl implements BackupWorkloadItemsC
                         res.getStatusCode(),
                         res.getHeaders(),
                         res.getValue().value(),
-                        res.getValue().nextLink(),
+                        res.getValue().nextLink().toString(),
                         null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
@@ -442,7 +442,7 @@ public final class BackupWorkloadItemsClientImpl implements BackupWorkloadItemsC
                         res.getStatusCode(),
                         res.getHeaders(),
                         res.getValue().value(),
-                        res.getValue().nextLink(),
+                        res.getValue().nextLink().toString(),
                         null));
     }
 }

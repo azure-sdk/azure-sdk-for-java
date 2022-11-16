@@ -64,7 +64,7 @@ public final class RecoveryPointsRecommendedForMovesClientImpl implements Recove
      */
     @Host("{$host}")
     @ServiceInterface(name = "RecoveryServicesBack")
-    private interface RecoveryPointsRecommendedForMovesService {
+    public interface RecoveryPointsRecommendedForMovesService {
         @Headers({"Content-Type: application/json"})
         @Post(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices"
@@ -177,7 +177,7 @@ public final class RecoveryPointsRecommendedForMovesClientImpl implements Recove
                         res.getStatusCode(),
                         res.getHeaders(),
                         res.getValue().value(),
-                        res.getValue().nextLink(),
+                        res.getValue().nextLink().toString(),
                         null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
@@ -263,7 +263,7 @@ public final class RecoveryPointsRecommendedForMovesClientImpl implements Recove
                         res.getStatusCode(),
                         res.getHeaders(),
                         res.getValue().value(),
-                        res.getValue().nextLink(),
+                        res.getValue().nextLink().toString(),
                         null));
     }
 
@@ -413,7 +413,7 @@ public final class RecoveryPointsRecommendedForMovesClientImpl implements Recove
                         res.getStatusCode(),
                         res.getHeaders(),
                         res.getValue().value(),
-                        res.getValue().nextLink(),
+                        res.getValue().nextLink().toString(),
                         null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
@@ -452,7 +452,7 @@ public final class RecoveryPointsRecommendedForMovesClientImpl implements Recove
                         res.getStatusCode(),
                         res.getHeaders(),
                         res.getValue().value(),
-                        res.getValue().nextLink(),
+                        res.getValue().nextLink().toString(),
                         null));
     }
 }
