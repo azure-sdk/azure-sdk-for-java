@@ -42,16 +42,6 @@ public final class WorkspacePrivateLinkResourcesImpl implements WorkspacePrivate
         return Utils.mapPage(inner, inner1 -> new PrivateLinkResourceDescriptionImpl(inner1, this.manager()));
     }
 
-    public PrivateLinkResourceDescription get(String resourceGroupName, String workspaceName, String groupName) {
-        PrivateLinkResourceDescriptionInner inner =
-            this.serviceClient().get(resourceGroupName, workspaceName, groupName);
-        if (inner != null) {
-            return new PrivateLinkResourceDescriptionImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
     public Response<PrivateLinkResourceDescription> getWithResponse(
         String resourceGroupName, String workspaceName, String groupName, Context context) {
         Response<PrivateLinkResourceDescriptionInner> inner =
@@ -62,6 +52,16 @@ public final class WorkspacePrivateLinkResourcesImpl implements WorkspacePrivate
                 inner.getStatusCode(),
                 inner.getHeaders(),
                 new PrivateLinkResourceDescriptionImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public PrivateLinkResourceDescription get(String resourceGroupName, String workspaceName, String groupName) {
+        PrivateLinkResourceDescriptionInner inner =
+            this.serviceClient().get(resourceGroupName, workspaceName, groupName);
+        if (inner != null) {
+            return new PrivateLinkResourceDescriptionImpl(inner, this.manager());
         } else {
             return null;
         }

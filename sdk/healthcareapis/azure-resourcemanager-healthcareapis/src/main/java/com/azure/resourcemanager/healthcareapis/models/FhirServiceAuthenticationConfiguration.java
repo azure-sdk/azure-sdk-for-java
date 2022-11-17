@@ -28,6 +28,10 @@ public final class FhirServiceAuthenticationConfiguration {
     @JsonProperty(value = "smartProxyEnabled")
     private Boolean smartProxyEnabled;
 
+    /** Creates an instance of FhirServiceAuthenticationConfiguration class. */
+    public FhirServiceAuthenticationConfiguration() {
+    }
+
     /**
      * Get the authority property: The authority url for the service.
      *

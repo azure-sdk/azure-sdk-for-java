@@ -65,7 +65,7 @@ public final class DicomServicesClientImpl implements DicomServicesClient {
      */
     @Host("{$host}")
     @ServiceInterface(name = "HealthcareApisManage")
-    private interface DicomServicesService {
+    public interface DicomServicesService {
         @Headers({"Content-Type: application/json"})
         @Get(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HealthcareApis"
@@ -462,30 +462,7 @@ public final class DicomServicesClientImpl implements DicomServicesClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<DicomServiceInner> getAsync(String resourceGroupName, String workspaceName, String dicomServiceName) {
         return getWithResponseAsync(resourceGroupName, workspaceName, dicomServiceName)
-            .flatMap(
-                (Response<DicomServiceInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
-    }
-
-    /**
-     * Gets the properties of the specified DICOM Service.
-     *
-     * @param resourceGroupName The name of the resource group that contains the service instance.
-     * @param workspaceName The name of workspace resource.
-     * @param dicomServiceName The name of DICOM Service resource.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the properties of the specified DICOM Service.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public DicomServiceInner get(String resourceGroupName, String workspaceName, String dicomServiceName) {
-        return getAsync(resourceGroupName, workspaceName, dicomServiceName).block();
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -504,6 +481,22 @@ public final class DicomServicesClientImpl implements DicomServicesClient {
     public Response<DicomServiceInner> getWithResponse(
         String resourceGroupName, String workspaceName, String dicomServiceName, Context context) {
         return getWithResponseAsync(resourceGroupName, workspaceName, dicomServiceName, context).block();
+    }
+
+    /**
+     * Gets the properties of the specified DICOM Service.
+     *
+     * @param resourceGroupName The name of the resource group that contains the service instance.
+     * @param workspaceName The name of workspace resource.
+     * @param dicomServiceName The name of DICOM Service resource.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the properties of the specified DICOM Service.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public DicomServiceInner get(String resourceGroupName, String workspaceName, String dicomServiceName) {
+        return getWithResponse(resourceGroupName, workspaceName, dicomServiceName, Context.NONE).getValue();
     }
 
     /**
@@ -1405,7 +1398,8 @@ public final class DicomServicesClientImpl implements DicomServicesClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1441,7 +1435,8 @@ public final class DicomServicesClientImpl implements DicomServicesClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.

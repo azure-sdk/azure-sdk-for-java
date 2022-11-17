@@ -24,6 +24,10 @@ public final class DicomServiceCollection {
     @JsonProperty(value = "value")
     private List<DicomServiceInner> value;
 
+    /** Creates an instance of DicomServiceCollection class. */
+    public DicomServiceCollection() {
+    }
+
     /**
      * Get the nextLink property: The link used to get the next page of Dicom Services.
      *

@@ -21,7 +21,7 @@ import java.util.Map;
 /** Samples for Services CreateOrUpdate. */
 public final class ServicesCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/healthcareapis/resource-manager/Microsoft.HealthcareApis/stable/2021-11-01/examples/legacy/ServiceCreate.json
+     * x-ms-original-file: specification/healthcareapis/resource-manager/Microsoft.HealthcareApis/stable/2022-12-01/examples/legacy/ServiceCreate.json
      */
     /**
      * Sample code: Create or Update a service with all parameters.
@@ -48,7 +48,7 @@ public final class ServicesCreateOrUpdateSamples {
                     .withCosmosDbConfiguration(
                         new ServiceCosmosDbConfigurationInfo()
                             .withOfferThroughput(1000)
-                            .withKeyVaultKeyUri("https://my-vault.vault.azure.net/keys/my-key"))
+                            .withKeyVaultKeyUri("fakeTokenPlaceholder"))
                     .withAuthenticationConfiguration(
                         new ServiceAuthenticationConfigurationInfo()
                             .withAuthority("https://login.microsoftonline.com/abfde7b2-df0f-47e6-aabf-2462b07508dc")
@@ -69,7 +69,7 @@ public final class ServicesCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/healthcareapis/resource-manager/Microsoft.HealthcareApis/stable/2021-11-01/examples/legacy/ServiceCreateMinimum.json
+     * x-ms-original-file: specification/healthcareapis/resource-manager/Microsoft.HealthcareApis/stable/2022-12-01/examples/legacy/ServiceCreateMinimum.json
      */
     /**
      * Sample code: Create or Update a service with minimum parameters.

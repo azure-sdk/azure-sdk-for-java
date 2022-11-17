@@ -23,11 +23,14 @@ public class ServicesResourceIdentity {
     private String tenantId;
 
     /*
-     * Type of identity being specified, currently SystemAssigned and None are
-     * allowed.
+     * Type of identity being specified, currently SystemAssigned and None are allowed.
      */
     @JsonProperty(value = "type")
     private ManagedServiceIdentityType type;
+
+    /** Creates an instance of ServicesResourceIdentity class. */
+    public ServicesResourceIdentity() {
+    }
 
     /**
      * Get the principalId property: The principal ID of the resource identity.
