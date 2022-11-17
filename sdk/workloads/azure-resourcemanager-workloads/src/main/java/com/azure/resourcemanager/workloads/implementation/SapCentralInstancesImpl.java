@@ -29,17 +29,6 @@ public final class SapCentralInstancesImpl implements SapCentralInstances {
         this.serviceManager = serviceManager;
     }
 
-    public SapCentralServerInstance get(
-        String resourceGroupName, String sapVirtualInstanceName, String centralInstanceName) {
-        SapCentralServerInstanceInner inner =
-            this.serviceClient().get(resourceGroupName, sapVirtualInstanceName, centralInstanceName);
-        if (inner != null) {
-            return new SapCentralServerInstanceImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
     public Response<SapCentralServerInstance> getWithResponse(
         String resourceGroupName, String sapVirtualInstanceName, String centralInstanceName, Context context) {
         Response<SapCentralServerInstanceInner> inner =
@@ -52,6 +41,17 @@ public final class SapCentralInstancesImpl implements SapCentralInstances {
                 inner.getStatusCode(),
                 inner.getHeaders(),
                 new SapCentralServerInstanceImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public SapCentralServerInstance get(
+        String resourceGroupName, String sapVirtualInstanceName, String centralInstanceName) {
+        SapCentralServerInstanceInner inner =
+            this.serviceClient().get(resourceGroupName, sapVirtualInstanceName, centralInstanceName);
+        if (inner != null) {
+            return new SapCentralServerInstanceImpl(inner, this.manager());
         } else {
             return null;
         }

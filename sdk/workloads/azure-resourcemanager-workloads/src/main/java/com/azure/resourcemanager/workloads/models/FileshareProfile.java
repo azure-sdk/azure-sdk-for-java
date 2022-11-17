@@ -41,6 +41,10 @@ public final class FileshareProfile {
     @JsonProperty(value = "shareName", access = JsonProperty.Access.WRITE_ONLY)
     private String shareName;
 
+    /** Creates an instance of FileshareProfile class. */
+    public FileshareProfile() {
+    }
+
     /**
      * Get the shareType property: Share type.
      *

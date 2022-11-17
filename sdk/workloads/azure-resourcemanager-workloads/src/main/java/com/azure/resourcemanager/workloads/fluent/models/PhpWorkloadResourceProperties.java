@@ -108,6 +108,10 @@ public final class PhpWorkloadResourceProperties {
     @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
     private PhpWorkloadProvisioningState provisioningState;
 
+    /** Creates an instance of PhpWorkloadResourceProperties class. */
+    public PhpWorkloadResourceProperties() {
+    }
+
     /**
      * Get the appLocation property: The infra resources for PHP workload will be created in this location.
      *

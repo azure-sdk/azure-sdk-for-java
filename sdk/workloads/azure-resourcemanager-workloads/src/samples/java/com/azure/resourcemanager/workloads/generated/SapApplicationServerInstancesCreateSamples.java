@@ -28,6 +28,25 @@ public final class SapApplicationServerInstancesCreateSamples {
             .create();
     }
 
+    /*
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/preview/2021-12-01-preview/examples/sapvirtualinstances/SAPApplicationServerInstances_Create_HA_AvSet.json
+     */
+    /**
+     * Sample code: Create SAP Application Server Instances for HA System with Availability Set.
+     *
+     * @param manager Entry point to WorkloadsManager.
+     */
+    public static void createSAPApplicationServerInstancesForHASystemWithAvailabilitySet(
+        com.azure.resourcemanager.workloads.WorkloadsManager manager) {
+        manager
+            .sapApplicationServerInstances()
+            .define("app01")
+            .withRegion("westcentralus")
+            .withExistingSapVirtualInstance("test-rg", "X00")
+            .withTags(mapOf())
+            .create();
+    }
+
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();

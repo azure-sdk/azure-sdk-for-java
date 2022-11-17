@@ -13,8 +13,10 @@ import com.azure.resourcemanager.workloads.models.SapHealthState;
 import com.azure.resourcemanager.workloads.models.SapVirtualInstanceError;
 import com.azure.resourcemanager.workloads.models.SapVirtualInstanceProvisioningState;
 import com.azure.resourcemanager.workloads.models.SapVirtualInstanceStatus;
+import com.azure.resourcemanager.workloads.models.StorageInformation;
 import com.azure.resourcemanager.workloads.models.UpdateSapApplicationInstanceRequest;
 import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 
 public final class SapApplicationServerInstanceImpl
@@ -96,6 +98,15 @@ public final class SapApplicationServerInstanceImpl
 
     public SapVirtualInstanceStatus status() {
         return this.innerModel().status();
+    }
+
+    public List<StorageInformation> storageDetails() {
+        List<StorageInformation> inner = this.innerModel().storageDetails();
+        if (inner != null) {
+            return Collections.unmodifiableList(inner);
+        } else {
+            return Collections.emptyList();
+        }
     }
 
     public SapHealthState health() {
