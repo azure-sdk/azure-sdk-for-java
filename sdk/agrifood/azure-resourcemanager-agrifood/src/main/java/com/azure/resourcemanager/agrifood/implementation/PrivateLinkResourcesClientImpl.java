@@ -28,6 +28,7 @@ import com.azure.core.util.FluxUtil;
 import com.azure.resourcemanager.agrifood.fluent.PrivateLinkResourcesClient;
 import com.azure.resourcemanager.agrifood.fluent.models.PrivateLinkResourceInner;
 import com.azure.resourcemanager.agrifood.models.PrivateLinkResourceListResult;
+import java.util.UUID;
 import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in PrivateLinkResourcesClient. */
@@ -56,7 +57,7 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
      */
     @Host("{$host}")
     @ServiceInterface(name = "AgriFoodManagementCl")
-    private interface PrivateLinkResourcesService {
+    public interface PrivateLinkResourcesService {
         @Headers({"Content-Type: application/json"})
         @Get(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AgFoodPlatform"
@@ -65,7 +66,7 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<PrivateLinkResourceListResult>> listByResource(
             @HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("subscriptionId") UUID subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("farmBeatsResourceName") String farmBeatsResourceName,
             @QueryParam("api-version") String apiVersion,
@@ -80,7 +81,7 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<PrivateLinkResourceInner>> get(
             @HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("subscriptionId") UUID subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("farmBeatsResourceName") String farmBeatsResourceName,
             @PathParam("subResourceName") String subResourceName,
@@ -391,23 +392,6 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param farmBeatsResourceName FarmBeats resource name.
      * @param subResourceName Sub resource name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return private link resource object.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public PrivateLinkResourceInner get(
-        String resourceGroupName, String farmBeatsResourceName, String subResourceName) {
-        return getAsync(resourceGroupName, farmBeatsResourceName, subResourceName).block();
-    }
-
-    /**
-     * Get Private link resource object.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param farmBeatsResourceName FarmBeats resource name.
-     * @param subResourceName Sub resource name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -418,5 +402,22 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
     public Response<PrivateLinkResourceInner> getWithResponse(
         String resourceGroupName, String farmBeatsResourceName, String subResourceName, Context context) {
         return getWithResponseAsync(resourceGroupName, farmBeatsResourceName, subResourceName, context).block();
+    }
+
+    /**
+     * Get Private link resource object.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param farmBeatsResourceName FarmBeats resource name.
+     * @param subResourceName Sub resource name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return private link resource object.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public PrivateLinkResourceInner get(
+        String resourceGroupName, String farmBeatsResourceName, String subResourceName) {
+        return getWithResponse(resourceGroupName, farmBeatsResourceName, subResourceName, Context.NONE).getValue();
     }
 }

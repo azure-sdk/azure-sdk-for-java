@@ -44,6 +44,7 @@ import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 /** Entry point to AgriFoodManager. APIs documentation for Azure AgFoodPlatform Resource Provider Service. */
@@ -71,7 +72,7 @@ public final class AgriFoodManager {
             new AgriFoodManagementClientBuilder()
                 .pipeline(httpPipeline)
                 .endpoint(profile.getEnvironment().getResourceManagerEndpoint())
-                .subscriptionId(profile.getSubscriptionId())
+                .subscriptionId(UUID.fromString(profile.getSubscriptionId()))
                 .defaultPollInterval(defaultPollInterval)
                 .buildClient();
     }
@@ -285,7 +286,7 @@ public final class AgriFoodManager {
     }
 
     /**
-     * Gets the resource collection API of Extensions.
+     * Gets the resource collection API of Extensions. It manages Extension.
      *
      * @return Resource collection API of Extensions.
      */
