@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for ApplicationProvisioningState. */
+/** WordPress instance provisioning state. */
 public final class ApplicationProvisioningState extends ExpandableStringEnum<ApplicationProvisioningState> {
     /** Static value NotSpecified for ApplicationProvisioningState. */
     public static final ApplicationProvisioningState NOT_SPECIFIED = fromString("NotSpecified");

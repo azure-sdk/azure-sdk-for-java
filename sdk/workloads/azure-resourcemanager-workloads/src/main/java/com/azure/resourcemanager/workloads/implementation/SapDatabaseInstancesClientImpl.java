@@ -67,7 +67,7 @@ public final class SapDatabaseInstancesClientImpl implements SapDatabaseInstance
      */
     @Host("{$host}")
     @ServiceInterface(name = "WorkloadsClientSapDa")
-    private interface SapDatabaseInstancesService {
+    public interface SapDatabaseInstancesService {
         @Headers({"Content-Type: application/json"})
         @Get(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Workloads"
@@ -161,15 +161,16 @@ public final class SapDatabaseInstancesClientImpl implements SapDatabaseInstance
     }
 
     /**
-     * Gets the SAP Database Instance.
+     * Gets the SAP Database Instance resource.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param sapVirtualInstanceName The name of the Virtual Instances for SAP.
-     * @param databaseInstanceName Database Instance string modeled as parameter for auto generation to work correctly.
+     * @param sapVirtualInstanceName The name of the Virtual Instances for SAP solutions resource.
+     * @param databaseInstanceName Database resource name string modeled as parameter for auto generation to work
+     *     correctly.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the SAP Database Instance along with {@link Response} on successful completion of {@link Mono}.
+     * @return the SAP Database Instance resource along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<SapDatabaseInstanceInner>> getWithResponseAsync(
@@ -217,16 +218,17 @@ public final class SapDatabaseInstancesClientImpl implements SapDatabaseInstance
     }
 
     /**
-     * Gets the SAP Database Instance.
+     * Gets the SAP Database Instance resource.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param sapVirtualInstanceName The name of the Virtual Instances for SAP.
-     * @param databaseInstanceName Database Instance string modeled as parameter for auto generation to work correctly.
+     * @param sapVirtualInstanceName The name of the Virtual Instances for SAP solutions resource.
+     * @param databaseInstanceName Database resource name string modeled as parameter for auto generation to work
+     *     correctly.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the SAP Database Instance along with {@link Response} on successful completion of {@link Mono}.
+     * @return the SAP Database Instance resource along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<SapDatabaseInstanceInner>> getWithResponseAsync(
@@ -271,15 +273,16 @@ public final class SapDatabaseInstancesClientImpl implements SapDatabaseInstance
     }
 
     /**
-     * Gets the SAP Database Instance.
+     * Gets the SAP Database Instance resource.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param sapVirtualInstanceName The name of the Virtual Instances for SAP.
-     * @param databaseInstanceName Database Instance string modeled as parameter for auto generation to work correctly.
+     * @param sapVirtualInstanceName The name of the Virtual Instances for SAP solutions resource.
+     * @param databaseInstanceName Database resource name string modeled as parameter for auto generation to work
+     *     correctly.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the SAP Database Instance on successful completion of {@link Mono}.
+     * @return the SAP Database Instance resource on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<SapDatabaseInstanceInner> getAsync(
@@ -289,33 +292,17 @@ public final class SapDatabaseInstancesClientImpl implements SapDatabaseInstance
     }
 
     /**
-     * Gets the SAP Database Instance.
+     * Gets the SAP Database Instance resource.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param sapVirtualInstanceName The name of the Virtual Instances for SAP.
-     * @param databaseInstanceName Database Instance string modeled as parameter for auto generation to work correctly.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the SAP Database Instance.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public SapDatabaseInstanceInner get(
-        String resourceGroupName, String sapVirtualInstanceName, String databaseInstanceName) {
-        return getAsync(resourceGroupName, sapVirtualInstanceName, databaseInstanceName).block();
-    }
-
-    /**
-     * Gets the SAP Database Instance.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param sapVirtualInstanceName The name of the Virtual Instances for SAP.
-     * @param databaseInstanceName Database Instance string modeled as parameter for auto generation to work correctly.
+     * @param sapVirtualInstanceName The name of the Virtual Instances for SAP solutions resource.
+     * @param databaseInstanceName Database resource name string modeled as parameter for auto generation to work
+     *     correctly.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the SAP Database Instance along with {@link Response}.
+     * @return the SAP Database Instance resource along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<SapDatabaseInstanceInner> getWithResponse(
@@ -324,17 +311,37 @@ public final class SapDatabaseInstancesClientImpl implements SapDatabaseInstance
     }
 
     /**
-     * Puts the SAP Database Instance. &lt;br&gt;&lt;br&gt;This will be used by service only. PUT by end user will
-     * return a Bad Request error.
+     * Gets the SAP Database Instance resource.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param sapVirtualInstanceName The name of the Virtual Instances for SAP.
-     * @param databaseInstanceName Database Instance string modeled as parameter for auto generation to work correctly.
-     * @param body The SAP Database Server instance request body.
+     * @param sapVirtualInstanceName The name of the Virtual Instances for SAP solutions resource.
+     * @param databaseInstanceName Database resource name string modeled as parameter for auto generation to work
+     *     correctly.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return define the SAP Database Instance along with {@link Response} on successful completion of {@link Mono}.
+     * @return the SAP Database Instance resource.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public SapDatabaseInstanceInner get(
+        String resourceGroupName, String sapVirtualInstanceName, String databaseInstanceName) {
+        return getWithResponse(resourceGroupName, sapVirtualInstanceName, databaseInstanceName, Context.NONE)
+            .getValue();
+    }
+
+    /**
+     * Creates the Database resource corresponding to the Virtual Instance for SAP solutions resource.
+     * &lt;br&gt;&lt;br&gt;This will be used by service only. PUT by end user will return a Bad Request error.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param sapVirtualInstanceName The name of the Virtual Instances for SAP solutions resource.
+     * @param databaseInstanceName Database resource name string modeled as parameter for auto generation to work
+     *     correctly.
+     * @param body Request body of Database resource of a SAP system.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return define the Database resource along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> createWithResponseAsync(
@@ -389,18 +396,19 @@ public final class SapDatabaseInstancesClientImpl implements SapDatabaseInstance
     }
 
     /**
-     * Puts the SAP Database Instance. &lt;br&gt;&lt;br&gt;This will be used by service only. PUT by end user will
-     * return a Bad Request error.
+     * Creates the Database resource corresponding to the Virtual Instance for SAP solutions resource.
+     * &lt;br&gt;&lt;br&gt;This will be used by service only. PUT by end user will return a Bad Request error.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param sapVirtualInstanceName The name of the Virtual Instances for SAP.
-     * @param databaseInstanceName Database Instance string modeled as parameter for auto generation to work correctly.
-     * @param body The SAP Database Server instance request body.
+     * @param sapVirtualInstanceName The name of the Virtual Instances for SAP solutions resource.
+     * @param databaseInstanceName Database resource name string modeled as parameter for auto generation to work
+     *     correctly.
+     * @param body Request body of Database resource of a SAP system.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return define the SAP Database Instance along with {@link Response} on successful completion of {@link Mono}.
+     * @return define the Database resource along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> createWithResponseAsync(
@@ -453,17 +461,18 @@ public final class SapDatabaseInstancesClientImpl implements SapDatabaseInstance
     }
 
     /**
-     * Puts the SAP Database Instance. &lt;br&gt;&lt;br&gt;This will be used by service only. PUT by end user will
-     * return a Bad Request error.
+     * Creates the Database resource corresponding to the Virtual Instance for SAP solutions resource.
+     * &lt;br&gt;&lt;br&gt;This will be used by service only. PUT by end user will return a Bad Request error.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param sapVirtualInstanceName The name of the Virtual Instances for SAP.
-     * @param databaseInstanceName Database Instance string modeled as parameter for auto generation to work correctly.
-     * @param body The SAP Database Server instance request body.
+     * @param sapVirtualInstanceName The name of the Virtual Instances for SAP solutions resource.
+     * @param databaseInstanceName Database resource name string modeled as parameter for auto generation to work
+     *     correctly.
+     * @param body Request body of Database resource of a SAP system.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of define the SAP Database Instance.
+     * @return the {@link PollerFlux} for polling of define the Database resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<SapDatabaseInstanceInner>, SapDatabaseInstanceInner> beginCreateAsync(
@@ -484,18 +493,48 @@ public final class SapDatabaseInstancesClientImpl implements SapDatabaseInstance
     }
 
     /**
-     * Puts the SAP Database Instance. &lt;br&gt;&lt;br&gt;This will be used by service only. PUT by end user will
-     * return a Bad Request error.
+     * Creates the Database resource corresponding to the Virtual Instance for SAP solutions resource.
+     * &lt;br&gt;&lt;br&gt;This will be used by service only. PUT by end user will return a Bad Request error.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param sapVirtualInstanceName The name of the Virtual Instances for SAP.
-     * @param databaseInstanceName Database Instance string modeled as parameter for auto generation to work correctly.
-     * @param body The SAP Database Server instance request body.
+     * @param sapVirtualInstanceName The name of the Virtual Instances for SAP solutions resource.
+     * @param databaseInstanceName Database resource name string modeled as parameter for auto generation to work
+     *     correctly.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of define the Database resource.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<SapDatabaseInstanceInner>, SapDatabaseInstanceInner> beginCreateAsync(
+        String resourceGroupName, String sapVirtualInstanceName, String databaseInstanceName) {
+        final SapDatabaseInstanceInner body = null;
+        Mono<Response<Flux<ByteBuffer>>> mono =
+            createWithResponseAsync(resourceGroupName, sapVirtualInstanceName, databaseInstanceName, body);
+        return this
+            .client
+            .<SapDatabaseInstanceInner, SapDatabaseInstanceInner>getLroResult(
+                mono,
+                this.client.getHttpPipeline(),
+                SapDatabaseInstanceInner.class,
+                SapDatabaseInstanceInner.class,
+                this.client.getContext());
+    }
+
+    /**
+     * Creates the Database resource corresponding to the Virtual Instance for SAP solutions resource.
+     * &lt;br&gt;&lt;br&gt;This will be used by service only. PUT by end user will return a Bad Request error.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param sapVirtualInstanceName The name of the Virtual Instances for SAP solutions resource.
+     * @param databaseInstanceName Database resource name string modeled as parameter for auto generation to work
+     *     correctly.
+     * @param body Request body of Database resource of a SAP system.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of define the SAP Database Instance.
+     * @return the {@link PollerFlux} for polling of define the Database resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<SapDatabaseInstanceInner>, SapDatabaseInstanceInner> beginCreateAsync(
@@ -518,40 +557,39 @@ public final class SapDatabaseInstancesClientImpl implements SapDatabaseInstance
     }
 
     /**
-     * Puts the SAP Database Instance. &lt;br&gt;&lt;br&gt;This will be used by service only. PUT by end user will
-     * return a Bad Request error.
+     * Creates the Database resource corresponding to the Virtual Instance for SAP solutions resource.
+     * &lt;br&gt;&lt;br&gt;This will be used by service only. PUT by end user will return a Bad Request error.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param sapVirtualInstanceName The name of the Virtual Instances for SAP.
-     * @param databaseInstanceName Database Instance string modeled as parameter for auto generation to work correctly.
-     * @param body The SAP Database Server instance request body.
+     * @param sapVirtualInstanceName The name of the Virtual Instances for SAP solutions resource.
+     * @param databaseInstanceName Database resource name string modeled as parameter for auto generation to work
+     *     correctly.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of define the SAP Database Instance.
+     * @return the {@link SyncPoller} for polling of define the Database resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<SapDatabaseInstanceInner>, SapDatabaseInstanceInner> beginCreate(
-        String resourceGroupName,
-        String sapVirtualInstanceName,
-        String databaseInstanceName,
-        SapDatabaseInstanceInner body) {
+        String resourceGroupName, String sapVirtualInstanceName, String databaseInstanceName) {
+        final SapDatabaseInstanceInner body = null;
         return beginCreateAsync(resourceGroupName, sapVirtualInstanceName, databaseInstanceName, body).getSyncPoller();
     }
 
     /**
-     * Puts the SAP Database Instance. &lt;br&gt;&lt;br&gt;This will be used by service only. PUT by end user will
-     * return a Bad Request error.
+     * Creates the Database resource corresponding to the Virtual Instance for SAP solutions resource.
+     * &lt;br&gt;&lt;br&gt;This will be used by service only. PUT by end user will return a Bad Request error.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param sapVirtualInstanceName The name of the Virtual Instances for SAP.
-     * @param databaseInstanceName Database Instance string modeled as parameter for auto generation to work correctly.
-     * @param body The SAP Database Server instance request body.
+     * @param sapVirtualInstanceName The name of the Virtual Instances for SAP solutions resource.
+     * @param databaseInstanceName Database resource name string modeled as parameter for auto generation to work
+     *     correctly.
+     * @param body Request body of Database resource of a SAP system.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of define the SAP Database Instance.
+     * @return the {@link SyncPoller} for polling of define the Database resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<SapDatabaseInstanceInner>, SapDatabaseInstanceInner> beginCreate(
@@ -565,17 +603,18 @@ public final class SapDatabaseInstancesClientImpl implements SapDatabaseInstance
     }
 
     /**
-     * Puts the SAP Database Instance. &lt;br&gt;&lt;br&gt;This will be used by service only. PUT by end user will
-     * return a Bad Request error.
+     * Creates the Database resource corresponding to the Virtual Instance for SAP solutions resource.
+     * &lt;br&gt;&lt;br&gt;This will be used by service only. PUT by end user will return a Bad Request error.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param sapVirtualInstanceName The name of the Virtual Instances for SAP.
-     * @param databaseInstanceName Database Instance string modeled as parameter for auto generation to work correctly.
-     * @param body The SAP Database Server instance request body.
+     * @param sapVirtualInstanceName The name of the Virtual Instances for SAP solutions resource.
+     * @param databaseInstanceName Database resource name string modeled as parameter for auto generation to work
+     *     correctly.
+     * @param body Request body of Database resource of a SAP system.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return define the SAP Database Instance on successful completion of {@link Mono}.
+     * @return define the Database resource on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<SapDatabaseInstanceInner> createAsync(
@@ -589,16 +628,17 @@ public final class SapDatabaseInstancesClientImpl implements SapDatabaseInstance
     }
 
     /**
-     * Puts the SAP Database Instance. &lt;br&gt;&lt;br&gt;This will be used by service only. PUT by end user will
-     * return a Bad Request error.
+     * Creates the Database resource corresponding to the Virtual Instance for SAP solutions resource.
+     * &lt;br&gt;&lt;br&gt;This will be used by service only. PUT by end user will return a Bad Request error.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param sapVirtualInstanceName The name of the Virtual Instances for SAP.
-     * @param databaseInstanceName Database Instance string modeled as parameter for auto generation to work correctly.
+     * @param sapVirtualInstanceName The name of the Virtual Instances for SAP solutions resource.
+     * @param databaseInstanceName Database resource name string modeled as parameter for auto generation to work
+     *     correctly.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return define the SAP Database Instance on successful completion of {@link Mono}.
+     * @return define the Database resource on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<SapDatabaseInstanceInner> createAsync(
@@ -610,18 +650,19 @@ public final class SapDatabaseInstancesClientImpl implements SapDatabaseInstance
     }
 
     /**
-     * Puts the SAP Database Instance. &lt;br&gt;&lt;br&gt;This will be used by service only. PUT by end user will
-     * return a Bad Request error.
+     * Creates the Database resource corresponding to the Virtual Instance for SAP solutions resource.
+     * &lt;br&gt;&lt;br&gt;This will be used by service only. PUT by end user will return a Bad Request error.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param sapVirtualInstanceName The name of the Virtual Instances for SAP.
-     * @param databaseInstanceName Database Instance string modeled as parameter for auto generation to work correctly.
-     * @param body The SAP Database Server instance request body.
+     * @param sapVirtualInstanceName The name of the Virtual Instances for SAP solutions resource.
+     * @param databaseInstanceName Database resource name string modeled as parameter for auto generation to work
+     *     correctly.
+     * @param body Request body of Database resource of a SAP system.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return define the SAP Database Instance on successful completion of {@link Mono}.
+     * @return define the Database resource on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<SapDatabaseInstanceInner> createAsync(
@@ -636,38 +677,17 @@ public final class SapDatabaseInstancesClientImpl implements SapDatabaseInstance
     }
 
     /**
-     * Puts the SAP Database Instance. &lt;br&gt;&lt;br&gt;This will be used by service only. PUT by end user will
-     * return a Bad Request error.
+     * Creates the Database resource corresponding to the Virtual Instance for SAP solutions resource.
+     * &lt;br&gt;&lt;br&gt;This will be used by service only. PUT by end user will return a Bad Request error.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param sapVirtualInstanceName The name of the Virtual Instances for SAP.
-     * @param databaseInstanceName Database Instance string modeled as parameter for auto generation to work correctly.
-     * @param body The SAP Database Server instance request body.
+     * @param sapVirtualInstanceName The name of the Virtual Instances for SAP solutions resource.
+     * @param databaseInstanceName Database resource name string modeled as parameter for auto generation to work
+     *     correctly.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return define the SAP Database Instance.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public SapDatabaseInstanceInner create(
-        String resourceGroupName,
-        String sapVirtualInstanceName,
-        String databaseInstanceName,
-        SapDatabaseInstanceInner body) {
-        return createAsync(resourceGroupName, sapVirtualInstanceName, databaseInstanceName, body).block();
-    }
-
-    /**
-     * Puts the SAP Database Instance. &lt;br&gt;&lt;br&gt;This will be used by service only. PUT by end user will
-     * return a Bad Request error.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param sapVirtualInstanceName The name of the Virtual Instances for SAP.
-     * @param databaseInstanceName Database Instance string modeled as parameter for auto generation to work correctly.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return define the SAP Database Instance.
+     * @return define the Database resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public SapDatabaseInstanceInner create(
@@ -677,18 +697,19 @@ public final class SapDatabaseInstancesClientImpl implements SapDatabaseInstance
     }
 
     /**
-     * Puts the SAP Database Instance. &lt;br&gt;&lt;br&gt;This will be used by service only. PUT by end user will
-     * return a Bad Request error.
+     * Creates the Database resource corresponding to the Virtual Instance for SAP solutions resource.
+     * &lt;br&gt;&lt;br&gt;This will be used by service only. PUT by end user will return a Bad Request error.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param sapVirtualInstanceName The name of the Virtual Instances for SAP.
-     * @param databaseInstanceName Database Instance string modeled as parameter for auto generation to work correctly.
-     * @param body The SAP Database Server instance request body.
+     * @param sapVirtualInstanceName The name of the Virtual Instances for SAP solutions resource.
+     * @param databaseInstanceName Database resource name string modeled as parameter for auto generation to work
+     *     correctly.
+     * @param body Request body of Database resource of a SAP system.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return define the SAP Database Instance.
+     * @return define the Database resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public SapDatabaseInstanceInner create(
@@ -701,16 +722,17 @@ public final class SapDatabaseInstancesClientImpl implements SapDatabaseInstance
     }
 
     /**
-     * Puts the SAP Database Instance.
+     * Updates the Database resource.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param sapVirtualInstanceName The name of the Virtual Instances for SAP.
-     * @param databaseInstanceName Database Instance string modeled as parameter for auto generation to work correctly.
-     * @param body The SAP Database Server instance request body.
+     * @param sapVirtualInstanceName The name of the Virtual Instances for SAP solutions resource.
+     * @param databaseInstanceName Database resource name string modeled as parameter for auto generation to work
+     *     correctly.
+     * @param body Database resource update request body.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return define the SAP Database Instance along with {@link Response} on successful completion of {@link Mono}.
+     * @return define the Database resource along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(
@@ -765,17 +787,18 @@ public final class SapDatabaseInstancesClientImpl implements SapDatabaseInstance
     }
 
     /**
-     * Puts the SAP Database Instance.
+     * Updates the Database resource.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param sapVirtualInstanceName The name of the Virtual Instances for SAP.
-     * @param databaseInstanceName Database Instance string modeled as parameter for auto generation to work correctly.
-     * @param body The SAP Database Server instance request body.
+     * @param sapVirtualInstanceName The name of the Virtual Instances for SAP solutions resource.
+     * @param databaseInstanceName Database resource name string modeled as parameter for auto generation to work
+     *     correctly.
+     * @param body Database resource update request body.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return define the SAP Database Instance along with {@link Response} on successful completion of {@link Mono}.
+     * @return define the Database resource along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(
@@ -828,16 +851,17 @@ public final class SapDatabaseInstancesClientImpl implements SapDatabaseInstance
     }
 
     /**
-     * Puts the SAP Database Instance.
+     * Updates the Database resource.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param sapVirtualInstanceName The name of the Virtual Instances for SAP.
-     * @param databaseInstanceName Database Instance string modeled as parameter for auto generation to work correctly.
-     * @param body The SAP Database Server instance request body.
+     * @param sapVirtualInstanceName The name of the Virtual Instances for SAP solutions resource.
+     * @param databaseInstanceName Database resource name string modeled as parameter for auto generation to work
+     *     correctly.
+     * @param body Database resource update request body.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of define the SAP Database Instance.
+     * @return the {@link PollerFlux} for polling of define the Database resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<SapDatabaseInstanceInner>, SapDatabaseInstanceInner> beginUpdateAsync(
@@ -858,17 +882,46 @@ public final class SapDatabaseInstancesClientImpl implements SapDatabaseInstance
     }
 
     /**
-     * Puts the SAP Database Instance.
+     * Updates the Database resource.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param sapVirtualInstanceName The name of the Virtual Instances for SAP.
-     * @param databaseInstanceName Database Instance string modeled as parameter for auto generation to work correctly.
-     * @param body The SAP Database Server instance request body.
+     * @param sapVirtualInstanceName The name of the Virtual Instances for SAP solutions resource.
+     * @param databaseInstanceName Database resource name string modeled as parameter for auto generation to work
+     *     correctly.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of define the Database resource.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<SapDatabaseInstanceInner>, SapDatabaseInstanceInner> beginUpdateAsync(
+        String resourceGroupName, String sapVirtualInstanceName, String databaseInstanceName) {
+        final UpdateSapDatabaseInstanceRequest body = null;
+        Mono<Response<Flux<ByteBuffer>>> mono =
+            updateWithResponseAsync(resourceGroupName, sapVirtualInstanceName, databaseInstanceName, body);
+        return this
+            .client
+            .<SapDatabaseInstanceInner, SapDatabaseInstanceInner>getLroResult(
+                mono,
+                this.client.getHttpPipeline(),
+                SapDatabaseInstanceInner.class,
+                SapDatabaseInstanceInner.class,
+                this.client.getContext());
+    }
+
+    /**
+     * Updates the Database resource.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param sapVirtualInstanceName The name of the Virtual Instances for SAP solutions resource.
+     * @param databaseInstanceName Database resource name string modeled as parameter for auto generation to work
+     *     correctly.
+     * @param body Database resource update request body.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of define the SAP Database Instance.
+     * @return the {@link PollerFlux} for polling of define the Database resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<SapDatabaseInstanceInner>, SapDatabaseInstanceInner> beginUpdateAsync(
@@ -891,38 +944,37 @@ public final class SapDatabaseInstancesClientImpl implements SapDatabaseInstance
     }
 
     /**
-     * Puts the SAP Database Instance.
+     * Updates the Database resource.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param sapVirtualInstanceName The name of the Virtual Instances for SAP.
-     * @param databaseInstanceName Database Instance string modeled as parameter for auto generation to work correctly.
-     * @param body The SAP Database Server instance request body.
+     * @param sapVirtualInstanceName The name of the Virtual Instances for SAP solutions resource.
+     * @param databaseInstanceName Database resource name string modeled as parameter for auto generation to work
+     *     correctly.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of define the SAP Database Instance.
+     * @return the {@link SyncPoller} for polling of define the Database resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<SapDatabaseInstanceInner>, SapDatabaseInstanceInner> beginUpdate(
-        String resourceGroupName,
-        String sapVirtualInstanceName,
-        String databaseInstanceName,
-        UpdateSapDatabaseInstanceRequest body) {
+        String resourceGroupName, String sapVirtualInstanceName, String databaseInstanceName) {
+        final UpdateSapDatabaseInstanceRequest body = null;
         return beginUpdateAsync(resourceGroupName, sapVirtualInstanceName, databaseInstanceName, body).getSyncPoller();
     }
 
     /**
-     * Puts the SAP Database Instance.
+     * Updates the Database resource.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param sapVirtualInstanceName The name of the Virtual Instances for SAP.
-     * @param databaseInstanceName Database Instance string modeled as parameter for auto generation to work correctly.
-     * @param body The SAP Database Server instance request body.
+     * @param sapVirtualInstanceName The name of the Virtual Instances for SAP solutions resource.
+     * @param databaseInstanceName Database resource name string modeled as parameter for auto generation to work
+     *     correctly.
+     * @param body Database resource update request body.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of define the SAP Database Instance.
+     * @return the {@link SyncPoller} for polling of define the Database resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<SapDatabaseInstanceInner>, SapDatabaseInstanceInner> beginUpdate(
@@ -936,16 +988,17 @@ public final class SapDatabaseInstancesClientImpl implements SapDatabaseInstance
     }
 
     /**
-     * Puts the SAP Database Instance.
+     * Updates the Database resource.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param sapVirtualInstanceName The name of the Virtual Instances for SAP.
-     * @param databaseInstanceName Database Instance string modeled as parameter for auto generation to work correctly.
-     * @param body The SAP Database Server instance request body.
+     * @param sapVirtualInstanceName The name of the Virtual Instances for SAP solutions resource.
+     * @param databaseInstanceName Database resource name string modeled as parameter for auto generation to work
+     *     correctly.
+     * @param body Database resource update request body.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return define the SAP Database Instance on successful completion of {@link Mono}.
+     * @return define the Database resource on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<SapDatabaseInstanceInner> updateAsync(
@@ -959,15 +1012,16 @@ public final class SapDatabaseInstancesClientImpl implements SapDatabaseInstance
     }
 
     /**
-     * Puts the SAP Database Instance.
+     * Updates the Database resource.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param sapVirtualInstanceName The name of the Virtual Instances for SAP.
-     * @param databaseInstanceName Database Instance string modeled as parameter for auto generation to work correctly.
+     * @param sapVirtualInstanceName The name of the Virtual Instances for SAP solutions resource.
+     * @param databaseInstanceName Database resource name string modeled as parameter for auto generation to work
+     *     correctly.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return define the SAP Database Instance on successful completion of {@link Mono}.
+     * @return define the Database resource on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<SapDatabaseInstanceInner> updateAsync(
@@ -979,17 +1033,18 @@ public final class SapDatabaseInstancesClientImpl implements SapDatabaseInstance
     }
 
     /**
-     * Puts the SAP Database Instance.
+     * Updates the Database resource.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param sapVirtualInstanceName The name of the Virtual Instances for SAP.
-     * @param databaseInstanceName Database Instance string modeled as parameter for auto generation to work correctly.
-     * @param body The SAP Database Server instance request body.
+     * @param sapVirtualInstanceName The name of the Virtual Instances for SAP solutions resource.
+     * @param databaseInstanceName Database resource name string modeled as parameter for auto generation to work
+     *     correctly.
+     * @param body Database resource update request body.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return define the SAP Database Instance on successful completion of {@link Mono}.
+     * @return define the Database resource on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<SapDatabaseInstanceInner> updateAsync(
@@ -1004,36 +1059,16 @@ public final class SapDatabaseInstancesClientImpl implements SapDatabaseInstance
     }
 
     /**
-     * Puts the SAP Database Instance.
+     * Updates the Database resource.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param sapVirtualInstanceName The name of the Virtual Instances for SAP.
-     * @param databaseInstanceName Database Instance string modeled as parameter for auto generation to work correctly.
-     * @param body The SAP Database Server instance request body.
+     * @param sapVirtualInstanceName The name of the Virtual Instances for SAP solutions resource.
+     * @param databaseInstanceName Database resource name string modeled as parameter for auto generation to work
+     *     correctly.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return define the SAP Database Instance.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public SapDatabaseInstanceInner update(
-        String resourceGroupName,
-        String sapVirtualInstanceName,
-        String databaseInstanceName,
-        UpdateSapDatabaseInstanceRequest body) {
-        return updateAsync(resourceGroupName, sapVirtualInstanceName, databaseInstanceName, body).block();
-    }
-
-    /**
-     * Puts the SAP Database Instance.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param sapVirtualInstanceName The name of the Virtual Instances for SAP.
-     * @param databaseInstanceName Database Instance string modeled as parameter for auto generation to work correctly.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return define the SAP Database Instance.
+     * @return define the Database resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public SapDatabaseInstanceInner update(
@@ -1043,17 +1078,18 @@ public final class SapDatabaseInstancesClientImpl implements SapDatabaseInstance
     }
 
     /**
-     * Puts the SAP Database Instance.
+     * Updates the Database resource.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param sapVirtualInstanceName The name of the Virtual Instances for SAP.
-     * @param databaseInstanceName Database Instance string modeled as parameter for auto generation to work correctly.
-     * @param body The SAP Database Server instance request body.
+     * @param sapVirtualInstanceName The name of the Virtual Instances for SAP solutions resource.
+     * @param databaseInstanceName Database resource name string modeled as parameter for auto generation to work
+     *     correctly.
+     * @param body Database resource update request body.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return define the SAP Database Instance.
+     * @return define the Database resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public SapDatabaseInstanceInner update(
@@ -1066,12 +1102,13 @@ public final class SapDatabaseInstancesClientImpl implements SapDatabaseInstance
     }
 
     /**
-     * Deletes the SAP Database Instance. &lt;br&gt;&lt;br&gt;This will be used by service only. Delete by end user will
-     * return a Bad Request error.
+     * Deletes the Database resource corresponding to a Virtual Instance for SAP solutions resource.
+     * &lt;br&gt;&lt;br&gt;This will be used by service only. Delete by end user will return a Bad Request error.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param sapVirtualInstanceName The name of the Virtual Instances for SAP.
-     * @param databaseInstanceName Database Instance string modeled as parameter for auto generation to work correctly.
+     * @param sapVirtualInstanceName The name of the Virtual Instances for SAP solutions resource.
+     * @param databaseInstanceName Database resource name string modeled as parameter for auto generation to work
+     *     correctly.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1124,12 +1161,13 @@ public final class SapDatabaseInstancesClientImpl implements SapDatabaseInstance
     }
 
     /**
-     * Deletes the SAP Database Instance. &lt;br&gt;&lt;br&gt;This will be used by service only. Delete by end user will
-     * return a Bad Request error.
+     * Deletes the Database resource corresponding to a Virtual Instance for SAP solutions resource.
+     * &lt;br&gt;&lt;br&gt;This will be used by service only. Delete by end user will return a Bad Request error.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param sapVirtualInstanceName The name of the Virtual Instances for SAP.
-     * @param databaseInstanceName Database Instance string modeled as parameter for auto generation to work correctly.
+     * @param sapVirtualInstanceName The name of the Virtual Instances for SAP solutions resource.
+     * @param databaseInstanceName Database resource name string modeled as parameter for auto generation to work
+     *     correctly.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1180,12 +1218,13 @@ public final class SapDatabaseInstancesClientImpl implements SapDatabaseInstance
     }
 
     /**
-     * Deletes the SAP Database Instance. &lt;br&gt;&lt;br&gt;This will be used by service only. Delete by end user will
-     * return a Bad Request error.
+     * Deletes the Database resource corresponding to a Virtual Instance for SAP solutions resource.
+     * &lt;br&gt;&lt;br&gt;This will be used by service only. Delete by end user will return a Bad Request error.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param sapVirtualInstanceName The name of the Virtual Instances for SAP.
-     * @param databaseInstanceName Database Instance string modeled as parameter for auto generation to work correctly.
+     * @param sapVirtualInstanceName The name of the Virtual Instances for SAP solutions resource.
+     * @param databaseInstanceName Database resource name string modeled as parameter for auto generation to work
+     *     correctly.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1207,12 +1246,13 @@ public final class SapDatabaseInstancesClientImpl implements SapDatabaseInstance
     }
 
     /**
-     * Deletes the SAP Database Instance. &lt;br&gt;&lt;br&gt;This will be used by service only. Delete by end user will
-     * return a Bad Request error.
+     * Deletes the Database resource corresponding to a Virtual Instance for SAP solutions resource.
+     * &lt;br&gt;&lt;br&gt;This will be used by service only. Delete by end user will return a Bad Request error.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param sapVirtualInstanceName The name of the Virtual Instances for SAP.
-     * @param databaseInstanceName Database Instance string modeled as parameter for auto generation to work correctly.
+     * @param sapVirtualInstanceName The name of the Virtual Instances for SAP solutions resource.
+     * @param databaseInstanceName Database resource name string modeled as parameter for auto generation to work
+     *     correctly.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1236,12 +1276,13 @@ public final class SapDatabaseInstancesClientImpl implements SapDatabaseInstance
     }
 
     /**
-     * Deletes the SAP Database Instance. &lt;br&gt;&lt;br&gt;This will be used by service only. Delete by end user will
-     * return a Bad Request error.
+     * Deletes the Database resource corresponding to a Virtual Instance for SAP solutions resource.
+     * &lt;br&gt;&lt;br&gt;This will be used by service only. Delete by end user will return a Bad Request error.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param sapVirtualInstanceName The name of the Virtual Instances for SAP.
-     * @param databaseInstanceName Database Instance string modeled as parameter for auto generation to work correctly.
+     * @param sapVirtualInstanceName The name of the Virtual Instances for SAP solutions resource.
+     * @param databaseInstanceName Database resource name string modeled as parameter for auto generation to work
+     *     correctly.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1254,12 +1295,13 @@ public final class SapDatabaseInstancesClientImpl implements SapDatabaseInstance
     }
 
     /**
-     * Deletes the SAP Database Instance. &lt;br&gt;&lt;br&gt;This will be used by service only. Delete by end user will
-     * return a Bad Request error.
+     * Deletes the Database resource corresponding to a Virtual Instance for SAP solutions resource.
+     * &lt;br&gt;&lt;br&gt;This will be used by service only. Delete by end user will return a Bad Request error.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param sapVirtualInstanceName The name of the Virtual Instances for SAP.
-     * @param databaseInstanceName Database Instance string modeled as parameter for auto generation to work correctly.
+     * @param sapVirtualInstanceName The name of the Virtual Instances for SAP solutions resource.
+     * @param databaseInstanceName Database resource name string modeled as parameter for auto generation to work
+     *     correctly.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1274,12 +1316,13 @@ public final class SapDatabaseInstancesClientImpl implements SapDatabaseInstance
     }
 
     /**
-     * Deletes the SAP Database Instance. &lt;br&gt;&lt;br&gt;This will be used by service only. Delete by end user will
-     * return a Bad Request error.
+     * Deletes the Database resource corresponding to a Virtual Instance for SAP solutions resource.
+     * &lt;br&gt;&lt;br&gt;This will be used by service only. Delete by end user will return a Bad Request error.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param sapVirtualInstanceName The name of the Virtual Instances for SAP.
-     * @param databaseInstanceName Database Instance string modeled as parameter for auto generation to work correctly.
+     * @param sapVirtualInstanceName The name of the Virtual Instances for SAP solutions resource.
+     * @param databaseInstanceName Database resource name string modeled as parameter for auto generation to work
+     *     correctly.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1294,12 +1337,13 @@ public final class SapDatabaseInstancesClientImpl implements SapDatabaseInstance
     }
 
     /**
-     * Deletes the SAP Database Instance. &lt;br&gt;&lt;br&gt;This will be used by service only. Delete by end user will
-     * return a Bad Request error.
+     * Deletes the Database resource corresponding to a Virtual Instance for SAP solutions resource.
+     * &lt;br&gt;&lt;br&gt;This will be used by service only. Delete by end user will return a Bad Request error.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param sapVirtualInstanceName The name of the Virtual Instances for SAP.
-     * @param databaseInstanceName Database Instance string modeled as parameter for auto generation to work correctly.
+     * @param sapVirtualInstanceName The name of the Virtual Instances for SAP solutions resource.
+     * @param databaseInstanceName Database resource name string modeled as parameter for auto generation to work
+     *     correctly.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1315,12 +1359,13 @@ public final class SapDatabaseInstancesClientImpl implements SapDatabaseInstance
     }
 
     /**
-     * Deletes the SAP Database Instance. &lt;br&gt;&lt;br&gt;This will be used by service only. Delete by end user will
-     * return a Bad Request error.
+     * Deletes the Database resource corresponding to a Virtual Instance for SAP solutions resource.
+     * &lt;br&gt;&lt;br&gt;This will be used by service only. Delete by end user will return a Bad Request error.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param sapVirtualInstanceName The name of the Virtual Instances for SAP.
-     * @param databaseInstanceName Database Instance string modeled as parameter for auto generation to work correctly.
+     * @param sapVirtualInstanceName The name of the Virtual Instances for SAP solutions resource.
+     * @param databaseInstanceName Database resource name string modeled as parameter for auto generation to work
+     *     correctly.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1333,12 +1378,13 @@ public final class SapDatabaseInstancesClientImpl implements SapDatabaseInstance
     }
 
     /**
-     * Deletes the SAP Database Instance. &lt;br&gt;&lt;br&gt;This will be used by service only. Delete by end user will
-     * return a Bad Request error.
+     * Deletes the Database resource corresponding to a Virtual Instance for SAP solutions resource.
+     * &lt;br&gt;&lt;br&gt;This will be used by service only. Delete by end user will return a Bad Request error.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param sapVirtualInstanceName The name of the Virtual Instances for SAP.
-     * @param databaseInstanceName Database Instance string modeled as parameter for auto generation to work correctly.
+     * @param sapVirtualInstanceName The name of the Virtual Instances for SAP solutions resource.
+     * @param databaseInstanceName Database resource name string modeled as parameter for auto generation to work
+     *     correctly.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1352,10 +1398,10 @@ public final class SapDatabaseInstancesClientImpl implements SapDatabaseInstance
     }
 
     /**
-     * Lists the SAP Database Instances in an SVI.
+     * Lists the Database resources associated with a Virtual Instance for SAP solutions resource.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param sapVirtualInstanceName The name of the Virtual Instances for SAP.
+     * @param sapVirtualInstanceName The name of the Virtual Instances for SAP solutions resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1412,10 +1458,10 @@ public final class SapDatabaseInstancesClientImpl implements SapDatabaseInstance
     }
 
     /**
-     * Lists the SAP Database Instances in an SVI.
+     * Lists the Database resources associated with a Virtual Instance for SAP solutions resource.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param sapVirtualInstanceName The name of the Virtual Instances for SAP.
+     * @param sapVirtualInstanceName The name of the Virtual Instances for SAP solutions resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1470,10 +1516,10 @@ public final class SapDatabaseInstancesClientImpl implements SapDatabaseInstance
     }
 
     /**
-     * Lists the SAP Database Instances in an SVI.
+     * Lists the Database resources associated with a Virtual Instance for SAP solutions resource.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param sapVirtualInstanceName The name of the Virtual Instances for SAP.
+     * @param sapVirtualInstanceName The name of the Virtual Instances for SAP solutions resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1487,10 +1533,10 @@ public final class SapDatabaseInstancesClientImpl implements SapDatabaseInstance
     }
 
     /**
-     * Lists the SAP Database Instances in an SVI.
+     * Lists the Database resources associated with a Virtual Instance for SAP solutions resource.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param sapVirtualInstanceName The name of the Virtual Instances for SAP.
+     * @param sapVirtualInstanceName The name of the Virtual Instances for SAP solutions resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1506,10 +1552,10 @@ public final class SapDatabaseInstancesClientImpl implements SapDatabaseInstance
     }
 
     /**
-     * Lists the SAP Database Instances in an SVI.
+     * Lists the Database resources associated with a Virtual Instance for SAP solutions resource.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param sapVirtualInstanceName The name of the Virtual Instances for SAP.
+     * @param sapVirtualInstanceName The name of the Virtual Instances for SAP solutions resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1521,10 +1567,10 @@ public final class SapDatabaseInstancesClientImpl implements SapDatabaseInstance
     }
 
     /**
-     * Lists the SAP Database Instances in an SVI.
+     * Lists the Database resources associated with a Virtual Instance for SAP solutions resource.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param sapVirtualInstanceName The name of the Virtual Instances for SAP.
+     * @param sapVirtualInstanceName The name of the Virtual Instances for SAP solutions resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1540,7 +1586,8 @@ public final class SapDatabaseInstancesClientImpl implements SapDatabaseInstance
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1576,7 +1623,8 @@ public final class SapDatabaseInstancesClientImpl implements SapDatabaseInstance
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.

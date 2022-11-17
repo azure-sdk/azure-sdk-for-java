@@ -26,6 +26,10 @@ public final class DiscoveryConfiguration extends SapConfiguration {
     @JsonProperty(value = "appLocation", access = JsonProperty.Access.WRITE_ONLY)
     private String appLocation;
 
+    /** Creates an instance of DiscoveryConfiguration class. */
+    public DiscoveryConfiguration() {
+    }
+
     /**
      * Get the centralServerVmId property: The virtual machine ID of the Central Server.
      *

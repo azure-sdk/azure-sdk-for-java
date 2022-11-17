@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for LoadBalancerType. */
+/** Load balancer type. */
 public final class LoadBalancerType extends ExpandableStringEnum<LoadBalancerType> {
     /** Static value ApplicationGateway for LoadBalancerType. */
     public static final LoadBalancerType APPLICATION_GATEWAY = fromString("ApplicationGateway");

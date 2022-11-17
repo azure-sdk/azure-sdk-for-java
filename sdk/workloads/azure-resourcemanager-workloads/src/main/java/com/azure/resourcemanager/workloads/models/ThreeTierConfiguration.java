@@ -45,6 +45,10 @@ public final class ThreeTierConfiguration extends InfrastructureConfiguration {
     @JsonProperty(value = "highAvailabilityConfig")
     private HighAvailabilityConfiguration highAvailabilityConfig;
 
+    /** Creates an instance of ThreeTierConfiguration class. */
+    public ThreeTierConfiguration() {
+    }
+
     /**
      * Get the networkConfiguration property: Network configuration common to all servers.
      *

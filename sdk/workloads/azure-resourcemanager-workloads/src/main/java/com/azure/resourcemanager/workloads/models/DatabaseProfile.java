@@ -83,6 +83,10 @@ public final class DatabaseProfile {
     @JsonProperty(value = "serverResourceId", access = JsonProperty.Access.WRITE_ONLY)
     private String serverResourceId;
 
+    /** Creates an instance of DatabaseProfile class. */
+    public DatabaseProfile() {
+    }
+
     /**
      * Get the type property: Database type.
      *

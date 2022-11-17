@@ -72,6 +72,10 @@ public final class NetworkProfile {
     @JsonProperty(value = "outboundPublicIpResourceIds", access = JsonProperty.Access.WRITE_ONLY)
     private List<String> outboundPublicIpResourceIds;
 
+    /** Creates an instance of NetworkProfile class. */
+    public NetworkProfile() {
+    }
+
     /**
      * Get the loadBalancerType property: Load balancer type.
      *
