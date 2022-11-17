@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for SkuSize. */
+/** SKU size. */
 public final class SkuSize extends ExpandableStringEnum<SkuSize> {
     /** Static value Extra small for SkuSize. */
     public static final SkuSize EXTRA_SMALL = fromString("Extra small");
@@ -33,7 +33,11 @@ public final class SkuSize extends ExpandableStringEnum<SkuSize> {
         return fromString(name, SkuSize.class);
     }
 
-    /** @return known SkuSize values. */
+    /**
+     * Gets known SkuSize values.
+     *
+     * @return known SkuSize values.
+     */
     public static Collection<SkuSize> values() {
         return values(SkuSize.class);
     }
