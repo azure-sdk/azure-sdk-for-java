@@ -48,19 +48,6 @@ public interface LinkersClient {
      *
      * @param resourceUri The fully qualified Azure Resource manager identifier of the resource to be connected.
      * @param linkerName The name Linker resource.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return linker of source and target resource.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    LinkerResourceInner get(String resourceUri, String linkerName);
-
-    /**
-     * Returns Linker resource for a given name.
-     *
-     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource to be connected.
-     * @param linkerName The name Linker resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -69,6 +56,19 @@ public interface LinkersClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<LinkerResourceInner> getWithResponse(String resourceUri, String linkerName, Context context);
+
+    /**
+     * Returns Linker resource for a given name.
+     *
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource to be connected.
+     * @param linkerName The name Linker resource.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return linker of source and target resource.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    LinkerResourceInner get(String resourceUri, String linkerName);
 
     /**
      * Create or update linker resource.
@@ -304,19 +304,6 @@ public interface LinkersClient {
      *
      * @param resourceUri The fully qualified Azure Resource manager identifier of the resource to be connected.
      * @param linkerName The name Linker resource.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return configurations for source resource, include appSettings, connectionString and serviceBindings.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    SourceConfigurationResultInner listConfigurations(String resourceUri, String linkerName);
-
-    /**
-     * list source configurations for a linker.
-     *
-     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource to be connected.
-     * @param linkerName The name Linker resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -327,4 +314,17 @@ public interface LinkersClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<SourceConfigurationResultInner> listConfigurationsWithResponse(
         String resourceUri, String linkerName, Context context);
+
+    /**
+     * list source configurations for a linker.
+     *
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource to be connected.
+     * @param linkerName The name Linker resource.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return configurations for source resource, include appSettings, connectionString and serviceBindings.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    SourceConfigurationResultInner listConfigurations(String resourceUri, String linkerName);
 }

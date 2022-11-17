@@ -67,7 +67,7 @@ public final class LinkersClientImpl implements LinkersClient {
      */
     @Host("{$host}")
     @ServiceInterface(name = "ServiceLinkerManagem")
-    private interface LinkersService {
+    public interface LinkersService {
         @Headers({"Content-Type: application/json"})
         @Get("/{resourceUri}/providers/Microsoft.ServiceLinker/linkers")
         @ExpectedResponses({200})
@@ -389,21 +389,6 @@ public final class LinkersClientImpl implements LinkersClient {
      *
      * @param resourceUri The fully qualified Azure Resource manager identifier of the resource to be connected.
      * @param linkerName The name Linker resource.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return linker of source and target resource.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public LinkerResourceInner get(String resourceUri, String linkerName) {
-        return getAsync(resourceUri, linkerName).block();
-    }
-
-    /**
-     * Returns Linker resource for a given name.
-     *
-     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource to be connected.
-     * @param linkerName The name Linker resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -413,6 +398,21 @@ public final class LinkersClientImpl implements LinkersClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<LinkerResourceInner> getWithResponse(String resourceUri, String linkerName, Context context) {
         return getWithResponseAsync(resourceUri, linkerName, context).block();
+    }
+
+    /**
+     * Returns Linker resource for a given name.
+     *
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource to be connected.
+     * @param linkerName The name Linker resource.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return linker of source and target resource.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public LinkerResourceInner get(String resourceUri, String linkerName) {
+        return getWithResponse(resourceUri, linkerName, Context.NONE).getValue();
     }
 
     /**
@@ -1433,21 +1433,6 @@ public final class LinkersClientImpl implements LinkersClient {
      *
      * @param resourceUri The fully qualified Azure Resource manager identifier of the resource to be connected.
      * @param linkerName The name Linker resource.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return configurations for source resource, include appSettings, connectionString and serviceBindings.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public SourceConfigurationResultInner listConfigurations(String resourceUri, String linkerName) {
-        return listConfigurationsAsync(resourceUri, linkerName).block();
-    }
-
-    /**
-     * list source configurations for a linker.
-     *
-     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource to be connected.
-     * @param linkerName The name Linker resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1462,9 +1447,25 @@ public final class LinkersClientImpl implements LinkersClient {
     }
 
     /**
+     * list source configurations for a linker.
+     *
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource to be connected.
+     * @param linkerName The name Linker resource.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return configurations for source resource, include appSettings, connectionString and serviceBindings.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public SourceConfigurationResultInner listConfigurations(String resourceUri, String linkerName) {
+        return listConfigurationsWithResponse(resourceUri, linkerName, Context.NONE).getValue();
+    }
+
+    /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1499,7 +1500,8 @@ public final class LinkersClientImpl implements LinkersClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.

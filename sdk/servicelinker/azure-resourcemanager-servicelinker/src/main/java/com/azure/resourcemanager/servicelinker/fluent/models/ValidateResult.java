@@ -62,6 +62,10 @@ public final class ValidateResult {
     @JsonProperty(value = "validationDetail")
     private List<ValidationResultItem> validationDetail;
 
+    /** Creates an instance of ValidateResult class. */
+    public ValidateResult() {
+    }
+
     /**
      * Get the linkerName property: The linker name.
      *

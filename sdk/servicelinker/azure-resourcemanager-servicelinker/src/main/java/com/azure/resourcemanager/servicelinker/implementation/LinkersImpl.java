@@ -41,15 +41,6 @@ public final class LinkersImpl implements Linkers {
         return Utils.mapPage(inner, inner1 -> new LinkerResourceImpl(inner1, this.manager()));
     }
 
-    public LinkerResource get(String resourceUri, String linkerName) {
-        LinkerResourceInner inner = this.serviceClient().get(resourceUri, linkerName);
-        if (inner != null) {
-            return new LinkerResourceImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
     public Response<LinkerResource> getWithResponse(String resourceUri, String linkerName, Context context) {
         Response<LinkerResourceInner> inner = this.serviceClient().getWithResponse(resourceUri, linkerName, context);
         if (inner != null) {
@@ -58,6 +49,15 @@ public final class LinkersImpl implements Linkers {
                 inner.getStatusCode(),
                 inner.getHeaders(),
                 new LinkerResourceImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public LinkerResource get(String resourceUri, String linkerName) {
+        LinkerResourceInner inner = this.serviceClient().get(resourceUri, linkerName);
+        if (inner != null) {
+            return new LinkerResourceImpl(inner, this.manager());
         } else {
             return null;
         }
@@ -89,15 +89,6 @@ public final class LinkersImpl implements Linkers {
         }
     }
 
-    public SourceConfigurationResult listConfigurations(String resourceUri, String linkerName) {
-        SourceConfigurationResultInner inner = this.serviceClient().listConfigurations(resourceUri, linkerName);
-        if (inner != null) {
-            return new SourceConfigurationResultImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
     public Response<SourceConfigurationResult> listConfigurationsWithResponse(
         String resourceUri, String linkerName, Context context) {
         Response<SourceConfigurationResultInner> inner =
@@ -108,6 +99,15 @@ public final class LinkersImpl implements Linkers {
                 inner.getStatusCode(),
                 inner.getHeaders(),
                 new SourceConfigurationResultImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public SourceConfigurationResult listConfigurations(String resourceUri, String linkerName) {
+        SourceConfigurationResultInner inner = this.serviceClient().listConfigurations(resourceUri, linkerName);
+        if (inner != null) {
+            return new SourceConfigurationResultImpl(inner, this.manager());
         } else {
             return null;
         }

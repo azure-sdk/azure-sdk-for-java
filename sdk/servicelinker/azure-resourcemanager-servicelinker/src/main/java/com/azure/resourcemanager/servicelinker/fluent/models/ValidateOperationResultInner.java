@@ -32,6 +32,10 @@ public final class ValidateOperationResultInner {
     @JsonProperty(value = "status")
     private String status;
 
+    /** Creates an instance of ValidateOperationResultInner class. */
+    public ValidateOperationResultInner() {
+    }
+
     /**
      * Get the innerProperties property: The validation result detail.
      *

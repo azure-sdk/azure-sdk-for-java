@@ -169,12 +169,12 @@ public final class LinkerResourceImpl implements LinkerResource, LinkerResource.
         return serviceManager.linkers().validate(resourceUri, linkerName, context);
     }
 
-    public SourceConfigurationResult listConfigurations() {
-        return serviceManager.linkers().listConfigurations(resourceUri, linkerName);
-    }
-
     public Response<SourceConfigurationResult> listConfigurationsWithResponse(Context context) {
         return serviceManager.linkers().listConfigurationsWithResponse(resourceUri, linkerName, context);
+    }
+
+    public SourceConfigurationResult listConfigurations() {
+        return serviceManager.linkers().listConfigurations(resourceUri, linkerName);
     }
 
     public LinkerResourceImpl withTargetService(TargetServiceBase targetService) {
