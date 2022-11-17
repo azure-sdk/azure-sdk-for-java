@@ -27,16 +27,6 @@ public final class EntityRelationsImpl implements EntityRelations {
         this.serviceManager = serviceManager;
     }
 
-    public Relation getRelation(String resourceGroupName, String workspaceName, String entityId, String relationName) {
-        RelationInner inner =
-            this.serviceClient().getRelation(resourceGroupName, workspaceName, entityId, relationName);
-        if (inner != null) {
-            return new RelationImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
     public Response<Relation> getRelationWithResponse(
         String resourceGroupName, String workspaceName, String entityId, String relationName, Context context) {
         Response<RelationInner> inner =
@@ -49,6 +39,16 @@ public final class EntityRelationsImpl implements EntityRelations {
                 inner.getStatusCode(),
                 inner.getHeaders(),
                 new RelationImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public Relation getRelation(String resourceGroupName, String workspaceName, String entityId, String relationName) {
+        RelationInner inner =
+            this.serviceClient().getRelation(resourceGroupName, workspaceName, entityId, relationName);
+        if (inner != null) {
+            return new RelationImpl(inner, this.manager());
         } else {
             return null;
         }

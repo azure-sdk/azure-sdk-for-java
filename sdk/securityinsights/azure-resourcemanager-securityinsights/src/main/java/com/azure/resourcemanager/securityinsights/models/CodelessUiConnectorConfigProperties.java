@@ -84,6 +84,10 @@ public final class CodelessUiConnectorConfigProperties {
     @JsonProperty(value = "instructionSteps", required = true)
     private List<CodelessUiConnectorConfigPropertiesInstructionStepsItem> instructionSteps;
 
+    /** Creates an instance of CodelessUiConnectorConfigProperties class. */
+    public CodelessUiConnectorConfigProperties() {
+    }
+
     /**
      * Get the title property: Connector blade title.
      *

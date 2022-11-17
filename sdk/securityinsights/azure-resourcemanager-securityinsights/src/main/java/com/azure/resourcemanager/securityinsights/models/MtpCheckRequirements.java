@@ -4,7 +4,7 @@
 
 package com.azure.resourcemanager.securityinsights.models;
 
-import com.azure.core.annotation.Fluent;
+import com.azure.core.annotation.Immutable;
 import com.azure.resourcemanager.securityinsights.fluent.models.MtpCheckRequirementsProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
@@ -13,13 +13,17 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 /** Represents MTP (Microsoft Threat Protection) requirements check request. */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "kind")
 @JsonTypeName("MicrosoftThreatProtection")
-@Fluent
+@Immutable
 public final class MtpCheckRequirements extends DataConnectorsCheckRequirements {
     /*
      * MTP (Microsoft Threat Protection) requirements check properties.
      */
     @JsonProperty(value = "properties")
     private MtpCheckRequirementsProperties innerProperties;
+
+    /** Creates an instance of MtpCheckRequirements class. */
+    public MtpCheckRequirements() {
+    }
 
     /**
      * Get the innerProperties property: MTP (Microsoft Threat Protection) requirements check properties.

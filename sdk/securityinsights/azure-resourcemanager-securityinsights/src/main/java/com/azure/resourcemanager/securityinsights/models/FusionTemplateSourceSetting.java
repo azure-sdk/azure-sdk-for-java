@@ -24,6 +24,10 @@ public final class FusionTemplateSourceSetting {
     @JsonProperty(value = "sourceSubTypes")
     private List<FusionTemplateSourceSubType> sourceSubTypes;
 
+    /** Creates an instance of FusionTemplateSourceSetting class. */
+    public FusionTemplateSourceSetting() {
+    }
+
     /**
      * Get the sourceName property: The name of a source signal consumed in Fusion detection.
      *

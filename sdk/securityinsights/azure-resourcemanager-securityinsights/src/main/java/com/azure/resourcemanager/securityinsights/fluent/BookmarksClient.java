@@ -46,20 +46,6 @@ public interface BookmarksClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param bookmarkId Bookmark ID.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a bookmark.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    BookmarkInner get(String resourceGroupName, String workspaceName, String bookmarkId);
-
-    /**
-     * Gets a bookmark.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param bookmarkId Bookmark ID.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -71,20 +57,18 @@ public interface BookmarksClient {
         String resourceGroupName, String workspaceName, String bookmarkId, Context context);
 
     /**
-     * Creates or updates the bookmark.
+     * Gets a bookmark.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param bookmarkId Bookmark ID.
-     * @param bookmark The bookmark.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return represents a bookmark in Azure Security Insights.
+     * @return a bookmark.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    BookmarkInner createOrUpdate(
-        String resourceGroupName, String workspaceName, String bookmarkId, BookmarkInner bookmark);
+    BookmarkInner get(String resourceGroupName, String workspaceName, String bookmarkId);
 
     /**
      * Creates or updates the bookmark.
@@ -104,17 +88,20 @@ public interface BookmarksClient {
         String resourceGroupName, String workspaceName, String bookmarkId, BookmarkInner bookmark, Context context);
 
     /**
-     * Delete the bookmark.
+     * Creates or updates the bookmark.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param bookmarkId Bookmark ID.
+     * @param bookmark The bookmark.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return represents a bookmark in Azure Security Insights.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    void delete(String resourceGroupName, String workspaceName, String bookmarkId);
+    BookmarkInner createOrUpdate(
+        String resourceGroupName, String workspaceName, String bookmarkId, BookmarkInner bookmark);
 
     /**
      * Delete the bookmark.
@@ -131,4 +118,17 @@ public interface BookmarksClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<Void> deleteWithResponse(
         String resourceGroupName, String workspaceName, String bookmarkId, Context context);
+
+    /**
+     * Delete the bookmark.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param bookmarkId Bookmark ID.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    void delete(String resourceGroupName, String workspaceName, String bookmarkId);
 }

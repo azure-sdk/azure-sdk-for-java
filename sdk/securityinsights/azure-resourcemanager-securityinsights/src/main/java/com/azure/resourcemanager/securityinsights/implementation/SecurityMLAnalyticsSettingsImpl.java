@@ -41,16 +41,6 @@ public final class SecurityMLAnalyticsSettingsImpl implements SecurityMLAnalytic
         return Utils.mapPage(inner, inner1 -> new SecurityMLAnalyticsSettingImpl(inner1, this.manager()));
     }
 
-    public SecurityMLAnalyticsSetting get(String resourceGroupName, String workspaceName, String settingsResourceName) {
-        SecurityMLAnalyticsSettingInner inner =
-            this.serviceClient().get(resourceGroupName, workspaceName, settingsResourceName);
-        if (inner != null) {
-            return new SecurityMLAnalyticsSettingImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
     public Response<SecurityMLAnalyticsSetting> getWithResponse(
         String resourceGroupName, String workspaceName, String settingsResourceName, Context context) {
         Response<SecurityMLAnalyticsSettingInner> inner =
@@ -66,15 +56,9 @@ public final class SecurityMLAnalyticsSettingsImpl implements SecurityMLAnalytic
         }
     }
 
-    public SecurityMLAnalyticsSetting createOrUpdate(
-        String resourceGroupName,
-        String workspaceName,
-        String settingsResourceName,
-        SecurityMLAnalyticsSettingInner securityMLAnalyticsSetting) {
+    public SecurityMLAnalyticsSetting get(String resourceGroupName, String workspaceName, String settingsResourceName) {
         SecurityMLAnalyticsSettingInner inner =
-            this
-                .serviceClient()
-                .createOrUpdate(resourceGroupName, workspaceName, settingsResourceName, securityMLAnalyticsSetting);
+            this.serviceClient().get(resourceGroupName, workspaceName, settingsResourceName);
         if (inner != null) {
             return new SecurityMLAnalyticsSettingImpl(inner, this.manager());
         } else {
@@ -104,13 +88,29 @@ public final class SecurityMLAnalyticsSettingsImpl implements SecurityMLAnalytic
         }
     }
 
-    public void delete(String resourceGroupName, String workspaceName, String settingsResourceName) {
-        this.serviceClient().delete(resourceGroupName, workspaceName, settingsResourceName);
+    public SecurityMLAnalyticsSetting createOrUpdate(
+        String resourceGroupName,
+        String workspaceName,
+        String settingsResourceName,
+        SecurityMLAnalyticsSettingInner securityMLAnalyticsSetting) {
+        SecurityMLAnalyticsSettingInner inner =
+            this
+                .serviceClient()
+                .createOrUpdate(resourceGroupName, workspaceName, settingsResourceName, securityMLAnalyticsSetting);
+        if (inner != null) {
+            return new SecurityMLAnalyticsSettingImpl(inner, this.manager());
+        } else {
+            return null;
+        }
     }
 
     public Response<Void> deleteWithResponse(
         String resourceGroupName, String workspaceName, String settingsResourceName, Context context) {
         return this.serviceClient().deleteWithResponse(resourceGroupName, workspaceName, settingsResourceName, context);
+    }
+
+    public void delete(String resourceGroupName, String workspaceName, String settingsResourceName) {
+        this.serviceClient().delete(resourceGroupName, workspaceName, settingsResourceName);
     }
 
     private SecurityMLAnalyticsSettingsClient serviceClient() {

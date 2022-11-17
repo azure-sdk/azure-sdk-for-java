@@ -10,6 +10,10 @@ import com.azure.resourcemanager.securityinsights.models.DataConnectorTenantId;
 /** Threat Intelligence Platforms data connector required properties. */
 @Fluent
 public final class TICheckRequirementsProperties extends DataConnectorTenantId {
+    /** Creates an instance of TICheckRequirementsProperties class. */
+    public TICheckRequirementsProperties() {
+    }
+
     /** {@inheritDoc} */
     @Override
     public TICheckRequirementsProperties withTenantId(String tenantId) {

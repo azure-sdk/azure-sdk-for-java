@@ -15,7 +15,7 @@ import java.util.Arrays;
 /** Samples for DataConnectors Connect. */
 public final class DataConnectorsConnectSamples {
     /*
-     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/dataConnectors/ConnectAPIPollingV2Logs.json
+     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-11-01-preview/examples/dataConnectors/ConnectAPIPollingV2Logs.json
      */
     /**
      * Sample code: Connect an APIPolling V2 logs data connector.
@@ -32,7 +32,7 @@ public final class DataConnectorsConnectSamples {
                 "316ec55e-7138-4d63-ab18-90c8a60fd1c8",
                 new DataConnectorConnectBody()
                     .withKind(ConnectAuthKind.APIKEY)
-                    .withApiKey("fakeKeyPlaceholder")
+                    .withApiKey("fakeTokenPlaceholder")
                     .withDataCollectionEndpoint("https://test.eastus.ingest.monitor.azure.com")
                     .withDataCollectionRuleImmutableId("dcr-34adsj9o7d6f9de204478b9cgb43b631")
                     .withOutputStream("Custom-MyTableRawData")
@@ -50,7 +50,7 @@ public final class DataConnectorsConnectSamples {
     }
 
     /*
-     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/dataConnectors/ConnectAPIPolling.json
+     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-11-01-preview/examples/dataConnectors/ConnectAPIPolling.json
      */
     /**
      * Sample code: Connect an APIPolling data connector.
@@ -67,7 +67,7 @@ public final class DataConnectorsConnectSamples {
                 "316ec55e-7138-4d63-ab18-90c8a60fd1c8",
                 new DataConnectorConnectBody()
                     .withKind(ConnectAuthKind.APIKEY)
-                    .withApiKey("fakeKeyPlaceholder")
+                    .withApiKey("fakeTokenPlaceholder")
                     .withRequestConfigUserInputValues(
                         Arrays
                             .asList(

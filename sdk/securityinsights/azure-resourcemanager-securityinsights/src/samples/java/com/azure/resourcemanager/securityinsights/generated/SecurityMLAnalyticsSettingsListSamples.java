@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for SecurityMLAnalyticsSettings List. */
 public final class SecurityMLAnalyticsSettingsListSamples {
     /*
-     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-09-01-preview/examples/securityMLAnalyticsSettings/GetAllSecurityMLAnalyticsSettings.json
+     * x-ms-original-file: specification/securityinsights/resource-manager/Microsoft.SecurityInsights/preview/2022-11-01-preview/examples/securityMLAnalyticsSettings/GetAllSecurityMLAnalyticsSettings.json
      */
     /**
      * Sample code: Get all Security ML Analytics Settings.

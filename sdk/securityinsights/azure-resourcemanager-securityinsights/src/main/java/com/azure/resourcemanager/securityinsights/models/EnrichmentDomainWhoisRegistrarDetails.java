@@ -46,6 +46,10 @@ public final class EnrichmentDomainWhoisRegistrarDetails {
     @JsonProperty(value = "whoisServer")
     private String whoisServer;
 
+    /** Creates an instance of EnrichmentDomainWhoisRegistrarDetails class. */
+    public EnrichmentDomainWhoisRegistrarDetails() {
+    }
+
     /**
      * Get the name property: The name of this registrar.
      *

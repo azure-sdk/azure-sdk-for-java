@@ -227,6 +227,27 @@ public interface SecurityInsights {
     SourceControlsOperationsClient getSourceControlsOperations();
 
     /**
+     * Gets the GetRecommendationsClient object to access its operations.
+     *
+     * @return the GetRecommendationsClient object.
+     */
+    GetRecommendationsClient getGetRecommendations();
+
+    /**
+     * Gets the GetsClient object to access its operations.
+     *
+     * @return the GetsClient object.
+     */
+    GetsClient getGets();
+
+    /**
+     * Gets the UpdatesClient object to access its operations.
+     *
+     * @return the UpdatesClient object.
+     */
+    UpdatesClient getUpdates();
+
+    /**
      * Gets the ThreatIntelligenceIndicatorsClient object to access its operations.
      *
      * @return the ThreatIntelligenceIndicatorsClient object.

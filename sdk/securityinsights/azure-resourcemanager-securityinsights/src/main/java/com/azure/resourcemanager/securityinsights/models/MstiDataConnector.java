@@ -22,6 +22,10 @@ public final class MstiDataConnector extends DataConnectorInner {
     @JsonProperty(value = "properties")
     private MstiDataConnectorProperties innerProperties;
 
+    /** Creates an instance of MstiDataConnector class. */
+    public MstiDataConnector() {
+    }
+
     /**
      * Get the innerProperties property: Microsoft Threat Intelligence data connector properties.
      *
