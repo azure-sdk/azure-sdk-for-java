@@ -71,6 +71,10 @@ public final class EnrichmentDomainWhoisContact {
     @JsonProperty(value = "email")
     private String email;
 
+    /** Creates an instance of EnrichmentDomainWhoisContact class. */
+    public EnrichmentDomainWhoisContact() {
+    }
+
     /**
      * Get the name property: The name of this contact.
      *

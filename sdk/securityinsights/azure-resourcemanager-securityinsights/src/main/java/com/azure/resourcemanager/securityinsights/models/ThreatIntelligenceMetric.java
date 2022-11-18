@@ -35,6 +35,10 @@ public final class ThreatIntelligenceMetric {
     @JsonProperty(value = "sourceMetrics")
     private List<ThreatIntelligenceMetricEntity> sourceMetrics;
 
+    /** Creates an instance of ThreatIntelligenceMetric class. */
+    public ThreatIntelligenceMetric() {
+    }
+
     /**
      * Get the lastUpdatedTimeUtc property: Last updated indicator metric.
      *

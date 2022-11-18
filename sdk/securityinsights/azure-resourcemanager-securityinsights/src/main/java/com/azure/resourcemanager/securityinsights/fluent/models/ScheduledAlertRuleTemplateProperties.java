@@ -11,6 +11,7 @@ import com.azure.resourcemanager.securityinsights.models.AlertSeverity;
 import com.azure.resourcemanager.securityinsights.models.AttackTactic;
 import com.azure.resourcemanager.securityinsights.models.EntityMapping;
 import com.azure.resourcemanager.securityinsights.models.EventGroupingSettings;
+import com.azure.resourcemanager.securityinsights.models.SentinelEntityMapping;
 import com.azure.resourcemanager.securityinsights.models.TemplateStatus;
 import com.azure.resourcemanager.securityinsights.models.TriggerOperator;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -143,6 +144,16 @@ public final class ScheduledAlertRuleTemplateProperties {
      */
     @JsonProperty(value = "alertDetailsOverride")
     private AlertDetailsOverride alertDetailsOverride;
+
+    /*
+     * Array of the sentinel entity mappings of the alert rule
+     */
+    @JsonProperty(value = "sentinelEntitiesMappings")
+    private List<SentinelEntityMapping> sentinelEntitiesMappings;
+
+    /** Creates an instance of ScheduledAlertRuleTemplateProperties class. */
+    public ScheduledAlertRuleTemplateProperties() {
+    }
 
     /**
      * Get the alertRulesCreatedByTemplateCount property: the number of alert rules that were created by this template.
@@ -527,6 +538,27 @@ public final class ScheduledAlertRuleTemplateProperties {
     }
 
     /**
+     * Get the sentinelEntitiesMappings property: Array of the sentinel entity mappings of the alert rule.
+     *
+     * @return the sentinelEntitiesMappings value.
+     */
+    public List<SentinelEntityMapping> sentinelEntitiesMappings() {
+        return this.sentinelEntitiesMappings;
+    }
+
+    /**
+     * Set the sentinelEntitiesMappings property: Array of the sentinel entity mappings of the alert rule.
+     *
+     * @param sentinelEntitiesMappings the sentinelEntitiesMappings value to set.
+     * @return the ScheduledAlertRuleTemplateProperties object itself.
+     */
+    public ScheduledAlertRuleTemplateProperties withSentinelEntitiesMappings(
+        List<SentinelEntityMapping> sentinelEntitiesMappings) {
+        this.sentinelEntitiesMappings = sentinelEntitiesMappings;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -543,6 +575,9 @@ public final class ScheduledAlertRuleTemplateProperties {
         }
         if (alertDetailsOverride() != null) {
             alertDetailsOverride().validate();
+        }
+        if (sentinelEntitiesMappings() != null) {
+            sentinelEntitiesMappings().forEach(e -> e.validate());
         }
     }
 }

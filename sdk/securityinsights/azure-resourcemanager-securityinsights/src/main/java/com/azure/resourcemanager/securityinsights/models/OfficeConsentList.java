@@ -25,6 +25,10 @@ public final class OfficeConsentList {
     @JsonProperty(value = "value", required = true)
     private List<OfficeConsentInner> value;
 
+    /** Creates an instance of OfficeConsentList class. */
+    public OfficeConsentList() {
+    }
+
     /**
      * Get the nextLink property: URL to fetch the next set of office consents.
      *

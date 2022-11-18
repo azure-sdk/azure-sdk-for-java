@@ -25,6 +25,10 @@ public final class IncidentCommentList {
     @JsonProperty(value = "value", required = true)
     private List<IncidentCommentInner> value;
 
+    /** Creates an instance of IncidentCommentList class. */
+    public IncidentCommentList() {
+    }
+
     /**
      * Get the nextLink property: URL to fetch the next set of comments.
      *

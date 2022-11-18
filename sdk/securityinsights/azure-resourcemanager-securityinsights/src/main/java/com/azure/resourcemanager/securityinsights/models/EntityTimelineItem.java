@@ -24,6 +24,10 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 })
 @Immutable
 public class EntityTimelineItem {
+    /** Creates an instance of EntityTimelineItem class. */
+    public EntityTimelineItem() {
+    }
+
     /**
      * Validates the instance.
      *
