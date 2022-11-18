@@ -24,6 +24,10 @@ public final class WordpressInstanceResourceList {
     @JsonProperty(value = "nextLink")
     private String nextLink;
 
+    /** Creates an instance of WordpressInstanceResourceList class. */
+    public WordpressInstanceResourceList() {
+    }
+
     /**
      * Get the value property: List of resources in current page.
      *

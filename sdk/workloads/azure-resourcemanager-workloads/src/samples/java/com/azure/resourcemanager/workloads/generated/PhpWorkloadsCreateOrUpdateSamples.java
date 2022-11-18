@@ -62,7 +62,7 @@ public final class PhpWorkloadsCreateOrUpdateSamples {
             .withSku(new Sku().withName("Large"))
             .withAppLocation("eastus")
             .withManagedResourceGroupConfiguration(new ManagedRGConfiguration().withName("php-mrg-wp39"))
-            .withAdminUserProfile(new UserProfile().withUsername("wpadmin").withSshPublicKey("===SSH=PUBLIC=KEY==="))
+            .withAdminUserProfile(new UserProfile().withUsername("wpadmin").withSshPublicKey("fakeTokenPlaceholder"))
             .withWebNodesProfile(
                 new VmssNodesProfile()
                     .withName("web-server")

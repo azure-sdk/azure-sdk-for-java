@@ -23,6 +23,10 @@ public final class UserProfile {
     @JsonProperty(value = "sshPublicKey", required = true)
     private String sshPublicKey;
 
+    /** Creates an instance of UserProfile class. */
+    public UserProfile() {
+    }
+
     /**
      * Get the username property: User name.
      *

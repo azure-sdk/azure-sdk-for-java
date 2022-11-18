@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for DatabaseType. */
+/** Database type. */
 public final class DatabaseType extends ExpandableStringEnum<DatabaseType> {
     /** Static value MySql for DatabaseType. */
     public static final DatabaseType MY_SQL = fromString("MySql");

@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for SapVirtualInstanceStatus. */
+/** Defines the SAP Instance status. */
 public final class SapVirtualInstanceStatus extends ExpandableStringEnum<SapVirtualInstanceStatus> {
     /** Static value Starting for SapVirtualInstanceStatus. */
     public static final SapVirtualInstanceStatus STARTING = fromString("Starting");

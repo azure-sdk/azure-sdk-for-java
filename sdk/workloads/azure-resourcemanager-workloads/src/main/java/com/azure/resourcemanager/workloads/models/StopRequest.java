@@ -16,6 +16,10 @@ public final class StopRequest {
     @JsonProperty(value = "hardStop")
     private Boolean hardStop;
 
+    /** Creates an instance of StopRequest class. */
+    public StopRequest() {
+    }
+
     /**
      * Get the hardStop property: A boolean to specify if the SAP system should be hard-stopped.
      *

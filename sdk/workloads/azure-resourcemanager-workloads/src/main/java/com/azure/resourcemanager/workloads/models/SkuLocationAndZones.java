@@ -41,6 +41,10 @@ public final class SkuLocationAndZones {
     @JsonProperty(value = "type")
     private LocationType type;
 
+    /** Creates an instance of SkuLocationAndZones class. */
+    public SkuLocationAndZones() {
+    }
+
     /**
      * Get the location property: The location of the SKU.
      *

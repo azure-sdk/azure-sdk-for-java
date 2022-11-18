@@ -7,23 +7,32 @@ package com.azure.resourcemanager.workloads.generated;
 import com.azure.resourcemanager.workloads.models.ApplicationServerConfiguration;
 import com.azure.resourcemanager.workloads.models.CentralServerConfiguration;
 import com.azure.resourcemanager.workloads.models.DatabaseConfiguration;
-import com.azure.resourcemanager.workloads.models.DeployerVmPackages;
 import com.azure.resourcemanager.workloads.models.DeploymentConfiguration;
 import com.azure.resourcemanager.workloads.models.DeploymentWithOSConfiguration;
+import com.azure.resourcemanager.workloads.models.DiscoveryConfiguration;
+import com.azure.resourcemanager.workloads.models.DiskConfiguration;
+import com.azure.resourcemanager.workloads.models.DiskSku;
+import com.azure.resourcemanager.workloads.models.DiskSkuName;
+import com.azure.resourcemanager.workloads.models.DiskVolumeConfiguration;
+import com.azure.resourcemanager.workloads.models.ExternalInstallationSoftwareConfiguration;
 import com.azure.resourcemanager.workloads.models.HighAvailabilityConfiguration;
 import com.azure.resourcemanager.workloads.models.ImageReference;
 import com.azure.resourcemanager.workloads.models.LinuxConfiguration;
+import com.azure.resourcemanager.workloads.models.MountFileShareConfiguration;
 import com.azure.resourcemanager.workloads.models.NetworkConfiguration;
 import com.azure.resourcemanager.workloads.models.OSProfile;
 import com.azure.resourcemanager.workloads.models.OsSapConfiguration;
 import com.azure.resourcemanager.workloads.models.SapDatabaseType;
 import com.azure.resourcemanager.workloads.models.SapEnvironmentType;
 import com.azure.resourcemanager.workloads.models.SapHighAvailabilityType;
+import com.azure.resourcemanager.workloads.models.SapInstallWithoutOSConfigSoftwareConfiguration;
 import com.azure.resourcemanager.workloads.models.SapProductType;
 import com.azure.resourcemanager.workloads.models.SingleServerConfiguration;
+import com.azure.resourcemanager.workloads.models.SkipFileShareConfiguration;
 import com.azure.resourcemanager.workloads.models.SshConfiguration;
 import com.azure.resourcemanager.workloads.models.SshKeyPair;
 import com.azure.resourcemanager.workloads.models.SshPublicKey;
+import com.azure.resourcemanager.workloads.models.StorageConfiguration;
 import com.azure.resourcemanager.workloads.models.ThreeTierConfiguration;
 import com.azure.resourcemanager.workloads.models.VirtualMachineConfiguration;
 import java.util.Arrays;
@@ -33,19 +42,19 @@ import java.util.Map;
 /** Samples for SapVirtualInstances Create. */
 public final class SapVirtualInstancesCreateSamples {
     /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/preview/2021-12-01-preview/examples/sapvirtualinstances/SAPVirtualInstances_Create_WithOSConfig_HA_AvSet.json
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/preview/2021-12-01-preview/examples/sapvirtualinstances/SAPVirtualInstances_Install_Distributed.json
      */
     /**
-     * Sample code: SAPVirtualInstances_Create_WithOSConfig_HA_AvSet.
+     * Sample code: Install SAP Software on Distributed System.
      *
      * @param manager Entry point to WorkloadsManager.
      */
-    public static void sAPVirtualInstancesCreateWithOSConfigHAAvSet(
+    public static void installSAPSoftwareOnDistributedSystem(
         com.azure.resourcemanager.workloads.WorkloadsManager manager) {
         manager
             .sapVirtualInstances()
             .define("X00")
-            .withRegion("westcentralus")
+            .withRegion("eastus2")
             .withExistingResourceGroup("test-rg")
             .withEnvironment(SapEnvironmentType.PROD)
             .withSapProduct(SapProductType.S4HANA)
@@ -54,217 +63,101 @@ public final class SapVirtualInstancesCreateSamples {
                     .withAppLocation("eastus")
                     .withInfrastructureConfiguration(
                         new ThreeTierConfiguration()
-                            .withAppResourceGroup("X00-RG")
+                            .withAppResourceGroup("{{resourcegrp}}")
+                            .withNetworkConfiguration(new NetworkConfiguration().withIsSecondaryIpEnabled(true))
                             .withCentralServer(
                                 new CentralServerConfiguration()
                                     .withSubnetId(
-                                        "/subscriptions/49d64d54-e966-4c46-a868-1999802b762c/resourceGroups/dindurkhya-e2etesting/providers/Microsoft.Networks/virtualNetworks/test-vnet/subnets/appsubnet")
+                                        "/subscriptions/8e17e36c-42e9-4cd5-a078-7b44883414e0/resourceGroups/test-rg/providers/Microsoft.Network/virtualNetworks/test-vnet/subnets/app")
                                     .withVirtualMachineConfiguration(
                                         new VirtualMachineConfiguration()
-                                            .withVmSize("Standard_E16ds_v4")
+                                            .withVmSize("Standard_E4ds_v4")
                                             .withImageReference(
                                                 new ImageReference()
                                                     .withPublisher("RedHat")
-                                                    .withOffer("RHEL-SAP")
-                                                    .withSku("7.4")
-                                                    .withVersion("7.4.2019062505"))
+                                                    .withOffer("RHEL-SAP-HA")
+                                                    .withSku("8.2")
+                                                    .withVersion("8.2.2021091201"))
                                             .withOsProfile(
                                                 new OSProfile()
-                                                    .withAdminUsername("{your-username}")
+                                                    .withAdminUsername("azureuser")
                                                     .withOsConfiguration(
                                                         new LinuxConfiguration()
                                                             .withDisablePasswordAuthentication(true)
                                                             .withSshKeyPair(
                                                                 new SshKeyPair()
-                                                                    .withPublicKey("abc")
-                                                                    .withPrivateKey("xyz")))))
-                                    .withInstanceCount(2L))
+                                                                    .withPublicKey("fakeTokenPlaceholder")
+                                                                    .withPrivateKey("fakeTokenPlaceholder")))))
+                                    .withInstanceCount(1L))
                             .withApplicationServer(
                                 new ApplicationServerConfiguration()
                                     .withSubnetId(
-                                        "/subscriptions/49d64d54-e966-4c46-a868-1999802b762c/resourceGroups/dindurkhya-e2etesting/providers/Microsoft.Networks/virtualNetworks/test-vnet/subnets/appsubnet")
+                                        "/subscriptions/8e17e36c-42e9-4cd5-a078-7b44883414e0/resourceGroups/test-rg/providers/Microsoft.Network/virtualNetworks/test-vnet/subnets/app")
                                     .withVirtualMachineConfiguration(
                                         new VirtualMachineConfiguration()
-                                            .withVmSize("Standard_E32ds_v4")
+                                            .withVmSize("Standard_E4ds_v4")
                                             .withImageReference(
                                                 new ImageReference()
                                                     .withPublisher("RedHat")
-                                                    .withOffer("RHEL-SAP")
-                                                    .withSku("7.4")
-                                                    .withVersion("7.4.2019062505"))
+                                                    .withOffer("RHEL-SAP-HA")
+                                                    .withSku("8.2")
+                                                    .withVersion("8.2.2021091201"))
                                             .withOsProfile(
                                                 new OSProfile()
-                                                    .withAdminUsername("{your-username}")
+                                                    .withAdminUsername("azureuser")
                                                     .withOsConfiguration(
                                                         new LinuxConfiguration()
                                                             .withDisablePasswordAuthentication(true)
                                                             .withSshKeyPair(
                                                                 new SshKeyPair()
-                                                                    .withPublicKey("abc")
-                                                                    .withPrivateKey("xyz")))))
-                                    .withInstanceCount(6L))
+                                                                    .withPublicKey("fakeTokenPlaceholder")
+                                                                    .withPrivateKey("fakeTokenPlaceholder")))))
+                                    .withInstanceCount(2L))
                             .withDatabaseServer(
                                 new DatabaseConfiguration()
-                                    .withDatabaseType(SapDatabaseType.HANA)
                                     .withSubnetId(
-                                        "/subscriptions/49d64d54-e966-4c46-a868-1999802b762c/resourceGroups/dindurkhya-e2etesting/providers/Microsoft.Networks/virtualNetworks/test-vnet/subnets/dbsubnet")
+                                        "/subscriptions/8e17e36c-42e9-4cd5-a078-7b44883414e0/resourceGroups/test-rg/providers/Microsoft.Network/virtualNetworks/test-vnet/subnets/app")
                                     .withVirtualMachineConfiguration(
                                         new VirtualMachineConfiguration()
                                             .withVmSize("Standard_M32ts")
                                             .withImageReference(
                                                 new ImageReference()
                                                     .withPublisher("RedHat")
-                                                    .withOffer("RHEL-SAP")
-                                                    .withSku("7.4")
-                                                    .withVersion("7.4.2019062505"))
+                                                    .withOffer("RHEL-SAP-HA")
+                                                    .withSku("8.2")
+                                                    .withVersion("8.2.2021091201"))
                                             .withOsProfile(
                                                 new OSProfile()
-                                                    .withAdminUsername("{your-username}")
+                                                    .withAdminUsername("azureuser")
                                                     .withOsConfiguration(
                                                         new LinuxConfiguration()
                                                             .withDisablePasswordAuthentication(true)
                                                             .withSshKeyPair(
                                                                 new SshKeyPair()
-                                                                    .withPublicKey("abc")
-                                                                    .withPrivateKey("xyz")))))
-                                    .withInstanceCount(2L))
-                            .withHighAvailabilityConfig(
-                                new HighAvailabilityConfiguration()
-                                    .withHighAvailabilityType(SapHighAvailabilityType.AVAILABILITY_SET)))
-                    .withOsSapConfiguration(
-                        new OsSapConfiguration()
-                            .withDeployerVmPackages(
-                                new DeployerVmPackages()
-                                    .withUrl(
-                                        "https://ybteststorageaccount.blob.core.windows.net/sapbits/deployervmpackages/DeployerVMPackages.zip")
-                                    .withStorageAccountId(
-                                        "/subscriptions/49d64d54-e966-4c46-a868-1999802b762c/resourceGroups/yb-SapInstall/providers/Microsoft.Storage/storageAccounts/ybteststorageaccount"))
-                            .withSapFqdn("xyz.test.com")))
-            .withTags(mapOf())
+                                                                    .withPublicKey("fakeTokenPlaceholder")
+                                                                    .withPrivateKey("fakeTokenPlaceholder")))))
+                                    .withInstanceCount(1L)))
+                    .withSoftwareConfiguration(
+                        new SapInstallWithoutOSConfigSoftwareConfiguration()
+                            .withBomUrl(
+                                "https://teststorageaccount.blob.core.windows.net/sapbits/sapfiles/boms/S41909SPS03_v0011ms/S41909SPS03_v0011ms.yaml")
+                            .withSapBitsStorageAccountId(
+                                "/subscriptions/8e17e36c-42e9-4cd5-a078-7b44883414e0/resourceGroups/test-rg/providers/Microsoft.Storage/storageAccounts/teststorageaccount")
+                            .withSoftwareVersion("SAP S/4HANA 1909 SPS 03"))
+                    .withOsSapConfiguration(new OsSapConfiguration().withSapFqdn("sap.bpaas.com")))
+            .withTags(mapOf("created by", "azureuser"))
             .create();
     }
 
     /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/preview/2021-12-01-preview/examples/sapvirtualinstances/SAPVirtualInstances_Create_WithOSConfig_HA_AvZone.json
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/preview/2021-12-01-preview/examples/sapvirtualinstances/SAPVirtualInstances_Create_HA_AvZone.json
      */
     /**
-     * Sample code: SAPVirtualInstances_Create_WithOSConfig_HA_AvZone.
+     * Sample code: Create Infrastructure only for HA System with Availability Zone.
      *
      * @param manager Entry point to WorkloadsManager.
      */
-    public static void sAPVirtualInstancesCreateWithOSConfigHAAvZone(
-        com.azure.resourcemanager.workloads.WorkloadsManager manager) {
-        manager
-            .sapVirtualInstances()
-            .define("X00")
-            .withRegion("westcentralus")
-            .withExistingResourceGroup("test-rg")
-            .withEnvironment(SapEnvironmentType.PROD)
-            .withSapProduct(SapProductType.S4HANA)
-            .withConfiguration(
-                new DeploymentWithOSConfiguration()
-                    .withAppLocation("eastus")
-                    .withInfrastructureConfiguration(
-                        new ThreeTierConfiguration()
-                            .withAppResourceGroup("X00-RG")
-                            .withCentralServer(
-                                new CentralServerConfiguration()
-                                    .withSubnetId(
-                                        "/subscriptions/49d64d54-e966-4c46-a868-1999802b762c/resourceGroups/dindurkhya-e2etesting/providers/Microsoft.Networks/virtualNetworks/test-vnet/subnets/appsubnet")
-                                    .withVirtualMachineConfiguration(
-                                        new VirtualMachineConfiguration()
-                                            .withVmSize("Standard_E16ds_v4")
-                                            .withImageReference(
-                                                new ImageReference()
-                                                    .withPublisher("RedHat")
-                                                    .withOffer("RHEL-SAP")
-                                                    .withSku("7.4")
-                                                    .withVersion("7.4.2019062505"))
-                                            .withOsProfile(
-                                                new OSProfile()
-                                                    .withAdminUsername("{your-username}")
-                                                    .withOsConfiguration(
-                                                        new LinuxConfiguration()
-                                                            .withDisablePasswordAuthentication(true)
-                                                            .withSshKeyPair(
-                                                                new SshKeyPair()
-                                                                    .withPublicKey("abc")
-                                                                    .withPrivateKey("xyz")))))
-                                    .withInstanceCount(2L))
-                            .withApplicationServer(
-                                new ApplicationServerConfiguration()
-                                    .withSubnetId(
-                                        "/subscriptions/49d64d54-e966-4c46-a868-1999802b762c/resourceGroups/dindurkhya-e2etesting/providers/Microsoft.Networks/virtualNetworks/test-vnet/subnets/appsubnet")
-                                    .withVirtualMachineConfiguration(
-                                        new VirtualMachineConfiguration()
-                                            .withVmSize("Standard_E32ds_v4")
-                                            .withImageReference(
-                                                new ImageReference()
-                                                    .withPublisher("RedHat")
-                                                    .withOffer("RHEL-SAP")
-                                                    .withSku("7.4")
-                                                    .withVersion("7.4.2019062505"))
-                                            .withOsProfile(
-                                                new OSProfile()
-                                                    .withAdminUsername("{your-username}")
-                                                    .withOsConfiguration(
-                                                        new LinuxConfiguration()
-                                                            .withDisablePasswordAuthentication(true)
-                                                            .withSshKeyPair(
-                                                                new SshKeyPair()
-                                                                    .withPublicKey("abc")
-                                                                    .withPrivateKey("xyz")))))
-                                    .withInstanceCount(6L))
-                            .withDatabaseServer(
-                                new DatabaseConfiguration()
-                                    .withDatabaseType(SapDatabaseType.HANA)
-                                    .withSubnetId(
-                                        "/subscriptions/49d64d54-e966-4c46-a868-1999802b762c/resourceGroups/dindurkhya-e2etesting/providers/Microsoft.Networks/virtualNetworks/test-vnet/subnets/dbsubnet")
-                                    .withVirtualMachineConfiguration(
-                                        new VirtualMachineConfiguration()
-                                            .withVmSize("Standard_M32ts")
-                                            .withImageReference(
-                                                new ImageReference()
-                                                    .withPublisher("RedHat")
-                                                    .withOffer("RHEL-SAP")
-                                                    .withSku("7.4")
-                                                    .withVersion("7.4.2019062505"))
-                                            .withOsProfile(
-                                                new OSProfile()
-                                                    .withAdminUsername("{your-username}")
-                                                    .withOsConfiguration(
-                                                        new LinuxConfiguration()
-                                                            .withDisablePasswordAuthentication(true)
-                                                            .withSshKeyPair(
-                                                                new SshKeyPair()
-                                                                    .withPublicKey("abc")
-                                                                    .withPrivateKey("xyz")))))
-                                    .withInstanceCount(2L))
-                            .withHighAvailabilityConfig(
-                                new HighAvailabilityConfiguration()
-                                    .withHighAvailabilityType(SapHighAvailabilityType.AVAILABILITY_ZONE)))
-                    .withOsSapConfiguration(
-                        new OsSapConfiguration()
-                            .withDeployerVmPackages(
-                                new DeployerVmPackages()
-                                    .withUrl(
-                                        "https://ybteststorageaccount.blob.core.windows.net/sapbits/deployervmpackages/DeployerVMPackages.zip")
-                                    .withStorageAccountId(
-                                        "/subscriptions/49d64d54-e966-4c46-a868-1999802b762c/resourceGroups/yb-SapInstall/providers/Microsoft.Storage/storageAccounts/ybteststorageaccount"))
-                            .withSapFqdn("xyz.test.com")))
-            .withTags(mapOf())
-            .create();
-    }
-
-    /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/preview/2021-12-01-preview/examples/sapvirtualinstances/SAPVirtualInstances_Create_Distributed.json
-     */
-    /**
-     * Sample code: SAPVirtualInstances_Create_Distributed.
-     *
-     * @param manager Entry point to WorkloadsManager.
-     */
-    public static void sAPVirtualInstancesCreateDistributed(
+    public static void createInfrastructureOnlyForHASystemWithAvailabilityZone(
         com.azure.resourcemanager.workloads.WorkloadsManager manager) {
         manager
             .sapVirtualInstances()
@@ -305,7 +198,1136 @@ public final class SapVirtualInstancesCreateSamples {
                                                                             .asList(
                                                                                 new SshPublicKey()
                                                                                     .withKeyData(
-                                                                                        "ssh-rsa public key")))))))
+                                                                                        "fakeTokenPlaceholder")))))))
+                                    .withInstanceCount(2L))
+                            .withApplicationServer(
+                                new ApplicationServerConfiguration()
+                                    .withSubnetId(
+                                        "/subscriptions/49d64d54-e966-4c46-a868-1999802b762c/resourceGroups/dindurkhya-e2etesting/providers/Microsoft.Networks/virtualNetworks/test-vnet/subnets/appsubnet")
+                                    .withVirtualMachineConfiguration(
+                                        new VirtualMachineConfiguration()
+                                            .withVmSize("Standard_E32ds_v4")
+                                            .withImageReference(
+                                                new ImageReference()
+                                                    .withPublisher("RedHat")
+                                                    .withOffer("RHEL-SAP")
+                                                    .withSku("7.4")
+                                                    .withVersion("7.4.2019062505"))
+                                            .withOsProfile(
+                                                new OSProfile()
+                                                    .withAdminUsername("{your-username}")
+                                                    .withOsConfiguration(
+                                                        new LinuxConfiguration()
+                                                            .withDisablePasswordAuthentication(true)
+                                                            .withSsh(
+                                                                new SshConfiguration()
+                                                                    .withPublicKeys(
+                                                                        Arrays
+                                                                            .asList(
+                                                                                new SshPublicKey()
+                                                                                    .withKeyData(
+                                                                                        "fakeTokenPlaceholder")))))))
+                                    .withInstanceCount(6L))
+                            .withDatabaseServer(
+                                new DatabaseConfiguration()
+                                    .withDatabaseType(SapDatabaseType.HANA)
+                                    .withSubnetId(
+                                        "/subscriptions/49d64d54-e966-4c46-a868-1999802b762c/resourceGroups/dindurkhya-e2etesting/providers/Microsoft.Networks/virtualNetworks/test-vnet/subnets/dbsubnet")
+                                    .withVirtualMachineConfiguration(
+                                        new VirtualMachineConfiguration()
+                                            .withVmSize("Standard_M32ts")
+                                            .withImageReference(
+                                                new ImageReference()
+                                                    .withPublisher("RedHat")
+                                                    .withOffer("RHEL-SAP")
+                                                    .withSku("7.4")
+                                                    .withVersion("7.4.2019062505"))
+                                            .withOsProfile(
+                                                new OSProfile()
+                                                    .withAdminUsername("{your-username}")
+                                                    .withOsConfiguration(
+                                                        new LinuxConfiguration()
+                                                            .withDisablePasswordAuthentication(true)
+                                                            .withSsh(
+                                                                new SshConfiguration()
+                                                                    .withPublicKeys(
+                                                                        Arrays
+                                                                            .asList(
+                                                                                new SshPublicKey()
+                                                                                    .withKeyData(
+                                                                                        "fakeTokenPlaceholder")))))))
+                                    .withInstanceCount(2L))
+                            .withHighAvailabilityConfig(
+                                new HighAvailabilityConfiguration()
+                                    .withHighAvailabilityType(SapHighAvailabilityType.AVAILABILITY_ZONE))))
+            .withTags(mapOf())
+            .create();
+    }
+
+    /*
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/preview/2021-12-01-preview/examples/sapvirtualinstances/SAPVirtualInstances_Create_WithOSConfig_HA_AvSet.json
+     */
+    /**
+     * Sample code: Create Infrastructure with OS configuration for HA System with Availability Set (Recommended).
+     *
+     * @param manager Entry point to WorkloadsManager.
+     */
+    public static void createInfrastructureWithOSConfigurationForHASystemWithAvailabilitySetRecommended(
+        com.azure.resourcemanager.workloads.WorkloadsManager manager) {
+        manager
+            .sapVirtualInstances()
+            .define("X00")
+            .withRegion("westcentralus")
+            .withExistingResourceGroup("test-rg")
+            .withEnvironment(SapEnvironmentType.PROD)
+            .withSapProduct(SapProductType.S4HANA)
+            .withConfiguration(
+                new DeploymentWithOSConfiguration()
+                    .withAppLocation("eastus")
+                    .withInfrastructureConfiguration(
+                        new ThreeTierConfiguration()
+                            .withAppResourceGroup("X00-RG")
+                            .withCentralServer(
+                                new CentralServerConfiguration()
+                                    .withSubnetId(
+                                        "/subscriptions/49d64d54-e966-4c46-a868-1999802b762c/resourceGroups/dindurkhya-e2etesting/providers/Microsoft.Networks/virtualNetworks/test-vnet/subnets/appsubnet")
+                                    .withVirtualMachineConfiguration(
+                                        new VirtualMachineConfiguration()
+                                            .withVmSize("Standard_E16ds_v4")
+                                            .withImageReference(
+                                                new ImageReference()
+                                                    .withPublisher("RedHat")
+                                                    .withOffer("RHEL-SAP")
+                                                    .withSku("7.4")
+                                                    .withVersion("7.4.2019062505"))
+                                            .withOsProfile(
+                                                new OSProfile()
+                                                    .withAdminUsername("{your-username}")
+                                                    .withOsConfiguration(
+                                                        new LinuxConfiguration()
+                                                            .withDisablePasswordAuthentication(true)
+                                                            .withSshKeyPair(
+                                                                new SshKeyPair()
+                                                                    .withPublicKey("fakeTokenPlaceholder")
+                                                                    .withPrivateKey("fakeTokenPlaceholder")))))
+                                    .withInstanceCount(2L))
+                            .withApplicationServer(
+                                new ApplicationServerConfiguration()
+                                    .withSubnetId(
+                                        "/subscriptions/49d64d54-e966-4c46-a868-1999802b762c/resourceGroups/dindurkhya-e2etesting/providers/Microsoft.Networks/virtualNetworks/test-vnet/subnets/appsubnet")
+                                    .withVirtualMachineConfiguration(
+                                        new VirtualMachineConfiguration()
+                                            .withVmSize("Standard_E32ds_v4")
+                                            .withImageReference(
+                                                new ImageReference()
+                                                    .withPublisher("RedHat")
+                                                    .withOffer("RHEL-SAP")
+                                                    .withSku("7.4")
+                                                    .withVersion("7.4.2019062505"))
+                                            .withOsProfile(
+                                                new OSProfile()
+                                                    .withAdminUsername("{your-username}")
+                                                    .withOsConfiguration(
+                                                        new LinuxConfiguration()
+                                                            .withDisablePasswordAuthentication(true)
+                                                            .withSshKeyPair(
+                                                                new SshKeyPair()
+                                                                    .withPublicKey("fakeTokenPlaceholder")
+                                                                    .withPrivateKey("fakeTokenPlaceholder")))))
+                                    .withInstanceCount(6L))
+                            .withDatabaseServer(
+                                new DatabaseConfiguration()
+                                    .withDatabaseType(SapDatabaseType.HANA)
+                                    .withSubnetId(
+                                        "/subscriptions/49d64d54-e966-4c46-a868-1999802b762c/resourceGroups/dindurkhya-e2etesting/providers/Microsoft.Networks/virtualNetworks/test-vnet/subnets/dbsubnet")
+                                    .withVirtualMachineConfiguration(
+                                        new VirtualMachineConfiguration()
+                                            .withVmSize("Standard_M32ts")
+                                            .withImageReference(
+                                                new ImageReference()
+                                                    .withPublisher("RedHat")
+                                                    .withOffer("RHEL-SAP")
+                                                    .withSku("7.4")
+                                                    .withVersion("7.4.2019062505"))
+                                            .withOsProfile(
+                                                new OSProfile()
+                                                    .withAdminUsername("{your-username}")
+                                                    .withOsConfiguration(
+                                                        new LinuxConfiguration()
+                                                            .withDisablePasswordAuthentication(true)
+                                                            .withSshKeyPair(
+                                                                new SshKeyPair()
+                                                                    .withPublicKey("fakeTokenPlaceholder")
+                                                                    .withPrivateKey("fakeTokenPlaceholder")))))
+                                    .withInstanceCount(2L))
+                            .withHighAvailabilityConfig(
+                                new HighAvailabilityConfiguration()
+                                    .withHighAvailabilityType(SapHighAvailabilityType.AVAILABILITY_SET)))
+                    .withOsSapConfiguration(new OsSapConfiguration().withSapFqdn("xyz.test.com")))
+            .withTags(mapOf())
+            .create();
+    }
+
+    /*
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/preview/2021-12-01-preview/examples/sapvirtualinstances/SAPVirtualInstances_Create_Distributed_SkipTransMount.json
+     */
+    /**
+     * Sample code: Create Infrastructure without SAP Trans Fileshare.
+     *
+     * @param manager Entry point to WorkloadsManager.
+     */
+    public static void createInfrastructureWithoutSAPTransFileshare(
+        com.azure.resourcemanager.workloads.WorkloadsManager manager) {
+        manager
+            .sapVirtualInstances()
+            .define("X00")
+            .withRegion("westcentralus")
+            .withExistingResourceGroup("test-rg")
+            .withEnvironment(SapEnvironmentType.PROD)
+            .withSapProduct(SapProductType.S4HANA)
+            .withConfiguration(
+                new DeploymentWithOSConfiguration()
+                    .withAppLocation("eastus")
+                    .withInfrastructureConfiguration(
+                        new ThreeTierConfiguration()
+                            .withAppResourceGroup("X00-RG")
+                            .withCentralServer(
+                                new CentralServerConfiguration()
+                                    .withSubnetId(
+                                        "/subscriptions/49d64d54-e966-4c46-a868-1999802b762c/resourceGroups/test-rg/providers/Microsoft.Networks/virtualNetworks/test-vnet/subnets/appsubnet")
+                                    .withVirtualMachineConfiguration(
+                                        new VirtualMachineConfiguration()
+                                            .withVmSize("Standard_E16ds_v4")
+                                            .withImageReference(
+                                                new ImageReference()
+                                                    .withPublisher("RedHat")
+                                                    .withOffer("RHEL-SAP")
+                                                    .withSku("7.4")
+                                                    .withVersion("7.4.2019062505"))
+                                            .withOsProfile(
+                                                new OSProfile()
+                                                    .withAdminUsername("{your-username}")
+                                                    .withOsConfiguration(
+                                                        new LinuxConfiguration()
+                                                            .withDisablePasswordAuthentication(true)
+                                                            .withSshKeyPair(
+                                                                new SshKeyPair()
+                                                                    .withPublicKey("fakeTokenPlaceholder")
+                                                                    .withPrivateKey("fakeTokenPlaceholder")))))
+                                    .withInstanceCount(1L))
+                            .withApplicationServer(
+                                new ApplicationServerConfiguration()
+                                    .withSubnetId(
+                                        "/subscriptions/49d64d54-e966-4c46-a868-1999802b762c/resourceGroups/test-rg/providers/Microsoft.Networks/virtualNetworks/test-vnet/subnets/appsubnet")
+                                    .withVirtualMachineConfiguration(
+                                        new VirtualMachineConfiguration()
+                                            .withVmSize("Standard_E32ds_v4")
+                                            .withImageReference(
+                                                new ImageReference()
+                                                    .withPublisher("RedHat")
+                                                    .withOffer("RHEL-SAP")
+                                                    .withSku("7.4")
+                                                    .withVersion("7.4.2019062505"))
+                                            .withOsProfile(
+                                                new OSProfile()
+                                                    .withAdminUsername("{your-username}")
+                                                    .withOsConfiguration(
+                                                        new LinuxConfiguration()
+                                                            .withDisablePasswordAuthentication(true)
+                                                            .withSshKeyPair(
+                                                                new SshKeyPair()
+                                                                    .withPublicKey("fakeTokenPlaceholder")
+                                                                    .withPrivateKey("fakeTokenPlaceholder")))))
+                                    .withInstanceCount(6L))
+                            .withDatabaseServer(
+                                new DatabaseConfiguration()
+                                    .withDatabaseType(SapDatabaseType.HANA)
+                                    .withSubnetId(
+                                        "/subscriptions/49d64d54-e966-4c46-a868-1999802b762c/resourceGroups/test-rg/providers/Microsoft.Networks/virtualNetworks/test-vnet/subnets/dbsubnet")
+                                    .withVirtualMachineConfiguration(
+                                        new VirtualMachineConfiguration()
+                                            .withVmSize("Standard_M32ts")
+                                            .withImageReference(
+                                                new ImageReference()
+                                                    .withPublisher("RedHat")
+                                                    .withOffer("RHEL-SAP")
+                                                    .withSku("7.4")
+                                                    .withVersion("7.4.2019062505"))
+                                            .withOsProfile(
+                                                new OSProfile()
+                                                    .withAdminUsername("{your-username}")
+                                                    .withOsConfiguration(
+                                                        new LinuxConfiguration()
+                                                            .withDisablePasswordAuthentication(true)
+                                                            .withSshKeyPair(
+                                                                new SshKeyPair()
+                                                                    .withPublicKey("fakeTokenPlaceholder")
+                                                                    .withPrivateKey("fakeTokenPlaceholder")))))
+                                    .withInstanceCount(1L))
+                            .withStorageConfiguration(
+                                new StorageConfiguration()
+                                    .withTransportFileShareConfiguration(new SkipFileShareConfiguration())))
+                    .withOsSapConfiguration(new OsSapConfiguration().withSapFqdn("xyz.test.com")))
+            .withTags(mapOf())
+            .create();
+    }
+
+    /*
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/preview/2021-12-01-preview/examples/sapvirtualinstances/SAPVirtualInstances_Create_WithOSConfig_Distributed.json
+     */
+    /**
+     * Sample code: Create Infrastructure with OS configuration for Distributed System (Recommended).
+     *
+     * @param manager Entry point to WorkloadsManager.
+     */
+    public static void createInfrastructureWithOSConfigurationForDistributedSystemRecommended(
+        com.azure.resourcemanager.workloads.WorkloadsManager manager) {
+        manager
+            .sapVirtualInstances()
+            .define("X00")
+            .withRegion("westcentralus")
+            .withExistingResourceGroup("test-rg")
+            .withEnvironment(SapEnvironmentType.PROD)
+            .withSapProduct(SapProductType.S4HANA)
+            .withConfiguration(
+                new DeploymentWithOSConfiguration()
+                    .withAppLocation("eastus")
+                    .withInfrastructureConfiguration(
+                        new ThreeTierConfiguration()
+                            .withAppResourceGroup("X00-RG")
+                            .withCentralServer(
+                                new CentralServerConfiguration()
+                                    .withSubnetId(
+                                        "/subscriptions/49d64d54-e966-4c46-a868-1999802b762c/resourceGroups/dindurkhya-e2etesting/providers/Microsoft.Networks/virtualNetworks/test-vnet/subnets/appsubnet")
+                                    .withVirtualMachineConfiguration(
+                                        new VirtualMachineConfiguration()
+                                            .withVmSize("Standard_E16ds_v4")
+                                            .withImageReference(
+                                                new ImageReference()
+                                                    .withPublisher("RedHat")
+                                                    .withOffer("RHEL-SAP")
+                                                    .withSku("7.4")
+                                                    .withVersion("7.4.2019062505"))
+                                            .withOsProfile(
+                                                new OSProfile()
+                                                    .withAdminUsername("{your-username}")
+                                                    .withOsConfiguration(
+                                                        new LinuxConfiguration()
+                                                            .withDisablePasswordAuthentication(true)
+                                                            .withSshKeyPair(
+                                                                new SshKeyPair()
+                                                                    .withPublicKey("fakeTokenPlaceholder")
+                                                                    .withPrivateKey("fakeTokenPlaceholder")))))
+                                    .withInstanceCount(1L))
+                            .withApplicationServer(
+                                new ApplicationServerConfiguration()
+                                    .withSubnetId(
+                                        "/subscriptions/49d64d54-e966-4c46-a868-1999802b762c/resourceGroups/dindurkhya-e2etesting/providers/Microsoft.Networks/virtualNetworks/test-vnet/subnets/appsubnet")
+                                    .withVirtualMachineConfiguration(
+                                        new VirtualMachineConfiguration()
+                                            .withVmSize("Standard_E32ds_v4")
+                                            .withImageReference(
+                                                new ImageReference()
+                                                    .withPublisher("RedHat")
+                                                    .withOffer("RHEL-SAP")
+                                                    .withSku("7.4")
+                                                    .withVersion("7.4.2019062505"))
+                                            .withOsProfile(
+                                                new OSProfile()
+                                                    .withAdminUsername("{your-username}")
+                                                    .withOsConfiguration(
+                                                        new LinuxConfiguration()
+                                                            .withDisablePasswordAuthentication(true)
+                                                            .withSshKeyPair(
+                                                                new SshKeyPair()
+                                                                    .withPublicKey("fakeTokenPlaceholder")
+                                                                    .withPrivateKey("fakeTokenPlaceholder")))))
+                                    .withInstanceCount(6L))
+                            .withDatabaseServer(
+                                new DatabaseConfiguration()
+                                    .withDatabaseType(SapDatabaseType.HANA)
+                                    .withSubnetId(
+                                        "/subscriptions/49d64d54-e966-4c46-a868-1999802b762c/resourceGroups/dindurkhya-e2etesting/providers/Microsoft.Networks/virtualNetworks/test-vnet/subnets/dbsubnet")
+                                    .withVirtualMachineConfiguration(
+                                        new VirtualMachineConfiguration()
+                                            .withVmSize("Standard_M32ts")
+                                            .withImageReference(
+                                                new ImageReference()
+                                                    .withPublisher("RedHat")
+                                                    .withOffer("RHEL-SAP")
+                                                    .withSku("7.4")
+                                                    .withVersion("7.4.2019062505"))
+                                            .withOsProfile(
+                                                new OSProfile()
+                                                    .withAdminUsername("{your-username}")
+                                                    .withOsConfiguration(
+                                                        new LinuxConfiguration()
+                                                            .withDisablePasswordAuthentication(true)
+                                                            .withSshKeyPair(
+                                                                new SshKeyPair()
+                                                                    .withPublicKey("fakeTokenPlaceholder")
+                                                                    .withPrivateKey("fakeTokenPlaceholder")))))
+                                    .withInstanceCount(1L)))
+                    .withOsSapConfiguration(new OsSapConfiguration().withSapFqdn("xyz.test.com")))
+            .withTags(mapOf())
+            .create();
+    }
+
+    /*
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/preview/2021-12-01-preview/examples/sapvirtualinstances/SAPVirtualInstances_Create_DiskDetails_Distributed.json
+     */
+    /**
+     * Sample code: Create Infrastructure with Disk and OS configuration for Distributed System (Recommended).
+     *
+     * @param manager Entry point to WorkloadsManager.
+     */
+    public static void createInfrastructureWithDiskAndOSConfigurationForDistributedSystemRecommended(
+        com.azure.resourcemanager.workloads.WorkloadsManager manager) {
+        manager
+            .sapVirtualInstances()
+            .define("X00")
+            .withRegion("westcentralus")
+            .withExistingResourceGroup("test-rg")
+            .withEnvironment(SapEnvironmentType.PROD)
+            .withSapProduct(SapProductType.S4HANA)
+            .withConfiguration(
+                new DeploymentWithOSConfiguration()
+                    .withAppLocation("eastus")
+                    .withInfrastructureConfiguration(
+                        new ThreeTierConfiguration()
+                            .withAppResourceGroup("X00-RG")
+                            .withCentralServer(
+                                new CentralServerConfiguration()
+                                    .withSubnetId(
+                                        "/subscriptions/49d64d54-e966-4c46-a868-1999802b762c/resourceGroups/dindurkhya-e2etesting/providers/Microsoft.Networks/virtualNetworks/test-vnet/subnets/appsubnet")
+                                    .withVirtualMachineConfiguration(
+                                        new VirtualMachineConfiguration()
+                                            .withVmSize("Standard_E16ds_v4")
+                                            .withImageReference(
+                                                new ImageReference()
+                                                    .withPublisher("RedHat")
+                                                    .withOffer("RHEL-SAP")
+                                                    .withSku("7.4")
+                                                    .withVersion("7.4.2019062505"))
+                                            .withOsProfile(
+                                                new OSProfile()
+                                                    .withAdminUsername("{your-username}")
+                                                    .withOsConfiguration(
+                                                        new LinuxConfiguration()
+                                                            .withDisablePasswordAuthentication(true)
+                                                            .withSshKeyPair(
+                                                                new SshKeyPair()
+                                                                    .withPublicKey("fakeTokenPlaceholder")
+                                                                    .withPrivateKey("fakeTokenPlaceholder")))))
+                                    .withInstanceCount(1L))
+                            .withApplicationServer(
+                                new ApplicationServerConfiguration()
+                                    .withSubnetId(
+                                        "/subscriptions/49d64d54-e966-4c46-a868-1999802b762c/resourceGroups/dindurkhya-e2etesting/providers/Microsoft.Networks/virtualNetworks/test-vnet/subnets/appsubnet")
+                                    .withVirtualMachineConfiguration(
+                                        new VirtualMachineConfiguration()
+                                            .withVmSize("Standard_E32ds_v4")
+                                            .withImageReference(
+                                                new ImageReference()
+                                                    .withPublisher("RedHat")
+                                                    .withOffer("RHEL-SAP")
+                                                    .withSku("7.4")
+                                                    .withVersion("7.4.2019062505"))
+                                            .withOsProfile(
+                                                new OSProfile()
+                                                    .withAdminUsername("{your-username}")
+                                                    .withOsConfiguration(
+                                                        new LinuxConfiguration()
+                                                            .withDisablePasswordAuthentication(true)
+                                                            .withSshKeyPair(
+                                                                new SshKeyPair()
+                                                                    .withPublicKey("fakeTokenPlaceholder")
+                                                                    .withPrivateKey("fakeTokenPlaceholder")))))
+                                    .withInstanceCount(6L))
+                            .withDatabaseServer(
+                                new DatabaseConfiguration()
+                                    .withDatabaseType(SapDatabaseType.HANA)
+                                    .withSubnetId(
+                                        "/subscriptions/49d64d54-e966-4c46-a868-1999802b762c/resourceGroups/dindurkhya-e2etesting/providers/Microsoft.Networks/virtualNetworks/test-vnet/subnets/dbsubnet")
+                                    .withVirtualMachineConfiguration(
+                                        new VirtualMachineConfiguration()
+                                            .withVmSize("Standard_M32ts")
+                                            .withImageReference(
+                                                new ImageReference()
+                                                    .withPublisher("RedHat")
+                                                    .withOffer("RHEL-SAP")
+                                                    .withSku("7.4")
+                                                    .withVersion("7.4.2019062505"))
+                                            .withOsProfile(
+                                                new OSProfile()
+                                                    .withAdminUsername("{your-username}")
+                                                    .withOsConfiguration(
+                                                        new LinuxConfiguration()
+                                                            .withDisablePasswordAuthentication(true)
+                                                            .withSshKeyPair(
+                                                                new SshKeyPair()
+                                                                    .withPublicKey("fakeTokenPlaceholder")
+                                                                    .withPrivateKey("fakeTokenPlaceholder")))))
+                                    .withInstanceCount(1L)
+                                    .withDiskConfiguration(
+                                        new DiskConfiguration()
+                                            .withDiskVolumeConfigurations(
+                                                mapOf(
+                                                    "backup",
+                                                    new DiskVolumeConfiguration()
+                                                        .withCount(2L)
+                                                        .withSizeGB(256L)
+                                                        .withSku(new DiskSku().withName(DiskSkuName.STANDARD_SSD_LRS)),
+                                                    "hana/data",
+                                                    new DiskVolumeConfiguration()
+                                                        .withCount(4L)
+                                                        .withSizeGB(128L)
+                                                        .withSku(new DiskSku().withName(DiskSkuName.PREMIUM_LRS)),
+                                                    "hana/log",
+                                                    new DiskVolumeConfiguration()
+                                                        .withCount(3L)
+                                                        .withSizeGB(128L)
+                                                        .withSku(new DiskSku().withName(DiskSkuName.PREMIUM_LRS)),
+                                                    "hana/shared",
+                                                    new DiskVolumeConfiguration()
+                                                        .withCount(1L)
+                                                        .withSizeGB(256L)
+                                                        .withSku(new DiskSku().withName(DiskSkuName.STANDARD_SSD_LRS)),
+                                                    "os",
+                                                    new DiskVolumeConfiguration()
+                                                        .withCount(1L)
+                                                        .withSizeGB(64L)
+                                                        .withSku(new DiskSku().withName(DiskSkuName.STANDARD_SSD_LRS)),
+                                                    "usr/sap",
+                                                    new DiskVolumeConfiguration()
+                                                        .withCount(1L)
+                                                        .withSizeGB(128L)
+                                                        .withSku(new DiskSku().withName(DiskSkuName.PREMIUM_LRS)))))))
+                    .withOsSapConfiguration(new OsSapConfiguration().withSapFqdn("xyz.test.com")))
+            .withTags(mapOf())
+            .create();
+    }
+
+    /*
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/preview/2021-12-01-preview/examples/sapvirtualinstances/SAPVirtualInstances_DetectInstallation_Distributed.json
+     */
+    /**
+     * Sample code: Detect SAP Software Installation on a Distributed System.
+     *
+     * @param manager Entry point to WorkloadsManager.
+     */
+    public static void detectSAPSoftwareInstallationOnADistributedSystem(
+        com.azure.resourcemanager.workloads.WorkloadsManager manager) {
+        manager
+            .sapVirtualInstances()
+            .define("X00")
+            .withRegion("eastus2")
+            .withExistingResourceGroup("test-rg")
+            .withEnvironment(SapEnvironmentType.PROD)
+            .withSapProduct(SapProductType.S4HANA)
+            .withConfiguration(
+                new DeploymentWithOSConfiguration()
+                    .withAppLocation("eastus")
+                    .withInfrastructureConfiguration(
+                        new ThreeTierConfiguration()
+                            .withAppResourceGroup("{{resourcegrp}}")
+                            .withNetworkConfiguration(new NetworkConfiguration().withIsSecondaryIpEnabled(true))
+                            .withCentralServer(
+                                new CentralServerConfiguration()
+                                    .withSubnetId(
+                                        "/subscriptions/49d64d54-e966-4c46-a868-1999802b762c/resourceGroups/test-rg/providers/Microsoft.Network/virtualNetworks/test-vnet/subnets/app")
+                                    .withVirtualMachineConfiguration(
+                                        new VirtualMachineConfiguration()
+                                            .withVmSize("Standard_E4ds_v4")
+                                            .withImageReference(
+                                                new ImageReference()
+                                                    .withPublisher("RedHat")
+                                                    .withOffer("RHEL-SAP-HA")
+                                                    .withSku("84sapha-gen2")
+                                                    .withVersion("8.4.2021091202"))
+                                            .withOsProfile(
+                                                new OSProfile()
+                                                    .withAdminUsername("azureuser")
+                                                    .withOsConfiguration(
+                                                        new LinuxConfiguration()
+                                                            .withDisablePasswordAuthentication(true)
+                                                            .withSshKeyPair(
+                                                                new SshKeyPair()
+                                                                    .withPublicKey("fakeTokenPlaceholder")
+                                                                    .withPrivateKey("fakeTokenPlaceholder")))))
+                                    .withInstanceCount(1L))
+                            .withApplicationServer(
+                                new ApplicationServerConfiguration()
+                                    .withSubnetId(
+                                        "/subscriptions/49d64d54-e966-4c46-a868-1999802b762c/resourceGroups/test-rg/providers/Microsoft.Network/virtualNetworks/test-vnet/subnets/app")
+                                    .withVirtualMachineConfiguration(
+                                        new VirtualMachineConfiguration()
+                                            .withVmSize("Standard_E4ds_v4")
+                                            .withImageReference(
+                                                new ImageReference()
+                                                    .withPublisher("RedHat")
+                                                    .withOffer("RHEL-SAP-HA")
+                                                    .withSku("84sapha-gen2")
+                                                    .withVersion("8.4.2021091202"))
+                                            .withOsProfile(
+                                                new OSProfile()
+                                                    .withAdminUsername("azureuser")
+                                                    .withOsConfiguration(
+                                                        new LinuxConfiguration()
+                                                            .withDisablePasswordAuthentication(true)
+                                                            .withSshKeyPair(
+                                                                new SshKeyPair()
+                                                                    .withPublicKey("fakeTokenPlaceholder")
+                                                                    .withPrivateKey("fakeTokenPlaceholder")))))
+                                    .withInstanceCount(2L))
+                            .withDatabaseServer(
+                                new DatabaseConfiguration()
+                                    .withSubnetId(
+                                        "/subscriptions/49d64d54-e966-4c46-a868-1999802b762c/resourceGroups/test-rg/providers/Microsoft.Network/virtualNetworks/test-vnet/subnets/app")
+                                    .withVirtualMachineConfiguration(
+                                        new VirtualMachineConfiguration()
+                                            .withVmSize("Standard_M32ts")
+                                            .withImageReference(
+                                                new ImageReference()
+                                                    .withPublisher("RedHat")
+                                                    .withOffer("RHEL-SAP-HA")
+                                                    .withSku("84sapha-gen2")
+                                                    .withVersion("8.4.2021091202"))
+                                            .withOsProfile(
+                                                new OSProfile()
+                                                    .withAdminUsername("azureuser")
+                                                    .withOsConfiguration(
+                                                        new LinuxConfiguration()
+                                                            .withDisablePasswordAuthentication(true)
+                                                            .withSshKeyPair(
+                                                                new SshKeyPair()
+                                                                    .withPublicKey("fakeTokenPlaceholder")
+                                                                    .withPrivateKey("fakeTokenPlaceholder")))))
+                                    .withInstanceCount(1L)))
+                    .withSoftwareConfiguration(
+                        new ExternalInstallationSoftwareConfiguration()
+                            .withCentralServerVmId(
+                                "/subscriptions/49d64d54-e966-4c46-a868-1999802b762c/resourceGroups/test-rg/providers/Microsoft.Compute/virtualMachines/sapq20scsvm0"))
+                    .withOsSapConfiguration(new OsSapConfiguration().withSapFqdn("sap.bpaas.com")))
+            .withTags(mapOf("created by", "azureuser"))
+            .create();
+    }
+
+    /*
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/preview/2021-12-01-preview/examples/sapvirtualinstances/SAPVirtualInstances_DetectInstallation_SingleServer.json
+     */
+    /**
+     * Sample code: Detect SAP Software Installation on a Single Server System.
+     *
+     * @param manager Entry point to WorkloadsManager.
+     */
+    public static void detectSAPSoftwareInstallationOnASingleServerSystem(
+        com.azure.resourcemanager.workloads.WorkloadsManager manager) {
+        manager
+            .sapVirtualInstances()
+            .define("X00")
+            .withRegion("westcentralus")
+            .withExistingResourceGroup("test-rg")
+            .withEnvironment(SapEnvironmentType.NON_PROD)
+            .withSapProduct(SapProductType.S4HANA)
+            .withConfiguration(
+                new DeploymentWithOSConfiguration()
+                    .withAppLocation("eastus")
+                    .withInfrastructureConfiguration(
+                        new SingleServerConfiguration()
+                            .withAppResourceGroup("X00-RG")
+                            .withNetworkConfiguration(new NetworkConfiguration().withIsSecondaryIpEnabled(true))
+                            .withDatabaseType(SapDatabaseType.HANA)
+                            .withSubnetId(
+                                "/subscriptions/49d64d54-e966-4c46-a868-1999802b762c/resourceGroups/dindurkhya-e2etesting/providers/Microsoft.Networks/virtualNetworks/test-vnet/subnets/appsubnet")
+                            .withVirtualMachineConfiguration(
+                                new VirtualMachineConfiguration()
+                                    .withVmSize("Standard_E32ds_v4")
+                                    .withImageReference(
+                                        new ImageReference()
+                                            .withPublisher("RedHat")
+                                            .withOffer("RHEL-SAP-HA")
+                                            .withSku("84sapha-gen2")
+                                            .withVersion("8.4.2021091202"))
+                                    .withOsProfile(
+                                        new OSProfile()
+                                            .withAdminUsername("{your-username}")
+                                            .withOsConfiguration(
+                                                new LinuxConfiguration()
+                                                    .withDisablePasswordAuthentication(true)
+                                                    .withSshKeyPair(
+                                                        new SshKeyPair()
+                                                            .withPublicKey("fakeTokenPlaceholder")
+                                                            .withPrivateKey("fakeTokenPlaceholder"))))))
+                    .withSoftwareConfiguration(
+                        new ExternalInstallationSoftwareConfiguration()
+                            .withCentralServerVmId(
+                                "/subscriptions/49d64d54-e966-4c46-a868-1999802b762c/resourceGroups/test-rg/providers/Microsoft.Compute/virtualMachines/sapq20scsvm0"))
+                    .withOsSapConfiguration(new OsSapConfiguration().withSapFqdn("xyz.test.com")))
+            .withTags(mapOf())
+            .create();
+    }
+
+    /*
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/preview/2021-12-01-preview/examples/sapvirtualinstances/SAPVirtualInstances_DetectInstallation_HA_AvSet.json
+     */
+    /**
+     * Sample code: Detect SAP Software Installation on an HA System with Availability Set.
+     *
+     * @param manager Entry point to WorkloadsManager.
+     */
+    public static void detectSAPSoftwareInstallationOnAnHASystemWithAvailabilitySet(
+        com.azure.resourcemanager.workloads.WorkloadsManager manager) {
+        manager
+            .sapVirtualInstances()
+            .define("X00")
+            .withRegion("westcentralus")
+            .withExistingResourceGroup("test-rg")
+            .withEnvironment(SapEnvironmentType.PROD)
+            .withSapProduct(SapProductType.S4HANA)
+            .withConfiguration(
+                new DeploymentWithOSConfiguration()
+                    .withAppLocation("eastus")
+                    .withInfrastructureConfiguration(
+                        new ThreeTierConfiguration()
+                            .withAppResourceGroup("X00-RG")
+                            .withCentralServer(
+                                new CentralServerConfiguration()
+                                    .withSubnetId(
+                                        "/subscriptions/49d64d54-e966-4c46-a868-1999802b762c/resourceGroups/dindurkhya-e2etesting/providers/Microsoft.Networks/virtualNetworks/test-vnet/subnets/appsubnet")
+                                    .withVirtualMachineConfiguration(
+                                        new VirtualMachineConfiguration()
+                                            .withVmSize("Standard_E16ds_v4")
+                                            .withImageReference(
+                                                new ImageReference()
+                                                    .withPublisher("RedHat")
+                                                    .withOffer("RHEL-SAP-HA")
+                                                    .withSku("84sapha-gen2")
+                                                    .withVersion("8.4.2021091202"))
+                                            .withOsProfile(
+                                                new OSProfile()
+                                                    .withAdminUsername("{your-username}")
+                                                    .withOsConfiguration(
+                                                        new LinuxConfiguration()
+                                                            .withDisablePasswordAuthentication(true)
+                                                            .withSshKeyPair(
+                                                                new SshKeyPair()
+                                                                    .withPublicKey("fakeTokenPlaceholder")
+                                                                    .withPrivateKey("fakeTokenPlaceholder")))))
+                                    .withInstanceCount(2L))
+                            .withApplicationServer(
+                                new ApplicationServerConfiguration()
+                                    .withSubnetId(
+                                        "/subscriptions/49d64d54-e966-4c46-a868-1999802b762c/resourceGroups/dindurkhya-e2etesting/providers/Microsoft.Networks/virtualNetworks/test-vnet/subnets/appsubnet")
+                                    .withVirtualMachineConfiguration(
+                                        new VirtualMachineConfiguration()
+                                            .withVmSize("Standard_E32ds_v4")
+                                            .withImageReference(
+                                                new ImageReference()
+                                                    .withPublisher("RedHat")
+                                                    .withOffer("RHEL-SAP-HA")
+                                                    .withSku("84sapha-gen2")
+                                                    .withVersion("8.4.2021091202"))
+                                            .withOsProfile(
+                                                new OSProfile()
+                                                    .withAdminUsername("{your-username}")
+                                                    .withOsConfiguration(
+                                                        new LinuxConfiguration()
+                                                            .withDisablePasswordAuthentication(true)
+                                                            .withSshKeyPair(
+                                                                new SshKeyPair()
+                                                                    .withPublicKey("fakeTokenPlaceholder")
+                                                                    .withPrivateKey("fakeTokenPlaceholder")))))
+                                    .withInstanceCount(6L))
+                            .withDatabaseServer(
+                                new DatabaseConfiguration()
+                                    .withDatabaseType(SapDatabaseType.HANA)
+                                    .withSubnetId(
+                                        "/subscriptions/49d64d54-e966-4c46-a868-1999802b762c/resourceGroups/dindurkhya-e2etesting/providers/Microsoft.Networks/virtualNetworks/test-vnet/subnets/dbsubnet")
+                                    .withVirtualMachineConfiguration(
+                                        new VirtualMachineConfiguration()
+                                            .withVmSize("Standard_M32ts")
+                                            .withImageReference(
+                                                new ImageReference()
+                                                    .withPublisher("RedHat")
+                                                    .withOffer("RHEL-SAP-HA")
+                                                    .withSku("84sapha-gen2")
+                                                    .withVersion("8.4.2021091202"))
+                                            .withOsProfile(
+                                                new OSProfile()
+                                                    .withAdminUsername("{your-username}")
+                                                    .withOsConfiguration(
+                                                        new LinuxConfiguration()
+                                                            .withDisablePasswordAuthentication(true)
+                                                            .withSshKeyPair(
+                                                                new SshKeyPair()
+                                                                    .withPublicKey("fakeTokenPlaceholder")
+                                                                    .withPrivateKey("fakeTokenPlaceholder")))))
+                                    .withInstanceCount(2L))
+                            .withHighAvailabilityConfig(
+                                new HighAvailabilityConfiguration()
+                                    .withHighAvailabilityType(SapHighAvailabilityType.AVAILABILITY_SET)))
+                    .withSoftwareConfiguration(
+                        new ExternalInstallationSoftwareConfiguration()
+                            .withCentralServerVmId(
+                                "/subscriptions/49d64d54-e966-4c46-a868-1999802b762c/resourceGroups/test-rg/providers/Microsoft.Compute/virtualMachines/sapq20scsvm0"))
+                    .withOsSapConfiguration(new OsSapConfiguration().withSapFqdn("xyz.test.com")))
+            .withTags(mapOf())
+            .create();
+    }
+
+    /*
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/preview/2021-12-01-preview/examples/sapvirtualinstances/SAPVirtualInstances_Install_SingleServer.json
+     */
+    /**
+     * Sample code: Install SAP Software on Single Server System.
+     *
+     * @param manager Entry point to WorkloadsManager.
+     */
+    public static void installSAPSoftwareOnSingleServerSystem(
+        com.azure.resourcemanager.workloads.WorkloadsManager manager) {
+        manager
+            .sapVirtualInstances()
+            .define("X00")
+            .withRegion("eastus2")
+            .withExistingResourceGroup("test-rg")
+            .withEnvironment(SapEnvironmentType.NON_PROD)
+            .withSapProduct(SapProductType.S4HANA)
+            .withConfiguration(
+                new DeploymentWithOSConfiguration()
+                    .withAppLocation("eastus")
+                    .withInfrastructureConfiguration(
+                        new SingleServerConfiguration()
+                            .withAppResourceGroup("test-rg")
+                            .withSubnetId(
+                                "/subscriptions/8e17e36c-42e9-4cd5-a078-7b44883414e0/resourceGroups/test-rg/providers/Microsoft.Network/virtualNetworks/test-vnet/subnets/testsubnet")
+                            .withVirtualMachineConfiguration(
+                                new VirtualMachineConfiguration()
+                                    .withVmSize("Standard_E32ds_v4")
+                                    .withImageReference(
+                                        new ImageReference()
+                                            .withPublisher("SUSE")
+                                            .withOffer("SLES-SAP")
+                                            .withSku("12-sp4-gen2")
+                                            .withVersion("2022.02.01"))
+                                    .withOsProfile(
+                                        new OSProfile()
+                                            .withAdminUsername("azureappadmin")
+                                            .withOsConfiguration(
+                                                new LinuxConfiguration()
+                                                    .withDisablePasswordAuthentication(true)
+                                                    .withSshKeyPair(
+                                                        new SshKeyPair()
+                                                            .withPublicKey("fakeTokenPlaceholder")
+                                                            .withPrivateKey("fakeTokenPlaceholder"))))))
+                    .withSoftwareConfiguration(
+                        new SapInstallWithoutOSConfigSoftwareConfiguration()
+                            .withBomUrl(
+                                "https://teststorageaccount.blob.core.windows.net/sapbits/sapfiles/boms/S41909SPS03_v0011ms/S41909SPS03_v0011ms.yaml")
+                            .withSapBitsStorageAccountId(
+                                "/subscriptions/8e17e36c-42e9-4cd5-a078-7b44883414e0/resourceGroups/test-rg/providers/Microsoft.Storage/storageAccounts/teststorageaccount")
+                            .withSoftwareVersion("SAP S/4HANA 1909 SPS 03"))
+                    .withOsSapConfiguration(new OsSapConfiguration().withSapFqdn("sap.bpaas.com")))
+            .withTags(mapOf())
+            .create();
+    }
+
+    /*
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/preview/2021-12-01-preview/examples/sapvirtualinstances/SAPVirtualInstances_Create_DiskDetails_HA_AvSet.json
+     */
+    /**
+     * Sample code: Create Infrastructure with Disk and OS configuration for HA System with Availability Set
+     * (Recommended).
+     *
+     * @param manager Entry point to WorkloadsManager.
+     */
+    public static void createInfrastructureWithDiskAndOSConfigurationForHASystemWithAvailabilitySetRecommended(
+        com.azure.resourcemanager.workloads.WorkloadsManager manager) {
+        manager
+            .sapVirtualInstances()
+            .define("X00")
+            .withRegion("westcentralus")
+            .withExistingResourceGroup("test-rg")
+            .withEnvironment(SapEnvironmentType.PROD)
+            .withSapProduct(SapProductType.S4HANA)
+            .withConfiguration(
+                new DeploymentWithOSConfiguration()
+                    .withAppLocation("eastus")
+                    .withInfrastructureConfiguration(
+                        new ThreeTierConfiguration()
+                            .withAppResourceGroup("X00-RG")
+                            .withCentralServer(
+                                new CentralServerConfiguration()
+                                    .withSubnetId(
+                                        "/subscriptions/49d64d54-e966-4c46-a868-1999802b762c/resourceGroups/dindurkhya-e2etesting/providers/Microsoft.Networks/virtualNetworks/test-vnet/subnets/appsubnet")
+                                    .withVirtualMachineConfiguration(
+                                        new VirtualMachineConfiguration()
+                                            .withVmSize("Standard_E16ds_v4")
+                                            .withImageReference(
+                                                new ImageReference()
+                                                    .withPublisher("RedHat")
+                                                    .withOffer("RHEL-SAP")
+                                                    .withSku("7.4")
+                                                    .withVersion("7.4.2019062505"))
+                                            .withOsProfile(
+                                                new OSProfile()
+                                                    .withAdminUsername("{your-username}")
+                                                    .withOsConfiguration(
+                                                        new LinuxConfiguration()
+                                                            .withDisablePasswordAuthentication(true)
+                                                            .withSshKeyPair(
+                                                                new SshKeyPair()
+                                                                    .withPublicKey("fakeTokenPlaceholder")
+                                                                    .withPrivateKey("fakeTokenPlaceholder")))))
+                                    .withInstanceCount(2L))
+                            .withApplicationServer(
+                                new ApplicationServerConfiguration()
+                                    .withSubnetId(
+                                        "/subscriptions/49d64d54-e966-4c46-a868-1999802b762c/resourceGroups/dindurkhya-e2etesting/providers/Microsoft.Networks/virtualNetworks/test-vnet/subnets/appsubnet")
+                                    .withVirtualMachineConfiguration(
+                                        new VirtualMachineConfiguration()
+                                            .withVmSize("Standard_E32ds_v4")
+                                            .withImageReference(
+                                                new ImageReference()
+                                                    .withPublisher("RedHat")
+                                                    .withOffer("RHEL-SAP")
+                                                    .withSku("7.4")
+                                                    .withVersion("7.4.2019062505"))
+                                            .withOsProfile(
+                                                new OSProfile()
+                                                    .withAdminUsername("{your-username}")
+                                                    .withOsConfiguration(
+                                                        new LinuxConfiguration()
+                                                            .withDisablePasswordAuthentication(true)
+                                                            .withSshKeyPair(
+                                                                new SshKeyPair()
+                                                                    .withPublicKey("fakeTokenPlaceholder")
+                                                                    .withPrivateKey("fakeTokenPlaceholder")))))
+                                    .withInstanceCount(6L))
+                            .withDatabaseServer(
+                                new DatabaseConfiguration()
+                                    .withDatabaseType(SapDatabaseType.HANA)
+                                    .withSubnetId(
+                                        "/subscriptions/49d64d54-e966-4c46-a868-1999802b762c/resourceGroups/dindurkhya-e2etesting/providers/Microsoft.Networks/virtualNetworks/test-vnet/subnets/dbsubnet")
+                                    .withVirtualMachineConfiguration(
+                                        new VirtualMachineConfiguration()
+                                            .withVmSize("Standard_M32ts")
+                                            .withImageReference(
+                                                new ImageReference()
+                                                    .withPublisher("RedHat")
+                                                    .withOffer("RHEL-SAP")
+                                                    .withSku("7.4")
+                                                    .withVersion("7.4.2019062505"))
+                                            .withOsProfile(
+                                                new OSProfile()
+                                                    .withAdminUsername("{your-username}")
+                                                    .withOsConfiguration(
+                                                        new LinuxConfiguration()
+                                                            .withDisablePasswordAuthentication(true)
+                                                            .withSshKeyPair(
+                                                                new SshKeyPair()
+                                                                    .withPublicKey("fakeTokenPlaceholder")
+                                                                    .withPrivateKey("fakeTokenPlaceholder")))))
+                                    .withInstanceCount(2L)
+                                    .withDiskConfiguration(
+                                        new DiskConfiguration()
+                                            .withDiskVolumeConfigurations(
+                                                mapOf(
+                                                    "backup",
+                                                    new DiskVolumeConfiguration()
+                                                        .withCount(2L)
+                                                        .withSizeGB(256L)
+                                                        .withSku(new DiskSku().withName(DiskSkuName.STANDARD_SSD_LRS)),
+                                                    "hana/data",
+                                                    new DiskVolumeConfiguration()
+                                                        .withCount(4L)
+                                                        .withSizeGB(128L)
+                                                        .withSku(new DiskSku().withName(DiskSkuName.PREMIUM_LRS)),
+                                                    "hana/log",
+                                                    new DiskVolumeConfiguration()
+                                                        .withCount(3L)
+                                                        .withSizeGB(128L)
+                                                        .withSku(new DiskSku().withName(DiskSkuName.PREMIUM_LRS)),
+                                                    "hana/shared",
+                                                    new DiskVolumeConfiguration()
+                                                        .withCount(1L)
+                                                        .withSizeGB(256L)
+                                                        .withSku(new DiskSku().withName(DiskSkuName.STANDARD_SSD_LRS)),
+                                                    "os",
+                                                    new DiskVolumeConfiguration()
+                                                        .withCount(1L)
+                                                        .withSizeGB(64L)
+                                                        .withSku(new DiskSku().withName(DiskSkuName.STANDARD_SSD_LRS)),
+                                                    "usr/sap",
+                                                    new DiskVolumeConfiguration()
+                                                        .withCount(1L)
+                                                        .withSizeGB(128L)
+                                                        .withSku(new DiskSku().withName(DiskSkuName.PREMIUM_LRS))))))
+                            .withHighAvailabilityConfig(
+                                new HighAvailabilityConfiguration()
+                                    .withHighAvailabilityType(SapHighAvailabilityType.AVAILABILITY_SET)))
+                    .withOsSapConfiguration(new OsSapConfiguration().withSapFqdn("xyz.test.com")))
+            .withTags(mapOf())
+            .create();
+    }
+
+    /*
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/preview/2021-12-01-preview/examples/sapvirtualinstances/SAPVirtualInstances_Create_Distributed_CreateTrans.json
+     */
+    /**
+     * Sample code: Create Infrastructure with a new SAP Trans Fileshare.
+     *
+     * @param manager Entry point to WorkloadsManager.
+     */
+    public static void createInfrastructureWithANewSAPTransFileshare(
+        com.azure.resourcemanager.workloads.WorkloadsManager manager) {
+        manager
+            .sapVirtualInstances()
+            .define("X00")
+            .withRegion("westcentralus")
+            .withExistingResourceGroup("test-rg")
+            .withEnvironment(SapEnvironmentType.PROD)
+            .withSapProduct(SapProductType.S4HANA)
+            .withConfiguration(
+                new DeploymentWithOSConfiguration()
+                    .withAppLocation("eastus")
+                    .withInfrastructureConfiguration(
+                        new ThreeTierConfiguration()
+                            .withAppResourceGroup("X00-RG")
+                            .withCentralServer(
+                                new CentralServerConfiguration()
+                                    .withSubnetId(
+                                        "/subscriptions/49d64d54-e966-4c46-a868-1999802b762c/resourceGroups/test-rg/providers/Microsoft.Networks/virtualNetworks/test-vnet/subnets/appsubnet")
+                                    .withVirtualMachineConfiguration(
+                                        new VirtualMachineConfiguration()
+                                            .withVmSize("Standard_E16ds_v4")
+                                            .withImageReference(
+                                                new ImageReference()
+                                                    .withPublisher("RedHat")
+                                                    .withOffer("RHEL-SAP")
+                                                    .withSku("7.4")
+                                                    .withVersion("7.4.2019062505"))
+                                            .withOsProfile(
+                                                new OSProfile()
+                                                    .withAdminUsername("{your-username}")
+                                                    .withOsConfiguration(
+                                                        new LinuxConfiguration()
+                                                            .withDisablePasswordAuthentication(true)
+                                                            .withSshKeyPair(
+                                                                new SshKeyPair()
+                                                                    .withPublicKey("fakeTokenPlaceholder")
+                                                                    .withPrivateKey("fakeTokenPlaceholder")))))
+                                    .withInstanceCount(1L))
+                            .withApplicationServer(
+                                new ApplicationServerConfiguration()
+                                    .withSubnetId(
+                                        "/subscriptions/49d64d54-e966-4c46-a868-1999802b762c/resourceGroups/test-rg/providers/Microsoft.Networks/virtualNetworks/test-vnet/subnets/appsubnet")
+                                    .withVirtualMachineConfiguration(
+                                        new VirtualMachineConfiguration()
+                                            .withVmSize("Standard_E32ds_v4")
+                                            .withImageReference(
+                                                new ImageReference()
+                                                    .withPublisher("RedHat")
+                                                    .withOffer("RHEL-SAP")
+                                                    .withSku("7.4")
+                                                    .withVersion("7.4.2019062505"))
+                                            .withOsProfile(
+                                                new OSProfile()
+                                                    .withAdminUsername("{your-username}")
+                                                    .withOsConfiguration(
+                                                        new LinuxConfiguration()
+                                                            .withDisablePasswordAuthentication(true)
+                                                            .withSshKeyPair(
+                                                                new SshKeyPair()
+                                                                    .withPublicKey("fakeTokenPlaceholder")
+                                                                    .withPrivateKey("fakeTokenPlaceholder")))))
+                                    .withInstanceCount(6L))
+                            .withDatabaseServer(
+                                new DatabaseConfiguration()
+                                    .withDatabaseType(SapDatabaseType.HANA)
+                                    .withSubnetId(
+                                        "/subscriptions/49d64d54-e966-4c46-a868-1999802b762c/resourceGroups/test-rg/providers/Microsoft.Networks/virtualNetworks/test-vnet/subnets/dbsubnet")
+                                    .withVirtualMachineConfiguration(
+                                        new VirtualMachineConfiguration()
+                                            .withVmSize("Standard_M32ts")
+                                            .withImageReference(
+                                                new ImageReference()
+                                                    .withPublisher("RedHat")
+                                                    .withOffer("RHEL-SAP")
+                                                    .withSku("7.4")
+                                                    .withVersion("7.4.2019062505"))
+                                            .withOsProfile(
+                                                new OSProfile()
+                                                    .withAdminUsername("{your-username}")
+                                                    .withOsConfiguration(
+                                                        new LinuxConfiguration()
+                                                            .withDisablePasswordAuthentication(true)
+                                                            .withSshKeyPair(
+                                                                new SshKeyPair()
+                                                                    .withPublicKey("fakeTokenPlaceholder")
+                                                                    .withPrivateKey("fakeTokenPlaceholder")))))
+                                    .withInstanceCount(1L))
+                            .withStorageConfiguration(
+                                new StorageConfiguration()
+                                    .withTransportFileShareConfiguration(
+                                        new MountFileShareConfiguration()
+                                            .withId("fileshareID")
+                                            .withPrivateEndpointId("pe-arm-id"))))
+                    .withOsSapConfiguration(new OsSapConfiguration().withSapFqdn("xyz.test.com")))
+            .withTags(mapOf())
+            .create();
+    }
+
+    /*
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/preview/2021-12-01-preview/examples/sapvirtualinstances/SAPVirtualInstances_Create_Distributed.json
+     */
+    /**
+     * Sample code: Create Infrastructure only for Distributed System.
+     *
+     * @param manager Entry point to WorkloadsManager.
+     */
+    public static void createInfrastructureOnlyForDistributedSystem(
+        com.azure.resourcemanager.workloads.WorkloadsManager manager) {
+        manager
+            .sapVirtualInstances()
+            .define("X00")
+            .withRegion("westcentralus")
+            .withExistingResourceGroup("test-rg")
+            .withEnvironment(SapEnvironmentType.PROD)
+            .withSapProduct(SapProductType.S4HANA)
+            .withConfiguration(
+                new DeploymentConfiguration()
+                    .withAppLocation("eastus")
+                    .withInfrastructureConfiguration(
+                        new ThreeTierConfiguration()
+                            .withAppResourceGroup("X00-RG")
+                            .withCentralServer(
+                                new CentralServerConfiguration()
+                                    .withSubnetId(
+                                        "/subscriptions/49d64d54-e966-4c46-a868-1999802b762c/resourceGroups/dindurkhya-e2etesting/providers/Microsoft.Networks/virtualNetworks/test-vnet/subnets/appsubnet")
+                                    .withVirtualMachineConfiguration(
+                                        new VirtualMachineConfiguration()
+                                            .withVmSize("Standard_E16ds_v4")
+                                            .withImageReference(
+                                                new ImageReference()
+                                                    .withPublisher("RedHat")
+                                                    .withOffer("RHEL-SAP")
+                                                    .withSku("7.4")
+                                                    .withVersion("7.4.2019062505"))
+                                            .withOsProfile(
+                                                new OSProfile()
+                                                    .withAdminUsername("{your-username}")
+                                                    .withOsConfiguration(
+                                                        new LinuxConfiguration()
+                                                            .withDisablePasswordAuthentication(true)
+                                                            .withSsh(
+                                                                new SshConfiguration()
+                                                                    .withPublicKeys(
+                                                                        Arrays
+                                                                            .asList(
+                                                                                new SshPublicKey()
+                                                                                    .withKeyData(
+                                                                                        "fakeTokenPlaceholder")))))))
                                     .withInstanceCount(1L))
                             .withApplicationServer(
                                 new ApplicationServerConfiguration()
@@ -333,7 +1355,7 @@ public final class SapVirtualInstancesCreateSamples {
                                                                             .asList(
                                                                                 new SshPublicKey()
                                                                                     .withKeyData(
-                                                                                        "ssh-rsa public key")))))))
+                                                                                        "fakeTokenPlaceholder")))))))
                                     .withInstanceCount(6L))
                             .withDatabaseServer(
                                 new DatabaseConfiguration()
@@ -362,21 +1384,129 @@ public final class SapVirtualInstancesCreateSamples {
                                                                             .asList(
                                                                                 new SshPublicKey()
                                                                                     .withKeyData(
-                                                                                        "ssh-rsa public key")))))))
+                                                                                        "fakeTokenPlaceholder")))))))
                                     .withInstanceCount(1L))))
             .withTags(mapOf())
             .create();
     }
 
     /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/preview/2021-12-01-preview/examples/sapvirtualinstances/SAPVirtualInstances_Create_HA_AvZone.json
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/preview/2021-12-01-preview/examples/sapvirtualinstances/SAPVirtualInstances_Create_Distributed_MountTrans.json
      */
     /**
-     * Sample code: SAPVirtualInstances_Create_HA_AvZone.
+     * Sample code: Create Infrastructure with an existing SAP Trans Fileshare.
      *
      * @param manager Entry point to WorkloadsManager.
      */
-    public static void sAPVirtualInstancesCreateHAAvZone(com.azure.resourcemanager.workloads.WorkloadsManager manager) {
+    public static void createInfrastructureWithAnExistingSAPTransFileshare(
+        com.azure.resourcemanager.workloads.WorkloadsManager manager) {
+        manager
+            .sapVirtualInstances()
+            .define("X00")
+            .withRegion("westcentralus")
+            .withExistingResourceGroup("test-rg")
+            .withEnvironment(SapEnvironmentType.PROD)
+            .withSapProduct(SapProductType.S4HANA)
+            .withConfiguration(
+                new DeploymentWithOSConfiguration()
+                    .withAppLocation("eastus")
+                    .withInfrastructureConfiguration(
+                        new ThreeTierConfiguration()
+                            .withAppResourceGroup("X00-RG")
+                            .withCentralServer(
+                                new CentralServerConfiguration()
+                                    .withSubnetId(
+                                        "/subscriptions/49d64d54-e966-4c46-a868-1999802b762c/resourceGroups/test-rg/providers/Microsoft.Networks/virtualNetworks/test-vnet/subnets/appsubnet")
+                                    .withVirtualMachineConfiguration(
+                                        new VirtualMachineConfiguration()
+                                            .withVmSize("Standard_E16ds_v4")
+                                            .withImageReference(
+                                                new ImageReference()
+                                                    .withPublisher("RedHat")
+                                                    .withOffer("RHEL-SAP")
+                                                    .withSku("7.4")
+                                                    .withVersion("7.4.2019062505"))
+                                            .withOsProfile(
+                                                new OSProfile()
+                                                    .withAdminUsername("{your-username}")
+                                                    .withOsConfiguration(
+                                                        new LinuxConfiguration()
+                                                            .withDisablePasswordAuthentication(true)
+                                                            .withSshKeyPair(
+                                                                new SshKeyPair()
+                                                                    .withPublicKey("fakeTokenPlaceholder")
+                                                                    .withPrivateKey("fakeTokenPlaceholder")))))
+                                    .withInstanceCount(1L))
+                            .withApplicationServer(
+                                new ApplicationServerConfiguration()
+                                    .withSubnetId(
+                                        "/subscriptions/49d64d54-e966-4c46-a868-1999802b762c/resourceGroups/test-rg/providers/Microsoft.Networks/virtualNetworks/test-vnet/subnets/appsubnet")
+                                    .withVirtualMachineConfiguration(
+                                        new VirtualMachineConfiguration()
+                                            .withVmSize("Standard_E32ds_v4")
+                                            .withImageReference(
+                                                new ImageReference()
+                                                    .withPublisher("RedHat")
+                                                    .withOffer("RHEL-SAP")
+                                                    .withSku("7.4")
+                                                    .withVersion("7.4.2019062505"))
+                                            .withOsProfile(
+                                                new OSProfile()
+                                                    .withAdminUsername("{your-username}")
+                                                    .withOsConfiguration(
+                                                        new LinuxConfiguration()
+                                                            .withDisablePasswordAuthentication(true)
+                                                            .withSshKeyPair(
+                                                                new SshKeyPair()
+                                                                    .withPublicKey("fakeTokenPlaceholder")
+                                                                    .withPrivateKey("fakeTokenPlaceholder")))))
+                                    .withInstanceCount(6L))
+                            .withDatabaseServer(
+                                new DatabaseConfiguration()
+                                    .withDatabaseType(SapDatabaseType.HANA)
+                                    .withSubnetId(
+                                        "/subscriptions/49d64d54-e966-4c46-a868-1999802b762c/resourceGroups/test-rg/providers/Microsoft.Networks/virtualNetworks/test-vnet/subnets/dbsubnet")
+                                    .withVirtualMachineConfiguration(
+                                        new VirtualMachineConfiguration()
+                                            .withVmSize("Standard_M32ts")
+                                            .withImageReference(
+                                                new ImageReference()
+                                                    .withPublisher("RedHat")
+                                                    .withOffer("RHEL-SAP")
+                                                    .withSku("7.4")
+                                                    .withVersion("7.4.2019062505"))
+                                            .withOsProfile(
+                                                new OSProfile()
+                                                    .withAdminUsername("{your-username}")
+                                                    .withOsConfiguration(
+                                                        new LinuxConfiguration()
+                                                            .withDisablePasswordAuthentication(true)
+                                                            .withSshKeyPair(
+                                                                new SshKeyPair()
+                                                                    .withPublicKey("fakeTokenPlaceholder")
+                                                                    .withPrivateKey("fakeTokenPlaceholder")))))
+                                    .withInstanceCount(1L))
+                            .withStorageConfiguration(
+                                new StorageConfiguration()
+                                    .withTransportFileShareConfiguration(
+                                        new MountFileShareConfiguration()
+                                            .withId("fileshareID")
+                                            .withPrivateEndpointId("pe-arm-id"))))
+                    .withOsSapConfiguration(new OsSapConfiguration().withSapFqdn("xyz.test.com")))
+            .withTags(mapOf())
+            .create();
+    }
+
+    /*
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/preview/2021-12-01-preview/examples/sapvirtualinstances/SAPVirtualInstances_Create_HA_AvSet.json
+     */
+    /**
+     * Sample code: Create Infrastructure only for HA System with Availability Set.
+     *
+     * @param manager Entry point to WorkloadsManager.
+     */
+    public static void createInfrastructureOnlyForHASystemWithAvailabilitySet(
+        com.azure.resourcemanager.workloads.WorkloadsManager manager) {
         manager
             .sapVirtualInstances()
             .define("X00")
@@ -416,7 +1546,7 @@ public final class SapVirtualInstancesCreateSamples {
                                                                             .asList(
                                                                                 new SshPublicKey()
                                                                                     .withKeyData(
-                                                                                        "ssh-rsa public key")))))))
+                                                                                        "fakeTokenPlaceholder")))))))
                                     .withInstanceCount(2L))
                             .withApplicationServer(
                                 new ApplicationServerConfiguration()
@@ -444,8 +1574,8 @@ public final class SapVirtualInstancesCreateSamples {
                                                                             .asList(
                                                                                 new SshPublicKey()
                                                                                     .withKeyData(
-                                                                                        "ssh-rsa public key")))))))
-                                    .withInstanceCount(6L))
+                                                                                        "fakeTokenPlaceholder")))))))
+                                    .withInstanceCount(5L))
                             .withDatabaseServer(
                                 new DatabaseConfiguration()
                                     .withDatabaseType(SapDatabaseType.HANA)
@@ -473,68 +1603,119 @@ public final class SapVirtualInstancesCreateSamples {
                                                                             .asList(
                                                                                 new SshPublicKey()
                                                                                     .withKeyData(
-                                                                                        "ssh-rsa public key")))))))
+                                                                                        "fakeTokenPlaceholder")))))))
                                     .withInstanceCount(2L))
                             .withHighAvailabilityConfig(
                                 new HighAvailabilityConfiguration()
-                                    .withHighAvailabilityType(SapHighAvailabilityType.AVAILABILITY_ZONE))))
+                                    .withHighAvailabilityType(SapHighAvailabilityType.AVAILABILITY_SET))))
             .withTags(mapOf())
             .create();
     }
 
     /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/preview/2021-12-01-preview/examples/sapvirtualinstances/SAPVirtualInstances_Create_WithOSConfig_SingleServer.json
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/preview/2021-12-01-preview/examples/sapvirtualinstances/SAPVirtualInstances_DetectInstallation_HA_AvZone.json
      */
     /**
-     * Sample code: SAPVirtualInstances_Create_WithOSConfig_SingleServer.
+     * Sample code: Detect SAP Software Installation on an HA System with Availability Zone.
      *
      * @param manager Entry point to WorkloadsManager.
      */
-    public static void sAPVirtualInstancesCreateWithOSConfigSingleServer(
+    public static void detectSAPSoftwareInstallationOnAnHASystemWithAvailabilityZone(
         com.azure.resourcemanager.workloads.WorkloadsManager manager) {
         manager
             .sapVirtualInstances()
             .define("X00")
             .withRegion("westcentralus")
             .withExistingResourceGroup("test-rg")
-            .withEnvironment(SapEnvironmentType.NON_PROD)
+            .withEnvironment(SapEnvironmentType.PROD)
             .withSapProduct(SapProductType.S4HANA)
             .withConfiguration(
                 new DeploymentWithOSConfiguration()
                     .withAppLocation("eastus")
                     .withInfrastructureConfiguration(
-                        new SingleServerConfiguration()
+                        new ThreeTierConfiguration()
                             .withAppResourceGroup("X00-RG")
-                            .withNetworkConfiguration(new NetworkConfiguration().withIsSecondaryIpEnabled(true))
-                            .withDatabaseType(SapDatabaseType.HANA)
-                            .withSubnetId(
-                                "/subscriptions/49d64d54-e966-4c46-a868-1999802b762c/resourceGroups/dindurkhya-e2etesting/providers/Microsoft.Networks/virtualNetworks/test-vnet/subnets/appsubnet")
-                            .withVirtualMachineConfiguration(
-                                new VirtualMachineConfiguration()
-                                    .withVmSize("Standard_E32ds_v4")
-                                    .withImageReference(
-                                        new ImageReference()
-                                            .withPublisher("RedHat")
-                                            .withOffer("RHEL-SAP")
-                                            .withSku("7.4")
-                                            .withVersion("7.4.2019062505"))
-                                    .withOsProfile(
-                                        new OSProfile()
-                                            .withAdminUsername("{your-username}")
-                                            .withOsConfiguration(
-                                                new LinuxConfiguration()
-                                                    .withDisablePasswordAuthentication(true)
-                                                    .withSshKeyPair(
-                                                        new SshKeyPair().withPublicKey("abc").withPrivateKey("xyz"))))))
-                    .withOsSapConfiguration(
-                        new OsSapConfiguration()
-                            .withDeployerVmPackages(
-                                new DeployerVmPackages()
-                                    .withUrl(
-                                        "https://ybteststorageaccount.blob.core.windows.net/sapbits/deployervmpackages/DeployerVMPackages.zip")
-                                    .withStorageAccountId(
-                                        "/subscriptions/49d64d54-e966-4c46-a868-1999802b762c/resourceGroups/yb-SapInstall/providers/Microsoft.Storage/storageAccounts/ybteststorageaccount"))
-                            .withSapFqdn("xyz.test.com")))
+                            .withCentralServer(
+                                new CentralServerConfiguration()
+                                    .withSubnetId(
+                                        "/subscriptions/49d64d54-e966-4c46-a868-1999802b762c/resourceGroups/dindurkhya-e2etesting/providers/Microsoft.Networks/virtualNetworks/test-vnet/subnets/appsubnet")
+                                    .withVirtualMachineConfiguration(
+                                        new VirtualMachineConfiguration()
+                                            .withVmSize("Standard_E16ds_v4")
+                                            .withImageReference(
+                                                new ImageReference()
+                                                    .withPublisher("RedHat")
+                                                    .withOffer("RHEL-SAP-HA")
+                                                    .withSku("84sapha-gen2")
+                                                    .withVersion("8.4.2021091202"))
+                                            .withOsProfile(
+                                                new OSProfile()
+                                                    .withAdminUsername("{your-username}")
+                                                    .withOsConfiguration(
+                                                        new LinuxConfiguration()
+                                                            .withDisablePasswordAuthentication(true)
+                                                            .withSshKeyPair(
+                                                                new SshKeyPair()
+                                                                    .withPublicKey("fakeTokenPlaceholder")
+                                                                    .withPrivateKey("fakeTokenPlaceholder")))))
+                                    .withInstanceCount(2L))
+                            .withApplicationServer(
+                                new ApplicationServerConfiguration()
+                                    .withSubnetId(
+                                        "/subscriptions/49d64d54-e966-4c46-a868-1999802b762c/resourceGroups/dindurkhya-e2etesting/providers/Microsoft.Networks/virtualNetworks/test-vnet/subnets/appsubnet")
+                                    .withVirtualMachineConfiguration(
+                                        new VirtualMachineConfiguration()
+                                            .withVmSize("Standard_E32ds_v4")
+                                            .withImageReference(
+                                                new ImageReference()
+                                                    .withPublisher("RedHat")
+                                                    .withOffer("RHEL-SAP-HA")
+                                                    .withSku("84sapha-gen2")
+                                                    .withVersion("8.4.2021091202"))
+                                            .withOsProfile(
+                                                new OSProfile()
+                                                    .withAdminUsername("{your-username}")
+                                                    .withOsConfiguration(
+                                                        new LinuxConfiguration()
+                                                            .withDisablePasswordAuthentication(true)
+                                                            .withSshKeyPair(
+                                                                new SshKeyPair()
+                                                                    .withPublicKey("fakeTokenPlaceholder")
+                                                                    .withPrivateKey("fakeTokenPlaceholder")))))
+                                    .withInstanceCount(6L))
+                            .withDatabaseServer(
+                                new DatabaseConfiguration()
+                                    .withDatabaseType(SapDatabaseType.HANA)
+                                    .withSubnetId(
+                                        "/subscriptions/49d64d54-e966-4c46-a868-1999802b762c/resourceGroups/dindurkhya-e2etesting/providers/Microsoft.Networks/virtualNetworks/test-vnet/subnets/dbsubnet")
+                                    .withVirtualMachineConfiguration(
+                                        new VirtualMachineConfiguration()
+                                            .withVmSize("Standard_M32ts")
+                                            .withImageReference(
+                                                new ImageReference()
+                                                    .withPublisher("RedHat")
+                                                    .withOffer("RHEL-SAP-HA")
+                                                    .withSku("84sapha-gen2")
+                                                    .withVersion("8.4.2021091202"))
+                                            .withOsProfile(
+                                                new OSProfile()
+                                                    .withAdminUsername("{your-username}")
+                                                    .withOsConfiguration(
+                                                        new LinuxConfiguration()
+                                                            .withDisablePasswordAuthentication(true)
+                                                            .withSshKeyPair(
+                                                                new SshKeyPair()
+                                                                    .withPublicKey("fakeTokenPlaceholder")
+                                                                    .withPrivateKey("fakeTokenPlaceholder")))))
+                                    .withInstanceCount(2L))
+                            .withHighAvailabilityConfig(
+                                new HighAvailabilityConfiguration()
+                                    .withHighAvailabilityType(SapHighAvailabilityType.AVAILABILITY_ZONE)))
+                    .withSoftwareConfiguration(
+                        new ExternalInstallationSoftwareConfiguration()
+                            .withCentralServerVmId(
+                                "/subscriptions/49d64d54-e966-4c46-a868-1999802b762c/resourceGroups/test-rg/providers/Microsoft.Compute/virtualMachines/sapq20scsvm0"))
+                    .withOsSapConfiguration(new OsSapConfiguration().withSapFqdn("xyz.test.com")))
             .withTags(mapOf())
             .create();
     }
@@ -543,11 +1724,11 @@ public final class SapVirtualInstancesCreateSamples {
      * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/preview/2021-12-01-preview/examples/sapvirtualinstances/SAPVirtualInstances_Create_SingleServer.json
      */
     /**
-     * Sample code: SAPVirtualInstances_Create_SingleServer.
+     * Sample code: Create Infrastructure only for Single Server System.
      *
      * @param manager Entry point to WorkloadsManager.
      */
-    public static void sAPVirtualInstancesCreateSingleServer(
+    public static void createInfrastructureOnlyForSingleServerSystem(
         com.azure.resourcemanager.workloads.WorkloadsManager manager) {
         manager
             .sapVirtualInstances()
@@ -587,134 +1768,72 @@ public final class SapVirtualInstancesCreateSamples {
                                                                 Arrays
                                                                     .asList(
                                                                         new SshPublicKey()
-                                                                            .withKeyData("ssh-rsa public key")))))))))
+                                                                            .withKeyData("fakeTokenPlaceholder")))))))))
             .withTags(mapOf())
             .create();
     }
 
     /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/preview/2021-12-01-preview/examples/sapvirtualinstances/SAPVirtualInstances_Create_HA_AvSet.json
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/preview/2021-12-01-preview/examples/sapvirtualinstances/SAPVirtualInstances_Create_WithOSConfig_SingleServer.json
      */
     /**
-     * Sample code: SAPVirtualInstances_Create_HA_AvSet.
+     * Sample code: Create Infrastructure with OS configuration for Single Server System (Recommended).
      *
      * @param manager Entry point to WorkloadsManager.
      */
-    public static void sAPVirtualInstancesCreateHAAvSet(com.azure.resourcemanager.workloads.WorkloadsManager manager) {
+    public static void createInfrastructureWithOSConfigurationForSingleServerSystemRecommended(
+        com.azure.resourcemanager.workloads.WorkloadsManager manager) {
         manager
             .sapVirtualInstances()
             .define("X00")
             .withRegion("westcentralus")
             .withExistingResourceGroup("test-rg")
-            .withEnvironment(SapEnvironmentType.PROD)
+            .withEnvironment(SapEnvironmentType.NON_PROD)
             .withSapProduct(SapProductType.S4HANA)
             .withConfiguration(
-                new DeploymentConfiguration()
+                new DeploymentWithOSConfiguration()
                     .withAppLocation("eastus")
                     .withInfrastructureConfiguration(
-                        new ThreeTierConfiguration()
+                        new SingleServerConfiguration()
                             .withAppResourceGroup("X00-RG")
-                            .withCentralServer(
-                                new CentralServerConfiguration()
-                                    .withSubnetId(
-                                        "/subscriptions/49d64d54-e966-4c46-a868-1999802b762c/resourceGroups/dindurkhya-e2etesting/providers/Microsoft.Networks/virtualNetworks/test-vnet/subnets/appsubnet")
-                                    .withVirtualMachineConfiguration(
-                                        new VirtualMachineConfiguration()
-                                            .withVmSize("Standard_E16ds_v4")
-                                            .withImageReference(
-                                                new ImageReference()
-                                                    .withPublisher("RedHat")
-                                                    .withOffer("RHEL-SAP")
-                                                    .withSku("7.4")
-                                                    .withVersion("7.4.2019062505"))
-                                            .withOsProfile(
-                                                new OSProfile()
-                                                    .withAdminUsername("{your-username}")
-                                                    .withOsConfiguration(
-                                                        new LinuxConfiguration()
-                                                            .withDisablePasswordAuthentication(true)
-                                                            .withSsh(
-                                                                new SshConfiguration()
-                                                                    .withPublicKeys(
-                                                                        Arrays
-                                                                            .asList(
-                                                                                new SshPublicKey()
-                                                                                    .withKeyData(
-                                                                                        "ssh-rsa public key")))))))
-                                    .withInstanceCount(2L))
-                            .withApplicationServer(
-                                new ApplicationServerConfiguration()
-                                    .withSubnetId(
-                                        "/subscriptions/49d64d54-e966-4c46-a868-1999802b762c/resourceGroups/dindurkhya-e2etesting/providers/Microsoft.Networks/virtualNetworks/test-vnet/subnets/appsubnet")
-                                    .withVirtualMachineConfiguration(
-                                        new VirtualMachineConfiguration()
-                                            .withVmSize("Standard_E32ds_v4")
-                                            .withImageReference(
-                                                new ImageReference()
-                                                    .withPublisher("RedHat")
-                                                    .withOffer("RHEL-SAP")
-                                                    .withSku("7.4")
-                                                    .withVersion("7.4.2019062505"))
-                                            .withOsProfile(
-                                                new OSProfile()
-                                                    .withAdminUsername("{your-username}")
-                                                    .withOsConfiguration(
-                                                        new LinuxConfiguration()
-                                                            .withDisablePasswordAuthentication(true)
-                                                            .withSsh(
-                                                                new SshConfiguration()
-                                                                    .withPublicKeys(
-                                                                        Arrays
-                                                                            .asList(
-                                                                                new SshPublicKey()
-                                                                                    .withKeyData(
-                                                                                        "ssh-rsa public key")))))))
-                                    .withInstanceCount(5L))
-                            .withDatabaseServer(
-                                new DatabaseConfiguration()
-                                    .withDatabaseType(SapDatabaseType.HANA)
-                                    .withSubnetId(
-                                        "/subscriptions/49d64d54-e966-4c46-a868-1999802b762c/resourceGroups/dindurkhya-e2etesting/providers/Microsoft.Networks/virtualNetworks/test-vnet/subnets/dbsubnet")
-                                    .withVirtualMachineConfiguration(
-                                        new VirtualMachineConfiguration()
-                                            .withVmSize("Standard_M32ts")
-                                            .withImageReference(
-                                                new ImageReference()
-                                                    .withPublisher("RedHat")
-                                                    .withOffer("RHEL-SAP")
-                                                    .withSku("7.4")
-                                                    .withVersion("7.4.2019062505"))
-                                            .withOsProfile(
-                                                new OSProfile()
-                                                    .withAdminUsername("{your-username}")
-                                                    .withOsConfiguration(
-                                                        new LinuxConfiguration()
-                                                            .withDisablePasswordAuthentication(true)
-                                                            .withSsh(
-                                                                new SshConfiguration()
-                                                                    .withPublicKeys(
-                                                                        Arrays
-                                                                            .asList(
-                                                                                new SshPublicKey()
-                                                                                    .withKeyData(
-                                                                                        "ssh-rsa public key")))))))
-                                    .withInstanceCount(2L))
-                            .withHighAvailabilityConfig(
-                                new HighAvailabilityConfiguration()
-                                    .withHighAvailabilityType(SapHighAvailabilityType.AVAILABILITY_SET))))
+                            .withNetworkConfiguration(new NetworkConfiguration().withIsSecondaryIpEnabled(true))
+                            .withDatabaseType(SapDatabaseType.HANA)
+                            .withSubnetId(
+                                "/subscriptions/49d64d54-e966-4c46-a868-1999802b762c/resourceGroups/dindurkhya-e2etesting/providers/Microsoft.Networks/virtualNetworks/test-vnet/subnets/appsubnet")
+                            .withVirtualMachineConfiguration(
+                                new VirtualMachineConfiguration()
+                                    .withVmSize("Standard_E32ds_v4")
+                                    .withImageReference(
+                                        new ImageReference()
+                                            .withPublisher("RedHat")
+                                            .withOffer("RHEL-SAP")
+                                            .withSku("7.4")
+                                            .withVersion("7.4.2019062505"))
+                                    .withOsProfile(
+                                        new OSProfile()
+                                            .withAdminUsername("{your-username}")
+                                            .withOsConfiguration(
+                                                new LinuxConfiguration()
+                                                    .withDisablePasswordAuthentication(true)
+                                                    .withSshKeyPair(
+                                                        new SshKeyPair()
+                                                            .withPublicKey("fakeTokenPlaceholder")
+                                                            .withPrivateKey("fakeTokenPlaceholder"))))))
+                    .withOsSapConfiguration(new OsSapConfiguration().withSapFqdn("xyz.test.com")))
             .withTags(mapOf())
             .create();
     }
 
     /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/preview/2021-12-01-preview/examples/sapvirtualinstances/SAPVirtualInstances_Create_WithOSConfig_Distributed.json
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/preview/2021-12-01-preview/examples/sapvirtualinstances/SAPVirtualInstances_Create_DiskDetails_HA_AvZone.json
      */
     /**
-     * Sample code: SAPVirtualInstances_Create_WithOSConfig_Distributed.
+     * Sample code: Create Infrastructure with Disk and OS configuration for HA System with Availability Zone
+     * (Recommended).
      *
      * @param manager Entry point to WorkloadsManager.
      */
-    public static void sAPVirtualInstancesCreateWithOSConfigDistributed(
+    public static void createInfrastructureWithDiskAndOSConfigurationForHASystemWithAvailabilityZoneRecommended(
         com.azure.resourcemanager.workloads.WorkloadsManager manager) {
         manager
             .sapVirtualInstances()
@@ -750,9 +1869,9 @@ public final class SapVirtualInstancesCreateSamples {
                                                             .withDisablePasswordAuthentication(true)
                                                             .withSshKeyPair(
                                                                 new SshKeyPair()
-                                                                    .withPublicKey("abc")
-                                                                    .withPrivateKey("xyz")))))
-                                    .withInstanceCount(1L))
+                                                                    .withPublicKey("fakeTokenPlaceholder")
+                                                                    .withPrivateKey("fakeTokenPlaceholder")))))
+                                    .withInstanceCount(2L))
                             .withApplicationServer(
                                 new ApplicationServerConfiguration()
                                     .withSubnetId(
@@ -774,8 +1893,8 @@ public final class SapVirtualInstancesCreateSamples {
                                                             .withDisablePasswordAuthentication(true)
                                                             .withSshKeyPair(
                                                                 new SshKeyPair()
-                                                                    .withPublicKey("abc")
-                                                                    .withPrivateKey("xyz")))))
+                                                                    .withPublicKey("fakeTokenPlaceholder")
+                                                                    .withPrivateKey("fakeTokenPlaceholder")))))
                                     .withInstanceCount(6L))
                             .withDatabaseServer(
                                 new DatabaseConfiguration()
@@ -799,18 +1918,261 @@ public final class SapVirtualInstancesCreateSamples {
                                                             .withDisablePasswordAuthentication(true)
                                                             .withSshKeyPair(
                                                                 new SshKeyPair()
-                                                                    .withPublicKey("abc")
-                                                                    .withPrivateKey("xyz")))))
-                                    .withInstanceCount(1L)))
-                    .withOsSapConfiguration(
-                        new OsSapConfiguration()
-                            .withDeployerVmPackages(
-                                new DeployerVmPackages()
-                                    .withUrl(
-                                        "https://ybteststorageaccount.blob.core.windows.net/sapbits/deployervmpackages/DeployerVMPackages.zip")
-                                    .withStorageAccountId(
-                                        "/subscriptions/49d64d54-e966-4c46-a868-1999802b762c/resourceGroups/yb-SapInstall/providers/Microsoft.Storage/storageAccounts/ybteststorageaccount"))
-                            .withSapFqdn("xyz.test.com")))
+                                                                    .withPublicKey("fakeTokenPlaceholder")
+                                                                    .withPrivateKey("fakeTokenPlaceholder")))))
+                                    .withInstanceCount(2L)
+                                    .withDiskConfiguration(
+                                        new DiskConfiguration()
+                                            .withDiskVolumeConfigurations(
+                                                mapOf(
+                                                    "backup",
+                                                    new DiskVolumeConfiguration()
+                                                        .withCount(2L)
+                                                        .withSizeGB(256L)
+                                                        .withSku(new DiskSku().withName(DiskSkuName.STANDARD_SSD_LRS)),
+                                                    "hana/data",
+                                                    new DiskVolumeConfiguration()
+                                                        .withCount(4L)
+                                                        .withSizeGB(128L)
+                                                        .withSku(new DiskSku().withName(DiskSkuName.PREMIUM_LRS)),
+                                                    "hana/log",
+                                                    new DiskVolumeConfiguration()
+                                                        .withCount(3L)
+                                                        .withSizeGB(128L)
+                                                        .withSku(new DiskSku().withName(DiskSkuName.PREMIUM_LRS)),
+                                                    "hana/shared",
+                                                    new DiskVolumeConfiguration()
+                                                        .withCount(1L)
+                                                        .withSizeGB(256L)
+                                                        .withSku(new DiskSku().withName(DiskSkuName.STANDARD_SSD_LRS)),
+                                                    "os",
+                                                    new DiskVolumeConfiguration()
+                                                        .withCount(1L)
+                                                        .withSizeGB(64L)
+                                                        .withSku(new DiskSku().withName(DiskSkuName.STANDARD_SSD_LRS)),
+                                                    "usr/sap",
+                                                    new DiskVolumeConfiguration()
+                                                        .withCount(1L)
+                                                        .withSizeGB(128L)
+                                                        .withSku(new DiskSku().withName(DiskSkuName.PREMIUM_LRS))))))
+                            .withHighAvailabilityConfig(
+                                new HighAvailabilityConfiguration()
+                                    .withHighAvailabilityType(SapHighAvailabilityType.AVAILABILITY_ZONE)))
+                    .withOsSapConfiguration(new OsSapConfiguration().withSapFqdn("xyz.test.com")))
+            .withTags(mapOf())
+            .create();
+    }
+
+    /*
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/preview/2021-12-01-preview/examples/sapvirtualinstances/SAPVirtualInstances_Create_Discover.json
+     */
+    /**
+     * Sample code: Register existing SAP system as Virtual Instance for SAP solutions.
+     *
+     * @param manager Entry point to WorkloadsManager.
+     */
+    public static void registerExistingSAPSystemAsVirtualInstanceForSAPSolutions(
+        com.azure.resourcemanager.workloads.WorkloadsManager manager) {
+        manager
+            .sapVirtualInstances()
+            .define("X00")
+            .withRegion("northeurope")
+            .withExistingResourceGroup("test-rg")
+            .withEnvironment(SapEnvironmentType.NON_PROD)
+            .withSapProduct(SapProductType.S4HANA)
+            .withConfiguration(
+                new DiscoveryConfiguration()
+                    .withCentralServerVmId(
+                        "/subscriptions/8e17e36c-42e9-4cd5-a078-7b44883414e0/resourceGroups/test-rg/providers/Microsoft.Compute/virtualMachines/sapq20scsvm0"))
+            .withTags(mapOf("createdby", "abc@microsoft.com", "test", "abc"))
+            .create();
+    }
+
+    /*
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/preview/2021-12-01-preview/examples/sapvirtualinstances/SAPVirtualInstances_Create_WithOSConfig_HA_AvZone.json
+     */
+    /**
+     * Sample code: Create Infrastructure with OS configuration for HA System with Availability Zone (Recommended).
+     *
+     * @param manager Entry point to WorkloadsManager.
+     */
+    public static void createInfrastructureWithOSConfigurationForHASystemWithAvailabilityZoneRecommended(
+        com.azure.resourcemanager.workloads.WorkloadsManager manager) {
+        manager
+            .sapVirtualInstances()
+            .define("X00")
+            .withRegion("westcentralus")
+            .withExistingResourceGroup("test-rg")
+            .withEnvironment(SapEnvironmentType.PROD)
+            .withSapProduct(SapProductType.S4HANA)
+            .withConfiguration(
+                new DeploymentWithOSConfiguration()
+                    .withAppLocation("eastus")
+                    .withInfrastructureConfiguration(
+                        new ThreeTierConfiguration()
+                            .withAppResourceGroup("X00-RG")
+                            .withCentralServer(
+                                new CentralServerConfiguration()
+                                    .withSubnetId(
+                                        "/subscriptions/49d64d54-e966-4c46-a868-1999802b762c/resourceGroups/dindurkhya-e2etesting/providers/Microsoft.Networks/virtualNetworks/test-vnet/subnets/appsubnet")
+                                    .withVirtualMachineConfiguration(
+                                        new VirtualMachineConfiguration()
+                                            .withVmSize("Standard_E16ds_v4")
+                                            .withImageReference(
+                                                new ImageReference()
+                                                    .withPublisher("RedHat")
+                                                    .withOffer("RHEL-SAP")
+                                                    .withSku("7.4")
+                                                    .withVersion("7.4.2019062505"))
+                                            .withOsProfile(
+                                                new OSProfile()
+                                                    .withAdminUsername("{your-username}")
+                                                    .withOsConfiguration(
+                                                        new LinuxConfiguration()
+                                                            .withDisablePasswordAuthentication(true)
+                                                            .withSshKeyPair(
+                                                                new SshKeyPair()
+                                                                    .withPublicKey("fakeTokenPlaceholder")
+                                                                    .withPrivateKey("fakeTokenPlaceholder")))))
+                                    .withInstanceCount(2L))
+                            .withApplicationServer(
+                                new ApplicationServerConfiguration()
+                                    .withSubnetId(
+                                        "/subscriptions/49d64d54-e966-4c46-a868-1999802b762c/resourceGroups/dindurkhya-e2etesting/providers/Microsoft.Networks/virtualNetworks/test-vnet/subnets/appsubnet")
+                                    .withVirtualMachineConfiguration(
+                                        new VirtualMachineConfiguration()
+                                            .withVmSize("Standard_E32ds_v4")
+                                            .withImageReference(
+                                                new ImageReference()
+                                                    .withPublisher("RedHat")
+                                                    .withOffer("RHEL-SAP")
+                                                    .withSku("7.4")
+                                                    .withVersion("7.4.2019062505"))
+                                            .withOsProfile(
+                                                new OSProfile()
+                                                    .withAdminUsername("{your-username}")
+                                                    .withOsConfiguration(
+                                                        new LinuxConfiguration()
+                                                            .withDisablePasswordAuthentication(true)
+                                                            .withSshKeyPair(
+                                                                new SshKeyPair()
+                                                                    .withPublicKey("fakeTokenPlaceholder")
+                                                                    .withPrivateKey("fakeTokenPlaceholder")))))
+                                    .withInstanceCount(6L))
+                            .withDatabaseServer(
+                                new DatabaseConfiguration()
+                                    .withDatabaseType(SapDatabaseType.HANA)
+                                    .withSubnetId(
+                                        "/subscriptions/49d64d54-e966-4c46-a868-1999802b762c/resourceGroups/dindurkhya-e2etesting/providers/Microsoft.Networks/virtualNetworks/test-vnet/subnets/dbsubnet")
+                                    .withVirtualMachineConfiguration(
+                                        new VirtualMachineConfiguration()
+                                            .withVmSize("Standard_M32ts")
+                                            .withImageReference(
+                                                new ImageReference()
+                                                    .withPublisher("RedHat")
+                                                    .withOffer("RHEL-SAP")
+                                                    .withSku("7.4")
+                                                    .withVersion("7.4.2019062505"))
+                                            .withOsProfile(
+                                                new OSProfile()
+                                                    .withAdminUsername("{your-username}")
+                                                    .withOsConfiguration(
+                                                        new LinuxConfiguration()
+                                                            .withDisablePasswordAuthentication(true)
+                                                            .withSshKeyPair(
+                                                                new SshKeyPair()
+                                                                    .withPublicKey("fakeTokenPlaceholder")
+                                                                    .withPrivateKey("fakeTokenPlaceholder")))))
+                                    .withInstanceCount(2L))
+                            .withHighAvailabilityConfig(
+                                new HighAvailabilityConfiguration()
+                                    .withHighAvailabilityType(SapHighAvailabilityType.AVAILABILITY_ZONE)))
+                    .withOsSapConfiguration(new OsSapConfiguration().withSapFqdn("xyz.test.com")))
+            .withTags(mapOf())
+            .create();
+    }
+
+    /*
+     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/preview/2021-12-01-preview/examples/sapvirtualinstances/SAPVirtualInstances_Create_DiskDetails_SingleServer.json
+     */
+    /**
+     * Sample code: Create Infrastructure with Disk and OS configurations for Single Server System (Recommended).
+     *
+     * @param manager Entry point to WorkloadsManager.
+     */
+    public static void createInfrastructureWithDiskAndOSConfigurationsForSingleServerSystemRecommended(
+        com.azure.resourcemanager.workloads.WorkloadsManager manager) {
+        manager
+            .sapVirtualInstances()
+            .define("X00")
+            .withRegion("westcentralus")
+            .withExistingResourceGroup("test-rg")
+            .withEnvironment(SapEnvironmentType.NON_PROD)
+            .withSapProduct(SapProductType.S4HANA)
+            .withConfiguration(
+                new DeploymentWithOSConfiguration()
+                    .withAppLocation("eastus")
+                    .withInfrastructureConfiguration(
+                        new SingleServerConfiguration()
+                            .withAppResourceGroup("X00-RG")
+                            .withNetworkConfiguration(new NetworkConfiguration().withIsSecondaryIpEnabled(true))
+                            .withDatabaseType(SapDatabaseType.HANA)
+                            .withSubnetId(
+                                "/subscriptions/49d64d54-e966-4c46-a868-1999802b762c/resourceGroups/dindurkhya-e2etesting/providers/Microsoft.Networks/virtualNetworks/test-vnet/subnets/appsubnet")
+                            .withVirtualMachineConfiguration(
+                                new VirtualMachineConfiguration()
+                                    .withVmSize("Standard_E32ds_v4")
+                                    .withImageReference(
+                                        new ImageReference()
+                                            .withPublisher("RedHat")
+                                            .withOffer("RHEL-SAP")
+                                            .withSku("7.4")
+                                            .withVersion("7.4.2019062505"))
+                                    .withOsProfile(
+                                        new OSProfile()
+                                            .withAdminUsername("{your-username}")
+                                            .withOsConfiguration(
+                                                new LinuxConfiguration()
+                                                    .withDisablePasswordAuthentication(true)
+                                                    .withSshKeyPair(
+                                                        new SshKeyPair()
+                                                            .withPublicKey("fakeTokenPlaceholder")
+                                                            .withPrivateKey("fakeTokenPlaceholder")))))
+                            .withDbDiskConfiguration(
+                                new DiskConfiguration()
+                                    .withDiskVolumeConfigurations(
+                                        mapOf(
+                                            "backup",
+                                            new DiskVolumeConfiguration()
+                                                .withCount(2L)
+                                                .withSizeGB(256L)
+                                                .withSku(new DiskSku().withName(DiskSkuName.STANDARD_SSD_LRS)),
+                                            "hana/data",
+                                            new DiskVolumeConfiguration()
+                                                .withCount(4L)
+                                                .withSizeGB(128L)
+                                                .withSku(new DiskSku().withName(DiskSkuName.PREMIUM_LRS)),
+                                            "hana/log",
+                                            new DiskVolumeConfiguration()
+                                                .withCount(3L)
+                                                .withSizeGB(128L)
+                                                .withSku(new DiskSku().withName(DiskSkuName.PREMIUM_LRS)),
+                                            "hana/shared",
+                                            new DiskVolumeConfiguration()
+                                                .withCount(1L)
+                                                .withSizeGB(256L)
+                                                .withSku(new DiskSku().withName(DiskSkuName.STANDARD_SSD_LRS)),
+                                            "os",
+                                            new DiskVolumeConfiguration()
+                                                .withCount(1L)
+                                                .withSizeGB(64L)
+                                                .withSku(new DiskSku().withName(DiskSkuName.STANDARD_SSD_LRS)),
+                                            "usr/sap",
+                                            new DiskVolumeConfiguration()
+                                                .withCount(1L)
+                                                .withSizeGB(128L)
+                                                .withSku(new DiskSku().withName(DiskSkuName.PREMIUM_LRS))))))
+                    .withOsSapConfiguration(new OsSapConfiguration().withSapFqdn("xyz.test.com")))
             .withTags(mapOf())
             .create();
     }
