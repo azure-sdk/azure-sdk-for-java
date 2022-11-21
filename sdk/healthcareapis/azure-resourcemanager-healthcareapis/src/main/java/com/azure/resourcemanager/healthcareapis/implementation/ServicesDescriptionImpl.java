@@ -27,10 +27,6 @@ public final class ServicesDescriptionImpl
         return this.innerModel().id();
     }
 
-    public String name() {
-        return this.innerModel().name();
-    }
-
     public String type() {
         return this.innerModel().type();
     }
@@ -48,6 +44,10 @@ public final class ServicesDescriptionImpl
         }
     }
 
+    public String name() {
+        return this.innerModel().name();
+    }
+
     public Kind kind() {
         return this.innerModel().kind();
     }
@@ -60,12 +60,12 @@ public final class ServicesDescriptionImpl
         return this.innerModel().identity();
     }
 
-    public ServicesProperties properties() {
-        return this.innerModel().properties();
-    }
-
     public SystemData systemData() {
         return this.innerModel().systemData();
+    }
+
+    public ServicesProperties properties() {
+        return this.innerModel().properties();
     }
 
     public Region region() {
@@ -74,6 +74,10 @@ public final class ServicesDescriptionImpl
 
     public String regionName() {
         return this.location();
+    }
+
+    public String resourceGroupName() {
+        return resourceGroupName;
     }
 
     public ServicesDescriptionInner innerModel() {

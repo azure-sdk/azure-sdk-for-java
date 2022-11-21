@@ -5,7 +5,6 @@
 package com.azure.resourcemanager.healthcareapis.generated;
 
 import com.azure.resourcemanager.healthcareapis.models.Kind;
-import com.azure.resourcemanager.healthcareapis.models.ManagedServiceIdentityType;
 import com.azure.resourcemanager.healthcareapis.models.PublicNetworkAccess;
 import com.azure.resourcemanager.healthcareapis.models.ServiceAccessPolicyEntry;
 import com.azure.resourcemanager.healthcareapis.models.ServiceAuthenticationConfigurationInfo;
@@ -14,6 +13,7 @@ import com.azure.resourcemanager.healthcareapis.models.ServiceCosmosDbConfigurat
 import com.azure.resourcemanager.healthcareapis.models.ServiceExportConfigurationInfo;
 import com.azure.resourcemanager.healthcareapis.models.ServicesProperties;
 import com.azure.resourcemanager.healthcareapis.models.ServicesResourceIdentity;
+import com.azure.resourcemanager.healthcareapis.models.SystemAssignedServiceIdentityType;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -21,7 +21,7 @@ import java.util.Map;
 /** Samples for Services CreateOrUpdate. */
 public final class ServicesCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/healthcareapis/resource-manager/Microsoft.HealthcareApis/stable/2021-11-01/examples/legacy/ServiceCreate.json
+     * x-ms-original-file: specification/healthcareapis/resource-manager/Microsoft.HealthcareApis/stable/2022-12-01/examples/legacy/ServiceCreate.json
      */
     /**
      * Sample code: Create or Update a service with all parameters.
@@ -37,7 +37,7 @@ public final class ServicesCreateOrUpdateSamples {
             .withExistingResourceGroup("rg1")
             .withKind(Kind.FHIR_R4)
             .withTags(mapOf())
-            .withIdentity(new ServicesResourceIdentity().withType(ManagedServiceIdentityType.SYSTEM_ASSIGNED))
+            .withIdentity(new ServicesResourceIdentity().withType(SystemAssignedServiceIdentityType.SYSTEM_ASSIGNED))
             .withProperties(
                 new ServicesProperties()
                     .withAccessPolicies(
@@ -48,7 +48,7 @@ public final class ServicesCreateOrUpdateSamples {
                     .withCosmosDbConfiguration(
                         new ServiceCosmosDbConfigurationInfo()
                             .withOfferThroughput(1000)
-                            .withKeyVaultKeyUri("https://my-vault.vault.azure.net/keys/my-key"))
+                            .withKeyVaultKeyUri("fakeTokenPlaceholder"))
                     .withAuthenticationConfiguration(
                         new ServiceAuthenticationConfigurationInfo()
                             .withAuthority("https://login.microsoftonline.com/abfde7b2-df0f-47e6-aabf-2462b07508dc")
@@ -69,7 +69,7 @@ public final class ServicesCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/healthcareapis/resource-manager/Microsoft.HealthcareApis/stable/2021-11-01/examples/legacy/ServiceCreateMinimum.json
+     * x-ms-original-file: specification/healthcareapis/resource-manager/Microsoft.HealthcareApis/stable/2022-12-01/examples/legacy/ServiceCreateMinimum.json
      */
     /**
      * Sample code: Create or Update a service with minimum parameters.

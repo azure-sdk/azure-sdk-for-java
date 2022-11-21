@@ -5,7 +5,6 @@
 package com.azure.resourcemanager.healthcareapis.fluent.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.healthcareapis.models.Kind;
 import com.azure.resourcemanager.healthcareapis.models.ServicesProperties;
 import com.azure.resourcemanager.healthcareapis.models.ServicesResource;
@@ -22,11 +21,9 @@ public final class ServicesDescriptionInner extends ServicesResource {
     @JsonProperty(value = "properties")
     private ServicesProperties properties;
 
-    /*
-     * Metadata pertaining to creation and last modification of the resource.
-     */
-    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
-    private SystemData systemData;
+    /** Creates an instance of ServicesDescriptionInner class. */
+    public ServicesDescriptionInner() {
+    }
 
     /**
      * Get the properties property: The common properties of a service.
@@ -46,15 +43,6 @@ public final class ServicesDescriptionInner extends ServicesResource {
     public ServicesDescriptionInner withProperties(ServicesProperties properties) {
         this.properties = properties;
         return this;
-    }
-
-    /**
-     * Get the systemData property: Metadata pertaining to creation and last modification of the resource.
-     *
-     * @return the systemData value.
-     */
-    public SystemData systemData() {
-        return this.systemData;
     }
 
     /** {@inheritDoc} */

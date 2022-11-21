@@ -5,65 +5,18 @@
 package com.azure.resourcemanager.healthcareapis.models;
 
 import com.azure.core.annotation.Fluent;
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Setting indicating whether the service has a managed identity associated with it. */
 @Fluent
-public class ServicesResourceIdentity {
-    /*
-     * The principal ID of the resource identity.
-     */
-    @JsonProperty(value = "principalId", access = JsonProperty.Access.WRITE_ONLY)
-    private String principalId;
-
-    /*
-     * The tenant ID of the resource.
-     */
-    @JsonProperty(value = "tenantId", access = JsonProperty.Access.WRITE_ONLY)
-    private String tenantId;
-
-    /*
-     * Type of identity being specified, currently SystemAssigned and None are
-     * allowed.
-     */
-    @JsonProperty(value = "type")
-    private ManagedServiceIdentityType type;
-
-    /**
-     * Get the principalId property: The principal ID of the resource identity.
-     *
-     * @return the principalId value.
-     */
-    public String principalId() {
-        return this.principalId;
+public class ServicesResourceIdentity extends SystemAssignedServiceIdentity {
+    /** Creates an instance of ServicesResourceIdentity class. */
+    public ServicesResourceIdentity() {
     }
 
-    /**
-     * Get the tenantId property: The tenant ID of the resource.
-     *
-     * @return the tenantId value.
-     */
-    public String tenantId() {
-        return this.tenantId;
-    }
-
-    /**
-     * Get the type property: Type of identity being specified, currently SystemAssigned and None are allowed.
-     *
-     * @return the type value.
-     */
-    public ManagedServiceIdentityType type() {
-        return this.type;
-    }
-
-    /**
-     * Set the type property: Type of identity being specified, currently SystemAssigned and None are allowed.
-     *
-     * @param type the type value to set.
-     * @return the ServicesResourceIdentity object itself.
-     */
-    public ServicesResourceIdentity withType(ManagedServiceIdentityType type) {
-        this.type = type;
+    /** {@inheritDoc} */
+    @Override
+    public ServicesResourceIdentity withType(SystemAssignedServiceIdentityType type) {
+        super.withType(type);
         return this;
     }
 
@@ -72,6 +25,8 @@ public class ServicesResourceIdentity {
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
+    @Override
     public void validate() {
+        super.validate();
     }
 }

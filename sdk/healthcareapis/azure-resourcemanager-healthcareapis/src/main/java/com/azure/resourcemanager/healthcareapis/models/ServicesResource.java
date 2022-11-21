@@ -6,6 +6,7 @@ package com.azure.resourcemanager.healthcareapis.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.Resource;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
@@ -14,24 +15,47 @@ import java.util.Map;
 @Fluent
 public class ServicesResource extends Resource {
     /*
+     * The resource name.
+     */
+    @JsonProperty(value = "name", access = JsonProperty.Access.WRITE_ONLY)
+    private String name;
+
+    /*
      * The kind of the service.
      */
     @JsonProperty(value = "kind", required = true)
     private Kind kind;
 
     /*
-     * An etag associated with the resource, used for optimistic concurrency
-     * when editing it.
+     * An etag associated with the resource, used for optimistic concurrency when editing it.
      */
     @JsonProperty(value = "etag")
     private String etag;
 
     /*
-     * Setting indicating whether the service has a managed identity associated
-     * with it.
+     * Setting indicating whether the service has a managed identity associated with it.
      */
     @JsonProperty(value = "identity")
     private ServicesResourceIdentity identity;
+
+    /*
+     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     */
+    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
+    private SystemData systemData;
+
+    /** Creates an instance of ServicesResource class. */
+    public ServicesResource() {
+    }
+
+    /**
+     * Get the name property: The resource name.
+     *
+     * @return the name value.
+     */
+    public String name() {
+        return this.name;
+    }
 
     /**
      * Get the kind property: The kind of the service.
@@ -91,6 +115,15 @@ public class ServicesResource extends Resource {
     public ServicesResource withIdentity(ServicesResourceIdentity identity) {
         this.identity = identity;
         return this;
+    }
+
+    /**
+     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     *
+     * @return the systemData value.
+     */
+    public SystemData systemData() {
+        return this.systemData;
     }
 
     /** {@inheritDoc} */

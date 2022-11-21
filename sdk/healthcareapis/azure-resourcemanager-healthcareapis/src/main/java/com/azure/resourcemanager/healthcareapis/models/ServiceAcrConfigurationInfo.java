@@ -23,6 +23,10 @@ public final class ServiceAcrConfigurationInfo {
     @JsonProperty(value = "ociArtifacts")
     private List<ServiceOciArtifactEntry> ociArtifacts;
 
+    /** Creates an instance of ServiceAcrConfigurationInfo class. */
+    public ServiceAcrConfigurationInfo() {
+    }
+
     /**
      * Get the loginServers property: The list of the ACR login servers.
      *

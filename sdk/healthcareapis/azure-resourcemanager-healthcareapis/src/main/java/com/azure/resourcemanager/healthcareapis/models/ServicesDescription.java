@@ -20,13 +20,6 @@ public interface ServicesDescription {
     String id();
 
     /**
-     * Gets the name property: The name of the resource.
-     *
-     * @return the name value.
-     */
-    String name();
-
-    /**
      * Gets the type property: The type of the resource.
      *
      * @return the type value.
@@ -46,6 +39,13 @@ public interface ServicesDescription {
      * @return the tags value.
      */
     Map<String, String> tags();
+
+    /**
+     * Gets the name property: The resource name.
+     *
+     * @return the name value.
+     */
+    String name();
 
     /**
      * Gets the kind property: The kind of the service.
@@ -69,18 +69,18 @@ public interface ServicesDescription {
     ServicesResourceIdentity identity();
 
     /**
+     * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     *
+     * @return the systemData value.
+     */
+    SystemData systemData();
+
+    /**
      * Gets the properties property: The common properties of a service.
      *
      * @return the properties value.
      */
     ServicesProperties properties();
-
-    /**
-     * Gets the systemData property: Metadata pertaining to creation and last modification of the resource.
-     *
-     * @return the systemData value.
-     */
-    SystemData systemData();
 
     /**
      * Gets the region of the resource.
@@ -95,6 +95,13 @@ public interface ServicesDescription {
      * @return the name of the resource region.
      */
     String regionName();
+
+    /**
+     * Gets the name of the resource group.
+     *
+     * @return the name of the resource group.
+     */
+    String resourceGroupName();
 
     /**
      * Gets the inner com.azure.resourcemanager.healthcareapis.fluent.models.ServicesDescriptionInner object.

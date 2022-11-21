@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for FhirServices Delete. */
 public final class FhirServicesDeleteSamples {
     /*
-     * x-ms-original-file: specification/healthcareapis/resource-manager/Microsoft.HealthcareApis/stable/2021-11-01/examples/fhirservices/FhirServices_Delete.json
+     * x-ms-original-file: specification/healthcareapis/resource-manager/Microsoft.HealthcareApis/stable/2022-12-01/examples/fhirservices/FhirServices_Delete.json
      */
     /**
      * Sample code: Delete a Fhir Service.
