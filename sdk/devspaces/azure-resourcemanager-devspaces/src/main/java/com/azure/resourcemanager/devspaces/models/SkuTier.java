@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for SkuTier. */
+/** The tier of the SKU for Azure Dev Spaces Controller. */
 public final class SkuTier extends ExpandableStringEnum<SkuTier> {
     /** Static value Standard for SkuTier. */
     public static final SkuTier STANDARD = fromString("Standard");
@@ -24,7 +24,11 @@ public final class SkuTier extends ExpandableStringEnum<SkuTier> {
         return fromString(name, SkuTier.class);
     }
 
-    /** @return known SkuTier values. */
+    /**
+     * Gets known SkuTier values.
+     *
+     * @return known SkuTier values.
+     */
     public static Collection<SkuTier> values() {
         return values(SkuTier.class);
     }
