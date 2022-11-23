@@ -596,7 +596,7 @@ public final class BackupResourceEncryptionConfigsUpdateSamples {
                     .withProperties(
                         new BackupResourceEncryptionConfig()
                             .withEncryptionAtRestType(EncryptionAtRestType.CUSTOMER_MANAGED)
-                            .withKeyUri("https://gktestkv1.vault.azure.net/keys/Test1/ed2e8cdc7f86477ebf0c6462b504a9ed")
+                            .withKeyUri("fakeTokenPlaceholder")
                             .withSubscriptionId("1a2311d9-66f5-47d3-a9fb-7a37da63934b")
                             .withInfrastructureEncryptionState(InfrastructureEncryptionState.fromString("true"))),
                 Context.NONE);
