@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for ConnectedEnvironmentsDaprComponents Delete. */
 public final class ConnectedEnvironmentsDaprComponentsDeleteSamples {
     /*
-     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2022-06-01-preview/examples/ConnectedEnvironmentsDaprComponents_Delete.json
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2022-10-01/examples/ConnectedEnvironmentsDaprComponents_Delete.json
      */
     /**
      * Sample code: Delete dapr component.

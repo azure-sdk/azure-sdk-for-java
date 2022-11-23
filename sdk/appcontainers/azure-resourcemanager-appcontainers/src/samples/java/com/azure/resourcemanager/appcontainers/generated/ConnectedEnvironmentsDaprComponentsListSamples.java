@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for ConnectedEnvironmentsDaprComponents List. */
 public final class ConnectedEnvironmentsDaprComponentsListSamples {
     /*
-     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2022-06-01-preview/examples/ConnectedEnvironmentsDaprComponents_List.json
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2022-10-01/examples/ConnectedEnvironmentsDaprComponents_List.json
      */
     /**
      * Sample code: List Dapr Components.

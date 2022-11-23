@@ -21,6 +21,12 @@ import java.util.Map;
 @Fluent
 public final class ManagedEnvironmentInner extends Resource {
     /*
+     * Kind of the Environment.
+     */
+    @JsonProperty(value = "kind")
+    private String kind;
+
+    /*
      * SKU properties of the Environment.
      */
     @JsonProperty(value = "sku")
@@ -40,6 +46,26 @@ public final class ManagedEnvironmentInner extends Resource {
 
     /** Creates an instance of ManagedEnvironmentInner class. */
     public ManagedEnvironmentInner() {
+    }
+
+    /**
+     * Get the kind property: Kind of the Environment.
+     *
+     * @return the kind value.
+     */
+    public String kind() {
+        return this.kind;
+    }
+
+    /**
+     * Set the kind property: Kind of the Environment.
+     *
+     * @param kind the kind value to set.
+     * @return the ManagedEnvironmentInner object itself.
+     */
+    public ManagedEnvironmentInner withKind(String kind) {
+        this.kind = kind;
+        return this;
     }
 
     /**

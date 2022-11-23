@@ -57,7 +57,7 @@ public final class AvailableWorkloadProfilesClientImpl implements AvailableWorkl
      */
     @Host("{$host}")
     @ServiceInterface(name = "ContainerAppsApiClie")
-    private interface AvailableWorkloadProfilesService {
+    public interface AvailableWorkloadProfilesService {
         @Headers({"Content-Type: application/json"})
         @Get(
             "/subscriptions/{subscriptionId}/providers/Microsoft.App/locations/{location}"

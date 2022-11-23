@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for ManagedEnvironments ListWorkloadProfileStates. */
 public final class ManagedEnvironmentsListWorkloadProfileStatesSamples {
     /*
-     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2022-06-01-preview/examples/ManagedEnvironments_ListWorkloadProfileStates.json
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2022-10-01/examples/ManagedEnvironments_ListWorkloadProfileStates.json
      */
     /**
      * Sample code: List environments by subscription.
