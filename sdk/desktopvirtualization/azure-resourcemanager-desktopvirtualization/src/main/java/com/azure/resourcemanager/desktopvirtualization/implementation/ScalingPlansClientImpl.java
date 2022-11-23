@@ -60,7 +60,7 @@ public final class ScalingPlansClientImpl implements ScalingPlansClient {
      */
     @Host("{$host}")
     @ServiceInterface(name = "DesktopVirtualizatio")
-    private interface ScalingPlansService {
+    public interface ScalingPlansService {
         @Headers({"Content-Type: application/json"})
         @Get(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers"
@@ -134,6 +134,9 @@ public final class ScalingPlansClientImpl implements ScalingPlansClient {
             @QueryParam("api-version") String apiVersion,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
+            @QueryParam("pageSize") Integer pageSize,
+            @QueryParam("isDescending") Boolean isDescending,
+            @QueryParam("initialSkip") Integer initialSkip,
             @HeaderParam("Accept") String accept,
             Context context);
 
@@ -145,6 +148,9 @@ public final class ScalingPlansClientImpl implements ScalingPlansClient {
             @HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion,
             @PathParam("subscriptionId") String subscriptionId,
+            @QueryParam("pageSize") Integer pageSize,
+            @QueryParam("isDescending") Boolean isDescending,
+            @QueryParam("initialSkip") Integer initialSkip,
             @HeaderParam("Accept") String accept,
             Context context);
 
@@ -160,6 +166,9 @@ public final class ScalingPlansClientImpl implements ScalingPlansClient {
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("hostPoolName") String hostPoolName,
+            @QueryParam("pageSize") Integer pageSize,
+            @QueryParam("isDescending") Boolean isDescending,
+            @QueryParam("initialSkip") Integer initialSkip,
             @HeaderParam("Accept") String accept,
             Context context);
 
@@ -205,7 +214,7 @@ public final class ScalingPlansClientImpl implements ScalingPlansClient {
      * @return a scaling plan along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<ScalingPlanInner>> getByResourceGroupWithResponseAsync(
+    private Mono<Response<ScalingPlanInner>> getByResourceGroupWithResponseAsync(
         String resourceGroupName, String scalingPlanName) {
         if (this.client.getEndpoint() == null) {
             return Mono
@@ -301,24 +310,9 @@ public final class ScalingPlansClientImpl implements ScalingPlansClient {
      * @return a scaling plan on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<ScalingPlanInner> getByResourceGroupAsync(String resourceGroupName, String scalingPlanName) {
+    private Mono<ScalingPlanInner> getByResourceGroupAsync(String resourceGroupName, String scalingPlanName) {
         return getByResourceGroupWithResponseAsync(resourceGroupName, scalingPlanName)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
-    }
-
-    /**
-     * Get a scaling plan.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param scalingPlanName The name of the scaling plan.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a scaling plan.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public ScalingPlanInner getByResourceGroup(String resourceGroupName, String scalingPlanName) {
-        return getByResourceGroupAsync(resourceGroupName, scalingPlanName).block();
     }
 
     /**
@@ -339,6 +333,21 @@ public final class ScalingPlansClientImpl implements ScalingPlansClient {
     }
 
     /**
+     * Get a scaling plan.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param scalingPlanName The name of the scaling plan.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a scaling plan.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public ScalingPlanInner getByResourceGroup(String resourceGroupName, String scalingPlanName) {
+        return getByResourceGroupWithResponse(resourceGroupName, scalingPlanName, Context.NONE).getValue();
+    }
+
+    /**
      * Create or update a scaling plan.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -350,7 +359,7 @@ public final class ScalingPlansClientImpl implements ScalingPlansClient {
      * @return scalingPlan along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<ScalingPlanInner>> createWithResponseAsync(
+    private Mono<Response<ScalingPlanInner>> createWithResponseAsync(
         String resourceGroupName, String scalingPlanName, ScalingPlanInner scalingPlan) {
         if (this.client.getEndpoint() == null) {
             return Mono
@@ -460,26 +469,10 @@ public final class ScalingPlansClientImpl implements ScalingPlansClient {
      * @return scalingPlan on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<ScalingPlanInner> createAsync(
+    private Mono<ScalingPlanInner> createAsync(
         String resourceGroupName, String scalingPlanName, ScalingPlanInner scalingPlan) {
         return createWithResponseAsync(resourceGroupName, scalingPlanName, scalingPlan)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
-    }
-
-    /**
-     * Create or update a scaling plan.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param scalingPlanName The name of the scaling plan.
-     * @param scalingPlan Object containing scaling plan definitions.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return scalingPlan.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public ScalingPlanInner create(String resourceGroupName, String scalingPlanName, ScalingPlanInner scalingPlan) {
-        return createAsync(resourceGroupName, scalingPlanName, scalingPlan).block();
     }
 
     /**
@@ -501,6 +494,22 @@ public final class ScalingPlansClientImpl implements ScalingPlansClient {
     }
 
     /**
+     * Create or update a scaling plan.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param scalingPlanName The name of the scaling plan.
+     * @param scalingPlan Object containing scaling plan definitions.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return scalingPlan.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public ScalingPlanInner create(String resourceGroupName, String scalingPlanName, ScalingPlanInner scalingPlan) {
+        return createWithResponse(resourceGroupName, scalingPlanName, scalingPlan, Context.NONE).getValue();
+    }
+
+    /**
      * Remove a scaling plan.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -511,7 +520,7 @@ public final class ScalingPlansClientImpl implements ScalingPlansClient {
      * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Void>> deleteWithResponseAsync(String resourceGroupName, String scalingPlanName) {
+    private Mono<Response<Void>> deleteWithResponseAsync(String resourceGroupName, String scalingPlanName) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -606,22 +615,8 @@ public final class ScalingPlansClientImpl implements ScalingPlansClient {
      * @return A {@link Mono} that completes when a successful response is received.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Void> deleteAsync(String resourceGroupName, String scalingPlanName) {
+    private Mono<Void> deleteAsync(String resourceGroupName, String scalingPlanName) {
         return deleteWithResponseAsync(resourceGroupName, scalingPlanName).flatMap(ignored -> Mono.empty());
-    }
-
-    /**
-     * Remove a scaling plan.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param scalingPlanName The name of the scaling plan.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public void delete(String resourceGroupName, String scalingPlanName) {
-        deleteAsync(resourceGroupName, scalingPlanName).block();
     }
 
     /**
@@ -641,6 +636,20 @@ public final class ScalingPlansClientImpl implements ScalingPlansClient {
     }
 
     /**
+     * Remove a scaling plan.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param scalingPlanName The name of the scaling plan.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public void delete(String resourceGroupName, String scalingPlanName) {
+        deleteWithResponse(resourceGroupName, scalingPlanName, Context.NONE);
+    }
+
+    /**
      * Update a scaling plan.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -652,7 +661,7 @@ public final class ScalingPlansClientImpl implements ScalingPlansClient {
      * @return scalingPlan along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<ScalingPlanInner>> updateWithResponseAsync(
+    private Mono<Response<ScalingPlanInner>> updateWithResponseAsync(
         String resourceGroupName, String scalingPlanName, ScalingPlanPatch scalingPlan) {
         if (this.client.getEndpoint() == null) {
             return Mono
@@ -751,50 +760,16 @@ public final class ScalingPlansClientImpl implements ScalingPlansClient {
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param scalingPlanName The name of the scaling plan.
-     * @param scalingPlan Object containing scaling plan definitions.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return scalingPlan on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<ScalingPlanInner> updateAsync(
-        String resourceGroupName, String scalingPlanName, ScalingPlanPatch scalingPlan) {
-        return updateWithResponseAsync(resourceGroupName, scalingPlanName, scalingPlan)
-            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
-    }
-
-    /**
-     * Update a scaling plan.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param scalingPlanName The name of the scaling plan.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return scalingPlan on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<ScalingPlanInner> updateAsync(String resourceGroupName, String scalingPlanName) {
+    private Mono<ScalingPlanInner> updateAsync(String resourceGroupName, String scalingPlanName) {
         final ScalingPlanPatch scalingPlan = null;
         return updateWithResponseAsync(resourceGroupName, scalingPlanName, scalingPlan)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
-    }
-
-    /**
-     * Update a scaling plan.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param scalingPlanName The name of the scaling plan.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return scalingPlan.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public ScalingPlanInner update(String resourceGroupName, String scalingPlanName) {
-        final ScalingPlanPatch scalingPlan = null;
-        return updateAsync(resourceGroupName, scalingPlanName, scalingPlan).block();
     }
 
     /**
@@ -816,16 +791,36 @@ public final class ScalingPlansClientImpl implements ScalingPlansClient {
     }
 
     /**
+     * Update a scaling plan.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param scalingPlanName The name of the scaling plan.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return scalingPlan.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public ScalingPlanInner update(String resourceGroupName, String scalingPlanName) {
+        final ScalingPlanPatch scalingPlan = null;
+        return updateWithResponse(resourceGroupName, scalingPlanName, scalingPlan, Context.NONE).getValue();
+    }
+
+    /**
      * List scaling plans.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param pageSize Number of items per page.
+     * @param isDescending Indicates whether the collection is descending.
+     * @param initialSkip Initial number of items to skip.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return scalingPlanList along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<ScalingPlanInner>> listByResourceGroupSinglePageAsync(String resourceGroupName) {
+    private Mono<PagedResponse<ScalingPlanInner>> listByResourceGroupSinglePageAsync(
+        String resourceGroupName, Integer pageSize, Boolean isDescending, Integer initialSkip) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -852,6 +847,9 @@ public final class ScalingPlansClientImpl implements ScalingPlansClient {
                             this.client.getApiVersion(),
                             this.client.getSubscriptionId(),
                             resourceGroupName,
+                            pageSize,
+                            isDescending,
+                            initialSkip,
                             accept,
                             context))
             .<PagedResponse<ScalingPlanInner>>map(
@@ -870,6 +868,9 @@ public final class ScalingPlansClientImpl implements ScalingPlansClient {
      * List scaling plans.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param pageSize Number of items per page.
+     * @param isDescending Indicates whether the collection is descending.
+     * @param initialSkip Initial number of items to skip.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -878,7 +879,7 @@ public final class ScalingPlansClientImpl implements ScalingPlansClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ScalingPlanInner>> listByResourceGroupSinglePageAsync(
-        String resourceGroupName, Context context) {
+        String resourceGroupName, Integer pageSize, Boolean isDescending, Integer initialSkip, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -903,6 +904,9 @@ public final class ScalingPlansClientImpl implements ScalingPlansClient {
                 this.client.getApiVersion(),
                 this.client.getSubscriptionId(),
                 resourceGroupName,
+                pageSize,
+                isDescending,
+                initialSkip,
                 accept,
                 context)
             .map(
@@ -920,15 +924,19 @@ public final class ScalingPlansClientImpl implements ScalingPlansClient {
      * List scaling plans.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param pageSize Number of items per page.
+     * @param isDescending Indicates whether the collection is descending.
+     * @param initialSkip Initial number of items to skip.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return scalingPlanList as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedFlux<ScalingPlanInner> listByResourceGroupAsync(String resourceGroupName) {
+    private PagedFlux<ScalingPlanInner> listByResourceGroupAsync(
+        String resourceGroupName, Integer pageSize, Boolean isDescending, Integer initialSkip) {
         return new PagedFlux<>(
-            () -> listByResourceGroupSinglePageAsync(resourceGroupName),
+            () -> listByResourceGroupSinglePageAsync(resourceGroupName, pageSize, isDescending, initialSkip),
             nextLink -> listByResourceGroupNextSinglePageAsync(nextLink));
     }
 
@@ -936,6 +944,28 @@ public final class ScalingPlansClientImpl implements ScalingPlansClient {
      * List scaling plans.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return scalingPlanList as paginated response with {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    private PagedFlux<ScalingPlanInner> listByResourceGroupAsync(String resourceGroupName) {
+        final Integer pageSize = null;
+        final Boolean isDescending = null;
+        final Integer initialSkip = null;
+        return new PagedFlux<>(
+            () -> listByResourceGroupSinglePageAsync(resourceGroupName, pageSize, isDescending, initialSkip),
+            nextLink -> listByResourceGroupNextSinglePageAsync(nextLink));
+    }
+
+    /**
+     * List scaling plans.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param pageSize Number of items per page.
+     * @param isDescending Indicates whether the collection is descending.
+     * @param initialSkip Initial number of items to skip.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -943,9 +973,10 @@ public final class ScalingPlansClientImpl implements ScalingPlansClient {
      * @return scalingPlanList as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<ScalingPlanInner> listByResourceGroupAsync(String resourceGroupName, Context context) {
+    private PagedFlux<ScalingPlanInner> listByResourceGroupAsync(
+        String resourceGroupName, Integer pageSize, Boolean isDescending, Integer initialSkip, Context context) {
         return new PagedFlux<>(
-            () -> listByResourceGroupSinglePageAsync(resourceGroupName, context),
+            () -> listByResourceGroupSinglePageAsync(resourceGroupName, pageSize, isDescending, initialSkip, context),
             nextLink -> listByResourceGroupNextSinglePageAsync(nextLink, context));
     }
 
@@ -960,13 +991,19 @@ public final class ScalingPlansClientImpl implements ScalingPlansClient {
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<ScalingPlanInner> listByResourceGroup(String resourceGroupName) {
-        return new PagedIterable<>(listByResourceGroupAsync(resourceGroupName));
+        final Integer pageSize = null;
+        final Boolean isDescending = null;
+        final Integer initialSkip = null;
+        return new PagedIterable<>(listByResourceGroupAsync(resourceGroupName, pageSize, isDescending, initialSkip));
     }
 
     /**
      * List scaling plans.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param pageSize Number of items per page.
+     * @param isDescending Indicates whether the collection is descending.
+     * @param initialSkip Initial number of items to skip.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -974,19 +1011,26 @@ public final class ScalingPlansClientImpl implements ScalingPlansClient {
      * @return scalingPlanList as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<ScalingPlanInner> listByResourceGroup(String resourceGroupName, Context context) {
-        return new PagedIterable<>(listByResourceGroupAsync(resourceGroupName, context));
+    public PagedIterable<ScalingPlanInner> listByResourceGroup(
+        String resourceGroupName, Integer pageSize, Boolean isDescending, Integer initialSkip, Context context) {
+        return new PagedIterable<>(
+            listByResourceGroupAsync(resourceGroupName, pageSize, isDescending, initialSkip, context));
     }
 
     /**
      * List scaling plans in subscription.
      *
+     * @param pageSize Number of items per page.
+     * @param isDescending Indicates whether the collection is descending.
+     * @param initialSkip Initial number of items to skip.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return scalingPlanList along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<ScalingPlanInner>> listSinglePageAsync() {
+    private Mono<PagedResponse<ScalingPlanInner>> listSinglePageAsync(
+        Integer pageSize, Boolean isDescending, Integer initialSkip) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -1008,6 +1052,9 @@ public final class ScalingPlansClientImpl implements ScalingPlansClient {
                             this.client.getEndpoint(),
                             this.client.getApiVersion(),
                             this.client.getSubscriptionId(),
+                            pageSize,
+                            isDescending,
+                            initialSkip,
                             accept,
                             context))
             .<PagedResponse<ScalingPlanInner>>map(
@@ -1025,6 +1072,9 @@ public final class ScalingPlansClientImpl implements ScalingPlansClient {
     /**
      * List scaling plans in subscription.
      *
+     * @param pageSize Number of items per page.
+     * @param isDescending Indicates whether the collection is descending.
+     * @param initialSkip Initial number of items to skip.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1032,7 +1082,8 @@ public final class ScalingPlansClientImpl implements ScalingPlansClient {
      * @return scalingPlanList along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<ScalingPlanInner>> listSinglePageAsync(Context context) {
+    private Mono<PagedResponse<ScalingPlanInner>> listSinglePageAsync(
+        Integer pageSize, Boolean isDescending, Integer initialSkip, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -1052,6 +1103,9 @@ public final class ScalingPlansClientImpl implements ScalingPlansClient {
                 this.client.getEndpoint(),
                 this.client.getApiVersion(),
                 this.client.getSubscriptionId(),
+                pageSize,
+                isDescending,
+                initialSkip,
                 accept,
                 context)
             .map(
@@ -1068,19 +1122,44 @@ public final class ScalingPlansClientImpl implements ScalingPlansClient {
     /**
      * List scaling plans in subscription.
      *
+     * @param pageSize Number of items per page.
+     * @param isDescending Indicates whether the collection is descending.
+     * @param initialSkip Initial number of items to skip.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return scalingPlanList as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedFlux<ScalingPlanInner> listAsync() {
+    private PagedFlux<ScalingPlanInner> listAsync(Integer pageSize, Boolean isDescending, Integer initialSkip) {
         return new PagedFlux<>(
-            () -> listSinglePageAsync(), nextLink -> listBySubscriptionNextSinglePageAsync(nextLink));
+            () -> listSinglePageAsync(pageSize, isDescending, initialSkip),
+            nextLink -> listBySubscriptionNextSinglePageAsync(nextLink));
     }
 
     /**
      * List scaling plans in subscription.
      *
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return scalingPlanList as paginated response with {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    private PagedFlux<ScalingPlanInner> listAsync() {
+        final Integer pageSize = null;
+        final Boolean isDescending = null;
+        final Integer initialSkip = null;
+        return new PagedFlux<>(
+            () -> listSinglePageAsync(pageSize, isDescending, initialSkip),
+            nextLink -> listBySubscriptionNextSinglePageAsync(nextLink));
+    }
+
+    /**
+     * List scaling plans in subscription.
+     *
+     * @param pageSize Number of items per page.
+     * @param isDescending Indicates whether the collection is descending.
+     * @param initialSkip Initial number of items to skip.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1088,9 +1167,11 @@ public final class ScalingPlansClientImpl implements ScalingPlansClient {
      * @return scalingPlanList as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<ScalingPlanInner> listAsync(Context context) {
+    private PagedFlux<ScalingPlanInner> listAsync(
+        Integer pageSize, Boolean isDescending, Integer initialSkip, Context context) {
         return new PagedFlux<>(
-            () -> listSinglePageAsync(context), nextLink -> listBySubscriptionNextSinglePageAsync(nextLink, context));
+            () -> listSinglePageAsync(pageSize, isDescending, initialSkip, context),
+            nextLink -> listBySubscriptionNextSinglePageAsync(nextLink, context));
     }
 
     /**
@@ -1102,12 +1183,18 @@ public final class ScalingPlansClientImpl implements ScalingPlansClient {
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<ScalingPlanInner> list() {
-        return new PagedIterable<>(listAsync());
+        final Integer pageSize = null;
+        final Boolean isDescending = null;
+        final Integer initialSkip = null;
+        return new PagedIterable<>(listAsync(pageSize, isDescending, initialSkip));
     }
 
     /**
      * List scaling plans in subscription.
      *
+     * @param pageSize Number of items per page.
+     * @param isDescending Indicates whether the collection is descending.
+     * @param initialSkip Initial number of items to skip.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1115,8 +1202,9 @@ public final class ScalingPlansClientImpl implements ScalingPlansClient {
      * @return scalingPlanList as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<ScalingPlanInner> list(Context context) {
-        return new PagedIterable<>(listAsync(context));
+    public PagedIterable<ScalingPlanInner> list(
+        Integer pageSize, Boolean isDescending, Integer initialSkip, Context context) {
+        return new PagedIterable<>(listAsync(pageSize, isDescending, initialSkip, context));
     }
 
     /**
@@ -1124,6 +1212,9 @@ public final class ScalingPlansClientImpl implements ScalingPlansClient {
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param hostPoolName The name of the host pool within the specified resource group.
+     * @param pageSize Number of items per page.
+     * @param isDescending Indicates whether the collection is descending.
+     * @param initialSkip Initial number of items to skip.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1131,7 +1222,7 @@ public final class ScalingPlansClientImpl implements ScalingPlansClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ScalingPlanInner>> listByHostPoolSinglePageAsync(
-        String resourceGroupName, String hostPoolName) {
+        String resourceGroupName, String hostPoolName, Integer pageSize, Boolean isDescending, Integer initialSkip) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -1162,6 +1253,9 @@ public final class ScalingPlansClientImpl implements ScalingPlansClient {
                             this.client.getSubscriptionId(),
                             resourceGroupName,
                             hostPoolName,
+                            pageSize,
+                            isDescending,
+                            initialSkip,
                             accept,
                             context))
             .<PagedResponse<ScalingPlanInner>>map(
@@ -1181,6 +1275,9 @@ public final class ScalingPlansClientImpl implements ScalingPlansClient {
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param hostPoolName The name of the host pool within the specified resource group.
+     * @param pageSize Number of items per page.
+     * @param isDescending Indicates whether the collection is descending.
+     * @param initialSkip Initial number of items to skip.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1189,7 +1286,12 @@ public final class ScalingPlansClientImpl implements ScalingPlansClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ScalingPlanInner>> listByHostPoolSinglePageAsync(
-        String resourceGroupName, String hostPoolName, Context context) {
+        String resourceGroupName,
+        String hostPoolName,
+        Integer pageSize,
+        Boolean isDescending,
+        Integer initialSkip,
+        Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono
                 .error(
@@ -1218,6 +1320,9 @@ public final class ScalingPlansClientImpl implements ScalingPlansClient {
                 this.client.getSubscriptionId(),
                 resourceGroupName,
                 hostPoolName,
+                pageSize,
+                isDescending,
+                initialSkip,
                 accept,
                 context)
             .map(
@@ -1236,15 +1341,19 @@ public final class ScalingPlansClientImpl implements ScalingPlansClient {
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param hostPoolName The name of the host pool within the specified resource group.
+     * @param pageSize Number of items per page.
+     * @param isDescending Indicates whether the collection is descending.
+     * @param initialSkip Initial number of items to skip.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return scalingPlanList as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedFlux<ScalingPlanInner> listByHostPoolAsync(String resourceGroupName, String hostPoolName) {
+    private PagedFlux<ScalingPlanInner> listByHostPoolAsync(
+        String resourceGroupName, String hostPoolName, Integer pageSize, Boolean isDescending, Integer initialSkip) {
         return new PagedFlux<>(
-            () -> listByHostPoolSinglePageAsync(resourceGroupName, hostPoolName),
+            () -> listByHostPoolSinglePageAsync(resourceGroupName, hostPoolName, pageSize, isDescending, initialSkip),
             nextLink -> listByHostPoolNextSinglePageAsync(nextLink));
     }
 
@@ -1253,6 +1362,29 @@ public final class ScalingPlansClientImpl implements ScalingPlansClient {
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param hostPoolName The name of the host pool within the specified resource group.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return scalingPlanList as paginated response with {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    private PagedFlux<ScalingPlanInner> listByHostPoolAsync(String resourceGroupName, String hostPoolName) {
+        final Integer pageSize = null;
+        final Boolean isDescending = null;
+        final Integer initialSkip = null;
+        return new PagedFlux<>(
+            () -> listByHostPoolSinglePageAsync(resourceGroupName, hostPoolName, pageSize, isDescending, initialSkip),
+            nextLink -> listByHostPoolNextSinglePageAsync(nextLink));
+    }
+
+    /**
+     * List scaling plan associated with hostpool.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param hostPoolName The name of the host pool within the specified resource group.
+     * @param pageSize Number of items per page.
+     * @param isDescending Indicates whether the collection is descending.
+     * @param initialSkip Initial number of items to skip.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1261,9 +1393,16 @@ public final class ScalingPlansClientImpl implements ScalingPlansClient {
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<ScalingPlanInner> listByHostPoolAsync(
-        String resourceGroupName, String hostPoolName, Context context) {
+        String resourceGroupName,
+        String hostPoolName,
+        Integer pageSize,
+        Boolean isDescending,
+        Integer initialSkip,
+        Context context) {
         return new PagedFlux<>(
-            () -> listByHostPoolSinglePageAsync(resourceGroupName, hostPoolName, context),
+            () ->
+                listByHostPoolSinglePageAsync(
+                    resourceGroupName, hostPoolName, pageSize, isDescending, initialSkip, context),
             nextLink -> listByHostPoolNextSinglePageAsync(nextLink, context));
     }
 
@@ -1279,7 +1418,11 @@ public final class ScalingPlansClientImpl implements ScalingPlansClient {
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<ScalingPlanInner> listByHostPool(String resourceGroupName, String hostPoolName) {
-        return new PagedIterable<>(listByHostPoolAsync(resourceGroupName, hostPoolName));
+        final Integer pageSize = null;
+        final Boolean isDescending = null;
+        final Integer initialSkip = null;
+        return new PagedIterable<>(
+            listByHostPoolAsync(resourceGroupName, hostPoolName, pageSize, isDescending, initialSkip));
     }
 
     /**
@@ -1287,6 +1430,9 @@ public final class ScalingPlansClientImpl implements ScalingPlansClient {
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param hostPoolName The name of the host pool within the specified resource group.
+     * @param pageSize Number of items per page.
+     * @param isDescending Indicates whether the collection is descending.
+     * @param initialSkip Initial number of items to skip.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1295,14 +1441,21 @@ public final class ScalingPlansClientImpl implements ScalingPlansClient {
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<ScalingPlanInner> listByHostPool(
-        String resourceGroupName, String hostPoolName, Context context) {
-        return new PagedIterable<>(listByHostPoolAsync(resourceGroupName, hostPoolName, context));
+        String resourceGroupName,
+        String hostPoolName,
+        Integer pageSize,
+        Boolean isDescending,
+        Integer initialSkip,
+        Context context) {
+        return new PagedIterable<>(
+            listByHostPoolAsync(resourceGroupName, hostPoolName, pageSize, isDescending, initialSkip, context));
     }
 
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1338,7 +1491,8 @@ public final class ScalingPlansClientImpl implements ScalingPlansClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1375,7 +1529,8 @@ public final class ScalingPlansClientImpl implements ScalingPlansClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1411,7 +1566,8 @@ public final class ScalingPlansClientImpl implements ScalingPlansClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1448,7 +1604,8 @@ public final class ScalingPlansClientImpl implements ScalingPlansClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1483,7 +1640,8 @@ public final class ScalingPlansClientImpl implements ScalingPlansClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
