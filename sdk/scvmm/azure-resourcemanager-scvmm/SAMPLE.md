@@ -386,6 +386,8 @@ public final class CloudsUpdateSamples {
 ### InventoryItems_Create
 
 ```java
+import com.azure.resourcemanager.scvmm.models.CloudInventoryItem;
+
 /** Samples for InventoryItems Create. */
 public final class InventoryItemsCreateSamples {
     /*
@@ -401,6 +403,7 @@ public final class InventoryItemsCreateSamples {
             .inventoryItems()
             .define("12345678-1234-1234-1234-123456789abc")
             .withExistingVmmServer("testrg", "ContosoVMMServer")
+            .withProperties(new CloudInventoryItem())
             .create();
     }
 }
@@ -1174,7 +1177,8 @@ public final class VmmServersCreateOrUpdateSamples {
                     .withName(
                         "/subscriptions/a5015e1c-867f-4533-8541-85cd470d0cfb/resourceGroups/demoRG/providers/Microsoft.Arc/customLocations/contoso"))
             .withFqdn("VMM.contoso.com")
-            .withCredentials(new VmmServerPropertiesCredentials().withUsername("testuser").withPassword("password"))
+            .withCredentials(
+                new VmmServerPropertiesCredentials().withUsername("testuser").withPassword("fakeTokenPlaceholder"))
             .withPort(1234)
             .create();
     }

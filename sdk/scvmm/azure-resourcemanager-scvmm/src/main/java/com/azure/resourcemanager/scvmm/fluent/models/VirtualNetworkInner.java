@@ -33,6 +33,10 @@ public final class VirtualNetworkInner extends Resource {
     @JsonProperty(value = "extendedLocation", required = true)
     private ExtendedLocation extendedLocation;
 
+    /** Creates an instance of VirtualNetworkInner class. */
+    public VirtualNetworkInner() {
+    }
+
     /**
      * Get the innerProperties property: Resource properties.
      *

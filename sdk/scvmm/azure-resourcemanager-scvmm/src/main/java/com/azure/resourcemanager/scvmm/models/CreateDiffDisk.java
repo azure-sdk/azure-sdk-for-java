@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for CreateDiffDisk. */
+/** Gets or sets a value indicating diff disk. */
 public final class CreateDiffDisk extends ExpandableStringEnum<CreateDiffDisk> {
     /** Static value false for CreateDiffDisk. */
     public static final CreateDiffDisk FALSE = fromString("false");

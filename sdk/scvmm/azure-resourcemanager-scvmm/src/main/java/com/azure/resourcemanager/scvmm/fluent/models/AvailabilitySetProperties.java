@@ -28,6 +28,10 @@ public final class AvailabilitySetProperties {
     @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
     private String provisioningState;
 
+    /** Creates an instance of AvailabilitySetProperties class. */
+    public AvailabilitySetProperties() {
+    }
+
     /**
      * Get the availabilitySetName property: Name of the availability set.
      *

@@ -55,6 +55,10 @@ public final class CloudProperties {
     @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
     private String provisioningState;
 
+    /** Creates an instance of CloudProperties class. */
+    public CloudProperties() {
+    }
+
     /**
      * Get the inventoryItemId property: Gets or sets the inventory Item ID for the resource.
      *

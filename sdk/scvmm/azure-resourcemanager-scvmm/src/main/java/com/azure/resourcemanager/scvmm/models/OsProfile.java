@@ -34,6 +34,10 @@ public final class OsProfile {
     @JsonProperty(value = "osName", access = JsonProperty.Access.WRITE_ONLY)
     private String osName;
 
+    /** Creates an instance of OsProfile class. */
+    public OsProfile() {
+    }
+
     /**
      * Get the adminPassword property: Admin password of the virtual machine.
      *

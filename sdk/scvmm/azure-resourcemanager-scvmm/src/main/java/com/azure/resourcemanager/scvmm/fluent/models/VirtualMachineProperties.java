@@ -113,6 +113,10 @@ public final class VirtualMachineProperties {
     @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
     private String provisioningState;
 
+    /** Creates an instance of VirtualMachineProperties class. */
+    public VirtualMachineProperties() {
+    }
+
     /**
      * Get the inventoryItemId property: Gets or sets the inventory Item ID for the resource.
      *

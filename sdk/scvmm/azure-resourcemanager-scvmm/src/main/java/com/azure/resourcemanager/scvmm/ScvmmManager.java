@@ -289,7 +289,7 @@ public final class ScvmmManager {
     }
 
     /**
-     * Gets the resource collection API of VmmServers.
+     * Gets the resource collection API of VmmServers. It manages VmmServer.
      *
      * @return Resource collection API of VmmServers.
      */
@@ -313,7 +313,7 @@ public final class ScvmmManager {
     }
 
     /**
-     * Gets the resource collection API of Clouds.
+     * Gets the resource collection API of Clouds. It manages Cloud.
      *
      * @return Resource collection API of Clouds.
      */
@@ -325,7 +325,7 @@ public final class ScvmmManager {
     }
 
     /**
-     * Gets the resource collection API of VirtualNetworks.
+     * Gets the resource collection API of VirtualNetworks. It manages VirtualNetwork.
      *
      * @return Resource collection API of VirtualNetworks.
      */
@@ -337,7 +337,7 @@ public final class ScvmmManager {
     }
 
     /**
-     * Gets the resource collection API of VirtualMachines.
+     * Gets the resource collection API of VirtualMachines. It manages VirtualMachine.
      *
      * @return Resource collection API of VirtualMachines.
      */
@@ -349,7 +349,7 @@ public final class ScvmmManager {
     }
 
     /**
-     * Gets the resource collection API of VirtualMachineTemplates.
+     * Gets the resource collection API of VirtualMachineTemplates. It manages VirtualMachineTemplate.
      *
      * @return Resource collection API of VirtualMachineTemplates.
      */
@@ -362,7 +362,7 @@ public final class ScvmmManager {
     }
 
     /**
-     * Gets the resource collection API of AvailabilitySets.
+     * Gets the resource collection API of AvailabilitySets. It manages AvailabilitySet.
      *
      * @return Resource collection API of AvailabilitySets.
      */
@@ -374,7 +374,7 @@ public final class ScvmmManager {
     }
 
     /**
-     * Gets the resource collection API of InventoryItems.
+     * Gets the resource collection API of InventoryItems. It manages InventoryItem.
      *
      * @return Resource collection API of InventoryItems.
      */

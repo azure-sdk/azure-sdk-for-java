@@ -66,8 +66,7 @@ public final class VirtualMachineTemplateProperties {
     private Integer cpuCount;
 
     /*
-     * Gets or sets a value indicating whether to enable processor
-     * compatibility mode for live migration of VMs.
+     * Gets or sets a value indicating whether to enable processor compatibility mode for live migration of VMs.
      */
     @JsonProperty(value = "limitCpuForMigration", access = JsonProperty.Access.WRITE_ONLY)
     private LimitCpuForMigration limitCpuForMigration;
@@ -79,8 +78,7 @@ public final class VirtualMachineTemplateProperties {
     private DynamicMemoryEnabled dynamicMemoryEnabled;
 
     /*
-     * Gets or sets a value indicating whether the vm template is customizable
-     * or not.
+     * Gets or sets a value indicating whether the vm template is customizable or not.
      */
     @JsonProperty(value = "isCustomizable", access = JsonProperty.Access.WRITE_ONLY)
     private IsCustomizable isCustomizable;
@@ -126,6 +124,10 @@ public final class VirtualMachineTemplateProperties {
      */
     @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
     private String provisioningState;
+
+    /** Creates an instance of VirtualMachineTemplateProperties class. */
+    public VirtualMachineTemplateProperties() {
+    }
 
     /**
      * Get the inventoryItemId property: Gets or sets the inventory Item ID for the resource.

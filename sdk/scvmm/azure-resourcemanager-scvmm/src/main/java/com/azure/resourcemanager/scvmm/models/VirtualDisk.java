@@ -17,8 +17,8 @@ public final class VirtualDisk {
     private String name;
 
     /*
-     * Gets the display name of the virtual disk as shown in the vmmServer.
-     * This is the fallback label for a disk when the name is not set.
+     * Gets the display name of the virtual disk as shown in the vmmServer. This is the fallback label for a disk when
+     * the name is not set.
      */
     @JsonProperty(value = "displayName", access = JsonProperty.Access.WRITE_ONLY)
     private String displayName;
@@ -94,6 +94,10 @@ public final class VirtualDisk {
      */
     @JsonProperty(value = "createDiffDisk")
     private CreateDiffDisk createDiffDisk;
+
+    /** Creates an instance of VirtualDisk class. */
+    public VirtualDisk() {
+    }
 
     /**
      * Get the name property: Gets or sets the name of the disk.

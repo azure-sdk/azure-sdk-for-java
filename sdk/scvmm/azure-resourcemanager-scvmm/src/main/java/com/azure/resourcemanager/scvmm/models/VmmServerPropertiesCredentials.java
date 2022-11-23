@@ -22,6 +22,10 @@ public final class VmmServerPropertiesCredentials {
     @JsonProperty(value = "password")
     private String password;
 
+    /** Creates an instance of VmmServerPropertiesCredentials class. */
+    public VmmServerPropertiesCredentials() {
+    }
+
     /**
      * Get the username property: Username to use to connect to VMMServer.
      *

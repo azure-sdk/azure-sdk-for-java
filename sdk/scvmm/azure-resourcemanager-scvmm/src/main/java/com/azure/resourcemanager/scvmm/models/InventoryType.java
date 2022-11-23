@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for InventoryType. */
+/** The inventory type. */
 public final class InventoryType extends ExpandableStringEnum<InventoryType> {
     /** Static value Cloud for InventoryType. */
     public static final InventoryType CLOUD = fromString("Cloud");

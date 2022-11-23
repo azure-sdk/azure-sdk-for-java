@@ -40,6 +40,10 @@ public final class VirtualMachineInner extends Resource {
     @JsonProperty(value = "extendedLocation", required = true)
     private ExtendedLocation extendedLocation;
 
+    /** Creates an instance of VirtualMachineInner class. */
+    public VirtualMachineInner() {
+    }
+
     /**
      * Get the innerProperties property: Resource properties.
      *

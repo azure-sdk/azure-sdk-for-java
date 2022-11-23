@@ -5,7 +5,6 @@
 package com.azure.resourcemanager.scvmm.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.resourcemanager.scvmm.fluent.models.InventoryItemProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
@@ -45,6 +44,10 @@ public final class VirtualMachineInventoryItem extends InventoryItemProperties {
      */
     @JsonProperty(value = "cloud")
     private InventoryItemDetails cloud;
+
+    /** Creates an instance of VirtualMachineInventoryItem class. */
+    public VirtualMachineInventoryItem() {
+    }
 
     /**
      * Get the osType property: Gets or sets the type of the os.

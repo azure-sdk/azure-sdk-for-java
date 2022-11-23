@@ -8,6 +8,7 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.management.ProxyResource;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.logging.ClientLogger;
+import com.azure.resourcemanager.scvmm.models.InventoryItemProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /** Defines the inventory item. */
@@ -17,7 +18,7 @@ public final class InventoryItemInner extends ProxyResource {
      * Resource properties.
      */
     @JsonProperty(value = "properties", required = true)
-    private InventoryItemProperties innerProperties = new InventoryItemProperties();
+    private InventoryItemProperties properties;
 
     /*
      * The system data.
@@ -26,21 +27,35 @@ public final class InventoryItemInner extends ProxyResource {
     private SystemData systemData;
 
     /*
-     * Metadata used by portal/tooling/etc to render different UX experiences
-     * for resources of the same type; e.g. ApiApps are a kind of
-     * Microsoft.Web/sites type.  If supported, the resource provider must
-     * validate and persist this value.
+     * Metadata used by portal/tooling/etc to render different UX experiences for resources of the same type; e.g.
+     * ApiApps are a kind of Microsoft.Web/sites type.  If supported, the resource provider must validate and persist
+     * this value.
      */
     @JsonProperty(value = "kind")
     private String kind;
 
+    /** Creates an instance of InventoryItemInner class. */
+    public InventoryItemInner() {
+    }
+
     /**
-     * Get the innerProperties property: Resource properties.
+     * Get the properties property: Resource properties.
      *
-     * @return the innerProperties value.
+     * @return the properties value.
      */
-    private InventoryItemProperties innerProperties() {
-        return this.innerProperties;
+    public InventoryItemProperties properties() {
+        return this.properties;
+    }
+
+    /**
+     * Set the properties property: Resource properties.
+     *
+     * @param properties the properties value to set.
+     * @return the InventoryItemInner object itself.
+     */
+    public InventoryItemInner withProperties(InventoryItemProperties properties) {
+        this.properties = properties;
+        return this;
     }
 
     /**
@@ -77,54 +92,17 @@ public final class InventoryItemInner extends ProxyResource {
     }
 
     /**
-     * Get the managedResourceId property: Gets the tracked resource id corresponding to the inventory resource.
-     *
-     * @return the managedResourceId value.
-     */
-    public String managedResourceId() {
-        return this.innerProperties() == null ? null : this.innerProperties().managedResourceId();
-    }
-
-    /**
-     * Get the uuid property: Gets the UUID (which is assigned by VMM) for the inventory item.
-     *
-     * @return the uuid value.
-     */
-    public String uuid() {
-        return this.innerProperties() == null ? null : this.innerProperties().uuid();
-    }
-
-    /**
-     * Get the inventoryItemName property: Gets the Managed Object name in VMM for the inventory item.
-     *
-     * @return the inventoryItemName value.
-     */
-    public String inventoryItemName() {
-        return this.innerProperties() == null ? null : this.innerProperties().inventoryItemName();
-    }
-
-    /**
-     * Get the provisioningState property: Gets the provisioning state.
-     *
-     * @return the provisioningState value.
-     */
-    public String provisioningState() {
-        return this.innerProperties() == null ? null : this.innerProperties().provisioningState();
-    }
-
-    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (innerProperties() == null) {
+        if (properties() == null) {
             throw LOGGER
                 .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property innerProperties in model InventoryItemInner"));
+                    new IllegalArgumentException("Missing required property properties in model InventoryItemInner"));
         } else {
-            innerProperties().validate();
+            properties().validate();
         }
     }
 

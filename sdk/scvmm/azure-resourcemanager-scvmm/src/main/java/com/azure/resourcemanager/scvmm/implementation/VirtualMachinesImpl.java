@@ -31,15 +31,6 @@ public final class VirtualMachinesImpl implements VirtualMachines {
         this.serviceManager = serviceManager;
     }
 
-    public VirtualMachine getByResourceGroup(String resourceGroupName, String virtualMachineName) {
-        VirtualMachineInner inner = this.serviceClient().getByResourceGroup(resourceGroupName, virtualMachineName);
-        if (inner != null) {
-            return new VirtualMachineImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
     public Response<VirtualMachine> getByResourceGroupWithResponse(
         String resourceGroupName, String virtualMachineName, Context context) {
         Response<VirtualMachineInner> inner =
@@ -55,8 +46,13 @@ public final class VirtualMachinesImpl implements VirtualMachines {
         }
     }
 
-    public void delete(String resourceGroupName, String virtualMachineName, Boolean retain, Boolean force) {
-        this.serviceClient().delete(resourceGroupName, virtualMachineName, retain, force);
+    public VirtualMachine getByResourceGroup(String resourceGroupName, String virtualMachineName) {
+        VirtualMachineInner inner = this.serviceClient().getByResourceGroup(resourceGroupName, virtualMachineName);
+        if (inner != null) {
+            return new VirtualMachineImpl(inner, this.manager());
+        } else {
+            return null;
+        }
     }
 
     public void delete(String resourceGroupName, String virtualMachineName) {
@@ -66,10 +62,6 @@ public final class VirtualMachinesImpl implements VirtualMachines {
     public void delete(
         String resourceGroupName, String virtualMachineName, Boolean retain, Boolean force, Context context) {
         this.serviceClient().delete(resourceGroupName, virtualMachineName, retain, force, context);
-    }
-
-    public void stop(String resourceGroupName, String virtualMachineName, StopVirtualMachineOptions body) {
-        this.serviceClient().stop(resourceGroupName, virtualMachineName, body);
     }
 
     public void stop(String resourceGroupName, String virtualMachineName) {
@@ -97,11 +89,6 @@ public final class VirtualMachinesImpl implements VirtualMachines {
         this.serviceClient().restart(resourceGroupName, virtualMachineName, context);
     }
 
-    public void createCheckpoint(
-        String resourceGroupName, String virtualMachineName, VirtualMachineCreateCheckpoint body) {
-        this.serviceClient().createCheckpoint(resourceGroupName, virtualMachineName, body);
-    }
-
     public void createCheckpoint(String resourceGroupName, String virtualMachineName) {
         this.serviceClient().createCheckpoint(resourceGroupName, virtualMachineName);
     }
@@ -111,11 +98,6 @@ public final class VirtualMachinesImpl implements VirtualMachines {
         this.serviceClient().createCheckpoint(resourceGroupName, virtualMachineName, body, context);
     }
 
-    public void deleteCheckpoint(
-        String resourceGroupName, String virtualMachineName, VirtualMachineDeleteCheckpoint body) {
-        this.serviceClient().deleteCheckpoint(resourceGroupName, virtualMachineName, body);
-    }
-
     public void deleteCheckpoint(String resourceGroupName, String virtualMachineName) {
         this.serviceClient().deleteCheckpoint(resourceGroupName, virtualMachineName);
     }
@@ -123,11 +105,6 @@ public final class VirtualMachinesImpl implements VirtualMachines {
     public void deleteCheckpoint(
         String resourceGroupName, String virtualMachineName, VirtualMachineDeleteCheckpoint body, Context context) {
         this.serviceClient().deleteCheckpoint(resourceGroupName, virtualMachineName, body, context);
-    }
-
-    public void restoreCheckpoint(
-        String resourceGroupName, String virtualMachineName, VirtualMachineRestoreCheckpoint body) {
-        this.serviceClient().restoreCheckpoint(resourceGroupName, virtualMachineName, body);
     }
 
     public void restoreCheckpoint(String resourceGroupName, String virtualMachineName) {

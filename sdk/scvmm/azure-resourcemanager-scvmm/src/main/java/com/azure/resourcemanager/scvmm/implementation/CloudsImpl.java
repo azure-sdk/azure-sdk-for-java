@@ -26,15 +26,6 @@ public final class CloudsImpl implements Clouds {
         this.serviceManager = serviceManager;
     }
 
-    public Cloud getByResourceGroup(String resourceGroupName, String cloudName) {
-        CloudInner inner = this.serviceClient().getByResourceGroup(resourceGroupName, cloudName);
-        if (inner != null) {
-            return new CloudImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
     public Response<Cloud> getByResourceGroupWithResponse(String resourceGroupName, String cloudName, Context context) {
         Response<CloudInner> inner =
             this.serviceClient().getByResourceGroupWithResponse(resourceGroupName, cloudName, context);
@@ -49,8 +40,13 @@ public final class CloudsImpl implements Clouds {
         }
     }
 
-    public void delete(String resourceGroupName, String cloudName, Boolean force) {
-        this.serviceClient().delete(resourceGroupName, cloudName, force);
+    public Cloud getByResourceGroup(String resourceGroupName, String cloudName) {
+        CloudInner inner = this.serviceClient().getByResourceGroup(resourceGroupName, cloudName);
+        if (inner != null) {
+            return new CloudImpl(inner, this.manager());
+        } else {
+            return null;
+        }
     }
 
     public void delete(String resourceGroupName, String cloudName) {

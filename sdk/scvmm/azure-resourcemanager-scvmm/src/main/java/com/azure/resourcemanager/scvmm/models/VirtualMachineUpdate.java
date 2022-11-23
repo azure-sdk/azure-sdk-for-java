@@ -25,6 +25,10 @@ public final class VirtualMachineUpdate {
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, String> tags;
 
+    /** Creates an instance of VirtualMachineUpdate class. */
+    public VirtualMachineUpdate() {
+    }
+
     /**
      * Get the properties property: Defines the resource properties.
      *

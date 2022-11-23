@@ -32,6 +32,10 @@ public final class AvailabilitySetInner extends Resource {
     @JsonProperty(value = "extendedLocation")
     private ExtendedLocation extendedLocation;
 
+    /** Creates an instance of AvailabilitySetInner class. */
+    public AvailabilitySetInner() {
+    }
+
     /**
      * Get the innerProperties property: Resource properties.
      *

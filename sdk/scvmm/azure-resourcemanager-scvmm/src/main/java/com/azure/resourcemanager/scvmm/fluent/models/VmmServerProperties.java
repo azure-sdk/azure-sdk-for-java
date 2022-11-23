@@ -37,8 +37,7 @@ public final class VmmServerProperties {
     private String connectionStatus;
 
     /*
-     * Gets or sets any error message if connection to vmmServer is having any
-     * issue.
+     * Gets or sets any error message if connection to vmmServer is having any issue.
      */
     @JsonProperty(value = "errorMessage", access = JsonProperty.Access.WRITE_ONLY)
     private String errorMessage;
@@ -60,6 +59,10 @@ public final class VmmServerProperties {
      */
     @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
     private String provisioningState;
+
+    /** Creates an instance of VmmServerProperties class. */
+    public VmmServerProperties() {
+    }
 
     /**
      * Get the credentials property: Credentials to connect to VMMServer.

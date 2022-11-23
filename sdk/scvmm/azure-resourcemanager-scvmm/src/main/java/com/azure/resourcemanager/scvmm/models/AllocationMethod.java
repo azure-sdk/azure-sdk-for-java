@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for AllocationMethod. */
+/** Allocation method. */
 public final class AllocationMethod extends ExpandableStringEnum<AllocationMethod> {
     /** Static value Dynamic for AllocationMethod. */
     public static final AllocationMethod DYNAMIC = fromString("Dynamic");
