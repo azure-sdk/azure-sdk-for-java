@@ -58,6 +58,10 @@ public final class VirtualMachineInner extends Resource {
     @JsonProperty(value = "identity")
     private Identity identity;
 
+    /** Creates an instance of VirtualMachineInner class. */
+    public VirtualMachineInner() {
+    }
+
     /**
      * Get the innerProperties property: Resource properties.
      *
@@ -429,6 +433,29 @@ public final class VirtualMachineInner extends Resource {
             this.innerProperties = new VirtualMachineProperties();
         }
         this.innerProperties().withInventoryItemId(inventoryItemId);
+        return this;
+    }
+
+    /**
+     * Get the publicKey property: Gets or sets the Public Key provided by the client for enabling guest management.
+     *
+     * @return the publicKey value.
+     */
+    public String publicKey() {
+        return this.innerProperties() == null ? null : this.innerProperties().publicKey();
+    }
+
+    /**
+     * Set the publicKey property: Gets or sets the Public Key provided by the client for enabling guest management.
+     *
+     * @param publicKey the publicKey value to set.
+     * @return the VirtualMachineInner object itself.
+     */
+    public VirtualMachineInner withPublicKey(String publicKey) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new VirtualMachineProperties();
+        }
+        this.innerProperties().withPublicKey(publicKey);
         return this;
     }
 

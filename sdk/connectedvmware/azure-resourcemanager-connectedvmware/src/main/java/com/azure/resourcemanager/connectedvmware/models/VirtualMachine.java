@@ -164,6 +164,13 @@ public interface VirtualMachine {
     String inventoryItemId();
 
     /**
+     * Gets the publicKey property: Gets or sets the Public Key provided by the client for enabling guest management.
+     *
+     * @return the publicKey value.
+     */
+    String publicKey();
+
+    /**
      * Gets the moName property: Gets or sets the vCenter Managed Object name for the virtual machine.
      *
      * @return the moName value.
@@ -329,6 +336,7 @@ public interface VirtualMachine {
                 DefinitionStages.WithSecurityProfile,
                 DefinitionStages.WithMoRefId,
                 DefinitionStages.WithInventoryItemId,
+                DefinitionStages.WithPublicKey,
                 DefinitionStages.WithSmbiosUuid,
                 DefinitionStages.WithFirmwareType {
             /**
@@ -515,6 +523,17 @@ public interface VirtualMachine {
              */
             WithCreate withInventoryItemId(String inventoryItemId);
         }
+        /** The stage of the VirtualMachine definition allowing to specify publicKey. */
+        interface WithPublicKey {
+            /**
+             * Specifies the publicKey property: Gets or sets the Public Key provided by the client for enabling guest
+             * management..
+             *
+             * @param publicKey Gets or sets the Public Key provided by the client for enabling guest management.
+             * @return the next definition stage.
+             */
+            WithCreate withPublicKey(String publicKey);
+        }
         /** The stage of the VirtualMachine definition allowing to specify smbiosUuid. */
         interface WithSmbiosUuid {
             /**
@@ -550,7 +569,8 @@ public interface VirtualMachine {
             UpdateStages.WithHardwareProfile,
             UpdateStages.WithOsProfile,
             UpdateStages.WithStorageProfile,
-            UpdateStages.WithNetworkProfile {
+            UpdateStages.WithNetworkProfile,
+            UpdateStages.WithGuestAgentProfile {
         /**
          * Executes the update request.
          *
@@ -591,9 +611,9 @@ public interface VirtualMachine {
         /** The stage of the VirtualMachine update allowing to specify hardwareProfile. */
         interface WithHardwareProfile {
             /**
-             * Specifies the hardwareProfile property: Defines the resource properties..
+             * Specifies the hardwareProfile property: Specifies the hardware settings for the virtual machine..
              *
-             * @param hardwareProfile Defines the resource properties.
+             * @param hardwareProfile Specifies the hardware settings for the virtual machine.
              * @return the next definition stage.
              */
             Update withHardwareProfile(HardwareProfile hardwareProfile);
@@ -611,9 +631,9 @@ public interface VirtualMachine {
         /** The stage of the VirtualMachine update allowing to specify storageProfile. */
         interface WithStorageProfile {
             /**
-             * Specifies the storageProfile property: Defines the resource update properties..
+             * Specifies the storageProfile property: Specifies the storage settings for the virtual machine disks..
              *
-             * @param storageProfile Defines the resource update properties.
+             * @param storageProfile Specifies the storage settings for the virtual machine disks.
              * @return the next definition stage.
              */
             Update withStorageProfile(StorageProfileUpdate storageProfile);
@@ -621,12 +641,22 @@ public interface VirtualMachine {
         /** The stage of the VirtualMachine update allowing to specify networkProfile. */
         interface WithNetworkProfile {
             /**
-             * Specifies the networkProfile property: Defines the update resource properties..
+             * Specifies the networkProfile property: Specifies the network interfaces of the virtual machine..
              *
-             * @param networkProfile Defines the update resource properties.
+             * @param networkProfile Specifies the network interfaces of the virtual machine.
              * @return the next definition stage.
              */
             Update withNetworkProfile(NetworkProfileUpdate networkProfile);
+        }
+        /** The stage of the VirtualMachine update allowing to specify guestAgentProfile. */
+        interface WithGuestAgentProfile {
+            /**
+             * Specifies the guestAgentProfile property: Specifies the guest agent settings for the virtual machine..
+             *
+             * @param guestAgentProfile Specifies the guest agent settings for the virtual machine.
+             * @return the next definition stage.
+             */
+            Update withGuestAgentProfile(GuestAgentProfileUpdate guestAgentProfile);
         }
     }
     /**
@@ -645,16 +675,48 @@ public interface VirtualMachine {
     VirtualMachine refresh(Context context);
 
     /**
-     * Implements the operation to stop a virtual machine.
+     * The operation to assess patches on a vSphere VMware machine identity in Azure.
      *
-     * <p>Stop virtual machine.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return describes the properties of an AssessPatches result.
+     */
+    VirtualMachineAssessPatchesResult assessPatches();
+
+    /**
+     * The operation to assess patches on a vSphere VMware machine identity in Azure.
      *
-     * @param body Virtualmachine stop action payload.
+     * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return describes the properties of an AssessPatches result.
      */
-    void stop(StopVirtualMachineOptions body);
+    VirtualMachineAssessPatchesResult assessPatches(Context context);
+
+    /**
+     * The operation to install patches on a vSphere VMware machine identity in Azure.
+     *
+     * @param installPatchesInput Input for InstallPatches as directly received by the API.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the result summary of an installation operation.
+     */
+    VirtualMachineInstallPatchesResult installPatches(VirtualMachineInstallPatchesParameters installPatchesInput);
+
+    /**
+     * The operation to install patches on a vSphere VMware machine identity in Azure.
+     *
+     * @param installPatchesInput Input for InstallPatches as directly received by the API.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the result summary of an installation operation.
+     */
+    VirtualMachineInstallPatchesResult installPatches(
+        VirtualMachineInstallPatchesParameters installPatchesInput, Context context);
 
     /**
      * Implements the operation to stop a virtual machine.

@@ -12,7 +12,7 @@ import com.azure.resourcemanager.connectedvmware.models.ResourceStatus;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Defines the resource properties. */
+/** Describes the properties of a Virtual Machine Guest Agent. */
 @Fluent
 public final class GuestAgentProperties {
     /*
@@ -62,6 +62,10 @@ public final class GuestAgentProperties {
      */
     @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
     private String provisioningState;
+
+    /** Creates an instance of GuestAgentProperties class. */
+    public GuestAgentProperties() {
+    }
 
     /**
      * Get the uuid property: Gets or sets a unique identifier for this resource.

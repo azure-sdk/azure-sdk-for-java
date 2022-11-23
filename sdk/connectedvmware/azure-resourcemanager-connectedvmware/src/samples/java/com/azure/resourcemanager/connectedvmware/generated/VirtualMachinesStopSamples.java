@@ -10,7 +10,7 @@ import com.azure.resourcemanager.connectedvmware.models.StopVirtualMachineOption
 /** Samples for VirtualMachines Stop. */
 public final class VirtualMachinesStopSamples {
     /*
-     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-01-10-preview/examples/StopVirtualMachine.json
+     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-07-15-preview/examples/StopVirtualMachine.json
      */
     /**
      * Sample code: StopVirtualMachine.

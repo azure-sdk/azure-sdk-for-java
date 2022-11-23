@@ -162,6 +162,20 @@ public interface ResourcePool {
     String customResourceName();
 
     /**
+     * Gets the datastoreIds property: Gets or sets the datastore ARM ids.
+     *
+     * @return the datastoreIds value.
+     */
+    List<String> datastoreIds();
+
+    /**
+     * Gets the networkIds property: Gets or sets the network ARM ids.
+     *
+     * @return the networkIds value.
+     */
+    List<String> networkIds();
+
+    /**
      * Gets the statuses property: The resource status information.
      *
      * @return the statuses value.

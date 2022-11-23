@@ -190,13 +190,13 @@ public interface MachineExtension {
         /** The stage of the MachineExtension definition allowing to specify parent resource. */
         interface WithParentResource {
             /**
-             * Specifies resourceGroupName, name.
+             * Specifies resourceGroupName, virtualMachineName.
              *
              * @param resourceGroupName The Resource Group Name.
-             * @param name The name of the machine where the extension should be created or updated.
+             * @param virtualMachineName The name of the machine where the extension should be created or updated.
              * @return the next definition stage.
              */
-            WithCreate withExistingVirtualMachine(String resourceGroupName, String name);
+            WithCreate withExistingVirtualMachine(String resourceGroupName, String virtualMachineName);
         }
         /**
          * The stage of the MachineExtension definition which contains all the minimum required properties for the

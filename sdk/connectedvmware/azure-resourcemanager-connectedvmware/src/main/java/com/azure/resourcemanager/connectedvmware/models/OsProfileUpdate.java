@@ -7,7 +7,7 @@ package com.azure.resourcemanager.connectedvmware.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Defines the os update properties. */
+/** Specifies the operating system settings for the virtual machine. */
 @Fluent
 public final class OsProfileUpdate {
     /*
@@ -21,6 +21,10 @@ public final class OsProfileUpdate {
      */
     @JsonProperty(value = "linuxConfiguration")
     private OsProfileUpdateLinuxConfiguration linuxConfiguration;
+
+    /** Creates an instance of OsProfileUpdate class. */
+    public OsProfileUpdate() {
+    }
 
     /**
      * Get the windowsConfiguration property: Specifies the windows configuration for update management.

@@ -12,7 +12,7 @@ import java.util.Map;
 /** Samples for Hosts Update. */
 public final class HostsUpdateSamples {
     /*
-     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-01-10-preview/examples/UpdateHost.json
+     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-07-15-preview/examples/UpdateHost.json
      */
     /**
      * Sample code: UpdateHost.

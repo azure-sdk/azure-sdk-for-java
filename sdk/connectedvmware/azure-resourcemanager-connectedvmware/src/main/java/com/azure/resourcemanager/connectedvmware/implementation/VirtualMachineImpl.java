@@ -11,6 +11,7 @@ import com.azure.resourcemanager.connectedvmware.fluent.models.VirtualMachineInn
 import com.azure.resourcemanager.connectedvmware.models.ExtendedLocation;
 import com.azure.resourcemanager.connectedvmware.models.FirmwareType;
 import com.azure.resourcemanager.connectedvmware.models.GuestAgentProfile;
+import com.azure.resourcemanager.connectedvmware.models.GuestAgentProfileUpdate;
 import com.azure.resourcemanager.connectedvmware.models.HardwareProfile;
 import com.azure.resourcemanager.connectedvmware.models.Identity;
 import com.azure.resourcemanager.connectedvmware.models.NetworkProfile;
@@ -24,6 +25,9 @@ import com.azure.resourcemanager.connectedvmware.models.StopVirtualMachineOption
 import com.azure.resourcemanager.connectedvmware.models.StorageProfile;
 import com.azure.resourcemanager.connectedvmware.models.StorageProfileUpdate;
 import com.azure.resourcemanager.connectedvmware.models.VirtualMachine;
+import com.azure.resourcemanager.connectedvmware.models.VirtualMachineAssessPatchesResult;
+import com.azure.resourcemanager.connectedvmware.models.VirtualMachineInstallPatchesParameters;
+import com.azure.resourcemanager.connectedvmware.models.VirtualMachineInstallPatchesResult;
 import com.azure.resourcemanager.connectedvmware.models.VirtualMachineUpdate;
 import java.util.Collections;
 import java.util.List;
@@ -123,6 +127,10 @@ public final class VirtualMachineImpl implements VirtualMachine, VirtualMachine.
         return this.innerModel().inventoryItemId();
     }
 
+    public String publicKey() {
+        return this.innerModel().publicKey();
+    }
+
     public String moName() {
         return this.innerModel().moName();
     }
@@ -208,7 +216,7 @@ public final class VirtualMachineImpl implements VirtualMachine, VirtualMachine.
             serviceManager
                 .serviceClient()
                 .getVirtualMachines()
-                .create(resourceGroupName, virtualMachineName, this.innerModel(), Context.NONE);
+                .createOrUpdate(resourceGroupName, virtualMachineName, this.innerModel(), Context.NONE);
         return this;
     }
 
@@ -217,7 +225,7 @@ public final class VirtualMachineImpl implements VirtualMachine, VirtualMachine.
             serviceManager
                 .serviceClient()
                 .getVirtualMachines()
-                .create(resourceGroupName, virtualMachineName, this.innerModel(), context);
+                .createOrUpdate(resourceGroupName, virtualMachineName, this.innerModel(), context);
         return this;
     }
 
@@ -279,8 +287,26 @@ public final class VirtualMachineImpl implements VirtualMachine, VirtualMachine.
         return this;
     }
 
-    public void stop(StopVirtualMachineOptions body) {
-        serviceManager.virtualMachines().stop(resourceGroupName, virtualMachineName, body);
+    public VirtualMachineAssessPatchesResult assessPatches() {
+        return serviceManager.virtualMachines().assessPatches(resourceGroupName, virtualMachineName);
+    }
+
+    public VirtualMachineAssessPatchesResult assessPatches(Context context) {
+        return serviceManager.virtualMachines().assessPatches(resourceGroupName, virtualMachineName, context);
+    }
+
+    public VirtualMachineInstallPatchesResult installPatches(
+        VirtualMachineInstallPatchesParameters installPatchesInput) {
+        return serviceManager
+            .virtualMachines()
+            .installPatches(resourceGroupName, virtualMachineName, installPatchesInput);
+    }
+
+    public VirtualMachineInstallPatchesResult installPatches(
+        VirtualMachineInstallPatchesParameters installPatchesInput, Context context) {
+        return serviceManager
+            .virtualMachines()
+            .installPatches(resourceGroupName, virtualMachineName, installPatchesInput, context);
     }
 
     public void stop() {
@@ -412,6 +438,11 @@ public final class VirtualMachineImpl implements VirtualMachine, VirtualMachine.
         return this;
     }
 
+    public VirtualMachineImpl withPublicKey(String publicKey) {
+        this.innerModel().withPublicKey(publicKey);
+        return this;
+    }
+
     public VirtualMachineImpl withSmbiosUuid(String smbiosUuid) {
         this.innerModel().withSmbiosUuid(smbiosUuid);
         return this;
@@ -434,6 +465,11 @@ public final class VirtualMachineImpl implements VirtualMachine, VirtualMachine.
 
     public VirtualMachineImpl withNetworkProfile(NetworkProfileUpdate networkProfile) {
         this.updateBody.withNetworkProfile(networkProfile);
+        return this;
+    }
+
+    public VirtualMachineImpl withGuestAgentProfile(GuestAgentProfileUpdate guestAgentProfile) {
+        this.updateBody.withGuestAgentProfile(guestAgentProfile);
         return this;
     }
 
