@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for AuthType. */
+/** The authentication type. */
 public final class AuthType extends ExpandableStringEnum<AuthType> {
     /** Static value systemAssignedIdentity for AuthType. */
     public static final AuthType SYSTEM_ASSIGNED_IDENTITY = fromString("systemAssignedIdentity");
@@ -24,6 +24,12 @@ public final class AuthType extends ExpandableStringEnum<AuthType> {
 
     /** Static value secret for AuthType. */
     public static final AuthType SECRET = fromString("secret");
+
+    /** Static value accessKey for AuthType. */
+    public static final AuthType ACCESS_KEY = fromString("accessKey");
+
+    /** Static value userAccount for AuthType. */
+    public static final AuthType USER_ACCOUNT = fromString("userAccount");
 
     /**
      * Creates or finds a AuthType from its string representation.
