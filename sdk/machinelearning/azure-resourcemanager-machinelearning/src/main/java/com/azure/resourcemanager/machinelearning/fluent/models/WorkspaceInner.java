@@ -9,11 +9,11 @@ import com.azure.core.management.ProxyResource;
 import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.machinelearning.models.EncryptionProperty;
 import com.azure.resourcemanager.machinelearning.models.ManagedServiceIdentity;
-import com.azure.resourcemanager.machinelearning.models.ProvisioningState;
 import com.azure.resourcemanager.machinelearning.models.PublicNetworkAccess;
 import com.azure.resourcemanager.machinelearning.models.ServiceManagedResourcesSettings;
 import com.azure.resourcemanager.machinelearning.models.SharedPrivateLinkResource;
 import com.azure.resourcemanager.machinelearning.models.Sku;
+import com.azure.resourcemanager.machinelearning.models.WorkspaceProvisioningState;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
@@ -343,7 +343,7 @@ public final class WorkspaceInner extends ProxyResource {
      *
      * @return the provisioningState value.
      */
-    public ProvisioningState provisioningState() {
+    public WorkspaceProvisioningState provisioningState() {
         return this.innerProperties() == null ? null : this.innerProperties().provisioningState();
     }
 
@@ -627,6 +627,24 @@ public final class WorkspaceInner extends ProxyResource {
         }
         this.innerProperties().withV1LegacyMode(v1LegacyMode);
         return this;
+    }
+
+    /**
+     * Get the softDeletedAt property: The timestamp when the workspace was soft deleted.
+     *
+     * @return the softDeletedAt value.
+     */
+    public String softDeletedAt() {
+        return this.innerProperties() == null ? null : this.innerProperties().softDeletedAt();
+    }
+
+    /**
+     * Get the scheduledPurgeDate property: The timestamp when the soft deleted workspace is going to be purged.
+     *
+     * @return the scheduledPurgeDate value.
+     */
+    public String scheduledPurgeDate() {
+        return this.innerProperties() == null ? null : this.innerProperties().scheduledPurgeDate();
     }
 
     /**

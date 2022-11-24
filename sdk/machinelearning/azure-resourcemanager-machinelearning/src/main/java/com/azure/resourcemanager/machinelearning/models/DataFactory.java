@@ -19,13 +19,6 @@ public final class DataFactory extends Compute {
 
     /** {@inheritDoc} */
     @Override
-    public DataFactory withComputeLocation(String computeLocation) {
-        super.withComputeLocation(computeLocation);
-        return this;
-    }
-
-    /** {@inheritDoc} */
-    @Override
     public DataFactory withDescription(String description) {
         super.withDescription(description);
         return this;
@@ -35,13 +28,6 @@ public final class DataFactory extends Compute {
     @Override
     public DataFactory withResourceId(String resourceId) {
         super.withResourceId(resourceId);
-        return this;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public DataFactory withDisableLocalAuth(Boolean disableLocalAuth) {
-        super.withDisableLocalAuth(disableLocalAuth);
         return this;
     }
 

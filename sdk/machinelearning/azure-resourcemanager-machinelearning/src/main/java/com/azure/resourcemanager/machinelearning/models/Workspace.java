@@ -135,7 +135,7 @@ public interface Workspace {
      *
      * @return the provisioningState value.
      */
-    ProvisioningState provisioningState();
+    WorkspaceProvisioningState provisioningState();
 
     /**
      * Gets the encryption property: The encryption settings of Azure ML workspace.
@@ -255,6 +255,20 @@ public interface Workspace {
      * @return the v1LegacyMode value.
      */
     Boolean v1LegacyMode();
+
+    /**
+     * Gets the softDeletedAt property: The timestamp when the workspace was soft deleted.
+     *
+     * @return the softDeletedAt value.
+     */
+    String softDeletedAt();
+
+    /**
+     * Gets the scheduledPurgeDate property: The timestamp when the soft deleted workspace is going to be purged.
+     *
+     * @return the scheduledPurgeDate value.
+     */
+    String scheduledPurgeDate();
 
     /**
      * Gets the region of the resource.
@@ -588,7 +602,8 @@ public interface Workspace {
             UpdateStages.WithPrimaryUserAssignedIdentity,
             UpdateStages.WithPublicNetworkAccess,
             UpdateStages.WithApplicationInsights,
-            UpdateStages.WithContainerRegistry {
+            UpdateStages.WithContainerRegistry,
+            UpdateStages.WithEncryption {
         /**
          * Executes the update request.
          *
@@ -719,6 +734,16 @@ public interface Workspace {
              * @return the next definition stage.
              */
             Update withContainerRegistry(String containerRegistry);
+        }
+        /** The stage of the Workspace update allowing to specify encryption. */
+        interface WithEncryption {
+            /**
+             * Specifies the encryption property: The encryption settings of the workspace..
+             *
+             * @param encryption The encryption settings of the workspace.
+             * @return the next definition stage.
+             */
+            Update withEncryption(EncryptionUpdateProperties encryption);
         }
     }
     /**

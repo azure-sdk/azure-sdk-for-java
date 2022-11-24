@@ -2,7 +2,7 @@
 
 Azure Resource Manager Machine Learning client library for Java.
 
-This package contains Microsoft Azure SDK for Machine Learning Management SDK. These APIs allow end users to operate on Azure Machine Learning Workspace resources. Package tag package-2022-10. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
+This package contains Microsoft Azure SDK for Machine Learning Management SDK. These APIs allow end users to operate on Azure Machine Learning Workspace resources. Package tag package-preview-2022-12. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ## We'd love to hear your feedback
 

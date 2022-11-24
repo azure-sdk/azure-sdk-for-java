@@ -12,12 +12,6 @@ import java.util.Map;
 @Fluent
 public final class EnvironmentVersionProperties extends AssetBase {
     /*
-     * Defines if image needs to be rebuilt based on base image changes.
-     */
-    @JsonProperty(value = "autoRebuild")
-    private AutoRebuildSetting autoRebuild;
-
-    /*
      * Configuration settings for Docker build context.
      */
     @JsonProperty(value = "build")
@@ -62,28 +56,14 @@ public final class EnvironmentVersionProperties extends AssetBase {
     @JsonProperty(value = "osType")
     private OperatingSystemType osType;
 
+    /*
+     * Provisioning state for the environment version.
+     */
+    @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
+    private AssetProvisioningState provisioningState;
+
     /** Creates an instance of EnvironmentVersionProperties class. */
     public EnvironmentVersionProperties() {
-    }
-
-    /**
-     * Get the autoRebuild property: Defines if image needs to be rebuilt based on base image changes.
-     *
-     * @return the autoRebuild value.
-     */
-    public AutoRebuildSetting autoRebuild() {
-        return this.autoRebuild;
-    }
-
-    /**
-     * Set the autoRebuild property: Defines if image needs to be rebuilt based on base image changes.
-     *
-     * @param autoRebuild the autoRebuild value to set.
-     * @return the EnvironmentVersionProperties object itself.
-     */
-    public EnvironmentVersionProperties withAutoRebuild(AutoRebuildSetting autoRebuild) {
-        this.autoRebuild = autoRebuild;
-        return this;
     }
 
     /**
@@ -206,6 +186,15 @@ public final class EnvironmentVersionProperties extends AssetBase {
     public EnvironmentVersionProperties withOsType(OperatingSystemType osType) {
         this.osType = osType;
         return this;
+    }
+
+    /**
+     * Get the provisioningState property: Provisioning state for the environment version.
+     *
+     * @return the provisioningState value.
+     */
+    public AssetProvisioningState provisioningState() {
+        return this.provisioningState;
     }
 
     /** {@inheritDoc} */

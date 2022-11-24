@@ -46,13 +46,6 @@ public final class SynapseSpark extends Compute {
 
     /** {@inheritDoc} */
     @Override
-    public SynapseSpark withComputeLocation(String computeLocation) {
-        super.withComputeLocation(computeLocation);
-        return this;
-    }
-
-    /** {@inheritDoc} */
-    @Override
     public SynapseSpark withDescription(String description) {
         super.withDescription(description);
         return this;
@@ -62,13 +55,6 @@ public final class SynapseSpark extends Compute {
     @Override
     public SynapseSpark withResourceId(String resourceId) {
         super.withResourceId(resourceId);
-        return this;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public SynapseSpark withDisableLocalAuth(Boolean disableLocalAuth) {
-        super.withDisableLocalAuth(disableLocalAuth);
         return this;
     }
 

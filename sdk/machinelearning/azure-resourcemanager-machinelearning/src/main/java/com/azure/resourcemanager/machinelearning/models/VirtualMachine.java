@@ -46,13 +46,6 @@ public final class VirtualMachine extends Compute {
 
     /** {@inheritDoc} */
     @Override
-    public VirtualMachine withComputeLocation(String computeLocation) {
-        super.withComputeLocation(computeLocation);
-        return this;
-    }
-
-    /** {@inheritDoc} */
-    @Override
     public VirtualMachine withDescription(String description) {
         super.withDescription(description);
         return this;
@@ -62,13 +55,6 @@ public final class VirtualMachine extends Compute {
     @Override
     public VirtualMachine withResourceId(String resourceId) {
         super.withResourceId(resourceId);
-        return this;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public VirtualMachine withDisableLocalAuth(Boolean disableLocalAuth) {
-        super.withDisableLocalAuth(disableLocalAuth);
         return this;
     }
 

@@ -74,7 +74,7 @@ public interface WorkspaceProperties {
      *
      * @return the provisioningState value.
      */
-    ProvisioningState provisioningState();
+    WorkspaceProvisioningState provisioningState();
 
     /**
      * Gets the encryption property: The encryption settings of Azure ML workspace.
@@ -194,6 +194,20 @@ public interface WorkspaceProperties {
      * @return the v1LegacyMode value.
      */
     Boolean v1LegacyMode();
+
+    /**
+     * Gets the softDeletedAt property: The timestamp when the workspace was soft deleted.
+     *
+     * @return the softDeletedAt value.
+     */
+    String softDeletedAt();
+
+    /**
+     * Gets the scheduledPurgeDate property: The timestamp when the soft deleted workspace is going to be purged.
+     *
+     * @return the scheduledPurgeDate value.
+     */
+    String scheduledPurgeDate();
 
     /**
      * Gets the inner com.azure.resourcemanager.machinelearning.fluent.models.WorkspacePropertiesInner object.

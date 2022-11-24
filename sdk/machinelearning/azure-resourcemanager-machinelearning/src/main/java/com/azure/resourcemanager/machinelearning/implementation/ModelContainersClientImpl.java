@@ -40,26 +40,26 @@ public final class ModelContainersClientImpl implements ModelContainersClient {
     private final ModelContainersService service;
 
     /** The service client containing this operation class. */
-    private final AzureMachineLearningWorkspacesImpl client;
+    private final AzureMachineLearningServicesImpl client;
 
     /**
      * Initializes an instance of ModelContainersClientImpl.
      *
      * @param client the instance of the service client containing this operation class.
      */
-    ModelContainersClientImpl(AzureMachineLearningWorkspacesImpl client) {
+    ModelContainersClientImpl(AzureMachineLearningServicesImpl client) {
         this.service =
             RestProxy.create(ModelContainersService.class, client.getHttpPipeline(), client.getSerializerAdapter());
         this.client = client;
     }
 
     /**
-     * The interface defining all the services for AzureMachineLearningWorkspacesModelContainers to be used by the proxy
+     * The interface defining all the services for AzureMachineLearningServicesModelContainers to be used by the proxy
      * service to perform REST calls.
      */
     @Host("{$host}")
     @ServiceInterface(name = "AzureMachineLearning")
-    private interface ModelContainersService {
+    public interface ModelContainersService {
         @Headers({"Content-Type: application/json"})
         @Get(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers"

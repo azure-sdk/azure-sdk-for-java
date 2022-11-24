@@ -28,7 +28,7 @@ import java.util.Map;
 public class DataVersionBaseProperties extends AssetBase {
     /*
      * [Required] Uri of the data. Usage/meaning depends on
-     * Microsoft.MachineLearning.ManagementFrontEnd.Contracts.V20221001.Assets.DataVersionBase.DataType
+     * Microsoft.MachineLearning.ManagementFrontEnd.Contracts.V20221001Preview.Assets.DataVersionBase.DataType
      */
     @JsonProperty(value = "dataUri", required = true)
     private String dataUri;
@@ -39,7 +39,7 @@ public class DataVersionBaseProperties extends AssetBase {
 
     /**
      * Get the dataUri property: [Required] Uri of the data. Usage/meaning depends on
-     * Microsoft.MachineLearning.ManagementFrontEnd.Contracts.V20221001.Assets.DataVersionBase.DataType.
+     * Microsoft.MachineLearning.ManagementFrontEnd.Contracts.V20221001Preview.Assets.DataVersionBase.DataType.
      *
      * @return the dataUri value.
      */
@@ -49,7 +49,7 @@ public class DataVersionBaseProperties extends AssetBase {
 
     /**
      * Set the dataUri property: [Required] Uri of the data. Usage/meaning depends on
-     * Microsoft.MachineLearning.ManagementFrontEnd.Contracts.V20221001.Assets.DataVersionBase.DataType.
+     * Microsoft.MachineLearning.ManagementFrontEnd.Contracts.V20221001Preview.Assets.DataVersionBase.DataType.
      *
      * @param dataUri the dataUri value to set.
      * @return the DataVersionBaseProperties object itself.
