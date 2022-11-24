@@ -4,7 +4,7 @@
 
 package com.azure.resourcemanager.securityinsights.models;
 
-import com.azure.core.annotation.Fluent;
+import com.azure.core.annotation.Immutable;
 import com.azure.resourcemanager.securityinsights.fluent.models.TICheckRequirementsProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
@@ -13,13 +13,17 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 /** Threat Intelligence Platforms data connector check requirements. */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "kind")
 @JsonTypeName("ThreatIntelligence")
-@Fluent
+@Immutable
 public final class TICheckRequirements extends DataConnectorsCheckRequirements {
     /*
      * Threat Intelligence Platforms data connector check required properties
      */
     @JsonProperty(value = "properties")
     private TICheckRequirementsProperties innerProperties;
+
+    /** Creates an instance of TICheckRequirements class. */
+    public TICheckRequirements() {
+    }
 
     /**
      * Get the innerProperties property: Threat Intelligence Platforms data connector check required properties.

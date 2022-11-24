@@ -83,6 +83,10 @@ public final class FusionAlertRuleTemplateProperties {
     @JsonProperty(value = "sourceSettings")
     private List<FusionTemplateSourceSetting> sourceSettings;
 
+    /** Creates an instance of FusionAlertRuleTemplateProperties class. */
+    public FusionAlertRuleTemplateProperties() {
+    }
+
     /**
      * Get the alertRulesCreatedByTemplateCount property: the number of alert rules that were created by this template.
      *

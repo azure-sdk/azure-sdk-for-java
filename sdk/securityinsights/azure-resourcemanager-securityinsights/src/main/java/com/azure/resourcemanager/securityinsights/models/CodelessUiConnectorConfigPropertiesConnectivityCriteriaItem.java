@@ -10,6 +10,10 @@ import java.util.List;
 /** The CodelessUiConnectorConfigPropertiesConnectivityCriteriaItem model. */
 @Fluent
 public final class CodelessUiConnectorConfigPropertiesConnectivityCriteriaItem extends ConnectivityCriteria {
+    /** Creates an instance of CodelessUiConnectorConfigPropertiesConnectivityCriteriaItem class. */
+    public CodelessUiConnectorConfigPropertiesConnectivityCriteriaItem() {
+    }
+
     /** {@inheritDoc} */
     @Override
     public CodelessUiConnectorConfigPropertiesConnectivityCriteriaItem withType(ConnectivityType type) {

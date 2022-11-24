@@ -10,6 +10,10 @@ import com.azure.resourcemanager.securityinsights.models.DataConnectorTenantId;
 /** MCAS (Microsoft Cloud App Security) requirements check properties. */
 @Fluent
 public final class McasCheckRequirementsProperties extends DataConnectorTenantId {
+    /** Creates an instance of McasCheckRequirementsProperties class. */
+    public McasCheckRequirementsProperties() {
+    }
+
     /** {@inheritDoc} */
     @Override
     public McasCheckRequirementsProperties withTenantId(String tenantId) {

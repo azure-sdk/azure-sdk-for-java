@@ -4,7 +4,7 @@
 
 package com.azure.resourcemanager.securityinsights.models;
 
-import com.azure.core.annotation.Fluent;
+import com.azure.core.annotation.Immutable;
 import com.azure.resourcemanager.securityinsights.fluent.models.MdatpCheckRequirementsProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
@@ -13,13 +13,17 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 /** Represents MDATP (Microsoft Defender Advanced Threat Protection) requirements check request. */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "kind")
 @JsonTypeName("MicrosoftDefenderAdvancedThreatProtection")
-@Fluent
+@Immutable
 public final class MdatpCheckRequirements extends DataConnectorsCheckRequirements {
     /*
      * MDATP (Microsoft Defender Advanced Threat Protection) requirements check properties.
      */
     @JsonProperty(value = "properties")
     private MdatpCheckRequirementsProperties innerProperties;
+
+    /** Creates an instance of MdatpCheckRequirements class. */
+    public MdatpCheckRequirements() {
+    }
 
     /**
      * Get the innerProperties property: MDATP (Microsoft Defender Advanced Threat Protection) requirements check
