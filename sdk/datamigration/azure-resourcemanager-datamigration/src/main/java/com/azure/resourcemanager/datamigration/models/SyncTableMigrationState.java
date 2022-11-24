@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for SyncTableMigrationState. */
+/** Enum of the different state of table level online migration. */
 public final class SyncTableMigrationState extends ExpandableStringEnum<SyncTableMigrationState> {
     /** Static value BEFORE_LOAD for SyncTableMigrationState. */
     public static final SyncTableMigrationState BEFORE_LOAD = fromString("BEFORE_LOAD");
@@ -39,7 +39,11 @@ public final class SyncTableMigrationState extends ExpandableStringEnum<SyncTabl
         return fromString(name, SyncTableMigrationState.class);
     }
 
-    /** @return known SyncTableMigrationState values. */
+    /**
+     * Gets known SyncTableMigrationState values.
+     *
+     * @return known SyncTableMigrationState values.
+     */
     public static Collection<SyncTableMigrationState> values() {
         return values(SyncTableMigrationState.class);
     }
