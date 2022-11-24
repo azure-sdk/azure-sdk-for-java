@@ -19,6 +19,10 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @JsonSubTypes({@JsonSubTypes.Type(name = "KeyVault", value = AzureKeyVaultProperties.class)})
 @Immutable
 public class AzureResourcePropertiesBase {
+    /** Creates an instance of AzureResourcePropertiesBase class. */
+    public AzureResourcePropertiesBase() {
+    }
+
     /**
      * Validates the instance.
      *
