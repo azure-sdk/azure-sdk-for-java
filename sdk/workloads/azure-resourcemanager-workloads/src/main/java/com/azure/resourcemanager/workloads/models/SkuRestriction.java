@@ -35,6 +35,10 @@ public final class SkuRestriction {
     @JsonProperty(value = "reasonCode")
     private SkuRestrictionReasonCode reasonCode;
 
+    /** Creates an instance of SkuRestriction class. */
+    public SkuRestriction() {
+    }
+
     /**
      * Get the type property: The SKU restriction type.
      *

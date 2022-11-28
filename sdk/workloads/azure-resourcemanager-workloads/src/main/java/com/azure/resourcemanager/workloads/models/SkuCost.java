@@ -28,6 +28,10 @@ public final class SkuCost {
     @JsonProperty(value = "extendedUnit")
     private String extendedUnit;
 
+    /** Creates an instance of SkuCost class. */
+    public SkuCost() {
+    }
+
     /**
      * Get the meterId property: Billing meter id.
      *

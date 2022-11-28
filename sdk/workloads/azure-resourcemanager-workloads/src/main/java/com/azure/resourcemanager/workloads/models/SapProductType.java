@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for SapProductType. */
+/** Defines the SAP Product type. */
 public final class SapProductType extends ExpandableStringEnum<SapProductType> {
     /** Static value ECC for SapProductType. */
     public static final SapProductType ECC = fromString("ECC");

@@ -48,6 +48,10 @@ public class NodeProfile {
     @JsonProperty(value = "nodeResourceIds", access = JsonProperty.Access.WRITE_ONLY)
     private List<String> nodeResourceIds;
 
+    /** Creates an instance of NodeProfile class. */
+    public NodeProfile() {
+    }
+
     /**
      * Get the name property: VM or VMSS name.
      *

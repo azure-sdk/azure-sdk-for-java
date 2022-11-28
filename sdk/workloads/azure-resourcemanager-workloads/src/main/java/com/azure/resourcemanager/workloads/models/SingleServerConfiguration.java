@@ -39,6 +39,10 @@ public final class SingleServerConfiguration extends InfrastructureConfiguration
     @JsonProperty(value = "virtualMachineConfiguration", required = true)
     private VirtualMachineConfiguration virtualMachineConfiguration;
 
+    /** Creates an instance of SingleServerConfiguration class. */
+    public SingleServerConfiguration() {
+    }
+
     /**
      * Get the networkConfiguration property: Network configuration for the server.
      *

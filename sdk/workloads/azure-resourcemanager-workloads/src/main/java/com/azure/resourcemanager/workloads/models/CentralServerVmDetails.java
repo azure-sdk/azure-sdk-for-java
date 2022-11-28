@@ -7,7 +7,7 @@ package com.azure.resourcemanager.workloads.models;
 import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The Central Server VM Details. */
+/** The SAP Central Services Instance VM details. */
 @Immutable
 public final class CentralServerVmDetails {
     /*
@@ -21,6 +21,10 @@ public final class CentralServerVmDetails {
      */
     @JsonProperty(value = "virtualMachineId", access = JsonProperty.Access.WRITE_ONLY)
     private String virtualMachineId;
+
+    /** Creates an instance of CentralServerVmDetails class. */
+    public CentralServerVmDetails() {
+    }
 
     /**
      * Get the type property: Defines the type of central server VM.
