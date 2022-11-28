@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for SapVirtualInstanceState. */
+/** Defines the Virtual Instance for SAP state. */
 public final class SapVirtualInstanceState extends ExpandableStringEnum<SapVirtualInstanceState> {
     /** Static value InfrastructureDeploymentPending for SapVirtualInstanceState. */
     public static final SapVirtualInstanceState INFRASTRUCTURE_DEPLOYMENT_PENDING =
@@ -32,6 +32,13 @@ public final class SapVirtualInstanceState extends ExpandableStringEnum<SapVirtu
 
     /** Static value SoftwareInstallationFailed for SapVirtualInstanceState. */
     public static final SapVirtualInstanceState SOFTWARE_INSTALLATION_FAILED = fromString("SoftwareInstallationFailed");
+
+    /** Static value SoftwareDetectionInProgress for SapVirtualInstanceState. */
+    public static final SapVirtualInstanceState SOFTWARE_DETECTION_IN_PROGRESS =
+        fromString("SoftwareDetectionInProgress");
+
+    /** Static value SoftwareDetectionFailed for SapVirtualInstanceState. */
+    public static final SapVirtualInstanceState SOFTWARE_DETECTION_FAILED = fromString("SoftwareDetectionFailed");
 
     /** Static value DiscoveryPending for SapVirtualInstanceState. */
     public static final SapVirtualInstanceState DISCOVERY_PENDING = fromString("DiscoveryPending");

@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for SkuRestrictionType. */
+/** The SKU restriction type. */
 public final class SkuRestrictionType extends ExpandableStringEnum<SkuRestrictionType> {
     /** Static value NotSpecified for SkuRestrictionType. */
     public static final SkuRestrictionType NOT_SPECIFIED = fromString("NotSpecified");

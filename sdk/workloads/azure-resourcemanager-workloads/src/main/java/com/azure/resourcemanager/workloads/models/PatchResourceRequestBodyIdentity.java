@@ -10,6 +10,10 @@ import java.util.Map;
 /** The PatchResourceRequestBodyIdentity model. */
 @Fluent
 public class PatchResourceRequestBodyIdentity extends UserAssignedServiceIdentity {
+    /** Creates an instance of PatchResourceRequestBodyIdentity class. */
+    public PatchResourceRequestBodyIdentity() {
+    }
+
     /** {@inheritDoc} */
     @Override
     public PatchResourceRequestBodyIdentity withType(ManagedServiceIdentityType type) {

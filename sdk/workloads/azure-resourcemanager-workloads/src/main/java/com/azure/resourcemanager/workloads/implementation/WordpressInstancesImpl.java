@@ -40,15 +40,6 @@ public final class WordpressInstancesImpl implements WordpressInstances {
         return Utils.mapPage(inner, inner1 -> new WordpressInstanceResourceImpl(inner1, this.manager()));
     }
 
-    public WordpressInstanceResource get(String resourceGroupName, String phpWorkloadName) {
-        WordpressInstanceResourceInner inner = this.serviceClient().get(resourceGroupName, phpWorkloadName);
-        if (inner != null) {
-            return new WordpressInstanceResourceImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
     public Response<WordpressInstanceResource> getWithResponse(
         String resourceGroupName, String phpWorkloadName, Context context) {
         Response<WordpressInstanceResourceInner> inner =
@@ -59,6 +50,15 @@ public final class WordpressInstancesImpl implements WordpressInstances {
                 inner.getStatusCode(),
                 inner.getHeaders(),
                 new WordpressInstanceResourceImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public WordpressInstanceResource get(String resourceGroupName, String phpWorkloadName) {
+        WordpressInstanceResourceInner inner = this.serviceClient().get(resourceGroupName, phpWorkloadName);
+        if (inner != null) {
+            return new WordpressInstanceResourceImpl(inner, this.manager());
         } else {
             return null;
         }
@@ -89,12 +89,13 @@ public final class WordpressInstancesImpl implements WordpressInstances {
         }
     }
 
-    public void deleteByResourceGroup(String resourceGroupName, String phpWorkloadName) {
-        this.serviceClient().delete(resourceGroupName, phpWorkloadName);
+    public Response<Void> deleteByResourceGroupWithResponse(
+        String resourceGroupName, String phpWorkloadName, Context context) {
+        return this.serviceClient().deleteWithResponse(resourceGroupName, phpWorkloadName, context);
     }
 
-    public Response<Void> deleteWithResponse(String resourceGroupName, String phpWorkloadName, Context context) {
-        return this.serviceClient().deleteWithResponse(resourceGroupName, phpWorkloadName, context);
+    public void deleteByResourceGroup(String resourceGroupName, String phpWorkloadName) {
+        this.serviceClient().delete(resourceGroupName, phpWorkloadName);
     }
 
     private WordpressInstancesClient serviceClient() {

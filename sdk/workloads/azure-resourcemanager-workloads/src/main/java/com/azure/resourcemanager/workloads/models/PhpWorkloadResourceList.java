@@ -24,6 +24,10 @@ public final class PhpWorkloadResourceList {
     @JsonProperty(value = "nextLink")
     private String nextLink;
 
+    /** Creates an instance of PhpWorkloadResourceList class. */
+    public PhpWorkloadResourceList() {
+    }
+
     /**
      * Get the value property: List of resources in current page.
      *

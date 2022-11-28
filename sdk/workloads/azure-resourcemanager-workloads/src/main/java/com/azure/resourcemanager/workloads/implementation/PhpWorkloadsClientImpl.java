@@ -65,7 +65,7 @@ public final class PhpWorkloadsClientImpl implements PhpWorkloadsClient {
      */
     @Host("{$host}")
     @ServiceInterface(name = "WorkloadsClientPhpWo")
-    private interface PhpWorkloadsService {
+    public interface PhpWorkloadsService {
         @Headers({"Content-Type: application/json"})
         @Get("/subscriptions/{subscriptionId}/providers/Microsoft.Workloads/phpWorkloads")
         @ExpectedResponses({200})
@@ -596,21 +596,6 @@ public final class PhpWorkloadsClientImpl implements PhpWorkloadsClient {
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param phpWorkloadName Php workload name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the PHP workload resource.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public PhpWorkloadResourceInner getByResourceGroup(String resourceGroupName, String phpWorkloadName) {
-        return getByResourceGroupAsync(resourceGroupName, phpWorkloadName).block();
-    }
-
-    /**
-     * Gets the PHP workload resource.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param phpWorkloadName Php workload name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -621,6 +606,21 @@ public final class PhpWorkloadsClientImpl implements PhpWorkloadsClient {
     public Response<PhpWorkloadResourceInner> getByResourceGroupWithResponse(
         String resourceGroupName, String phpWorkloadName, Context context) {
         return getByResourceGroupWithResponseAsync(resourceGroupName, phpWorkloadName, context).block();
+    }
+
+    /**
+     * Gets the PHP workload resource.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param phpWorkloadName Php workload name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the PHP workload resource.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public PhpWorkloadResourceInner getByResourceGroup(String resourceGroupName, String phpWorkloadName) {
+        return getByResourceGroupWithResponse(resourceGroupName, phpWorkloadName, Context.NONE).getValue();
     }
 
     /**
@@ -1055,23 +1055,6 @@ public final class PhpWorkloadsClientImpl implements PhpWorkloadsClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param phpWorkloadName Php workload name.
      * @param resourcePatchRequestBody Workload resource update data.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return php workload resource.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public PhpWorkloadResourceInner update(
-        String resourceGroupName, String phpWorkloadName, PatchResourceRequestBody resourcePatchRequestBody) {
-        return updateAsync(resourceGroupName, phpWorkloadName, resourcePatchRequestBody).block();
-    }
-
-    /**
-     * Update PHP workload resource.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param phpWorkloadName Php workload name.
-     * @param resourcePatchRequestBody Workload resource update data.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1085,6 +1068,24 @@ public final class PhpWorkloadsClientImpl implements PhpWorkloadsClient {
         PatchResourceRequestBody resourcePatchRequestBody,
         Context context) {
         return updateWithResponseAsync(resourceGroupName, phpWorkloadName, resourcePatchRequestBody, context).block();
+    }
+
+    /**
+     * Update PHP workload resource.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param phpWorkloadName Php workload name.
+     * @param resourcePatchRequestBody Workload resource update data.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return php workload resource.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public PhpWorkloadResourceInner update(
+        String resourceGroupName, String phpWorkloadName, PatchResourceRequestBody resourcePatchRequestBody) {
+        return updateWithResponse(resourceGroupName, phpWorkloadName, resourcePatchRequestBody, Context.NONE)
+            .getValue();
     }
 
     /**
@@ -1214,6 +1215,27 @@ public final class PhpWorkloadsClientImpl implements PhpWorkloadsClient {
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param phpWorkloadName Php workload name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(String resourceGroupName, String phpWorkloadName) {
+        final String deleteInfra = null;
+        Mono<Response<Flux<ByteBuffer>>> mono =
+            deleteWithResponseAsync(resourceGroupName, phpWorkloadName, deleteInfra);
+        return this
+            .client
+            .<Void, Void>getLroResult(
+                mono, this.client.getHttpPipeline(), Void.class, Void.class, this.client.getContext());
+    }
+
+    /**
+     * Delete PHP workload resource.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param phpWorkloadName Php workload name.
      * @param deleteInfra Whether to delete infra along with workload resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1237,15 +1259,14 @@ public final class PhpWorkloadsClientImpl implements PhpWorkloadsClient {
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param phpWorkloadName Php workload name.
-     * @param deleteInfra Whether to delete infra along with workload resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<Void>, Void> beginDelete(
-        String resourceGroupName, String phpWorkloadName, String deleteInfra) {
+    public SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String phpWorkloadName) {
+        final String deleteInfra = null;
         return beginDeleteAsync(resourceGroupName, phpWorkloadName, deleteInfra).getSyncPoller();
     }
 
@@ -1328,21 +1349,6 @@ public final class PhpWorkloadsClientImpl implements PhpWorkloadsClient {
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param phpWorkloadName Php workload name.
-     * @param deleteInfra Whether to delete infra along with workload resource.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public void delete(String resourceGroupName, String phpWorkloadName, String deleteInfra) {
-        deleteAsync(resourceGroupName, phpWorkloadName, deleteInfra).block();
-    }
-
-    /**
-     * Delete PHP workload resource.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param phpWorkloadName Php workload name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1372,7 +1378,8 @@ public final class PhpWorkloadsClientImpl implements PhpWorkloadsClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1408,7 +1415,8 @@ public final class PhpWorkloadsClientImpl implements PhpWorkloadsClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1445,7 +1453,8 @@ public final class PhpWorkloadsClientImpl implements PhpWorkloadsClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1481,7 +1490,8 @@ public final class PhpWorkloadsClientImpl implements PhpWorkloadsClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.

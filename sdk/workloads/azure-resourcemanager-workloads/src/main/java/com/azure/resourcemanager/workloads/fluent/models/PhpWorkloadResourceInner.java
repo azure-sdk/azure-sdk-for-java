@@ -6,6 +6,7 @@ package com.azure.resourcemanager.workloads.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.Resource;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.workloads.models.BackupProfile;
 import com.azure.resourcemanager.workloads.models.CacheProfile;
@@ -36,8 +37,7 @@ public final class PhpWorkloadResourceInner extends Resource {
     private PhpWorkloadResourceProperties innerProperties;
 
     /*
-     * Indicates which kind of php workload this resource represent e.g
-     * WordPress
+     * Indicates which kind of php workload this resource represent e.g WordPress
      */
     @JsonProperty(value = "kind", required = true)
     private WorkloadKind kind;
@@ -53,6 +53,16 @@ public final class PhpWorkloadResourceInner extends Resource {
      */
     @JsonProperty(value = "identity")
     private PhpWorkloadResourceIdentity identity;
+
+    /*
+     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     */
+    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
+    private SystemData systemData;
+
+    /** Creates an instance of PhpWorkloadResourceInner class. */
+    public PhpWorkloadResourceInner() {
+    }
 
     /**
      * Get the innerProperties property: Resource properties.
@@ -121,6 +131,15 @@ public final class PhpWorkloadResourceInner extends Resource {
     public PhpWorkloadResourceInner withIdentity(PhpWorkloadResourceIdentity identity) {
         this.identity = identity;
         return this;
+    }
+
+    /**
+     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     *
+     * @return the systemData value.
+     */
+    public SystemData systemData() {
+        return this.systemData;
     }
 
     /** {@inheritDoc} */
