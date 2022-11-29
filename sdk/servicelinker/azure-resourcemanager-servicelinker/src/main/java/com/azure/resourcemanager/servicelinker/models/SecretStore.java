@@ -16,6 +16,16 @@ public final class SecretStore {
     @JsonProperty(value = "keyVaultId")
     private String keyVaultId;
 
+    /*
+     * The key vault secret name to store secret, only valid when storing one secret
+     */
+    @JsonProperty(value = "keyVaultSecretName")
+    private String keyVaultSecretName;
+
+    /** Creates an instance of SecretStore class. */
+    public SecretStore() {
+    }
+
     /**
      * Get the keyVaultId property: The key vault id to store secret.
      *
@@ -33,6 +43,28 @@ public final class SecretStore {
      */
     public SecretStore withKeyVaultId(String keyVaultId) {
         this.keyVaultId = keyVaultId;
+        return this;
+    }
+
+    /**
+     * Get the keyVaultSecretName property: The key vault secret name to store secret, only valid when storing one
+     * secret.
+     *
+     * @return the keyVaultSecretName value.
+     */
+    public String keyVaultSecretName() {
+        return this.keyVaultSecretName;
+    }
+
+    /**
+     * Set the keyVaultSecretName property: The key vault secret name to store secret, only valid when storing one
+     * secret.
+     *
+     * @param keyVaultSecretName the keyVaultSecretName value to set.
+     * @return the SecretStore object itself.
+     */
+    public SecretStore withKeyVaultSecretName(String keyVaultSecretName) {
+        this.keyVaultSecretName = keyVaultSecretName;
         return this;
     }
 

@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for TargetServiceType. */
+/** The target service type. */
 public final class TargetServiceType extends ExpandableStringEnum<TargetServiceType> {
     /** Static value AzureResource for TargetServiceType. */
     public static final TargetServiceType AZURE_RESOURCE = fromString("AzureResource");
@@ -18,6 +18,9 @@ public final class TargetServiceType extends ExpandableStringEnum<TargetServiceT
 
     /** Static value ConfluentSchemaRegistry for TargetServiceType. */
     public static final TargetServiceType CONFLUENT_SCHEMA_REGISTRY = fromString("ConfluentSchemaRegistry");
+
+    /** Static value SelfHostedServer for TargetServiceType. */
+    public static final TargetServiceType SELF_HOSTED_SERVER = fromString("SelfHostedServer");
 
     /**
      * Creates or finds a TargetServiceType from its string representation.
