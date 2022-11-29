@@ -190,20 +190,6 @@ public interface SqlVirtualMachinesClient {
      * @param resourceGroupName Name of the resource group that contains the resource. You can obtain this value from
      *     the Azure Resource Manager API or the portal.
      * @param sqlVirtualMachineName Name of the SQL virtual machine.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a SQL virtual machine.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    SqlVirtualMachineInner getByResourceGroup(String resourceGroupName, String sqlVirtualMachineName);
-
-    /**
-     * Gets a SQL virtual machine.
-     *
-     * @param resourceGroupName Name of the resource group that contains the resource. You can obtain this value from
-     *     the Azure Resource Manager API or the portal.
-     * @param sqlVirtualMachineName Name of the SQL virtual machine.
      * @param expand The child resources to include in the response.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -214,6 +200,20 @@ public interface SqlVirtualMachinesClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<SqlVirtualMachineInner> getByResourceGroupWithResponse(
         String resourceGroupName, String sqlVirtualMachineName, String expand, Context context);
+
+    /**
+     * Gets a SQL virtual machine.
+     *
+     * @param resourceGroupName Name of the resource group that contains the resource. You can obtain this value from
+     *     the Azure Resource Manager API or the portal.
+     * @param sqlVirtualMachineName Name of the SQL virtual machine.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a SQL virtual machine.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    SqlVirtualMachineInner getByResourceGroup(String resourceGroupName, String sqlVirtualMachineName);
 
     /**
      * Creates or updates a SQL virtual machine.

@@ -28,6 +28,10 @@ public final class AssessmentSettings {
     @JsonProperty(value = "schedule")
     private Schedule schedule;
 
+    /** Creates an instance of AssessmentSettings class. */
+    public AssessmentSettings() {
+    }
+
     /**
      * Get the enable property: Enable or disable assessment feature on SQL virtual machine.
      *

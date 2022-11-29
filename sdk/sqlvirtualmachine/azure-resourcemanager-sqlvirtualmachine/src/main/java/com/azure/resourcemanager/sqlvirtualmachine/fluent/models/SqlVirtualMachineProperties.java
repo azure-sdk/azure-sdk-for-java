@@ -123,6 +123,10 @@ public final class SqlVirtualMachineProperties {
     @JsonProperty(value = "enableAutomaticUpgrade")
     private Boolean enableAutomaticUpgrade;
 
+    /** Creates an instance of SqlVirtualMachineProperties class. */
+    public SqlVirtualMachineProperties() {
+    }
+
     /**
      * Get the virtualMachineResourceId property: ARM Resource id of underlying virtual machine created from SQL
      * marketplace image.

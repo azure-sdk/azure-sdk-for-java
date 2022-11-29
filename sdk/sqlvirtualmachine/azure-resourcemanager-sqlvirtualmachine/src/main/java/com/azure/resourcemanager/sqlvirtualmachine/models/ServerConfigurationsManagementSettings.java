@@ -40,6 +40,10 @@ public final class ServerConfigurationsManagementSettings {
     @JsonProperty(value = "sqlInstanceSettings")
     private SqlInstanceSettings sqlInstanceSettings;
 
+    /** Creates an instance of ServerConfigurationsManagementSettings class. */
+    public ServerConfigurationsManagementSettings() {
+    }
+
     /**
      * Get the sqlConnectivityUpdateSettings property: SQL connectivity type settings.
      *
