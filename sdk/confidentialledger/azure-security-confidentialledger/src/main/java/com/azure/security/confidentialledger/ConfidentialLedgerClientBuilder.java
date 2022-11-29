@@ -37,6 +37,7 @@ import com.azure.security.confidentialledger.implementation.ConfidentialLedgerCl
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 /** A builder for creating a new instance of the ConfidentialLedgerClient type. */
@@ -53,7 +54,7 @@ public final class ConfidentialLedgerClientBuilder
     private static final String[] DEFAULT_SCOPES = new String[] {"https://confidential-ledger.azure.com/.default"};
 
     @Generated
-    private final Map<String, String> properties =
+    private static final Map<String, String> PROPERTIES =
             CoreUtils.getProperties("azure-security-confidentialledger.properties");
 
     @Generated private final List<HttpPipelinePolicy> pipelinePolicies;
@@ -104,8 +105,7 @@ public final class ConfidentialLedgerClientBuilder
     }
 
     /*
-     * The client options such as application ID and custom headers to set on a
-     * request.
+     * The client options such as application ID and custom headers to set on a request.
      */
     @Generated private ClientOptions clientOptions;
 
@@ -134,13 +134,13 @@ public final class ConfidentialLedgerClientBuilder
     @Generated
     @Override
     public ConfidentialLedgerClientBuilder addPolicy(HttpPipelinePolicy customPolicy) {
+        Objects.requireNonNull(customPolicy, "'customPolicy' cannot be null.");
         pipelinePolicies.add(customPolicy);
         return this;
     }
 
     /*
-     * The configuration store that is used during construction of the service
-     * client.
+     * The configuration store that is used during construction of the service client.
      */
     @Generated private Configuration configuration;
 
@@ -166,20 +166,19 @@ public final class ConfidentialLedgerClientBuilder
     }
 
     /*
-     * The Confidential Ledger URL, for example
-     * https://contoso.confidentialledger.azure.com
+     *
      */
-    @Generated private String ledgerEndpoint;
+    @Generated private String ledgerUri;
 
     /**
-     * Sets The Confidential Ledger URL, for example https://contoso.confidentialledger.azure.com.
+     * Sets.
      *
-     * @param ledgerEndpoint the ledgerEndpoint value.
+     * @param ledgerUri the ledgerUri value.
      * @return the ConfidentialLedgerClientBuilder.
      */
     @Generated
-    public ConfidentialLedgerClientBuilder ledgerEndpoint(String ledgerEndpoint) {
-        this.ledgerEndpoint = ledgerEndpoint;
+    public ConfidentialLedgerClientBuilder ledgerUri(String ledgerUri) {
+        this.ledgerUri = ledgerUri;
         return this;
     }
 
@@ -201,8 +200,7 @@ public final class ConfidentialLedgerClientBuilder
     }
 
     /*
-     * The retry policy that will attempt to retry failed requests, if
-     * applicable.
+     * The retry policy that will attempt to retry failed requests, if applicable.
      */
     @Generated private RetryPolicy retryPolicy;
 
@@ -225,15 +223,12 @@ public final class ConfidentialLedgerClientBuilder
      */
     @Generated
     private ConfidentialLedgerClientImpl buildInnerClient() {
-        if (pipeline == null) {
-            this.pipeline = createHttpPipeline();
-        }
-        if (serviceVersion == null) {
-            this.serviceVersion = ConfidentialLedgerServiceVersion.getLatest();
-        }
+        HttpPipeline localPipeline = (pipeline != null) ? pipeline : createHttpPipeline();
+        ConfidentialLedgerServiceVersion localServiceVersion =
+                (serviceVersion != null) ? serviceVersion : ConfidentialLedgerServiceVersion.getLatest();
         ConfidentialLedgerClientImpl client =
                 new ConfidentialLedgerClientImpl(
-                        pipeline, JacksonAdapter.createDefaultSerializerAdapter(), ledgerEndpoint, serviceVersion);
+                        localPipeline, JacksonAdapter.createDefaultSerializerAdapter(), ledgerUri, localServiceVersion);
         return client;
     }
 
@@ -241,21 +236,17 @@ public final class ConfidentialLedgerClientBuilder
     private HttpPipeline createHttpPipeline() {
         Configuration buildConfiguration =
                 (configuration == null) ? Configuration.getGlobalConfiguration() : configuration;
-        if (httpLogOptions == null) {
-            httpLogOptions = new HttpLogOptions();
-        }
-        if (clientOptions == null) {
-            clientOptions = new ClientOptions();
-        }
+        HttpLogOptions localHttpLogOptions = this.httpLogOptions == null ? new HttpLogOptions() : this.httpLogOptions;
+        ClientOptions localClientOptions = this.clientOptions == null ? new ClientOptions() : this.clientOptions;
         List<HttpPipelinePolicy> policies = new ArrayList<>();
-        String clientName = properties.getOrDefault(SDK_NAME, "UnknownName");
-        String clientVersion = properties.getOrDefault(SDK_VERSION, "UnknownVersion");
-        String applicationId = CoreUtils.getApplicationId(clientOptions, httpLogOptions);
+        String clientName = PROPERTIES.getOrDefault(SDK_NAME, "UnknownName");
+        String clientVersion = PROPERTIES.getOrDefault(SDK_VERSION, "UnknownVersion");
+        String applicationId = CoreUtils.getApplicationId(localClientOptions, localHttpLogOptions);
         policies.add(new UserAgentPolicy(applicationId, clientName, clientVersion, buildConfiguration));
         policies.add(new RequestIdPolicy());
         policies.add(new AddHeadersFromContextPolicy());
         HttpHeaders headers = new HttpHeaders();
-        clientOptions.getHeaders().forEach(header -> headers.set(header.getName(), header.getValue()));
+        localClientOptions.getHeaders().forEach(header -> headers.set(header.getName(), header.getValue()));
         if (headers.getSize() > 0) {
             policies.add(new AddHeadersPolicy(headers));
         }
@@ -280,7 +271,7 @@ public final class ConfidentialLedgerClientBuilder
                 new HttpPipelineBuilder()
                         .policies(policies.toArray(new HttpPipelinePolicy[0]))
                         .httpClient(httpClient)
-                        .clientOptions(clientOptions)
+                        .clientOptions(localClientOptions)
                         .build();
         return httpPipeline;
     }

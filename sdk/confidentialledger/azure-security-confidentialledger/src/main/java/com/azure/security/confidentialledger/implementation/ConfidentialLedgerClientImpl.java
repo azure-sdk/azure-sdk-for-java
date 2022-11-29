@@ -51,16 +51,16 @@ public final class ConfidentialLedgerClientImpl {
     /** The proxy service used to perform REST calls. */
     private final ConfidentialLedgerClientService service;
 
-    /** The Confidential Ledger URL, for example https://contoso.confidentialledger.azure.com. */
-    private final String ledgerEndpoint;
+    /** */
+    private final String ledgerUri;
 
     /**
-     * Gets The Confidential Ledger URL, for example https://contoso.confidentialledger.azure.com.
+     * Gets.
      *
-     * @return the ledgerEndpoint value.
+     * @return the ledgerUri value.
      */
-    public String getLedgerEndpoint() {
-        return this.ledgerEndpoint;
+    public String getLedgerUri() {
+        return this.ledgerUri;
     }
 
     /** Service version. */
@@ -102,16 +102,16 @@ public final class ConfidentialLedgerClientImpl {
     /**
      * Initializes an instance of ConfidentialLedgerClient client.
      *
-     * @param ledgerEndpoint The Confidential Ledger URL, for example https://contoso.confidentialledger.azure.com.
+     * @param ledgerUri
      * @param serviceVersion Service version.
      */
-    public ConfidentialLedgerClientImpl(String ledgerEndpoint, ConfidentialLedgerServiceVersion serviceVersion) {
+    public ConfidentialLedgerClientImpl(String ledgerUri, ConfidentialLedgerServiceVersion serviceVersion) {
         this(
                 new HttpPipelineBuilder()
                         .policies(new UserAgentPolicy(), new RetryPolicy(), new CookiePolicy())
                         .build(),
                 JacksonAdapter.createDefaultSerializerAdapter(),
-                ledgerEndpoint,
+                ledgerUri,
                 serviceVersion);
     }
 
@@ -119,12 +119,12 @@ public final class ConfidentialLedgerClientImpl {
      * Initializes an instance of ConfidentialLedgerClient client.
      *
      * @param httpPipeline The HTTP pipeline to send requests through.
-     * @param ledgerEndpoint The Confidential Ledger URL, for example https://contoso.confidentialledger.azure.com.
+     * @param ledgerUri
      * @param serviceVersion Service version.
      */
     public ConfidentialLedgerClientImpl(
-            HttpPipeline httpPipeline, String ledgerEndpoint, ConfidentialLedgerServiceVersion serviceVersion) {
-        this(httpPipeline, JacksonAdapter.createDefaultSerializerAdapter(), ledgerEndpoint, serviceVersion);
+            HttpPipeline httpPipeline, String ledgerUri, ConfidentialLedgerServiceVersion serviceVersion) {
+        this(httpPipeline, JacksonAdapter.createDefaultSerializerAdapter(), ledgerUri, serviceVersion);
     }
 
     /**
@@ -132,17 +132,17 @@ public final class ConfidentialLedgerClientImpl {
      *
      * @param httpPipeline The HTTP pipeline to send requests through.
      * @param serializerAdapter The serializer to serialize an object into a string.
-     * @param ledgerEndpoint The Confidential Ledger URL, for example https://contoso.confidentialledger.azure.com.
+     * @param ledgerUri
      * @param serviceVersion Service version.
      */
     public ConfidentialLedgerClientImpl(
             HttpPipeline httpPipeline,
             SerializerAdapter serializerAdapter,
-            String ledgerEndpoint,
+            String ledgerUri,
             ConfidentialLedgerServiceVersion serviceVersion) {
         this.httpPipeline = httpPipeline;
         this.serializerAdapter = serializerAdapter;
-        this.ledgerEndpoint = ledgerEndpoint;
+        this.ledgerUri = ledgerUri;
         this.serviceVersion = serviceVersion;
         this.service =
                 RestProxy.create(ConfidentialLedgerClientService.class, this.httpPipeline, this.getSerializerAdapter());
@@ -152,10 +152,10 @@ public final class ConfidentialLedgerClientImpl {
      * The interface defining all the services for ConfidentialLedgerClient to be used by the proxy service to perform
      * REST calls.
      */
-    @Host("{ledgerEndpoint}")
+    @Host("{ledgerUri}")
     @ServiceInterface(name = "ConfidentialLedgerCl")
-    private interface ConfidentialLedgerClientService {
-        @Get("/app/governance/constitution")
+    public interface ConfidentialLedgerClientService {
+        @Get("/app/collections")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(
                 value = ClientAuthenticationException.class,
@@ -167,29 +167,10 @@ public final class ConfidentialLedgerClientImpl {
                 value = ResourceModifiedException.class,
                 code = {409})
         @UnexpectedResponseExceptionType(HttpResponseException.class)
-        Mono<Response<BinaryData>> getConstitution(
-                @HostParam("ledgerEndpoint") String ledgerEndpoint,
+        Mono<Response<BinaryData>> listCollections(
+                @HostParam("ledgerUri") String ledgerUri,
                 @QueryParam("api-version") String apiVersion,
-                @HeaderParam("Accept") String accept,
-                RequestOptions requestOptions,
-                Context context);
-
-        @Get("/app/governance/members")
-        @ExpectedResponses({200})
-        @UnexpectedResponseExceptionType(
-                value = ClientAuthenticationException.class,
-                code = {401})
-        @UnexpectedResponseExceptionType(
-                value = ResourceNotFoundException.class,
-                code = {404})
-        @UnexpectedResponseExceptionType(
-                value = ResourceModifiedException.class,
-                code = {409})
-        @UnexpectedResponseExceptionType(HttpResponseException.class)
-        Mono<Response<BinaryData>> listConsortiumMembers(
-                @HostParam("ledgerEndpoint") String ledgerEndpoint,
-                @QueryParam("api-version") String apiVersion,
-                @HeaderParam("Accept") String accept,
+                @HeaderParam("accept") String accept,
                 RequestOptions requestOptions,
                 Context context);
 
@@ -205,14 +186,14 @@ public final class ConfidentialLedgerClientImpl {
                 value = ResourceModifiedException.class,
                 code = {409})
         @UnexpectedResponseExceptionType(HttpResponseException.class)
-        Mono<Response<BinaryData>> getEnclaveQuotes(
-                @HostParam("ledgerEndpoint") String ledgerEndpoint,
+        Mono<Response<Void>> getEnclaveQuotes(
+                @HostParam("ledgerUri") String ledgerUri,
                 @QueryParam("api-version") String apiVersion,
-                @HeaderParam("Accept") String accept,
+                @HeaderParam("accept") String accept,
                 RequestOptions requestOptions,
                 Context context);
 
-        @Get("/app/collections")
+        @Get("/app/governance/constitution")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(
                 value = ClientAuthenticationException.class,
@@ -224,10 +205,29 @@ public final class ConfidentialLedgerClientImpl {
                 value = ResourceModifiedException.class,
                 code = {409})
         @UnexpectedResponseExceptionType(HttpResponseException.class)
-        Mono<Response<BinaryData>> listCollections(
-                @HostParam("ledgerEndpoint") String ledgerEndpoint,
+        Mono<Response<Void>> getConstitution(
+                @HostParam("ledgerUri") String ledgerUri,
                 @QueryParam("api-version") String apiVersion,
-                @HeaderParam("Accept") String accept,
+                @HeaderParam("accept") String accept,
+                RequestOptions requestOptions,
+                Context context);
+
+        @Get("/app/governance/members")
+        @ExpectedResponses({200})
+        @UnexpectedResponseExceptionType(
+                value = ClientAuthenticationException.class,
+                code = {401})
+        @UnexpectedResponseExceptionType(
+                value = ResourceNotFoundException.class,
+                code = {404})
+        @UnexpectedResponseExceptionType(
+                value = ResourceModifiedException.class,
+                code = {409})
+        @UnexpectedResponseExceptionType(HttpResponseException.class)
+        Mono<Response<Void>> getConsortiumMembers(
+                @HostParam("ledgerUri") String ledgerUri,
+                @QueryParam("api-version") String apiVersion,
+                @HeaderParam("accept") String accept,
                 RequestOptions requestOptions,
                 Context context);
 
@@ -244,14 +244,14 @@ public final class ConfidentialLedgerClientImpl {
                 code = {409})
         @UnexpectedResponseExceptionType(HttpResponseException.class)
         Mono<Response<BinaryData>> listLedgerEntries(
-                @HostParam("ledgerEndpoint") String ledgerEndpoint,
+                @HostParam("ledgerUri") String ledgerUri,
                 @QueryParam("api-version") String apiVersion,
-                @HeaderParam("Accept") String accept,
+                @HeaderParam("accept") String accept,
                 RequestOptions requestOptions,
                 Context context);
 
         @Post("/app/transactions")
-        @ExpectedResponses({200})
+        @ExpectedResponses({201})
         @UnexpectedResponseExceptionType(
                 value = ClientAuthenticationException.class,
                 code = {401})
@@ -262,11 +262,11 @@ public final class ConfidentialLedgerClientImpl {
                 value = ResourceModifiedException.class,
                 code = {409})
         @UnexpectedResponseExceptionType(HttpResponseException.class)
-        Mono<Response<BinaryData>> createLedgerEntry(
-                @HostParam("ledgerEndpoint") String ledgerEndpoint,
+        Mono<Response<Void>> createLedgerEntry(
+                @HostParam("ledgerUri") String ledgerUri,
                 @QueryParam("api-version") String apiVersion,
-                @BodyParam("application/json") BinaryData entry,
-                @HeaderParam("Accept") String accept,
+                @HeaderParam("accept") String accept,
+                @BodyParam("application/json") BinaryData resourceCreateOrReplaceModel,
                 RequestOptions requestOptions,
                 Context context);
 
@@ -283,10 +283,10 @@ public final class ConfidentialLedgerClientImpl {
                 code = {409})
         @UnexpectedResponseExceptionType(HttpResponseException.class)
         Mono<Response<BinaryData>> getLedgerEntry(
-                @HostParam("ledgerEndpoint") String ledgerEndpoint,
-                @QueryParam("api-version") String apiVersion,
+                @HostParam("ledgerUri") String ledgerUri,
                 @PathParam("transactionId") String transactionId,
-                @HeaderParam("Accept") String accept,
+                @QueryParam("api-version") String apiVersion,
+                @HeaderParam("accept") String accept,
                 RequestOptions requestOptions,
                 Context context);
 
@@ -303,10 +303,10 @@ public final class ConfidentialLedgerClientImpl {
                 code = {409})
         @UnexpectedResponseExceptionType(HttpResponseException.class)
         Mono<Response<BinaryData>> getReceipt(
-                @HostParam("ledgerEndpoint") String ledgerEndpoint,
-                @QueryParam("api-version") String apiVersion,
+                @HostParam("ledgerUri") String ledgerUri,
                 @PathParam("transactionId") String transactionId,
-                @HeaderParam("Accept") String accept,
+                @QueryParam("api-version") String apiVersion,
+                @HeaderParam("accept") String accept,
                 RequestOptions requestOptions,
                 Context context);
 
@@ -323,14 +323,14 @@ public final class ConfidentialLedgerClientImpl {
                 code = {409})
         @UnexpectedResponseExceptionType(HttpResponseException.class)
         Mono<Response<BinaryData>> getTransactionStatus(
-                @HostParam("ledgerEndpoint") String ledgerEndpoint,
-                @QueryParam("api-version") String apiVersion,
+                @HostParam("ledgerUri") String ledgerUri,
                 @PathParam("transactionId") String transactionId,
-                @HeaderParam("Accept") String accept,
+                @QueryParam("api-version") String apiVersion,
+                @HeaderParam("accept") String accept,
                 RequestOptions requestOptions,
                 Context context);
 
-        @Get("/app/transactions/current")
+        @Get("/app/transactions:getCurrentLedgerEntry")
         @ExpectedResponses({200})
         @UnexpectedResponseExceptionType(
                 value = ClientAuthenticationException.class,
@@ -343,9 +343,9 @@ public final class ConfidentialLedgerClientImpl {
                 code = {409})
         @UnexpectedResponseExceptionType(HttpResponseException.class)
         Mono<Response<BinaryData>> getCurrentLedgerEntry(
-                @HostParam("ledgerEndpoint") String ledgerEndpoint,
+                @HostParam("ledgerUri") String ledgerUri,
                 @QueryParam("api-version") String apiVersion,
-                @HeaderParam("Accept") String accept,
+                @HeaderParam("accept") String accept,
                 RequestOptions requestOptions,
                 Context context);
 
@@ -362,10 +362,10 @@ public final class ConfidentialLedgerClientImpl {
                 code = {409})
         @UnexpectedResponseExceptionType(HttpResponseException.class)
         Mono<Response<Void>> deleteUser(
-                @HostParam("ledgerEndpoint") String ledgerEndpoint,
+                @HostParam("ledgerUri") String ledgerUri,
+                @PathParam("userId") String userId,
                 @QueryParam("api-version") String apiVersion,
-                @PathParam(value = "userId", encoded = true) String userId,
-                @HeaderParam("Accept") String accept,
+                @HeaderParam("accept") String accept,
                 RequestOptions requestOptions,
                 Context context);
 
@@ -382,15 +382,15 @@ public final class ConfidentialLedgerClientImpl {
                 code = {409})
         @UnexpectedResponseExceptionType(HttpResponseException.class)
         Mono<Response<BinaryData>> getUser(
-                @HostParam("ledgerEndpoint") String ledgerEndpoint,
+                @HostParam("ledgerUri") String ledgerUri,
+                @PathParam("userId") String userId,
                 @QueryParam("api-version") String apiVersion,
-                @PathParam(value = "userId", encoded = true) String userId,
-                @HeaderParam("Accept") String accept,
+                @HeaderParam("accept") String accept,
                 RequestOptions requestOptions,
                 Context context);
 
         @Patch("/app/users/{userId}")
-        @ExpectedResponses({200})
+        @ExpectedResponses({200, 201})
         @UnexpectedResponseExceptionType(
                 value = ClientAuthenticationException.class,
                 code = {401})
@@ -402,49 +402,12 @@ public final class ConfidentialLedgerClientImpl {
                 code = {409})
         @UnexpectedResponseExceptionType(HttpResponseException.class)
         Mono<Response<BinaryData>> createOrUpdateUser(
-                @HostParam("ledgerEndpoint") String ledgerEndpoint,
+                @HostParam("ledgerUri") String ledgerUri,
+                @PathParam("userId") String userId,
+                @HeaderParam("content-type") String contentType,
                 @QueryParam("api-version") String apiVersion,
-                @PathParam(value = "userId", encoded = true) String userId,
-                @BodyParam("application/merge-patch+json") BinaryData userDetails,
-                @HeaderParam("Accept") String accept,
-                RequestOptions requestOptions,
-                Context context);
-
-        @Get("{nextLink}")
-        @ExpectedResponses({200})
-        @UnexpectedResponseExceptionType(
-                value = ClientAuthenticationException.class,
-                code = {401})
-        @UnexpectedResponseExceptionType(
-                value = ResourceNotFoundException.class,
-                code = {404})
-        @UnexpectedResponseExceptionType(
-                value = ResourceModifiedException.class,
-                code = {409})
-        @UnexpectedResponseExceptionType(HttpResponseException.class)
-        Mono<Response<BinaryData>> listConsortiumMembersNext(
-                @PathParam(value = "nextLink", encoded = true) String nextLink,
-                @HostParam("ledgerEndpoint") String ledgerEndpoint,
-                @HeaderParam("Accept") String accept,
-                RequestOptions requestOptions,
-                Context context);
-
-        @Get("{nextLink}")
-        @ExpectedResponses({200})
-        @UnexpectedResponseExceptionType(
-                value = ClientAuthenticationException.class,
-                code = {401})
-        @UnexpectedResponseExceptionType(
-                value = ResourceNotFoundException.class,
-                code = {404})
-        @UnexpectedResponseExceptionType(
-                value = ResourceModifiedException.class,
-                code = {409})
-        @UnexpectedResponseExceptionType(HttpResponseException.class)
-        Mono<Response<BinaryData>> listCollectionsNext(
-                @PathParam(value = "nextLink", encoded = true) String nextLink,
-                @HostParam("ledgerEndpoint") String ledgerEndpoint,
-                @HeaderParam("Accept") String accept,
+                @HeaderParam("accept") String accept,
+                @BodyParam("application/merge-patch+json") BinaryData ledgerUser,
                 RequestOptions requestOptions,
                 Context context);
 
@@ -462,22 +425,25 @@ public final class ConfidentialLedgerClientImpl {
         @UnexpectedResponseExceptionType(HttpResponseException.class)
         Mono<Response<BinaryData>> listLedgerEntriesNext(
                 @PathParam(value = "nextLink", encoded = true) String nextLink,
-                @HostParam("ledgerEndpoint") String ledgerEndpoint,
-                @HeaderParam("Accept") String accept,
+                @HostParam("ledgerUri") String ledgerUri,
+                @HeaderParam("accept") String accept,
                 RequestOptions requestOptions,
                 Context context);
     }
 
     /**
-     * The constitution is a script that assesses and applies proposals from consortium members.
+     * Retrieves a list of collection ids present in the Confidential Ledger
+     *
+     * <p>Collection ids are user-created collections of ledger entries.
      *
      * <p><strong>Response Body Schema</strong>
      *
      * <pre>{@code
-     * {
-     *     digest: String (Required)
-     *     script: String (Required)
-     * }
+     * [
+     *      (Required){
+     *         collectionId: String (Required)
+     *     }
+     * ]
      * }</pre>
      *
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
@@ -485,16 +451,15 @@ public final class ConfidentialLedgerClientImpl {
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
      * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
      * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return the governance script for the application along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<BinaryData>> getConstitutionWithResponseAsync(RequestOptions requestOptions) {
+    public Mono<Response<BinaryData>> listCollectionsWithResponseAsync(RequestOptions requestOptions) {
         final String accept = "application/json";
         return FluxUtil.withContext(
                 context ->
-                        service.getConstitution(
-                                this.getLedgerEndpoint(),
+                        service.listCollections(
+                                this.getLedgerUri(),
                                 this.getServiceVersion().getVersion(),
                                 accept,
                                 requestOptions,
@@ -502,270 +467,18 @@ public final class ConfidentialLedgerClientImpl {
     }
 
     /**
-     * The constitution is a script that assesses and applies proposals from consortium members.
+     * Retrieves a list of collection ids present in the Confidential Ledger
+     *
+     * <p>Collection ids are user-created collections of ledger entries.
      *
      * <p><strong>Response Body Schema</strong>
      *
      * <pre>{@code
-     * {
-     *     digest: String (Required)
-     *     script: String (Required)
-     * }
-     * }</pre>
-     *
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @param context The context to associate with this operation.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return the governance script for the application along with {@link Response} on successful completion of {@link
-     *     Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<BinaryData>> getConstitutionWithResponseAsync(RequestOptions requestOptions, Context context) {
-        final String accept = "application/json";
-        return service.getConstitution(
-                this.getLedgerEndpoint(), this.getServiceVersion().getVersion(), accept, requestOptions, context);
-    }
-
-    /**
-     * The constitution is a script that assesses and applies proposals from consortium members.
-     *
-     * <p><strong>Response Body Schema</strong>
-     *
-     * <pre>{@code
-     * {
-     *     digest: String (Required)
-     *     script: String (Required)
-     * }
-     * }</pre>
-     *
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return the governance script for the application along with {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<BinaryData> getConstitutionWithResponse(RequestOptions requestOptions) {
-        return getConstitutionWithResponseAsync(requestOptions).block();
-    }
-
-    /**
-     * Consortium members can manage the Confidential Ledger.
-     *
-     * <p><strong>Response Body Schema</strong>
-     *
-     * <pre>{@code
-     * {
-     *     members (Required): [
-     *          (Required){
-     *             certificate: String (Required)
-     *             id: String (Required)
-     *         }
-     *     ]
-     *     nextLink: String (Optional)
-     * }
-     * }</pre>
-     *
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return list of members in the consortium along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<PagedResponse<BinaryData>> listConsortiumMembersSinglePageAsync(RequestOptions requestOptions) {
-        final String accept = "application/json";
-        return FluxUtil.withContext(
-                        context ->
-                                service.listConsortiumMembers(
-                                        this.getLedgerEndpoint(),
-                                        this.getServiceVersion().getVersion(),
-                                        accept,
-                                        requestOptions,
-                                        context))
-                .map(
-                        res ->
-                                new PagedResponseBase<>(
-                                        res.getRequest(),
-                                        res.getStatusCode(),
-                                        res.getHeaders(),
-                                        getValues(res.getValue(), "members"),
-                                        getNextLink(res.getValue(), "nextLink"),
-                                        null));
-    }
-
-    /**
-     * Consortium members can manage the Confidential Ledger.
-     *
-     * <p><strong>Response Body Schema</strong>
-     *
-     * <pre>{@code
-     * {
-     *     members (Required): [
-     *          (Required){
-     *             certificate: String (Required)
-     *             id: String (Required)
-     *         }
-     *     ]
-     *     nextLink: String (Optional)
-     * }
-     * }</pre>
-     *
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @param context The context to associate with this operation.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return list of members in the consortium along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<PagedResponse<BinaryData>> listConsortiumMembersSinglePageAsync(
-            RequestOptions requestOptions, Context context) {
-        final String accept = "application/json";
-        return service.listConsortiumMembers(
-                        this.getLedgerEndpoint(),
-                        this.getServiceVersion().getVersion(),
-                        accept,
-                        requestOptions,
-                        context)
-                .map(
-                        res ->
-                                new PagedResponseBase<>(
-                                        res.getRequest(),
-                                        res.getStatusCode(),
-                                        res.getHeaders(),
-                                        getValues(res.getValue(), "members"),
-                                        getNextLink(res.getValue(), "nextLink"),
-                                        null));
-    }
-
-    /**
-     * Consortium members can manage the Confidential Ledger.
-     *
-     * <p><strong>Response Body Schema</strong>
-     *
-     * <pre>{@code
-     * {
-     *     members (Required): [
-     *          (Required){
-     *             certificate: String (Required)
-     *             id: String (Required)
-     *         }
-     *     ]
-     *     nextLink: String (Optional)
-     * }
-     * }</pre>
-     *
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return list of members in the consortium as paginated response with {@link PagedFlux}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedFlux<BinaryData> listConsortiumMembersAsync(RequestOptions requestOptions) {
-        RequestOptions requestOptionsForNextPage = new RequestOptions();
-        requestOptionsForNextPage.setContext(
-                requestOptions != null && requestOptions.getContext() != null
-                        ? requestOptions.getContext()
-                        : Context.NONE);
-        return new PagedFlux<>(
-                () -> listConsortiumMembersSinglePageAsync(requestOptions),
-                nextLink -> listConsortiumMembersNextSinglePageAsync(nextLink, requestOptionsForNextPage));
-    }
-
-    /**
-     * Consortium members can manage the Confidential Ledger.
-     *
-     * <p><strong>Response Body Schema</strong>
-     *
-     * <pre>{@code
-     * {
-     *     members (Required): [
-     *          (Required){
-     *             certificate: String (Required)
-     *             id: String (Required)
-     *         }
-     *     ]
-     *     nextLink: String (Optional)
-     * }
-     * }</pre>
-     *
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @param context The context to associate with this operation.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return list of members in the consortium as paginated response with {@link PagedFlux}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedFlux<BinaryData> listConsortiumMembersAsync(RequestOptions requestOptions, Context context) {
-        RequestOptions requestOptionsForNextPage = new RequestOptions();
-        requestOptionsForNextPage.setContext(
-                requestOptions != null && requestOptions.getContext() != null
-                        ? requestOptions.getContext()
-                        : Context.NONE);
-        return new PagedFlux<>(
-                () -> listConsortiumMembersSinglePageAsync(requestOptions, context),
-                nextLink -> listConsortiumMembersNextSinglePageAsync(nextLink, requestOptionsForNextPage, context));
-    }
-
-    /**
-     * Consortium members can manage the Confidential Ledger.
-     *
-     * <p><strong>Response Body Schema</strong>
-     *
-     * <pre>{@code
-     * {
-     *     members (Required): [
-     *          (Required){
-     *             certificate: String (Required)
-     *             id: String (Required)
-     *         }
-     *     ]
-     *     nextLink: String (Optional)
-     * }
-     * }</pre>
-     *
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return list of members in the consortium as paginated response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<BinaryData> listConsortiumMembers(RequestOptions requestOptions) {
-        return new PagedIterable<>(listConsortiumMembersAsync(requestOptions));
-    }
-
-    /**
-     * A quote is an SGX enclave measurement that can be used to verify the validity of a node and its enclave.
-     *
-     * <p><strong>Response Body Schema</strong>
-     *
-     * <pre>{@code
-     * {
-     *     currentNodeId: String (Required)
-     *     enclaveQuotes (Required): {
-     *         String (Required): {
-     *             nodeId: String (Required)
-     *             mrenclave: String (Optional)
-     *             quoteVersion: String (Required)
-     *             raw: String (Required)
-     *         }
+     * [
+     *      (Required){
+     *         collectionId: String (Required)
      *     }
-     * }
+     * ]
      * }</pre>
      *
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
@@ -773,16 +486,32 @@ public final class ConfidentialLedgerClientImpl {
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
      * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
      * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return information about the enclaves running the Confidential Ledger along with {@link Response} on successful
-     *     completion of {@link Mono}.
+     * @return the response body along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<BinaryData>> getEnclaveQuotesWithResponseAsync(RequestOptions requestOptions) {
+    public Response<BinaryData> listCollectionsWithResponse(RequestOptions requestOptions) {
+        return listCollectionsWithResponseAsync(requestOptions).block();
+    }
+
+    /**
+     * Gets quotes for all nodes of the Confidential Ledger.
+     *
+     * <p>A quote is an SGX enclave measurement that can be used to verify the validity of a node and its enclave.
+     *
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return the {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<Void>> getEnclaveQuotesWithResponseAsync(RequestOptions requestOptions) {
         final String accept = "application/json";
         return FluxUtil.withContext(
                 context ->
                         service.getEnclaveQuotes(
-                                this.getLedgerEndpoint(),
+                                this.getLedgerUri(),
                                 this.getServiceVersion().getVersion(),
                                 accept,
                                 requestOptions,
@@ -790,292 +519,119 @@ public final class ConfidentialLedgerClientImpl {
     }
 
     /**
-     * A quote is an SGX enclave measurement that can be used to verify the validity of a node and its enclave.
+     * Gets quotes for all nodes of the Confidential Ledger.
      *
-     * <p><strong>Response Body Schema</strong>
-     *
-     * <pre>{@code
-     * {
-     *     currentNodeId: String (Required)
-     *     enclaveQuotes (Required): {
-     *         String (Required): {
-     *             nodeId: String (Required)
-     *             mrenclave: String (Optional)
-     *             quoteVersion: String (Required)
-     *             raw: String (Required)
-     *         }
-     *     }
-     * }
-     * }</pre>
-     *
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @param context The context to associate with this operation.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return information about the enclaves running the Confidential Ledger along with {@link Response} on successful
-     *     completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<BinaryData>> getEnclaveQuotesWithResponseAsync(
-            RequestOptions requestOptions, Context context) {
-        final String accept = "application/json";
-        return service.getEnclaveQuotes(
-                this.getLedgerEndpoint(), this.getServiceVersion().getVersion(), accept, requestOptions, context);
-    }
-
-    /**
-     * A quote is an SGX enclave measurement that can be used to verify the validity of a node and its enclave.
-     *
-     * <p><strong>Response Body Schema</strong>
-     *
-     * <pre>{@code
-     * {
-     *     currentNodeId: String (Required)
-     *     enclaveQuotes (Required): {
-     *         String (Required): {
-     *             nodeId: String (Required)
-     *             mrenclave: String (Optional)
-     *             quoteVersion: String (Required)
-     *             raw: String (Required)
-     *         }
-     *     }
-     * }
-     * }</pre>
+     * <p>A quote is an SGX enclave measurement that can be used to verify the validity of a node and its enclave.
      *
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
      * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
      * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return information about the enclaves running the Confidential Ledger along with {@link Response}.
+     * @return the {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<BinaryData> getEnclaveQuotesWithResponse(RequestOptions requestOptions) {
+    public Response<Void> getEnclaveQuotesWithResponse(RequestOptions requestOptions) {
         return getEnclaveQuotesWithResponseAsync(requestOptions).block();
     }
 
     /**
-     * Collection ids are user-created collections of ledger entries.
+     * Gets the constitution used for governance.
      *
-     * <p><strong>Response Body Schema</strong>
-     *
-     * <pre>{@code
-     * {
-     *     collections (Required): [
-     *          (Required){
-     *             collectionId: String (Required)
-     *         }
-     *     ]
-     *     nextLink: String (Optional)
-     * }
-     * }</pre>
+     * <p>The constitution is a script that assesses and applies proposals from consortium members.
      *
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
      * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
      * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return paginated collections returned in response to a query along with {@link PagedResponse} on successful
-     *     completion of {@link Mono}.
+     * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<PagedResponse<BinaryData>> listCollectionsSinglePageAsync(RequestOptions requestOptions) {
+    public Mono<Response<Void>> getConstitutionWithResponseAsync(RequestOptions requestOptions) {
         final String accept = "application/json";
         return FluxUtil.withContext(
-                        context ->
-                                service.listCollections(
-                                        this.getLedgerEndpoint(),
-                                        this.getServiceVersion().getVersion(),
-                                        accept,
-                                        requestOptions,
-                                        context))
-                .map(
-                        res ->
-                                new PagedResponseBase<>(
-                                        res.getRequest(),
-                                        res.getStatusCode(),
-                                        res.getHeaders(),
-                                        getValues(res.getValue(), "collections"),
-                                        getNextLink(res.getValue(), "nextLink"),
-                                        null));
+                context ->
+                        service.getConstitution(
+                                this.getLedgerUri(),
+                                this.getServiceVersion().getVersion(),
+                                accept,
+                                requestOptions,
+                                context));
     }
 
     /**
-     * Collection ids are user-created collections of ledger entries.
+     * Gets the constitution used for governance.
      *
-     * <p><strong>Response Body Schema</strong>
-     *
-     * <pre>{@code
-     * {
-     *     collections (Required): [
-     *          (Required){
-     *             collectionId: String (Required)
-     *         }
-     *     ]
-     *     nextLink: String (Optional)
-     * }
-     * }</pre>
+     * <p>The constitution is a script that assesses and applies proposals from consortium members.
      *
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @param context The context to associate with this operation.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
      * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
      * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return paginated collections returned in response to a query along with {@link PagedResponse} on successful
-     *     completion of {@link Mono}.
+     * @return the {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<PagedResponse<BinaryData>> listCollectionsSinglePageAsync(
-            RequestOptions requestOptions, Context context) {
+    public Response<Void> getConstitutionWithResponse(RequestOptions requestOptions) {
+        return getConstitutionWithResponseAsync(requestOptions).block();
+    }
+
+    /**
+     * Gets the consortium members.
+     *
+     * <p>Consortium members can manage the Confidential Ledger.
+     *
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return the {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<Void>> getConsortiumMembersWithResponseAsync(RequestOptions requestOptions) {
         final String accept = "application/json";
-        return service.listCollections(
-                        this.getLedgerEndpoint(),
-                        this.getServiceVersion().getVersion(),
-                        accept,
-                        requestOptions,
-                        context)
-                .map(
-                        res ->
-                                new PagedResponseBase<>(
-                                        res.getRequest(),
-                                        res.getStatusCode(),
-                                        res.getHeaders(),
-                                        getValues(res.getValue(), "collections"),
-                                        getNextLink(res.getValue(), "nextLink"),
-                                        null));
+        return FluxUtil.withContext(
+                context ->
+                        service.getConsortiumMembers(
+                                this.getLedgerUri(),
+                                this.getServiceVersion().getVersion(),
+                                accept,
+                                requestOptions,
+                                context));
     }
 
     /**
-     * Collection ids are user-created collections of ledger entries.
+     * Gets the consortium members.
      *
-     * <p><strong>Response Body Schema</strong>
-     *
-     * <pre>{@code
-     * {
-     *     collections (Required): [
-     *          (Required){
-     *             collectionId: String (Required)
-     *         }
-     *     ]
-     *     nextLink: String (Optional)
-     * }
-     * }</pre>
+     * <p>Consortium members can manage the Confidential Ledger.
      *
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
      * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
      * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return paginated collections returned in response to a query as paginated response with {@link PagedFlux}.
+     * @return the {@link Response}.
      */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedFlux<BinaryData> listCollectionsAsync(RequestOptions requestOptions) {
-        RequestOptions requestOptionsForNextPage = new RequestOptions();
-        requestOptionsForNextPage.setContext(
-                requestOptions != null && requestOptions.getContext() != null
-                        ? requestOptions.getContext()
-                        : Context.NONE);
-        return new PagedFlux<>(
-                () -> listCollectionsSinglePageAsync(requestOptions),
-                nextLink -> listCollectionsNextSinglePageAsync(nextLink, requestOptionsForNextPage));
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<Void> getConsortiumMembersWithResponse(RequestOptions requestOptions) {
+        return getConsortiumMembersWithResponseAsync(requestOptions).block();
     }
 
     /**
-     * Collection ids are user-created collections of ledger entries.
+     * Gets ledger entries from a collection corresponding to a range.
      *
-     * <p><strong>Response Body Schema</strong>
-     *
-     * <pre>{@code
-     * {
-     *     collections (Required): [
-     *          (Required){
-     *             collectionId: String (Required)
-     *         }
-     *     ]
-     *     nextLink: String (Optional)
-     * }
-     * }</pre>
-     *
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @param context The context to associate with this operation.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return paginated collections returned in response to a query as paginated response with {@link PagedFlux}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedFlux<BinaryData> listCollectionsAsync(RequestOptions requestOptions, Context context) {
-        RequestOptions requestOptionsForNextPage = new RequestOptions();
-        requestOptionsForNextPage.setContext(
-                requestOptions != null && requestOptions.getContext() != null
-                        ? requestOptions.getContext()
-                        : Context.NONE);
-        return new PagedFlux<>(
-                () -> listCollectionsSinglePageAsync(requestOptions, context),
-                nextLink -> listCollectionsNextSinglePageAsync(nextLink, requestOptionsForNextPage, context));
-    }
-
-    /**
-     * Collection ids are user-created collections of ledger entries.
-     *
-     * <p><strong>Response Body Schema</strong>
-     *
-     * <pre>{@code
-     * {
-     *     collections (Required): [
-     *          (Required){
-     *             collectionId: String (Required)
-     *         }
-     *     ]
-     *     nextLink: String (Optional)
-     * }
-     * }</pre>
-     *
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return paginated collections returned in response to a query as paginated response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<BinaryData> listCollections(RequestOptions requestOptions) {
-        return new PagedIterable<>(listCollectionsAsync(requestOptions));
-    }
-
-    /**
-     * A collection id may optionally be specified. Only entries in the specified (or default) collection will be
+     * <p>A collection id may optionally be specified. Only entries in the specified (or default) collection will be
      * returned.
      *
-     * <p><strong>Query Parameters</strong>
-     *
-     * <table border="1">
-     *     <caption>Query Parameters</caption>
-     *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>collectionId</td><td>String</td><td>No</td><td>The collection id.</td></tr>
-     *     <tr><td>fromTransactionId</td><td>String</td><td>No</td><td>Specify the first transaction ID in a range.</td></tr>
-     *     <tr><td>toTransactionId</td><td>String</td><td>No</td><td>Specify the last transaction ID in a range.</td></tr>
-     * </table>
-     *
-     * You can add these to a request with {@link RequestOptions#addQueryParam}
-     *
      * <p><strong>Response Body Schema</strong>
      *
      * <pre>{@code
      * {
-     *     state: String(Loading/Ready) (Required)
-     *     nextLink: String (Optional)
-     *     entries (Required): [
-     *          (Required){
-     *             contents: String (Required)
-     *             collectionId: String (Optional)
-     *             transactionId: String (Optional)
-     *         }
-     *     ]
+     *     contents: String (Required)
+     *     collectionId: String (Required)
+     *     transactionId: String (Required)
      * }
      * }</pre>
      *
@@ -1088,12 +644,12 @@ public final class ConfidentialLedgerClientImpl {
      *     completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<PagedResponse<BinaryData>> listLedgerEntriesSinglePageAsync(RequestOptions requestOptions) {
+    private Mono<PagedResponse<BinaryData>> listLedgerEntriesSinglePageAsync(RequestOptions requestOptions) {
         final String accept = "application/json";
         return FluxUtil.withContext(
                         context ->
                                 service.listLedgerEntries(
-                                        this.getLedgerEndpoint(),
+                                        this.getLedgerUri(),
                                         this.getServiceVersion().getVersion(),
                                         accept,
                                         requestOptions,
@@ -1110,96 +666,18 @@ public final class ConfidentialLedgerClientImpl {
     }
 
     /**
-     * A collection id may optionally be specified. Only entries in the specified (or default) collection will be
+     * Gets ledger entries from a collection corresponding to a range.
+     *
+     * <p>A collection id may optionally be specified. Only entries in the specified (or default) collection will be
      * returned.
-     *
-     * <p><strong>Query Parameters</strong>
-     *
-     * <table border="1">
-     *     <caption>Query Parameters</caption>
-     *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>collectionId</td><td>String</td><td>No</td><td>The collection id.</td></tr>
-     *     <tr><td>fromTransactionId</td><td>String</td><td>No</td><td>Specify the first transaction ID in a range.</td></tr>
-     *     <tr><td>toTransactionId</td><td>String</td><td>No</td><td>Specify the last transaction ID in a range.</td></tr>
-     * </table>
-     *
-     * You can add these to a request with {@link RequestOptions#addQueryParam}
      *
      * <p><strong>Response Body Schema</strong>
      *
      * <pre>{@code
      * {
-     *     state: String(Loading/Ready) (Required)
-     *     nextLink: String (Optional)
-     *     entries (Required): [
-     *          (Required){
-     *             contents: String (Required)
-     *             collectionId: String (Optional)
-     *             transactionId: String (Optional)
-     *         }
-     *     ]
-     * }
-     * }</pre>
-     *
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @param context The context to associate with this operation.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return paginated ledger entries returned in response to a query along with {@link PagedResponse} on successful
-     *     completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<PagedResponse<BinaryData>> listLedgerEntriesSinglePageAsync(
-            RequestOptions requestOptions, Context context) {
-        final String accept = "application/json";
-        return service.listLedgerEntries(
-                        this.getLedgerEndpoint(),
-                        this.getServiceVersion().getVersion(),
-                        accept,
-                        requestOptions,
-                        context)
-                .map(
-                        res ->
-                                new PagedResponseBase<>(
-                                        res.getRequest(),
-                                        res.getStatusCode(),
-                                        res.getHeaders(),
-                                        getValues(res.getValue(), "entries"),
-                                        getNextLink(res.getValue(), "nextLink"),
-                                        null));
-    }
-
-    /**
-     * A collection id may optionally be specified. Only entries in the specified (or default) collection will be
-     * returned.
-     *
-     * <p><strong>Query Parameters</strong>
-     *
-     * <table border="1">
-     *     <caption>Query Parameters</caption>
-     *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>collectionId</td><td>String</td><td>No</td><td>The collection id.</td></tr>
-     *     <tr><td>fromTransactionId</td><td>String</td><td>No</td><td>Specify the first transaction ID in a range.</td></tr>
-     *     <tr><td>toTransactionId</td><td>String</td><td>No</td><td>Specify the last transaction ID in a range.</td></tr>
-     * </table>
-     *
-     * You can add these to a request with {@link RequestOptions#addQueryParam}
-     *
-     * <p><strong>Response Body Schema</strong>
-     *
-     * <pre>{@code
-     * {
-     *     state: String(Loading/Ready) (Required)
-     *     nextLink: String (Optional)
-     *     entries (Required): [
-     *          (Required){
-     *             contents: String (Required)
-     *             collectionId: String (Optional)
-     *             transactionId: String (Optional)
-     *         }
-     *     ]
+     *     contents: String (Required)
+     *     collectionId: String (Required)
+     *     transactionId: String (Required)
      * }
      * }</pre>
      *
@@ -1223,86 +701,18 @@ public final class ConfidentialLedgerClientImpl {
     }
 
     /**
-     * A collection id may optionally be specified. Only entries in the specified (or default) collection will be
+     * Gets ledger entries from a collection corresponding to a range.
+     *
+     * <p>A collection id may optionally be specified. Only entries in the specified (or default) collection will be
      * returned.
-     *
-     * <p><strong>Query Parameters</strong>
-     *
-     * <table border="1">
-     *     <caption>Query Parameters</caption>
-     *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>collectionId</td><td>String</td><td>No</td><td>The collection id.</td></tr>
-     *     <tr><td>fromTransactionId</td><td>String</td><td>No</td><td>Specify the first transaction ID in a range.</td></tr>
-     *     <tr><td>toTransactionId</td><td>String</td><td>No</td><td>Specify the last transaction ID in a range.</td></tr>
-     * </table>
-     *
-     * You can add these to a request with {@link RequestOptions#addQueryParam}
      *
      * <p><strong>Response Body Schema</strong>
      *
      * <pre>{@code
      * {
-     *     state: String(Loading/Ready) (Required)
-     *     nextLink: String (Optional)
-     *     entries (Required): [
-     *          (Required){
-     *             contents: String (Required)
-     *             collectionId: String (Optional)
-     *             transactionId: String (Optional)
-     *         }
-     *     ]
-     * }
-     * }</pre>
-     *
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @param context The context to associate with this operation.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return paginated ledger entries returned in response to a query as paginated response with {@link PagedFlux}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedFlux<BinaryData> listLedgerEntriesAsync(RequestOptions requestOptions, Context context) {
-        RequestOptions requestOptionsForNextPage = new RequestOptions();
-        requestOptionsForNextPage.setContext(
-                requestOptions != null && requestOptions.getContext() != null
-                        ? requestOptions.getContext()
-                        : Context.NONE);
-        return new PagedFlux<>(
-                () -> listLedgerEntriesSinglePageAsync(requestOptions, context),
-                nextLink -> listLedgerEntriesNextSinglePageAsync(nextLink, requestOptionsForNextPage, context));
-    }
-
-    /**
-     * A collection id may optionally be specified. Only entries in the specified (or default) collection will be
-     * returned.
-     *
-     * <p><strong>Query Parameters</strong>
-     *
-     * <table border="1">
-     *     <caption>Query Parameters</caption>
-     *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>collectionId</td><td>String</td><td>No</td><td>The collection id.</td></tr>
-     *     <tr><td>fromTransactionId</td><td>String</td><td>No</td><td>Specify the first transaction ID in a range.</td></tr>
-     *     <tr><td>toTransactionId</td><td>String</td><td>No</td><td>Specify the last transaction ID in a range.</td></tr>
-     * </table>
-     *
-     * You can add these to a request with {@link RequestOptions#addQueryParam}
-     *
-     * <p><strong>Response Body Schema</strong>
-     *
-     * <pre>{@code
-     * {
-     *     state: String(Loading/Ready) (Required)
-     *     nextLink: String (Optional)
-     *     entries (Required): [
-     *          (Required){
-     *             contents: String (Required)
-     *             collectionId: String (Optional)
-     *             transactionId: String (Optional)
-     *         }
-     *     ]
+     *     contents: String (Required)
+     *     collectionId: String (Required)
+     *     transactionId: String (Required)
      * }
      * }</pre>
      *
@@ -1320,7 +730,9 @@ public final class ConfidentialLedgerClientImpl {
     }
 
     /**
-     * A collection id may optionally be specified.
+     * Writes a ledger entry.
+     *
+     * <p>A collection id may optionally be specified.
      *
      * <p><strong>Query Parameters</strong>
      *
@@ -1337,45 +749,36 @@ public final class ConfidentialLedgerClientImpl {
      * <pre>{@code
      * {
      *     contents: String (Required)
-     *     collectionId: String (Optional)
-     *     transactionId: String (Optional)
      * }
      * }</pre>
      *
-     * <p><strong>Response Body Schema</strong>
-     *
-     * <pre>{@code
-     * {
-     *     collectionId: String (Required)
-     * }
-     * }</pre>
-     *
-     * @param entry Ledger entry.
+     * @param resourceCreateOrReplaceModel The template for adding updateable properties.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
      * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
      * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return returned as a result of a write to the Confidential Ledger, the transaction id in the response indicates
-     *     when the write will become durable along with {@link Response} on successful completion of {@link Mono}.
+     * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<BinaryData>> createLedgerEntryWithResponseAsync(
-            BinaryData entry, RequestOptions requestOptions) {
+    public Mono<Response<Void>> createLedgerEntryWithResponseAsync(
+            BinaryData resourceCreateOrReplaceModel, RequestOptions requestOptions) {
         final String accept = "application/json";
         return FluxUtil.withContext(
                 context ->
                         service.createLedgerEntry(
-                                this.getLedgerEndpoint(),
+                                this.getLedgerUri(),
                                 this.getServiceVersion().getVersion(),
-                                entry,
                                 accept,
+                                resourceCreateOrReplaceModel,
                                 requestOptions,
                                 context));
     }
 
     /**
-     * A collection id may optionally be specified.
+     * Writes a ledger entry.
+     *
+     * <p>A collection id may optionally be specified.
      *
      * <p><strong>Query Parameters</strong>
      *
@@ -1392,44 +795,26 @@ public final class ConfidentialLedgerClientImpl {
      * <pre>{@code
      * {
      *     contents: String (Required)
-     *     collectionId: String (Optional)
-     *     transactionId: String (Optional)
      * }
      * }</pre>
      *
-     * <p><strong>Response Body Schema</strong>
-     *
-     * <pre>{@code
-     * {
-     *     collectionId: String (Required)
-     * }
-     * }</pre>
-     *
-     * @param entry Ledger entry.
+     * @param resourceCreateOrReplaceModel The template for adding updateable properties.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @param context The context to associate with this operation.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
      * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
      * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return returned as a result of a write to the Confidential Ledger, the transaction id in the response indicates
-     *     when the write will become durable along with {@link Response} on successful completion of {@link Mono}.
+     * @return the {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<BinaryData>> createLedgerEntryWithResponseAsync(
-            BinaryData entry, RequestOptions requestOptions, Context context) {
-        final String accept = "application/json";
-        return service.createLedgerEntry(
-                this.getLedgerEndpoint(),
-                this.getServiceVersion().getVersion(),
-                entry,
-                accept,
-                requestOptions,
-                context);
+    public Response<Void> createLedgerEntryWithResponse(
+            BinaryData resourceCreateOrReplaceModel, RequestOptions requestOptions) {
+        return createLedgerEntryWithResponseAsync(resourceCreateOrReplaceModel, requestOptions).block();
     }
 
     /**
-     * A collection id may optionally be specified.
+     * Gets the ledger entry at the specified transaction id. A collection id may optionally be specified to indicate
+     * the collection from which to fetch the value.
      *
      * <p><strong>Query Parameters</strong>
      *
@@ -1441,74 +826,24 @@ public final class ConfidentialLedgerClientImpl {
      *
      * You can add these to a request with {@link RequestOptions#addQueryParam}
      *
-     * <p><strong>Request Body Schema</strong>
+     * <p><strong>Response Body Schema</strong>
      *
      * <pre>{@code
      * {
      *     contents: String (Required)
-     *     collectionId: String (Optional)
-     *     transactionId: String (Optional)
-     * }
-     * }</pre>
-     *
-     * <p><strong>Response Body Schema</strong>
-     *
-     * <pre>{@code
-     * {
      *     collectionId: String (Required)
+     *     transactionId: String (Required)
      * }
      * }</pre>
      *
-     * @param entry Ledger entry.
+     * @param transactionId A unique identifier for the state of the ledger. If returned as part of a LedgerEntry, it
+     *     indicates the state from which the entry was read.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
      * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
      * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return returned as a result of a write to the Confidential Ledger, the transaction id in the response indicates
-     *     when the write will become durable along with {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<BinaryData> createLedgerEntryWithResponse(BinaryData entry, RequestOptions requestOptions) {
-        return createLedgerEntryWithResponseAsync(entry, requestOptions).block();
-    }
-
-    /**
-     * To return older ledger entries, the relevant sections of the ledger must be read from disk and validated. To
-     * prevent blocking within the enclave, the response will indicate whether the entry is ready and part of the
-     * response, or if the loading is still ongoing.
-     *
-     * <p><strong>Query Parameters</strong>
-     *
-     * <table border="1">
-     *     <caption>Query Parameters</caption>
-     *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>collectionId</td><td>String</td><td>No</td><td>The collection id.</td></tr>
-     * </table>
-     *
-     * You can add these to a request with {@link RequestOptions#addQueryParam}
-     *
-     * <p><strong>Response Body Schema</strong>
-     *
-     * <pre>{@code
-     * {
-     *     state: String(Loading/Ready) (Required)
-     *     entry (Optional): {
-     *         contents: String (Required)
-     *         collectionId: String (Optional)
-     *         transactionId: String (Optional)
-     *     }
-     * }
-     * }</pre>
-     *
-     * @param transactionId Identifies a write transaction.
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return the result of querying for a ledger entry from an older transaction id along with {@link Response} on
-     *     successful completion of {@link Mono}.
+     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<BinaryData>> getLedgerEntryWithResponseAsync(
@@ -1517,18 +852,17 @@ public final class ConfidentialLedgerClientImpl {
         return FluxUtil.withContext(
                 context ->
                         service.getLedgerEntry(
-                                this.getLedgerEndpoint(),
-                                this.getServiceVersion().getVersion(),
+                                this.getLedgerUri(),
                                 transactionId,
+                                this.getServiceVersion().getVersion(),
                                 accept,
                                 requestOptions,
                                 context));
     }
 
     /**
-     * To return older ledger entries, the relevant sections of the ledger must be read from disk and validated. To
-     * prevent blocking within the enclave, the response will indicate whether the entry is ready and part of the
-     * response, or if the loading is still ongoing.
+     * Gets the ledger entry at the specified transaction id. A collection id may optionally be specified to indicate
+     * the collection from which to fetch the value.
      *
      * <p><strong>Query Parameters</strong>
      *
@@ -1544,73 +878,20 @@ public final class ConfidentialLedgerClientImpl {
      *
      * <pre>{@code
      * {
-     *     state: String(Loading/Ready) (Required)
-     *     entry (Optional): {
-     *         contents: String (Required)
-     *         collectionId: String (Optional)
-     *         transactionId: String (Optional)
-     *     }
+     *     contents: String (Required)
+     *     collectionId: String (Required)
+     *     transactionId: String (Required)
      * }
      * }</pre>
      *
-     * @param transactionId Identifies a write transaction.
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @param context The context to associate with this operation.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return the result of querying for a ledger entry from an older transaction id along with {@link Response} on
-     *     successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<BinaryData>> getLedgerEntryWithResponseAsync(
-            String transactionId, RequestOptions requestOptions, Context context) {
-        final String accept = "application/json";
-        return service.getLedgerEntry(
-                this.getLedgerEndpoint(),
-                this.getServiceVersion().getVersion(),
-                transactionId,
-                accept,
-                requestOptions,
-                context);
-    }
-
-    /**
-     * To return older ledger entries, the relevant sections of the ledger must be read from disk and validated. To
-     * prevent blocking within the enclave, the response will indicate whether the entry is ready and part of the
-     * response, or if the loading is still ongoing.
-     *
-     * <p><strong>Query Parameters</strong>
-     *
-     * <table border="1">
-     *     <caption>Query Parameters</caption>
-     *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>collectionId</td><td>String</td><td>No</td><td>The collection id.</td></tr>
-     * </table>
-     *
-     * You can add these to a request with {@link RequestOptions#addQueryParam}
-     *
-     * <p><strong>Response Body Schema</strong>
-     *
-     * <pre>{@code
-     * {
-     *     state: String(Loading/Ready) (Required)
-     *     entry (Optional): {
-     *         contents: String (Required)
-     *         collectionId: String (Optional)
-     *         transactionId: String (Optional)
-     *     }
-     * }
-     * }</pre>
-     *
-     * @param transactionId Identifies a write transaction.
+     * @param transactionId A unique identifier for the state of the ledger. If returned as part of a LedgerEntry, it
+     *     indicates the state from which the entry was read.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
      * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
      * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return the result of querying for a ledger entry from an older transaction id along with {@link Response}.
+     * @return the response body along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<BinaryData> getLedgerEntryWithResponse(String transactionId, RequestOptions requestOptions) {
@@ -1624,40 +905,21 @@ public final class ConfidentialLedgerClientImpl {
      *
      * <pre>{@code
      * {
-     *     receipt (Optional): {
-     *         cert: String (Optional)
-     *         leaf: String (Optional)
-     *         leafComponents (Optional): {
-     *             claimsDigest: String (Optional)
-     *             commitEvidence: String (Optional)
-     *             writeSetDigest: String (Optional)
-     *         }
-     *         nodeId: String (Required)
-     *         proof (Required): [
-     *              (Required){
-     *                 left: String (Optional)
-     *                 right: String (Optional)
-     *             }
-     *         ]
-     *         root: String (Optional)
-     *         serviceEndorsements (Optional): [
-     *             String (Optional)
-     *         ]
-     *         signature: String (Required)
-     *     }
+     *     receipt: Object (Required)
      *     state: String(Loading/Ready) (Required)
      *     transactionId: String (Required)
      * }
      * }</pre>
      *
-     * @param transactionId Identifies a write transaction.
+     * @param transactionId A unique identifier for the state of the ledger. If returned as part of a LedgerEntry, it
+     *     indicates the state from which the entry was read.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
      * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
      * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return a receipt certifying ledger contents at a particular transaction id along with {@link Response} on
-     *     successful completion of {@link Mono}.
+     * @return a receipt certifying the transaction at the specified id along with {@link Response} on successful
+     *     completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<BinaryData>> getReceiptWithResponseAsync(String transactionId, RequestOptions requestOptions) {
@@ -1665,9 +927,9 @@ public final class ConfidentialLedgerClientImpl {
         return FluxUtil.withContext(
                 context ->
                         service.getReceipt(
-                                this.getLedgerEndpoint(),
-                                this.getServiceVersion().getVersion(),
+                                this.getLedgerUri(),
                                 transactionId,
+                                this.getServiceVersion().getVersion(),
                                 accept,
                                 requestOptions,
                                 context));
@@ -1680,95 +942,20 @@ public final class ConfidentialLedgerClientImpl {
      *
      * <pre>{@code
      * {
-     *     receipt (Optional): {
-     *         cert: String (Optional)
-     *         leaf: String (Optional)
-     *         leafComponents (Optional): {
-     *             claimsDigest: String (Optional)
-     *             commitEvidence: String (Optional)
-     *             writeSetDigest: String (Optional)
-     *         }
-     *         nodeId: String (Required)
-     *         proof (Required): [
-     *              (Required){
-     *                 left: String (Optional)
-     *                 right: String (Optional)
-     *             }
-     *         ]
-     *         root: String (Optional)
-     *         serviceEndorsements (Optional): [
-     *             String (Optional)
-     *         ]
-     *         signature: String (Required)
-     *     }
+     *     receipt: Object (Required)
      *     state: String(Loading/Ready) (Required)
      *     transactionId: String (Required)
      * }
      * }</pre>
      *
-     * @param transactionId Identifies a write transaction.
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @param context The context to associate with this operation.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return a receipt certifying ledger contents at a particular transaction id along with {@link Response} on
-     *     successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<BinaryData>> getReceiptWithResponseAsync(
-            String transactionId, RequestOptions requestOptions, Context context) {
-        final String accept = "application/json";
-        return service.getReceipt(
-                this.getLedgerEndpoint(),
-                this.getServiceVersion().getVersion(),
-                transactionId,
-                accept,
-                requestOptions,
-                context);
-    }
-
-    /**
-     * Gets a receipt certifying ledger contents at a particular transaction id.
-     *
-     * <p><strong>Response Body Schema</strong>
-     *
-     * <pre>{@code
-     * {
-     *     receipt (Optional): {
-     *         cert: String (Optional)
-     *         leaf: String (Optional)
-     *         leafComponents (Optional): {
-     *             claimsDigest: String (Optional)
-     *             commitEvidence: String (Optional)
-     *             writeSetDigest: String (Optional)
-     *         }
-     *         nodeId: String (Required)
-     *         proof (Required): [
-     *              (Required){
-     *                 left: String (Optional)
-     *                 right: String (Optional)
-     *             }
-     *         ]
-     *         root: String (Optional)
-     *         serviceEndorsements (Optional): [
-     *             String (Optional)
-     *         ]
-     *         signature: String (Required)
-     *     }
-     *     state: String(Loading/Ready) (Required)
-     *     transactionId: String (Required)
-     * }
-     * }</pre>
-     *
-     * @param transactionId Identifies a write transaction.
+     * @param transactionId A unique identifier for the state of the ledger. If returned as part of a LedgerEntry, it
+     *     indicates the state from which the entry was read.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
      * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
      * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return a receipt certifying ledger contents at a particular transaction id along with {@link Response}.
+     * @return a receipt certifying the transaction at the specified id along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<BinaryData> getReceiptWithResponse(String transactionId, RequestOptions requestOptions) {
@@ -1776,7 +963,7 @@ public final class ConfidentialLedgerClientImpl {
     }
 
     /**
-     * Gets the status of an entry identified by a transaction id.
+     * Gets a receipt certifying ledger contents at a particular transaction id.
      *
      * <p><strong>Response Body Schema</strong>
      *
@@ -1787,13 +974,14 @@ public final class ConfidentialLedgerClientImpl {
      * }
      * }</pre>
      *
-     * @param transactionId Identifies a write transaction.
+     * @param transactionId A unique identifier for the state of the ledger. If returned as part of a LedgerEntry, it
+     *     indicates the state from which the entry was read.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
      * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
      * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return the status of an entry identified by a transaction id along with {@link Response} on successful
+     * @return response returned to a query for the transaction status along with {@link Response} on successful
      *     completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
@@ -1803,16 +991,16 @@ public final class ConfidentialLedgerClientImpl {
         return FluxUtil.withContext(
                 context ->
                         service.getTransactionStatus(
-                                this.getLedgerEndpoint(),
-                                this.getServiceVersion().getVersion(),
+                                this.getLedgerUri(),
                                 transactionId,
+                                this.getServiceVersion().getVersion(),
                                 accept,
                                 requestOptions,
                                 context));
     }
 
     /**
-     * Gets the status of an entry identified by a transaction id.
+     * Gets a receipt certifying ledger contents at a particular transaction id.
      *
      * <p><strong>Response Body Schema</strong>
      *
@@ -1823,48 +1011,14 @@ public final class ConfidentialLedgerClientImpl {
      * }
      * }</pre>
      *
-     * @param transactionId Identifies a write transaction.
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @param context The context to associate with this operation.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return the status of an entry identified by a transaction id along with {@link Response} on successful
-     *     completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<BinaryData>> getTransactionStatusWithResponseAsync(
-            String transactionId, RequestOptions requestOptions, Context context) {
-        final String accept = "application/json";
-        return service.getTransactionStatus(
-                this.getLedgerEndpoint(),
-                this.getServiceVersion().getVersion(),
-                transactionId,
-                accept,
-                requestOptions,
-                context);
-    }
-
-    /**
-     * Gets the status of an entry identified by a transaction id.
-     *
-     * <p><strong>Response Body Schema</strong>
-     *
-     * <pre>{@code
-     * {
-     *     state: String(Committed/Pending) (Required)
-     *     transactionId: String (Required)
-     * }
-     * }</pre>
-     *
-     * @param transactionId Identifies a write transaction.
+     * @param transactionId A unique identifier for the state of the ledger. If returned as part of a LedgerEntry, it
+     *     indicates the state from which the entry was read.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
      * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
      * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return the status of an entry identified by a transaction id along with {@link Response}.
+     * @return response returned to a query for the transaction status along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<BinaryData> getTransactionStatusWithResponse(String transactionId, RequestOptions requestOptions) {
@@ -1872,7 +1026,7 @@ public final class ConfidentialLedgerClientImpl {
     }
 
     /**
-     * A collection id may optionally be specified.
+     * Gets the current value available in the ledger.
      *
      * <p><strong>Query Parameters</strong>
      *
@@ -1889,8 +1043,8 @@ public final class ConfidentialLedgerClientImpl {
      * <pre>{@code
      * {
      *     contents: String (Required)
-     *     collectionId: String (Optional)
-     *     transactionId: String (Optional)
+     *     collectionId: String (Required)
+     *     transactionId: String (Required)
      * }
      * }</pre>
      *
@@ -1899,7 +1053,7 @@ public final class ConfidentialLedgerClientImpl {
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
      * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
      * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return an entry in the ledger along with {@link Response} on successful completion of {@link Mono}.
+     * @return the response body along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<BinaryData>> getCurrentLedgerEntryWithResponseAsync(RequestOptions requestOptions) {
@@ -1907,7 +1061,7 @@ public final class ConfidentialLedgerClientImpl {
         return FluxUtil.withContext(
                 context ->
                         service.getCurrentLedgerEntry(
-                                this.getLedgerEndpoint(),
+                                this.getLedgerUri(),
                                 this.getServiceVersion().getVersion(),
                                 accept,
                                 requestOptions,
@@ -1915,7 +1069,7 @@ public final class ConfidentialLedgerClientImpl {
     }
 
     /**
-     * A collection id may optionally be specified.
+     * Gets the current value available in the ledger.
      *
      * <p><strong>Query Parameters</strong>
      *
@@ -1932,47 +1086,8 @@ public final class ConfidentialLedgerClientImpl {
      * <pre>{@code
      * {
      *     contents: String (Required)
-     *     collectionId: String (Optional)
-     *     transactionId: String (Optional)
-     * }
-     * }</pre>
-     *
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @param context The context to associate with this operation.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return an entry in the ledger along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<BinaryData>> getCurrentLedgerEntryWithResponseAsync(
-            RequestOptions requestOptions, Context context) {
-        final String accept = "application/json";
-        return service.getCurrentLedgerEntry(
-                this.getLedgerEndpoint(), this.getServiceVersion().getVersion(), accept, requestOptions, context);
-    }
-
-    /**
-     * A collection id may optionally be specified.
-     *
-     * <p><strong>Query Parameters</strong>
-     *
-     * <table border="1">
-     *     <caption>Query Parameters</caption>
-     *     <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
-     *     <tr><td>collectionId</td><td>String</td><td>No</td><td>The collection id.</td></tr>
-     * </table>
-     *
-     * You can add these to a request with {@link RequestOptions#addQueryParam}
-     *
-     * <p><strong>Response Body Schema</strong>
-     *
-     * <pre>{@code
-     * {
-     *     contents: String (Required)
-     *     collectionId: String (Optional)
-     *     transactionId: String (Optional)
+     *     collectionId: String (Required)
+     *     transactionId: String (Required)
      * }
      * }</pre>
      *
@@ -1981,7 +1096,7 @@ public final class ConfidentialLedgerClientImpl {
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
      * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
      * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return an entry in the ledger along with {@link Response}.
+     * @return the response body along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<BinaryData> getCurrentLedgerEntryWithResponse(RequestOptions requestOptions) {
@@ -2005,37 +1120,12 @@ public final class ConfidentialLedgerClientImpl {
         return FluxUtil.withContext(
                 context ->
                         service.deleteUser(
-                                this.getLedgerEndpoint(),
-                                this.getServiceVersion().getVersion(),
+                                this.getLedgerUri(),
                                 userId,
+                                this.getServiceVersion().getVersion(),
                                 accept,
                                 requestOptions,
                                 context));
-    }
-
-    /**
-     * Deletes a user from the Confidential Ledger.
-     *
-     * @param userId The user id, either an AAD object ID or certificate fingerprint.
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @param context The context to associate with this operation.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return the {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<Void>> deleteUserWithResponseAsync(
-            String userId, RequestOptions requestOptions, Context context) {
-        final String accept = "application/json";
-        return service.deleteUser(
-                this.getLedgerEndpoint(),
-                this.getServiceVersion().getVersion(),
-                userId,
-                accept,
-                requestOptions,
-                context);
     }
 
     /**
@@ -2061,8 +1151,8 @@ public final class ConfidentialLedgerClientImpl {
      *
      * <pre>{@code
      * {
+     *     userId: String (Required)
      *     assignedRole: String(Administrator/Contributor/Reader) (Required)
-     *     userId: String (Optional)
      * }
      * }</pre>
      *
@@ -2072,7 +1162,8 @@ public final class ConfidentialLedgerClientImpl {
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
      * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
      * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return a user along with {@link Response} on successful completion of {@link Mono}.
+     * @return details about a Confidential ledger user along with {@link Response} on successful completion of {@link
+     *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<BinaryData>> getUserWithResponseAsync(String userId, RequestOptions requestOptions) {
@@ -2080,9 +1171,9 @@ public final class ConfidentialLedgerClientImpl {
         return FluxUtil.withContext(
                 context ->
                         service.getUser(
-                                this.getLedgerEndpoint(),
-                                this.getServiceVersion().getVersion(),
+                                this.getLedgerUri(),
                                 userId,
+                                this.getServiceVersion().getVersion(),
                                 accept,
                                 requestOptions,
                                 context));
@@ -2095,42 +1186,8 @@ public final class ConfidentialLedgerClientImpl {
      *
      * <pre>{@code
      * {
+     *     userId: String (Required)
      *     assignedRole: String(Administrator/Contributor/Reader) (Required)
-     *     userId: String (Optional)
-     * }
-     * }</pre>
-     *
-     * @param userId The user id, either an AAD object ID or certificate fingerprint.
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @param context The context to associate with this operation.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return a user along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<BinaryData>> getUserWithResponseAsync(
-            String userId, RequestOptions requestOptions, Context context) {
-        final String accept = "application/json";
-        return service.getUser(
-                this.getLedgerEndpoint(),
-                this.getServiceVersion().getVersion(),
-                userId,
-                accept,
-                requestOptions,
-                context);
-    }
-
-    /**
-     * Gets a user.
-     *
-     * <p><strong>Response Body Schema</strong>
-     *
-     * <pre>{@code
-     * {
-     *     assignedRole: String(Administrator/Contributor/Reader) (Required)
-     *     userId: String (Optional)
      * }
      * }</pre>
      *
@@ -2140,7 +1197,7 @@ public final class ConfidentialLedgerClientImpl {
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
      * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
      * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return a user along with {@link Response}.
+     * @return details about a Confidential ledger user along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<BinaryData> getUserWithResponse(String userId, RequestOptions requestOptions) {
@@ -2148,14 +1205,14 @@ public final class ConfidentialLedgerClientImpl {
     }
 
     /**
-     * A JSON merge patch is applied for existing users.
+     * Adds a user or updates a user's fields.
      *
      * <p><strong>Request Body Schema</strong>
      *
      * <pre>{@code
      * {
+     *     userId: String (Required)
      *     assignedRole: String(Administrator/Contributor/Reader) (Required)
-     *     userId: String (Optional)
      * }
      * }</pre>
      *
@@ -2163,46 +1220,48 @@ public final class ConfidentialLedgerClientImpl {
      *
      * <pre>{@code
      * {
+     *     userId: String (Required)
      *     assignedRole: String(Administrator/Contributor/Reader) (Required)
-     *     userId: String (Optional)
      * }
      * }</pre>
      *
      * @param userId The user id, either an AAD object ID or certificate fingerprint.
-     * @param userDetails Details about a Confidential Ledger user.
+     * @param ledgerUser Details about a Confidential ledger user.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
      * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
      * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return details about a Confidential Ledger user along with {@link Response} on successful completion of {@link
+     * @return details about a Confidential ledger user along with {@link Response} on successful completion of {@link
      *     Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Mono<Response<BinaryData>> createOrUpdateUserWithResponseAsync(
-            String userId, BinaryData userDetails, RequestOptions requestOptions) {
+            String userId, BinaryData ledgerUser, RequestOptions requestOptions) {
+        final String contentType = "application/merge-patch+json";
         final String accept = "application/json";
         return FluxUtil.withContext(
                 context ->
                         service.createOrUpdateUser(
-                                this.getLedgerEndpoint(),
-                                this.getServiceVersion().getVersion(),
+                                this.getLedgerUri(),
                                 userId,
-                                userDetails,
+                                contentType,
+                                this.getServiceVersion().getVersion(),
                                 accept,
+                                ledgerUser,
                                 requestOptions,
                                 context));
     }
 
     /**
-     * A JSON merge patch is applied for existing users.
+     * Adds a user or updates a user's fields.
      *
      * <p><strong>Request Body Schema</strong>
      *
      * <pre>{@code
      * {
+     *     userId: String (Required)
      *     assignedRole: String(Administrator/Contributor/Reader) (Required)
-     *     userId: String (Optional)
      * }
      * }</pre>
      *
@@ -2210,266 +1269,43 @@ public final class ConfidentialLedgerClientImpl {
      *
      * <pre>{@code
      * {
+     *     userId: String (Required)
      *     assignedRole: String(Administrator/Contributor/Reader) (Required)
-     *     userId: String (Optional)
      * }
      * }</pre>
      *
      * @param userId The user id, either an AAD object ID or certificate fingerprint.
-     * @param userDetails Details about a Confidential Ledger user.
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @param context The context to associate with this operation.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return details about a Confidential Ledger user along with {@link Response} on successful completion of {@link
-     *     Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<Response<BinaryData>> createOrUpdateUserWithResponseAsync(
-            String userId, BinaryData userDetails, RequestOptions requestOptions, Context context) {
-        final String accept = "application/json";
-        return service.createOrUpdateUser(
-                this.getLedgerEndpoint(),
-                this.getServiceVersion().getVersion(),
-                userId,
-                userDetails,
-                accept,
-                requestOptions,
-                context);
-    }
-
-    /**
-     * A JSON merge patch is applied for existing users.
-     *
-     * <p><strong>Request Body Schema</strong>
-     *
-     * <pre>{@code
-     * {
-     *     assignedRole: String(Administrator/Contributor/Reader) (Required)
-     *     userId: String (Optional)
-     * }
-     * }</pre>
-     *
-     * <p><strong>Response Body Schema</strong>
-     *
-     * <pre>{@code
-     * {
-     *     assignedRole: String(Administrator/Contributor/Reader) (Required)
-     *     userId: String (Optional)
-     * }
-     * }</pre>
-     *
-     * @param userId The user id, either an AAD object ID or certificate fingerprint.
-     * @param userDetails Details about a Confidential Ledger user.
+     * @param ledgerUser Details about a Confidential ledger user.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
      * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
      * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return details about a Confidential Ledger user along with {@link Response}.
+     * @return details about a Confidential ledger user along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<BinaryData> createOrUpdateUserWithResponse(
-            String userId, BinaryData userDetails, RequestOptions requestOptions) {
-        return createOrUpdateUserWithResponseAsync(userId, userDetails, requestOptions).block();
+            String userId, BinaryData ledgerUser, RequestOptions requestOptions) {
+        return createOrUpdateUserWithResponseAsync(userId, ledgerUser, requestOptions).block();
     }
 
     /**
-     * Get the next page of items.
+     * Gets ledger entries from a collection corresponding to a range.
+     *
+     * <p>Get the next page of items.
      *
      * <p><strong>Response Body Schema</strong>
      *
      * <pre>{@code
      * {
-     *     members (Required): [
-     *          (Required){
-     *             certificate: String (Required)
-     *             id: String (Required)
-     *         }
-     *     ]
-     *     nextLink: String (Optional)
+     *     contents: String (Required)
+     *     collectionId: String (Required)
+     *     transactionId: String (Required)
      * }
      * }</pre>
      *
-     * @param nextLink The nextLink parameter.
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return list of members in the consortium along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<PagedResponse<BinaryData>> listConsortiumMembersNextSinglePageAsync(
-            String nextLink, RequestOptions requestOptions) {
-        final String accept = "application/json";
-        return FluxUtil.withContext(
-                        context ->
-                                service.listConsortiumMembersNext(
-                                        nextLink, this.getLedgerEndpoint(), accept, requestOptions, context))
-                .map(
-                        res ->
-                                new PagedResponseBase<>(
-                                        res.getRequest(),
-                                        res.getStatusCode(),
-                                        res.getHeaders(),
-                                        getValues(res.getValue(), "members"),
-                                        getNextLink(res.getValue(), "nextLink"),
-                                        null));
-    }
-
-    /**
-     * Get the next page of items.
-     *
-     * <p><strong>Response Body Schema</strong>
-     *
-     * <pre>{@code
-     * {
-     *     members (Required): [
-     *          (Required){
-     *             certificate: String (Required)
-     *             id: String (Required)
-     *         }
-     *     ]
-     *     nextLink: String (Optional)
-     * }
-     * }</pre>
-     *
-     * @param nextLink The nextLink parameter.
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @param context The context to associate with this operation.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return list of members in the consortium along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<PagedResponse<BinaryData>> listConsortiumMembersNextSinglePageAsync(
-            String nextLink, RequestOptions requestOptions, Context context) {
-        final String accept = "application/json";
-        return service.listConsortiumMembersNext(nextLink, this.getLedgerEndpoint(), accept, requestOptions, context)
-                .map(
-                        res ->
-                                new PagedResponseBase<>(
-                                        res.getRequest(),
-                                        res.getStatusCode(),
-                                        res.getHeaders(),
-                                        getValues(res.getValue(), "members"),
-                                        getNextLink(res.getValue(), "nextLink"),
-                                        null));
-    }
-
-    /**
-     * Get the next page of items.
-     *
-     * <p><strong>Response Body Schema</strong>
-     *
-     * <pre>{@code
-     * {
-     *     collections (Required): [
-     *          (Required){
-     *             collectionId: String (Required)
-     *         }
-     *     ]
-     *     nextLink: String (Optional)
-     * }
-     * }</pre>
-     *
-     * @param nextLink The nextLink parameter.
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return paginated collections returned in response to a query along with {@link PagedResponse} on successful
-     *     completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<PagedResponse<BinaryData>> listCollectionsNextSinglePageAsync(
-            String nextLink, RequestOptions requestOptions) {
-        final String accept = "application/json";
-        return FluxUtil.withContext(
-                        context ->
-                                service.listCollectionsNext(
-                                        nextLink, this.getLedgerEndpoint(), accept, requestOptions, context))
-                .map(
-                        res ->
-                                new PagedResponseBase<>(
-                                        res.getRequest(),
-                                        res.getStatusCode(),
-                                        res.getHeaders(),
-                                        getValues(res.getValue(), "collections"),
-                                        getNextLink(res.getValue(), "nextLink"),
-                                        null));
-    }
-
-    /**
-     * Get the next page of items.
-     *
-     * <p><strong>Response Body Schema</strong>
-     *
-     * <pre>{@code
-     * {
-     *     collections (Required): [
-     *          (Required){
-     *             collectionId: String (Required)
-     *         }
-     *     ]
-     *     nextLink: String (Optional)
-     * }
-     * }</pre>
-     *
-     * @param nextLink The nextLink parameter.
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @param context The context to associate with this operation.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return paginated collections returned in response to a query along with {@link PagedResponse} on successful
-     *     completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<PagedResponse<BinaryData>> listCollectionsNextSinglePageAsync(
-            String nextLink, RequestOptions requestOptions, Context context) {
-        final String accept = "application/json";
-        return service.listCollectionsNext(nextLink, this.getLedgerEndpoint(), accept, requestOptions, context)
-                .map(
-                        res ->
-                                new PagedResponseBase<>(
-                                        res.getRequest(),
-                                        res.getStatusCode(),
-                                        res.getHeaders(),
-                                        getValues(res.getValue(), "collections"),
-                                        getNextLink(res.getValue(), "nextLink"),
-                                        null));
-    }
-
-    /**
-     * Get the next page of items.
-     *
-     * <p><strong>Response Body Schema</strong>
-     *
-     * <pre>{@code
-     * {
-     *     state: String(Loading/Ready) (Required)
-     *     nextLink: String (Optional)
-     *     entries (Required): [
-     *          (Required){
-     *             contents: String (Required)
-     *             collectionId: String (Optional)
-     *             transactionId: String (Optional)
-     *         }
-     *     ]
-     * }
-     * }</pre>
-     *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
@@ -2479,58 +1315,13 @@ public final class ConfidentialLedgerClientImpl {
      *     completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<PagedResponse<BinaryData>> listLedgerEntriesNextSinglePageAsync(
+    private Mono<PagedResponse<BinaryData>> listLedgerEntriesNextSinglePageAsync(
             String nextLink, RequestOptions requestOptions) {
         final String accept = "application/json";
         return FluxUtil.withContext(
                         context ->
                                 service.listLedgerEntriesNext(
-                                        nextLink, this.getLedgerEndpoint(), accept, requestOptions, context))
-                .map(
-                        res ->
-                                new PagedResponseBase<>(
-                                        res.getRequest(),
-                                        res.getStatusCode(),
-                                        res.getHeaders(),
-                                        getValues(res.getValue(), "entries"),
-                                        getNextLink(res.getValue(), "nextLink"),
-                                        null));
-    }
-
-    /**
-     * Get the next page of items.
-     *
-     * <p><strong>Response Body Schema</strong>
-     *
-     * <pre>{@code
-     * {
-     *     state: String(Loading/Ready) (Required)
-     *     nextLink: String (Optional)
-     *     entries (Required): [
-     *          (Required){
-     *             contents: String (Required)
-     *             collectionId: String (Optional)
-     *             transactionId: String (Optional)
-     *         }
-     *     ]
-     * }
-     * }</pre>
-     *
-     * @param nextLink The nextLink parameter.
-     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
-     * @param context The context to associate with this operation.
-     * @throws HttpResponseException thrown if the request is rejected by server.
-     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
-     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
-     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return paginated ledger entries returned in response to a query along with {@link PagedResponse} on successful
-     *     completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Mono<PagedResponse<BinaryData>> listLedgerEntriesNextSinglePageAsync(
-            String nextLink, RequestOptions requestOptions, Context context) {
-        final String accept = "application/json";
-        return service.listLedgerEntriesNext(nextLink, this.getLedgerEndpoint(), accept, requestOptions, context)
+                                        nextLink, this.getLedgerUri(), accept, requestOptions, context))
                 .map(
                         res ->
                                 new PagedResponseBase<>(
