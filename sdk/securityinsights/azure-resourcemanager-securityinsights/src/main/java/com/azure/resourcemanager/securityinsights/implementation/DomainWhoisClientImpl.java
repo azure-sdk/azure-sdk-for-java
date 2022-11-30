@@ -50,7 +50,7 @@ public final class DomainWhoisClientImpl implements DomainWhoisClient {
      */
     @Host("{$host}")
     @ServiceInterface(name = "SecurityInsightsDoma")
-    private interface DomainWhoisService {
+    public interface DomainWhoisService {
         @Headers({"Content-Type: application/json"})
         @Get(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SecurityInsights"
@@ -99,6 +99,7 @@ public final class DomainWhoisClientImpl implements DomainWhoisClient {
         if (domain == null) {
             return Mono.error(new IllegalArgumentException("Parameter domain is required and cannot be null."));
         }
+        final String apiVersion = "2022-12-01-preview";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -106,7 +107,7 @@ public final class DomainWhoisClientImpl implements DomainWhoisClient {
                     service
                         .get(
                             this.client.getEndpoint(),
-                            this.client.getApiVersion(),
+                            apiVersion,
                             this.client.getSubscriptionId(),
                             resourceGroupName,
                             domain,
@@ -149,12 +150,13 @@ public final class DomainWhoisClientImpl implements DomainWhoisClient {
         if (domain == null) {
             return Mono.error(new IllegalArgumentException("Parameter domain is required and cannot be null."));
         }
+        final String apiVersion = "2022-12-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .get(
                 this.client.getEndpoint(),
-                this.client.getApiVersion(),
+                apiVersion,
                 this.client.getSubscriptionId(),
                 resourceGroupName,
                 domain,
@@ -182,21 +184,6 @@ public final class DomainWhoisClientImpl implements DomainWhoisClient {
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param domain Domain name to be enriched.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return whois information for a single domain name.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public EnrichmentDomainWhoisInner get(String resourceGroupName, String domain) {
-        return getAsync(resourceGroupName, domain).block();
-    }
-
-    /**
-     * Get whois information for a single domain name.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param domain Domain name to be enriched.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -207,5 +194,20 @@ public final class DomainWhoisClientImpl implements DomainWhoisClient {
     public Response<EnrichmentDomainWhoisInner> getWithResponse(
         String resourceGroupName, String domain, Context context) {
         return getWithResponseAsync(resourceGroupName, domain, context).block();
+    }
+
+    /**
+     * Get whois information for a single domain name.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param domain Domain name to be enriched.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return whois information for a single domain name.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public EnrichmentDomainWhoisInner get(String resourceGroupName, String domain) {
+        return getWithResponse(resourceGroupName, domain, Context.NONE).getValue();
     }
 }

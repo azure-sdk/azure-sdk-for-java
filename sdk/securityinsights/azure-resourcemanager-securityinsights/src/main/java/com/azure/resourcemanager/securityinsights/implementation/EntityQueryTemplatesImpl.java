@@ -11,7 +11,7 @@ import com.azure.core.util.Context;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.securityinsights.fluent.EntityQueryTemplatesClient;
 import com.azure.resourcemanager.securityinsights.fluent.models.EntityQueryTemplateInner;
-import com.azure.resourcemanager.securityinsights.models.Constant88;
+import com.azure.resourcemanager.securityinsights.models.Constant96;
 import com.azure.resourcemanager.securityinsights.models.EntityQueryTemplate;
 import com.azure.resourcemanager.securityinsights.models.EntityQueryTemplates;
 
@@ -35,20 +35,10 @@ public final class EntityQueryTemplatesImpl implements EntityQueryTemplates {
     }
 
     public PagedIterable<EntityQueryTemplate> list(
-        String resourceGroupName, String workspaceName, Constant88 kind, Context context) {
+        String resourceGroupName, String workspaceName, Constant96 kind, Context context) {
         PagedIterable<EntityQueryTemplateInner> inner =
             this.serviceClient().list(resourceGroupName, workspaceName, kind, context);
         return Utils.mapPage(inner, inner1 -> new EntityQueryTemplateImpl(inner1, this.manager()));
-    }
-
-    public EntityQueryTemplate get(String resourceGroupName, String workspaceName, String entityQueryTemplateId) {
-        EntityQueryTemplateInner inner =
-            this.serviceClient().get(resourceGroupName, workspaceName, entityQueryTemplateId);
-        if (inner != null) {
-            return new EntityQueryTemplateImpl(inner, this.manager());
-        } else {
-            return null;
-        }
     }
 
     public Response<EntityQueryTemplate> getWithResponse(
@@ -61,6 +51,16 @@ public final class EntityQueryTemplatesImpl implements EntityQueryTemplates {
                 inner.getStatusCode(),
                 inner.getHeaders(),
                 new EntityQueryTemplateImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public EntityQueryTemplate get(String resourceGroupName, String workspaceName, String entityQueryTemplateId) {
+        EntityQueryTemplateInner inner =
+            this.serviceClient().get(resourceGroupName, workspaceName, entityQueryTemplateId);
+        if (inner != null) {
+            return new EntityQueryTemplateImpl(inner, this.manager());
         } else {
             return null;
         }

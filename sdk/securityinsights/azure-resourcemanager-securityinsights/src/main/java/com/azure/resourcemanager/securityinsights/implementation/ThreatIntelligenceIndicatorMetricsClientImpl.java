@@ -56,7 +56,7 @@ public final class ThreatIntelligenceIndicatorMetricsClientImpl implements Threa
      */
     @Host("{$host}")
     @ServiceInterface(name = "SecurityInsightsThre")
-    private interface ThreatIntelligenceIndicatorMetricsService {
+    public interface ThreatIntelligenceIndicatorMetricsService {
         @Headers({"Content-Type: application/json"})
         @Get(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights"
@@ -106,6 +106,7 @@ public final class ThreatIntelligenceIndicatorMetricsClientImpl implements Threa
         if (workspaceName == null) {
             return Mono.error(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
         }
+        final String apiVersion = "2022-12-01-preview";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -113,7 +114,7 @@ public final class ThreatIntelligenceIndicatorMetricsClientImpl implements Threa
                     service
                         .list(
                             this.client.getEndpoint(),
-                            this.client.getApiVersion(),
+                            apiVersion,
                             this.client.getSubscriptionId(),
                             resourceGroupName,
                             workspaceName,
@@ -156,12 +157,13 @@ public final class ThreatIntelligenceIndicatorMetricsClientImpl implements Threa
         if (workspaceName == null) {
             return Mono.error(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
         }
+        final String apiVersion = "2022-12-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .list(
                 this.client.getEndpoint(),
-                this.client.getApiVersion(),
+                apiVersion,
                 this.client.getSubscriptionId(),
                 resourceGroupName,
                 workspaceName,
@@ -190,21 +192,6 @@ public final class ThreatIntelligenceIndicatorMetricsClientImpl implements Threa
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return threat intelligence indicators metrics (Indicators counts by Type, Threat Type, Source).
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public ThreatIntelligenceMetricsListInner list(String resourceGroupName, String workspaceName) {
-        return listAsync(resourceGroupName, workspaceName).block();
-    }
-
-    /**
-     * Get threat intelligence indicators metrics (Indicators counts by Type, Threat Type, Source).
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -216,5 +203,20 @@ public final class ThreatIntelligenceIndicatorMetricsClientImpl implements Threa
     public Response<ThreatIntelligenceMetricsListInner> listWithResponse(
         String resourceGroupName, String workspaceName, Context context) {
         return listWithResponseAsync(resourceGroupName, workspaceName, context).block();
+    }
+
+    /**
+     * Get threat intelligence indicators metrics (Indicators counts by Type, Threat Type, Source).
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return threat intelligence indicators metrics (Indicators counts by Type, Threat Type, Source).
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public ThreatIntelligenceMetricsListInner list(String resourceGroupName, String workspaceName) {
+        return listWithResponse(resourceGroupName, workspaceName, Context.NONE).getValue();
     }
 }

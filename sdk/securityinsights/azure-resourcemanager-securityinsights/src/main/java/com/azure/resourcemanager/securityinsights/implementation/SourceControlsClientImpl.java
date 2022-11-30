@@ -58,7 +58,7 @@ public final class SourceControlsClientImpl implements SourceControlsClient {
      */
     @Host("{$host}")
     @ServiceInterface(name = "SecurityInsightsSour")
-    private interface SourceControlsService {
+    public interface SourceControlsService {
         @Headers({"Content-Type: application/json"})
         @Post(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights"
@@ -123,6 +123,7 @@ public final class SourceControlsClientImpl implements SourceControlsClient {
         if (repoType == null) {
             return Mono.error(new IllegalArgumentException("Parameter repoType is required and cannot be null."));
         }
+        final String apiVersion = "2022-12-01-preview";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -130,7 +131,7 @@ public final class SourceControlsClientImpl implements SourceControlsClient {
                     service
                         .listRepositories(
                             this.client.getEndpoint(),
-                            this.client.getApiVersion(),
+                            apiVersion,
                             this.client.getSubscriptionId(),
                             resourceGroupName,
                             workspaceName,
@@ -187,12 +188,13 @@ public final class SourceControlsClientImpl implements SourceControlsClient {
         if (repoType == null) {
             return Mono.error(new IllegalArgumentException("Parameter repoType is required and cannot be null."));
         }
+        final String apiVersion = "2022-12-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .listRepositories(
                 this.client.getEndpoint(),
-                this.client.getApiVersion(),
+                apiVersion,
                 this.client.getSubscriptionId(),
                 resourceGroupName,
                 workspaceName,

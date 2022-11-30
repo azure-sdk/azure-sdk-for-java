@@ -55,7 +55,7 @@ public final class SentinelOnboardingStatesClientImpl implements SentinelOnboard
      */
     @Host("{$host}")
     @ServiceInterface(name = "SecurityInsightsSent")
-    private interface SentinelOnboardingStatesService {
+    public interface SentinelOnboardingStatesService {
         @Headers({"Content-Type: application/json"})
         @Get(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights"
@@ -163,6 +163,7 @@ public final class SentinelOnboardingStatesClientImpl implements SentinelOnboard
                     new IllegalArgumentException(
                         "Parameter sentinelOnboardingStateName is required and cannot be null."));
         }
+        final String apiVersion = "2022-12-01-preview";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -170,7 +171,7 @@ public final class SentinelOnboardingStatesClientImpl implements SentinelOnboard
                     service
                         .get(
                             this.client.getEndpoint(),
-                            this.client.getApiVersion(),
+                            apiVersion,
                             this.client.getSubscriptionId(),
                             resourceGroupName,
                             workspaceName,
@@ -220,12 +221,13 @@ public final class SentinelOnboardingStatesClientImpl implements SentinelOnboard
                     new IllegalArgumentException(
                         "Parameter sentinelOnboardingStateName is required and cannot be null."));
         }
+        final String apiVersion = "2022-12-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .get(
                 this.client.getEndpoint(),
-                this.client.getApiVersion(),
+                apiVersion,
                 this.client.getSubscriptionId(),
                 resourceGroupName,
                 workspaceName,
@@ -258,23 +260,6 @@ public final class SentinelOnboardingStatesClientImpl implements SentinelOnboard
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param sentinelOnboardingStateName The Sentinel onboarding state name. Supports - default.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return sentinel onboarding state.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public SentinelOnboardingStateInner get(
-        String resourceGroupName, String workspaceName, String sentinelOnboardingStateName) {
-        return getAsync(resourceGroupName, workspaceName, sentinelOnboardingStateName).block();
-    }
-
-    /**
-     * Get Sentinel onboarding state.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param sentinelOnboardingStateName The Sentinel onboarding state name. Supports - default.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -285,6 +270,23 @@ public final class SentinelOnboardingStatesClientImpl implements SentinelOnboard
     public Response<SentinelOnboardingStateInner> getWithResponse(
         String resourceGroupName, String workspaceName, String sentinelOnboardingStateName, Context context) {
         return getWithResponseAsync(resourceGroupName, workspaceName, sentinelOnboardingStateName, context).block();
+    }
+
+    /**
+     * Get Sentinel onboarding state.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param sentinelOnboardingStateName The Sentinel onboarding state name. Supports - default.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return sentinel onboarding state.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public SentinelOnboardingStateInner get(
+        String resourceGroupName, String workspaceName, String sentinelOnboardingStateName) {
+        return getWithResponse(resourceGroupName, workspaceName, sentinelOnboardingStateName, Context.NONE).getValue();
     }
 
     /**
@@ -333,6 +335,7 @@ public final class SentinelOnboardingStatesClientImpl implements SentinelOnboard
         if (sentinelOnboardingStateParameter != null) {
             sentinelOnboardingStateParameter.validate();
         }
+        final String apiVersion = "2022-12-01-preview";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -340,7 +343,7 @@ public final class SentinelOnboardingStatesClientImpl implements SentinelOnboard
                     service
                         .create(
                             this.client.getEndpoint(),
-                            this.client.getApiVersion(),
+                            apiVersion,
                             this.client.getSubscriptionId(),
                             resourceGroupName,
                             workspaceName,
@@ -399,12 +402,13 @@ public final class SentinelOnboardingStatesClientImpl implements SentinelOnboard
         if (sentinelOnboardingStateParameter != null) {
             sentinelOnboardingStateParameter.validate();
         }
+        final String apiVersion = "2022-12-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .create(
                 this.client.getEndpoint(),
-                this.client.getApiVersion(),
+                apiVersion,
                 this.client.getSubscriptionId(),
                 resourceGroupName,
                 workspaceName,
@@ -420,29 +424,6 @@ public final class SentinelOnboardingStatesClientImpl implements SentinelOnboard
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param sentinelOnboardingStateName The Sentinel onboarding state name. Supports - default.
-     * @param sentinelOnboardingStateParameter The Sentinel onboarding state parameter.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return sentinel onboarding state on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<SentinelOnboardingStateInner> createAsync(
-        String resourceGroupName,
-        String workspaceName,
-        String sentinelOnboardingStateName,
-        SentinelOnboardingStateInner sentinelOnboardingStateParameter) {
-        return createWithResponseAsync(
-                resourceGroupName, workspaceName, sentinelOnboardingStateName, sentinelOnboardingStateParameter)
-            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
-    }
-
-    /**
-     * Create Sentinel onboarding state.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param sentinelOnboardingStateName The Sentinel onboarding state name. Supports - default.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -455,26 +436,6 @@ public final class SentinelOnboardingStatesClientImpl implements SentinelOnboard
         return createWithResponseAsync(
                 resourceGroupName, workspaceName, sentinelOnboardingStateName, sentinelOnboardingStateParameter)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
-    }
-
-    /**
-     * Create Sentinel onboarding state.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param sentinelOnboardingStateName The Sentinel onboarding state name. Supports - default.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return sentinel onboarding state.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public SentinelOnboardingStateInner create(
-        String resourceGroupName, String workspaceName, String sentinelOnboardingStateName) {
-        final SentinelOnboardingStateInner sentinelOnboardingStateParameter = null;
-        return createAsync(
-                resourceGroupName, workspaceName, sentinelOnboardingStateName, sentinelOnboardingStateParameter)
-            .block();
     }
 
     /**
@@ -504,6 +465,30 @@ public final class SentinelOnboardingStatesClientImpl implements SentinelOnboard
                 sentinelOnboardingStateParameter,
                 context)
             .block();
+    }
+
+    /**
+     * Create Sentinel onboarding state.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param sentinelOnboardingStateName The Sentinel onboarding state name. Supports - default.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return sentinel onboarding state.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public SentinelOnboardingStateInner create(
+        String resourceGroupName, String workspaceName, String sentinelOnboardingStateName) {
+        final SentinelOnboardingStateInner sentinelOnboardingStateParameter = null;
+        return createWithResponse(
+                resourceGroupName,
+                workspaceName,
+                sentinelOnboardingStateName,
+                sentinelOnboardingStateParameter,
+                Context.NONE)
+            .getValue();
     }
 
     /**
@@ -545,6 +530,7 @@ public final class SentinelOnboardingStatesClientImpl implements SentinelOnboard
                     new IllegalArgumentException(
                         "Parameter sentinelOnboardingStateName is required and cannot be null."));
         }
+        final String apiVersion = "2022-12-01-preview";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -552,7 +538,7 @@ public final class SentinelOnboardingStatesClientImpl implements SentinelOnboard
                     service
                         .delete(
                             this.client.getEndpoint(),
-                            this.client.getApiVersion(),
+                            apiVersion,
                             this.client.getSubscriptionId(),
                             resourceGroupName,
                             workspaceName,
@@ -602,12 +588,13 @@ public final class SentinelOnboardingStatesClientImpl implements SentinelOnboard
                     new IllegalArgumentException(
                         "Parameter sentinelOnboardingStateName is required and cannot be null."));
         }
+        final String apiVersion = "2022-12-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .delete(
                 this.client.getEndpoint(),
-                this.client.getApiVersion(),
+                apiVersion,
                 this.client.getSubscriptionId(),
                 resourceGroupName,
                 workspaceName,
@@ -639,21 +626,6 @@ public final class SentinelOnboardingStatesClientImpl implements SentinelOnboard
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param sentinelOnboardingStateName The Sentinel onboarding state name. Supports - default.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public void delete(String resourceGroupName, String workspaceName, String sentinelOnboardingStateName) {
-        deleteAsync(resourceGroupName, workspaceName, sentinelOnboardingStateName).block();
-    }
-
-    /**
-     * Delete Sentinel onboarding state.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param sentinelOnboardingStateName The Sentinel onboarding state name. Supports - default.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -664,6 +636,21 @@ public final class SentinelOnboardingStatesClientImpl implements SentinelOnboard
     public Response<Void> deleteWithResponse(
         String resourceGroupName, String workspaceName, String sentinelOnboardingStateName, Context context) {
         return deleteWithResponseAsync(resourceGroupName, workspaceName, sentinelOnboardingStateName, context).block();
+    }
+
+    /**
+     * Delete Sentinel onboarding state.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param sentinelOnboardingStateName The Sentinel onboarding state name. Supports - default.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public void delete(String resourceGroupName, String workspaceName, String sentinelOnboardingStateName) {
+        deleteWithResponse(resourceGroupName, workspaceName, sentinelOnboardingStateName, Context.NONE);
     }
 
     /**
@@ -698,6 +685,7 @@ public final class SentinelOnboardingStatesClientImpl implements SentinelOnboard
         if (workspaceName == null) {
             return Mono.error(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
         }
+        final String apiVersion = "2022-12-01-preview";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -705,7 +693,7 @@ public final class SentinelOnboardingStatesClientImpl implements SentinelOnboard
                     service
                         .list(
                             this.client.getEndpoint(),
-                            this.client.getApiVersion(),
+                            apiVersion,
                             this.client.getSubscriptionId(),
                             resourceGroupName,
                             workspaceName,
@@ -747,12 +735,13 @@ public final class SentinelOnboardingStatesClientImpl implements SentinelOnboard
         if (workspaceName == null) {
             return Mono.error(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
         }
+        final String apiVersion = "2022-12-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .list(
                 this.client.getEndpoint(),
-                this.client.getApiVersion(),
+                apiVersion,
                 this.client.getSubscriptionId(),
                 resourceGroupName,
                 workspaceName,
@@ -780,21 +769,6 @@ public final class SentinelOnboardingStatesClientImpl implements SentinelOnboard
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all Sentinel onboarding states.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public SentinelOnboardingStatesListInner list(String resourceGroupName, String workspaceName) {
-        return listAsync(resourceGroupName, workspaceName).block();
-    }
-
-    /**
-     * Gets all Sentinel onboarding states.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -805,5 +779,20 @@ public final class SentinelOnboardingStatesClientImpl implements SentinelOnboard
     public Response<SentinelOnboardingStatesListInner> listWithResponse(
         String resourceGroupName, String workspaceName, Context context) {
         return listWithResponseAsync(resourceGroupName, workspaceName, context).block();
+    }
+
+    /**
+     * Gets all Sentinel onboarding states.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return all Sentinel onboarding states.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public SentinelOnboardingStatesListInner list(String resourceGroupName, String workspaceName) {
+        return listWithResponse(resourceGroupName, workspaceName, Context.NONE).getValue();
     }
 }

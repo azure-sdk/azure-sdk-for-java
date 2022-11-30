@@ -23,6 +23,10 @@ public final class FusionSubTypeSeverityFiltersItem {
     @JsonProperty(value = "enabled", required = true)
     private boolean enabled;
 
+    /** Creates an instance of FusionSubTypeSeverityFiltersItem class. */
+    public FusionSubTypeSeverityFiltersItem() {
+    }
+
     /**
      * Get the severity property: The Severity for a given source subtype consumed in Fusion detection.
      *

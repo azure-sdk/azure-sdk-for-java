@@ -50,7 +50,7 @@ public final class EntityRelationsClientImpl implements EntityRelationsClient {
      */
     @Host("{$host}")
     @ServiceInterface(name = "SecurityInsightsEnti")
-    private interface EntityRelationsService {
+    public interface EntityRelationsService {
         @Headers({"Content-Type: application/json"})
         @Get(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights"
@@ -110,6 +110,7 @@ public final class EntityRelationsClientImpl implements EntityRelationsClient {
         if (relationName == null) {
             return Mono.error(new IllegalArgumentException("Parameter relationName is required and cannot be null."));
         }
+        final String apiVersion = "2022-12-01-preview";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -117,7 +118,7 @@ public final class EntityRelationsClientImpl implements EntityRelationsClient {
                     service
                         .getRelation(
                             this.client.getEndpoint(),
-                            this.client.getApiVersion(),
+                            apiVersion,
                             this.client.getSubscriptionId(),
                             resourceGroupName,
                             workspaceName,
@@ -169,12 +170,13 @@ public final class EntityRelationsClientImpl implements EntityRelationsClient {
         if (relationName == null) {
             return Mono.error(new IllegalArgumentException("Parameter relationName is required and cannot be null."));
         }
+        final String apiVersion = "2022-12-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .getRelation(
                 this.client.getEndpoint(),
-                this.client.getApiVersion(),
+                apiVersion,
                 this.client.getSubscriptionId(),
                 resourceGroupName,
                 workspaceName,
@@ -210,24 +212,6 @@ public final class EntityRelationsClientImpl implements EntityRelationsClient {
      * @param workspaceName The name of the workspace.
      * @param entityId entity ID.
      * @param relationName Relation Name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an entity relation.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public RelationInner getRelation(
-        String resourceGroupName, String workspaceName, String entityId, String relationName) {
-        return getRelationAsync(resourceGroupName, workspaceName, entityId, relationName).block();
-    }
-
-    /**
-     * Gets an entity relation.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param entityId entity ID.
-     * @param relationName Relation Name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -238,5 +222,24 @@ public final class EntityRelationsClientImpl implements EntityRelationsClient {
     public Response<RelationInner> getRelationWithResponse(
         String resourceGroupName, String workspaceName, String entityId, String relationName, Context context) {
         return getRelationWithResponseAsync(resourceGroupName, workspaceName, entityId, relationName, context).block();
+    }
+
+    /**
+     * Gets an entity relation.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param entityId entity ID.
+     * @param relationName Relation Name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return an entity relation.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public RelationInner getRelation(
+        String resourceGroupName, String workspaceName, String entityId, String relationName) {
+        return getRelationWithResponse(resourceGroupName, workspaceName, entityId, relationName, Context.NONE)
+            .getValue();
     }
 }

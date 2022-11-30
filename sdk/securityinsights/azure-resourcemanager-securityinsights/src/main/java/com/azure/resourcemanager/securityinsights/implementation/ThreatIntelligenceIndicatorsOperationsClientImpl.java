@@ -63,7 +63,7 @@ public final class ThreatIntelligenceIndicatorsOperationsClientImpl
      */
     @Host("{$host}")
     @ServiceInterface(name = "SecurityInsightsThre")
-    private interface ThreatIntelligenceIndicatorsOperationsService {
+    public interface ThreatIntelligenceIndicatorsOperationsService {
         @Headers({"Content-Type: application/json"})
         @Get(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights"
@@ -133,6 +133,7 @@ public final class ThreatIntelligenceIndicatorsOperationsClientImpl
         if (workspaceName == null) {
             return Mono.error(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
         }
+        final String apiVersion = "2022-12-01-preview";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -140,7 +141,7 @@ public final class ThreatIntelligenceIndicatorsOperationsClientImpl
                     service
                         .list(
                             this.client.getEndpoint(),
-                            this.client.getApiVersion(),
+                            apiVersion,
                             this.client.getSubscriptionId(),
                             resourceGroupName,
                             workspaceName,
@@ -208,12 +209,13 @@ public final class ThreatIntelligenceIndicatorsOperationsClientImpl
         if (workspaceName == null) {
             return Mono.error(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
         }
+        final String apiVersion = "2022-12-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .list(
                 this.client.getEndpoint(),
-                this.client.getApiVersion(),
+                apiVersion,
                 this.client.getSubscriptionId(),
                 resourceGroupName,
                 workspaceName,

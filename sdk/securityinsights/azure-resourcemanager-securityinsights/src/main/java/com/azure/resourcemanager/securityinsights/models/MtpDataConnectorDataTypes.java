@@ -17,6 +17,10 @@ public final class MtpDataConnectorDataTypes {
     @JsonProperty(value = "incidents", required = true)
     private MtpDataConnectorDataTypesIncidents incidents;
 
+    /** Creates an instance of MtpDataConnectorDataTypes class. */
+    public MtpDataConnectorDataTypes() {
+    }
+
     /**
      * Get the incidents property: Data type for Microsoft Threat Protection Platforms data connector.
      *

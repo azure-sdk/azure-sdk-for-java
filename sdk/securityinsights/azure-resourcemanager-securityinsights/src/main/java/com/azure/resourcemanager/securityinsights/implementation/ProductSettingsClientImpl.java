@@ -54,7 +54,7 @@ public final class ProductSettingsClientImpl implements ProductSettingsClient {
      */
     @Host("{$host}")
     @ServiceInterface(name = "SecurityInsightsProd")
-    private interface ProductSettingsService {
+    public interface ProductSettingsService {
         @Headers({"Content-Type: application/json"})
         @Get(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights"
@@ -151,6 +151,7 @@ public final class ProductSettingsClientImpl implements ProductSettingsClient {
         if (workspaceName == null) {
             return Mono.error(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
         }
+        final String apiVersion = "2022-12-01-preview";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -158,7 +159,7 @@ public final class ProductSettingsClientImpl implements ProductSettingsClient {
                     service
                         .list(
                             this.client.getEndpoint(),
-                            this.client.getApiVersion(),
+                            apiVersion,
                             this.client.getSubscriptionId(),
                             resourceGroupName,
                             workspaceName,
@@ -200,12 +201,13 @@ public final class ProductSettingsClientImpl implements ProductSettingsClient {
         if (workspaceName == null) {
             return Mono.error(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
         }
+        final String apiVersion = "2022-12-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .list(
                 this.client.getEndpoint(),
-                this.client.getApiVersion(),
+                apiVersion,
                 this.client.getSubscriptionId(),
                 resourceGroupName,
                 workspaceName,
@@ -233,21 +235,6 @@ public final class ProductSettingsClientImpl implements ProductSettingsClient {
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return list of all the settings.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public SettingListInner list(String resourceGroupName, String workspaceName) {
-        return listAsync(resourceGroupName, workspaceName).block();
-    }
-
-    /**
-     * List of all the settings.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -258,6 +245,21 @@ public final class ProductSettingsClientImpl implements ProductSettingsClient {
     public Response<SettingListInner> listWithResponse(
         String resourceGroupName, String workspaceName, Context context) {
         return listWithResponseAsync(resourceGroupName, workspaceName, context).block();
+    }
+
+    /**
+     * List of all the settings.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return list of all the settings.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public SettingListInner list(String resourceGroupName, String workspaceName) {
+        return listWithResponse(resourceGroupName, workspaceName, Context.NONE).getValue();
     }
 
     /**
@@ -296,6 +298,7 @@ public final class ProductSettingsClientImpl implements ProductSettingsClient {
         if (settingsName == null) {
             return Mono.error(new IllegalArgumentException("Parameter settingsName is required and cannot be null."));
         }
+        final String apiVersion = "2022-12-01-preview";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -303,7 +306,7 @@ public final class ProductSettingsClientImpl implements ProductSettingsClient {
                     service
                         .get(
                             this.client.getEndpoint(),
-                            this.client.getApiVersion(),
+                            apiVersion,
                             this.client.getSubscriptionId(),
                             resourceGroupName,
                             workspaceName,
@@ -350,12 +353,13 @@ public final class ProductSettingsClientImpl implements ProductSettingsClient {
         if (settingsName == null) {
             return Mono.error(new IllegalArgumentException("Parameter settingsName is required and cannot be null."));
         }
+        final String apiVersion = "2022-12-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .get(
                 this.client.getEndpoint(),
-                this.client.getApiVersion(),
+                apiVersion,
                 this.client.getSubscriptionId(),
                 resourceGroupName,
                 workspaceName,
@@ -387,22 +391,6 @@ public final class ProductSettingsClientImpl implements ProductSettingsClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param settingsName The setting name. Supports - Anomalies, EyesOn, EntityAnalytics, Ueba.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a setting.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public SettingsInner get(String resourceGroupName, String workspaceName, String settingsName) {
-        return getAsync(resourceGroupName, workspaceName, settingsName).block();
-    }
-
-    /**
-     * Gets a setting.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param settingsName The setting name. Supports - Anomalies, EyesOn, EntityAnalytics, Ueba.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -413,6 +401,22 @@ public final class ProductSettingsClientImpl implements ProductSettingsClient {
     public Response<SettingsInner> getWithResponse(
         String resourceGroupName, String workspaceName, String settingsName, Context context) {
         return getWithResponseAsync(resourceGroupName, workspaceName, settingsName, context).block();
+    }
+
+    /**
+     * Gets a setting.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param settingsName The setting name. Supports - Anomalies, EyesOn, EntityAnalytics, Ueba.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a setting.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public SettingsInner get(String resourceGroupName, String workspaceName, String settingsName) {
+        return getWithResponse(resourceGroupName, workspaceName, settingsName, Context.NONE).getValue();
     }
 
     /**
@@ -451,6 +455,7 @@ public final class ProductSettingsClientImpl implements ProductSettingsClient {
         if (settingsName == null) {
             return Mono.error(new IllegalArgumentException("Parameter settingsName is required and cannot be null."));
         }
+        final String apiVersion = "2022-12-01-preview";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -458,7 +463,7 @@ public final class ProductSettingsClientImpl implements ProductSettingsClient {
                     service
                         .delete(
                             this.client.getEndpoint(),
-                            this.client.getApiVersion(),
+                            apiVersion,
                             this.client.getSubscriptionId(),
                             resourceGroupName,
                             workspaceName,
@@ -505,12 +510,13 @@ public final class ProductSettingsClientImpl implements ProductSettingsClient {
         if (settingsName == null) {
             return Mono.error(new IllegalArgumentException("Parameter settingsName is required and cannot be null."));
         }
+        final String apiVersion = "2022-12-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .delete(
                 this.client.getEndpoint(),
-                this.client.getApiVersion(),
+                apiVersion,
                 this.client.getSubscriptionId(),
                 resourceGroupName,
                 workspaceName,
@@ -541,21 +547,6 @@ public final class ProductSettingsClientImpl implements ProductSettingsClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param settingsName The setting name. Supports - Anomalies, EyesOn, EntityAnalytics, Ueba.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public void delete(String resourceGroupName, String workspaceName, String settingsName) {
-        deleteAsync(resourceGroupName, workspaceName, settingsName).block();
-    }
-
-    /**
-     * Delete setting of the product.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param settingsName The setting name. Supports - Anomalies, EyesOn, EntityAnalytics, Ueba.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -566,6 +557,21 @@ public final class ProductSettingsClientImpl implements ProductSettingsClient {
     public Response<Void> deleteWithResponse(
         String resourceGroupName, String workspaceName, String settingsName, Context context) {
         return deleteWithResponseAsync(resourceGroupName, workspaceName, settingsName, context).block();
+    }
+
+    /**
+     * Delete setting of the product.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param settingsName The setting name. Supports - Anomalies, EyesOn, EntityAnalytics, Ueba.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public void delete(String resourceGroupName, String workspaceName, String settingsName) {
+        deleteWithResponse(resourceGroupName, workspaceName, settingsName, Context.NONE);
     }
 
     /**
@@ -610,6 +616,7 @@ public final class ProductSettingsClientImpl implements ProductSettingsClient {
         } else {
             settings.validate();
         }
+        final String apiVersion = "2022-12-01-preview";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -617,7 +624,7 @@ public final class ProductSettingsClientImpl implements ProductSettingsClient {
                     service
                         .update(
                             this.client.getEndpoint(),
-                            this.client.getApiVersion(),
+                            apiVersion,
                             this.client.getSubscriptionId(),
                             resourceGroupName,
                             workspaceName,
@@ -671,12 +678,13 @@ public final class ProductSettingsClientImpl implements ProductSettingsClient {
         } else {
             settings.validate();
         }
+        final String apiVersion = "2022-12-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .update(
                 this.client.getEndpoint(),
-                this.client.getApiVersion(),
+                apiVersion,
                 this.client.getSubscriptionId(),
                 resourceGroupName,
                 workspaceName,
@@ -712,24 +720,6 @@ public final class ProductSettingsClientImpl implements ProductSettingsClient {
      * @param workspaceName The name of the workspace.
      * @param settingsName The setting name. Supports - Anomalies, EyesOn, EntityAnalytics, Ueba.
      * @param settings The setting.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the Setting.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public SettingsInner update(
-        String resourceGroupName, String workspaceName, String settingsName, SettingsInner settings) {
-        return updateAsync(resourceGroupName, workspaceName, settingsName, settings).block();
-    }
-
-    /**
-     * Updates setting.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param settingsName The setting name. Supports - Anomalies, EyesOn, EntityAnalytics, Ueba.
-     * @param settings The setting.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -740,5 +730,23 @@ public final class ProductSettingsClientImpl implements ProductSettingsClient {
     public Response<SettingsInner> updateWithResponse(
         String resourceGroupName, String workspaceName, String settingsName, SettingsInner settings, Context context) {
         return updateWithResponseAsync(resourceGroupName, workspaceName, settingsName, settings, context).block();
+    }
+
+    /**
+     * Updates setting.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param settingsName The setting name. Supports - Anomalies, EyesOn, EntityAnalytics, Ueba.
+     * @param settings The setting.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the Setting.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public SettingsInner update(
+        String resourceGroupName, String workspaceName, String settingsName, SettingsInner settings) {
+        return updateWithResponse(resourceGroupName, workspaceName, settingsName, settings, Context.NONE).getValue();
     }
 }

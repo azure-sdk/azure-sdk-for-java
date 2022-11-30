@@ -63,7 +63,7 @@ public final class FileImportsClientImpl implements FileImportsClient {
      */
     @Host("{$host}")
     @ServiceInterface(name = "SecurityInsightsFile")
-    private interface FileImportsService {
+    public interface FileImportsService {
         @Headers({"Content-Type: application/json"})
         @Get(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights"
@@ -181,6 +181,7 @@ public final class FileImportsClientImpl implements FileImportsClient {
         if (workspaceName == null) {
             return Mono.error(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
         }
+        final String apiVersion = "2022-12-01-preview";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -188,7 +189,7 @@ public final class FileImportsClientImpl implements FileImportsClient {
                     service
                         .list(
                             this.client.getEndpoint(),
-                            this.client.getApiVersion(),
+                            apiVersion,
                             this.client.getSubscriptionId(),
                             resourceGroupName,
                             workspaceName,
@@ -255,12 +256,13 @@ public final class FileImportsClientImpl implements FileImportsClient {
         if (workspaceName == null) {
             return Mono.error(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
         }
+        final String apiVersion = "2022-12-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .list(
                 this.client.getEndpoint(),
-                this.client.getApiVersion(),
+                apiVersion,
                 this.client.getSubscriptionId(),
                 resourceGroupName,
                 workspaceName,
@@ -442,6 +444,7 @@ public final class FileImportsClientImpl implements FileImportsClient {
         if (fileImportId == null) {
             return Mono.error(new IllegalArgumentException("Parameter fileImportId is required and cannot be null."));
         }
+        final String apiVersion = "2022-12-01-preview";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -449,7 +452,7 @@ public final class FileImportsClientImpl implements FileImportsClient {
                     service
                         .get(
                             this.client.getEndpoint(),
-                            this.client.getApiVersion(),
+                            apiVersion,
                             this.client.getSubscriptionId(),
                             resourceGroupName,
                             workspaceName,
@@ -496,12 +499,13 @@ public final class FileImportsClientImpl implements FileImportsClient {
         if (fileImportId == null) {
             return Mono.error(new IllegalArgumentException("Parameter fileImportId is required and cannot be null."));
         }
+        final String apiVersion = "2022-12-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .get(
                 this.client.getEndpoint(),
-                this.client.getApiVersion(),
+                apiVersion,
                 this.client.getSubscriptionId(),
                 resourceGroupName,
                 workspaceName,
@@ -533,22 +537,6 @@ public final class FileImportsClientImpl implements FileImportsClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param fileImportId File import ID.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a file import.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public FileImportInner get(String resourceGroupName, String workspaceName, String fileImportId) {
-        return getAsync(resourceGroupName, workspaceName, fileImportId).block();
-    }
-
-    /**
-     * Gets a file import.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param fileImportId File import ID.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -559,6 +547,22 @@ public final class FileImportsClientImpl implements FileImportsClient {
     public Response<FileImportInner> getWithResponse(
         String resourceGroupName, String workspaceName, String fileImportId, Context context) {
         return getWithResponseAsync(resourceGroupName, workspaceName, fileImportId, context).block();
+    }
+
+    /**
+     * Gets a file import.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param fileImportId File import ID.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a file import.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public FileImportInner get(String resourceGroupName, String workspaceName, String fileImportId) {
+        return getWithResponse(resourceGroupName, workspaceName, fileImportId, Context.NONE).getValue();
     }
 
     /**
@@ -604,6 +608,7 @@ public final class FileImportsClientImpl implements FileImportsClient {
         } else {
             fileImport.validate();
         }
+        final String apiVersion = "2022-12-01-preview";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -611,7 +616,7 @@ public final class FileImportsClientImpl implements FileImportsClient {
                     service
                         .create(
                             this.client.getEndpoint(),
-                            this.client.getApiVersion(),
+                            apiVersion,
                             this.client.getSubscriptionId(),
                             resourceGroupName,
                             workspaceName,
@@ -670,12 +675,13 @@ public final class FileImportsClientImpl implements FileImportsClient {
         } else {
             fileImport.validate();
         }
+        final String apiVersion = "2022-12-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .create(
                 this.client.getEndpoint(),
-                this.client.getApiVersion(),
+                apiVersion,
                 this.client.getSubscriptionId(),
                 resourceGroupName,
                 workspaceName,
@@ -711,24 +717,6 @@ public final class FileImportsClientImpl implements FileImportsClient {
      * @param workspaceName The name of the workspace.
      * @param fileImportId File import ID.
      * @param fileImport The file import.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return represents a file import in Azure Security Insights.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public FileImportInner create(
-        String resourceGroupName, String workspaceName, String fileImportId, FileImportInner fileImport) {
-        return createAsync(resourceGroupName, workspaceName, fileImportId, fileImport).block();
-    }
-
-    /**
-     * Creates the file import.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param fileImportId File import ID.
-     * @param fileImport The file import.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -743,6 +731,24 @@ public final class FileImportsClientImpl implements FileImportsClient {
         FileImportInner fileImport,
         Context context) {
         return createWithResponseAsync(resourceGroupName, workspaceName, fileImportId, fileImport, context).block();
+    }
+
+    /**
+     * Creates the file import.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param fileImportId File import ID.
+     * @param fileImport The file import.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return represents a file import in Azure Security Insights.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public FileImportInner create(
+        String resourceGroupName, String workspaceName, String fileImportId, FileImportInner fileImport) {
+        return createWithResponse(resourceGroupName, workspaceName, fileImportId, fileImport, Context.NONE).getValue();
     }
 
     /**
@@ -782,6 +788,7 @@ public final class FileImportsClientImpl implements FileImportsClient {
         if (fileImportId == null) {
             return Mono.error(new IllegalArgumentException("Parameter fileImportId is required and cannot be null."));
         }
+        final String apiVersion = "2022-12-01-preview";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -789,7 +796,7 @@ public final class FileImportsClientImpl implements FileImportsClient {
                     service
                         .delete(
                             this.client.getEndpoint(),
-                            this.client.getApiVersion(),
+                            apiVersion,
                             this.client.getSubscriptionId(),
                             resourceGroupName,
                             workspaceName,
@@ -837,12 +844,13 @@ public final class FileImportsClientImpl implements FileImportsClient {
         if (fileImportId == null) {
             return Mono.error(new IllegalArgumentException("Parameter fileImportId is required and cannot be null."));
         }
+        final String apiVersion = "2022-12-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .delete(
                 this.client.getEndpoint(),
-                this.client.getApiVersion(),
+                apiVersion,
                 this.client.getSubscriptionId(),
                 resourceGroupName,
                 workspaceName,

@@ -58,7 +58,7 @@ public final class BookmarkRelationsClientImpl implements BookmarkRelationsClien
      */
     @Host("{$host}")
     @ServiceInterface(name = "SecurityInsightsBook")
-    private interface BookmarkRelationsService {
+    public interface BookmarkRelationsService {
         @Headers({"Content-Type: application/json"})
         @Get(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights"
@@ -193,6 +193,7 @@ public final class BookmarkRelationsClientImpl implements BookmarkRelationsClien
         if (bookmarkId == null) {
             return Mono.error(new IllegalArgumentException("Parameter bookmarkId is required and cannot be null."));
         }
+        final String apiVersion = "2022-12-01-preview";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -200,7 +201,7 @@ public final class BookmarkRelationsClientImpl implements BookmarkRelationsClien
                     service
                         .list(
                             this.client.getEndpoint(),
-                            this.client.getApiVersion(),
+                            apiVersion,
                             this.client.getSubscriptionId(),
                             resourceGroupName,
                             workspaceName,
@@ -273,12 +274,13 @@ public final class BookmarkRelationsClientImpl implements BookmarkRelationsClien
         if (bookmarkId == null) {
             return Mono.error(new IllegalArgumentException("Parameter bookmarkId is required and cannot be null."));
         }
+        final String apiVersion = "2022-12-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .list(
                 this.client.getEndpoint(),
-                this.client.getApiVersion(),
+                apiVersion,
                 this.client.getSubscriptionId(),
                 resourceGroupName,
                 workspaceName,
@@ -481,6 +483,7 @@ public final class BookmarkRelationsClientImpl implements BookmarkRelationsClien
         if (relationName == null) {
             return Mono.error(new IllegalArgumentException("Parameter relationName is required and cannot be null."));
         }
+        final String apiVersion = "2022-12-01-preview";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -488,7 +491,7 @@ public final class BookmarkRelationsClientImpl implements BookmarkRelationsClien
                     service
                         .get(
                             this.client.getEndpoint(),
-                            this.client.getApiVersion(),
+                            apiVersion,
                             this.client.getSubscriptionId(),
                             resourceGroupName,
                             workspaceName,
@@ -540,12 +543,13 @@ public final class BookmarkRelationsClientImpl implements BookmarkRelationsClien
         if (relationName == null) {
             return Mono.error(new IllegalArgumentException("Parameter relationName is required and cannot be null."));
         }
+        final String apiVersion = "2022-12-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .get(
                 this.client.getEndpoint(),
-                this.client.getApiVersion(),
+                apiVersion,
                 this.client.getSubscriptionId(),
                 resourceGroupName,
                 workspaceName,
@@ -581,23 +585,6 @@ public final class BookmarkRelationsClientImpl implements BookmarkRelationsClien
      * @param workspaceName The name of the workspace.
      * @param bookmarkId Bookmark ID.
      * @param relationName Relation Name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a bookmark relation.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public RelationInner get(String resourceGroupName, String workspaceName, String bookmarkId, String relationName) {
-        return getAsync(resourceGroupName, workspaceName, bookmarkId, relationName).block();
-    }
-
-    /**
-     * Gets a bookmark relation.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param bookmarkId Bookmark ID.
-     * @param relationName Relation Name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -608,6 +595,23 @@ public final class BookmarkRelationsClientImpl implements BookmarkRelationsClien
     public Response<RelationInner> getWithResponse(
         String resourceGroupName, String workspaceName, String bookmarkId, String relationName, Context context) {
         return getWithResponseAsync(resourceGroupName, workspaceName, bookmarkId, relationName, context).block();
+    }
+
+    /**
+     * Gets a bookmark relation.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param bookmarkId Bookmark ID.
+     * @param relationName Relation Name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a bookmark relation.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public RelationInner get(String resourceGroupName, String workspaceName, String bookmarkId, String relationName) {
+        return getWithResponse(resourceGroupName, workspaceName, bookmarkId, relationName, Context.NONE).getValue();
     }
 
     /**
@@ -661,6 +665,7 @@ public final class BookmarkRelationsClientImpl implements BookmarkRelationsClien
         } else {
             relation.validate();
         }
+        final String apiVersion = "2022-12-01-preview";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -668,7 +673,7 @@ public final class BookmarkRelationsClientImpl implements BookmarkRelationsClien
                     service
                         .createOrUpdate(
                             this.client.getEndpoint(),
-                            this.client.getApiVersion(),
+                            apiVersion,
                             this.client.getSubscriptionId(),
                             resourceGroupName,
                             workspaceName,
@@ -733,12 +738,13 @@ public final class BookmarkRelationsClientImpl implements BookmarkRelationsClien
         } else {
             relation.validate();
         }
+        final String apiVersion = "2022-12-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .createOrUpdate(
                 this.client.getEndpoint(),
-                this.client.getApiVersion(),
+                apiVersion,
                 this.client.getSubscriptionId(),
                 resourceGroupName,
                 workspaceName,
@@ -781,29 +787,6 @@ public final class BookmarkRelationsClientImpl implements BookmarkRelationsClien
      * @param bookmarkId Bookmark ID.
      * @param relationName Relation Name.
      * @param relation The relation model.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return represents a relation between two resources.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public RelationInner createOrUpdate(
-        String resourceGroupName,
-        String workspaceName,
-        String bookmarkId,
-        String relationName,
-        RelationInner relation) {
-        return createOrUpdateAsync(resourceGroupName, workspaceName, bookmarkId, relationName, relation).block();
-    }
-
-    /**
-     * Creates the bookmark relation.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param bookmarkId Bookmark ID.
-     * @param relationName Relation Name.
-     * @param relation The relation model.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -821,6 +804,31 @@ public final class BookmarkRelationsClientImpl implements BookmarkRelationsClien
         return createOrUpdateWithResponseAsync(
                 resourceGroupName, workspaceName, bookmarkId, relationName, relation, context)
             .block();
+    }
+
+    /**
+     * Creates the bookmark relation.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param bookmarkId Bookmark ID.
+     * @param relationName Relation Name.
+     * @param relation The relation model.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return represents a relation between two resources.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public RelationInner createOrUpdate(
+        String resourceGroupName,
+        String workspaceName,
+        String bookmarkId,
+        String relationName,
+        RelationInner relation) {
+        return createOrUpdateWithResponse(
+                resourceGroupName, workspaceName, bookmarkId, relationName, relation, Context.NONE)
+            .getValue();
     }
 
     /**
@@ -863,6 +871,7 @@ public final class BookmarkRelationsClientImpl implements BookmarkRelationsClien
         if (relationName == null) {
             return Mono.error(new IllegalArgumentException("Parameter relationName is required and cannot be null."));
         }
+        final String apiVersion = "2022-12-01-preview";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -870,7 +879,7 @@ public final class BookmarkRelationsClientImpl implements BookmarkRelationsClien
                     service
                         .delete(
                             this.client.getEndpoint(),
-                            this.client.getApiVersion(),
+                            apiVersion,
                             this.client.getSubscriptionId(),
                             resourceGroupName,
                             workspaceName,
@@ -922,12 +931,13 @@ public final class BookmarkRelationsClientImpl implements BookmarkRelationsClien
         if (relationName == null) {
             return Mono.error(new IllegalArgumentException("Parameter relationName is required and cannot be null."));
         }
+        final String apiVersion = "2022-12-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .delete(
                 this.client.getEndpoint(),
-                this.client.getApiVersion(),
+                apiVersion,
                 this.client.getSubscriptionId(),
                 resourceGroupName,
                 workspaceName,
@@ -963,22 +973,6 @@ public final class BookmarkRelationsClientImpl implements BookmarkRelationsClien
      * @param workspaceName The name of the workspace.
      * @param bookmarkId Bookmark ID.
      * @param relationName Relation Name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public void delete(String resourceGroupName, String workspaceName, String bookmarkId, String relationName) {
-        deleteAsync(resourceGroupName, workspaceName, bookmarkId, relationName).block();
-    }
-
-    /**
-     * Delete the bookmark relation.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param bookmarkId Bookmark ID.
-     * @param relationName Relation Name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -989,6 +983,22 @@ public final class BookmarkRelationsClientImpl implements BookmarkRelationsClien
     public Response<Void> deleteWithResponse(
         String resourceGroupName, String workspaceName, String bookmarkId, String relationName, Context context) {
         return deleteWithResponseAsync(resourceGroupName, workspaceName, bookmarkId, relationName, context).block();
+    }
+
+    /**
+     * Delete the bookmark relation.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param bookmarkId Bookmark ID.
+     * @param relationName Relation Name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public void delete(String resourceGroupName, String workspaceName, String bookmarkId, String relationName) {
+        deleteWithResponse(resourceGroupName, workspaceName, bookmarkId, relationName, Context.NONE);
     }
 
     /**

@@ -24,6 +24,10 @@ public final class ActivityEntityQueryTemplate extends EntityQueryTemplateInner 
     @JsonProperty(value = "properties")
     private ActivityEntityQueryTemplateProperties innerProperties;
 
+    /** Creates an instance of ActivityEntityQueryTemplate class. */
+    public ActivityEntityQueryTemplate() {
+    }
+
     /**
      * Get the innerProperties property: Activity entity query properties.
      *

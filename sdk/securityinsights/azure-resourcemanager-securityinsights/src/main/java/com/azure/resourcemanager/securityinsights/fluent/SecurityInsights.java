@@ -24,13 +24,6 @@ public interface SecurityInsights {
     String getEndpoint();
 
     /**
-     * Gets Api Version.
-     *
-     * @return the apiVersion value.
-     */
-    String getApiVersion();
-
-    /**
      * Gets The HTTP pipeline to send requests through.
      *
      * @return the httpPipeline value.
@@ -178,6 +171,13 @@ public interface SecurityInsights {
     IncidentRelationsClient getIncidentRelations();
 
     /**
+     * Gets the IncidentTasksClient object to access its operations.
+     *
+     * @return the IncidentTasksClient object.
+     */
+    IncidentTasksClient getIncidentTasks();
+
+    /**
      * Gets the MetadatasClient object to access its operations.
      *
      * @return the MetadatasClient object.
@@ -197,6 +197,27 @@ public interface SecurityInsights {
      * @return the SentinelOnboardingStatesClient object.
      */
     SentinelOnboardingStatesClient getSentinelOnboardingStates();
+
+    /**
+     * Gets the GetRecommendationsClient object to access its operations.
+     *
+     * @return the GetRecommendationsClient object.
+     */
+    GetRecommendationsClient getGetRecommendations();
+
+    /**
+     * Gets the GetsClient object to access its operations.
+     *
+     * @return the GetsClient object.
+     */
+    GetsClient getGets();
+
+    /**
+     * Gets the UpdatesClient object to access its operations.
+     *
+     * @return the UpdatesClient object.
+     */
+    UpdatesClient getUpdates();
 
     /**
      * Gets the SecurityMLAnalyticsSettingsClient object to access its operations.
@@ -274,6 +295,20 @@ public interface SecurityInsights {
      * @return the DataConnectorsCheckRequirementsOperationsClient object.
      */
     DataConnectorsCheckRequirementsOperationsClient getDataConnectorsCheckRequirementsOperations();
+
+    /**
+     * Gets the ContentPackagesClient object to access its operations.
+     *
+     * @return the ContentPackagesClient object.
+     */
+    ContentPackagesClient getContentPackages();
+
+    /**
+     * Gets the ContentTemplatesClient object to access its operations.
+     *
+     * @return the ContentTemplatesClient object.
+     */
+    ContentTemplatesClient getContentTemplates();
 
     /**
      * Gets the OperationsClient object to access its operations.

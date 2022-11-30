@@ -55,7 +55,7 @@ public final class EntitiesRelationsClientImpl implements EntitiesRelationsClien
      */
     @Host("{$host}")
     @ServiceInterface(name = "SecurityInsightsEnti")
-    private interface EntitiesRelationsService {
+    public interface EntitiesRelationsService {
         @Headers({"Content-Type: application/json"})
         @Get(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights"
@@ -135,6 +135,7 @@ public final class EntitiesRelationsClientImpl implements EntitiesRelationsClien
         if (entityId == null) {
             return Mono.error(new IllegalArgumentException("Parameter entityId is required and cannot be null."));
         }
+        final String apiVersion = "2022-12-01-preview";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -142,7 +143,7 @@ public final class EntitiesRelationsClientImpl implements EntitiesRelationsClien
                     service
                         .list(
                             this.client.getEndpoint(),
-                            this.client.getApiVersion(),
+                            apiVersion,
                             this.client.getSubscriptionId(),
                             resourceGroupName,
                             workspaceName,
@@ -215,12 +216,13 @@ public final class EntitiesRelationsClientImpl implements EntitiesRelationsClien
         if (entityId == null) {
             return Mono.error(new IllegalArgumentException("Parameter entityId is required and cannot be null."));
         }
+        final String apiVersion = "2022-12-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .list(
                 this.client.getEndpoint(),
-                this.client.getApiVersion(),
+                apiVersion,
                 this.client.getSubscriptionId(),
                 resourceGroupName,
                 workspaceName,

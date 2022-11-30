@@ -59,7 +59,7 @@ public final class SourceControlsOperationsClientImpl implements SourceControlsO
      */
     @Host("{$host}")
     @ServiceInterface(name = "SecurityInsightsSour")
-    private interface SourceControlsOperationsService {
+    public interface SourceControlsOperationsService {
         @Headers({"Content-Type: application/json"})
         @Get(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights"
@@ -168,6 +168,7 @@ public final class SourceControlsOperationsClientImpl implements SourceControlsO
         if (workspaceName == null) {
             return Mono.error(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
         }
+        final String apiVersion = "2022-12-01-preview";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -175,7 +176,7 @@ public final class SourceControlsOperationsClientImpl implements SourceControlsO
                     service
                         .list(
                             this.client.getEndpoint(),
-                            this.client.getApiVersion(),
+                            apiVersion,
                             this.client.getSubscriptionId(),
                             resourceGroupName,
                             workspaceName,
@@ -227,12 +228,13 @@ public final class SourceControlsOperationsClientImpl implements SourceControlsO
         if (workspaceName == null) {
             return Mono.error(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
         }
+        final String apiVersion = "2022-12-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .list(
                 this.client.getEndpoint(),
-                this.client.getApiVersion(),
+                apiVersion,
                 this.client.getSubscriptionId(),
                 resourceGroupName,
                 workspaceName,
@@ -351,6 +353,7 @@ public final class SourceControlsOperationsClientImpl implements SourceControlsO
             return Mono
                 .error(new IllegalArgumentException("Parameter sourceControlId is required and cannot be null."));
         }
+        final String apiVersion = "2022-12-01-preview";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -358,7 +361,7 @@ public final class SourceControlsOperationsClientImpl implements SourceControlsO
                     service
                         .get(
                             this.client.getEndpoint(),
-                            this.client.getApiVersion(),
+                            apiVersion,
                             this.client.getSubscriptionId(),
                             resourceGroupName,
                             workspaceName,
@@ -406,12 +409,13 @@ public final class SourceControlsOperationsClientImpl implements SourceControlsO
             return Mono
                 .error(new IllegalArgumentException("Parameter sourceControlId is required and cannot be null."));
         }
+        final String apiVersion = "2022-12-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .get(
                 this.client.getEndpoint(),
-                this.client.getApiVersion(),
+                apiVersion,
                 this.client.getSubscriptionId(),
                 resourceGroupName,
                 workspaceName,
@@ -443,22 +447,6 @@ public final class SourceControlsOperationsClientImpl implements SourceControlsO
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param sourceControlId Source control Id.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a source control byt its identifier.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public SourceControlInner get(String resourceGroupName, String workspaceName, String sourceControlId) {
-        return getAsync(resourceGroupName, workspaceName, sourceControlId).block();
-    }
-
-    /**
-     * Gets a source control byt its identifier.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param sourceControlId Source control Id.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -469,6 +457,22 @@ public final class SourceControlsOperationsClientImpl implements SourceControlsO
     public Response<SourceControlInner> getWithResponse(
         String resourceGroupName, String workspaceName, String sourceControlId, Context context) {
         return getWithResponseAsync(resourceGroupName, workspaceName, sourceControlId, context).block();
+    }
+
+    /**
+     * Gets a source control byt its identifier.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param sourceControlId Source control Id.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a source control byt its identifier.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public SourceControlInner get(String resourceGroupName, String workspaceName, String sourceControlId) {
+        return getWithResponse(resourceGroupName, workspaceName, sourceControlId, Context.NONE).getValue();
     }
 
     /**
@@ -508,6 +512,7 @@ public final class SourceControlsOperationsClientImpl implements SourceControlsO
             return Mono
                 .error(new IllegalArgumentException("Parameter sourceControlId is required and cannot be null."));
         }
+        final String apiVersion = "2022-12-01-preview";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -515,7 +520,7 @@ public final class SourceControlsOperationsClientImpl implements SourceControlsO
                     service
                         .delete(
                             this.client.getEndpoint(),
-                            this.client.getApiVersion(),
+                            apiVersion,
                             this.client.getSubscriptionId(),
                             resourceGroupName,
                             workspaceName,
@@ -563,12 +568,13 @@ public final class SourceControlsOperationsClientImpl implements SourceControlsO
             return Mono
                 .error(new IllegalArgumentException("Parameter sourceControlId is required and cannot be null."));
         }
+        final String apiVersion = "2022-12-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .delete(
                 this.client.getEndpoint(),
-                this.client.getApiVersion(),
+                apiVersion,
                 this.client.getSubscriptionId(),
                 resourceGroupName,
                 workspaceName,
@@ -600,21 +606,6 @@ public final class SourceControlsOperationsClientImpl implements SourceControlsO
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param sourceControlId Source control Id.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public void delete(String resourceGroupName, String workspaceName, String sourceControlId) {
-        deleteAsync(resourceGroupName, workspaceName, sourceControlId).block();
-    }
-
-    /**
-     * Delete a source control.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param sourceControlId Source control Id.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -625,6 +616,21 @@ public final class SourceControlsOperationsClientImpl implements SourceControlsO
     public Response<Void> deleteWithResponse(
         String resourceGroupName, String workspaceName, String sourceControlId, Context context) {
         return deleteWithResponseAsync(resourceGroupName, workspaceName, sourceControlId, context).block();
+    }
+
+    /**
+     * Delete a source control.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param sourceControlId Source control Id.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public void delete(String resourceGroupName, String workspaceName, String sourceControlId) {
+        deleteWithResponse(resourceGroupName, workspaceName, sourceControlId, Context.NONE);
     }
 
     /**
@@ -671,6 +677,7 @@ public final class SourceControlsOperationsClientImpl implements SourceControlsO
         } else {
             sourceControl.validate();
         }
+        final String apiVersion = "2022-12-01-preview";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -678,7 +685,7 @@ public final class SourceControlsOperationsClientImpl implements SourceControlsO
                     service
                         .create(
                             this.client.getEndpoint(),
-                            this.client.getApiVersion(),
+                            apiVersion,
                             this.client.getSubscriptionId(),
                             resourceGroupName,
                             workspaceName,
@@ -738,12 +745,13 @@ public final class SourceControlsOperationsClientImpl implements SourceControlsO
         } else {
             sourceControl.validate();
         }
+        final String apiVersion = "2022-12-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .create(
                 this.client.getEndpoint(),
-                this.client.getApiVersion(),
+                apiVersion,
                 this.client.getSubscriptionId(),
                 resourceGroupName,
                 workspaceName,
@@ -779,24 +787,6 @@ public final class SourceControlsOperationsClientImpl implements SourceControlsO
      * @param workspaceName The name of the workspace.
      * @param sourceControlId Source control Id.
      * @param sourceControl The SourceControl.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return represents a SourceControl in Azure Security Insights.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public SourceControlInner create(
-        String resourceGroupName, String workspaceName, String sourceControlId, SourceControlInner sourceControl) {
-        return createAsync(resourceGroupName, workspaceName, sourceControlId, sourceControl).block();
-    }
-
-    /**
-     * Creates a source control.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param sourceControlId Source control Id.
-     * @param sourceControl The SourceControl.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -812,6 +802,25 @@ public final class SourceControlsOperationsClientImpl implements SourceControlsO
         Context context) {
         return createWithResponseAsync(resourceGroupName, workspaceName, sourceControlId, sourceControl, context)
             .block();
+    }
+
+    /**
+     * Creates a source control.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param sourceControlId Source control Id.
+     * @param sourceControl The SourceControl.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return represents a SourceControl in Azure Security Insights.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public SourceControlInner create(
+        String resourceGroupName, String workspaceName, String sourceControlId, SourceControlInner sourceControl) {
+        return createWithResponse(resourceGroupName, workspaceName, sourceControlId, sourceControl, Context.NONE)
+            .getValue();
     }
 
     /**

@@ -16,6 +16,10 @@ public final class IoTCheckRequirementsProperties {
     @JsonProperty(value = "subscriptionId")
     private String subscriptionId;
 
+    /** Creates an instance of IoTCheckRequirementsProperties class. */
+    public IoTCheckRequirementsProperties() {
+    }
+
     /**
      * Get the subscriptionId property: The subscription id to connect to, and get the data from.
      *

@@ -50,7 +50,7 @@ public final class IpGeodatasClientImpl implements IpGeodatasClient {
      */
     @Host("{$host}")
     @ServiceInterface(name = "SecurityInsightsIpGe")
-    private interface IpGeodatasService {
+    public interface IpGeodatasService {
         @Headers({"Content-Type: application/json"})
         @Get(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SecurityInsights"
@@ -98,6 +98,7 @@ public final class IpGeodatasClientImpl implements IpGeodatasClient {
         if (ipAddress == null) {
             return Mono.error(new IllegalArgumentException("Parameter ipAddress is required and cannot be null."));
         }
+        final String apiVersion = "2022-12-01-preview";
         final String accept = "application/json";
         return FluxUtil
             .withContext(
@@ -105,7 +106,7 @@ public final class IpGeodatasClientImpl implements IpGeodatasClient {
                     service
                         .get(
                             this.client.getEndpoint(),
-                            this.client.getApiVersion(),
+                            apiVersion,
                             this.client.getSubscriptionId(),
                             resourceGroupName,
                             ipAddress,
@@ -147,12 +148,13 @@ public final class IpGeodatasClientImpl implements IpGeodatasClient {
         if (ipAddress == null) {
             return Mono.error(new IllegalArgumentException("Parameter ipAddress is required and cannot be null."));
         }
+        final String apiVersion = "2022-12-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .get(
                 this.client.getEndpoint(),
-                this.client.getApiVersion(),
+                apiVersion,
                 this.client.getSubscriptionId(),
                 resourceGroupName,
                 ipAddress,
@@ -180,21 +182,6 @@ public final class IpGeodatasClientImpl implements IpGeodatasClient {
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param ipAddress IP address (v4 or v6) to be enriched.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return geodata for a single IP address.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public EnrichmentIpGeodataInner get(String resourceGroupName, String ipAddress) {
-        return getAsync(resourceGroupName, ipAddress).block();
-    }
-
-    /**
-     * Get geodata for a single IP address.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param ipAddress IP address (v4 or v6) to be enriched.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -205,5 +192,20 @@ public final class IpGeodatasClientImpl implements IpGeodatasClient {
     public Response<EnrichmentIpGeodataInner> getWithResponse(
         String resourceGroupName, String ipAddress, Context context) {
         return getWithResponseAsync(resourceGroupName, ipAddress, context).block();
+    }
+
+    /**
+     * Get geodata for a single IP address.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param ipAddress IP address (v4 or v6) to be enriched.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return geodata for a single IP address.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public EnrichmentIpGeodataInner get(String resourceGroupName, String ipAddress) {
+        return getWithResponse(resourceGroupName, ipAddress, Context.NONE).getValue();
     }
 }
