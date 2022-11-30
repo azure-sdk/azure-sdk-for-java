@@ -12,7 +12,7 @@ import java.util.Map;
 /** Samples for Datastores Update. */
 public final class DatastoresUpdateSamples {
     /*
-     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-01-10-preview/examples/UpdateDatastore.json
+     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-07-15-preview/examples/UpdateDatastore.json
      */
     /**
      * Sample code: UpdateDatastore.

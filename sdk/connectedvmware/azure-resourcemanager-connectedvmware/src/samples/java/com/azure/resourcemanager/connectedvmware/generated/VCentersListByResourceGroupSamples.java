@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for VCenters ListByResourceGroup. */
 public final class VCentersListByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-01-10-preview/examples/ListVCentersByResourceGroup.json
+     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-07-15-preview/examples/ListVCentersByResourceGroup.json
      */
     /**
      * Sample code: ListVCentersByResourceGroup.

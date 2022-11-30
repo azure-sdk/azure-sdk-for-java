@@ -121,6 +121,20 @@ public interface Datastore {
     String customResourceName();
 
     /**
+     * Gets the capacityGB property: Gets or sets Maximum capacity of this datastore in GBs.
+     *
+     * @return the capacityGB value.
+     */
+    Long capacityGB();
+
+    /**
+     * Gets the freeSpaceGB property: Gets or sets Available space of this datastore in GBs.
+     *
+     * @return the freeSpaceGB value.
+     */
+    Long freeSpaceGB();
+
+    /**
      * Gets the provisioningState property: Provisioning state of the resource.
      *
      * @return the provisioningState value.
