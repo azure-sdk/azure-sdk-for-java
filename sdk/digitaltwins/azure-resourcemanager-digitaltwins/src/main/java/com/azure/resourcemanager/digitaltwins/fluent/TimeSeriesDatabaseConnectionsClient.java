@@ -51,21 +51,6 @@ public interface TimeSeriesDatabaseConnectionsClient {
      * @param resourceGroupName The name of the resource group that contains the DigitalTwinsInstance.
      * @param resourceName The name of the DigitalTwinsInstance.
      * @param timeSeriesDatabaseConnectionName Name of time series database connection.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the description of an existing time series database connection.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    TimeSeriesDatabaseConnectionInner get(
-        String resourceGroupName, String resourceName, String timeSeriesDatabaseConnectionName);
-
-    /**
-     * Get the description of an existing time series database connection.
-     *
-     * @param resourceGroupName The name of the resource group that contains the DigitalTwinsInstance.
-     * @param resourceName The name of the DigitalTwinsInstance.
-     * @param timeSeriesDatabaseConnectionName Name of time series database connection.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -77,6 +62,21 @@ public interface TimeSeriesDatabaseConnectionsClient {
         String resourceGroupName, String resourceName, String timeSeriesDatabaseConnectionName, Context context);
 
     /**
+     * Get the description of an existing time series database connection.
+     *
+     * @param resourceGroupName The name of the resource group that contains the DigitalTwinsInstance.
+     * @param resourceName The name of the DigitalTwinsInstance.
+     * @param timeSeriesDatabaseConnectionName Name of time series database connection.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the description of an existing time series database connection.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    TimeSeriesDatabaseConnectionInner get(
+        String resourceGroupName, String resourceName, String timeSeriesDatabaseConnectionName);
+
+    /**
      * Create or update a time series database connection.
      *
      * @param resourceGroupName The name of the resource group that contains the DigitalTwinsInstance.
@@ -177,6 +177,9 @@ public interface TimeSeriesDatabaseConnectionsClient {
      * @param resourceGroupName The name of the resource group that contains the DigitalTwinsInstance.
      * @param resourceName The name of the DigitalTwinsInstance.
      * @param timeSeriesDatabaseConnectionName Name of time series database connection.
+     * @param cleanupConnectionArtifacts Specifies whether or not to attempt to clean up artifacts that were created in
+     *     order to establish a connection to the time series database. This is a best-effort attempt that will fail if
+     *     appropriate permissions are not in place. Setting this to 'true' does not delete any recorded data.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -185,7 +188,11 @@ public interface TimeSeriesDatabaseConnectionsClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<TimeSeriesDatabaseConnectionInner>, TimeSeriesDatabaseConnectionInner> beginDelete(
-        String resourceGroupName, String resourceName, String timeSeriesDatabaseConnectionName, Context context);
+        String resourceGroupName,
+        String resourceName,
+        String timeSeriesDatabaseConnectionName,
+        Boolean cleanupConnectionArtifacts,
+        Context context);
 
     /**
      * Delete a time series database connection.
@@ -208,6 +215,9 @@ public interface TimeSeriesDatabaseConnectionsClient {
      * @param resourceGroupName The name of the resource group that contains the DigitalTwinsInstance.
      * @param resourceName The name of the DigitalTwinsInstance.
      * @param timeSeriesDatabaseConnectionName Name of time series database connection.
+     * @param cleanupConnectionArtifacts Specifies whether or not to attempt to clean up artifacts that were created in
+     *     order to establish a connection to the time series database. This is a best-effort attempt that will fail if
+     *     appropriate permissions are not in place. Setting this to 'true' does not delete any recorded data.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -216,5 +226,9 @@ public interface TimeSeriesDatabaseConnectionsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     TimeSeriesDatabaseConnectionInner delete(
-        String resourceGroupName, String resourceName, String timeSeriesDatabaseConnectionName, Context context);
+        String resourceGroupName,
+        String resourceName,
+        String timeSeriesDatabaseConnectionName,
+        Boolean cleanupConnectionArtifacts,
+        Context context);
 }
