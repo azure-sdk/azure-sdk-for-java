@@ -251,7 +251,7 @@ public final class HealthcareApisManager {
                 .append("-")
                 .append("com.azure.resourcemanager.healthcareapis")
                 .append("/")
-                .append("1.0.0-beta.2");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder
                     .append(" (")
@@ -308,7 +308,11 @@ public final class HealthcareApisManager {
         }
     }
 
-    /** @return Resource collection API of Services. */
+    /**
+     * Gets the resource collection API of Services. It manages ServicesDescription.
+     *
+     * @return Resource collection API of Services.
+     */
     public Services services() {
         if (this.services == null) {
             this.services = new ServicesImpl(clientObject.getServices(), this);
@@ -316,7 +320,11 @@ public final class HealthcareApisManager {
         return services;
     }
 
-    /** @return Resource collection API of PrivateEndpointConnections. */
+    /**
+     * Gets the resource collection API of PrivateEndpointConnections. It manages PrivateEndpointConnectionDescription.
+     *
+     * @return Resource collection API of PrivateEndpointConnections.
+     */
     public PrivateEndpointConnections privateEndpointConnections() {
         if (this.privateEndpointConnections == null) {
             this.privateEndpointConnections =
@@ -325,7 +333,11 @@ public final class HealthcareApisManager {
         return privateEndpointConnections;
     }
 
-    /** @return Resource collection API of PrivateLinkResources. */
+    /**
+     * Gets the resource collection API of PrivateLinkResources.
+     *
+     * @return Resource collection API of PrivateLinkResources.
+     */
     public PrivateLinkResources privateLinkResources() {
         if (this.privateLinkResources == null) {
             this.privateLinkResources = new PrivateLinkResourcesImpl(clientObject.getPrivateLinkResources(), this);
@@ -333,7 +345,11 @@ public final class HealthcareApisManager {
         return privateLinkResources;
     }
 
-    /** @return Resource collection API of Workspaces. */
+    /**
+     * Gets the resource collection API of Workspaces. It manages Workspace.
+     *
+     * @return Resource collection API of Workspaces.
+     */
     public Workspaces workspaces() {
         if (this.workspaces == null) {
             this.workspaces = new WorkspacesImpl(clientObject.getWorkspaces(), this);
@@ -341,7 +357,11 @@ public final class HealthcareApisManager {
         return workspaces;
     }
 
-    /** @return Resource collection API of DicomServices. */
+    /**
+     * Gets the resource collection API of DicomServices. It manages DicomService.
+     *
+     * @return Resource collection API of DicomServices.
+     */
     public DicomServices dicomServices() {
         if (this.dicomServices == null) {
             this.dicomServices = new DicomServicesImpl(clientObject.getDicomServices(), this);
@@ -349,7 +369,11 @@ public final class HealthcareApisManager {
         return dicomServices;
     }
 
-    /** @return Resource collection API of IotConnectors. */
+    /**
+     * Gets the resource collection API of IotConnectors. It manages IotConnector.
+     *
+     * @return Resource collection API of IotConnectors.
+     */
     public IotConnectors iotConnectors() {
         if (this.iotConnectors == null) {
             this.iotConnectors = new IotConnectorsImpl(clientObject.getIotConnectors(), this);
@@ -357,7 +381,11 @@ public final class HealthcareApisManager {
         return iotConnectors;
     }
 
-    /** @return Resource collection API of FhirDestinations. */
+    /**
+     * Gets the resource collection API of FhirDestinations.
+     *
+     * @return Resource collection API of FhirDestinations.
+     */
     public FhirDestinations fhirDestinations() {
         if (this.fhirDestinations == null) {
             this.fhirDestinations = new FhirDestinationsImpl(clientObject.getFhirDestinations(), this);
@@ -365,7 +393,11 @@ public final class HealthcareApisManager {
         return fhirDestinations;
     }
 
-    /** @return Resource collection API of IotConnectorFhirDestinations. */
+    /**
+     * Gets the resource collection API of IotConnectorFhirDestinations. It manages IotFhirDestination.
+     *
+     * @return Resource collection API of IotConnectorFhirDestinations.
+     */
     public IotConnectorFhirDestinations iotConnectorFhirDestinations() {
         if (this.iotConnectorFhirDestinations == null) {
             this.iotConnectorFhirDestinations =
@@ -374,7 +406,11 @@ public final class HealthcareApisManager {
         return iotConnectorFhirDestinations;
     }
 
-    /** @return Resource collection API of FhirServices. */
+    /**
+     * Gets the resource collection API of FhirServices. It manages FhirService.
+     *
+     * @return Resource collection API of FhirServices.
+     */
     public FhirServices fhirServices() {
         if (this.fhirServices == null) {
             this.fhirServices = new FhirServicesImpl(clientObject.getFhirServices(), this);
@@ -382,7 +418,11 @@ public final class HealthcareApisManager {
         return fhirServices;
     }
 
-    /** @return Resource collection API of WorkspacePrivateEndpointConnections. */
+    /**
+     * Gets the resource collection API of WorkspacePrivateEndpointConnections.
+     *
+     * @return Resource collection API of WorkspacePrivateEndpointConnections.
+     */
     public WorkspacePrivateEndpointConnections workspacePrivateEndpointConnections() {
         if (this.workspacePrivateEndpointConnections == null) {
             this.workspacePrivateEndpointConnections =
@@ -392,7 +432,11 @@ public final class HealthcareApisManager {
         return workspacePrivateEndpointConnections;
     }
 
-    /** @return Resource collection API of WorkspacePrivateLinkResources. */
+    /**
+     * Gets the resource collection API of WorkspacePrivateLinkResources.
+     *
+     * @return Resource collection API of WorkspacePrivateLinkResources.
+     */
     public WorkspacePrivateLinkResources workspacePrivateLinkResources() {
         if (this.workspacePrivateLinkResources == null) {
             this.workspacePrivateLinkResources =
@@ -401,7 +445,11 @@ public final class HealthcareApisManager {
         return workspacePrivateLinkResources;
     }
 
-    /** @return Resource collection API of Operations. */
+    /**
+     * Gets the resource collection API of Operations.
+     *
+     * @return Resource collection API of Operations.
+     */
     public Operations operations() {
         if (this.operations == null) {
             this.operations = new OperationsImpl(clientObject.getOperations(), this);
@@ -409,7 +457,11 @@ public final class HealthcareApisManager {
         return operations;
     }
 
-    /** @return Resource collection API of OperationResults. */
+    /**
+     * Gets the resource collection API of OperationResults.
+     *
+     * @return Resource collection API of OperationResults.
+     */
     public OperationResults operationResults() {
         if (this.operationResults == null) {
             this.operationResults = new OperationResultsImpl(clientObject.getOperationResults(), this);

@@ -32,6 +32,10 @@ public final class IotFhirDestinationProperties extends IotDestinationProperties
     @JsonProperty(value = "fhirMapping", required = true)
     private IotMappingProperties fhirMapping;
 
+    /** Creates an instance of IotFhirDestinationProperties class. */
+    public IotFhirDestinationProperties() {
+    }
+
     /**
      * Get the resourceIdentityResolutionType property: Determines how resource identity is resolved on the destination.
      *

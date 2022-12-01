@@ -60,7 +60,7 @@ public final class IotConnectorFhirDestinationsClientImpl implements IotConnecto
      */
     @Host("{$host}")
     @ServiceInterface(name = "HealthcareApisManage")
-    private interface IotConnectorFhirDestinationsService {
+    public interface IotConnectorFhirDestinationsService {
         @Headers({"Content-Type: application/json"})
         @Get(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HealthcareApis"
@@ -254,32 +254,7 @@ public final class IotConnectorFhirDestinationsClientImpl implements IotConnecto
     private Mono<IotFhirDestinationInner> getAsync(
         String resourceGroupName, String workspaceName, String iotConnectorName, String fhirDestinationName) {
         return getWithResponseAsync(resourceGroupName, workspaceName, iotConnectorName, fhirDestinationName)
-            .flatMap(
-                (Response<IotFhirDestinationInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
-    }
-
-    /**
-     * Gets the properties of the specified Iot Connector FHIR destination.
-     *
-     * @param resourceGroupName The name of the resource group that contains the service instance.
-     * @param workspaceName The name of workspace resource.
-     * @param iotConnectorName The name of IoT Connector resource.
-     * @param fhirDestinationName The name of IoT Connector FHIR destination resource.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the properties of the specified Iot Connector FHIR destination.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public IotFhirDestinationInner get(
-        String resourceGroupName, String workspaceName, String iotConnectorName, String fhirDestinationName) {
-        return getAsync(resourceGroupName, workspaceName, iotConnectorName, fhirDestinationName).block();
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -304,6 +279,25 @@ public final class IotConnectorFhirDestinationsClientImpl implements IotConnecto
         Context context) {
         return getWithResponseAsync(resourceGroupName, workspaceName, iotConnectorName, fhirDestinationName, context)
             .block();
+    }
+
+    /**
+     * Gets the properties of the specified Iot Connector FHIR destination.
+     *
+     * @param resourceGroupName The name of the resource group that contains the service instance.
+     * @param workspaceName The name of workspace resource.
+     * @param iotConnectorName The name of IoT Connector resource.
+     * @param fhirDestinationName The name of IoT Connector FHIR destination resource.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the properties of the specified Iot Connector FHIR destination.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public IotFhirDestinationInner get(
+        String resourceGroupName, String workspaceName, String iotConnectorName, String fhirDestinationName) {
+        return getWithResponse(resourceGroupName, workspaceName, iotConnectorName, fhirDestinationName, Context.NONE)
+            .getValue();
     }
 
     /**
