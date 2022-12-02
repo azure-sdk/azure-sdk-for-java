@@ -9,7 +9,7 @@ import com.azure.resourcemanager.deviceprovisioningservices.models.CertificatePr
 /** Samples for DpsCertificate CreateOrUpdate. */
 public final class DpsCertificateCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/deviceprovisioningservices/resource-manager/Microsoft.Devices/stable/2022-02-05/examples/DPSCertificateCreateOrUpdate.json
+     * x-ms-original-file: specification/deviceprovisioningservices/resource-manager/Microsoft.Devices/stable/2022-12-02/examples/DPSCertificateCreateOrUpdate.json
      */
     /**
      * Sample code: DPSCreateOrUpdateCertificate.
