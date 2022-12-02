@@ -19,6 +19,10 @@ public final class ArmAsyncOperationInner {
     @JsonProperty(value = "status")
     private String status;
 
+    /** Creates an instance of ArmAsyncOperationInner class. */
+    public ArmAsyncOperationInner() {
+    }
+
     /**
      * Get the status property: Status of the async operation.
      *

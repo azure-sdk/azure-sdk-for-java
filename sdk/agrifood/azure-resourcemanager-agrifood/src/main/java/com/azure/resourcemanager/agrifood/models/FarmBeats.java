@@ -5,8 +5,10 @@
 package com.azure.resourcemanager.agrifood.models;
 
 import com.azure.core.management.Region;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.agrifood.fluent.models.FarmBeatsInner;
+import java.net.URL;
 import java.util.Map;
 
 /** An immutable client-side representation of FarmBeats. */
@@ -54,11 +56,18 @@ public interface FarmBeats {
     Identity identity();
 
     /**
+     * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     *
+     * @return the systemData value.
+     */
+    SystemData systemData();
+
+    /**
      * Gets the instanceUri property: Uri of the FarmBeats instance.
      *
      * @return the instanceUri value.
      */
-    String instanceUri();
+    URL instanceUri();
 
     /**
      * Gets the provisioningState property: FarmBeats instance provisioning state.
@@ -82,7 +91,7 @@ public interface FarmBeats {
     PublicNetworkAccess publicNetworkAccess();
 
     /**
-     * Gets the privateEndpointConnections property: The Private Endpoint Connection resource.
+     * Gets the privateEndpointConnections property: The private endpoint connection resource.
      *
      * @return the privateEndpointConnections value.
      */
