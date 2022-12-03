@@ -3,11 +3,10 @@
 
 ## Extensions
 
-- [Create](#extensions_create)
+- [CreateOrUpdate](#extensions_createorupdate)
 - [Delete](#extensions_delete)
 - [Get](#extensions_get)
 - [ListByFarmBeats](#extensions_listbyfarmbeats)
-- [Update](#extensions_update)
 
 ## FarmBeatsExtensions
 
@@ -43,25 +42,37 @@
 
 - [Get](#privatelinkresources_get)
 - [ListByResource](#privatelinkresources_listbyresource)
-### Extensions_Create
+
+## Solutions
+
+- [CreateOrUpdate](#solutions_createorupdate)
+- [Delete](#solutions_delete)
+- [Get](#solutions_get)
+- [List](#solutions_list)
+
+## SolutionsDiscoverability
+
+- [Get](#solutionsdiscoverability_get)
+- [List](#solutionsdiscoverability_list)
+### Extensions_CreateOrUpdate
 
 ```java
-import com.azure.core.util.Context;
-
-/** Samples for Extensions Create. */
-public final class ExtensionsCreateSamples {
+/** Samples for Extensions CreateOrUpdate. */
+public final class ExtensionsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/agrifood/resource-manager/Microsoft.AgFoodPlatform/preview/2021-09-01-preview/examples/Extensions_Create.json
+     * x-ms-original-file: specification/agrifood/resource-manager/Microsoft.AgFoodPlatform/preview/2021-09-01-preview/examples/Extensions_CreateOrUpdate.json
      */
     /**
-     * Sample code: Extensions_Create.
+     * Sample code: Extensions_CreateOrUpdate.
      *
      * @param manager Entry point to AgriFoodManager.
      */
-    public static void extensionsCreate(com.azure.resourcemanager.agrifood.AgriFoodManager manager) {
+    public static void extensionsCreateOrUpdate(com.azure.resourcemanager.agrifood.AgriFoodManager manager) {
         manager
             .extensions()
-            .createWithResponse("examples-rg", "examples-farmbeatsResourceName", "provider.extension", Context.NONE);
+            .define("provider.extension")
+            .withExistingFarmBeat("examples-rg", "examples-farmbeatsResourceName")
+            .create();
     }
 }
 ```
@@ -131,29 +142,6 @@ public final class ExtensionsListByFarmBeatsSamples {
         manager
             .extensions()
             .listByFarmBeats("examples-rg", "examples-farmbeatsResourceName", null, null, null, null, Context.NONE);
-    }
-}
-```
-
-### Extensions_Update
-
-```java
-import com.azure.core.util.Context;
-
-/** Samples for Extensions Update. */
-public final class ExtensionsUpdateSamples {
-    /*
-     * x-ms-original-file: specification/agrifood/resource-manager/Microsoft.AgFoodPlatform/preview/2021-09-01-preview/examples/Extensions_Update.json
-     */
-    /**
-     * Sample code: Extensions_Update.
-     *
-     * @param manager Entry point to AgriFoodManager.
-     */
-    public static void extensionsUpdate(com.azure.resourcemanager.agrifood.AgriFoodManager manager) {
-        manager
-            .extensions()
-            .updateWithResponse("examples-rg", "examples-farmbeatsResourceName", "provider.extension", Context.NONE);
     }
 }
 ```
@@ -255,7 +243,9 @@ public final class FarmBeatsModelsDeleteSamples {
      * @param manager Entry point to AgriFoodManager.
      */
     public static void farmBeatsModelsDelete(com.azure.resourcemanager.agrifood.AgriFoodManager manager) {
-        manager.farmBeatsModels().deleteWithResponse("examples-rg", "examples-farmBeatsResourceName", Context.NONE);
+        manager
+            .farmBeatsModels()
+            .deleteByResourceGroupWithResponse("examples-rg", "examples-farmBeatsResourceName", Context.NONE);
     }
 }
 ```
@@ -630,6 +620,132 @@ public final class PrivateLinkResourcesListByResourceSamples {
      */
     public static void privateLinkResourcesListByResource(com.azure.resourcemanager.agrifood.AgriFoodManager manager) {
         manager.privateLinkResources().listByResource("examples-rg", "examples-farmbeatsResourceName", Context.NONE);
+    }
+}
+```
+
+### Solutions_CreateOrUpdate
+
+```java
+/** Samples for Solutions CreateOrUpdate. */
+public final class SolutionsCreateOrUpdateSamples {
+    /*
+     * x-ms-original-file: null
+     */
+    /**
+     * Sample code: Solutions_CreateOrUpdate.
+     *
+     * @param manager Entry point to AgriFoodManager.
+     */
+    public static void solutionsCreateOrUpdate(com.azure.resourcemanager.agrifood.AgriFoodManager manager) {
+        manager.solutions().define((String) null).withExistingFarmBeat(null, null).create();
+    }
+}
+```
+
+### Solutions_Delete
+
+```java
+import com.azure.core.util.Context;
+
+/** Samples for Solutions Delete. */
+public final class SolutionsDeleteSamples {
+    /*
+     * x-ms-original-file: null
+     */
+    /**
+     * Sample code: Solutions_Delete.
+     *
+     * @param manager Entry point to AgriFoodManager.
+     */
+    public static void solutionsDelete(com.azure.resourcemanager.agrifood.AgriFoodManager manager) {
+        manager.solutions().deleteWithResponse(null, null, null, Context.NONE);
+    }
+}
+```
+
+### Solutions_Get
+
+```java
+import com.azure.core.util.Context;
+
+/** Samples for Solutions Get. */
+public final class SolutionsGetSamples {
+    /*
+     * x-ms-original-file: null
+     */
+    /**
+     * Sample code: Solutions_Get.
+     *
+     * @param manager Entry point to AgriFoodManager.
+     */
+    public static void solutionsGet(com.azure.resourcemanager.agrifood.AgriFoodManager manager) {
+        manager.solutions().getWithResponse(null, null, null, Context.NONE);
+    }
+}
+```
+
+### Solutions_List
+
+```java
+import com.azure.core.util.Context;
+
+/** Samples for Solutions List. */
+public final class SolutionsListSamples {
+    /*
+     * x-ms-original-file: null
+     */
+    /**
+     * Sample code: Solutions_List.
+     *
+     * @param manager Entry point to AgriFoodManager.
+     */
+    public static void solutionsList(com.azure.resourcemanager.agrifood.AgriFoodManager manager) {
+        manager
+            .solutions()
+            .list(null, null, null, null, null, null, null, null, null, null, null, null, null, Context.NONE);
+    }
+}
+```
+
+### SolutionsDiscoverability_Get
+
+```java
+import com.azure.core.util.Context;
+
+/** Samples for SolutionsDiscoverability Get. */
+public final class SolutionsDiscoverabilityGetSamples {
+    /*
+     * x-ms-original-file: null
+     */
+    /**
+     * Sample code: SolutionsDiscoverability_Get.
+     *
+     * @param manager Entry point to AgriFoodManager.
+     */
+    public static void solutionsDiscoverabilityGet(com.azure.resourcemanager.agrifood.AgriFoodManager manager) {
+        manager.solutionsDiscoverabilities().getWithResponse(null, Context.NONE);
+    }
+}
+```
+
+### SolutionsDiscoverability_List
+
+```java
+import com.azure.core.util.Context;
+
+/** Samples for SolutionsDiscoverability List. */
+public final class SolutionsDiscoverabilityListSamples {
+    /*
+     * x-ms-original-file: null
+     */
+    /**
+     * Sample code: SolutionsDiscoverability_List.
+     *
+     * @param manager Entry point to AgriFoodManager.
+     */
+    public static void solutionsDiscoverabilityList(com.azure.resourcemanager.agrifood.AgriFoodManager manager) {
+        manager.solutionsDiscoverabilities().list(null, null, null, Context.NONE);
     }
 }
 ```

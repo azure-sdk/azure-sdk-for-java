@@ -9,14 +9,18 @@ import com.azure.resourcemanager.agrifood.fluent.models.PrivateEndpointConnectio
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** List of private endpoint connection associated with the specified storage account. */
+/** List of private endpoint connections associated with the specified resource. */
 @Fluent
 public final class PrivateEndpointConnectionListResult {
     /*
-     * Array of private endpoint connections
+     * Array of private endpoint connections.
      */
     @JsonProperty(value = "value")
     private List<PrivateEndpointConnectionInner> value;
+
+    /** Creates an instance of PrivateEndpointConnectionListResult class. */
+    public PrivateEndpointConnectionListResult() {
+    }
 
     /**
      * Get the value property: Array of private endpoint connections.
