@@ -21,8 +21,7 @@ public final class ArcSettingProperties {
     private ProvisioningState provisioningState;
 
     /*
-     * The resource group that hosts the Arc agents, ie. Hybrid Compute Machine
-     * resources.
+     * The resource group that hosts the Arc agents, ie. Hybrid Compute Machine resources.
      */
     @JsonProperty(value = "arcInstanceResourceGroup")
     private String arcInstanceResourceGroup;
@@ -68,6 +67,10 @@ public final class ArcSettingProperties {
      */
     @JsonProperty(value = "connectivityProperties")
     private Object connectivityProperties;
+
+    /** Creates an instance of ArcSettingProperties class. */
+    public ArcSettingProperties() {
+    }
 
     /**
      * Get the provisioningState property: Provisioning state of the ArcSetting proxy resource.

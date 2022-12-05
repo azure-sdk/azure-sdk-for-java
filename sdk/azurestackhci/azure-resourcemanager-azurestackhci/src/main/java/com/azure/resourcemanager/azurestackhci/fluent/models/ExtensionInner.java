@@ -17,24 +17,19 @@ import java.util.List;
 @Fluent
 public final class ExtensionInner extends ProxyResource {
     /*
-     * System data of Extension resource.
-     */
-    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
-    private SystemData systemData;
-
-    /*
      * Describes Machine Extension Properties.
      */
     @JsonProperty(value = "properties")
     private ExtensionProperties innerProperties;
 
-    /**
-     * Get the systemData property: System data of Extension resource.
-     *
-     * @return the systemData value.
+    /*
+     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
      */
-    public SystemData systemData() {
-        return this.systemData;
+    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
+    private SystemData systemData;
+
+    /** Creates an instance of ExtensionInner class. */
+    public ExtensionInner() {
     }
 
     /**
@@ -44,6 +39,15 @@ public final class ExtensionInner extends ProxyResource {
      */
     private ExtensionProperties innerProperties() {
         return this.innerProperties;
+    }
+
+    /**
+     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     *
+     * @return the systemData value.
+     */
+    public SystemData systemData() {
+        return this.systemData;
     }
 
     /**
