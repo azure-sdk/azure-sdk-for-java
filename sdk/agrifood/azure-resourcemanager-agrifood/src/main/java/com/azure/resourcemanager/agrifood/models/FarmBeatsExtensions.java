@@ -46,17 +46,6 @@ public interface FarmBeatsExtensions {
      * Get farmBeats extension.
      *
      * @param farmBeatsExtensionId farmBeatsExtensionId to be queried.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return farmBeats extension.
-     */
-    FarmBeatsExtension get(String farmBeatsExtensionId);
-
-    /**
-     * Get farmBeats extension.
-     *
-     * @param farmBeatsExtensionId farmBeatsExtensionId to be queried.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -64,4 +53,15 @@ public interface FarmBeatsExtensions {
      * @return farmBeats extension along with {@link Response}.
      */
     Response<FarmBeatsExtension> getWithResponse(String farmBeatsExtensionId, Context context);
+
+    /**
+     * Get farmBeats extension.
+     *
+     * @param farmBeatsExtensionId farmBeatsExtensionId to be queried.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return farmBeats extension.
+     */
+    FarmBeatsExtension get(String farmBeatsExtensionId);
 }

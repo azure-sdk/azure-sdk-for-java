@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.agrifood.models;
 
 import com.azure.resourcemanager.agrifood.fluent.models.FarmBeatsPropertiesInner;
+import java.net.URL;
 
 /** An immutable client-side representation of FarmBeatsProperties. */
 public interface FarmBeatsProperties {
@@ -13,7 +14,7 @@ public interface FarmBeatsProperties {
      *
      * @return the instanceUri value.
      */
-    String instanceUri();
+    URL instanceUri();
 
     /**
      * Gets the provisioningState property: FarmBeats instance provisioning state.
@@ -37,7 +38,7 @@ public interface FarmBeatsProperties {
     PublicNetworkAccess publicNetworkAccess();
 
     /**
-     * Gets the privateEndpointConnections property: The Private Endpoint Connection resource.
+     * Gets the privateEndpointConnections property: The private endpoint connection resource.
      *
      * @return the privateEndpointConnections value.
      */
