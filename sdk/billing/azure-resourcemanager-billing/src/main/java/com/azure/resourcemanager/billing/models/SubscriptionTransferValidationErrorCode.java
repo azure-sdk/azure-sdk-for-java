@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for SubscriptionTransferValidationErrorCode. */
+/** Error code of the transfer validation response. */
 public final class SubscriptionTransferValidationErrorCode
     extends ExpandableStringEnum<SubscriptionTransferValidationErrorCode> {
     /** Static value BillingAccountInactive for SubscriptionTransferValidationErrorCode. */
@@ -98,7 +98,11 @@ public final class SubscriptionTransferValidationErrorCode
         return fromString(name, SubscriptionTransferValidationErrorCode.class);
     }
 
-    /** @return known SubscriptionTransferValidationErrorCode values. */
+    /**
+     * Gets known SubscriptionTransferValidationErrorCode values.
+     *
+     * @return known SubscriptionTransferValidationErrorCode values.
+     */
     public static Collection<SubscriptionTransferValidationErrorCode> values() {
         return values(SubscriptionTransferValidationErrorCode.class);
     }
