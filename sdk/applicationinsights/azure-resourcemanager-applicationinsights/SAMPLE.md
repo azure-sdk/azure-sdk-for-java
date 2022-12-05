@@ -564,7 +564,7 @@ public final class ComponentCurrentBillingFeaturesUpdateSamples {
                 new ApplicationInsightsComponentBillingFeaturesInner()
                     .withDataVolumeCap(
                         new ApplicationInsightsComponentDataVolumeCap()
-                            .withCap(100.0f)
+                            .withCap(100.0F)
                             .withStopSendNotificationWhenHitCap(true))
                     .withCurrentBillingFeatures(Arrays.asList("Basic", "Application Insights Enterprise")),
                 Context.NONE);
@@ -812,7 +812,7 @@ public final class ComponentsDeleteSamples {
      */
     public static void componentsDelete(
         com.azure.resourcemanager.applicationinsights.ApplicationInsightsManager manager) {
-        manager.components().deleteWithResponse("my-resource-group", "my-component", Context.NONE);
+        manager.components().deleteByResourceGroupWithResponse("my-resource-group", "my-component", Context.NONE);
     }
 }
 ```
@@ -1562,7 +1562,8 @@ public final class MyWorkbooksDeleteSamples {
         com.azure.resourcemanager.applicationinsights.ApplicationInsightsManager manager) {
         manager
             .myWorkbooks()
-            .deleteWithResponse("my-resource-group", "deadb33f-5e0d-4064-8ebb-1a4ed0313eb2", Context.NONE);
+            .deleteByResourceGroupWithResponse(
+                "my-resource-group", "deadb33f-5e0d-4064-8ebb-1a4ed0313eb2", Context.NONE);
     }
 }
 ```
@@ -1840,15 +1841,18 @@ public final class WebTestLocationsListSamples {
 ### WebTests_CreateOrUpdate
 
 ```java
+import com.azure.resourcemanager.applicationinsights.models.HeaderField;
 import com.azure.resourcemanager.applicationinsights.models.WebTestGeolocation;
 import com.azure.resourcemanager.applicationinsights.models.WebTestKind;
 import com.azure.resourcemanager.applicationinsights.models.WebTestPropertiesConfiguration;
+import com.azure.resourcemanager.applicationinsights.models.WebTestPropertiesRequest;
+import com.azure.resourcemanager.applicationinsights.models.WebTestPropertiesValidationRules;
 import java.util.Arrays;
 
 /** Samples for WebTests CreateOrUpdate. */
 public final class WebTestsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/applicationinsights/resource-manager/Microsoft.Insights/stable/2015-05-01/examples/WebTestCreate.json
+     * x-ms-original-file: specification/applicationinsights/resource-manager/Microsoft.Insights/stable/2022-06-15/examples/WebTestCreate.json
      */
     /**
      * Sample code: webTestCreate.
@@ -1889,7 +1893,50 @@ public final class WebTestsCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/applicationinsights/resource-manager/Microsoft.Insights/stable/2015-05-01/examples/WebTestUpdate.json
+     * x-ms-original-file: specification/applicationinsights/resource-manager/Microsoft.Insights/stable/2022-06-15/examples/WebTestCreateStandard.json
+     */
+    /**
+     * Sample code: webTestCreateStandard.
+     *
+     * @param manager Entry point to ApplicationInsightsManager.
+     */
+    public static void webTestCreateStandard(
+        com.azure.resourcemanager.applicationinsights.ApplicationInsightsManager manager) {
+        manager
+            .webTests()
+            .define("my-webtest-my-component")
+            .withRegion("South Central US")
+            .withExistingResourceGroup("my-resource-group")
+            .withSyntheticMonitorId("my-webtest-my-component")
+            .withWebTestName("my-webtest-my-component")
+            .withDescription("Ping web test alert for mytestwebapp")
+            .withEnabled(true)
+            .withFrequency(900)
+            .withTimeout(120)
+            .withWebTestKind(WebTestKind.STANDARD)
+            .withRetryEnabled(true)
+            .withLocations(Arrays.asList(new WebTestGeolocation().withLocation("us-fl-mia-edge")))
+            .withRequest(
+                new WebTestPropertiesRequest()
+                    .withRequestUrl("https://bing.com")
+                    .withHeaders(
+                        Arrays
+                            .asList(
+                                new HeaderField()
+                                    .withHeaderFieldName("fakeTokenPlaceholder")
+                                    .withHeaderFieldValue("de-DE"),
+                                new HeaderField()
+                                    .withHeaderFieldName("fakeTokenPlaceholder")
+                                    .withHeaderFieldValue("de-DE")))
+                    .withHttpVerb("POST")
+                    .withRequestBody("SGVsbG8gd29ybGQ="))
+            .withValidationRules(
+                new WebTestPropertiesValidationRules().withSslCheck(true).withSslCertRemainingLifetimeCheck(100))
+            .create();
+    }
+
+    /*
+     * x-ms-original-file: specification/applicationinsights/resource-manager/Microsoft.Insights/stable/2022-06-15/examples/WebTestUpdate.json
      */
     /**
      * Sample code: webTestUpdate.
@@ -1940,7 +1987,7 @@ import com.azure.core.util.Context;
 /** Samples for WebTests Delete. */
 public final class WebTestsDeleteSamples {
     /*
-     * x-ms-original-file: specification/applicationinsights/resource-manager/Microsoft.Insights/stable/2015-05-01/examples/WebTestDelete.json
+     * x-ms-original-file: specification/applicationinsights/resource-manager/Microsoft.Insights/stable/2022-06-15/examples/WebTestDelete.json
      */
     /**
      * Sample code: webTestDelete.
@@ -1948,7 +1995,9 @@ public final class WebTestsDeleteSamples {
      * @param manager Entry point to ApplicationInsightsManager.
      */
     public static void webTestDelete(com.azure.resourcemanager.applicationinsights.ApplicationInsightsManager manager) {
-        manager.webTests().deleteWithResponse("my-resource-group", "my-webtest-01-mywebservice", Context.NONE);
+        manager
+            .webTests()
+            .deleteByResourceGroupWithResponse("my-resource-group", "my-webtest-01-mywebservice", Context.NONE);
     }
 }
 ```
@@ -1961,7 +2010,7 @@ import com.azure.core.util.Context;
 /** Samples for WebTests GetByResourceGroup. */
 public final class WebTestsGetByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/applicationinsights/resource-manager/Microsoft.Insights/stable/2015-05-01/examples/WebTestGet.json
+     * x-ms-original-file: specification/applicationinsights/resource-manager/Microsoft.Insights/stable/2022-06-15/examples/WebTestGet.json
      */
     /**
      * Sample code: webTestGet.
@@ -1984,7 +2033,7 @@ import com.azure.core.util.Context;
 /** Samples for WebTests List. */
 public final class WebTestsListSamples {
     /*
-     * x-ms-original-file: specification/applicationinsights/resource-manager/Microsoft.Insights/stable/2015-05-01/examples/WebTestList.json
+     * x-ms-original-file: specification/applicationinsights/resource-manager/Microsoft.Insights/stable/2022-06-15/examples/WebTestList.json
      */
     /**
      * Sample code: webTestList.
@@ -2005,7 +2054,7 @@ import com.azure.core.util.Context;
 /** Samples for WebTests ListByComponent. */
 public final class WebTestsListByComponentSamples {
     /*
-     * x-ms-original-file: specification/applicationinsights/resource-manager/Microsoft.Insights/stable/2015-05-01/examples/WebTestListByComponent.json
+     * x-ms-original-file: specification/applicationinsights/resource-manager/Microsoft.Insights/stable/2022-06-15/examples/WebTestListByComponent.json
      */
     /**
      * Sample code: webTestListByComponent.
@@ -2027,7 +2076,7 @@ import com.azure.core.util.Context;
 /** Samples for WebTests ListByResourceGroup. */
 public final class WebTestsListByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/applicationinsights/resource-manager/Microsoft.Insights/stable/2015-05-01/examples/WebTestListByResourceGroup.json
+     * x-ms-original-file: specification/applicationinsights/resource-manager/Microsoft.Insights/stable/2022-06-15/examples/WebTestListByResourceGroup.json
      */
     /**
      * Sample code: webTestListByResourceGroup.
@@ -2052,7 +2101,7 @@ import java.util.Map;
 /** Samples for WebTests UpdateTags. */
 public final class WebTestsUpdateTagsSamples {
     /*
-     * x-ms-original-file: specification/applicationinsights/resource-manager/Microsoft.Insights/stable/2015-05-01/examples/WebTestUpdateTagsOnly.json
+     * x-ms-original-file: specification/applicationinsights/resource-manager/Microsoft.Insights/stable/2022-06-15/examples/WebTestUpdateTagsOnly.json
      */
     /**
      * Sample code: webTestUpdateTags.
@@ -2077,8 +2126,6 @@ public final class WebTestsUpdateTagsSamples {
                     "SystemType",
                     "A08",
                     "hidden-link:/subscriptions/subid/resourceGroups/my-resource-group/providers/Microsoft.Insights/components/my-component",
-                    "Resource",
-                    "hidden-link:/subscriptions/subid/resourceGroups/my-resource-group/providers/Microsoft.Web/sites/mytestwebapp",
                     "Resource"))
             .apply();
     }
@@ -2362,7 +2409,9 @@ public final class WorkbookTemplatesDeleteSamples {
      */
     public static void workbookTemplateDelete(
         com.azure.resourcemanager.applicationinsights.ApplicationInsightsManager manager) {
-        manager.workbookTemplates().deleteWithResponse("my-resource-group", "my-template-resource", Context.NONE);
+        manager
+            .workbookTemplates()
+            .deleteByResourceGroupWithResponse("my-resource-group", "my-template-resource", Context.NONE);
     }
 }
 ```
@@ -2566,7 +2615,8 @@ public final class WorkbooksDeleteSamples {
         com.azure.resourcemanager.applicationinsights.ApplicationInsightsManager manager) {
         manager
             .workbooks()
-            .deleteWithResponse("my-resource-group", "deadb33f-5e0d-4064-8ebb-1a4ed0313eb2", Context.NONE);
+            .deleteByResourceGroupWithResponse(
+                "my-resource-group", "deadb33f-5e0d-4064-8ebb-1a4ed0313eb2", Context.NONE);
     }
 }
 ```
