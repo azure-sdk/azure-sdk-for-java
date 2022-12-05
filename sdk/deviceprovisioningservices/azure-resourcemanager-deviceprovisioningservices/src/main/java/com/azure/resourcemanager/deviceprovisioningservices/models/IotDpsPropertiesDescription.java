@@ -84,11 +84,14 @@ public final class IotDpsPropertiesDescription {
 
     /*
      * Optional.
-     * Indicates if the DPS instance has Data Residency enabled, removing the
-     * cross geo-pair disaster recovery.
+     * Indicates if the DPS instance has Data Residency enabled, removing the cross geo-pair disaster recovery.
      */
     @JsonProperty(value = "enableDataResidency")
     private Boolean enableDataResidency;
+
+    /** Creates an instance of IotDpsPropertiesDescription class. */
+    public IotDpsPropertiesDescription() {
+    }
 
     /**
      * Get the state property: Current state of the provisioning service.
