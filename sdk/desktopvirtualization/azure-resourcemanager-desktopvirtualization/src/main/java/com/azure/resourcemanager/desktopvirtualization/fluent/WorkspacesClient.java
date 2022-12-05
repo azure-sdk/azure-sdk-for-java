@@ -6,55 +6,14 @@ package com.azure.resourcemanager.desktopvirtualization.fluent;
 
 import com.azure.core.annotation.ReturnType;
 import com.azure.core.annotation.ServiceMethod;
-import com.azure.core.http.rest.PagedFlux;
 import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.http.rest.Response;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.desktopvirtualization.fluent.models.WorkspaceInner;
 import com.azure.resourcemanager.desktopvirtualization.models.WorkspacePatch;
-import reactor.core.publisher.Mono;
 
 /** An instance of this class provides access to all the operations defined in WorkspacesClient. */
 public interface WorkspacesClient {
-    /**
-     * Get a workspace.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a workspace along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    Mono<Response<WorkspaceInner>> getByResourceGroupWithResponseAsync(String resourceGroupName, String workspaceName);
-
-    /**
-     * Get a workspace.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a workspace on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    Mono<WorkspaceInner> getByResourceGroupAsync(String resourceGroupName, String workspaceName);
-
-    /**
-     * Get a workspace.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a workspace.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    WorkspaceInner getByResourceGroup(String resourceGroupName, String workspaceName);
-
     /**
      * Get a workspace.
      *
@@ -71,47 +30,17 @@ public interface WorkspacesClient {
         String resourceGroupName, String workspaceName, Context context);
 
     /**
-     * Create or update a workspace.
+     * Get a workspace.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
-     * @param workspace Object containing Workspace definitions.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return represents a Workspace definition along with {@link Response} on successful completion of {@link Mono}.
+     * @return a workspace.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Mono<Response<WorkspaceInner>> createOrUpdateWithResponseAsync(
-        String resourceGroupName, String workspaceName, WorkspaceInner workspace);
-
-    /**
-     * Create or update a workspace.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param workspace Object containing Workspace definitions.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return represents a Workspace definition on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    Mono<WorkspaceInner> createOrUpdateAsync(String resourceGroupName, String workspaceName, WorkspaceInner workspace);
-
-    /**
-     * Create or update a workspace.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param workspace Object containing Workspace definitions.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return represents a Workspace definition.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    WorkspaceInner createOrUpdate(String resourceGroupName, String workspaceName, WorkspaceInner workspace);
+    WorkspaceInner getByResourceGroup(String resourceGroupName, String workspaceName);
 
     /**
      * Create or update a workspace.
@@ -130,42 +59,18 @@ public interface WorkspacesClient {
         String resourceGroupName, String workspaceName, WorkspaceInner workspace, Context context);
 
     /**
-     * Remove a workspace.
+     * Create or update a workspace.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
+     * @param workspace Object containing Workspace definitions.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return represents a Workspace definition.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Mono<Response<Void>> deleteWithResponseAsync(String resourceGroupName, String workspaceName);
-
-    /**
-     * Remove a workspace.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    Mono<Void> deleteAsync(String resourceGroupName, String workspaceName);
-
-    /**
-     * Remove a workspace.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    void delete(String resourceGroupName, String workspaceName);
+    WorkspaceInner createOrUpdate(String resourceGroupName, String workspaceName, WorkspaceInner workspace);
 
     /**
      * Remove a workspace.
@@ -182,59 +87,16 @@ public interface WorkspacesClient {
     Response<Void> deleteWithResponse(String resourceGroupName, String workspaceName, Context context);
 
     /**
-     * Update a workspace.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param workspace Object containing Workspace definitions.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return represents a Workspace definition along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    Mono<Response<WorkspaceInner>> updateWithResponseAsync(
-        String resourceGroupName, String workspaceName, WorkspacePatch workspace);
-
-    /**
-     * Update a workspace.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param workspace Object containing Workspace definitions.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return represents a Workspace definition on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    Mono<WorkspaceInner> updateAsync(String resourceGroupName, String workspaceName, WorkspacePatch workspace);
-
-    /**
-     * Update a workspace.
+     * Remove a workspace.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return represents a Workspace definition on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Mono<WorkspaceInner> updateAsync(String resourceGroupName, String workspaceName);
-
-    /**
-     * Update a workspace.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return represents a Workspace definition.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    WorkspaceInner update(String resourceGroupName, String workspaceName);
+    void delete(String resourceGroupName, String workspaceName);
 
     /**
      * Update a workspace.
@@ -253,16 +115,17 @@ public interface WorkspacesClient {
         String resourceGroupName, String workspaceName, WorkspacePatch workspace, Context context);
 
     /**
-     * List workspaces.
+     * Update a workspace.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return workspaceList as paginated response with {@link PagedFlux}.
+     * @return represents a Workspace definition.
      */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedFlux<WorkspaceInner> listByResourceGroupAsync(String resourceGroupName);
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    WorkspaceInner update(String resourceGroupName, String workspaceName);
 
     /**
      * List workspaces.
@@ -280,6 +143,9 @@ public interface WorkspacesClient {
      * List workspaces.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param pageSize Number of items per page.
+     * @param isDescending Indicates whether the collection is descending.
+     * @param initialSkip Initial number of items to skip.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -287,17 +153,8 @@ public interface WorkspacesClient {
      * @return workspaceList as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<WorkspaceInner> listByResourceGroup(String resourceGroupName, Context context);
-
-    /**
-     * List workspaces in subscription.
-     *
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return workspaceList as paginated response with {@link PagedFlux}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedFlux<WorkspaceInner> listAsync();
+    PagedIterable<WorkspaceInner> listByResourceGroup(
+        String resourceGroupName, Integer pageSize, Boolean isDescending, Integer initialSkip, Context context);
 
     /**
      * List workspaces in subscription.

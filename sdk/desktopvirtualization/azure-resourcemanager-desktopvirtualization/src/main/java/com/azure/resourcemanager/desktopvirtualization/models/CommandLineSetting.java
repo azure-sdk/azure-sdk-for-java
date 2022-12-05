@@ -8,7 +8,10 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for CommandLineSetting. */
+/**
+ * Specifies whether this published application can be launched with command line arguments provided by the client,
+ * command line arguments specified at publish time, or no command line arguments at all.
+ */
 public final class CommandLineSetting extends ExpandableStringEnum<CommandLineSetting> {
     /** Static value DoNotAllow for CommandLineSetting. */
     public static final CommandLineSetting DO_NOT_ALLOW = fromString("DoNotAllow");

@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for StopHostsWhen. */
+/** Specifies when to stop hosts during ramp down period. */
 public final class StopHostsWhen extends ExpandableStringEnum<StopHostsWhen> {
     /** Static value ZeroSessions for StopHostsWhen. */
     public static final StopHostsWhen ZERO_SESSIONS = fromString("ZeroSessions");
