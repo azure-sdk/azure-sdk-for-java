@@ -27,6 +27,10 @@ public final class PartnerNamespaceUpdateParameters {
     @JsonProperty(value = "properties")
     private PartnerNamespaceUpdateParameterProperties innerProperties;
 
+    /** Creates an instance of PartnerNamespaceUpdateParameters class. */
+    public PartnerNamespaceUpdateParameters() {
+    }
+
     /**
      * Get the tags property: Tags of the Partner Namespace.
      *

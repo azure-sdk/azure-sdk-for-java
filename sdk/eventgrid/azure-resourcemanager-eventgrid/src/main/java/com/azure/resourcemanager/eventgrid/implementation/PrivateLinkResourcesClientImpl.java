@@ -56,7 +56,7 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
      */
     @Host("{$host}")
     @ServiceInterface(name = "EventGridManagementC")
-    private interface PrivateLinkResourcesService {
+    public interface PrivateLinkResourcesService {
         @Headers({"Content-Type: application/json"})
         @Get(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.EventGrid"
@@ -104,7 +104,9 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
     }
 
     /**
-     * Get properties of a private link resource.
+     * Get a private link resource.
+     *
+     * <p>Get properties of a private link resource.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param parentType The type of the parent resource. This can be either \'topics\', \'domains\', or
@@ -167,7 +169,9 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
     }
 
     /**
-     * Get properties of a private link resource.
+     * Get a private link resource.
+     *
+     * <p>Get properties of a private link resource.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param parentType The type of the parent resource. This can be either \'topics\', \'domains\', or
@@ -232,7 +236,9 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
     }
 
     /**
-     * Get properties of a private link resource.
+     * Get a private link resource.
+     *
+     * <p>Get properties of a private link resource.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param parentType The type of the parent resource. This can be either \'topics\', \'domains\', or
@@ -253,27 +259,9 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
     }
 
     /**
-     * Get properties of a private link resource.
+     * Get a private link resource.
      *
-     * @param resourceGroupName The name of the resource group within the user's subscription.
-     * @param parentType The type of the parent resource. This can be either \'topics\', \'domains\', or
-     *     \'partnerNamespaces\'.
-     * @param parentName The name of the parent resource (namely, either, the topic name, domain name, or partner
-     *     namespace name).
-     * @param privateLinkResourceName The name of private link resource.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return properties of a private link resource.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public PrivateLinkResourceInner get(
-        String resourceGroupName, String parentType, String parentName, String privateLinkResourceName) {
-        return getAsync(resourceGroupName, parentType, parentName, privateLinkResourceName).block();
-    }
-
-    /**
-     * Get properties of a private link resource.
+     * <p>Get properties of a private link resource.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param parentType The type of the parent resource. This can be either \'topics\', \'domains\', or
@@ -299,7 +287,32 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
     }
 
     /**
-     * List all the private link resources under a topic, domain, or partner namespace.
+     * Get a private link resource.
+     *
+     * <p>Get properties of a private link resource.
+     *
+     * @param resourceGroupName The name of the resource group within the user's subscription.
+     * @param parentType The type of the parent resource. This can be either \'topics\', \'domains\', or
+     *     \'partnerNamespaces\'.
+     * @param parentName The name of the parent resource (namely, either, the topic name, domain name, or partner
+     *     namespace name).
+     * @param privateLinkResourceName The name of private link resource.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return properties of a private link resource.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public PrivateLinkResourceInner get(
+        String resourceGroupName, String parentType, String parentName, String privateLinkResourceName) {
+        return getWithResponse(resourceGroupName, parentType, parentName, privateLinkResourceName, Context.NONE)
+            .getValue();
+    }
+
+    /**
+     * List private link resources under specific topic, domain, or partner namespace.
+     *
+     * <p>List all the private link resources under a topic, domain, or partner namespace.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param parentType The type of the parent resource. This can be either \'topics\', \'domains\', or
@@ -374,7 +387,9 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
     }
 
     /**
-     * List all the private link resources under a topic, domain, or partner namespace.
+     * List private link resources under specific topic, domain, or partner namespace.
+     *
+     * <p>List all the private link resources under a topic, domain, or partner namespace.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param parentType The type of the parent resource. This can be either \'topics\', \'domains\', or
@@ -447,7 +462,9 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
     }
 
     /**
-     * List all the private link resources under a topic, domain, or partner namespace.
+     * List private link resources under specific topic, domain, or partner namespace.
+     *
+     * <p>List all the private link resources under a topic, domain, or partner namespace.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param parentType The type of the parent resource. This can be either \'topics\', \'domains\', or
@@ -476,7 +493,9 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
     }
 
     /**
-     * List all the private link resources under a topic, domain, or partner namespace.
+     * List private link resources under specific topic, domain, or partner namespace.
+     *
+     * <p>List all the private link resources under a topic, domain, or partner namespace.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param parentType The type of the parent resource. This can be either \'topics\', \'domains\', or
@@ -499,7 +518,9 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
     }
 
     /**
-     * List all the private link resources under a topic, domain, or partner namespace.
+     * List private link resources under specific topic, domain, or partner namespace.
+     *
+     * <p>List all the private link resources under a topic, domain, or partner namespace.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param parentType The type of the parent resource. This can be either \'topics\', \'domains\', or
@@ -529,7 +550,9 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
     }
 
     /**
-     * List all the private link resources under a topic, domain, or partner namespace.
+     * List private link resources under specific topic, domain, or partner namespace.
+     *
+     * <p>List all the private link resources under a topic, domain, or partner namespace.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param parentType The type of the parent resource. This can be either \'topics\', \'domains\', or
@@ -550,7 +573,9 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
     }
 
     /**
-     * List all the private link resources under a topic, domain, or partner namespace.
+     * List private link resources under specific topic, domain, or partner namespace.
+     *
+     * <p>List all the private link resources under a topic, domain, or partner namespace.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param parentType The type of the parent resource. This can be either \'topics\', \'domains\', or
@@ -581,7 +606,8 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -617,7 +643,8 @@ public final class PrivateLinkResourcesClientImpl implements PrivateLinkResource
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.

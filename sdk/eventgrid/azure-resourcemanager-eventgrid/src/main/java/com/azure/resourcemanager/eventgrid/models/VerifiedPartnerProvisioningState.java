@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for VerifiedPartnerProvisioningState. */
+/** Provisioning state of the verified partner. */
 public final class VerifiedPartnerProvisioningState extends ExpandableStringEnum<VerifiedPartnerProvisioningState> {
     /** Static value Creating for VerifiedPartnerProvisioningState. */
     public static final VerifiedPartnerProvisioningState CREATING = fromString("Creating");

@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for ChannelProvisioningState. */
+/** Provisioning state of the channel. */
 public final class ChannelProvisioningState extends ExpandableStringEnum<ChannelProvisioningState> {
     /** Static value Creating for ChannelProvisioningState. */
     public static final ChannelProvisioningState CREATING = fromString("Creating");
