@@ -22,20 +22,6 @@ public interface TagRulesClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param monitorName Monitor resource name.
      * @param ruleSetName Monitor resource name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a TagRule.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    TagRuleInner get(String resourceGroupName, String monitorName, String ruleSetName);
-
-    /**
-     * Get a TagRule.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param monitorName Monitor resource name.
-     * @param ruleSetName Monitor resource name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -47,6 +33,20 @@ public interface TagRulesClient {
         String resourceGroupName, String monitorName, String ruleSetName, Context context);
 
     /**
+     * Get a TagRule.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param monitorName Monitor resource name.
+     * @param ruleSetName Monitor resource name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a TagRule.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    TagRuleInner get(String resourceGroupName, String monitorName, String ruleSetName);
+
+    /**
      * Create a TagRule.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -111,21 +111,6 @@ public interface TagRulesClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     TagRuleInner createOrUpdate(
         String resourceGroupName, String monitorName, String ruleSetName, TagRuleInner resource, Context context);
-
-    /**
-     * Update a TagRule.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param monitorName Monitor resource name.
-     * @param ruleSetName Monitor resource name.
-     * @param resource The resource properties to be updated.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return tag rules for a monitor resource.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    TagRuleInner update(String resourceGroupName, String monitorName, String ruleSetName, TagRuleUpdate resource);
 
     /**
      * Update a TagRule.
@@ -143,6 +128,21 @@ public interface TagRulesClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<TagRuleInner> updateWithResponse(
         String resourceGroupName, String monitorName, String ruleSetName, TagRuleUpdate resource, Context context);
+
+    /**
+     * Update a TagRule.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param monitorName Monitor resource name.
+     * @param ruleSetName Monitor resource name.
+     * @param resource The resource properties to be updated.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return tag rules for a monitor resource.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    TagRuleInner update(String resourceGroupName, String monitorName, String ruleSetName, TagRuleUpdate resource);
 
     /**
      * Delete a TagRule.

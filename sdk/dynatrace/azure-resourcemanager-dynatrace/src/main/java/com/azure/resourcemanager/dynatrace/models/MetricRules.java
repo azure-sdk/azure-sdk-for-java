@@ -19,6 +19,10 @@ public final class MetricRules {
     @JsonProperty(value = "filteringTags")
     private List<FilteringTag> filteringTags;
 
+    /** Creates an instance of MetricRules class. */
+    public MetricRules() {
+    }
+
     /**
      * Get the filteringTags property: List of filtering tags to be used for capturing metrics. If empty, all resources
      * will be captured. If only Exclude action is specified, the rules will apply to the list of all available
