@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for ResourcePools List. */
 public final class ResourcePoolsListSamples {
     /*
-     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-01-10-preview/examples/ListResourcePools.json
+     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-07-15-preview/examples/ListResourcePools.json
      */
     /**
      * Sample code: ListResourcePools.

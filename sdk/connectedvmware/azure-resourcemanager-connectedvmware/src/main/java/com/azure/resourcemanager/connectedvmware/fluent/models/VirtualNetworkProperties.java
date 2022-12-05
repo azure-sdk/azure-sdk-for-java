@@ -9,7 +9,7 @@ import com.azure.resourcemanager.connectedvmware.models.ResourceStatus;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Defines the resource properties. */
+/** Describes the properties of a Virtual Network. */
 @Fluent
 public final class VirtualNetworkProperties {
     /*
@@ -59,6 +59,10 @@ public final class VirtualNetworkProperties {
      */
     @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
     private String provisioningState;
+
+    /** Creates an instance of VirtualNetworkProperties class. */
+    public VirtualNetworkProperties() {
+    }
 
     /**
      * Get the uuid property: Gets or sets a unique identifier for this resource.

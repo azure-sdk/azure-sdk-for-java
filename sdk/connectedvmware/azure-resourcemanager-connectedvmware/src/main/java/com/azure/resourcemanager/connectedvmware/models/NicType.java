@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for NicType. */
+/** NIC type. */
 public final class NicType extends ExpandableStringEnum<NicType> {
     /** Static value vmxnet3 for NicType. */
     public static final NicType VMXNET3 = fromString("vmxnet3");

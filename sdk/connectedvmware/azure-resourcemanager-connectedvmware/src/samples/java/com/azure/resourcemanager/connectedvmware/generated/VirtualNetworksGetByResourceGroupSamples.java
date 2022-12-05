@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for VirtualNetworks GetByResourceGroup. */
 public final class VirtualNetworksGetByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-01-10-preview/examples/GetVirtualNetwork.json
+     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-07-15-preview/examples/GetVirtualNetwork.json
      */
     /**
      * Sample code: GetVirtualNetwork.

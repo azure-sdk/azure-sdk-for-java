@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for Hosts List. */
 public final class HostsListSamples {
     /*
-     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-01-10-preview/examples/ListHosts.json
+     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-07-15-preview/examples/ListHosts.json
      */
     /**
      * Sample code: ListHosts.

@@ -26,6 +26,10 @@ public final class MachineExtensionInner extends Resource {
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
+    /** Creates an instance of MachineExtensionInner class. */
+    public MachineExtensionInner() {
+    }
+
     /**
      * Get the innerProperties property: Describes Machine Extension Properties.
      *

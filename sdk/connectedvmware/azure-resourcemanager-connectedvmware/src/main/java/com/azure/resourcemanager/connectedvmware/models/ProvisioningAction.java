@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for ProvisioningAction. */
+/** Defines the different types of operations for guest agent. */
 public final class ProvisioningAction extends ExpandableStringEnum<ProvisioningAction> {
     /** Static value install for ProvisioningAction. */
     public static final ProvisioningAction INSTALL = fromString("install");
