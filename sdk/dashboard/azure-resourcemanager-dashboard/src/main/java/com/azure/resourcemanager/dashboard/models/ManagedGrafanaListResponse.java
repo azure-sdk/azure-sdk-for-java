@@ -24,6 +24,10 @@ public final class ManagedGrafanaListResponse {
     @JsonProperty(value = "nextLink")
     private String nextLink;
 
+    /** Creates an instance of ManagedGrafanaListResponse class. */
+    public ManagedGrafanaListResponse() {
+    }
+
     /**
      * Get the value property: The value property.
      *
