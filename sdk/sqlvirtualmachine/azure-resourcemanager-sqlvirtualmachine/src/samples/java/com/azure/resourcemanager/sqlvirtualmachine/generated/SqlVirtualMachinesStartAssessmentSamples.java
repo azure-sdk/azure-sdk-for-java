@@ -9,14 +9,14 @@ import com.azure.core.util.Context;
 /** Samples for SqlVirtualMachines StartAssessment. */
 public final class SqlVirtualMachinesStartAssessmentSamples {
     /*
-     * x-ms-original-file: specification/sqlvirtualmachine/resource-manager/Microsoft.SqlVirtualMachine/preview/2022-07-01-preview/examples/StartAssessmentOnSqlVirtualMachine.json
+     * x-ms-original-file: specification/sqlvirtualmachine/resource-manager/Microsoft.SqlVirtualMachine/preview/2022-08-01-preview/examples/StartAssessmentOnSqlVirtualMachine.json
      */
     /**
-     * Sample code: Starts Assessment on SQL virtual machine.
+     * Sample code: Starts SQL best practices Assessment on SQL virtual machine.
      *
      * @param manager Entry point to SqlVirtualMachineManager.
      */
-    public static void startsAssessmentOnSQLVirtualMachine(
+    public static void startsSQLBestPracticesAssessmentOnSQLVirtualMachine(
         com.azure.resourcemanager.sqlvirtualmachine.SqlVirtualMachineManager manager) {
         manager.sqlVirtualMachines().startAssessment("testrg", "testvm", Context.NONE);
     }
