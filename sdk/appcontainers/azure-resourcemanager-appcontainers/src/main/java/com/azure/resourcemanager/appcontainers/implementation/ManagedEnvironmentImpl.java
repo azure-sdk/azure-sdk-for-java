@@ -176,7 +176,7 @@ public final class ManagedEnvironmentImpl
             serviceManager
                 .serviceClient()
                 .getManagedEnvironments()
-                .createOrUpdate(resourceGroupName, environmentName, this.innerModel(), Context.NONE);
+                .update(resourceGroupName, environmentName, this.innerModel(), Context.NONE);
         return this;
     }
 
@@ -185,7 +185,7 @@ public final class ManagedEnvironmentImpl
             serviceManager
                 .serviceClient()
                 .getManagedEnvironments()
-                .createOrUpdate(resourceGroupName, environmentName, this.innerModel(), context);
+                .update(resourceGroupName, environmentName, this.innerModel(), context);
         return this;
     }
 

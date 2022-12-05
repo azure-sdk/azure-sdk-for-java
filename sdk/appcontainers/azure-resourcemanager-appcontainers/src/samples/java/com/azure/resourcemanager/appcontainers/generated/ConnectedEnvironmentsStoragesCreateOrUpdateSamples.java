@@ -29,7 +29,7 @@ public final class ConnectedEnvironmentsStoragesCreateOrUpdateSamples {
                     .withAzureFile(
                         new AzureFileProperties()
                             .withAccountName("account1")
-                            .withAccountKey("key")
+                            .withAccountKey("fakeTokenPlaceholder")
                             .withAccessMode(AccessMode.READ_ONLY)
                             .withShareName("share1")))
             .create();

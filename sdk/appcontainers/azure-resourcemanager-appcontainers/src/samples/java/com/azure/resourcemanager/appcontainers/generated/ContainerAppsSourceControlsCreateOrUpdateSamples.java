@@ -32,11 +32,11 @@ public final class ContainerAppsSourceControlsCreateOrUpdateSamples {
                         new RegistryInfo()
                             .withRegistryUrl("xwang971reg.azurecr.io")
                             .withRegistryUsername("xwang971reg")
-                            .withRegistryPassword("<registrypassword>"))
+                            .withRegistryPassword("fakeTokenPlaceholder"))
                     .withAzureCredentials(
                         new AzureCredentials()
                             .withClientId("<clientid>")
-                            .withClientSecret("<clientsecret>")
+                            .withClientSecret("fakeTokenPlaceholder")
                             .withTenantId("<tenantid>"))
                     .withContextPath("./")
                     .withImage("image/tag"))
