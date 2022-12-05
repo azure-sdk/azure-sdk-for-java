@@ -84,13 +84,12 @@ public final class SecurityConnectorGovernanceRulesOperationsImpl
         }
     }
 
-    public Response<Void> deleteWithResponse(
-        String resourceGroupName, String securityConnectorName, String ruleId, Context context) {
-        return this.serviceClient().deleteWithResponse(resourceGroupName, securityConnectorName, ruleId, context);
-    }
-
     public void delete(String resourceGroupName, String securityConnectorName, String ruleId) {
         this.serviceClient().delete(resourceGroupName, securityConnectorName, ruleId);
+    }
+
+    public void delete(String resourceGroupName, String securityConnectorName, String ruleId, Context context) {
+        this.serviceClient().delete(resourceGroupName, securityConnectorName, ruleId, context);
     }
 
     private SecurityConnectorGovernanceRulesOperationsClient serviceClient() {

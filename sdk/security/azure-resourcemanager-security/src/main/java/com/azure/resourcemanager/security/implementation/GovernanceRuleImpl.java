@@ -9,6 +9,7 @@ import com.azure.resourcemanager.security.fluent.models.GovernanceRuleInner;
 import com.azure.resourcemanager.security.models.ExecuteGovernanceRuleParams;
 import com.azure.resourcemanager.security.models.GovernanceRule;
 import com.azure.resourcemanager.security.models.GovernanceRuleEmailNotification;
+import com.azure.resourcemanager.security.models.GovernanceRuleMetadata;
 import com.azure.resourcemanager.security.models.GovernanceRuleOwnerSource;
 import com.azure.resourcemanager.security.models.GovernanceRuleSourceResourceType;
 import com.azure.resourcemanager.security.models.GovernanceRuleType;
@@ -30,6 +31,10 @@ public final class GovernanceRuleImpl implements GovernanceRule, GovernanceRule.
 
     public String type() {
         return this.innerModel().type();
+    }
+
+    public String tenantId() {
+        return this.innerModel().tenantId();
     }
 
     public String displayName() {
@@ -64,6 +69,15 @@ public final class GovernanceRuleImpl implements GovernanceRule, GovernanceRule.
         return this.innerModel().sourceResourceType();
     }
 
+    public List<String> excludedScopes() {
+        List<String> inner = this.innerModel().excludedScopes();
+        if (inner != null) {
+            return Collections.unmodifiableList(inner);
+        } else {
+            return Collections.emptyList();
+        }
+    }
+
     public List<Object> conditionSets() {
         List<Object> inner = this.innerModel().conditionSets();
         if (inner != null) {
@@ -73,12 +87,20 @@ public final class GovernanceRuleImpl implements GovernanceRule, GovernanceRule.
         }
     }
 
+    public Boolean includeMemberScopes() {
+        return this.innerModel().includeMemberScopes();
+    }
+
     public GovernanceRuleOwnerSource ownerSource() {
         return this.innerModel().ownerSource();
     }
 
     public GovernanceRuleEmailNotification governanceEmailNotification() {
         return this.innerModel().governanceEmailNotification();
+    }
+
+    public GovernanceRuleMetadata metadata() {
+        return this.innerModel().metadata();
     }
 
     public GovernanceRuleInner innerModel() {
@@ -215,8 +237,18 @@ public final class GovernanceRuleImpl implements GovernanceRule, GovernanceRule.
         return this;
     }
 
+    public GovernanceRuleImpl withExcludedScopes(List<String> excludedScopes) {
+        this.innerModel().withExcludedScopes(excludedScopes);
+        return this;
+    }
+
     public GovernanceRuleImpl withConditionSets(List<Object> conditionSets) {
         this.innerModel().withConditionSets(conditionSets);
+        return this;
+    }
+
+    public GovernanceRuleImpl withIncludeMemberScopes(Boolean includeMemberScopes) {
+        this.innerModel().withIncludeMemberScopes(includeMemberScopes);
         return this;
     }
 
@@ -228,6 +260,11 @@ public final class GovernanceRuleImpl implements GovernanceRule, GovernanceRule.
     public GovernanceRuleImpl withGovernanceEmailNotification(
         GovernanceRuleEmailNotification governanceEmailNotification) {
         this.innerModel().withGovernanceEmailNotification(governanceEmailNotification);
+        return this;
+    }
+
+    public GovernanceRuleImpl withMetadata(GovernanceRuleMetadata metadata) {
+        this.innerModel().withMetadata(metadata);
         return this;
     }
 }

@@ -12,11 +12,11 @@ public final class GovernanceAssignmentsListSamples {
      * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2022-01-01-preview/examples/GovernanceAssignments/ListGovernanceAssignments_example.json
      */
     /**
-     * Sample code: List security governanceAssignments.
+     * Sample code: List governance assignments.
      *
      * @param manager Entry point to SecurityManager.
      */
-    public static void listSecurityGovernanceAssignments(com.azure.resourcemanager.security.SecurityManager manager) {
+    public static void listGovernanceAssignments(com.azure.resourcemanager.security.SecurityManager manager) {
         manager
             .governanceAssignments()
             .list(

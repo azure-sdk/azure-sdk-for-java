@@ -20,7 +20,7 @@ public final class GovernanceRulesOperationCreateOrUpdateSamples {
      * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2022-01-01-preview/examples/GovernanceRules/PutGovernanceRule_example.json
      */
     /**
-     * Sample code: Create Governance rule.
+     * Sample code: Create governance rule.
      *
      * @param manager Entry point to SecurityManager.
      */
@@ -30,7 +30,7 @@ public final class GovernanceRulesOperationCreateOrUpdateSamples {
             .governanceRulesOperations()
             .define("ad9a8e26-29d9-4829-bb30-e597a58cdbb8")
             .withDisplayName("Admin's rule")
-            .withDescription("A rule on critical recommendations")
+            .withDescription("A rule for critical recommendations")
             .withRemediationTimeframe("7.00:00:00")
             .withIsGracePeriod(true)
             .withRulePriority(200)
