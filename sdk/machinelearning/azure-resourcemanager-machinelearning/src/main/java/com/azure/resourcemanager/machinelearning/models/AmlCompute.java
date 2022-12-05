@@ -46,13 +46,6 @@ public final class AmlCompute extends Compute {
 
     /** {@inheritDoc} */
     @Override
-    public AmlCompute withComputeLocation(String computeLocation) {
-        super.withComputeLocation(computeLocation);
-        return this;
-    }
-
-    /** {@inheritDoc} */
-    @Override
     public AmlCompute withDescription(String description) {
         super.withDescription(description);
         return this;
@@ -62,13 +55,6 @@ public final class AmlCompute extends Compute {
     @Override
     public AmlCompute withResourceId(String resourceId) {
         super.withResourceId(resourceId);
-        return this;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public AmlCompute withDisableLocalAuth(Boolean disableLocalAuth) {
-        super.withDisableLocalAuth(disableLocalAuth);
         return this;
     }
 

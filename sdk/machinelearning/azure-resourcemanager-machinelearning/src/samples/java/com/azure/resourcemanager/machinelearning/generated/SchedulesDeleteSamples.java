@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for Schedules Delete. */
 public final class SchedulesDeleteSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/Schedule/delete.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Schedule/delete.json
      */
     /**
      * Sample code: Delete Schedule.

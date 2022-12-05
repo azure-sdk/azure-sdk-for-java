@@ -46,13 +46,6 @@ public final class Databricks extends Compute {
 
     /** {@inheritDoc} */
     @Override
-    public Databricks withComputeLocation(String computeLocation) {
-        super.withComputeLocation(computeLocation);
-        return this;
-    }
-
-    /** {@inheritDoc} */
-    @Override
     public Databricks withDescription(String description) {
         super.withDescription(description);
         return this;
@@ -62,13 +55,6 @@ public final class Databricks extends Compute {
     @Override
     public Databricks withResourceId(String resourceId) {
         super.withResourceId(resourceId);
-        return this;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Databricks withDisableLocalAuth(Boolean disableLocalAuth) {
-        super.withDisableLocalAuth(disableLocalAuth);
         return this;
     }
 

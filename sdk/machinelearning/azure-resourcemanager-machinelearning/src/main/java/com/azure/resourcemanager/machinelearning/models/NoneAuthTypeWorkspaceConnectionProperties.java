@@ -19,7 +19,7 @@ public final class NoneAuthTypeWorkspaceConnectionProperties extends WorkspaceCo
 
     /** {@inheritDoc} */
     @Override
-    public NoneAuthTypeWorkspaceConnectionProperties withCategory(ConnectionCategory category) {
+    public NoneAuthTypeWorkspaceConnectionProperties withCategory(String category) {
         super.withCategory(category);
         return this;
     }

@@ -47,7 +47,7 @@ public final class SasAuthTypeWorkspaceConnectionProperties extends WorkspaceCon
 
     /** {@inheritDoc} */
     @Override
-    public SasAuthTypeWorkspaceConnectionProperties withCategory(ConnectionCategory category) {
+    public SasAuthTypeWorkspaceConnectionProperties withCategory(String category) {
         super.withCategory(category);
         return this;
     }
