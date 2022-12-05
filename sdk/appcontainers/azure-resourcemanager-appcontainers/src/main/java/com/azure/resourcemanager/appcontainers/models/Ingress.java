@@ -66,6 +66,20 @@ public final class Ingress {
     @JsonProperty(value = "ipSecurityRestrictions")
     private List<IpSecurityRestrictionRule> ipSecurityRestrictions;
 
+    /*
+     * Client certificate mode for mTLS authentication. Ignore indicates server drops client certificate on forwarding.
+     * Accept indicates server forwards client certificate but does not require a client certificate. Require indicates
+     * server requires a client certificate.
+     */
+    @JsonProperty(value = "clientCertificateMode")
+    private IngressClientCertificateMode clientCertificateMode;
+
+    /*
+     * CORS policy for container app
+     */
+    @JsonProperty(value = "corsPolicy")
+    private CorsPolicy corsPolicy;
+
     /** Creates an instance of Ingress class. */
     public Ingress() {
     }
@@ -242,6 +256,50 @@ public final class Ingress {
     }
 
     /**
+     * Get the clientCertificateMode property: Client certificate mode for mTLS authentication. Ignore indicates server
+     * drops client certificate on forwarding. Accept indicates server forwards client certificate but does not require
+     * a client certificate. Require indicates server requires a client certificate.
+     *
+     * @return the clientCertificateMode value.
+     */
+    public IngressClientCertificateMode clientCertificateMode() {
+        return this.clientCertificateMode;
+    }
+
+    /**
+     * Set the clientCertificateMode property: Client certificate mode for mTLS authentication. Ignore indicates server
+     * drops client certificate on forwarding. Accept indicates server forwards client certificate but does not require
+     * a client certificate. Require indicates server requires a client certificate.
+     *
+     * @param clientCertificateMode the clientCertificateMode value to set.
+     * @return the Ingress object itself.
+     */
+    public Ingress withClientCertificateMode(IngressClientCertificateMode clientCertificateMode) {
+        this.clientCertificateMode = clientCertificateMode;
+        return this;
+    }
+
+    /**
+     * Get the corsPolicy property: CORS policy for container app.
+     *
+     * @return the corsPolicy value.
+     */
+    public CorsPolicy corsPolicy() {
+        return this.corsPolicy;
+    }
+
+    /**
+     * Set the corsPolicy property: CORS policy for container app.
+     *
+     * @param corsPolicy the corsPolicy value to set.
+     * @return the Ingress object itself.
+     */
+    public Ingress withCorsPolicy(CorsPolicy corsPolicy) {
+        this.corsPolicy = corsPolicy;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      *
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -255,6 +313,9 @@ public final class Ingress {
         }
         if (ipSecurityRestrictions() != null) {
             ipSecurityRestrictions().forEach(e -> e.validate());
+        }
+        if (corsPolicy() != null) {
+            corsPolicy().validate();
         }
     }
 }

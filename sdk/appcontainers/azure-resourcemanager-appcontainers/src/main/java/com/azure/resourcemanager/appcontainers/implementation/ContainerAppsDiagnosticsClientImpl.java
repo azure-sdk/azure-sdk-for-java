@@ -60,7 +60,7 @@ public final class ContainerAppsDiagnosticsClientImpl implements ContainerAppsDi
      */
     @Host("{$host}")
     @ServiceInterface(name = "ContainerAppsApiClie")
-    private interface ContainerAppsDiagnosticsService {
+    public interface ContainerAppsDiagnosticsService {
         @Headers({"Content-Type: application/json"})
         @Get(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/containerApps"

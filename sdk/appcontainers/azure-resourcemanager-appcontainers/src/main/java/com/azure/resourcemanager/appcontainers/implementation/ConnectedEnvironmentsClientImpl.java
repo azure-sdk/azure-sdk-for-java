@@ -68,7 +68,7 @@ public final class ConnectedEnvironmentsClientImpl implements ConnectedEnvironme
      */
     @Host("{$host}")
     @ServiceInterface(name = "ContainerAppsApiClie")
-    private interface ConnectedEnvironmentsService {
+    public interface ConnectedEnvironmentsService {
         @Headers({"Content-Type: application/json"})
         @Get("/subscriptions/{subscriptionId}/providers/Microsoft.App/connectedEnvironments")
         @ExpectedResponses({200})
