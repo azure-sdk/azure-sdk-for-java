@@ -36,7 +36,11 @@ public final class AbsoluteMarker extends ExpandableStringEnum<AbsoluteMarker> {
         return fromString(name, AbsoluteMarker.class);
     }
 
-    /** @return known AbsoluteMarker values. */
+    /**
+     * Gets known AbsoluteMarker values.
+     *
+     * @return known AbsoluteMarker values.
+     */
     public static Collection<AbsoluteMarker> values() {
         return values(AbsoluteMarker.class);
     }
