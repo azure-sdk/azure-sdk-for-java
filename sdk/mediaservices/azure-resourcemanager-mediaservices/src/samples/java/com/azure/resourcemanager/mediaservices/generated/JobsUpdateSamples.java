@@ -14,7 +14,7 @@ import java.util.Arrays;
 /** Samples for Jobs Update. */
 public final class JobsUpdateSamples {
     /*
-     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/stable/2021-11-01/examples/jobs-update.json
+     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/Encoding/stable/2021-11-01/examples/jobs-update.json
      */
     /**
      * Sample code: Update a Job.

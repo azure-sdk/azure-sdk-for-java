@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for Transforms List. */
 public final class TransformsListSamples {
     /*
-     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/stable/2021-11-01/examples/transforms-list-all-filter-by-created.json
+     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/Encoding/stable/2021-11-01/examples/transforms-list-all-filter-by-created.json
      */
     /**
      * Sample code: Lists the Transforms filter by created.
@@ -30,7 +30,7 @@ public final class TransformsListSamples {
     }
 
     /*
-     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/stable/2021-11-01/examples/transforms-list-all-filter-by-name.json
+     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/Encoding/stable/2021-11-01/examples/transforms-list-all-filter-by-name.json
      */
     /**
      * Sample code: Lists the Transforms filter by name.
@@ -50,7 +50,7 @@ public final class TransformsListSamples {
     }
 
     /*
-     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/stable/2021-11-01/examples/transforms-list-all-filter-by-lastmodified.json
+     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/Encoding/stable/2021-11-01/examples/transforms-list-all-filter-by-lastmodified.json
      */
     /**
      * Sample code: Lists the Transforms filter by lastmodified.
@@ -71,7 +71,7 @@ public final class TransformsListSamples {
     }
 
     /*
-     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/stable/2021-11-01/examples/transforms-list-all.json
+     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/Encoding/stable/2021-11-01/examples/transforms-list-all.json
      */
     /**
      * Sample code: Lists the Transforms.
