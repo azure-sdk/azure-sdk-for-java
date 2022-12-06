@@ -28,6 +28,10 @@ public final class AppAvailabilityInfoInner {
     @JsonProperty(value = "message", access = JsonProperty.Access.WRITE_ONLY)
     private String message;
 
+    /** Creates an instance of AppAvailabilityInfoInner class. */
+    public AppAvailabilityInfoInner() {
+    }
+
     /**
      * Get the nameAvailable property: The value which indicates whether the provided name is available.
      *

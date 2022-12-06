@@ -12,15 +12,14 @@ import java.util.List;
 @Fluent
 public final class NetworkRuleSets {
     /*
-     * Whether these rules apply for device connectivity to IoT Hub and Device
-     * Provisioning service associated with this application.
+     * Whether these rules apply for device connectivity to IoT Hub and Device Provisioning service associated with
+     * this application.
      */
     @JsonProperty(value = "applyToDevices")
     private Boolean applyToDevices;
 
     /*
-     * Whether these rules apply for connectivity via IoT Central web portal
-     * and APIs.
+     * Whether these rules apply for connectivity via IoT Central web portal and APIs.
      */
     @JsonProperty(value = "applyToIoTCentral")
     private Boolean applyToIoTCentral;
@@ -36,6 +35,10 @@ public final class NetworkRuleSets {
      */
     @JsonProperty(value = "ipRules")
     private List<NetworkRuleSetIpRule> ipRules;
+
+    /** Creates an instance of NetworkRuleSets class. */
+    public NetworkRuleSets() {
+    }
 
     /**
      * Get the applyToDevices property: Whether these rules apply for device connectivity to IoT Hub and Device

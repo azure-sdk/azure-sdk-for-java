@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.iotcentral.models;
 
 import com.azure.core.management.Region;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.iotcentral.fluent.models.AppInner;
 import java.util.List;
@@ -60,6 +61,13 @@ public interface App {
      * @return the identity value.
      */
     SystemAssignedServiceIdentity identity();
+
+    /**
+     * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     *
+     * @return the systemData value.
+     */
+    SystemData systemData();
 
     /**
      * Gets the provisioningState property: The provisioning state of the application.
@@ -140,6 +148,13 @@ public interface App {
      * @return the name of the resource region.
      */
     String regionName();
+
+    /**
+     * Gets the name of the resource group.
+     *
+     * @return the name of the resource group.
+     */
+    String resourceGroupName();
 
     /**
      * Gets the inner com.azure.resourcemanager.iotcentral.fluent.models.AppInner object.

@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.iotcentral.implementation;
 
 import com.azure.core.management.Region;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.iotcentral.fluent.models.AppInner;
 import com.azure.resourcemanager.iotcentral.fluent.models.PrivateEndpointConnectionInner;
@@ -59,6 +60,10 @@ public final class AppImpl implements App, App.Definition, App.Update {
         return this.innerModel().identity();
     }
 
+    public SystemData systemData() {
+        return this.innerModel().systemData();
+    }
+
     public ProvisioningState provisioningState() {
         return this.innerModel().provisioningState();
     }
@@ -111,6 +116,10 @@ public final class AppImpl implements App, App.Definition, App.Update {
 
     public String regionName() {
         return this.location();
+    }
+
+    public String resourceGroupName() {
+        return resourceGroupName;
     }
 
     public AppInner innerModel() {
