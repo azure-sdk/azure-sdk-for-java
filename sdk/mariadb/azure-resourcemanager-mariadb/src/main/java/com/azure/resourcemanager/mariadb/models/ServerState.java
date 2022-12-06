@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for ServerState. */
+/** A state of a server that is visible to user. */
 public final class ServerState extends ExpandableStringEnum<ServerState> {
     /** Static value Ready for ServerState. */
     public static final ServerState READY = fromString("Ready");
@@ -30,7 +30,11 @@ public final class ServerState extends ExpandableStringEnum<ServerState> {
         return fromString(name, ServerState.class);
     }
 
-    /** @return known ServerState values. */
+    /**
+     * Gets known ServerState values.
+     *
+     * @return known ServerState values.
+     */
     public static Collection<ServerState> values() {
         return values(ServerState.class);
     }
