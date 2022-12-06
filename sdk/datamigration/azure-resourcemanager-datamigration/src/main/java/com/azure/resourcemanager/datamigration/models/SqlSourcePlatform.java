@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for SqlSourcePlatform. */
+/** An enumeration of source platform types. */
 public final class SqlSourcePlatform extends ExpandableStringEnum<SqlSourcePlatform> {
     /** Static value SqlOnPrem for SqlSourcePlatform. */
     public static final SqlSourcePlatform SQL_ON_PREM = fromString("SqlOnPrem");
@@ -24,7 +24,11 @@ public final class SqlSourcePlatform extends ExpandableStringEnum<SqlSourcePlatf
         return fromString(name, SqlSourcePlatform.class);
     }
 
-    /** @return known SqlSourcePlatform values. */
+    /**
+     * Gets known SqlSourcePlatform values.
+     *
+     * @return known SqlSourcePlatform values.
+     */
     public static Collection<SqlSourcePlatform> values() {
         return values(SqlSourcePlatform.class);
     }
