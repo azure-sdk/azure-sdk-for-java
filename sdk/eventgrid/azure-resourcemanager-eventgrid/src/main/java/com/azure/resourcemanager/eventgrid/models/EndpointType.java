@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for EndpointType. */
+/** Type of the endpoint for the event subscription destination. */
 public final class EndpointType extends ExpandableStringEnum<EndpointType> {
     /** Static value WebHook for EndpointType. */
     public static final EndpointType WEB_HOOK = fromString("WebHook");

@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for AdvancedFilterOperatorType. */
+/** The operator type used for filtering, e.g., NumberIn, StringContains, BoolEquals and others. */
 public final class AdvancedFilterOperatorType extends ExpandableStringEnum<AdvancedFilterOperatorType> {
     /** Static value NumberIn for AdvancedFilterOperatorType. */
     public static final AdvancedFilterOperatorType NUMBER_IN = fromString("NumberIn");

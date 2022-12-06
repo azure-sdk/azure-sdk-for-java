@@ -21,6 +21,9 @@ public final class DomainsRegenerateKeySamples {
         manager
             .domains()
             .regenerateKeyWithResponse(
-                "examplerg", "exampledomain2", new DomainRegenerateKeyRequest().withKeyName("key1"), Context.NONE);
+                "examplerg",
+                "exampledomain2",
+                new DomainRegenerateKeyRequest().withKeyName("fakeTokenPlaceholder"),
+                Context.NONE);
     }
 }
