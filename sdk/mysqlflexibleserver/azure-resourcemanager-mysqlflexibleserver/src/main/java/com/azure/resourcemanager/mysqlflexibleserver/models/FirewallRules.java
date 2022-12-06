@@ -11,7 +11,7 @@ import com.azure.core.util.Context;
 /** Resource collection API of FirewallRules. */
 public interface FirewallRules {
     /**
-     * Deletes a firewall rule.
+     * Deletes a server firewall rule.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param serverName The name of the server.
@@ -23,7 +23,7 @@ public interface FirewallRules {
     void delete(String resourceGroupName, String serverName, String firewallRuleName);
 
     /**
-     * Deletes a firewall rule.
+     * Deletes a server firewall rule.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param serverName The name of the server.
@@ -41,19 +41,6 @@ public interface FirewallRules {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param serverName The name of the server.
      * @param firewallRuleName The name of the server firewall rule.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return information about a server firewall rule.
-     */
-    FirewallRule get(String resourceGroupName, String serverName, String firewallRuleName);
-
-    /**
-     * Gets information about a server firewall rule.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param serverName The name of the server.
-     * @param firewallRuleName The name of the server firewall rule.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -62,6 +49,19 @@ public interface FirewallRules {
      */
     Response<FirewallRule> getWithResponse(
         String resourceGroupName, String serverName, String firewallRuleName, Context context);
+
+    /**
+     * Gets information about a server firewall rule.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param serverName The name of the server.
+     * @param firewallRuleName The name of the server firewall rule.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return information about a server firewall rule.
+     */
+    FirewallRule get(String resourceGroupName, String serverName, String firewallRuleName);
 
     /**
      * List all the firewall rules in a given server.
@@ -112,7 +112,7 @@ public interface FirewallRules {
     Response<FirewallRule> getByIdWithResponse(String id, Context context);
 
     /**
-     * Deletes a firewall rule.
+     * Deletes a server firewall rule.
      *
      * @param id the resource ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -122,7 +122,7 @@ public interface FirewallRules {
     void deleteById(String id);
 
     /**
-     * Deletes a firewall rule.
+     * Deletes a server firewall rule.
      *
      * @param id the resource ID.
      * @param context The context to associate with this operation.
