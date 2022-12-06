@@ -8,7 +8,10 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for CpuThreshold. */
+/**
+ * Minimum percentage threshold for Advisor low CPU utilization evaluation. Valid only for subscriptions. Valid values:
+ * 5 (default), 10, 15 or 20.
+ */
 public final class CpuThreshold extends ExpandableStringEnum<CpuThreshold> {
     /** Static value 5 for CpuThreshold. */
     public static final CpuThreshold FIVE = fromString("5");
@@ -33,7 +36,11 @@ public final class CpuThreshold extends ExpandableStringEnum<CpuThreshold> {
         return fromString(name, CpuThreshold.class);
     }
 
-    /** @return known CpuThreshold values. */
+    /**
+     * Gets known CpuThreshold values.
+     *
+     * @return known CpuThreshold values.
+     */
     public static Collection<CpuThreshold> values() {
         return values(CpuThreshold.class);
     }
