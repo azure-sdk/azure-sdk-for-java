@@ -24,9 +24,7 @@ public final class CertificatesCreateOrUpdateSamples {
             .withRegion("East US")
             .withExistingManagedEnvironment("examplerg", "testcontainerenv")
             .withProperties(
-                new CertificateProperties()
-                    .withPassword("private key password")
-                    .withValue("PFX-or-PEM-blob".getBytes()))
+                new CertificateProperties().withPassword("fakeTokenPlaceholder").withValue("Y2VydA==".getBytes()))
             .create();
     }
 }
