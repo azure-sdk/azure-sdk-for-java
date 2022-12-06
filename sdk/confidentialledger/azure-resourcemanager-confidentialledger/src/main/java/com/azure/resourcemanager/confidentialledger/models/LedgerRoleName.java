@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for LedgerRoleName. */
+/** LedgerRole associated with the Security Principal of Ledger. */
 public final class LedgerRoleName extends ExpandableStringEnum<LedgerRoleName> {
     /** Static value Reader for LedgerRoleName. */
     public static final LedgerRoleName READER = fromString("Reader");
