@@ -5,18 +5,22 @@
 package com.azure.resourcemanager.desktopvirtualization.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.resourcemanager.desktopvirtualization.fluent.models.PrivateEndpointConnectionWithSystemDataInner;
+import com.azure.resourcemanager.desktopvirtualization.fluent.models.ScalingPlanPooledScheduleInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** List of private endpoint connection associated with the specified storage account. */
+/**
+ * ScalingPlanPooledScheduleList
+ *
+ * <p>List of ScalingPlanPooledSchedule definitions.
+ */
 @Fluent
-public final class PrivateEndpointConnectionListResultWithSystemData {
+public final class ScalingPlanPooledScheduleList {
     /*
-     * Array of private endpoint connections
+     * List of ScalingPlanPooledSchedule definitions.
      */
     @JsonProperty(value = "value")
-    private List<PrivateEndpointConnectionWithSystemDataInner> value;
+    private List<ScalingPlanPooledScheduleInner> value;
 
     /*
      * Link to the next page of results.
@@ -24,23 +28,26 @@ public final class PrivateEndpointConnectionListResultWithSystemData {
     @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
     private String nextLink;
 
+    /** Creates an instance of ScalingPlanPooledScheduleList class. */
+    public ScalingPlanPooledScheduleList() {
+    }
+
     /**
-     * Get the value property: Array of private endpoint connections.
+     * Get the value property: List of ScalingPlanPooledSchedule definitions.
      *
      * @return the value value.
      */
-    public List<PrivateEndpointConnectionWithSystemDataInner> value() {
+    public List<ScalingPlanPooledScheduleInner> value() {
         return this.value;
     }
 
     /**
-     * Set the value property: Array of private endpoint connections.
+     * Set the value property: List of ScalingPlanPooledSchedule definitions.
      *
      * @param value the value value to set.
-     * @return the PrivateEndpointConnectionListResultWithSystemData object itself.
+     * @return the ScalingPlanPooledScheduleList object itself.
      */
-    public PrivateEndpointConnectionListResultWithSystemData withValue(
-        List<PrivateEndpointConnectionWithSystemDataInner> value) {
+    public ScalingPlanPooledScheduleList withValue(List<ScalingPlanPooledScheduleInner> value) {
         this.value = value;
         return this;
     }
