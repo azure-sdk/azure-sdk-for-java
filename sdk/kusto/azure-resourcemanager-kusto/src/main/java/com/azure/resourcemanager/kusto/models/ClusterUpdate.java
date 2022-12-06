@@ -47,6 +47,10 @@ public final class ClusterUpdate extends ProxyResource {
     @JsonProperty(value = "properties")
     private ClusterProperties innerProperties;
 
+    /** Creates an instance of ClusterUpdate class. */
+    public ClusterUpdate() {
+    }
+
     /**
      * Get the tags property: Resource tags.
      *

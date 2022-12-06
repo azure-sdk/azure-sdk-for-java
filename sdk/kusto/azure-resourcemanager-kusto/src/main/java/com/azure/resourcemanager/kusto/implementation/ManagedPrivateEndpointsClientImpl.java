@@ -68,7 +68,7 @@ public final class ManagedPrivateEndpointsClientImpl implements ManagedPrivateEn
      */
     @Host("{$host}")
     @ServiceInterface(name = "KustoManagementClien")
-    private interface ManagedPrivateEndpointsService {
+    public interface ManagedPrivateEndpointsService {
         @Headers({"Content-Type: application/json"})
         @Post(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kusto/clusters"
@@ -304,23 +304,6 @@ public final class ManagedPrivateEndpointsClientImpl implements ManagedPrivateEn
      * @param resourceGroupName The name of the resource group containing the Kusto cluster.
      * @param clusterName The name of the Kusto cluster.
      * @param resourceName The name of the resource.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the result returned from a check name availability request.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public CheckNameResultInner checkNameAvailability(
-        String resourceGroupName, String clusterName, ManagedPrivateEndpointsCheckNameRequest resourceName) {
-        return checkNameAvailabilityAsync(resourceGroupName, clusterName, resourceName).block();
-    }
-
-    /**
-     * Checks that the managed private endpoints resource name is valid and is not already in use.
-     *
-     * @param resourceGroupName The name of the resource group containing the Kusto cluster.
-     * @param clusterName The name of the Kusto cluster.
-     * @param resourceName The name of the resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -334,6 +317,23 @@ public final class ManagedPrivateEndpointsClientImpl implements ManagedPrivateEn
         ManagedPrivateEndpointsCheckNameRequest resourceName,
         Context context) {
         return checkNameAvailabilityWithResponseAsync(resourceGroupName, clusterName, resourceName, context).block();
+    }
+
+    /**
+     * Checks that the managed private endpoints resource name is valid and is not already in use.
+     *
+     * @param resourceGroupName The name of the resource group containing the Kusto cluster.
+     * @param clusterName The name of the Kusto cluster.
+     * @param resourceName The name of the resource.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the result returned from a check name availability request.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public CheckNameResultInner checkNameAvailability(
+        String resourceGroupName, String clusterName, ManagedPrivateEndpointsCheckNameRequest resourceName) {
+        return checkNameAvailabilityWithResponse(resourceGroupName, clusterName, resourceName, Context.NONE).getValue();
     }
 
     /**
@@ -638,23 +638,6 @@ public final class ManagedPrivateEndpointsClientImpl implements ManagedPrivateEn
      * @param resourceGroupName The name of the resource group containing the Kusto cluster.
      * @param clusterName The name of the Kusto cluster.
      * @param managedPrivateEndpointName The name of the managed private endpoint.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a managed private endpoint.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public ManagedPrivateEndpointInner get(
-        String resourceGroupName, String clusterName, String managedPrivateEndpointName) {
-        return getAsync(resourceGroupName, clusterName, managedPrivateEndpointName).block();
-    }
-
-    /**
-     * Gets a managed private endpoint.
-     *
-     * @param resourceGroupName The name of the resource group containing the Kusto cluster.
-     * @param clusterName The name of the Kusto cluster.
-     * @param managedPrivateEndpointName The name of the managed private endpoint.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -665,6 +648,23 @@ public final class ManagedPrivateEndpointsClientImpl implements ManagedPrivateEn
     public Response<ManagedPrivateEndpointInner> getWithResponse(
         String resourceGroupName, String clusterName, String managedPrivateEndpointName, Context context) {
         return getWithResponseAsync(resourceGroupName, clusterName, managedPrivateEndpointName, context).block();
+    }
+
+    /**
+     * Gets a managed private endpoint.
+     *
+     * @param resourceGroupName The name of the resource group containing the Kusto cluster.
+     * @param clusterName The name of the Kusto cluster.
+     * @param managedPrivateEndpointName The name of the managed private endpoint.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a managed private endpoint.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public ManagedPrivateEndpointInner get(
+        String resourceGroupName, String clusterName, String managedPrivateEndpointName) {
+        return getWithResponse(resourceGroupName, clusterName, managedPrivateEndpointName, Context.NONE).getValue();
     }
 
     /**
