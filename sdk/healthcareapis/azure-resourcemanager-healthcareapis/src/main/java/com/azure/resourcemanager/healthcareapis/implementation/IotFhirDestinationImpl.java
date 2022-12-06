@@ -62,6 +62,10 @@ public final class IotFhirDestinationImpl
         return this.location();
     }
 
+    public String resourceGroupName() {
+        return resourceGroupName;
+    }
+
     public IotFhirDestinationInner innerModel() {
         return this.innerObject;
     }

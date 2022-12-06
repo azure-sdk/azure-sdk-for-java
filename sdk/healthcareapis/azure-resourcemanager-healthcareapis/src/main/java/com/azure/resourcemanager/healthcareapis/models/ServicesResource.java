@@ -20,18 +20,20 @@ public class ServicesResource extends Resource {
     private Kind kind;
 
     /*
-     * An etag associated with the resource, used for optimistic concurrency
-     * when editing it.
+     * An etag associated with the resource, used for optimistic concurrency when editing it.
      */
     @JsonProperty(value = "etag")
     private String etag;
 
     /*
-     * Setting indicating whether the service has a managed identity associated
-     * with it.
+     * Setting indicating whether the service has a managed identity associated with it.
      */
     @JsonProperty(value = "identity")
     private ServicesResourceIdentity identity;
+
+    /** Creates an instance of ServicesResource class. */
+    public ServicesResource() {
+    }
 
     /**
      * Get the kind property: The kind of the service.
