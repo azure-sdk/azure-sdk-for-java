@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for TargetCloud. */
+/** Possible cloud environments. */
 public final class TargetCloud extends ExpandableStringEnum<TargetCloud> {
     /** Static value USGov for TargetCloud. */
     public static final TargetCloud USGOV = fromString("USGov");
@@ -30,7 +30,11 @@ public final class TargetCloud extends ExpandableStringEnum<TargetCloud> {
         return fromString(name, TargetCloud.class);
     }
 
-    /** @return known TargetCloud values. */
+    /**
+     * Gets known TargetCloud values.
+     *
+     * @return known TargetCloud values.
+     */
     public static Collection<TargetCloud> values() {
         return values(TargetCloud.class);
     }
