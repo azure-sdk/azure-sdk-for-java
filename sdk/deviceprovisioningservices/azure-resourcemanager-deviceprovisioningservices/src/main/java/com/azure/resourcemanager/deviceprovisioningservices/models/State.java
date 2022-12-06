@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for State. */
+/** Current state of the provisioning service. */
 public final class State extends ExpandableStringEnum<State> {
     /** Static value Activating for State. */
     public static final State ACTIVATING = fromString("Activating");
