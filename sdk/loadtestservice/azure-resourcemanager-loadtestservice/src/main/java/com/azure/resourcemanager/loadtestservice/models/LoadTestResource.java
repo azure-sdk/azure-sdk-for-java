@@ -260,7 +260,7 @@ public interface LoadTestResource {
              * @param tags Resource tags.
              * @return the next definition stage.
              */
-            Update withTags(Object tags);
+            Update withTags(Map<String, String> tags);
         }
         /** The stage of the LoadTestResource update allowing to specify identity. */
         interface WithIdentity {
