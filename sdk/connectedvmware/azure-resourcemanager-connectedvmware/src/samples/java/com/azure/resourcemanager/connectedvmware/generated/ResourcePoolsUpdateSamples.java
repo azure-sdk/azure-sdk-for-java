@@ -12,7 +12,7 @@ import java.util.Map;
 /** Samples for ResourcePools Update. */
 public final class ResourcePoolsUpdateSamples {
     /*
-     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-01-10-preview/examples/UpdateResourcePool.json
+     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-07-15-preview/examples/UpdateResourcePool.json
      */
     /**
      * Sample code: UpdateResourcePool.

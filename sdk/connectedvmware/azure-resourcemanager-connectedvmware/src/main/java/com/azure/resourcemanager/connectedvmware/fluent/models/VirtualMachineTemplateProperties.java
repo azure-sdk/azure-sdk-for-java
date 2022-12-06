@@ -13,7 +13,7 @@ import com.azure.resourcemanager.connectedvmware.models.VirtualDisk;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Defines the resource properties. */
+/** Describes the properties of a Virtual Machine Template. */
 @Fluent
 public final class VirtualMachineTemplateProperties {
     /*
@@ -131,6 +131,10 @@ public final class VirtualMachineTemplateProperties {
      */
     @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
     private String provisioningState;
+
+    /** Creates an instance of VirtualMachineTemplateProperties class. */
+    public VirtualMachineTemplateProperties() {
+    }
 
     /**
      * Get the uuid property: Gets or sets a unique identifier for this resource.

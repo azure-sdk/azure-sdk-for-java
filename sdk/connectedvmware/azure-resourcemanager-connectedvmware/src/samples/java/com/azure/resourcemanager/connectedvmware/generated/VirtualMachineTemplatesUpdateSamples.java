@@ -12,7 +12,7 @@ import java.util.Map;
 /** Samples for VirtualMachineTemplates Update. */
 public final class VirtualMachineTemplatesUpdateSamples {
     /*
-     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-01-10-preview/examples/UpdateVirtualMachineTemplate.json
+     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-07-15-preview/examples/UpdateVirtualMachineTemplate.json
      */
     /**
      * Sample code: UpdateVirtualMachineTemplate.

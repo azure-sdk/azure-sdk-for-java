@@ -41,6 +41,10 @@ public final class MachineExtensionInstanceViewStatus {
     @JsonProperty(value = "time", access = JsonProperty.Access.WRITE_ONLY)
     private OffsetDateTime time;
 
+    /** Creates an instance of MachineExtensionInstanceViewStatus class. */
+    public MachineExtensionInstanceViewStatus() {
+    }
+
     /**
      * Get the code property: The status code.
      *

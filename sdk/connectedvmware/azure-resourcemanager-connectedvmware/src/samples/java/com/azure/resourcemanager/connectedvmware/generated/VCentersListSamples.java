@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for VCenters List. */
 public final class VCentersListSamples {
     /*
-     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-01-10-preview/examples/ListVCenters.json
+     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-07-15-preview/examples/ListVCenters.json
      */
     /**
      * Sample code: ListVCenters.

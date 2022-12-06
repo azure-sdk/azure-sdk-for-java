@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for Hosts Delete. */
 public final class HostsDeleteSamples {
     /*
-     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-01-10-preview/examples/DeleteHost.json
+     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-07-15-preview/examples/DeleteHost.json
      */
     /**
      * Sample code: DeleteHost.

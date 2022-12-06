@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for PowerOnBootOption. */
+/** Defines the options for power on boot. */
 public final class PowerOnBootOption extends ExpandableStringEnum<PowerOnBootOption> {
     /** Static value enabled for PowerOnBootOption. */
     public static final PowerOnBootOption ENABLED = fromString("enabled");

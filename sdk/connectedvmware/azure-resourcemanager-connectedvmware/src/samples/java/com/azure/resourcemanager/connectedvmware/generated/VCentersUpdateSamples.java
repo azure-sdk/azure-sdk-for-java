@@ -12,7 +12,7 @@ import java.util.Map;
 /** Samples for VCenters Update. */
 public final class VCentersUpdateSamples {
     /*
-     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-01-10-preview/examples/UpdateVCenter.json
+     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-07-15-preview/examples/UpdateVCenter.json
      */
     /**
      * Sample code: UpdateVCenter.
