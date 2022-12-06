@@ -24,6 +24,10 @@ public final class FarmBeatsListResponse {
     @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
     private String nextLink;
 
+    /** Creates an instance of FarmBeatsListResponse class. */
+    public FarmBeatsListResponse() {
+    }
+
     /**
      * Get the value property: List of requested objects.
      *

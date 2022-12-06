@@ -55,7 +55,7 @@ public final class OperationsClientImpl implements OperationsClient {
      */
     @Host("{$host}")
     @ServiceInterface(name = "AgriFoodManagementCl")
-    private interface OperationsService {
+    public interface OperationsService {
         @Headers({"Content-Type: application/json"})
         @Get("/providers/Microsoft.AgFoodPlatform/operations")
         @ExpectedResponses({200})
@@ -104,7 +104,7 @@ public final class OperationsClientImpl implements OperationsClient {
                         res.getStatusCode(),
                         res.getHeaders(),
                         res.getValue().value(),
-                        res.getValue().nextLink(),
+                        res.getValue().nextLink().toString(),
                         null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
@@ -138,7 +138,7 @@ public final class OperationsClientImpl implements OperationsClient {
                         res.getStatusCode(),
                         res.getHeaders(),
                         res.getValue().value(),
-                        res.getValue().nextLink(),
+                        res.getValue().nextLink().toString(),
                         null));
     }
 
@@ -231,7 +231,7 @@ public final class OperationsClientImpl implements OperationsClient {
                         res.getStatusCode(),
                         res.getHeaders(),
                         res.getValue().value(),
-                        res.getValue().nextLink(),
+                        res.getValue().nextLink().toString(),
                         null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
@@ -270,7 +270,7 @@ public final class OperationsClientImpl implements OperationsClient {
                         res.getStatusCode(),
                         res.getHeaders(),
                         res.getValue().value(),
-                        res.getValue().nextLink(),
+                        res.getValue().nextLink().toString(),
                         null));
     }
 }

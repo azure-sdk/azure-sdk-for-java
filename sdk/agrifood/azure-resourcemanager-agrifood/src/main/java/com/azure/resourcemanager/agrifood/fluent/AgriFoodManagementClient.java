@@ -6,15 +6,16 @@ package com.azure.resourcemanager.agrifood.fluent;
 
 import com.azure.core.http.HttpPipeline;
 import java.time.Duration;
+import java.util.UUID;
 
 /** The interface for AgriFoodManagementClient class. */
 public interface AgriFoodManagementClient {
     /**
-     * Gets The ID of the target subscription.
+     * Gets The ID of the target subscription. The value must be an UUID.
      *
      * @return the subscriptionId value.
      */
-    String getSubscriptionId();
+    UUID getSubscriptionId();
 
     /**
      * Gets server parameter.

@@ -22,6 +22,10 @@ public final class FarmBeatsUpdateProperties {
     @JsonProperty(value = "publicNetworkAccess")
     private PublicNetworkAccess publicNetworkAccess;
 
+    /** Creates an instance of FarmBeatsUpdateProperties class. */
+    public FarmBeatsUpdateProperties() {
+    }
+
     /**
      * Get the sensorIntegration property: Sensor integration request model.
      *
