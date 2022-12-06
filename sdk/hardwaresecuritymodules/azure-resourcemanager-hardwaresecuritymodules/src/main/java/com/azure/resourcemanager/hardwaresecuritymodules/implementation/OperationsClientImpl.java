@@ -54,7 +54,7 @@ public final class OperationsClientImpl implements OperationsClient {
      */
     @Host("{$host}")
     @ServiceInterface(name = "AzureDedicatedHsmRes")
-    private interface OperationsService {
+    public interface OperationsService {
         @Headers({"Content-Type: application/json"})
         @Get("/providers/Microsoft.HardwareSecurityModules/operations")
         @ExpectedResponses({200})

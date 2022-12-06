@@ -18,6 +18,10 @@ public final class DedicatedHsmOperationListResult {
     @JsonProperty(value = "value")
     private List<DedicatedHsmOperationInner> value;
 
+    /** Creates an instance of DedicatedHsmOperationListResult class. */
+    public DedicatedHsmOperationListResult() {
+    }
+
     /**
      * Get the value property: List of Dedicated HSM Resource Provider operations.
      *

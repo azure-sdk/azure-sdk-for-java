@@ -16,6 +16,10 @@ public final class Sku {
     @JsonProperty(value = "name")
     private SkuName name;
 
+    /** Creates an instance of Sku class. */
+    public Sku() {
+    }
+
     /**
      * Get the name property: SKU of the dedicated HSM.
      *

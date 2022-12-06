@@ -42,6 +42,10 @@ public final class DedicatedHsmInner extends Resource {
     @JsonProperty(value = "zones")
     private List<String> zones;
 
+    /** Creates an instance of DedicatedHsmInner class. */
+    public DedicatedHsmInner() {
+    }
+
     /**
      * Get the systemData property: Metadata pertaining to creation and last modification of the resource.
      *
