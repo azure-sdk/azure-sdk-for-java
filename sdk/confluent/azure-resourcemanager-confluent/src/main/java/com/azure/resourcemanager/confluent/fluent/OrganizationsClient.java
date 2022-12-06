@@ -21,7 +21,7 @@ public interface OrganizationsClient {
      *
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation.
+     * @return the response of a list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<OrganizationResourceInner> list();
@@ -33,7 +33,7 @@ public interface OrganizationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation.
+     * @return the response of a list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<OrganizationResourceInner> list(Context context);
@@ -45,7 +45,7 @@ public interface OrganizationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation.
+     * @return the response of a list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<OrganizationResourceInner> listByResourceGroup(String resourceGroupName);
@@ -58,10 +58,25 @@ public interface OrganizationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a list operation.
+     * @return the response of a list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<OrganizationResourceInner> listByResourceGroup(String resourceGroupName, Context context);
+
+    /**
+     * Get the properties of a specific Organization resource.
+     *
+     * @param resourceGroupName Resource group name.
+     * @param organizationName Organization resource name.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the properties of a specific Organization resource along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    Response<OrganizationResourceInner> getByResourceGroupWithResponse(
+        String resourceGroupName, String organizationName, Context context);
 
     /**
      * Get the properties of a specific Organization resource.
@@ -77,34 +92,18 @@ public interface OrganizationsClient {
     OrganizationResourceInner getByResourceGroup(String resourceGroupName, String organizationName);
 
     /**
-     * Get the properties of a specific Organization resource.
-     *
-     * @param resourceGroupName Resource group name.
-     * @param organizationName Organization resource name.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the properties of a specific Organization resource.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<OrganizationResourceInner> getByResourceGroupWithResponse(
-        String resourceGroupName, String organizationName, Context context);
-
-    /**
      * Create Organization resource.
      *
      * @param resourceGroupName Resource group name.
      * @param organizationName Organization resource name.
-     * @param body Organization resource model.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return organization resource.
+     * @return the {@link SyncPoller} for polling of organization resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<OrganizationResourceInner>, OrganizationResourceInner> beginCreate(
-        String resourceGroupName, String organizationName, OrganizationResourceInner body);
+        String resourceGroupName, String organizationName);
 
     /**
      * Create Organization resource.
@@ -116,25 +115,11 @@ public interface OrganizationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return organization resource.
+     * @return the {@link SyncPoller} for polling of organization resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<OrganizationResourceInner>, OrganizationResourceInner> beginCreate(
         String resourceGroupName, String organizationName, OrganizationResourceInner body, Context context);
-
-    /**
-     * Create Organization resource.
-     *
-     * @param resourceGroupName Resource group name.
-     * @param organizationName Organization resource name.
-     * @param body Organization resource model.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return organization resource.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    OrganizationResourceInner create(String resourceGroupName, String organizationName, OrganizationResourceInner body);
 
     /**
      * Create Organization resource.
@@ -170,6 +155,22 @@ public interface OrganizationsClient {
      *
      * @param resourceGroupName Resource group name.
      * @param organizationName Organization resource name.
+     * @param body Updated Organization resource.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return organization resource along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    Response<OrganizationResourceInner> updateWithResponse(
+        String resourceGroupName, String organizationName, OrganizationResourceUpdate body, Context context);
+
+    /**
+     * Update Organization resource.
+     *
+     * @param resourceGroupName Resource group name.
+     * @param organizationName Organization resource name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -179,22 +180,6 @@ public interface OrganizationsClient {
     OrganizationResourceInner update(String resourceGroupName, String organizationName);
 
     /**
-     * Update Organization resource.
-     *
-     * @param resourceGroupName Resource group name.
-     * @param organizationName Organization resource name.
-     * @param body Updated Organization resource.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return organization resource.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<OrganizationResourceInner> updateWithResponse(
-        String resourceGroupName, String organizationName, OrganizationResourceUpdate body, Context context);
-
-    /**
      * Delete Organization resource.
      *
      * @param resourceGroupName Resource group name.
@@ -202,7 +187,7 @@ public interface OrganizationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the completion.
+     * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String organizationName);
@@ -216,7 +201,7 @@ public interface OrganizationsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the completion.
+     * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String organizationName, Context context);
