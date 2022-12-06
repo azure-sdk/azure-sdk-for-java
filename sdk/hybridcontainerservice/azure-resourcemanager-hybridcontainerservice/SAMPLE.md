@@ -397,7 +397,7 @@ public final class ProvisionedClustersOperationCreateOrUpdateSamples {
                                         Arrays
                                             .asList(
                                                 new LinuxProfilePropertiesSshPublicKeysItem()
-                                                    .withKeyData("ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCY.......")))))
+                                                    .withKeyData("fakeTokenPlaceholder")))))
                     .withControlPlane(
                         new ControlPlaneProfile()
                             .withCount(1)
@@ -411,8 +411,7 @@ public final class ProvisionedClustersOperationCreateOrUpdateSamples {
                                                 Arrays
                                                     .asList(
                                                         new LinuxProfilePropertiesSshPublicKeysItem()
-                                                            .withKeyData(
-                                                                "ssh-rsa AAAAB1NzaC1yc2EAAAADAQABAAACAQCY......"))))))
+                                                            .withKeyData("fakeTokenPlaceholder"))))))
                     .withKubernetesVersion("v1.20.5")
                     .withNetworkProfile(
                         new NetworkProfile()
@@ -429,9 +428,7 @@ public final class ProvisionedClustersOperationCreateOrUpdateSamples {
                                                         Arrays
                                                             .asList(
                                                                 new LinuxProfilePropertiesSshPublicKeysItem()
-                                                                    .withKeyData(
-                                                                        "ssh-rsa"
-                                                                            + " AAAAB2NzaC1yc2EAAAADAQABAAACAQCY......"))))))
+                                                                    .withKeyData("fakeTokenPlaceholder"))))))
                             .withLoadBalancerSku(LoadBalancerSku.UNSTACKED_HAPROXY)
                             .withNetworkPolicy(NetworkPolicy.CALICO)
                             .withPodCidr("10.244.0.0/16"))

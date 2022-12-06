@@ -67,7 +67,7 @@ public final class VirtualNetworksOperationsClientImpl implements VirtualNetwork
      */
     @Host("{$host}")
     @ServiceInterface(name = "HybridContainerServi")
-    private interface VirtualNetworksOperationsService {
+    public interface VirtualNetworksOperationsService {
         @Headers({"Content-Type: application/json"})
         @Get(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers"

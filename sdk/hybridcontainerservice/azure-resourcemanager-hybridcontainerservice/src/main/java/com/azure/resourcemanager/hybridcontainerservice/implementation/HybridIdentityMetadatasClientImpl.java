@@ -59,7 +59,7 @@ public final class HybridIdentityMetadatasClientImpl implements HybridIdentityMe
      */
     @Host("{$host}")
     @ServiceInterface(name = "HybridContainerServi")
-    private interface HybridIdentityMetadatasService {
+    public interface HybridIdentityMetadatasService {
         @Headers({"Content-Type: application/json"})
         @Put(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers"

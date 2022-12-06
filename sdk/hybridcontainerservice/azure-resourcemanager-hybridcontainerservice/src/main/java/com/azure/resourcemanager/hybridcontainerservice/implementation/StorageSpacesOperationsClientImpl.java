@@ -66,7 +66,7 @@ public final class StorageSpacesOperationsClientImpl implements StorageSpacesOpe
      */
     @Host("{$host}")
     @ServiceInterface(name = "HybridContainerServi")
-    private interface StorageSpacesOperationsService {
+    public interface StorageSpacesOperationsService {
         @Headers({"Content-Type: application/json"})
         @Get(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers"
