@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for WebTests ListByComponent. */
 public final class WebTestsListByComponentSamples {
     /*
-     * x-ms-original-file: specification/applicationinsights/resource-manager/Microsoft.Insights/stable/2015-05-01/examples/WebTestListByComponent.json
+     * x-ms-original-file: specification/applicationinsights/resource-manager/Microsoft.Insights/stable/2022-06-15/examples/WebTestListByComponent.json
      */
     /**
      * Sample code: webTestListByComponent.

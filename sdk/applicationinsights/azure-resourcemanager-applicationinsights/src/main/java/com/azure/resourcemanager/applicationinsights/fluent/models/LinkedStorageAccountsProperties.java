@@ -16,6 +16,10 @@ public final class LinkedStorageAccountsProperties {
     @JsonProperty(value = "linkedStorageAccount")
     private String linkedStorageAccount;
 
+    /** Creates an instance of LinkedStorageAccountsProperties class. */
+    public LinkedStorageAccountsProperties() {
+    }
+
     /**
      * Get the linkedStorageAccount property: Linked storage account resource ID.
      *
