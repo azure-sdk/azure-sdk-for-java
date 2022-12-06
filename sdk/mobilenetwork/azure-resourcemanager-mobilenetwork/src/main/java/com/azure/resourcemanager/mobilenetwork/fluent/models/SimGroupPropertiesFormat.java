@@ -31,6 +31,10 @@ public final class SimGroupPropertiesFormat {
     @JsonProperty(value = "mobileNetwork")
     private MobileNetworkResourceId mobileNetwork;
 
+    /** Creates an instance of SimGroupPropertiesFormat class. */
+    public SimGroupPropertiesFormat() {
+    }
+
     /**
      * Get the provisioningState property: The provisioning state of the SIM group resource.
      *

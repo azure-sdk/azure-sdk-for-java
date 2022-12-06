@@ -1138,7 +1138,7 @@ public final class SimGroupsCreateOrUpdateSamples {
             .define("testSimGroup")
             .withRegion("eastus")
             .withExistingResourceGroup("rg1")
-            .withEncryptionKey(new KeyVaultKey().withKeyUrl("https://contosovault.vault.azure.net/keys/azureKey"))
+            .withEncryptionKey(new KeyVaultKey().withKeyUrl("fakeTokenPlaceholder"))
             .withMobileNetwork(
                 new MobileNetworkResourceId()
                     .withId(

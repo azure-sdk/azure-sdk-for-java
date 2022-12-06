@@ -23,11 +23,14 @@ public final class PacketCoreDataPlaneInner extends Resource {
     private PacketCoreDataPlanePropertiesFormat innerProperties = new PacketCoreDataPlanePropertiesFormat();
 
     /*
-     * Azure Resource Manager metadata containing createdBy and modifiedBy
-     * information.
+     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
      */
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
+
+    /** Creates an instance of PacketCoreDataPlaneInner class. */
+    public PacketCoreDataPlaneInner() {
+    }
 
     /**
      * Get the innerProperties property: Packet core data plane Properties.

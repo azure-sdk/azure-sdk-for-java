@@ -29,18 +29,20 @@ public final class PacketCoreControlPlaneInner extends Resource {
     private PacketCoreControlPlanePropertiesFormat innerProperties = new PacketCoreControlPlanePropertiesFormat();
 
     /*
-     * The identity used to retrieve the ingress certificate from Azure key
-     * vault.
+     * The identity used to retrieve the ingress certificate from Azure key vault.
      */
     @JsonProperty(value = "identity")
     private ManagedServiceIdentity identity;
 
     /*
-     * Azure Resource Manager metadata containing createdBy and modifiedBy
-     * information.
+     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
      */
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
+
+    /** Creates an instance of PacketCoreControlPlaneInner class. */
+    public PacketCoreControlPlaneInner() {
+    }
 
     /**
      * Get the innerProperties property: Packet core control plane Properties.

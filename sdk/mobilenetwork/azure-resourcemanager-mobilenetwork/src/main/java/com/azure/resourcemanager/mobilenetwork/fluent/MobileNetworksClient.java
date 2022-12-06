@@ -74,19 +74,6 @@ public interface MobileNetworksClient {
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param mobileNetworkName The name of the mobile network.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return information about the specified mobile network.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    MobileNetworkInner getByResourceGroup(String resourceGroupName, String mobileNetworkName);
-
-    /**
-     * Gets information about the specified mobile network.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param mobileNetworkName The name of the mobile network.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -98,6 +85,19 @@ public interface MobileNetworksClient {
         String resourceGroupName, String mobileNetworkName, Context context);
 
     /**
+     * Gets information about the specified mobile network.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param mobileNetworkName The name of the mobile network.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return information about the specified mobile network.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    MobileNetworkInner getByResourceGroup(String resourceGroupName, String mobileNetworkName);
+
+    /**
      * Creates or updates a mobile network.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -158,20 +158,6 @@ public interface MobileNetworksClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     MobileNetworkInner createOrUpdate(
         String resourceGroupName, String mobileNetworkName, MobileNetworkInner parameters, Context context);
-
-    /**
-     * Updates mobile network tags.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param mobileNetworkName The name of the mobile network.
-     * @param parameters Parameters supplied to update mobile network tags.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return mobile network resource.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    MobileNetworkInner updateTags(String resourceGroupName, String mobileNetworkName, TagsObject parameters);
 
     /**
      * Updates mobile network tags.
@@ -188,6 +174,20 @@ public interface MobileNetworksClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<MobileNetworkInner> updateTagsWithResponse(
         String resourceGroupName, String mobileNetworkName, TagsObject parameters, Context context);
+
+    /**
+     * Updates mobile network tags.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param mobileNetworkName The name of the mobile network.
+     * @param parameters Parameters supplied to update mobile network tags.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return mobile network resource.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    MobileNetworkInner updateTags(String resourceGroupName, String mobileNetworkName, TagsObject parameters);
 
     /**
      * Lists all the mobile networks in a subscription.

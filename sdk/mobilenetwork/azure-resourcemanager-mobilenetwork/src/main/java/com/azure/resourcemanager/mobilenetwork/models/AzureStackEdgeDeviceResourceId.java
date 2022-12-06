@@ -17,6 +17,10 @@ public final class AzureStackEdgeDeviceResourceId {
     @JsonProperty(value = "id", required = true)
     private String id;
 
+    /** Creates an instance of AzureStackEdgeDeviceResourceId class. */
+    public AzureStackEdgeDeviceResourceId() {
+    }
+
     /**
      * Get the id property: Azure Stack Edge device resource ID.
      *

@@ -11,11 +11,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Fluent
 public final class KeyVaultCertificate {
     /*
-     * The certificate URL, unversioned. For example:
-     * https://contosovault.vault.azure.net/certificates/ingress.
+     * The certificate URL, unversioned. For example: https://contosovault.vault.azure.net/certificates/ingress.
      */
     @JsonProperty(value = "certificateUrl")
     private String certificateUrl;
+
+    /** Creates an instance of KeyVaultCertificate class. */
+    public KeyVaultCertificate() {
+    }
 
     /**
      * Get the certificateUrl property: The certificate URL, unversioned. For example:

@@ -28,15 +28,6 @@ public final class PacketCoreControlPlaneVersionsImpl implements PacketCoreContr
         this.serviceManager = serviceManager;
     }
 
-    public PacketCoreControlPlaneVersion get(String versionName) {
-        PacketCoreControlPlaneVersionInner inner = this.serviceClient().get(versionName);
-        if (inner != null) {
-            return new PacketCoreControlPlaneVersionImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
     public Response<PacketCoreControlPlaneVersion> getWithResponse(String versionName, Context context) {
         Response<PacketCoreControlPlaneVersionInner> inner = this.serviceClient().getWithResponse(versionName, context);
         if (inner != null) {
@@ -45,6 +36,15 @@ public final class PacketCoreControlPlaneVersionsImpl implements PacketCoreContr
                 inner.getStatusCode(),
                 inner.getHeaders(),
                 new PacketCoreControlPlaneVersionImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public PacketCoreControlPlaneVersion get(String versionName) {
+        PacketCoreControlPlaneVersionInner inner = this.serviceClient().get(versionName);
+        if (inner != null) {
+            return new PacketCoreControlPlaneVersionImpl(inner, this.manager());
         } else {
             return null;
         }

@@ -24,6 +24,10 @@ public final class SimIdListResultInner {
     @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
     private String nextLink;
 
+    /** Creates an instance of SimIdListResultInner class. */
+    public SimIdListResultInner() {
+    }
+
     /**
      * Get the value property: A list of SIM IDs.
      *

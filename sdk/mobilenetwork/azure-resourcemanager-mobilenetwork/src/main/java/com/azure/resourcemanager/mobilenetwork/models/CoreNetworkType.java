@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for CoreNetworkType. */
+/** The core network technology generation (5G core or EPC / 4G core). */
 public final class CoreNetworkType extends ExpandableStringEnum<CoreNetworkType> {
     /** Static value 5GC for CoreNetworkType. */
     public static final CoreNetworkType FIVE_GC = fromString("5GC");
