@@ -48,15 +48,6 @@ public final class LabPlansImpl implements LabPlans {
         return Utils.mapPage(inner, inner1 -> new LabPlanImpl(inner1, this.manager()));
     }
 
-    public LabPlan getByResourceGroup(String resourceGroupName, String labPlanName) {
-        LabPlanInner inner = this.serviceClient().getByResourceGroup(resourceGroupName, labPlanName);
-        if (inner != null) {
-            return new LabPlanImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
     public Response<LabPlan> getByResourceGroupWithResponse(
         String resourceGroupName, String labPlanName, Context context) {
         Response<LabPlanInner> inner =
@@ -67,6 +58,15 @@ public final class LabPlansImpl implements LabPlans {
                 inner.getStatusCode(),
                 inner.getHeaders(),
                 new LabPlanImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public LabPlan getByResourceGroup(String resourceGroupName, String labPlanName) {
+        LabPlanInner inner = this.serviceClient().getByResourceGroup(resourceGroupName, labPlanName);
+        if (inner != null) {
+            return new LabPlanImpl(inner, this.manager());
         } else {
             return null;
         }

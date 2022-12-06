@@ -61,6 +61,10 @@ public class LabPlanUpdateProperties {
     @JsonProperty(value = "linkedLmsInstance")
     private String linkedLmsInstance;
 
+    /** Creates an instance of LabPlanUpdateProperties class. */
+    public LabPlanUpdateProperties() {
+    }
+
     /**
      * Get the defaultConnectionProfile property: The default lab connection profile. This can be changed on a lab
      * resource and only provides a default profile.

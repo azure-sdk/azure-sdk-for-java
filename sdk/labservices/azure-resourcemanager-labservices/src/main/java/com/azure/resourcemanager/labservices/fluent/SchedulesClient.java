@@ -57,23 +57,6 @@ public interface SchedulesClient {
      * @param labName The name of the lab that uniquely identifies it within containing lab plan. Used in resource URIs.
      * @param scheduleName The name of the schedule that uniquely identifies it within containing lab. Used in resource
      *     URIs.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return schedule for automatically turning virtual machines in a lab on and off at specified times.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    ScheduleInner get(String resourceGroupName, String labName, String scheduleName);
-
-    /**
-     * Get a lab Schedule.
-     *
-     * <p>Returns the properties of a lab Schedule.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param labName The name of the lab that uniquely identifies it within containing lab plan. Used in resource URIs.
-     * @param scheduleName The name of the schedule that uniquely identifies it within containing lab. Used in resource
-     *     URIs.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -86,22 +69,21 @@ public interface SchedulesClient {
         String resourceGroupName, String labName, String scheduleName, Context context);
 
     /**
-     * Create or update a lab schedule.
+     * Get a lab Schedule.
      *
-     * <p>Operation to create or update a lab schedule.
+     * <p>Returns the properties of a lab Schedule.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab that uniquely identifies it within containing lab plan. Used in resource URIs.
      * @param scheduleName The name of the schedule that uniquely identifies it within containing lab. Used in resource
      *     URIs.
-     * @param body The request body.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return schedule for automatically turning virtual machines in a lab on and off at specified times.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    ScheduleInner createOrUpdate(String resourceGroupName, String labName, String scheduleName, ScheduleInner body);
+    ScheduleInner get(String resourceGroupName, String labName, String scheduleName);
 
     /**
      * Create or update a lab schedule.
@@ -125,9 +107,9 @@ public interface SchedulesClient {
         String resourceGroupName, String labName, String scheduleName, ScheduleInner body, Context context);
 
     /**
-     * Update a lab schedule.
+     * Create or update a lab schedule.
      *
-     * <p>Operation to update a lab schedule.
+     * <p>Operation to create or update a lab schedule.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab that uniquely identifies it within containing lab plan. Used in resource URIs.
@@ -140,7 +122,7 @@ public interface SchedulesClient {
      * @return schedule for automatically turning virtual machines in a lab on and off at specified times.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    ScheduleInner update(String resourceGroupName, String labName, String scheduleName, ScheduleUpdate body);
+    ScheduleInner createOrUpdate(String resourceGroupName, String labName, String scheduleName, ScheduleInner body);
 
     /**
      * Update a lab schedule.
@@ -162,6 +144,24 @@ public interface SchedulesClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<ScheduleInner> updateWithResponse(
         String resourceGroupName, String labName, String scheduleName, ScheduleUpdate body, Context context);
+
+    /**
+     * Update a lab schedule.
+     *
+     * <p>Operation to update a lab schedule.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param labName The name of the lab that uniquely identifies it within containing lab plan. Used in resource URIs.
+     * @param scheduleName The name of the schedule that uniquely identifies it within containing lab. Used in resource
+     *     URIs.
+     * @param body The request body.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return schedule for automatically turning virtual machines in a lab on and off at specified times.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    ScheduleInner update(String resourceGroupName, String labName, String scheduleName, ScheduleUpdate body);
 
     /**
      * Deletes a schedule resource.

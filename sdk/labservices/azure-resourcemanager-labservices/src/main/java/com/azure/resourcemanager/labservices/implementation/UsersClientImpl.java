@@ -66,7 +66,7 @@ public final class UsersClientImpl implements UsersClient {
      */
     @Host("{$host}")
     @ServiceInterface(name = "LabServicesClientUse")
-    private interface UsersService {
+    public interface UsersService {
         @Headers({"Content-Type: application/json"})
         @Get(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.LabServices/labs"
@@ -534,24 +534,6 @@ public final class UsersClientImpl implements UsersClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param labName The name of the lab that uniquely identifies it within containing lab plan. Used in resource URIs.
      * @param username The name of the user that uniquely identifies it within containing lab. Used in resource URIs.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return user of a lab that can register for and use virtual machines within the lab.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public UserInner get(String resourceGroupName, String labName, String username) {
-        return getAsync(resourceGroupName, labName, username).block();
-    }
-
-    /**
-     * Get a lab user.
-     *
-     * <p>Returns the properties of a lab user.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param labName The name of the lab that uniquely identifies it within containing lab plan. Used in resource URIs.
-     * @param username The name of the user that uniquely identifies it within containing lab. Used in resource URIs.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -562,6 +544,24 @@ public final class UsersClientImpl implements UsersClient {
     public Response<UserInner> getWithResponse(
         String resourceGroupName, String labName, String username, Context context) {
         return getWithResponseAsync(resourceGroupName, labName, username, context).block();
+    }
+
+    /**
+     * Get a lab user.
+     *
+     * <p>Returns the properties of a lab user.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param labName The name of the lab that uniquely identifies it within containing lab plan. Used in resource URIs.
+     * @param username The name of the user that uniquely identifies it within containing lab. Used in resource URIs.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return user of a lab that can register for and use virtual machines within the lab.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public UserInner get(String resourceGroupName, String labName, String username) {
+        return getWithResponse(resourceGroupName, labName, username, Context.NONE).getValue();
     }
 
     /**
