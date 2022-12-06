@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for PolicyFactName. */
+/** The fact name of the policy (e.g. LabVmCount, LabVmSize, MaxVmsAllowedPerLab, etc. */
 public final class PolicyFactName extends ExpandableStringEnum<PolicyFactName> {
     /** Static value UserOwnedLabVmCount for PolicyFactName. */
     public static final PolicyFactName USER_OWNED_LAB_VM_COUNT = fromString("UserOwnedLabVmCount");
@@ -51,7 +51,11 @@ public final class PolicyFactName extends ExpandableStringEnum<PolicyFactName> {
         return fromString(name, PolicyFactName.class);
     }
 
-    /** @return known PolicyFactName values. */
+    /**
+     * Gets known PolicyFactName values.
+     *
+     * @return known PolicyFactName values.
+     */
     public static Collection<PolicyFactName> values() {
         return values(PolicyFactName.class);
     }
