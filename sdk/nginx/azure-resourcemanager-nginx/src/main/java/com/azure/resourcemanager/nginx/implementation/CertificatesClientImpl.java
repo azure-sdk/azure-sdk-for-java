@@ -63,7 +63,7 @@ public final class CertificatesClientImpl implements CertificatesClient {
      */
     @Host("{$host}")
     @ServiceInterface(name = "NginxManagementClien")
-    private interface CertificatesService {
+    public interface CertificatesService {
         @Headers({"Content-Type: application/json"})
         @Get(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Nginx.NginxPlus"
