@@ -18,6 +18,6 @@ public final class InvoicesListByBillingSubscriptionSamples {
      */
     public static void billingSubscriptionsListByBillingAccount(
         com.azure.resourcemanager.billing.BillingManager manager) {
-        manager.invoices().listByBillingSubscription("2018-01-01", "2018-06-30", Context.NONE);
+        manager.invoices().listByBillingSubscription("2022-01-01", "2022-06-30", Context.NONE);
     }
 }

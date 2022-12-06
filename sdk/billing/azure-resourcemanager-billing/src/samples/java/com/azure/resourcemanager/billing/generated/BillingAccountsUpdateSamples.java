@@ -34,7 +34,7 @@ public final class BillingAccountsUpdateSamples {
                             .withCity("Redmond")
                             .withRegion("WA")
                             .withCountry("US")
-                            .withPostalCode("12345")),
+                            .withPostalCode("fakeTokenPlaceholder")),
                 Context.NONE);
     }
 }

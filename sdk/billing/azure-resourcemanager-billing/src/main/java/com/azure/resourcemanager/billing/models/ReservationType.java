@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for ReservationType. */
+/** The type of transaction. */
 public final class ReservationType extends ExpandableStringEnum<ReservationType> {
     /** Static value Purchase for ReservationType. */
     public static final ReservationType PURCHASE = fromString("Purchase");
@@ -27,7 +27,11 @@ public final class ReservationType extends ExpandableStringEnum<ReservationType>
         return fromString(name, ReservationType.class);
     }
 
-    /** @return known ReservationType values. */
+    /**
+     * Gets known ReservationType values.
+     *
+     * @return known ReservationType values.
+     */
     public static Collection<ReservationType> values() {
         return values(ReservationType.class);
     }

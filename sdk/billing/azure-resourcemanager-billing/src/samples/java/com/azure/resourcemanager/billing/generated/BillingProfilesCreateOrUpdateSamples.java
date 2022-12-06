@@ -37,7 +37,7 @@ public final class BillingProfilesCreateOrUpdateSamples {
                             .withCity("Redmond")
                             .withRegion("WA")
                             .withCountry("US")
-                            .withPostalCode("12345"))
+                            .withPostalCode("fakeTokenPlaceholder"))
                     .withInvoiceEmailOptIn(true)
                     .withEnabledAzurePlans(
                         Arrays.asList(new AzurePlan().withSkuId("0001"), new AzurePlan().withSkuId("0002"))),
