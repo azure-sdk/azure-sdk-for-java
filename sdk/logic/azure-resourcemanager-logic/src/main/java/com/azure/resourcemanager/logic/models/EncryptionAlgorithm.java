@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for EncryptionAlgorithm. */
+/** The encryption algorithm. */
 public final class EncryptionAlgorithm extends ExpandableStringEnum<EncryptionAlgorithm> {
     /** Static value NotSpecified for EncryptionAlgorithm. */
     public static final EncryptionAlgorithm NOT_SPECIFIED = fromString("NotSpecified");
@@ -42,7 +42,11 @@ public final class EncryptionAlgorithm extends ExpandableStringEnum<EncryptionAl
         return fromString(name, EncryptionAlgorithm.class);
     }
 
-    /** @return known EncryptionAlgorithm values. */
+    /**
+     * Gets known EncryptionAlgorithm values.
+     *
+     * @return known EncryptionAlgorithm values.
+     */
     public static Collection<EncryptionAlgorithm> values() {
         return values(EncryptionAlgorithm.class);
     }

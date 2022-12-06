@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for HashingAlgorithm. */
+/** The signing or hashing algorithm. */
 public final class HashingAlgorithm extends ExpandableStringEnum<HashingAlgorithm> {
     /** Static value NotSpecified for HashingAlgorithm. */
     public static final HashingAlgorithm NOT_SPECIFIED = fromString("NotSpecified");
@@ -42,7 +42,11 @@ public final class HashingAlgorithm extends ExpandableStringEnum<HashingAlgorith
         return fromString(name, HashingAlgorithm.class);
     }
 
-    /** @return known HashingAlgorithm values. */
+    /**
+     * Gets known HashingAlgorithm values.
+     *
+     * @return known HashingAlgorithm values.
+     */
     public static Collection<HashingAlgorithm> values() {
         return values(HashingAlgorithm.class);
     }

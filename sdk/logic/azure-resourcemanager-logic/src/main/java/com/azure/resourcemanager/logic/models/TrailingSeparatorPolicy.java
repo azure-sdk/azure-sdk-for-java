@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for TrailingSeparatorPolicy. */
+/** The trailing separator policy. */
 public final class TrailingSeparatorPolicy extends ExpandableStringEnum<TrailingSeparatorPolicy> {
     /** Static value NotSpecified for TrailingSeparatorPolicy. */
     public static final TrailingSeparatorPolicy NOT_SPECIFIED = fromString("NotSpecified");
@@ -33,7 +33,11 @@ public final class TrailingSeparatorPolicy extends ExpandableStringEnum<Trailing
         return fromString(name, TrailingSeparatorPolicy.class);
     }
 
-    /** @return known TrailingSeparatorPolicy values. */
+    /**
+     * Gets known TrailingSeparatorPolicy values.
+     *
+     * @return known TrailingSeparatorPolicy values.
+     */
     public static Collection<TrailingSeparatorPolicy> values() {
         return values(TrailingSeparatorPolicy.class);
     }

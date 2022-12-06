@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for IntegrationServiceEnvironmentAccessEndpointType. */
+/** The integration service environment access endpoint type. */
 public final class IntegrationServiceEnvironmentAccessEndpointType
     extends ExpandableStringEnum<IntegrationServiceEnvironmentAccessEndpointType> {
     /** Static value NotSpecified for IntegrationServiceEnvironmentAccessEndpointType. */
@@ -31,7 +31,11 @@ public final class IntegrationServiceEnvironmentAccessEndpointType
         return fromString(name, IntegrationServiceEnvironmentAccessEndpointType.class);
     }
 
-    /** @return known IntegrationServiceEnvironmentAccessEndpointType values. */
+    /**
+     * Gets known IntegrationServiceEnvironmentAccessEndpointType values.
+     *
+     * @return known IntegrationServiceEnvironmentAccessEndpointType values.
+     */
     public static Collection<IntegrationServiceEnvironmentAccessEndpointType> values() {
         return values(IntegrationServiceEnvironmentAccessEndpointType.class);
     }

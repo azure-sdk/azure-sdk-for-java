@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for WsdlImportMethod. */
+/** The WSDL import method. */
 public final class WsdlImportMethod extends ExpandableStringEnum<WsdlImportMethod> {
     /** Static value NotSpecified for WsdlImportMethod. */
     public static final WsdlImportMethod NOT_SPECIFIED = fromString("NotSpecified");
@@ -30,7 +30,11 @@ public final class WsdlImportMethod extends ExpandableStringEnum<WsdlImportMetho
         return fromString(name, WsdlImportMethod.class);
     }
 
-    /** @return known WsdlImportMethod values. */
+    /**
+     * Gets known WsdlImportMethod values.
+     *
+     * @return known WsdlImportMethod values.
+     */
     public static Collection<WsdlImportMethod> values() {
         return values(WsdlImportMethod.class);
     }
