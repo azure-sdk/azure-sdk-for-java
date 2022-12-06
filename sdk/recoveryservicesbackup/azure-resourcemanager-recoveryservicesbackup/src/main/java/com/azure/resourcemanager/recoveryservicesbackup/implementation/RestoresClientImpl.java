@@ -55,7 +55,7 @@ public final class RestoresClientImpl implements RestoresClient {
      */
     @Host("{$host}")
     @ServiceInterface(name = "RecoveryServicesBack")
-    private interface RestoresService {
+    public interface RestoresService {
         @Headers({"Content-Type: application/json"})
         @Post(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices"

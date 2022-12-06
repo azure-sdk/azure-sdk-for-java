@@ -55,7 +55,7 @@ public final class BackupJobsClientImpl implements BackupJobsClient {
      */
     @Host("{$host}")
     @ServiceInterface(name = "RecoveryServicesBack")
-    private interface BackupJobsService {
+    public interface BackupJobsService {
         @Headers({"Content-Type: application/json"})
         @Get(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices"
@@ -140,7 +140,7 @@ public final class BackupJobsClientImpl implements BackupJobsClient {
                         res.getStatusCode(),
                         res.getHeaders(),
                         res.getValue().value(),
-                        res.getValue().nextLink(),
+                        res.getValue().nextLink().toString(),
                         null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
@@ -200,7 +200,7 @@ public final class BackupJobsClientImpl implements BackupJobsClient {
                         res.getStatusCode(),
                         res.getHeaders(),
                         res.getValue().value(),
-                        res.getValue().nextLink(),
+                        res.getValue().nextLink().toString(),
                         null));
     }
 
@@ -331,7 +331,7 @@ public final class BackupJobsClientImpl implements BackupJobsClient {
                         res.getStatusCode(),
                         res.getHeaders(),
                         res.getValue().value(),
-                        res.getValue().nextLink(),
+                        res.getValue().nextLink().toString(),
                         null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
@@ -369,7 +369,7 @@ public final class BackupJobsClientImpl implements BackupJobsClient {
                         res.getStatusCode(),
                         res.getHeaders(),
                         res.getValue().value(),
-                        res.getValue().nextLink(),
+                        res.getValue().nextLink().toString(),
                         null));
     }
 }
