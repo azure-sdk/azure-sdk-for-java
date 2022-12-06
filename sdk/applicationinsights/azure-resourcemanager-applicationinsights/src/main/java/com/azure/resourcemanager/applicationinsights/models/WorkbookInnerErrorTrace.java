@@ -5,29 +5,29 @@
 package com.azure.resourcemanager.applicationinsights.models;
 
 import com.azure.core.annotation.Immutable;
-import com.azure.core.management.exception.ManagementError;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.List;
 
-/** Error response. */
+/** Error details. */
 @Immutable
-public final class ErrorDefinition extends ManagementError {
+public final class WorkbookInnerErrorTrace {
     /*
-     * Internal error details.
+     * detailed error trace
      */
-    @JsonProperty(value = "innererror", access = JsonProperty.Access.WRITE_ONLY)
-    private Object innererror;
+    @JsonProperty(value = "trace", access = JsonProperty.Access.WRITE_ONLY)
+    private List<String> trace;
 
-    /** Creates an instance of ErrorDefinition class. */
-    public ErrorDefinition() {
+    /** Creates an instance of WorkbookInnerErrorTrace class. */
+    public WorkbookInnerErrorTrace() {
     }
 
     /**
-     * Get the innererror property: Internal error details.
+     * Get the trace property: detailed error trace.
      *
-     * @return the innererror value.
+     * @return the trace value.
      */
-    public Object getInnererror() {
-        return this.innererror;
+    public List<String> trace() {
+        return this.trace;
     }
 
     /**
