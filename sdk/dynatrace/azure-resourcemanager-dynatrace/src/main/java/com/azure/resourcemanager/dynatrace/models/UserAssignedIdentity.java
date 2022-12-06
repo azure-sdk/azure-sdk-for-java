@@ -23,6 +23,10 @@ public class UserAssignedIdentity {
     @JsonProperty(value = "principalId", required = true)
     private String principalId;
 
+    /** Creates an instance of UserAssignedIdentity class. */
+    public UserAssignedIdentity() {
+    }
+
     /**
      * Get the clientId property: The active directory client identifier for this principal.
      *

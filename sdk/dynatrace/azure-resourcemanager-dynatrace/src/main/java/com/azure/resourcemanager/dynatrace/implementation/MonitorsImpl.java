@@ -43,15 +43,6 @@ public final class MonitorsImpl implements Monitors {
         this.serviceManager = serviceManager;
     }
 
-    public AccountInfoSecure getAccountCredentials(String resourceGroupName, String monitorName) {
-        AccountInfoSecureInner inner = this.serviceClient().getAccountCredentials(resourceGroupName, monitorName);
-        if (inner != null) {
-            return new AccountInfoSecureImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
     public Response<AccountInfoSecure> getAccountCredentialsWithResponse(
         String resourceGroupName, String monitorName, Context context) {
         Response<AccountInfoSecureInner> inner =
@@ -62,6 +53,15 @@ public final class MonitorsImpl implements Monitors {
                 inner.getStatusCode(),
                 inner.getHeaders(),
                 new AccountInfoSecureImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public AccountInfoSecure getAccountCredentials(String resourceGroupName, String monitorName) {
+        AccountInfoSecureInner inner = this.serviceClient().getAccountCredentials(resourceGroupName, monitorName);
+        if (inner != null) {
+            return new AccountInfoSecureImpl(inner, this.manager());
         } else {
             return null;
         }
@@ -80,15 +80,6 @@ public final class MonitorsImpl implements Monitors {
         return Utils.mapPage(inner, inner1 -> new MonitoredResourceImpl(inner1, this.manager()));
     }
 
-    public VMExtensionPayload getVMHostPayload(String resourceGroupName, String monitorName) {
-        VMExtensionPayloadInner inner = this.serviceClient().getVMHostPayload(resourceGroupName, monitorName);
-        if (inner != null) {
-            return new VMExtensionPayloadImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
     public Response<VMExtensionPayload> getVMHostPayloadWithResponse(
         String resourceGroupName, String monitorName, Context context) {
         Response<VMExtensionPayloadInner> inner =
@@ -104,10 +95,10 @@ public final class MonitorsImpl implements Monitors {
         }
     }
 
-    public MonitorResource getByResourceGroup(String resourceGroupName, String monitorName) {
-        MonitorResourceInner inner = this.serviceClient().getByResourceGroup(resourceGroupName, monitorName);
+    public VMExtensionPayload getVMHostPayload(String resourceGroupName, String monitorName) {
+        VMExtensionPayloadInner inner = this.serviceClient().getVMHostPayload(resourceGroupName, monitorName);
         if (inner != null) {
-            return new MonitorResourceImpl(inner, this.manager());
+            return new VMExtensionPayloadImpl(inner, this.manager());
         } else {
             return null;
         }
@@ -123,6 +114,15 @@ public final class MonitorsImpl implements Monitors {
                 inner.getStatusCode(),
                 inner.getHeaders(),
                 new MonitorResourceImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public MonitorResource getByResourceGroup(String resourceGroupName, String monitorName) {
+        MonitorResourceInner inner = this.serviceClient().getByResourceGroup(resourceGroupName, monitorName);
+        if (inner != null) {
+            return new MonitorResourceImpl(inner, this.manager());
         } else {
             return null;
         }
@@ -179,15 +179,6 @@ public final class MonitorsImpl implements Monitors {
         return Utils.mapPage(inner, inner1 -> new AppServiceInfoImpl(inner1, this.manager()));
     }
 
-    public SsoDetailsResponse getSsoDetails(String resourceGroupName, String monitorName) {
-        SsoDetailsResponseInner inner = this.serviceClient().getSsoDetails(resourceGroupName, monitorName);
-        if (inner != null) {
-            return new SsoDetailsResponseImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
     public Response<SsoDetailsResponse> getSsoDetailsWithResponse(
         String resourceGroupName, String monitorName, SsoDetailsRequest request, Context context) {
         Response<SsoDetailsResponseInner> inner =
@@ -198,6 +189,15 @@ public final class MonitorsImpl implements Monitors {
                 inner.getStatusCode(),
                 inner.getHeaders(),
                 new SsoDetailsResponseImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public SsoDetailsResponse getSsoDetails(String resourceGroupName, String monitorName) {
+        SsoDetailsResponseInner inner = this.serviceClient().getSsoDetails(resourceGroupName, monitorName);
+        if (inner != null) {
+            return new SsoDetailsResponseImpl(inner, this.manager());
         } else {
             return null;
         }

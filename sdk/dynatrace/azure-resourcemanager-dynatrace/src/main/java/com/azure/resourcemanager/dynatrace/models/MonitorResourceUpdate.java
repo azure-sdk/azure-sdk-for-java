@@ -49,6 +49,10 @@ public final class MonitorResourceUpdate {
     @JsonProperty(value = "planData")
     private PlanData planData;
 
+    /** Creates an instance of MonitorResourceUpdate class. */
+    public MonitorResourceUpdate() {
+    }
+
     /**
      * Get the tags property: Resource tags.
      *
