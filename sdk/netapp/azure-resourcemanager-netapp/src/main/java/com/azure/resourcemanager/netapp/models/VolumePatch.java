@@ -19,6 +19,10 @@ public final class VolumePatch extends Resource {
     @JsonProperty(value = "properties")
     private VolumePatchProperties innerProperties;
 
+    /** Creates an instance of VolumePatch class. */
+    public VolumePatch() {
+    }
+
     /**
      * Get the innerProperties property: Patchable volume properties.
      *

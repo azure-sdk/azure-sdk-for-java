@@ -150,6 +150,10 @@ public final class ActiveDirectory {
     @JsonProperty(value = "ldapSearchScope")
     private LdapSearchScopeOpt ldapSearchScope;
 
+    /** Creates an instance of ActiveDirectory class. */
+    public ActiveDirectory() {
+    }
+
     /**
      * Get the activeDirectoryId property: Id of the Active Directory.
      *
