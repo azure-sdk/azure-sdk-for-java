@@ -65,7 +65,7 @@ public final class ElasticSansClientImpl implements ElasticSansClient {
      */
     @Host("{$host}")
     @ServiceInterface(name = "ElasticSanManagement")
-    private interface ElasticSansService {
+    public interface ElasticSansService {
         @Headers({"Content-Type: application/json"})
         @Get("/subscriptions/{subscriptionId}/providers/Microsoft.ElasticSan/elasticSans")
         @ExpectedResponses({200})
