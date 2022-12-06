@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for Jobs List. */
 public final class JobsListSamples {
     /*
-     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/stable/2021-11-01/examples/jobs-list-all-filter-by-state-ne.json
+     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/Encoding/stable/2021-11-01/examples/jobs-list-all-filter-by-state-ne.json
      */
     /**
      * Sample code: Lists Jobs for the Transform filter by state not equal.
@@ -30,7 +30,7 @@ public final class JobsListSamples {
     }
 
     /*
-     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/stable/2021-11-01/examples/jobs-list-all-filter-by-state-eq.json
+     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/Encoding/stable/2021-11-01/examples/jobs-list-all-filter-by-state-eq.json
      */
     /**
      * Sample code: Lists Jobs for the Transform filter by state equal.
@@ -51,7 +51,7 @@ public final class JobsListSamples {
     }
 
     /*
-     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/stable/2021-11-01/examples/jobs-list-all-filter-by-name.json
+     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/Encoding/stable/2021-11-01/examples/jobs-list-all-filter-by-name.json
      */
     /**
      * Sample code: Lists Jobs for the Transform filter by name.
@@ -72,7 +72,7 @@ public final class JobsListSamples {
     }
 
     /*
-     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/stable/2021-11-01/examples/jobs-list-all-filter-by-lastmodified.json
+     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/Encoding/stable/2021-11-01/examples/jobs-list-all-filter-by-lastmodified.json
      */
     /**
      * Sample code: Lists Jobs for the Transform filter by lastmodified.
@@ -94,7 +94,7 @@ public final class JobsListSamples {
     }
 
     /*
-     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/stable/2021-11-01/examples/jobs-list-all-filter-by-created.json
+     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/Encoding/stable/2021-11-01/examples/jobs-list-all-filter-by-created.json
      */
     /**
      * Sample code: Lists Jobs for the Transform filter by created.
@@ -116,7 +116,7 @@ public final class JobsListSamples {
     }
 
     /*
-     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/stable/2021-11-01/examples/jobs-list-all.json
+     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/Encoding/stable/2021-11-01/examples/jobs-list-all.json
      */
     /**
      * Sample code: Lists all of the Jobs for the Transform.
@@ -129,7 +129,7 @@ public final class JobsListSamples {
     }
 
     /*
-     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/stable/2021-11-01/examples/jobs-list-all-filter-by-name-and-state.json
+     * x-ms-original-file: specification/mediaservices/resource-manager/Microsoft.Media/Encoding/stable/2021-11-01/examples/jobs-list-all-filter-by-name-and-state.json
      */
     /**
      * Sample code: Lists Jobs for the Transform filter by name and state.
