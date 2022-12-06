@@ -3,11 +3,10 @@
 
 ## Extensions
 
-- [Create](#extensions_create)
+- [CreateOrUpdate](#extensions_createorupdate)
 - [Delete](#extensions_delete)
 - [Get](#extensions_get)
 - [ListByFarmBeats](#extensions_listbyfarmbeats)
-- [Update](#extensions_update)
 
 ## FarmBeatsExtensions
 
@@ -43,25 +42,25 @@
 
 - [Get](#privatelinkresources_get)
 - [ListByResource](#privatelinkresources_listbyresource)
-### Extensions_Create
+### Extensions_CreateOrUpdate
 
 ```java
-import com.azure.core.util.Context;
-
-/** Samples for Extensions Create. */
-public final class ExtensionsCreateSamples {
+/** Samples for Extensions CreateOrUpdate. */
+public final class ExtensionsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/agrifood/resource-manager/Microsoft.AgFoodPlatform/preview/2021-09-01-preview/examples/Extensions_Create.json
+     * x-ms-original-file: specification/agrifood/resource-manager/Microsoft.AgFoodPlatform/preview/2021-09-01-preview/examples/Extensions_CreateOrUpdate.json
      */
     /**
-     * Sample code: Extensions_Create.
+     * Sample code: Extensions_CreateOrUpdate.
      *
      * @param manager Entry point to AgriFoodManager.
      */
-    public static void extensionsCreate(com.azure.resourcemanager.agrifood.AgriFoodManager manager) {
+    public static void extensionsCreateOrUpdate(com.azure.resourcemanager.agrifood.AgriFoodManager manager) {
         manager
             .extensions()
-            .createWithResponse("examples-rg", "examples-farmbeatsResourceName", "provider.extension", Context.NONE);
+            .define("provider.extension")
+            .withExistingFarmBeat("examples-rg", "examples-farmbeatsResourceName")
+            .create();
     }
 }
 ```
@@ -131,29 +130,6 @@ public final class ExtensionsListByFarmBeatsSamples {
         manager
             .extensions()
             .listByFarmBeats("examples-rg", "examples-farmbeatsResourceName", null, null, null, null, Context.NONE);
-    }
-}
-```
-
-### Extensions_Update
-
-```java
-import com.azure.core.util.Context;
-
-/** Samples for Extensions Update. */
-public final class ExtensionsUpdateSamples {
-    /*
-     * x-ms-original-file: specification/agrifood/resource-manager/Microsoft.AgFoodPlatform/preview/2021-09-01-preview/examples/Extensions_Update.json
-     */
-    /**
-     * Sample code: Extensions_Update.
-     *
-     * @param manager Entry point to AgriFoodManager.
-     */
-    public static void extensionsUpdate(com.azure.resourcemanager.agrifood.AgriFoodManager manager) {
-        manager
-            .extensions()
-            .updateWithResponse("examples-rg", "examples-farmbeatsResourceName", "provider.extension", Context.NONE);
     }
 }
 ```
@@ -255,7 +231,9 @@ public final class FarmBeatsModelsDeleteSamples {
      * @param manager Entry point to AgriFoodManager.
      */
     public static void farmBeatsModelsDelete(com.azure.resourcemanager.agrifood.AgriFoodManager manager) {
-        manager.farmBeatsModels().deleteWithResponse("examples-rg", "examples-farmBeatsResourceName", Context.NONE);
+        manager
+            .farmBeatsModels()
+            .deleteByResourceGroupWithResponse("examples-rg", "examples-farmBeatsResourceName", Context.NONE);
     }
 }
 ```
