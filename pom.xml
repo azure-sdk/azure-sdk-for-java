@@ -88,6 +88,7 @@
     <module>sdk/healthcareapis</module>
     <module>sdk/hybridcompute</module>
     <module>sdk/hybridcontainerservice</module>
+    <module>sdk/hybriddatamanager</module>
     <module>sdk/hybridkubernetes</module>
     <module>sdk/hybridnetwork</module>
     <module>sdk/identity</module>
