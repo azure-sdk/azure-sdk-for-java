@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for Bots Delete. */
 public final class BotsDeleteSamples {
     /*
-     * x-ms-original-file: specification/healthbot/resource-manager/Microsoft.HealthBot/stable/2020-12-08/examples/ResourceDeletionDelete.json
+     * x-ms-original-file: specification/healthbot/resource-manager/Microsoft.HealthBot/stable/2022-08-08/examples/ResourceDeletionDelete.json
      */
     /**
      * Sample code: BotDelete.
