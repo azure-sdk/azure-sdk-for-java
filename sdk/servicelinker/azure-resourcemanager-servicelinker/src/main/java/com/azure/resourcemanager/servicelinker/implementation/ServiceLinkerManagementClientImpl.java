@@ -140,7 +140,7 @@ public final class ServiceLinkerManagementClientImpl implements ServiceLinkerMan
         this.serializerAdapter = serializerAdapter;
         this.defaultPollInterval = defaultPollInterval;
         this.endpoint = endpoint;
-        this.apiVersion = "2022-05-01";
+        this.apiVersion = "2018-05-01";
         this.linkers = new LinkersClientImpl(this);
         this.operations = new OperationsClientImpl(this);
     }
