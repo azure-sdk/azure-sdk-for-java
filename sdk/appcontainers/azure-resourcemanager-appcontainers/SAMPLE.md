@@ -204,9 +204,7 @@ public final class CertificatesCreateOrUpdateSamples {
             .withRegion("East US")
             .withExistingManagedEnvironment("examplerg", "testcontainerenv")
             .withProperties(
-                new CertificateProperties()
-                    .withPassword("private key password")
-                    .withValue("PFX-or-PEM-blob".getBytes()))
+                new CertificateProperties().withPassword("fakeTokenPlaceholder").withValue("Y2VydA==".getBytes()))
             .create();
     }
 }
@@ -379,7 +377,7 @@ public final class ConnectedEnvironmentsCreateOrUpdateSamples {
                 new CustomDomainConfiguration()
                     .withDnsSuffix("www.my-name.com")
                     .withCertificateValue("PFX-or-PEM-blob".getBytes())
-                    .withCertificatePassword("private key password".getBytes()))
+                    .withCertificatePassword("fakeTokenPlaceholder"))
             .create();
     }
 }
@@ -524,7 +522,7 @@ public final class ConnectedEnvironmentsCertificatesCreateOrUpdateSamples {
                     .withLocation("East US")
                     .withProperties(
                         new CertificateProperties()
-                            .withPassword("private key password")
+                            .withPassword("fakeTokenPlaceholder")
                             .withValue("PFX-or-PEM-blob".getBytes())),
                 Context.NONE);
     }
@@ -680,7 +678,7 @@ public final class ConnectedEnvironmentsDaprComponentsCreateOrUpdateSamples {
                                 new DaprMetadata().withName("url").withValue("<COSMOS-URL>"),
                                 new DaprMetadata().withName("database").withValue("itemsDB"),
                                 new DaprMetadata().withName("collection").withValue("items"),
-                                new DaprMetadata().withName("masterkey").withSecretRef("masterkey")))
+                                new DaprMetadata().withName("masterkey").withSecretRef("fakeTokenPlaceholder")))
                     .withScopes(Arrays.asList("container-app-1", "container-app-2")),
                 Context.NONE);
     }
@@ -806,7 +804,7 @@ public final class ConnectedEnvironmentsStoragesCreateOrUpdateSamples {
                     .withAzureFile(
                         new AzureFileProperties()
                             .withAccountName("account1")
-                            .withAccountKey("key")
+                            .withAccountKey("fakeTokenPlaceholder")
                             .withAccessMode(AccessMode.READ_ONLY)
                             .withShareName("share1")))
             .create();
@@ -1263,12 +1261,12 @@ public final class ContainerAppsListSecretsSamples {
 
 ```java
 import com.azure.core.util.Context;
-import com.azure.resourcemanager.appcontainers.fluent.models.ContainerAppInner;
 import com.azure.resourcemanager.appcontainers.models.Action;
 import com.azure.resourcemanager.appcontainers.models.AppProtocol;
 import com.azure.resourcemanager.appcontainers.models.BindingType;
 import com.azure.resourcemanager.appcontainers.models.Configuration;
 import com.azure.resourcemanager.appcontainers.models.Container;
+import com.azure.resourcemanager.appcontainers.models.ContainerApp;
 import com.azure.resourcemanager.appcontainers.models.ContainerAppProbe;
 import com.azure.resourcemanager.appcontainers.models.ContainerAppProbeHttpGet;
 import com.azure.resourcemanager.appcontainers.models.ContainerAppProbeHttpGetHttpHeadersItem;
@@ -1300,113 +1298,108 @@ public final class ContainerAppsUpdateSamples {
      * @param manager Entry point to ContainerAppsApiManager.
      */
     public static void patchContainerApp(com.azure.resourcemanager.appcontainers.ContainerAppsApiManager manager) {
-        manager
-            .containerApps()
-            .update(
-                "rg",
-                "testcontainerApp0",
-                new ContainerAppInner()
-                    .withLocation("East US")
-                    .withTags(mapOf("tag1", "value1", "tag2", "value2"))
-                    .withConfiguration(
-                        new Configuration()
-                            .withIngress(
-                                new Ingress()
-                                    .withExternal(true)
-                                    .withTargetPort(3000)
-                                    .withTraffic(
-                                        Arrays
-                                            .asList(
-                                                new TrafficWeight()
-                                                    .withRevisionName("testcontainerApp0-ab1234")
-                                                    .withWeight(100)
-                                                    .withLabel("production")))
-                                    .withCustomDomains(
-                                        Arrays
-                                            .asList(
-                                                new CustomDomain()
-                                                    .withName("www.my-name.com")
-                                                    .withBindingType(BindingType.SNI_ENABLED)
-                                                    .withCertificateId(
-                                                        "/subscriptions/34adfa4f-cedf-4dc0-ba29-b6d1a69ab345/resourceGroups/rg/providers/Microsoft.App/managedEnvironments/demokube/certificates/my-certificate-for-my-name-dot-com"),
-                                                new CustomDomain()
-                                                    .withName("www.my-other-name.com")
-                                                    .withBindingType(BindingType.SNI_ENABLED)
-                                                    .withCertificateId(
-                                                        "/subscriptions/34adfa4f-cedf-4dc0-ba29-b6d1a69ab345/resourceGroups/rg/providers/Microsoft.App/managedEnvironments/demokube/certificates/my-certificate-for-my-other-name-dot-com")))
-                                    .withIpSecurityRestrictions(
-                                        Arrays
-                                            .asList(
-                                                new IpSecurityRestrictionRule()
-                                                    .withName("Allow work IP A subnet")
-                                                    .withDescription(
-                                                        "Allowing all IP's within the subnet below to access"
-                                                            + " containerapp")
-                                                    .withIpAddressRange("192.168.1.1/32")
-                                                    .withAction(Action.ALLOW),
-                                                new IpSecurityRestrictionRule()
-                                                    .withName("Allow work IP B subnet")
-                                                    .withDescription(
-                                                        "Allowing all IP's within the subnet below to access"
-                                                            + " containerapp")
-                                                    .withIpAddressRange("192.168.1.1/8")
-                                                    .withAction(Action.ALLOW))))
-                            .withDapr(
-                                new Dapr()
-                                    .withEnabled(true)
-                                    .withAppProtocol(AppProtocol.HTTP)
-                                    .withAppPort(3000)
-                                    .withHttpReadBufferSize(30)
-                                    .withHttpMaxRequestSize(10)
-                                    .withLogLevel(LogLevel.DEBUG)
-                                    .withEnableApiLogging(true))
-                            .withMaxInactiveRevisions(10))
-                    .withTemplate(
-                        new Template()
-                            .withInitContainers(
+        ContainerApp resource =
+            manager.containerApps().getByResourceGroupWithResponse("rg", "testcontainerApp0", Context.NONE).getValue();
+        resource
+            .update()
+            .withTags(mapOf("tag1", "value1", "tag2", "value2"))
+            .withConfiguration(
+                new Configuration()
+                    .withIngress(
+                        new Ingress()
+                            .withExternal(true)
+                            .withTargetPort(3000)
+                            .withTraffic(
                                 Arrays
                                     .asList(
-                                        new InitContainer()
-                                            .withImage("repo/testcontainerApp0:v4")
-                                            .withName("testinitcontainerApp0")
-                                            .withResources(new ContainerResources().withCpu(0.2D).withMemory("100Mi"))))
-                            .withContainers(
+                                        new TrafficWeight()
+                                            .withRevisionName("testcontainerApp0-ab1234")
+                                            .withWeight(100)
+                                            .withLabel("production")))
+                            .withCustomDomains(
                                 Arrays
                                     .asList(
-                                        new Container()
-                                            .withImage("repo/testcontainerApp0:v1")
-                                            .withName("testcontainerApp0")
-                                            .withProbes(
-                                                Arrays
-                                                    .asList(
-                                                        new ContainerAppProbe()
-                                                            .withHttpGet(
-                                                                new ContainerAppProbeHttpGet()
-                                                                    .withHttpHeaders(
-                                                                        Arrays
-                                                                            .asList(
-                                                                                new ContainerAppProbeHttpGetHttpHeadersItem()
-                                                                                    .withName("Custom-Header")
-                                                                                    .withValue("Awesome")))
-                                                                    .withPath("/health")
-                                                                    .withPort(8080))
-                                                            .withInitialDelaySeconds(3)
-                                                            .withPeriodSeconds(3)
-                                                            .withType(Type.LIVENESS)))))
-                            .withScale(
-                                new Scale()
-                                    .withMinReplicas(1)
-                                    .withMaxReplicas(5)
-                                    .withRules(
+                                        new CustomDomain()
+                                            .withName("www.my-name.com")
+                                            .withBindingType(BindingType.SNI_ENABLED)
+                                            .withCertificateId(
+                                                "/subscriptions/34adfa4f-cedf-4dc0-ba29-b6d1a69ab345/resourceGroups/rg/providers/Microsoft.App/managedEnvironments/demokube/certificates/my-certificate-for-my-name-dot-com"),
+                                        new CustomDomain()
+                                            .withName("www.my-other-name.com")
+                                            .withBindingType(BindingType.SNI_ENABLED)
+                                            .withCertificateId(
+                                                "/subscriptions/34adfa4f-cedf-4dc0-ba29-b6d1a69ab345/resourceGroups/rg/providers/Microsoft.App/managedEnvironments/demokube/certificates/my-certificate-for-my-other-name-dot-com")))
+                            .withIpSecurityRestrictions(
+                                Arrays
+                                    .asList(
+                                        new IpSecurityRestrictionRule()
+                                            .withName("Allow work IP A subnet")
+                                            .withDescription(
+                                                "Allowing all IP's within the subnet below to access containerapp")
+                                            .withIpAddressRange("192.168.1.1/32")
+                                            .withAction(Action.ALLOW),
+                                        new IpSecurityRestrictionRule()
+                                            .withName("Allow work IP B subnet")
+                                            .withDescription(
+                                                "Allowing all IP's within the subnet below to access containerapp")
+                                            .withIpAddressRange("192.168.1.1/8")
+                                            .withAction(Action.ALLOW))))
+                    .withDapr(
+                        new Dapr()
+                            .withEnabled(true)
+                            .withAppProtocol(AppProtocol.HTTP)
+                            .withAppPort(3000)
+                            .withHttpReadBufferSize(30)
+                            .withHttpMaxRequestSize(10)
+                            .withLogLevel(LogLevel.DEBUG)
+                            .withEnableApiLogging(true))
+                    .withMaxInactiveRevisions(10))
+            .withTemplate(
+                new Template()
+                    .withInitContainers(
+                        Arrays
+                            .asList(
+                                new InitContainer()
+                                    .withImage("repo/testcontainerApp0:v4")
+                                    .withName("testinitcontainerApp0")
+                                    .withResources(new ContainerResources().withCpu(0.2D).withMemory("100Mi"))))
+                    .withContainers(
+                        Arrays
+                            .asList(
+                                new Container()
+                                    .withImage("repo/testcontainerApp0:v1")
+                                    .withName("testcontainerApp0")
+                                    .withProbes(
                                         Arrays
                                             .asList(
-                                                new ScaleRule()
-                                                    .withName("httpscalingrule")
-                                                    .withCustom(
-                                                        new CustomScaleRule()
-                                                            .withType("http")
-                                                            .withMetadata(mapOf("concurrentRequests", "50"))))))),
-                Context.NONE);
+                                                new ContainerAppProbe()
+                                                    .withHttpGet(
+                                                        new ContainerAppProbeHttpGet()
+                                                            .withHttpHeaders(
+                                                                Arrays
+                                                                    .asList(
+                                                                        new ContainerAppProbeHttpGetHttpHeadersItem()
+                                                                            .withName("Custom-Header")
+                                                                            .withValue("Awesome")))
+                                                            .withPath("/health")
+                                                            .withPort(8080))
+                                                    .withInitialDelaySeconds(3)
+                                                    .withPeriodSeconds(3)
+                                                    .withType(Type.LIVENESS)))))
+                    .withScale(
+                        new Scale()
+                            .withMinReplicas(1)
+                            .withMaxReplicas(5)
+                            .withRules(
+                                Arrays
+                                    .asList(
+                                        new ScaleRule()
+                                            .withName("httpscalingrule")
+                                            .withCustom(
+                                                new CustomScaleRule()
+                                                    .withType("http")
+                                                    .withMetadata(mapOf("concurrentRequests", "50")))))))
+            .apply();
     }
 
     @SuppressWarnings("unchecked")
@@ -1456,7 +1449,9 @@ public final class ContainerAppsAuthConfigsCreateOrUpdateSamples {
                     .withFacebook(
                         new Facebook()
                             .withRegistration(
-                                new AppRegistration().withAppId("123").withAppSecretSettingName("facebook-secret"))))
+                                new AppRegistration()
+                                    .withAppId("123")
+                                    .withAppSecretSettingName("fakeTokenPlaceholder"))))
             .create();
     }
 }
@@ -1846,11 +1841,11 @@ public final class ContainerAppsSourceControlsCreateOrUpdateSamples {
                         new RegistryInfo()
                             .withRegistryUrl("xwang971reg.azurecr.io")
                             .withRegistryUsername("xwang971reg")
-                            .withRegistryPassword("<registrypassword>"))
+                            .withRegistryPassword("fakeTokenPlaceholder"))
                     .withAzureCredentials(
                         new AzureCredentials()
                             .withClientId("<clientid>")
-                            .withClientSecret("<clientsecret>")
+                            .withClientSecret("fakeTokenPlaceholder")
                             .withTenantId("<tenantid>"))
                     .withContextPath("./")
                     .withImage("image/tag"))
@@ -1960,7 +1955,7 @@ public final class DaprComponentsCreateOrUpdateSamples {
                         new DaprMetadata().withName("url").withValue("<COSMOS-URL>"),
                         new DaprMetadata().withName("database").withValue("itemsDB"),
                         new DaprMetadata().withName("collection").withValue("items"),
-                        new DaprMetadata().withName("masterkey").withSecretRef("masterkey")))
+                        new DaprMetadata().withName("masterkey").withSecretRef("fakeTokenPlaceholder")))
             .withScopes(Arrays.asList("container-app-1", "container-app-2"))
             .create();
     }
@@ -1990,7 +1985,7 @@ public final class DaprComponentsCreateOrUpdateSamples {
                         new DaprMetadata().withName("url").withValue("<COSMOS-URL>"),
                         new DaprMetadata().withName("database").withValue("itemsDB"),
                         new DaprMetadata().withName("collection").withValue("items"),
-                        new DaprMetadata().withName("masterkey").withSecretRef("masterkey")))
+                        new DaprMetadata().withName("masterkey").withSecretRef("fakeTokenPlaceholder")))
             .withScopes(Arrays.asList("container-app-1", "container-app-2"))
             .create();
     }
@@ -2187,13 +2182,13 @@ public final class ManagedEnvironmentsCreateOrUpdateSamples {
             .withAppLogsConfiguration(
                 new AppLogsConfiguration()
                     .withLogAnalyticsConfiguration(
-                        new LogAnalyticsConfiguration().withCustomerId("string").withSharedKey("string")))
+                        new LogAnalyticsConfiguration().withCustomerId("string").withSharedKey("fakeTokenPlaceholder")))
             .withZoneRedundant(true)
             .withCustomDomainConfiguration(
                 new CustomDomainConfiguration()
                     .withDnsSuffix("www.my-name.com")
-                    .withCertificateValue("PFX-or-PEM-blob".getBytes())
-                    .withCertificatePassword("private key password".getBytes()))
+                    .withCertificateValue("Y2VydA==".getBytes())
+                    .withCertificatePassword("fakeTokenPlaceholder"))
             .withWorkloadProfiles(
                 Arrays
                     .asList(
@@ -2349,7 +2344,7 @@ public final class ManagedEnvironmentsListWorkloadProfileStatesSamples {
 
 ```java
 import com.azure.core.util.Context;
-import com.azure.resourcemanager.appcontainers.fluent.models.ManagedEnvironmentInner;
+import com.azure.resourcemanager.appcontainers.models.ManagedEnvironment;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -2365,15 +2360,12 @@ public final class ManagedEnvironmentsUpdateSamples {
      */
     public static void patchManagedEnvironment(
         com.azure.resourcemanager.appcontainers.ContainerAppsApiManager manager) {
-        manager
-            .managedEnvironments()
-            .update(
-                "examplerg",
-                "testcontainerenv",
-                new ManagedEnvironmentInner()
-                    .withLocation("East US")
-                    .withTags(mapOf("tag1", "value1", "tag2", "value2")),
-                Context.NONE);
+        ManagedEnvironment resource =
+            manager
+                .managedEnvironments()
+                .getByResourceGroupWithResponse("examplerg", "testcontainerenv", Context.NONE)
+                .getValue();
+        resource.update().withTags(mapOf("tag1", "value1", "tag2", "value2")).apply();
     }
 
     @SuppressWarnings("unchecked")
@@ -2438,7 +2430,7 @@ public final class ManagedEnvironmentsStoragesCreateOrUpdateSamples {
                     .withAzureFile(
                         new AzureFileProperties()
                             .withAccountName("account1")
-                            .withAccountKey("key")
+                            .withAccountKey("fakeTokenPlaceholder")
                             .withAccessMode(AccessMode.READ_ONLY)
                             .withShareName("share1")))
             .create();

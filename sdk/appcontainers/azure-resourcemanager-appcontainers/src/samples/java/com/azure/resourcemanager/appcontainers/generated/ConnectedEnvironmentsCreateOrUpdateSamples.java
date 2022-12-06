@@ -29,7 +29,7 @@ public final class ConnectedEnvironmentsCreateOrUpdateSamples {
                 new CustomDomainConfiguration()
                     .withDnsSuffix("www.my-name.com")
                     .withCertificateValue("PFX-or-PEM-blob".getBytes())
-                    .withCertificatePassword("private key password".getBytes()))
+                    .withCertificatePassword("fakeTokenPlaceholder"))
             .create();
     }
 }
