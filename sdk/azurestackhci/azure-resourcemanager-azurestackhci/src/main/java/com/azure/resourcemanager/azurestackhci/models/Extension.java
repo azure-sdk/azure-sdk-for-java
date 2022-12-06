@@ -33,7 +33,7 @@ public interface Extension {
     String type();
 
     /**
-     * Gets the systemData property: System data of Extension resource.
+     * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
      *
      * @return the systemData value.
      */
