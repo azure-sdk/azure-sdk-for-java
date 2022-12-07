@@ -48,9 +48,9 @@ public final class ClustersUpdateSamples {
                     .withName(ClusterSkuNameEnum.CAPACITY_RESERVATION))
             .withKeyVaultProperties(
                 new KeyVaultProperties()
-                    .withKeyVaultUri("https://aztest2170.vault.azure.net")
-                    .withKeyName("aztest2170cert")
-                    .withKeyVersion("654ft6c4e63845cbb50fd6fg51540429")
+                    .withKeyVaultUri("fakeTokenPlaceholder")
+                    .withKeyName("fakeTokenPlaceholder")
+                    .withKeyVersion("fakeTokenPlaceholder")
                     .withKeyRsaSize(1024))
             .apply();
     }

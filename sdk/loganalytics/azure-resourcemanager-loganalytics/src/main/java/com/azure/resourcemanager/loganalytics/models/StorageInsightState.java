@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for StorageInsightState. */
+/** The state of the storage insight connection to the workspace. */
 public final class StorageInsightState extends ExpandableStringEnum<StorageInsightState> {
     /** Static value OK for StorageInsightState. */
     public static final StorageInsightState OK = fromString("OK");

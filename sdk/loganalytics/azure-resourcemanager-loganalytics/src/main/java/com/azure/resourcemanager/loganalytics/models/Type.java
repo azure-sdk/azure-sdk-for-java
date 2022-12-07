@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for Type. */
+/** The type of the destination resource. */
 public final class Type extends ExpandableStringEnum<Type> {
     /** Static value StorageAccount for Type. */
     public static final Type STORAGE_ACCOUNT = fromString("StorageAccount");

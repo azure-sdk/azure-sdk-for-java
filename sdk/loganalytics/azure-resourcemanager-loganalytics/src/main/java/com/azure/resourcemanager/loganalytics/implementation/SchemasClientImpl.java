@@ -49,7 +49,7 @@ public final class SchemasClientImpl implements SchemasClient {
      */
     @Host("{$host}")
     @ServiceInterface(name = "OperationalInsightsM")
-    private interface SchemasService {
+    public interface SchemasService {
         @Headers({"Content-Type: application/json"})
         @Post(
             "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.OperationalInsights"
@@ -182,21 +182,6 @@ public final class SchemasClientImpl implements SchemasClient {
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the schema for a given workspace.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public SearchGetSchemaResponseInner get(String resourceGroupName, String workspaceName) {
-        return getAsync(resourceGroupName, workspaceName).block();
-    }
-
-    /**
-     * Gets the schema for a given workspace.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -207,5 +192,20 @@ public final class SchemasClientImpl implements SchemasClient {
     public Response<SearchGetSchemaResponseInner> getWithResponse(
         String resourceGroupName, String workspaceName, Context context) {
         return getWithResponseAsync(resourceGroupName, workspaceName, context).block();
+    }
+
+    /**
+     * Gets the schema for a given workspace.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the schema for a given workspace.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public SearchGetSchemaResponseInner get(String resourceGroupName, String workspaceName) {
+        return getWithResponse(resourceGroupName, workspaceName, Context.NONE).getValue();
     }
 }

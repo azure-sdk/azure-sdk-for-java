@@ -64,7 +64,7 @@ public final class ClustersClientImpl implements ClustersClient {
      */
     @Host("{$host}")
     @ServiceInterface(name = "OperationalInsightsM")
-    private interface ClustersService {
+    public interface ClustersService {
         @Headers({"Content-Type: application/json"})
         @Get(
             "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.OperationalInsights"
@@ -1086,21 +1086,6 @@ public final class ClustersClientImpl implements ClustersClient {
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param clusterName Name of the Log Analytics Cluster.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a Log Analytics cluster instance.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public ClusterInner getByResourceGroup(String resourceGroupName, String clusterName) {
-        return getByResourceGroupAsync(resourceGroupName, clusterName).block();
-    }
-
-    /**
-     * Gets a Log Analytics cluster instance.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param clusterName Name of the Log Analytics Cluster.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1111,6 +1096,21 @@ public final class ClustersClientImpl implements ClustersClient {
     public Response<ClusterInner> getByResourceGroupWithResponse(
         String resourceGroupName, String clusterName, Context context) {
         return getByResourceGroupWithResponseAsync(resourceGroupName, clusterName, context).block();
+    }
+
+    /**
+     * Gets a Log Analytics cluster instance.
+     *
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param clusterName Name of the Log Analytics Cluster.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a Log Analytics cluster instance.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public ClusterInner getByResourceGroup(String resourceGroupName, String clusterName) {
+        return getByResourceGroupWithResponse(resourceGroupName, clusterName, Context.NONE).getValue();
     }
 
     /**
@@ -1379,7 +1379,8 @@ public final class ClustersClientImpl implements ClustersClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1416,7 +1417,8 @@ public final class ClustersClientImpl implements ClustersClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1453,7 +1455,8 @@ public final class ClustersClientImpl implements ClustersClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1489,7 +1492,8 @@ public final class ClustersClientImpl implements ClustersClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
