@@ -178,6 +178,13 @@ public interface SecurityInsights {
     IncidentRelationsClient getIncidentRelations();
 
     /**
+     * Gets the IncidentTasksClient object to access its operations.
+     *
+     * @return the IncidentTasksClient object.
+     */
+    IncidentTasksClient getIncidentTasks();
+
+    /**
      * Gets the MetadatasClient object to access its operations.
      *
      * @return the MetadatasClient object.
@@ -197,6 +204,27 @@ public interface SecurityInsights {
      * @return the SentinelOnboardingStatesClient object.
      */
     SentinelOnboardingStatesClient getSentinelOnboardingStates();
+
+    /**
+     * Gets the GetRecommendationsClient object to access its operations.
+     *
+     * @return the GetRecommendationsClient object.
+     */
+    GetRecommendationsClient getGetRecommendations();
+
+    /**
+     * Gets the GetsClient object to access its operations.
+     *
+     * @return the GetsClient object.
+     */
+    GetsClient getGets();
+
+    /**
+     * Gets the UpdatesClient object to access its operations.
+     *
+     * @return the UpdatesClient object.
+     */
+    UpdatesClient getUpdates();
 
     /**
      * Gets the SecurityMLAnalyticsSettingsClient object to access its operations.

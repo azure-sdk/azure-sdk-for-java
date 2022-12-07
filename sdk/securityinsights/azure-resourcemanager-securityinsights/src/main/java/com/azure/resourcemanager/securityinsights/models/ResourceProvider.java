@@ -40,6 +40,10 @@ public class ResourceProvider {
     @JsonProperty(value = "requiredPermissions")
     private RequiredPermissions requiredPermissions;
 
+    /** Creates an instance of ResourceProvider class. */
+    public ResourceProvider() {
+    }
+
     /**
      * Get the provider property: Provider name.
      *

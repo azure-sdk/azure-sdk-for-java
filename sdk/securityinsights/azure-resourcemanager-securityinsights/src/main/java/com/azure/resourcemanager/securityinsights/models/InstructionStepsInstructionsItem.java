@@ -9,6 +9,10 @@ import com.azure.core.annotation.Fluent;
 /** The InstructionStepsInstructionsItem model. */
 @Fluent
 public final class InstructionStepsInstructionsItem extends ConnectorInstructionModelBase {
+    /** Creates an instance of InstructionStepsInstructionsItem class. */
+    public InstructionStepsInstructionsItem() {
+    }
+
     /** {@inheritDoc} */
     @Override
     public InstructionStepsInstructionsItem withParameters(Object parameters) {

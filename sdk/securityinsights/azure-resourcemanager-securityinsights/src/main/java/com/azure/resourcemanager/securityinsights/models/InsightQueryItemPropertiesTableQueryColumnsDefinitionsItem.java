@@ -28,6 +28,10 @@ public final class InsightQueryItemPropertiesTableQueryColumnsDefinitionsItem {
     @JsonProperty(value = "supportDeepLink")
     private Boolean supportDeepLink;
 
+    /** Creates an instance of InsightQueryItemPropertiesTableQueryColumnsDefinitionsItem class. */
+    public InsightQueryItemPropertiesTableQueryColumnsDefinitionsItem() {
+    }
+
     /**
      * Get the headerProperty property: Insight column header.
      *

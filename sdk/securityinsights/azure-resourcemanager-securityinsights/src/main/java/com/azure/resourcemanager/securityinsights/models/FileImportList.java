@@ -25,6 +25,10 @@ public final class FileImportList {
     @JsonProperty(value = "value", required = true)
     private List<FileImportInner> value;
 
+    /** Creates an instance of FileImportList class. */
+    public FileImportList() {
+    }
+
     /**
      * Get the nextLink property: URL to fetch the next set of file imports.
      *

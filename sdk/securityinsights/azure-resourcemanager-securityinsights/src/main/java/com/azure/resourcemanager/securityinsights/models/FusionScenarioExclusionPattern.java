@@ -23,6 +23,10 @@ public final class FusionScenarioExclusionPattern {
     @JsonProperty(value = "dateAddedInUTC", required = true)
     private String dateAddedInUtc;
 
+    /** Creates an instance of FusionScenarioExclusionPattern class. */
+    public FusionScenarioExclusionPattern() {
+    }
+
     /**
      * Get the exclusionPattern property: Scenario exclusion pattern.
      *

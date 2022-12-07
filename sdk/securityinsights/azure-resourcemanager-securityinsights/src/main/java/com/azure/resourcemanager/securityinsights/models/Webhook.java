@@ -34,6 +34,10 @@ public final class Webhook {
     @JsonProperty(value = "rotateWebhookSecret")
     private Boolean rotateWebhookSecret;
 
+    /** Creates an instance of Webhook class. */
+    public Webhook() {
+    }
+
     /**
      * Get the webhookId property: Unique identifier for the webhook.
      *
