@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for TargetCostStatus. */
+/** Target cost status. */
 public final class TargetCostStatus extends ExpandableStringEnum<TargetCostStatus> {
     /** Static value Enabled for TargetCostStatus. */
     public static final TargetCostStatus ENABLED = fromString("Enabled");
@@ -27,7 +27,11 @@ public final class TargetCostStatus extends ExpandableStringEnum<TargetCostStatu
         return fromString(name, TargetCostStatus.class);
     }
 
-    /** @return known TargetCostStatus values. */
+    /**
+     * Gets known TargetCostStatus values.
+     *
+     * @return known TargetCostStatus values.
+     */
     public static Collection<TargetCostStatus> values() {
         return values(TargetCostStatus.class);
     }
