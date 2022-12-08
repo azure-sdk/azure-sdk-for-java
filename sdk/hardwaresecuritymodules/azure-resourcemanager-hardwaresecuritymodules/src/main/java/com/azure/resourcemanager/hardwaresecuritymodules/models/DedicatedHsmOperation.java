@@ -20,7 +20,7 @@ public interface DedicatedHsmOperation {
      *
      * @return the isDataAction value.
      */
-    String isDataAction();
+    Boolean isDataAction();
 
     /**
      * Gets the display property: The display string.

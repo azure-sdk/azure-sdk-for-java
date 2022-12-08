@@ -24,6 +24,10 @@ public final class DedicatedHsmListResult {
     @JsonProperty(value = "nextLink")
     private String nextLink;
 
+    /** Creates an instance of DedicatedHsmListResult class. */
+    public DedicatedHsmListResult() {
+    }
+
     /**
      * Get the value property: The list of dedicated HSMs.
      *
