@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for DocumentSource. */
+/** The source of the document. ENF for Brazil and DRS for rest of the world. */
 public final class DocumentSource extends ExpandableStringEnum<DocumentSource> {
     /** Static value DRS for DocumentSource. */
     public static final DocumentSource DRS = fromString("DRS");
@@ -27,7 +27,11 @@ public final class DocumentSource extends ExpandableStringEnum<DocumentSource> {
         return fromString(name, DocumentSource.class);
     }
 
-    /** @return known DocumentSource values. */
+    /**
+     * Gets known DocumentSource values.
+     *
+     * @return known DocumentSource values.
+     */
     public static Collection<DocumentSource> values() {
         return values(DocumentSource.class);
     }

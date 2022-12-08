@@ -112,6 +112,10 @@
 - [ListByBillingProfile](#invoices_listbybillingprofile)
 - [ListByBillingSubscription](#invoices_listbybillingsubscription)
 
+## Operations
+
+- [List](#operations_list)
+
 ## Policies
 
 - [GetByBillingProfile](#policies_getbybillingprofile)
@@ -163,7 +167,7 @@ public final class AddressValidateSamples {
                     .withCity("bellevue")
                     .withRegion("wa")
                     .withCountry("us")
-                    .withPostalCode("12345"),
+                    .withPostalCode("fakeTokenPlaceholder"),
                 Context.NONE);
     }
 
@@ -184,7 +188,7 @@ public final class AddressValidateSamples {
                     .withCity("bellevue")
                     .withRegion("wa")
                     .withCountry("us")
-                    .withPostalCode("12345"),
+                    .withPostalCode("fakeTokenPlaceholder"),
                 Context.NONE);
     }
 }
@@ -392,7 +396,7 @@ public final class BillingAccountsUpdateSamples {
                             .withCity("Redmond")
                             .withRegion("WA")
                             .withCountry("US")
-                            .withPostalCode("12345")),
+                            .withPostalCode("fakeTokenPlaceholder")),
                 Context.NONE);
     }
 }
@@ -563,7 +567,7 @@ public final class BillingProfilesCreateOrUpdateSamples {
                             .withCity("Redmond")
                             .withRegion("WA")
                             .withCountry("US")
-                            .withPostalCode("12345"))
+                            .withPostalCode("fakeTokenPlaceholder"))
                     .withInvoiceEmailOptIn(true)
                     .withEnabledAzurePlans(
                         Arrays.asList(new AzurePlan().withSkuId("0001"), new AzurePlan().withSkuId("0002"))),
@@ -1836,7 +1840,28 @@ public final class InvoicesListByBillingSubscriptionSamples {
      */
     public static void billingSubscriptionsListByBillingAccount(
         com.azure.resourcemanager.billing.BillingManager manager) {
-        manager.invoices().listByBillingSubscription("2018-01-01", "2018-06-30", Context.NONE);
+        manager.invoices().listByBillingSubscription("2022-01-01", "2022-06-30", Context.NONE);
+    }
+}
+```
+
+### Operations_List
+
+```java
+import com.azure.core.util.Context;
+
+/** Samples for Operations List. */
+public final class OperationsListSamples {
+    /*
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/GetOperations.json
+     */
+    /**
+     * Sample code: BillingAccountPermissionsList.
+     *
+     * @param manager Entry point to BillingManager.
+     */
+    public static void billingAccountPermissionsList(com.azure.resourcemanager.billing.BillingManager manager) {
+        manager.operations().list(Context.NONE);
     }
 }
 ```

@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for PaymentMethodFamily. */
+/** The family of payment method. */
 public final class PaymentMethodFamily extends ExpandableStringEnum<PaymentMethodFamily> {
     /** Static value Credits for PaymentMethodFamily. */
     public static final PaymentMethodFamily CREDITS = fromString("Credits");
@@ -33,7 +33,11 @@ public final class PaymentMethodFamily extends ExpandableStringEnum<PaymentMetho
         return fromString(name, PaymentMethodFamily.class);
     }
 
-    /** @return known PaymentMethodFamily values. */
+    /**
+     * Gets known PaymentMethodFamily values.
+     *
+     * @return known PaymentMethodFamily values.
+     */
     public static Collection<PaymentMethodFamily> values() {
         return values(PaymentMethodFamily.class);
     }

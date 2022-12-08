@@ -26,7 +26,7 @@ public final class AddressValidateSamples {
                     .withCity("bellevue")
                     .withRegion("wa")
                     .withCountry("us")
-                    .withPostalCode("12345"),
+                    .withPostalCode("fakeTokenPlaceholder"),
                 Context.NONE);
     }
 
@@ -47,7 +47,7 @@ public final class AddressValidateSamples {
                     .withCity("bellevue")
                     .withRegion("wa")
                     .withCountry("us")
-                    .withPostalCode("12345"),
+                    .withPostalCode("fakeTokenPlaceholder"),
                 Context.NONE);
     }
 }

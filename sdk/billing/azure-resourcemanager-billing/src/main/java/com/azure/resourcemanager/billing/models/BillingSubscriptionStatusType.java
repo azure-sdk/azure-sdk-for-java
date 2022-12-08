@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for BillingSubscriptionStatusType. */
+/** The current billing status of the subscription. */
 public final class BillingSubscriptionStatusType extends ExpandableStringEnum<BillingSubscriptionStatusType> {
     /** Static value Active for BillingSubscriptionStatusType. */
     public static final BillingSubscriptionStatusType ACTIVE = fromString("Active");
@@ -36,7 +36,11 @@ public final class BillingSubscriptionStatusType extends ExpandableStringEnum<Bi
         return fromString(name, BillingSubscriptionStatusType.class);
     }
 
-    /** @return known BillingSubscriptionStatusType values. */
+    /**
+     * Gets known BillingSubscriptionStatusType values.
+     *
+     * @return known BillingSubscriptionStatusType values.
+     */
     public static Collection<BillingSubscriptionStatusType> values() {
         return values(BillingSubscriptionStatusType.class);
     }
