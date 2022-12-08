@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for NetworkAction. */
+/** Whether to allow or deny network traffic. */
 public final class NetworkAction extends ExpandableStringEnum<NetworkAction> {
     /** Static value Allow for NetworkAction. */
     public static final NetworkAction ALLOW = fromString("Allow");
@@ -27,7 +27,11 @@ public final class NetworkAction extends ExpandableStringEnum<NetworkAction> {
         return fromString(name, NetworkAction.class);
     }
 
-    /** @return known NetworkAction values. */
+    /**
+     * Gets known NetworkAction values.
+     *
+     * @return known NetworkAction values.
+     */
     public static Collection<NetworkAction> values() {
         return values(NetworkAction.class);
     }

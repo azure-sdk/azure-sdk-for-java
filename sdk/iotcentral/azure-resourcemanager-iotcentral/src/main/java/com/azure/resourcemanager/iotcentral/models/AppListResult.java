@@ -24,6 +24,10 @@ public final class AppListResult {
     @JsonProperty(value = "value")
     private List<AppInner> value;
 
+    /** Creates an instance of AppListResult class. */
+    public AppListResult() {
+    }
+
     /**
      * Get the nextLink property: The link used to get the next page of IoT Central Applications.
      *

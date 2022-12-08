@@ -60,6 +60,10 @@ public final class AppTemplateInner {
     @JsonProperty(value = "locations", access = JsonProperty.Access.WRITE_ONLY)
     private List<AppTemplateLocations> locations;
 
+    /** Creates an instance of AppTemplateInner class. */
+    public AppTemplateInner() {
+    }
+
     /**
      * Get the manifestId property: The ID of the template.
      *

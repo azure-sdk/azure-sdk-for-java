@@ -23,6 +23,10 @@ public final class OperationInputs {
     @JsonProperty(value = "type")
     private String type;
 
+    /** Creates an instance of OperationInputs class. */
+    public OperationInputs() {
+    }
+
     /**
      * Get the name property: The name of the IoT Central application instance to check.
      *

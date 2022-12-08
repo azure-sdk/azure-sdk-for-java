@@ -35,6 +35,10 @@ public final class OperationInner {
     @JsonProperty(value = "properties", access = JsonProperty.Access.WRITE_ONLY)
     private Object properties;
 
+    /** Creates an instance of OperationInner class. */
+    public OperationInner() {
+    }
+
     /**
      * Get the name property: Operation name: {provider}/{resource}/{read | write | action | delete}.
      *
