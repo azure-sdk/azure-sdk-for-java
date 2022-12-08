@@ -190,22 +190,22 @@ public final class FluidRelayServerImpl
         return this;
     }
 
-    public FluidRelayServerKeys regenerateKey(RegenerateKeyRequest parameters) {
-        return serviceManager.fluidRelayServers().regenerateKey(resourceGroup, fluidRelayServerName, parameters);
-    }
-
     public Response<FluidRelayServerKeys> regenerateKeyWithResponse(RegenerateKeyRequest parameters, Context context) {
         return serviceManager
             .fluidRelayServers()
             .regenerateKeyWithResponse(resourceGroup, fluidRelayServerName, parameters, context);
     }
 
-    public FluidRelayServerKeys listKeys() {
-        return serviceManager.fluidRelayServers().listKeys(resourceGroup, fluidRelayServerName);
+    public FluidRelayServerKeys regenerateKey(RegenerateKeyRequest parameters) {
+        return serviceManager.fluidRelayServers().regenerateKey(resourceGroup, fluidRelayServerName, parameters);
     }
 
     public Response<FluidRelayServerKeys> listKeysWithResponse(Context context) {
         return serviceManager.fluidRelayServers().listKeysWithResponse(resourceGroup, fluidRelayServerName, context);
+    }
+
+    public FluidRelayServerKeys listKeys() {
+        return serviceManager.fluidRelayServers().listKeys(resourceGroup, fluidRelayServerName);
     }
 
     public FluidRelayServerImpl withRegion(Region location) {

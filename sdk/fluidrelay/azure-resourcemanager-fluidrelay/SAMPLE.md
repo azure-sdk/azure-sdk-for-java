@@ -205,7 +205,7 @@ public final class FluidRelayServersCreateOrUpdateSamples {
                                     .withIdentityType(CmkIdentityType.USER_ASSIGNED)
                                     .withUserAssignedIdentityResourceId(
                                         "/subscriptions/xxxx-xxxx-xxxx-xxxx/resourceGroups/myResourceGroup/providers/Microsoft.ManagedIdentity/userAssignedIdentities/identityForCMK"))
-                            .withKeyEncryptionKeyUrl("https://contosovault.vault.azure.net/keys/contosokek")))
+                            .withKeyEncryptionKeyUrl("fakeTokenPlaceholder")))
             .withStoragesku(StorageSku.BASIC)
             .create();
     }
@@ -239,7 +239,9 @@ public final class FluidRelayServersDeleteSamples {
      * @param manager Entry point to FluidRelayManager.
      */
     public static void deleteAFluidRelayServer(com.azure.resourcemanager.fluidrelay.FluidRelayManager manager) {
-        manager.fluidRelayServers().deleteWithResponse("myResourceGroup", "myFluidRelayServer", Context.NONE);
+        manager
+            .fluidRelayServers()
+            .deleteByResourceGroupWithResponse("myResourceGroup", "myFluidRelayServer", Context.NONE);
     }
 }
 ```

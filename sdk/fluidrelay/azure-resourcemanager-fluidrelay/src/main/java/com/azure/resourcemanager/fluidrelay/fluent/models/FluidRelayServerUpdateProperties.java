@@ -17,6 +17,10 @@ public final class FluidRelayServerUpdateProperties {
     @JsonProperty(value = "encryption")
     private EncryptionProperties encryption;
 
+    /** Creates an instance of FluidRelayServerUpdateProperties class. */
+    public FluidRelayServerUpdateProperties() {
+    }
+
     /**
      * Get the encryption property: All encryption configuration for a resource.
      *

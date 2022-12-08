@@ -42,6 +42,10 @@ public final class FluidRelayContainerProperties {
     @JsonProperty(value = "lastAccessTime", access = JsonProperty.Access.WRITE_ONLY)
     private OffsetDateTime lastAccessTime;
 
+    /** Creates an instance of FluidRelayContainerProperties class. */
+    public FluidRelayContainerProperties() {
+    }
+
     /**
      * Get the frsTenantId property: The Fluid tenantId for this container.
      *

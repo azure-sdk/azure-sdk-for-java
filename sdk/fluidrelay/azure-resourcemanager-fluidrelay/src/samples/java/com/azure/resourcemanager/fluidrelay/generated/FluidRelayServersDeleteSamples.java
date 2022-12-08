@@ -17,6 +17,8 @@ public final class FluidRelayServersDeleteSamples {
      * @param manager Entry point to FluidRelayManager.
      */
     public static void deleteAFluidRelayServer(com.azure.resourcemanager.fluidrelay.FluidRelayManager manager) {
-        manager.fluidRelayServers().deleteWithResponse("myResourceGroup", "myFluidRelayServer", Context.NONE);
+        manager
+            .fluidRelayServers()
+            .deleteByResourceGroupWithResponse("myResourceGroup", "myFluidRelayServer", Context.NONE);
     }
 }

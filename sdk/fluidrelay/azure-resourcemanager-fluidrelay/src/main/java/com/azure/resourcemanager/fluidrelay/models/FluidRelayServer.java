@@ -323,17 +323,6 @@ public interface FluidRelayServer {
      * Regenerate the primary or secondary key for this server.
      *
      * @param parameters The details of which keys to generate.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the set of available keys for this server.
-     */
-    FluidRelayServerKeys regenerateKey(RegenerateKeyRequest parameters);
-
-    /**
-     * Regenerate the primary or secondary key for this server.
-     *
-     * @param parameters The details of which keys to generate.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -343,13 +332,15 @@ public interface FluidRelayServer {
     Response<FluidRelayServerKeys> regenerateKeyWithResponse(RegenerateKeyRequest parameters, Context context);
 
     /**
-     * Get primary and secondary key for this server.
+     * Regenerate the primary or secondary key for this server.
      *
+     * @param parameters The details of which keys to generate.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return primary and secondary key for this server.
+     * @return the set of available keys for this server.
      */
-    FluidRelayServerKeys listKeys();
+    FluidRelayServerKeys regenerateKey(RegenerateKeyRequest parameters);
 
     /**
      * Get primary and secondary key for this server.
@@ -361,4 +352,13 @@ public interface FluidRelayServer {
      * @return primary and secondary key for this server along with {@link Response}.
      */
     Response<FluidRelayServerKeys> listKeysWithResponse(Context context);
+
+    /**
+     * Get primary and secondary key for this server.
+     *
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return primary and secondary key for this server.
+     */
+    FluidRelayServerKeys listKeys();
 }

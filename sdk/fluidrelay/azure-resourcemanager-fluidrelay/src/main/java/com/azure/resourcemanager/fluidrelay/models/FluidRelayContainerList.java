@@ -24,6 +24,10 @@ public final class FluidRelayContainerList {
     @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
     private String nextLink;
 
+    /** Creates an instance of FluidRelayContainerList class. */
+    public FluidRelayContainerList() {
+    }
+
     /**
      * Get the value property: A sequence of FluidRelay containers.
      *

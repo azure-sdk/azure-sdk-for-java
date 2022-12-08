@@ -22,6 +22,10 @@ public final class FluidRelayServerKeysInner {
     @JsonProperty(value = "key2", access = JsonProperty.Access.WRITE_ONLY)
     private String key2;
 
+    /** Creates an instance of FluidRelayServerKeysInner class. */
+    public FluidRelayServerKeysInner() {
+    }
+
     /**
      * Get the key1 property: The primary key for this server.
      *

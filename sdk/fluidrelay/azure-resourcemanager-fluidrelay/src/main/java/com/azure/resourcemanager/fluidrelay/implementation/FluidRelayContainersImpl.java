@@ -27,16 +27,6 @@ public final class FluidRelayContainersImpl implements FluidRelayContainers {
         this.serviceManager = serviceManager;
     }
 
-    public FluidRelayContainer get(String resourceGroup, String fluidRelayServerName, String fluidRelayContainerName) {
-        FluidRelayContainerInner inner =
-            this.serviceClient().get(resourceGroup, fluidRelayServerName, fluidRelayContainerName);
-        if (inner != null) {
-            return new FluidRelayContainerImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
     public Response<FluidRelayContainer> getWithResponse(
         String resourceGroup, String fluidRelayServerName, String fluidRelayContainerName, Context context) {
         Response<FluidRelayContainerInner> inner =
@@ -52,8 +42,14 @@ public final class FluidRelayContainersImpl implements FluidRelayContainers {
         }
     }
 
-    public void delete(String resourceGroup, String fluidRelayServerName, String fluidRelayContainerName) {
-        this.serviceClient().delete(resourceGroup, fluidRelayServerName, fluidRelayContainerName);
+    public FluidRelayContainer get(String resourceGroup, String fluidRelayServerName, String fluidRelayContainerName) {
+        FluidRelayContainerInner inner =
+            this.serviceClient().get(resourceGroup, fluidRelayServerName, fluidRelayContainerName);
+        if (inner != null) {
+            return new FluidRelayContainerImpl(inner, this.manager());
+        } else {
+            return null;
+        }
     }
 
     public Response<Void> deleteWithResponse(
@@ -61,6 +57,10 @@ public final class FluidRelayContainersImpl implements FluidRelayContainers {
         return this
             .serviceClient()
             .deleteWithResponse(resourceGroup, fluidRelayServerName, fluidRelayContainerName, context);
+    }
+
+    public void delete(String resourceGroup, String fluidRelayServerName, String fluidRelayContainerName) {
+        this.serviceClient().delete(resourceGroup, fluidRelayServerName, fluidRelayContainerName);
     }
 
     public PagedIterable<FluidRelayContainer> listByFluidRelayServers(

@@ -8,7 +8,11 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for StorageSku. */
+/**
+ * StorageSKU
+ *
+ * <p>Sku of the storage associated with the resource.
+ */
 public final class StorageSku extends ExpandableStringEnum<StorageSku> {
     /** Static value standard for StorageSku. */
     public static final StorageSku STANDARD = fromString("standard");

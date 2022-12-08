@@ -27,6 +27,10 @@ public final class CustomerManagedKeyEncryptionProperties {
     @JsonProperty(value = "keyEncryptionKeyUrl")
     private String keyEncryptionKeyUrl;
 
+    /** Creates an instance of CustomerManagedKeyEncryptionProperties class. */
+    public CustomerManagedKeyEncryptionProperties() {
+    }
+
     /**
      * Get the keyEncryptionKeyIdentity property: All identity configuration for Customer-managed key settings defining
      * which identity should be used to auth to Key Vault.

@@ -25,6 +25,10 @@ public final class FluidRelayServerList {
     @JsonProperty(value = "nextLink")
     private String nextLink;
 
+    /** Creates an instance of FluidRelayServerList class. */
+    public FluidRelayServerList() {
+    }
+
     /**
      * Get the value property: A sequence of FluidRelay servers.
      *
