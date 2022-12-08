@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for AlertSeverity. */
+/** Severity of the alert. */
 public final class AlertSeverity extends ExpandableStringEnum<AlertSeverity> {
     /** Static value Informational for AlertSeverity. */
     public static final AlertSeverity INFORMATIONAL = fromString("Informational");
@@ -30,7 +30,11 @@ public final class AlertSeverity extends ExpandableStringEnum<AlertSeverity> {
         return fromString(name, AlertSeverity.class);
     }
 
-    /** @return known AlertSeverity values. */
+    /**
+     * Gets known AlertSeverity values.
+     *
+     * @return known AlertSeverity values.
+     */
     public static Collection<AlertSeverity> values() {
         return values(AlertSeverity.class);
     }
