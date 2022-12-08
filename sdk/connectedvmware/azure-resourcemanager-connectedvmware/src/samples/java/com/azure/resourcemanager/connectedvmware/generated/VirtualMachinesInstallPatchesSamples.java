@@ -15,7 +15,7 @@ import java.util.Arrays;
 /** Samples for VirtualMachines InstallPatches. */
 public final class VirtualMachinesInstallPatchesSamples {
     /*
-     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-01-10-preview/examples/VirtualMachineInstallPatches.json
+     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-07-15-preview/examples/VirtualMachineInstallPatches.json
      */
     /**
      * Sample code: Install patch state of a machine.

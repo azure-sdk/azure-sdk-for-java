@@ -14,45 +14,32 @@ public interface MachineExtensions {
      * The operation to delete the extension.
      *
      * @param resourceGroupName The Resource Group Name.
-     * @param name The name of the machine where the extension should be deleted.
+     * @param virtualMachineName The name of the machine where the extension should be deleted.
      * @param extensionName The name of the machine extension.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
-    void delete(String resourceGroupName, String name, String extensionName);
+    void delete(String resourceGroupName, String virtualMachineName, String extensionName);
 
     /**
      * The operation to delete the extension.
      *
      * @param resourceGroupName The Resource Group Name.
-     * @param name The name of the machine where the extension should be deleted.
+     * @param virtualMachineName The name of the machine where the extension should be deleted.
      * @param extensionName The name of the machine extension.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
-    void delete(String resourceGroupName, String name, String extensionName, Context context);
+    void delete(String resourceGroupName, String virtualMachineName, String extensionName, Context context);
 
     /**
      * The operation to get the extension.
      *
      * @param resourceGroupName The Resource Group Name.
-     * @param name The name of the machine containing the extension.
-     * @param extensionName The name of the machine extension.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return describes a Machine Extension.
-     */
-    MachineExtension get(String resourceGroupName, String name, String extensionName);
-
-    /**
-     * The operation to get the extension.
-     *
-     * @param resourceGroupName The Resource Group Name.
-     * @param name The name of the machine containing the extension.
+     * @param virtualMachineName The name of the machine containing the extension.
      * @param extensionName The name of the machine extension.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -61,25 +48,38 @@ public interface MachineExtensions {
      * @return describes a Machine Extension along with {@link Response}.
      */
     Response<MachineExtension> getWithResponse(
-        String resourceGroupName, String name, String extensionName, Context context);
+        String resourceGroupName, String virtualMachineName, String extensionName, Context context);
+
+    /**
+     * The operation to get the extension.
+     *
+     * @param resourceGroupName The Resource Group Name.
+     * @param virtualMachineName The name of the machine containing the extension.
+     * @param extensionName The name of the machine extension.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return describes a Machine Extension.
+     */
+    MachineExtension get(String resourceGroupName, String virtualMachineName, String extensionName);
 
     /**
      * The operation to get all extensions of a non-Azure machine.
      *
      * @param resourceGroupName The Resource Group Name.
-     * @param name The name of the machine containing the extension.
+     * @param virtualMachineName The name of the machine containing the extension.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return describes the Machine Extensions List Result as paginated response with {@link PagedIterable}.
      */
-    PagedIterable<MachineExtension> list(String resourceGroupName, String name);
+    PagedIterable<MachineExtension> list(String resourceGroupName, String virtualMachineName);
 
     /**
      * The operation to get all extensions of a non-Azure machine.
      *
      * @param resourceGroupName The Resource Group Name.
-     * @param name The name of the machine containing the extension.
+     * @param virtualMachineName The name of the machine containing the extension.
      * @param expand The expand expression to apply on the operation.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -87,7 +87,8 @@ public interface MachineExtensions {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return describes the Machine Extensions List Result as paginated response with {@link PagedIterable}.
      */
-    PagedIterable<MachineExtension> list(String resourceGroupName, String name, String expand, Context context);
+    PagedIterable<MachineExtension> list(
+        String resourceGroupName, String virtualMachineName, String expand, Context context);
 
     /**
      * The operation to get the extension.

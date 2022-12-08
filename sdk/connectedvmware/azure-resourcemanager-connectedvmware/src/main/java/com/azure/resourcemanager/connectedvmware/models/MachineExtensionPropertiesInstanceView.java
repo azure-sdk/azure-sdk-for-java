@@ -9,6 +9,10 @@ import com.azure.core.annotation.Fluent;
 /** The machine extension instance view. */
 @Fluent
 public final class MachineExtensionPropertiesInstanceView extends MachineExtensionInstanceView {
+    /** Creates an instance of MachineExtensionPropertiesInstanceView class. */
+    public MachineExtensionPropertiesInstanceView() {
+    }
+
     /** {@inheritDoc} */
     @Override
     public MachineExtensionPropertiesInstanceView withStatus(MachineExtensionInstanceViewStatus status) {

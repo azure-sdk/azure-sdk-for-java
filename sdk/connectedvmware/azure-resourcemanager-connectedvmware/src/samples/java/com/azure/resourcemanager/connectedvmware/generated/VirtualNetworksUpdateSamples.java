@@ -12,7 +12,7 @@ import java.util.Map;
 /** Samples for VirtualNetworks Update. */
 public final class VirtualNetworksUpdateSamples {
     /*
-     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-01-10-preview/examples/UpdateVirtualNetwork.json
+     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-07-15-preview/examples/UpdateVirtualNetwork.json
      */
     /**
      * Sample code: UpdateVirtualNetwork.

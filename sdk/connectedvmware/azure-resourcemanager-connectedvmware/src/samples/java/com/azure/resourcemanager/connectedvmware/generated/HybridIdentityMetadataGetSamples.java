@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for HybridIdentityMetadata Get. */
 public final class HybridIdentityMetadataGetSamples {
     /*
-     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-01-10-preview/examples/GetHybridIdentityMetadata.json
+     * x-ms-original-file: specification/connectedvmware/resource-manager/Microsoft.ConnectedVMwarevSphere/preview/2022-07-15-preview/examples/GetHybridIdentityMetadata.json
      */
     /**
      * Sample code: GetHybridIdentityMetadata.

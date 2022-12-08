@@ -58,6 +58,10 @@ public final class VirtualMachineInner extends Resource {
     @JsonProperty(value = "identity")
     private Identity identity;
 
+    /** Creates an instance of VirtualMachineInner class. */
+    public VirtualMachineInner() {
+    }
+
     /**
      * Get the innerProperties property: Resource properties.
      *

@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for PatchServiceUsed. */
+/** Specifies the patch service used for the operation. */
 public final class PatchServiceUsed extends ExpandableStringEnum<PatchServiceUsed> {
     /** Static value Unknown for PatchServiceUsed. */
     public static final PatchServiceUsed UNKNOWN = fromString("Unknown");
