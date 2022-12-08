@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for X12CharacterSet. */
+/** The X12 character set. */
 public final class X12CharacterSet extends ExpandableStringEnum<X12CharacterSet> {
     /** Static value NotSpecified for X12CharacterSet. */
     public static final X12CharacterSet NOT_SPECIFIED = fromString("NotSpecified");
@@ -33,7 +33,11 @@ public final class X12CharacterSet extends ExpandableStringEnum<X12CharacterSet>
         return fromString(name, X12CharacterSet.class);
     }
 
-    /** @return known X12CharacterSet values. */
+    /**
+     * Gets known X12CharacterSet values.
+     *
+     * @return known X12CharacterSet values.
+     */
     public static Collection<X12CharacterSet> values() {
         return values(X12CharacterSet.class);
     }
