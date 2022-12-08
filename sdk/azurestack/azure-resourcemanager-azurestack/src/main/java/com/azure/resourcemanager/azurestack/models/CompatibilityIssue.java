@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for CompatibilityIssue. */
+/** Compatibility issue. */
 public final class CompatibilityIssue extends ExpandableStringEnum<CompatibilityIssue> {
     /** Static value HigherDeviceVersionRequired for CompatibilityIssue. */
     public static final CompatibilityIssue HIGHER_DEVICE_VERSION_REQUIRED = fromString("HigherDeviceVersionRequired");
@@ -55,7 +55,11 @@ public final class CompatibilityIssue extends ExpandableStringEnum<Compatibility
         return fromString(name, CompatibilityIssue.class);
     }
 
-    /** @return known CompatibilityIssue values. */
+    /**
+     * Gets known CompatibilityIssue values.
+     *
+     * @return known CompatibilityIssue values.
+     */
     public static Collection<CompatibilityIssue> values() {
         return values(CompatibilityIssue.class);
     }

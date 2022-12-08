@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for ComputeRole. */
+/** Compute role type (IaaS or PaaS). */
 public final class ComputeRole extends ExpandableStringEnum<ComputeRole> {
     /** Static value None for ComputeRole. */
     public static final ComputeRole NONE = fromString("None");
@@ -30,7 +30,11 @@ public final class ComputeRole extends ExpandableStringEnum<ComputeRole> {
         return fromString(name, ComputeRole.class);
     }
 
-    /** @return known ComputeRole values. */
+    /**
+     * Gets known ComputeRole values.
+     *
+     * @return known ComputeRole values.
+     */
     public static Collection<ComputeRole> values() {
         return values(ComputeRole.class);
     }
