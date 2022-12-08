@@ -62,7 +62,7 @@ public final class VendorsClientImpl implements VendorsClient {
      */
     @Host("{$host}")
     @ServiceInterface(name = "HybridNetworkManagem")
-    private interface VendorsService {
+    public interface VendorsService {
         @Headers({"Content-Type: application/json"})
         @Delete("/subscriptions/{subscriptionId}/providers/Microsoft.HybridNetwork/vendors/{vendorName}")
         @ExpectedResponses({200, 202, 204})

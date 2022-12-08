@@ -19,7 +19,7 @@ import java.util.Arrays;
 /** Samples for NetworkFunctions CreateOrUpdate. */
 public final class NetworkFunctionsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2021-05-01/examples/NetworkFunctionCreate.json
+     * x-ms-original-file: specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/preview/2022-01-01-preview/examples/NetworkFunctionCreate.json
      */
     /**
      * Sample code: Create network function resource.

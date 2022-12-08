@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for Devices ListByResourceGroup. */
 public final class DevicesListByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2021-05-01/examples/DeviceListByResourceGroup.json
+     * x-ms-original-file: specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/preview/2022-01-01-preview/examples/DeviceListByResourceGroup.json
      */
     /**
      * Sample code: List all devices in resource group.

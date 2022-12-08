@@ -20,7 +20,7 @@ import java.util.Arrays;
 /** Samples for VendorNetworkFunctions CreateOrUpdate. */
 public final class VendorNetworkFunctionsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2021-05-01/examples/VendorNfCreate.json
+     * x-ms-original-file: specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/preview/2022-01-01-preview/examples/VendorNfCreate.json
      */
     /**
      * Sample code: Create or update vendor network function sub resource.
@@ -51,10 +51,7 @@ public final class VendorNetworkFunctionsCreateOrUpdateSamples {
                                                             .asList(
                                                                 new SshPublicKey()
                                                                     .withPath("home/user/.ssh/authorized_keys")
-                                                                    .withKeyData(
-                                                                        "ssh-rsa"
-                                                                            + " AAAAB3NzaC1yc2EAAAABIwAAAgEAwrr66r8n6B8Y0zMF3dOpXEapIQD9DiYQ6D6/zwor9o39jSkHNiMMER/GETBbzP83LOcekm02aRjo55ArO7gPPVvCXbrirJu9pkm4AC4BBre5xSLS="
-                                                                            + " user@constoso-DSH")))))
+                                                                    .withKeyData("fakeTokenPlaceholder")))))
                                     .withCustomData("base-64 encoded string of custom data"))
                             .withNetworkInterfaces(
                                 Arrays

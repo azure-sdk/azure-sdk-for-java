@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for NetworkFunctions GetByResourceGroup. */
 public final class NetworkFunctionsGetByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2021-05-01/examples/NetworkFunctionGet.json
+     * x-ms-original-file: specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/preview/2022-01-01-preview/examples/NetworkFunctionGet.json
      */
     /**
      * Sample code: Get network function resource.

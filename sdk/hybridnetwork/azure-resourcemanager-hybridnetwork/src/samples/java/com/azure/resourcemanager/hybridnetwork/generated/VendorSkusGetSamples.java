@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for VendorSkus Get. */
 public final class VendorSkusGetSamples {
     /*
-     * x-ms-original-file: specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2021-05-01/examples/VendorSkuGet.json
+     * x-ms-original-file: specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/preview/2022-01-01-preview/examples/VendorSkuGet.json
      */
     /**
      * Sample code: Get the sku of vendor resource.

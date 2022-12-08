@@ -57,9 +57,13 @@ import java.util.stream.Collectors;
  * Network resources.
  */
 public final class HybridNetworkManager {
+    private Devices devices;
+
     private NetworkFunctions networkFunctions;
 
-    private Devices devices;
+    private NetworkFunctionVendors networkFunctionVendors;
+
+    private NetworkFunctionVendorSkus networkFunctionVendorSkus;
 
     private Operations operations;
 
@@ -68,10 +72,6 @@ public final class HybridNetworkManager {
     private VendorSkus vendorSkus;
 
     private VendorSkuPreviews vendorSkuPreviews;
-
-    private NetworkFunctionVendors networkFunctionVendors;
-
-    private NetworkFunctionVendorSkus networkFunctionVendorSkus;
 
     private VendorNetworkFunctions vendorNetworkFunctions;
 
@@ -242,7 +242,7 @@ public final class HybridNetworkManager {
                 .append("-")
                 .append("com.azure.resourcemanager.hybridnetwork")
                 .append("/")
-                .append("1.0.0-beta.2");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder
                     .append(" (")
@@ -300,6 +300,18 @@ public final class HybridNetworkManager {
     }
 
     /**
+     * Gets the resource collection API of Devices. It manages Device.
+     *
+     * @return Resource collection API of Devices.
+     */
+    public Devices devices() {
+        if (this.devices == null) {
+            this.devices = new DevicesImpl(clientObject.getDevices(), this);
+        }
+        return devices;
+    }
+
+    /**
      * Gets the resource collection API of NetworkFunctions. It manages NetworkFunction.
      *
      * @return Resource collection API of NetworkFunctions.
@@ -312,15 +324,29 @@ public final class HybridNetworkManager {
     }
 
     /**
-     * Gets the resource collection API of Devices. It manages Device.
+     * Gets the resource collection API of NetworkFunctionVendors.
      *
-     * @return Resource collection API of Devices.
+     * @return Resource collection API of NetworkFunctionVendors.
      */
-    public Devices devices() {
-        if (this.devices == null) {
-            this.devices = new DevicesImpl(clientObject.getDevices(), this);
+    public NetworkFunctionVendors networkFunctionVendors() {
+        if (this.networkFunctionVendors == null) {
+            this.networkFunctionVendors =
+                new NetworkFunctionVendorsImpl(clientObject.getNetworkFunctionVendors(), this);
         }
-        return devices;
+        return networkFunctionVendors;
+    }
+
+    /**
+     * Gets the resource collection API of NetworkFunctionVendorSkus.
+     *
+     * @return Resource collection API of NetworkFunctionVendorSkus.
+     */
+    public NetworkFunctionVendorSkus networkFunctionVendorSkus() {
+        if (this.networkFunctionVendorSkus == null) {
+            this.networkFunctionVendorSkus =
+                new NetworkFunctionVendorSkusImpl(clientObject.getNetworkFunctionVendorSkus(), this);
+        }
+        return networkFunctionVendorSkus;
     }
 
     /**
@@ -369,32 +395,6 @@ public final class HybridNetworkManager {
             this.vendorSkuPreviews = new VendorSkuPreviewsImpl(clientObject.getVendorSkuPreviews(), this);
         }
         return vendorSkuPreviews;
-    }
-
-    /**
-     * Gets the resource collection API of NetworkFunctionVendors.
-     *
-     * @return Resource collection API of NetworkFunctionVendors.
-     */
-    public NetworkFunctionVendors networkFunctionVendors() {
-        if (this.networkFunctionVendors == null) {
-            this.networkFunctionVendors =
-                new NetworkFunctionVendorsImpl(clientObject.getNetworkFunctionVendors(), this);
-        }
-        return networkFunctionVendors;
-    }
-
-    /**
-     * Gets the resource collection API of NetworkFunctionVendorSkus.
-     *
-     * @return Resource collection API of NetworkFunctionVendorSkus.
-     */
-    public NetworkFunctionVendorSkus networkFunctionVendorSkus() {
-        if (this.networkFunctionVendorSkus == null) {
-            this.networkFunctionVendorSkus =
-                new NetworkFunctionVendorSkusImpl(clientObject.getNetworkFunctionVendorSkus(), this);
-        }
-        return networkFunctionVendorSkus;
     }
 
     /**

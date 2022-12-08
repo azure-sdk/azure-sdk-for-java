@@ -7,7 +7,7 @@ package com.azure.resourcemanager.hybridnetwork.generated;
 /** Samples for VendorSkuPreview CreateOrUpdate. */
 public final class VendorSkuPreviewCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2021-05-01/examples/VendorSkuPreviewCreate.json
+     * x-ms-original-file: specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/preview/2022-01-01-preview/examples/VendorSkuPreviewCreate.json
      */
     /**
      * Sample code: Create or update preview subscription of vendor sku sub resource.

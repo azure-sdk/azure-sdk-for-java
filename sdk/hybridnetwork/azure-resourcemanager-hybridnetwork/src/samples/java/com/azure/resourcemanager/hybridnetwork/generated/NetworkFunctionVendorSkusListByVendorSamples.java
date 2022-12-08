@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for NetworkFunctionVendorSkus ListByVendor. */
 public final class NetworkFunctionVendorSkusListByVendorSamples {
     /*
-     * x-ms-original-file: specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2021-05-01/examples/NetworkFunctionSkuListByVendor.json
+     * x-ms-original-file: specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/preview/2022-01-01-preview/examples/NetworkFunctionSkuListByVendor.json
      */
     /**
      * Sample code: List vendors and skus.

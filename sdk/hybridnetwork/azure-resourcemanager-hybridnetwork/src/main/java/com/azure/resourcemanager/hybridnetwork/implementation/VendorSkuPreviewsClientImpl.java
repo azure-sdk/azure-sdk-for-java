@@ -63,7 +63,7 @@ public final class VendorSkuPreviewsClientImpl implements VendorSkuPreviewsClien
      */
     @Host("{$host}")
     @ServiceInterface(name = "HybridNetworkManagem")
-    private interface VendorSkuPreviewsService {
+    public interface VendorSkuPreviewsService {
         @Headers({"Content-Type: application/json"})
         @Get(
             "/subscriptions/{subscriptionId}/providers/Microsoft.HybridNetwork/vendors/{vendorName}/vendorSkus"

@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for Devices GetByResourceGroup. */
 public final class DevicesGetByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2021-05-01/examples/DeviceGet.json
+     * x-ms-original-file: specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/preview/2022-01-01-preview/examples/DeviceGet.json
      */
     /**
      * Sample code: Get device resource.

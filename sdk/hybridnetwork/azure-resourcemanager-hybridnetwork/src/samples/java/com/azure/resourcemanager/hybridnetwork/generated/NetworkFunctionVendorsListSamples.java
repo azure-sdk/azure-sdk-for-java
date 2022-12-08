@@ -9,14 +9,15 @@ import com.azure.core.util.Context;
 /** Samples for NetworkFunctionVendors List. */
 public final class NetworkFunctionVendorsListSamples {
     /*
-     * x-ms-original-file: specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2021-05-01/examples/NetworkFunctionVendorAndSkuListBySubscription.json
+     * x-ms-original-file: specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/preview/2022-01-01-preview/examples/NetworkFunctionVendorAndSkuListBySubscription.json
      */
     /**
-     * Sample code: List vendors and skus.
+     * Sample code: List vendors and skus by subscription.
      *
      * @param manager Entry point to HybridNetworkManager.
      */
-    public static void listVendorsAndSkus(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+    public static void listVendorsAndSkusBySubscription(
+        com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
         manager.networkFunctionVendors().list(Context.NONE);
     }
 }

@@ -16,6 +16,7 @@ import com.azure.resourcemanager.hybridnetwork.models.LinuxConfiguration;
 import com.azure.resourcemanager.hybridnetwork.models.NetworkFunctionRoleConfiguration;
 import com.azure.resourcemanager.hybridnetwork.models.NetworkFunctionRoleConfigurationType;
 import com.azure.resourcemanager.hybridnetwork.models.NetworkFunctionTemplate;
+import com.azure.resourcemanager.hybridnetwork.models.NetworkFunctionType;
 import com.azure.resourcemanager.hybridnetwork.models.NetworkInterface;
 import com.azure.resourcemanager.hybridnetwork.models.NetworkInterfaceIpConfiguration;
 import com.azure.resourcemanager.hybridnetwork.models.OperatingSystemTypes;
@@ -34,7 +35,7 @@ import java.util.Arrays;
 /** Samples for VendorSkus CreateOrUpdate. */
 public final class VendorSkusCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2021-05-01/examples/VendorSkuCreate.json
+     * x-ms-original-file: specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/preview/2022-01-01-preview/examples/VendorSkuCreate.json
      */
     /**
      * Sample code: Create or update the sku of vendor resource.
@@ -48,6 +49,7 @@ public final class VendorSkusCreateOrUpdateSamples {
             .define("TestSku")
             .withExistingVendor("TestVendor")
             .withDeploymentMode(SkuDeploymentMode.PRIVATE_EDGE_ZONE)
+            .withNetworkFunctionType(NetworkFunctionType.VIRTUAL_NETWORK_FUNCTION)
             .withPreview(true)
             .withManagedApplicationTemplate(
                 SerializerFactory
@@ -74,10 +76,7 @@ public final class VendorSkusCreateOrUpdateSamples {
                                                                     .asList(
                                                                         new SshPublicKey()
                                                                             .withPath("home/user/.ssh/authorized_keys")
-                                                                            .withKeyData(
-                                                                                "ssh-rsa"
-                                                                                    + " AAAAB3NzaC1yc2EAAAABIwAAAgEAwrr66r8n6B8Y0zMF3dOpXEapIQD9DiYQ6D6/zwor9o39jSkHNiMMER/GETBbzP83LOcekm02aRjo55ArO7gPPVvCXbrirJu9pkm4AC4BBre5xSLS="
-                                                                                    + " user@constoso-DSH")))))
+                                                                            .withKeyData("fakeTokenPlaceholder")))))
                                             .withCustomData("base-64 encoded string of custom data"))
                                     .withNetworkInterfaces(
                                         Arrays

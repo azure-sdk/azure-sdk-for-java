@@ -63,7 +63,7 @@ public final class VendorNetworkFunctionsClientImpl implements VendorNetworkFunc
      */
     @Host("{$host}")
     @ServiceInterface(name = "HybridNetworkManagem")
-    private interface VendorNetworkFunctionsService {
+    public interface VendorNetworkFunctionsService {
         @Headers({"Content-Type: application/json"})
         @Get(
             "/subscriptions/{subscriptionId}/providers/Microsoft.HybridNetwork/locations/{locationName}/vendors"

@@ -66,7 +66,7 @@ public final class DevicesClientImpl implements DevicesClient {
      */
     @Host("{$host}")
     @ServiceInterface(name = "HybridNetworkManagem")
-    private interface DevicesService {
+    public interface DevicesService {
         @Headers({"Content-Type: application/json"})
         @Delete(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridNetwork"

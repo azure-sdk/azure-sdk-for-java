@@ -61,7 +61,7 @@ public final class RoleInstancesClientImpl implements RoleInstancesClient {
      */
     @Host("{$host}")
     @ServiceInterface(name = "HybridNetworkManagem")
-    private interface RoleInstancesService {
+    public interface RoleInstancesService {
         @Headers({"Content-Type: application/json"})
         @Post(
             "/subscriptions/{subscriptionId}/providers/Microsoft.HybridNetwork/locations/{locationName}/vendors"

@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for VendorSkus Delete. */
 public final class VendorSkusDeleteSamples {
     /*
-     * x-ms-original-file: specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2021-05-01/examples/VendorSkuDelete.json
+     * x-ms-original-file: specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/preview/2022-01-01-preview/examples/VendorSkuDelete.json
      */
     /**
      * Sample code: Delete the sku of vendor resource.

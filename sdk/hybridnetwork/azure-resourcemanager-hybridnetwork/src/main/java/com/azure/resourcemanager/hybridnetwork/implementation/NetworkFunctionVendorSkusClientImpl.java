@@ -59,7 +59,7 @@ public final class NetworkFunctionVendorSkusClientImpl implements NetworkFunctio
      */
     @Host("{$host}")
     @ServiceInterface(name = "HybridNetworkManagem")
-    private interface NetworkFunctionVendorSkusService {
+    public interface NetworkFunctionVendorSkusService {
         @Headers({"Content-Type: application/json"})
         @Get(
             "/subscriptions/{subscriptionId}/providers/Microsoft.HybridNetwork/networkFunctionVendors/{vendorName}"

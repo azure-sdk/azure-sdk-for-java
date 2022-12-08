@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for VendorSkuPreview Get. */
 public final class VendorSkuPreviewGetSamples {
     /*
-     * x-ms-original-file: specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2021-05-01/examples/VendorSkuPreviewGet.json
+     * x-ms-original-file: specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/preview/2022-01-01-preview/examples/VendorSkuPreviewGet.json
      */
     /**
      * Sample code: Get preview subscription of vendor sku sub resource.

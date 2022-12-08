@@ -82,6 +82,31 @@ public interface VendorSkus {
     PagedIterable<VendorSku> list(String vendorName, Context context);
 
     /**
+     * Generate credentials for publishing SKU images.
+     *
+     * @param vendorName The name of the vendor.
+     * @param skuName The name of the sku.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the Sku credential definition along with {@link Response}.
+     */
+    Response<SkuCredential> listCredentialWithResponse(String vendorName, String skuName, Context context);
+
+    /**
+     * Generate credentials for publishing SKU images.
+     *
+     * @param vendorName The name of the vendor.
+     * @param skuName The name of the sku.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the Sku credential definition.
+     */
+    SkuCredential listCredential(String vendorName, String skuName);
+
+    /**
      * Gets information about the specified sku.
      *
      * @param id the resource ID.

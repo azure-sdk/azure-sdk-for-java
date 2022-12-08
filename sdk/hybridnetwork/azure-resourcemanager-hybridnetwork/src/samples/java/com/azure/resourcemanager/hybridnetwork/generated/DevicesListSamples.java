@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for Devices List. */
 public final class DevicesListSamples {
     /*
-     * x-ms-original-file: specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2021-05-01/examples/DeviceListBySubscription.json
+     * x-ms-original-file: specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/preview/2022-01-01-preview/examples/DeviceListBySubscription.json
      */
     /**
      * Sample code: List all devices in a subscription.

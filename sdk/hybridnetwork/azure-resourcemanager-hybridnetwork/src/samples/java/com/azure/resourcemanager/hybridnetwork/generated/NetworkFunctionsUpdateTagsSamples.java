@@ -12,7 +12,7 @@ import java.util.Map;
 /** Samples for NetworkFunctions UpdateTags. */
 public final class NetworkFunctionsUpdateTagsSamples {
     /*
-     * x-ms-original-file: specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2021-05-01/examples/NetworkFunctionUpdateTags.json
+     * x-ms-original-file: specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/preview/2022-01-01-preview/examples/NetworkFunctionUpdateTags.json
      */
     /**
      * Sample code: Update tags for network function resource.

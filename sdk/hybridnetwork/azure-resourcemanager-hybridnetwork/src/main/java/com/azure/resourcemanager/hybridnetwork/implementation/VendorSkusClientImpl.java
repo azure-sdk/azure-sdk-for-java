@@ -13,6 +13,7 @@ import com.azure.core.annotation.Headers;
 import com.azure.core.annotation.Host;
 import com.azure.core.annotation.HostParam;
 import com.azure.core.annotation.PathParam;
+import com.azure.core.annotation.Post;
 import com.azure.core.annotation.Put;
 import com.azure.core.annotation.QueryParam;
 import com.azure.core.annotation.ReturnType;
@@ -32,6 +33,7 @@ import com.azure.core.util.FluxUtil;
 import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.hybridnetwork.fluent.VendorSkusClient;
+import com.azure.resourcemanager.hybridnetwork.fluent.models.SkuCredentialInner;
 import com.azure.resourcemanager.hybridnetwork.fluent.models.VendorSkuInner;
 import com.azure.resourcemanager.hybridnetwork.models.VendorSkuListResult;
 import java.nio.ByteBuffer;
@@ -63,7 +65,7 @@ public final class VendorSkusClientImpl implements VendorSkusClient {
      */
     @Host("{$host}")
     @ServiceInterface(name = "HybridNetworkManagem")
-    private interface VendorSkusService {
+    public interface VendorSkusService {
         @Headers({"Content-Type: application/json"})
         @Delete(
             "/subscriptions/{subscriptionId}/providers/Microsoft.HybridNetwork/vendors/{vendorName}/vendorSkus"
@@ -117,6 +119,21 @@ public final class VendorSkusClientImpl implements VendorSkusClient {
         Mono<Response<VendorSkuListResult>> list(
             @HostParam("$host") String endpoint,
             @PathParam("vendorName") String vendorName,
+            @QueryParam("api-version") String apiVersion,
+            @PathParam("subscriptionId") String subscriptionId,
+            @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({"Content-Type: application/json"})
+        @Post(
+            "/subscriptions/{subscriptionId}/providers/Microsoft.HybridNetwork/vendors/{vendorName}/vendorSkus"
+                + "/{skuName}/listCredential")
+        @ExpectedResponses({200})
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<SkuCredentialInner>> listCredential(
+            @HostParam("$host") String endpoint,
+            @PathParam("vendorName") String vendorName,
+            @PathParam("skuName") String skuName,
             @QueryParam("api-version") String apiVersion,
             @PathParam("subscriptionId") String subscriptionId,
             @HeaderParam("Accept") String accept,
@@ -909,6 +926,143 @@ public final class VendorSkusClientImpl implements VendorSkusClient {
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<VendorSkuInner> list(String vendorName, Context context) {
         return new PagedIterable<>(listAsync(vendorName, context));
+    }
+
+    /**
+     * Generate credentials for publishing SKU images.
+     *
+     * @param vendorName The name of the vendor.
+     * @param skuName The name of the sku.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the Sku credential definition along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<SkuCredentialInner>> listCredentialWithResponseAsync(String vendorName, String skuName) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (vendorName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter vendorName is required and cannot be null."));
+        }
+        if (skuName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter skuName is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(
+                context ->
+                    service
+                        .listCredential(
+                            this.client.getEndpoint(),
+                            vendorName,
+                            skuName,
+                            this.client.getApiVersion(),
+                            this.client.getSubscriptionId(),
+                            accept,
+                            context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Generate credentials for publishing SKU images.
+     *
+     * @param vendorName The name of the vendor.
+     * @param skuName The name of the sku.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the Sku credential definition along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<SkuCredentialInner>> listCredentialWithResponseAsync(
+        String vendorName, String skuName, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (vendorName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter vendorName is required and cannot be null."));
+        }
+        if (skuName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter skuName is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono
+                .error(
+                    new IllegalArgumentException(
+                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service
+            .listCredential(
+                this.client.getEndpoint(),
+                vendorName,
+                skuName,
+                this.client.getApiVersion(),
+                this.client.getSubscriptionId(),
+                accept,
+                context);
+    }
+
+    /**
+     * Generate credentials for publishing SKU images.
+     *
+     * @param vendorName The name of the vendor.
+     * @param skuName The name of the sku.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the Sku credential definition on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<SkuCredentialInner> listCredentialAsync(String vendorName, String skuName) {
+        return listCredentialWithResponseAsync(vendorName, skuName).flatMap(res -> Mono.justOrEmpty(res.getValue()));
+    }
+
+    /**
+     * Generate credentials for publishing SKU images.
+     *
+     * @param vendorName The name of the vendor.
+     * @param skuName The name of the sku.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the Sku credential definition along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<SkuCredentialInner> listCredentialWithResponse(String vendorName, String skuName, Context context) {
+        return listCredentialWithResponseAsync(vendorName, skuName, context).block();
+    }
+
+    /**
+     * Generate credentials for publishing SKU images.
+     *
+     * @param vendorName The name of the vendor.
+     * @param skuName The name of the sku.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the Sku credential definition.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public SkuCredentialInner listCredential(String vendorName, String skuName) {
+        return listCredentialWithResponse(vendorName, skuName, Context.NONE).getValue();
     }
 
     /**

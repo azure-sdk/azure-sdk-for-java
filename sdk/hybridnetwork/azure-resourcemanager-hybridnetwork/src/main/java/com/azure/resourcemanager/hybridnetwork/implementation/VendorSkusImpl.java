@@ -10,7 +10,9 @@ import com.azure.core.http.rest.SimpleResponse;
 import com.azure.core.util.Context;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.hybridnetwork.fluent.VendorSkusClient;
+import com.azure.resourcemanager.hybridnetwork.fluent.models.SkuCredentialInner;
 import com.azure.resourcemanager.hybridnetwork.fluent.models.VendorSkuInner;
+import com.azure.resourcemanager.hybridnetwork.models.SkuCredential;
 import com.azure.resourcemanager.hybridnetwork.models.VendorSku;
 import com.azure.resourcemanager.hybridnetwork.models.VendorSkus;
 
@@ -65,6 +67,29 @@ public final class VendorSkusImpl implements VendorSkus {
     public PagedIterable<VendorSku> list(String vendorName, Context context) {
         PagedIterable<VendorSkuInner> inner = this.serviceClient().list(vendorName, context);
         return Utils.mapPage(inner, inner1 -> new VendorSkuImpl(inner1, this.manager()));
+    }
+
+    public Response<SkuCredential> listCredentialWithResponse(String vendorName, String skuName, Context context) {
+        Response<SkuCredentialInner> inner =
+            this.serviceClient().listCredentialWithResponse(vendorName, skuName, context);
+        if (inner != null) {
+            return new SimpleResponse<>(
+                inner.getRequest(),
+                inner.getStatusCode(),
+                inner.getHeaders(),
+                new SkuCredentialImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public SkuCredential listCredential(String vendorName, String skuName) {
+        SkuCredentialInner inner = this.serviceClient().listCredential(vendorName, skuName);
+        if (inner != null) {
+            return new SkuCredentialImpl(inner, this.manager());
+        } else {
+            return null;
+        }
     }
 
     public VendorSku getById(String id) {

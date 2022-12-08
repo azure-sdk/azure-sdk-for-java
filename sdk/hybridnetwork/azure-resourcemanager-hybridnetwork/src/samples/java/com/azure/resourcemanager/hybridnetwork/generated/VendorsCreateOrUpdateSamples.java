@@ -7,7 +7,7 @@ package com.azure.resourcemanager.hybridnetwork.generated;
 /** Samples for Vendors CreateOrUpdate. */
 public final class VendorsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2021-05-01/examples/VendorCreate.json
+     * x-ms-original-file: specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/preview/2022-01-01-preview/examples/VendorCreate.json
      */
     /**
      * Sample code: Create or update Vendor resource.

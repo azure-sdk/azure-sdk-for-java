@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for VendorSkuPreview Delete. */
 public final class VendorSkuPreviewDeleteSamples {
     /*
-     * x-ms-original-file: specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2021-05-01/examples/VendorSkuPreviewDelete.json
+     * x-ms-original-file: specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/preview/2022-01-01-preview/examples/VendorSkuPreviewDelete.json
      */
     /**
      * Sample code: Delete preview subscription of vendor sku sub resource.

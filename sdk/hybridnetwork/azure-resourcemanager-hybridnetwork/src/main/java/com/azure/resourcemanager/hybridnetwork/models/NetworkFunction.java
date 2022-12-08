@@ -374,4 +374,25 @@ public interface NetworkFunction {
      * @return the refreshed resource.
      */
     NetworkFunction refresh(Context context);
+
+    /**
+     * Execute a request to services on a network function.
+     *
+     * @param parameters Payload for execute request post call.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void executeRequest(ExecuteRequestParameters parameters);
+
+    /**
+     * Execute a request to services on a network function.
+     *
+     * @param parameters Payload for execute request post call.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void executeRequest(ExecuteRequestParameters parameters, Context context);
 }

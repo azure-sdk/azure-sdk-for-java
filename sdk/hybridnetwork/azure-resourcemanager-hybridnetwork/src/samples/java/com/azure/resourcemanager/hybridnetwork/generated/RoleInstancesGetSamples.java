@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for RoleInstances Get. */
 public final class RoleInstancesGetSamples {
     /*
-     * x-ms-original-file: specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2021-05-01/examples/RoleInstanceGet.json
+     * x-ms-original-file: specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/preview/2022-01-01-preview/examples/RoleInstanceGet.json
      */
     /**
      * Sample code: Get the operational state of role instance of vendor network function.

@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for NetworkFunctions List. */
 public final class NetworkFunctionsListSamples {
     /*
-     * x-ms-original-file: specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2021-05-01/examples/NetworkFunctionListBySubscription.json
+     * x-ms-original-file: specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/preview/2022-01-01-preview/examples/NetworkFunctionListBySubscription.json
      */
     /**
      * Sample code: List all network function resources in subscription.

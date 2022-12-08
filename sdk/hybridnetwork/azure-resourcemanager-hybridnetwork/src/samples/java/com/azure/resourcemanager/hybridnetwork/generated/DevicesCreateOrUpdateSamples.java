@@ -10,7 +10,7 @@ import com.azure.resourcemanager.hybridnetwork.models.AzureStackEdgeFormat;
 /** Samples for Devices CreateOrUpdate. */
 public final class DevicesCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2021-05-01/examples/DeviceCreate.json
+     * x-ms-original-file: specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/preview/2022-01-01-preview/examples/DeviceCreate.json
      */
     /**
      * Sample code: Create or update device.

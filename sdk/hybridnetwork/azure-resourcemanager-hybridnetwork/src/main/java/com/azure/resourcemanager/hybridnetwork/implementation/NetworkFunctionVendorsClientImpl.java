@@ -56,7 +56,7 @@ public final class NetworkFunctionVendorsClientImpl implements NetworkFunctionVe
      */
     @Host("{$host}")
     @ServiceInterface(name = "HybridNetworkManagem")
-    private interface NetworkFunctionVendorsService {
+    public interface NetworkFunctionVendorsService {
         @Headers({"Content-Type: application/json"})
         @Get("/subscriptions/{subscriptionId}/providers/Microsoft.HybridNetwork/networkFunctionVendors")
         @ExpectedResponses({200})

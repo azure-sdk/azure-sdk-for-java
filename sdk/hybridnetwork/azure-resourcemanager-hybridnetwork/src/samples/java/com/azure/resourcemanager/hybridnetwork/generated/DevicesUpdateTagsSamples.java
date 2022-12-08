@@ -12,7 +12,7 @@ import java.util.Map;
 /** Samples for Devices UpdateTags. */
 public final class DevicesUpdateTagsSamples {
     /*
-     * x-ms-original-file: specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2021-05-01/examples/DeviceUpdateTags.json
+     * x-ms-original-file: specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/preview/2022-01-01-preview/examples/DeviceUpdateTags.json
      */
     /**
      * Sample code: Update hybrid network device tags.
