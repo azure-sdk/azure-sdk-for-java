@@ -33,6 +33,10 @@ public final class SystemTopicInner extends Resource {
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
+    /** Creates an instance of SystemTopicInner class. */
+    public SystemTopicInner() {
+    }
+
     /**
      * Get the innerProperties property: Properties of the system topic.
      *

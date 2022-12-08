@@ -23,7 +23,7 @@ public final class PartnerNamespacesRegenerateKeySamples {
             .regenerateKeyWithResponse(
                 "examplerg",
                 "examplePartnerNamespaceName1",
-                new PartnerNamespaceRegenerateKeyRequest().withKeyName("key1"),
+                new PartnerNamespaceRegenerateKeyRequest().withKeyName("fakeTokenPlaceholder"),
                 Context.NONE);
     }
 }

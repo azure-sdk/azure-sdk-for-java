@@ -21,6 +21,9 @@ public final class TopicsRegenerateKeySamples {
         manager
             .topics()
             .regenerateKey(
-                "examplerg", "exampletopic2", new TopicRegenerateKeyRequest().withKeyName("key1"), Context.NONE);
+                "examplerg",
+                "exampletopic2",
+                new TopicRegenerateKeyRequest().withKeyName("fakeTokenPlaceholder"),
+                Context.NONE);
     }
 }

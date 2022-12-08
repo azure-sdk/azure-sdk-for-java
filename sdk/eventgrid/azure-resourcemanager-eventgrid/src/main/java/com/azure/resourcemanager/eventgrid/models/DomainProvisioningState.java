@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for DomainProvisioningState. */
+/** Provisioning state of the Event Grid Domain Resource. */
 public final class DomainProvisioningState extends ExpandableStringEnum<DomainProvisioningState> {
     /** Static value Creating for DomainProvisioningState. */
     public static final DomainProvisioningState CREATING = fromString("Creating");

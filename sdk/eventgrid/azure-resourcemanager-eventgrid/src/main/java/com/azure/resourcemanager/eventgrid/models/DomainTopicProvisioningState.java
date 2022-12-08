@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for DomainTopicProvisioningState. */
+/** Provisioning state of the domain topic. */
 public final class DomainTopicProvisioningState extends ExpandableStringEnum<DomainTopicProvisioningState> {
     /** Static value Creating for DomainTopicProvisioningState. */
     public static final DomainTopicProvisioningState CREATING = fromString("Creating");

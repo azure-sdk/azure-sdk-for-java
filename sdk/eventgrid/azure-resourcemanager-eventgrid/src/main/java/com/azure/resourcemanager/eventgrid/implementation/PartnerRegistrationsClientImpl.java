@@ -66,7 +66,7 @@ public final class PartnerRegistrationsClientImpl implements PartnerRegistration
      */
     @Host("{$host}")
     @ServiceInterface(name = "EventGridManagementC")
-    private interface PartnerRegistrationsService {
+    public interface PartnerRegistrationsService {
         @Headers({"Content-Type: application/json"})
         @Get(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.EventGrid"
@@ -179,7 +179,9 @@ public final class PartnerRegistrationsClientImpl implements PartnerRegistration
     }
 
     /**
-     * Gets a partner registration with the specified parameters.
+     * Get a partner registration.
+     *
+     * <p>Gets a partner registration with the specified parameters.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerRegistrationName Name of the partner registration.
@@ -230,7 +232,9 @@ public final class PartnerRegistrationsClientImpl implements PartnerRegistration
     }
 
     /**
-     * Gets a partner registration with the specified parameters.
+     * Get a partner registration.
+     *
+     * <p>Gets a partner registration with the specified parameters.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerRegistrationName Name of the partner registration.
@@ -279,7 +283,9 @@ public final class PartnerRegistrationsClientImpl implements PartnerRegistration
     }
 
     /**
-     * Gets a partner registration with the specified parameters.
+     * Get a partner registration.
+     *
+     * <p>Gets a partner registration with the specified parameters.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerRegistrationName Name of the partner registration.
@@ -296,22 +302,9 @@ public final class PartnerRegistrationsClientImpl implements PartnerRegistration
     }
 
     /**
-     * Gets a partner registration with the specified parameters.
+     * Get a partner registration.
      *
-     * @param resourceGroupName The name of the resource group within the user's subscription.
-     * @param partnerRegistrationName Name of the partner registration.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a partner registration with the specified parameters.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public PartnerRegistrationInner getByResourceGroup(String resourceGroupName, String partnerRegistrationName) {
-        return getByResourceGroupAsync(resourceGroupName, partnerRegistrationName).block();
-    }
-
-    /**
-     * Gets a partner registration with the specified parameters.
+     * <p>Gets a partner registration with the specified parameters.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerRegistrationName Name of the partner registration.
@@ -328,7 +321,26 @@ public final class PartnerRegistrationsClientImpl implements PartnerRegistration
     }
 
     /**
-     * Creates a new partner registration with the specified parameters.
+     * Get a partner registration.
+     *
+     * <p>Gets a partner registration with the specified parameters.
+     *
+     * @param resourceGroupName The name of the resource group within the user's subscription.
+     * @param partnerRegistrationName Name of the partner registration.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a partner registration with the specified parameters.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public PartnerRegistrationInner getByResourceGroup(String resourceGroupName, String partnerRegistrationName) {
+        return getByResourceGroupWithResponse(resourceGroupName, partnerRegistrationName, Context.NONE).getValue();
+    }
+
+    /**
+     * Create a partner registration.
+     *
+     * <p>Creates a new partner registration with the specified parameters.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerRegistrationName Name of the partner registration.
@@ -388,7 +400,9 @@ public final class PartnerRegistrationsClientImpl implements PartnerRegistration
     }
 
     /**
-     * Creates a new partner registration with the specified parameters.
+     * Create a partner registration.
+     *
+     * <p>Creates a new partner registration with the specified parameters.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerRegistrationName Name of the partner registration.
@@ -449,7 +463,9 @@ public final class PartnerRegistrationsClientImpl implements PartnerRegistration
     }
 
     /**
-     * Creates a new partner registration with the specified parameters.
+     * Create a partner registration.
+     *
+     * <p>Creates a new partner registration with the specified parameters.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerRegistrationName Name of the partner registration.
@@ -475,7 +491,9 @@ public final class PartnerRegistrationsClientImpl implements PartnerRegistration
     }
 
     /**
-     * Creates a new partner registration with the specified parameters.
+     * Create a partner registration.
+     *
+     * <p>Creates a new partner registration with the specified parameters.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerRegistrationName Name of the partner registration.
@@ -507,7 +525,9 @@ public final class PartnerRegistrationsClientImpl implements PartnerRegistration
     }
 
     /**
-     * Creates a new partner registration with the specified parameters.
+     * Create a partner registration.
+     *
+     * <p>Creates a new partner registration with the specified parameters.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerRegistrationName Name of the partner registration.
@@ -525,7 +545,9 @@ public final class PartnerRegistrationsClientImpl implements PartnerRegistration
     }
 
     /**
-     * Creates a new partner registration with the specified parameters.
+     * Create a partner registration.
+     *
+     * <p>Creates a new partner registration with the specified parameters.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerRegistrationName Name of the partner registration.
@@ -547,7 +569,9 @@ public final class PartnerRegistrationsClientImpl implements PartnerRegistration
     }
 
     /**
-     * Creates a new partner registration with the specified parameters.
+     * Create a partner registration.
+     *
+     * <p>Creates a new partner registration with the specified parameters.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerRegistrationName Name of the partner registration.
@@ -566,7 +590,9 @@ public final class PartnerRegistrationsClientImpl implements PartnerRegistration
     }
 
     /**
-     * Creates a new partner registration with the specified parameters.
+     * Create a partner registration.
+     *
+     * <p>Creates a new partner registration with the specified parameters.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerRegistrationName Name of the partner registration.
@@ -589,7 +615,9 @@ public final class PartnerRegistrationsClientImpl implements PartnerRegistration
     }
 
     /**
-     * Creates a new partner registration with the specified parameters.
+     * Create a partner registration.
+     *
+     * <p>Creates a new partner registration with the specified parameters.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerRegistrationName Name of the partner registration.
@@ -606,7 +634,9 @@ public final class PartnerRegistrationsClientImpl implements PartnerRegistration
     }
 
     /**
-     * Creates a new partner registration with the specified parameters.
+     * Create a partner registration.
+     *
+     * <p>Creates a new partner registration with the specified parameters.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerRegistrationName Name of the partner registration.
@@ -628,7 +658,9 @@ public final class PartnerRegistrationsClientImpl implements PartnerRegistration
     }
 
     /**
-     * Deletes a partner registration with the specified parameters.
+     * Delete a partner registration.
+     *
+     * <p>Deletes a partner registration with the specified parameters.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerRegistrationName Name of the partner registration.
@@ -676,7 +708,9 @@ public final class PartnerRegistrationsClientImpl implements PartnerRegistration
     }
 
     /**
-     * Deletes a partner registration with the specified parameters.
+     * Delete a partner registration.
+     *
+     * <p>Deletes a partner registration with the specified parameters.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerRegistrationName Name of the partner registration.
@@ -722,7 +756,9 @@ public final class PartnerRegistrationsClientImpl implements PartnerRegistration
     }
 
     /**
-     * Deletes a partner registration with the specified parameters.
+     * Delete a partner registration.
+     *
+     * <p>Deletes a partner registration with the specified parameters.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerRegistrationName Name of the partner registration.
@@ -742,7 +778,9 @@ public final class PartnerRegistrationsClientImpl implements PartnerRegistration
     }
 
     /**
-     * Deletes a partner registration with the specified parameters.
+     * Delete a partner registration.
+     *
+     * <p>Deletes a partner registration with the specified parameters.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerRegistrationName Name of the partner registration.
@@ -764,7 +802,9 @@ public final class PartnerRegistrationsClientImpl implements PartnerRegistration
     }
 
     /**
-     * Deletes a partner registration with the specified parameters.
+     * Delete a partner registration.
+     *
+     * <p>Deletes a partner registration with the specified parameters.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerRegistrationName Name of the partner registration.
@@ -779,7 +819,9 @@ public final class PartnerRegistrationsClientImpl implements PartnerRegistration
     }
 
     /**
-     * Deletes a partner registration with the specified parameters.
+     * Delete a partner registration.
+     *
+     * <p>Deletes a partner registration with the specified parameters.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerRegistrationName Name of the partner registration.
@@ -796,7 +838,9 @@ public final class PartnerRegistrationsClientImpl implements PartnerRegistration
     }
 
     /**
-     * Deletes a partner registration with the specified parameters.
+     * Delete a partner registration.
+     *
+     * <p>Deletes a partner registration with the specified parameters.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerRegistrationName Name of the partner registration.
@@ -813,7 +857,9 @@ public final class PartnerRegistrationsClientImpl implements PartnerRegistration
     }
 
     /**
-     * Deletes a partner registration with the specified parameters.
+     * Delete a partner registration.
+     *
+     * <p>Deletes a partner registration with the specified parameters.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerRegistrationName Name of the partner registration.
@@ -831,7 +877,9 @@ public final class PartnerRegistrationsClientImpl implements PartnerRegistration
     }
 
     /**
-     * Deletes a partner registration with the specified parameters.
+     * Delete a partner registration.
+     *
+     * <p>Deletes a partner registration with the specified parameters.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerRegistrationName Name of the partner registration.
@@ -845,7 +893,9 @@ public final class PartnerRegistrationsClientImpl implements PartnerRegistration
     }
 
     /**
-     * Deletes a partner registration with the specified parameters.
+     * Delete a partner registration.
+     *
+     * <p>Deletes a partner registration with the specified parameters.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerRegistrationName Name of the partner registration.
@@ -860,7 +910,9 @@ public final class PartnerRegistrationsClientImpl implements PartnerRegistration
     }
 
     /**
-     * Updates a partner registration with the specified parameters.
+     * Update a partner registration.
+     *
+     * <p>Updates a partner registration with the specified parameters.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerRegistrationName Name of the partner registration.
@@ -922,7 +974,9 @@ public final class PartnerRegistrationsClientImpl implements PartnerRegistration
     }
 
     /**
-     * Updates a partner registration with the specified parameters.
+     * Update a partner registration.
+     *
+     * <p>Updates a partner registration with the specified parameters.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerRegistrationName Name of the partner registration.
@@ -983,7 +1037,9 @@ public final class PartnerRegistrationsClientImpl implements PartnerRegistration
     }
 
     /**
-     * Updates a partner registration with the specified parameters.
+     * Update a partner registration.
+     *
+     * <p>Updates a partner registration with the specified parameters.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerRegistrationName Name of the partner registration.
@@ -1011,7 +1067,9 @@ public final class PartnerRegistrationsClientImpl implements PartnerRegistration
     }
 
     /**
-     * Updates a partner registration with the specified parameters.
+     * Update a partner registration.
+     *
+     * <p>Updates a partner registration with the specified parameters.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerRegistrationName Name of the partner registration.
@@ -1043,7 +1101,9 @@ public final class PartnerRegistrationsClientImpl implements PartnerRegistration
     }
 
     /**
-     * Updates a partner registration with the specified parameters.
+     * Update a partner registration.
+     *
+     * <p>Updates a partner registration with the specified parameters.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerRegistrationName Name of the partner registration.
@@ -1063,7 +1123,9 @@ public final class PartnerRegistrationsClientImpl implements PartnerRegistration
     }
 
     /**
-     * Updates a partner registration with the specified parameters.
+     * Update a partner registration.
+     *
+     * <p>Updates a partner registration with the specified parameters.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerRegistrationName Name of the partner registration.
@@ -1086,7 +1148,9 @@ public final class PartnerRegistrationsClientImpl implements PartnerRegistration
     }
 
     /**
-     * Updates a partner registration with the specified parameters.
+     * Update a partner registration.
+     *
+     * <p>Updates a partner registration with the specified parameters.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerRegistrationName Name of the partner registration.
@@ -1107,7 +1171,9 @@ public final class PartnerRegistrationsClientImpl implements PartnerRegistration
     }
 
     /**
-     * Updates a partner registration with the specified parameters.
+     * Update a partner registration.
+     *
+     * <p>Updates a partner registration with the specified parameters.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerRegistrationName Name of the partner registration.
@@ -1131,7 +1197,9 @@ public final class PartnerRegistrationsClientImpl implements PartnerRegistration
     }
 
     /**
-     * Updates a partner registration with the specified parameters.
+     * Update a partner registration.
+     *
+     * <p>Updates a partner registration with the specified parameters.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerRegistrationName Name of the partner registration.
@@ -1150,7 +1218,9 @@ public final class PartnerRegistrationsClientImpl implements PartnerRegistration
     }
 
     /**
-     * Updates a partner registration with the specified parameters.
+     * Update a partner registration.
+     *
+     * <p>Updates a partner registration with the specified parameters.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerRegistrationName Name of the partner registration.
@@ -1172,7 +1242,9 @@ public final class PartnerRegistrationsClientImpl implements PartnerRegistration
     }
 
     /**
-     * List all the partner registrations under an Azure subscription.
+     * List partner registrations under an Azure subscription.
+     *
+     * <p>List all the partner registrations under an Azure subscription.
      *
      * @param filter The query used to filter the search results using OData syntax. Filtering is permitted on the
      *     'name' property only and with limited number of OData operations. These operations are: the 'contains'
@@ -1228,7 +1300,9 @@ public final class PartnerRegistrationsClientImpl implements PartnerRegistration
     }
 
     /**
-     * List all the partner registrations under an Azure subscription.
+     * List partner registrations under an Azure subscription.
+     *
+     * <p>List all the partner registrations under an Azure subscription.
      *
      * @param filter The query used to filter the search results using OData syntax. Filtering is permitted on the
      *     'name' property only and with limited number of OData operations. These operations are: the 'contains'
@@ -1283,7 +1357,9 @@ public final class PartnerRegistrationsClientImpl implements PartnerRegistration
     }
 
     /**
-     * List all the partner registrations under an Azure subscription.
+     * List partner registrations under an Azure subscription.
+     *
+     * <p>List all the partner registrations under an Azure subscription.
      *
      * @param filter The query used to filter the search results using OData syntax. Filtering is permitted on the
      *     'name' property only and with limited number of OData operations. These operations are: the 'contains'
@@ -1305,7 +1381,9 @@ public final class PartnerRegistrationsClientImpl implements PartnerRegistration
     }
 
     /**
-     * List all the partner registrations under an Azure subscription.
+     * List partner registrations under an Azure subscription.
+     *
+     * <p>List all the partner registrations under an Azure subscription.
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1320,7 +1398,9 @@ public final class PartnerRegistrationsClientImpl implements PartnerRegistration
     }
 
     /**
-     * List all the partner registrations under an Azure subscription.
+     * List partner registrations under an Azure subscription.
+     *
+     * <p>List all the partner registrations under an Azure subscription.
      *
      * @param filter The query used to filter the search results using OData syntax. Filtering is permitted on the
      *     'name' property only and with limited number of OData operations. These operations are: the 'contains'
@@ -1344,7 +1424,9 @@ public final class PartnerRegistrationsClientImpl implements PartnerRegistration
     }
 
     /**
-     * List all the partner registrations under an Azure subscription.
+     * List partner registrations under an Azure subscription.
+     *
+     * <p>List all the partner registrations under an Azure subscription.
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1358,7 +1440,9 @@ public final class PartnerRegistrationsClientImpl implements PartnerRegistration
     }
 
     /**
-     * List all the partner registrations under an Azure subscription.
+     * List partner registrations under an Azure subscription.
+     *
+     * <p>List all the partner registrations under an Azure subscription.
      *
      * @param filter The query used to filter the search results using OData syntax. Filtering is permitted on the
      *     'name' property only and with limited number of OData operations. These operations are: the 'contains'
@@ -1380,7 +1464,9 @@ public final class PartnerRegistrationsClientImpl implements PartnerRegistration
     }
 
     /**
-     * List all the partner registrations under a resource group.
+     * List partner registrations under a resource group.
+     *
+     * <p>List all the partner registrations under a resource group.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param filter The query used to filter the search results using OData syntax. Filtering is permitted on the
@@ -1443,7 +1529,9 @@ public final class PartnerRegistrationsClientImpl implements PartnerRegistration
     }
 
     /**
-     * List all the partner registrations under a resource group.
+     * List partner registrations under a resource group.
+     *
+     * <p>List all the partner registrations under a resource group.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param filter The query used to filter the search results using OData syntax. Filtering is permitted on the
@@ -1504,7 +1592,9 @@ public final class PartnerRegistrationsClientImpl implements PartnerRegistration
     }
 
     /**
-     * List all the partner registrations under a resource group.
+     * List partner registrations under a resource group.
+     *
+     * <p>List all the partner registrations under a resource group.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param filter The query used to filter the search results using OData syntax. Filtering is permitted on the
@@ -1529,7 +1619,9 @@ public final class PartnerRegistrationsClientImpl implements PartnerRegistration
     }
 
     /**
-     * List all the partner registrations under a resource group.
+     * List partner registrations under a resource group.
+     *
+     * <p>List all the partner registrations under a resource group.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1547,7 +1639,9 @@ public final class PartnerRegistrationsClientImpl implements PartnerRegistration
     }
 
     /**
-     * List all the partner registrations under a resource group.
+     * List partner registrations under a resource group.
+     *
+     * <p>List all the partner registrations under a resource group.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param filter The query used to filter the search results using OData syntax. Filtering is permitted on the
@@ -1573,7 +1667,9 @@ public final class PartnerRegistrationsClientImpl implements PartnerRegistration
     }
 
     /**
-     * List all the partner registrations under a resource group.
+     * List partner registrations under a resource group.
+     *
+     * <p>List all the partner registrations under a resource group.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1589,7 +1685,9 @@ public final class PartnerRegistrationsClientImpl implements PartnerRegistration
     }
 
     /**
-     * List all the partner registrations under a resource group.
+     * List partner registrations under a resource group.
+     *
+     * <p>List all the partner registrations under a resource group.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param filter The query used to filter the search results using OData syntax. Filtering is permitted on the
@@ -1615,7 +1713,8 @@ public final class PartnerRegistrationsClientImpl implements PartnerRegistration
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1652,7 +1751,8 @@ public final class PartnerRegistrationsClientImpl implements PartnerRegistration
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1690,7 +1790,8 @@ public final class PartnerRegistrationsClientImpl implements PartnerRegistration
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1727,7 +1828,8 @@ public final class PartnerRegistrationsClientImpl implements PartnerRegistration
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.

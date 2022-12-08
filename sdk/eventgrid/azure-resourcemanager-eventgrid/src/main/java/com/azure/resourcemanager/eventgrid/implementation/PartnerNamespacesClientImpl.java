@@ -68,7 +68,7 @@ public final class PartnerNamespacesClientImpl implements PartnerNamespacesClien
      */
     @Host("{$host}")
     @ServiceInterface(name = "EventGridManagementC")
-    private interface PartnerNamespacesService {
+    public interface PartnerNamespacesService {
         @Headers({"Content-Type: application/json"})
         @Get(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.EventGrid"
@@ -212,7 +212,9 @@ public final class PartnerNamespacesClientImpl implements PartnerNamespacesClien
     }
 
     /**
-     * Get properties of a partner namespace.
+     * Get a partner namespace.
+     *
+     * <p>Get properties of a partner namespace.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerNamespaceName Name of the partner namespace.
@@ -261,7 +263,9 @@ public final class PartnerNamespacesClientImpl implements PartnerNamespacesClien
     }
 
     /**
-     * Get properties of a partner namespace.
+     * Get a partner namespace.
+     *
+     * <p>Get properties of a partner namespace.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerNamespaceName Name of the partner namespace.
@@ -308,7 +312,9 @@ public final class PartnerNamespacesClientImpl implements PartnerNamespacesClien
     }
 
     /**
-     * Get properties of a partner namespace.
+     * Get a partner namespace.
+     *
+     * <p>Get properties of a partner namespace.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerNamespaceName Name of the partner namespace.
@@ -324,22 +330,9 @@ public final class PartnerNamespacesClientImpl implements PartnerNamespacesClien
     }
 
     /**
-     * Get properties of a partner namespace.
+     * Get a partner namespace.
      *
-     * @param resourceGroupName The name of the resource group within the user's subscription.
-     * @param partnerNamespaceName Name of the partner namespace.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return properties of a partner namespace.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public PartnerNamespaceInner getByResourceGroup(String resourceGroupName, String partnerNamespaceName) {
-        return getByResourceGroupAsync(resourceGroupName, partnerNamespaceName).block();
-    }
-
-    /**
-     * Get properties of a partner namespace.
+     * <p>Get properties of a partner namespace.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerNamespaceName Name of the partner namespace.
@@ -356,7 +349,26 @@ public final class PartnerNamespacesClientImpl implements PartnerNamespacesClien
     }
 
     /**
-     * Asynchronously creates a new partner namespace with the specified parameters.
+     * Get a partner namespace.
+     *
+     * <p>Get properties of a partner namespace.
+     *
+     * @param resourceGroupName The name of the resource group within the user's subscription.
+     * @param partnerNamespaceName Name of the partner namespace.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return properties of a partner namespace.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public PartnerNamespaceInner getByResourceGroup(String resourceGroupName, String partnerNamespaceName) {
+        return getByResourceGroupWithResponse(resourceGroupName, partnerNamespaceName, Context.NONE).getValue();
+    }
+
+    /**
+     * Create a partner namespace.
+     *
+     * <p>Asynchronously creates a new partner namespace with the specified parameters.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerNamespaceName Name of the partner namespace.
@@ -413,7 +425,9 @@ public final class PartnerNamespacesClientImpl implements PartnerNamespacesClien
     }
 
     /**
-     * Asynchronously creates a new partner namespace with the specified parameters.
+     * Create a partner namespace.
+     *
+     * <p>Asynchronously creates a new partner namespace with the specified parameters.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerNamespaceName Name of the partner namespace.
@@ -471,7 +485,9 @@ public final class PartnerNamespacesClientImpl implements PartnerNamespacesClien
     }
 
     /**
-     * Asynchronously creates a new partner namespace with the specified parameters.
+     * Create a partner namespace.
+     *
+     * <p>Asynchronously creates a new partner namespace with the specified parameters.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerNamespaceName Name of the partner namespace.
@@ -497,7 +513,9 @@ public final class PartnerNamespacesClientImpl implements PartnerNamespacesClien
     }
 
     /**
-     * Asynchronously creates a new partner namespace with the specified parameters.
+     * Create a partner namespace.
+     *
+     * <p>Asynchronously creates a new partner namespace with the specified parameters.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerNamespaceName Name of the partner namespace.
@@ -524,7 +542,9 @@ public final class PartnerNamespacesClientImpl implements PartnerNamespacesClien
     }
 
     /**
-     * Asynchronously creates a new partner namespace with the specified parameters.
+     * Create a partner namespace.
+     *
+     * <p>Asynchronously creates a new partner namespace with the specified parameters.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerNamespaceName Name of the partner namespace.
@@ -541,7 +561,9 @@ public final class PartnerNamespacesClientImpl implements PartnerNamespacesClien
     }
 
     /**
-     * Asynchronously creates a new partner namespace with the specified parameters.
+     * Create a partner namespace.
+     *
+     * <p>Asynchronously creates a new partner namespace with the specified parameters.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerNamespaceName Name of the partner namespace.
@@ -563,7 +585,9 @@ public final class PartnerNamespacesClientImpl implements PartnerNamespacesClien
     }
 
     /**
-     * Asynchronously creates a new partner namespace with the specified parameters.
+     * Create a partner namespace.
+     *
+     * <p>Asynchronously creates a new partner namespace with the specified parameters.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerNamespaceName Name of the partner namespace.
@@ -582,7 +606,9 @@ public final class PartnerNamespacesClientImpl implements PartnerNamespacesClien
     }
 
     /**
-     * Asynchronously creates a new partner namespace with the specified parameters.
+     * Create a partner namespace.
+     *
+     * <p>Asynchronously creates a new partner namespace with the specified parameters.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerNamespaceName Name of the partner namespace.
@@ -605,7 +631,9 @@ public final class PartnerNamespacesClientImpl implements PartnerNamespacesClien
     }
 
     /**
-     * Asynchronously creates a new partner namespace with the specified parameters.
+     * Create a partner namespace.
+     *
+     * <p>Asynchronously creates a new partner namespace with the specified parameters.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerNamespaceName Name of the partner namespace.
@@ -622,7 +650,9 @@ public final class PartnerNamespacesClientImpl implements PartnerNamespacesClien
     }
 
     /**
-     * Asynchronously creates a new partner namespace with the specified parameters.
+     * Create a partner namespace.
+     *
+     * <p>Asynchronously creates a new partner namespace with the specified parameters.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerNamespaceName Name of the partner namespace.
@@ -643,7 +673,9 @@ public final class PartnerNamespacesClientImpl implements PartnerNamespacesClien
     }
 
     /**
-     * Delete existing partner namespace.
+     * Delete a partner namespace.
+     *
+     * <p>Delete existing partner namespace.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerNamespaceName Name of the partner namespace.
@@ -690,7 +722,9 @@ public final class PartnerNamespacesClientImpl implements PartnerNamespacesClien
     }
 
     /**
-     * Delete existing partner namespace.
+     * Delete a partner namespace.
+     *
+     * <p>Delete existing partner namespace.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerNamespaceName Name of the partner namespace.
@@ -735,7 +769,9 @@ public final class PartnerNamespacesClientImpl implements PartnerNamespacesClien
     }
 
     /**
-     * Delete existing partner namespace.
+     * Delete a partner namespace.
+     *
+     * <p>Delete existing partner namespace.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerNamespaceName Name of the partner namespace.
@@ -754,7 +790,9 @@ public final class PartnerNamespacesClientImpl implements PartnerNamespacesClien
     }
 
     /**
-     * Delete existing partner namespace.
+     * Delete a partner namespace.
+     *
+     * <p>Delete existing partner namespace.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerNamespaceName Name of the partner namespace.
@@ -776,7 +814,9 @@ public final class PartnerNamespacesClientImpl implements PartnerNamespacesClien
     }
 
     /**
-     * Delete existing partner namespace.
+     * Delete a partner namespace.
+     *
+     * <p>Delete existing partner namespace.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerNamespaceName Name of the partner namespace.
@@ -791,7 +831,9 @@ public final class PartnerNamespacesClientImpl implements PartnerNamespacesClien
     }
 
     /**
-     * Delete existing partner namespace.
+     * Delete a partner namespace.
+     *
+     * <p>Delete existing partner namespace.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerNamespaceName Name of the partner namespace.
@@ -808,7 +850,9 @@ public final class PartnerNamespacesClientImpl implements PartnerNamespacesClien
     }
 
     /**
-     * Delete existing partner namespace.
+     * Delete a partner namespace.
+     *
+     * <p>Delete existing partner namespace.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerNamespaceName Name of the partner namespace.
@@ -825,7 +869,9 @@ public final class PartnerNamespacesClientImpl implements PartnerNamespacesClien
     }
 
     /**
-     * Delete existing partner namespace.
+     * Delete a partner namespace.
+     *
+     * <p>Delete existing partner namespace.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerNamespaceName Name of the partner namespace.
@@ -843,7 +889,9 @@ public final class PartnerNamespacesClientImpl implements PartnerNamespacesClien
     }
 
     /**
-     * Delete existing partner namespace.
+     * Delete a partner namespace.
+     *
+     * <p>Delete existing partner namespace.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerNamespaceName Name of the partner namespace.
@@ -857,7 +905,9 @@ public final class PartnerNamespacesClientImpl implements PartnerNamespacesClien
     }
 
     /**
-     * Delete existing partner namespace.
+     * Delete a partner namespace.
+     *
+     * <p>Delete existing partner namespace.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerNamespaceName Name of the partner namespace.
@@ -872,7 +922,9 @@ public final class PartnerNamespacesClientImpl implements PartnerNamespacesClien
     }
 
     /**
-     * Asynchronously updates a partner namespace with the specified parameters.
+     * Update a partner namespace.
+     *
+     * <p>Asynchronously updates a partner namespace with the specified parameters.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerNamespaceName Name of the partner namespace.
@@ -933,7 +985,9 @@ public final class PartnerNamespacesClientImpl implements PartnerNamespacesClien
     }
 
     /**
-     * Asynchronously updates a partner namespace with the specified parameters.
+     * Update a partner namespace.
+     *
+     * <p>Asynchronously updates a partner namespace with the specified parameters.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerNamespaceName Name of the partner namespace.
@@ -993,7 +1047,9 @@ public final class PartnerNamespacesClientImpl implements PartnerNamespacesClien
     }
 
     /**
-     * Asynchronously updates a partner namespace with the specified parameters.
+     * Update a partner namespace.
+     *
+     * <p>Asynchronously updates a partner namespace with the specified parameters.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerNamespaceName Name of the partner namespace.
@@ -1021,7 +1077,9 @@ public final class PartnerNamespacesClientImpl implements PartnerNamespacesClien
     }
 
     /**
-     * Asynchronously updates a partner namespace with the specified parameters.
+     * Update a partner namespace.
+     *
+     * <p>Asynchronously updates a partner namespace with the specified parameters.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerNamespaceName Name of the partner namespace.
@@ -1048,7 +1106,9 @@ public final class PartnerNamespacesClientImpl implements PartnerNamespacesClien
     }
 
     /**
-     * Asynchronously updates a partner namespace with the specified parameters.
+     * Update a partner namespace.
+     *
+     * <p>Asynchronously updates a partner namespace with the specified parameters.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerNamespaceName Name of the partner namespace.
@@ -1068,7 +1128,9 @@ public final class PartnerNamespacesClientImpl implements PartnerNamespacesClien
     }
 
     /**
-     * Asynchronously updates a partner namespace with the specified parameters.
+     * Update a partner namespace.
+     *
+     * <p>Asynchronously updates a partner namespace with the specified parameters.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerNamespaceName Name of the partner namespace.
@@ -1090,7 +1152,9 @@ public final class PartnerNamespacesClientImpl implements PartnerNamespacesClien
     }
 
     /**
-     * Asynchronously updates a partner namespace with the specified parameters.
+     * Update a partner namespace.
+     *
+     * <p>Asynchronously updates a partner namespace with the specified parameters.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerNamespaceName Name of the partner namespace.
@@ -1111,7 +1175,9 @@ public final class PartnerNamespacesClientImpl implements PartnerNamespacesClien
     }
 
     /**
-     * Asynchronously updates a partner namespace with the specified parameters.
+     * Update a partner namespace.
+     *
+     * <p>Asynchronously updates a partner namespace with the specified parameters.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerNamespaceName Name of the partner namespace.
@@ -1134,7 +1200,9 @@ public final class PartnerNamespacesClientImpl implements PartnerNamespacesClien
     }
 
     /**
-     * Asynchronously updates a partner namespace with the specified parameters.
+     * Update a partner namespace.
+     *
+     * <p>Asynchronously updates a partner namespace with the specified parameters.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerNamespaceName Name of the partner namespace.
@@ -1153,7 +1221,9 @@ public final class PartnerNamespacesClientImpl implements PartnerNamespacesClien
     }
 
     /**
-     * Asynchronously updates a partner namespace with the specified parameters.
+     * Update a partner namespace.
+     *
+     * <p>Asynchronously updates a partner namespace with the specified parameters.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerNamespaceName Name of the partner namespace.
@@ -1174,7 +1244,9 @@ public final class PartnerNamespacesClientImpl implements PartnerNamespacesClien
     }
 
     /**
-     * List all the partner namespaces under an Azure subscription.
+     * List partner namespaces under an Azure subscription.
+     *
+     * <p>List all the partner namespaces under an Azure subscription.
      *
      * @param filter The query used to filter the search results using OData syntax. Filtering is permitted on the
      *     'name' property only and with limited number of OData operations. These operations are: the 'contains'
@@ -1230,7 +1302,9 @@ public final class PartnerNamespacesClientImpl implements PartnerNamespacesClien
     }
 
     /**
-     * List all the partner namespaces under an Azure subscription.
+     * List partner namespaces under an Azure subscription.
+     *
+     * <p>List all the partner namespaces under an Azure subscription.
      *
      * @param filter The query used to filter the search results using OData syntax. Filtering is permitted on the
      *     'name' property only and with limited number of OData operations. These operations are: the 'contains'
@@ -1285,7 +1359,9 @@ public final class PartnerNamespacesClientImpl implements PartnerNamespacesClien
     }
 
     /**
-     * List all the partner namespaces under an Azure subscription.
+     * List partner namespaces under an Azure subscription.
+     *
+     * <p>List all the partner namespaces under an Azure subscription.
      *
      * @param filter The query used to filter the search results using OData syntax. Filtering is permitted on the
      *     'name' property only and with limited number of OData operations. These operations are: the 'contains'
@@ -1307,7 +1383,9 @@ public final class PartnerNamespacesClientImpl implements PartnerNamespacesClien
     }
 
     /**
-     * List all the partner namespaces under an Azure subscription.
+     * List partner namespaces under an Azure subscription.
+     *
+     * <p>List all the partner namespaces under an Azure subscription.
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1322,7 +1400,9 @@ public final class PartnerNamespacesClientImpl implements PartnerNamespacesClien
     }
 
     /**
-     * List all the partner namespaces under an Azure subscription.
+     * List partner namespaces under an Azure subscription.
+     *
+     * <p>List all the partner namespaces under an Azure subscription.
      *
      * @param filter The query used to filter the search results using OData syntax. Filtering is permitted on the
      *     'name' property only and with limited number of OData operations. These operations are: the 'contains'
@@ -1346,7 +1426,9 @@ public final class PartnerNamespacesClientImpl implements PartnerNamespacesClien
     }
 
     /**
-     * List all the partner namespaces under an Azure subscription.
+     * List partner namespaces under an Azure subscription.
+     *
+     * <p>List all the partner namespaces under an Azure subscription.
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1360,7 +1442,9 @@ public final class PartnerNamespacesClientImpl implements PartnerNamespacesClien
     }
 
     /**
-     * List all the partner namespaces under an Azure subscription.
+     * List partner namespaces under an Azure subscription.
+     *
+     * <p>List all the partner namespaces under an Azure subscription.
      *
      * @param filter The query used to filter the search results using OData syntax. Filtering is permitted on the
      *     'name' property only and with limited number of OData operations. These operations are: the 'contains'
@@ -1382,7 +1466,9 @@ public final class PartnerNamespacesClientImpl implements PartnerNamespacesClien
     }
 
     /**
-     * List all the partner namespaces under a resource group.
+     * List partner namespaces under a resource group.
+     *
+     * <p>List all the partner namespaces under a resource group.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param filter The query used to filter the search results using OData syntax. Filtering is permitted on the
@@ -1445,7 +1531,9 @@ public final class PartnerNamespacesClientImpl implements PartnerNamespacesClien
     }
 
     /**
-     * List all the partner namespaces under a resource group.
+     * List partner namespaces under a resource group.
+     *
+     * <p>List all the partner namespaces under a resource group.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param filter The query used to filter the search results using OData syntax. Filtering is permitted on the
@@ -1506,7 +1594,9 @@ public final class PartnerNamespacesClientImpl implements PartnerNamespacesClien
     }
 
     /**
-     * List all the partner namespaces under a resource group.
+     * List partner namespaces under a resource group.
+     *
+     * <p>List all the partner namespaces under a resource group.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param filter The query used to filter the search results using OData syntax. Filtering is permitted on the
@@ -1531,7 +1621,9 @@ public final class PartnerNamespacesClientImpl implements PartnerNamespacesClien
     }
 
     /**
-     * List all the partner namespaces under a resource group.
+     * List partner namespaces under a resource group.
+     *
+     * <p>List all the partner namespaces under a resource group.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1549,7 +1641,9 @@ public final class PartnerNamespacesClientImpl implements PartnerNamespacesClien
     }
 
     /**
-     * List all the partner namespaces under a resource group.
+     * List partner namespaces under a resource group.
+     *
+     * <p>List all the partner namespaces under a resource group.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param filter The query used to filter the search results using OData syntax. Filtering is permitted on the
@@ -1575,7 +1669,9 @@ public final class PartnerNamespacesClientImpl implements PartnerNamespacesClien
     }
 
     /**
-     * List all the partner namespaces under a resource group.
+     * List partner namespaces under a resource group.
+     *
+     * <p>List all the partner namespaces under a resource group.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1591,7 +1687,9 @@ public final class PartnerNamespacesClientImpl implements PartnerNamespacesClien
     }
 
     /**
-     * List all the partner namespaces under a resource group.
+     * List partner namespaces under a resource group.
+     *
+     * <p>List all the partner namespaces under a resource group.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param filter The query used to filter the search results using OData syntax. Filtering is permitted on the
@@ -1615,7 +1713,9 @@ public final class PartnerNamespacesClientImpl implements PartnerNamespacesClien
     }
 
     /**
-     * List the two keys used to publish to a partner namespace.
+     * List keys for a partner namespace.
+     *
+     * <p>List the two keys used to publish to a partner namespace.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerNamespaceName Name of the partner namespace.
@@ -1665,7 +1765,9 @@ public final class PartnerNamespacesClientImpl implements PartnerNamespacesClien
     }
 
     /**
-     * List the two keys used to publish to a partner namespace.
+     * List keys for a partner namespace.
+     *
+     * <p>List the two keys used to publish to a partner namespace.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerNamespaceName Name of the partner namespace.
@@ -1713,7 +1815,9 @@ public final class PartnerNamespacesClientImpl implements PartnerNamespacesClien
     }
 
     /**
-     * List the two keys used to publish to a partner namespace.
+     * List keys for a partner namespace.
+     *
+     * <p>List the two keys used to publish to a partner namespace.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerNamespaceName Name of the partner namespace.
@@ -1730,23 +1834,9 @@ public final class PartnerNamespacesClientImpl implements PartnerNamespacesClien
     }
 
     /**
-     * List the two keys used to publish to a partner namespace.
+     * List keys for a partner namespace.
      *
-     * @param resourceGroupName The name of the resource group within the user's subscription.
-     * @param partnerNamespaceName Name of the partner namespace.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return shared access keys of the partner namespace.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public PartnerNamespaceSharedAccessKeysInner listSharedAccessKeys(
-        String resourceGroupName, String partnerNamespaceName) {
-        return listSharedAccessKeysAsync(resourceGroupName, partnerNamespaceName).block();
-    }
-
-    /**
-     * List the two keys used to publish to a partner namespace.
+     * <p>List the two keys used to publish to a partner namespace.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerNamespaceName Name of the partner namespace.
@@ -1763,7 +1853,27 @@ public final class PartnerNamespacesClientImpl implements PartnerNamespacesClien
     }
 
     /**
-     * Regenerate a shared access key for a partner namespace.
+     * List keys for a partner namespace.
+     *
+     * <p>List the two keys used to publish to a partner namespace.
+     *
+     * @param resourceGroupName The name of the resource group within the user's subscription.
+     * @param partnerNamespaceName Name of the partner namespace.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return shared access keys of the partner namespace.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public PartnerNamespaceSharedAccessKeysInner listSharedAccessKeys(
+        String resourceGroupName, String partnerNamespaceName) {
+        return listSharedAccessKeysWithResponse(resourceGroupName, partnerNamespaceName, Context.NONE).getValue();
+    }
+
+    /**
+     * Regenerate key for a partner namespace.
+     *
+     * <p>Regenerate a shared access key for a partner namespace.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerNamespaceName Name of the partner namespace.
@@ -1823,7 +1933,9 @@ public final class PartnerNamespacesClientImpl implements PartnerNamespacesClien
     }
 
     /**
-     * Regenerate a shared access key for a partner namespace.
+     * Regenerate key for a partner namespace.
+     *
+     * <p>Regenerate a shared access key for a partner namespace.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerNamespaceName Name of the partner namespace.
@@ -1882,7 +1994,9 @@ public final class PartnerNamespacesClientImpl implements PartnerNamespacesClien
     }
 
     /**
-     * Regenerate a shared access key for a partner namespace.
+     * Regenerate key for a partner namespace.
+     *
+     * <p>Regenerate a shared access key for a partner namespace.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerNamespaceName Name of the partner namespace.
@@ -1902,26 +2016,9 @@ public final class PartnerNamespacesClientImpl implements PartnerNamespacesClien
     }
 
     /**
-     * Regenerate a shared access key for a partner namespace.
+     * Regenerate key for a partner namespace.
      *
-     * @param resourceGroupName The name of the resource group within the user's subscription.
-     * @param partnerNamespaceName Name of the partner namespace.
-     * @param regenerateKeyRequest Request body to regenerate key.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return shared access keys of the partner namespace.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public PartnerNamespaceSharedAccessKeysInner regenerateKey(
-        String resourceGroupName,
-        String partnerNamespaceName,
-        PartnerNamespaceRegenerateKeyRequest regenerateKeyRequest) {
-        return regenerateKeyAsync(resourceGroupName, partnerNamespaceName, regenerateKeyRequest).block();
-    }
-
-    /**
-     * Regenerate a shared access key for a partner namespace.
+     * <p>Regenerate a shared access key for a partner namespace.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param partnerNamespaceName Name of the partner namespace.
@@ -1943,9 +2040,32 @@ public final class PartnerNamespacesClientImpl implements PartnerNamespacesClien
     }
 
     /**
+     * Regenerate key for a partner namespace.
+     *
+     * <p>Regenerate a shared access key for a partner namespace.
+     *
+     * @param resourceGroupName The name of the resource group within the user's subscription.
+     * @param partnerNamespaceName Name of the partner namespace.
+     * @param regenerateKeyRequest Request body to regenerate key.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return shared access keys of the partner namespace.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public PartnerNamespaceSharedAccessKeysInner regenerateKey(
+        String resourceGroupName,
+        String partnerNamespaceName,
+        PartnerNamespaceRegenerateKeyRequest regenerateKeyRequest) {
+        return regenerateKeyWithResponse(resourceGroupName, partnerNamespaceName, regenerateKeyRequest, Context.NONE)
+            .getValue();
+    }
+
+    /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1982,7 +2102,8 @@ public final class PartnerNamespacesClientImpl implements PartnerNamespacesClien
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -2020,7 +2141,8 @@ public final class PartnerNamespacesClientImpl implements PartnerNamespacesClien
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -2057,7 +2179,8 @@ public final class PartnerNamespacesClientImpl implements PartnerNamespacesClien
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.

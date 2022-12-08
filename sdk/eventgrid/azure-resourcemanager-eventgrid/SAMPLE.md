@@ -1000,7 +1000,10 @@ public final class DomainsRegenerateKeySamples {
         manager
             .domains()
             .regenerateKeyWithResponse(
-                "examplerg", "exampledomain2", new DomainRegenerateKeyRequest().withKeyName("key1"), Context.NONE);
+                "examplerg",
+                "exampledomain2",
+                new DomainRegenerateKeyRequest().withKeyName("fakeTokenPlaceholder"),
+                Context.NONE);
     }
 }
 ```
@@ -2831,7 +2834,7 @@ public final class PartnerNamespacesRegenerateKeySamples {
             .regenerateKeyWithResponse(
                 "examplerg",
                 "examplePartnerNamespaceName1",
-                new PartnerNamespaceRegenerateKeyRequest().withKeyName("key1"),
+                new PartnerNamespaceRegenerateKeyRequest().withKeyName("fakeTokenPlaceholder"),
                 Context.NONE);
     }
 }
@@ -4418,7 +4421,10 @@ public final class TopicsRegenerateKeySamples {
         manager
             .topics()
             .regenerateKey(
-                "examplerg", "exampletopic2", new TopicRegenerateKeyRequest().withKeyName("key1"), Context.NONE);
+                "examplerg",
+                "exampletopic2",
+                new TopicRegenerateKeyRequest().withKeyName("fakeTokenPlaceholder"),
+                Context.NONE);
     }
 }
 ```

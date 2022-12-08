@@ -69,7 +69,7 @@ public final class TopicsClientImpl implements TopicsClient {
      */
     @Host("{$host}")
     @ServiceInterface(name = "EventGridManagementC")
-    private interface TopicsService {
+    public interface TopicsService {
         @Headers({"Content-Type: application/json"})
         @Get(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.EventGrid/topics"
@@ -228,7 +228,9 @@ public final class TopicsClientImpl implements TopicsClient {
     }
 
     /**
-     * Get properties of a topic.
+     * Get a topic.
+     *
+     * <p>Get properties of a topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param topicName Name of the topic.
@@ -275,7 +277,9 @@ public final class TopicsClientImpl implements TopicsClient {
     }
 
     /**
-     * Get properties of a topic.
+     * Get a topic.
+     *
+     * <p>Get properties of a topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param topicName Name of the topic.
@@ -321,7 +325,9 @@ public final class TopicsClientImpl implements TopicsClient {
     }
 
     /**
-     * Get properties of a topic.
+     * Get a topic.
+     *
+     * <p>Get properties of a topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param topicName Name of the topic.
@@ -337,22 +343,9 @@ public final class TopicsClientImpl implements TopicsClient {
     }
 
     /**
-     * Get properties of a topic.
+     * Get a topic.
      *
-     * @param resourceGroupName The name of the resource group within the user's subscription.
-     * @param topicName Name of the topic.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return properties of a topic.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public TopicInner getByResourceGroup(String resourceGroupName, String topicName) {
-        return getByResourceGroupAsync(resourceGroupName, topicName).block();
-    }
-
-    /**
-     * Get properties of a topic.
+     * <p>Get properties of a topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param topicName Name of the topic.
@@ -369,7 +362,26 @@ public final class TopicsClientImpl implements TopicsClient {
     }
 
     /**
-     * Asynchronously creates a new topic with the specified parameters.
+     * Get a topic.
+     *
+     * <p>Get properties of a topic.
+     *
+     * @param resourceGroupName The name of the resource group within the user's subscription.
+     * @param topicName Name of the topic.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return properties of a topic.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public TopicInner getByResourceGroup(String resourceGroupName, String topicName) {
+        return getByResourceGroupWithResponse(resourceGroupName, topicName, Context.NONE).getValue();
+    }
+
+    /**
+     * Create a topic.
+     *
+     * <p>Asynchronously creates a new topic with the specified parameters.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param topicName Name of the topic.
@@ -424,7 +436,9 @@ public final class TopicsClientImpl implements TopicsClient {
     }
 
     /**
-     * Asynchronously creates a new topic with the specified parameters.
+     * Create a topic.
+     *
+     * <p>Asynchronously creates a new topic with the specified parameters.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param topicName Name of the topic.
@@ -477,7 +491,9 @@ public final class TopicsClientImpl implements TopicsClient {
     }
 
     /**
-     * Asynchronously creates a new topic with the specified parameters.
+     * Create a topic.
+     *
+     * <p>Asynchronously creates a new topic with the specified parameters.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param topicName Name of the topic.
@@ -499,7 +515,9 @@ public final class TopicsClientImpl implements TopicsClient {
     }
 
     /**
-     * Asynchronously creates a new topic with the specified parameters.
+     * Create a topic.
+     *
+     * <p>Asynchronously creates a new topic with the specified parameters.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param topicName Name of the topic.
@@ -523,7 +541,9 @@ public final class TopicsClientImpl implements TopicsClient {
     }
 
     /**
-     * Asynchronously creates a new topic with the specified parameters.
+     * Create a topic.
+     *
+     * <p>Asynchronously creates a new topic with the specified parameters.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param topicName Name of the topic.
@@ -540,7 +560,9 @@ public final class TopicsClientImpl implements TopicsClient {
     }
 
     /**
-     * Asynchronously creates a new topic with the specified parameters.
+     * Create a topic.
+     *
+     * <p>Asynchronously creates a new topic with the specified parameters.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param topicName Name of the topic.
@@ -558,7 +580,9 @@ public final class TopicsClientImpl implements TopicsClient {
     }
 
     /**
-     * Asynchronously creates a new topic with the specified parameters.
+     * Create a topic.
+     *
+     * <p>Asynchronously creates a new topic with the specified parameters.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param topicName Name of the topic.
@@ -576,7 +600,9 @@ public final class TopicsClientImpl implements TopicsClient {
     }
 
     /**
-     * Asynchronously creates a new topic with the specified parameters.
+     * Create a topic.
+     *
+     * <p>Asynchronously creates a new topic with the specified parameters.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param topicName Name of the topic.
@@ -596,7 +622,9 @@ public final class TopicsClientImpl implements TopicsClient {
     }
 
     /**
-     * Asynchronously creates a new topic with the specified parameters.
+     * Create a topic.
+     *
+     * <p>Asynchronously creates a new topic with the specified parameters.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param topicName Name of the topic.
@@ -612,7 +640,9 @@ public final class TopicsClientImpl implements TopicsClient {
     }
 
     /**
-     * Asynchronously creates a new topic with the specified parameters.
+     * Create a topic.
+     *
+     * <p>Asynchronously creates a new topic with the specified parameters.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param topicName Name of the topic.
@@ -630,7 +660,9 @@ public final class TopicsClientImpl implements TopicsClient {
     }
 
     /**
-     * Delete existing topic.
+     * Delete a topic.
+     *
+     * <p>Delete existing topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param topicName Name of the topic.
@@ -675,7 +707,9 @@ public final class TopicsClientImpl implements TopicsClient {
     }
 
     /**
-     * Delete existing topic.
+     * Delete a topic.
+     *
+     * <p>Delete existing topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param topicName Name of the topic.
@@ -719,7 +753,9 @@ public final class TopicsClientImpl implements TopicsClient {
     }
 
     /**
-     * Delete existing topic.
+     * Delete a topic.
+     *
+     * <p>Delete existing topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param topicName Name of the topic.
@@ -738,7 +774,9 @@ public final class TopicsClientImpl implements TopicsClient {
     }
 
     /**
-     * Delete existing topic.
+     * Delete a topic.
+     *
+     * <p>Delete existing topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param topicName Name of the topic.
@@ -759,7 +797,9 @@ public final class TopicsClientImpl implements TopicsClient {
     }
 
     /**
-     * Delete existing topic.
+     * Delete a topic.
+     *
+     * <p>Delete existing topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param topicName Name of the topic.
@@ -774,7 +814,9 @@ public final class TopicsClientImpl implements TopicsClient {
     }
 
     /**
-     * Delete existing topic.
+     * Delete a topic.
+     *
+     * <p>Delete existing topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param topicName Name of the topic.
@@ -790,7 +832,9 @@ public final class TopicsClientImpl implements TopicsClient {
     }
 
     /**
-     * Delete existing topic.
+     * Delete a topic.
+     *
+     * <p>Delete existing topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param topicName Name of the topic.
@@ -805,7 +849,9 @@ public final class TopicsClientImpl implements TopicsClient {
     }
 
     /**
-     * Delete existing topic.
+     * Delete a topic.
+     *
+     * <p>Delete existing topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param topicName Name of the topic.
@@ -823,7 +869,9 @@ public final class TopicsClientImpl implements TopicsClient {
     }
 
     /**
-     * Delete existing topic.
+     * Delete a topic.
+     *
+     * <p>Delete existing topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param topicName Name of the topic.
@@ -837,7 +885,9 @@ public final class TopicsClientImpl implements TopicsClient {
     }
 
     /**
-     * Delete existing topic.
+     * Delete a topic.
+     *
+     * <p>Delete existing topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param topicName Name of the topic.
@@ -852,7 +902,9 @@ public final class TopicsClientImpl implements TopicsClient {
     }
 
     /**
-     * Asynchronously updates a topic with the specified parameters.
+     * Update a topic.
+     *
+     * <p>Asynchronously updates a topic with the specified parameters.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param topicName Name of the topic.
@@ -908,7 +960,9 @@ public final class TopicsClientImpl implements TopicsClient {
     }
 
     /**
-     * Asynchronously updates a topic with the specified parameters.
+     * Update a topic.
+     *
+     * <p>Asynchronously updates a topic with the specified parameters.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param topicName Name of the topic.
@@ -962,7 +1016,9 @@ public final class TopicsClientImpl implements TopicsClient {
     }
 
     /**
-     * Asynchronously updates a topic with the specified parameters.
+     * Update a topic.
+     *
+     * <p>Asynchronously updates a topic with the specified parameters.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param topicName Name of the topic.
@@ -984,7 +1040,9 @@ public final class TopicsClientImpl implements TopicsClient {
     }
 
     /**
-     * Asynchronously updates a topic with the specified parameters.
+     * Update a topic.
+     *
+     * <p>Asynchronously updates a topic with the specified parameters.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param topicName Name of the topic.
@@ -1008,7 +1066,9 @@ public final class TopicsClientImpl implements TopicsClient {
     }
 
     /**
-     * Asynchronously updates a topic with the specified parameters.
+     * Update a topic.
+     *
+     * <p>Asynchronously updates a topic with the specified parameters.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param topicName Name of the topic.
@@ -1025,7 +1085,9 @@ public final class TopicsClientImpl implements TopicsClient {
     }
 
     /**
-     * Asynchronously updates a topic with the specified parameters.
+     * Update a topic.
+     *
+     * <p>Asynchronously updates a topic with the specified parameters.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param topicName Name of the topic.
@@ -1043,7 +1105,9 @@ public final class TopicsClientImpl implements TopicsClient {
     }
 
     /**
-     * Asynchronously updates a topic with the specified parameters.
+     * Update a topic.
+     *
+     * <p>Asynchronously updates a topic with the specified parameters.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param topicName Name of the topic.
@@ -1062,7 +1126,9 @@ public final class TopicsClientImpl implements TopicsClient {
     }
 
     /**
-     * Asynchronously updates a topic with the specified parameters.
+     * Update a topic.
+     *
+     * <p>Asynchronously updates a topic with the specified parameters.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param topicName Name of the topic.
@@ -1082,7 +1148,9 @@ public final class TopicsClientImpl implements TopicsClient {
     }
 
     /**
-     * Asynchronously updates a topic with the specified parameters.
+     * Update a topic.
+     *
+     * <p>Asynchronously updates a topic with the specified parameters.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param topicName Name of the topic.
@@ -1098,7 +1166,9 @@ public final class TopicsClientImpl implements TopicsClient {
     }
 
     /**
-     * Asynchronously updates a topic with the specified parameters.
+     * Update a topic.
+     *
+     * <p>Asynchronously updates a topic with the specified parameters.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param topicName Name of the topic.
@@ -1116,7 +1186,9 @@ public final class TopicsClientImpl implements TopicsClient {
     }
 
     /**
-     * List all the topics under an Azure subscription.
+     * List topics under an Azure subscription.
+     *
+     * <p>List all the topics under an Azure subscription.
      *
      * @param filter The query used to filter the search results using OData syntax. Filtering is permitted on the
      *     'name' property only and with limited number of OData operations. These operations are: the 'contains'
@@ -1172,7 +1244,9 @@ public final class TopicsClientImpl implements TopicsClient {
     }
 
     /**
-     * List all the topics under an Azure subscription.
+     * List topics under an Azure subscription.
+     *
+     * <p>List all the topics under an Azure subscription.
      *
      * @param filter The query used to filter the search results using OData syntax. Filtering is permitted on the
      *     'name' property only and with limited number of OData operations. These operations are: the 'contains'
@@ -1226,7 +1300,9 @@ public final class TopicsClientImpl implements TopicsClient {
     }
 
     /**
-     * List all the topics under an Azure subscription.
+     * List topics under an Azure subscription.
+     *
+     * <p>List all the topics under an Azure subscription.
      *
      * @param filter The query used to filter the search results using OData syntax. Filtering is permitted on the
      *     'name' property only and with limited number of OData operations. These operations are: the 'contains'
@@ -1248,7 +1324,9 @@ public final class TopicsClientImpl implements TopicsClient {
     }
 
     /**
-     * List all the topics under an Azure subscription.
+     * List topics under an Azure subscription.
+     *
+     * <p>List all the topics under an Azure subscription.
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1263,7 +1341,9 @@ public final class TopicsClientImpl implements TopicsClient {
     }
 
     /**
-     * List all the topics under an Azure subscription.
+     * List topics under an Azure subscription.
+     *
+     * <p>List all the topics under an Azure subscription.
      *
      * @param filter The query used to filter the search results using OData syntax. Filtering is permitted on the
      *     'name' property only and with limited number of OData operations. These operations are: the 'contains'
@@ -1287,7 +1367,9 @@ public final class TopicsClientImpl implements TopicsClient {
     }
 
     /**
-     * List all the topics under an Azure subscription.
+     * List topics under an Azure subscription.
+     *
+     * <p>List all the topics under an Azure subscription.
      *
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1301,7 +1383,9 @@ public final class TopicsClientImpl implements TopicsClient {
     }
 
     /**
-     * List all the topics under an Azure subscription.
+     * List topics under an Azure subscription.
+     *
+     * <p>List all the topics under an Azure subscription.
      *
      * @param filter The query used to filter the search results using OData syntax. Filtering is permitted on the
      *     'name' property only and with limited number of OData operations. These operations are: the 'contains'
@@ -1323,7 +1407,9 @@ public final class TopicsClientImpl implements TopicsClient {
     }
 
     /**
-     * List all the topics under a resource group.
+     * List topics under a resource group.
+     *
+     * <p>List all the topics under a resource group.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param filter The query used to filter the search results using OData syntax. Filtering is permitted on the
@@ -1386,7 +1472,9 @@ public final class TopicsClientImpl implements TopicsClient {
     }
 
     /**
-     * List all the topics under a resource group.
+     * List topics under a resource group.
+     *
+     * <p>List all the topics under a resource group.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param filter The query used to filter the search results using OData syntax. Filtering is permitted on the
@@ -1447,7 +1535,9 @@ public final class TopicsClientImpl implements TopicsClient {
     }
 
     /**
-     * List all the topics under a resource group.
+     * List topics under a resource group.
+     *
+     * <p>List all the topics under a resource group.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param filter The query used to filter the search results using OData syntax. Filtering is permitted on the
@@ -1471,7 +1561,9 @@ public final class TopicsClientImpl implements TopicsClient {
     }
 
     /**
-     * List all the topics under a resource group.
+     * List topics under a resource group.
+     *
+     * <p>List all the topics under a resource group.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1489,7 +1581,9 @@ public final class TopicsClientImpl implements TopicsClient {
     }
 
     /**
-     * List all the topics under a resource group.
+     * List topics under a resource group.
+     *
+     * <p>List all the topics under a resource group.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param filter The query used to filter the search results using OData syntax. Filtering is permitted on the
@@ -1515,7 +1609,9 @@ public final class TopicsClientImpl implements TopicsClient {
     }
 
     /**
-     * List all the topics under a resource group.
+     * List topics under a resource group.
+     *
+     * <p>List all the topics under a resource group.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1531,7 +1627,9 @@ public final class TopicsClientImpl implements TopicsClient {
     }
 
     /**
-     * List all the topics under a resource group.
+     * List topics under a resource group.
+     *
+     * <p>List all the topics under a resource group.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param filter The query used to filter the search results using OData syntax. Filtering is permitted on the
@@ -1555,7 +1653,9 @@ public final class TopicsClientImpl implements TopicsClient {
     }
 
     /**
-     * List the two keys used to publish to a topic.
+     * List keys for a topic.
+     *
+     * <p>List the two keys used to publish to a topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param topicName Name of the topic.
@@ -1603,7 +1703,9 @@ public final class TopicsClientImpl implements TopicsClient {
     }
 
     /**
-     * List the two keys used to publish to a topic.
+     * List keys for a topic.
+     *
+     * <p>List the two keys used to publish to a topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param topicName Name of the topic.
@@ -1649,7 +1751,9 @@ public final class TopicsClientImpl implements TopicsClient {
     }
 
     /**
-     * List the two keys used to publish to a topic.
+     * List keys for a topic.
+     *
+     * <p>List the two keys used to publish to a topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param topicName Name of the topic.
@@ -1665,22 +1769,9 @@ public final class TopicsClientImpl implements TopicsClient {
     }
 
     /**
-     * List the two keys used to publish to a topic.
+     * List keys for a topic.
      *
-     * @param resourceGroupName The name of the resource group within the user's subscription.
-     * @param topicName Name of the topic.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return shared access keys of the Topic.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public TopicSharedAccessKeysInner listSharedAccessKeys(String resourceGroupName, String topicName) {
-        return listSharedAccessKeysAsync(resourceGroupName, topicName).block();
-    }
-
-    /**
-     * List the two keys used to publish to a topic.
+     * <p>List the two keys used to publish to a topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param topicName Name of the topic.
@@ -1697,7 +1788,26 @@ public final class TopicsClientImpl implements TopicsClient {
     }
 
     /**
-     * Regenerate a shared access key for a topic.
+     * List keys for a topic.
+     *
+     * <p>List the two keys used to publish to a topic.
+     *
+     * @param resourceGroupName The name of the resource group within the user's subscription.
+     * @param topicName Name of the topic.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return shared access keys of the Topic.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public TopicSharedAccessKeysInner listSharedAccessKeys(String resourceGroupName, String topicName) {
+        return listSharedAccessKeysWithResponse(resourceGroupName, topicName, Context.NONE).getValue();
+    }
+
+    /**
+     * Regenerate key for a topic.
+     *
+     * <p>Regenerate a shared access key for a topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param topicName Name of the topic.
@@ -1753,7 +1863,9 @@ public final class TopicsClientImpl implements TopicsClient {
     }
 
     /**
-     * Regenerate a shared access key for a topic.
+     * Regenerate key for a topic.
+     *
+     * <p>Regenerate a shared access key for a topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param topicName Name of the topic.
@@ -1807,7 +1919,9 @@ public final class TopicsClientImpl implements TopicsClient {
     }
 
     /**
-     * Regenerate a shared access key for a topic.
+     * Regenerate key for a topic.
+     *
+     * <p>Regenerate a shared access key for a topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param topicName Name of the topic.
@@ -1833,7 +1947,9 @@ public final class TopicsClientImpl implements TopicsClient {
     }
 
     /**
-     * Regenerate a shared access key for a topic.
+     * Regenerate key for a topic.
+     *
+     * <p>Regenerate a shared access key for a topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param topicName Name of the topic.
@@ -1861,7 +1977,9 @@ public final class TopicsClientImpl implements TopicsClient {
     }
 
     /**
-     * Regenerate a shared access key for a topic.
+     * Regenerate key for a topic.
+     *
+     * <p>Regenerate a shared access key for a topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param topicName Name of the topic.
@@ -1878,7 +1996,9 @@ public final class TopicsClientImpl implements TopicsClient {
     }
 
     /**
-     * Regenerate a shared access key for a topic.
+     * Regenerate key for a topic.
+     *
+     * <p>Regenerate a shared access key for a topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param topicName Name of the topic.
@@ -1896,7 +2016,9 @@ public final class TopicsClientImpl implements TopicsClient {
     }
 
     /**
-     * Regenerate a shared access key for a topic.
+     * Regenerate key for a topic.
+     *
+     * <p>Regenerate a shared access key for a topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param topicName Name of the topic.
@@ -1915,7 +2037,9 @@ public final class TopicsClientImpl implements TopicsClient {
     }
 
     /**
-     * Regenerate a shared access key for a topic.
+     * Regenerate key for a topic.
+     *
+     * <p>Regenerate a shared access key for a topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param topicName Name of the topic.
@@ -1935,7 +2059,9 @@ public final class TopicsClientImpl implements TopicsClient {
     }
 
     /**
-     * Regenerate a shared access key for a topic.
+     * Regenerate key for a topic.
+     *
+     * <p>Regenerate a shared access key for a topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param topicName Name of the topic.
@@ -1952,7 +2078,9 @@ public final class TopicsClientImpl implements TopicsClient {
     }
 
     /**
-     * Regenerate a shared access key for a topic.
+     * Regenerate key for a topic.
+     *
+     * <p>Regenerate a shared access key for a topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param topicName Name of the topic.
@@ -1970,7 +2098,9 @@ public final class TopicsClientImpl implements TopicsClient {
     }
 
     /**
-     * List event types for a topic.
+     * List topic event types.
+     *
+     * <p>List event types for a topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param providerNamespace Namespace of the provider of the topic.
@@ -2035,7 +2165,9 @@ public final class TopicsClientImpl implements TopicsClient {
     }
 
     /**
-     * List event types for a topic.
+     * List topic event types.
+     *
+     * <p>List event types for a topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param providerNamespace Namespace of the provider of the topic.
@@ -2102,7 +2234,9 @@ public final class TopicsClientImpl implements TopicsClient {
     }
 
     /**
-     * List event types for a topic.
+     * List topic event types.
+     *
+     * <p>List event types for a topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param providerNamespace Namespace of the provider of the topic.
@@ -2121,7 +2255,9 @@ public final class TopicsClientImpl implements TopicsClient {
     }
 
     /**
-     * List event types for a topic.
+     * List topic event types.
+     *
+     * <p>List event types for a topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param providerNamespace Namespace of the provider of the topic.
@@ -2147,7 +2283,9 @@ public final class TopicsClientImpl implements TopicsClient {
     }
 
     /**
-     * List event types for a topic.
+     * List topic event types.
+     *
+     * <p>List event types for a topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param providerNamespace Namespace of the provider of the topic.
@@ -2166,7 +2304,9 @@ public final class TopicsClientImpl implements TopicsClient {
     }
 
     /**
-     * List event types for a topic.
+     * List topic event types.
+     *
+     * <p>List event types for a topic.
      *
      * @param resourceGroupName The name of the resource group within the user's subscription.
      * @param providerNamespace Namespace of the provider of the topic.
@@ -2192,7 +2332,8 @@ public final class TopicsClientImpl implements TopicsClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -2229,7 +2370,8 @@ public final class TopicsClientImpl implements TopicsClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -2266,7 +2408,8 @@ public final class TopicsClientImpl implements TopicsClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -2303,7 +2446,8 @@ public final class TopicsClientImpl implements TopicsClient {
     /**
      * Get the next page of items.
      *
-     * @param nextLink The nextLink parameter.
+     * @param nextLink The URL to get the next list of items
+     *     <p>The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
