@@ -65,7 +65,7 @@ public final class VolumeGroupsClientImpl implements VolumeGroupsClient {
      */
     @Host("{$host}")
     @ServiceInterface(name = "ElasticSanManagement")
-    private interface VolumeGroupsService {
+    public interface VolumeGroupsService {
         @Headers({"Content-Type: application/json"})
         @Get(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ElasticSan"
