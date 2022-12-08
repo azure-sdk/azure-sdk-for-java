@@ -45,26 +45,26 @@ public final class SchedulesClientImpl implements SchedulesClient {
     private final SchedulesService service;
 
     /** The service client containing this operation class. */
-    private final AzureMachineLearningWorkspacesImpl client;
+    private final AzureMachineLearningServicesImpl client;
 
     /**
      * Initializes an instance of SchedulesClientImpl.
      *
      * @param client the instance of the service client containing this operation class.
      */
-    SchedulesClientImpl(AzureMachineLearningWorkspacesImpl client) {
+    SchedulesClientImpl(AzureMachineLearningServicesImpl client) {
         this.service =
             RestProxy.create(SchedulesService.class, client.getHttpPipeline(), client.getSerializerAdapter());
         this.client = client;
     }
 
     /**
-     * The interface defining all the services for AzureMachineLearningWorkspacesSchedules to be used by the proxy
-     * service to perform REST calls.
+     * The interface defining all the services for AzureMachineLearningServicesSchedules to be used by the proxy service
+     * to perform REST calls.
      */
     @Host("{$host}")
     @ServiceInterface(name = "AzureMachineLearning")
-    private interface SchedulesService {
+    public interface SchedulesService {
         @Headers({"Content-Type: application/json"})
         @Get(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers"

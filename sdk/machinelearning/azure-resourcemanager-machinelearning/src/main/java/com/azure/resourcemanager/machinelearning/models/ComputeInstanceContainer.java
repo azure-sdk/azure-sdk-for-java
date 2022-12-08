@@ -44,7 +44,7 @@ public final class ComputeInstanceContainer {
     /*
      * services of this containers.
      */
-    @JsonProperty(value = "services", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "services")
     private List<Object> services;
 
     /** Creates an instance of ComputeInstanceContainer class. */
@@ -158,6 +158,17 @@ public final class ComputeInstanceContainer {
      */
     public List<Object> services() {
         return this.services;
+    }
+
+    /**
+     * Set the services property: services of this containers.
+     *
+     * @param services the services value to set.
+     * @return the ComputeInstanceContainer object itself.
+     */
+    public ComputeInstanceContainer withServices(List<Object> services) {
+        this.services = services;
+        return this;
     }
 
     /**

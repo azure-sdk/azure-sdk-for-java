@@ -35,10 +35,28 @@ public final class ComputeInstanceProperties {
     private ApplicationSharingPolicy applicationSharingPolicy;
 
     /*
+     * Specifies settings for autologger.
+     */
+    @JsonProperty(value = "autologgerSettings")
+    private ComputeInstanceAutologgerSettings autologgerSettings;
+
+    /*
      * Specifies policy and settings for SSH access.
      */
     @JsonProperty(value = "sshSettings")
     private ComputeInstanceSshSettings sshSettings;
+
+    /*
+     * List of Custom Services added to the compute.
+     */
+    @JsonProperty(value = "customServices")
+    private List<CustomService> customServices;
+
+    /*
+     * Returns metadata about the operating system image for this compute instance.
+     */
+    @JsonProperty(value = "osImageMetadata", access = JsonProperty.Access.WRITE_ONLY)
+    private ImageMetadata osImageMetadata;
 
     /*
      * Describes all connectivity endpoints available for this ComputeInstance.
@@ -101,8 +119,15 @@ public final class ComputeInstanceProperties {
     /*
      * The list of schedules to be applied on the computes.
      */
-    @JsonProperty(value = "schedules", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "schedules")
     private ComputeSchedules schedules;
+
+    /*
+     * Stops compute instance after user defined period of inactivity. Time is defined in ISO8601 format. Minimum is 15
+     * min, maximum is 3 days.
+     */
+    @JsonProperty(value = "idleTimeBeforeShutdown")
+    private String idleTimeBeforeShutdown;
 
     /*
      * Enable node public IP.
@@ -117,19 +142,19 @@ public final class ComputeInstanceProperties {
     /*
      * Describes informations of containers on this ComputeInstance.
      */
-    @JsonProperty(value = "containers", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "containers")
     private List<ComputeInstanceContainer> containers;
 
     /*
      * Describes informations of dataDisks on this ComputeInstance.
      */
-    @JsonProperty(value = "dataDisks", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "dataDisks")
     private List<ComputeInstanceDataDisk> dataDisks;
 
     /*
      * Describes informations of dataMounts on this ComputeInstance.
      */
-    @JsonProperty(value = "dataMounts", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "dataMounts")
     private List<ComputeInstanceDataMount> dataMounts;
 
     /*
@@ -211,6 +236,26 @@ public final class ComputeInstanceProperties {
     }
 
     /**
+     * Get the autologgerSettings property: Specifies settings for autologger.
+     *
+     * @return the autologgerSettings value.
+     */
+    public ComputeInstanceAutologgerSettings autologgerSettings() {
+        return this.autologgerSettings;
+    }
+
+    /**
+     * Set the autologgerSettings property: Specifies settings for autologger.
+     *
+     * @param autologgerSettings the autologgerSettings value to set.
+     * @return the ComputeInstanceProperties object itself.
+     */
+    public ComputeInstanceProperties withAutologgerSettings(ComputeInstanceAutologgerSettings autologgerSettings) {
+        this.autologgerSettings = autologgerSettings;
+        return this;
+    }
+
+    /**
      * Get the sshSettings property: Specifies policy and settings for SSH access.
      *
      * @return the sshSettings value.
@@ -228,6 +273,35 @@ public final class ComputeInstanceProperties {
     public ComputeInstanceProperties withSshSettings(ComputeInstanceSshSettings sshSettings) {
         this.sshSettings = sshSettings;
         return this;
+    }
+
+    /**
+     * Get the customServices property: List of Custom Services added to the compute.
+     *
+     * @return the customServices value.
+     */
+    public List<CustomService> customServices() {
+        return this.customServices;
+    }
+
+    /**
+     * Set the customServices property: List of Custom Services added to the compute.
+     *
+     * @param customServices the customServices value to set.
+     * @return the ComputeInstanceProperties object itself.
+     */
+    public ComputeInstanceProperties withCustomServices(List<CustomService> customServices) {
+        this.customServices = customServices;
+        return this;
+    }
+
+    /**
+     * Get the osImageMetadata property: Returns metadata about the operating system image for this compute instance.
+     *
+     * @return the osImageMetadata value.
+     */
+    public ImageMetadata osImageMetadata() {
+        return this.osImageMetadata;
     }
 
     /**
@@ -362,6 +436,39 @@ public final class ComputeInstanceProperties {
     }
 
     /**
+     * Set the schedules property: The list of schedules to be applied on the computes.
+     *
+     * @param schedules the schedules value to set.
+     * @return the ComputeInstanceProperties object itself.
+     */
+    public ComputeInstanceProperties withSchedules(ComputeSchedules schedules) {
+        this.schedules = schedules;
+        return this;
+    }
+
+    /**
+     * Get the idleTimeBeforeShutdown property: Stops compute instance after user defined period of inactivity. Time is
+     * defined in ISO8601 format. Minimum is 15 min, maximum is 3 days.
+     *
+     * @return the idleTimeBeforeShutdown value.
+     */
+    public String idleTimeBeforeShutdown() {
+        return this.idleTimeBeforeShutdown;
+    }
+
+    /**
+     * Set the idleTimeBeforeShutdown property: Stops compute instance after user defined period of inactivity. Time is
+     * defined in ISO8601 format. Minimum is 15 min, maximum is 3 days.
+     *
+     * @param idleTimeBeforeShutdown the idleTimeBeforeShutdown value to set.
+     * @return the ComputeInstanceProperties object itself.
+     */
+    public ComputeInstanceProperties withIdleTimeBeforeShutdown(String idleTimeBeforeShutdown) {
+        this.idleTimeBeforeShutdown = idleTimeBeforeShutdown;
+        return this;
+    }
+
+    /**
      * Get the enableNodePublicIp property: Enable node public IP.
      *
      * <p>Enable or disable node public IP address provisioning. Possible values are: Possible values are: true -
@@ -399,6 +506,17 @@ public final class ComputeInstanceProperties {
     }
 
     /**
+     * Set the containers property: Describes informations of containers on this ComputeInstance.
+     *
+     * @param containers the containers value to set.
+     * @return the ComputeInstanceProperties object itself.
+     */
+    public ComputeInstanceProperties withContainers(List<ComputeInstanceContainer> containers) {
+        this.containers = containers;
+        return this;
+    }
+
+    /**
      * Get the dataDisks property: Describes informations of dataDisks on this ComputeInstance.
      *
      * @return the dataDisks value.
@@ -408,12 +526,34 @@ public final class ComputeInstanceProperties {
     }
 
     /**
+     * Set the dataDisks property: Describes informations of dataDisks on this ComputeInstance.
+     *
+     * @param dataDisks the dataDisks value to set.
+     * @return the ComputeInstanceProperties object itself.
+     */
+    public ComputeInstanceProperties withDataDisks(List<ComputeInstanceDataDisk> dataDisks) {
+        this.dataDisks = dataDisks;
+        return this;
+    }
+
+    /**
      * Get the dataMounts property: Describes informations of dataMounts on this ComputeInstance.
      *
      * @return the dataMounts value.
      */
     public List<ComputeInstanceDataMount> dataMounts() {
         return this.dataMounts;
+    }
+
+    /**
+     * Set the dataMounts property: Describes informations of dataMounts on this ComputeInstance.
+     *
+     * @param dataMounts the dataMounts value to set.
+     * @return the ComputeInstanceProperties object itself.
+     */
+    public ComputeInstanceProperties withDataMounts(List<ComputeInstanceDataMount> dataMounts) {
+        this.dataMounts = dataMounts;
+        return this;
     }
 
     /**
@@ -434,8 +574,17 @@ public final class ComputeInstanceProperties {
         if (subnet() != null) {
             subnet().validate();
         }
+        if (autologgerSettings() != null) {
+            autologgerSettings().validate();
+        }
         if (sshSettings() != null) {
             sshSettings().validate();
+        }
+        if (customServices() != null) {
+            customServices().forEach(e -> e.validate());
+        }
+        if (osImageMetadata() != null) {
+            osImageMetadata().validate();
         }
         if (connectivityEndpoints() != null) {
             connectivityEndpoints().validate();

@@ -21,6 +21,8 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     @JsonSubTypes.Type(name = "PAT", value = PatAuthTypeWorkspaceConnectionProperties.class),
     @JsonSubTypes.Type(name = "SAS", value = SasAuthTypeWorkspaceConnectionProperties.class),
     @JsonSubTypes.Type(name = "UsernamePassword", value = UsernamePasswordAuthTypeWorkspaceConnectionProperties.class),
+    @JsonSubTypes.Type(name = "AccessKey", value = AccessKeyAuthTypeWorkspaceConnectionProperties.class),
+    @JsonSubTypes.Type(name = "ServicePrincipal", value = ServicePrincipalAuthTypeWorkspaceConnectionProperties.class),
     @JsonSubTypes.Type(name = "None", value = NoneAuthTypeWorkspaceConnectionProperties.class),
     @JsonSubTypes.Type(name = "ManagedIdentity", value = ManagedIdentityAuthTypeWorkspaceConnectionProperties.class)
 })
@@ -30,7 +32,7 @@ public class WorkspaceConnectionPropertiesV2 {
      * Category of the connection
      */
     @JsonProperty(value = "category")
-    private ConnectionCategory category;
+    private String category;
 
     /*
      * The target property.
@@ -59,7 +61,7 @@ public class WorkspaceConnectionPropertiesV2 {
      *
      * @return the category value.
      */
-    public ConnectionCategory category() {
+    public String category() {
         return this.category;
     }
 
@@ -69,7 +71,7 @@ public class WorkspaceConnectionPropertiesV2 {
      * @param category the category value to set.
      * @return the WorkspaceConnectionPropertiesV2 object itself.
      */
-    public WorkspaceConnectionPropertiesV2 withCategory(ConnectionCategory category) {
+    public WorkspaceConnectionPropertiesV2 withCategory(String category) {
         this.category = category;
         return this;
     }

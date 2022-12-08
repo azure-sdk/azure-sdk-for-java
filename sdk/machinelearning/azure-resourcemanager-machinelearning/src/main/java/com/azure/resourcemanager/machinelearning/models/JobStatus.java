@@ -52,6 +52,9 @@ public final class JobStatus extends ExpandableStringEnum<JobStatus> {
     /** Static value Unknown for JobStatus. */
     public static final JobStatus UNKNOWN = fromString("Unknown");
 
+    /** Static value Scheduled for JobStatus. */
+    public static final JobStatus SCHEDULED = fromString("Scheduled");
+
     /**
      * Creates or finds a JobStatus from its string representation.
      *

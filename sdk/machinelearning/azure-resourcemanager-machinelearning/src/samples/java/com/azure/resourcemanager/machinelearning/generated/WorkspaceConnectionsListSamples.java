@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for WorkspaceConnections List. */
 public final class WorkspaceConnectionsListSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/WorkspaceConnection/list.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/WorkspaceConnection/list.json
      */
     /**
      * Sample code: ListWorkspaceConnections.

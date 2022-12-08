@@ -9,14 +9,15 @@ import com.azure.core.util.Context;
 /** Samples for BatchDeployments List. */
 public final class BatchDeploymentsListSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/BatchDeployment/list.json
+     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2022-12-01-preview/examples/Workspace/BatchDeployment/list.json
      */
     /**
-     * Sample code: List Batch Deployment.
+     * Sample code: List Workspace Batch Deployment.
      *
      * @param manager Entry point to MachineLearningManager.
      */
-    public static void listBatchDeployment(com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
+    public static void listWorkspaceBatchDeployment(
+        com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
         manager
             .batchDeployments()
             .list("test-rg", "my-aml-workspace", "testEndpointName", "string", 1, null, Context.NONE);
