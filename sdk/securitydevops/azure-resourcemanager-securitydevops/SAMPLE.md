@@ -95,7 +95,7 @@ public final class AzureDevOpsConnectorCreateOrUpdateSamples {
             .withExistingResourceGroup("westusrg")
             .withProperties(
                 new AzureDevOpsConnectorProperties()
-                    .withAuthorization(new AuthorizationInfo().withCode("00000000000000000000"))
+                    .withAuthorization(new AuthorizationInfo().withCode("fakeTokenPlaceholder"))
                     .withOrgs(
                         Arrays
                             .asList(
@@ -492,8 +492,6 @@ public final class AzureDevOpsRepoCreateOrUpdateSamples {
             .withExistingProject("westusrg", "testconnector", "myOrg", "myProject")
             .withProperties(
                 new AzureDevOpsRepoProperties()
-                    .withRepoId("00000000-0000-0000-0000-000000000000")
-                    .withRepoUrl("https://dev.azure.com/myOrg/myProject/_git/myRepo")
                     .withActionableRemediation(
                         new ActionableRemediation()
                             .withState(ActionableRemediationState.ENABLED)
@@ -620,7 +618,7 @@ public final class GitHubConnectorCreateOrUpdateSamples {
             .define("testconnector")
             .withRegion("West US")
             .withExistingResourceGroup("westusrg")
-            .withProperties(new GitHubConnectorProperties().withCode("00000000000000000000"))
+            .withProperties(new GitHubConnectorProperties().withCode("fakeTokenPlaceholder"))
             .create();
     }
 }

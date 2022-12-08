@@ -63,7 +63,7 @@ public final class AzureDevOpsRepoesClientImpl implements AzureDevOpsRepoesClien
      */
     @Host("{$host}")
     @ServiceInterface(name = "MicrosoftSecurityDev")
-    private interface AzureDevOpsRepoesService {
+    public interface AzureDevOpsRepoesService {
         @Headers({"Content-Type: application/json"})
         @Get(
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SecurityDevOps"
@@ -121,7 +121,7 @@ public final class AzureDevOpsRepoesClientImpl implements AzureDevOpsRepoesClien
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SecurityDevOps"
                 + "/azureDevOpsConnectors/{azureDevOpsConnectorName}/orgs/{azureDevOpsOrgName}/projects"
                 + "/{azureDevOpsProjectName}/repos/{azureDevOpsRepoName}")
-        @ExpectedResponses({200, 201})
+        @ExpectedResponses({200, 201, 202})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> createOrUpdate(
             @HostParam("$host") String endpoint,
@@ -141,7 +141,7 @@ public final class AzureDevOpsRepoesClientImpl implements AzureDevOpsRepoesClien
             "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SecurityDevOps"
                 + "/azureDevOpsConnectors/{azureDevOpsConnectorName}/orgs/{azureDevOpsOrgName}/projects"
                 + "/{azureDevOpsProjectName}/repos/{azureDevOpsRepoName}")
-        @ExpectedResponses({202})
+        @ExpectedResponses({200, 202})
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> update(
             @HostParam("$host") String endpoint,
@@ -1294,14 +1294,14 @@ public final class AzureDevOpsRepoesClientImpl implements AzureDevOpsRepoesClien
     }
 
     /**
-     * Update monitored AzureDevOps Project details.
+     * Update monitored AzureDevOps Repo details.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param azureDevOpsConnectorName Name of the AzureDevOps Connector.
      * @param azureDevOpsOrgName Name of the AzureDevOps Org.
      * @param azureDevOpsProjectName Name of the AzureDevOps Project.
      * @param azureDevOpsRepoName Name of the AzureDevOps Repo.
-     * @param azureDevOpsRepo Azure DevOps Org resource payload.
+     * @param azureDevOpsRepo Azure DevOps Repo resource payload.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1373,14 +1373,14 @@ public final class AzureDevOpsRepoesClientImpl implements AzureDevOpsRepoesClien
     }
 
     /**
-     * Update monitored AzureDevOps Project details.
+     * Update monitored AzureDevOps Repo details.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param azureDevOpsConnectorName Name of the AzureDevOps Connector.
      * @param azureDevOpsOrgName Name of the AzureDevOps Org.
      * @param azureDevOpsProjectName Name of the AzureDevOps Project.
      * @param azureDevOpsRepoName Name of the AzureDevOps Repo.
-     * @param azureDevOpsRepo Azure DevOps Org resource payload.
+     * @param azureDevOpsRepo Azure DevOps Repo resource payload.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1451,14 +1451,14 @@ public final class AzureDevOpsRepoesClientImpl implements AzureDevOpsRepoesClien
     }
 
     /**
-     * Update monitored AzureDevOps Project details.
+     * Update monitored AzureDevOps Repo details.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param azureDevOpsConnectorName Name of the AzureDevOps Connector.
      * @param azureDevOpsOrgName Name of the AzureDevOps Org.
      * @param azureDevOpsProjectName Name of the AzureDevOps Project.
      * @param azureDevOpsRepoName Name of the AzureDevOps Repo.
-     * @param azureDevOpsRepo Azure DevOps Org resource payload.
+     * @param azureDevOpsRepo Azure DevOps Repo resource payload.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1491,7 +1491,7 @@ public final class AzureDevOpsRepoesClientImpl implements AzureDevOpsRepoesClien
     }
 
     /**
-     * Update monitored AzureDevOps Project details.
+     * Update monitored AzureDevOps Repo details.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param azureDevOpsConnectorName Name of the AzureDevOps Connector.
@@ -1530,14 +1530,14 @@ public final class AzureDevOpsRepoesClientImpl implements AzureDevOpsRepoesClien
     }
 
     /**
-     * Update monitored AzureDevOps Project details.
+     * Update monitored AzureDevOps Repo details.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param azureDevOpsConnectorName Name of the AzureDevOps Connector.
      * @param azureDevOpsOrgName Name of the AzureDevOps Org.
      * @param azureDevOpsProjectName Name of the AzureDevOps Project.
      * @param azureDevOpsRepoName Name of the AzureDevOps Repo.
-     * @param azureDevOpsRepo Azure DevOps Org resource payload.
+     * @param azureDevOpsRepo Azure DevOps Repo resource payload.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1570,7 +1570,7 @@ public final class AzureDevOpsRepoesClientImpl implements AzureDevOpsRepoesClien
     }
 
     /**
-     * Update monitored AzureDevOps Project details.
+     * Update monitored AzureDevOps Repo details.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param azureDevOpsConnectorName Name of the AzureDevOps Connector.
@@ -1601,14 +1601,14 @@ public final class AzureDevOpsRepoesClientImpl implements AzureDevOpsRepoesClien
     }
 
     /**
-     * Update monitored AzureDevOps Project details.
+     * Update monitored AzureDevOps Repo details.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param azureDevOpsConnectorName Name of the AzureDevOps Connector.
      * @param azureDevOpsOrgName Name of the AzureDevOps Org.
      * @param azureDevOpsProjectName Name of the AzureDevOps Project.
      * @param azureDevOpsRepoName Name of the AzureDevOps Repo.
-     * @param azureDevOpsRepo Azure DevOps Org resource payload.
+     * @param azureDevOpsRepo Azure DevOps Repo resource payload.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1636,14 +1636,14 @@ public final class AzureDevOpsRepoesClientImpl implements AzureDevOpsRepoesClien
     }
 
     /**
-     * Update monitored AzureDevOps Project details.
+     * Update monitored AzureDevOps Repo details.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param azureDevOpsConnectorName Name of the AzureDevOps Connector.
      * @param azureDevOpsOrgName Name of the AzureDevOps Org.
      * @param azureDevOpsProjectName Name of the AzureDevOps Project.
      * @param azureDevOpsRepoName Name of the AzureDevOps Repo.
-     * @param azureDevOpsRepo Azure DevOps Org resource payload.
+     * @param azureDevOpsRepo Azure DevOps Repo resource payload.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1669,7 +1669,7 @@ public final class AzureDevOpsRepoesClientImpl implements AzureDevOpsRepoesClien
     }
 
     /**
-     * Update monitored AzureDevOps Project details.
+     * Update monitored AzureDevOps Repo details.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param azureDevOpsConnectorName Name of the AzureDevOps Connector.
@@ -1701,14 +1701,14 @@ public final class AzureDevOpsRepoesClientImpl implements AzureDevOpsRepoesClien
     }
 
     /**
-     * Update monitored AzureDevOps Project details.
+     * Update monitored AzureDevOps Repo details.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param azureDevOpsConnectorName Name of the AzureDevOps Connector.
      * @param azureDevOpsOrgName Name of the AzureDevOps Org.
      * @param azureDevOpsProjectName Name of the AzureDevOps Project.
      * @param azureDevOpsRepoName Name of the AzureDevOps Repo.
-     * @param azureDevOpsRepo Azure DevOps Org resource payload.
+     * @param azureDevOpsRepo Azure DevOps Repo resource payload.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1737,7 +1737,7 @@ public final class AzureDevOpsRepoesClientImpl implements AzureDevOpsRepoesClien
     }
 
     /**
-     * Update monitored AzureDevOps Project details.
+     * Update monitored AzureDevOps Repo details.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param azureDevOpsConnectorName Name of the AzureDevOps Connector.
@@ -1768,14 +1768,14 @@ public final class AzureDevOpsRepoesClientImpl implements AzureDevOpsRepoesClien
     }
 
     /**
-     * Update monitored AzureDevOps Project details.
+     * Update monitored AzureDevOps Repo details.
      *
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param azureDevOpsConnectorName Name of the AzureDevOps Connector.
      * @param azureDevOpsOrgName Name of the AzureDevOps Org.
      * @param azureDevOpsProjectName Name of the AzureDevOps Project.
      * @param azureDevOpsRepoName Name of the AzureDevOps Repo.
-     * @param azureDevOpsRepo Azure DevOps Org resource payload.
+     * @param azureDevOpsRepo Azure DevOps Repo resource payload.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
