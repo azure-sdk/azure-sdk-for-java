@@ -28,11 +28,23 @@ import com.azure.resourcemanager.azurestackhci.implementation.ArcSettingsImpl;
 import com.azure.resourcemanager.azurestackhci.implementation.AzureStackHciClientBuilder;
 import com.azure.resourcemanager.azurestackhci.implementation.ClustersImpl;
 import com.azure.resourcemanager.azurestackhci.implementation.ExtensionsImpl;
+import com.azure.resourcemanager.azurestackhci.implementation.OffersImpl;
 import com.azure.resourcemanager.azurestackhci.implementation.OperationsImpl;
+import com.azure.resourcemanager.azurestackhci.implementation.PublishersImpl;
+import com.azure.resourcemanager.azurestackhci.implementation.SkusImpl;
+import com.azure.resourcemanager.azurestackhci.implementation.UpdateRunsImpl;
+import com.azure.resourcemanager.azurestackhci.implementation.UpdateSummariesOperationsImpl;
+import com.azure.resourcemanager.azurestackhci.implementation.UpdatesImpl;
 import com.azure.resourcemanager.azurestackhci.models.ArcSettings;
 import com.azure.resourcemanager.azurestackhci.models.Clusters;
 import com.azure.resourcemanager.azurestackhci.models.Extensions;
+import com.azure.resourcemanager.azurestackhci.models.Offers;
 import com.azure.resourcemanager.azurestackhci.models.Operations;
+import com.azure.resourcemanager.azurestackhci.models.Publishers;
+import com.azure.resourcemanager.azurestackhci.models.Skus;
+import com.azure.resourcemanager.azurestackhci.models.UpdateRuns;
+import com.azure.resourcemanager.azurestackhci.models.UpdateSummariesOperations;
+import com.azure.resourcemanager.azurestackhci.models.Updates;
 import java.time.Duration;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
@@ -48,7 +60,19 @@ public final class AzureStackHciManager {
 
     private Extensions extensions;
 
+    private Offers offers;
+
     private Operations operations;
+
+    private Publishers publishers;
+
+    private Skus skus;
+
+    private UpdateRuns updateRuns;
+
+    private UpdateSummariesOperations updateSummariesOperations;
+
+    private Updates updates;
 
     private final AzureStackHciClient clientObject;
 
@@ -215,7 +239,7 @@ public final class AzureStackHciManager {
                 .append("-")
                 .append("com.azure.resourcemanager.azurestackhci")
                 .append("/")
-                .append("1.0.0-beta.3");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder
                     .append(" (")
@@ -309,6 +333,18 @@ public final class AzureStackHciManager {
     }
 
     /**
+     * Gets the resource collection API of Offers.
+     *
+     * @return Resource collection API of Offers.
+     */
+    public Offers offers() {
+        if (this.offers == null) {
+            this.offers = new OffersImpl(clientObject.getOffers(), this);
+        }
+        return offers;
+    }
+
+    /**
      * Gets the resource collection API of Operations.
      *
      * @return Resource collection API of Operations.
@@ -318,6 +354,67 @@ public final class AzureStackHciManager {
             this.operations = new OperationsImpl(clientObject.getOperations(), this);
         }
         return operations;
+    }
+
+    /**
+     * Gets the resource collection API of Publishers.
+     *
+     * @return Resource collection API of Publishers.
+     */
+    public Publishers publishers() {
+        if (this.publishers == null) {
+            this.publishers = new PublishersImpl(clientObject.getPublishers(), this);
+        }
+        return publishers;
+    }
+
+    /**
+     * Gets the resource collection API of Skus.
+     *
+     * @return Resource collection API of Skus.
+     */
+    public Skus skus() {
+        if (this.skus == null) {
+            this.skus = new SkusImpl(clientObject.getSkus(), this);
+        }
+        return skus;
+    }
+
+    /**
+     * Gets the resource collection API of UpdateRuns. It manages UpdateRun.
+     *
+     * @return Resource collection API of UpdateRuns.
+     */
+    public UpdateRuns updateRuns() {
+        if (this.updateRuns == null) {
+            this.updateRuns = new UpdateRunsImpl(clientObject.getUpdateRuns(), this);
+        }
+        return updateRuns;
+    }
+
+    /**
+     * Gets the resource collection API of UpdateSummariesOperations.
+     *
+     * @return Resource collection API of UpdateSummariesOperations.
+     */
+    public UpdateSummariesOperations updateSummariesOperations() {
+        if (this.updateSummariesOperations == null) {
+            this.updateSummariesOperations =
+                new UpdateSummariesOperationsImpl(clientObject.getUpdateSummariesOperations(), this);
+        }
+        return updateSummariesOperations;
+    }
+
+    /**
+     * Gets the resource collection API of Updates. It manages Update.
+     *
+     * @return Resource collection API of Updates.
+     */
+    public Updates updates() {
+        if (this.updates == null) {
+            this.updates = new UpdatesImpl(clientObject.getUpdates(), this);
+        }
+        return updates;
     }
 
     /**
