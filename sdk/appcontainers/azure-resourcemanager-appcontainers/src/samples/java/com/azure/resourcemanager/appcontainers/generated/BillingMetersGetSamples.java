@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for BillingMeters Get. */
 public final class BillingMetersGetSamples {
     /*
-     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2022-06-01-preview/examples/BillingMeters_Get.json
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2022-10-01/examples/BillingMeters_Get.json
      */
     /**
      * Sample code: BillingMeters_Get.

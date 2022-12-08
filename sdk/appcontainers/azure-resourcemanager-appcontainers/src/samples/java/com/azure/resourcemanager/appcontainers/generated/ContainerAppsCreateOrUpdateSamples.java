@@ -14,10 +14,12 @@ import com.azure.resourcemanager.appcontainers.models.ContainerAppProbeHttpGet;
 import com.azure.resourcemanager.appcontainers.models.ContainerAppProbeHttpGetHttpHeadersItem;
 import com.azure.resourcemanager.appcontainers.models.ContainerAppProbeTcpSocket;
 import com.azure.resourcemanager.appcontainers.models.ContainerResources;
+import com.azure.resourcemanager.appcontainers.models.CorsPolicy;
 import com.azure.resourcemanager.appcontainers.models.CustomDomain;
 import com.azure.resourcemanager.appcontainers.models.CustomScaleRule;
 import com.azure.resourcemanager.appcontainers.models.Dapr;
 import com.azure.resourcemanager.appcontainers.models.Ingress;
+import com.azure.resourcemanager.appcontainers.models.IngressClientCertificateMode;
 import com.azure.resourcemanager.appcontainers.models.IngressTransportMethod;
 import com.azure.resourcemanager.appcontainers.models.InitContainer;
 import com.azure.resourcemanager.appcontainers.models.IpSecurityRestrictionRule;
@@ -35,7 +37,7 @@ import java.util.Map;
 /** Samples for ContainerApps CreateOrUpdate. */
 public final class ContainerAppsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2022-06-01-preview/examples/ContainerApps_CreateOrUpdate.json
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2022-10-01/examples/ContainerApps_CreateOrUpdate.json
      */
     /**
      * Sample code: Create or Update Container App.
@@ -92,7 +94,16 @@ public final class ContainerAppsCreateOrUpdateSamples {
                                             .withDescription(
                                                 "Allowing all IP's within the subnet below to access containerapp")
                                             .withIpAddressRange("192.168.1.1/8")
-                                            .withAction(Action.ALLOW))))
+                                            .withAction(Action.ALLOW)))
+                            .withClientCertificateMode(IngressClientCertificateMode.ACCEPT)
+                            .withCorsPolicy(
+                                new CorsPolicy()
+                                    .withAllowedOrigins(Arrays.asList("https://a.test.com", "https://b.test.com"))
+                                    .withAllowedMethods(Arrays.asList("GET", "POST"))
+                                    .withAllowedHeaders(Arrays.asList("HEADER1", "HEADER2"))
+                                    .withExposeHeaders(Arrays.asList("HEADER3", "HEADER4"))
+                                    .withMaxAge(1234)
+                                    .withAllowCredentials(true)))
                     .withDapr(
                         new Dapr()
                             .withEnabled(true)
@@ -154,7 +165,7 @@ public final class ContainerAppsCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2022-06-01-preview/examples/ContainerApps_TcpApp_CreateOrUpdate.json
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2022-10-01/examples/ContainerApps_TcpApp_CreateOrUpdate.json
      */
     /**
      * Sample code: Create or Update Tcp App.

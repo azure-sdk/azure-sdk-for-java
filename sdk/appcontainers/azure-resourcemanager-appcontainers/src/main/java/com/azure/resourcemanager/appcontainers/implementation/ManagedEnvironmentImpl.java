@@ -52,6 +52,10 @@ public final class ManagedEnvironmentImpl
         }
     }
 
+    public String kind() {
+        return this.innerModel().kind();
+    }
+
     public EnvironmentSkuProperties sku() {
         return this.innerModel().sku();
     }
@@ -176,7 +180,7 @@ public final class ManagedEnvironmentImpl
             serviceManager
                 .serviceClient()
                 .getManagedEnvironments()
-                .createOrUpdate(resourceGroupName, environmentName, this.innerModel(), Context.NONE);
+                .update(resourceGroupName, environmentName, this.innerModel(), Context.NONE);
         return this;
     }
 
@@ -185,7 +189,7 @@ public final class ManagedEnvironmentImpl
             serviceManager
                 .serviceClient()
                 .getManagedEnvironments()
-                .createOrUpdate(resourceGroupName, environmentName, this.innerModel(), context);
+                .update(resourceGroupName, environmentName, this.innerModel(), context);
         return this;
     }
 
@@ -240,6 +244,11 @@ public final class ManagedEnvironmentImpl
 
     public ManagedEnvironmentImpl withTags(Map<String, String> tags) {
         this.innerModel().withTags(tags);
+        return this;
+    }
+
+    public ManagedEnvironmentImpl withKind(String kind) {
+        this.innerModel().withKind(kind);
         return this;
     }
 
