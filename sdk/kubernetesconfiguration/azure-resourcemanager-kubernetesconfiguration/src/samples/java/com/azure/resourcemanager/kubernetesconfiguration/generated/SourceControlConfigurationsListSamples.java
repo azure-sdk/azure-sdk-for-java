@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for SourceControlConfigurations List. */
 public final class SourceControlConfigurationsListSamples {
     /*
-     * x-ms-original-file: specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/stable/2022-03-01/examples/ListSourceControlConfiguration.json
+     * x-ms-original-file: specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/stable/2022-11-01/examples/ListSourceControlConfiguration.json
      */
     /**
      * Sample code: List Source Control Configuration.

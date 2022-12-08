@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for FluxConfigurations List. */
 public final class FluxConfigurationsListSamples {
     /*
-     * x-ms-original-file: specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/stable/2022-03-01/examples/ListFluxConfigurations.json
+     * x-ms-original-file: specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/stable/2022-11-01/examples/ListFluxConfigurations.json
      */
     /**
      * Sample code: List Flux Configuration.

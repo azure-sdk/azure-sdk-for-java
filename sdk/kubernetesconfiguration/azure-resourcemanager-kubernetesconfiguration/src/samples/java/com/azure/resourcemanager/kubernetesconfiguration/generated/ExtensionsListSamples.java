@@ -9,7 +9,7 @@ import com.azure.core.util.Context;
 /** Samples for Extensions List. */
 public final class ExtensionsListSamples {
     /*
-     * x-ms-original-file: specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/stable/2022-03-01/examples/ListExtensions.json
+     * x-ms-original-file: specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/stable/2022-11-01/examples/ListExtensions.json
      */
     /**
      * Sample code: List Extensions.

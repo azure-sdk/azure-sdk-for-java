@@ -8,7 +8,7 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for OperatorType. */
+/** Type of the operator. */
 public final class OperatorType extends ExpandableStringEnum<OperatorType> {
     /** Static value Flux for OperatorType. */
     public static final OperatorType FLUX = fromString("Flux");
@@ -24,7 +24,11 @@ public final class OperatorType extends ExpandableStringEnum<OperatorType> {
         return fromString(name, OperatorType.class);
     }
 
-    /** @return known OperatorType values. */
+    /**
+     * Gets known OperatorType values.
+     *
+     * @return known OperatorType values.
+     */
     public static Collection<OperatorType> values() {
         return values(OperatorType.class);
     }
